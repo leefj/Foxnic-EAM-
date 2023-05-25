@@ -121,6 +121,8 @@ public class FormInfoServiceImpl extends SuperService<FormInfo> implements IForm
 		}
 
 		FormDef def=formInfo.getFormDef();
+
+
 		FormData formData=new FormData();
 		formData.setData(new JSONObject().toJSONString());
 		formData.setDesignerData(def.getDesignerData());

@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 流程表单接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-24 19:44:30
+ * @since 2023-05-25 16:11:26
 */
 
 @InDoc
@@ -65,9 +65,9 @@ public class BpmFormDataController extends SuperController implements BpmCallbac
 	*/
 	@ApiOperation(value = "添加流程表单")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = BpmFormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BpmFormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "714139812184981504"),
 		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_ID , value = "表单" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_DATA_ID , value = "数据" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_DATA_ID , value = "数据" , required = false , dataTypeClass=String.class , example = "714139760699899904"),
 		@ApiImplicitParam(name = BpmFormDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
@@ -87,7 +87,7 @@ public class BpmFormDataController extends SuperController implements BpmCallbac
 	*/
 	@ApiOperation(value = "删除流程表单")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = BpmFormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = BpmFormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "714139812184981504")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = BpmFormDataServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -170,9 +170,9 @@ public class BpmFormDataController extends SuperController implements BpmCallbac
 	*/
 	@ApiOperation(value = "更新流程表单")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = BpmFormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BpmFormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "714139812184981504"),
 		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_ID , value = "表单" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_DATA_ID , value = "数据" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_DATA_ID , value = "数据" , required = false , dataTypeClass=String.class , example = "714139760699899904"),
 		@ApiImplicitParam(name = BpmFormDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
@@ -191,9 +191,9 @@ public class BpmFormDataController extends SuperController implements BpmCallbac
 	*/
 	@ApiOperation(value = "保存流程表单")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = BpmFormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BpmFormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "714139812184981504"),
 		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_ID , value = "表单" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_DATA_ID , value = "数据" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_DATA_ID , value = "数据" , required = false , dataTypeClass=String.class , example = "714139760699899904"),
 		@ApiImplicitParam(name = BpmFormDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
@@ -253,9 +253,9 @@ public class BpmFormDataController extends SuperController implements BpmCallbac
 	*/
 	@ApiOperation(value = "查询流程表单")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = BpmFormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BpmFormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "714139812184981504"),
 		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_ID , value = "表单" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_DATA_ID , value = "数据" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_DATA_ID , value = "数据" , required = false , dataTypeClass=String.class , example = "714139760699899904"),
 		@ApiImplicitParam(name = BpmFormDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { BpmFormDataVOMeta.PAGE_INDEX , BpmFormDataVOMeta.PAGE_SIZE } )
@@ -275,9 +275,9 @@ public class BpmFormDataController extends SuperController implements BpmCallbac
 	*/
 	@ApiOperation(value = "分页查询流程表单")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = BpmFormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BpmFormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "714139812184981504"),
 		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_ID , value = "表单" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_DATA_ID , value = "数据" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BpmFormDataVOMeta.FORM_DATA_ID , value = "数据" , required = false , dataTypeClass=String.class , example = "714139760699899904"),
 		@ApiImplicitParam(name = BpmFormDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")

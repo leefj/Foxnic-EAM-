@@ -35,7 +35,7 @@ public class formPageController extends ViewController {
 	}
 
 	@RequestMapping("/form_render.html")
-	public String formRender(Model model,HttpServletRequest request,String id,String action) {
+	public String formRender(Model model,HttpServletRequest request,String id,String action,String pageType) {
 		model.addAttribute("id",id);
 		model.addAttribute("action",action);
 		Result<FormData> result= FormDataServiceProxy.api().getById(id);
@@ -53,6 +53,7 @@ public class formPageController extends ViewController {
 		}
 		model.addAttribute("formJson",formJson);
 		model.addAttribute("formData",formData);
+		model.addAttribute("pageType",pageType);
 		return prefix+"/form_render";
 	}
 
