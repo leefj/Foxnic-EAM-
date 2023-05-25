@@ -27,7 +27,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 流程表单
  * <p>流程表单 , 数据表 sys_bpm_form_data 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-25 16:11:25
+ * @since 2023-05-25 19:09:33
  * @sign BB7B5591F8B2573AE19361940C974725
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
