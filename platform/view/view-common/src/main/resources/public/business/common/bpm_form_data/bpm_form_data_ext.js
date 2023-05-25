@@ -342,7 +342,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //设置 iframe 高度
             ifr.height("400px");
             //设置地址
-            win.location="/business/common/form/form_render.html?id="+FORM_DATA_ID
+            var url ="/business/common/form/form_render.html?id="+FORM_DATA_ID
+            url=url+"&pageType="+PAGE_TYPE
+            win.location=url
         },
         /**
          * 文件上传组件回调
