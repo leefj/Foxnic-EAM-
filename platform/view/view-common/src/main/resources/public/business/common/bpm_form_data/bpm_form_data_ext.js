@@ -307,9 +307,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
-        beforeSubmit:function (data) {
-            console.log("beforeSubmit",data);
-            return true;
+
+        beforeSubmit:async function (data) {
+            var resData=await $(".form-iframe")[0].contentWindow.updateData()
+            if(resData.sucess){
+                console.log("success")
+                return true;
+            }else{
+                console.log("false")
+                return false;
+            }
         },
         /**
          * 数据提交后窗口关闭前，如果返回 false，停止后续步骤的执行
@@ -334,7 +341,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //设置 iframe 高度
             ifr.height("400px");
             //设置地址
-            win.location="/business/common/form/form_render.html?id="+FORM_ID
+            win.location="/business/common/form/form_render.html?id="+FORM_DATA_ID
         },
         /**
          * 文件上传组件回调

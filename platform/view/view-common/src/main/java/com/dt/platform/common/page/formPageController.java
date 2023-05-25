@@ -46,7 +46,6 @@ public class formPageController extends ViewController {
 			formJson=JSONObject.parseObject(formJsonStr);
 			System.out.println(formJsonStr);
 
-
 			String formDataStr=result.getData().getData();
 			if(!StringUtil.isBlank(result.getData().getData())){
 				formData=JSONObject.parseObject(formDataStr);

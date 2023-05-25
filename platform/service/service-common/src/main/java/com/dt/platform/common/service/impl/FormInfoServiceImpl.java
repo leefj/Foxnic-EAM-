@@ -3,6 +3,7 @@ package com.dt.platform.common.service.impl;
 import javax.annotation.Resource;
 
 import com.alibaba.csp.sentinel.util.StringUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.common.service.IFormDataService;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.domain.common.FormData;
@@ -121,7 +122,7 @@ public class FormInfoServiceImpl extends SuperService<FormInfo> implements IForm
 
 		FormDef def=formInfo.getFormDef();
 		FormData formData=new FormData();
-		formData.setData(IDGenerator.getSnowflakeIdString());
+		formData.setData(new JSONObject().toJSONString());
 		formData.setDesignerData(def.getDesignerData());
 		formData.setFormId(id);
 		formData.setFormStatus(StatusEnableEnum.DISABLE.code());
