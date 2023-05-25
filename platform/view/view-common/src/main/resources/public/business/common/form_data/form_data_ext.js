@@ -259,7 +259,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
-            return true;
+           return true;
         },
         /**
          * 数据提交后窗口关闭前，如果返回 false，停止后续步骤的执行

@@ -48,7 +48,7 @@ public class SysBpmFormDataGtr extends BaseCodeGenerator{
         );
 
         cfg.view().form().addJsVariable("CODE",   "[[${code}]]","CODE");
-        cfg.view().form().addJsVariable("FORM_ID",   "[[${formId}]]","formId");
+        cfg.view().form().addJsVariable("FORM_DATA_ID",   "[[${formDataId}]]","formDataId");
 
 
         cfg.view().form().addPage("表单","formFunction");

@@ -1,10 +1,16 @@
 package com.dt.platform.common.page;
 
+import com.dt.platform.domain.common.BpmFormData;
+import com.dt.platform.domain.common.FormData;
+import com.dt.platform.proxy.common.FormInfoServiceProxy;
+import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.lang.StringUtil;
+import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
+import org.github.foxnic.web.proxy.bpm.ProcessInstanceServiceProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.common.BpmFormDataServiceProxy;
 import javax.servlet.http.HttpServletRequest;
@@ -49,11 +55,25 @@ public class BpmFormDataPageController extends ViewController {
 	 * 流程表单 表单页面
 	 */
 	@RequestMapping("/bpm_form_data_form.html")
-	public String form(Model model,HttpServletRequest request , String id) {
-		String code="123";
-		System.out.println("code========="+code);
+	public String form(Model model,HttpServletRequest request ,String pageType,String id,String code,String processId) {
+		System.out.println("processId:"+processId);
+		System.out.println("pageType:"+pageType);
+		if(StringUtil.isBlank(processId)){
+			//正在发起流程，需要从code加载表单
+			Result<FormData> result= FormInfoServiceProxy.api().createFormByCode(code);
+			if(result.success()){
+				model.addAttribute("formDataId",result.getData().getId());
+			}else{
+				model.addAttribute("formDataId","1");
+			}
+		}else{
+			//从form定义中加载表单
+			Result<ProcessInstance> processResult= ProcessInstanceServiceProxy.api().getById(processId);
+			String formId=processResult.getData().getFormInstanceId();
+			Result<BpmFormData> bpmFormDataResult=BpmFormDataServiceProxy.api().getById(formId);
+			model.addAttribute("formDataId",bpmFormDataResult.getData().getFormDataId());
+		}
 		model.addAttribute("code",code);
-		model.addAttribute("formId","1");
 		return getTemplatePath(prefix,"bpm_form_data_form");
 	}
 }

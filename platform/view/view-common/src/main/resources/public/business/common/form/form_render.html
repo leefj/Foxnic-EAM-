@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-    <title>VForm Demo</title>
+    <title></title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.7/theme-chalk/index.min.css">
     <link rel="stylesheet" href="vFormRender.css?t=20210730"> <!-- 根据Web服务器或CDN路径修改 -->
     <style type="text/css">
@@ -12,11 +12,9 @@
 <body>
 
 <div id="app">
+<!--    <el-button @click="test">测试</el-button>-->
     <v-form-render :form-json="formJson" :form-data="formData" :option-data="optionData" ref="vFormRef">
     </v-form-render>
-    <el-button type="primary" @click="submitForm">Submit</el-button>
-    <el-button type="primary" @click="setFormReadonly">setFormReadonly</el-button>
-    <el-button type="primary" @click="getFormData">getFormData</el-button>
 
 </div>
 
@@ -43,50 +41,78 @@
     var vueApp=new Vue({
         el: '#app',
         data: {
+            formDataResult:{
+                // id:"",
+                // data:"",
+                // sucess:false,
+                // message:""
+            },
             formJson: FORM_JSON,
             formData: FORM_DATA,
             optionData: {}
         },
         mounted(){
-            console.log(11111)
         },
         methods: {
-            getFormData:function(){
-                console.log("getFormData");
-            },
-            setFormData:function(){
-
-            },
-            setFormReadonly:function(){
-
-            },
-            submitForm: function() {
-                this.$refs.vFormRef.getFormData().then(function(formData){
-                    var ps={};
-                    ps.id=ID;
-                    ps.data=JSON.stringify(formData);
-                    axios.post('/service-common/sys-form-info/save-form-data',ps).
-                    then( function(res) {
-                        var resData=res.data;
-                        if(resData.success){
-                            alert(resData.message);
-                        }else{
-                            alert(resData.message);
-                        }
-                    }).catch(err=>{
-                        console.log(err);
-                    })
+            updateData:async function(){
+                 var res=await  this.updateFormData();
+                 console.log("res:",this.formDataResult);
+                 return this.formDataResult;
+             },
+            updateFormData: function(){
+                 alert(2)
+                 console.log(1111)
+                 this.formDataResult.sucess=false;
+                 this.formDataResult.id=ID;
+                 var _this=this;
+                 this.$refs.vFormRef.getFormData().then(function(data){
+                     console.log(22222)
+                    _this.formDataResult.sucess=true;
+                    _this.formDataResult.data=JSON.stringify(data);
+                    axios.post('/service-common/sys-form-info/save-form-data',_this.formDataResult).
+                        then( function(res) {
+                        console.log(333)
+                            _this.formDataResult.sucess=true;
+                        }).catch(err=>{
+                            _this.formDataResult.sucess=true;
+                            console.log(err);
+                        })
                 }).catch( function(error) {
                     // Form Validation Failed
+                     console.log(44444)
                     alert(error)
+                    _this.formDataResult.sucess=false;
+                    _this.formDataResult.message=error;
                 })
+                 console.log(55555)
+
+            },
+            setDissableForm:function(){
+              //  this.$refs.vFormRef.disableForm()
+            },
+            submitForm: function() {
+
             }
         }
     });
 
+    function updateData(){
+        return vueApp.updateData();
+    }
 
 
-    console.log(vueApp.getFormData())
+    // axios.post('/service-common/sys-form-info/save-form-data',ps).
+    // then( function(res) {
+    //     var resData=res.data;
+    //     if(resData.success){
+    //         alert(resData.message);
+    //     }else{
+    //         alert(resData.message);
+    //     }
+    // }).catch(err=>{
+    //     console.log(err);
+    // })
 </script>
 </body>
 </html>
+

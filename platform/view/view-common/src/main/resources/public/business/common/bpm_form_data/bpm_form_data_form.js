@@ -263,8 +263,10 @@ function FormPage() {
 
 	function saveForm(param,callback) {
 
+
 		if(window.pageExt.form.beforeSubmit) {
 			var doNext=window.pageExt.form.beforeSubmit(param);
+			console.log("doNext"+doNext);
 			if(!doNext) return ;
 		}
 

@@ -338,6 +338,9 @@ develop:
   # 加密配置
   encrypt:
     file:
+      #密码文件，文件内容为任意，用于对yml文件中相关涉及加密的密文参数进行解密，该文件内容作为加解密因子的一部分
+      #根据密码文件内容+敏感参数明文->生成yml文件的密文参数
+      #如果yml相关敏感参数不需要加密，可以按照手册要去禁用对敏感参数的加密
       windows: d:/foxnic/passwd.txt
       mac: /Users/Shared/foxnic/passwd.txt
       linux: /foxnic/passwd.txt
