@@ -22,7 +22,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 流程表单 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-25 16:11:26
+ * @since 2023-05-25 19:09:34
  */
 @FeignClient(value = ServiceNames.COMMON, contextId = BpmFormDataServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface BpmFormDataServiceProxy extends BpmCallbackController {
