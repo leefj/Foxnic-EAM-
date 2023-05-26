@@ -17,6 +17,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
 
+    var approvalStatus="drafting";
     //模块基础路径
     const moduleURL="/service-common/sys-bpm-form-data";
 
@@ -127,7 +128,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         getBpmViewConfig:function (act) {
             return {
-                title:"这是默认标题",
+                title:"默认标题",
                 priority:"normal", // priority 的可选值 urgency，normal
                 labelWidth:77, // 标签宽度，用于对齐
                 displayTitle:true,  // 是否显示标题与优先级
@@ -232,8 +233,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 请求流程数据成功时
          * */
         onProcessInstanceReady:function (result) {
+
+           // approvalStatus
+            //"drafting"
             // 可根据流程状态、当前审批节点判断和控制表单页面
             processInstance=result.data;
+            approvalStatus=processInstance.approvalStatus;
+
             console.log("processInstance",processInstance)
             // 获得所有待办节点
             var todoNodes=bpm.getTodoNodes(processInstance);
@@ -343,7 +349,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             ifr.height("400px");
             //设置地址
             var url ="/business/common/form/form_render.html?id="+FORM_DATA_ID
-            url=url+"&pageType="+PAGE_TYPE
+            url=url+"&pageType="+PAGE_TYPE+"&approvalStatus="+approvalStatus
             win.location=url
         },
         /**

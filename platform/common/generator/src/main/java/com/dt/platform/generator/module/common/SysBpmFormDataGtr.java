@@ -51,7 +51,7 @@ public class SysBpmFormDataGtr extends BaseCodeGenerator{
         cfg.view().form().addJsVariable("FORM_DATA_ID",   "[[${formDataId}]]","formDataId");
         cfg.view().form().addJsVariable("PAGE_TYPE",   "[[${pageType}]]","pageType");
 
-        cfg.view().form().addPage("表单","formFunction");
+        cfg.view().form().addPage(null,"formFunction");
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口

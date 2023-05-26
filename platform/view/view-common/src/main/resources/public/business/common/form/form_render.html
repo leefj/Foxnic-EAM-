@@ -37,12 +37,15 @@
     var FORM_JSON = [[${formJson}]];
     var FORM_DATA = [[${formData}]];
     var PAGE_TYPE = [[${pageType}]];
+    var APPROVAL_STATUS = [[${approvalStatus}]];
+
 
     var ID = [[${id}]];
     var ACTION = [[${action}]];
     var vueApp=new Vue({
         el: '#app',
         data: {
+            approvalStatus:APPROVAL_STATUS,
             pageType:PAGE_TYPE,
             formDataResult:{},
             formJson: FORM_JSON,
@@ -51,8 +54,10 @@
         },
         mounted(){
             console.log("this.pageType,",this.pageType);
-            if(this.pageType&&this.pageType=="approve"){
-                console.log("to disable");
+            console.log("this.approvalStatus,",this.approvalStatus);
+            if(this.approvalStatus&&this.approvalStatus=="drafting"){
+                console.log("drafting")
+            }else{
                 this.$refs.vFormRef.disableForm()
             }
         },
