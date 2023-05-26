@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-05-23 14:44:50
+ * @since 2023-05-26 19:50:24
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -885,6 +885,321 @@ public class SysTables {
 	}
 	
 	/**
+	 * 数据扩展
+	*/
+	public static class SYS_FORM_DATA_EXT extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_form_data_ext";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 数据
+		*/
+		public static final DBField DATA_ID = new DBField(DBDataType.STRING , "data_id","dataId","数据","数据",false,false,true);
+		
+		/**
+		 * 字符串1
+		*/
+		public static final DBField SS1 = new DBField(DBDataType.STRING , "ss1","ss1","字符串1","字符串1",false,false,true);
+		
+		/**
+		 * 字符串2
+		*/
+		public static final DBField SS2 = new DBField(DBDataType.STRING , "ss2","ss2","字符串2","字符串2",false,false,true);
+		
+		/**
+		 * 字符串3
+		*/
+		public static final DBField SS3 = new DBField(DBDataType.STRING , "ss3","ss3","字符串3","字符串3",false,false,true);
+		
+		/**
+		 * 字符串4
+		*/
+		public static final DBField SS4 = new DBField(DBDataType.STRING , "ss4","ss4","字符串4","字符串4",false,false,true);
+		
+		/**
+		 * 字符串5
+		*/
+		public static final DBField SS5 = new DBField(DBDataType.STRING , "ss5","ss5","字符串5","字符串5",false,false,true);
+		
+		/**
+		 * 字符串6
+		*/
+		public static final DBField SS6 = new DBField(DBDataType.STRING , "ss6","ss6","字符串6","字符串6",false,false,true);
+		
+		/**
+		 * 字符串7
+		*/
+		public static final DBField SS7 = new DBField(DBDataType.STRING , "ss7","ss7","字符串7","字符串7",false,false,true);
+		
+		/**
+		 * 字符串8
+		*/
+		public static final DBField SS8 = new DBField(DBDataType.STRING , "ss8","ss8","字符串8","字符串8",false,false,true);
+		
+		/**
+		 * 字符串9
+		*/
+		public static final DBField SS9 = new DBField(DBDataType.STRING , "ss9","ss9","字符串9","字符串9",false,false,true);
+		
+		/**
+		 * 字符串10
+		*/
+		public static final DBField SS10 = new DBField(DBDataType.STRING , "ss10","ss10","字符串10","字符串10",false,false,true);
+		
+		/**
+		 * 字符串11
+		*/
+		public static final DBField S11 = new DBField(DBDataType.STRING , "s11","s11","字符串11","字符串11",false,false,true);
+		
+		/**
+		 * 字符串12
+		*/
+		public static final DBField S12 = new DBField(DBDataType.STRING , "s12","s12","字符串12","字符串12",false,false,true);
+		
+		/**
+		 * 字符串13
+		*/
+		public static final DBField S13 = new DBField(DBDataType.STRING , "s13","s13","字符串13","字符串13",false,false,true);
+		
+		/**
+		 * 字符串14
+		*/
+		public static final DBField S14 = new DBField(DBDataType.STRING , "s14","s14","字符串14","字符串14",false,false,true);
+		
+		/**
+		 * 字符串15
+		*/
+		public static final DBField S15 = new DBField(DBDataType.STRING , "s15","s15","字符串15","字符串15",false,false,true);
+		
+		/**
+		 * 字符串16
+		*/
+		public static final DBField S16 = new DBField(DBDataType.STRING , "s16","s16","字符串16","字符串16",false,false,true);
+		
+		/**
+		 * 字符串17
+		*/
+		public static final DBField S17 = new DBField(DBDataType.STRING , "s17","s17","字符串17","字符串17",false,false,true);
+		
+		/**
+		 * 字符串18
+		*/
+		public static final DBField S18 = new DBField(DBDataType.STRING , "s18","s18","字符串18","字符串18",false,false,true);
+		
+		/**
+		 * 字符串19
+		*/
+		public static final DBField S19 = new DBField(DBDataType.STRING , "s19","s19","字符串19","字符串19",false,false,true);
+		
+		/**
+		 * 字符串20
+		*/
+		public static final DBField S20 = new DBField(DBDataType.STRING , "s20","s20","字符串20","字符串20",false,false,true);
+		
+		/**
+		 * 长字符串1
+		*/
+		public static final DBField LS1 = new DBField(DBDataType.STRING , "ls1","ls1","长字符串1","长字符串1",false,false,true);
+		
+		/**
+		 * 长字符串1
+		*/
+		public static final DBField LS2 = new DBField(DBDataType.STRING , "ls2","ls2","长字符串1","长字符串1",false,false,true);
+		
+		/**
+		 * 长字符串1
+		*/
+		public static final DBField LS3 = new DBField(DBDataType.STRING , "ls3","ls3","长字符串1","长字符串1",false,false,true);
+		
+		/**
+		 * 长字符串1
+		*/
+		public static final DBField LS4 = new DBField(DBDataType.STRING , "ls4","ls4","长字符串1","长字符串1",false,false,true);
+		
+		/**
+		 * 长字符串1
+		*/
+		public static final DBField LS5 = new DBField(DBDataType.STRING , "ls5","ls5","长字符串1","长字符串1",false,false,true);
+		
+		/**
+		 * 文本
+		*/
+		public static final DBField TS1 = new DBField(DBDataType.STRING , "ts1","ts1","文本","文本",false,false,true);
+		
+		/**
+		 * 文本
+		*/
+		public static final DBField TS2 = new DBField(DBDataType.STRING , "ts2","ts2","文本","文本",false,false,true);
+		
+		/**
+		 * 文本
+		*/
+		public static final DBField TS3 = new DBField(DBDataType.STRING , "ts3","ts3","文本","文本",false,false,true);
+		
+		/**
+		 * 文本
+		*/
+		public static final DBField TS4 = new DBField(DBDataType.STRING , "ts4","ts4","文本","文本",false,false,true);
+		
+		/**
+		 * 时间1
+		*/
+		public static final DBField D1 = new DBField(DBDataType.DATE , "d1","d1","时间1","时间1",false,false,true);
+		
+		/**
+		 * 时间2
+		*/
+		public static final DBField D2 = new DBField(DBDataType.DATE , "d2","d2","时间2","时间2",false,false,true);
+		
+		/**
+		 * 时间3
+		*/
+		public static final DBField D3 = new DBField(DBDataType.DATE , "d3","d3","时间3","时间3",false,false,true);
+		
+		/**
+		 * 时间4
+		*/
+		public static final DBField D4 = new DBField(DBDataType.DATE , "d4","d4","时间4","时间4",false,false,true);
+		
+		/**
+		 * 时间5
+		*/
+		public static final DBField D5 = new DBField(DBDataType.DATE , "d5","d5","时间5","时间5",false,false,true);
+		
+		/**
+		 * 时间6
+		*/
+		public static final DBField D6 = new DBField(DBDataType.DATE , "d6","d6","时间6","时间6",false,false,true);
+		
+		/**
+		 * 整形1
+		*/
+		public static final DBField I1 = new DBField(DBDataType.INTEGER , "i1","i1","整形1","整形1",false,false,true);
+		
+		/**
+		 * 整形2
+		*/
+		public static final DBField I2 = new DBField(DBDataType.INTEGER , "i2","i2","整形2","整形2",false,false,true);
+		
+		/**
+		 * 整形3
+		*/
+		public static final DBField I3 = new DBField(DBDataType.INTEGER , "i3","i3","整形3","整形3",false,false,true);
+		
+		/**
+		 * 整形4
+		*/
+		public static final DBField I4 = new DBField(DBDataType.INTEGER , "i4","i4","整形4","整形4",false,false,true);
+		
+		/**
+		 * 整形5
+		*/
+		public static final DBField I5 = new DBField(DBDataType.INTEGER , "i5","i5","整形5","整形5",false,false,true);
+		
+		/**
+		 * 浮点1
+		*/
+		public static final DBField F1 = new DBField(DBDataType.DECIMAL , "f1","f1","浮点1","浮点1",false,false,true);
+		
+		/**
+		 * 浮点2
+		*/
+		public static final DBField F2 = new DBField(DBDataType.DECIMAL , "f2","f2","浮点2","浮点2",false,false,true);
+		
+		/**
+		 * 浮点3
+		*/
+		public static final DBField F3 = new DBField(DBDataType.DECIMAL , "f3","f3","浮点3","浮点3",false,false,true);
+		
+		/**
+		 * 浮点4
+		*/
+		public static final DBField F4 = new DBField(DBDataType.DECIMAL , "f4","f4","浮点4","浮点4",false,false,true);
+		
+		/**
+		 * 浮点5
+		*/
+		public static final DBField F5 = new DBField(DBDataType.DECIMAL , "f5","f5","浮点5","浮点5",false,false,true);
+		
+		/**
+		 * 浮点6
+		*/
+		public static final DBField F6 = new DBField(DBDataType.DECIMAL , "f6","f6","浮点6","浮点6",false,false,true);
+		
+		/**
+		 * 浮点7
+		*/
+		public static final DBField F7 = new DBField(DBDataType.DECIMAL , "f7","f7","浮点7","浮点7",false,false,true);
+		
+		/**
+		 * 浮点8
+		*/
+		public static final DBField F8 = new DBField(DBDataType.DECIMAL , "f8","f8","浮点8","浮点8",false,false,true);
+		
+		/**
+		 * 浮点9
+		*/
+		public static final DBField F9 = new DBField(DBDataType.DECIMAL , "f9","f9","浮点9","浮点9",false,false,true);
+		
+		/**
+		 * 浮点10
+		*/
+		public static final DBField F10 = new DBField(DBDataType.DECIMAL , "f10","f10","浮点10","浮点10",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,true);
+		
+		public SYS_FORM_DATA_EXT() {
+			this.init($NAME,"数据扩展" , ID , DATA_ID , SS1 , SS2 , SS3 , SS4 , SS5 , SS6 , SS7 , SS8 , SS9 , SS10 , S11 , S12 , S13 , S14 , S15 , S16 , S17 , S18 , S19 , S20 , LS1 , LS2 , LS3 , LS4 , LS5 , TS1 , TS2 , TS3 , TS4 , D1 , D2 , D3 , D4 , D5 , D6 , I1 , I2 , I3 , I4 , I5 , F1 , F2 , F3 , F4 , F5 , F6 , F7 , F8 , F9 , F10 , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final SYS_FORM_DATA_EXT $TABLE=new SYS_FORM_DATA_EXT();
+	}
+	
+	/**
 	 * 表单定义
 	*/
 	public static class SYS_FORM_DEF extends DBTable {
@@ -1010,6 +1325,11 @@ public class SysTables {
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
 		
 		/**
+		 * 存储
+		*/
+		public static final DBField STORAGE = new DBField(DBDataType.STRING , "storage","storage","存储","存储",false,false,true);
+		
+		/**
 		 * 创建人ID
 		*/
 		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
@@ -1054,7 +1374,7 @@ public class SysTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public SYS_FORM_INFO() {
-			this.init($NAME,"表单信息" , ID , CODE , CATALOG_ID , NAME , STATUS , ROUTE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"表单信息" , ID , CODE , CATALOG_ID , NAME , STATUS , ROUTE , NOTES , STORAGE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final SYS_FORM_INFO $TABLE=new SYS_FORM_INFO();
 	}

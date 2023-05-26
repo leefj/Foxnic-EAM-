@@ -10,6 +10,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan(basePackages = {
 		// Foxnic-Web
+
+
+
 		FoxnicWebMeta.SERVICE_STORAGE_PACKAGE ,
 		FoxnicWebMeta.SERVICE_SYSTEM_PACKAGE ,
 		FoxnicWebMeta.SERVICE_OAUTH_PACKAGE,
@@ -27,6 +30,8 @@ import org.springframework.context.annotation.ComponentScan;
 		PlatformMeta.SERVICE_HR_PACKAGE,
 		PlatformMeta.DATACENTER_PACKAGE,
 		PlatformMeta.CMS_PACKAGE,
+
+
 		PlatformMeta.OPS_PACKAGE,
 		PlatformMeta.COMMON_PACKAGE,
 		PlatformMeta.KNOWLEDGEBASE_PACKAGE,

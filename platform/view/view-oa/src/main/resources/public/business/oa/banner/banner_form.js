@@ -1,7 +1,7 @@
 /**
  * 横幅 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:23:37
+ * @since 2023-05-26 13:13:22
  */
 
 function FormPage() {
@@ -116,6 +116,13 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		form.on('radio(status)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=status]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
 	    //渲染图片字段
 		foxup.render({
 			el:"pictureId",
@@ -225,7 +232,7 @@ function FormPage() {
 
 
         //禁用编辑
-		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+	if((action=="edit" && hasData && disableModify) || (action=="create" && !hasData &&disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+
+
+
+
+
+
 	<!-- 日志存放路径 -->
 	<property name="log.path" value="./app_logs" />
 	<!-- 日志输出格式 -->
@@ -131,6 +137,7 @@
    -->
 
 
+
 	<!-- 系统模块日志级别控制 -->
 	<logger name="com.github.foxnic" level="info"   />
 	<logger name="org.github.foxnic" level="info" />
@@ -142,6 +149,7 @@
 	<root level="info">
 		<appender-ref ref="console" />
 		<appender-ref ref="file_info" />
+
 		<!--
 		<appender-ref ref="gelf" />
 		-->

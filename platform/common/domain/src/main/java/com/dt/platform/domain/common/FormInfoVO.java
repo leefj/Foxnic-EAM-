@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 表单信息VO类型
  * <p>表单信息 , 数据表 sys_form_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-23 07:21:23
+ * @since 2023-05-26 14:18:15
  * @sign 4FEC74978CB874F0FB34F54BA774F1D5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -404,6 +404,7 @@ public class FormInfoVO extends FormInfo {
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setStorage(this.getStorage());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setCatalogId(this.getCatalogId());
@@ -423,6 +424,7 @@ public class FormInfoVO extends FormInfo {
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
+			inst.setNewFormData(this.getNewFormData());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
@@ -494,6 +496,7 @@ public class FormInfoVO extends FormInfo {
 			this.setCode(DataParser.parse(String.class, map.get(FormInfoVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(FormInfoVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(FormInfoVOMeta.UPDATE_TIME)));
+			this.setStorage(DataParser.parse(String.class, map.get(FormInfoVOMeta.STORAGE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(FormInfoVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(FormInfoVOMeta.CREATE_BY)));
 			this.setCatalogId(DataParser.parse(String.class, map.get(FormInfoVOMeta.CATALOG_ID)));
@@ -513,6 +516,7 @@ public class FormInfoVO extends FormInfo {
 			this.setRequestAction(DataParser.parse(String.class, map.get(FormInfoVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(FormInfoVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(FormInfoVOMeta.PAGE_SIZE)));
+			this.setNewFormData(DataParser.parse(FormData.class, map.get(FormInfoVOMeta.NEW_FORM_DATA)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(FormInfoVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(FormInfoVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(FormInfoVOMeta.SORT_FIELD)));
@@ -526,6 +530,7 @@ public class FormInfoVO extends FormInfo {
 				this.setCode( (String)map.get(FormInfoVOMeta.CODE));
 				this.setNotes( (String)map.get(FormInfoVOMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(FormInfoVOMeta.UPDATE_TIME));
+				this.setStorage( (String)map.get(FormInfoVOMeta.STORAGE));
 				this.setVersion( (Integer)map.get(FormInfoVOMeta.VERSION));
 				this.setCreateBy( (String)map.get(FormInfoVOMeta.CREATE_BY));
 				this.setCatalogId( (String)map.get(FormInfoVOMeta.CATALOG_ID));
@@ -545,6 +550,7 @@ public class FormInfoVO extends FormInfo {
 				this.setRequestAction( (String)map.get(FormInfoVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(FormInfoVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(FormInfoVOMeta.PAGE_SIZE));
+				this.setNewFormData( (FormData)map.get(FormInfoVOMeta.NEW_FORM_DATA));
 				this.setPageIndex( (Integer)map.get(FormInfoVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(FormInfoVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(FormInfoVOMeta.SORT_FIELD));
@@ -571,6 +577,7 @@ public class FormInfoVO extends FormInfo {
 			this.setCode(DataParser.parse(String.class, r.getValue(FormInfoVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(FormInfoVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(FormInfoVOMeta.UPDATE_TIME)));
+			this.setStorage(DataParser.parse(String.class, r.getValue(FormInfoVOMeta.STORAGE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(FormInfoVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(FormInfoVOMeta.CREATE_BY)));
 			this.setCatalogId(DataParser.parse(String.class, r.getValue(FormInfoVOMeta.CATALOG_ID)));
@@ -590,6 +597,7 @@ public class FormInfoVO extends FormInfo {
 				this.setCode( (String)r.getValue(FormInfoVOMeta.CODE));
 				this.setNotes( (String)r.getValue(FormInfoVOMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(FormInfoVOMeta.UPDATE_TIME));
+				this.setStorage( (String)r.getValue(FormInfoVOMeta.STORAGE));
 				this.setVersion( (Integer)r.getValue(FormInfoVOMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(FormInfoVOMeta.CREATE_BY));
 				this.setCatalogId( (String)r.getValue(FormInfoVOMeta.CATALOG_ID));

@@ -1,6 +1,7 @@
 package com.dt.platform.generator.module.oa;
 
 import com.dt.platform.constants.db.OaTables;
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.domain.vehicle.meta.InfoMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.oa.page.BannerPageController;
@@ -28,6 +29,7 @@ public class BannerGtr extends BaseCodeGenerator {
 
         cfg.view().search().inputLayout(
                 new Object[]{
+                        OaTables.OA_BANNER.STATUS,
                         OaTables.OA_BANNER.NAME,
                 }
         );
@@ -41,6 +43,8 @@ public class BannerGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(OaTables.OA_BANNER.NAME).form().validate().required();
+
+        cfg.view().field(OaTables.OA_BANNER.STATUS).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(OaTables.OA_BANNER.PICTURE_ID)
                 .form().label("图片").upload().buttonLabel("选择图片").maxFileCount(1).displayFileName(false);
 
@@ -50,6 +54,7 @@ public class BannerGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OaTables.OA_BANNER.NAME,
+                        OaTables.OA_BANNER.STATUS,
                         OaTables.OA_BANNER.URL,
                         OaTables.OA_BANNER.PICTURE_ID,
                         OaTables.OA_BANNER.SORT,
@@ -78,7 +83,7 @@ public class BannerGtr extends BaseCodeGenerator {
         //移除之前生成的菜单，视情况执行
 //        g.removeByBatchId("471622036347682816");
         //生成菜单
-        g.generateMenu(BannerServiceProxy.class, BannerPageController.class);
+        //g.generateMenu(BannerServiceProxy.class, BannerPageController.class);
     }
 
 }

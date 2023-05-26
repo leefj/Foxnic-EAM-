@@ -1,5 +1,10 @@
 package com.dt.platform.oa.page;
 
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.domain.oa.Banner;
+import com.dt.platform.domain.oa.BannerVO;
+import com.dt.platform.proxy.oa.BannerServiceProxy;
+import com.github.foxnic.api.transter.Result;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.oa.PortalServiceProxy;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <p>
  * 门户模版页面控制器
@@ -42,10 +50,17 @@ public class PortalPageController extends ViewController {
 	 */
 	@RequestMapping("/portal_board.html")
 	public String portalList(Model model,HttpServletRequest request) {
-
-
+		BannerVO q=new BannerVO();
+		q.setStatus(StatusEnableEnum.ENABLE.code());
+		List<Banner> list=new ArrayList<>();
+		Result<List<Banner>> res=BannerServiceProxy.api().queryList(q);
+		if(res.success()){
+			if(res.getData()!=null&&res.getData().size()>0){
+				list=res.getData();
+			}
+		}
+		model.addAttribute("bannerList",list.toArray());
 		return getTemplatePath(prefix,"portal_board");
-
 	}
 
 	/**

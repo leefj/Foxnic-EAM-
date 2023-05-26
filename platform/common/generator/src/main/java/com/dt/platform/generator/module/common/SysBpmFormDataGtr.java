@@ -1,14 +1,10 @@
 package com.dt.platform.generator.module.common;
 
-import com.dt.platform.common.page.BpmFormDataPageController;
 import com.dt.platform.constants.db.SysTables;
-import com.dt.platform.constants.enums.common.FormDefStatusEnum;
-import com.dt.platform.domain.common.BpmFormData;
-import com.dt.platform.domain.common.FormCategory;
 import com.dt.platform.domain.common.FormData;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.common.BpmFormDataServiceProxy;
 import com.github.foxnic.api.bpm.IntegrateMode;
+import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 
 public class SysBpmFormDataGtr extends BaseCodeGenerator{
@@ -18,22 +14,20 @@ public class SysBpmFormDataGtr extends BaseCodeGenerator{
 
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
-
         cfg.getPoClassFile().addSimpleProperty(FormData.class,"formData","formData","formData");
         cfg.view().field(SysTables.SYS_BPM_FORM_DATA.ID).basic().hidden(true);
-
         cfg.view().search().inputLayout(
                 new Object[]{
                         SysTables.SYS_BPM_FORM_DATA.NOTES,
                 }
         );
 
+        cfg.view().field(SysTables.SYS_BPM_FORM_DATA.CREATE_TIME).form().dateInput().type(DatePickerType.datetime);
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
-
         cfg.bpm().form("sys_bpm_common");
         cfg.bpm().integrate(IntegrateMode.FRONT);
         cfg.view().list().disableBatchDelete();
@@ -46,11 +40,9 @@ public class SysBpmFormDataGtr extends BaseCodeGenerator{
                         SysTables.SYS_BPM_FORM_DATA.ID,
                 }
         );
-
         cfg.view().form().addJsVariable("CODE",   "[[${code}]]","CODE");
         cfg.view().form().addJsVariable("FORM_DATA_ID",   "[[${formDataId}]]","formDataId");
         cfg.view().form().addJsVariable("PAGE_TYPE",   "[[${pageType}]]","pageType");
-
         cfg.view().form().addPage(null,"formFunction");
         //文件生成覆盖模式
         cfg.overrides()
@@ -68,11 +60,8 @@ public class SysBpmFormDataGtr extends BaseCodeGenerator{
         SysBpmFormDataGtr g=new SysBpmFormDataGtr();
         //生成代码
         g.generateCode();
-
         //生成菜单
         //g.removeByBatchId("");
      //   g.generateMenu(BpmFormDataServiceProxy.class, BpmFormDataPageController.class);
     }
-
-
 }

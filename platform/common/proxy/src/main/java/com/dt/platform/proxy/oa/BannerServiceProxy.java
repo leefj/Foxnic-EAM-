@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 横幅 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:23:35
+ * @since 2023-05-26 13:13:20
  */
 @FeignClient(value = ServiceNames.OA, contextId = BannerServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface BannerServiceProxy {

@@ -707,6 +707,8 @@ echo "alias gb='cd $base_dir/app/bpm'" >>~/.bash_profile
 echo "alias gj='cd $base_dir/app/job'" >>~/.bash_profile
 echo "alias gn='cd $base_dir/app/nginx'" >>~/.bash_profile
 echo "alias g='cd $base_dir/app'" >>~/.bash_profile
+echo "alias talog='tail -f $base_dir/app/logs/app.jar.log' ">>~/.bash_profile
+echo "alias tblog='tail -f $base_dir/app/logs/bpm.jar.log' ">>~/.bash_profile
 echo "alias k='sh $base_dir/app/bin/k.sh'" >>~/.bash_profile
 echo "alias ka_restart='cd $base_dir/app;sh restartApp.sh'" >>~/.bash_profile
 echo "alias kb_restart='cd $base_dir/app;sh restartBpm.sh'" >>~/.bash_profile
@@ -720,7 +722,7 @@ if [[ ! -f "/sbin/k" ]];then
   echo "#modify by lank">>/sbin/k
   echo "sh $base_dir/app/bin/k.sh">>/sbin/k
   echo "exit 0">>/sbin/k
-  chmod +x  /sbin/k
+  chmod +x /sbin/k
 fi
 echo "Please wait about 25 seconds,Application is starting.."
 sleep 10
@@ -742,6 +744,8 @@ echo "ga: go to $base_dir/app/app"
 echo "gb: go to $base_dir/app/bpm"
 echo "gj: go to $base_dir/app/job"
 echo "gn: go to $base_dir/app/nginx"
+echo "talog: go to view tail app log"
+echo "talog: go to view tail bpm log"
 echo "ka_restart:restartApp"
 echo "kb_restart:restartBpm"
 echo "kj_restart:restartJob"

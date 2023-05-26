@@ -10,6 +10,7 @@ import com.dt.platform.domain.common.meta.FormInfoMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.common.FormCategoryServiceProxy;
 import com.dt.platform.proxy.common.FormDefServiceProxy;
+import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 
 public class SysFormDefGtr extends BaseCodeGenerator{
@@ -43,6 +44,8 @@ public class SysFormDefGtr extends BaseCodeGenerator{
       //  cfg.view().list().operationColumn().addActionButton("预览","formView","form-view-button","sys_form_def:view");
         cfg.view().list().operationColumn().addActionButton("应用","formApply","form-apply","sys_form_def:apply");
         cfg.view().list().operationColumn().addActionButton("复制","formCopy","form-copy","sys_form_def:copy");
+
+        cfg.view().field(SysTables.SYS_FORM_DEF.CREATE_TIME).form().dateInput().type(DatePickerType.datetime);
 
         cfg.view().field(SysTables.SYS_FORM_DEF.STATUS).form().radioBox().enumType(FormDefStatusEnum.class).defaultIndex(0);
         cfg.view().field(SysTables.SYS_FORM_DEF.DESIGNER_DATA).form().readOnly().form().textArea().height(350);
