@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报表定义
  * <p>报表定义 , 数据表 sys_report_u_def 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-20 20:46:53
+ * @since 2023-05-26 14:17:51
  * @sign 72ECCE924C553AC7D0E46E6380F5645F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -52,7 +52,7 @@ public class ReportUDef extends Entity {
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "test.ureport.xml")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "712240054507929600.ureport.xml")
 	private String fileName;
 	
 	/**

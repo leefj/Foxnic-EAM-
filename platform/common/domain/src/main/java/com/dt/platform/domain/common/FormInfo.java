@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 表单信息
  * <p>表单信息 , 数据表 sys_form_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-23 07:21:23
- * @sign BD54CADAEB8A2EF5118A31368DA0EA25
+ * @since 2023-05-26 14:18:15
+ * @sign 1FC1284780557AA1C74630C367B51017
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -78,6 +78,12 @@ public class FormInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
+	
+	/**
+	 * 存储：存储
+	*/
+	@ApiModelProperty(required = false,value="存储" , notes = "存储")
+	private String storage;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -147,6 +153,12 @@ public class FormInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="formDef" , notes = "formDef")
 	private FormDef formDef;
+	
+	/**
+	 * newFormData：newFormData
+	*/
+	@ApiModelProperty(required = false,value="newFormData" , notes = "newFormData")
+	private FormData newFormData;
 	
 	/**
 	 * 获得 主键<br>
@@ -278,6 +290,25 @@ public class FormInfo extends Entity {
 	*/
 	public FormInfo setNotes(String notes) {
 		this.notes=notes;
+		return this;
+	}
+	
+	/**
+	 * 获得 存储<br>
+	 * 存储
+	 * @return 存储
+	*/
+	public String getStorage() {
+		return storage;
+	}
+	
+	/**
+	 * 设置 存储
+	 * @param storage 存储
+	 * @return 当前对象
+	*/
+	public FormInfo setStorage(String storage) {
+		this.storage=storage;
 		return this;
 	}
 	
@@ -520,6 +551,25 @@ public class FormInfo extends Entity {
 		this.formDef=formDef;
 		return this;
 	}
+	
+	/**
+	 * 获得 newFormData<br>
+	 * newFormData
+	 * @return newFormData
+	*/
+	public FormData getNewFormData() {
+		return newFormData;
+	}
+	
+	/**
+	 * 设置 newFormData
+	 * @param newFormData newFormData
+	 * @return 当前对象
+	*/
+	public FormInfo setNewFormData(FormData newFormData) {
+		this.newFormData=newFormData;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -568,6 +618,7 @@ public class FormInfo extends Entity {
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setStorage(this.getStorage());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setCatalogId(this.getCatalogId());
@@ -582,6 +633,7 @@ public class FormInfo extends Entity {
 		inst.setId(this.getId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setNewFormData(this.getNewFormData());
 			inst.setFormCategory(this.getFormCategory());
 			inst.setFormDef(this.getFormDef());
 		}
@@ -646,6 +698,7 @@ public class FormInfo extends Entity {
 			this.setCode(DataParser.parse(String.class, map.get(FormInfoMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(FormInfoMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(FormInfoMeta.UPDATE_TIME)));
+			this.setStorage(DataParser.parse(String.class, map.get(FormInfoMeta.STORAGE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(FormInfoMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(FormInfoMeta.CREATE_BY)));
 			this.setCatalogId(DataParser.parse(String.class, map.get(FormInfoMeta.CATALOG_ID)));
@@ -660,6 +713,7 @@ public class FormInfo extends Entity {
 			this.setId(DataParser.parse(String.class, map.get(FormInfoMeta.ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(FormInfoMeta.STATUS)));
 			// others
+			this.setNewFormData(DataParser.parse(FormData.class, map.get(FormInfoMeta.NEW_FORM_DATA)));
 			this.setFormCategory(DataParser.parse(FormCategory.class, map.get(FormInfoMeta.FORM_CATEGORY)));
 			this.setFormDef(DataParser.parse(FormDef.class, map.get(FormInfoMeta.FORM_DEF)));
 			return true;
@@ -668,6 +722,7 @@ public class FormInfo extends Entity {
 				this.setCode( (String)map.get(FormInfoMeta.CODE));
 				this.setNotes( (String)map.get(FormInfoMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(FormInfoMeta.UPDATE_TIME));
+				this.setStorage( (String)map.get(FormInfoMeta.STORAGE));
 				this.setVersion( (Integer)map.get(FormInfoMeta.VERSION));
 				this.setCreateBy( (String)map.get(FormInfoMeta.CREATE_BY));
 				this.setCatalogId( (String)map.get(FormInfoMeta.CATALOG_ID));
@@ -682,6 +737,7 @@ public class FormInfo extends Entity {
 				this.setId( (String)map.get(FormInfoMeta.ID));
 				this.setStatus( (String)map.get(FormInfoMeta.STATUS));
 				// others
+				this.setNewFormData( (FormData)map.get(FormInfoMeta.NEW_FORM_DATA));
 				this.setFormCategory( (FormCategory)map.get(FormInfoMeta.FORM_CATEGORY));
 				this.setFormDef( (FormDef)map.get(FormInfoMeta.FORM_DEF));
 				return true;
@@ -703,6 +759,7 @@ public class FormInfo extends Entity {
 			this.setCode(DataParser.parse(String.class, r.getValue(FormInfoMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(FormInfoMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(FormInfoMeta.UPDATE_TIME)));
+			this.setStorage(DataParser.parse(String.class, r.getValue(FormInfoMeta.STORAGE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(FormInfoMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(FormInfoMeta.CREATE_BY)));
 			this.setCatalogId(DataParser.parse(String.class, r.getValue(FormInfoMeta.CATALOG_ID)));
@@ -722,6 +779,7 @@ public class FormInfo extends Entity {
 				this.setCode( (String)r.getValue(FormInfoMeta.CODE));
 				this.setNotes( (String)r.getValue(FormInfoMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(FormInfoMeta.UPDATE_TIME));
+				this.setStorage( (String)r.getValue(FormInfoMeta.STORAGE));
 				this.setVersion( (Integer)r.getValue(FormInfoMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(FormInfoMeta.CREATE_BY));
 				this.setCatalogId( (String)r.getValue(FormInfoMeta.CATALOG_ID));

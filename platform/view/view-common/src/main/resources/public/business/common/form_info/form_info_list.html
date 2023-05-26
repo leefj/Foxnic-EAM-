@@ -2,7 +2,7 @@
 /**
  * 表单信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-23 07:21:24
+ * @since 2023-05-26 14:18:17
  */
  -->
  <!DOCTYPE html>
@@ -49,6 +49,7 @@
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:150px"></div>
                     </div>
                     <!-- 路径 , route ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 存储 , storage ,typeName=text_input, isHideInSearch=true -->
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>

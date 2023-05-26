@@ -44,7 +44,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 横幅接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:23:35
+ * @since 2023-05-26 13:13:20
 */
 
 @InDoc
@@ -60,11 +60,12 @@ public class BannerController extends SuperController {
 	*/
 	@ApiOperation(value = "添加横幅")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = BannerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.URL , value = "地址" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.SORT , value = "顺序" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = BannerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708057333552381952"),
+		@ApiImplicitParam(name = BannerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = BannerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BannerVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class , example = "714460675434348545"),
+		@ApiImplicitParam(name = BannerVOMeta.URL , value = "地址" , required = false , dataTypeClass=String.class , example = "/business/oa/portal/banner.png"),
+		@ApiImplicitParam(name = BannerVOMeta.SORT , value = "顺序" , required = false , dataTypeClass=Integer.class , example = "0"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -83,7 +84,7 @@ public class BannerController extends SuperController {
 	*/
 	@ApiOperation(value = "删除横幅")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = BannerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = BannerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708057333552381952")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = BannerServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -166,11 +167,12 @@ public class BannerController extends SuperController {
 	*/
 	@ApiOperation(value = "更新横幅")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = BannerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.URL , value = "地址" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.SORT , value = "顺序" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = BannerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708057333552381952"),
+		@ApiImplicitParam(name = BannerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = BannerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BannerVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class , example = "714460675434348545"),
+		@ApiImplicitParam(name = BannerVOMeta.URL , value = "地址" , required = false , dataTypeClass=String.class , example = "/business/oa/portal/banner.png"),
+		@ApiImplicitParam(name = BannerVOMeta.SORT , value = "顺序" , required = false , dataTypeClass=Integer.class , example = "0"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { BannerVOMeta.PAGE_INDEX , BannerVOMeta.PAGE_SIZE , BannerVOMeta.SEARCH_FIELD , BannerVOMeta.FUZZY_FIELD , BannerVOMeta.SEARCH_VALUE , BannerVOMeta.DIRTY_FIELDS , BannerVOMeta.SORT_FIELD , BannerVOMeta.SORT_TYPE , BannerVOMeta.DATA_ORIGIN , BannerVOMeta.QUERY_LOGIC , BannerVOMeta.REQUEST_ACTION , BannerVOMeta.IDS } )
@@ -188,11 +190,12 @@ public class BannerController extends SuperController {
 	*/
 	@ApiOperation(value = "保存横幅")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = BannerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.URL , value = "地址" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.SORT , value = "顺序" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = BannerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708057333552381952"),
+		@ApiImplicitParam(name = BannerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = BannerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BannerVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class , example = "714460675434348545"),
+		@ApiImplicitParam(name = BannerVOMeta.URL , value = "地址" , required = false , dataTypeClass=String.class , example = "/business/oa/portal/banner.png"),
+		@ApiImplicitParam(name = BannerVOMeta.SORT , value = "顺序" , required = false , dataTypeClass=Integer.class , example = "0"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { BannerVOMeta.PAGE_INDEX , BannerVOMeta.PAGE_SIZE , BannerVOMeta.SEARCH_FIELD , BannerVOMeta.FUZZY_FIELD , BannerVOMeta.SEARCH_VALUE , BannerVOMeta.DIRTY_FIELDS , BannerVOMeta.SORT_FIELD , BannerVOMeta.SORT_TYPE , BannerVOMeta.DATA_ORIGIN , BannerVOMeta.QUERY_LOGIC , BannerVOMeta.REQUEST_ACTION , BannerVOMeta.IDS } )
@@ -249,11 +252,12 @@ public class BannerController extends SuperController {
 	*/
 	@ApiOperation(value = "查询横幅")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = BannerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.URL , value = "地址" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.SORT , value = "顺序" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = BannerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708057333552381952"),
+		@ApiImplicitParam(name = BannerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = BannerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BannerVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class , example = "714460675434348545"),
+		@ApiImplicitParam(name = BannerVOMeta.URL , value = "地址" , required = false , dataTypeClass=String.class , example = "/business/oa/portal/banner.png"),
+		@ApiImplicitParam(name = BannerVOMeta.SORT , value = "顺序" , required = false , dataTypeClass=Integer.class , example = "0"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { BannerVOMeta.PAGE_INDEX , BannerVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = BannerServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -272,11 +276,12 @@ public class BannerController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询横幅")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = BannerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.URL , value = "地址" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = BannerVOMeta.SORT , value = "顺序" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = BannerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708057333552381952"),
+		@ApiImplicitParam(name = BannerVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = BannerVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = BannerVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class , example = "714460675434348545"),
+		@ApiImplicitParam(name = BannerVOMeta.URL , value = "地址" , required = false , dataTypeClass=String.class , example = "/business/oa/portal/banner.png"),
+		@ApiImplicitParam(name = BannerVOMeta.SORT , value = "顺序" , required = false , dataTypeClass=Integer.class , example = "0"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = BannerServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

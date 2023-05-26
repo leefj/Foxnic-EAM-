@@ -44,7 +44,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 表单数据接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-23 07:24:00
+ * @since 2023-05-26 14:14:16
 */
 
 @InDoc
@@ -60,13 +60,13 @@ public class FormDataController extends SuperController {
 	*/
 	@ApiOperation(value = "添加表单数据")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.OWNER_ID , value = "业务归属" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = FormDataVOMeta.OWNER_ID , value = "业务归属" , required = false , dataTypeClass=String.class , example = "2"),
 		@ApiImplicitParam(name = FormDataVOMeta.DEF_ID , value = "表单定义" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataVOMeta.FORM_ID , value = "表单" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.DESIGNER_DATA , value = "设计" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.DATA , value = "数据" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.FORM_STATUS , value = "表单状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = FormDataVOMeta.DESIGNER_DATA , value = "设计" , required = false , dataTypeClass=String.class ,  example = ""),
+		@ApiImplicitParam(name = FormDataVOMeta.DATA , value = "数据" , required = false , dataTypeClass=String.class , example = ""),
+		@ApiImplicitParam(name = FormDataVOMeta.FORM_STATUS , value = "表单状态" , required = false , dataTypeClass=String.class , example = "enable"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -85,7 +85,7 @@ public class FormDataController extends SuperController {
 	*/
 	@ApiOperation(value = "删除表单数据")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = FormDataServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -168,19 +168,21 @@ public class FormDataController extends SuperController {
 	*/
 	@ApiOperation(value = "更新表单数据")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.OWNER_ID , value = "业务归属" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = FormDataVOMeta.OWNER_ID , value = "业务归属" , required = false , dataTypeClass=String.class , example = "2"),
 		@ApiImplicitParam(name = FormDataVOMeta.DEF_ID , value = "表单定义" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataVOMeta.FORM_ID , value = "表单" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.DESIGNER_DATA , value = "设计" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.DATA , value = "数据" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.FORM_STATUS , value = "表单状态" , required = false , dataTypeClass=String.class),
+			@ApiImplicitParam(name = FormDataVOMeta.DESIGNER_DATA , value = "设计" , required = false , dataTypeClass=String.class ,  example = ""),
+			@ApiImplicitParam(name = FormDataVOMeta.DATA , value = "数据" , required = false , dataTypeClass=String.class , example = ""),
+
+			@ApiImplicitParam(name = FormDataVOMeta.FORM_STATUS , value = "表单状态" , required = false , dataTypeClass=String.class , example = "enable"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { FormDataVOMeta.PAGE_INDEX , FormDataVOMeta.PAGE_SIZE , FormDataVOMeta.SEARCH_FIELD , FormDataVOMeta.FUZZY_FIELD , FormDataVOMeta.SEARCH_VALUE , FormDataVOMeta.DIRTY_FIELDS , FormDataVOMeta.SORT_FIELD , FormDataVOMeta.SORT_TYPE , FormDataVOMeta.DATA_ORIGIN , FormDataVOMeta.QUERY_LOGIC , FormDataVOMeta.REQUEST_ACTION , FormDataVOMeta.IDS } )
 	@SentinelResource(value = FormDataServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(FormDataServiceProxy.UPDATE)
 	public Result update(FormDataVO formDataVO) {
+		
 		Result result=formDataService.update(formDataVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -191,13 +193,13 @@ public class FormDataController extends SuperController {
 	*/
 	@ApiOperation(value = "保存表单数据")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.OWNER_ID , value = "业务归属" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = FormDataVOMeta.OWNER_ID , value = "业务归属" , required = false , dataTypeClass=String.class , example = "2"),
 		@ApiImplicitParam(name = FormDataVOMeta.DEF_ID , value = "表单定义" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataVOMeta.FORM_ID , value = "表单" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.DESIGNER_DATA , value = "设计" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.DATA , value = "数据" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.FORM_STATUS , value = "表单状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = FormDataVOMeta.DESIGNER_DATA , value = "设计" , required = false , dataTypeClass=String.class ,   example = ""),
+		@ApiImplicitParam(name = FormDataVOMeta.DATA , value = "数据" , required = false , dataTypeClass=String.class ,  example = ""),
+		@ApiImplicitParam(name = FormDataVOMeta.FORM_STATUS , value = "表单状态" , required = false , dataTypeClass=String.class , example = "enable"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { FormDataVOMeta.PAGE_INDEX , FormDataVOMeta.PAGE_SIZE , FormDataVOMeta.SEARCH_FIELD , FormDataVOMeta.FUZZY_FIELD , FormDataVOMeta.SEARCH_VALUE , FormDataVOMeta.DIRTY_FIELDS , FormDataVOMeta.SORT_FIELD , FormDataVOMeta.SORT_TYPE , FormDataVOMeta.DATA_ORIGIN , FormDataVOMeta.QUERY_LOGIC , FormDataVOMeta.REQUEST_ACTION , FormDataVOMeta.IDS } )
@@ -254,13 +256,14 @@ public class FormDataController extends SuperController {
 	*/
 	@ApiOperation(value = "查询表单数据")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.OWNER_ID , value = "业务归属" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = FormDataVOMeta.OWNER_ID , value = "业务归属" , required = false , dataTypeClass=String.class , example = "2"),
 		@ApiImplicitParam(name = FormDataVOMeta.DEF_ID , value = "表单定义" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataVOMeta.FORM_ID , value = "表单" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.DESIGNER_DATA , value = "设计" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.DATA , value = "数据" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.FORM_STATUS , value = "表单状态" , required = false , dataTypeClass=String.class),
+			@ApiImplicitParam(name = FormDataVOMeta.DESIGNER_DATA , value = "设计" , required = false , dataTypeClass=String.class ,  example = ""),
+			@ApiImplicitParam(name = FormDataVOMeta.DATA , value = "数据" , required = false , dataTypeClass=String.class , example = ""),
+
+			@ApiImplicitParam(name = FormDataVOMeta.FORM_STATUS , value = "表单状态" , required = false , dataTypeClass=String.class , example = "enable"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { FormDataVOMeta.PAGE_INDEX , FormDataVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = FormDataServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -279,13 +282,13 @@ public class FormDataController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询表单数据")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.OWNER_ID , value = "业务归属" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = FormDataVOMeta.OWNER_ID , value = "业务归属" , required = false , dataTypeClass=String.class , example = "2"),
 		@ApiImplicitParam(name = FormDataVOMeta.DEF_ID , value = "表单定义" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataVOMeta.FORM_ID , value = "表单" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.DESIGNER_DATA , value = "设计" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.DATA , value = "数据" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataVOMeta.FORM_STATUS , value = "表单状态" , required = false , dataTypeClass=String.class),
+			@ApiImplicitParam(name = FormDataVOMeta.DESIGNER_DATA , value = "设计" , required = false , dataTypeClass=String.class ,  example = ""),
+			@ApiImplicitParam(name = FormDataVOMeta.DATA , value = "数据" , required = false , dataTypeClass=String.class , example = ""),
+			@ApiImplicitParam(name = FormDataVOMeta.FORM_STATUS , value = "表单状态" , required = false , dataTypeClass=String.class , example = "enable"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = FormDataServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

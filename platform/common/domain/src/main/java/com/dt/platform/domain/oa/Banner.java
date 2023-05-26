@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 横幅
  * <p>横幅 , 数据表 oa_banner 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:23:35
- * @sign 4EEE0090B82592B13E70D92677CCB5F5
+ * @since 2023-05-26 13:13:19
+ * @sign E11DB8BF9DDDD11B8F06297A2E7ED46A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,61 +40,67 @@ public class Banner extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "708057333552381952")
 	private String id;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "12")
 	private String name;
+	
+	/**
+	 * 状态：状态
+	*/
+	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	private String status;
 	
 	/**
 	 * 图片：图片
 	*/
-	@ApiModelProperty(required = false,value="图片" , notes = "图片")
+	@ApiModelProperty(required = false,value="图片" , notes = "图片" , example = "714460675434348545")
 	private String pictureId;
 	
 	/**
 	 * 地址：地址
 	*/
-	@ApiModelProperty(required = false,value="地址" , notes = "地址")
+	@ApiModelProperty(required = false,value="地址" , notes = "地址" , example = "/business/oa/portal/banner.png")
 	private String url;
 	
 	/**
 	 * 顺序：顺序
 	*/
-	@ApiModelProperty(required = false,value="顺序" , notes = "顺序")
+	@ApiModelProperty(required = false,value="顺序" , notes = "顺序" , example = "0")
 	private Integer sort;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-05-08 08:47:03")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-26 01:01:45")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -115,13 +121,13 @@ public class Banner extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -159,6 +165,25 @@ public class Banner extends Entity {
 	*/
 	public Banner setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 状态<br>
+	 * 状态
+	 * @return 状态
+	*/
+	public String getStatus() {
+		return status;
+	}
+	
+	/**
+	 * 设置 状态
+	 * @param status 状态
+	 * @return 当前对象
+	*/
+	public Banner setStatus(String status) {
+		this.status=status;
 		return this;
 	}
 	
@@ -479,6 +504,7 @@ public class Banner extends Entity {
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setStatus(this.getStatus());
 		inst.clearModifies();
 		return inst;
 	}
@@ -551,6 +577,7 @@ public class Banner extends Entity {
 			this.setTenantId(DataParser.parse(String.class, map.get(BannerMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(BannerMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(BannerMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(BannerMeta.STATUS)));
 			// others
 			return true;
 		} else {
@@ -569,6 +596,7 @@ public class Banner extends Entity {
 				this.setTenantId( (String)map.get(BannerMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(BannerMeta.DELETE_BY));
 				this.setId( (String)map.get(BannerMeta.ID));
+				this.setStatus( (String)map.get(BannerMeta.STATUS));
 				// others
 				return true;
 			} catch (Exception e) {
@@ -600,6 +628,7 @@ public class Banner extends Entity {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(BannerMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(BannerMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(BannerMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(BannerMeta.STATUS)));
 			return true;
 		} else {
 			try {
@@ -617,6 +646,7 @@ public class Banner extends Entity {
 				this.setTenantId( (String)r.getValue(BannerMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(BannerMeta.DELETE_BY));
 				this.setId( (String)r.getValue(BannerMeta.ID));
+				this.setStatus( (String)r.getValue(BannerMeta.STATUS));
 				return true;
 			} catch (Exception e) {
 				return false;

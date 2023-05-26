@@ -21,6 +21,7 @@ import com.dt.platform.proxy.common.ReportServiceProxy;
 import com.dt.platform.proxy.common.ReportUDefServiceProxy;
 import com.dt.platform.proxy.eam.AssetRackServiceProxy;
 import com.dt.platform.proxy.eam.AssetStatusServiceProxy;
+import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 
 public class SysReportGtr extends BaseCodeGenerator{
@@ -54,6 +55,8 @@ public class SysReportGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+
+        cfg.view().field(SysTables.SYS_REPORT.CREATE_TIME).form().dateInput().type(DatePickerType.datetime);
 
         cfg.view().field(SysTables.SYS_REPORT.REPORT_TPL_DEF_ID).table().disable(true);
 

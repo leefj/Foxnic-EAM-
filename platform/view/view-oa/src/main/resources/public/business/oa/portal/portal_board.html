@@ -22,7 +22,6 @@
 
     </style>
     <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
-
 <!--    <link rel="stylesheet" href="/console/pear/component/pear/css/pear-support.css?20230508224346443c1">-->
 </head>
 
@@ -34,8 +33,7 @@
         <div class="layui-col-md6" style="padding:5px;">
             <div class="layui-carousel" id="carousel" >
                 <div carousel-item>
-                    <div><image style="height:280px;width:100%" src="/business/oa/portal/banner.png"></image></div>
-                    <div><image style="height:280px;width:100%" src="/business/oa/portal/banner.png"></image></div>
+                    <div th:each="item,stat:${bannerList}"><image style="height:280px;width:100%" th:src="'/service-storage/sys-file/download?id='+${item.pictureId}"></image></div>
                 </div>
             </div>
         </div>
@@ -132,8 +130,6 @@
         </div>
     </div>
 
-
-
 </div>
 
 
@@ -148,6 +144,7 @@
     var SELECT_TYPE_DATA = [{"code":"L01","text":"\u4E8B\u5047"},{"code":"L02","text":"\u5E74\u4F11\u5047"},{"code":"L03","text":"\u8C03\u4F11"}];
     var VALIDATE_CONFIG={"reason":{"labelInForm":"请假事由","inputType":"text_input","required":true},"beginTime":{"date":true,"labelInForm":"开始时间","inputType":"date_input","required":true},"endTime":{"date":true,"labelInForm":"结束时间","inputType":"date_input","required":true},"type":{"labelInForm":"请假类型","inputType":"select_box","required":true}};
     var AUTH_PREFIX="oa_portal";
+
 </script>
 
 

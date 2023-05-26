@@ -1,7 +1,7 @@
 /**
  * 报表列 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-20 21:33:38
+ * @since 2023-05-26 15:22:17
  */
 
 
@@ -93,7 +93,7 @@ function ListPage() {
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'reportTplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版'), templet: function (d) { return templet('reportTplId' ,fox.joinLabel(d.reportTpl,"fileName",',','','reportTplId'),d);}}
 					,{ field: 'reportSource', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源'), templet:function (d){ return templet('reportSource',fox.getEnumText(RADIO_REPORTSOURCE_DATA,d.reportSource,'','reportSource'),d);}}
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd"),d); }  }
+					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

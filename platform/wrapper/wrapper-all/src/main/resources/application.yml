@@ -351,3 +351,4 @@ app:
   sso:
     token-validate-api: http://172.19.224.217:8081/auth/account/getSessionUser
     client-name: G-TAMS-DEV
+

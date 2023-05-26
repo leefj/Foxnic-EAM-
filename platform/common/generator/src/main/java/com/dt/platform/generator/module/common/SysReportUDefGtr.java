@@ -4,6 +4,7 @@ import com.dt.platform.common.page.ReportUDefPageController;
 import com.dt.platform.constants.db.SysTables;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.common.ReportUDefServiceProxy;
+import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 
 public class SysReportUDefGtr extends BaseCodeGenerator{
@@ -45,7 +46,7 @@ public class SysReportUDefGtr extends BaseCodeGenerator{
                 }
         );
 
-
+        cfg.view().field(SysTables.SYS_REPORT_U_DEF.CREATE_TIME).form().dateInput().type(DatePickerType.datetime);
 
         //文件生成覆盖模式
         cfg.overrides()

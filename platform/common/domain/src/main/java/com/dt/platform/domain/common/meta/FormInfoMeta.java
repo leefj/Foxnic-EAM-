@@ -5,14 +5,15 @@ import com.dt.platform.domain.common.FormInfo;
 import java.util.Date;
 import com.dt.platform.domain.common.FormCategory;
 import com.dt.platform.domain.common.FormDef;
+import com.dt.platform.domain.common.FormData;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-23 07:21:23
- * @sign BD54CADAEB8A2EF5118A31368DA0EA25
+ * @since 2023-05-26 14:18:15
+ * @sign 1FC1284780557AA1C74630C367B51017
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -87,6 +88,16 @@ public class FormInfoMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.common.FormInfo,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.common.FormInfo.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 存储 , 类型: java.lang.String
+	*/
+	public static final String STORAGE="storage";
+	
+	/**
+	 * 存储 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.FormInfo,java.lang.String> STORAGE_PROP = new BeanProperty(com.dt.platform.domain.common.FormInfo.class ,STORAGE, java.lang.String.class, "存储", "存储", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -199,9 +210,19 @@ public class FormInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.FormInfo,com.dt.platform.domain.common.FormDef> FORM_DEF_PROP = new BeanProperty(com.dt.platform.domain.common.FormInfo.class ,FORM_DEF, com.dt.platform.domain.common.FormDef.class, "formDef", "formDef", com.dt.platform.domain.common.FormDef.class, null);
 	
 	/**
+	 * newFormData , 类型: com.dt.platform.domain.common.FormData
+	*/
+	public static final String NEW_FORM_DATA="newFormData";
+	
+	/**
+	 * newFormData , 类型: com.dt.platform.domain.common.FormData
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.FormInfo,com.dt.platform.domain.common.FormData> NEW_FORM_DATA_PROP = new BeanProperty(com.dt.platform.domain.common.FormInfo.class ,NEW_FORM_DATA, com.dt.platform.domain.common.FormData.class, "newFormData", "newFormData", com.dt.platform.domain.common.FormData.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , CATALOG_ID , NAME , STATUS , ROUTE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , FORM_CATEGORY , FORM_DEF };
+	public static final String[] $PROPS={ ID , CODE , CATALOG_ID , NAME , STATUS , ROUTE , NOTES , STORAGE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , FORM_CATEGORY , FORM_DEF , NEW_FORM_DATA };
 	
 	/**
 	 * 代理类
@@ -285,6 +306,17 @@ public class FormInfoMeta {
 		public FormInfo setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 存储
+		 * @param storage 存储
+		 * @return 当前对象
+		*/
+		public FormInfo setStorage(String storage) {
+			super.change(STORAGE,super.getStorage(),storage);
+			super.setStorage(storage);
 			return this;
 		}
 		
@@ -408,6 +440,17 @@ public class FormInfoMeta {
 			super.setFormDef(formDef);
 			return this;
 		}
+		
+		/**
+		 * 设置 newFormData
+		 * @param newFormData newFormData
+		 * @return 当前对象
+		*/
+		public FormInfo setNewFormData(FormData newFormData) {
+			super.change(NEW_FORM_DATA,super.getNewFormData(),newFormData);
+			super.setNewFormData(newFormData);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -427,6 +470,7 @@ public class FormInfoMeta {
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setStorage(this.getStorage());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setCatalogId(this.getCatalogId());
@@ -441,6 +485,7 @@ public class FormInfoMeta {
 			inst.setId(this.getId());
 			inst.setStatus(this.getStatus());
 			if(all) {
+				inst.setNewFormData(this.getNewFormData());
 				inst.setFormCategory(this.getFormCategory());
 				inst.setFormDef(this.getFormDef());
 			}

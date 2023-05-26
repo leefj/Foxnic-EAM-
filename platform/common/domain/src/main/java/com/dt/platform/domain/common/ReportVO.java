@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报表列VO类型
  * <p>报表列 , 数据表 sys_report 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-20 21:33:37
+ * @since 2023-05-26 15:22:15
  * @sign 14CF0A2AB324D116F5D8E758E4617C9F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:23:35
+ * @since 2023-05-26 13:13:19
  * @sign 7531B733C1B9F939BC5AB8DE7B81CFCD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -159,6 +159,16 @@ public class BannerVOMeta extends BannerMeta {
 	public static final BeanProperty<com.dt.platform.domain.oa.BannerVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.oa.BannerVO.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
 	
 	/**
+	 * 状态 , 类型: java.lang.String
+	*/
+	public static final String STATUS="status";
+	
+	/**
+	 * 状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.BannerVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.oa.BannerVO.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	
+	/**
 	 * 图片 , 类型: java.lang.String
 	*/
 	public static final String PICTURE_ID="pictureId";
@@ -281,7 +291,7 @@ public class BannerVOMeta extends BannerMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , PICTURE_ID , URL , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , STATUS , PICTURE_ID , URL , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -446,6 +456,17 @@ public class BannerVOMeta extends BannerMeta {
 		}
 		
 		/**
+		 * 设置 状态
+		 * @param status 状态
+		 * @return 当前对象
+		*/
+		public Banner setStatus(String status) {
+			super.change(STATUS,super.getStatus(),status);
+			super.setStatus(status);
+			return this;
+		}
+		
+		/**
 		 * 设置 图片
 		 * @param pictureId 图片
 		 * @return 当前对象
@@ -606,6 +627,7 @@ public class BannerVOMeta extends BannerMeta {
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
 				inst.setPageIndex(this.getPageIndex());

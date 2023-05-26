@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     <title></title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.7/theme-chalk/index.min.css">
+    <link rel="stylesheet" href="/extmodule/element-ui/2.15.7.themechalk.index.min.css" th:href="'/extmodule/element-ui/2.15.7.themechalk.index.min.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="vFormRender.css?t=20210730"> <!-- 根据Web服务器或CDN路径修改 -->
     <style type="text/css">
     </style>
@@ -27,9 +27,10 @@
     }
 
 </script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/2.6.14/vue.min.js"></script>
-<script src="https://cdn.staticfile.org/element-ui/2.15.7/index.min.js"></script>
+
+<script th:src="'/extmodule/axios/axios.min.js?'+${cacheKey}"></script>
+<script th:src="'/extmodule/vue/vue.2.6.14.min.js?'+${cacheKey}"></script>
+<script th:src="'/extmodule/element-ui/2.15.7.index.min.js?'+${cacheKey}"></script>
 <script th:src="'/business/common/form/vFormRender.umd.min.js?'+${cacheKey}"></script>
 
 <script th:inline="javascript">

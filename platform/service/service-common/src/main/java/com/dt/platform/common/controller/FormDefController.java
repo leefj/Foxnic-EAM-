@@ -1,6 +1,8 @@
 package com.dt.platform.common.controller;
 
 import java.util.*;
+
+import com.github.foxnic.sql.expr.OrderBy;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,8 @@ import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.dt.platform.common.service.IFormDefService;
 import com.github.foxnic.api.validate.annotations.NotNull;
+
+import javax.persistence.criteria.Order;
 
 /**
  * <p>
@@ -262,7 +266,9 @@ public class FormDefController extends SuperController {
     @PostMapping(FormDefServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<FormDef>> queryPagedList(FormDefVO sample) {
         Result<PagedList<FormDef>> result = new Result<>();
-        PagedList<FormDef> list = formDefService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        OrderBy order=new OrderBy();
+        order.desc("create_time");
+        PagedList<FormDef> list = formDefService.queryPagedList(sample, order,sample.getPageSize(), sample.getPageIndex());
         result.success(true).data(list);
         return result;
     }

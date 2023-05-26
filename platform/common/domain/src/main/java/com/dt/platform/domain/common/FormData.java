@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 表单数据
  * <p>表单数据 , 数据表 sys_form_data 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-23 07:24:00
+ * @since 2023-05-26 14:14:15
  * @sign CFFF25961D434ECC5E299F6538C6FF6A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -40,13 +40,13 @@ public class FormData extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1")
 	private String id;
 	
 	/**
 	 * 业务归属：业务归属
 	*/
-	@ApiModelProperty(required = false,value="业务归属" , notes = "业务归属")
+	@ApiModelProperty(required = false,value="业务归属" , notes = "业务归属" , example = "2")
 	private String ownerId;
 	
 	/**
@@ -64,19 +64,19 @@ public class FormData extends Entity {
 	/**
 	 * 设计：设计
 	*/
-	@ApiModelProperty(required = false,value="设计" , notes = "设计")
+	@ApiModelProperty(required = false,value="设计" , notes = "设计" , example = "")
 	private String designerData;
 	
 	/**
 	 * 数据：数据
 	*/
-	@ApiModelProperty(required = false,value="数据" , notes = "数据")
+	@ApiModelProperty(required = false,value="数据" , notes = "数据" , example = "")
 	private String data;
 	
 	/**
 	 * 表单状态：表单状态
 	*/
-	@ApiModelProperty(required = false,value="表单状态" , notes = "表单状态")
+	@ApiModelProperty(required = false,value="表单状态" , notes = "表单状态" , example = "enable")
 	private String formStatus;
 	
 	/**
@@ -94,19 +94,19 @@ public class FormData extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-25 08:55:45")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -127,7 +127,7 @@ public class FormData extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = false,value="version" , notes = "version")
+	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "41")
 	private Integer version;
 	
 	/**

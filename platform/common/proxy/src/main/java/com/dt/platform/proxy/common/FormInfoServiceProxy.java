@@ -94,18 +94,15 @@ public interface FormInfoServiceProxy {
 
     public static final String SAVE_FORM_DATA = API_PREFIX + "save-form-data";
 
-
     public static final String CREATE_FORM_BY_CODE = API_PREFIX + "create-form-by-code";
 
     Result<FormData> createFormByCode(String id);
 
-
     @RequestMapping(FormInfoServiceProxy.CREATE_FORM)
-    Result<FormData> createForm(String id);
-
+    Result<FormData> createForm(@RequestParam(name = "id") String id);
 
     @RequestMapping(FormInfoServiceProxy.SAVE_FORM_DATA)
-    Result saveFormData(FormData formData);
+    Result saveFormData(@RequestParam(name = "formData") FormData formData);
 
     /**
      * 添加表单信息

@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 横幅VO类型
  * <p>横幅 , 数据表 oa_banner 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:23:35
+ * @since 2023-05-26 13:13:19
  * @sign 7531B733C1B9F939BC5AB8DE7B81CFCD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -415,6 +415,7 @@ public class BannerVO extends Banner {
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
 			inst.setPageIndex(this.getPageIndex());
@@ -501,6 +502,7 @@ public class BannerVO extends Banner {
 			this.setTenantId(DataParser.parse(String.class, map.get(BannerVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(BannerVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(BannerVOMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(BannerVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(BannerVOMeta.SEARCH_FIELD)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(BannerVOMeta.PAGE_INDEX)));
@@ -529,6 +531,7 @@ public class BannerVO extends Banner {
 				this.setTenantId( (String)map.get(BannerVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(BannerVOMeta.DELETE_BY));
 				this.setId( (String)map.get(BannerVOMeta.ID));
+				this.setStatus( (String)map.get(BannerVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(BannerVOMeta.SEARCH_FIELD));
 				this.setPageIndex( (Integer)map.get(BannerVOMeta.PAGE_INDEX));
@@ -570,6 +573,7 @@ public class BannerVO extends Banner {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(BannerVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(BannerVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(BannerVOMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(BannerVOMeta.STATUS)));
 			return true;
 		} else {
 			try {
@@ -587,6 +591,7 @@ public class BannerVO extends Banner {
 				this.setTenantId( (String)r.getValue(BannerVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(BannerVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(BannerVOMeta.ID));
+				this.setStatus( (String)r.getValue(BannerVOMeta.STATUS));
 				return true;
 			} catch (Exception e) {
 				return false;

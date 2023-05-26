@@ -5,6 +5,7 @@ import com.dt.platform.constants.db.SysTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.common.FormDataServiceProxy;
+import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 
 public class SysFormDataGtr extends BaseCodeGenerator{
@@ -28,6 +29,8 @@ public class SysFormDataGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
         cfg.view().list().operationColumn().addActionButton("预览","formView","form-view-button","sys_form_data:view");
+
+        cfg.view().field(SysTables.SYS_FORM_DATA.CREATE_TIME).form().dateInput().type(DatePickerType.datetime);
 
         //分成分组布局
         cfg.view().formWindow().width(Config.baseFormWidth);

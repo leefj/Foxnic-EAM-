@@ -24,11 +24,10 @@ import java.util.Map;
  * 表单数据服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-23 07:24:00
+ * @since 2023-05-26 14:14:15
 */
 
 public interface IFormDataService extends  ISimpleIdService<FormData,String> {
-
 
 
 	/**

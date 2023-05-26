@@ -6,6 +6,7 @@ import com.dt.platform.domain.common.*;
 import com.dt.platform.domain.common.meta.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.common.FormCategoryServiceProxy;
+import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 
 public class SysFormGtr extends BaseCodeGenerator{
@@ -24,7 +25,7 @@ public class SysFormGtr extends BaseCodeGenerator{
         cfg.view().field(SysTables.SYS_FORM_INFO.NOTES).search().fuzzySearch();
         cfg.view().field(SysTables.SYS_FORM_INFO.NAME).search().fuzzySearch();
         cfg.view().field(SysTables.SYS_FORM_INFO.CODE).search().fuzzySearch();
-
+        cfg.view().field(SysTables.SYS_FORM_INFO.CREATE_TIME).form().dateInput().type(DatePickerType.datetime);
         cfg.view().search().inputLayout(
                 new Object[]{
                         SysTables.SYS_FORM_INFO.STATUS,
