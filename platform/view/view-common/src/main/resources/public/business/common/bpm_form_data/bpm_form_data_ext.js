@@ -314,16 +314,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
 
-        beforeSubmit:async function (data) {
+        beforeSubmit: function (data) {
             data.formDataId=FORM_DATA_ID;
-            var resData=await $(".form-iframe")[0].contentWindow.updateData()
-            if(resData.sucess){
-                console.log("success")
-                return true;
-            }else{
-                console.log("false")
-                return false;
-            }
+            var resData= $(".form-iframe")[0].contentWindow.updateData()
+            return true;
+            // if(resData.sucess){
+            //     console.log("success")
+            //     return true;
+            // }else{
+            //     console.log("false")
+            //     return false;
+            // }
         },
         /**
          * 数据提交后窗口关闭前，如果返回 false，停止后续步骤的执行
