@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 大屏
  * <p>大屏 , 数据表 sys_screen 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 13:30:44
+ * @since 2023-05-30 13:57:37
  * @sign E3F6377933E546934CBEE8AE8F7A84E1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

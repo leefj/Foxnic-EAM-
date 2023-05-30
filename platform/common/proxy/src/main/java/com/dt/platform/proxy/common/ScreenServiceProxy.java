@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 大屏 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 13:30:45
+ * @since 2023-05-30 13:57:57
  */
 @FeignClient(value = ServiceNames.COMMON, contextId = ScreenServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface ScreenServiceProxy {
