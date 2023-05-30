@@ -56,7 +56,7 @@ public class NoticeGtr extends BaseCodeGenerator {
         cfg.view().field(OaTables.OA_NOTICE.TYPE).form().validate().required().form().radioBox().enumType(NoticeTypeEnum.class).defaultIndex(0);
 
 
-
+        cfg.view().field(OaTables.OA_NOTICE.VISUAL_RANGE).table().disable(true);
         cfg.view().field(OaTables.OA_NOTICE.ATTACH).table().disable(true);
         cfg.view().field(OaTables.OA_NOTICE.CONTENT).table().disable(true);
 

@@ -3,14 +3,15 @@ package com.dt.platform.domain.common.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.common.FormData;
 import java.util.Date;
+import com.dt.platform.domain.common.FormDataExt;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-26 14:14:15
- * @sign CFFF25961D434ECC5E299F6538C6FF6A
+ * @since 2023-05-29 08:39:42
+ * @sign 7D101636AEC854C9627F9D103FEDABCF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -167,9 +168,19 @@ public class FormDataMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.FormData,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.common.FormData.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
+	 * formDataExt , 类型: com.dt.platform.domain.common.FormDataExt
+	*/
+	public static final String FORM_DATA_EXT="formDataExt";
+	
+	/**
+	 * formDataExt , 类型: com.dt.platform.domain.common.FormDataExt
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.FormData,com.dt.platform.domain.common.FormDataExt> FORM_DATA_EXT_PROP = new BeanProperty(com.dt.platform.domain.common.FormData.class ,FORM_DATA_EXT, com.dt.platform.domain.common.FormDataExt.class, "formDataExt", "formDataExt", com.dt.platform.domain.common.FormDataExt.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER_ID , DEF_ID , FORM_ID , DESIGNER_DATA , DATA , FORM_STATUS , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ ID , OWNER_ID , DEF_ID , FORM_ID , DESIGNER_DATA , DATA , FORM_STATUS , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , FORM_DATA_EXT };
 	
 	/**
 	 * 代理类
@@ -343,6 +354,17 @@ public class FormDataMeta {
 			super.setVersion(version);
 			return this;
 		}
+		
+		/**
+		 * 设置 formDataExt
+		 * @param formDataExt formDataExt
+		 * @return 当前对象
+		*/
+		public FormData setFormDataExt(FormDataExt formDataExt) {
+			super.change(FORM_DATA_EXT,super.getFormDataExt(),formDataExt);
+			super.setFormDataExt(formDataExt);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -374,6 +396,9 @@ public class FormDataMeta {
 			inst.setFormStatus(this.getFormStatus());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			if(all) {
+				inst.setFormDataExt(this.getFormDataExt());
+			}
 			inst.clearModifies();
 			return inst;
 		}

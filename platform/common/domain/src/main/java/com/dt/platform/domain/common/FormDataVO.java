@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 表单数据VO类型
  * <p>表单数据 , 数据表 sys_form_data 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-26 14:14:15
+ * @since 2023-05-29 08:39:42
  * @sign B95B5B5F9F5F02095F2523E3CCCA5C61
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -418,16 +418,17 @@ public class FormDataVO extends FormData {
 		inst.setId(this.getId());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setFormDataExt(this.getFormDataExt());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -505,14 +506,15 @@ public class FormDataVO extends FormData {
 			this.setId(DataParser.parse(String.class, map.get(FormDataVOMeta.ID)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(FormDataVOMeta.SEARCH_FIELD)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(FormDataVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(FormDataVOMeta.SORT_TYPE)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(FormDataVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(FormDataVOMeta.FUZZY_FIELD)));
-			this.setSortField(DataParser.parse(String.class, map.get(FormDataVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(FormDataVOMeta.PAGE_SIZE)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(FormDataVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(FormDataVOMeta.SORT_TYPE)));
+			this.setSortField(DataParser.parse(String.class, map.get(FormDataVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(FormDataVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(FormDataVOMeta.QUERY_LOGIC)));
+			this.setFormDataExt(DataParser.parse(FormDataExt.class, map.get(FormDataVOMeta.FORM_DATA_EXT)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(FormDataVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -534,14 +536,15 @@ public class FormDataVO extends FormData {
 				this.setId( (String)map.get(FormDataVOMeta.ID));
 				// others
 				this.setSearchField( (String)map.get(FormDataVOMeta.SEARCH_FIELD));
-				this.setPageIndex( (Integer)map.get(FormDataVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(FormDataVOMeta.SORT_TYPE));
 				this.setRequestAction( (String)map.get(FormDataVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(FormDataVOMeta.FUZZY_FIELD));
-				this.setSortField( (String)map.get(FormDataVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(FormDataVOMeta.PAGE_SIZE));
+				this.setPageIndex( (Integer)map.get(FormDataVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(FormDataVOMeta.SORT_TYPE));
+				this.setSortField( (String)map.get(FormDataVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(FormDataVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(FormDataVOMeta.QUERY_LOGIC));
+				this.setFormDataExt( (FormDataExt)map.get(FormDataVOMeta.FORM_DATA_EXT));
 				this.setSearchValue( (String)map.get(FormDataVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {

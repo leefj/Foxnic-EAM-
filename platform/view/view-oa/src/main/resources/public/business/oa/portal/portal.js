@@ -61,8 +61,8 @@ function PortalPage() {
 
 
 
-		requestUserProcessDefinitions("/service-bpm/portal/query-commonly-used",15,"commonly-used");
-		requestUserProcessDefinitions("/service-bpm/portal/query-latest-used",15,"latest-used");
+		// requestUserProcessDefinitions("/service-bpm/portal/query-commonly-used",15,"commonly-used");
+		 requestUserProcessDefinitions("/service-bpm/portal/query-latest-used",15,"latest-used");
 		requestProcessDefinitionCatalogs("/service-bpm/portal/query-latest-used",15,"latest-used");
 
 
@@ -264,6 +264,7 @@ function PortalPage() {
 		var container = $("."+el);
 		container.empty();
 		for (var i=0;i<data.length;i++) {
+
 			var def = data[i];
 			PROCESS_DEFINITIONS[def.id]=def;
 			container.append([
@@ -365,6 +366,17 @@ function PortalPage() {
 		console.log(id);
 		window.open("/service-storage/sys-file/download?id="+id,"_blank")
 	}
+
+	window.openMore=function(type) {
+		window.open("/business/oa/notice/notice_list_public.html?type="+type,"","left=100,top=100,width=800,height=600")
+	}
+	window.openDownFileMore=function() {
+		window.open("/business/oa/download_file/download_file_list_public.html","","left=100,top=100,width=800,height=600")
+	}
+
+
+
+
 
 
 	window.openSystem=function(url) {

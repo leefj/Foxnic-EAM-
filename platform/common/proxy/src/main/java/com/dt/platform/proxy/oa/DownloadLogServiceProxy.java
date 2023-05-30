@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 下载日志 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-15 12:00:49
+ * @since 2023-05-28 22:03:10
  */
 @FeignClient(value = ServiceNames.OA, contextId = DownloadLogServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface DownloadLogServiceProxy {

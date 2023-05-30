@@ -76,25 +76,17 @@ function ListPage() {
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
-				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
+				defaultToolbar: [],
 				url: queryURL,
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
 				cols: [[
-					{ fixed: 'left',type: 'numbers' },
-					{ fixed: 'left',type:'checkbox'}
+					{ fixed: 'left',type: 'numbers' }
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'number', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('文号') , templet: function (d) { return templet('number',d.number,d);}  }
-					,{ field: 'title', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标题') , templet: function (d) { return templet('title',d.title,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分类'), templet:function (d){ return templet('type',fox.getEnumText(RADIO_TYPE_DATA,d.type,'','type'),d);}}
-					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内容') , templet: function (d) { return templet('content',d.content,d);}  }
-					,{ field: 'attach', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('附件') , templet: function (d) { return templet('attach',d.attach,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd"),d); }  }
-					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
-					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
-				]],
+					 ,{ field: 'title', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标题') , templet: function (d) { return templet('title',d.title,d);}  }
+					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+ 			 	]],
 				done: function (data) {
 					lockSwitchInputs();
 					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
@@ -164,9 +156,7 @@ function ListPage() {
 		var value = {};
 		value.number={ inputType:"button",value: $("#number").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.title={ inputType:"button",value: $("#title").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.type={ inputType:"radio_box", value: getSelectedValue("#type","value"), label:getSelectedValue("#type","nameStr") };
-		var ps={searchField:"$composite"};
+	    var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
 		}
@@ -212,56 +202,6 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
-		//渲染 status 搜索框
-		fox.renderSelectBox({
-			el: "status",
-			size: "small",
-			radio: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 type 搜索框
-		fox.renderSelectBox({
-			el: "type",
-			size: "small",
-			radio: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("type",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}

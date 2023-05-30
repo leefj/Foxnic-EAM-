@@ -37,6 +37,12 @@ public class DownloadFilePageController extends ViewController {
 		return proxy;
 	}
 
+	@RequestMapping("/download_file_list_public.html")
+	public String listPublic(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"download_file_list_public");
+	}
+
+
 	/**
 	 * 常用下载 功能主页面
 	 */

@@ -24,7 +24,7 @@ import java.util.Map;
  * 下载日志服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-15 12:00:48
+ * @since 2023-05-28 22:03:10
 */
 
 public interface IDownloadLogService extends  ISimpleIdService<DownloadLog,String> {

@@ -24,7 +24,7 @@ import java.util.Map;
  * 横幅服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-26 13:13:19
+ * @since 2023-05-28 22:03:00
 */
 
 public interface IBannerService extends  ISimpleIdService<Banner,String> {

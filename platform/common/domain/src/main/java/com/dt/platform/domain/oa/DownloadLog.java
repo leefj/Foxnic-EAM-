@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 下载日志
  * <p>下载日志 , 数据表 oa_download_log 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-15 12:00:48
+ * @since 2023-05-28 22:03:09
  * @sign 9824454B661FA2FE6884810CBEE9A1EA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

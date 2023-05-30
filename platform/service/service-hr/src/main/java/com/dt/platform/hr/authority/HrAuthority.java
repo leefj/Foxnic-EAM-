@@ -13,7 +13,7 @@ public class HrAuthority extends ModuleAuthority {
     @Override
     public String[] getAuthorities() {
         return new String[] {
-                "hr"
+                "hr","hrm"
         };
     }
 }

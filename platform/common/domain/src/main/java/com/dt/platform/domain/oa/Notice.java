@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 通知公告
  * <p>通知公告 , 数据表 oa_notice 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-11 13:29:34
- * @sign 541058C8E8B1530009C72925E13879A0
+ * @since 2023-05-28 22:02:48
+ * @sign 337B369AB4CEFAC44CB3C1904919F89A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -87,6 +87,12 @@ public class Notice extends Entity {
 	private String attach;
 	
 	/**
+	 * 可见范围：可见范围
+	*/
+	@ApiModelProperty(required = false,value="可见范围" , notes = "可见范围")
+	private String visualRange;
+	
+	/**
 	 * 创建人ID：创建人ID
 	*/
 	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
@@ -113,7 +119,7 @@ public class Notice extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -298,6 +304,25 @@ public class Notice extends Entity {
 	*/
 	public Notice setAttach(String attach) {
 		this.attach=attach;
+		return this;
+	}
+	
+	/**
+	 * 获得 可见范围<br>
+	 * 可见范围
+	 * @return 可见范围
+	*/
+	public String getVisualRange() {
+		return visualRange;
+	}
+	
+	/**
+	 * 设置 可见范围
+	 * @param visualRange 可见范围
+	 * @return 当前对象
+	*/
+	public Notice setVisualRange(String visualRange) {
+		this.visualRange=visualRange;
 		return this;
 	}
 	
@@ -578,6 +603,7 @@ public class Notice extends Entity {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setVisualRange(this.getVisualRange());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
@@ -656,6 +682,7 @@ public class Notice extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(NoticeMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(NoticeMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(NoticeMeta.DELETE_TIME)));
+			this.setVisualRange(DataParser.parse(String.class, map.get(NoticeMeta.VISUAL_RANGE)));
 			this.setTenantId(DataParser.parse(String.class, map.get(NoticeMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(NoticeMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(NoticeMeta.ID)));
@@ -678,6 +705,7 @@ public class Notice extends Entity {
 				this.setCreateTime( (Date)map.get(NoticeMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(NoticeMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(NoticeMeta.DELETE_TIME));
+				this.setVisualRange( (String)map.get(NoticeMeta.VISUAL_RANGE));
 				this.setTenantId( (String)map.get(NoticeMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(NoticeMeta.DELETE_BY));
 				this.setId( (String)map.get(NoticeMeta.ID));
@@ -713,6 +741,7 @@ public class Notice extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(NoticeMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(NoticeMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(NoticeMeta.DELETE_TIME)));
+			this.setVisualRange(DataParser.parse(String.class, r.getValue(NoticeMeta.VISUAL_RANGE)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(NoticeMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(NoticeMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(NoticeMeta.ID)));
@@ -733,6 +762,7 @@ public class Notice extends Entity {
 				this.setCreateTime( (Date)r.getValue(NoticeMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(NoticeMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(NoticeMeta.DELETE_TIME));
+				this.setVisualRange( (String)r.getValue(NoticeMeta.VISUAL_RANGE));
 				this.setTenantId( (String)r.getValue(NoticeMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(NoticeMeta.DELETE_BY));
 				this.setId( (String)r.getValue(NoticeMeta.ID));

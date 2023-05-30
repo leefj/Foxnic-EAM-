@@ -1,7 +1,7 @@
 /**
  * 通知公告 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-11 13:29:36
+ * @since 2023-05-28 22:02:50
  */
 
 function FormPage() {
@@ -246,7 +246,7 @@ function FormPage() {
 
 
         //禁用编辑
-		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+	if((action=="edit" && hasData && disableModify) || (action=="create" && !hasData &&disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")

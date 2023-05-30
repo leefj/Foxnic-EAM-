@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 通知公告VO类型
  * <p>通知公告 , 数据表 oa_notice 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-11 13:29:34
+ * @since 2023-05-28 22:02:48
  * @sign DBC37635BD030E726CE0AFE2306C56C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -414,6 +414,7 @@ public class NoticeVO extends Notice {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setVisualRange(this.getVisualRange());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
@@ -504,6 +505,7 @@ public class NoticeVO extends Notice {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(NoticeVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(NoticeVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(NoticeVOMeta.DELETE_TIME)));
+			this.setVisualRange(DataParser.parse(String.class, map.get(NoticeVOMeta.VISUAL_RANGE)));
 			this.setTenantId(DataParser.parse(String.class, map.get(NoticeVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(NoticeVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(NoticeVOMeta.ID)));
@@ -536,6 +538,7 @@ public class NoticeVO extends Notice {
 				this.setCreateTime( (Date)map.get(NoticeVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(NoticeVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(NoticeVOMeta.DELETE_TIME));
+				this.setVisualRange( (String)map.get(NoticeVOMeta.VISUAL_RANGE));
 				this.setTenantId( (String)map.get(NoticeVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(NoticeVOMeta.DELETE_BY));
 				this.setId( (String)map.get(NoticeVOMeta.ID));
@@ -581,6 +584,7 @@ public class NoticeVO extends Notice {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(NoticeVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(NoticeVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(NoticeVOMeta.DELETE_TIME)));
+			this.setVisualRange(DataParser.parse(String.class, r.getValue(NoticeVOMeta.VISUAL_RANGE)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(NoticeVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(NoticeVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(NoticeVOMeta.ID)));
@@ -601,6 +605,7 @@ public class NoticeVO extends Notice {
 				this.setCreateTime( (Date)r.getValue(NoticeVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(NoticeVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(NoticeVOMeta.DELETE_TIME));
+				this.setVisualRange( (String)r.getValue(NoticeVOMeta.VISUAL_RANGE));
 				this.setTenantId( (String)r.getValue(NoticeVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(NoticeVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(NoticeVOMeta.ID));

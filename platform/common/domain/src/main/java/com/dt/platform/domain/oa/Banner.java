@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 横幅
  * <p>横幅 , 数据表 oa_banner 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-26 13:13:19
+ * @since 2023-05-28 22:03:00
  * @sign E11DB8BF9DDDD11B8F06297A2E7ED46A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -46,19 +46,19 @@ public class Banner extends Entity {
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "12")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "banner2 默认")
 	private String name;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
 	
 	/**
 	 * 图片：图片
 	*/
-	@ApiModelProperty(required = false,value="图片" , notes = "图片" , example = "714460675434348545")
+	@ApiModelProperty(required = false,value="图片" , notes = "图片" , example = "T001_image_banner2")
 	private String pictureId;
 	
 	/**
@@ -70,7 +70,7 @@ public class Banner extends Entity {
 	/**
 	 * 顺序：顺序
 	*/
-	@ApiModelProperty(required = false,value="顺序" , notes = "顺序" , example = "0")
+	@ApiModelProperty(required = false,value="顺序" , notes = "顺序" , example = "2")
 	private Integer sort;
 	
 	/**
@@ -94,7 +94,7 @@ public class Banner extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-26 01:01:45")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-26 01:17:37")
 	private Date updateTime;
 	
 	/**
@@ -121,7 +121,7 @@ public class Banner extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "7")
 	private Integer version;
 	
 	/**
