@@ -58,6 +58,8 @@ public class BaseCodeGenerator {
         PlatformConfigs.ProjectConfigs procfg=this.configs.getProjectConfigs();
 
         ModuleContext mdu=new ModuleContext(this.configs.getSettings(),table,tablePrefix,procfg.getAppPackageName());
+
+
         //设置页面的代码文件路径
         mdu.setViewPrefixPath(procfg.getAppViewPrefixPath());
         //设置页面访问的基础URI
