@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 横幅VO类型
  * <p>横幅 , 数据表 oa_banner 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-26 13:13:19
+ * @since 2023-05-28 22:03:00
  * @sign 7531B733C1B9F939BC5AB8DE7B81CFCD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

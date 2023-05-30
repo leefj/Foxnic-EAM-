@@ -4,12 +4,14 @@ import javax.annotation.Resource;
 
 import com.alibaba.csp.sentinel.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.common.service.IFormDataColService;
+import com.dt.platform.common.service.IFormDataExtService;
 import com.dt.platform.common.service.IFormDataService;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
-import com.dt.platform.domain.common.FormData;
-import com.dt.platform.domain.common.FormDef;
+import com.dt.platform.domain.common.*;
 import com.dt.platform.domain.common.meta.FormInfoMeta;
 import com.dt.platform.domain.common.meta.ReportMeta;
+import com.github.foxnic.sql.expr.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -17,8 +19,6 @@ import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
 
-import com.dt.platform.domain.common.FormInfo;
-import com.dt.platform.domain.common.FormInfoVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -57,6 +57,12 @@ public class FormInfoServiceImpl extends SuperService<FormInfo> implements IForm
 
 	@Autowired
 	private IFormDataService formDataService;
+
+	@Autowired
+	private IFormDataExtService formDataExtService;
+
+	@Autowired
+	private IFormDataColService formDataColService;
 
 	/**
 	 * 注入DAO对象
@@ -133,6 +139,9 @@ public class FormInfoServiceImpl extends SuperService<FormInfo> implements IForm
 		result.success(true);
 		result.data(formData);
 
+		FormDataExt formDataExt=new FormDataExt();
+		formDataExt.setDataId(formData.getId());
+		formDataExtService.insert(formDataExt,true);
 		return result;
 	}
 
@@ -142,9 +151,25 @@ public class FormInfoServiceImpl extends SuperService<FormInfo> implements IForm
 		formData.setFormStatus(StatusEnableEnum.ENABLE.code());
 		formData.setFormId(null);
 		formData.setDefId(null);
-
 		formDataService.update(formData,SaveMode.NOT_NULL_FIELDS);
-
+		//删除扩展字段
+		dao.execute("delete from sys_form_data_ext where data_id=?",formData.getId());
+		List<FormDataCol> formColList=formDataColService.queryList(new FormDataCol());
+		Insert ins=new Insert("sys_form_data_ext");
+		JSONObject dataObj=JSONObject.parseObject(formData.getData());
+		if(formColList.size()>0){
+			ins.set("id",IDGenerator.getSnowflakeIdString());
+			ins.set("data_id",formData.getId());
+			ins.set("deleted","0");
+			for(FormDataCol col:formColList){
+				if(dataObj.containsKey(col.getCol())){
+					String val=dataObj.getString(col.getCol());
+					ins.setIf(col.getCol(),val);
+				}
+			}
+			dao.execute(ins);
+		}
+		//新增扩展字段
 		return ErrorDesc.success();
 	}
 

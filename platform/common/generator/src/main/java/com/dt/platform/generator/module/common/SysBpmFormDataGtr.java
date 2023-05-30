@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.common;
 
 import com.dt.platform.constants.db.SysTables;
 import com.dt.platform.domain.common.FormData;
+import com.dt.platform.domain.common.FormDataExt;
 import com.dt.platform.generator.config.Config;
 import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.builder.view.config.DatePickerType;
@@ -14,7 +15,10 @@ public class SysBpmFormDataGtr extends BaseCodeGenerator{
 
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
+
         cfg.getPoClassFile().addSimpleProperty(FormData.class,"formData","formData","formData");
+        cfg.getPoClassFile().addSimpleProperty(FormDataExt.class,"formDataExt","formDataExt","formDataExt");
+
         cfg.view().field(SysTables.SYS_BPM_FORM_DATA.ID).basic().hidden(true);
         cfg.view().search().inputLayout(
                 new Object[]{

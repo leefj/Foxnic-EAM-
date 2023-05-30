@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-11 13:29:34
+ * @since 2023-05-28 22:02:48
  * @sign DBC37635BD030E726CE0AFE2306C56C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -220,6 +220,16 @@ public class NoticeVOMeta extends NoticeMeta {
 	public static final BeanProperty<com.dt.platform.domain.oa.NoticeVO,java.lang.String> ATTACH_PROP = new BeanProperty(com.dt.platform.domain.oa.NoticeVO.class ,ATTACH, java.lang.String.class, "附件", "附件", java.lang.String.class, null);
 	
 	/**
+	 * 可见范围 , 类型: java.lang.String
+	*/
+	public static final String VISUAL_RANGE="visualRange";
+	
+	/**
+	 * 可见范围 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.NoticeVO,java.lang.String> VISUAL_RANGE_PROP = new BeanProperty(com.dt.platform.domain.oa.NoticeVO.class ,VISUAL_RANGE, java.lang.String.class, "可见范围", "可见范围", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -322,7 +332,7 @@ public class NoticeVOMeta extends NoticeMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NUMBER , TITLE , STATUS , TYPE , CONTENT , IFTOP , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TYPE_DATA };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NUMBER , TITLE , STATUS , TYPE , CONTENT , IFTOP , ATTACH , VISUAL_RANGE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TYPE_DATA };
 	
 	/**
 	 * 代理类
@@ -553,6 +563,17 @@ public class NoticeVOMeta extends NoticeMeta {
 		}
 		
 		/**
+		 * 设置 可见范围
+		 * @param visualRange 可见范围
+		 * @return 当前对象
+		*/
+		public Notice setVisualRange(String visualRange) {
+			super.change(VISUAL_RANGE,super.getVisualRange(),visualRange);
+			super.setVisualRange(visualRange);
+			return this;
+		}
+		
+		/**
 		 * 设置 创建人ID
 		 * @param createBy 创建人ID
 		 * @return 当前对象
@@ -689,6 +710,7 @@ public class NoticeVOMeta extends NoticeMeta {
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
+			inst.setVisualRange(this.getVisualRange());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());

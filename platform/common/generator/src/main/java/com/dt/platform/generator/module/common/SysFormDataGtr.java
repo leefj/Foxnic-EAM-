@@ -3,6 +3,8 @@ package com.dt.platform.generator.module.common;
 import com.dt.platform.common.page.FormDataPageController;
 import com.dt.platform.constants.db.SysTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.domain.common.FormData;
+import com.dt.platform.domain.common.FormDataExt;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.common.FormDataServiceProxy;
 import com.github.foxnic.generator.builder.view.config.DatePickerType;
@@ -17,6 +19,10 @@ public class SysFormDataGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
 
         cfg.view().field(SysTables.SYS_FORM_DATA.ID).basic().hidden(true);
+
+
+        cfg.getPoClassFile().addSimpleProperty(FormDataExt.class,"formDataExt","formDataExt","formDataExt");
+
 
         cfg.view().search().inputLayout(
                 new Object[]{

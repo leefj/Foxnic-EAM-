@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 表单数据
  * <p>表单数据 , 数据表 sys_form_data 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-26 14:14:15
- * @sign CFFF25961D434ECC5E299F6538C6FF6A
+ * @since 2023-05-29 08:39:42
+ * @sign 7D101636AEC854C9627F9D103FEDABCF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -129,6 +129,12 @@ public class FormData extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "41")
 	private Integer version;
+	
+	/**
+	 * formDataExt：formDataExt
+	*/
+	@ApiModelProperty(required = false,value="formDataExt" , notes = "formDataExt")
+	private FormDataExt formDataExt;
 	
 	/**
 	 * 获得 主键<br>
@@ -445,6 +451,25 @@ public class FormData extends Entity {
 		this.version=version;
 		return this;
 	}
+	
+	/**
+	 * 获得 formDataExt<br>
+	 * formDataExt
+	 * @return formDataExt
+	*/
+	public FormDataExt getFormDataExt() {
+		return formDataExt;
+	}
+	
+	/**
+	 * 设置 formDataExt
+	 * @param formDataExt formDataExt
+	 * @return 当前对象
+	*/
+	public FormData setFormDataExt(FormDataExt formDataExt) {
+		this.formDataExt=formDataExt;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -505,6 +530,9 @@ public class FormData extends Entity {
 		inst.setFormStatus(this.getFormStatus());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		if(all) {
+			inst.setFormDataExt(this.getFormDataExt());
+		}
 		inst.clearModifies();
 		return inst;
 	}
@@ -579,6 +607,7 @@ public class FormData extends Entity {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(FormDataMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(FormDataMeta.ID)));
 			// others
+			this.setFormDataExt(DataParser.parse(FormDataExt.class, map.get(FormDataMeta.FORM_DATA_EXT)));
 			return true;
 		} else {
 			try {
@@ -598,6 +627,7 @@ public class FormData extends Entity {
 				this.setDeleteBy( (String)map.get(FormDataMeta.DELETE_BY));
 				this.setId( (String)map.get(FormDataMeta.ID));
 				// others
+				this.setFormDataExt( (FormDataExt)map.get(FormDataMeta.FORM_DATA_EXT));
 				return true;
 			} catch (Exception e) {
 				return false;

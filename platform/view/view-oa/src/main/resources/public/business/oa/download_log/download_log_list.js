@@ -1,7 +1,7 @@
 /**
  * 下载日志 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-15 12:00:50
+ * @since 2023-05-28 22:03:11
  */
 
 
@@ -87,7 +87,7 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'recId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('文件') , templet: function (d) { return templet('recId',d.recId,d);}  }
 					,{ field: 'userId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('用户') , templet: function (d) { return templet('userId',d.userId,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd"),d); }  }
+					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

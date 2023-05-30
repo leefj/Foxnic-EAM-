@@ -49,6 +49,10 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_report_u_def")
 					||table.startsWith("sys_category")
 					||table.startsWith("sys_bpm_form_data")
+					||table.startsWith("sys_form_data_col")
+					||table.startsWith("sys_screen")
+					||table.startsWith("sys_screen_project")
+					||table.startsWith("sys_screen_project_data")
 					||table.startsWith("sys_auto_role") ) return true;
 			return false;
 		});

@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 常用下载VO类型
  * <p>常用下载 , 数据表 oa_download_file 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-15 11:59:36
+ * @since 2023-05-28 22:03:04
  * @sign 6F088BF76BD00E5A647DE45DF433F734
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

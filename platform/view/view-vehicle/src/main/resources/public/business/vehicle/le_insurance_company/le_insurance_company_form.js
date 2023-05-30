@@ -1,7 +1,7 @@
 /**
  * 车辆保险公司 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-09 12:47:20
+ * @since 2023-05-28 22:03:18
  */
 
 function FormPage() {
@@ -195,7 +195,7 @@ function FormPage() {
 
 
         //禁用编辑
-		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+	if((action=="edit" && hasData && disableModify) || (action=="create" && !hasData &&disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")
