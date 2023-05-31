@@ -176,6 +176,7 @@ public class FormInfoServiceImpl extends SuperService<FormInfo> implements IForm
 	@Override
 	public Result copyData(String id) {
 		FormInfo info=this.getById(id);
+		info.setId(IDGenerator.getSnowflakeIdString());
 		info.setUpdateTime(new Date());
 		info.setCreateTime(new Date());
 		info.setCode(IDGenerator.getSnowflakeIdString());

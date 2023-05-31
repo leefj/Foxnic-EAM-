@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 流程表单
  * <p>流程表单 , 数据表 sys_bpm_form_data 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-26 14:20:19
- * @sign BB7B5591F8B2573AE19361940C974725
+ * @since 2023-05-31 12:28:58
+ * @sign 8367169854F837ED240688C19E002E08
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -121,6 +121,12 @@ public class BpmFormData extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="formData" , notes = "formData")
 	private FormData formData;
+	
+	/**
+	 * formDataExt：formDataExt
+	*/
+	@ApiModelProperty(required = false,value="formDataExt" , notes = "formDataExt")
+	private FormDataExt formDataExt;
 	
 	/**
 	 * 历史流程清单：历史流程清单
@@ -419,6 +425,25 @@ public class BpmFormData extends Entity {
 	}
 	
 	/**
+	 * 获得 formDataExt<br>
+	 * formDataExt
+	 * @return formDataExt
+	*/
+	public FormDataExt getFormDataExt() {
+		return formDataExt;
+	}
+	
+	/**
+	 * 设置 formDataExt
+	 * @param formDataExt formDataExt
+	 * @return 当前对象
+	*/
+	public BpmFormData setFormDataExt(FormDataExt formDataExt) {
+		this.formDataExt=formDataExt;
+		return this;
+	}
+	
+	/**
 	 * 获得 历史流程清单<br>
 	 * 历史流程清单
 	 * @return 历史流程清单
@@ -556,6 +581,7 @@ public class BpmFormData extends Entity {
 		if(all) {
 			inst.setFormData(this.getFormData());
 			inst.setHistoricProcessList(this.getHistoricProcessList());
+			inst.setFormDataExt(this.getFormDataExt());
 			inst.setCurrentProcessList(this.getCurrentProcessList());
 			inst.setDefaultProcess(this.getDefaultProcess());
 		}
@@ -631,6 +657,7 @@ public class BpmFormData extends Entity {
 			this.setVersion(DataParser.parse(Integer.class, map.get(BpmFormDataMeta.VERSION)));
 			// others
 			this.setFormData(DataParser.parse(FormData.class, map.get(BpmFormDataMeta.FORM_DATA)));
+			this.setFormDataExt(DataParser.parse(FormDataExt.class, map.get(BpmFormDataMeta.FORM_DATA_EXT)));
 			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(BpmFormDataMeta.DEFAULT_PROCESS)));
 			return true;
 		} else {
@@ -649,6 +676,7 @@ public class BpmFormData extends Entity {
 				this.setVersion( (Integer)map.get(BpmFormDataMeta.VERSION));
 				// others
 				this.setFormData( (FormData)map.get(BpmFormDataMeta.FORM_DATA));
+				this.setFormDataExt( (FormDataExt)map.get(BpmFormDataMeta.FORM_DATA_EXT));
 				this.setDefaultProcess( (ProcessInstance)map.get(BpmFormDataMeta.DEFAULT_PROCESS));
 				return true;
 			} catch (Exception e) {

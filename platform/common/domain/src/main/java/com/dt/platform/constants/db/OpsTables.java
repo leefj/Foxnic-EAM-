@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-02-13 17:09:46
+ * @since 2023-05-30 14:55:19
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -1748,6 +1748,37 @@ public class OpsTables {
 			this.init($NAME,"自动化模板" , ID , NAME , AUTO_CONF_FILE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_AUTOMATIC_TPL $TABLE=new OPS_AUTOMATIC_TPL();
+	}
+	
+	/**
+	 * 日志
+	*/
+	public static class OPS_BACKUP_LOG extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_backup_log";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 数据
+		*/
+		public static final DBField DATA = new DBField(DBDataType.STRING , "data","data","数据","数据",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField IS_PROCESS = new DBField(DBDataType.STRING , "is_process","isProcess","状态","状态",false,false,true);
+		
+		public OPS_BACKUP_LOG() {
+			this.init($NAME,"日志" , ID , DATA , IS_PROCESS);
+		}
+		public static final OPS_BACKUP_LOG $TABLE=new OPS_BACKUP_LOG();
 	}
 	
 	/**
@@ -4005,6 +4036,11 @@ public class OpsTables {
 		public static final DBField VOUCHER = new DBField(DBDataType.STRING , "voucher","voucher","凭证","凭证",false,false,true);
 		
 		/**
+		 * 文档
+		*/
+		public static final DBField FILE_IDS = new DBField(DBDataType.STRING , "file_ids","fileIds","文档","文档",false,false,true);
+		
+		/**
 		 * 备注
 		*/
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
@@ -4049,7 +4085,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_ENV_INFO() {
-			this.init($NAME,"数据库环境" , ID , LABEL , DB_INST_ID , DB , IP , VOUCHER , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"数据库环境" , ID , LABEL , DB_INST_ID , DB , IP , VOUCHER , FILE_IDS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_ENV_INFO $TABLE=new OPS_DB_ENV_INFO();
 	}
@@ -4102,7 +4138,7 @@ public class OpsTables {
 		/**
 		 * 大小(M)
 		*/
-		public static final DBField DB_SIZE = new DBField(DBDataType.DECIMAL , "db_size","dbSize","大小(M)","大小(M)",false,false,true);
+		public static final DBField DB_SIZE = new DBField(DBDataType.DECIMAL , "db_size","dbSize","大小","M)",false,false,true);
 		
 		/**
 		 * 日志模式
@@ -4180,6 +4216,11 @@ public class OpsTables {
 		public static final DBField BACKUP_INFO = new DBField(DBDataType.STRING , "backup_info","backupInfo","备份备注","备份备注",false,false,true);
 		
 		/**
+		 * 文档
+		*/
+		public static final DBField FILE_IDS = new DBField(DBDataType.STRING , "file_ids","fileIds","文档","文档",false,false,true);
+		
+		/**
 		 * 备注
 		*/
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
@@ -4229,7 +4270,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_INFO() {
-			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_INFO $TABLE=new OPS_DB_INFO();
 	}
@@ -5742,7 +5783,7 @@ public class OpsTables {
 		/**
 		 * 凭证(SSH)
 		*/
-		public static final DBField SSH_VOUCHER_ID = new DBField(DBDataType.STRING , "ssh_voucher_id","sshVoucherId","凭证(SSH)","凭证(SSH)",false,false,true);
+		public static final DBField SSH_VOUCHER_ID = new DBField(DBDataType.STRING , "ssh_voucher_id","sshVoucherId","凭证","SSH)",false,false,true);
 		
 		/**
 		 * SSH端口
@@ -6065,7 +6106,7 @@ public class OpsTables {
 		/**
 		 * 内存(M)
 		*/
-		public static final DBField MEMORY = new DBField(DBDataType.INTEGER , "memory","memory","内存(M)","内存(M)",false,false,true);
+		public static final DBField MEMORY = new DBField(DBDataType.INTEGER , "memory","memory","内存","M)",false,false,true);
 		
 		/**
 		 * cpuSys
@@ -6801,12 +6842,12 @@ public class OpsTables {
 		/**
 		 * 物理内存(M)
 		*/
-		public static final DBField P_MEMORY_SIZE = new DBField(DBDataType.LONG , "p_memory_size","pMemorySize","物理内存(M)","物理内存(M)",false,false,true);
+		public static final DBField P_MEMORY_SIZE = new DBField(DBDataType.LONG , "p_memory_size","pMemorySize","物理内存","M)",false,false,true);
 		
 		/**
 		 * 虚拟内存(M)
 		*/
-		public static final DBField V_MEMORY_SIZE = new DBField(DBDataType.LONG , "v_memory_size","vMemorySize","虚拟内存(M)","虚拟内存(M)",false,false,true);
+		public static final DBField V_MEMORY_SIZE = new DBField(DBDataType.LONG , "v_memory_size","vMemorySize","虚拟内存","M)",false,false,true);
 		
 		/**
 		 * 物理内存使用率
@@ -7167,12 +7208,12 @@ public class OpsTables {
 		/**
 		 * 物理内存(M)
 		*/
-		public static final DBField P_MEMORY_SIZE = new DBField(DBDataType.LONG , "p_memory_size","pMemorySize","物理内存(M)","物理内存(M)",false,false,true);
+		public static final DBField P_MEMORY_SIZE = new DBField(DBDataType.LONG , "p_memory_size","pMemorySize","物理内存","M)",false,false,true);
 		
 		/**
 		 * 虚拟内存(M)
 		*/
-		public static final DBField V_MEMORY_SIZE = new DBField(DBDataType.LONG , "v_memory_size","vMemorySize","虚拟内存(M)","虚拟内存(M)",false,false,true);
+		public static final DBField V_MEMORY_SIZE = new DBField(DBDataType.LONG , "v_memory_size","vMemorySize","虚拟内存","M)",false,false,true);
 		
 		/**
 		 * 物理内存使用率
@@ -8323,12 +8364,12 @@ public class OpsTables {
 		/**
 		 * 超时(秒)
 		*/
-		public static final DBField TIME_OUT = new DBField(DBDataType.INTEGER , "time_out","timeOut","超时(秒)","超时(秒)",false,false,true);
+		public static final DBField TIME_OUT = new DBField(DBDataType.INTEGER , "time_out","timeOut","超时","秒)",false,false,true);
 		
 		/**
 		 * 间隔时间(秒）
 		*/
-		public static final DBField INTERVAL_TIME = new DBField(DBDataType.INTEGER , "Interval_time","intervalTime","间隔时间(秒）","间隔时间(秒）",false,false,true);
+		public static final DBField INTERVAL_TIME = new DBField(DBDataType.INTEGER , "Interval_time","intervalTime","间隔时间","秒）",false,false,true);
 		
 		/**
 		 * 数据保留天数

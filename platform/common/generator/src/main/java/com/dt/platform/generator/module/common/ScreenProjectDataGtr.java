@@ -1,7 +1,9 @@
 package com.dt.platform.generator.module.common;
 
+import com.dt.platform.common.page.ScreenProjectDataPageController;
 import com.dt.platform.constants.db.SysTables;
 import com.dt.platform.generator.config.Config;
+import com.dt.platform.proxy.common.ScreenProjectDataServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 
 public class ScreenProjectDataGtr extends BaseCodeGenerator {
@@ -65,6 +67,8 @@ public class ScreenProjectDataGtr extends BaseCodeGenerator {
 
         //生成代码
         g.generateCode();
+
+       // g.generateMenu(ScreenProjectDataServiceProxy.class, ScreenProjectDataPageController.class);
         //生成菜单
        // g.generateMenu(NodeLoadServiceProxy.class, NodeLoadPageController.class);
     }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.dt.platform.domain.common.BpmFormData;
 import java.util.Date;
 import com.dt.platform.domain.common.FormData;
+import com.dt.platform.domain.common.FormDataExt;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import javax.persistence.Transient;
 
@@ -13,7 +14,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-26 14:20:19
+ * @since 2023-05-31 12:28:58
  * @sign 79B326782A43A783E865A0E33558CC21
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -271,6 +272,16 @@ public class BpmFormDataVOMeta extends BpmFormDataMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.BpmFormDataVO,com.dt.platform.domain.common.FormData> FORM_DATA_PROP = new BeanProperty(com.dt.platform.domain.common.BpmFormDataVO.class ,FORM_DATA, com.dt.platform.domain.common.FormData.class, "formData", "formData", com.dt.platform.domain.common.FormData.class, null);
 	
 	/**
+	 * formDataExt , 类型: com.dt.platform.domain.common.FormDataExt
+	*/
+	public static final String FORM_DATA_EXT="formDataExt";
+	
+	/**
+	 * formDataExt , 类型: com.dt.platform.domain.common.FormDataExt
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.BpmFormDataVO,com.dt.platform.domain.common.FormDataExt> FORM_DATA_EXT_PROP = new BeanProperty(com.dt.platform.domain.common.BpmFormDataVO.class ,FORM_DATA_EXT, com.dt.platform.domain.common.FormDataExt.class, "formDataExt", "formDataExt", com.dt.platform.domain.common.FormDataExt.class, null);
+	
+	/**
 	 * 历史流程清单 , 集合类型: LIST , 类型: org.github.foxnic.web.domain.bpm.ProcessInstance
 	*/
 	public static final String HISTORIC_PROCESS_LIST="historicProcessList";
@@ -303,7 +314,7 @@ public class BpmFormDataVOMeta extends BpmFormDataMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , FORM_ID , FORM_DATA_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , FORM_DATA , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , FORM_ID , FORM_DATA_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , FORM_DATA , FORM_DATA_EXT , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
 	
 	/**
 	 * 代理类
@@ -589,6 +600,17 @@ public class BpmFormDataVOMeta extends BpmFormDataMeta {
 		}
 		
 		/**
+		 * 设置 formDataExt
+		 * @param formDataExt formDataExt
+		 * @return 当前对象
+		*/
+		public BpmFormData setFormDataExt(FormDataExt formDataExt) {
+			super.change(FORM_DATA_EXT,super.getFormDataExt(),formDataExt);
+			super.setFormDataExt(formDataExt);
+			return this;
+		}
+		
+		/**
 		 * 设置 历史流程清单
 		 * @param historicProcessList 历史流程清单
 		 * @return 当前对象
@@ -665,6 +687,7 @@ public class BpmFormDataVOMeta extends BpmFormDataMeta {
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setFormData(this.getFormData());
 				inst.setSearchValue(this.getSearchValue());
+				inst.setFormDataExt(this.getFormDataExt());
 			}
 			inst.clearModifies();
 			return inst;

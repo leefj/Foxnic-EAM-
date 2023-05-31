@@ -1,7 +1,7 @@
 /**
  * 大屏 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 13:57:57
+ * @since 2023-05-30 20:42:01
  */
 
 layui.config({
@@ -95,11 +95,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('beforeQuery',conditions,param,location);
             return true;
         },
+
+
+
         /**
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-
+            for (var i = 0; i < data.length; i++) {
+                //如果审批中或审批通过的不允许编辑
+                if(data[i].status=="draft") {
+                    console.log("none");
+                }else if(data[i].status=="apply"){
+                 //   fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.screen-designer-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.screen-apply').filter("[data-id='" + data[i].id + "']"), true);
+                }else if(data[i].status=="history"){
+                    fox.disableButton($('.screen-apply').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.screen-designer-button').filter("[data-id='" + data[i].id + "']"), true);
+                }
+            }
         },
         /**
          * 单行数据刷新后调用
@@ -172,6 +187,69 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        screenDesinger:function (data){
+            console.log('screenDesinger',data);
+            admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+                if (r.success) {
+                    var res = r.data;
+                    sessionStorage.setItem('GO_CHART_STORAGE_LIST', res.jsonData);
+                    window.open("/business/common/screen/goview/dist/index.html?id=1#/chart/home/"+data.id,"_blank")
+                } else {
+                   alert('未获得数据');
+                }
+            });
+
+        },
+        screenView:function (data){
+            console.log('screenView',data);
+            admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+                if (r.success) {
+                    var res = r.data;
+                    sessionStorage.setItem('GO_CHART_STORAGE_LIST', data.jsonData);
+                    window.open("/business/common/screen/goview/dist/index.html#/chart/preview/"+data.id,"_blank")
+                } else {
+                    alert('未获得数据');
+                }
+            });
+        },
+        screenApply:function (ps){
+            console.log('screenApply',ps);
+            var btnClass="screen-apply"
+            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
+            var api=moduleURL+"/apply";
+            var successMessage="应用成功"
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        top.layer.msg(successMessage, {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        top.layer.msg(r.message, {time: 1000});
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+
+        },
+        screenCopy:function (ps){
+            console.log('screenCopy',ps);
+            var btnClass="screen-copy"
+            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
+            var api=moduleURL+"/copy-data";
+            var successMessage="复制成功"
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        top.layer.msg(successMessage, {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        top.layer.msg("复制失败", {time: 1000});
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+
+        },
         /**
          * 末尾执行
          */
@@ -209,6 +287,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterDataFill:function (data) {
             console.log('afterDataFill',data);
+            $("#jsonData").attr("disabled","disabled");
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框

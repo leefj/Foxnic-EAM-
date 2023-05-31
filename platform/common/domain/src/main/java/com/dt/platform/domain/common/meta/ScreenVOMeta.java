@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 13:57:37
+ * @since 2023-05-31 19:06:49
  * @sign E9376F6960EF40A8A1AE0DCA10458028
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -169,6 +169,36 @@ public class ScreenVOMeta extends ScreenMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.ScreenVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenVO.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
 	
 	/**
+	 * 状态 , 类型: java.lang.String
+	*/
+	public static final String STATUS="status";
+	
+	/**
+	 * 状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ScreenVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenVO.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final String NOTES="notes";
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ScreenVO,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 大屏定义 , 类型: java.lang.String
+	*/
+	public static final String JSON_DATA="jsonData";
+	
+	/**
+	 * 大屏定义 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ScreenVO,java.lang.String> JSON_DATA_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenVO.class ,JSON_DATA, java.lang.String.class, "大屏定义", "大屏定义", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -261,7 +291,7 @@ public class ScreenVOMeta extends ScreenMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , STATUS , NOTES , JSON_DATA , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -437,6 +467,39 @@ public class ScreenVOMeta extends ScreenMeta {
 		}
 		
 		/**
+		 * 设置 状态
+		 * @param status 状态
+		 * @return 当前对象
+		*/
+		public Screen setStatus(String status) {
+			super.change(STATUS,super.getStatus(),status);
+			super.setStatus(status);
+			return this;
+		}
+		
+		/**
+		 * 设置 备注
+		 * @param notes 备注
+		 * @return 当前对象
+		*/
+		public Screen setNotes(String notes) {
+			super.change(NOTES,super.getNotes(),notes);
+			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 大屏定义
+		 * @param jsonData 大屏定义
+		 * @return 当前对象
+		*/
+		public Screen setJsonData(String jsonData) {
+			super.change(JSON_DATA,super.getJsonData(),jsonData);
+			super.setJsonData(jsonData);
+			return this;
+		}
+		
+		/**
 		 * 设置 创建人ID
 		 * @param createBy 创建人ID
 		 * @return 当前对象
@@ -550,8 +613,12 @@ public class ScreenVOMeta extends ScreenMeta {
 		@Transient
 		public ScreenVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setCreateBy(this.getCreateBy());
 			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setJsonData(this.getJsonData());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
@@ -559,9 +626,8 @@ public class ScreenVOMeta extends ScreenMeta {
 			inst.setName(this.getName());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
-			inst.setUpdateTime(this.getUpdateTime());
 			inst.setId(this.getId());
-			inst.setVersion(this.getVersion());
+			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
 				inst.setPageIndex(this.getPageIndex());

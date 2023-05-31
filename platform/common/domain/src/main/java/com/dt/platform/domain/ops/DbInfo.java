@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-03 09:08:44
- * @sign 44F1A0D0118793B928337DD28497CE4E
+ * @since 2023-05-30 14:56:45
+ * @sign FD54227DB34EAFB3BEFF4BCF868F8F71
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -51,7 +51,7 @@ public class DbInfo extends Entity {
 	/**
 	 * 主机：主机
 	*/
-	@ApiModelProperty(required = false,value="主机" , notes = "主机")
+	@ApiModelProperty(required = false,value="主机" , notes = "主机" , example = "695309698194210816")
 	private String hostId;
 	
 	/**
@@ -181,6 +181,12 @@ public class DbInfo extends Entity {
 	private String backupInfo;
 	
 	/**
+	 * 文档：文档
+	*/
+	@ApiModelProperty(required = false,value="文档" , notes = "文档")
+	private String fileIds;
+	
+	/**
 	 * 备注：备注
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注")
@@ -189,7 +195,7 @@ public class DbInfo extends Entity {
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1677661032000")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1683165413000")
 	private String selectedCode;
 	
 	/**
@@ -207,13 +213,13 @@ public class DbInfo extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-04 09:57:00")
 	private Date updateTime;
 	
 	/**
@@ -240,7 +246,7 @@ public class DbInfo extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
@@ -749,6 +755,25 @@ public class DbInfo extends Entity {
 	*/
 	public DbInfo setBackupInfo(String backupInfo) {
 		this.backupInfo=backupInfo;
+		return this;
+	}
+	
+	/**
+	 * 获得 文档<br>
+	 * 文档
+	 * @return 文档
+	*/
+	public String getFileIds() {
+		return fileIds;
+	}
+	
+	/**
+	 * 设置 文档
+	 * @param fileIds 文档
+	 * @return 当前对象
+	*/
+	public DbInfo setFileIds(String fileIds) {
+		this.fileIds=fileIds;
 		return this;
 	}
 	
@@ -1339,6 +1364,7 @@ public class DbInfo extends Entity {
 		inst.setSelectedCode(this.getSelectedCode());
 		inst.setBackupStatus(this.getBackupStatus());
 		inst.setBackupStrategy(this.getBackupStrategy());
+		inst.setFileIds(this.getFileIds());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setVoucherStr(this.getVoucherStr());
 		inst.setId(this.getId());
@@ -1444,6 +1470,7 @@ public class DbInfo extends Entity {
 			this.setSelectedCode(DataParser.parse(String.class, map.get(DbInfoMeta.SELECTED_CODE)));
 			this.setBackupStatus(DataParser.parse(String.class, map.get(DbInfoMeta.BACKUP_STATUS)));
 			this.setBackupStrategy(DataParser.parse(String.class, map.get(DbInfoMeta.BACKUP_STRATEGY)));
+			this.setFileIds(DataParser.parse(String.class, map.get(DbInfoMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(DbInfoMeta.UPDATE_BY)));
 			this.setVoucherStr(DataParser.parse(String.class, map.get(DbInfoMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, map.get(DbInfoMeta.ID)));
@@ -1485,6 +1512,7 @@ public class DbInfo extends Entity {
 				this.setSelectedCode( (String)map.get(DbInfoMeta.SELECTED_CODE));
 				this.setBackupStatus( (String)map.get(DbInfoMeta.BACKUP_STATUS));
 				this.setBackupStrategy( (String)map.get(DbInfoMeta.BACKUP_STRATEGY));
+				this.setFileIds( (String)map.get(DbInfoMeta.FILE_IDS));
 				this.setUpdateBy( (String)map.get(DbInfoMeta.UPDATE_BY));
 				this.setVoucherStr( (String)map.get(DbInfoMeta.VOUCHER_STR));
 				this.setId( (String)map.get(DbInfoMeta.ID));
@@ -1539,6 +1567,7 @@ public class DbInfo extends Entity {
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(DbInfoMeta.SELECTED_CODE)));
 			this.setBackupStatus(DataParser.parse(String.class, r.getValue(DbInfoMeta.BACKUP_STATUS)));
 			this.setBackupStrategy(DataParser.parse(String.class, r.getValue(DbInfoMeta.BACKUP_STRATEGY)));
+			this.setFileIds(DataParser.parse(String.class, r.getValue(DbInfoMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DbInfoMeta.UPDATE_BY)));
 			this.setVoucherStr(DataParser.parse(String.class, r.getValue(DbInfoMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, r.getValue(DbInfoMeta.ID)));
@@ -1575,6 +1604,7 @@ public class DbInfo extends Entity {
 				this.setSelectedCode( (String)r.getValue(DbInfoMeta.SELECTED_CODE));
 				this.setBackupStatus( (String)r.getValue(DbInfoMeta.BACKUP_STATUS));
 				this.setBackupStrategy( (String)r.getValue(DbInfoMeta.BACKUP_STRATEGY));
+				this.setFileIds( (String)r.getValue(DbInfoMeta.FILE_IDS));
 				this.setUpdateBy( (String)r.getValue(DbInfoMeta.UPDATE_BY));
 				this.setVoucherStr( (String)r.getValue(DbInfoMeta.VOUCHER_STR));
 				this.setId( (String)r.getValue(DbInfoMeta.ID));

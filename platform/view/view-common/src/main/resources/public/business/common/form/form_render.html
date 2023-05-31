@@ -56,9 +56,18 @@
         mounted(){
             console.log("this.pageType,",this.pageType);
             console.log("this.approvalStatus,",this.approvalStatus);
+            var disableForm=false;
+            if(this.pageType&&this.pageType=="approve"){
+                disableForm=true;
+            }
             if(this.approvalStatus&&this.approvalStatus=="drafting"){
                 console.log("drafting")
+                disableForm=false;
             }else{
+                disableForm=true;
+                console.log("disableForm")
+            }
+            if(disableForm){
                 this.$refs.vFormRef.disableForm()
             }
         },

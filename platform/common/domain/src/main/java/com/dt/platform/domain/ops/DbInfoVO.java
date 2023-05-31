@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库VO类型
  * <p>数据库 , 数据表 ops_db_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-03 09:08:44
+ * @since 2023-05-30 14:56:45
  * @sign 072C5A86F75E9E21D5871FA491A60284
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -409,6 +409,7 @@ public class DbInfoVO extends DbInfo {
 		inst.setSelectedCode(this.getSelectedCode());
 		inst.setBackupStatus(this.getBackupStatus());
 		inst.setBackupStrategy(this.getBackupStrategy());
+		inst.setFileIds(this.getFileIds());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setVoucherStr(this.getVoucherStr());
 		inst.setId(this.getId());
@@ -526,6 +527,7 @@ public class DbInfoVO extends DbInfo {
 			this.setSelectedCode(DataParser.parse(String.class, map.get(DbInfoVOMeta.SELECTED_CODE)));
 			this.setBackupStatus(DataParser.parse(String.class, map.get(DbInfoVOMeta.BACKUP_STATUS)));
 			this.setBackupStrategy(DataParser.parse(String.class, map.get(DbInfoVOMeta.BACKUP_STRATEGY)));
+			this.setFileIds(DataParser.parse(String.class, map.get(DbInfoVOMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(DbInfoVOMeta.UPDATE_BY)));
 			this.setVoucherStr(DataParser.parse(String.class, map.get(DbInfoVOMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, map.get(DbInfoVOMeta.ID)));
@@ -577,6 +579,7 @@ public class DbInfoVO extends DbInfo {
 				this.setSelectedCode( (String)map.get(DbInfoVOMeta.SELECTED_CODE));
 				this.setBackupStatus( (String)map.get(DbInfoVOMeta.BACKUP_STATUS));
 				this.setBackupStrategy( (String)map.get(DbInfoVOMeta.BACKUP_STRATEGY));
+				this.setFileIds( (String)map.get(DbInfoVOMeta.FILE_IDS));
 				this.setUpdateBy( (String)map.get(DbInfoVOMeta.UPDATE_BY));
 				this.setVoucherStr( (String)map.get(DbInfoVOMeta.VOUCHER_STR));
 				this.setId( (String)map.get(DbInfoVOMeta.ID));
@@ -641,6 +644,7 @@ public class DbInfoVO extends DbInfo {
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.SELECTED_CODE)));
 			this.setBackupStatus(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.BACKUP_STATUS)));
 			this.setBackupStrategy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.BACKUP_STRATEGY)));
+			this.setFileIds(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.UPDATE_BY)));
 			this.setVoucherStr(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.ID)));
@@ -677,6 +681,7 @@ public class DbInfoVO extends DbInfo {
 				this.setSelectedCode( (String)r.getValue(DbInfoVOMeta.SELECTED_CODE));
 				this.setBackupStatus( (String)r.getValue(DbInfoVOMeta.BACKUP_STATUS));
 				this.setBackupStrategy( (String)r.getValue(DbInfoVOMeta.BACKUP_STRATEGY));
+				this.setFileIds( (String)r.getValue(DbInfoVOMeta.FILE_IDS));
 				this.setUpdateBy( (String)r.getValue(DbInfoVOMeta.UPDATE_BY));
 				this.setVoucherStr( (String)r.getValue(DbInfoVOMeta.VOUCHER_STR));
 				this.setId( (String)r.getValue(DbInfoVOMeta.ID));

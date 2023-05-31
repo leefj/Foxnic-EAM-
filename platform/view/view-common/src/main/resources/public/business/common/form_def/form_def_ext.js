@@ -96,7 +96,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('beforeQuery',conditions,param,location);
             return true;
         },
-        /**
+
+
+
+    /**
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
@@ -106,10 +109,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                      console.log("none");
                 }else if(data[i].status=="apply"){
                      fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                     fox.disableButton($('.form-designer-button').filter("[data-id='" + data[i].id + "']"), true);
-                     fox.disableButton($('.form-apply').filter("[data-id='" + data[i].id + "']"), true);
+
+                     fox.disableButton($('.screen-designer-button').filter("[data-id='" + data[i].id + "']"), true);
+                     fox.disableButton($('.screen-apply').filter("[data-id='" + data[i].id + "']"), true);
                 }else if(data[i].status=="history"){
-                    fox.disableButton($('.form-apply').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+
+                    fox.disableButton($('.screen-apply').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.form-designer-button').filter("[data-id='" + data[i].id + "']"), true);
                 }
             }

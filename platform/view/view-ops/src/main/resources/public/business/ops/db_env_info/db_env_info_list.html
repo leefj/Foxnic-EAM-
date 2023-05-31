@@ -2,7 +2,7 @@
 /**
  * 数据库环境 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-03-01 20:41:06
+ * @since 2023-05-30 14:42:01
  */
  -->
  <!DOCTYPE html>
@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
     <title th:text="${lang.translate('数据库环境')}">数据库环境</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
@@ -49,6 +50,7 @@
                     <!-- 数据库 , dbInstId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 数据库 , db ,typeName=text_input, isHideInSearch=true -->
                     <!-- 凭证 , voucher ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 文档 , fileIds ,typeName=upload, isHideInSearch=true -->
                     <!-- 主机名 , hostName ,typeName=text_input, isHideInSearch=true -->
                     <!-- 源IP , hostIp ,typeName=text_input, isHideInSearch=true -->
                     <!-- IP , ip ,typeName=text_input, isHideInSearch=false -->

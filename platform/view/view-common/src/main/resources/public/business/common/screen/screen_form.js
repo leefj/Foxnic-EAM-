@@ -1,7 +1,7 @@
 /**
  * 大屏 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 13:57:58
+ * @since 2023-05-31 19:06:51
  */
 
 function FormPage() {
@@ -118,6 +118,13 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		form.on('radio(status)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=status]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
 	}
 
 	/**

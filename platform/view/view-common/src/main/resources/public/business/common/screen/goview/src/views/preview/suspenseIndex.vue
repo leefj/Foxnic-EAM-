@@ -38,6 +38,8 @@ import { PreviewScaleEnum } from '@/enums/styleEnum'
 import type { ChartEditStorageType } from './index.d'
 import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
 
+
+
 // const localStorageInfo: ChartEditStorageType = getSessionStorageInfo() as ChartEditStorageType
 
 await getSessionStorageInfo()
