@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-03-01 20:41:05
+ * @since 2023-05-30 14:42:00
  * @sign EC2F1D6890780FBBFB6F490CDBDA54F0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -202,6 +202,16 @@ public class DbEnvInfoVOMeta extends DbEnvInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbEnvInfoVO,java.lang.String> VOUCHER_PROP = new BeanProperty(com.dt.platform.domain.ops.DbEnvInfoVO.class ,VOUCHER, java.lang.String.class, "凭证", "凭证", java.lang.String.class, null);
 	
 	/**
+	 * 文档 , 类型: java.lang.String
+	*/
+	public static final String FILE_IDS="fileIds";
+	
+	/**
+	 * 文档 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbEnvInfoVO,java.lang.String> FILE_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbEnvInfoVO.class ,FILE_IDS, java.lang.String.class, "文档", "文档", java.lang.String.class, null);
+	
+	/**
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final String NOTES="notes";
@@ -354,7 +364,7 @@ public class DbEnvInfoVOMeta extends DbEnvInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , LABEL , DB_INST_ID , DB , IP , VOUCHER , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , HOST , HOST_NAME , HOST_IP , DB_INFO , DB_NAME , CIPHERTEXT_BOX_DATA };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , LABEL , DB_INST_ID , DB , IP , VOUCHER , FILE_IDS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , HOST , HOST_NAME , HOST_IP , DB_INFO , DB_NAME , CIPHERTEXT_BOX_DATA };
 	
 	/**
 	 * 代理类
@@ -563,6 +573,17 @@ public class DbEnvInfoVOMeta extends DbEnvInfoMeta {
 		}
 		
 		/**
+		 * 设置 文档
+		 * @param fileIds 文档
+		 * @return 当前对象
+		*/
+		public DbEnvInfo setFileIds(String fileIds) {
+			super.change(FILE_IDS,super.getFileIds(),fileIds);
+			super.setFileIds(fileIds);
+			return this;
+		}
+		
+		/**
 		 * 设置 备注
 		 * @param notes 备注
 		 * @return 当前对象
@@ -751,6 +772,7 @@ public class DbEnvInfoVOMeta extends DbEnvInfoMeta {
 			inst.setDbInstId(this.getDbInstId());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
+			inst.setFileIds(this.getFileIds());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());

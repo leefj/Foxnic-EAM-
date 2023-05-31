@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 大屏模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 13:57:57
+ * @since 2023-05-30 14:45:55
 */
 
 @Controller("SysScreenPageController")

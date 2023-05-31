@@ -1,0 +1,1 @@
+import{d as c,B as r,C as _,r as e,D as p,w as t,o as m,e as u,f as i}from"./index-c6cc3b14.js";const C=c({__name:"index",setup(l){r();const o=_(),n=()=>{o.replace({path:"/"})};return(d,f)=>{const s=e("n-button"),a=e("n-empty");return m(),p(a,{description:"你什么也找不到"},{extra:t(()=>[u(s,{size:"small",onClick:n},{default:t(()=>[i("看看别的")]),_:1})]),_:1})}}});export{C as default};

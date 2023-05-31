@@ -74,15 +74,29 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.NOTES).form().textArea().height(120);
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.VOUCHER).form().textArea().height(150);
-        cfg.view().formWindow().width(Config.baseFormWidth);;
+
+        cfg.view().field(OpsTables.OPS_DB_ENV_INFO.FILE_IDS).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_ENV_INFO.FILE_IDS).form().upload().maxFileCount(6).acceptAllType();
+
+        cfg.view().formWindow().bottomSpace(200);
+        cfg.view().formWindow().width(Config.baseFormWidth_95);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_DB_ENV_INFO.LABEL,
                         OpsTables.OPS_DB_ENV_INFO.DB,
+                },
+                new Object[] {
                         OpsTables.OPS_DB_ENV_INFO.IP,
+
+                }
+        );
+        cfg.view().form().addGroup(null,
+                new Object[] {
                         OpsTables.OPS_DB_ENV_INFO.VOUCHER,
                         OpsTables.OPS_DB_ENV_INFO.NOTES,
+                        OpsTables.OPS_DB_ENV_INFO.FILE_IDS
                 }
+
         );
 
         cfg.view().list().addJsVariable("INST_ID","[[${instId}]]","INST_ID");

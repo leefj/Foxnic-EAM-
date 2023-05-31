@@ -166,6 +166,9 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 .fillWith(DbInfoMeta.DATA_LOC_DATA).muliti(true);
 
 
+        cfg.view().field(OpsTables.OPS_DB_INFO.FILE_IDS).form().upload().maxFileCount(6).acceptAllType();
+
+
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
         cfg.view().formWindow().width(Config.baseFormWidth);
@@ -192,6 +195,9 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_DB_INFO.NOTES,
+                },
+                new Object[] {
+                        OpsTables.OPS_DB_INFO.FILE_IDS,
                 }
         );
 

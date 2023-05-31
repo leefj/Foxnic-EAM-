@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库环境
  * <p>数据库环境 , 数据表 ops_db_env_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-03-01 20:41:05
- * @sign B50C221069FBD2774BE243AB8D7D3831
+ * @since 2023-05-30 14:42:00
+ * @sign F7A9904226808419DAB0284B0690768B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -72,6 +72,12 @@ public class DbEnvInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="凭证" , notes = "凭证" , example = "12")
 	private String voucher;
+	
+	/**
+	 * 文档：文档
+	*/
+	@ApiModelProperty(required = false,value="文档" , notes = "文档")
+	private String fileIds;
 	
 	/**
 	 * 备注：备注
@@ -277,6 +283,25 @@ public class DbEnvInfo extends Entity {
 	*/
 	public DbEnvInfo setVoucher(String voucher) {
 		this.voucher=voucher;
+		return this;
+	}
+	
+	/**
+	 * 获得 文档<br>
+	 * 文档
+	 * @return 文档
+	*/
+	public String getFileIds() {
+		return fileIds;
+	}
+	
+	/**
+	 * 设置 文档
+	 * @param fileIds 文档
+	 * @return 当前对象
+	*/
+	public DbEnvInfo setFileIds(String fileIds) {
+		this.fileIds=fileIds;
 		return this;
 	}
 	
@@ -649,6 +674,7 @@ public class DbEnvInfo extends Entity {
 		inst.setDbInstId(this.getDbInstId());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
+		inst.setFileIds(this.getFileIds());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
@@ -730,6 +756,7 @@ public class DbEnvInfo extends Entity {
 			this.setDbInstId(DataParser.parse(String.class, map.get(DbEnvInfoMeta.DB_INST_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(DbEnvInfoMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(DbEnvInfoMeta.DELETED)));
+			this.setFileIds(DataParser.parse(String.class, map.get(DbEnvInfoMeta.FILE_IDS)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(DbEnvInfoMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(DbEnvInfoMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(DbEnvInfoMeta.DELETE_TIME)));
@@ -755,6 +782,7 @@ public class DbEnvInfo extends Entity {
 				this.setDbInstId( (String)map.get(DbEnvInfoMeta.DB_INST_ID));
 				this.setCreateBy( (String)map.get(DbEnvInfoMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(DbEnvInfoMeta.DELETED));
+				this.setFileIds( (String)map.get(DbEnvInfoMeta.FILE_IDS));
 				this.setCreateTime( (Date)map.get(DbEnvInfoMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(DbEnvInfoMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(DbEnvInfoMeta.DELETE_TIME));
@@ -793,6 +821,7 @@ public class DbEnvInfo extends Entity {
 			this.setDbInstId(DataParser.parse(String.class, r.getValue(DbEnvInfoMeta.DB_INST_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(DbEnvInfoMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(DbEnvInfoMeta.DELETED)));
+			this.setFileIds(DataParser.parse(String.class, r.getValue(DbEnvInfoMeta.FILE_IDS)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(DbEnvInfoMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DbEnvInfoMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(DbEnvInfoMeta.DELETE_TIME)));
@@ -811,6 +840,7 @@ public class DbEnvInfo extends Entity {
 				this.setDbInstId( (String)r.getValue(DbEnvInfoMeta.DB_INST_ID));
 				this.setCreateBy( (String)r.getValue(DbEnvInfoMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(DbEnvInfoMeta.DELETED));
+				this.setFileIds( (String)r.getValue(DbEnvInfoMeta.FILE_IDS));
 				this.setCreateTime( (Date)r.getValue(DbEnvInfoMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(DbEnvInfoMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(DbEnvInfoMeta.DELETE_TIME));

@@ -24,11 +24,27 @@ import java.util.Map;
  * 大屏服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 13:57:37
+ * @since 2023-05-30 14:45:55
 */
 
 public interface IScreenService extends  ISimpleIdService<Screen,String> {
 
+
+	/**
+	 * 复制
+	 * @param id
+	 * @return 复制成功
+	 * */
+	Result copyData(String id);
+
+
+	/**
+	 * 应用
+	 * @param id
+	 * @return 应用成功
+	 * */
+
+	Result apply(String id);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

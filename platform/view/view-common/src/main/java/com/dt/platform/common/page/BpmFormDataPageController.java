@@ -73,7 +73,10 @@ public class BpmFormDataPageController extends ViewController {
 			String billId=processInstance.getBills().get(0).getBillId();
 			System.out.println(billId);
 			Result<BpmFormData> bpmFormDataResult=BpmFormDataServiceProxy.api().getById(billId);
+
+
 			model.addAttribute("formDataId",bpmFormDataResult.getData().getFormDataId());
+			model.addAttribute("processData",bpmFormDataResult.getData());
 		}
 		model.addAttribute("code",code);
 		model.addAttribute("pageType",pageType);

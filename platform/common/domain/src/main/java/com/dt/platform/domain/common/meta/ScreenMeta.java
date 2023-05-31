@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 13:57:37
- * @sign E3F6377933E546934CBEE8AE8F7A84E1
+ * @since 2023-05-31 19:06:49
+ * @sign 89E85E717DCA87E70822D815E2481AEC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,6 +45,36 @@ public class ScreenMeta {
 	 * 名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.common.Screen,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.common.Screen.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
+	
+	/**
+	 * 状态 , 类型: java.lang.String
+	*/
+	public static final String STATUS="status";
+	
+	/**
+	 * 状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.Screen,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.common.Screen.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final String NOTES="notes";
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.Screen,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.common.Screen.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 大屏定义 , 类型: java.lang.String
+	*/
+	public static final String JSON_DATA="jsonData";
+	
+	/**
+	 * 大屏定义 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.Screen,java.lang.String> JSON_DATA_PROP = new BeanProperty(com.dt.platform.domain.common.Screen.class ,JSON_DATA, java.lang.String.class, "大屏定义", "大屏定义", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -139,7 +169,7 @@ public class ScreenMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , NAME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , CODE , NAME , STATUS , NOTES , JSON_DATA , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -179,6 +209,39 @@ public class ScreenMeta {
 		public Screen setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 状态
+		 * @param status 状态
+		 * @return 当前对象
+		*/
+		public Screen setStatus(String status) {
+			super.change(STATUS,super.getStatus(),status);
+			super.setStatus(status);
+			return this;
+		}
+		
+		/**
+		 * 设置 备注
+		 * @param notes 备注
+		 * @return 当前对象
+		*/
+		public Screen setNotes(String notes) {
+			super.change(NOTES,super.getNotes(),notes);
+			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 大屏定义
+		 * @param jsonData 大屏定义
+		 * @return 当前对象
+		*/
+		public Screen setJsonData(String jsonData) {
+			super.change(JSON_DATA,super.getJsonData(),jsonData);
+			super.setJsonData(jsonData);
 			return this;
 		}
 		
@@ -296,8 +359,12 @@ public class ScreenMeta {
 		@Transient
 		public Screen duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setCreateBy(this.getCreateBy());
 			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setJsonData(this.getJsonData());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
@@ -305,9 +372,8 @@ public class ScreenMeta {
 			inst.setName(this.getName());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
-			inst.setUpdateTime(this.getUpdateTime());
 			inst.setId(this.getId());
-			inst.setVersion(this.getVersion());
+			inst.setStatus(this.getStatus());
 			inst.clearModifies();
 			return inst;
 		}

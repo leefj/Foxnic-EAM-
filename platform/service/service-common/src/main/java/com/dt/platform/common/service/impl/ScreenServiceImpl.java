@@ -1,6 +1,9 @@
 package com.dt.platform.common.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.constants.enums.common.ScreenStatusEnum;
+import com.dt.platform.domain.common.FormInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -38,7 +41,7 @@ import java.util.Map;
  * 大屏服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 13:57:54
+ * @since 2023-05-30 14:45:55
 */
 
 
@@ -73,8 +76,35 @@ public class ScreenServiceImpl extends SuperService<Screen> implements IScreenSe
 	 */
 	@Override
 	public Result insert(Screen screen,boolean throwsException) {
+		screen.setStatus(ScreenStatusEnum.DRAFT.code());
 		Result r=super.insert(screen,throwsException);
 		return r;
+	}
+
+	@Override
+	public Result copyData(String id) {
+		Screen info=this.getById(id);
+		info.setId(IDGenerator.getSnowflakeIdString());
+		info.setUpdateTime(new Date());
+		info.setCreateTime(new Date());
+		info.setCode(IDGenerator.getSnowflakeIdString());
+		info.setName(info.getName()+"-复制");
+		Result r=super.insert(info,true);
+		return r;
+
+	}
+
+	@Override
+	public Result apply(String id) {
+
+		Screen info=this.getById(id);
+		if(ScreenStatusEnum.DRAFT.code().equals(info.getStatus())){
+			info.setStatus(ScreenStatusEnum.APPLY.code());
+			super.update(info,SaveMode.NOT_NULL_FIELDS);
+		}else{
+			return ErrorDesc.failureMessage("当前状态不允许应用");
+		}
+		return ErrorDesc.success();
 	}
 
 	/**

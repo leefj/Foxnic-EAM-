@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 大屏VO类型
  * <p>大屏 , 数据表 sys_screen 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 13:57:37
+ * @since 2023-05-31 19:06:49
  * @sign E9376F6960EF40A8A1AE0DCA10458028
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -401,8 +401,12 @@ public class ScreenVO extends Screen {
 	@Transient
 	public ScreenVO duplicate(boolean all) {
 		com.dt.platform.domain.common.meta.ScreenVOMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.ScreenVOMeta.$$proxy$$();
-		inst.setCreateBy(this.getCreateBy());
 		inst.setCode(this.getCode());
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setJsonData(this.getJsonData());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -410,9 +414,8 @@ public class ScreenVO extends Screen {
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
-		inst.setUpdateTime(this.getUpdateTime());
 		inst.setId(this.getId());
-		inst.setVersion(this.getVersion());
+		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
 			inst.setPageIndex(this.getPageIndex());
@@ -485,8 +488,12 @@ public class ScreenVO extends Screen {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setCreateBy(DataParser.parse(String.class, map.get(ScreenVOMeta.CREATE_BY)));
 			this.setCode(DataParser.parse(String.class, map.get(ScreenVOMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, map.get(ScreenVOMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(ScreenVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(ScreenVOMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(ScreenVOMeta.CREATE_BY)));
+			this.setJsonData(DataParser.parse(String.class, map.get(ScreenVOMeta.JSON_DATA)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(ScreenVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(ScreenVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(ScreenVOMeta.UPDATE_BY)));
@@ -494,9 +501,8 @@ public class ScreenVO extends Screen {
 			this.setName(DataParser.parse(String.class, map.get(ScreenVOMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(ScreenVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(ScreenVOMeta.DELETE_BY)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(ScreenVOMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(ScreenVOMeta.ID)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(ScreenVOMeta.VERSION)));
+			this.setStatus(DataParser.parse(String.class, map.get(ScreenVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(ScreenVOMeta.SEARCH_FIELD)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(ScreenVOMeta.PAGE_INDEX)));
@@ -511,8 +517,12 @@ public class ScreenVO extends Screen {
 			return true;
 		} else {
 			try {
-				this.setCreateBy( (String)map.get(ScreenVOMeta.CREATE_BY));
 				this.setCode( (String)map.get(ScreenVOMeta.CODE));
+				this.setNotes( (String)map.get(ScreenVOMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(ScreenVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(ScreenVOMeta.VERSION));
+				this.setCreateBy( (String)map.get(ScreenVOMeta.CREATE_BY));
+				this.setJsonData( (String)map.get(ScreenVOMeta.JSON_DATA));
 				this.setDeleted( (Integer)map.get(ScreenVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(ScreenVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(ScreenVOMeta.UPDATE_BY));
@@ -520,9 +530,8 @@ public class ScreenVO extends Screen {
 				this.setName( (String)map.get(ScreenVOMeta.NAME));
 				this.setTenantId( (String)map.get(ScreenVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(ScreenVOMeta.DELETE_BY));
-				this.setUpdateTime( (Date)map.get(ScreenVOMeta.UPDATE_TIME));
 				this.setId( (String)map.get(ScreenVOMeta.ID));
-				this.setVersion( (Integer)map.get(ScreenVOMeta.VERSION));
+				this.setStatus( (String)map.get(ScreenVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(ScreenVOMeta.SEARCH_FIELD));
 				this.setPageIndex( (Integer)map.get(ScreenVOMeta.PAGE_INDEX));
@@ -550,8 +559,12 @@ public class ScreenVO extends Screen {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(ScreenVOMeta.CREATE_BY)));
 			this.setCode(DataParser.parse(String.class, r.getValue(ScreenVOMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(ScreenVOMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(ScreenVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(ScreenVOMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(ScreenVOMeta.CREATE_BY)));
+			this.setJsonData(DataParser.parse(String.class, r.getValue(ScreenVOMeta.JSON_DATA)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(ScreenVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(ScreenVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(ScreenVOMeta.UPDATE_BY)));
@@ -559,14 +572,17 @@ public class ScreenVO extends Screen {
 			this.setName(DataParser.parse(String.class, r.getValue(ScreenVOMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(ScreenVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(ScreenVOMeta.DELETE_BY)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(ScreenVOMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(ScreenVOMeta.ID)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(ScreenVOMeta.VERSION)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(ScreenVOMeta.STATUS)));
 			return true;
 		} else {
 			try {
-				this.setCreateBy( (String)r.getValue(ScreenVOMeta.CREATE_BY));
 				this.setCode( (String)r.getValue(ScreenVOMeta.CODE));
+				this.setNotes( (String)r.getValue(ScreenVOMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(ScreenVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(ScreenVOMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(ScreenVOMeta.CREATE_BY));
+				this.setJsonData( (String)r.getValue(ScreenVOMeta.JSON_DATA));
 				this.setDeleted( (Integer)r.getValue(ScreenVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(ScreenVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(ScreenVOMeta.UPDATE_BY));
@@ -574,9 +590,8 @@ public class ScreenVO extends Screen {
 				this.setName( (String)r.getValue(ScreenVOMeta.NAME));
 				this.setTenantId( (String)r.getValue(ScreenVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(ScreenVOMeta.DELETE_BY));
-				this.setUpdateTime( (Date)r.getValue(ScreenVOMeta.UPDATE_TIME));
 				this.setId( (String)r.getValue(ScreenVOMeta.ID));
-				this.setVersion( (Integer)r.getValue(ScreenVOMeta.VERSION));
+				this.setStatus( (String)r.getValue(ScreenVOMeta.STATUS));
 				return true;
 			} catch (Exception e) {
 				return false;

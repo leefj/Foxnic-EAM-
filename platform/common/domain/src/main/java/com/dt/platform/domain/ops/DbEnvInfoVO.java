@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库环境VO类型
  * <p>数据库环境 , 数据表 ops_db_env_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-03-01 20:41:05
+ * @since 2023-05-30 14:42:00
  * @sign EC2F1D6890780FBBFB6F490CDBDA54F0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -410,6 +410,7 @@ public class DbEnvInfoVO extends DbEnvInfo {
 		inst.setDbInstId(this.getDbInstId());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
+		inst.setFileIds(this.getFileIds());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
@@ -503,6 +504,7 @@ public class DbEnvInfoVO extends DbEnvInfo {
 			this.setDbInstId(DataParser.parse(String.class, map.get(DbEnvInfoVOMeta.DB_INST_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(DbEnvInfoVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(DbEnvInfoVOMeta.DELETED)));
+			this.setFileIds(DataParser.parse(String.class, map.get(DbEnvInfoVOMeta.FILE_IDS)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(DbEnvInfoVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(DbEnvInfoVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(DbEnvInfoVOMeta.DELETE_TIME)));
@@ -538,6 +540,7 @@ public class DbEnvInfoVO extends DbEnvInfo {
 				this.setDbInstId( (String)map.get(DbEnvInfoVOMeta.DB_INST_ID));
 				this.setCreateBy( (String)map.get(DbEnvInfoVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(DbEnvInfoVOMeta.DELETED));
+				this.setFileIds( (String)map.get(DbEnvInfoVOMeta.FILE_IDS));
 				this.setCreateTime( (Date)map.get(DbEnvInfoVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(DbEnvInfoVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(DbEnvInfoVOMeta.DELETE_TIME));
@@ -586,6 +589,7 @@ public class DbEnvInfoVO extends DbEnvInfo {
 			this.setDbInstId(DataParser.parse(String.class, r.getValue(DbEnvInfoVOMeta.DB_INST_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(DbEnvInfoVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(DbEnvInfoVOMeta.DELETED)));
+			this.setFileIds(DataParser.parse(String.class, r.getValue(DbEnvInfoVOMeta.FILE_IDS)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(DbEnvInfoVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DbEnvInfoVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(DbEnvInfoVOMeta.DELETE_TIME)));
@@ -604,6 +608,7 @@ public class DbEnvInfoVO extends DbEnvInfo {
 				this.setDbInstId( (String)r.getValue(DbEnvInfoVOMeta.DB_INST_ID));
 				this.setCreateBy( (String)r.getValue(DbEnvInfoVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(DbEnvInfoVOMeta.DELETED));
+				this.setFileIds( (String)r.getValue(DbEnvInfoVOMeta.FILE_IDS));
 				this.setCreateTime( (Date)r.getValue(DbEnvInfoVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(DbEnvInfoVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(DbEnvInfoVOMeta.DELETE_TIME));

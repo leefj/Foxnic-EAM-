@@ -316,6 +316,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
         beforeSubmit: async function (data) {
             data.formDataId=FORM_DATA_ID;
+
             var resData=await $(".form-iframe")[0].contentWindow.updateData()
 
             if(resData.sucess){
@@ -345,12 +346,20 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          */
         formFunction:function (ifr,win,data) {
             // debugger
+            if(PROCESS_DATA&&PROCESS_DATA.currentProcessList){
+                var currentProcessList=PROCESS_DATA.currentProcessList
+                if(currentProcessList&&currentProcessList.length>0){
+                    approvalStatus=currentProcessList[0].approvalStatus
+                    console.log("to set approvalStatus:"+approvalStatus);
+                }
+            }
             console.log("formFunction",ifr,data);
             //设置 iframe 高度
             ifr.height("400px");
             //设置地址
             var url ="/business/common/form/form_render.html?id="+FORM_DATA_ID
             url=url+"&pageType="+PAGE_TYPE+"&approvalStatus="+approvalStatus
+            console.log("url:"+url);
             win.location=url
         },
         /**

@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 大屏
  * <p>大屏 , 数据表 sys_screen 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 13:57:37
- * @sign E3F6377933E546934CBEE8AE8F7A84E1
+ * @since 2023-05-31 19:06:49
+ * @sign 89E85E717DCA87E70822D815E2481AEC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,49 +40,67 @@ public class Screen extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "716023070585782272")
 	private String id;
 	
 	/**
 	 * 编号：编号
 	*/
-	@ApiModelProperty(required = false,value="编号" , notes = "编号")
+	@ApiModelProperty(required = false,value="编号" , notes = "编号" , example = "bigscreen")
 	private String code;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "大屏")
 	private String name;
+	
+	/**
+	 * 状态：状态
+	*/
+	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	private String status;
+	
+	/**
+	 * 备注：备注
+	*/
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	private String notes;
+	
+	/**
+	 * 大屏定义：大屏定义
+	*/
+	@ApiModelProperty(required = false,value="大屏定义" , notes = "大屏定义")
+	private String jsonData;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-05-30 08:20:03")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-31 06:57:31")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -91,25 +109,25 @@ public class Screen extends Entity {
 	/**
 	 * 删除人ID：删除人ID
 	*/
-	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID")
+	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID" , example = "110588348101165911")
 	private String deleteBy;
 	
 	/**
 	 * 删除时间：删除时间
 	*/
-	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间")
+	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2023-05-31 06:57:31")
 	private Date deleteTime;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = false,value="version" , notes = "version")
+	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "3")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -166,6 +184,63 @@ public class Screen extends Entity {
 	*/
 	public Screen setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 状态<br>
+	 * 状态
+	 * @return 状态
+	*/
+	public String getStatus() {
+		return status;
+	}
+	
+	/**
+	 * 设置 状态
+	 * @param status 状态
+	 * @return 当前对象
+	*/
+	public Screen setStatus(String status) {
+		this.status=status;
+		return this;
+	}
+	
+	/**
+	 * 获得 备注<br>
+	 * 备注
+	 * @return 备注
+	*/
+	public String getNotes() {
+		return notes;
+	}
+	
+	/**
+	 * 设置 备注
+	 * @param notes 备注
+	 * @return 当前对象
+	*/
+	public Screen setNotes(String notes) {
+		this.notes=notes;
+		return this;
+	}
+	
+	/**
+	 * 获得 大屏定义<br>
+	 * 大屏定义
+	 * @return 大屏定义
+	*/
+	public String getJsonData() {
+		return jsonData;
+	}
+	
+	/**
+	 * 设置 大屏定义
+	 * @param jsonData 大屏定义
+	 * @return 当前对象
+	*/
+	public Screen setJsonData(String jsonData) {
+		this.jsonData=jsonData;
 		return this;
 	}
 	
@@ -415,8 +490,12 @@ public class Screen extends Entity {
 	@Transient
 	public Screen duplicate(boolean all) {
 		com.dt.platform.domain.common.meta.ScreenMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.ScreenMeta.$$proxy$$();
-		inst.setCreateBy(this.getCreateBy());
 		inst.setCode(this.getCode());
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setJsonData(this.getJsonData());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -424,9 +503,8 @@ public class Screen extends Entity {
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
-		inst.setUpdateTime(this.getUpdateTime());
 		inst.setId(this.getId());
-		inst.setVersion(this.getVersion());
+		inst.setStatus(this.getStatus());
 		inst.clearModifies();
 		return inst;
 	}
@@ -485,8 +563,12 @@ public class Screen extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setCreateBy(DataParser.parse(String.class, map.get(ScreenMeta.CREATE_BY)));
 			this.setCode(DataParser.parse(String.class, map.get(ScreenMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, map.get(ScreenMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(ScreenMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(ScreenMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(ScreenMeta.CREATE_BY)));
+			this.setJsonData(DataParser.parse(String.class, map.get(ScreenMeta.JSON_DATA)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(ScreenMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(ScreenMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(ScreenMeta.UPDATE_BY)));
@@ -494,15 +576,18 @@ public class Screen extends Entity {
 			this.setName(DataParser.parse(String.class, map.get(ScreenMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(ScreenMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(ScreenMeta.DELETE_BY)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(ScreenMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(ScreenMeta.ID)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(ScreenMeta.VERSION)));
+			this.setStatus(DataParser.parse(String.class, map.get(ScreenMeta.STATUS)));
 			// others
 			return true;
 		} else {
 			try {
-				this.setCreateBy( (String)map.get(ScreenMeta.CREATE_BY));
 				this.setCode( (String)map.get(ScreenMeta.CODE));
+				this.setNotes( (String)map.get(ScreenMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(ScreenMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(ScreenMeta.VERSION));
+				this.setCreateBy( (String)map.get(ScreenMeta.CREATE_BY));
+				this.setJsonData( (String)map.get(ScreenMeta.JSON_DATA));
 				this.setDeleted( (Integer)map.get(ScreenMeta.DELETED));
 				this.setCreateTime( (Date)map.get(ScreenMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(ScreenMeta.UPDATE_BY));
@@ -510,9 +595,8 @@ public class Screen extends Entity {
 				this.setName( (String)map.get(ScreenMeta.NAME));
 				this.setTenantId( (String)map.get(ScreenMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(ScreenMeta.DELETE_BY));
-				this.setUpdateTime( (Date)map.get(ScreenMeta.UPDATE_TIME));
 				this.setId( (String)map.get(ScreenMeta.ID));
-				this.setVersion( (Integer)map.get(ScreenMeta.VERSION));
+				this.setStatus( (String)map.get(ScreenMeta.STATUS));
 				// others
 				return true;
 			} catch (Exception e) {
@@ -530,8 +614,12 @@ public class Screen extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(ScreenMeta.CREATE_BY)));
 			this.setCode(DataParser.parse(String.class, r.getValue(ScreenMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(ScreenMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(ScreenMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(ScreenMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(ScreenMeta.CREATE_BY)));
+			this.setJsonData(DataParser.parse(String.class, r.getValue(ScreenMeta.JSON_DATA)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(ScreenMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(ScreenMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(ScreenMeta.UPDATE_BY)));
@@ -539,14 +627,17 @@ public class Screen extends Entity {
 			this.setName(DataParser.parse(String.class, r.getValue(ScreenMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(ScreenMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(ScreenMeta.DELETE_BY)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(ScreenMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(ScreenMeta.ID)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(ScreenMeta.VERSION)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(ScreenMeta.STATUS)));
 			return true;
 		} else {
 			try {
-				this.setCreateBy( (String)r.getValue(ScreenMeta.CREATE_BY));
 				this.setCode( (String)r.getValue(ScreenMeta.CODE));
+				this.setNotes( (String)r.getValue(ScreenMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(ScreenMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(ScreenMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(ScreenMeta.CREATE_BY));
+				this.setJsonData( (String)r.getValue(ScreenMeta.JSON_DATA));
 				this.setDeleted( (Integer)r.getValue(ScreenMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(ScreenMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(ScreenMeta.UPDATE_BY));
@@ -554,9 +645,8 @@ public class Screen extends Entity {
 				this.setName( (String)r.getValue(ScreenMeta.NAME));
 				this.setTenantId( (String)r.getValue(ScreenMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(ScreenMeta.DELETE_BY));
-				this.setUpdateTime( (Date)r.getValue(ScreenMeta.UPDATE_TIME));
 				this.setId( (String)r.getValue(ScreenMeta.ID));
-				this.setVersion( (Integer)r.getValue(ScreenMeta.VERSION));
+				this.setStatus( (String)r.getValue(ScreenMeta.STATUS));
 				return true;
 			} catch (Exception e) {
 				return false;

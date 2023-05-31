@@ -151,6 +151,7 @@ const t = window['$t']
 onMounted(() => {
   setTimeout(() => {
     show.value = true
+    routerTurnByName(PageEnum.BASE_HOME_NAME, true)
   }, 300)
   setTimeout(() => {
     showBg.value = true

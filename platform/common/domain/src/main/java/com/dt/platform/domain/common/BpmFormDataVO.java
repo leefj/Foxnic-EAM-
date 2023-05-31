@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 流程表单VO类型
  * <p>流程表单 , 数据表 sys_bpm_form_data 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-26 14:20:19
+ * @since 2023-05-31 12:28:58
  * @sign 79B326782A43A783E865A0E33558CC21
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -430,6 +430,7 @@ public class BpmFormDataVO extends BpmFormData {
 			inst.setIds(this.getIds());
 			inst.setFormData(this.getFormData());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setFormDataExt(this.getFormDataExt());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -514,6 +515,7 @@ public class BpmFormDataVO extends BpmFormData {
 			this.setDataOrigin(DataParser.parse(String.class, map.get(BpmFormDataVOMeta.DATA_ORIGIN)));
 			this.setFormData(DataParser.parse(FormData.class, map.get(BpmFormDataVOMeta.FORM_DATA)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(BpmFormDataVOMeta.QUERY_LOGIC)));
+			this.setFormDataExt(DataParser.parse(FormDataExt.class, map.get(BpmFormDataVOMeta.FORM_DATA_EXT)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(BpmFormDataVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -542,6 +544,7 @@ public class BpmFormDataVO extends BpmFormData {
 				this.setDataOrigin( (String)map.get(BpmFormDataVOMeta.DATA_ORIGIN));
 				this.setFormData( (FormData)map.get(BpmFormDataVOMeta.FORM_DATA));
 				this.setQueryLogic( (String)map.get(BpmFormDataVOMeta.QUERY_LOGIC));
+				this.setFormDataExt( (FormDataExt)map.get(BpmFormDataVOMeta.FORM_DATA_EXT));
 				this.setSearchValue( (String)map.get(BpmFormDataVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {

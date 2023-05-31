@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
     <meta name="referrer" content="no-referrer">
-    <title th:text="${lang.translate('报表')}">报表</title>
+    <title th:text="${lang.translate('设计')}">设计</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -21,14 +21,15 @@
 </head>
 <body style="">
 <div id="main_content">
-    <iframe id="mainFrame" name="mainFrame" scrolling="yes"  src="/business/common/screen/goview/dist/index.html"
+    <iframe id="mainFrame" name="mainFrame" scrolling="yes"  src="/business/common/screen/goview/dist//index.html#/project/items"
             frameborder="0" style="padding: 0px; width: 100%; height:100%;"></iframe>
 </div>
 <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
 <script th:inline="javascript" type="text/javascript">
 
+
     document.getElementById("mainFrame").style.height = "0px";//最好设置为minHeight
-    var url = "/business/common/screen/goview/dist/index.html";
+    var url = "/business/common/screen/goview/dist/index.html#/project/items";
     $("#mainFrame").attr("src", url);
     startInit('mainFrame', 1000);
     var browserVersion = window.navigator.userAgent.toUpperCase();

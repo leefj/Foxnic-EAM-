@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { renderIcon, goDialog, fetchPathByName, routerTurnByPath, setSessionStorage, getLocalStorage } from '@/utils'
+import { JSONStringify, JSONParse, setTitle,renderIcon, goDialog, fetchPathByName, routerTurnByPath, setSessionStorage, getLocalStorage } from '@/utils'
 import { PreviewEnum } from '@/enums/pageEnum'
 import { StorageEnum } from '@/enums/storageEnum'
 import { useRoute } from 'vue-router'
@@ -19,6 +19,8 @@ import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore
 import { syncData } from '../../ContentEdit/components/EditTools/hooks/useSyncUpdate.hook'
 import { icon } from '@/plugins'
 import { cloneDeep } from 'lodash'
+import axios from "axios"
+
 
 const { BrowsersOutlineIcon, SendIcon, AnalyticsIcon } = icon.ionicons5
 const chartEditStore = useChartEditStore()
@@ -52,16 +54,40 @@ const previewHandle = () => {
     setSessionStorage(StorageEnum.GO_CHART_STORAGE_LIST, [{ id: previewId, ...storageInfo }])
   }
   // 跳转
+
   routerTurnByPath(path, [previewId], undefined, true)
 }
 
 // 发布
 const sendHandle = () => {
-  goDialog({
-    message: '想体验发布功能，请前往查看: https://demo.mtruning.club/#/login。源码需切换到：master-fetch 分支。',
-    positiveText: '了然',
-    closeNegativeText: true,
-    onPositiveCallback: () => {}
+
+  const { id } = routerParamsInfo.params;
+  const previewId = typeof id === 'string' ? id : id[0]
+  console.log("previewId:",previewId)
+
+  const storageInfo = chartEditStore.getStorageInfo
+  const sessionStorageInfo = getLocalStorage(StorageEnum.GO_CHART_STORAGE_LIST) || []
+  var storageInfo2=[{ id: previewId, ...storageInfo }]
+  console.log("storageInfo2",storageInfo2)
+  console.log("sessionStorageInfo",sessionStorageInfo)
+  var storageInfoStr=JSONStringify(storageInfo2);
+  console.log(storageInfoStr);
+  var ps={id:"",jsonData:"[]"};
+  ps.id=previewId;
+  ps.jsonData=storageInfoStr;
+  axios.post('/service-common/sys-screen/update',ps).
+  then( function(res) {
+    var resData=res.data;
+    if(resData.success){
+      try {
+          window['$message'].success("保存成功")
+      } catch(ex) {
+      }
+    }else{
+        window['$message'].error("保存失败")
+    }
+  }).catch(err=>{
+    console.log(err);
   })
 }
 
@@ -81,7 +107,7 @@ const btnList = [
   },
   {
     select: true,
-    title: '发布',
+    title: '保存',
     icon: renderIcon(SendIcon),
     event: sendHandle
   }
