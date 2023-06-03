@@ -1,7 +1,7 @@
 /**
  * 大屏 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-31 19:06:51
+ * @since 2023-06-03 06:55:41
  */
 
 function FormPage() {
@@ -202,7 +202,7 @@ function FormPage() {
 
 
         //禁用编辑
-	if((action=="edit" && hasData && disableModify) || (action=="create" && !hasData &&disableCreateNew)) {
+		if(action=="view" || (action=="edit" && disableModify) || (action=="create" && disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")

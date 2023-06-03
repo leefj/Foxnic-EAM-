@@ -1,10 +1,11 @@
 package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
+
+import com.github.foxnic.commons.lang.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
-
 import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
@@ -39,11 +40,12 @@ import java.util.Map;
  * 人员信息服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:16:04
+ * @since 2023-06-03 06:53:01
 */
 
 
 @Service("HrPersonService")
+
 public class PersonServiceImpl extends SuperService<Person> implements IPersonService {
 
 	/**
@@ -73,6 +75,11 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 	 */
 	@Override
 	public Result insert(Person person,boolean throwsException) {
+
+
+		if(StringUtil.isBlank(person.getJobNumber())){
+			person.setJobNumber(IDGenerator.getSnowflakeIdString());
+		}
 		Result r=super.insert(person,throwsException);
 		return r;
 	}

@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 信息系统VO类型
  * <p>信息系统 , 数据表 ops_information_system 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-03 16:00:36
- * @sign A4760002E2C46A63027FD19148F51477
+ * @since 2023-06-03 06:52:21
+ * @sign E44ACF06B21D6A6C363C391795B04E9C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -83,9 +83,9 @@ public class InformationSystemVO extends InformationSystem {
 	private String sortType;
 	
 	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
 	private String dataOrigin;
 	
 	/**
@@ -93,6 +93,12 @@ public class InformationSystemVO extends InformationSystem {
 	*/
 	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
 	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -257,7 +263,7 @@ public class InformationSystemVO extends InformationSystem {
 	
 	/**
 	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
 	 * @return 数据来源
 	*/
 	public String getDataOrigin() {
@@ -290,6 +296,25 @@ public class InformationSystemVO extends InformationSystem {
 	*/
 	public InformationSystemVO setQueryLogic(String queryLogic) {
 		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public InformationSystemVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
 		return this;
 	}
 	
@@ -387,6 +412,7 @@ public class InformationSystemVO extends InformationSystem {
 		inst.setTechnicalContact(this.getTechnicalContact());
 		inst.setOsInfo(this.getOsInfo());
 		inst.setHardwareInfo(this.getHardwareInfo());
+		inst.setFileIds(this.getFileIds());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setId(this.getId());
 		inst.setBackupInfo(this.getBackupInfo());
@@ -418,6 +444,7 @@ public class InformationSystemVO extends InformationSystem {
 			inst.setInfoSystemStatus(this.getInfoSystemStatus());
 			inst.setSearchField(this.getSearchField());
 			inst.setVoucherList(this.getVoucherList());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setInfoSystemDevMethod(this.getInfoSystemDevMethod());
 			inst.setInfoSystemGrade(this.getInfoSystemGrade());
 			inst.setFuzzyField(this.getFuzzyField());
@@ -501,6 +528,7 @@ public class InformationSystemVO extends InformationSystem {
 			this.setTechnicalContact(DataParser.parse(String.class, map.get(InformationSystemVOMeta.TECHNICAL_CONTACT)));
 			this.setOsInfo(DataParser.parse(String.class, map.get(InformationSystemVOMeta.OS_INFO)));
 			this.setHardwareInfo(DataParser.parse(String.class, map.get(InformationSystemVOMeta.HARDWARE_INFO)));
+			this.setFileIds(DataParser.parse(String.class, map.get(InformationSystemVOMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InformationSystemVOMeta.UPDATE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(InformationSystemVOMeta.ID)));
 			this.setBackupInfo(DataParser.parse(String.class, map.get(InformationSystemVOMeta.BACKUP_INFO)));
@@ -531,6 +559,7 @@ public class InformationSystemVO extends InformationSystem {
 			// others
 			this.setInfoSystemStatus(DataParser.parse(DictItem.class, map.get(InformationSystemVOMeta.INFO_SYSTEM_STATUS)));
 			this.setSearchField(DataParser.parse(String.class, map.get(InformationSystemVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(InformationSystemVOMeta.REQUEST_ACTION)));
 			this.setInfoSystemDevMethod(DataParser.parse(DictItem.class, map.get(InformationSystemVOMeta.INFO_SYSTEM_DEV_METHOD)));
 			this.setInfoSystemGrade(DataParser.parse(DictItem.class, map.get(InformationSystemVOMeta.INFO_SYSTEM_GRADE)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(InformationSystemVOMeta.FUZZY_FIELD)));
@@ -555,6 +584,7 @@ public class InformationSystemVO extends InformationSystem {
 				this.setTechnicalContact( (String)map.get(InformationSystemVOMeta.TECHNICAL_CONTACT));
 				this.setOsInfo( (String)map.get(InformationSystemVOMeta.OS_INFO));
 				this.setHardwareInfo( (String)map.get(InformationSystemVOMeta.HARDWARE_INFO));
+				this.setFileIds( (String)map.get(InformationSystemVOMeta.FILE_IDS));
 				this.setUpdateBy( (String)map.get(InformationSystemVOMeta.UPDATE_BY));
 				this.setId( (String)map.get(InformationSystemVOMeta.ID));
 				this.setBackupInfo( (String)map.get(InformationSystemVOMeta.BACKUP_INFO));
@@ -585,6 +615,7 @@ public class InformationSystemVO extends InformationSystem {
 				// others
 				this.setInfoSystemStatus( (DictItem)map.get(InformationSystemVOMeta.INFO_SYSTEM_STATUS));
 				this.setSearchField( (String)map.get(InformationSystemVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(InformationSystemVOMeta.REQUEST_ACTION));
 				this.setInfoSystemDevMethod( (DictItem)map.get(InformationSystemVOMeta.INFO_SYSTEM_DEV_METHOD));
 				this.setInfoSystemGrade( (DictItem)map.get(InformationSystemVOMeta.INFO_SYSTEM_GRADE));
 				this.setFuzzyField( (String)map.get(InformationSystemVOMeta.FUZZY_FIELD));
@@ -622,6 +653,7 @@ public class InformationSystemVO extends InformationSystem {
 			this.setTechnicalContact(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.TECHNICAL_CONTACT)));
 			this.setOsInfo(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.OS_INFO)));
 			this.setHardwareInfo(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.HARDWARE_INFO)));
+			this.setFileIds(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.UPDATE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.ID)));
 			this.setBackupInfo(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.BACKUP_INFO)));
@@ -661,6 +693,7 @@ public class InformationSystemVO extends InformationSystem {
 				this.setTechnicalContact( (String)r.getValue(InformationSystemVOMeta.TECHNICAL_CONTACT));
 				this.setOsInfo( (String)r.getValue(InformationSystemVOMeta.OS_INFO));
 				this.setHardwareInfo( (String)r.getValue(InformationSystemVOMeta.HARDWARE_INFO));
+				this.setFileIds( (String)r.getValue(InformationSystemVOMeta.FILE_IDS));
 				this.setUpdateBy( (String)r.getValue(InformationSystemVOMeta.UPDATE_BY));
 				this.setId( (String)r.getValue(InformationSystemVOMeta.ID));
 				this.setBackupInfo( (String)r.getValue(InformationSystemVOMeta.BACKUP_INFO));

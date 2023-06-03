@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据扩展
  * <p>数据扩展 , 数据表 sys_form_data_ext 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-26 20:03:45
+ * @since 2023-06-03 06:53:55
  * @sign 7381DE5C81A5B2E734538E84A6B2902C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -41,13 +41,13 @@ public class FormDataExt extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "715640582852050944")
 	private String id;
 	
 	/**
 	 * 数据：数据
 	*/
-	@ApiModelProperty(required = false,value="数据" , notes = "数据")
+	@ApiModelProperty(required = false,value="数据" , notes = "数据" , example = "715640563604389888")
 	private String dataId;
 	
 	/**
@@ -377,7 +377,7 @@ public class FormDataExt extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -398,7 +398,7 @@ public class FormDataExt extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = false,value="version" , notes = "version")
+	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**

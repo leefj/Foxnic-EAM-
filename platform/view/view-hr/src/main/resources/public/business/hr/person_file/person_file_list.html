@@ -2,7 +2,7 @@
 /**
  * 人员档案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:18:22
+ * @since 2023-06-03 08:59:15
  */
  -->
  <!DOCTYPE html>
@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
     <title th:text="${lang.translate('人员档案')}">人员档案</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
@@ -39,19 +40,28 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 档案状态 , status ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 人员 , userId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('人员')}" class="search-label userId-label">人员</span><span class="search-colon">:</span></div>
+                        <div id="userId" th:data="${'/service-hr/hr-person/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 来源 , source ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 档案保管地 , saveLoc ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 附件 , file ,typeName=upload, isHideInSearch=true -->
+                    <!-- 备注 , note ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 档案状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('档案状态')}" class="search-label status-label">档案状态</span><span class="search-colon">:</span></div>
-                        <input id="status" class="layui-input search-input" style="width: 150px" type="text" />
+
+
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.PersonFileStatusEnum')}" style="width:150px"></div>
                     </div>
-                    <!-- 人员 , userId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 档案保管地 , saveLoc ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 附件 , file ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 备注 , note ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 是否新建档 , ifNew ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 是否新建档 , ifNew ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('是否新建档')}" class="search-label ifNew-label">是否新建档</span><span class="search-colon">:</span></div>
-                        <input id="ifNew" class="layui-input search-input" style="width: 150px" type="text" />
+
+
+                        <div id="ifNew" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.PersonFileNewEnum')}" style="width:150px"></div>
                     </div>
                     <!-- 档案编号 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
@@ -68,10 +78,10 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('创建时间')}" class="search-label createTime-label">创建时间</span><span class="search-colon">:</span></div>
                             <input type="text" id="createTime"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('请选择')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
-                    <!-- 参加工作时间 , workStartDate ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 参加工作时间 , workStartDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('参加工作时间')}" class="search-label workStartDate-label">参加工作时间</span><span class="search-colon">:</span></div>
-                        <input id="workStartDate" class="layui-input search-input" style="width: 150px" type="text" />
+                            <input type="text" id="workStartDate"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('请选择')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
 
 
@@ -115,12 +125,15 @@
 
     <button th:if="${perm.checkAuth('hr_person_file:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
+    <button th:if="${perm.checkAuth('hr_person_file:out')}"class="layui-btn layui-btn-xs  file-out " lay-event="file-out" data-id="{{d.id}}"><span th:text="${lang.translate('调出','','cmp:table.ops')}">调出</span></button>
 
 </script>
 
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.PersonFileStatusEnum')}]];
+    var RADIO_IFNEW_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.PersonFileNewEnum')}]];
     var AUTH_PREFIX="hr_person_file";
 
 

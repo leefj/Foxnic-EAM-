@@ -24,7 +24,7 @@ import java.util.Map;
  * 项目服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 14:12:24
+ * @since 2023-06-03 06:56:13
 */
 
 public interface IScreenProjectService extends  ISimpleIdService<ScreenProject,String> {

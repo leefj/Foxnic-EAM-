@@ -1,7 +1,7 @@
 /**
  * 人员合同 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:58:05
+ * @since 2023-06-03 07:29:09
  */
 
 
@@ -11,8 +11,14 @@ function ListPage() {
 	
 	//模块基础路径
 	const moduleURL="/service-hr/hr-person-contract";
+	const queryURL=moduleURL+'/query-paged-list';
+	const deleteURL=moduleURL+'/delete';
+	const batchDeleteURL=moduleURL+'/delete-by-ids';
+	const getByIdURL=moduleURL+'/get-by-id';
+	//
 	var dataTable=null;
 	var sort=null;
+
 	/**
       * 入口函数，初始化
       */
@@ -71,7 +77,7 @@ function ListPage() {
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-paged-list',
+				url: queryURL,
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
@@ -79,7 +85,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'employeeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员') , templet: function (d) { return templet('employeeId',d.employeeId,d);}  }
+					,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员'), templet: function (d) { return templet('personId' ,fox.joinLabel(d.person,"name",',','','personId'),d);}}
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同类型'), templet: function (d) { return templet('type' ,fox.joinLabel(d.contractTypeData,"label",',','','type'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
@@ -88,21 +94,18 @@ function ListPage() {
 					,{ field: 'transferToRegular', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否转正'), templet:function (d){ return templet('transferToRegular',fox.getEnumText(RADIO_TRANSFERTOREGULAR_DATA,d.transferToRegular,'','transferToRegular'),d);}}
 					,{ field: 'contractPartyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('签约方'), templet: function (d) { return templet('contractPartyId' ,fox.joinLabel(d.contractOrg,"name",',','','contractPartyId'),d);}}
 					,{ field: 'probationSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('试用期工资') , templet: function (d) { return templet('probationSalary',d.probationSalary,d);}  }
-					,{ field: 'probationStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('试用期生效时间') ,templet: function (d) { return templet('probationStartDate',fox.dateFormat(d.probationStartDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'probationFinishDate', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('试用期到期时间') , templet: function (d) { return templet('probationFinishDate',d.probationFinishDate,d);}  }
-					,{ field: 'contractStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('生效时间') ,templet: function (d) { return templet('contractStartDate',fox.dateFormat(d.contractStartDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'contractFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('到期时间') ,templet: function (d) { return templet('contractFinishDate',fox.dateFormat(d.contractFinishDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'salary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('工资') , templet: function (d) { return templet('salary',d.salary,d);}  }
-					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同内容') , templet: function (d) { return templet('content',d.content,d);}  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'fileId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同附件') , templet: function (d) { return templet('fileId',d.fileId,d);}  }
-					,{ field: 'arch', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否归档') , templet: function (d) { return templet('arch',d.arch,d);}  }
+					,{ field: 'probationStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('试用期生效时间') ,templet: function (d) { return templet('probationStartDate',fox.dateFormat(d.probationStartDate,"yyyy-mm-dd"),d); }  }
+					,{ field: 'probationFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('试用期到期时间') ,templet: function (d) { return templet('probationFinishDate',fox.dateFormat(d.probationFinishDate,"yyyy-mm-dd"),d); }  }
+					,{ field: 'contractStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('生效时间') ,templet: function (d) { return templet('contractStartDate',fox.dateFormat(d.contractStartDate,"yyyy-mm-dd"),d); }  }
+					,{ field: 'contractFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('到期时间') ,templet: function (d) { return templet('contractFinishDate',fox.dateFormat(d.contractFinishDate,"yyyy-mm-dd"),d); }  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'employeeName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('姓名') , templet: function (d) { return templet('employeeName',d.employeeName,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
-				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
+				done: function (data) {
+					lockSwitchInputs();
+					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
+				},
 				footer : {
 					exportExcel : false ,
 					importExcel : false 
@@ -126,11 +129,13 @@ function ListPage() {
 		var context=dataTable.getDataRowContext( { id : data.id } );
 		if(context==null) return;
 		if(remote) {
-			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+			admin.post(getByIdURL, { id : data.id }, function (r) {
 				if (r.success) {
 					data = r.data;
 					context.update(data);
 					fox.renderFormInputs(form);
+					lockSwitchInputs();
+					window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 				} else {
 					fox.showMessage(data);
 				}
@@ -138,7 +143,24 @@ function ListPage() {
 		} else {
 			context.update(data);
 			fox.renderFormInputs(form);
+			lockSwitchInputs();
+			window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 		}
+	}
+
+
+
+	function lockSwitchInputs() {
+	}
+
+	function lockSwitchInput(field) {
+		var inputs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find("input");
+		var switchs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find(".layui-form-switch");
+		inputs.attr("readonly", "yes");
+		inputs.attr("disabled", "yes");
+		switchs.addClass("layui-disabled");
+		switchs.addClass("layui-checkbox-disabled");
+		switchs.addClass("layui-form-switch-disabled");
 	}
 
 	/**
@@ -219,7 +241,11 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("type",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -240,7 +266,11 @@ function ListPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -263,7 +293,11 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("contractYear",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -284,7 +318,11 @@ function ListPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("transferToRegular",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -309,7 +347,11 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("contractPartyId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					}
 				}
 				return opts;
 			}
@@ -436,7 +478,7 @@ function ListPage() {
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的'+'人员合同'+'吗？'), function (i) {
                 top.layer.close(i);
-				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -471,7 +513,7 @@ function ListPage() {
 
 			admin.putTempData('hr-person-contract-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				admin.post(getByIdURL, { id : data.id }, function (data) {
 					if(data.success) {
 						admin.putTempData('hr-person-contract-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -480,7 +522,7 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				admin.post(getByIdURL, { id : data.id }, function (data) {
 					if(data.success) {
 						admin.putTempData('hr-person-contract-form-data-form-action', "view",true);
 						showEditForm(data.data);
@@ -498,7 +540,7 @@ function ListPage() {
 
 				top.layer.confirm(fox.translate('确定删除此'+'人员合同'+'吗？'), function (i) {
 					top.layer.close(i);
-					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {

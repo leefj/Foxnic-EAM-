@@ -20,7 +20,7 @@ import com.dt.platform.common.service.IBpmFormDataService;
  * 流程表单流程回调事件适配器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-31 12:28:58
+ * @since 2023-06-03 06:56:21
 */
 
 public class BpmFormDataBpmEventAdaptor extends BpmEventAdaptor<BpmFormData,IBpmFormDataService> {

@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 信息系统
  * <p>信息系统 , 数据表 ops_information_system 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-03 16:00:36
- * @sign 2CDDB9AB8C1C930E074CD97490FD7AB1
+ * @since 2023-06-03 06:52:21
+ * @sign 13E102B04D0F716B32E0A5757A1E6D59
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,7 +45,7 @@ public class InformationSystem extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "599359261440475136")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
 	
 	/**
@@ -57,7 +57,7 @@ public class InformationSystem extends Entity {
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "测试")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称")
 	private String name;
 	
 	/**
@@ -69,7 +69,7 @@ public class InformationSystem extends Entity {
 	/**
 	 * 当前状态：当前状态
 	*/
-	@ApiModelProperty(required = false,value="当前状态" , notes = "当前状态" , example = "offline")
+	@ApiModelProperty(required = false,value="当前状态" , notes = "当前状态")
 	private String status;
 	
 	/**
@@ -117,7 +117,7 @@ public class InformationSystem extends Entity {
 	/**
 	 * 上线时间：上线时间
 	*/
-	@ApiModelProperty(required = false,value="上线时间" , notes = "上线时间" , example = "2022-07-12 12:00:00")
+	@ApiModelProperty(required = false,value="上线时间" , notes = "上线时间")
 	private Date onlineDate;
 	
 	/**
@@ -205,15 +205,21 @@ public class InformationSystem extends Entity {
 	private String notes;
 	
 	/**
+	 * 附件：附件
+	*/
+	@ApiModelProperty(required = false,value="附件" , notes = "附件")
+	private String fileIds;
+	
+	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-07-12 09:59:43")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
 	private Date createTime;
 	
 	/**
@@ -231,7 +237,7 @@ public class InformationSystem extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -252,13 +258,13 @@ public class InformationSystem extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户")
 	private String tenantId;
 	
 	/**
@@ -817,6 +823,25 @@ public class InformationSystem extends Entity {
 	}
 	
 	/**
+	 * 获得 附件<br>
+	 * 附件
+	 * @return 附件
+	*/
+	public String getFileIds() {
+		return fileIds;
+	}
+	
+	/**
+	 * 设置 附件
+	 * @param fileIds 附件
+	 * @return 当前对象
+	*/
+	public InformationSystem setFileIds(String fileIds) {
+		this.fileIds=fileIds;
+		return this;
+	}
+	
+	/**
 	 * 获得 创建人ID<br>
 	 * 创建人ID
 	 * @return 创建人ID
@@ -1226,6 +1251,7 @@ public class InformationSystem extends Entity {
 		inst.setTechnicalContact(this.getTechnicalContact());
 		inst.setOsInfo(this.getOsInfo());
 		inst.setHardwareInfo(this.getHardwareInfo());
+		inst.setFileIds(this.getFileIds());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setId(this.getId());
 		inst.setBackupInfo(this.getBackupInfo());
@@ -1329,6 +1355,7 @@ public class InformationSystem extends Entity {
 			this.setTechnicalContact(DataParser.parse(String.class, map.get(InformationSystemMeta.TECHNICAL_CONTACT)));
 			this.setOsInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.OS_INFO)));
 			this.setHardwareInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.HARDWARE_INFO)));
+			this.setFileIds(DataParser.parse(String.class, map.get(InformationSystemMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InformationSystemMeta.UPDATE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(InformationSystemMeta.ID)));
 			this.setBackupInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.BACKUP_INFO)));
@@ -1374,6 +1401,7 @@ public class InformationSystem extends Entity {
 				this.setTechnicalContact( (String)map.get(InformationSystemMeta.TECHNICAL_CONTACT));
 				this.setOsInfo( (String)map.get(InformationSystemMeta.OS_INFO));
 				this.setHardwareInfo( (String)map.get(InformationSystemMeta.HARDWARE_INFO));
+				this.setFileIds( (String)map.get(InformationSystemMeta.FILE_IDS));
 				this.setUpdateBy( (String)map.get(InformationSystemMeta.UPDATE_BY));
 				this.setId( (String)map.get(InformationSystemMeta.ID));
 				this.setBackupInfo( (String)map.get(InformationSystemMeta.BACKUP_INFO));
@@ -1432,6 +1460,7 @@ public class InformationSystem extends Entity {
 			this.setTechnicalContact(DataParser.parse(String.class, r.getValue(InformationSystemMeta.TECHNICAL_CONTACT)));
 			this.setOsInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.OS_INFO)));
 			this.setHardwareInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.HARDWARE_INFO)));
+			this.setFileIds(DataParser.parse(String.class, r.getValue(InformationSystemMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InformationSystemMeta.UPDATE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(InformationSystemMeta.ID)));
 			this.setBackupInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.BACKUP_INFO)));
@@ -1471,6 +1500,7 @@ public class InformationSystem extends Entity {
 				this.setTechnicalContact( (String)r.getValue(InformationSystemMeta.TECHNICAL_CONTACT));
 				this.setOsInfo( (String)r.getValue(InformationSystemMeta.OS_INFO));
 				this.setHardwareInfo( (String)r.getValue(InformationSystemMeta.HARDWARE_INFO));
+				this.setFileIds( (String)r.getValue(InformationSystemMeta.FILE_IDS));
 				this.setUpdateBy( (String)r.getValue(InformationSystemMeta.UPDATE_BY));
 				this.setId( (String)r.getValue(InformationSystemMeta.ID));
 				this.setBackupInfo( (String)r.getValue(InformationSystemMeta.BACKUP_INFO));

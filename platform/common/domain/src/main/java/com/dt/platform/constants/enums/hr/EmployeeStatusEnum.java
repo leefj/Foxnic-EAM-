@@ -13,8 +13,9 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum EmployeeStatusEnum implements CodeTextEnum {
 
-	online("online" , "在职"),
-	offline("offline" , "离职")
+	ONLINE("online" , "在职"),
+	OFFLINE("offline" , "离职"),
+	NON_EMPLOYEE("non_employee" , "非员工")
 	;
 	private String code;
 	private String text;

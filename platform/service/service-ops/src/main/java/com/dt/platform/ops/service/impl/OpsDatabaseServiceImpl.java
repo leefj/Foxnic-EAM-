@@ -151,6 +151,7 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 			"where T1.database_id=T2.id\n";
 
 	/*数据库最近备份情况*/
+	//
 	public String dbBackupInfoDetailListSql="select * from (\n" +
 			"select a.id db_info_id,b.host_name,b.host_ip,a.name db_info_name,a.status db_status,backup_status db_backup_status \n" +
 			"from ops_db_info a,ops_host b\n" +
@@ -158,7 +159,7 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 			"and a.status='online'\n" +
 			")aa\n" +
 			"left join(\n" +
-			"select * from ops_db_backup_record c where (db_id,backup_stime) in ((select db_id,max(backup_stime) max_backup_stime from ops_db_backup_record where backup_stime> subdate(now(),30) and deleted=0 group by db_id))\n" +
+			"select c.* ,TIMESTAMPDIFF(SECOND,backup_stime,backup_etime) diff_second from ops_db_backup_record c where (db_id,backup_stime) in ((select db_id,max(backup_stime) max_backup_stime from ops_db_backup_record where backup_stime> subdate(now(),30) and deleted=0 group by db_id))\n" +
 			")cc\n" +
 			"on aa.db_info_id=cc.db_id order by backup_stime";
 

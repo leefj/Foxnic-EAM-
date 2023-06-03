@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.common.service.IFormDataColService;
 import com.dt.platform.common.service.IFormDataExtService;
 import com.dt.platform.common.service.IFormDataService;
+import com.dt.platform.constants.enums.common.ScreenStatusEnum;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.domain.common.*;
 import com.dt.platform.domain.common.meta.FormInfoMeta;
@@ -176,6 +177,7 @@ public class FormInfoServiceImpl extends SuperService<FormInfo> implements IForm
 	@Override
 	public Result copyData(String id) {
 		FormInfo info=this.getById(id);
+
 		info.setId(IDGenerator.getSnowflakeIdString());
 		info.setUpdateTime(new Date());
 		info.setCreateTime(new Date());

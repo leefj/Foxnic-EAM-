@@ -1,14 +1,20 @@
 /**
  * 人员档案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:18:23
+ * @since 2023-06-03 08:59:16
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
 	
+	// 接口地址
 	const moduleURL="/service-hr/hr-person-file";
+	const queryURL=moduleURL+"/get-by-id";
+	const insertURL=moduleURL+"/insert";
+	const updateURL=moduleURL+"/update";
+
+	var rawFormData=null;
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
@@ -50,8 +56,6 @@ function FormPage() {
 		//绑定提交事件
 		bindButtonEvent();
 
-		//调整窗口的高度与位置
-		adjustPopup();
 
 
 	}
@@ -64,9 +68,9 @@ function FormPage() {
 	 * 自动调节窗口高度
 	 * */
 	var adjustPopupTask=-1;
-	function adjustPopup() {
+	function adjustPopup(arg) {
 		if(window.pageExt.form.beforeAdjustPopup) {
-			var doNext=window.pageExt.form.beforeAdjustPopup();
+			var doNext=window.pageExt.form.beforeAdjustPopup(arg);
 			if(!doNext) return;
 		}
 
@@ -85,7 +89,7 @@ function FormPage() {
 				if(bodyHeight>0 && bodyHeight!=prevBodyHeight) {
 					updateFormIframeHeight && updateFormIframeHeight(bodyHeight);
 				} else {
-					setTimeout(adjustPopup,1000);
+					setTimeout(function() {adjustPopup(arg);},1000);
 				}
 				prevBodyHeight = bodyHeight;
 				return;
@@ -112,6 +116,93 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		form.on('radio(status)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=status]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
+		//渲染 userId 下拉字段
+		fox.renderSelectBox({
+			el: "userId",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("人员",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("userId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("userId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+		form.on('radio(ifNew)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=ifNew]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("ifNew",data,checked);
+		});
+		laydate.render({
+			elem: '#workStartDate',
+			type:"date",
+			format:"yyyy-mm-dd",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("workStartDate",value, date, endDate);
+			}
+		});
+	    //渲染图片字段
+		foxup.render({
+			el:"file",
+			maxFileCount: 6,
+			displayFileName: true,
+			accept: "file",
+			afterPreview:function(elId,index,fileId,upload,fileName,fileType){
+				adjustPopup();
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterPreview",elId:elId,index:index,fileId:fileId,upload:upload,fileName:fileName,fileType:fileType});
+			},
+			afterUpload:function (elId,result,index,upload) {
+				console.log("文件上传后回调");
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterUpload",elId:elId,index:index,upload:upload});
+			},
+			beforeRemove:function (elId,fileId,index,upload) {
+				console.log("文件删除前回调");
+				if(window.pageExt.form.onUploadEvent) {
+					return window.pageExt.form.onUploadEvent({event:"beforeRemove",elId:elId,index:index,fileId:fileId,upload:upload});
+				}
+				return true;
+			},
+			afterRemove:function (elId,fileId,index,upload) {
+				adjustPopup();
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterRemove",elId:elId,index:index,upload:upload});
+			}
+	    });
 	}
 
 	/**
@@ -122,7 +213,7 @@ function FormPage() {
 		if(ids.length==0) return;
 		var id=ids[0];
 		if(!id) return;
-		admin.post(moduleURL+"/get-by-id", { id : id }, function (r) {
+		admin.post(queryURL, { id : id }, function (r) {
 			if (r.success) {
 				fillFormData(r.data)
 			} else {
@@ -145,6 +236,7 @@ function FormPage() {
 		if(!formData) {
 			formData = admin.getTempData('hr-person-file-form-data');
 		}
+		rawFormData=formData;
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
 
@@ -159,11 +251,23 @@ function FormPage() {
 			fm[0].reset();
 			form.val('data-form', formData);
 
+			//设置 附件 显示附件
+		    if($("#file").val()) {
+				foxup.fill("file",$("#file").val());
+		    } else {
+				adjustPopup();
+			}
 
 
 
+			//设置 参加工作时间 显示复选框勾选
+			if(formData["workStartDate"]) {
+				$("#workStartDate").val(fox.dateFormat(formData["workStartDate"],"yyyy-mm-dd"));
+			}
 
 
+			//设置  人员 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#userId",formData.person);
 
 			//处理fillBy
 
@@ -179,15 +283,16 @@ function FormPage() {
 		//渐显效果
 		fm.css("opacity","0.0");
         fm.css("display","");
-        setTimeout(function (){
-            fm.animate({
-                opacity:'1.0'
-            },100,null,function (){
+		setTimeout(function (){
+			fm.animate({
+				opacity:'1.0'
+			},100,null,function (){
 				fm.css("opacity","1.0");});
-        },1);
+		},1);
+
 
         //禁用编辑
-		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+		if(action=="view" || (action=="edit" && disableModify) || (action=="create" && disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")
@@ -210,11 +315,23 @@ function FormPage() {
 
 	}
 
+	/**
+	 * 获得从服务器请求的原始表单数据
+	 * */
+	function getRawFormData() {
+		if(!rawFormData) {
+			rawFormData = admin.getTempData('hr-person-file-form-data');
+		}
+		return rawFormData;
+	}
+
 	function getFormData() {
 		var data=form.val("data-form");
 
 
 
+		//获取 人员 下拉框的值
+		data["userId"]=fox.getSelectedValue("userId",false);
 
 		return data;
 	}
@@ -232,7 +349,7 @@ function FormPage() {
 
 		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
 		var action=param.id?"edit":"create";
-		var api=moduleURL+"/"+(param.id?"update":"insert");
+		var api=param.id?updateURL:insertURL;
 		admin.post(api, param, function (data) {
 			if (data.success) {
 				var doNext=true;
@@ -291,7 +408,9 @@ function FormPage() {
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,
+		getRawFormData:getRawFormData,
 		verifyAndSaveForm:verifyAndSaveForm,
+		renderFormFields:renderFormFields,
 		fillFormData: fillFormData,
 		fillFormDataByIds:fillFormDataByIds,
 		processFormData4Bpm:processFormData4Bpm,

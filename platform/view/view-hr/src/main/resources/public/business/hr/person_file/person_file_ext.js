@@ -1,7 +1,7 @@
 /**
  * 人员档案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:18:22
+ * @since 2023-06-03 08:44:59
  */
 
 layui.config({
@@ -28,6 +28,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+        },
+        /**
+         * 按事件名称移除表格按钮栏的按钮
+         * */
+        removeOperationButtonByEvent(event) {
+            var template=$("#tableOperationTemplate");
+            var content=template.text();
+            content=content.split("\n");
+            var buttons=[]
+            for (let i = 0; i < content.length ; i++) {
+                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
+                    buttons.push(content[i]);
+                }
+            }
+            template.text(buttons.join("\n"))
         },
         /**
          * 表格渲染前调用
@@ -84,6 +99,19 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
+            for (var i = 0; i < data.length; i++) {
+                //如果审批中或审批通过的不允许编辑
+                if(data[i].status=="out") {
+                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.file-out').filter("[data-id='" + data[i].id + "']"), true);
+                }
+            }
+        },
+        /**
+         * 单行数据刷新后调用
+         * */
+        afterRefreshRowData: function (data,remote,context) {
 
         },
         /**
@@ -151,6 +179,27 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        fileOut:function (data){
+            console.log('fileOut',data);
+            admin.putTempData('hr-person-file-out-list-data', data);
+            var area=admin.getTempData('hr-person-file-out-form-area');
+            var height= (area && area.height) ? area.height : ($(window).height()*0.6);
+            var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
+            var title = "明细"
+            admin.popupCenter({
+                title: title,
+                resize: false,
+                offset: [top,null],
+                area: ["65%",height+"px"],
+                type: 2,
+                id:"hr-person-file-out-list-data-win",
+                content: '/business/hr/person_file_out/person_file_out_list.html?fileId='+data.id,
+                finish: function () {
+                    refreshTableData();
+                }
+            });
+
+        },
         /**
          * 末尾执行
          */
@@ -173,7 +222,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 窗口调节前
          * */
-        beforeAdjustPopup:function () {
+        beforeAdjustPopup:function (arg) {
             console.log('beforeAdjustPopup');
             return true;
         },

@@ -84,9 +84,15 @@ public class ScreenServiceImpl extends SuperService<Screen> implements IScreenSe
 	@Override
 	public Result copyData(String id) {
 		Screen info=this.getById(id);
-		info.setId(IDGenerator.getSnowflakeIdString());
+		String sId=info.getId();
+		String aId=IDGenerator.getSnowflakeIdString();
+		String sJsonData=info.getJsonData();
+		String aJsonData=sJsonData.replaceAll(sId,aId);
+		info.setJsonData(aJsonData);
+		info.setId(aId);
 		info.setUpdateTime(new Date());
 		info.setCreateTime(new Date());
+		info.setStatus(ScreenStatusEnum.DRAFT.code());
 		info.setCode(IDGenerator.getSnowflakeIdString());
 		info.setName(info.getName()+"-复制");
 		Result r=super.insert(info,true);

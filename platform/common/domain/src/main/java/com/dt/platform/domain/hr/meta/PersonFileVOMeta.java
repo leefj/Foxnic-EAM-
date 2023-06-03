@@ -5,14 +5,15 @@ import com.dt.platform.domain.hr.PersonFileVO;
 import java.util.List;
 import com.dt.platform.domain.hr.PersonFile;
 import java.util.Date;
+import com.dt.platform.domain.hr.Person;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:18:21
- * @sign E31FF9269A460A2314F60A9C53B3C6E4
+ * @since 2023-06-03 08:59:14
+ * @sign 1C85567160F9AAD210C5A30FA7AF537E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -99,14 +100,14 @@ public class PersonFileVOMeta extends PersonFileMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonFileVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFileVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
 	*/
 	public static final String DATA_ORIGIN="dataOrigin";
 	
 	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PersonFileVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFileVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端按来源执行不同的逻辑", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonFileVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFileVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
@@ -117,6 +118,16 @@ public class PersonFileVOMeta extends PersonFileMeta {
 	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonFileVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFileVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonFileVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFileVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -177,6 +188,16 @@ public class PersonFileVOMeta extends PersonFileMeta {
 	 * 是否新建档 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonFileVO,java.lang.String> IF_NEW_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFileVO.class ,IF_NEW, java.lang.String.class, "是否新建档", "是否新建档", java.lang.String.class, null);
+	
+	/**
+	 * 来源 , 类型: java.lang.String
+	*/
+	public static final String SOURCE="source";
+	
+	/**
+	 * 来源 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonFileVO,java.lang.String> SOURCE_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFileVO.class ,SOURCE, java.lang.String.class, "来源", "来源", java.lang.String.class, null);
 	
 	/**
 	 * 档案保管地 , 类型: java.lang.String
@@ -309,9 +330,19 @@ public class PersonFileVOMeta extends PersonFileMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonFileVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFileVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * person , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final String PERSON="person";
+	
+	/**
+	 * person , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonFileVO,com.dt.platform.domain.hr.Person> PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFileVO.class ,PERSON, com.dt.platform.domain.hr.Person.class, "person", "person", com.dt.platform.domain.hr.Person.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , CODE , STATUS , USER_ID , IF_NEW , SAVE_LOC , WORK_START_DATE , FILE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , STATUS , USER_ID , IF_NEW , SOURCE , SAVE_LOC , WORK_START_DATE , FILE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON };
 	
 	/**
 	 * 代理类
@@ -432,6 +463,17 @@ public class PersonFileVOMeta extends PersonFileMeta {
 		}
 		
 		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public PersonFileVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
+			return this;
+		}
+		
+		/**
 		 * 设置 主键清单
 		 * @param ids 主键清单
 		 * @return 当前对象
@@ -494,6 +536,17 @@ public class PersonFileVOMeta extends PersonFileMeta {
 		public PersonFile setIfNew(String ifNew) {
 			super.change(IF_NEW,super.getIfNew(),ifNew);
 			super.setIfNew(ifNew);
+			return this;
+		}
+		
+		/**
+		 * 设置 来源
+		 * @param source 来源
+		 * @return 当前对象
+		*/
+		public PersonFile setSource(String source) {
+			super.change(SOURCE,super.getSource(),source);
+			super.setSource(source);
 			return this;
 		}
 		
@@ -639,6 +692,17 @@ public class PersonFileVOMeta extends PersonFileMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 person
+		 * @param person person
+		 * @return 当前对象
+		*/
+		public PersonFile setPerson(Person person) {
+			super.change(PERSON,super.getPerson(),person);
+			super.setPerson(person);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -660,6 +724,7 @@ public class PersonFileVOMeta extends PersonFileMeta {
 			inst.setSaveLoc(this.getSaveLoc());
 			inst.setWorkStartDate(this.getWorkStartDate());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSource(this.getSource());
 			inst.setUserId(this.getUserId());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
@@ -675,12 +740,14 @@ public class PersonFileVOMeta extends PersonFileMeta {
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPerson(this.getPerson());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());

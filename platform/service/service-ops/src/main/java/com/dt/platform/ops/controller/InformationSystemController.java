@@ -77,7 +77,7 @@ public class InformationSystemController extends SuperController {
      * 添加信息系统
      */
     @ApiOperation(value = "添加信息系统")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InformationSystemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "491353803505799168"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "121212"),
@@ -104,7 +104,8 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.DIFFPLACE_BACKUP_INFO, value = "异地备份", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.ARCH_METHOD, value = "归档模式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InformationSystemServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -119,7 +120,7 @@ public class InformationSystemController extends SuperController {
      * 删除信息系统
      */
     @ApiOperation(value = "删除信息系统")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InformationSystemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "491353803505799168")
 	})
     @ApiOperationSupport(order = 2)
@@ -135,7 +136,7 @@ public class InformationSystemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除信息系统")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InformationSystemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -150,7 +151,7 @@ public class InformationSystemController extends SuperController {
      * 更新信息系统
      */
     @ApiOperation(value = "更新信息系统")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InformationSystemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "491353803505799168"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "121212"),
@@ -177,7 +178,8 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.DIFFPLACE_BACKUP_INFO, value = "异地备份", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.ARCH_METHOD, value = "归档模式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InformationSystemVOMeta.PAGE_INDEX, InformationSystemVOMeta.PAGE_SIZE, InformationSystemVOMeta.SEARCH_FIELD, InformationSystemVOMeta.FUZZY_FIELD, InformationSystemVOMeta.SEARCH_VALUE, InformationSystemVOMeta.SORT_FIELD, InformationSystemVOMeta.SORT_TYPE, InformationSystemVOMeta.IDS })
     @SentinelResource(value = InformationSystemServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -192,7 +194,7 @@ public class InformationSystemController extends SuperController {
      * 保存信息系统
      */
     @ApiOperation(value = "保存信息系统")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InformationSystemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "491353803505799168"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "121212"),
@@ -219,7 +221,8 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.DIFFPLACE_BACKUP_INFO, value = "异地备份", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.ARCH_METHOD, value = "归档模式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InformationSystemVOMeta.PAGE_INDEX, InformationSystemVOMeta.PAGE_SIZE, InformationSystemVOMeta.SEARCH_FIELD, InformationSystemVOMeta.FUZZY_FIELD, InformationSystemVOMeta.SEARCH_VALUE, InformationSystemVOMeta.SORT_FIELD, InformationSystemVOMeta.SORT_TYPE, InformationSystemVOMeta.IDS })
     @SentinelResource(value = InformationSystemServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -234,7 +237,7 @@ public class InformationSystemController extends SuperController {
      * 获取信息系统
      */
     @ApiOperation(value = "获取信息系统")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InformationSystemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -260,7 +263,7 @@ public class InformationSystemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除信息系统")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InformationSystemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -277,7 +280,7 @@ public class InformationSystemController extends SuperController {
      * 查询信息系统
      */
     @ApiOperation(value = "查询信息系统")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InformationSystemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "491353803505799168"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "121212"),
@@ -304,7 +307,8 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.DIFFPLACE_BACKUP_INFO, value = "异地备份", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.ARCH_METHOD, value = "归档模式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InformationSystemVOMeta.PAGE_INDEX, InformationSystemVOMeta.PAGE_SIZE })
     @SentinelResource(value = InformationSystemServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -320,7 +324,7 @@ public class InformationSystemController extends SuperController {
      * 分页查询信息系统
      */
     @ApiOperation(value = "分页查询信息系统")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InformationSystemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "491353803505799168"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "121212"),
@@ -347,7 +351,8 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.DIFFPLACE_BACKUP_INFO, value = "异地备份", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.ARCH_METHOD, value = "归档模式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InformationSystemServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

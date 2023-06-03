@@ -16,8 +16,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-18 11:19:27
- * @sign 76B9736ACA102F60F73F8A0282D331CA
+ * @since 2023-06-03 06:52:16
+ * @sign 401E5725FE1CA16B8C09379AC068FF2C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -324,6 +324,16 @@ public class HostMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.Host,java.lang.String> HOST_NOTES_PROP = new BeanProperty(com.dt.platform.domain.ops.Host.class ,HOST_NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
+	 * 附件 , 类型: java.lang.String
+	*/
+	public static final String FILE_IDS="fileIds";
+	
+	/**
+	 * 附件 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.Host,java.lang.String> FILE_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.Host.class ,FILE_IDS, java.lang.String.class, "附件", "附件", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -526,7 +536,7 @@ public class HostMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , SYSTEM_ID , HOST_TYPE , STATUS , HOST_NAME , HOST_IP , HOST_VIP , HOST_IPV6 , ENVIRONMENT , POSITION_ID , MONITOR_STATUS , DIRECTOR_USERNAME , HOST_MEMORY , HOST_CPU , HOST_CONF , PORT_LIST , USER_OS_ADMIN , USER_DB_ADMIN , USER_DB_USED , USER_APP_USED , USER_OPS_OPER , USER_OTHER , PASSWORD_STRATEGY_ID , HOST_BACKUP_METHOD , HOST_BACKUP_INFO , OFFLINE_TIME , ONLINE_TIME , ARCH , LABELS , HOST_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , INFO_SYSTEM , POSITION , HOST_DB_LIST , HOST_DB_IDS , HOST_MIDDLEWARE_LIST , HOST_MIDDLEWARE_IDS , HOST_OS_LIST , HOST_OS_IDS , BACKUP_METHOD };
+	public static final String[] $PROPS={ ID , SYSTEM_ID , HOST_TYPE , STATUS , HOST_NAME , HOST_IP , HOST_VIP , HOST_IPV6 , ENVIRONMENT , POSITION_ID , MONITOR_STATUS , DIRECTOR_USERNAME , HOST_MEMORY , HOST_CPU , HOST_CONF , PORT_LIST , USER_OS_ADMIN , USER_DB_ADMIN , USER_DB_USED , USER_APP_USED , USER_OPS_OPER , USER_OTHER , PASSWORD_STRATEGY_ID , HOST_BACKUP_METHOD , HOST_BACKUP_INFO , OFFLINE_TIME , ONLINE_TIME , ARCH , LABELS , HOST_NOTES , FILE_IDS , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , INFO_SYSTEM , POSITION , HOST_DB_LIST , HOST_DB_IDS , HOST_MIDDLEWARE_LIST , HOST_MIDDLEWARE_IDS , HOST_OS_LIST , HOST_OS_IDS , BACKUP_METHOD };
 	
 	/**
 	 * 代理类
@@ -867,6 +877,17 @@ public class HostMeta {
 		}
 		
 		/**
+		 * 设置 附件
+		 * @param fileIds 附件
+		 * @return 当前对象
+		*/
+		public Host setFileIds(String fileIds) {
+			super.change(FILE_IDS,super.getFileIds(),fileIds);
+			super.setFileIds(fileIds);
+			return this;
+		}
+		
+		/**
 		 * 设置 创建人ID
 		 * @param createBy 创建人ID
 		 * @return 当前对象
@@ -1107,6 +1128,7 @@ public class HostMeta {
 			inst.setPasswordStrategyId(this.getPasswordStrategyId());
 			inst.setDirectorUsername(this.getDirectorUsername());
 			inst.setUserOsAdmin(this.getUserOsAdmin());
+			inst.setFileIds(this.getFileIds());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setHostType(this.getHostType());
 			inst.setPortList(this.getPortList());

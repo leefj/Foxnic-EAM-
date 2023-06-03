@@ -14,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-03 16:00:36
- * @sign A4760002E2C46A63027FD19148F51477
+ * @since 2023-06-03 06:52:21
+ * @sign E44ACF06B21D6A6C363C391795B04E9C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -102,14 +102,14 @@ public class InformationSystemVOMeta extends InformationSystemMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystemVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystemVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
 	*/
 	public static final String DATA_ORIGIN="dataOrigin";
 	
 	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystemVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystemVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端按来源执行不同的逻辑", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystemVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystemVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
@@ -120,6 +120,16 @@ public class InformationSystemVOMeta extends InformationSystemMeta {
 	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystemVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystemVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystemVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystemVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -402,6 +412,16 @@ public class InformationSystemVOMeta extends InformationSystemMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystemVO,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystemVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
+	 * 附件 , 类型: java.lang.String
+	*/
+	public static final String FILE_IDS="fileIds";
+	
+	/**
+	 * 附件 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystemVO,java.lang.String> FILE_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystemVO.class ,FILE_IDS, java.lang.String.class, "附件", "附件", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -564,7 +584,7 @@ public class InformationSystemVOMeta extends InformationSystemMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , PID , NAME , PROFILE , STATUS , ADDRESS , OPS_METHOD , DEV_METHOD , TECHNICAL_CONTACT , BUSINESS_CONTACT , BELONG_ORG_ID , LASTDRILL_DATE , ONLINE_DATE , OFFLINE_DATE , OS_INFO , DB_INFO , APP_INFO , GRADE , RTO , RPO , HARDWARE_INFO , BACKUP_INFO , SAMEPLACE_BACUP_INFO , DIFFPLACE_BACKUP_INFO , ARCH_METHOD , LABELS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , BELONG_ORGANIZATION , INFO_SYSTEM_STATUS , INFO_SYSTEM_OPS_METHOD , INFO_SYSTEM_DEV_METHOD , INFO_SYSTEM_GRADE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PID , NAME , PROFILE , STATUS , ADDRESS , OPS_METHOD , DEV_METHOD , TECHNICAL_CONTACT , BUSINESS_CONTACT , BELONG_ORG_ID , LASTDRILL_DATE , ONLINE_DATE , OFFLINE_DATE , OS_INFO , DB_INFO , APP_INFO , GRADE , RTO , RPO , HARDWARE_INFO , BACKUP_INFO , SAMEPLACE_BACUP_INFO , DIFFPLACE_BACKUP_INFO , ARCH_METHOD , LABELS , NOTES , FILE_IDS , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , BELONG_ORGANIZATION , INFO_SYSTEM_STATUS , INFO_SYSTEM_OPS_METHOD , INFO_SYSTEM_DEV_METHOD , INFO_SYSTEM_GRADE };
 	
 	/**
 	 * 代理类
@@ -681,6 +701,17 @@ public class InformationSystemVOMeta extends InformationSystemMeta {
 		public InformationSystemVO setQueryLogic(String queryLogic) {
 			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
 			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public InformationSystemVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
 			return this;
 		}
 		
@@ -993,6 +1024,17 @@ public class InformationSystemVOMeta extends InformationSystemMeta {
 		}
 		
 		/**
+		 * 设置 附件
+		 * @param fileIds 附件
+		 * @return 当前对象
+		*/
+		public InformationSystem setFileIds(String fileIds) {
+			super.change(FILE_IDS,super.getFileIds(),fileIds);
+			super.setFileIds(fileIds);
+			return this;
+		}
+		
+		/**
 		 * 设置 创建人ID
 		 * @param createBy 创建人ID
 		 * @return 当前对象
@@ -1192,6 +1234,7 @@ public class InformationSystemVOMeta extends InformationSystemMeta {
 			inst.setTechnicalContact(this.getTechnicalContact());
 			inst.setOsInfo(this.getOsInfo());
 			inst.setHardwareInfo(this.getHardwareInfo());
+			inst.setFileIds(this.getFileIds());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setId(this.getId());
 			inst.setBackupInfo(this.getBackupInfo());
@@ -1222,6 +1265,7 @@ public class InformationSystemVOMeta extends InformationSystemMeta {
 			if(all) {
 				inst.setSearchField(this.getSearchField());
 				inst.setInfoSystemStatus(this.getInfoSystemStatus());
+				inst.setRequestAction(this.getRequestAction());
 				inst.setVoucherList(this.getVoucherList());
 				inst.setInfoSystemDevMethod(this.getInfoSystemDevMethod());
 				inst.setInfoSystemGrade(this.getInfoSystemGrade());

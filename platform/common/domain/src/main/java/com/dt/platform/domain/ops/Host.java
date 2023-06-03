@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 主机
  * <p>主机 , 数据表 ops_host 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-18 11:19:27
- * @sign 76B9736ACA102F60F73F8A0282D331CA
+ * @since 2023-06-03 06:52:16
+ * @sign 401E5725FE1CA16B8C09379AC068FF2C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,19 +45,19 @@ public class Host extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "599359342004666368")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "695309698194210816")
 	private String id;
 	
 	/**
 	 * 信息系统：信息系统
 	*/
-	@ApiModelProperty(required = false,value="信息系统" , notes = "信息系统" , example = "599359261440475136")
+	@ApiModelProperty(required = false,value="信息系统" , notes = "信息系统")
 	private String systemId;
 	
 	/**
 	 * 主机类型：主机类型
 	*/
-	@ApiModelProperty(required = false,value="主机类型" , notes = "主机类型" , example = "office")
+	@ApiModelProperty(required = false,value="主机类型" , notes = "主机类型" , example = "business")
 	private String hostType;
 	
 	/**
@@ -69,13 +69,13 @@ public class Host extends Entity {
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "1212")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "121212")
 	private String hostName;
 	
 	/**
 	 * 物理IP：物理IP
 	*/
-	@ApiModelProperty(required = false,value="物理IP" , notes = "物理IP")
+	@ApiModelProperty(required = false,value="物理IP" , notes = "物理IP" , example = "192.168.1.1")
 	private String hostIp;
 	
 	/**
@@ -201,7 +201,7 @@ public class Host extends Entity {
 	/**
 	 * 上线时间：上线时间
 	*/
-	@ApiModelProperty(required = false,value="上线时间" , notes = "上线时间" , example = "2022-07-12 12:00:00")
+	@ApiModelProperty(required = false,value="上线时间" , notes = "上线时间" , example = "2023-04-03 12:00:00")
 	private Date onlineTime;
 	
 	/**
@@ -223,6 +223,12 @@ public class Host extends Entity {
 	private String hostNotes;
 	
 	/**
+	 * 附件：附件
+	*/
+	@ApiModelProperty(required = false,value="附件" , notes = "附件")
+	private String fileIds;
+	
+	/**
 	 * 创建人ID：创建人ID
 	*/
 	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
@@ -231,25 +237,25 @@ public class Host extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-07-12 10:00:03")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-03 04:32:30")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-04 08:49:46")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除" , example = "1")
+	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -270,7 +276,7 @@ public class Host extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
@@ -916,6 +922,25 @@ public class Host extends Entity {
 	}
 	
 	/**
+	 * 获得 附件<br>
+	 * 附件
+	 * @return 附件
+	*/
+	public String getFileIds() {
+		return fileIds;
+	}
+	
+	/**
+	 * 设置 附件
+	 * @param fileIds 附件
+	 * @return 当前对象
+	*/
+	public Host setFileIds(String fileIds) {
+		this.fileIds=fileIds;
+		return this;
+	}
+	
+	/**
 	 * 获得 创建人ID<br>
 	 * 创建人ID
 	 * @return 创建人ID
@@ -1464,6 +1489,7 @@ public class Host extends Entity {
 		inst.setPasswordStrategyId(this.getPasswordStrategyId());
 		inst.setDirectorUsername(this.getDirectorUsername());
 		inst.setUserOsAdmin(this.getUserOsAdmin());
+		inst.setFileIds(this.getFileIds());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setHostType(this.getHostType());
 		inst.setPortList(this.getPortList());
@@ -1574,6 +1600,7 @@ public class Host extends Entity {
 			this.setPasswordStrategyId(DataParser.parse(String.class, map.get(HostMeta.PASSWORD_STRATEGY_ID)));
 			this.setDirectorUsername(DataParser.parse(String.class, map.get(HostMeta.DIRECTOR_USERNAME)));
 			this.setUserOsAdmin(DataParser.parse(String.class, map.get(HostMeta.USER_OS_ADMIN)));
+			this.setFileIds(DataParser.parse(String.class, map.get(HostMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(HostMeta.UPDATE_BY)));
 			this.setHostType(DataParser.parse(String.class, map.get(HostMeta.HOST_TYPE)));
 			this.setPortList(DataParser.parse(String.class, map.get(HostMeta.PORT_LIST)));
@@ -1620,6 +1647,7 @@ public class Host extends Entity {
 				this.setPasswordStrategyId( (String)map.get(HostMeta.PASSWORD_STRATEGY_ID));
 				this.setDirectorUsername( (String)map.get(HostMeta.DIRECTOR_USERNAME));
 				this.setUserOsAdmin( (String)map.get(HostMeta.USER_OS_ADMIN));
+				this.setFileIds( (String)map.get(HostMeta.FILE_IDS));
 				this.setUpdateBy( (String)map.get(HostMeta.UPDATE_BY));
 				this.setHostType( (String)map.get(HostMeta.HOST_TYPE));
 				this.setPortList( (String)map.get(HostMeta.PORT_LIST));
@@ -1679,6 +1707,7 @@ public class Host extends Entity {
 			this.setPasswordStrategyId(DataParser.parse(String.class, r.getValue(HostMeta.PASSWORD_STRATEGY_ID)));
 			this.setDirectorUsername(DataParser.parse(String.class, r.getValue(HostMeta.DIRECTOR_USERNAME)));
 			this.setUserOsAdmin(DataParser.parse(String.class, r.getValue(HostMeta.USER_OS_ADMIN)));
+			this.setFileIds(DataParser.parse(String.class, r.getValue(HostMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(HostMeta.UPDATE_BY)));
 			this.setHostType(DataParser.parse(String.class, r.getValue(HostMeta.HOST_TYPE)));
 			this.setPortList(DataParser.parse(String.class, r.getValue(HostMeta.PORT_LIST)));
@@ -1721,6 +1750,7 @@ public class Host extends Entity {
 				this.setPasswordStrategyId( (String)r.getValue(HostMeta.PASSWORD_STRATEGY_ID));
 				this.setDirectorUsername( (String)r.getValue(HostMeta.DIRECTOR_USERNAME));
 				this.setUserOsAdmin( (String)r.getValue(HostMeta.USER_OS_ADMIN));
+				this.setFileIds( (String)r.getValue(HostMeta.FILE_IDS));
 				this.setUpdateBy( (String)r.getValue(HostMeta.UPDATE_BY));
 				this.setHostType( (String)r.getValue(HostMeta.HOST_TYPE));
 				this.setPortList( (String)r.getValue(HostMeta.PORT_LIST));

@@ -66,7 +66,7 @@ public class OpsInformationSystemGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.PROFILE).table().hidden(true);
 
-
+        cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.FILE_IDS).form().upload().maxFileCount(6).acceptAllType();
         cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.BELONG_ORG_ID)
                 .form().button().chooseOrganization(true);
         cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.BELONG_ORG_ID).table().fillBy("belongOrganization","fullName");
@@ -193,6 +193,13 @@ public class OpsInformationSystemGtr extends BaseCodeGenerator{
                         OpsTables.OPS_INFORMATION_SYSTEM.RTO,
                         OpsTables.OPS_INFORMATION_SYSTEM.LASTDRILL_DATE
               }
+        );
+
+
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        OpsTables.OPS_INFORMATION_SYSTEM.FILE_IDS,
+                }
         );
 
 

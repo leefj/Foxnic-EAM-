@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 主机VO类型
  * <p>主机 , 数据表 ops_host 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-18 11:19:27
- * @sign F07C13ABD65C13FE1F53CCD7CE6DBBE5
+ * @since 2023-06-03 06:52:16
+ * @sign 9DD9C5BFE09115650ADABC8354C3529E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -83,9 +83,9 @@ public class HostVO extends Host {
 	private String sortType;
 	
 	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
 	private String dataOrigin;
 	
 	/**
@@ -93,6 +93,12 @@ public class HostVO extends Host {
 	*/
 	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
 	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -257,7 +263,7 @@ public class HostVO extends Host {
 	
 	/**
 	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
 	 * @return 数据来源
 	*/
 	public String getDataOrigin() {
@@ -290,6 +296,25 @@ public class HostVO extends Host {
 	*/
 	public HostVO setQueryLogic(String queryLogic) {
 		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public HostVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
 		return this;
 	}
 	
@@ -384,6 +409,7 @@ public class HostVO extends Host {
 		inst.setPasswordStrategyId(this.getPasswordStrategyId());
 		inst.setDirectorUsername(this.getDirectorUsername());
 		inst.setUserOsAdmin(this.getUserOsAdmin());
+		inst.setFileIds(this.getFileIds());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setHostType(this.getHostType());
 		inst.setPortList(this.getPortList());
@@ -420,6 +446,7 @@ public class HostVO extends Host {
 		if(all) {
 			inst.setSearchField(this.getSearchField());
 			inst.setVoucherList(this.getVoucherList());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setHostDbIds(this.getHostDbIds());
 			inst.setInfoSystem(this.getInfoSystem());
@@ -505,6 +532,7 @@ public class HostVO extends Host {
 			this.setPasswordStrategyId(DataParser.parse(String.class, map.get(HostVOMeta.PASSWORD_STRATEGY_ID)));
 			this.setDirectorUsername(DataParser.parse(String.class, map.get(HostVOMeta.DIRECTOR_USERNAME)));
 			this.setUserOsAdmin(DataParser.parse(String.class, map.get(HostVOMeta.USER_OS_ADMIN)));
+			this.setFileIds(DataParser.parse(String.class, map.get(HostVOMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(HostVOMeta.UPDATE_BY)));
 			this.setHostType(DataParser.parse(String.class, map.get(HostVOMeta.HOST_TYPE)));
 			this.setPortList(DataParser.parse(String.class, map.get(HostVOMeta.PORT_LIST)));
@@ -540,6 +568,7 @@ public class HostVO extends Host {
 			this.setHostIpv6(DataParser.parse(String.class, map.get(HostVOMeta.HOST_IPV6)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(HostVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(HostVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(HostVOMeta.FUZZY_FIELD)));
 			this.setInfoSystem(DataParser.parse(InformationSystem.class, map.get(HostVOMeta.INFO_SYSTEM)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(HostVOMeta.PAGE_SIZE)));
@@ -560,6 +589,7 @@ public class HostVO extends Host {
 				this.setPasswordStrategyId( (String)map.get(HostVOMeta.PASSWORD_STRATEGY_ID));
 				this.setDirectorUsername( (String)map.get(HostVOMeta.DIRECTOR_USERNAME));
 				this.setUserOsAdmin( (String)map.get(HostVOMeta.USER_OS_ADMIN));
+				this.setFileIds( (String)map.get(HostVOMeta.FILE_IDS));
 				this.setUpdateBy( (String)map.get(HostVOMeta.UPDATE_BY));
 				this.setHostType( (String)map.get(HostVOMeta.HOST_TYPE));
 				this.setPortList( (String)map.get(HostVOMeta.PORT_LIST));
@@ -595,6 +625,7 @@ public class HostVO extends Host {
 				this.setHostIpv6( (String)map.get(HostVOMeta.HOST_IPV6));
 				// others
 				this.setSearchField( (String)map.get(HostVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(HostVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(HostVOMeta.FUZZY_FIELD));
 				this.setInfoSystem( (InformationSystem)map.get(HostVOMeta.INFO_SYSTEM));
 				this.setPageSize( (Integer)map.get(HostVOMeta.PAGE_SIZE));
@@ -628,6 +659,7 @@ public class HostVO extends Host {
 			this.setPasswordStrategyId(DataParser.parse(String.class, r.getValue(HostVOMeta.PASSWORD_STRATEGY_ID)));
 			this.setDirectorUsername(DataParser.parse(String.class, r.getValue(HostVOMeta.DIRECTOR_USERNAME)));
 			this.setUserOsAdmin(DataParser.parse(String.class, r.getValue(HostVOMeta.USER_OS_ADMIN)));
+			this.setFileIds(DataParser.parse(String.class, r.getValue(HostVOMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(HostVOMeta.UPDATE_BY)));
 			this.setHostType(DataParser.parse(String.class, r.getValue(HostVOMeta.HOST_TYPE)));
 			this.setPortList(DataParser.parse(String.class, r.getValue(HostVOMeta.PORT_LIST)));
@@ -670,6 +702,7 @@ public class HostVO extends Host {
 				this.setPasswordStrategyId( (String)r.getValue(HostVOMeta.PASSWORD_STRATEGY_ID));
 				this.setDirectorUsername( (String)r.getValue(HostVOMeta.DIRECTOR_USERNAME));
 				this.setUserOsAdmin( (String)r.getValue(HostVOMeta.USER_OS_ADMIN));
+				this.setFileIds( (String)r.getValue(HostVOMeta.FILE_IDS));
 				this.setUpdateBy( (String)r.getValue(HostVOMeta.UPDATE_BY));
 				this.setHostType( (String)r.getValue(HostVOMeta.HOST_TYPE));
 				this.setPortList( (String)r.getValue(HostVOMeta.PORT_LIST));

@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 14:56:45
- * @sign FD54227DB34EAFB3BEFF4BCF868F8F71
+ * @since 2023-06-03 06:52:38
+ * @sign 4C1527175A330F570ED75825DA2FA8D1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -191,6 +191,12 @@ public class DbInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
+	
+	/**
+	 * UID：UID
+	*/
+	@ApiModelProperty(required = false,value="UID" , notes = "UID")
+	private String uid;
 	
 	/**
 	 * 选择：选择
@@ -797,6 +803,25 @@ public class DbInfo extends Entity {
 	}
 	
 	/**
+	 * 获得 UID<br>
+	 * UID
+	 * @return UID
+	*/
+	public String getUid() {
+		return uid;
+	}
+	
+	/**
+	 * 设置 UID
+	 * @param uid UID
+	 * @return 当前对象
+	*/
+	public DbInfo setUid(String uid) {
+		this.uid=uid;
+		return this;
+	}
+	
+	/**
 	 * 获得 选择<br>
 	 * 选择
 	 * @return 选择
@@ -1362,6 +1387,7 @@ public class DbInfo extends Entity {
 		inst.setNotes(this.getNotes());
 		inst.setLogMethod(this.getLogMethod());
 		inst.setSelectedCode(this.getSelectedCode());
+		inst.setUid(this.getUid());
 		inst.setBackupStatus(this.getBackupStatus());
 		inst.setBackupStrategy(this.getBackupStrategy());
 		inst.setFileIds(this.getFileIds());
@@ -1468,6 +1494,7 @@ public class DbInfo extends Entity {
 			this.setNotes(DataParser.parse(String.class, map.get(DbInfoMeta.NOTES)));
 			this.setLogMethod(DataParser.parse(String.class, map.get(DbInfoMeta.LOG_METHOD)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(DbInfoMeta.SELECTED_CODE)));
+			this.setUid(DataParser.parse(String.class, map.get(DbInfoMeta.UID)));
 			this.setBackupStatus(DataParser.parse(String.class, map.get(DbInfoMeta.BACKUP_STATUS)));
 			this.setBackupStrategy(DataParser.parse(String.class, map.get(DbInfoMeta.BACKUP_STRATEGY)));
 			this.setFileIds(DataParser.parse(String.class, map.get(DbInfoMeta.FILE_IDS)));
@@ -1510,6 +1537,7 @@ public class DbInfo extends Entity {
 				this.setNotes( (String)map.get(DbInfoMeta.NOTES));
 				this.setLogMethod( (String)map.get(DbInfoMeta.LOG_METHOD));
 				this.setSelectedCode( (String)map.get(DbInfoMeta.SELECTED_CODE));
+				this.setUid( (String)map.get(DbInfoMeta.UID));
 				this.setBackupStatus( (String)map.get(DbInfoMeta.BACKUP_STATUS));
 				this.setBackupStrategy( (String)map.get(DbInfoMeta.BACKUP_STRATEGY));
 				this.setFileIds( (String)map.get(DbInfoMeta.FILE_IDS));
@@ -1565,6 +1593,7 @@ public class DbInfo extends Entity {
 			this.setNotes(DataParser.parse(String.class, r.getValue(DbInfoMeta.NOTES)));
 			this.setLogMethod(DataParser.parse(String.class, r.getValue(DbInfoMeta.LOG_METHOD)));
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(DbInfoMeta.SELECTED_CODE)));
+			this.setUid(DataParser.parse(String.class, r.getValue(DbInfoMeta.UID)));
 			this.setBackupStatus(DataParser.parse(String.class, r.getValue(DbInfoMeta.BACKUP_STATUS)));
 			this.setBackupStrategy(DataParser.parse(String.class, r.getValue(DbInfoMeta.BACKUP_STRATEGY)));
 			this.setFileIds(DataParser.parse(String.class, r.getValue(DbInfoMeta.FILE_IDS)));
@@ -1602,6 +1631,7 @@ public class DbInfo extends Entity {
 				this.setNotes( (String)r.getValue(DbInfoMeta.NOTES));
 				this.setLogMethod( (String)r.getValue(DbInfoMeta.LOG_METHOD));
 				this.setSelectedCode( (String)r.getValue(DbInfoMeta.SELECTED_CODE));
+				this.setUid( (String)r.getValue(DbInfoMeta.UID));
 				this.setBackupStatus( (String)r.getValue(DbInfoMeta.BACKUP_STATUS));
 				this.setBackupStrategy( (String)r.getValue(DbInfoMeta.BACKUP_STRATEGY));
 				this.setFileIds( (String)r.getValue(DbInfoMeta.FILE_IDS));

@@ -18,7 +18,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 14:56:45
+ * @since 2023-06-03 06:52:38
  * @sign 072C5A86F75E9E21D5871FA491A60284
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -396,6 +396,16 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
+	 * UID , 类型: java.lang.String
+	*/
+	public static final String UID="uid";
+	
+	/**
+	 * UID , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> UID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,UID, java.lang.String.class, "UID", "UID", java.lang.String.class, null);
+	
+	/**
 	 * 选择 , 类型: java.lang.String
 	*/
 	public static final String SELECTED_CODE="selectedCode";
@@ -608,7 +618,7 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS , DATA_LOC_DATA , DATA_LOC_IDS , CIPHERTEXT_BOX_DATA , DB_TYPE_LIST , DB_TYPE_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , UID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS , DATA_LOC_DATA , DATA_LOC_IDS , CIPHERTEXT_BOX_DATA , DB_TYPE_LIST , DB_TYPE_IDS };
 	
 	/**
 	 * 代理类
@@ -1026,6 +1036,17 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		}
 		
 		/**
+		 * 设置 UID
+		 * @param uid UID
+		 * @return 当前对象
+		*/
+		public DbInfo setUid(String uid) {
+			super.change(UID,super.getUid(),uid);
+			super.setUid(uid);
+			return this;
+		}
+		
+		/**
 		 * 设置 选择
 		 * @param selectedCode 选择
 		 * @return 当前对象
@@ -1275,6 +1296,7 @@ public class DbInfoVOMeta extends DbInfoMeta {
 			inst.setNotes(this.getNotes());
 			inst.setLogMethod(this.getLogMethod());
 			inst.setSelectedCode(this.getSelectedCode());
+			inst.setUid(this.getUid());
 			inst.setBackupStatus(this.getBackupStatus());
 			inst.setBackupStrategy(this.getBackupStrategy());
 			inst.setFileIds(this.getFileIds());

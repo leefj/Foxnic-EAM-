@@ -16,8 +16,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:16:03
- * @sign A3FA30FB0D756148C5198532D0520F4B
+ * @since 2023-06-03 22:48:50
+ * @sign 14CDED4C3AA6E1C45C802D2FF024921F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -112,6 +112,16 @@ public class PersonMeta {
 	 * 员工状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> EMPLOYEE_STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EMPLOYEE_STATUS, java.lang.String.class, "员工状态", "员工状态", java.lang.String.class, null);
+	
+	/**
+	 * 员工标记 , 类型: java.lang.String
+	*/
+	public static final String EMPLOYEE_IDENTITY_STATUS="employeeIdentityStatus";
+	
+	/**
+	 * 员工标记 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> EMPLOYEE_IDENTITY_STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EMPLOYEE_IDENTITY_STATUS, java.lang.String.class, "员工标记", "员工标记", java.lang.String.class, null);
 	
 	/**
 	 * 人员类型 , 类型: java.lang.String
@@ -704,6 +714,16 @@ public class PersonMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.system.DictItem> POLITIC_COUNTENANCE_DATA_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,POLITIC_COUNTENANCE_DATA, org.github.foxnic.web.domain.system.DictItem.class, "politicCountenanceData", "politicCountenanceData", org.github.foxnic.web.domain.system.DictItem.class, null);
 	
 	/**
+	 * employeeIdentity , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String EMPLOYEE_IDENTITY="employeeIdentity";
+	
+	/**
+	 * employeeIdentity , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.system.DictItem> EMPLOYEE_IDENTITY_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EMPLOYEE_IDENTITY, org.github.foxnic.web.domain.system.DictItem.class, "employeeIdentity", "employeeIdentity", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * employee , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final String EMPLOYEE="employee";
@@ -726,7 +746,7 @@ public class PersonMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , PERSON_PICTURE_ID , EMPLOYEE_ID , FILE_ID , CONTRACT_DURATION , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION , RANK , PROFESSIONAL_LEVEL , BLOOD_TYPE_DICT , SEX_DICT , MARITAL_STATUS_DICT , EMPLOYEE_OWNER_TYPE_DICT , EDUCATION_DATA , POLITIC_COUNTENANCE_DATA , EMPLOYEE , PERSON_CERT_LIST };
+	public static final String[] $PROPS={ ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_IDENTITY_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , PERSON_PICTURE_ID , EMPLOYEE_ID , FILE_ID , CONTRACT_DURATION , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION , RANK , PROFESSIONAL_LEVEL , BLOOD_TYPE_DICT , SEX_DICT , MARITAL_STATUS_DICT , EMPLOYEE_OWNER_TYPE_DICT , EDUCATION_DATA , POLITIC_COUNTENANCE_DATA , EMPLOYEE_IDENTITY , EMPLOYEE , PERSON_CERT_LIST };
 	
 	/**
 	 * 代理类
@@ -832,6 +852,17 @@ public class PersonMeta {
 		public Person setEmployeeStatus(String employeeStatus) {
 			super.change(EMPLOYEE_STATUS,super.getEmployeeStatus(),employeeStatus);
 			super.setEmployeeStatus(employeeStatus);
+			return this;
+		}
+		
+		/**
+		 * 设置 员工标记
+		 * @param employeeIdentityStatus 员工标记
+		 * @return 当前对象
+		*/
+		public Person setEmployeeIdentityStatus(String employeeIdentityStatus) {
+			super.change(EMPLOYEE_IDENTITY_STATUS,super.getEmployeeIdentityStatus(),employeeIdentityStatus);
+			super.setEmployeeIdentityStatus(employeeIdentityStatus);
 			return this;
 		}
 		
@@ -1485,6 +1516,17 @@ public class PersonMeta {
 		}
 		
 		/**
+		 * 设置 employeeIdentity
+		 * @param employeeIdentity employeeIdentity
+		 * @return 当前对象
+		*/
+		public Person setEmployeeIdentity(DictItem employeeIdentity) {
+			super.change(EMPLOYEE_IDENTITY,super.getEmployeeIdentity(),employeeIdentity);
+			super.setEmployeeIdentity(employeeIdentity);
+			return this;
+		}
+		
+		/**
 		 * 设置 employee
 		 * @param employee employee
 		 * @return 当前对象
@@ -1575,6 +1617,7 @@ public class PersonMeta {
 			inst.setDeleted(this.getDeleted());
 			inst.setGraduationDate(this.getGraduationDate());
 			inst.setCreateTime(this.getCreateTime());
+			inst.setEmployeeIdentityStatus(this.getEmployeeIdentityStatus());
 			inst.setEmployeeTypeCode(this.getEmployeeTypeCode());
 			inst.setLeaveDate(this.getLeaveDate());
 			inst.setTenantId(this.getTenantId());
@@ -1592,6 +1635,7 @@ public class PersonMeta {
 				inst.setSexDict(this.getSexDict());
 				inst.setEducationData(this.getEducationData());
 				inst.setMaritalStatusDict(this.getMaritalStatusDict());
+				inst.setEmployeeIdentity(this.getEmployeeIdentity());
 			}
 			inst.clearModifies();
 			return inst;

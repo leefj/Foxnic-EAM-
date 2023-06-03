@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据字段VO类型
  * <p>数据字段 , 数据表 sys_form_data_col 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-29 19:33:59
+ * @since 2023-06-03 06:53:45
  * @sign C4D6F8D3A3C5DFEECBA747953724923F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
