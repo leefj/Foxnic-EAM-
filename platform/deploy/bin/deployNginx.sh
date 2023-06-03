@@ -1,5 +1,6 @@
 #!/bin/sh
 #8091,8090
+#sh deployNginx.sh
 ########################################
 cur_dir=$(cd `dirname $0`; pwd)
 app_dir=$cur_dir/..

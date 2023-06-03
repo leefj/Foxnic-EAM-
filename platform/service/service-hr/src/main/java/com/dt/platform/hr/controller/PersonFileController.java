@@ -1,6 +1,9 @@
 package com.dt.platform.hr.controller;
 
 import java.util.*;
+
+import com.dt.platform.constants.enums.hr.EmployeeStatusEnum;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,7 @@ import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.hr.meta.PersonFileMeta;
+import com.dt.platform.domain.hr.Person;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -44,7 +48,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 人员档案接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:18:22
+ * @since 2023-06-03 08:44:58
 */
 
 @InDoc
@@ -55,27 +59,28 @@ public class PersonFileController extends SuperController {
 	@Autowired
 	private IPersonFileService personFileService;
 
-
 	/**
 	 * 添加人员档案
 	*/
 	@ApiOperation(value = "添加人员档案")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.CODE , value = "档案编号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.STATUS , value = "档案状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717288555616927744"),
+		@ApiImplicitParam(name = PersonFileVOMeta.CODE , value = "档案编号" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = PersonFileVOMeta.STATUS , value = "档案状态" , required = false , dataTypeClass=String.class , example = "using"),
 		@ApiImplicitParam(name = PersonFileVOMeta.USER_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.IF_NEW , value = "是否新建档" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.SAVE_LOC , value = "档案保管地" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.WORK_START_DATE , value = "参加工作时间" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.IF_NEW , value = "是否新建档" , required = false , dataTypeClass=String.class , example = "yes"),
+		@ApiImplicitParam(name = PersonFileVOMeta.SOURCE , value = "来源" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.SAVE_LOC , value = "档案保管地" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = PersonFileVOMeta.WORK_START_DATE , value = "参加工作时间" , required = false , dataTypeClass=String.class , example = "2023-00-08"),
 		@ApiImplicitParam(name = PersonFileVOMeta.FILE , value = "附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class , example = "12"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = PersonFileServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(PersonFileServiceProxy.INSERT)
 	public Result insert(PersonFileVO personFileVO) {
+		
 		Result result=personFileService.insert(personFileVO,false);
 		return result;
 	}
@@ -87,12 +92,13 @@ public class PersonFileController extends SuperController {
 	*/
 	@ApiOperation(value = "删除人员档案")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717288555616927744")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = PersonFileServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(PersonFileServiceProxy.DELETE)
 	public Result deleteById(String id) {
+		
 		this.validator().asserts(id).require("缺少id值");
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
@@ -121,7 +127,7 @@ public class PersonFileController extends SuperController {
 	@SentinelResource(value = PersonFileServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(PersonFileServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
-
+		
 		// 参数校验
 		this.validator().asserts(ids).require("缺少ids参数");
 		if(this.validator().failure()) {
@@ -169,21 +175,23 @@ public class PersonFileController extends SuperController {
 	*/
 	@ApiOperation(value = "更新人员档案")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.CODE , value = "档案编号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.STATUS , value = "档案状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717288555616927744"),
+		@ApiImplicitParam(name = PersonFileVOMeta.CODE , value = "档案编号" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = PersonFileVOMeta.STATUS , value = "档案状态" , required = false , dataTypeClass=String.class , example = "using"),
 		@ApiImplicitParam(name = PersonFileVOMeta.USER_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.IF_NEW , value = "是否新建档" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.SAVE_LOC , value = "档案保管地" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.WORK_START_DATE , value = "参加工作时间" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.IF_NEW , value = "是否新建档" , required = false , dataTypeClass=String.class , example = "yes"),
+		@ApiImplicitParam(name = PersonFileVOMeta.SOURCE , value = "来源" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.SAVE_LOC , value = "档案保管地" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = PersonFileVOMeta.WORK_START_DATE , value = "参加工作时间" , required = false , dataTypeClass=String.class , example = "2023-00-08"),
 		@ApiImplicitParam(name = PersonFileVOMeta.FILE , value = "附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class , example = "12"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { PersonFileVOMeta.PAGE_INDEX , PersonFileVOMeta.PAGE_SIZE , PersonFileVOMeta.SEARCH_FIELD , PersonFileVOMeta.FUZZY_FIELD , PersonFileVOMeta.SEARCH_VALUE , PersonFileVOMeta.DIRTY_FIELDS , PersonFileVOMeta.SORT_FIELD , PersonFileVOMeta.SORT_TYPE , PersonFileVOMeta.DATA_ORIGIN , PersonFileVOMeta.QUERY_LOGIC , PersonFileVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { PersonFileVOMeta.PAGE_INDEX , PersonFileVOMeta.PAGE_SIZE , PersonFileVOMeta.SEARCH_FIELD , PersonFileVOMeta.FUZZY_FIELD , PersonFileVOMeta.SEARCH_VALUE , PersonFileVOMeta.DIRTY_FIELDS , PersonFileVOMeta.SORT_FIELD , PersonFileVOMeta.SORT_TYPE , PersonFileVOMeta.DATA_ORIGIN , PersonFileVOMeta.QUERY_LOGIC , PersonFileVOMeta.REQUEST_ACTION , PersonFileVOMeta.IDS } )
 	@SentinelResource(value = PersonFileServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(PersonFileServiceProxy.UPDATE)
 	public Result update(PersonFileVO personFileVO) {
+		
 		Result result=personFileService.update(personFileVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -194,21 +202,23 @@ public class PersonFileController extends SuperController {
 	*/
 	@ApiOperation(value = "保存人员档案")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.CODE , value = "档案编号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.STATUS , value = "档案状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717288555616927744"),
+		@ApiImplicitParam(name = PersonFileVOMeta.CODE , value = "档案编号" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = PersonFileVOMeta.STATUS , value = "档案状态" , required = false , dataTypeClass=String.class , example = "using"),
 		@ApiImplicitParam(name = PersonFileVOMeta.USER_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.IF_NEW , value = "是否新建档" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.SAVE_LOC , value = "档案保管地" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.WORK_START_DATE , value = "参加工作时间" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.IF_NEW , value = "是否新建档" , required = false , dataTypeClass=String.class , example = "yes"),
+		@ApiImplicitParam(name = PersonFileVOMeta.SOURCE , value = "来源" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.SAVE_LOC , value = "档案保管地" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = PersonFileVOMeta.WORK_START_DATE , value = "参加工作时间" , required = false , dataTypeClass=String.class , example = "2023-00-08"),
 		@ApiImplicitParam(name = PersonFileVOMeta.FILE , value = "附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class , example = "12"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { PersonFileVOMeta.PAGE_INDEX , PersonFileVOMeta.PAGE_SIZE , PersonFileVOMeta.SEARCH_FIELD , PersonFileVOMeta.FUZZY_FIELD , PersonFileVOMeta.SEARCH_VALUE , PersonFileVOMeta.DIRTY_FIELDS , PersonFileVOMeta.SORT_FIELD , PersonFileVOMeta.SORT_TYPE , PersonFileVOMeta.DATA_ORIGIN , PersonFileVOMeta.QUERY_LOGIC , PersonFileVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { PersonFileVOMeta.PAGE_INDEX , PersonFileVOMeta.PAGE_SIZE , PersonFileVOMeta.SEARCH_FIELD , PersonFileVOMeta.FUZZY_FIELD , PersonFileVOMeta.SEARCH_VALUE , PersonFileVOMeta.DIRTY_FIELDS , PersonFileVOMeta.SORT_FIELD , PersonFileVOMeta.SORT_TYPE , PersonFileVOMeta.DATA_ORIGIN , PersonFileVOMeta.QUERY_LOGIC , PersonFileVOMeta.REQUEST_ACTION , PersonFileVOMeta.IDS } )
 	@SentinelResource(value = PersonFileServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(PersonFileServiceProxy.SAVE)
 	public Result save(PersonFileVO personFileVO) {
+		
 		Result result=personFileService.save(personFileVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -225,8 +235,13 @@ public class PersonFileController extends SuperController {
 	@SentinelResource(value = PersonFileServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(PersonFileServiceProxy.GET_BY_ID)
 	public Result<PersonFile> getById(String id) {
+		
 		Result<PersonFile> result=new Result<>();
 		PersonFile personFile=personFileService.getById(id);
+		// join 关联的对象
+		personFileService.dao().fill(personFile)
+			.with(PersonFileMeta.PERSON)
+			.execute();
 		result.success(true).data(personFile);
 		return result;
 	}
@@ -244,6 +259,7 @@ public class PersonFileController extends SuperController {
 		@SentinelResource(value = PersonFileServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(PersonFileServiceProxy.GET_BY_IDS)
 	public Result<List<PersonFile>> getByIds(List<String> ids) {
+		
 		Result<List<PersonFile>> result=new Result<>();
 		List<PersonFile> list=personFileService.queryListByIds(ids);
 		result.success(true).data(list);
@@ -256,20 +272,22 @@ public class PersonFileController extends SuperController {
 	*/
 	@ApiOperation(value = "查询人员档案")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.CODE , value = "档案编号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.STATUS , value = "档案状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717288555616927744"),
+		@ApiImplicitParam(name = PersonFileVOMeta.CODE , value = "档案编号" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = PersonFileVOMeta.STATUS , value = "档案状态" , required = false , dataTypeClass=String.class , example = "using"),
 		@ApiImplicitParam(name = PersonFileVOMeta.USER_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.IF_NEW , value = "是否新建档" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.SAVE_LOC , value = "档案保管地" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.WORK_START_DATE , value = "参加工作时间" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.IF_NEW , value = "是否新建档" , required = false , dataTypeClass=String.class , example = "yes"),
+		@ApiImplicitParam(name = PersonFileVOMeta.SOURCE , value = "来源" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.SAVE_LOC , value = "档案保管地" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = PersonFileVOMeta.WORK_START_DATE , value = "参加工作时间" , required = false , dataTypeClass=String.class , example = "2023-00-08"),
 		@ApiImplicitParam(name = PersonFileVOMeta.FILE , value = "附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class , example = "12"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { PersonFileVOMeta.PAGE_INDEX , PersonFileVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = PersonFileServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(PersonFileServiceProxy.QUERY_LIST)
 	public Result<List<PersonFile>> queryList(PersonFileVO sample) {
+		
 		Result<List<PersonFile>> result=new Result<>();
 		List<PersonFile> list=personFileService.queryList(sample);
 		result.success(true).data(list);
@@ -282,29 +300,65 @@ public class PersonFileController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询人员档案")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.CODE , value = "档案编号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.STATUS , value = "档案状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717288555616927744"),
+		@ApiImplicitParam(name = PersonFileVOMeta.CODE , value = "档案编号" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = PersonFileVOMeta.STATUS , value = "档案状态" , required = false , dataTypeClass=String.class , example = "using"),
 		@ApiImplicitParam(name = PersonFileVOMeta.USER_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.IF_NEW , value = "是否新建档" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.SAVE_LOC , value = "档案保管地" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.WORK_START_DATE , value = "参加工作时间" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.IF_NEW , value = "是否新建档" , required = false , dataTypeClass=String.class , example = "yes"),
+		@ApiImplicitParam(name = PersonFileVOMeta.SOURCE , value = "来源" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.SAVE_LOC , value = "档案保管地" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = PersonFileVOMeta.WORK_START_DATE , value = "参加工作时间" , required = false , dataTypeClass=String.class , example = "2023-00-08"),
 		@ApiImplicitParam(name = PersonFileVOMeta.FILE , value = "附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonFileVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonFileVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class , example = "12"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = PersonFileServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(PersonFileServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<PersonFile>> queryPagedList(PersonFileVO sample) {
+		
 		Result<PagedList<PersonFile>> result=new Result<>();
 		PagedList<PersonFile> list=personFileService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
+		// join 关联的对象
+		personFileService.dao().fill(list)
+			.with(PersonFileMeta.PERSON)
+			.execute();
 		result.success(true).data(list);
 		return result;
 	}
 
 
+	/**
+	 * 分页查询人员档案
+	 */
+	@ApiOperation(value = "分页查询人员档案")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = PersonFileVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717288555616927744"),
+			@ApiImplicitParam(name = PersonFileVOMeta.CODE , value = "档案编号" , required = false , dataTypeClass=String.class , example = "1212"),
+			@ApiImplicitParam(name = PersonFileVOMeta.STATUS , value = "档案状态" , required = false , dataTypeClass=String.class , example = "using"),
+			@ApiImplicitParam(name = PersonFileVOMeta.USER_ID , value = "人员" , required = false , dataTypeClass=String.class),
+			@ApiImplicitParam(name = PersonFileVOMeta.IF_NEW , value = "是否新建档" , required = false , dataTypeClass=String.class , example = "yes"),
+			@ApiImplicitParam(name = PersonFileVOMeta.SOURCE , value = "来源" , required = false , dataTypeClass=String.class),
+			@ApiImplicitParam(name = PersonFileVOMeta.SAVE_LOC , value = "档案保管地" , required = false , dataTypeClass=String.class , example = "12"),
+			@ApiImplicitParam(name = PersonFileVOMeta.WORK_START_DATE , value = "参加工作时间" , required = false , dataTypeClass=String.class , example = "2023-00-08"),
+			@ApiImplicitParam(name = PersonFileVOMeta.FILE , value = "附件" , required = false , dataTypeClass=String.class),
+			@ApiImplicitParam(name = PersonFileVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class , example = "12"),
+	})
+	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = PersonFileServiceProxy.NOT_EMPLOYEE_QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(PersonFileServiceProxy.NOT_EMPLOYEE_QUERY_PAGED_LIST)
+	public Result<PagedList<PersonFile>> queryPagedList2(PersonFileVO sample) {
 
-
+		ConditionExpr expr=new ConditionExpr();
+		expr.and("id in (select id from hr_person where deleted=0 and employee_status=?)",EmployeeStatusEnum.NON_EMPLOYEE.code());
+		Result<PagedList<PersonFile>> result=new Result<>();
+		PagedList<PersonFile> list=personFileService.queryPagedList(sample,expr,sample.getPageSize(),sample.getPageIndex());
+		// join 关联的对象
+		personFileService.dao().fill(list)
+				.with(PersonFileMeta.PERSON)
+				.execute();
+		result.success(true).data(list);
+		return result;
+	}
 
 
 }

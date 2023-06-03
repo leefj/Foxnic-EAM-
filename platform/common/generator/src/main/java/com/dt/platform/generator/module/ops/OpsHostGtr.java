@@ -202,6 +202,8 @@ public class OpsHostGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_HOST.USER_OTHER).form().textArea().height(30);
         cfg.view().field(OpsTables.OPS_HOST.PORT_LIST).form().textArea().height(120);
 
+        cfg.view().field(OpsTables.OPS_HOST.FILE_IDS).form().upload().maxFileCount(6).acceptAllType();
+
         cfg.view().list().addToolButton("数据导出","exportHost",null,"ops_host:export");
 
        // cfg.view().list().addToolButton("数据导入","importHost",null,"ops_host:import");
@@ -344,6 +346,7 @@ public class OpsHostGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_HOST.HOST_NOTES,
+                        OpsTables.OPS_HOST.FILE_IDS,
                 }
 
         );

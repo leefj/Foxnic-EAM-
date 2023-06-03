@@ -24,7 +24,7 @@ import java.util.Map;
  * 人员信息服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:16:04
+ * @since 2023-06-03 06:53:01
 */
 
 public interface IPersonService extends  ISimpleIdService<Person,String> {

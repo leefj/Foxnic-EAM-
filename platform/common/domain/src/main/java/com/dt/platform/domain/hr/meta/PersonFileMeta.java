@@ -3,14 +3,15 @@ package com.dt.platform.domain.hr.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.hr.PersonFile;
 import java.util.Date;
+import com.dt.platform.domain.hr.Person;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:18:21
- * @sign 57BD3B68577C069CF6EFD1ACE6C89E41
+ * @since 2023-06-03 08:59:14
+ * @sign 4148727D70AE8690D98C9FF9A8452ECD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -65,6 +66,16 @@ public class PersonFileMeta {
 	 * 是否新建档 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonFile,java.lang.String> IF_NEW_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFile.class ,IF_NEW, java.lang.String.class, "是否新建档", "是否新建档", java.lang.String.class, null);
+	
+	/**
+	 * 来源 , 类型: java.lang.String
+	*/
+	public static final String SOURCE="source";
+	
+	/**
+	 * 来源 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonFile,java.lang.String> SOURCE_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFile.class ,SOURCE, java.lang.String.class, "来源", "来源", java.lang.String.class, null);
 	
 	/**
 	 * 档案保管地 , 类型: java.lang.String
@@ -197,9 +208,19 @@ public class PersonFileMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonFile,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFile.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * person , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final String PERSON="person";
+	
+	/**
+	 * person , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonFile,com.dt.platform.domain.hr.Person> PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonFile.class ,PERSON, com.dt.platform.domain.hr.Person.class, "person", "person", com.dt.platform.domain.hr.Person.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , STATUS , USER_ID , IF_NEW , SAVE_LOC , WORK_START_DATE , FILE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , CODE , STATUS , USER_ID , IF_NEW , SOURCE , SAVE_LOC , WORK_START_DATE , FILE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON };
 	
 	/**
 	 * 代理类
@@ -261,6 +282,17 @@ public class PersonFileMeta {
 		public PersonFile setIfNew(String ifNew) {
 			super.change(IF_NEW,super.getIfNew(),ifNew);
 			super.setIfNew(ifNew);
+			return this;
+		}
+		
+		/**
+		 * 设置 来源
+		 * @param source 来源
+		 * @return 当前对象
+		*/
+		public PersonFile setSource(String source) {
+			super.change(SOURCE,super.getSource(),source);
+			super.setSource(source);
 			return this;
 		}
 		
@@ -406,6 +438,17 @@ public class PersonFileMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 person
+		 * @param person person
+		 * @return 当前对象
+		*/
+		public PersonFile setPerson(Person person) {
+			super.change(PERSON,super.getPerson(),person);
+			super.setPerson(person);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -427,6 +470,7 @@ public class PersonFileMeta {
 			inst.setSaveLoc(this.getSaveLoc());
 			inst.setWorkStartDate(this.getWorkStartDate());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSource(this.getSource());
 			inst.setUserId(this.getUserId());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
@@ -440,6 +484,9 @@ public class PersonFileMeta {
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
 			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setPerson(this.getPerson());
+			}
 			inst.clearModifies();
 			return inst;
 		}

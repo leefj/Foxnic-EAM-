@@ -3,6 +3,7 @@ package com.dt.platform.generator.module.hr;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.HrTables;
+import com.dt.platform.constants.enums.common.ValidStatusEnum;
 import com.dt.platform.constants.enums.hr.EmployeeStatusEnum;
 import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.hr.*;
@@ -36,9 +37,8 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"employeeOwnerTypeDict","employeeOwnerType","employeeOwnerType");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"educationData","educationData","educationData");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"politicCountenanceData","politicCountenanceData","politicCountenanceData");
+        cfg.getPoClassFile().addSimpleProperty(DictItem.class,"employeeIdentity","employeeIdentity","employeeIdentity");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"employee","employee","employee");
-
-
         cfg.getPoClassFile().addListProperty(PersonCert.class,"personCertList","personCertList","personCertList");
 
 
@@ -47,15 +47,30 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON.IDENTITY_CARD).search().fuzzySearch();
         cfg.view().field(HrTables.HR_PERSON.JOB_NUMBER).search().fuzzySearch();
 
+
+
+
+
+        cfg.view().field(HrTables.HR_PERSON.EMPLOYMENT_DATE).search().range();
+        cfg.view().field(HrTables.HR_PERSON.CONTRACT_START_DATE).search().range();
+
         cfg.view().search().inputLayout(
                 new Object[]{
                         HrTables.HR_PERSON.EMPLOYEE_STATUS,
+                        HrTables.HR_PERSON.EMPLOYEE_IDENTITY_STATUS,
                         HrTables.HR_PERSON.JOB_NUMBER,
                         HrTables.HR_PERSON.NAME,
+
+                },
+                new Object[]{
+                        HrTables.HR_PERSON.ORG_ID,
+                        HrTables.HR_PERSON.EMPLOYEE_TYPE_CODE,
+                        HrTables.HR_PERSON.CONTACT_INFORMATION,
                         HrTables.HR_PERSON.IDENTITY_CARD,
                 },
                 new Object[]{
                         HrTables.HR_PERSON.EMPLOYMENT_DATE,
+                        HrTables.HR_PERSON.CONTRACT_START_DATE,
                 }
         );
 
@@ -65,6 +80,34 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().field(HrTables.HR_PERSON.BIRTHDAY).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.NATION_CODE).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.NATIVE_PLACE_CODE).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.MARITAL_STATUS).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.BIRTHDAY).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.IDENTITY_CARD).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.EMERGENCY_CONTACT).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.EMERGENCY_CONTACT_NO).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.HOME_ADDRESS).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.WEIXIN_ID).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.GRADUATION_SCHOOL).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.MAJOR).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.GRADUATION_DATE).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.GRADUATION_SCHOOL).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.FOREIGN_LANGUAGE).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.FOREIGN_LANGUAGE_LEVEL).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.COMPUTER_ABILITY).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.COMPUTER_LEVEL).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.JOIN_PART_DATE).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.BLOOD_TYPE).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.BODY_HEIGHT).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.BODY_WEIGHT).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.JOIN_PART_DATE).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.LEAVE_RESON).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.PAYROLL_CARD).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.PAYROLL_CARD_BANK_CODE).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.PERSON_PICTURE_ID).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.FILE_ID).form().table().disable(true);
 
         cfg.view().field(HrTables.HR_PERSON.BIRTHDAY).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_PERSON.EMPLOYMENT_CONFIRM_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
@@ -74,6 +117,8 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON.FIRST_EMPLOYMENT_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_PERSON.LEAVE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
+
+        cfg.view().field(HrTables.HR_PERSON.JOB_NUMBER).form().readOnly();
 
         cfg.view().field(HrTables.HR_PERSON.EMPLOYEE_ID).table().fillBy("employee","name");
         cfg.view().field(HrTables.HR_PERSON.EMPLOYEE_ID).form()
@@ -117,6 +162,15 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                 fillWith(PersonMeta.RANK).muliti(false);
 
 
+   //
+
+        cfg.view().field(HrTables.HR_PERSON.EMPLOYEE_IDENTITY_STATUS)
+                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=hr_employee_identity_status")
+                .paging(false).filter(false).toolbar(false)
+                .valueField(DictItemMeta.CODE).
+                textField(DictItemMeta.LABEL).
+                fillWith(PersonMeta.EMPLOYEE_IDENTITY).muliti(false);
+
         cfg.view().field(HrTables.HR_PERSON.EDUCATION_CODE)
                 .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=hr_education")
                 .paging(false).filter(false).toolbar(false)
@@ -156,7 +210,7 @@ public class HrmPersonGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(HrTables.HR_PERSON.POLITIC_COUNTENANCE_CODE)
-                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=hr_politic_countenance")
+           .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=hr_politic_countenance")
                 .paging(false).filter(false).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
@@ -164,17 +218,23 @@ public class HrmPersonGtr extends BaseCodeGenerator {
 
         cfg.view().field(HrTables.HR_PERSON.EMPLOYEE_STATUS).form().validate().required().form().radioBox().enumType(EmployeeStatusEnum.class).defaultIndex(0);
 
+        cfg.view().list().operationColumn().addActionButton("合同","personCont","person-cont","hr_person:cont");
+        cfg.view().list().operationColumn().addActionButton("薪酬","personSal","person-sal","hr_person:sal");
+
+
+
         cfg.view().search().rowsDisplay(1);
-        cfg.view().formWindow().width("65%");;
+        cfg.view().formWindow().width("80%");;
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup("基本信息",
                 new Object[] {
                         HrTables.HR_PERSON.NAME,
                         HrTables.HR_PERSON.IDENTITY_CARD,
                         HrTables.HR_PERSON.EMPLOYEE_STATUS,
+                        HrTables.HR_PERSON.EMPLOYEE_IDENTITY_STATUS,
                         HrTables.HR_PERSON.JOB_NUMBER,
                         HrTables.HR_PERSON.SEX_CODE,
-                        HrTables.HR_PERSON.MARITAL_STATUS,
+
                 },
                 new Object[] {
                         HrTables.HR_PERSON.EMPLOYEE_TYPE_CODE,
@@ -182,8 +242,10 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON.NATION_CODE,
                         HrTables.HR_PERSON.NATIVE_PLACE_CODE,
                         HrTables.HR_PERSON.EMPLOYEE_ID,
+                        HrTables.HR_PERSON.MARITAL_STATUS,
                 }
         );
+
 
         cfg.view().form().addGroup("个人情况",
                 new Object[] {
@@ -252,12 +314,12 @@ public class HrmPersonGtr extends BaseCodeGenerator {
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
-                .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
+                .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE) //列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE);
+                .setExtendJsFile(WriteMode.IGNORE);
         //生成代码
         cfg.buildAll();
     }

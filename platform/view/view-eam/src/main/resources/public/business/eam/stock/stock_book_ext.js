@@ -81,6 +81,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            conditions.remainNumber={"inputType":"number_input","begin":"0.1","end":""};
+
             return true;
         },
         /**

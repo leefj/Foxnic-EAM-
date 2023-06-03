@@ -77,6 +77,15 @@ layui.define(['echarts', 'util', 'settings', 'admin'],function () {
 		 * 进一步转换 list 数据
 		 * */
 		templet:function (field,value,r) {
+
+			if(field=="hostName"){
+				if(r.hostIp){
+					return value+"("+r.hostIp+")"
+				}else{
+					return value;
+				}
+			}
+
 			if(value==null) return "";
 			return value;
 		},

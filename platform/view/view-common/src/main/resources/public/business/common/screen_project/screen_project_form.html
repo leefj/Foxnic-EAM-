@@ -2,7 +2,7 @@
 /**
  * 项目 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 14:12:25
+ * @since 2023-06-03 06:56:15
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-8949-content">
+        <div class="layui-row form-row" id="random-2002-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -52,11 +52,11 @@
                     </div>
                 </div>
             
-                <!-- text_area : 备注 ,  indexImage  -->
+                <!-- text_input : 备注 ,  indexImage -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <textarea lay-filter="indexImage" id="indexImage" name="indexImage" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                        <input lay-filter="indexImage" id="indexImage" name="indexImage" th:placeholder="${ lang.translate('请输入'+'备注') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             

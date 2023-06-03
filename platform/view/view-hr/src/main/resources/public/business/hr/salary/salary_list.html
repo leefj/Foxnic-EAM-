@@ -1,0 +1,146 @@
+<!--
+/**
+ * 人员薪酬 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2023-06-03 23:11:10
+ */
+ -->
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+    <title th:text="${lang.translate('人员薪酬')}">人员薪酬</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden">
+
+<div class="layui-card">
+
+    <div class="layui-card-body" style="">
+
+        <div class="search-bar" style="">
+
+            <div class="search-input-rows" style="opacity: 0">
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 人员 , personId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 是否发放 , status ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('是否发放')}" class="search-label status-label">是否发放</span><span class="search-colon">:</span></div>
+
+
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusYNEnum')}" style="width:150px"></div>
+                    </div>
+                    <!-- 基本工资 , baseSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 岗位工资 , postSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 工龄工资 , workingYearsSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 固定补贴 , fixedSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 绩效补贴 , achievementSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 加班补贴 , overtimeSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 其他补贴 , otherSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 通讯补贴 , communicationSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 交通补贴 , trafficSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 住房补贴 , housingSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 提成工资 , commissionSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 高温补贴 , highTemperatureSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 住房公积金基数 , welfareZfgjjBase ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 住房公积金个人 , welfareZfgjjPerson ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 住房公积金公司 , welfareZfgjjCompany ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 养老保险基数 , welfaerYlbxBase ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 养老保险个人 , welfaerYlbxPerson ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 养老保险公司 , welfaerYlbxCompany ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 工伤保险基数 , welfaerGsbxBase ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 工伤保险个人 , welfaerGsbxPerson ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 工伤保险公司 , welfaerGsbxCompany ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 医疗保险基数 , welfaerYrbxBase ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 医疗保险个人 , welfaerYrbxPerson ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 医疗保险公司 , welfaerYrbxCompany ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 生育保险基数 , welfaerSybxBase ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 生育保险个人 , welfaerSybxPerson ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 生育保险公司 , welfaerSybxCompany ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 个税抵扣 , deductPersonalTaxRed ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 扣除考勤 , deductKq ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 扣除工会 , deductGh ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 扣除其他 , duductOther ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 子女教育 , personalTaxZnjy ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 继续教育 , personalTaxJxjy ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 大病医疗 , personalTaxDbyl ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 住房贷款 , personalTaxZfdk ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 住房租金 , personalTaxZfzj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 赡养老人 , personalTaxSylr ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 幼儿照护 , personalTaxErzh ,typeName=number_input, isHideInSearch=true -->
+
+
+                </div>
+            </div>
+
+
+            <!-- 按钮区域 -->
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
+                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+            </div>
+        </div>
+
+        <div id="table-area" style="margin-top: 42px ">
+            <table class="layui-table" id="data-table" lay-filter="data-table"></table>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<!-- 表格工具栏 -->
+<script type="text/html" id="toolbarTemplate">
+    <div class="layui-btn-container">
+        <button th:if="${perm.checkAuth('hr_salary:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
+        <button th:if="${perm.checkAuth('hr_salary:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除','','cmp:table.button')}">删除</span></button>
+    </div>
+</script>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="tableOperationTemplate">
+
+    <button th:if="${perm.checkAuth('hr_salary:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>
+    <button th:if="${perm.checkAnyAuth('hr_salary:update','hr_salary:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改','','cmp:table.ops')}">修改</span></button>
+
+
+    <button th:if="${perm.checkAuth('hr_salary:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
+
+
+</script>
+
+
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusYNEnum')}]];
+    var AUTH_PREFIX="hr_salary";
+
+
+</script>
+
+<script th:src="'/business/hr/salary/salary_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/hr/salary/salary_list.js?'+${cacheKey}"></script>
+
+</body>
+</html>

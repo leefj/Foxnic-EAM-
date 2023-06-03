@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息VO类型
  * <p>人员信息 , 数据表 hr_person 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:16:03
- * @sign A897D79572BDA58814D64EEDB389EFD6
+ * @since 2023-06-03 22:48:50
+ * @sign C03987DE16DA5CA6377AAE324A7C092C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -83,9 +83,9 @@ public class PersonVO extends Person {
 	private String sortType;
 	
 	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
 	private String dataOrigin;
 	
 	/**
@@ -93,6 +93,12 @@ public class PersonVO extends Person {
 	*/
 	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
 	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -257,7 +263,7 @@ public class PersonVO extends Person {
 	
 	/**
 	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
 	 * @return 数据来源
 	*/
 	public String getDataOrigin() {
@@ -290,6 +296,25 @@ public class PersonVO extends Person {
 	*/
 	public PersonVO setQueryLogic(String queryLogic) {
 		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public PersonVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
 		return this;
 	}
 	
@@ -432,6 +457,7 @@ public class PersonVO extends Person {
 		inst.setDeleted(this.getDeleted());
 		inst.setGraduationDate(this.getGraduationDate());
 		inst.setCreateTime(this.getCreateTime());
+		inst.setEmployeeIdentityStatus(this.getEmployeeIdentityStatus());
 		inst.setEmployeeTypeCode(this.getEmployeeTypeCode());
 		inst.setLeaveDate(this.getLeaveDate());
 		inst.setTenantId(this.getTenantId());
@@ -440,12 +466,14 @@ public class PersonVO extends Person {
 		if(all) {
 			inst.setPoliticCountenanceData(this.getPoliticCountenanceData());
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setProfessionalLevel(this.getProfessionalLevel());
 			inst.setPageSize(this.getPageSize());
 			inst.setEmployeeOwnerTypeDict(this.getEmployeeOwnerTypeDict());
 			inst.setEmployee(this.getEmployee());
 			inst.setEducationData(this.getEducationData());
+			inst.setEmployeeIdentity(this.getEmployeeIdentity());
 			inst.setBloodTypeDict(this.getBloodTypeDict());
 			inst.setPersonCertList(this.getPersonCertList());
 			inst.setPageIndex(this.getPageIndex());
@@ -573,6 +601,7 @@ public class PersonVO extends Person {
 			this.setDeleted(DataParser.parse(Integer.class, map.get(PersonVOMeta.DELETED)));
 			this.setGraduationDate(DataParser.parse(Date.class, map.get(PersonVOMeta.GRADUATION_DATE)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(PersonVOMeta.CREATE_TIME)));
+			this.setEmployeeIdentityStatus(DataParser.parse(String.class, map.get(PersonVOMeta.EMPLOYEE_IDENTITY_STATUS)));
 			this.setEmployeeTypeCode(DataParser.parse(String.class, map.get(PersonVOMeta.EMPLOYEE_TYPE_CODE)));
 			this.setLeaveDate(DataParser.parse(Date.class, map.get(PersonVOMeta.LEAVE_DATE)));
 			this.setTenantId(DataParser.parse(String.class, map.get(PersonVOMeta.TENANT_ID)));
@@ -581,12 +610,14 @@ public class PersonVO extends Person {
 			// others
 			this.setPoliticCountenanceData(DataParser.parse(DictItem.class, map.get(PersonVOMeta.POLITIC_COUNTENANCE_DATA)));
 			this.setSearchField(DataParser.parse(String.class, map.get(PersonVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(PersonVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(PersonVOMeta.FUZZY_FIELD)));
 			this.setProfessionalLevel(DataParser.parse(ProfessionalLevel.class, map.get(PersonVOMeta.PROFESSIONAL_LEVEL)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(PersonVOMeta.PAGE_SIZE)));
 			this.setEmployeeOwnerTypeDict(DataParser.parse(DictItem.class, map.get(PersonVOMeta.EMPLOYEE_OWNER_TYPE_DICT)));
 			this.setEmployee(DataParser.parse(Employee.class, map.get(PersonVOMeta.EMPLOYEE)));
 			this.setEducationData(DataParser.parse(DictItem.class, map.get(PersonVOMeta.EDUCATION_DATA)));
+			this.setEmployeeIdentity(DataParser.parse(DictItem.class, map.get(PersonVOMeta.EMPLOYEE_IDENTITY)));
 			this.setBloodTypeDict(DataParser.parse(DictItem.class, map.get(PersonVOMeta.BLOOD_TYPE_DICT)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(PersonVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(PersonVOMeta.SORT_TYPE)));
@@ -655,6 +686,7 @@ public class PersonVO extends Person {
 				this.setDeleted( (Integer)map.get(PersonVOMeta.DELETED));
 				this.setGraduationDate( (Date)map.get(PersonVOMeta.GRADUATION_DATE));
 				this.setCreateTime( (Date)map.get(PersonVOMeta.CREATE_TIME));
+				this.setEmployeeIdentityStatus( (String)map.get(PersonVOMeta.EMPLOYEE_IDENTITY_STATUS));
 				this.setEmployeeTypeCode( (String)map.get(PersonVOMeta.EMPLOYEE_TYPE_CODE));
 				this.setLeaveDate( (Date)map.get(PersonVOMeta.LEAVE_DATE));
 				this.setTenantId( (String)map.get(PersonVOMeta.TENANT_ID));
@@ -663,12 +695,14 @@ public class PersonVO extends Person {
 				// others
 				this.setPoliticCountenanceData( (DictItem)map.get(PersonVOMeta.POLITIC_COUNTENANCE_DATA));
 				this.setSearchField( (String)map.get(PersonVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(PersonVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(PersonVOMeta.FUZZY_FIELD));
 				this.setProfessionalLevel( (ProfessionalLevel)map.get(PersonVOMeta.PROFESSIONAL_LEVEL));
 				this.setPageSize( (Integer)map.get(PersonVOMeta.PAGE_SIZE));
 				this.setEmployeeOwnerTypeDict( (DictItem)map.get(PersonVOMeta.EMPLOYEE_OWNER_TYPE_DICT));
 				this.setEmployee( (Employee)map.get(PersonVOMeta.EMPLOYEE));
 				this.setEducationData( (DictItem)map.get(PersonVOMeta.EDUCATION_DATA));
+				this.setEmployeeIdentity( (DictItem)map.get(PersonVOMeta.EMPLOYEE_IDENTITY));
 				this.setBloodTypeDict( (DictItem)map.get(PersonVOMeta.BLOOD_TYPE_DICT));
 				this.setPageIndex( (Integer)map.get(PersonVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(PersonVOMeta.SORT_TYPE));
@@ -750,6 +784,7 @@ public class PersonVO extends Person {
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(PersonVOMeta.DELETED)));
 			this.setGraduationDate(DataParser.parse(Date.class, r.getValue(PersonVOMeta.GRADUATION_DATE)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(PersonVOMeta.CREATE_TIME)));
+			this.setEmployeeIdentityStatus(DataParser.parse(String.class, r.getValue(PersonVOMeta.EMPLOYEE_IDENTITY_STATUS)));
 			this.setEmployeeTypeCode(DataParser.parse(String.class, r.getValue(PersonVOMeta.EMPLOYEE_TYPE_CODE)));
 			this.setLeaveDate(DataParser.parse(Date.class, r.getValue(PersonVOMeta.LEAVE_DATE)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(PersonVOMeta.TENANT_ID)));
@@ -812,6 +847,7 @@ public class PersonVO extends Person {
 				this.setDeleted( (Integer)r.getValue(PersonVOMeta.DELETED));
 				this.setGraduationDate( (Date)r.getValue(PersonVOMeta.GRADUATION_DATE));
 				this.setCreateTime( (Date)r.getValue(PersonVOMeta.CREATE_TIME));
+				this.setEmployeeIdentityStatus( (String)r.getValue(PersonVOMeta.EMPLOYEE_IDENTITY_STATUS));
 				this.setEmployeeTypeCode( (String)r.getValue(PersonVOMeta.EMPLOYEE_TYPE_CODE));
 				this.setLeaveDate( (Date)r.getValue(PersonVOMeta.LEAVE_DATE));
 				this.setTenantId( (String)r.getValue(PersonVOMeta.TENANT_ID));

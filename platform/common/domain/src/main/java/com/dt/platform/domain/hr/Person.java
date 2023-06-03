@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息
  * <p>人员信息 , 数据表 hr_person 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:16:03
- * @sign A3FA30FB0D756148C5198532D0520F4B
+ * @since 2023-06-03 22:48:50
+ * @sign 14CDED4C3AA6E1C45C802D2FF024921F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,7 +45,7 @@ public class Person extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "717036378466025472")
 	private String id;
 	
 	/**
@@ -57,7 +57,7 @@ public class Person extends Entity {
 	/**
 	 * 姓名：姓名
 	*/
-	@ApiModelProperty(required = false,value="姓名" , notes = "姓名")
+	@ApiModelProperty(required = false,value="姓名" , notes = "姓名" , example = "12")
 	private String name;
 	
 	/**
@@ -93,19 +93,25 @@ public class Person extends Entity {
 	/**
 	 * 员工状态：员工状态
 	*/
-	@ApiModelProperty(required = false,value="员工状态" , notes = "员工状态")
+	@ApiModelProperty(required = false,value="员工状态" , notes = "员工状态" , example = "online")
 	private String employeeStatus;
+	
+	/**
+	 * 员工标记：员工标记
+	*/
+	@ApiModelProperty(required = false,value="员工标记" , notes = "员工标记" , example = "formal")
+	private String employeeIdentityStatus;
 	
 	/**
 	 * 人员类型：人员类型
 	*/
-	@ApiModelProperty(required = false,value="人员类型" , notes = "人员类型")
+	@ApiModelProperty(required = false,value="人员类型" , notes = "人员类型" , example = "contract_worker")
 	private String employeeTypeCode;
 	
 	/**
 	 * 身份证：身份证
 	*/
-	@ApiModelProperty(required = false,value="身份证" , notes = "身份证")
+	@ApiModelProperty(required = false,value="身份证" , notes = "身份证" , example = "1212")
 	private String identityCard;
 	
 	/**
@@ -309,7 +315,7 @@ public class Person extends Entity {
 	/**
 	 * 员工：员工
 	*/
-	@ApiModelProperty(required = false,value="员工" , notes = "员工")
+	@ApiModelProperty(required = false,value="员工" , notes = "员工" , example = "581798649571311616")
 	private String employeeId;
 	
 	/**
@@ -321,19 +327,19 @@ public class Person extends Entity {
 	/**
 	 * 合同周期：合同周期
 	*/
-	@ApiModelProperty(required = true,value="合同周期" , notes = "合同周期")
+	@ApiModelProperty(required = false,value="合同周期" , notes = "合同周期")
 	private String contractDuration;
 	
 	/**
 	 * 合同开始时间：合同开始时间
 	*/
-	@ApiModelProperty(required = true,value="合同开始时间" , notes = "合同开始时间")
+	@ApiModelProperty(required = false,value="合同开始时间" , notes = "合同开始时间")
 	private Date contractStartDate;
 	
 	/**
 	 * 合同结束时间：合同结束时间
 	*/
-	@ApiModelProperty(required = true,value="合同结束时间" , notes = "合同结束时间")
+	@ApiModelProperty(required = false,value="合同结束时间" , notes = "合同结束时间")
 	private Date contractFinishDate;
 	
 	/**
@@ -345,31 +351,31 @@ public class Person extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-02 03:26:35")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-06-02 03:43:48")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -390,13 +396,13 @@ public class Person extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -452,6 +458,12 @@ public class Person extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="politicCountenanceData" , notes = "politicCountenanceData")
 	private DictItem politicCountenanceData;
+	
+	/**
+	 * employeeIdentity：employeeIdentity
+	*/
+	@ApiModelProperty(required = false,value="employeeIdentity" , notes = "employeeIdentity")
+	private DictItem employeeIdentity;
 	
 	/**
 	 * employee：employee
@@ -633,6 +645,25 @@ public class Person extends Entity {
 	*/
 	public Person setEmployeeStatus(String employeeStatus) {
 		this.employeeStatus=employeeStatus;
+		return this;
+	}
+	
+	/**
+	 * 获得 员工标记<br>
+	 * 员工标记
+	 * @return 员工标记
+	*/
+	public String getEmployeeIdentityStatus() {
+		return employeeIdentityStatus;
+	}
+	
+	/**
+	 * 设置 员工标记
+	 * @param employeeIdentityStatus 员工标记
+	 * @return 当前对象
+	*/
+	public Person setEmployeeIdentityStatus(String employeeIdentityStatus) {
+		this.employeeIdentityStatus=employeeIdentityStatus;
 		return this;
 	}
 	
@@ -1789,6 +1820,25 @@ public class Person extends Entity {
 	}
 	
 	/**
+	 * 获得 employeeIdentity<br>
+	 * employeeIdentity
+	 * @return employeeIdentity
+	*/
+	public DictItem getEmployeeIdentity() {
+		return employeeIdentity;
+	}
+	
+	/**
+	 * 设置 employeeIdentity
+	 * @param employeeIdentity employeeIdentity
+	 * @return 当前对象
+	*/
+	public Person setEmployeeIdentity(DictItem employeeIdentity) {
+		this.employeeIdentity=employeeIdentity;
+		return this;
+	}
+	
+	/**
 	 * 获得 employee<br>
 	 * employee
 	 * @return employee
@@ -1935,6 +1985,7 @@ public class Person extends Entity {
 		inst.setDeleted(this.getDeleted());
 		inst.setGraduationDate(this.getGraduationDate());
 		inst.setCreateTime(this.getCreateTime());
+		inst.setEmployeeIdentityStatus(this.getEmployeeIdentityStatus());
 		inst.setEmployeeTypeCode(this.getEmployeeTypeCode());
 		inst.setLeaveDate(this.getLeaveDate());
 		inst.setTenantId(this.getTenantId());
@@ -1952,6 +2003,7 @@ public class Person extends Entity {
 			inst.setSexDict(this.getSexDict());
 			inst.setEducationData(this.getEducationData());
 			inst.setMaritalStatusDict(this.getMaritalStatusDict());
+			inst.setEmployeeIdentity(this.getEmployeeIdentity());
 		}
 		inst.clearModifies();
 		return inst;
@@ -2065,6 +2117,7 @@ public class Person extends Entity {
 			this.setDeleted(DataParser.parse(Integer.class, map.get(PersonMeta.DELETED)));
 			this.setGraduationDate(DataParser.parse(Date.class, map.get(PersonMeta.GRADUATION_DATE)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(PersonMeta.CREATE_TIME)));
+			this.setEmployeeIdentityStatus(DataParser.parse(String.class, map.get(PersonMeta.EMPLOYEE_IDENTITY_STATUS)));
 			this.setEmployeeTypeCode(DataParser.parse(String.class, map.get(PersonMeta.EMPLOYEE_TYPE_CODE)));
 			this.setLeaveDate(DataParser.parse(Date.class, map.get(PersonMeta.LEAVE_DATE)));
 			this.setTenantId(DataParser.parse(String.class, map.get(PersonMeta.TENANT_ID)));
@@ -2081,6 +2134,7 @@ public class Person extends Entity {
 			this.setSexDict(DataParser.parse(DictItem.class, map.get(PersonMeta.SEX_DICT)));
 			this.setEducationData(DataParser.parse(DictItem.class, map.get(PersonMeta.EDUCATION_DATA)));
 			this.setMaritalStatusDict(DataParser.parse(DictItem.class, map.get(PersonMeta.MARITAL_STATUS_DICT)));
+			this.setEmployeeIdentity(DataParser.parse(DictItem.class, map.get(PersonMeta.EMPLOYEE_IDENTITY)));
 			return true;
 		} else {
 			try {
@@ -2138,6 +2192,7 @@ public class Person extends Entity {
 				this.setDeleted( (Integer)map.get(PersonMeta.DELETED));
 				this.setGraduationDate( (Date)map.get(PersonMeta.GRADUATION_DATE));
 				this.setCreateTime( (Date)map.get(PersonMeta.CREATE_TIME));
+				this.setEmployeeIdentityStatus( (String)map.get(PersonMeta.EMPLOYEE_IDENTITY_STATUS));
 				this.setEmployeeTypeCode( (String)map.get(PersonMeta.EMPLOYEE_TYPE_CODE));
 				this.setLeaveDate( (Date)map.get(PersonMeta.LEAVE_DATE));
 				this.setTenantId( (String)map.get(PersonMeta.TENANT_ID));
@@ -2154,6 +2209,7 @@ public class Person extends Entity {
 				this.setSexDict( (DictItem)map.get(PersonMeta.SEX_DICT));
 				this.setEducationData( (DictItem)map.get(PersonMeta.EDUCATION_DATA));
 				this.setMaritalStatusDict( (DictItem)map.get(PersonMeta.MARITAL_STATUS_DICT));
+				this.setEmployeeIdentity( (DictItem)map.get(PersonMeta.EMPLOYEE_IDENTITY));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -2224,6 +2280,7 @@ public class Person extends Entity {
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(PersonMeta.DELETED)));
 			this.setGraduationDate(DataParser.parse(Date.class, r.getValue(PersonMeta.GRADUATION_DATE)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(PersonMeta.CREATE_TIME)));
+			this.setEmployeeIdentityStatus(DataParser.parse(String.class, r.getValue(PersonMeta.EMPLOYEE_IDENTITY_STATUS)));
 			this.setEmployeeTypeCode(DataParser.parse(String.class, r.getValue(PersonMeta.EMPLOYEE_TYPE_CODE)));
 			this.setLeaveDate(DataParser.parse(Date.class, r.getValue(PersonMeta.LEAVE_DATE)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(PersonMeta.TENANT_ID)));
@@ -2286,6 +2343,7 @@ public class Person extends Entity {
 				this.setDeleted( (Integer)r.getValue(PersonMeta.DELETED));
 				this.setGraduationDate( (Date)r.getValue(PersonMeta.GRADUATION_DATE));
 				this.setCreateTime( (Date)r.getValue(PersonMeta.CREATE_TIME));
+				this.setEmployeeIdentityStatus( (String)r.getValue(PersonMeta.EMPLOYEE_IDENTITY_STATUS));
 				this.setEmployeeTypeCode( (String)r.getValue(PersonMeta.EMPLOYEE_TYPE_CODE));
 				this.setLeaveDate( (Date)r.getValue(PersonMeta.LEAVE_DATE));
 				this.setTenantId( (String)r.getValue(PersonMeta.TENANT_ID));

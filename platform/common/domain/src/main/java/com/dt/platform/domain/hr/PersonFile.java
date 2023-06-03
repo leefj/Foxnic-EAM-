@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员档案
  * <p>人员档案 , 数据表 hr_person_file 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:18:21
- * @sign 57BD3B68577C069CF6EFD1ACE6C89E41
+ * @since 2023-06-03 08:59:14
+ * @sign 4148727D70AE8690D98C9FF9A8452ECD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,19 +40,19 @@ public class PersonFile extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "717288555616927744")
 	private String id;
 	
 	/**
 	 * 档案编号：档案编号
 	*/
-	@ApiModelProperty(required = false,value="档案编号" , notes = "档案编号")
+	@ApiModelProperty(required = false,value="档案编号" , notes = "档案编号" , example = "1212")
 	private String code;
 	
 	/**
 	 * 档案状态：档案状态
 	*/
-	@ApiModelProperty(required = false,value="档案状态" , notes = "档案状态")
+	@ApiModelProperty(required = false,value="档案状态" , notes = "档案状态" , example = "using")
 	private String status;
 	
 	/**
@@ -64,19 +64,25 @@ public class PersonFile extends Entity {
 	/**
 	 * 是否新建档：是否新建档
 	*/
-	@ApiModelProperty(required = false,value="是否新建档" , notes = "是否新建档")
+	@ApiModelProperty(required = false,value="是否新建档" , notes = "是否新建档" , example = "yes")
 	private String ifNew;
+	
+	/**
+	 * 来源：来源
+	*/
+	@ApiModelProperty(required = false,value="来源" , notes = "来源")
+	private String source;
 	
 	/**
 	 * 档案保管地：档案保管地
 	*/
-	@ApiModelProperty(required = false,value="档案保管地" , notes = "档案保管地")
+	@ApiModelProperty(required = false,value="档案保管地" , notes = "档案保管地" , example = "12")
 	private String saveLoc;
 	
 	/**
 	 * 参加工作时间：参加工作时间
 	*/
-	@ApiModelProperty(required = false,value="参加工作时间" , notes = "参加工作时间")
+	@ApiModelProperty(required = false,value="参加工作时间" , notes = "参加工作时间" , example = "2023-00-08")
 	private String workStartDate;
 	
 	/**
@@ -88,19 +94,19 @@ public class PersonFile extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
 	private String note;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-03 08:08:38")
 	private Date createTime;
 	
 	/**
@@ -118,7 +124,7 @@ public class PersonFile extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -139,14 +145,20 @@ public class PersonFile extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * person：person
+	*/
+	@ApiModelProperty(required = false,value="person" , notes = "person")
+	private Person person;
 	
 	/**
 	 * 获得 主键<br>
@@ -240,6 +252,25 @@ public class PersonFile extends Entity {
 	*/
 	public PersonFile setIfNew(String ifNew) {
 		this.ifNew=ifNew;
+		return this;
+	}
+	
+	/**
+	 * 获得 来源<br>
+	 * 来源
+	 * @return 来源
+	*/
+	public String getSource() {
+		return source;
+	}
+	
+	/**
+	 * 设置 来源
+	 * @param source 来源
+	 * @return 当前对象
+	*/
+	public PersonFile setSource(String source) {
+		this.source=source;
 		return this;
 	}
 	
@@ -520,6 +551,25 @@ public class PersonFile extends Entity {
 		this.tenantId=tenantId;
 		return this;
 	}
+	
+	/**
+	 * 获得 person<br>
+	 * person
+	 * @return person
+	*/
+	public Person getPerson() {
+		return person;
+	}
+	
+	/**
+	 * 设置 person
+	 * @param person person
+	 * @return 当前对象
+	*/
+	public PersonFile setPerson(Person person) {
+		this.person=person;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -570,6 +620,7 @@ public class PersonFile extends Entity {
 		inst.setSaveLoc(this.getSaveLoc());
 		inst.setWorkStartDate(this.getWorkStartDate());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setSource(this.getSource());
 		inst.setUserId(this.getUserId());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
@@ -583,6 +634,9 @@ public class PersonFile extends Entity {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setPerson(this.getPerson());
+		}
 		inst.clearModifies();
 		return inst;
 	}
@@ -646,6 +700,7 @@ public class PersonFile extends Entity {
 			this.setSaveLoc(DataParser.parse(String.class, map.get(PersonFileMeta.SAVE_LOC)));
 			this.setWorkStartDate(DataParser.parse(String.class, map.get(PersonFileMeta.WORK_START_DATE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(PersonFileMeta.UPDATE_TIME)));
+			this.setSource(DataParser.parse(String.class, map.get(PersonFileMeta.SOURCE)));
 			this.setUserId(DataParser.parse(String.class, map.get(PersonFileMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(PersonFileMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(PersonFileMeta.CREATE_BY)));
@@ -660,6 +715,7 @@ public class PersonFile extends Entity {
 			this.setId(DataParser.parse(String.class, map.get(PersonFileMeta.ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(PersonFileMeta.STATUS)));
 			// others
+			this.setPerson(DataParser.parse(Person.class, map.get(PersonFileMeta.PERSON)));
 			return true;
 		} else {
 			try {
@@ -668,6 +724,7 @@ public class PersonFile extends Entity {
 				this.setSaveLoc( (String)map.get(PersonFileMeta.SAVE_LOC));
 				this.setWorkStartDate( (String)map.get(PersonFileMeta.WORK_START_DATE));
 				this.setUpdateTime( (Date)map.get(PersonFileMeta.UPDATE_TIME));
+				this.setSource( (String)map.get(PersonFileMeta.SOURCE));
 				this.setUserId( (String)map.get(PersonFileMeta.USER_ID));
 				this.setVersion( (Integer)map.get(PersonFileMeta.VERSION));
 				this.setCreateBy( (String)map.get(PersonFileMeta.CREATE_BY));
@@ -682,6 +739,7 @@ public class PersonFile extends Entity {
 				this.setId( (String)map.get(PersonFileMeta.ID));
 				this.setStatus( (String)map.get(PersonFileMeta.STATUS));
 				// others
+				this.setPerson( (Person)map.get(PersonFileMeta.PERSON));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -703,6 +761,7 @@ public class PersonFile extends Entity {
 			this.setSaveLoc(DataParser.parse(String.class, r.getValue(PersonFileMeta.SAVE_LOC)));
 			this.setWorkStartDate(DataParser.parse(String.class, r.getValue(PersonFileMeta.WORK_START_DATE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PersonFileMeta.UPDATE_TIME)));
+			this.setSource(DataParser.parse(String.class, r.getValue(PersonFileMeta.SOURCE)));
 			this.setUserId(DataParser.parse(String.class, r.getValue(PersonFileMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(PersonFileMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(PersonFileMeta.CREATE_BY)));
@@ -724,6 +783,7 @@ public class PersonFile extends Entity {
 				this.setSaveLoc( (String)r.getValue(PersonFileMeta.SAVE_LOC));
 				this.setWorkStartDate( (String)r.getValue(PersonFileMeta.WORK_START_DATE));
 				this.setUpdateTime( (Date)r.getValue(PersonFileMeta.UPDATE_TIME));
+				this.setSource( (String)r.getValue(PersonFileMeta.SOURCE));
 				this.setUserId( (String)r.getValue(PersonFileMeta.USER_ID));
 				this.setVersion( (Integer)r.getValue(PersonFileMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(PersonFileMeta.CREATE_BY));

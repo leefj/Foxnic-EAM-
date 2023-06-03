@@ -8,6 +8,7 @@ import com.dt.platform.domain.eam.meta.MaintainTaskProjectMeta;
 import com.dt.platform.domain.eam.meta.RepairRuleMeta;
 import com.dt.platform.domain.hr.CertificateType;
 import com.dt.platform.domain.hr.PersonContract;
+import com.dt.platform.domain.hr.PersonFile;
 import com.dt.platform.domain.hr.Position;
 import com.dt.platform.domain.hr.meta.*;
 import com.dt.platform.domain.knowledgebase.meta.ContentMeta;
@@ -31,6 +32,9 @@ public class HrmRelationManager extends RelationManager {
 		this.setupPersonContract();
 		this.setupCert();
 
+
+		this.setupPersonFile();
+
 	}
  
 	public void setupProperties() {
@@ -42,6 +46,11 @@ public class HrmRelationManager extends RelationManager {
 	}
 
 
+	private void setupPersonFile() {
+
+		this.property(PersonFileMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_FILE.USER_ID).join(HrTables.HR_PERSON.ID);
+	}
 
 	private void setupCert() {
 
@@ -74,10 +83,11 @@ public class HrmRelationManager extends RelationManager {
 
 
 		this.property(PersonContractMeta.PERSON_PROP)
-				.using(HrTables.HR_PERSON_CONTRACT.EMPLOYEE_ID).join(HrTables.HR_PERSON.EMPLOYEE_ID);
+				.using(HrTables.HR_PERSON_CONTRACT.PERSON_ID).join(HrTables.HR_PERSON.ID);
 
 		this.property(PersonContractMeta.EMPLOYEE_PROP)
-				.using(HrTables.HR_PERSON_CONTRACT.EMPLOYEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+				.using(HrTables.HR_PERSON_CONTRACT.PERSON_ID).join(HrTables.HR_PERSON.ID)
+				.using(HrTables.HR_PERSON.EMPLOYEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
 
 	}
@@ -96,6 +106,11 @@ public class HrmRelationManager extends RelationManager {
 		this.property(PersonMeta.BLOOD_TYPE_DICT_PROP)
 				.using(HrTables.HR_PERSON.BLOOD_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
 				.condition("dict_code='hr_blood_type'");
+
+		this.property(PersonMeta.EMPLOYEE_IDENTITY_PROP)
+				.using(HrTables.HR_PERSON.EMPLOYEE_IDENTITY_STATUS).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_employee_identity_status'");
+
 
 		this.property(PersonMeta.SEX_DICT_PROP)
 				.using(HrTables.HR_PERSON.SEX_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)

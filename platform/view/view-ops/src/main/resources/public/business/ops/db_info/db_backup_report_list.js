@@ -290,12 +290,13 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' }
 					,{ field: 'hostName', align:"left",fixed:false,  hide:false, sort: true  , title: '主机名' , templet: function (d) { return templet('hostName',d.hostName,d);}  }
-					,{ field: 'hostIp', align:"left",fixed:false,  hide:false, sort: true  , title: '主机IP', templet: function (d) { return templet('hostIp',d.hostIp,d);}  }
+					// ,{ field: 'hostIp', align:"left",fixed:false,  hide:false, sort: true  , title: '主机IP', templet: function (d) { return templet('hostIp',d.hostIp,d);}  }
 					,{ field: 'dbInfoName', align:"left",fixed:false,  hide:false, sort: true  , title: '数据库名' , templet: function (d) { return templet('dbInfoName',d.dbInfoName,d);}  }
+					,{ field: 'backupResult', align:"left",fixed:false,  hide:false, sort: true  , title: '备份结果', templet: function (d) { return templet('backupResult',d.backupResult,d);}  }
+					,{ field: 'diffSecond', align:"left",fixed:false,  hide:false, sort: true  , title: '用时(秒)' , templet: function (d) { return templet('diffSecond',d.diffSecond,d);}  }
 					,{ field: 'backupSize', align:"left",fixed:false,  hide:false, sort: true  , title: '备份大小', templet: function (d) { return templet('backupSize',d.backupSize,d);}  }
 					,{ field: 'backupStime', align:"left",fixed:false,  hide:false, sort: true  , title: '备份开始时间', templet: function (d) { return templet('backupStime',d.backupStime,d);}  }
 					,{ field: 'backupEtime', align:"left",fixed:false,  hide:false, sort: true  , title: '备份结束时间' , templet: function (d) { return templet('backupEtime',d.backupEtime,d);}  }
-					,{ field: 'backupResult', align:"left",fixed:false,  hide:false, sort: true  , title: '备份结果', templet: function (d) { return templet('backupResult',d.backupResult,d);}  }
 				]],
 				parseData:function(res){
 					console.log("parese res:",res);

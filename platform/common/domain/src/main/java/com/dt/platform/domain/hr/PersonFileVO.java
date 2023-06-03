@@ -22,8 +22,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员档案VO类型
  * <p>人员档案 , 数据表 hr_person_file 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:18:21
- * @sign E31FF9269A460A2314F60A9C53B3C6E4
+ * @since 2023-06-03 08:59:14
+ * @sign 1C85567160F9AAD210C5A30FA7AF537E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -81,9 +81,9 @@ public class PersonFileVO extends PersonFile {
 	private String sortType;
 	
 	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
 	private String dataOrigin;
 	
 	/**
@@ -91,6 +91,12 @@ public class PersonFileVO extends PersonFile {
 	*/
 	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
 	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -255,7 +261,7 @@ public class PersonFileVO extends PersonFile {
 	
 	/**
 	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
 	 * @return 数据来源
 	*/
 	public String getDataOrigin() {
@@ -288,6 +294,25 @@ public class PersonFileVO extends PersonFile {
 	*/
 	public PersonFileVO setQueryLogic(String queryLogic) {
 		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public PersonFileVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
 		return this;
 	}
 	
@@ -381,6 +406,7 @@ public class PersonFileVO extends PersonFile {
 		inst.setSaveLoc(this.getSaveLoc());
 		inst.setWorkStartDate(this.getWorkStartDate());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setSource(this.getSource());
 		inst.setUserId(this.getUserId());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
@@ -396,12 +422,14 @@ public class PersonFileVO extends PersonFile {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPerson(this.getPerson());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
@@ -470,6 +498,7 @@ public class PersonFileVO extends PersonFile {
 			this.setSaveLoc(DataParser.parse(String.class, map.get(PersonFileVOMeta.SAVE_LOC)));
 			this.setWorkStartDate(DataParser.parse(String.class, map.get(PersonFileVOMeta.WORK_START_DATE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(PersonFileVOMeta.UPDATE_TIME)));
+			this.setSource(DataParser.parse(String.class, map.get(PersonFileVOMeta.SOURCE)));
 			this.setUserId(DataParser.parse(String.class, map.get(PersonFileVOMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(PersonFileVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(PersonFileVOMeta.CREATE_BY)));
@@ -485,11 +514,13 @@ public class PersonFileVO extends PersonFile {
 			this.setStatus(DataParser.parse(String.class, map.get(PersonFileVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(PersonFileVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(PersonFileVOMeta.REQUEST_ACTION)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(PersonFileVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(PersonFileVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(PersonFileVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(PersonFileVOMeta.SORT_TYPE)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(PersonFileVOMeta.FUZZY_FIELD)));
+			this.setPerson(DataParser.parse(Person.class, map.get(PersonFileVOMeta.PERSON)));
 			this.setSortField(DataParser.parse(String.class, map.get(PersonFileVOMeta.SORT_FIELD)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(PersonFileVOMeta.PAGE_SIZE)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(PersonFileVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(PersonFileVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(PersonFileVOMeta.SEARCH_VALUE)));
@@ -501,6 +532,7 @@ public class PersonFileVO extends PersonFile {
 				this.setSaveLoc( (String)map.get(PersonFileVOMeta.SAVE_LOC));
 				this.setWorkStartDate( (String)map.get(PersonFileVOMeta.WORK_START_DATE));
 				this.setUpdateTime( (Date)map.get(PersonFileVOMeta.UPDATE_TIME));
+				this.setSource( (String)map.get(PersonFileVOMeta.SOURCE));
 				this.setUserId( (String)map.get(PersonFileVOMeta.USER_ID));
 				this.setVersion( (Integer)map.get(PersonFileVOMeta.VERSION));
 				this.setCreateBy( (String)map.get(PersonFileVOMeta.CREATE_BY));
@@ -516,11 +548,13 @@ public class PersonFileVO extends PersonFile {
 				this.setStatus( (String)map.get(PersonFileVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(PersonFileVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(PersonFileVOMeta.REQUEST_ACTION));
+				this.setFuzzyField( (String)map.get(PersonFileVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(PersonFileVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(PersonFileVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(PersonFileVOMeta.SORT_TYPE));
-				this.setFuzzyField( (String)map.get(PersonFileVOMeta.FUZZY_FIELD));
+				this.setPerson( (Person)map.get(PersonFileVOMeta.PERSON));
 				this.setSortField( (String)map.get(PersonFileVOMeta.SORT_FIELD));
-				this.setPageSize( (Integer)map.get(PersonFileVOMeta.PAGE_SIZE));
 				this.setDataOrigin( (String)map.get(PersonFileVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(PersonFileVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(PersonFileVOMeta.SEARCH_VALUE));
@@ -545,6 +579,7 @@ public class PersonFileVO extends PersonFile {
 			this.setSaveLoc(DataParser.parse(String.class, r.getValue(PersonFileVOMeta.SAVE_LOC)));
 			this.setWorkStartDate(DataParser.parse(String.class, r.getValue(PersonFileVOMeta.WORK_START_DATE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PersonFileVOMeta.UPDATE_TIME)));
+			this.setSource(DataParser.parse(String.class, r.getValue(PersonFileVOMeta.SOURCE)));
 			this.setUserId(DataParser.parse(String.class, r.getValue(PersonFileVOMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(PersonFileVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(PersonFileVOMeta.CREATE_BY)));
@@ -566,6 +601,7 @@ public class PersonFileVO extends PersonFile {
 				this.setSaveLoc( (String)r.getValue(PersonFileVOMeta.SAVE_LOC));
 				this.setWorkStartDate( (String)r.getValue(PersonFileVOMeta.WORK_START_DATE));
 				this.setUpdateTime( (Date)r.getValue(PersonFileVOMeta.UPDATE_TIME));
+				this.setSource( (String)r.getValue(PersonFileVOMeta.SOURCE));
 				this.setUserId( (String)r.getValue(PersonFileVOMeta.USER_ID));
 				this.setVersion( (Integer)r.getValue(PersonFileVOMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(PersonFileVOMeta.CREATE_BY));

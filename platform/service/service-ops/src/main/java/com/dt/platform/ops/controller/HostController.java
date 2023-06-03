@@ -111,7 +111,8 @@ public class HostController extends SuperController {
 		@ApiImplicitParam(name = HostVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class, example = "121212"),
 		@ApiImplicitParam(name = HostVOMeta.HOST_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "测试"),
 		@ApiImplicitParam(name = HostVOMeta.HOST_IPV6, value = "IPV6", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = HostVOMeta.PORT_LIST, value = "端口列表", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = HostVOMeta.PORT_LIST, value = "端口列表", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = HostServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -187,7 +188,8 @@ public class HostController extends SuperController {
 		@ApiImplicitParam(name = HostVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class, example = "121212"),
 		@ApiImplicitParam(name = HostVOMeta.HOST_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "测试"),
 		@ApiImplicitParam(name = HostVOMeta.HOST_IPV6, value = "IPV6", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = HostVOMeta.PORT_LIST, value = "端口列表", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = HostVOMeta.PORT_LIST, value = "端口列表", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { HostVOMeta.PAGE_INDEX, HostVOMeta.PAGE_SIZE, HostVOMeta.SEARCH_FIELD, HostVOMeta.FUZZY_FIELD, HostVOMeta.SEARCH_VALUE, HostVOMeta.SORT_FIELD, HostVOMeta.SORT_TYPE, HostVOMeta.IDS })
     @SentinelResource(value = HostServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -232,7 +234,8 @@ public class HostController extends SuperController {
 		@ApiImplicitParam(name = HostVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class, example = "121212"),
 		@ApiImplicitParam(name = HostVOMeta.HOST_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "测试"),
 		@ApiImplicitParam(name = HostVOMeta.HOST_IPV6, value = "IPV6", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = HostVOMeta.PORT_LIST, value = "端口列表", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = HostVOMeta.PORT_LIST, value = "端口列表", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { HostVOMeta.PAGE_INDEX, HostVOMeta.PAGE_SIZE, HostVOMeta.SEARCH_FIELD, HostVOMeta.FUZZY_FIELD, HostVOMeta.SEARCH_VALUE, HostVOMeta.SORT_FIELD, HostVOMeta.SORT_TYPE, HostVOMeta.IDS })
     @SentinelResource(value = HostServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -325,7 +328,8 @@ public class HostController extends SuperController {
 		@ApiImplicitParam(name = HostVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class, example = "121212"),
 		@ApiImplicitParam(name = HostVOMeta.HOST_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "测试"),
 		@ApiImplicitParam(name = HostVOMeta.HOST_IPV6, value = "IPV6", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = HostVOMeta.PORT_LIST, value = "端口列表", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = HostVOMeta.PORT_LIST, value = "端口列表", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { HostVOMeta.PAGE_INDEX, HostVOMeta.PAGE_SIZE })
     @SentinelResource(value = HostServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -371,7 +375,8 @@ public class HostController extends SuperController {
 		@ApiImplicitParam(name = HostVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class, example = "121212"),
 		@ApiImplicitParam(name = HostVOMeta.HOST_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "测试"),
 		@ApiImplicitParam(name = HostVOMeta.HOST_IPV6, value = "IPV6", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = HostVOMeta.PORT_LIST, value = "端口列表", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = HostVOMeta.PORT_LIST, value = "端口列表", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = HostServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

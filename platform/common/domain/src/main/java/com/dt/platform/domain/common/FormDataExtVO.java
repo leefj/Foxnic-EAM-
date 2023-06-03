@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据扩展VO类型
  * <p>数据扩展 , 数据表 sys_form_data_ext 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-26 20:03:45
+ * @since 2023-06-03 06:53:55
  * @sign 188AEF99CBD7688EB635A42F7AF49CF4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

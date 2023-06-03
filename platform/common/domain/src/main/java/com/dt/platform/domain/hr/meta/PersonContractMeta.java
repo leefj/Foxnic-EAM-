@@ -14,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:58:04
- * @sign 2B59D0664D024E215A63A1454DD64C89
+ * @since 2023-06-03 07:29:08
+ * @sign F1E6321274305523396F39D29009D329
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -34,12 +34,12 @@ public class PersonContractMeta {
 	/**
 	 * 人员 , 类型: java.lang.String
 	*/
-	public static final String EMPLOYEE_ID="employeeId";
+	public static final String PERSON_ID="personId";
 	
 	/**
 	 * 人员 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> EMPLOYEE_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,EMPLOYEE_ID, java.lang.String.class, "人员", "人员", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> PERSON_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,PERSON_ID, java.lang.String.class, "人员", "人员", java.lang.String.class, null);
 	
 	/**
 	 * 合同编号 , 类型: java.lang.String
@@ -132,14 +132,14 @@ public class PersonContractMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.util.Date> PROBATION_START_DATE_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,PROBATION_START_DATE, java.util.Date.class, "试用期生效时间", "试用期生效时间", java.util.Date.class, null);
 	
 	/**
-	 * 试用期到期时间 , 类型: java.lang.String
+	 * 试用期到期时间 , 类型: java.util.Date
 	*/
 	public static final String PROBATION_FINISH_DATE="probationFinishDate";
 	
 	/**
-	 * 试用期到期时间 , 类型: java.lang.String
+	 * 试用期到期时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> PROBATION_FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,PROBATION_FINISH_DATE, java.lang.String.class, "试用期到期时间", "试用期到期时间", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.util.Date> PROBATION_FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,PROBATION_FINISH_DATE, java.util.Date.class, "试用期到期时间", "试用期到期时间", java.util.Date.class, null);
 	
 	/**
 	 * 生效时间 , 类型: java.util.Date
@@ -364,7 +364,7 @@ public class PersonContractMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , EMPLOYEE_ID , BUSINESS_CODE , TYPE , STATUS , CONTRACT_DURATION , CONTRACT_YEAR , TRANSFER_TO_REGULAR , CONTRACT_PARTY_ID , PROBATION_SALARY , PROBATION_START_DATE , PROBATION_FINISH_DATE , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , SALARY , CONTENT , NOTES , FILE_ID , ARCH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CONTRACT_TYPE_DATA , CONTRACT_YEAR_DATA , EMPLOYEE , PERSON , EMPLOYEE_NAME , CONTRACT_ORG };
+	public static final String[] $PROPS={ ID , PERSON_ID , BUSINESS_CODE , TYPE , STATUS , CONTRACT_DURATION , CONTRACT_YEAR , TRANSFER_TO_REGULAR , CONTRACT_PARTY_ID , PROBATION_SALARY , PROBATION_START_DATE , PROBATION_FINISH_DATE , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , SALARY , CONTENT , NOTES , FILE_ID , ARCH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CONTRACT_TYPE_DATA , CONTRACT_YEAR_DATA , EMPLOYEE , PERSON , EMPLOYEE_NAME , CONTRACT_ORG };
 	
 	/**
 	 * 代理类
@@ -387,12 +387,12 @@ public class PersonContractMeta {
 		
 		/**
 		 * 设置 人员
-		 * @param employeeId 人员
+		 * @param personId 人员
 		 * @return 当前对象
 		*/
-		public PersonContract setEmployeeId(String employeeId) {
-			super.change(EMPLOYEE_ID,super.getEmployeeId(),employeeId);
-			super.setEmployeeId(employeeId);
+		public PersonContract setPersonId(String personId) {
+			super.change(PERSON_ID,super.getPersonId(),personId);
+			super.setPersonId(personId);
 			return this;
 		}
 		
@@ -500,7 +500,7 @@ public class PersonContractMeta {
 		 * @param probationFinishDate 试用期到期时间
 		 * @return 当前对象
 		*/
-		public PersonContract setProbationFinishDate(String probationFinishDate) {
+		public PersonContract setProbationFinishDate(Date probationFinishDate) {
 			super.change(PROBATION_FINISH_DATE,super.getProbationFinishDate(),probationFinishDate);
 			super.setProbationFinishDate(probationFinishDate);
 			return this;
@@ -778,7 +778,6 @@ public class PersonContractMeta {
 			inst.setProbationStartDate(this.getProbationStartDate());
 			inst.setProbationSalary(this.getProbationSalary());
 			inst.setContractStartDate(this.getContractStartDate());
-			inst.setEmployeeId(this.getEmployeeId());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
@@ -788,6 +787,7 @@ public class PersonContractMeta {
 			inst.setTransferToRegular(this.getTransferToRegular());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setPersonId(this.getPersonId());
 			inst.setArch(this.getArch());
 			inst.setStatus(this.getStatus());
 			inst.setFileId(this.getFileId());

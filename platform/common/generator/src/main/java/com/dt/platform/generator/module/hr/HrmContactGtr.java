@@ -14,6 +14,8 @@ import com.dt.platform.generator.config.Config;
 import com.dt.platform.hr.page.PersonContractPageController;
 import com.dt.platform.proxy.hr.ContractOrgServiceProxy;
 import com.dt.platform.proxy.hr.PersonContractServiceProxy;
+import com.dt.platform.proxy.hr.PersonServiceProxy;
+import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
@@ -93,25 +95,47 @@ public class HrmContactGtr extends BaseCodeGenerator {
                 textField(ContractOrgMeta.NAME).
                 fillWith(PersonContractMeta.CONTRACT_ORG).muliti(false);
 
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.PERSON_ID).form().validate().required().form()
+                .form().validate().required().form().selectBox().queryApi(PersonServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(true).toolbar(false)
+                .valueField(PersonMeta.ID).
+                textField(PersonMeta.NAME).
+                fillWith(PersonContractMeta.PERSON).muliti(false);
+
+
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
-        cfg.view().search().inputWidth(Config.searchInputWidth);
+
         cfg.view().search().rowsDisplay(1);
-        cfg.view().field(HrTables.HR_PERSON_CONTRACT.STATUS).form().validate().required().form().radioBox().enumType(ContractStatusEnum.class);
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.STATUS).form().validate().required().form().radioBox().enumType(ContractStatusEnum.class).defaultIndex(0);
         cfg.view().field(HrTables.HR_PERSON_CONTRACT.FILE_ID).form().upload().maxFileCount(6);
         cfg.view().field(HrTables.HR_PERSON_CONTRACT.NOTES).form().textArea().height(Config.textAreaHeight);
 
 
-        cfg.view().field( PersonContractMeta.EMPLOYEE_NAME).basic().label("姓名");
+
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.SALARY).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.CONTENT).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.FILE_ID).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.NOTES).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.ARCH).form().table().disable(true);
+
+
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.PROBATION_START_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.PROBATION_FINISH_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
+
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.CONTRACT_FINISH_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.CONTRACT_START_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
+
+
         cfg.view().formWindow().width("80%");
         cfg.view().formWindow().bottomSpace(20);
 
-        cfg.view().form().addGroup("员工信息",
+        cfg.view().form().addGroup("人员信息",
                 new Object[] {
-                        PersonContractMeta.EMPLOYEE_NAME,
+                        HrTables.HR_PERSON_CONTRACT.PERSON_ID
                 }
 //                new Object[] {
 //                        PersonContractMeta.EMPLOYEE_NAME,
@@ -124,7 +148,6 @@ public class HrmContactGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON_CONTRACT.CONTRACT_PARTY_ID,
                 },
                 new Object[] {
-
                         HrTables.HR_PERSON_CONTRACT.STATUS,
                         HrTables.HR_PERSON_CONTRACT.CONTRACT_DURATION,
 
@@ -171,12 +194,12 @@ public class HrmContactGtr extends BaseCodeGenerator {
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE) //列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE);
+                .setExtendJsFile(WriteMode.IGNORE);
         //生成代码
         cfg.buildAll();
     }

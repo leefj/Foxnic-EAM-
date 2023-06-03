@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-03 16:00:36
- * @sign 2CDDB9AB8C1C930E074CD97490FD7AB1
+ * @since 2023-06-03 06:52:21
+ * @sign 13E102B04D0F716B32E0A5757A1E6D59
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -291,6 +291,16 @@ public class InformationSystemMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystem,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystem.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
+	 * 附件 , 类型: java.lang.String
+	*/
+	public static final String FILE_IDS="fileIds";
+	
+	/**
+	 * 附件 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystem,java.lang.String> FILE_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystem.class ,FILE_IDS, java.lang.String.class, "附件", "附件", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -453,7 +463,7 @@ public class InformationSystemMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PID , NAME , PROFILE , STATUS , ADDRESS , OPS_METHOD , DEV_METHOD , TECHNICAL_CONTACT , BUSINESS_CONTACT , BELONG_ORG_ID , LASTDRILL_DATE , ONLINE_DATE , OFFLINE_DATE , OS_INFO , DB_INFO , APP_INFO , GRADE , RTO , RPO , HARDWARE_INFO , BACKUP_INFO , SAMEPLACE_BACUP_INFO , DIFFPLACE_BACKUP_INFO , ARCH_METHOD , LABELS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , BELONG_ORGANIZATION , INFO_SYSTEM_STATUS , INFO_SYSTEM_OPS_METHOD , INFO_SYSTEM_DEV_METHOD , INFO_SYSTEM_GRADE };
+	public static final String[] $PROPS={ ID , PID , NAME , PROFILE , STATUS , ADDRESS , OPS_METHOD , DEV_METHOD , TECHNICAL_CONTACT , BUSINESS_CONTACT , BELONG_ORG_ID , LASTDRILL_DATE , ONLINE_DATE , OFFLINE_DATE , OS_INFO , DB_INFO , APP_INFO , GRADE , RTO , RPO , HARDWARE_INFO , BACKUP_INFO , SAMEPLACE_BACUP_INFO , DIFFPLACE_BACKUP_INFO , ARCH_METHOD , LABELS , NOTES , FILE_IDS , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , BELONG_ORGANIZATION , INFO_SYSTEM_STATUS , INFO_SYSTEM_OPS_METHOD , INFO_SYSTEM_DEV_METHOD , INFO_SYSTEM_GRADE };
 	
 	/**
 	 * 代理类
@@ -761,6 +771,17 @@ public class InformationSystemMeta {
 		}
 		
 		/**
+		 * 设置 附件
+		 * @param fileIds 附件
+		 * @return 当前对象
+		*/
+		public InformationSystem setFileIds(String fileIds) {
+			super.change(FILE_IDS,super.getFileIds(),fileIds);
+			super.setFileIds(fileIds);
+			return this;
+		}
+		
+		/**
 		 * 设置 创建人ID
 		 * @param createBy 创建人ID
 		 * @return 当前对象
@@ -960,6 +981,7 @@ public class InformationSystemMeta {
 			inst.setTechnicalContact(this.getTechnicalContact());
 			inst.setOsInfo(this.getOsInfo());
 			inst.setHardwareInfo(this.getHardwareInfo());
+			inst.setFileIds(this.getFileIds());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setId(this.getId());
 			inst.setBackupInfo(this.getBackupInfo());

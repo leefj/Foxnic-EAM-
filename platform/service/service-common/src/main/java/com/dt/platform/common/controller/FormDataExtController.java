@@ -45,7 +45,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 数据扩展接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-26 20:03:45
+ * @since 2023-06-03 06:53:56
 */
 
 @InDoc
@@ -61,8 +61,8 @@ public class FormDataExtController extends SuperController {
 	*/
 	@ApiOperation(value = "添加数据扩展")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = FormDataExtVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataExtVOMeta.DATA_ID , value = "数据" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = FormDataExtVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "715640582852050944"),
+		@ApiImplicitParam(name = FormDataExtVOMeta.DATA_ID , value = "数据" , required = false , dataTypeClass=String.class , example = "715640563604389888"),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS1 , value = "字符串1" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS2 , value = "字符串2" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS3 , value = "字符串3" , required = false , dataTypeClass=String.class),
@@ -131,7 +131,7 @@ public class FormDataExtController extends SuperController {
 	*/
 	@ApiOperation(value = "删除数据扩展")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = FormDataExtVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = FormDataExtVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "715640582852050944")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = FormDataExtServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -214,8 +214,8 @@ public class FormDataExtController extends SuperController {
 	*/
 	@ApiOperation(value = "更新数据扩展")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = FormDataExtVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataExtVOMeta.DATA_ID , value = "数据" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = FormDataExtVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "715640582852050944"),
+		@ApiImplicitParam(name = FormDataExtVOMeta.DATA_ID , value = "数据" , required = false , dataTypeClass=String.class , example = "715640563604389888"),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS1 , value = "字符串1" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS2 , value = "字符串2" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS3 , value = "字符串3" , required = false , dataTypeClass=String.class),
@@ -283,8 +283,8 @@ public class FormDataExtController extends SuperController {
 	*/
 	@ApiOperation(value = "保存数据扩展")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = FormDataExtVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataExtVOMeta.DATA_ID , value = "数据" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = FormDataExtVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "715640582852050944"),
+		@ApiImplicitParam(name = FormDataExtVOMeta.DATA_ID , value = "数据" , required = false , dataTypeClass=String.class , example = "715640563604389888"),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS1 , value = "字符串1" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS2 , value = "字符串2" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS3 , value = "字符串3" , required = false , dataTypeClass=String.class),
@@ -391,8 +391,8 @@ public class FormDataExtController extends SuperController {
 	*/
 	@ApiOperation(value = "查询数据扩展")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = FormDataExtVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataExtVOMeta.DATA_ID , value = "数据" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = FormDataExtVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "715640582852050944"),
+		@ApiImplicitParam(name = FormDataExtVOMeta.DATA_ID , value = "数据" , required = false , dataTypeClass=String.class , example = "715640563604389888"),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS1 , value = "字符串1" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS2 , value = "字符串2" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS3 , value = "字符串3" , required = false , dataTypeClass=String.class),
@@ -461,8 +461,8 @@ public class FormDataExtController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询数据扩展")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = FormDataExtVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormDataExtVOMeta.DATA_ID , value = "数据" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = FormDataExtVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "715640582852050944"),
+		@ApiImplicitParam(name = FormDataExtVOMeta.DATA_ID , value = "数据" , required = false , dataTypeClass=String.class , example = "715640563604389888"),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS1 , value = "字符串1" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS2 , value = "字符串2" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormDataExtVOMeta.SS3 , value = "字符串3" , required = false , dataTypeClass=String.class),
