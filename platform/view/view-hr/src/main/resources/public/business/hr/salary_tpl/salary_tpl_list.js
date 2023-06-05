@@ -1,7 +1,7 @@
 /**
  * 薪酬模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 21:46:45
+ * @since 2023-06-04 13:53:40
  */
 
 
@@ -369,6 +369,9 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'detail') { // 明细
+				window.pageExt.list.detail(data,this);
 			}
 			
 		});

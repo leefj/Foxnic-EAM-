@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员合同
  * <p>人员合同 , 数据表 hr_person_contract 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 07:29:08
+ * @since 2023-06-05 12:57:26
  * @sign F1E6321274305523396F39D29009D329
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

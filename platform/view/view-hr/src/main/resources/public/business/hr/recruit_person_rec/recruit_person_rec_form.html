@@ -1,0 +1,139 @@
+<!--
+/**
+ * 招聘记录 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2023-06-05 15:38:57
+ */
+ -->
+ <!DOCTYPE html>
+<html style="background-color: #FFFFFF;">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+	<title th:text="${lang.translate('招聘记录')}">招聘记录</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}"/>
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden;">
+<div class="form-container" >
+
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="opacity:0">
+
+        <input name="id" id="id"  type="hidden"/>
+
+         <!--开始：group 循环-->
+
+
+        <div class="layui-row form-row" id="random-4687-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs12 form-column" >
+
+                <!-- text_input : 招聘说明 ,  name -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('招聘说明')}">招聘说明</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'招聘说明') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            
+                <!-- select_box : 岗位名称 ,  postId  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('岗位名称')}">岗位名称</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <div id="postId" input-type="select" th:data="${'/service-hr/hr-recruit-post-rec/query-paged-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- text_input : 岗位名称 ,  postName -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('岗位名称')}">岗位名称</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="postName" id="postName" name="postName" th:placeholder="${ lang.translate('请输入'+'岗位名称') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- date_input : 开始时间 ,  startDate  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('开始时间')}">开始时间</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input input-type="date" lay-filter="startDate" id="startDate" name="startDate"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'开始时间') }" type="text" class="layui-input"   />
+                    </div>
+                </div>
+            
+                <!-- date_input : 结束时间 ,  endDate  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('结束时间')}">结束时间</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input input-type="date" lay-filter="endDate" id="endDate" name="endDate"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'结束时间') }" type="text" class="layui-input"   />
+                    </div>
+                </div>
+            
+                <!-- text_area : 招聘要求 ,  content  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('招聘要求')}">招聘要求</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入'+'招聘要求') }" class="layui-textarea" style="height: 120px" ></textarea>
+                    </div>
+                </div>
+            
+                <!-- text_input : 备注 ,  notes -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+        <!--结束：group循环-->
+
+        <div style="height: 8px"></div>
+        <div style="height: 60px"></div>
+
+
+    </form>
+
+</div>
+<div class="model-form-footer">
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('hr_recruit_person_rec:create','hr_recruit_person_rec:update','hr_recruit_person_rec:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
+    var VALIDATE_CONFIG={"notes":{"labelInForm":"备注","inputType":"text_input","required":true},"name":{"labelInForm":"招聘说明","inputType":"text_input","required":true},"postId":{"labelInForm":"岗位名称","inputType":"select_box","required":true}};
+    var AUTH_PREFIX="hr_recruit_person_rec";
+
+
+</script>
+
+
+
+<script th:src="'/business/hr/recruit_person_rec/recruit_person_rec_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/hr/recruit_person_rec/recruit_person_rec_form.js?'+${cacheKey}"></script>
+
+</body>
+</html>

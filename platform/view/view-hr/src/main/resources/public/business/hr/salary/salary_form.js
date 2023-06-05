@@ -1,7 +1,7 @@
 /**
  * 人员薪酬 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 23:11:11
+ * @since 2023-06-05 10:21:25
  */
 
 function FormPage() {
@@ -118,13 +118,6 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
-		form.on('radio(status)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=status]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
-		});
 	}
 
 	/**
@@ -306,6 +299,23 @@ function FormPage() {
 
 	    form.on('submit(submit-button)', verifyAndSaveForm);
 
+		// 请选择人员对话框
+		$("#personId-button").click(function(){
+				var personIdDialogOptions={
+				field:"personId",
+				formData:getFormData(),
+				inputEl:$("#personId"),
+				buttonEl:$(this),
+				single:true,
+				autoWidth:false,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"emp",
+				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
+			};
+			fox.chooseEmployee(personIdDialogOptions);
+		});
 
 	    //关闭窗口
 	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('hr-salary-form-data-win',this); });

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 人员薪酬模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 23:11:09
+ * @since 2023-06-04 13:01:03
 */
 
 @Controller("HrSalaryPageController")
@@ -37,12 +37,31 @@ public class SalaryPageController extends ViewController {
 		return proxy;
 	}
 
+	@RequestMapping("/my_salary_list.html")
+	public String mylist(Model model,HttpServletRequest request,String personId) {
+		model.addAttribute("personId",personId);
+		return getTemplatePath(prefix,"/my_salary_list");
+	}
+
+	@RequestMapping("/my_salary_dtl_list.html")
+	public String mylistDtl(Model model,HttpServletRequest request,String personId) {
+		model.addAttribute("personId",personId);
+		return getTemplatePath(prefix,"/my_salary_dtl_list");
+	}
+
+
+	@RequestMapping("person_list.html")
+	public String personList(Model model,HttpServletRequest request,String code) {
+		model.addAttribute("code",code);
+		return getTemplatePath(prefix,"/person_list");
+	}
+
 	/**
 	 * 人员薪酬 功能主页面
 	 */
 	@RequestMapping("/salary_list.html")
 	public String list(Model model,HttpServletRequest request) {
-		return getTemplatePath(prefix,"salary_list");
+		return getTemplatePath(prefix,"/salary_list");
 	}
 
 	/**
@@ -50,6 +69,6 @@ public class SalaryPageController extends ViewController {
 	 */
 	@RequestMapping("/salary_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
-		return getTemplatePath(prefix,"salary_form");
+		return getTemplatePath(prefix,"/salary_form");
 	}
 }

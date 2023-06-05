@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员薪酬VO类型
  * <p>人员薪酬 , 数据表 hr_salary 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 23:11:08
+ * @since 2023-06-05 10:21:24
  * @sign E138E7272BF556128C11A273377D877E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -419,6 +419,7 @@ public class SalaryVO extends Salary {
 		inst.setWelfaerGsbxBase(this.getWelfaerGsbxBase());
 		inst.setWelfaerSybxCompany(this.getWelfaerSybxCompany());
 		inst.setWelfaerYrbxBase(this.getWelfaerYrbxBase());
+		inst.setWelfaerSyebxBase(this.getWelfaerSyebxBase());
 		inst.setVersion(this.getVersion());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setDeleteBy(this.getDeleteBy());
@@ -426,8 +427,8 @@ public class SalaryVO extends Salary {
 		inst.setOtherSalary(this.getOtherSalary());
 		inst.setDeductPersonalTaxRed(this.getDeductPersonalTaxRed());
 		inst.setCommissionSalary(this.getCommissionSalary());
-		inst.setStatus(this.getStatus());
 		inst.setPersonalTaxZfdk(this.getPersonalTaxZfdk());
+		inst.setWelfaerSyebxPerson(this.getWelfaerSyebxPerson());
 		inst.setWelfaerSybxPerson(this.getWelfaerSybxPerson());
 		inst.setWelfaerYlbxBase(this.getWelfaerYlbxBase());
 		inst.setBaseSalary(this.getBaseSalary());
@@ -438,6 +439,7 @@ public class SalaryVO extends Salary {
 		inst.setWelfaerYlbxPerson(this.getWelfaerYlbxPerson());
 		inst.setWelfareZfgjjCompany(this.getWelfareZfgjjCompany());
 		inst.setWelfaerGsbxCompany(this.getWelfaerGsbxCompany());
+		inst.setWelfaerSyebxCompany(this.getWelfaerSyebxCompany());
 		inst.setHousingSalary(this.getHousingSalary());
 		inst.setWelfaerYrbxPerson(this.getWelfaerYrbxPerson());
 		inst.setPersonalTaxZfzj(this.getPersonalTaxZfzj());
@@ -454,13 +456,14 @@ public class SalaryVO extends Salary {
 		inst.setOvertimeSalary(this.getOvertimeSalary());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setPerson(this.getPerson());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
@@ -541,6 +544,7 @@ public class SalaryVO extends Salary {
 			this.setWelfaerGsbxBase(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFAER_GSBX_BASE)));
 			this.setWelfaerSybxCompany(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFAER_SYBX_COMPANY)));
 			this.setWelfaerYrbxBase(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFAER_YRBX_BASE)));
+			this.setWelfaerSyebxBase(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFAER_SYEBX_BASE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(SalaryVOMeta.VERSION)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(SalaryVOMeta.DELETE_TIME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(SalaryVOMeta.DELETE_BY)));
@@ -548,8 +552,8 @@ public class SalaryVO extends Salary {
 			this.setOtherSalary(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.OTHER_SALARY)));
 			this.setDeductPersonalTaxRed(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.DEDUCT_PERSONAL_TAX_RED)));
 			this.setCommissionSalary(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.COMMISSION_SALARY)));
-			this.setStatus(DataParser.parse(String.class, map.get(SalaryVOMeta.STATUS)));
 			this.setPersonalTaxZfdk(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.PERSONAL_TAX_ZFDK)));
+			this.setWelfaerSyebxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFAER_SYEBX_PERSON)));
 			this.setWelfaerSybxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFAER_SYBX_PERSON)));
 			this.setWelfaerYlbxBase(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFAER_YLBX_BASE)));
 			this.setBaseSalary(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.BASE_SALARY)));
@@ -560,6 +564,7 @@ public class SalaryVO extends Salary {
 			this.setWelfaerYlbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFAER_YLBX_PERSON)));
 			this.setWelfareZfgjjCompany(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFARE_ZFGJJ_COMPANY)));
 			this.setWelfaerGsbxCompany(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFAER_GSBX_COMPANY)));
+			this.setWelfaerSyebxCompany(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFAER_SYEBX_COMPANY)));
 			this.setHousingSalary(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.HOUSING_SALARY)));
 			this.setWelfaerYrbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFAER_YRBX_PERSON)));
 			this.setPersonalTaxZfzj(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.PERSONAL_TAX_ZFZJ)));
@@ -576,12 +581,13 @@ public class SalaryVO extends Salary {
 			this.setOvertimeSalary(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.OVERTIME_SALARY)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(SalaryVOMeta.SEARCH_FIELD)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(SalaryVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(SalaryVOMeta.SORT_TYPE)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(SalaryVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(SalaryVOMeta.FUZZY_FIELD)));
-			this.setSortField(DataParser.parse(String.class, map.get(SalaryVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(SalaryVOMeta.PAGE_SIZE)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(SalaryVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(SalaryVOMeta.SORT_TYPE)));
+			this.setPerson(DataParser.parse(Person.class, map.get(SalaryVOMeta.PERSON)));
+			this.setSortField(DataParser.parse(String.class, map.get(SalaryVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(SalaryVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(SalaryVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(SalaryVOMeta.SEARCH_VALUE)));
@@ -605,6 +611,7 @@ public class SalaryVO extends Salary {
 				this.setWelfaerGsbxBase( (BigDecimal)map.get(SalaryVOMeta.WELFAER_GSBX_BASE));
 				this.setWelfaerSybxCompany( (BigDecimal)map.get(SalaryVOMeta.WELFAER_SYBX_COMPANY));
 				this.setWelfaerYrbxBase( (BigDecimal)map.get(SalaryVOMeta.WELFAER_YRBX_BASE));
+				this.setWelfaerSyebxBase( (BigDecimal)map.get(SalaryVOMeta.WELFAER_SYEBX_BASE));
 				this.setVersion( (Integer)map.get(SalaryVOMeta.VERSION));
 				this.setDeleteTime( (Date)map.get(SalaryVOMeta.DELETE_TIME));
 				this.setDeleteBy( (String)map.get(SalaryVOMeta.DELETE_BY));
@@ -612,8 +619,8 @@ public class SalaryVO extends Salary {
 				this.setOtherSalary( (BigDecimal)map.get(SalaryVOMeta.OTHER_SALARY));
 				this.setDeductPersonalTaxRed( (BigDecimal)map.get(SalaryVOMeta.DEDUCT_PERSONAL_TAX_RED));
 				this.setCommissionSalary( (BigDecimal)map.get(SalaryVOMeta.COMMISSION_SALARY));
-				this.setStatus( (String)map.get(SalaryVOMeta.STATUS));
 				this.setPersonalTaxZfdk( (BigDecimal)map.get(SalaryVOMeta.PERSONAL_TAX_ZFDK));
+				this.setWelfaerSyebxPerson( (BigDecimal)map.get(SalaryVOMeta.WELFAER_SYEBX_PERSON));
 				this.setWelfaerSybxPerson( (BigDecimal)map.get(SalaryVOMeta.WELFAER_SYBX_PERSON));
 				this.setWelfaerYlbxBase( (BigDecimal)map.get(SalaryVOMeta.WELFAER_YLBX_BASE));
 				this.setBaseSalary( (BigDecimal)map.get(SalaryVOMeta.BASE_SALARY));
@@ -624,6 +631,7 @@ public class SalaryVO extends Salary {
 				this.setWelfaerYlbxPerson( (BigDecimal)map.get(SalaryVOMeta.WELFAER_YLBX_PERSON));
 				this.setWelfareZfgjjCompany( (BigDecimal)map.get(SalaryVOMeta.WELFARE_ZFGJJ_COMPANY));
 				this.setWelfaerGsbxCompany( (BigDecimal)map.get(SalaryVOMeta.WELFAER_GSBX_COMPANY));
+				this.setWelfaerSyebxCompany( (BigDecimal)map.get(SalaryVOMeta.WELFAER_SYEBX_COMPANY));
 				this.setHousingSalary( (BigDecimal)map.get(SalaryVOMeta.HOUSING_SALARY));
 				this.setWelfaerYrbxPerson( (BigDecimal)map.get(SalaryVOMeta.WELFAER_YRBX_PERSON));
 				this.setPersonalTaxZfzj( (BigDecimal)map.get(SalaryVOMeta.PERSONAL_TAX_ZFZJ));
@@ -640,12 +648,13 @@ public class SalaryVO extends Salary {
 				this.setOvertimeSalary( (BigDecimal)map.get(SalaryVOMeta.OVERTIME_SALARY));
 				// others
 				this.setSearchField( (String)map.get(SalaryVOMeta.SEARCH_FIELD));
-				this.setPageIndex( (Integer)map.get(SalaryVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(SalaryVOMeta.SORT_TYPE));
 				this.setRequestAction( (String)map.get(SalaryVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(SalaryVOMeta.FUZZY_FIELD));
-				this.setSortField( (String)map.get(SalaryVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(SalaryVOMeta.PAGE_SIZE));
+				this.setPageIndex( (Integer)map.get(SalaryVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(SalaryVOMeta.SORT_TYPE));
+				this.setPerson( (Person)map.get(SalaryVOMeta.PERSON));
+				this.setSortField( (String)map.get(SalaryVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(SalaryVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(SalaryVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(SalaryVOMeta.SEARCH_VALUE));
@@ -682,6 +691,7 @@ public class SalaryVO extends Salary {
 			this.setWelfaerGsbxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFAER_GSBX_BASE)));
 			this.setWelfaerSybxCompany(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFAER_SYBX_COMPANY)));
 			this.setWelfaerYrbxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFAER_YRBX_BASE)));
+			this.setWelfaerSyebxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFAER_SYEBX_BASE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(SalaryVOMeta.VERSION)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(SalaryVOMeta.DELETE_TIME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(SalaryVOMeta.DELETE_BY)));
@@ -689,8 +699,8 @@ public class SalaryVO extends Salary {
 			this.setOtherSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.OTHER_SALARY)));
 			this.setDeductPersonalTaxRed(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.DEDUCT_PERSONAL_TAX_RED)));
 			this.setCommissionSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.COMMISSION_SALARY)));
-			this.setStatus(DataParser.parse(String.class, r.getValue(SalaryVOMeta.STATUS)));
 			this.setPersonalTaxZfdk(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.PERSONAL_TAX_ZFDK)));
+			this.setWelfaerSyebxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFAER_SYEBX_PERSON)));
 			this.setWelfaerSybxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFAER_SYBX_PERSON)));
 			this.setWelfaerYlbxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFAER_YLBX_BASE)));
 			this.setBaseSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.BASE_SALARY)));
@@ -701,6 +711,7 @@ public class SalaryVO extends Salary {
 			this.setWelfaerYlbxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFAER_YLBX_PERSON)));
 			this.setWelfareZfgjjCompany(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFARE_ZFGJJ_COMPANY)));
 			this.setWelfaerGsbxCompany(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFAER_GSBX_COMPANY)));
+			this.setWelfaerSyebxCompany(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFAER_SYEBX_COMPANY)));
 			this.setHousingSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.HOUSING_SALARY)));
 			this.setWelfaerYrbxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFAER_YRBX_PERSON)));
 			this.setPersonalTaxZfzj(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.PERSONAL_TAX_ZFZJ)));
@@ -735,6 +746,7 @@ public class SalaryVO extends Salary {
 				this.setWelfaerGsbxBase( (BigDecimal)r.getValue(SalaryVOMeta.WELFAER_GSBX_BASE));
 				this.setWelfaerSybxCompany( (BigDecimal)r.getValue(SalaryVOMeta.WELFAER_SYBX_COMPANY));
 				this.setWelfaerYrbxBase( (BigDecimal)r.getValue(SalaryVOMeta.WELFAER_YRBX_BASE));
+				this.setWelfaerSyebxBase( (BigDecimal)r.getValue(SalaryVOMeta.WELFAER_SYEBX_BASE));
 				this.setVersion( (Integer)r.getValue(SalaryVOMeta.VERSION));
 				this.setDeleteTime( (Date)r.getValue(SalaryVOMeta.DELETE_TIME));
 				this.setDeleteBy( (String)r.getValue(SalaryVOMeta.DELETE_BY));
@@ -742,8 +754,8 @@ public class SalaryVO extends Salary {
 				this.setOtherSalary( (BigDecimal)r.getValue(SalaryVOMeta.OTHER_SALARY));
 				this.setDeductPersonalTaxRed( (BigDecimal)r.getValue(SalaryVOMeta.DEDUCT_PERSONAL_TAX_RED));
 				this.setCommissionSalary( (BigDecimal)r.getValue(SalaryVOMeta.COMMISSION_SALARY));
-				this.setStatus( (String)r.getValue(SalaryVOMeta.STATUS));
 				this.setPersonalTaxZfdk( (BigDecimal)r.getValue(SalaryVOMeta.PERSONAL_TAX_ZFDK));
+				this.setWelfaerSyebxPerson( (BigDecimal)r.getValue(SalaryVOMeta.WELFAER_SYEBX_PERSON));
 				this.setWelfaerSybxPerson( (BigDecimal)r.getValue(SalaryVOMeta.WELFAER_SYBX_PERSON));
 				this.setWelfaerYlbxBase( (BigDecimal)r.getValue(SalaryVOMeta.WELFAER_YLBX_BASE));
 				this.setBaseSalary( (BigDecimal)r.getValue(SalaryVOMeta.BASE_SALARY));
@@ -754,6 +766,7 @@ public class SalaryVO extends Salary {
 				this.setWelfaerYlbxPerson( (BigDecimal)r.getValue(SalaryVOMeta.WELFAER_YLBX_PERSON));
 				this.setWelfareZfgjjCompany( (BigDecimal)r.getValue(SalaryVOMeta.WELFARE_ZFGJJ_COMPANY));
 				this.setWelfaerGsbxCompany( (BigDecimal)r.getValue(SalaryVOMeta.WELFAER_GSBX_COMPANY));
+				this.setWelfaerSyebxCompany( (BigDecimal)r.getValue(SalaryVOMeta.WELFAER_SYEBX_COMPANY));
 				this.setHousingSalary( (BigDecimal)r.getValue(SalaryVOMeta.HOUSING_SALARY));
 				this.setWelfaerYrbxPerson( (BigDecimal)r.getValue(SalaryVOMeta.WELFAER_YRBX_PERSON));
 				this.setPersonalTaxZfzj( (BigDecimal)r.getValue(SalaryVOMeta.PERSONAL_TAX_ZFZJ));

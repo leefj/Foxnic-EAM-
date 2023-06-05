@@ -166,6 +166,60 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('beforeRowOperationEvent',data,obj);
             return true;
         },
+
+        /**
+         * 表格右侧操作列更多按钮事件
+         * */
+        personSal:function (data, it){
+            admin.post("/service-hr/hr-salary/get-by-person-id", { personId : data.id }, function (r) {
+                if(r.success) {
+                    admin.putTempData('hr-salary-form-data-form-action', "edit",true);
+                    var uData=r.data;
+                    admin.putTempData('hr-salary-form-data', uData);
+                    var area=admin.getTempData('hr-salary-form-area');
+                    var height= (area && area.height) ? area.height : ($(window).height()*0.6);
+                    var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
+                    var title = fox.translate('人员薪酬');
+                    admin.popupCenter({
+                        title: title,
+                        resize: false,
+                        offset: [top,null],
+                        area: ["80%",height+"px"],
+                        type: 2,
+                        id:"hr-salary-form-data-win",
+                        content: '/business/hr/salary/salary_form.html?id='+uData.id,
+                        finish: function () {
+                            refreshTableData();
+                        }
+                    });
+                } else {
+                    fox.showMessage(r);
+                }
+            });
+
+
+        },
+        personCont:function (data, it){
+
+            var area=admin.getTempData('hr-salary-form-area');
+            var height= (area && area.height) ? area.height : ($(window).height()*0.6);
+            var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
+            var title = fox.translate('人员薪酬');
+            admin.popupCenter({
+                title: title,
+                resize: false,
+                offset: [top,null],
+                area: ["80%",height+"px"],
+                type: 2,
+                id:"hr-person-cont-data-win",
+                content: '/business/hr/person_contract/person_contract_list.html?personId='+data.id,
+                finish: function () {
+
+                }
+            });
+        },
+
+
         /**
          * 表格右侧操作列更多按钮事件
          * */

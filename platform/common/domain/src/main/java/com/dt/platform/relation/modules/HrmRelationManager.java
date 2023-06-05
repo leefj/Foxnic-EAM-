@@ -1,25 +1,9 @@
 package com.dt.platform.relation.modules;
 
- 
-import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.HrTables;
-import com.dt.platform.constants.db.KnTables;
-import com.dt.platform.domain.eam.meta.MaintainTaskProjectMeta;
-import com.dt.platform.domain.eam.meta.RepairRuleMeta;
-import com.dt.platform.domain.hr.CertificateType;
-import com.dt.platform.domain.hr.PersonContract;
-import com.dt.platform.domain.hr.PersonFile;
-import com.dt.platform.domain.hr.Position;
 import com.dt.platform.domain.hr.meta.*;
-import com.dt.platform.domain.knowledgebase.meta.ContentMeta;
 import com.github.foxnic.dao.relation.RelationManager;
-import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
-import org.github.foxnic.web.domain.oauth.Menu;
-import org.github.foxnic.web.domain.oauth.Role;
-import org.github.foxnic.web.domain.oauth.RoleMenu;
-import org.github.foxnic.web.domain.oauth.User;
-import org.github.foxnic.web.domain.system.meta.DictItemMeta;
 
 public class HrmRelationManager extends RelationManager {
 
@@ -28,13 +12,18 @@ public class HrmRelationManager extends RelationManager {
 		this.setupRelations();
 		this.setupProperties();
 		this.setupPosition();
-		this.setupPerson();
+
 		this.setupPersonContract();
 		this.setupCert();
 
-
+		this.setupPerson();
 		this.setupPersonFile();
 
+		this.setupSalary();
+		this.setupSalaryDetail();
+		this.setupSalaryAction();
+
+		this.setupRecruitPersonRec();
 	}
  
 	public void setupProperties() {
@@ -45,6 +34,25 @@ public class HrmRelationManager extends RelationManager {
 
 	}
 
+	private void setupRecruitPersonRec() {
+		this.property(RecruitPersonRecMeta.RECRUIT_POST_REC_PROP)
+				.using(HrTables.HR_RECRUIT_PERSON_REC.POST_ID).join(HrTables.HR_RECRUIT_POST_REC.ID);
+	}
+
+	private void setupSalaryAction() {
+
+
+		this.property(SalaryActionMeta.SALARY_TPL_PROP)
+				.using(HrTables.HR_SALARY_ACTION.TPL_ID).join(HrTables.HR_SALARY_TPL.ID);
+
+		this.property(SalaryActionMeta.PERSON_LIST_PROP)
+				.using(HrTables.HR_SALARY_ACTION.TPL_ID).join(HrTables.HR_SALARY_TPL.ID)
+				.using(HrTables.HR_SALARY_TPL.ID).join(HrTables.HR_PERSON.SALARY_TPL_ID);
+
+		this.property(SalaryActionMeta.SALARY_MONTH_PROP)
+				.using(HrTables.HR_SALARY_ACTION.ACTION_MONTH).join(HrTables.HR_SALARY_MONTH.CODE);
+
+	}
 
 	private void setupPersonFile() {
 
@@ -65,6 +73,28 @@ public class HrmRelationManager extends RelationManager {
 	private void setupPosition() {
 		this.property(PositionMeta.POSITION_TYPE_PROP)
 				.using(HrTables.HR_POSITION.TYPE).join(HrTables.HR_POSITION_TYPE.ID);
+
+	}
+
+
+
+
+	private void setupSalary() {
+		this.property(SalaryMeta.PERSON_PROP)
+				.using(HrTables.HR_SALARY.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+	}
+
+
+	private void setupSalaryDetail() {
+		this.property(SalaryDetailMeta.PERSON_PROP)
+				.using(HrTables.HR_SALARY_DETAIL.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+		this.property(SalaryDetailMeta.SALARY_TPL_PROP)
+				.using(HrTables.HR_SALARY_DETAIL.TPL_ID).join(HrTables.HR_SALARY_TPL.ID);
+
+		this.property(SalaryDetailMeta.SALARY_ACTION_PROP)
+				.using(HrTables.HR_SALARY_DETAIL.ACTION_ID).join(HrTables.HR_SALARY_ACTION.ID);
 
 	}
 
@@ -94,6 +124,12 @@ public class HrmRelationManager extends RelationManager {
 
 	private void setupPerson() {
 
+		this.property(PersonMeta.SALARY_TPL_PROP)
+				.using(HrTables.HR_PERSON.SALARY_TPL_ID).join(HrTables.HR_SALARY_TPL.ID);
+
+		this.property(PersonMeta.SALARY_PROP)
+				.using(HrTables.HR_PERSON.ID).join(HrTables.HR_SALARY.PERSON_ID);
+
 		this.property(PersonMeta.RANK_PROP)
 				.using(HrTables.HR_PERSON.RANK_CODE).join(HrTables.HR_RANK.ID);
 
@@ -111,6 +147,10 @@ public class HrmRelationManager extends RelationManager {
 				.using(HrTables.HR_PERSON.EMPLOYEE_IDENTITY_STATUS).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
 				.condition("dict_code='hr_employee_identity_status'");
 
+
+		this.property(PersonMeta.BANK_PROP)
+				.using(HrTables.HR_PERSON.PAYROLL_CARD_BANK_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_bank_list'");
 
 		this.property(PersonMeta.SEX_DICT_PROP)
 				.using(HrTables.HR_PERSON.SEX_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)

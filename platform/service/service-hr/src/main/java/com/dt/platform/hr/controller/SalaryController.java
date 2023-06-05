@@ -1,7 +1,12 @@
 package com.dt.platform.hr.controller;
 
 import java.util.*;
+
+import com.dt.platform.domain.hr.PersonVO;
+import com.dt.platform.hr.service.IPersonService;
+import com.github.foxnic.commons.busi.id.IDGenerator;
 import org.github.foxnic.web.framework.web.SuperController;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +36,7 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.hr.meta.SalaryMeta;
 import java.math.BigDecimal;
+import com.dt.platform.domain.hr.Person;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -45,7 +51,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 人员薪酬接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 23:11:09
+ * @since 2023-06-04 13:01:02
 */
 
 @InDoc
@@ -56,6 +62,10 @@ public class SalaryController extends SuperController {
 	@Autowired
 	private ISalaryService salaryService;
 
+
+	@Autowired
+	private IPersonService personService;
+
 	/**
 	 * 添加人员薪酬
 	*/
@@ -63,7 +73,7 @@ public class SalaryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SalaryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SalaryVOMeta.STATUS , value = "是否发放" , required = false , dataTypeClass=String.class),
+
 		@ApiImplicitParam(name = SalaryVOMeta.BASE_SALARY , value = "基本工资" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.POST_SALARY , value = "岗位工资" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WORKING_YEARS_SALARY , value = "工龄工资" , required = false , dataTypeClass=BigDecimal.class),
@@ -91,6 +101,9 @@ public class SalaryController extends SuperController {
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_BASE , value = "生育保险基数" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_PERSON , value = "生育保险个人" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_COMPANY , value = "生育保险公司" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_BASE , value = "失业保险基数" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_PERSON , value = "失业保险个人" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_COMPANY , value = "失业保险公司" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_PERSONAL_TAX_RED , value = "个税抵扣" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_KQ , value = "扣除考勤" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_GH , value = "扣除工会" , required = false , dataTypeClass=BigDecimal.class),
@@ -205,7 +218,7 @@ public class SalaryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SalaryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SalaryVOMeta.STATUS , value = "是否发放" , required = false , dataTypeClass=String.class),
+
 		@ApiImplicitParam(name = SalaryVOMeta.BASE_SALARY , value = "基本工资" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.POST_SALARY , value = "岗位工资" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WORKING_YEARS_SALARY , value = "工龄工资" , required = false , dataTypeClass=BigDecimal.class),
@@ -233,6 +246,9 @@ public class SalaryController extends SuperController {
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_BASE , value = "生育保险基数" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_PERSON , value = "生育保险个人" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_COMPANY , value = "生育保险公司" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_BASE , value = "失业保险基数" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_PERSON , value = "失业保险个人" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_COMPANY , value = "失业保险公司" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_PERSONAL_TAX_RED , value = "个税抵扣" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_KQ , value = "扣除考勤" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_GH , value = "扣除工会" , required = false , dataTypeClass=BigDecimal.class),
@@ -263,7 +279,7 @@ public class SalaryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SalaryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SalaryVOMeta.STATUS , value = "是否发放" , required = false , dataTypeClass=String.class),
+
 		@ApiImplicitParam(name = SalaryVOMeta.BASE_SALARY , value = "基本工资" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.POST_SALARY , value = "岗位工资" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WORKING_YEARS_SALARY , value = "工龄工资" , required = false , dataTypeClass=BigDecimal.class),
@@ -291,6 +307,9 @@ public class SalaryController extends SuperController {
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_BASE , value = "生育保险基数" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_PERSON , value = "生育保险个人" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_COMPANY , value = "生育保险公司" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_BASE , value = "失业保险基数" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_PERSON , value = "失业保险个人" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_COMPANY , value = "失业保险公司" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_PERSONAL_TAX_RED , value = "个税抵扣" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_KQ , value = "扣除考勤" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_GH , value = "扣除工会" , required = false , dataTypeClass=BigDecimal.class),
@@ -328,9 +347,74 @@ public class SalaryController extends SuperController {
 		
 		Result<Salary> result=new Result<>();
 		Salary salary=salaryService.getById(id);
+		// join 关联的对象
+		salaryService.dao().fill(salary)
+			.with("person")
+			.execute();
 		result.success(true).data(salary);
 		return result;
 	}
+
+	/**
+	 * 获取人员薪酬
+	 */
+	@ApiOperation(value = "获取人员薪酬")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = SalaryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+	})
+	@ApiOperationSupport(order=6 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = SalaryServiceProxy.GET_BY_PERSON_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(SalaryServiceProxy.GET_BY_PERSON_ID)
+	public Result<Salary> getByPersonId(String personId) {
+		String id="";
+		SalaryVO vo=new SalaryVO();
+		vo.setPersonId(personId);
+		List<Salary> list=salaryService.queryList(vo);
+		if(list.size()==0){
+			//创建一个
+			Salary newObj=new Salary();
+			id= IDGenerator.getSnowflakeIdString();
+			newObj.setId(id);
+			newObj.setPersonId(personId);
+			salaryService.insert(newObj,true);
+		}else if(list.size()==1){
+			id=list.get(0).getId();
+		}else{
+			return ErrorDesc.failureMessage("有重复的数据。");
+		}
+		Result<Salary> result=new Result<>();
+		Salary salary=salaryService.getById(id);
+		// join 关联的对象
+		salaryService.dao().fill(salary)
+				.with("person")
+				.execute();
+		result.success(true).data(salary);
+		return result;
+	}
+
+
+	/**
+	 * 获取人员薪酬
+	 */
+	@ApiOperation(value = "获取人员薪酬")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = SalaryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+	})
+	@ApiOperationSupport(order=6 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = SalaryServiceProxy.MY_GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(SalaryServiceProxy.MY_GET_BY_ID)
+	public Result<Salary> myGetById(String id) {
+
+		Result<Salary> result=new Result<>();
+		Salary salary=salaryService.getById(id);
+		// join 关联的对象
+		salaryService.dao().fill(salary)
+				.with("person")
+				.execute();
+		result.success(true).data(salary);
+		return result;
+	}
+
 
 
 	/**
@@ -360,7 +444,7 @@ public class SalaryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SalaryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SalaryVOMeta.STATUS , value = "是否发放" , required = false , dataTypeClass=String.class),
+
 		@ApiImplicitParam(name = SalaryVOMeta.BASE_SALARY , value = "基本工资" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.POST_SALARY , value = "岗位工资" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WORKING_YEARS_SALARY , value = "工龄工资" , required = false , dataTypeClass=BigDecimal.class),
@@ -388,6 +472,9 @@ public class SalaryController extends SuperController {
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_BASE , value = "生育保险基数" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_PERSON , value = "生育保险个人" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_COMPANY , value = "生育保险公司" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_BASE , value = "失业保险基数" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_PERSON , value = "失业保险个人" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_COMPANY , value = "失业保险公司" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_PERSONAL_TAX_RED , value = "个税抵扣" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_KQ , value = "扣除考勤" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_GH , value = "扣除工会" , required = false , dataTypeClass=BigDecimal.class),
@@ -419,7 +506,6 @@ public class SalaryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SalaryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SalaryVOMeta.STATUS , value = "是否发放" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryVOMeta.BASE_SALARY , value = "基本工资" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.POST_SALARY , value = "岗位工资" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WORKING_YEARS_SALARY , value = "工龄工资" , required = false , dataTypeClass=BigDecimal.class),
@@ -447,6 +533,9 @@ public class SalaryController extends SuperController {
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_BASE , value = "生育保险基数" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_PERSON , value = "生育保险个人" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_COMPANY , value = "生育保险公司" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_BASE , value = "失业保险基数" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_PERSON , value = "失业保险个人" , required = false , dataTypeClass=BigDecimal.class),
+		@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_COMPANY , value = "失业保险公司" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_PERSONAL_TAX_RED , value = "个税抵扣" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_KQ , value = "扣除考勤" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_GH , value = "扣除工会" , required = false , dataTypeClass=BigDecimal.class),
@@ -466,11 +555,91 @@ public class SalaryController extends SuperController {
 		
 		Result<PagedList<Salary>> result=new Result<>();
 		PagedList<Salary> list=salaryService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
+		// join 关联的对象
+		salaryService.dao().fill(list)
+			.with("person")
+			.execute();
 		result.success(true).data(list);
 		return result;
 	}
 
 
+
+	/**
+	 * 分页查询人员薪酬
+	 */
+	@ApiOperation(value = "分页查询人员薪酬")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = SalaryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+			@ApiImplicitParam(name = SalaryVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class),
+			@ApiImplicitParam(name = SalaryVOMeta.BASE_SALARY , value = "基本工资" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.POST_SALARY , value = "岗位工资" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WORKING_YEARS_SALARY , value = "工龄工资" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.FIXED_SALARY , value = "固定补贴" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.ACHIEVEMENT_SALARY , value = "绩效补贴" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.OVERTIME_SALARY , value = "加班补贴" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.OTHER_SALARY , value = "其他补贴" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.COMMUNICATION_SALARY , value = "通讯补贴" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.TRAFFIC_SALARY , value = "交通补贴" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.HOUSING_SALARY , value = "住房补贴" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.COMMISSION_SALARY , value = "提成工资" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.HIGH_TEMPERATURE_SALARY , value = "高温补贴" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFARE_ZFGJJ_BASE , value = "住房公积金基数" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFARE_ZFGJJ_PERSON , value = "住房公积金个人" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFARE_ZFGJJ_COMPANY , value = "住房公积金公司" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_YLBX_BASE , value = "养老保险基数" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_YLBX_PERSON , value = "养老保险个人" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_YLBX_COMPANY , value = "养老保险公司" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_GSBX_BASE , value = "工伤保险基数" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_GSBX_PERSON , value = "工伤保险个人" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_GSBX_COMPANY , value = "工伤保险公司" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_YRBX_BASE , value = "医疗保险基数" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_YRBX_PERSON , value = "医疗保险个人" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_YRBX_COMPANY , value = "医疗保险公司" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_BASE , value = "生育保险基数" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_PERSON , value = "生育保险个人" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYBX_COMPANY , value = "生育保险公司" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_BASE , value = "失业保险基数" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_PERSON , value = "失业保险个人" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.WELFAER_SYEBX_COMPANY , value = "失业保险公司" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_PERSONAL_TAX_RED , value = "个税抵扣" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_KQ , value = "扣除考勤" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.DEDUCT_GH , value = "扣除工会" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.DUDUCT_OTHER , value = "扣除其他" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZNJY , value = "子女教育" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_JXJY , value = "继续教育" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_DBYL , value = "大病医疗" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFDK , value = "住房贷款" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFZJ , value = "住房租金" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_SYLR , value = "赡养老人" , required = false , dataTypeClass=BigDecimal.class),
+			@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ERZH , value = "幼儿照护" , required = false , dataTypeClass=BigDecimal.class),
+	})
+	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = SalaryServiceProxy.MY_QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(SalaryServiceProxy.MY_QUERY_PAGED_LIST)
+	public Result<PagedList<Salary>> queryPagedList2(SalaryVO sample) {
+
+		String empId=SessionUser.getCurrent().getActivatedEmployeeId();
+
+		String personId="none";
+		PersonVO vo=new PersonVO();
+		vo.setEmployeeId(empId);
+		List<Person> personList=personService.queryList(vo);
+		if(personList.size()>1){
+			return ErrorDesc.failureMessage("找到重复的员工配置");
+		}else if(personList.size()==1){
+			personId=personList.get(0).getId();
+		}
+		sample.setPersonId(personId);
+		Result<PagedList<Salary>> result=new Result<>();
+		PagedList<Salary> list=salaryService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
+		// join 关联的对象
+		salaryService.dao().fill(list)
+				.with("person")
+				.execute();
+		result.success(true).data(list);
+		return result;
+	}
 
 
 

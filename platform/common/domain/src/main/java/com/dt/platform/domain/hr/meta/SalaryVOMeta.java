@@ -6,13 +6,14 @@ import java.util.List;
 import com.dt.platform.domain.hr.Salary;
 import java.math.BigDecimal;
 import java.util.Date;
+import com.dt.platform.domain.hr.Person;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 23:11:08
+ * @since 2023-06-05 10:21:24
  * @sign E138E7272BF556128C11A273377D877E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -158,16 +159,6 @@ public class SalaryVOMeta extends SalaryMeta {
 	 * 人员 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> PERSON_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSON_ID, java.lang.String.class, "人员", "人员", java.lang.String.class, null);
-	
-	/**
-	 * 是否发放 , 类型: java.lang.String
-	*/
-	public static final String STATUS="status";
-	
-	/**
-	 * 是否发放 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,STATUS, java.lang.String.class, "是否发放", "是否发放", java.lang.String.class, null);
 	
 	/**
 	 * 基本工资 , 类型: java.math.BigDecimal
@@ -440,6 +431,36 @@ public class SalaryVOMeta extends SalaryMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.math.BigDecimal> WELFAER_SYBX_COMPANY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,WELFAER_SYBX_COMPANY, java.math.BigDecimal.class, "生育保险公司", "生育保险公司", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 失业保险基数 , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_SYEBX_BASE="welfaerSyebxBase";
+	
+	/**
+	 * 失业保险基数 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.math.BigDecimal> WELFAER_SYEBX_BASE_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,WELFAER_SYEBX_BASE, java.math.BigDecimal.class, "失业保险基数", "失业保险基数", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 失业保险个人 , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_SYEBX_PERSON="welfaerSyebxPerson";
+	
+	/**
+	 * 失业保险个人 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.math.BigDecimal> WELFAER_SYEBX_PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,WELFAER_SYEBX_PERSON, java.math.BigDecimal.class, "失业保险个人", "失业保险个人", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 失业保险公司 , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_SYEBX_COMPANY="welfaerSyebxCompany";
+	
+	/**
+	 * 失业保险公司 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.math.BigDecimal> WELFAER_SYEBX_COMPANY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,WELFAER_SYEBX_COMPANY, java.math.BigDecimal.class, "失业保险公司", "失业保险公司", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 个税抵扣 , 类型: java.math.BigDecimal
 	*/
 	public static final String DEDUCT_PERSONAL_TAX_RED="deductPersonalTaxRed";
@@ -640,9 +661,19 @@ public class SalaryVOMeta extends SalaryMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * person , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final String PERSON="person";
+	
+	/**
+	 * person , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,com.dt.platform.domain.hr.Person> PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSON, com.dt.platform.domain.hr.Person.class, "person", "person", com.dt.platform.domain.hr.Person.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PERSON_ID , STATUS , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , OTHER_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , COMMISSION_SALARY , HIGH_TEMPERATURE_SALARY , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , DEDUCT_PERSONAL_TAX_RED , DEDUCT_KQ , DEDUCT_GH , DUDUCT_OTHER , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PERSON_ID , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , OTHER_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , COMMISSION_SALARY , HIGH_TEMPERATURE_SALARY , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , DEDUCT_PERSONAL_TAX_RED , DEDUCT_KQ , DEDUCT_GH , DUDUCT_OTHER , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON };
 	
 	/**
 	 * 代理类
@@ -803,17 +834,6 @@ public class SalaryVOMeta extends SalaryMeta {
 		public Salary setPersonId(String personId) {
 			super.change(PERSON_ID,super.getPersonId(),personId);
 			super.setPersonId(personId);
-			return this;
-		}
-		
-		/**
-		 * 设置 是否发放
-		 * @param status 是否发放
-		 * @return 当前对象
-		*/
-		public Salary setStatus(String status) {
-			super.change(STATUS,super.getStatus(),status);
-			super.setStatus(status);
 			return this;
 		}
 		
@@ -1115,6 +1135,39 @@ public class SalaryVOMeta extends SalaryMeta {
 		}
 		
 		/**
+		 * 设置 失业保险基数
+		 * @param welfaerSyebxBase 失业保险基数
+		 * @return 当前对象
+		*/
+		public Salary setWelfaerSyebxBase(BigDecimal welfaerSyebxBase) {
+			super.change(WELFAER_SYEBX_BASE,super.getWelfaerSyebxBase(),welfaerSyebxBase);
+			super.setWelfaerSyebxBase(welfaerSyebxBase);
+			return this;
+		}
+		
+		/**
+		 * 设置 失业保险个人
+		 * @param welfaerSyebxPerson 失业保险个人
+		 * @return 当前对象
+		*/
+		public Salary setWelfaerSyebxPerson(BigDecimal welfaerSyebxPerson) {
+			super.change(WELFAER_SYEBX_PERSON,super.getWelfaerSyebxPerson(),welfaerSyebxPerson);
+			super.setWelfaerSyebxPerson(welfaerSyebxPerson);
+			return this;
+		}
+		
+		/**
+		 * 设置 失业保险公司
+		 * @param welfaerSyebxCompany 失业保险公司
+		 * @return 当前对象
+		*/
+		public Salary setWelfaerSyebxCompany(BigDecimal welfaerSyebxCompany) {
+			super.change(WELFAER_SYEBX_COMPANY,super.getWelfaerSyebxCompany(),welfaerSyebxCompany);
+			super.setWelfaerSyebxCompany(welfaerSyebxCompany);
+			return this;
+		}
+		
+		/**
 		 * 设置 个税抵扣
 		 * @param deductPersonalTaxRed 个税抵扣
 		 * @return 当前对象
@@ -1333,6 +1386,17 @@ public class SalaryVOMeta extends SalaryMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 person
+		 * @param person person
+		 * @return 当前对象
+		*/
+		public Salary setPerson(Person person) {
+			super.change(PERSON,super.getPerson(),person);
+			super.setPerson(person);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1366,6 +1430,7 @@ public class SalaryVOMeta extends SalaryMeta {
 			inst.setWelfaerGsbxBase(this.getWelfaerGsbxBase());
 			inst.setWelfaerSybxCompany(this.getWelfaerSybxCompany());
 			inst.setWelfaerYrbxBase(this.getWelfaerYrbxBase());
+			inst.setWelfaerSyebxBase(this.getWelfaerSyebxBase());
 			inst.setVersion(this.getVersion());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setDeleteBy(this.getDeleteBy());
@@ -1373,8 +1438,8 @@ public class SalaryVOMeta extends SalaryMeta {
 			inst.setOtherSalary(this.getOtherSalary());
 			inst.setDeductPersonalTaxRed(this.getDeductPersonalTaxRed());
 			inst.setCommissionSalary(this.getCommissionSalary());
-			inst.setStatus(this.getStatus());
 			inst.setPersonalTaxZfdk(this.getPersonalTaxZfdk());
+			inst.setWelfaerSyebxPerson(this.getWelfaerSyebxPerson());
 			inst.setWelfaerSybxPerson(this.getWelfaerSybxPerson());
 			inst.setWelfaerYlbxBase(this.getWelfaerYlbxBase());
 			inst.setBaseSalary(this.getBaseSalary());
@@ -1385,6 +1450,7 @@ public class SalaryVOMeta extends SalaryMeta {
 			inst.setWelfaerYlbxPerson(this.getWelfaerYlbxPerson());
 			inst.setWelfareZfgjjCompany(this.getWelfareZfgjjCompany());
 			inst.setWelfaerGsbxCompany(this.getWelfaerGsbxCompany());
+			inst.setWelfaerSyebxCompany(this.getWelfaerSyebxCompany());
 			inst.setHousingSalary(this.getHousingSalary());
 			inst.setWelfaerYrbxPerson(this.getWelfaerYrbxPerson());
 			inst.setPersonalTaxZfzj(this.getPersonalTaxZfzj());
@@ -1401,13 +1467,14 @@ public class SalaryVOMeta extends SalaryMeta {
 			inst.setOvertimeSalary(this.getOvertimeSalary());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
-				inst.setPageIndex(this.getPageIndex());
-				inst.setSortType(this.getSortType());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setPerson(this.getPerson());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());

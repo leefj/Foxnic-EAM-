@@ -278,8 +278,16 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							if(valueBold){
 								cell.setBold();
 							}
-							colValue=asset.getOrDefault(layoutCode,"").toString();
-
+							if(asset.containsKey(layoutCode)){
+								Object tmpValue=asset.getOrDefault(layoutCode,"");
+								if(tmpValue==null){
+									colValue="";
+								}else{
+									colValue=tmpValue.toString();
+								}
+							}else{
+								colValue="";
+							}
 						}else if(AsseLabelTableCellTypeEnum.QR_CODE.code().equals(layoutType)){
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);

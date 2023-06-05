@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 薪酬明细模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 23:33:41
+ * @since 2023-06-04 13:01:47
 */
 
 @Controller("HrSalaryDetailPageController")
@@ -42,7 +42,7 @@ public class SalaryDetailPageController extends ViewController {
 	 */
 	@RequestMapping("/salary_detail_list.html")
 	public String list(Model model,HttpServletRequest request) {
-		return getTemplatePath(prefix,"salary_detail_list");
+		return getTemplatePath(prefix,"/salary_detail_list");
 	}
 
 	/**
@@ -50,6 +50,6 @@ public class SalaryDetailPageController extends ViewController {
 	 */
 	@RequestMapping("/salary_detail_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
-		return getTemplatePath(prefix,"salary_detail_form");
+		return getTemplatePath(prefix,"/salary_detail_form");
 	}
 }

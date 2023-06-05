@@ -1,7 +1,7 @@
 /**
  * 人员薪酬 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 23:11:10
+ * @since 2023-06-05 10:21:25
  */
 
 
@@ -85,8 +85,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员') , templet: function (d) { return templet('personId',d.personId,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否发放'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员') , templet: function (d) { return templet('personId',fox.getProperty(d,["person","name"],0,'','personId'),d);} }
 					,{ field: 'baseSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('基本工资') , templet: function (d) { return templet('baseSalary',d.baseSalary,d);}  }
 					,{ field: 'postSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('岗位工资') , templet: function (d) { return templet('postSalary',d.postSalary,d);}  }
 					,{ field: 'workingYearsSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('工龄工资') , templet: function (d) { return templet('workingYearsSalary',d.workingYearsSalary,d);}  }
@@ -98,7 +97,6 @@ function ListPage() {
 					,{ field: 'trafficSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('交通补贴') , templet: function (d) { return templet('trafficSalary',d.trafficSalary,d);}  }
 					,{ field: 'housingSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('住房补贴') , templet: function (d) { return templet('housingSalary',d.housingSalary,d);}  }
 					,{ field: 'commissionSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('提成工资') , templet: function (d) { return templet('commissionSalary',d.commissionSalary,d);}  }
-					,{ field: 'highTemperatureSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('高温补贴') , templet: function (d) { return templet('highTemperatureSalary',d.highTemperatureSalary,d);}  }
 					,{ field: 'welfareZfgjjBase', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('住房公积金基数') , templet: function (d) { return templet('welfareZfgjjBase',d.welfareZfgjjBase,d);}  }
 					,{ field: 'welfareZfgjjPerson', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('住房公积金个人') , templet: function (d) { return templet('welfareZfgjjPerson',d.welfareZfgjjPerson,d);}  }
 					,{ field: 'welfareZfgjjCompany', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('住房公积金公司') , templet: function (d) { return templet('welfareZfgjjCompany',d.welfareZfgjjCompany,d);}  }
@@ -114,6 +112,9 @@ function ListPage() {
 					,{ field: 'welfaerSybxBase', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('生育保险基数') , templet: function (d) { return templet('welfaerSybxBase',d.welfaerSybxBase,d);}  }
 					,{ field: 'welfaerSybxPerson', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('生育保险个人') , templet: function (d) { return templet('welfaerSybxPerson',d.welfaerSybxPerson,d);}  }
 					,{ field: 'welfaerSybxCompany', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('生育保险公司') , templet: function (d) { return templet('welfaerSybxCompany',d.welfaerSybxCompany,d);}  }
+					,{ field: 'welfaerSyebxBase', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('失业保险基数') , templet: function (d) { return templet('welfaerSyebxBase',d.welfaerSyebxBase,d);}  }
+					,{ field: 'welfaerSyebxPerson', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('失业保险个人') , templet: function (d) { return templet('welfaerSyebxPerson',d.welfaerSyebxPerson,d);}  }
+					,{ field: 'welfaerSyebxCompany', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('失业保险公司') , templet: function (d) { return templet('welfaerSyebxCompany',d.welfaerSyebxCompany,d);}  }
 					,{ field: 'deductPersonalTaxRed', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('个税抵扣') , templet: function (d) { return templet('deductPersonalTaxRed',d.deductPersonalTaxRed,d);}  }
 					,{ field: 'deductKq', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('扣除考勤') , templet: function (d) { return templet('deductKq',d.deductKq,d);}  }
 					,{ field: 'deductGh', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('扣除工会') , templet: function (d) { return templet('deductGh',d.deductGh,d);}  }
@@ -196,7 +197,7 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
+		value.personId={ inputType:"button",value: $("#personId").val(),fillBy:["person","name"] ,label:$("#personId-button").text() };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -243,31 +244,6 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
-		//渲染 status 搜索框
-		fox.renderSelectBox({
-			el: "status",
-			size: "small",
-			radio: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
@@ -298,6 +274,21 @@ function ListPage() {
 			});
 		});
 
+		// 请选择人员对话框
+		$("#personId-button").click(function(){
+				var personIdDialogOptions={
+				field:"personId",
+				inputEl:$("#personId"),
+				buttonEl:$(this),
+				single:false,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"emp",
+				prepose:function(param){ return window.pageExt.list.beforeDialog && window.pageExt.list.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.list.afterDialog && window.pageExt.list.afterDialog(param,result);}
+			};
+			fox.chooseEmployee(personIdDialogOptions);
+		});
 	}
 
 	/**

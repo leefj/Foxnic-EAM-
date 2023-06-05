@@ -1,5 +1,6 @@
 package com.dt.platform.hr.page;
 
+import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
 import org.springframework.stereotype.Controller;
@@ -41,8 +42,12 @@ public class PersonContractPageController extends ViewController {
 	 * 人员合同 功能主页面
 	 */
 	@RequestMapping("/person_contract_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String personId) {
+		if(!StringUtil.isBlank(personId)){
+			model.addAttribute("personId",personId);
+		}
 		return prefix+"/person_contract_list";
+
 	}
 
 	/**

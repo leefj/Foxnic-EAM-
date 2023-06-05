@@ -2,7 +2,7 @@
 /**
  * 薪酬明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 23:33:42
+ * @since 2023-06-05 13:06:02
  */
  -->
  <!DOCTYPE html>
@@ -40,23 +40,33 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 人员 , personId ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 人员 , personId ,typeName=button, isHideInSearch=true -->
+                    <!-- 银行 , bank ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 账户账户 , bankAccount ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 模版 , tplId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 动作 , actionId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('人员')}" class="search-label personId-label">人员</span><span class="search-colon">:</span></div>
-                        <input id="personId" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
+
+
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.SalaryPersonDetailStatusEnum')}" style="width:150px"></div>
                     </div>
+                    <!-- 合计金额 , totalAmount ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 应发金额 , payAmount ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 实发金额 , issuedAmount ,typeName=number_input, isHideInSearch=true -->
                     <!-- 基本工资 , baseSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 岗位工资 , postSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 工龄工资 , workingYearsSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 固定补贴 , fixedSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 绩效补贴 , achievementSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 加班补贴 , overtimeSalary ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 高温补贴 , highTemperatureSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 其他补贴 , otherSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 通讯补贴 , communicationSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 交通补贴 , trafficSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 住房补贴 , housingSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 提成工资 , commissionSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 高温补贴 , highTemperatureSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 住房公积金基数 , welfareZfgjjBase ,typeName=number_input, isHideInSearch=true -->
                     <!-- 住房公积金个人 , welfareZfgjjPerson ,typeName=number_input, isHideInSearch=true -->
                     <!-- 住房公积金公司 , welfareZfgjjCompany ,typeName=number_input, isHideInSearch=true -->
@@ -72,9 +82,13 @@
                     <!-- 生育保险基数 , welfaerSybxBase ,typeName=number_input, isHideInSearch=true -->
                     <!-- 生育保险个人 , welfaerSybxPerson ,typeName=number_input, isHideInSearch=true -->
                     <!-- 生育保险公司 , welfaerSybxCompany ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 失业保险基数 , welfaerSyebxBase ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 失业保险个人 , welfaerSyebxPerson ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 失业保险公司 , welfaerSyebxCompany ,typeName=number_input, isHideInSearch=true -->
                     <!-- 扣除考勤 , deductKq ,typeName=number_input, isHideInSearch=true -->
                     <!-- 扣除工会 , deductGh ,typeName=number_input, isHideInSearch=true -->
                     <!-- 扣除其他 , deductOther ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 个税抵扣 , deductPersonalTaxRed ,typeName=number_input, isHideInSearch=true -->
                     <!-- 子女教育 , personalTaxZnjy ,typeName=number_input, isHideInSearch=true -->
                     <!-- 继续教育 , personalTaxJxjy ,typeName=number_input, isHideInSearch=true -->
                     <!-- 大病医疗 , personalTaxDbyl ,typeName=number_input, isHideInSearch=true -->
@@ -82,14 +96,9 @@
                     <!-- 住房租金 , personalTaxZfzj ,typeName=number_input, isHideInSearch=true -->
                     <!-- 赡养老人 , personalTaxSylr ,typeName=number_input, isHideInSearch=true -->
                     <!-- 幼儿照护 , personalTaxErzh ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 个人所得税 , individualTax ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 合计金额 , totalAmount ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 应发金额 , payAmount ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 实发金额 , issuedAmount ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 个人所得税 , ptGrsds ,typeName=number_input, isHideInSearch=true -->
                     <!-- 抵扣基数 , ptDkjs ,typeName=number_input, isHideInSearch=true -->
                     <!-- 税率 , ptSlPct ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 个人所得税 , ptGrsds ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 姓名 , userName ,typeName=text_input, isHideInSearch=true -->
                     <!-- 生效时间 , effectTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 月份 , actionMonth ,typeName=text_input, isHideInSearch=false -->
@@ -97,12 +106,20 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('月份')}" class="search-label actionMonth-label">月份</span><span class="search-colon">:</span></div>
                         <input id="actionMonth" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
-                    <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
+                    <!-- 姓名 , userName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
-
-
-                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.ValidStatusEnum')}" style="width:150px"></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('姓名')}" class="search-label userName-label">姓名</span><span class="search-colon">:</span></div>
+                        <input id="userName" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 工号 , jobNumber ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('工号')}" class="search-label jobNumber-label">工号</span><span class="search-colon">:</span></div>
+                        <input id="jobNumber" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 操作说明 , operMsg ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('操作说明')}" class="search-label operMsg-label">操作说明</span><span class="search-colon">:</span></div>
+                        <input id="operMsg" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
 
@@ -131,8 +148,9 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-        <button th:if="${perm.checkAuth('hr_salary_detail:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
-        <button th:if="${perm.checkAuth('hr_salary_detail:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除','','cmp:table.button')}">删除</span></button>
+        <button id="valid-data"  th:if="${perm.checkAuth('hr_salary_detail:valid')}"class="layui-btn icon-btn layui-btn-sm  person-valid-data " lay-event="tool-valid-data"><span th:text="${lang.translate('生效','','cmp:table.button')}">生效</span></button>
+        <button id="export-data"  th:if="${perm.checkAuth('hr_salary_detail:data-export')}"class="layui-btn icon-btn layui-btn-sm  person-export-data " lay-event="tool-export-data"><span th:text="${lang.translate('导出','','cmp:table.button')}">导出</span></button>
+        <button id="import-data"  th:if="${perm.checkAuth('hr_salary_detail:data-import')}"class="layui-btn icon-btn layui-btn-sm  person-import-data " lay-event="tool-import-data"><span th:text="${lang.translate('导入','','cmp:table.button')}">导入</span></button>
     </div>
 </script>
 
@@ -145,13 +163,14 @@
 
     <button th:if="${perm.checkAuth('hr_salary_detail:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
+    <button th:if="${perm.checkAuth('hr_salary_detail:reset')}"class="layui-btn layui-btn-xs  person-reset-data " lay-event="reset-data" data-id="{{d.id}}"><span th:text="${lang.translate('重置','','cmp:table.ops')}">重置</span></button>
 
 </script>
 
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
-    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.ValidStatusEnum')}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.SalaryPersonDetailStatusEnum')}]];
     var AUTH_PREFIX="hr_salary_detail";
 
 

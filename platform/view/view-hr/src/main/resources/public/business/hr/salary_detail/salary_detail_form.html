@@ -2,7 +2,7 @@
 /**
  * 薪酬明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 23:33:43
+ * @since 2023-06-05 13:06:02
  */
  -->
  <!DOCTYPE html>
@@ -37,29 +37,29 @@
 
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9187-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4131-fieldset">
             <legend>人员信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-9187-content">
+        <div class="layui-row form-row" id="random-4131-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-                <!-- text_input : 人员 ,  personId -->
+                <!-- text_input : 姓名 ,  userName -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('人员')}">人员</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('姓名')}">姓名</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="personId" id="personId" name="personId" th:placeholder="${ lang.translate('请输入'+'人员') }" type="text" class="layui-input"  />
+                        <input  readonly lay-filter="userName" id="userName" name="userName" th:placeholder="${ lang.translate('请输入'+'姓名') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             
-                <!-- text_input : 月份 ,  actionMonth -->
+                <!-- text_input : 工号 ,  jobNumber -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('月份')}">月份</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('工号')}">工号</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="actionMonth" id="actionMonth" name="actionMonth" th:placeholder="${ lang.translate('请输入'+'月份') }" type="text" class="layui-input"  />
+                        <input  readonly lay-filter="jobNumber" id="jobNumber" name="jobNumber" th:placeholder="${ lang.translate('请输入'+'工号') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -68,6 +68,45 @@
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
+                <!-- text_input : 银行 ,  bank -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('银行')}">银行</div></div>
+                    <div class="layui-input-block ">
+                        <input  readonly lay-filter="bank" id="bank" name="bank" th:placeholder="${ lang.translate('请输入'+'银行') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 账户账户 ,  bankAccount -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('账户账户')}">账户账户</div></div>
+                    <div class="layui-input-block ">
+                        <input  readonly lay-filter="bankAccount" id="bankAccount" name="bankAccount" th:placeholder="${ lang.translate('请输入'+'账户账户') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-8224-fieldset">
+            <legend>操作信息</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-8224-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- radio_box : 状态 ,  status  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div></div>
+                    <div class="layui-input-block ">
+                        <input  readonly input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.hr.SalaryPersonDetailStatusEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
+                    </div>
+                </div>
+            
                 <!-- date_input : 生效时间 ,  effectTime  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('生效时间')}">生效时间</div></div>
@@ -77,15 +116,41 @@
                 </div>
             <!--结束：栏次内字段循环-->
             </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- text_input : 操作说明 ,  operMsg -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('操作说明')}">操作说明</div></div>
+                    <div class="layui-input-block ">
+                        <input  readonly lay-filter="operMsg" id="operMsg" name="operMsg" th:placeholder="${ lang.translate('请输入'+'操作说明') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- text_input : 月份 ,  actionMonth -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('月份')}">月份</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="actionMonth" id="actionMonth" name="actionMonth" th:placeholder="${ lang.translate('请输入'+'月份') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2255-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0343-fieldset">
             <legend>基本工资</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-2255-content">
+        <div class="layui-row form-row" id="random-0343-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -130,11 +195,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9501-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5233-fieldset">
             <legend>各类补贴</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-9501-content">
+        <div class="layui-row form-row" id="random-5233-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -227,11 +292,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2651-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1621-fieldset">
             <legend>福利基数</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-2651-content">
+        <div class="layui-row form-row" id="random-1621-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -274,6 +339,14 @@
                     <div class="layui-form-label "><div th:text="${lang.translate('生育保险基数')}">生育保险基数</div></div>
                     <div class="layui-input-block ">
                         <input lay-filter="welfaerSybxBase" id="welfaerSybxBase" name="welfaerSybxBase" th:placeholder="${ lang.translate('请输入'+'生育保险基数') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 失业保险基数 ,  welfaerSyebxBase  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('失业保险基数')}">失业保险基数</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerSyebxBase" id="welfaerSyebxBase" name="welfaerSyebxBase" th:placeholder="${ lang.translate('请输入'+'失业保险基数') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -321,6 +394,14 @@
                         <input lay-filter="welfaerSybxPerson" id="welfaerSybxPerson" name="welfaerSybxPerson" th:placeholder="${ lang.translate('请输入'+'生育保险个人') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
                     </div>
                 </div>
+            
+                <!-- number_input : 失业保险个人 ,  welfaerSyebxPerson  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('失业保险个人')}">失业保险个人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerSyebxPerson" id="welfaerSyebxPerson" name="welfaerSyebxPerson" th:placeholder="${ lang.translate('请输入'+'失业保险个人') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
             <!--结束：栏次内字段循环-->
             </div>
              <!--开始：column 循环-->
@@ -366,21 +447,29 @@
                         <input lay-filter="welfaerSybxCompany" id="welfaerSybxCompany" name="welfaerSybxCompany" th:placeholder="${ lang.translate('请输入'+'生育保险公司') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
                     </div>
                 </div>
+            
+                <!-- number_input : 失业保险公司 ,  welfaerSyebxCompany  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('失业保险公司')}">失业保险公司</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerSyebxCompany" id="welfaerSyebxCompany" name="welfaerSyebxCompany" th:placeholder="${ lang.translate('请输入'+'失业保险公司') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
             <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4389-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2400-fieldset">
             <legend>应扣项目</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-4389-content">
+        <div class="layui-row form-row" id="random-2400-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
+            <div class="layui-col-xs3 form-column" >
 
                 <!-- number_input : 扣除考勤 ,  deductKq  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
@@ -393,7 +482,7 @@
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
+            <div class="layui-col-xs3 form-column" >
 
                 <!-- number_input : 扣除工会 ,  deductGh  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
@@ -406,7 +495,7 @@
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
+            <div class="layui-col-xs3 form-column" >
 
                 <!-- number_input : 扣除其他 ,  deductOther  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
@@ -417,15 +506,28 @@
                 </div>
             <!--结束：栏次内字段循环-->
             </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs3 form-column" >
+
+                <!-- number_input : 个税抵扣 ,  deductPersonalTaxRed  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('个税抵扣')}">个税抵扣</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="deductPersonalTaxRed" id="deductPersonalTaxRed" name="deductPersonalTaxRed" th:placeholder="${ lang.translate('请输入'+'个税抵扣') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4369-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5077-fieldset">
             <legend>个税减免</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-4369-content">
+        <div class="layui-row form-row" id="random-5077-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -502,11 +604,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-8256-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2046-fieldset">
             <legend>个人所得税</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-8256-content">
+        <div class="layui-row form-row" id="random-2046-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -551,11 +653,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-8962-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0016-fieldset">
             <legend>小计</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-8962-content">
+        <div class="layui-row form-row" id="random-0016-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -619,7 +721,7 @@
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
-    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.ValidStatusEnum')}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.SalaryPersonDetailStatusEnum')}]];
     var VALIDATE_CONFIG={};
     var AUTH_PREFIX="hr_salary_detail";
 

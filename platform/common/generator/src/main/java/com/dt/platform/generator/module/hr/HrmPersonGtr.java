@@ -3,6 +3,7 @@ package com.dt.platform.generator.module.hr;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.HrTables;
+import com.dt.platform.constants.enums.common.StatusYNEnum;
 import com.dt.platform.constants.enums.common.ValidStatusEnum;
 import com.dt.platform.constants.enums.hr.EmployeeStatusEnum;
 import com.dt.platform.domain.eam.meta.AssetMeta;
@@ -38,17 +39,18 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"educationData","educationData","educationData");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"politicCountenanceData","politicCountenanceData","politicCountenanceData");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"employeeIdentity","employeeIdentity","employeeIdentity");
+
+        cfg.getPoClassFile().addSimpleProperty(DictItem.class,"bank","bank","bank");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"employee","employee","employee");
         cfg.getPoClassFile().addListProperty(PersonCert.class,"personCertList","personCertList","personCertList");
 
+        cfg.getPoClassFile().addSimpleProperty(Salary.class,"salary","salary","salary");
+        cfg.getPoClassFile().addSimpleProperty(SalaryTpl.class,"salaryTpl","salaryTpl","salaryTpl");
 
         cfg.view().field(HrTables.HR_PERSON.ID).basic().hidden(true);
         cfg.view().field(HrTables.HR_PERSON.NAME).search().fuzzySearch();
         cfg.view().field(HrTables.HR_PERSON.IDENTITY_CARD).search().fuzzySearch();
         cfg.view().field(HrTables.HR_PERSON.JOB_NUMBER).search().fuzzySearch();
-
-
-
 
 
         cfg.view().field(HrTables.HR_PERSON.EMPLOYMENT_DATE).search().range();
@@ -59,8 +61,15 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON.EMPLOYEE_STATUS,
                         HrTables.HR_PERSON.EMPLOYEE_IDENTITY_STATUS,
                         HrTables.HR_PERSON.JOB_NUMBER,
-                        HrTables.HR_PERSON.NAME,
+                        HrTables.HR_PERSON.SALARY_TPL_ID
+                        ,
 
+                },
+                new Object[]{
+                        HrTables.HR_PERSON.NAME,
+                        HrTables.HR_PERSON.EMPLOYEE_ID,
+                        HrTables.HR_PERSON.WORK_KIND_CODE,
+                        HrTables.HR_PERSON.PAYROLL_CARD_BANK_CODE,
                 },
                 new Object[]{
                         HrTables.HR_PERSON.ORG_ID,
@@ -137,6 +146,8 @@ public class HrmPersonGtr extends BaseCodeGenerator {
 
         cfg.view().field(HrTables.HR_PERSON.NOTE).form().textArea().height(Config.textAreaHeight);
 
+        cfg.view().field(HrTables.HR_PERSON.SALARY_PAY_OUT).form().validate().required().form().radioBox().enumType(StatusYNEnum.class).defaultIndex(0);
+
         cfg.view().field(HrTables.HR_PERSON.POSITION_CODE)
                 .form().selectBox().queryApi(PositionServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
@@ -161,8 +172,12 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                 textField(RankMeta.CODE).
                 fillWith(PersonMeta.RANK).muliti(false);
 
-
-   //
+        cfg.view().field(HrTables.HR_PERSON.SALARY_TPL_ID)
+                .form().selectBox().queryApi(SalaryTplServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(true).toolbar(false)
+                .valueField(SalaryTplMeta.ID).
+                textField(SalaryTplMeta.NAME).
+                fillWith(PersonMeta.SALARY_TPL).muliti(false).defaultIndex(0);
 
         cfg.view().field(HrTables.HR_PERSON.EMPLOYEE_IDENTITY_STATUS)
                 .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=hr_employee_identity_status")
@@ -192,6 +207,15 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
                 fillWith(PersonMeta.SEX_DICT).muliti(false);
+
+        cfg.view().field(HrTables.HR_PERSON.PAYROLL_CARD_BANK_CODE)
+                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=hr_bank_list")
+                .paging(false).filter(false).toolbar(false)
+                .valueField(DictItemMeta.CODE).
+                textField(DictItemMeta.LABEL).
+                fillWith(PersonMeta.BANK).muliti(false);
+
+
 
 
         cfg.view().field(HrTables.HR_PERSON.MARITAL_STATUS)
@@ -294,12 +318,14 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         );
 
 
-
         cfg.view().form().addGroup("工资信息",
                 new Object[] {
-                        HrTables.HR_PERSON.PAYROLL_CARD_BANK_CODE
+                        HrTables.HR_PERSON.SALARY_PAY_OUT,
+                        HrTables.HR_PERSON.SALARY_TPL_ID,
+                        HrTables.HR_PERSON.SALARY_NOTES
                 },
                 new Object[] {
+                        HrTables.HR_PERSON.PAYROLL_CARD_BANK_CODE,
                         HrTables.HR_PERSON.PAYROLL_CARD
                 }
         );
