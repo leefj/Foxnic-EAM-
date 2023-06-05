@@ -1,6 +1,14 @@
 package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.constants.enums.hr.SalaryActionStatusEnum;
+import com.dt.platform.constants.enums.hr.SalaryPersonDetailStatusEnum;
+import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.SalaryAction;
+import com.dt.platform.domain.hr.meta.SalaryActionMeta;
+import com.dt.platform.domain.hr.meta.SalaryDetailMeta;
+import com.dt.platform.hr.service.ISalaryActionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -38,13 +46,17 @@ import java.util.Map;
  * 薪酬明细服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 23:33:41
+ * @since 2023-06-04 13:01:46
 */
 
 
 @Service("HrSalaryDetailService")
 
 public class SalaryDetailServiceImpl extends SuperService<SalaryDetail> implements ISalaryDetailService {
+
+
+	@Autowired
+	private ISalaryActionService salaryActionService;
 
 	/**
 	 * 注入DAO对象
@@ -75,6 +87,27 @@ public class SalaryDetailServiceImpl extends SuperService<SalaryDetail> implemen
 	public Result insert(SalaryDetail salaryDetail,boolean throwsException) {
 		Result r=super.insert(salaryDetail,throwsException);
 		return r;
+	}
+
+	@Override
+	public Result valid(String actionId) {
+		SalaryAction salaryAction=salaryActionService.getById(actionId);
+		if(SalaryActionStatusEnum.FINISH.code().equals(salaryAction.getStatus())){
+			return ErrorDesc.failureMessage("已生效，不可重复操作");
+		}
+		dao.execute("update hr_salary_detail set status=? where action_id=?", SalaryPersonDetailStatusEnum.VALID.code(),actionId);
+		dao.execute("update hr_salary_action set status=? where id=?", SalaryActionStatusEnum.FINISH.code(),actionId);
+		return ErrorDesc.success();
+	}
+	@Override
+	public Result reset(String id) {
+		SalaryDetail detail=this.getById(id);
+		this.dao().fill(detail).with(SalaryDetailMeta.PERSON)
+				.with(SalaryDetailMeta.SALARY_TPL)
+				.with(SalaryDetailMeta.SALARY_ACTION).execute();
+		Person person =detail.getPerson();
+		SalaryAction act =detail.getSalaryAction();
+		return salaryActionService.createPersonData(person,act);
 	}
 
 	/**

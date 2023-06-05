@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 22:48:52
+ * @since 2023-06-04 15:15:36
  */
 
 function FormPage() {
@@ -531,6 +531,81 @@ function FormPage() {
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("leaveDate",value, date, endDate);
 			}
 		});
+		//渲染 payrollCardBankCode 下拉字段
+		fox.renderSelectBox({
+			el: "payrollCardBankCode",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("工资卡开户行",'','cmp:form'),
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("payrollCardBankCode",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("payrollCardBankCode",{data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 salaryTplId 下拉字段
+		fox.renderSelectBox({
+			el: "salaryTplId",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("薪酬模版",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("salaryTplId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "0".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("salaryTplId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+		form.on('radio(salaryPayOut)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=salaryPayOut]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("salaryPayOut",data,checked);
+		});
 	    //渲染图片字段
 		foxup.render({
 			el:"personPictureId",
@@ -714,6 +789,10 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#employeeTitleCode",formData.professionalLevel);
 			//设置  员工职级 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#rankCode",formData.rank);
+			//设置  工资卡开户行 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#payrollCardBankCode",formData.bank);
+			//设置  薪酬模版 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#salaryTplId",formData.salaryTpl);
 
 			//处理fillBy
 
@@ -796,6 +875,10 @@ function FormPage() {
 		data["employeeTitleCode"]=fox.getSelectedValue("employeeTitleCode",false);
 		//获取 员工职级 下拉框的值
 		data["rankCode"]=fox.getSelectedValue("rankCode",false);
+		//获取 工资卡开户行 下拉框的值
+		data["payrollCardBankCode"]=fox.getSelectedValue("payrollCardBankCode",false);
+		//获取 薪酬模版 下拉框的值
+		data["salaryTplId"]=fox.getSelectedValue("salaryTplId",false);
 
 		return data;
 	}

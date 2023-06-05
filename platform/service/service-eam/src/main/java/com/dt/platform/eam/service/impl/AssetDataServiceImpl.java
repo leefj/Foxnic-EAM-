@@ -1222,8 +1222,14 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
             }
             String companyName=orgMap.get(assetItem.getOwnCompanyId());
             assetMap.put(AssetDataExportColumnEnum.OWN_COMPANY_NAME.code(),companyName);
+            if(assetItem.getOwnerCompany()!=null){
+                assetMap.put("ownCompanyFullName",assetItem.getOwnerCompany().getFullName());
+            }
             String orgName=orgMap.get(assetItem.getUseOrganizationId());
             assetMap.put(AssetDataExportColumnEnum.USE_ORGANIZATION_NAME.code(),orgName);
+            if(assetItem.getUseOrganization()!=null){
+                assetMap.put("useOrganizationFullName",assetItem.getUseOrganization().getFullName());
+            }
             String categoryName=categoryMap.get(assetItem.getCategoryId());
             assetMap.put(AssetDataExportColumnEnum.ASSET_CATEGORY_NAME.code(),categoryName);
             if(assetItem.getManager()!=null){

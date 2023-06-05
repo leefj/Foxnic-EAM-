@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-06-03 23:30:41
+ * @since 2023-06-05 15:19:03
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -1056,6 +1056,21 @@ public class HrTables {
 		public static final DBField PAYROLL_CARD = new DBField(DBDataType.STRING , "payroll_card","payrollCard","工资卡帐号","工资卡帐号",false,false,true);
 		
 		/**
+		 * 薪酬模版
+		*/
+		public static final DBField SALARY_TPL_ID = new DBField(DBDataType.STRING , "salary_tpl_id","salaryTplId","薪酬模版","薪酬模版",false,false,true);
+		
+		/**
+		 * 是否发放
+		*/
+		public static final DBField SALARY_PAY_OUT = new DBField(DBDataType.STRING , "salary_pay_out","salaryPayOut","是否发放","是否发放",false,false,true);
+		
+		/**
+		 * 薪酬备注
+		*/
+		public static final DBField SALARY_NOTES = new DBField(DBDataType.STRING , "salary_notes","salaryNotes","薪酬备注","薪酬备注",false,false,true);
+		
+		/**
 		 * 照片
 		*/
 		public static final DBField PERSON_PICTURE_ID = new DBField(DBDataType.STRING , "person_picture_id","personPictureId","照片","照片",false,false,true);
@@ -1135,7 +1150,7 @@ public class HrTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public HR_PERSON() {
-			this.init($NAME,"人员信息" , ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_IDENTITY_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , PERSON_PICTURE_ID , EMPLOYEE_ID , FILE_ID , CONTRACT_DURATION , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"人员信息" , ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_IDENTITY_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , SALARY_TPL_ID , SALARY_PAY_OUT , SALARY_NOTES , PERSON_PICTURE_ID , EMPLOYEE_ID , FILE_ID , CONTRACT_DURATION , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final HR_PERSON $TABLE=new HR_PERSON();
 	}
@@ -2079,6 +2094,276 @@ public class HrTables {
 	}
 	
 	/**
+	 * 招聘记录
+	*/
+	public static class HR_RECRUIT_PERSON_REC extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "hr_recruit_person_rec";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 招聘说明
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","招聘说明","招聘说明",false,false,true);
+		
+		/**
+		 * 岗位名称
+		*/
+		public static final DBField POST_ID = new DBField(DBDataType.STRING , "post_id","postId","岗位名称","岗位名称",false,false,true);
+		
+		/**
+		 * 岗位名称
+		*/
+		public static final DBField POST_NAME = new DBField(DBDataType.STRING , "post_name","postName","岗位名称","岗位名称",false,false,true);
+		
+		/**
+		 * 招聘要求
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","招聘要求","招聘要求",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 开始时间
+		*/
+		public static final DBField START_DATE = new DBField(DBDataType.DATE , "start_date","startDate","开始时间","开始时间",false,false,true);
+		
+		/**
+		 * 结束时间
+		*/
+		public static final DBField END_DATE = new DBField(DBDataType.DATE , "end_date","endDate","结束时间","结束时间",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public HR_RECRUIT_PERSON_REC() {
+			this.init($NAME,"招聘记录" , ID , NAME , POST_ID , POST_NAME , CONTENT , NOTES , START_DATE , END_DATE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final HR_RECRUIT_PERSON_REC $TABLE=new HR_RECRUIT_PERSON_REC();
+	}
+	
+	/**
+	 * 招聘岗位
+	*/
+	public static class HR_RECRUIT_POST_REC extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "hr_recruit_post_rec";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 招聘说明
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","招聘说明","招聘说明",false,false,true);
+		
+		/**
+		 * 岗位名称
+		*/
+		public static final DBField POST_NAME = new DBField(DBDataType.STRING , "post_name","postName","岗位名称","岗位名称",false,false,true);
+		
+		/**
+		 * 招聘要求
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","招聘要求","招聘要求",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public HR_RECRUIT_POST_REC() {
+			this.init($NAME,"招聘岗位" , ID , NAME , POST_NAME , CONTENT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final HR_RECRUIT_POST_REC $TABLE=new HR_RECRUIT_POST_REC();
+	}
+	
+	/**
+	 * 招聘
+	*/
+	public static class HR_RECRUIT_RECORD extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "hr_recruit_record";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 招聘说明
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","招聘说明","招聘说明",false,false,true);
+		
+		/**
+		 * 岗位名称
+		*/
+		public static final DBField POST_NAME = new DBField(DBDataType.STRING , "post_name","postName","岗位名称","岗位名称",false,false,true);
+		
+		/**
+		 * 招聘要求
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","招聘要求","招聘要求",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public HR_RECRUIT_RECORD() {
+			this.init($NAME,"招聘" , ID , NAME , POST_NAME , CONTENT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final HR_RECRUIT_RECORD $TABLE=new HR_RECRUIT_RECORD();
+	}
+	
+	/**
 	 * 人员薪酬
 	*/
 	public static class HR_SALARY extends DBTable {
@@ -2097,11 +2382,6 @@ public class HrTables {
 		 * 人员
 		*/
 		public static final DBField PERSON_ID = new DBField(DBDataType.STRING , "person_id","personId","人员","人员",false,false,true);
-		
-		/**
-		 * 是否发放
-		*/
-		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","是否发放","是否发放",false,false,true);
 		
 		/**
 		 * 基本工资
@@ -2237,6 +2517,21 @@ public class HrTables {
 		 * 生育保险公司
 		*/
 		public static final DBField WELFAER_SYBX_COMPANY = new DBField(DBDataType.DECIMAL , "welfaer_sybx_company","welfaerSybxCompany","生育保险公司","生育保险公司",false,false,true);
+		
+		/**
+		 * 失业保险基数
+		*/
+		public static final DBField WELFAER_SYEBX_BASE = new DBField(DBDataType.DECIMAL , "welfaer_syebx_base","welfaerSyebxBase","失业保险基数","失业保险基数",false,false,true);
+		
+		/**
+		 * 失业保险个人
+		*/
+		public static final DBField WELFAER_SYEBX_PERSON = new DBField(DBDataType.DECIMAL , "welfaer_syebx_person","welfaerSyebxPerson","失业保险个人","失业保险个人",false,false,true);
+		
+		/**
+		 * 失业保险公司
+		*/
+		public static final DBField WELFAER_SYEBX_COMPANY = new DBField(DBDataType.DECIMAL , "welfaer_syebx_company","welfaerSyebxCompany","失业保险公司","失业保险公司",false,false,true);
 		
 		/**
 		 * 个税抵扣
@@ -2339,9 +2634,205 @@ public class HrTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public HR_SALARY() {
-			this.init($NAME,"人员薪酬" , ID , PERSON_ID , STATUS , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , OTHER_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , COMMISSION_SALARY , HIGH_TEMPERATURE_SALARY , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , DEDUCT_PERSONAL_TAX_RED , DEDUCT_KQ , DEDUCT_GH , DUDUCT_OTHER , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"人员薪酬" , ID , PERSON_ID , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , OTHER_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , COMMISSION_SALARY , HIGH_TEMPERATURE_SALARY , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , DEDUCT_PERSONAL_TAX_RED , DEDUCT_KQ , DEDUCT_GH , DUDUCT_OTHER , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final HR_SALARY $TABLE=new HR_SALARY();
+	}
+	
+	/**
+	 * 薪酬发放
+	*/
+	public static class HR_SALARY_ACTION extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "hr_salary_action";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 标签
+		*/
+		public static final DBField LABEL = new DBField(DBDataType.STRING , "label","label","标签","标签",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 月份
+		*/
+		public static final DBField ACTION_MONTH = new DBField(DBDataType.STRING , "action_month","actionMonth","月份","月份",false,false,true);
+		
+		/**
+		 * 模版
+		*/
+		public static final DBField TPL_ID = new DBField(DBDataType.STRING , "tpl_id","tplId","模版","模版",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 数据版本号
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public HR_SALARY_ACTION() {
+			this.init($NAME,"薪酬发放" , ID , STATUS , LABEL , NAME , ACTION_MONTH , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final HR_SALARY_ACTION $TABLE=new HR_SALARY_ACTION();
+	}
+	
+	/**
+	 * 薪酬控制
+	*/
+	public static class HR_SALARY_CTL extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "hr_salary_ctl";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 编号
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编号","编号",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","类型",false,false,true);
+		
+		/**
+		 * 是否参与
+		*/
+		public static final DBField VALUE_EN = new DBField(DBDataType.STRING , "value_en","valueEn","是否参与","是否参与",false,false,true);
+		
+		/**
+		 * 字符串数值
+		*/
+		public static final DBField VALUE_STR = new DBField(DBDataType.STRING , "value_str","valueStr","字符串数值","字符串数值",false,false,true);
+		
+		/**
+		 * 浮点数值
+		*/
+		public static final DBField VALUE_D = new DBField(DBDataType.DECIMAL , "value_d","valueD","浮点数值","浮点数值",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public HR_SALARY_CTL() {
+			this.init($NAME,"薪酬控制" , ID , CODE , NAME , TYPE , VALUE_EN , VALUE_STR , VALUE_D , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final HR_SALARY_CTL $TABLE=new HR_SALARY_CTL();
 	}
 	
 	/**
@@ -2360,14 +2851,64 @@ public class HrTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
+		 * 姓名
+		*/
+		public static final DBField USER_NAME = new DBField(DBDataType.STRING , "user_name","userName","姓名","姓名",false,false,true);
+		
+		/**
+		 * 月份
+		*/
+		public static final DBField ACTION_MONTH = new DBField(DBDataType.STRING , "action_month","actionMonth","月份","月份",false,false,true);
+		
+		/**
 		 * 人员
 		*/
 		public static final DBField PERSON_ID = new DBField(DBDataType.STRING , "person_id","personId","人员","人员",false,false,true);
 		
 		/**
+		 * 工号
+		*/
+		public static final DBField JOB_NUMBER = new DBField(DBDataType.STRING , "job_number","jobNumber","工号","工号",false,false,true);
+		
+		/**
+		 * 银行
+		*/
+		public static final DBField BANK = new DBField(DBDataType.STRING , "bank","bank","银行","银行",false,false,true);
+		
+		/**
+		 * 账户账户
+		*/
+		public static final DBField BANK_ACCOUNT = new DBField(DBDataType.STRING , "bank_account","bankAccount","账户账户","账户账户",false,false,true);
+		
+		/**
+		 * 模版
+		*/
+		public static final DBField TPL_ID = new DBField(DBDataType.STRING , "tpl_id","tplId","模版","模版",false,false,true);
+		
+		/**
+		 * 动作
+		*/
+		public static final DBField ACTION_ID = new DBField(DBDataType.STRING , "action_id","actionId","动作","动作",false,false,true);
+		
+		/**
 		 * 状态
 		*/
 		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 合计金额
+		*/
+		public static final DBField TOTAL_AMOUNT = new DBField(DBDataType.DECIMAL , "total_amount","totalAmount","合计金额","合计金额",false,false,true);
+		
+		/**
+		 * 应发金额
+		*/
+		public static final DBField PAY_AMOUNT = new DBField(DBDataType.DECIMAL , "pay_amount","payAmount","应发金额","应发金额",false,false,true);
+		
+		/**
+		 * 实发金额
+		*/
+		public static final DBField ISSUED_AMOUNT = new DBField(DBDataType.DECIMAL , "issued_amount","issuedAmount","实发金额","实发金额",false,false,true);
 		
 		/**
 		 * 基本工资
@@ -2400,11 +2941,6 @@ public class HrTables {
 		public static final DBField OVERTIME_SALARY = new DBField(DBDataType.DECIMAL , "overtime_salary","overtimeSalary","加班补贴","加班补贴",false,false,true);
 		
 		/**
-		 * 高温补贴
-		*/
-		public static final DBField HIGH_TEMPERATURE_SALARY = new DBField(DBDataType.DECIMAL , "high_temperature_salary","highTemperatureSalary","高温补贴","高温补贴",false,false,true);
-		
-		/**
 		 * 其他补贴
 		*/
 		public static final DBField OTHER_SALARY = new DBField(DBDataType.DECIMAL , "other_salary","otherSalary","其他补贴","其他补贴",false,false,true);
@@ -2428,6 +2964,11 @@ public class HrTables {
 		 * 提成工资
 		*/
 		public static final DBField COMMISSION_SALARY = new DBField(DBDataType.DECIMAL , "commission_salary","commissionSalary","提成工资","提成工资",false,false,true);
+		
+		/**
+		 * 高温补贴
+		*/
+		public static final DBField HIGH_TEMPERATURE_SALARY = new DBField(DBDataType.DECIMAL , "high_temperature_salary","highTemperatureSalary","高温补贴","高温补贴",false,false,true);
 		
 		/**
 		 * 住房公积金基数
@@ -2505,6 +3046,21 @@ public class HrTables {
 		public static final DBField WELFAER_SYBX_COMPANY = new DBField(DBDataType.DECIMAL , "welfaer_sybx_company","welfaerSybxCompany","生育保险公司","生育保险公司",false,false,true);
 		
 		/**
+		 * 失业保险基数
+		*/
+		public static final DBField WELFAER_SYEBX_BASE = new DBField(DBDataType.DECIMAL , "welfaer_syebx_base","welfaerSyebxBase","失业保险基数","失业保险基数",false,false,true);
+		
+		/**
+		 * 失业保险个人
+		*/
+		public static final DBField WELFAER_SYEBX_PERSON = new DBField(DBDataType.DECIMAL , "welfaer_syebx_person","welfaerSyebxPerson","失业保险个人","失业保险个人",false,false,true);
+		
+		/**
+		 * 失业保险公司
+		*/
+		public static final DBField WELFAER_SYEBX_COMPANY = new DBField(DBDataType.DECIMAL , "welfaer_syebx_company","welfaerSyebxCompany","失业保险公司","失业保险公司",false,false,true);
+		
+		/**
 		 * 扣除考勤
 		*/
 		public static final DBField DEDUCT_KQ = new DBField(DBDataType.DECIMAL , "deduct_kq","deductKq","扣除考勤","扣除考勤",false,false,true);
@@ -2518,6 +3074,11 @@ public class HrTables {
 		 * 扣除其他
 		*/
 		public static final DBField DEDUCT_OTHER = new DBField(DBDataType.DECIMAL , "deduct_other","deductOther","扣除其他","扣除其他",false,false,true);
+		
+		/**
+		 * 个税抵扣
+		*/
+		public static final DBField DEDUCT_PERSONAL_TAX_RED = new DBField(DBDataType.DECIMAL , "deduct_personal_tax_red","deductPersonalTaxRed","个税抵扣","个税抵扣",false,false,true);
 		
 		/**
 		 * 子女教育
@@ -2555,29 +3116,9 @@ public class HrTables {
 		public static final DBField PERSONAL_TAX_ERZH = new DBField(DBDataType.DECIMAL , "personal_tax_erzh","personalTaxErzh","幼儿照护","幼儿照护",false,false,true);
 		
 		/**
-		 * 月份
-		*/
-		public static final DBField ACTION_MONTH = new DBField(DBDataType.STRING , "action_month","actionMonth","月份","月份",false,false,true);
-		
-		/**
 		 * 个人所得税
 		*/
-		public static final DBField INDIVIDUAL_TAX = new DBField(DBDataType.DECIMAL , "individual_tax","individualTax","个人所得税","个人所得税",false,false,true);
-		
-		/**
-		 * 合计金额
-		*/
-		public static final DBField TOTAL_AMOUNT = new DBField(DBDataType.DECIMAL , "total_amount","totalAmount","合计金额","合计金额",false,false,true);
-		
-		/**
-		 * 应发金额
-		*/
-		public static final DBField PAY_AMOUNT = new DBField(DBDataType.DECIMAL , "pay_amount","payAmount","应发金额","应发金额",false,false,true);
-		
-		/**
-		 * 实发金额
-		*/
-		public static final DBField ISSUED_AMOUNT = new DBField(DBDataType.DECIMAL , "issued_amount","issuedAmount","实发金额","实发金额",false,false,true);
+		public static final DBField PT_GRSDS = new DBField(DBDataType.DECIMAL , "pt_grsds","ptGrsds","个人所得税","个人所得税",false,false,true);
 		
 		/**
 		 * 抵扣基数
@@ -2590,19 +3131,95 @@ public class HrTables {
 		public static final DBField PT_SL_PCT = new DBField(DBDataType.DECIMAL , "pt_sl_pct","ptSlPct","税率","税率",false,false,true);
 		
 		/**
-		 * 个人所得税
-		*/
-		public static final DBField PT_GRSDS = new DBField(DBDataType.DECIMAL , "pt_grsds","ptGrsds","个人所得税","个人所得税",false,false,true);
-		
-		/**
-		 * 姓名
-		*/
-		public static final DBField USER_NAME = new DBField(DBDataType.STRING , "user_name","userName","姓名","姓名",false,false,true);
-		
-		/**
 		 * 生效时间
 		*/
 		public static final DBField EFFECT_TIME = new DBField(DBDataType.DATE , "effect_time","effectTime","生效时间","生效时间",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 操作说明
+		*/
+		public static final DBField OPER_MSG = new DBField(DBDataType.STRING , "oper_msg","operMsg","操作说明","操作说明",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 数据版本号
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public HR_SALARY_DETAIL() {
+			this.init($NAME,"薪酬明细" , ID , USER_NAME , ACTION_MONTH , PERSON_ID , JOB_NUMBER , BANK , BANK_ACCOUNT , TPL_ID , ACTION_ID , STATUS , TOTAL_AMOUNT , PAY_AMOUNT , ISSUED_AMOUNT , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , OTHER_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , COMMISSION_SALARY , HIGH_TEMPERATURE_SALARY , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , DEDUCT_KQ , DEDUCT_GH , DEDUCT_OTHER , DEDUCT_PERSONAL_TAX_RED , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , PT_GRSDS , PT_DKJS , PT_SL_PCT , EFFECT_TIME , NOTES , OPER_MSG , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final HR_SALARY_DETAIL $TABLE=new HR_SALARY_DETAIL();
+	}
+	
+	/**
+	 * 薪酬月份
+	*/
+	public static class HR_SALARY_MONTH extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "hr_salary_month";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 编码
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
 		
 		/**
 		 * 备注
@@ -2654,10 +3271,71 @@ public class HrTables {
 		*/
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
-		public HR_SALARY_DETAIL() {
-			this.init($NAME,"薪酬明细" , ID , PERSON_ID , STATUS , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , HIGH_TEMPERATURE_SALARY , OTHER_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , COMMISSION_SALARY , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , DEDUCT_KQ , DEDUCT_GH , DEDUCT_OTHER , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , ACTION_MONTH , INDIVIDUAL_TAX , TOTAL_AMOUNT , PAY_AMOUNT , ISSUED_AMOUNT , PT_DKJS , PT_SL_PCT , PT_GRSDS , USER_NAME , EFFECT_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		public HR_SALARY_MONTH() {
+			this.init($NAME,"薪酬月份" , ID , CODE , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
-		public static final HR_SALARY_DETAIL $TABLE=new HR_SALARY_DETAIL();
+		public static final HR_SALARY_MONTH $TABLE=new HR_SALARY_MONTH();
+	}
+	
+	/**
+	 * 薪酬税率
+	*/
+	public static class HR_SALARY_TAX_PCT extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "hr_salary_tax_pct";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 最小
+		*/
+		public static final DBField MIN = new DBField(DBDataType.STRING , "min","min","最小","最小",false,false,true);
+		
+		/**
+		 * 最小包含
+		*/
+		public static final DBField MIN_INCLUDE = new DBField(DBDataType.STRING , "min_include","minInclude","最小包含","最小包含",false,false,true);
+		
+		/**
+		 * 最大
+		*/
+		public static final DBField MAX = new DBField(DBDataType.DECIMAL , "max","max","最大","最大",false,false,true);
+		
+		/**
+		 * 最大包含
+		*/
+		public static final DBField MAX_INCLUDE = new DBField(DBDataType.STRING , "max_include","maxInclude","最大包含","最大包含",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 顺序
+		*/
+		public static final DBField SORT = new DBField(DBDataType.INTEGER , "sort","sort","顺序","顺序",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public HR_SALARY_TAX_PCT() {
+			this.init($NAME,"薪酬税率" , ID , NAME , MIN , MIN_INCLUDE , MAX , MAX_INCLUDE , NOTES , SORT , TENANT_ID);
+		}
+		public static final HR_SALARY_TAX_PCT $TABLE=new HR_SALARY_TAX_PCT();
 	}
 	
 	/**

@@ -10,14 +10,16 @@ import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.hr.PersonCert;
 import java.util.List;
+import com.dt.platform.domain.hr.Salary;
+import com.dt.platform.domain.hr.SalaryTpl;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 22:48:50
- * @sign 14CDED4C3AA6E1C45C802D2FF024921F
+ * @since 2023-06-04 15:15:32
+ * @sign C62F017803FF6F620D4C32D6878FDC61
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -464,6 +466,36 @@ public class PersonMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> PAYROLL_CARD_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,PAYROLL_CARD, java.lang.String.class, "工资卡帐号", "工资卡帐号", java.lang.String.class, null);
 	
 	/**
+	 * 薪酬模版 , 类型: java.lang.String
+	*/
+	public static final String SALARY_TPL_ID="salaryTplId";
+	
+	/**
+	 * 薪酬模版 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> SALARY_TPL_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,SALARY_TPL_ID, java.lang.String.class, "薪酬模版", "薪酬模版", java.lang.String.class, null);
+	
+	/**
+	 * 是否发放 , 类型: java.lang.String
+	*/
+	public static final String SALARY_PAY_OUT="salaryPayOut";
+	
+	/**
+	 * 是否发放 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> SALARY_PAY_OUT_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,SALARY_PAY_OUT, java.lang.String.class, "是否发放", "是否发放", java.lang.String.class, null);
+	
+	/**
+	 * 薪酬备注 , 类型: java.lang.String
+	*/
+	public static final String SALARY_NOTES="salaryNotes";
+	
+	/**
+	 * 薪酬备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> SALARY_NOTES_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,SALARY_NOTES, java.lang.String.class, "薪酬备注", "薪酬备注", java.lang.String.class, null);
+	
+	/**
 	 * 照片 , 类型: java.lang.String
 	*/
 	public static final String PERSON_PICTURE_ID="personPictureId";
@@ -724,6 +756,16 @@ public class PersonMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.system.DictItem> EMPLOYEE_IDENTITY_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EMPLOYEE_IDENTITY, org.github.foxnic.web.domain.system.DictItem.class, "employeeIdentity", "employeeIdentity", org.github.foxnic.web.domain.system.DictItem.class, null);
 	
 	/**
+	 * bank , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String BANK="bank";
+	
+	/**
+	 * bank , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.system.DictItem> BANK_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,BANK, org.github.foxnic.web.domain.system.DictItem.class, "bank", "bank", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * employee , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final String EMPLOYEE="employee";
@@ -744,9 +786,29 @@ public class PersonMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,com.dt.platform.domain.hr.PersonCert> PERSON_CERT_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,PERSON_CERT_LIST, java.util.List.class, "personCertList", "personCertList", com.dt.platform.domain.hr.PersonCert.class, null);
 	
 	/**
+	 * salary , 类型: com.dt.platform.domain.hr.Salary
+	*/
+	public static final String SALARY="salary";
+	
+	/**
+	 * salary , 类型: com.dt.platform.domain.hr.Salary
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,com.dt.platform.domain.hr.Salary> SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,SALARY, com.dt.platform.domain.hr.Salary.class, "salary", "salary", com.dt.platform.domain.hr.Salary.class, null);
+	
+	/**
+	 * salaryTpl , 类型: com.dt.platform.domain.hr.SalaryTpl
+	*/
+	public static final String SALARY_TPL="salaryTpl";
+	
+	/**
+	 * salaryTpl , 类型: com.dt.platform.domain.hr.SalaryTpl
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,com.dt.platform.domain.hr.SalaryTpl> SALARY_TPL_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,SALARY_TPL, com.dt.platform.domain.hr.SalaryTpl.class, "salaryTpl", "salaryTpl", com.dt.platform.domain.hr.SalaryTpl.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_IDENTITY_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , PERSON_PICTURE_ID , EMPLOYEE_ID , FILE_ID , CONTRACT_DURATION , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION , RANK , PROFESSIONAL_LEVEL , BLOOD_TYPE_DICT , SEX_DICT , MARITAL_STATUS_DICT , EMPLOYEE_OWNER_TYPE_DICT , EDUCATION_DATA , POLITIC_COUNTENANCE_DATA , EMPLOYEE_IDENTITY , EMPLOYEE , PERSON_CERT_LIST };
+	public static final String[] $PROPS={ ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_IDENTITY_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , SALARY_TPL_ID , SALARY_PAY_OUT , SALARY_NOTES , PERSON_PICTURE_ID , EMPLOYEE_ID , FILE_ID , CONTRACT_DURATION , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION , RANK , PROFESSIONAL_LEVEL , BLOOD_TYPE_DICT , SEX_DICT , MARITAL_STATUS_DICT , EMPLOYEE_OWNER_TYPE_DICT , EDUCATION_DATA , POLITIC_COUNTENANCE_DATA , EMPLOYEE_IDENTITY , BANK , EMPLOYEE , PERSON_CERT_LIST , SALARY , SALARY_TPL };
 	
 	/**
 	 * 代理类
@@ -1241,6 +1303,39 @@ public class PersonMeta {
 		}
 		
 		/**
+		 * 设置 薪酬模版
+		 * @param salaryTplId 薪酬模版
+		 * @return 当前对象
+		*/
+		public Person setSalaryTplId(String salaryTplId) {
+			super.change(SALARY_TPL_ID,super.getSalaryTplId(),salaryTplId);
+			super.setSalaryTplId(salaryTplId);
+			return this;
+		}
+		
+		/**
+		 * 设置 是否发放
+		 * @param salaryPayOut 是否发放
+		 * @return 当前对象
+		*/
+		public Person setSalaryPayOut(String salaryPayOut) {
+			super.change(SALARY_PAY_OUT,super.getSalaryPayOut(),salaryPayOut);
+			super.setSalaryPayOut(salaryPayOut);
+			return this;
+		}
+		
+		/**
+		 * 设置 薪酬备注
+		 * @param salaryNotes 薪酬备注
+		 * @return 当前对象
+		*/
+		public Person setSalaryNotes(String salaryNotes) {
+			super.change(SALARY_NOTES,super.getSalaryNotes(),salaryNotes);
+			super.setSalaryNotes(salaryNotes);
+			return this;
+		}
+		
+		/**
 		 * 设置 照片
 		 * @param personPictureId 照片
 		 * @return 当前对象
@@ -1527,6 +1622,17 @@ public class PersonMeta {
 		}
 		
 		/**
+		 * 设置 bank
+		 * @param bank bank
+		 * @return 当前对象
+		*/
+		public Person setBank(DictItem bank) {
+			super.change(BANK,super.getBank(),bank);
+			super.setBank(bank);
+			return this;
+		}
+		
+		/**
 		 * 设置 employee
 		 * @param employee employee
 		 * @return 当前对象
@@ -1545,6 +1651,28 @@ public class PersonMeta {
 		public Person setPersonCertList(List<PersonCert> personCertList) {
 			super.change(PERSON_CERT_LIST,super.getPersonCertList(),personCertList);
 			super.setPersonCertList(personCertList);
+			return this;
+		}
+		
+		/**
+		 * 设置 salary
+		 * @param salary salary
+		 * @return 当前对象
+		*/
+		public Person setSalary(Salary salary) {
+			super.change(SALARY,super.getSalary(),salary);
+			super.setSalary(salary);
+			return this;
+		}
+		
+		/**
+		 * 设置 salaryTpl
+		 * @param salaryTpl salaryTpl
+		 * @return 当前对象
+		*/
+		public Person setSalaryTpl(SalaryTpl salaryTpl) {
+			super.change(SALARY_TPL,super.getSalaryTpl(),salaryTpl);
+			super.setSalaryTpl(salaryTpl);
 			return this;
 		}
 
@@ -1569,6 +1697,7 @@ public class PersonMeta {
 			inst.setNativePlaceCode(this.getNativePlaceCode());
 			inst.setMajor(this.getMajor());
 			inst.setComputerLevel(this.getComputerLevel());
+			inst.setSalaryTplId(this.getSalaryTplId());
 			inst.setWorkKindCode(this.getWorkKindCode());
 			inst.setId(this.getId());
 			inst.setPayrollCardBankCode(this.getPayrollCardBankCode());
@@ -1601,6 +1730,7 @@ public class PersonMeta {
 			inst.setEmployeeStatus(this.getEmployeeStatus());
 			inst.setOrgId(this.getOrgId());
 			inst.setUpdateBy(this.getUpdateBy());
+			inst.setSalaryNotes(this.getSalaryNotes());
 			inst.setPersonPictureId(this.getPersonPictureId());
 			inst.setEmail(this.getEmail());
 			inst.setNationCode(this.getNationCode());
@@ -1622,20 +1752,24 @@ public class PersonMeta {
 			inst.setLeaveDate(this.getLeaveDate());
 			inst.setTenantId(this.getTenantId());
 			inst.setPoliticCountenanceCode(this.getPoliticCountenanceCode());
+			inst.setSalaryPayOut(this.getSalaryPayOut());
 			inst.setBodyWeight(this.getBodyWeight());
 			if(all) {
-				inst.setBloodTypeDict(this.getBloodTypeDict());
-				inst.setPersonCertList(this.getPersonCertList());
 				inst.setPoliticCountenanceData(this.getPoliticCountenanceData());
 				inst.setProfessionalLevel(this.getProfessionalLevel());
-				inst.setRank(this.getRank());
 				inst.setEmployeeOwnerTypeDict(this.getEmployeeOwnerTypeDict());
-				inst.setPosition(this.getPosition());
 				inst.setEmployee(this.getEmployee());
-				inst.setSexDict(this.getSexDict());
+				inst.setSalary(this.getSalary());
 				inst.setEducationData(this.getEducationData());
-				inst.setMaritalStatusDict(this.getMaritalStatusDict());
 				inst.setEmployeeIdentity(this.getEmployeeIdentity());
+				inst.setBloodTypeDict(this.getBloodTypeDict());
+				inst.setBank(this.getBank());
+				inst.setPersonCertList(this.getPersonCertList());
+				inst.setSalaryTpl(this.getSalaryTpl());
+				inst.setRank(this.getRank());
+				inst.setPosition(this.getPosition());
+				inst.setSexDict(this.getSexDict());
+				inst.setMaritalStatusDict(this.getMaritalStatusDict());
 			}
 			inst.clearModifies();
 			return inst;

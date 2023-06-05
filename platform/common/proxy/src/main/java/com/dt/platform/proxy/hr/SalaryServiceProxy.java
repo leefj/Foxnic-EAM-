@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 人员薪酬 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 23:11:09
+ * @since 2023-06-04 13:01:02
  */
 @FeignClient(value = ServiceNames.HR, contextId = SalaryServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface SalaryServiceProxy {
@@ -83,6 +83,23 @@ public interface SalaryServiceProxy {
      * 分页查询人员薪酬
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
+
+    /**
+     * 分页查询人员薪酬
+     */
+    public static final String MY_QUERY_PAGED_LIST = API_PREFIX + "my-query-paged-list";
+
+    /**
+     * 分页查询人员薪酬
+     */
+    public static final String MY_GET_BY_ID = API_PREFIX + "my-get-by-id";
+
+
+
+    /**
+     * 分页查询人员薪酬
+     */
+    public static final String GET_BY_PERSON_ID = API_PREFIX + "get-by-person-id";
 
     /**
      * 添加人员薪酬

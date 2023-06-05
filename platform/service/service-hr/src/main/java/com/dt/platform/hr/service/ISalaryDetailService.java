@@ -24,11 +24,15 @@ import java.util.Map;
  * 薪酬明细服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 23:33:40
+ * @since 2023-06-04 13:01:46
 */
 
 public interface ISalaryDetailService extends  ISimpleIdService<SalaryDetail,String> {
 
+
+	Result valid(String actionId);
+
+	Result reset(String id);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

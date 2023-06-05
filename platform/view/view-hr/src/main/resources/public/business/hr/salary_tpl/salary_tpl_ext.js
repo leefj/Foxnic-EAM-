@@ -1,7 +1,7 @@
 /**
  * 薪酬模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 21:46:44
+ * @since 2023-06-04 13:53:39
  */
 
 layui.config({
@@ -171,6 +171,25 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
+        },
+        detail:function (data){
+            console.log('detail',data);
+            var area=admin.getTempData('hr-salary-form-area');
+            var height= (area && area.height) ? area.height : ($(window).height()*0.6);
+            var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
+            var title = fox.translate('人员薪酬');
+            admin.popupCenter({
+                title: title,
+                resize: false,
+                offset: [top,null],
+                area: ["90%",height+"px"],
+                type: 2,
+                id:"hr-person-cont-data-win",
+                content: '/business/hr/salary_tpl/person_list.html?tplId='+data.id,
+                finish: function () {
+                }
+            });
+
         },
         /**
          * 末尾执行

@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬模版VO类型
  * <p>薪酬模版 , 数据表 hr_salary_tpl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 21:46:44
+ * @since 2023-06-04 13:53:39
  * @sign E9A4577E510BAAF3C8CD5EBD445BE499
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

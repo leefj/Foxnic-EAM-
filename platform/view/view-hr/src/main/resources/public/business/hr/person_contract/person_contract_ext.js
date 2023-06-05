@@ -93,6 +93,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            if(PERSON_ID){
+                param.personId=PERSON_ID;
+            }
             return true;
         },
         /**

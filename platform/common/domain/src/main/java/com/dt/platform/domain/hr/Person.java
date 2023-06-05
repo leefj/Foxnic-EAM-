@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息
  * <p>人员信息 , 数据表 hr_person 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 22:48:50
- * @sign 14CDED4C3AA6E1C45C802D2FF024921F
+ * @since 2023-06-04 15:15:32
+ * @sign C62F017803FF6F620D4C32D6878FDC61
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -307,6 +307,24 @@ public class Person extends Entity {
 	private String payrollCard;
 	
 	/**
+	 * 薪酬模版：薪酬模版
+	*/
+	@ApiModelProperty(required = false,value="薪酬模版" , notes = "薪酬模版")
+	private String salaryTplId;
+	
+	/**
+	 * 是否发放：是否发放
+	*/
+	@ApiModelProperty(required = false,value="是否发放" , notes = "是否发放")
+	private String salaryPayOut;
+	
+	/**
+	 * 薪酬备注：薪酬备注
+	*/
+	@ApiModelProperty(required = false,value="薪酬备注" , notes = "薪酬备注")
+	private String salaryNotes;
+	
+	/**
 	 * 照片：照片
 	*/
 	@ApiModelProperty(required = false,value="照片" , notes = "照片")
@@ -466,6 +484,12 @@ public class Person extends Entity {
 	private DictItem employeeIdentity;
 	
 	/**
+	 * bank：bank
+	*/
+	@ApiModelProperty(required = false,value="bank" , notes = "bank")
+	private DictItem bank;
+	
+	/**
 	 * employee：employee
 	*/
 	@ApiModelProperty(required = false,value="employee" , notes = "employee")
@@ -476,6 +500,18 @@ public class Person extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="personCertList" , notes = "personCertList")
 	private List<PersonCert> personCertList;
+	
+	/**
+	 * salary：salary
+	*/
+	@ApiModelProperty(required = false,value="salary" , notes = "salary")
+	private Salary salary;
+	
+	/**
+	 * salaryTpl：salaryTpl
+	*/
+	@ApiModelProperty(required = false,value="salaryTpl" , notes = "salaryTpl")
+	private SalaryTpl salaryTpl;
 	
 	/**
 	 * 获得 主键<br>
@@ -1314,6 +1350,63 @@ public class Person extends Entity {
 	}
 	
 	/**
+	 * 获得 薪酬模版<br>
+	 * 薪酬模版
+	 * @return 薪酬模版
+	*/
+	public String getSalaryTplId() {
+		return salaryTplId;
+	}
+	
+	/**
+	 * 设置 薪酬模版
+	 * @param salaryTplId 薪酬模版
+	 * @return 当前对象
+	*/
+	public Person setSalaryTplId(String salaryTplId) {
+		this.salaryTplId=salaryTplId;
+		return this;
+	}
+	
+	/**
+	 * 获得 是否发放<br>
+	 * 是否发放
+	 * @return 是否发放
+	*/
+	public String getSalaryPayOut() {
+		return salaryPayOut;
+	}
+	
+	/**
+	 * 设置 是否发放
+	 * @param salaryPayOut 是否发放
+	 * @return 当前对象
+	*/
+	public Person setSalaryPayOut(String salaryPayOut) {
+		this.salaryPayOut=salaryPayOut;
+		return this;
+	}
+	
+	/**
+	 * 获得 薪酬备注<br>
+	 * 薪酬备注
+	 * @return 薪酬备注
+	*/
+	public String getSalaryNotes() {
+		return salaryNotes;
+	}
+	
+	/**
+	 * 设置 薪酬备注
+	 * @param salaryNotes 薪酬备注
+	 * @return 当前对象
+	*/
+	public Person setSalaryNotes(String salaryNotes) {
+		this.salaryNotes=salaryNotes;
+		return this;
+	}
+	
+	/**
 	 * 获得 照片<br>
 	 * 照片
 	 * @return 照片
@@ -1839,6 +1932,25 @@ public class Person extends Entity {
 	}
 	
 	/**
+	 * 获得 bank<br>
+	 * bank
+	 * @return bank
+	*/
+	public DictItem getBank() {
+		return bank;
+	}
+	
+	/**
+	 * 设置 bank
+	 * @param bank bank
+	 * @return 当前对象
+	*/
+	public Person setBank(DictItem bank) {
+		this.bank=bank;
+		return this;
+	}
+	
+	/**
 	 * 获得 employee<br>
 	 * employee
 	 * @return employee
@@ -1884,6 +1996,44 @@ public class Person extends Entity {
 	public Person addPersonCert(PersonCert... personCert) {
 		if(this.personCertList==null) personCertList=new ArrayList<>();
 		this.personCertList.addAll(Arrays.asList(personCert));
+		return this;
+	}
+	
+	/**
+	 * 获得 salary<br>
+	 * salary
+	 * @return salary
+	*/
+	public Salary getSalary() {
+		return salary;
+	}
+	
+	/**
+	 * 设置 salary
+	 * @param salary salary
+	 * @return 当前对象
+	*/
+	public Person setSalary(Salary salary) {
+		this.salary=salary;
+		return this;
+	}
+	
+	/**
+	 * 获得 salaryTpl<br>
+	 * salaryTpl
+	 * @return salaryTpl
+	*/
+	public SalaryTpl getSalaryTpl() {
+		return salaryTpl;
+	}
+	
+	/**
+	 * 设置 salaryTpl
+	 * @param salaryTpl salaryTpl
+	 * @return 当前对象
+	*/
+	public Person setSalaryTpl(SalaryTpl salaryTpl) {
+		this.salaryTpl=salaryTpl;
 		return this;
 	}
 
@@ -1937,6 +2087,7 @@ public class Person extends Entity {
 		inst.setNativePlaceCode(this.getNativePlaceCode());
 		inst.setMajor(this.getMajor());
 		inst.setComputerLevel(this.getComputerLevel());
+		inst.setSalaryTplId(this.getSalaryTplId());
 		inst.setWorkKindCode(this.getWorkKindCode());
 		inst.setId(this.getId());
 		inst.setPayrollCardBankCode(this.getPayrollCardBankCode());
@@ -1969,6 +2120,7 @@ public class Person extends Entity {
 		inst.setEmployeeStatus(this.getEmployeeStatus());
 		inst.setOrgId(this.getOrgId());
 		inst.setUpdateBy(this.getUpdateBy());
+		inst.setSalaryNotes(this.getSalaryNotes());
 		inst.setPersonPictureId(this.getPersonPictureId());
 		inst.setEmail(this.getEmail());
 		inst.setNationCode(this.getNationCode());
@@ -1990,20 +2142,24 @@ public class Person extends Entity {
 		inst.setLeaveDate(this.getLeaveDate());
 		inst.setTenantId(this.getTenantId());
 		inst.setPoliticCountenanceCode(this.getPoliticCountenanceCode());
+		inst.setSalaryPayOut(this.getSalaryPayOut());
 		inst.setBodyWeight(this.getBodyWeight());
 		if(all) {
-			inst.setBloodTypeDict(this.getBloodTypeDict());
-			inst.setPersonCertList(this.getPersonCertList());
 			inst.setPoliticCountenanceData(this.getPoliticCountenanceData());
 			inst.setProfessionalLevel(this.getProfessionalLevel());
-			inst.setRank(this.getRank());
 			inst.setEmployeeOwnerTypeDict(this.getEmployeeOwnerTypeDict());
-			inst.setPosition(this.getPosition());
 			inst.setEmployee(this.getEmployee());
-			inst.setSexDict(this.getSexDict());
+			inst.setSalary(this.getSalary());
 			inst.setEducationData(this.getEducationData());
-			inst.setMaritalStatusDict(this.getMaritalStatusDict());
 			inst.setEmployeeIdentity(this.getEmployeeIdentity());
+			inst.setBloodTypeDict(this.getBloodTypeDict());
+			inst.setBank(this.getBank());
+			inst.setPersonCertList(this.getPersonCertList());
+			inst.setSalaryTpl(this.getSalaryTpl());
+			inst.setRank(this.getRank());
+			inst.setPosition(this.getPosition());
+			inst.setSexDict(this.getSexDict());
+			inst.setMaritalStatusDict(this.getMaritalStatusDict());
 		}
 		inst.clearModifies();
 		return inst;
@@ -2069,6 +2225,7 @@ public class Person extends Entity {
 			this.setNativePlaceCode(DataParser.parse(String.class, map.get(PersonMeta.NATIVE_PLACE_CODE)));
 			this.setMajor(DataParser.parse(String.class, map.get(PersonMeta.MAJOR)));
 			this.setComputerLevel(DataParser.parse(String.class, map.get(PersonMeta.COMPUTER_LEVEL)));
+			this.setSalaryTplId(DataParser.parse(String.class, map.get(PersonMeta.SALARY_TPL_ID)));
 			this.setWorkKindCode(DataParser.parse(String.class, map.get(PersonMeta.WORK_KIND_CODE)));
 			this.setId(DataParser.parse(String.class, map.get(PersonMeta.ID)));
 			this.setPayrollCardBankCode(DataParser.parse(String.class, map.get(PersonMeta.PAYROLL_CARD_BANK_CODE)));
@@ -2101,6 +2258,7 @@ public class Person extends Entity {
 			this.setEmployeeStatus(DataParser.parse(String.class, map.get(PersonMeta.EMPLOYEE_STATUS)));
 			this.setOrgId(DataParser.parse(String.class, map.get(PersonMeta.ORG_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(PersonMeta.UPDATE_BY)));
+			this.setSalaryNotes(DataParser.parse(String.class, map.get(PersonMeta.SALARY_NOTES)));
 			this.setPersonPictureId(DataParser.parse(String.class, map.get(PersonMeta.PERSON_PICTURE_ID)));
 			this.setEmail(DataParser.parse(String.class, map.get(PersonMeta.EMAIL)));
 			this.setNationCode(DataParser.parse(String.class, map.get(PersonMeta.NATION_CODE)));
@@ -2122,19 +2280,23 @@ public class Person extends Entity {
 			this.setLeaveDate(DataParser.parse(Date.class, map.get(PersonMeta.LEAVE_DATE)));
 			this.setTenantId(DataParser.parse(String.class, map.get(PersonMeta.TENANT_ID)));
 			this.setPoliticCountenanceCode(DataParser.parse(String.class, map.get(PersonMeta.POLITIC_COUNTENANCE_CODE)));
+			this.setSalaryPayOut(DataParser.parse(String.class, map.get(PersonMeta.SALARY_PAY_OUT)));
 			this.setBodyWeight(DataParser.parse(Integer.class, map.get(PersonMeta.BODY_WEIGHT)));
 			// others
-			this.setBloodTypeDict(DataParser.parse(DictItem.class, map.get(PersonMeta.BLOOD_TYPE_DICT)));
 			this.setPoliticCountenanceData(DataParser.parse(DictItem.class, map.get(PersonMeta.POLITIC_COUNTENANCE_DATA)));
 			this.setProfessionalLevel(DataParser.parse(ProfessionalLevel.class, map.get(PersonMeta.PROFESSIONAL_LEVEL)));
-			this.setRank(DataParser.parse(Rank.class, map.get(PersonMeta.RANK)));
 			this.setEmployeeOwnerTypeDict(DataParser.parse(DictItem.class, map.get(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT)));
-			this.setPosition(DataParser.parse(Position.class, map.get(PersonMeta.POSITION)));
 			this.setEmployee(DataParser.parse(Employee.class, map.get(PersonMeta.EMPLOYEE)));
-			this.setSexDict(DataParser.parse(DictItem.class, map.get(PersonMeta.SEX_DICT)));
+			this.setSalary(DataParser.parse(Salary.class, map.get(PersonMeta.SALARY)));
 			this.setEducationData(DataParser.parse(DictItem.class, map.get(PersonMeta.EDUCATION_DATA)));
-			this.setMaritalStatusDict(DataParser.parse(DictItem.class, map.get(PersonMeta.MARITAL_STATUS_DICT)));
 			this.setEmployeeIdentity(DataParser.parse(DictItem.class, map.get(PersonMeta.EMPLOYEE_IDENTITY)));
+			this.setBloodTypeDict(DataParser.parse(DictItem.class, map.get(PersonMeta.BLOOD_TYPE_DICT)));
+			this.setBank(DataParser.parse(DictItem.class, map.get(PersonMeta.BANK)));
+			this.setSalaryTpl(DataParser.parse(SalaryTpl.class, map.get(PersonMeta.SALARY_TPL)));
+			this.setRank(DataParser.parse(Rank.class, map.get(PersonMeta.RANK)));
+			this.setPosition(DataParser.parse(Position.class, map.get(PersonMeta.POSITION)));
+			this.setSexDict(DataParser.parse(DictItem.class, map.get(PersonMeta.SEX_DICT)));
+			this.setMaritalStatusDict(DataParser.parse(DictItem.class, map.get(PersonMeta.MARITAL_STATUS_DICT)));
 			return true;
 		} else {
 			try {
@@ -2144,6 +2306,7 @@ public class Person extends Entity {
 				this.setNativePlaceCode( (String)map.get(PersonMeta.NATIVE_PLACE_CODE));
 				this.setMajor( (String)map.get(PersonMeta.MAJOR));
 				this.setComputerLevel( (String)map.get(PersonMeta.COMPUTER_LEVEL));
+				this.setSalaryTplId( (String)map.get(PersonMeta.SALARY_TPL_ID));
 				this.setWorkKindCode( (String)map.get(PersonMeta.WORK_KIND_CODE));
 				this.setId( (String)map.get(PersonMeta.ID));
 				this.setPayrollCardBankCode( (String)map.get(PersonMeta.PAYROLL_CARD_BANK_CODE));
@@ -2176,6 +2339,7 @@ public class Person extends Entity {
 				this.setEmployeeStatus( (String)map.get(PersonMeta.EMPLOYEE_STATUS));
 				this.setOrgId( (String)map.get(PersonMeta.ORG_ID));
 				this.setUpdateBy( (String)map.get(PersonMeta.UPDATE_BY));
+				this.setSalaryNotes( (String)map.get(PersonMeta.SALARY_NOTES));
 				this.setPersonPictureId( (String)map.get(PersonMeta.PERSON_PICTURE_ID));
 				this.setEmail( (String)map.get(PersonMeta.EMAIL));
 				this.setNationCode( (String)map.get(PersonMeta.NATION_CODE));
@@ -2197,19 +2361,23 @@ public class Person extends Entity {
 				this.setLeaveDate( (Date)map.get(PersonMeta.LEAVE_DATE));
 				this.setTenantId( (String)map.get(PersonMeta.TENANT_ID));
 				this.setPoliticCountenanceCode( (String)map.get(PersonMeta.POLITIC_COUNTENANCE_CODE));
+				this.setSalaryPayOut( (String)map.get(PersonMeta.SALARY_PAY_OUT));
 				this.setBodyWeight( (Integer)map.get(PersonMeta.BODY_WEIGHT));
 				// others
-				this.setBloodTypeDict( (DictItem)map.get(PersonMeta.BLOOD_TYPE_DICT));
 				this.setPoliticCountenanceData( (DictItem)map.get(PersonMeta.POLITIC_COUNTENANCE_DATA));
 				this.setProfessionalLevel( (ProfessionalLevel)map.get(PersonMeta.PROFESSIONAL_LEVEL));
-				this.setRank( (Rank)map.get(PersonMeta.RANK));
 				this.setEmployeeOwnerTypeDict( (DictItem)map.get(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT));
-				this.setPosition( (Position)map.get(PersonMeta.POSITION));
 				this.setEmployee( (Employee)map.get(PersonMeta.EMPLOYEE));
-				this.setSexDict( (DictItem)map.get(PersonMeta.SEX_DICT));
+				this.setSalary( (Salary)map.get(PersonMeta.SALARY));
 				this.setEducationData( (DictItem)map.get(PersonMeta.EDUCATION_DATA));
-				this.setMaritalStatusDict( (DictItem)map.get(PersonMeta.MARITAL_STATUS_DICT));
 				this.setEmployeeIdentity( (DictItem)map.get(PersonMeta.EMPLOYEE_IDENTITY));
+				this.setBloodTypeDict( (DictItem)map.get(PersonMeta.BLOOD_TYPE_DICT));
+				this.setBank( (DictItem)map.get(PersonMeta.BANK));
+				this.setSalaryTpl( (SalaryTpl)map.get(PersonMeta.SALARY_TPL));
+				this.setRank( (Rank)map.get(PersonMeta.RANK));
+				this.setPosition( (Position)map.get(PersonMeta.POSITION));
+				this.setSexDict( (DictItem)map.get(PersonMeta.SEX_DICT));
+				this.setMaritalStatusDict( (DictItem)map.get(PersonMeta.MARITAL_STATUS_DICT));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -2232,6 +2400,7 @@ public class Person extends Entity {
 			this.setNativePlaceCode(DataParser.parse(String.class, r.getValue(PersonMeta.NATIVE_PLACE_CODE)));
 			this.setMajor(DataParser.parse(String.class, r.getValue(PersonMeta.MAJOR)));
 			this.setComputerLevel(DataParser.parse(String.class, r.getValue(PersonMeta.COMPUTER_LEVEL)));
+			this.setSalaryTplId(DataParser.parse(String.class, r.getValue(PersonMeta.SALARY_TPL_ID)));
 			this.setWorkKindCode(DataParser.parse(String.class, r.getValue(PersonMeta.WORK_KIND_CODE)));
 			this.setId(DataParser.parse(String.class, r.getValue(PersonMeta.ID)));
 			this.setPayrollCardBankCode(DataParser.parse(String.class, r.getValue(PersonMeta.PAYROLL_CARD_BANK_CODE)));
@@ -2264,6 +2433,7 @@ public class Person extends Entity {
 			this.setEmployeeStatus(DataParser.parse(String.class, r.getValue(PersonMeta.EMPLOYEE_STATUS)));
 			this.setOrgId(DataParser.parse(String.class, r.getValue(PersonMeta.ORG_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(PersonMeta.UPDATE_BY)));
+			this.setSalaryNotes(DataParser.parse(String.class, r.getValue(PersonMeta.SALARY_NOTES)));
 			this.setPersonPictureId(DataParser.parse(String.class, r.getValue(PersonMeta.PERSON_PICTURE_ID)));
 			this.setEmail(DataParser.parse(String.class, r.getValue(PersonMeta.EMAIL)));
 			this.setNationCode(DataParser.parse(String.class, r.getValue(PersonMeta.NATION_CODE)));
@@ -2285,6 +2455,7 @@ public class Person extends Entity {
 			this.setLeaveDate(DataParser.parse(Date.class, r.getValue(PersonMeta.LEAVE_DATE)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(PersonMeta.TENANT_ID)));
 			this.setPoliticCountenanceCode(DataParser.parse(String.class, r.getValue(PersonMeta.POLITIC_COUNTENANCE_CODE)));
+			this.setSalaryPayOut(DataParser.parse(String.class, r.getValue(PersonMeta.SALARY_PAY_OUT)));
 			this.setBodyWeight(DataParser.parse(Integer.class, r.getValue(PersonMeta.BODY_WEIGHT)));
 			return true;
 		} else {
@@ -2295,6 +2466,7 @@ public class Person extends Entity {
 				this.setNativePlaceCode( (String)r.getValue(PersonMeta.NATIVE_PLACE_CODE));
 				this.setMajor( (String)r.getValue(PersonMeta.MAJOR));
 				this.setComputerLevel( (String)r.getValue(PersonMeta.COMPUTER_LEVEL));
+				this.setSalaryTplId( (String)r.getValue(PersonMeta.SALARY_TPL_ID));
 				this.setWorkKindCode( (String)r.getValue(PersonMeta.WORK_KIND_CODE));
 				this.setId( (String)r.getValue(PersonMeta.ID));
 				this.setPayrollCardBankCode( (String)r.getValue(PersonMeta.PAYROLL_CARD_BANK_CODE));
@@ -2327,6 +2499,7 @@ public class Person extends Entity {
 				this.setEmployeeStatus( (String)r.getValue(PersonMeta.EMPLOYEE_STATUS));
 				this.setOrgId( (String)r.getValue(PersonMeta.ORG_ID));
 				this.setUpdateBy( (String)r.getValue(PersonMeta.UPDATE_BY));
+				this.setSalaryNotes( (String)r.getValue(PersonMeta.SALARY_NOTES));
 				this.setPersonPictureId( (String)r.getValue(PersonMeta.PERSON_PICTURE_ID));
 				this.setEmail( (String)r.getValue(PersonMeta.EMAIL));
 				this.setNationCode( (String)r.getValue(PersonMeta.NATION_CODE));
@@ -2348,6 +2521,7 @@ public class Person extends Entity {
 				this.setLeaveDate( (Date)r.getValue(PersonMeta.LEAVE_DATE));
 				this.setTenantId( (String)r.getValue(PersonMeta.TENANT_ID));
 				this.setPoliticCountenanceCode( (String)r.getValue(PersonMeta.POLITIC_COUNTENANCE_CODE));
+				this.setSalaryPayOut( (String)r.getValue(PersonMeta.SALARY_PAY_OUT));
 				this.setBodyWeight( (Integer)r.getValue(PersonMeta.BODY_WEIGHT));
 				return true;
 			} catch (Exception e) {

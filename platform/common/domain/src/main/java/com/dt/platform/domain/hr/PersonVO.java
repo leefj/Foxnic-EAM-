@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息VO类型
  * <p>人员信息 , 数据表 hr_person 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 22:48:50
+ * @since 2023-06-04 15:15:32
  * @sign C03987DE16DA5CA6377AAE324A7C092C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -409,6 +409,7 @@ public class PersonVO extends Person {
 		inst.setNativePlaceCode(this.getNativePlaceCode());
 		inst.setMajor(this.getMajor());
 		inst.setComputerLevel(this.getComputerLevel());
+		inst.setSalaryTplId(this.getSalaryTplId());
 		inst.setWorkKindCode(this.getWorkKindCode());
 		inst.setId(this.getId());
 		inst.setPayrollCardBankCode(this.getPayrollCardBankCode());
@@ -441,6 +442,7 @@ public class PersonVO extends Person {
 		inst.setEmployeeStatus(this.getEmployeeStatus());
 		inst.setOrgId(this.getOrgId());
 		inst.setUpdateBy(this.getUpdateBy());
+		inst.setSalaryNotes(this.getSalaryNotes());
 		inst.setPersonPictureId(this.getPersonPictureId());
 		inst.setEmail(this.getEmail());
 		inst.setNationCode(this.getNationCode());
@@ -462,32 +464,36 @@ public class PersonVO extends Person {
 		inst.setLeaveDate(this.getLeaveDate());
 		inst.setTenantId(this.getTenantId());
 		inst.setPoliticCountenanceCode(this.getPoliticCountenanceCode());
+		inst.setSalaryPayOut(this.getSalaryPayOut());
 		inst.setBodyWeight(this.getBodyWeight());
 		if(all) {
 			inst.setPoliticCountenanceData(this.getPoliticCountenanceData());
 			inst.setSearchField(this.getSearchField());
-			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
-			inst.setProfessionalLevel(this.getProfessionalLevel());
 			inst.setPageSize(this.getPageSize());
-			inst.setEmployeeOwnerTypeDict(this.getEmployeeOwnerTypeDict());
 			inst.setEmployee(this.getEmployee());
+			inst.setSalary(this.getSalary());
 			inst.setEducationData(this.getEducationData());
-			inst.setEmployeeIdentity(this.getEmployeeIdentity());
-			inst.setBloodTypeDict(this.getBloodTypeDict());
-			inst.setPersonCertList(this.getPersonCertList());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
+			inst.setBank(this.getBank());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setRank(this.getRank());
 			inst.setDataOrigin(this.getDataOrigin());
-			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setMaritalStatusDict(this.getMaritalStatusDict());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setProfessionalLevel(this.getProfessionalLevel());
+			inst.setEmployeeOwnerTypeDict(this.getEmployeeOwnerTypeDict());
+			inst.setEmployeeIdentity(this.getEmployeeIdentity());
+			inst.setBloodTypeDict(this.getBloodTypeDict());
+			inst.setPersonCertList(this.getPersonCertList());
+			inst.setSalaryTpl(this.getSalaryTpl());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setIds(this.getIds());
 			inst.setPosition(this.getPosition());
 			inst.setSexDict(this.getSexDict());
 			inst.setSearchValue(this.getSearchValue());
-			inst.setMaritalStatusDict(this.getMaritalStatusDict());
 		}
 		inst.clearModifies();
 		return inst;
@@ -553,6 +559,7 @@ public class PersonVO extends Person {
 			this.setNativePlaceCode(DataParser.parse(String.class, map.get(PersonVOMeta.NATIVE_PLACE_CODE)));
 			this.setMajor(DataParser.parse(String.class, map.get(PersonVOMeta.MAJOR)));
 			this.setComputerLevel(DataParser.parse(String.class, map.get(PersonVOMeta.COMPUTER_LEVEL)));
+			this.setSalaryTplId(DataParser.parse(String.class, map.get(PersonVOMeta.SALARY_TPL_ID)));
 			this.setWorkKindCode(DataParser.parse(String.class, map.get(PersonVOMeta.WORK_KIND_CODE)));
 			this.setId(DataParser.parse(String.class, map.get(PersonVOMeta.ID)));
 			this.setPayrollCardBankCode(DataParser.parse(String.class, map.get(PersonVOMeta.PAYROLL_CARD_BANK_CODE)));
@@ -585,6 +592,7 @@ public class PersonVO extends Person {
 			this.setEmployeeStatus(DataParser.parse(String.class, map.get(PersonVOMeta.EMPLOYEE_STATUS)));
 			this.setOrgId(DataParser.parse(String.class, map.get(PersonVOMeta.ORG_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(PersonVOMeta.UPDATE_BY)));
+			this.setSalaryNotes(DataParser.parse(String.class, map.get(PersonVOMeta.SALARY_NOTES)));
 			this.setPersonPictureId(DataParser.parse(String.class, map.get(PersonVOMeta.PERSON_PICTURE_ID)));
 			this.setEmail(DataParser.parse(String.class, map.get(PersonVOMeta.EMAIL)));
 			this.setNationCode(DataParser.parse(String.class, map.get(PersonVOMeta.NATION_CODE)));
@@ -606,29 +614,33 @@ public class PersonVO extends Person {
 			this.setLeaveDate(DataParser.parse(Date.class, map.get(PersonVOMeta.LEAVE_DATE)));
 			this.setTenantId(DataParser.parse(String.class, map.get(PersonVOMeta.TENANT_ID)));
 			this.setPoliticCountenanceCode(DataParser.parse(String.class, map.get(PersonVOMeta.POLITIC_COUNTENANCE_CODE)));
+			this.setSalaryPayOut(DataParser.parse(String.class, map.get(PersonVOMeta.SALARY_PAY_OUT)));
 			this.setBodyWeight(DataParser.parse(Integer.class, map.get(PersonVOMeta.BODY_WEIGHT)));
 			// others
 			this.setPoliticCountenanceData(DataParser.parse(DictItem.class, map.get(PersonVOMeta.POLITIC_COUNTENANCE_DATA)));
 			this.setSearchField(DataParser.parse(String.class, map.get(PersonVOMeta.SEARCH_FIELD)));
-			this.setRequestAction(DataParser.parse(String.class, map.get(PersonVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(PersonVOMeta.FUZZY_FIELD)));
-			this.setProfessionalLevel(DataParser.parse(ProfessionalLevel.class, map.get(PersonVOMeta.PROFESSIONAL_LEVEL)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(PersonVOMeta.PAGE_SIZE)));
-			this.setEmployeeOwnerTypeDict(DataParser.parse(DictItem.class, map.get(PersonVOMeta.EMPLOYEE_OWNER_TYPE_DICT)));
 			this.setEmployee(DataParser.parse(Employee.class, map.get(PersonVOMeta.EMPLOYEE)));
+			this.setSalary(DataParser.parse(Salary.class, map.get(PersonVOMeta.SALARY)));
 			this.setEducationData(DataParser.parse(DictItem.class, map.get(PersonVOMeta.EDUCATION_DATA)));
-			this.setEmployeeIdentity(DataParser.parse(DictItem.class, map.get(PersonVOMeta.EMPLOYEE_IDENTITY)));
-			this.setBloodTypeDict(DataParser.parse(DictItem.class, map.get(PersonVOMeta.BLOOD_TYPE_DICT)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(PersonVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(PersonVOMeta.SORT_TYPE)));
+			this.setBank(DataParser.parse(DictItem.class, map.get(PersonVOMeta.BANK)));
 			this.setSortField(DataParser.parse(String.class, map.get(PersonVOMeta.SORT_FIELD)));
 			this.setRank(DataParser.parse(Rank.class, map.get(PersonVOMeta.RANK)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(PersonVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(PersonVOMeta.QUERY_LOGIC)));
+			this.setMaritalStatusDict(DataParser.parse(DictItem.class, map.get(PersonVOMeta.MARITAL_STATUS_DICT)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(PersonVOMeta.REQUEST_ACTION)));
+			this.setProfessionalLevel(DataParser.parse(ProfessionalLevel.class, map.get(PersonVOMeta.PROFESSIONAL_LEVEL)));
+			this.setEmployeeOwnerTypeDict(DataParser.parse(DictItem.class, map.get(PersonVOMeta.EMPLOYEE_OWNER_TYPE_DICT)));
+			this.setEmployeeIdentity(DataParser.parse(DictItem.class, map.get(PersonVOMeta.EMPLOYEE_IDENTITY)));
+			this.setBloodTypeDict(DataParser.parse(DictItem.class, map.get(PersonVOMeta.BLOOD_TYPE_DICT)));
+			this.setSalaryTpl(DataParser.parse(SalaryTpl.class, map.get(PersonVOMeta.SALARY_TPL)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(PersonVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(PersonVOMeta.SORT_TYPE)));
 			this.setPosition(DataParser.parse(Position.class, map.get(PersonVOMeta.POSITION)));
 			this.setSexDict(DataParser.parse(DictItem.class, map.get(PersonVOMeta.SEX_DICT)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(PersonVOMeta.SEARCH_VALUE)));
-			this.setMaritalStatusDict(DataParser.parse(DictItem.class, map.get(PersonVOMeta.MARITAL_STATUS_DICT)));
 			return true;
 		} else {
 			try {
@@ -638,6 +650,7 @@ public class PersonVO extends Person {
 				this.setNativePlaceCode( (String)map.get(PersonVOMeta.NATIVE_PLACE_CODE));
 				this.setMajor( (String)map.get(PersonVOMeta.MAJOR));
 				this.setComputerLevel( (String)map.get(PersonVOMeta.COMPUTER_LEVEL));
+				this.setSalaryTplId( (String)map.get(PersonVOMeta.SALARY_TPL_ID));
 				this.setWorkKindCode( (String)map.get(PersonVOMeta.WORK_KIND_CODE));
 				this.setId( (String)map.get(PersonVOMeta.ID));
 				this.setPayrollCardBankCode( (String)map.get(PersonVOMeta.PAYROLL_CARD_BANK_CODE));
@@ -670,6 +683,7 @@ public class PersonVO extends Person {
 				this.setEmployeeStatus( (String)map.get(PersonVOMeta.EMPLOYEE_STATUS));
 				this.setOrgId( (String)map.get(PersonVOMeta.ORG_ID));
 				this.setUpdateBy( (String)map.get(PersonVOMeta.UPDATE_BY));
+				this.setSalaryNotes( (String)map.get(PersonVOMeta.SALARY_NOTES));
 				this.setPersonPictureId( (String)map.get(PersonVOMeta.PERSON_PICTURE_ID));
 				this.setEmail( (String)map.get(PersonVOMeta.EMAIL));
 				this.setNationCode( (String)map.get(PersonVOMeta.NATION_CODE));
@@ -691,29 +705,33 @@ public class PersonVO extends Person {
 				this.setLeaveDate( (Date)map.get(PersonVOMeta.LEAVE_DATE));
 				this.setTenantId( (String)map.get(PersonVOMeta.TENANT_ID));
 				this.setPoliticCountenanceCode( (String)map.get(PersonVOMeta.POLITIC_COUNTENANCE_CODE));
+				this.setSalaryPayOut( (String)map.get(PersonVOMeta.SALARY_PAY_OUT));
 				this.setBodyWeight( (Integer)map.get(PersonVOMeta.BODY_WEIGHT));
 				// others
 				this.setPoliticCountenanceData( (DictItem)map.get(PersonVOMeta.POLITIC_COUNTENANCE_DATA));
 				this.setSearchField( (String)map.get(PersonVOMeta.SEARCH_FIELD));
-				this.setRequestAction( (String)map.get(PersonVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(PersonVOMeta.FUZZY_FIELD));
-				this.setProfessionalLevel( (ProfessionalLevel)map.get(PersonVOMeta.PROFESSIONAL_LEVEL));
 				this.setPageSize( (Integer)map.get(PersonVOMeta.PAGE_SIZE));
-				this.setEmployeeOwnerTypeDict( (DictItem)map.get(PersonVOMeta.EMPLOYEE_OWNER_TYPE_DICT));
 				this.setEmployee( (Employee)map.get(PersonVOMeta.EMPLOYEE));
+				this.setSalary( (Salary)map.get(PersonVOMeta.SALARY));
 				this.setEducationData( (DictItem)map.get(PersonVOMeta.EDUCATION_DATA));
-				this.setEmployeeIdentity( (DictItem)map.get(PersonVOMeta.EMPLOYEE_IDENTITY));
-				this.setBloodTypeDict( (DictItem)map.get(PersonVOMeta.BLOOD_TYPE_DICT));
-				this.setPageIndex( (Integer)map.get(PersonVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(PersonVOMeta.SORT_TYPE));
+				this.setBank( (DictItem)map.get(PersonVOMeta.BANK));
 				this.setSortField( (String)map.get(PersonVOMeta.SORT_FIELD));
 				this.setRank( (Rank)map.get(PersonVOMeta.RANK));
 				this.setDataOrigin( (String)map.get(PersonVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(PersonVOMeta.QUERY_LOGIC));
+				this.setMaritalStatusDict( (DictItem)map.get(PersonVOMeta.MARITAL_STATUS_DICT));
+				this.setRequestAction( (String)map.get(PersonVOMeta.REQUEST_ACTION));
+				this.setProfessionalLevel( (ProfessionalLevel)map.get(PersonVOMeta.PROFESSIONAL_LEVEL));
+				this.setEmployeeOwnerTypeDict( (DictItem)map.get(PersonVOMeta.EMPLOYEE_OWNER_TYPE_DICT));
+				this.setEmployeeIdentity( (DictItem)map.get(PersonVOMeta.EMPLOYEE_IDENTITY));
+				this.setBloodTypeDict( (DictItem)map.get(PersonVOMeta.BLOOD_TYPE_DICT));
+				this.setSalaryTpl( (SalaryTpl)map.get(PersonVOMeta.SALARY_TPL));
+				this.setPageIndex( (Integer)map.get(PersonVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(PersonVOMeta.SORT_TYPE));
 				this.setPosition( (Position)map.get(PersonVOMeta.POSITION));
 				this.setSexDict( (DictItem)map.get(PersonVOMeta.SEX_DICT));
 				this.setSearchValue( (String)map.get(PersonVOMeta.SEARCH_VALUE));
-				this.setMaritalStatusDict( (DictItem)map.get(PersonVOMeta.MARITAL_STATUS_DICT));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -736,6 +754,7 @@ public class PersonVO extends Person {
 			this.setNativePlaceCode(DataParser.parse(String.class, r.getValue(PersonVOMeta.NATIVE_PLACE_CODE)));
 			this.setMajor(DataParser.parse(String.class, r.getValue(PersonVOMeta.MAJOR)));
 			this.setComputerLevel(DataParser.parse(String.class, r.getValue(PersonVOMeta.COMPUTER_LEVEL)));
+			this.setSalaryTplId(DataParser.parse(String.class, r.getValue(PersonVOMeta.SALARY_TPL_ID)));
 			this.setWorkKindCode(DataParser.parse(String.class, r.getValue(PersonVOMeta.WORK_KIND_CODE)));
 			this.setId(DataParser.parse(String.class, r.getValue(PersonVOMeta.ID)));
 			this.setPayrollCardBankCode(DataParser.parse(String.class, r.getValue(PersonVOMeta.PAYROLL_CARD_BANK_CODE)));
@@ -768,6 +787,7 @@ public class PersonVO extends Person {
 			this.setEmployeeStatus(DataParser.parse(String.class, r.getValue(PersonVOMeta.EMPLOYEE_STATUS)));
 			this.setOrgId(DataParser.parse(String.class, r.getValue(PersonVOMeta.ORG_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(PersonVOMeta.UPDATE_BY)));
+			this.setSalaryNotes(DataParser.parse(String.class, r.getValue(PersonVOMeta.SALARY_NOTES)));
 			this.setPersonPictureId(DataParser.parse(String.class, r.getValue(PersonVOMeta.PERSON_PICTURE_ID)));
 			this.setEmail(DataParser.parse(String.class, r.getValue(PersonVOMeta.EMAIL)));
 			this.setNationCode(DataParser.parse(String.class, r.getValue(PersonVOMeta.NATION_CODE)));
@@ -789,6 +809,7 @@ public class PersonVO extends Person {
 			this.setLeaveDate(DataParser.parse(Date.class, r.getValue(PersonVOMeta.LEAVE_DATE)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(PersonVOMeta.TENANT_ID)));
 			this.setPoliticCountenanceCode(DataParser.parse(String.class, r.getValue(PersonVOMeta.POLITIC_COUNTENANCE_CODE)));
+			this.setSalaryPayOut(DataParser.parse(String.class, r.getValue(PersonVOMeta.SALARY_PAY_OUT)));
 			this.setBodyWeight(DataParser.parse(Integer.class, r.getValue(PersonVOMeta.BODY_WEIGHT)));
 			return true;
 		} else {
@@ -799,6 +820,7 @@ public class PersonVO extends Person {
 				this.setNativePlaceCode( (String)r.getValue(PersonVOMeta.NATIVE_PLACE_CODE));
 				this.setMajor( (String)r.getValue(PersonVOMeta.MAJOR));
 				this.setComputerLevel( (String)r.getValue(PersonVOMeta.COMPUTER_LEVEL));
+				this.setSalaryTplId( (String)r.getValue(PersonVOMeta.SALARY_TPL_ID));
 				this.setWorkKindCode( (String)r.getValue(PersonVOMeta.WORK_KIND_CODE));
 				this.setId( (String)r.getValue(PersonVOMeta.ID));
 				this.setPayrollCardBankCode( (String)r.getValue(PersonVOMeta.PAYROLL_CARD_BANK_CODE));
@@ -831,6 +853,7 @@ public class PersonVO extends Person {
 				this.setEmployeeStatus( (String)r.getValue(PersonVOMeta.EMPLOYEE_STATUS));
 				this.setOrgId( (String)r.getValue(PersonVOMeta.ORG_ID));
 				this.setUpdateBy( (String)r.getValue(PersonVOMeta.UPDATE_BY));
+				this.setSalaryNotes( (String)r.getValue(PersonVOMeta.SALARY_NOTES));
 				this.setPersonPictureId( (String)r.getValue(PersonVOMeta.PERSON_PICTURE_ID));
 				this.setEmail( (String)r.getValue(PersonVOMeta.EMAIL));
 				this.setNationCode( (String)r.getValue(PersonVOMeta.NATION_CODE));
@@ -852,6 +875,7 @@ public class PersonVO extends Person {
 				this.setLeaveDate( (Date)r.getValue(PersonVOMeta.LEAVE_DATE));
 				this.setTenantId( (String)r.getValue(PersonVOMeta.TENANT_ID));
 				this.setPoliticCountenanceCode( (String)r.getValue(PersonVOMeta.POLITIC_COUNTENANCE_CODE));
+				this.setSalaryPayOut( (String)r.getValue(PersonVOMeta.SALARY_PAY_OUT));
 				this.setBodyWeight( (Integer)r.getValue(PersonVOMeta.BODY_WEIGHT));
 				return true;
 			} catch (Exception e) {

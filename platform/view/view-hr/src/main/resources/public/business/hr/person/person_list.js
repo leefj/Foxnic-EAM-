@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 22:48:51
+ * @since 2023-06-04 15:15:34
  */
 
 
@@ -104,8 +104,10 @@ function ListPage() {
 					,{ field: 'employeeTitleCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工职称'), templet: function (d) { return templet('employeeTitleCode' ,fox.joinLabel(d.professionalLevel,"name",',','','employeeTitleCode'),d);}}
 					,{ field: 'rankCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工职级'), templet: function (d) { return templet('rankCode' ,fox.joinLabel(d.rank,"code",',','','rankCode'),d);}}
 					,{ field: 'leaveDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('离职日期') ,templet: function (d) { return templet('leaveDate',fox.dateFormat(d.leaveDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'employeeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工') , templet: function (d) { return templet('employeeId',fox.getProperty(d,["employee","name"],0,'','employeeId'),d);} }
-					,{ field: 'contractDuration', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同周期') , templet: function (d) { return templet('contractDuration',d.contractDuration,d);}  }
+					,{ field: 'salaryTplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('薪酬模版'), templet: function (d) { return templet('salaryTplId' ,fox.joinLabel(d.salaryTpl,"name",',','','salaryTplId'),d);}}
+					,{ field: 'salaryPayOut', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否发放'), templet:function (d){ return templet('salaryPayOut',fox.getEnumText(RADIO_SALARYPAYOUT_DATA,d.salaryPayOut,'','salaryPayOut'),d);}}
+					,{ field: 'salaryNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('薪酬备注') , templet: function (d) { return templet('salaryNotes',d.salaryNotes,d);}  }
+				 	,{ field: 'contractDuration', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同周期') , templet: function (d) { return templet('contractDuration',d.contractDuration,d);}  }
 					,{ field: 'contractStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('合同开始时间') ,templet: function (d) { return templet('contractStartDate',fox.dateFormat(d.contractStartDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'contractFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('合同结束时间') ,templet: function (d) { return templet('contractFinishDate',fox.dateFormat(d.contractFinishDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'note', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('note',d.note,d);}  }
@@ -189,6 +191,10 @@ function ListPage() {
 		value.contactInformation={ inputType:"button",value: $("#contactInformation").val()};
 		value.employmentDate={ inputType:"date_input", begin: $("#employmentDate-begin").val(), end: $("#employmentDate-end").val() ,matchType:"auto" };
 		value.orgId={ inputType:"button",value: $("#orgId").val()};
+		value.workKindCode={ inputType:"button",value: $("#workKindCode").val()};
+		value.payrollCardBankCode={ inputType:"select_box", value: getSelectedValue("#payrollCardBankCode","value") ,fillBy:["bank"]  , label:getSelectedValue("#payrollCardBankCode","nameStr") };
+		value.salaryTplId={ inputType:"select_box", value: getSelectedValue("#salaryTplId","value") ,fillBy:["salaryTpl"]  , label:getSelectedValue("#salaryTplId","nameStr") };
+		value.employeeId={ inputType:"button",value: $("#employeeId").val(),fillBy:["employee","name"] ,label:$("#employeeId-button").text() };
 		value.contractStartDate={ inputType:"date_input", begin: $("#contractStartDate-begin").val(), end: $("#contractStartDate-end").val() ,matchType:"auto" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
@@ -333,6 +339,64 @@ function ListPage() {
 				},1);
 			}
 		});
+		//渲染 payrollCardBankCode 下拉字段
+		fox.renderSelectBox({
+			el: "payrollCardBankCode",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("payrollCardBankCode",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("payrollCardBankCode",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 salaryTplId 下拉字段
+		fox.renderSelectBox({
+			el: "salaryTplId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("salaryTplId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("salaryTplId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					}
+				}
+				return opts;
+			}
+		});
 		laydate.render({
 			elem: '#contractStartDate-begin',
 			trigger:"click",
@@ -381,6 +445,21 @@ function ListPage() {
 			});
 		});
 
+		// 请选择人员对话框
+		$("#employeeId-button").click(function(){
+				var employeeIdDialogOptions={
+				field:"employeeId",
+				inputEl:$("#employeeId"),
+				buttonEl:$(this),
+				single:false,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"emp",
+				prepose:function(param){ return window.pageExt.list.beforeDialog && window.pageExt.list.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.list.afterDialog && window.pageExt.list.afterDialog(param,result);}
+			};
+			fox.chooseEmployee(employeeIdDialogOptions);
+		});
 	}
 
 	/**
