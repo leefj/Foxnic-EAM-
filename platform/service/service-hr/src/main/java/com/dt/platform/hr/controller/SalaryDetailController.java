@@ -3,8 +3,10 @@ package com.dt.platform.hr.controller;
 import java.util.*;
 
 import com.alibaba.csp.sentinel.util.StringUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.hr.meta.SalaryActionVOMeta;
 import org.github.foxnic.web.framework.web.SuperController;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +43,10 @@ import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.dt.platform.hr.service.ISalaryDetailService;
 import com.github.foxnic.api.validate.annotations.NotNull;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <p>
@@ -393,6 +399,20 @@ public class SalaryDetailController extends SuperController {
         return salaryDetailService.reset(id);
     }
 
+	/**
+	 * 重置
+	 */
+	@ApiOperation(value = "重置")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = SalaryDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
+	@ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+	@SentinelResource(value = SalaryDetailServiceProxy.QUERY_STATISTICAL_DATA_BY_ACTION_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+	@PostMapping(SalaryDetailServiceProxy.QUERY_STATISTICAL_DATA_BY_ACTION_ID)
+	public Result<JSONObject> queryStatisticalDataByActionId(String actionId) {
+		return salaryDetailService.queryStatisticalDataByActionId(actionId);
+	}
+
     /**
      * 重置
      */
@@ -720,4 +740,63 @@ public class SalaryDetailController extends SuperController {
 		result.success(true).data(list);
 		return result;
 	}
+	/**
+	 * 导出 Excel
+	 * */
+	@SentinelResource(value = SalaryDetailServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@RequestMapping(SalaryDetailServiceProxy.EXPORT_EXCEL)
+	public void exportExcel(SalaryDetailVO  sample,HttpServletResponse response) throws Exception {
+
+		try{
+			//生成 Excel 数据
+			ExcelWriter ew=salaryDetailService.exportExcel(sample);
+			//下载
+			DownloadUtil.writeToOutput(response,ew.getWorkBook(),ew.getWorkBookName());
+		} catch (Exception e) {
+			DownloadUtil.writeDownloadError(response,e);
+		}
+	}
+
+	/**
+	 * 导出 Excel 模板
+	 * */
+	@SentinelResource(value = SalaryDetailServiceProxy.EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@RequestMapping(SalaryDetailServiceProxy.EXPORT_EXCEL_TEMPLATE)
+	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
+
+		try{
+			//生成 Excel 模版
+			ExcelWriter ew=salaryDetailService.exportExcelTemplate();
+			//下载
+			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
+		} catch (Exception e) {
+			DownloadUtil.writeDownloadError(response,e);
+		}
+	}
+
+	@SentinelResource(value = SalaryDetailServiceProxy.IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(SalaryDetailServiceProxy.IMPORT_EXCEL)
+	public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		//获得上传的文件
+		Map<String, MultipartFile> map = request.getFileMap();
+		InputStream input=null;
+		for (MultipartFile mf : map.values()) {
+			input=StreamUtil.bytes2input(mf.getBytes());
+			break;
+		}
+
+		if(input==null) {
+			return ErrorDesc.failure().message("缺少上传的文件");
+		}
+
+		List<ValidateResult> errors=salaryDetailService.importExcel(input,0,true);
+		if(errors==null || errors.isEmpty()) {
+			return ErrorDesc.success();
+		} else {
+			return ErrorDesc.failure().message("导入失败").data(errors);
+		}
+	}
+
+
 }

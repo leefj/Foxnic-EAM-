@@ -4,9 +4,7 @@ import com.dt.platform.generator.config.PlatformConfigs;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.generator.builder.constants.DBMetaClassFile;
 
-
 public class OpsDBMetaGenerator {
-
 
 	/**
 	 * 运行main函数生成代码

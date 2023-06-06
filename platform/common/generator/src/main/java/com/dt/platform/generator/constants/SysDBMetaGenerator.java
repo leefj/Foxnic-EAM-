@@ -34,7 +34,7 @@ public class SysDBMetaGenerator {
 		DBMetaClassFile dbMetaBuilder=new DBMetaClassFile(dao,configs.getDomianProject(),this.configs.getProjectConfigs().getDomainConstantsPackage(),"SysTables");
 		dbMetaBuilder.setTableFilter(table->{
 			table=table.toLowerCase();
-			if(       table.startsWith("sys_licence_switch")
+			if( table.startsWith("sys_licence_switch")
 					||table.startsWith("sys_backup_db_strategy")
 					||table.startsWith("sys_backup_db")
 					||table.startsWith("sys_auto_")
@@ -54,6 +54,8 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_screen")
 					||table.startsWith("sys_screen_project")
 					||table.startsWith("sys_screen_project_data")
+					||table.startsWith("sys_invoke_log")
+					||table.startsWith("sys_key_code")
 					||table.startsWith("sys_auto_role") ) return true;
 			return false;
 		});

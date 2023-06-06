@@ -28,6 +28,7 @@ public class SalalyPersonGtr extends BaseCodeGenerator {
         cfg.view().search().inputLayout(
                 new Object[]{
                         HrTables.HR_SALARY.PERSON_ID,
+                        HrTables.HR_SALARY.NOTES,
                 }
         );
 

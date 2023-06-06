@@ -24,7 +24,7 @@ import java.util.Map;
  * 招聘记录服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 15:38:55
+ * @since 2023-06-06 09:29:48
 */
 
 public interface IRecruitPersonRecService extends  ISimpleIdService<RecruitPersonRec,String> {

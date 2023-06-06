@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-06-01 13:39:06
+ * @since 2023-06-06 19:32:31
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -1647,6 +1647,197 @@ public class SysTables {
 			this.init($NAME,"表单信息" , ID , CODE , CATALOG_ID , NAME , STATUS , ROUTE , NOTES , STORAGE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final SYS_FORM_INFO $TABLE=new SYS_FORM_INFO();
+	}
+	
+	/**
+	 * 调用统计日志
+	*/
+	public static class SYS_INVOKE_LOG extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_invoke_log";
+		
+		/**
+		 * ID
+		*/
+		public static final DBField ID = new DBField(DBDataType.LONG , "id","id","ID","ID",true,true,false);
+		
+		/**
+		 * 应用名称
+		*/
+		public static final DBField APPLICATION = new DBField(DBDataType.STRING , "application","application","应用名称","应用名称",false,false,true);
+		
+		/**
+		 * 主机名称
+		*/
+		public static final DBField HOST_NAME = new DBField(DBDataType.STRING , "host_name","hostName","主机名称","主机名称",false,false,true);
+		
+		/**
+		 * 目标名称
+		*/
+		public static final DBField SUBJECT = new DBField(DBDataType.STRING , "subject","subject","目标名称","目标名称",false,false,true);
+		
+		/**
+		 * 请求的URI
+		*/
+		public static final DBField URI = new DBField(DBDataType.STRING , "uri","uri","请求的URI","请求的URI",false,false,true);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","类型",false,false,true);
+		
+		/**
+		 * UserAgent
+		*/
+		public static final DBField USER_AGENT = new DBField(DBDataType.STRING , "user_agent","userAgent","UserAgent","UserAgent",false,false,true);
+		
+		/**
+		 * 客户端IP
+		*/
+		public static final DBField CLIENT_IP = new DBField(DBDataType.STRING , "client_ip","clientIp","客户端IP","客户端IP",false,false,true);
+		
+		/**
+		 * token值
+		*/
+		public static final DBField TOKEN = new DBField(DBDataType.STRING , "token","token","token值","token值",false,false,true);
+		
+		/**
+		 * 会话ID
+		*/
+		public static final DBField SESSION_ID = new DBField(DBDataType.STRING , "session_id","sessionId","会话ID","会话ID",false,false,true);
+		
+		/**
+		 * 用户ID
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户ID","用户ID",false,false,true);
+		
+		/**
+		 * 用户姓名
+		*/
+		public static final DBField USER_NAME = new DBField(DBDataType.STRING , "user_name","userName","用户姓名","用户姓名",false,false,true);
+		
+		/**
+		 * 日志跟踪ID
+		*/
+		public static final DBField TID = new DBField(DBDataType.STRING , "tid","tid","日志跟踪ID","日志跟踪ID",false,false,true);
+		
+		/**
+		 * 请求参数
+		*/
+		public static final DBField PARAMETER = new DBField(DBDataType.STRING , "parameter","parameter","请求参数","请求参数",false,false,true);
+		
+		/**
+		 * 响应数据
+		*/
+		public static final DBField RESPONSE = new DBField(DBDataType.STRING , "response","response","响应数据","响应数据",false,false,true);
+		
+		/**
+		 * 开始时间
+		*/
+		public static final DBField START_TIME = new DBField(DBDataType.TIMESTAMP , "start_time","startTime","开始时间","开始时间",false,false,true);
+		
+		/**
+		 * 结束时间
+		*/
+		public static final DBField END_TIME = new DBField(DBDataType.TIMESTAMP , "end_time","endTime","结束时间","结束时间",false,false,true);
+		
+		/**
+		 * 异常信息
+		*/
+		public static final DBField EXCEPTION = new DBField(DBDataType.STRING , "exception","exception","异常信息","异常信息",false,false,true);
+		
+		/**
+		 * 请求类型
+		*/
+		public static final DBField HTTP_METHOD = new DBField(DBDataType.STRING , "http_method","httpMethod","请求类型","请求类型",false,false,true);
+		
+		public SYS_INVOKE_LOG() {
+			this.init($NAME,"调用统计日志" , ID , APPLICATION , HOST_NAME , SUBJECT , URI , TYPE , USER_AGENT , CLIENT_IP , TOKEN , SESSION_ID , USER_ID , USER_NAME , TID , PARAMETER , RESPONSE , START_TIME , END_TIME , EXCEPTION , HTTP_METHOD);
+		}
+		public static final SYS_INVOKE_LOG $TABLE=new SYS_INVOKE_LOG();
+	}
+	
+	/**
+	 * 菜单键值
+	*/
+	public static class SYS_KEY_CODE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_key_code";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 键值
+		*/
+		public static final DBField KEY = new DBField(DBDataType.STRING , "key","key","键值","键值",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,true);
+		
+		public SYS_KEY_CODE() {
+			this.init($NAME,"菜单键值" , ID , KEY , STATUS , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final SYS_KEY_CODE $TABLE=new SYS_KEY_CODE();
 	}
 	
 	/**

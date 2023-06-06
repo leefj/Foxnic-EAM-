@@ -117,7 +117,6 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON.PAYROLL_CARD_BANK_CODE).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.PERSON_PICTURE_ID).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.FILE_ID).form().table().disable(true);
-
         cfg.view().field(HrTables.HR_PERSON.BIRTHDAY).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_PERSON.EMPLOYMENT_CONFIRM_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_PERSON.EMPLOYMENT_DATE).form().dateInput().format("yyyy-MM-dd").search().range();

@@ -41,11 +41,7 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 人员 , personId ,typeName=button, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('人员')}" class="search-label personId-label">人员</span><span class="search-colon">:</span></div>
-                        <input lay-filter="personId" id="personId" name="personId"  type="hidden" class="layui-input"   />
-                        <button id="personId-button" type="button" action-type="emp-dialog" class="layui-btn layui-btn-primary   " style="width: 150px"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>
-                    </div>
+
                     <!-- 基本工资 , baseSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 岗位工资 , postSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 工龄工资 , workingYearsSalary ,typeName=number_input, isHideInSearch=true -->
@@ -98,16 +94,18 @@
                     <!-- 生效时间 , effectTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 月份 , actionMonth ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('月份')}" class="search-label actionMonth-label">月份</span><span class="search-colon">:</span></div>
-                        <input id="actionMonth" class="layui-input search-input" style="width: 150px" type="text" />
-                    </div>
                     <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
 
 
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.ValidStatusEnum')}" style="width:150px"></div>
+                    </div>
+
+
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('月份')}" class="search-label actionMonth-label">月份</span><span class="search-colon">:</span></div>
+                        <input id="actionMonth" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
 

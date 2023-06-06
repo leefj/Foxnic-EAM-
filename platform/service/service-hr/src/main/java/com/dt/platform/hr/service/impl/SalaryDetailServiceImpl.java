@@ -2,6 +2,7 @@ package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.hr.SalaryActionStatusEnum;
 import com.dt.platform.constants.enums.hr.SalaryPersonDetailStatusEnum;
 import com.dt.platform.domain.hr.Person;
@@ -90,7 +91,27 @@ public class SalaryDetailServiceImpl extends SuperService<SalaryDetail> implemen
 	}
 
 	@Override
+	public Result<JSONObject> queryStatisticalDataByActionId(String actionId) {
+		Result<JSONObject> res=new Result<>();
+		JSONObject data=new JSONObject();
+		String sql="select \n" +
+				"( select count(1) person_abnormal_cnt from hr_salary_detail where deleted=0 and status in ('abnormal') and action_id=? )person_abnormal_cnt,\n" +
+				"( select count(1) total_pserson_cnt from hr_salary_detail where deleted=0 and action_id=?)total_pserson_cnt,\n" +
+				"( select sum(total_amount) total_amount_sum from hr_salary_detail where deleted=0 and action_id=?)total_amount_sum,\n" +
+				"( select sum(issued_amount) issued_amount_sum from hr_salary_detail where deleted=0 and action_id=?)issued_amount_sum";
+		data=dao.queryRecord(sql,actionId,actionId,actionId,actionId).toJSONObject();
+		res.success();
+		res.data(data);
+		return res;
+	}
+
+	@Override
 	public Result valid(String actionId) {
+
+		if(dao.query("select 1 from hr_salary_detail where action_id=? and status<>'invalid'",actionId).size()>0){
+			return ErrorDesc.failureMessage("当前薪酬状态有异常，无法进行更新操作");
+		}
+
 		SalaryAction salaryAction=salaryActionService.getById(actionId);
 		if(SalaryActionStatusEnum.FINISH.code().equals(salaryAction.getStatus())){
 			return ErrorDesc.failureMessage("已生效，不可重复操作");
@@ -320,6 +341,23 @@ public class SalaryDetailServiceImpl extends SuperService<SalaryDetail> implemen
 		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
 		return MapUtil.asMap(ids,new ReferCause(false));
 		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
+	}
+	@Override
+	public ExcelWriter exportExcel(SalaryDetail sample) {
+		return super.exportExcel(sample);
+	}
+	@Override
+	public ExcelWriter exportExcelTemplate() {
+		return super.exportExcelTemplate();
+	}
+
+	@Override
+	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
+		return super.importExcel(input,sheetIndex,batch);
+	}
+	@Override
+	public ExcelStructure buildExcelStructure(boolean isForExport) {
+		return super.buildExcelStructure(isForExport);
 	}
 
 

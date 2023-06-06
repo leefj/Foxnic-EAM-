@@ -45,7 +45,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 招聘记录接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 15:38:55
+ * @since 2023-06-06 09:29:48
 */
 
 @InDoc

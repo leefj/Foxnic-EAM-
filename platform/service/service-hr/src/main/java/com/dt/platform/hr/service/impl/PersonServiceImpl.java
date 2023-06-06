@@ -3,6 +3,9 @@ package com.dt.platform.hr.service.impl;
 import javax.annotation.Resource;
 
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.proxy.hrm.EmployeeServiceProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -77,6 +80,27 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 	public Result insert(Person person,boolean throwsException) {
 
 
+		//处理员工
+		Employee employee=null;
+		if(!StringUtil.isBlank(person.getEmployeeId())){
+			if(dao.query("select * from hr_person where deleted=0 and employee_id=?",person.getEmployeeId()).size()>0){
+				return ErrorDesc.failureMessage("当前员工已被选择,请重新进行选择");
+			}
+
+			Result<Employee> employeeRes=EmployeeServiceProxy.api().getById(person.getEmployeeId());
+			if(employeeRes.isSuccess()){
+				if(employeeRes.getData()!=null){
+					employee=employeeRes.getData();
+				}
+			}else{
+				return ErrorDesc.failureMessage(employeeRes.getMessage());
+			}
+		}
+		if(employee!=null){
+			person.setJobNumber(employee.getBadge());
+		}
+
+
 		if(StringUtil.isBlank(person.getJobNumber())){
 			person.setJobNumber(IDGenerator.getSnowflakeIdString());
 		}
@@ -93,6 +117,7 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 	public Result insert(Person person) {
 		return this.insert(person,true);
 	}
+
 
 	/**
 	 * 批量插入实体，事务内
@@ -170,6 +195,36 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 	 * */
 	@Override
 	public Result update(Person person , SaveMode mode,boolean throwsException) {
+		//处理员工
+
+		Employee employee=null;
+		if(!StringUtil.isBlank(person.getEmployeeId())){
+			Person sourcePerson=this.getById(person.getId());
+			if(sourcePerson.getEmployeeId().equals(person.getEmployeeId())){
+				Logger.info("员工选择一致,不需要处理");
+			}else{
+				if(dao.query("select * from hr_person where deleted=0 and employee_id=?",person.getEmployeeId()).size()>0){
+					return ErrorDesc.failureMessage("当前员工已被选择,请重新进行选择");
+				}
+			}
+			Result<Employee> employeeRes=EmployeeServiceProxy.api().getById(person.getEmployeeId());
+			if(employeeRes.isSuccess()){
+				if(employeeRes.getData()!=null){
+					employee=employeeRes.getData();
+				}
+			}else{
+				return ErrorDesc.failureMessage(employeeRes.getMessage());
+			}
+		}
+		if(employee!=null){
+			person.setJobNumber(employee.getBadge());
+		}
+
+
+		if(StringUtil.isBlank(person.getJobNumber())){
+			person.setJobNumber(IDGenerator.getSnowflakeIdString());
+		}
+
 		Result r=super.update(person , mode , throwsException);
 		return r;
 	}

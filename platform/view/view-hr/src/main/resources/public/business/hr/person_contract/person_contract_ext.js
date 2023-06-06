@@ -274,15 +274,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterSubmit:function (param,result) {
             console.log("afterSubmitt",param,result);
         },
-
-        /**
-         * 文件上传组件回调
-         *  event 类型包括：
-         *  afterPreview ：文件选择后，未上传前触发；
-         *  afterUpload ：文件上传后触发
-         *  beforeRemove ：文件删除前触发
-         *  afterRemove ：文件删除后触发
-         * */
+        selectBoxDataTransform:function(id,obj,item,data,i){
+            console.log("selectBoxDataTransform")
+            console.log("hostId ",id)
+            console.log("data[i] ",item)
+            console.log("data ",data)
+            console.log("i ",i)
+            if (id&&id=="personId"){
+                if(item&&item.name&&item.jobNumber){
+                    obj.name=item.name+"-("+item.jobNumber+")";
+                }else {
+                    console.log("obj ", obj)
+                }
+            }
+            return obj;
+        },
         onUploadEvent: function(e) {
             console.log("onUploadEvent",e);
         },

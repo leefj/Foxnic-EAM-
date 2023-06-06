@@ -1,7 +1,7 @@
 /**
  * 招聘记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 15:38:57
+ * @since 2023-06-06 09:29:50
  */
 
 function FormPage() {
@@ -159,7 +159,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#startDate',
 			type:"date",
-			format:"yyyy-MM-dd HH:mm:ss",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("startDate",value, date, endDate);
@@ -168,7 +168,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#endDate',
 			type:"date",
-			format:"yyyy-MM-dd HH:mm:ss",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("endDate",value, date, endDate);
@@ -227,11 +227,11 @@ function FormPage() {
 
 			//设置 开始时间 显示复选框勾选
 			if(formData["startDate"]) {
-				$("#startDate").val(fox.dateFormat(formData["startDate"],"yyyy-MM-dd HH:mm:ss"));
+				$("#startDate").val(fox.dateFormat(formData["startDate"],"yyyy-MM-dd"));
 			}
 			//设置 结束时间 显示复选框勾选
 			if(formData["endDate"]) {
-				$("#endDate").val(fox.dateFormat(formData["endDate"],"yyyy-MM-dd HH:mm:ss"));
+				$("#endDate").val(fox.dateFormat(formData["endDate"],"yyyy-MM-dd"));
 			}
 
 

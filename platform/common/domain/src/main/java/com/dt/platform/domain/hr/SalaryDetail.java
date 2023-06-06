@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬明细
  * <p>薪酬明细 , 数据表 hr_salary_detail 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 13:06:01
+ * @since 2023-06-06 10:23:09
  * @sign 51D413B6F42B7459B755A52E2AD2EC85
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -41,7 +41,7 @@ public class SalaryDetail extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "718084351253807104")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "718116561965023232")
 	private String id;
 	
 	/**
@@ -95,7 +95,7 @@ public class SalaryDetail extends Entity {
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "invalid")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "valid")
 	private String status;
 	
 	/**
@@ -407,7 +407,7 @@ public class SalaryDetail extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-05 12:50:51")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-05 02:58:50")
 	private Date createTime;
 	
 	/**

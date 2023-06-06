@@ -13,6 +13,7 @@ import com.dt.platform.domain.hr.meta.SalaryActionMeta;
 import com.dt.platform.hr.service.ISalaryCtlService;
 import com.dt.platform.hr.service.ISalaryDetailService;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -116,9 +117,13 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 		dao.execute("delete from hr_salary_detail where action_id=?",id);
 		//开始填充薪酬基本数据
 		for(Person person:personList){
-			Result r=this.createPersonData(person,act);
-			if(!r.isSuccess()){
-				return r;
+			if(StatusYNEnum.YES.code().equals(person.getSalaryPayOut())){
+				Result r=this.createPersonData(person,act);
+				if(!r.isSuccess()){
+					return r;
+				}
+			}else{
+				Logger.info("当前账户发放薪酬禁用，用户ID:"+person.getId()+",姓名:"+person.getName());
 			}
 		}
 		this.dao.execute("update hr_salary_action set status=? where id=?",SalaryActionStatusEnum.WAIT.code(),id);
@@ -126,22 +131,31 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 	}
 
 	public Result createPersonData(Person person,SalaryAction act){
-		Salary salary=person.getSalary();
-		SalaryDetail detail=new SalaryDetail();
-		detail.setTplId(act.getTplId());
-		detail.setActionId(act.getId());
-		detail.setPersonId(person.getId());
-		detail.setActionMonth(act.getActionMonth());
 
-		detail.setUserName(person.getName());
-		detail.setJobNumber(person.getJobNumber());
+		if(person.getSalary()==null){
+			this.dao().fill(person).with(PersonMeta.SALARY).execute();
+		}
+		if(person.getBank()==null){
+			this.dao().fill(person).with(PersonMeta.BANK).execute();
+		}
+		Salary salary=person.getSalary();
+		dao.execute("delete from hr_salary_detail where action_id=? and person_id=?",act.getId(),person.getId());
+		SalaryDetail detailTmp=new SalaryDetail();
+		detailTmp.setTplId(act.getTplId());
+		detailTmp.setActionId(act.getId());
+		detailTmp.setPersonId(person.getId());
+		detailTmp.setActionMonth(act.getActionMonth());
+		detailTmp.setUserName(person.getName());
+		detailTmp.setJobNumber(person.getJobNumber());
+		salaryDetailService.insert(detailTmp,true);
+		SalaryDetail detail=salaryDetailService.getById(detailTmp.getId());
 
 		//处理银行卡
 		if(person.getBank()==null){
 			detail.setStatus(SalaryPersonDetailStatusEnum.ABNORMAL.code());
 			detail.setOperMsg("没有获得银行卡账户信息");
+			salaryDetailService.update(detail,SaveMode.NOT_NULL_FIELDS,true);
 			return ErrorDesc.success();
-
 		}else{
 			detail.setStatus(SalaryPersonDetailStatusEnum.INVALID.code());
 			detail.setBank(person.getBank().getLabel());
@@ -149,6 +163,7 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 			if(StringUtil.isBlank(detail.getBankAccount()) ||detail.getBankAccount().length()<10){
 				detail.setStatus(SalaryPersonDetailStatusEnum.ABNORMAL.code());
 				detail.setOperMsg("没有获得银行卡账户信息");
+				salaryDetailService.update(detail,SaveMode.NOT_NULL_FIELDS,true);
 				return ErrorDesc.success();
 			}
 		}
@@ -157,11 +172,11 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 		if(salary==null){
 			detail.setStatus(SalaryPersonDetailStatusEnum.ABNORMAL.code());
 			detail.setOperMsg("没有获得人员薪酬信息");
+			salaryDetailService.update(detail,SaveMode.NOT_NULL_FIELDS,true);
 			return ErrorDesc.success();
 		}else{
 			detail.setStatus(SalaryPersonDetailStatusEnum.INVALID.code());
 		}
-
 
 		//填充薪酬数据
 		detail.setBaseSalary(salary.getBaseSalary());
@@ -232,29 +247,9 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 				}
 			}
 		}
-
-		////////////计算税率
-		//税率
-		BigDecimal salaryForTaxPct=new BigDecimal("0.00");
-
-
-		//抵扣 7项
-		BigDecimal salaryForPersonalTax=new BigDecimal("0.00");
-		salaryForPersonalTax.add(detail.getPersonalTaxDbyl())
-				.add(detail.getPersonalTaxErzh())
-				.add(detail.getPersonalTaxJxjy())
-				.add(detail.getPersonalTaxSylr())
-				.add(detail.getPersonalTaxZfzj())
-				.add(detail.getPersonalTaxZnjy());
-
-		//福利
-		BigDecimal SalaryForWelfear=new BigDecimal("0.00");
-
-
-
-		//应付工资
-		BigDecimal SalaryForTotalAmount=new BigDecimal("0.00");
-		SalaryForTotalAmount.add(detail.getBaseSalary())
+		//月收入,税前 所有工资+补贴
+		System.out.println("detail.getDeductGh()"+detail.getDeductGh());
+		BigDecimal salaryForTotalAmount=new BigDecimal("0.00").add(detail.getBaseSalary())
 				.add(detail.getPostSalary())
 				.add(detail.getWorkingYearsSalary())
 				.add(detail.getFixedSalary())
@@ -265,13 +260,93 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 				.add(detail.getTrafficSalary())
 				.add(detail.getHousingSalary())
 				.add(detail.getCommissionSalary())
-				.add(detail.getHighTemperatureSalary());
+				.add(detail.getHighTemperatureSalary())
+				.subtract(detail.getDeductGh())
+				.subtract(detail.getDeductKq())
+				.subtract(detail.getDeductOther())
+				.subtract(detail.getDeductPersonalTaxRed());
 
+
+		//抵扣 7项
+		BigDecimal salaryForPersonalTaxTotal=new BigDecimal("0.00").add(detail.getPersonalTaxDbyl())
+				.add(detail.getPersonalTaxErzh())
+				.add(detail.getPersonalTaxJxjy())
+				.add(detail.getPersonalTaxSylr())
+				.add(detail.getPersonalTaxZfzj())
+				.add(detail.getPersonalTaxZnjy())
+				.add(detail.getPersonalTaxSylr());
+
+
+		//所有五险一金个人部分汇总
+		BigDecimal welfaerPersonTotalAmount=new BigDecimal("0.00").add(detail.getPersonalTaxDbyl())
+				.add(detail.getWelfaerGsbxPerson())
+				.add(detail.getWelfaerSybxPerson())
+				.add(detail.getWelfaerSyebxPerson())
+				.add(detail.getWelfaerYlbxPerson())
+				.add(detail.getWelfaerYrbxPerson())
+				.add(detail.getWelfaerYlbxPerson());
+
+
+		//税率,速算扣除数
+		BigDecimal salaryForTaxPct=new BigDecimal("3.00");
+		BigDecimal salaryForTaxDiv=new BigDecimal("0.00");
+		//1 b1>b2, 0 b1=b2,-1 b1<b2
+		//包括36000
+		//<=36000
+		if(salaryForTotalAmount.compareTo(new BigDecimal("36000.00"))==-1||salaryForTotalAmount.compareTo(new BigDecimal("36000.00"))==0){
+			 salaryForTaxPct=new BigDecimal("3.00");
+			 salaryForTaxDiv=new BigDecimal("0.00");
+		}else if(salaryForTotalAmount.compareTo(new BigDecimal("36000.00"))==1 && (  salaryForTotalAmount.compareTo(new BigDecimal("144000.00"))==0 || salaryForTotalAmount.compareTo(new BigDecimal("144000.00"))==-1) ){
+			//>360000 && <=144000
+			salaryForTaxPct=new BigDecimal("10.00");
+			salaryForTaxDiv=new BigDecimal("2520.00");
+		}else if(salaryForTotalAmount.compareTo(new BigDecimal("144000.00"))==1 && (  salaryForTotalAmount.compareTo(new BigDecimal("300000.00"))==0 || salaryForTotalAmount.compareTo(new BigDecimal("300000.00"))==-1) ){
+			//>144000 && <=300000
+			salaryForTaxPct=new BigDecimal("20.00");
+			salaryForTaxDiv=new BigDecimal("16920.00");
+		}else if(salaryForTotalAmount.compareTo(new BigDecimal("300000.00"))==1 && (  salaryForTotalAmount.compareTo(new BigDecimal("420000.00"))==0 || salaryForTotalAmount.compareTo(new BigDecimal("420000.00"))==-1) ){
+			//>300000 && <=420000
+			salaryForTaxPct=new BigDecimal("25.00");
+			salaryForTaxDiv=new BigDecimal("31920.00");
+		}else if(salaryForTotalAmount.compareTo(new BigDecimal("420000.00"))==1 && (  salaryForTotalAmount.compareTo(new BigDecimal("660000.00"))==0 || salaryForTotalAmount.compareTo(new BigDecimal("660000.00"))==-1) ){
+			//>420000 && <=660000
+			salaryForTaxPct=new BigDecimal("30.00");
+			salaryForTaxDiv=new BigDecimal("52920.00");
+		}else if(salaryForTotalAmount.compareTo(new BigDecimal("660000.00"))==1 && (  salaryForTotalAmount.compareTo(new BigDecimal("960000.00"))==0 || salaryForTotalAmount.compareTo(new BigDecimal("960000.00"))==-1) ){
+			//>660000 && <=960000
+			salaryForTaxPct=new BigDecimal("35.00");
+			salaryForTaxDiv=new BigDecimal("85920.00");
+		}else if(salaryForTotalAmount.compareTo(new BigDecimal("660000.00"))==1 ){
+			//>960000
+			salaryForTaxPct=new BigDecimal("45.00");
+			salaryForTaxDiv=new BigDecimal("181920.00");
+		}
+
+		//个税：(月收入-五险一金(个人)-起征点(5000)-依法确定其他扣除-专项附加)*税率-速算扣除数
+		BigDecimal salaryForPersonTaxValue=new BigDecimal("0.00");
+		BigDecimal salaryForTaxT1=new BigDecimal("0.00").add(salaryForTotalAmount).subtract(welfaerPersonTotalAmount).subtract(new BigDecimal("5000.00"));
+		//1 b1>b2, 0 b1=b2,-1 b1<b2
+		if(salaryForTaxT1.compareTo(new BigDecimal("0.00")) ==1){
+			BigDecimal salaryForTaxT2=salaryForTaxT1.subtract(salaryForPersonalTaxTotal);
+			if(salaryForTaxT2.compareTo(new BigDecimal("0.00")) ==1){
+				//需要计算
+				BigDecimal salaryForTaxT3=salaryForTaxT2.multiply(salaryForTaxPct).divide(new BigDecimal("100.00"));
+				BigDecimal salaryForTaxT4=salaryForTaxT3.subtract(salaryForTaxDiv);
+				if(salaryForTaxT4.compareTo(new BigDecimal("0.00"))==1){
+					salaryForPersonTaxValue=new BigDecimal("0.00").add(salaryForTaxT4);
+				}
+			}
+		}
 
 		//实发工资
-		BigDecimal SalaryForIssuedAmount=new BigDecimal("0.00");
-
-		salaryDetailService.insert(detail,false);
+		BigDecimal salaryForIssuedAmount=new BigDecimal("0.00").add(salaryForTotalAmount).subtract(welfaerPersonTotalAmount).subtract(salaryForPersonTaxValue);
+		detail.setPtGrsds(salaryForPersonTaxValue);
+		detail.setPtDkjs(new BigDecimal("5000.00"));
+		detail.setPtSlPct(salaryForTaxPct);
+		detail.setTotalAmount(salaryForTotalAmount);
+		detail.setPayAmount(salaryForTotalAmount);
+		detail.setIssuedAmount(salaryForIssuedAmount);
+		salaryDetailService.update(detail,SaveMode.NOT_NULL_FIELDS,true);
 		return ErrorDesc.success();
 	}
 
@@ -295,7 +370,6 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 		return super.insertList(salaryActionList);
 	}
 
-	
 	/**
 	 * 按主键删除薪酬发放
 	 *

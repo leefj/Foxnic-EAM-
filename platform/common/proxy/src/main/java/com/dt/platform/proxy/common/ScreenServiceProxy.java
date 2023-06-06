@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 大屏 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 14:45:55
+ * @since 2023-06-06 19:35:24
  */
 @FeignClient(value = ServiceNames.COMMON, contextId = ScreenServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface ScreenServiceProxy {
@@ -83,17 +83,6 @@ public interface ScreenServiceProxy {
      * 分页查询大屏
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
-
-    /**
-     * 分页查询大屏
-     */
-    public static final String COPY_DATA = API_PREFIX + "copy-data";
-
-    /**
-     * 分页查询大屏
-     */
-    public static final String APPLY = API_PREFIX + "apply";
-
 
     /**
      * 添加大屏

@@ -1,7 +1,7 @@
 /**
  * 薪酬明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 13:06:02
+ * @since 2023-06-06 10:23:10
  */
 
 
@@ -87,7 +87,7 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'userName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('姓名') , templet: function (d) { return templet('userName',d.userName,d);}  }
 					,{ field: 'actionMonth', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('月份') , templet: function (d) { return templet('actionMonth',d.actionMonth,d);}  }
-					,{ field: 'personId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('人员') , templet: function (d) { return templet('personId',fox.getProperty(d,["person","name"],0,'','personId'),d);} }
+					,{ field: 'personId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('人员'), templet: function (d) { return templet('personId' ,fox.joinLabel(d.person,"name",',','','personId'),fox.getProperty(d,["person","name"],0,'','personId'),d);}}
 					,{ field: 'jobNumber', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('工号') , templet: function (d) { return templet('jobNumber',d.jobNumber,d);}  }
 					,{ field: 'bank', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('银行') , templet: function (d) { return templet('bank',d.bank,d);}  }
 					,{ field: 'bankAccount', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('账户账户') , templet: function (d) { return templet('bankAccount',d.bankAccount,d);}  }
@@ -151,8 +151,19 @@ function ListPage() {
 					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
 				},
 				footer : {
-					exportExcel : false ,
-					importExcel : false 
+					exportExcel :  admin.checkAuth(AUTH_PREFIX+":export") ,
+					importExcel :  admin.checkAuth(AUTH_PREFIX+":import")?{
+						params : {} ,
+						callback : function(r) {
+							if(r.success) {
+								layer.msg(fox.translate('数据导入成功','','cmp:table')+"!");
+							} else {
+								layer.msg(fox.translate('数据导入失败','','cmp:table')+"!");
+							}
+							// 是否执行后续逻辑：错误提示
+							return false;
+						}
+					}:false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);

@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息
  * <p>人员信息 , 数据表 hr_person 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-04 15:15:32
+ * @since 2023-06-06 11:12:19
  * @sign C62F017803FF6F620D4C32D6878FDC61
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

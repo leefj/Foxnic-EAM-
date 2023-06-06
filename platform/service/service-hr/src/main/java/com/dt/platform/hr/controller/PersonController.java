@@ -2,6 +2,7 @@ package com.dt.platform.hr.controller;
 
 import java.util.*;
 import com.dt.platform.constants.enums.hr.EmployeeStatusEnum;
+import com.dt.platform.domain.eam.AssetCollection;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.github.foxnic.web.session.SessionUser;
@@ -521,6 +522,11 @@ public class PersonController extends SuperController {
         PagedList<Person> list = personService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         personService.dao().fill(list).with("employee").with(PersonMeta.SALARY).with(PersonMeta.BANK).with(PersonMeta.SALARY_TPL).with(PersonMeta.POSITION).with(PersonMeta.PROFESSIONAL_LEVEL).with(PersonMeta.RANK).with(PersonMeta.EMPLOYEE_IDENTITY).with(PersonMeta.EDUCATION_DATA).with(PersonMeta.BLOOD_TYPE_DICT).with(PersonMeta.SEX_DICT).with(PersonMeta.MARITAL_STATUS_DICT).with(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT).with(PersonMeta.POLITIC_COUNTENANCE_DATA).execute();
+
+
+		 List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
+		personService.dao().join(employee, org.github.foxnic.web.domain.hrm.Person.class);
+
         result.success(true).data(list);
         return result;
     }
@@ -605,6 +611,8 @@ public class PersonController extends SuperController {
         PagedList<Person> list = personService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         personService.dao().fill(list).with("employee").with(PersonMeta.SALARY).with(PersonMeta.BANK).with(PersonMeta.SALARY_TPL).with(PersonMeta.POSITION).with(PersonMeta.PROFESSIONAL_LEVEL).with(PersonMeta.RANK).with(PersonMeta.EMPLOYEE_IDENTITY).with(PersonMeta.EDUCATION_DATA).with(PersonMeta.BLOOD_TYPE_DICT).with(PersonMeta.SEX_DICT).with(PersonMeta.MARITAL_STATUS_DICT).with(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT).with(PersonMeta.POLITIC_COUNTENANCE_DATA).execute();
+		List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
+		personService.dao().join(employee, org.github.foxnic.web.domain.hrm.Person.class);
         result.success(true).data(list);
         return result;
     }
