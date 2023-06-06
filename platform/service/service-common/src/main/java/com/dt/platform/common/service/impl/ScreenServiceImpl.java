@@ -1,6 +1,9 @@
 package com.dt.platform.common.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.constants.enums.common.ScreenStatusEnum;
+import com.dt.platform.domain.common.FormInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -38,8 +41,8 @@ import java.util.Map;
  * 大屏服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 19:35:24
-*/
+ * @since 2023-05-30 14:45:55
+ */
 
 
 @Service("SysScreenService")
@@ -49,7 +52,7 @@ public class ScreenServiceImpl extends SuperService<Screen> implements IScreenSe
 	/**
 	 * 注入DAO对象
 	 * */
-	@Resource(name=DBConfigs.PRIMARY_DAO) 
+	@Resource(name=DBConfigs.PRIMARY_DAO)
 	private DAO dao=null;
 
 	/**
@@ -73,8 +76,40 @@ public class ScreenServiceImpl extends SuperService<Screen> implements IScreenSe
 	 */
 	@Override
 	public Result insert(Screen screen,boolean throwsException) {
+		screen.setStatus(ScreenStatusEnum.DRAFT.code());
 		Result r=super.insert(screen,throwsException);
 		return r;
+	}
+
+	@Override
+	public Result copyData(String id) {
+		Screen info=this.getById(id);
+		String sId=info.getId();
+		String aId=IDGenerator.getSnowflakeIdString();
+		String sJsonData=info.getJsonData();
+		String aJsonData=sJsonData.replaceAll(sId,aId);
+		info.setId(aId);
+		info.setUpdateTime(new Date());
+		info.setCreateTime(new Date());
+		info.setStatus(ScreenStatusEnum.DRAFT.code());
+		info.setCode(IDGenerator.getSnowflakeIdString());
+		info.setName(info.getName()+"-复制");
+		Result r=super.insert(info,true);
+		return r;
+
+	}
+
+	@Override
+	public Result apply(String id) {
+
+		Screen info=this.getById(id);
+		if(ScreenStatusEnum.DRAFT.code().equals(info.getStatus())){
+			info.setStatus(ScreenStatusEnum.APPLY.code());
+			super.update(info,SaveMode.NOT_NULL_FIELDS);
+		}else{
+			return ErrorDesc.failureMessage("当前状态不允许应用");
+		}
+		return ErrorDesc.success();
 	}
 
 	/**
@@ -97,7 +132,7 @@ public class ScreenServiceImpl extends SuperService<Screen> implements IScreenSe
 		return super.insertList(screenList);
 	}
 
-	
+
 	/**
 	 * 按主键删除大屏
 	 *
@@ -118,7 +153,7 @@ public class ScreenServiceImpl extends SuperService<Screen> implements IScreenSe
 			return r;
 		}
 	}
-	
+
 	/**
 	 * 按主键删除大屏
 	 *
@@ -178,7 +213,7 @@ public class ScreenServiceImpl extends SuperService<Screen> implements IScreenSe
 		return super.updateList(screenList , mode);
 	}
 
-	
+
 	/**
 	 * 按主键更新大屏
 	 *
@@ -192,7 +227,7 @@ public class ScreenServiceImpl extends SuperService<Screen> implements IScreenSe
 		return suc>0;
 	}
 
-	
+
 	/**
 	 * 按主键获取大屏
 	 *

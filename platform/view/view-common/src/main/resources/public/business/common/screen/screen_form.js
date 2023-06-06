@@ -1,13 +1,13 @@
 /**
  * 大屏 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 19:36:29
+ * @since 2023-05-31 19:06:51
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
-	
+
 	// 接口地址
 	const moduleURL="/service-common/sys-screen";
 	const queryURL=moduleURL+"/get-by-id";
@@ -24,10 +24,10 @@ function FormPage() {
 	var isInProcess=QueryString.get("isInProcess");
 
 	/**
-      * 入口函数，初始化
-      */
+	 * 入口函数，初始化
+	 */
 	this.init=function(layui) {
-     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
+		admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
 		action=admin.getTempData('sys-screen-form-data-form-action');
@@ -113,8 +113,8 @@ function FormPage() {
 	}
 
 	/**
-      * 渲染表单组件
-      */
+	 * 渲染表单组件
+	 */
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
@@ -152,8 +152,8 @@ function FormPage() {
 	}
 
 	/**
-      * 填充表单数据
-      */
+	 * 填充表单数据
+	 */
 	function fillFormData(formData) {
 		if(!formData) {
 			formData = admin.getTempData('sys-screen-form-data');
@@ -182,9 +182,9 @@ function FormPage() {
 			//处理fillBy
 
 			//
-	     	fm.attr('method', 'POST');
-	     	fox.fillDialogButtons();
-	     	renderFormFields();
+			fm.attr('method', 'POST');
+			fox.fillDialogButtons();
+			renderFormFields();
 
 			window.pageExt.form.afterDataFill && window.pageExt.form.afterDataFill(formData);
 
@@ -192,7 +192,7 @@ function FormPage() {
 
 		//渐显效果
 		fm.css("opacity","0.0");
-        fm.css("display","");
+		fm.css("display","");
 		setTimeout(function (){
 			fm.animate({
 				opacity:'1.0'
@@ -201,8 +201,8 @@ function FormPage() {
 		},1);
 
 
-        //禁用编辑
-		if(action=="view" || (action=="edit" && disableModify) || (action=="create" && disableCreateNew)) {
+		//禁用编辑
+		if((action=="edit" && hasData && disableModify) || (action=="create" && !hasData &&disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")
@@ -300,19 +300,19 @@ function FormPage() {
 	}
 
 	/**
-      * 保存数据，表单提交事件
-      */
-    function bindButtonEvent() {
+	 * 保存数据，表单提交事件
+	 */
+	function bindButtonEvent() {
 
-	    form.on('submit(submit-button)', verifyAndSaveForm);
+		form.on('submit(submit-button)', verifyAndSaveForm);
 
 
-	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('sys-screen-form-data-win',this); });
+		//关闭窗口
+		$("#cancel-button").click(function(){ admin.finishPopupCenterById('sys-screen-form-data-win',this); });
 
-    }
+	}
 
-    window.module={
+	window.module={
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,
