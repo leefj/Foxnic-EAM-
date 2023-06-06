@@ -24,11 +24,27 @@ import java.util.Map;
  * 大屏服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 19:35:24
-*/
+ * @since 2023-05-30 14:45:55
+ */
 
 public interface IScreenService extends  ISimpleIdService<Screen,String> {
 
+
+	/**
+	 * 复制
+	 * @param id
+	 * @return 复制成功
+	 * */
+	Result copyData(String id);
+
+
+	/**
+	 * 应用
+	 * @param id
+	 * @return 应用成功
+	 * */
+
+	Result apply(String id);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -54,7 +70,7 @@ public interface IScreenService extends  ISimpleIdService<Screen,String> {
 	Result insertList(List<Screen> screenList);
 
 
-		
+
 	/**
 	 * 按主键删除大屏
 	 *
@@ -62,7 +78,7 @@ public interface IScreenService extends  ISimpleIdService<Screen,String> {
 	 * @return 删除是否成功
 	 */
 	Result deleteByIdPhysical(String id);
-	
+
 	/**
 	 * 按主键删除大屏
 	 *
@@ -85,7 +101,7 @@ public interface IScreenService extends  ISimpleIdService<Screen,String> {
 	 * */
 	<T> Result deleteByIdsLogical(List<T> ids);
 
-		
+
 	/**
 	 * 按主键更新大屏
 	 *
@@ -155,7 +171,7 @@ public interface IScreenService extends  ISimpleIdService<Screen,String> {
 	 * */
 	boolean checkExists(Screen screen,DBField... field);
 
-		
+
 	/**
 	 * 按主键获取大屏
 	 *
@@ -281,7 +297,7 @@ public interface IScreenService extends  ISimpleIdService<Screen,String> {
 	 * */
 	PagedList<Screen> queryPagedList(Screen sample,OrderBy orderBy,int pageSize,int pageIndex);
 
- 	/**
+	/**
 	 * 查询指定字段的数据清单
 	 * @param <T> 元素类型
 	 * @param field 字段
