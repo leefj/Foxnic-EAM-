@@ -16,10 +16,7 @@ import com.dt.platform.domain.hr.meta.SalaryTplMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.hr.page.SalaryDetailPageController;
 import com.dt.platform.hr.page.SalaryPageController;
-import com.dt.platform.proxy.hr.SalaryActionServiceProxy;
-import com.dt.platform.proxy.hr.SalaryDetailServiceProxy;
-import com.dt.platform.proxy.hr.SalaryServiceProxy;
-import com.dt.platform.proxy.hr.SalaryTplServiceProxy;
+import com.dt.platform.proxy.hr.*;
 import com.github.foxnic.generator.config.WriteMode;
 
 
@@ -49,6 +46,9 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(SalaryAction.class,"salaryAction","salaryAction","salaryAction");
         cfg.getPoClassFile().addSimpleProperty(String.class,"extBank","extBank","extBank");
         cfg.getPoClassFile().addSimpleProperty(String.class,"extBankAccount","extBankAccount","extBankAccount");
+
+
+        cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
 
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
@@ -172,6 +172,14 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
                 fillWith(SalaryDetailMeta.SALARY_ACTION).muliti(false).defaultIndex(0);
 
 
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.PERSON_ID)
+                .form().selectBox().queryApi(PersonServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(true).toolbar(false)
+                .valueField(PersonMeta.ID).
+                textField(PersonMeta.NAME).
+                fillWith(SalaryDetailMeta.PERSON).muliti(false);
+
+        cfg.view().list().excel(true,true);
         cfg.view().form().addGroup("人员信息",
                 new Object[] {
                         HrTables.HR_SALARY_DETAIL.USER_NAME,
@@ -306,7 +314,6 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
         );
 
         cfg.view().list().disableBatchDelete();
-
         cfg.view().list().operationColumn().addActionButton("重置","resetData","person-reset-data","hr_salary_detail:reset");
         cfg.view().list().addToolButton("生效","validData","person-valid-data","hr_salary_detail:valid");
         cfg.view().list().addToolButton("导出","exportData","person-export-data","hr_salary_detail:data-export");
@@ -315,8 +322,8 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
-                .setControllerAndAgent(WriteMode.IGNORE) //Rest
+                .setServiceIntfAnfImpl(WriteMode.WRITE_TEMP_FILE) //服务与接口
+                .setControllerAndAgent(WriteMode.WRITE_TEMP_FILE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE) //列表HTML页

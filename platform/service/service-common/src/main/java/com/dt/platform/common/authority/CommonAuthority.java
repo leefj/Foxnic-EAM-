@@ -13,8 +13,8 @@ public class CommonAuthority extends ModuleAuthority {
     @Override
     public String[] getAuthorities() {
 
-        return new String[] {
 
+        return new String[] {
                 "bigscreen","system:mngr","system_ops","common_system","data_backup","auto_perm","sys_tpl_file:mngr","system_monitor"
         };
     }

@@ -52,8 +52,9 @@ public class RecruitRecPersonGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().field(HrTables.HR_RECRUIT_PERSON_REC.END_DATE).form().dateInput().format("yyyy-MM-dd");
+        cfg.view().field(HrTables.HR_RECRUIT_PERSON_REC.START_DATE).form().dateInput().format("yyyy-MM-dd");
         cfg.view().field(HrTables.HR_RECRUIT_PERSON_REC.NAME).form().validate().required();
-        cfg.view().field(HrTables.HR_RECRUIT_PERSON_REC.NOTES).form().validate().required();
 
 
         cfg.view().formWindow().width("70%");;
@@ -69,13 +70,6 @@ public class RecruitRecPersonGtr extends BaseCodeGenerator {
                         HrTables.HR_RECRUIT_PERSON_REC.NOTES,
                 }
         );
-
-
-
-
-
-
-
 
         //文件生成覆盖模式
         cfg.overrides()
@@ -99,5 +93,7 @@ public class RecruitRecPersonGtr extends BaseCodeGenerator {
         //g.removeByBatchId("470160949404237824");
       //  //生成菜单
       //g.generateMenu(RecruitPersonRecServiceProxy.class, RecruitPersonRecPageController.class);
+
+
     }
 }

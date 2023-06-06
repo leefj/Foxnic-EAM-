@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 招聘记录模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 15:38:56
+ * @since 2023-06-06 09:29:49
 */
 
 @Controller("HrRecruitPersonRecPageController")

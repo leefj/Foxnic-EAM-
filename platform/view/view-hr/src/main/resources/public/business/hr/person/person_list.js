@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-04 15:15:34
+ * @since 2023-06-06 11:12:21
  */
 
 
@@ -107,7 +107,8 @@ function ListPage() {
 					,{ field: 'salaryTplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('薪酬模版'), templet: function (d) { return templet('salaryTplId' ,fox.joinLabel(d.salaryTpl,"name",',','','salaryTplId'),d);}}
 					,{ field: 'salaryPayOut', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否发放'), templet:function (d){ return templet('salaryPayOut',fox.getEnumText(RADIO_SALARYPAYOUT_DATA,d.salaryPayOut,'','salaryPayOut'),d);}}
 					,{ field: 'salaryNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('薪酬备注') , templet: function (d) { return templet('salaryNotes',d.salaryNotes,d);}  }
-				 	,{ field: 'contractDuration', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同周期') , templet: function (d) { return templet('contractDuration',d.contractDuration,d);}  }
+					,{ field: 'employeeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工') , templet: function (d) { return templet('employeeId',fox.getProperty(d,["employee","name"],0,'','employeeId'),d);} }
+					,{ field: 'contractDuration', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同周期') , templet: function (d) { return templet('contractDuration',d.contractDuration,d);}  }
 					,{ field: 'contractStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('合同开始时间') ,templet: function (d) { return templet('contractStartDate',fox.dateFormat(d.contractStartDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'contractFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('合同结束时间') ,templet: function (d) { return templet('contractFinishDate',fox.dateFormat(d.contractFinishDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'note', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('note',d.note,d);}  }

@@ -40,8 +40,25 @@ function ListPage() {
 		bindButtonEvent();
 		//绑定行操作按钮事件
 		bindRowOperationEvent();
+
+		queryBannerData();
+
 	}
 
+
+	function queryBannerData(){
+		admin.post("/service-hr/hr-salary-detail/query-statistical-data-by-action-id", {actionId:ACTION_ID} , function (r) {
+			if (r.success) {
+				var bannerData=r.data;
+				$("#total_pserson_cnt").html(bannerData.totalPsersonCnt);
+				$("#person_abnormal_cnt").html(bannerData.personAbnormalCnt);
+				$("#issued_amount_sum").html(bannerData.issuedAmountSum);
+				$("#total_amount_sum").html(bannerData.totalAmountSum);
+			} else {
+				fox.showMessage(data);
+			}
+		});
+	}
 
 	/**
 	 * 渲染表格
@@ -78,7 +95,7 @@ function ListPage() {
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: queryURL,
-				height: 'full-'+(h+28),
+				height: 'full-'+(h+28+150),
 				limit: 50,
 				where: ps,
 				cols: [[
@@ -151,8 +168,19 @@ function ListPage() {
 					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
 				},
 				footer : {
-					exportExcel : false ,
-					importExcel : false
+					exportExcel :  admin.checkAuth("hr_salary_detail:export") ,
+					importExcel :  admin.checkAuth("hr_salary_detail:import")?{
+						params : {} ,
+						callback : function(r) {
+							if(r.success) {
+								layer.msg(fox.translate('数据导入成功','','cmp:table')+"!");
+							} else {
+								layer.msg(fox.translate('数据导入失败','','cmp:table')+"!");
+							}
+							// 是否执行后续逻辑：错误提示
+							return false;
+						}
+					}:false
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -170,6 +198,7 @@ function ListPage() {
 	 * 刷新单号数据
 	 * */
 	function refreshRowData(data,remote) {
+
 		var context=dataTable.getDataRowContext( { id : data.id } );
 		if(context==null) return;
 		if(remote) {
@@ -211,6 +240,8 @@ function ListPage() {
 	 * 刷新表格数据
 	 */
 	function refreshTableData(sortField,sortType,reset) {
+		queryBannerData();
+
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.userName={ inputType:"button",value: $("#userName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
@@ -297,6 +328,7 @@ function ListPage() {
 	 * 绑定搜索框事件
 	 */
 	function bindSearchEvent() {
+
 		//回车键查询
 		$(".search-input").keydown(function(event) {
 			if(event.keyCode !=13) return;

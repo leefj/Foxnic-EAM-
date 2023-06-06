@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员薪酬VO类型
  * <p>人员薪酬 , 数据表 hr_salary 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 10:21:24
+ * @since 2023-06-06 17:58:38
  * @sign E138E7272BF556128C11A273377D877E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -403,6 +403,7 @@ public class SalaryVO extends Salary {
 	public SalaryVO duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.SalaryVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.SalaryVOMeta.$$proxy$$();
 		inst.setHighTemperatureSalary(this.getHighTemperatureSalary());
+		inst.setNotes(this.getNotes());
 		inst.setWelfareZfgjjBase(this.getWelfareZfgjjBase());
 		inst.setDeductKq(this.getDeductKq());
 		inst.setWelfareZfgjjPerson(this.getWelfareZfgjjPerson());
@@ -528,6 +529,7 @@ public class SalaryVO extends Salary {
 		if(map==null) return false;
 		if(cast) {
 			this.setHighTemperatureSalary(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.HIGH_TEMPERATURE_SALARY)));
+			this.setNotes(DataParser.parse(String.class, map.get(SalaryVOMeta.NOTES)));
 			this.setWelfareZfgjjBase(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFARE_ZFGJJ_BASE)));
 			this.setDeductKq(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.DEDUCT_KQ)));
 			this.setWelfareZfgjjPerson(DataParser.parse(BigDecimal.class, map.get(SalaryVOMeta.WELFARE_ZFGJJ_PERSON)));
@@ -595,6 +597,7 @@ public class SalaryVO extends Salary {
 		} else {
 			try {
 				this.setHighTemperatureSalary( (BigDecimal)map.get(SalaryVOMeta.HIGH_TEMPERATURE_SALARY));
+				this.setNotes( (String)map.get(SalaryVOMeta.NOTES));
 				this.setWelfareZfgjjBase( (BigDecimal)map.get(SalaryVOMeta.WELFARE_ZFGJJ_BASE));
 				this.setDeductKq( (BigDecimal)map.get(SalaryVOMeta.DEDUCT_KQ));
 				this.setWelfareZfgjjPerson( (BigDecimal)map.get(SalaryVOMeta.WELFARE_ZFGJJ_PERSON));
@@ -675,6 +678,7 @@ public class SalaryVO extends Salary {
 		if(r==null) return false;
 		if(cast) {
 			this.setHighTemperatureSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.HIGH_TEMPERATURE_SALARY)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(SalaryVOMeta.NOTES)));
 			this.setWelfareZfgjjBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFARE_ZFGJJ_BASE)));
 			this.setDeductKq(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.DEDUCT_KQ)));
 			this.setWelfareZfgjjPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryVOMeta.WELFARE_ZFGJJ_PERSON)));
@@ -730,6 +734,7 @@ public class SalaryVO extends Salary {
 		} else {
 			try {
 				this.setHighTemperatureSalary( (BigDecimal)r.getValue(SalaryVOMeta.HIGH_TEMPERATURE_SALARY));
+				this.setNotes( (String)r.getValue(SalaryVOMeta.NOTES));
 				this.setWelfareZfgjjBase( (BigDecimal)r.getValue(SalaryVOMeta.WELFARE_ZFGJJ_BASE));
 				this.setDeductKq( (BigDecimal)r.getValue(SalaryVOMeta.DEDUCT_KQ));
 				this.setWelfareZfgjjPerson( (BigDecimal)r.getValue(SalaryVOMeta.WELFARE_ZFGJJ_PERSON));

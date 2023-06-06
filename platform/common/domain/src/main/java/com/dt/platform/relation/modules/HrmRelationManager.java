@@ -1,6 +1,7 @@
 package com.dt.platform.relation.modules;
 
 import com.dt.platform.constants.db.HrTables;
+import com.dt.platform.domain.hr.PersonAttendanceRec;
 import com.dt.platform.domain.hr.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
@@ -24,13 +25,25 @@ public class HrmRelationManager extends RelationManager {
 		this.setupSalaryAction();
 
 		this.setupRecruitPersonRec();
+
+		this.setupPersonAttendanceRec();
 	}
- 
+
+
 	public void setupProperties() {
 
 	}
 	
 	private void setupRelations() {
+
+	}
+
+	private void setupPersonAttendanceRec() {
+		this.property(PersonAttendanceRecMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_ATTENDANCE_REC.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+		this.property(PersonAttendanceRecMeta.EMPLOYEE_PROP)
+				.using(HrTables.HR_PERSON_ATTENDANCE_REC.EMPLOYEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
 	}
 
@@ -171,6 +184,7 @@ public class HrmRelationManager extends RelationManager {
 		this.property(PersonMeta.POLITIC_COUNTENANCE_DATA_PROP)
 				.using(HrTables.HR_PERSON.POLITIC_COUNTENANCE_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
 				.condition("dict_code='hr_politic_countenance'");
+
 
 		this.property(PersonMeta.EMPLOYEE_PROP)
 				.using(HrTables.HR_PERSON.EMPLOYEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);

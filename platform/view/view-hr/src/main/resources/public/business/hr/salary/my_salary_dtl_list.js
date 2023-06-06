@@ -210,8 +210,7 @@ function ListPage() {
     function refreshTableData(sortField,sortType,reset) {
         function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
         var value = {};
-        value.personId={ inputType:"button",value: $("#personId").val(),fillBy:["person","name"] ,label:$("#personId-button").text() };
-        value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
+         value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
         value.actionMonth={ inputType:"button",value: $("#actionMonth").val()};
         var ps={searchField:"$composite"};
         if(window.pageExt.list.beforeQuery){

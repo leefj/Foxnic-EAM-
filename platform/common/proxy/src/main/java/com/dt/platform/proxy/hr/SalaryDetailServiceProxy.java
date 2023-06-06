@@ -88,11 +88,11 @@ public interface SalaryDetailServiceProxy {
      * 分页查询薪酬明细
      */
     public static final String MY_QUERY_PAGED_LIST = API_PREFIX + "my-query-paged-list";
+
     /**
      * 分页查询薪酬明细
      */
     public static final String ACTION_QUERY_PAGED_LIST = API_PREFIX + "action-query-paged-list";
-
 
     /**
      * 重置
@@ -103,6 +103,22 @@ public interface SalaryDetailServiceProxy {
      * 生效
      */
     public static final String VALID = API_PREFIX + "valid";
+
+    /**
+     * 生效
+     */
+    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
+
+    /**
+     * 生效
+     */
+    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
+
+    /**
+     */
+    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
+
+    public static final String QUERY_STATISTICAL_DATA_BY_ACTION_ID = API_PREFIX + "query-statistical-data-by-action-id";
 
     /**
      * 添加薪酬明细
@@ -157,6 +173,24 @@ public interface SalaryDetailServiceProxy {
      */
     @RequestMapping(SalaryDetailServiceProxy.QUERY_PAGED_LIST)
     Result<PagedList<SalaryDetail>> queryPagedList(@RequestParam(name = "sample") SalaryDetailVO sample);
+
+    /**
+     * 导出 Excel
+     */
+    @RequestMapping(SalaryDetailServiceProxy.EXPORT_EXCEL)
+    void exportExcel(@RequestParam(name = "sample") SalaryDetailVO sample, @RequestParam(name = "response") HttpServletResponse response) throws Exception;
+
+    /**
+     * 导出 Excel 模板
+     */
+    @RequestMapping(SalaryDetailServiceProxy.EXPORT_EXCEL_TEMPLATE)
+    void exportExcelTemplate(@RequestParam(name = "response") HttpServletResponse response) throws Exception;
+
+    /**
+     * 导入 Excel
+     */
+    @RequestMapping(SalaryDetailServiceProxy.IMPORT_EXCEL)
+    Result importExcel(@RequestParam(name = "request") MultipartHttpServletRequest request, @RequestParam(name = "response") HttpServletResponse response) throws Exception;
 
     /**
      * 控制器类名

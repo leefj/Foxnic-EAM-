@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 招聘记录 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 15:38:55
+ * @since 2023-06-06 09:29:48
  */
 @FeignClient(value = ServiceNames.HR, contextId = RecruitPersonRecServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface RecruitPersonRecServiceProxy {

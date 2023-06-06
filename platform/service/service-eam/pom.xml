@@ -80,6 +80,7 @@
             <artifactId>service-common</artifactId>
             <version>${platform.version}</version>
         </dependency>
+
         <!-- -引入模板引擎 https://mvnrepository.com/artifact/com.deepoove/poi-tl -->
         <dependency>
             <groupId>com.deepoove</groupId>
@@ -106,13 +107,14 @@
             <artifactId>xmlbeans</artifactId>
             <version>3.0.2</version>
         </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/cn.afterturn/easypoi-base -->
         <dependency>
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-base</artifactId>
             <version>4.4.0</version>
         </dependency>
-
 
 
     </dependencies>
