@@ -4,8 +4,12 @@ import java.util.*;
 
 import com.alibaba.csp.sentinel.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.domain.hr.PersonVO;
 import com.dt.platform.domain.hr.meta.SalaryActionVOMeta;
+import com.dt.platform.hr.service.IPersonService;
+import com.dt.platform.hr.service.ISalaryService;
 import org.github.foxnic.web.framework.web.SuperController;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +66,13 @@ public class SalaryDetailController extends SuperController {
 
     @Autowired
     private ISalaryDetailService salaryDetailService;
+
+
+	@Autowired
+	private ISalaryService salaryService;
+
+	@Autowired
+	private IPersonService personService;
 
     /**
      * 添加薪酬明细
@@ -661,6 +672,20 @@ public class SalaryDetailController extends SuperController {
     @PostMapping(SalaryDetailServiceProxy.MY_QUERY_PAGED_LIST)
     public Result<PagedList<SalaryDetail>> myQueryPagedList(SalaryDetailVO sample) {
         Result<PagedList<SalaryDetail>> result = new Result<>();
+
+		String empId = SessionUser.getCurrent().getActivatedEmployeeId();
+		String personId = "none";
+		PersonVO vo = new PersonVO();
+		vo.setEmployeeId(empId);
+		List<Person> personList = personService.queryList(vo);
+		if (personList.size() > 1) {
+			return ErrorDesc.failureMessage("找到重复的员工配置");
+		} else if (personList.size() == 1) {
+			personId = personList.get(0).getId();
+		}
+		sample.setPersonId(personId);
+
+
         PagedList<SalaryDetail> list = salaryDetailService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         salaryDetailService.dao().fill(list).with("person").execute();
