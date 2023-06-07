@@ -35,6 +35,7 @@ function qa(){
 }
 qa
 
+conf_system="eam"
 echo "script version:$modify_date"
 app_version="last"
 MYSQL_PORT=3308
@@ -370,7 +371,10 @@ function installApp(){
 	db_file_conf_file=$app_dir/bin/sql/confuploadfile.sql
 	db_procedure_file=$app_dir/bin/sql/nextVal.sql
 	db_clear_data_file=$app_dir/bin/sql/cleardata.sql
-	db_app_setting_file=$app_dir/bin/sql/settingapp.sql
+	db_common_setting_file=$app_dir/bin/sql/setting_common.sql
+	db_eam_setting_file=$app_dir/bin/sql/setting_eam.sql
+	db_hrm_setting_file=$app_dir/bin/sql/setting_hrm.sql
+	db_oa_setting_file=$app_dir/bin/sql/setting_oa.sql
 	application_tpl_yml=$app_dir/app/application_tpl.yml
 	application_yml=$app_dir/app/application.yml
 	bpm_application_tpl_yml=$app_dir/bpm/application_tpl.yml
@@ -419,9 +423,15 @@ function installApp(){
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_file_conf_file  2>/dev/null
 	echo "#########start to clear data $db_clear_data_file"
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_clear_data_file  2>/dev/null
-	echo "#########start to app setting data $db_app_setting_file"
-	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_app_setting_file  2>/dev/null
-	echo "#########other setting"
+	echo "#########start to application setting data conf system value:$conf_system ######### "
+	echo "#########start to app setting data $db_common_setting_file"
+	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_common_setting_file  2>/dev/null
+	echo "#########start to oa setting data $db_oa_setting_file"
+	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_oa_setting_file  2>/dev/null
+	echo "#########start to eam setting data $db_eam_setting_file"
+	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_eam_setting_file  2>/dev/null
+	echo "#########finish to application setting data ######### "
+	echo "#########other setting licence, resource grant, mysqldump loc"
 	setting_file="/tmp/setting_file.sql"
 	echo "">$setting_file
 	echo "delete from sys_licence where 1=1;">>$setting_file
@@ -429,6 +439,7 @@ function installApp(){
 	echo "update sys_resourze set access_type='LOGIN' where 1=1;">>$setting_file
 	echo "update sys_config set value='$base_dir/db/mysql/bin/mysqldump' where id='system.tool.mysqldump';">>$setting_file
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $setting_file  2>/dev/null
+
 	echo "#########start to create application.yml from $application_tpl_yml"
 	cat $application_tpl_yml>$application_yml
 	sed -i "s@APP_UPLOAD_DIR@$app_upload_dir@g"     $application_yml

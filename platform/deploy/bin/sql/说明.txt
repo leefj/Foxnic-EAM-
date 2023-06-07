@@ -1,0 +1,32 @@
+
+
+--------------- 创建数据库
+
+createdb.sql                创建数据库语句
+
+
+
+
+
+--------------- 数据库导出的结构及数据
+
+nextVal.sql                 系统是需要的存储过程
+db.tar.gz                   整个数据库备份
+
+
+
+
+--------------- 相关业务系统的配置sql
+
+confuploadfille.sql         配置系统内部默认的模版、文件等
+cleardata.sql               清除业务基本数据
+clearhrm.sql                清除系统内部人员数据
+
+setting_common.sql          通用的配置初始化
+setting_hrm.sql             人事系统的配置初始化
+setting_eam.sql             资产系统的配置初始化
+setting_oa.sql              协同业务的配置初始化
+
+
+
+

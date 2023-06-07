@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 调用统计日志
  * <p>调用统计日志 , 数据表 sys_invoke_log 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 19:46:01
+ * @since 2023-06-07 15:51:37
  * @sign 8CD465D96897228D1E205056FEFD3483
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

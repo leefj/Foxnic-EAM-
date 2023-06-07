@@ -58,13 +58,33 @@ public class OpsRelationManager extends RelationManager {
         this.setupOpsCmdbModel();
         this.setupOpsCmdbModelValue();
         this.setupSoftwareMedia();
-
         this.setupPersonnelDivision();
         this.setupPublicContent();
-
         this.setupDbEvnInfo();
+        this.setupDbDoc();
+        this.setupFaultRcd();
+        this.setupDbRecoverRcd();
 
     }
+    public void setupFaultRcd() {
+        this.property(DbFaultRcdMeta.DB_INSTANCE_PROP)
+                .using(OpsTables.OPS_DB_FAULT_RCD.DB_INSTANCE_ID).join(OpsTables.OPS_DB_INFO.ID);
+
+    }
+    public void setupDbRecoverRcd() {
+        this.property(DbRecoveryRecMeta.DB_INSTANCE_PROP)
+                .using(OpsTables.OPS_DB_RECOVERY_REC.DB_INSTANCE_ID).join(OpsTables.OPS_DB_INFO.ID);
+    }
+
+
+    public void setupDbDoc() {
+
+        this.property(DbDocMeta.TYPE_DATA_PROP)
+                .using(OpsTables.OPS_DB_DOC.TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_doc_type'");
+    }
+
+
     public void setupDbEvnInfo() {
 
         this.property(DbEnvInfoMeta.CIPHERTEXT_BOX_DATA_PROP)
