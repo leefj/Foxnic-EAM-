@@ -120,7 +120,7 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
         OpsDbEnvInfoGtr g=new OpsDbEnvInfoGtr();
         //生成代码
         g.generateCode();
-//        g.generateMenu(DbEnvInfoServiceProxy.class, DbEnvInfoPageController.class);
+        g.generateMenu(DbEnvInfoServiceProxy.class, DbEnvInfoPageController.class);
 
     }
 }

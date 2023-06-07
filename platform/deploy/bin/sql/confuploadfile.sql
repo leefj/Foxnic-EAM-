@@ -145,4 +145,11 @@ insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T
 insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_8','backup_db2.sh','backup_db2.sh','T001_ops_s_8','T001');
 insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_9','backup_mysql.sh','backup_mysql.sh','T001_ops_s_9','T001');
 
+-- oa
+delete from sys_file where id in ('T001_image_head','T001_image_banner1','T001_image_banner2');
+delete from sys_file where id in ('T001_image_project');
+INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_head', 'head.png', '/image/T001/head.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);
+INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_banner1', 'banner1.png', '/image/T001/portal_banner1.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);
+INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_banner2', 'banner2.png', '/image/T001/portal_banner2.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);
+INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_project', 'project.png', '/image/T001/project.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);
 
