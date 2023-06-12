@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 
 @InDoc
 @Api(tags = "车辆位置")
-@RestController("OaVehiclePositionController")
+@RestController("OaVehiclePositionContr121212oller")
 public class LePositionController extends SuperController {
 
 	@Autowired

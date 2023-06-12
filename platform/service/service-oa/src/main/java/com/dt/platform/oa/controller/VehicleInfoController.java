@@ -34,7 +34,7 @@ import java.math.BigDecimal;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
-import com.dt.platform.domain.vehicle.meta.InfoMeta;
+import com.dt.platform.domain.oa.VehicleInsuranceCompany;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 车辆信息接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-09 12:37:59
+ * @since 2023-06-10 15:50:01
 */
 
 @InDoc
@@ -65,37 +65,37 @@ public class VehicleInfoController extends SuperController {
 	*/
 	@ApiOperation(value = "添加车辆信息")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = VehicleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "719917196876185600"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "你可能"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "inuse"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class , example = "jiaoche"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "来看看"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class , example = "空间看"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class , example = "你 "),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.OWNER_ORG_ID , value = "所属组织" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.MANAGE_USER_ID , value = "使用人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.USE_ORG_ID , value = "使用部门" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.USE_USER_ID , value = "使用人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.COLOR , value = "颜色" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.ENGINE_NUMBER , value = "发动机号" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.ENGINE_NUMBER , value = "发动机号" , required = false , dataTypeClass=String.class , example = "12345"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.DRIVING_LICENSE , value = "行驶证" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.FRAME_NUMBER , value = "车架号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.KILOMETERS , value = "公里数" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.CAR_BOAT_TAX , value = "车船税" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_MONEY , value = "抢险" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.COMMERCIAL_INSURANCE_MONEY , value = "商业险" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_COMPANY , value = "保险公司" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.LICENSING_TIME , value = "上牌时间" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_EXPIRE_DATE , value = "商业险到期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_DUE_DATE , value = "抢险到期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.MAXIMUM_PASSENGERS , value = "承载人数" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.SCRAP_TIME , value = "报废时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.KILOMETERS , value = "公里数" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.CAR_BOAT_TAX , value = "车船税" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_MONEY , value = "抢险" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.COMMERCIAL_INSURANCE_MONEY , value = "商业险" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_COMPANY , value = "保险公司" , required = false , dataTypeClass=String.class , example = "考虑空间"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.LICENSING_TIME , value = "上牌时间" , required = false , dataTypeClass=Date.class , example = "2023-06-04 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_EXPIRE_DATE , value = "商业险到期" , required = false , dataTypeClass=Date.class , example = "2023-06-26 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_DUE_DATE , value = "抢险到期" , required = false , dataTypeClass=Date.class , example = "2023-06-15 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.MAXIMUM_PASSENGERS , value = "承载人数" , required = false , dataTypeClass=Integer.class , example = "2"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.SCRAP_TIME , value = "报废时间" , required = false , dataTypeClass=Date.class , example = "2023-06-13 12:00:00"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_ID , value = "存放位置" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_DETAIL , value = "位置详情" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_DETAIL , value = "位置详情" , required = false , dataTypeClass=String.class , example = "12121212"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.PICTURES , value = "图片" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.TECHNICAL_PARAMETER , value = "技术参数" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.TECHNICAL_PARAMETER , value = "技术参数" , required = false , dataTypeClass=String.class , example = "考虑你们"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.ORIGINATOR_ID , value = "制单人" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "空间"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -114,7 +114,7 @@ public class VehicleInfoController extends SuperController {
 	*/
 	@ApiOperation(value = "删除车辆信息")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = VehicleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = VehicleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "719917196876185600")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = VehicleInfoServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -197,37 +197,37 @@ public class VehicleInfoController extends SuperController {
 	*/
 	@ApiOperation(value = "更新车辆信息")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = VehicleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "719917196876185600"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "你可能"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "inuse"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class , example = "jiaoche"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "来看看"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class , example = "空间看"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class , example = "你 "),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.OWNER_ORG_ID , value = "所属组织" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.MANAGE_USER_ID , value = "使用人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.USE_ORG_ID , value = "使用部门" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.USE_USER_ID , value = "使用人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.COLOR , value = "颜色" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.ENGINE_NUMBER , value = "发动机号" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.ENGINE_NUMBER , value = "发动机号" , required = false , dataTypeClass=String.class , example = "12345"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.DRIVING_LICENSE , value = "行驶证" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.FRAME_NUMBER , value = "车架号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.KILOMETERS , value = "公里数" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.CAR_BOAT_TAX , value = "车船税" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_MONEY , value = "抢险" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.COMMERCIAL_INSURANCE_MONEY , value = "商业险" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_COMPANY , value = "保险公司" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.LICENSING_TIME , value = "上牌时间" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_EXPIRE_DATE , value = "商业险到期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_DUE_DATE , value = "抢险到期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.MAXIMUM_PASSENGERS , value = "承载人数" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.SCRAP_TIME , value = "报废时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.KILOMETERS , value = "公里数" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.CAR_BOAT_TAX , value = "车船税" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_MONEY , value = "抢险" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.COMMERCIAL_INSURANCE_MONEY , value = "商业险" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_COMPANY , value = "保险公司" , required = false , dataTypeClass=String.class , example = "考虑空间"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.LICENSING_TIME , value = "上牌时间" , required = false , dataTypeClass=Date.class , example = "2023-06-04 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_EXPIRE_DATE , value = "商业险到期" , required = false , dataTypeClass=Date.class , example = "2023-06-26 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_DUE_DATE , value = "抢险到期" , required = false , dataTypeClass=Date.class , example = "2023-06-15 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.MAXIMUM_PASSENGERS , value = "承载人数" , required = false , dataTypeClass=Integer.class , example = "2"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.SCRAP_TIME , value = "报废时间" , required = false , dataTypeClass=Date.class , example = "2023-06-13 12:00:00"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_ID , value = "存放位置" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_DETAIL , value = "位置详情" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_DETAIL , value = "位置详情" , required = false , dataTypeClass=String.class , example = "12121212"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.PICTURES , value = "图片" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.TECHNICAL_PARAMETER , value = "技术参数" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.TECHNICAL_PARAMETER , value = "技术参数" , required = false , dataTypeClass=String.class , example = "考虑你们"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.ORIGINATOR_ID , value = "制单人" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "空间"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { VehicleInfoVOMeta.PAGE_INDEX , VehicleInfoVOMeta.PAGE_SIZE , VehicleInfoVOMeta.SEARCH_FIELD , VehicleInfoVOMeta.FUZZY_FIELD , VehicleInfoVOMeta.SEARCH_VALUE , VehicleInfoVOMeta.DIRTY_FIELDS , VehicleInfoVOMeta.SORT_FIELD , VehicleInfoVOMeta.SORT_TYPE , VehicleInfoVOMeta.DATA_ORIGIN , VehicleInfoVOMeta.QUERY_LOGIC , VehicleInfoVOMeta.REQUEST_ACTION , VehicleInfoVOMeta.IDS } )
@@ -245,37 +245,37 @@ public class VehicleInfoController extends SuperController {
 	*/
 	@ApiOperation(value = "保存车辆信息")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = VehicleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "719917196876185600"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "你可能"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "inuse"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class , example = "jiaoche"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "来看看"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class , example = "空间看"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class , example = "你 "),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.OWNER_ORG_ID , value = "所属组织" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.MANAGE_USER_ID , value = "使用人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.USE_ORG_ID , value = "使用部门" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.USE_USER_ID , value = "使用人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.COLOR , value = "颜色" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.ENGINE_NUMBER , value = "发动机号" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.ENGINE_NUMBER , value = "发动机号" , required = false , dataTypeClass=String.class , example = "12345"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.DRIVING_LICENSE , value = "行驶证" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.FRAME_NUMBER , value = "车架号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.KILOMETERS , value = "公里数" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.CAR_BOAT_TAX , value = "车船税" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_MONEY , value = "抢险" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.COMMERCIAL_INSURANCE_MONEY , value = "商业险" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_COMPANY , value = "保险公司" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.LICENSING_TIME , value = "上牌时间" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_EXPIRE_DATE , value = "商业险到期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_DUE_DATE , value = "抢险到期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.MAXIMUM_PASSENGERS , value = "承载人数" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.SCRAP_TIME , value = "报废时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.KILOMETERS , value = "公里数" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.CAR_BOAT_TAX , value = "车船税" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_MONEY , value = "抢险" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.COMMERCIAL_INSURANCE_MONEY , value = "商业险" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_COMPANY , value = "保险公司" , required = false , dataTypeClass=String.class , example = "考虑空间"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.LICENSING_TIME , value = "上牌时间" , required = false , dataTypeClass=Date.class , example = "2023-06-04 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_EXPIRE_DATE , value = "商业险到期" , required = false , dataTypeClass=Date.class , example = "2023-06-26 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_DUE_DATE , value = "抢险到期" , required = false , dataTypeClass=Date.class , example = "2023-06-15 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.MAXIMUM_PASSENGERS , value = "承载人数" , required = false , dataTypeClass=Integer.class , example = "2"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.SCRAP_TIME , value = "报废时间" , required = false , dataTypeClass=Date.class , example = "2023-06-13 12:00:00"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_ID , value = "存放位置" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_DETAIL , value = "位置详情" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_DETAIL , value = "位置详情" , required = false , dataTypeClass=String.class , example = "12121212"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.PICTURES , value = "图片" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.TECHNICAL_PARAMETER , value = "技术参数" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.TECHNICAL_PARAMETER , value = "技术参数" , required = false , dataTypeClass=String.class , example = "考虑你们"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.ORIGINATOR_ID , value = "制单人" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "空间"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { VehicleInfoVOMeta.PAGE_INDEX , VehicleInfoVOMeta.PAGE_SIZE , VehicleInfoVOMeta.SEARCH_FIELD , VehicleInfoVOMeta.FUZZY_FIELD , VehicleInfoVOMeta.SEARCH_VALUE , VehicleInfoVOMeta.DIRTY_FIELDS , VehicleInfoVOMeta.SORT_FIELD , VehicleInfoVOMeta.SORT_TYPE , VehicleInfoVOMeta.DATA_ORIGIN , VehicleInfoVOMeta.QUERY_LOGIC , VehicleInfoVOMeta.REQUEST_ACTION , VehicleInfoVOMeta.IDS } )
@@ -307,8 +307,9 @@ public class VehicleInfoController extends SuperController {
 			.with("ownerCompany")
 			.with("useOrganization")
 			.with("useUser")
-			.with(InfoMeta.VEHICLE_STATUS_DICT)
-			.with(InfoMeta.VEHICLE_TYPE_DICT)
+			.with(VehicleInfoMeta.VEHICLE_INSURANCE_COMPANY)
+			.with(VehicleInfoMeta.VEHICLE_STATUS_DICT)
+			.with(VehicleInfoMeta.VEHICLE_TYPE_DICT)
 			.execute();
 		result.success(true).data(vehicleInfo);
 		return result;
@@ -340,37 +341,37 @@ public class VehicleInfoController extends SuperController {
 	*/
 	@ApiOperation(value = "查询车辆信息")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = VehicleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "719917196876185600"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "你可能"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "inuse"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class , example = "jiaoche"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "来看看"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class , example = "空间看"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class , example = "你 "),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.OWNER_ORG_ID , value = "所属组织" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.MANAGE_USER_ID , value = "使用人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.USE_ORG_ID , value = "使用部门" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.USE_USER_ID , value = "使用人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.COLOR , value = "颜色" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.ENGINE_NUMBER , value = "发动机号" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.ENGINE_NUMBER , value = "发动机号" , required = false , dataTypeClass=String.class , example = "12345"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.DRIVING_LICENSE , value = "行驶证" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.FRAME_NUMBER , value = "车架号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.KILOMETERS , value = "公里数" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.CAR_BOAT_TAX , value = "车船税" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_MONEY , value = "抢险" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.COMMERCIAL_INSURANCE_MONEY , value = "商业险" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_COMPANY , value = "保险公司" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.LICENSING_TIME , value = "上牌时间" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_EXPIRE_DATE , value = "商业险到期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_DUE_DATE , value = "抢险到期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.MAXIMUM_PASSENGERS , value = "承载人数" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.SCRAP_TIME , value = "报废时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.KILOMETERS , value = "公里数" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.CAR_BOAT_TAX , value = "车船税" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_MONEY , value = "抢险" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.COMMERCIAL_INSURANCE_MONEY , value = "商业险" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_COMPANY , value = "保险公司" , required = false , dataTypeClass=String.class , example = "考虑空间"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.LICENSING_TIME , value = "上牌时间" , required = false , dataTypeClass=Date.class , example = "2023-06-04 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_EXPIRE_DATE , value = "商业险到期" , required = false , dataTypeClass=Date.class , example = "2023-06-26 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_DUE_DATE , value = "抢险到期" , required = false , dataTypeClass=Date.class , example = "2023-06-15 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.MAXIMUM_PASSENGERS , value = "承载人数" , required = false , dataTypeClass=Integer.class , example = "2"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.SCRAP_TIME , value = "报废时间" , required = false , dataTypeClass=Date.class , example = "2023-06-13 12:00:00"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_ID , value = "存放位置" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_DETAIL , value = "位置详情" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_DETAIL , value = "位置详情" , required = false , dataTypeClass=String.class , example = "12121212"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.PICTURES , value = "图片" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.TECHNICAL_PARAMETER , value = "技术参数" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.TECHNICAL_PARAMETER , value = "技术参数" , required = false , dataTypeClass=String.class , example = "考虑你们"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.ORIGINATOR_ID , value = "制单人" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "空间"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { VehicleInfoVOMeta.PAGE_INDEX , VehicleInfoVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = VehicleInfoServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -389,37 +390,37 @@ public class VehicleInfoController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询车辆信息")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = VehicleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "719917196876185600"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "你可能"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "inuse"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class , example = "jiaoche"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "来看看"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class , example = "空间看"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class , example = "你 "),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.OWNER_ORG_ID , value = "所属组织" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.MANAGE_USER_ID , value = "使用人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.USE_ORG_ID , value = "使用部门" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.USE_USER_ID , value = "使用人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.COLOR , value = "颜色" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.ENGINE_NUMBER , value = "发动机号" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.ENGINE_NUMBER , value = "发动机号" , required = false , dataTypeClass=String.class , example = "12345"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.DRIVING_LICENSE , value = "行驶证" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.FRAME_NUMBER , value = "车架号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.KILOMETERS , value = "公里数" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.CAR_BOAT_TAX , value = "车船税" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_MONEY , value = "抢险" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.COMMERCIAL_INSURANCE_MONEY , value = "商业险" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_COMPANY , value = "保险公司" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.LICENSING_TIME , value = "上牌时间" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_EXPIRE_DATE , value = "商业险到期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_DUE_DATE , value = "抢险到期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.MAXIMUM_PASSENGERS , value = "承载人数" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.SCRAP_TIME , value = "报废时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.KILOMETERS , value = "公里数" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.CAR_BOAT_TAX , value = "车船税" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_MONEY , value = "抢险" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.COMMERCIAL_INSURANCE_MONEY , value = "商业险" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_COMPANY , value = "保险公司" , required = false , dataTypeClass=String.class , example = "考虑空间"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.LICENSING_TIME , value = "上牌时间" , required = false , dataTypeClass=Date.class , example = "2023-06-04 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.INSURANCE_EXPIRE_DATE , value = "商业险到期" , required = false , dataTypeClass=Date.class , example = "2023-06-26 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.RESCUE_DUE_DATE , value = "抢险到期" , required = false , dataTypeClass=Date.class , example = "2023-06-15 12:00:00"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.MAXIMUM_PASSENGERS , value = "承载人数" , required = false , dataTypeClass=Integer.class , example = "2"),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.SCRAP_TIME , value = "报废时间" , required = false , dataTypeClass=Date.class , example = "2023-06-13 12:00:00"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_ID , value = "存放位置" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_DETAIL , value = "位置详情" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.POSITION_DETAIL , value = "位置详情" , required = false , dataTypeClass=String.class , example = "12121212"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.PICTURES , value = "图片" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.TECHNICAL_PARAMETER , value = "技术参数" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.TECHNICAL_PARAMETER , value = "技术参数" , required = false , dataTypeClass=String.class , example = "考虑你们"),
 		@ApiImplicitParam(name = VehicleInfoVOMeta.ORIGINATOR_ID , value = "制单人" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = VehicleInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = VehicleInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "空间"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = VehicleInfoServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -433,8 +434,9 @@ public class VehicleInfoController extends SuperController {
 			.with("ownerCompany")
 			.with("useOrganization")
 			.with("useUser")
-			.with(InfoMeta.VEHICLE_STATUS_DICT)
-			.with(InfoMeta.VEHICLE_TYPE_DICT)
+			.with(VehicleInfoMeta.VEHICLE_INSURANCE_COMPANY)
+			.with(VehicleInfoMeta.VEHICLE_STATUS_DICT)
+			.with(VehicleInfoMeta.VEHICLE_TYPE_DICT)
 			.execute();
 		result.success(true).data(list);
 		return result;

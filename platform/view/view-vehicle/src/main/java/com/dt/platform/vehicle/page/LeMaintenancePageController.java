@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2023-05-09 12:43:11
 */
 
-@Controller("OaVehicleMaintenancePageController")
+@Controller("OaVehicleMaintenancePageControlle1211212r")
 @RequestMapping(LeMaintenancePageController.prefix)
 public class LeMaintenancePageController extends ViewController {
 

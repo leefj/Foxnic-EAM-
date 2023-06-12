@@ -1,15 +1,18 @@
 package com.dt.platform.generator.module.oa;
 
 import com.dt.platform.constants.db.OaTables;
-import com.dt.platform.constants.db.VehicleTables;
 import com.dt.platform.constants.enums.vehicle.VehicleHandleStatusEnum;
 import com.dt.platform.constants.enums.vehicle.VehicleRepairStatusEnum;
-import com.dt.platform.domain.vehicle.Info;
-import com.dt.platform.domain.vehicle.meta.MaintenanceMeta;
-import com.dt.platform.domain.vehicle.meta.MaintenanceVOMeta;
+import com.dt.platform.domain.oa.VehicleApply;
+import com.dt.platform.domain.oa.VehicleInfo;
+import com.dt.platform.domain.oa.meta.VehicleInfoMeta;
+import com.dt.platform.domain.oa.meta.VehicleMaintenanceMeta;
+import com.dt.platform.domain.oa.meta.VehicleMaintenanceVOMeta;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.generator.module.vehicle.BaseCodeGenerator;
-import com.dt.platform.vehicle.service.impl.MSelectItemServiceImpl;
+import com.dt.platform.oa.page.VehicleMaintenancePageController;
+import com.dt.platform.oa.service.impl.VehicleMSelectItemServiceImpl;
+import com.dt.platform.proxy.oa.VehicleInfoServiceProxy;
+import com.dt.platform.proxy.oa.VehicleMaintenanceServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
@@ -24,16 +27,18 @@ public class VehicleMaintenanceGtr extends BaseCodeGenerator {
     }
 
     public void generateCode() throws Exception {
+
+
         System.out.println(this.getClass().getName());
 
-        cfg.getPoClassFile().addListProperty(Info.class,"vehicleInfoList","车辆","车辆");
-        cfg.getPoClassFile().addListProperty(String.class,"vehicleInfoIds","车辆列表","车辆列表");
+        cfg.getPoClassFile().addSimpleProperty(VehicleInfo.class,"vehicleInfo","车辆","车辆");
+
 
 
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"maintenanceDict","报修类型","报修类型");
 
-
+        cfg.view().list().disableBatchDelete();
         cfg.view().field(OaTables.OA_VEHICLE_MAINTENANCE.ID).basic().hidden(true);
         cfg.view().field(OaTables.OA_VEHICLE_MAINTENANCE.NAME).search().fuzzySearch();
         cfg.view().field(OaTables.OA_VEHICLE_MAINTENANCE.CONTENT).search().fuzzySearch();
@@ -89,7 +94,15 @@ public class VehicleMaintenanceGtr extends BaseCodeGenerator {
                 .paging(false).filter(false).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
-                fillWith(MaintenanceMeta.MAINTENANCE_DICT).muliti(false);
+                fillWith(VehicleMaintenanceMeta.MAINTENANCE_DICT).muliti(false);
+
+
+        cfg.view().field(OaTables.OA_VEHICLE_MAINTENANCE.VEHICLE_ID)
+                .form().validate().required().form().selectBox().queryApi(VehicleInfoServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(false).toolbar(false)
+                .valueField(VehicleInfoMeta.ID).
+                textField(VehicleInfoMeta.NAME).
+                fillWith(VehicleMaintenanceMeta.VEHICLE_INFO).muliti(false);
 
         cfg.view().field(OaTables.OA_VEHICLE_MAINTENANCE.CONTENT).form().textArea().height(30);
         cfg.view().field(OaTables.OA_VEHICLE_MAINTENANCE.PICTURE_ID)
@@ -97,9 +110,9 @@ public class VehicleMaintenanceGtr extends BaseCodeGenerator {
 
         cfg.view().list().disableBatchDelete();
 
-        cfg.view().list().operationColumn().addActionButton("确认维修","confirmData","confirm-data-button","vehicle_maintenance:confirm");
-        cfg.view().list().operationColumn().addActionButton("结束维修","finishData","finish-data-button","vehicle_maintenance:finish");
-        cfg.view().list().operationColumn().addActionButton("取消","cancelData","cancel-data-button","vehicle_maintenance:cancel");
+//        cfg.view().list().operationColumn().addActionButton("确认维修","confirmData","confirm-data-button","vehicle_maintenance:confirm");
+//        cfg.view().list().operationColumn().addActionButton("结束维修","finishData","finish-data-button","vehicle_maintenance:finish");
+//        cfg.view().list().operationColumn().addActionButton("取消","cancelData","cancel-data-button","vehicle_maintenance:cancel");
 
 
 
@@ -133,9 +146,9 @@ public class VehicleMaintenanceGtr extends BaseCodeGenerator {
 
 
 
-        cfg.service().addRelationSaveAction(MSelectItemServiceImpl.class, MaintenanceVOMeta.VEHICLE_INFO_IDS);
+//        cfg.service().addRelationSaveAction(VehicleMSelectItemServiceImpl.class, VehicleMaintenanceVOMeta.VEHICLE_INFO_IDS);
 
-        cfg.view().form().addPage("车辆列表","vehicleSelectList");
+   //     cfg.view().form().addPage("车辆列表","vehicleSelectList");
 
         //文件生成覆盖模式
         cfg.overrides()
@@ -159,7 +172,7 @@ public class VehicleMaintenanceGtr extends BaseCodeGenerator {
         //移除之前生成的菜单，视情况执行
 //        g.removeByBatchId("471622036347682816");
         //生成菜单
-       // g.generateMenu(MaintenanceServiceProxy.class, MaintenancePageController.class);
+      //  g.generateMenu(VehicleMaintenanceServiceProxy.class, VehicleMaintenancePageController.class);
     }
 
 }

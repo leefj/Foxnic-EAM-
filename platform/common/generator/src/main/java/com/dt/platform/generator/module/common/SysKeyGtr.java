@@ -74,8 +74,8 @@ public class SysKeyGtr extends BaseCodeGenerator {
         g.generateCode();
 
         //生成菜单
-     //  g.generateMenu(KeyCodeServiceProxy.class, KeyCodePageController.class);
-//       g.generateMenu(NodeLoadServiceProxy.class, NodeLoadPageController.class);
+      // g.generateMenu(KeyCodeServiceProxy.class, KeyCodePageController.class);
+
     }
 
 }

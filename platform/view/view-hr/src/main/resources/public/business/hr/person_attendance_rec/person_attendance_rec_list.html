@@ -2,7 +2,7 @@
 /**
  * 人员考勤 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 10:58:38
+ * @since 2023-06-10 11:08:00
  */
  -->
  <!DOCTYPE html>
@@ -41,17 +41,17 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 员工 , employeeId ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 人员 , personId ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 姓名 , userName ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 人员 , personId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('姓名')}" class="search-label userName-label">姓名</span><span class="search-colon">:</span></div>
-                        <input id="userName" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('人员')}" class="search-label personId-label">人员</span><span class="search-colon">:</span></div>
+                        <div id="personId" th:data="${'/service-hr/hr-person/query-paged-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
-                    <!-- 加班 , jbCnt ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 年假 , njCnt ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 事假 , sjCnt ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 其他假 , otherCnt ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 出差 , ccOut ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 加班(天) , jbCnt ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 年假(天) , njCnt ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 事假(天) , sjCnt ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 病假(天) , bjCnt ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 出差(天) , ccCnt ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 其他(天) , otherCnt ,typeName=number_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 工号 , jobNumber ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">

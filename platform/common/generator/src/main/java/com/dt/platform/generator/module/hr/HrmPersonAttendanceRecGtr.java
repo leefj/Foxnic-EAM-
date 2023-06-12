@@ -32,18 +32,18 @@ public class HrmPersonAttendanceRecGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"employee","employee","employee");
         cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.ID).basic().hidden(true);
-        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.USER_NAME).search().fuzzySearch();
+//        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.USER_NAME).search().fuzzySearch();
         cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.JOB_NUMBER).search().fuzzySearch();
         cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.REC_TIME).search().range();
-        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.REC_TIME).form().dateInput().format("yyyy-MM-dd");
+        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.REC_TIME).form().validate().required().form().dateInput().format("yyyy-MM-dd");
+
 
         cfg.view().search().inputLayout(
                 new Object[]{
-                        HrTables.HR_PERSON_ATTENDANCE_REC.USER_NAME,
+                        HrTables.HR_PERSON_ATTENDANCE_REC.PERSON_ID,
                         HrTables.HR_PERSON_ATTENDANCE_REC.JOB_NUMBER,
                         HrTables.HR_PERSON_ATTENDANCE_REC.REC_TIME,
                 }
-
         );
 
 
@@ -63,30 +63,37 @@ public class HrmPersonAttendanceRecGtr extends BaseCodeGenerator {
 
         cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.EMPLOYEE_ID).form().readOnly();
         cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.JOB_NUMBER).form().readOnly();
-        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.USER_NAME).form().readOnly();
+//        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.USER_NAME).form().readOnly();
+        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.EMPLOYEE_ID).table().disable(true);
 
 
+        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.JB_CNT).basic().label("加班(天)").form().numberInput().defaultValue(0.00).scale(2);
+        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.NJ_CNT).basic().label("年假(天)").form().numberInput().defaultValue(0.00).scale(2);
+        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.CC_CNT).basic().label("出差(天)").form().numberInput().defaultValue(0.00).scale(2);
+        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.SJ_CNT).basic().label("事假(天)").form().numberInput().defaultValue(0.00).scale(2);
+        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.BJ_CNT).basic().label("病假(天)").form().numberInput().defaultValue(0.00).scale(2);
+        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.OTHER_CNT).basic().label("其他(天)").form().numberInput().defaultValue(0.00).scale(2);
 
         cfg.view().formWindow().width("75%");;
         cfg.view().formWindow().bottomSpace(50);
         cfg.view().form().addGroup("人员信息",
                 new Object[] {
                         HrTables.HR_PERSON_ATTENDANCE_REC.PERSON_ID,
-                        HrTables.HR_PERSON_ATTENDANCE_REC.USER_NAME,
                         HrTables.HR_PERSON_ATTENDANCE_REC.JOB_NUMBER,
                 },
                 new Object[] {
                         HrTables.HR_PERSON_ATTENDANCE_REC.REC_TIME,
                 }
         );
-
         cfg.view().form().addGroup("考勤信息",
                 new Object[] {
                         HrTables.HR_PERSON_ATTENDANCE_REC.JB_CNT,
                         HrTables.HR_PERSON_ATTENDANCE_REC.NJ_CNT,
+                        HrTables.HR_PERSON_ATTENDANCE_REC.CC_CNT,
                 },
                 new Object[] {
                         HrTables.HR_PERSON_ATTENDANCE_REC.SJ_CNT,
+                        HrTables.HR_PERSON_ATTENDANCE_REC.BJ_CNT,
                         HrTables.HR_PERSON_ATTENDANCE_REC.OTHER_CNT,
                 }
         );
@@ -110,12 +117,12 @@ public class HrmPersonAttendanceRecGtr extends BaseCodeGenerator {
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
-                .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
+                .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE) //列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE);
+                .setExtendJsFile(WriteMode.IGNORE);
         //生成代码
         cfg.buildAll();
     }

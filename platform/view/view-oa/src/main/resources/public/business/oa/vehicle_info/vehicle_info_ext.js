@@ -1,7 +1,7 @@
 /**
  * 车辆信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-09 12:38:00
+ * @since 2023-06-10 15:50:01
  */
 
 layui.config({

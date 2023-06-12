@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 数据库容量 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 22:36:36
+ * @since 2023-06-11 09:34:21
  */
 @FeignClient(value = ServiceNames.OPS, contextId = DbCapacityRptServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface DbCapacityRptServiceProxy {

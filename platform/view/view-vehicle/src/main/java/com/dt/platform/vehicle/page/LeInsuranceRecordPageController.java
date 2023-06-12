@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2023-05-09 12:49:00
 */
 
-@Controller("OaVehicleInsuranceRecordPageController")
+@Controller("OaVehicleInsuranceRecordPageControllercccc")
 @RequestMapping(LeInsuranceRecordPageController.prefix)
 public class LeInsuranceRecordPageController extends ViewController {
 

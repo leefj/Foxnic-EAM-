@@ -7,14 +7,15 @@ import java.util.Date;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.dt.platform.domain.oa.VehicleInsuranceCompany;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-09 12:37:59
- * @sign 118BC999CCFCFD1FA70212E3594A0215
+ * @since 2023-06-10 15:50:00
+ * @sign 17097E5DDF79EE6A03B24F1BCBC6353A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -481,6 +482,16 @@ public class VehicleInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfo,org.github.foxnic.web.domain.hrm.Employee> USE_USER_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfo.class ,USE_USER, org.github.foxnic.web.domain.hrm.Employee.class, "使用人", "使用人", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * vehicleInsuranceCompany , 类型: com.dt.platform.domain.oa.VehicleInsuranceCompany
+	*/
+	public static final String VEHICLE_INSURANCE_COMPANY="vehicleInsuranceCompany";
+	
+	/**
+	 * vehicleInsuranceCompany , 类型: com.dt.platform.domain.oa.VehicleInsuranceCompany
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfo,com.dt.platform.domain.oa.VehicleInsuranceCompany> VEHICLE_INSURANCE_COMPANY_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfo.class ,VEHICLE_INSURANCE_COMPANY, com.dt.platform.domain.oa.VehicleInsuranceCompany.class, "vehicleInsuranceCompany", "vehicleInsuranceCompany", com.dt.platform.domain.oa.VehicleInsuranceCompany.class, null);
+	
+	/**
 	 * 车辆列表 , 类型: java.lang.String
 	*/
 	public static final String SELECT_IDS="selectIds";
@@ -493,7 +504,7 @@ public class VehicleInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , VEHICLE_STATUS , TYPE , VEHICLE_CODE , MODEL , REGISTRANT , OWNER_ORG_ID , MANAGE_USER_ID , USE_ORG_ID , USE_USER_ID , COLOR , ENGINE_NUMBER , DRIVING_LICENSE , FRAME_NUMBER , KILOMETERS , CAR_BOAT_TAX , RESCUE_MONEY , COMMERCIAL_INSURANCE_MONEY , INSURANCE_COMPANY , LICENSING_TIME , INSURANCE_EXPIRE_DATE , RESCUE_DUE_DATE , MAXIMUM_PASSENGERS , SCRAP_TIME , POSITION_ID , POSITION_DETAIL , PICTURES , TECHNICAL_PARAMETER , ORIGINATOR_ID , NOTES , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , OWNER_COMPANY , USE_ORGANIZATION , VEHICLE_TYPE_DICT , VEHICLE_STATUS_DICT , ORIGINATOR , USE_USER , SELECT_IDS };
+	public static final String[] $PROPS={ ID , NAME , VEHICLE_STATUS , TYPE , VEHICLE_CODE , MODEL , REGISTRANT , OWNER_ORG_ID , MANAGE_USER_ID , USE_ORG_ID , USE_USER_ID , COLOR , ENGINE_NUMBER , DRIVING_LICENSE , FRAME_NUMBER , KILOMETERS , CAR_BOAT_TAX , RESCUE_MONEY , COMMERCIAL_INSURANCE_MONEY , INSURANCE_COMPANY , LICENSING_TIME , INSURANCE_EXPIRE_DATE , RESCUE_DUE_DATE , MAXIMUM_PASSENGERS , SCRAP_TIME , POSITION_ID , POSITION_DETAIL , PICTURES , TECHNICAL_PARAMETER , ORIGINATOR_ID , NOTES , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , OWNER_COMPANY , USE_ORGANIZATION , VEHICLE_TYPE_DICT , VEHICLE_STATUS_DICT , ORIGINATOR , USE_USER , VEHICLE_INSURANCE_COMPANY , SELECT_IDS };
 	
 	/**
 	 * 代理类
@@ -1010,6 +1021,17 @@ public class VehicleInfoMeta {
 		}
 		
 		/**
+		 * 设置 vehicleInsuranceCompany
+		 * @param vehicleInsuranceCompany vehicleInsuranceCompany
+		 * @return 当前对象
+		*/
+		public VehicleInfo setVehicleInsuranceCompany(VehicleInsuranceCompany vehicleInsuranceCompany) {
+			super.change(VEHICLE_INSURANCE_COMPANY,super.getVehicleInsuranceCompany(),vehicleInsuranceCompany);
+			super.setVehicleInsuranceCompany(vehicleInsuranceCompany);
+			return this;
+		}
+		
+		/**
 		 * 设置 车辆列表
 		 * @param selectIds 车辆列表
 		 * @return 当前对象
@@ -1078,6 +1100,7 @@ public class VehicleInfoMeta {
 			if(all) {
 				inst.setOwnerCompany(this.getOwnerCompany());
 				inst.setUseOrganization(this.getUseOrganization());
+				inst.setVehicleInsuranceCompany(this.getVehicleInsuranceCompany());
 				inst.setVehicleTypeDict(this.getVehicleTypeDict());
 				inst.setVehicleStatusDict(this.getVehicleStatusDict());
 				inst.setOriginator(this.getOriginator());

@@ -1,7 +1,7 @@
 /**
  * 数据库文档 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 19:53:57
+ * @since 2023-06-08 07:19:49
  */
 
 layui.config({
@@ -111,6 +111,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+            if(field=="fileId"){
+                if(value&&value.length>5){
+                    return "<a href=\"/service-storage/sys-file/download?id="+value+"\">下载</a>"
+                }
+            }
+
             if(value==null) return "";
             return value;
         },

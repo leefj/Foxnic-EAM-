@@ -22,6 +22,8 @@ public class OpsDbCapGtr extends BaseCodeGenerator{
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
+        cfg.view().field(OpsTables.OPS_DB_CAPACITY_RPT.ID).basic().hidden();
+
 
         cfg.view().field(OpsTables.OPS_DB_CAPACITY_RPT.NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_CAPACITY_RPT.NOTES).search().fuzzySearch();
@@ -41,7 +43,7 @@ public class OpsDbCapGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-        cfg.view().field(OpsTables.OPS_DB_CAPACITY_RPT.FILE_ID).form().upload().maxFileCount(6).acceptAllType();
+        cfg.view().field(OpsTables.OPS_DB_CAPACITY_RPT.FILE_ID).form().upload().maxFileCount(1).acceptAllType();
         cfg.view().field(OpsTables.OPS_DB_CAPACITY_RPT.NOTES).form()
                .textArea().height(Config.textAreaHeight);
 
@@ -67,7 +69,7 @@ public class OpsDbCapGtr extends BaseCodeGenerator{
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //生成代码
         cfg.buildAll();
     }

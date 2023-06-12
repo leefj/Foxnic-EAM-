@@ -1,6 +1,7 @@
 package com.dt.platform.domain.vehicle;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.VehicleTables.VEHICLE_MAINTENANCE;
@@ -8,25 +9,33 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import java.math.BigDecimal;
+import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
-import javax.persistence.Transient;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.vehicle.meta.MaintenanceMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 车辆维修保养
+ * <p>车辆维修保养 , 数据表 vehicle_maintenance 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-03 20:21:37
- * @sign 3A4E966C5C87E2DC30091249F5F50F93
+ * @since 2023-06-10 11:31:35
+ * @sign 72A7A59EB8199482583DC236AABF8227
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "vehicle_maintenance")
+@ApiModel(description = "车辆维修保养 ; 车辆维修保养 , 数据表 vehicle_maintenance 的PO类型")
 public class Maintenance extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -159,6 +168,9 @@ public class Maintenance extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -604,12 +616,43 @@ public class Maintenance extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public Maintenance setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public Maintenance setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -732,9 +775,9 @@ public class Maintenance extends Entity {
 	 * @param vehicleInfo 车辆
 	 * @return 当前对象
 	*/
-	public Maintenance addVehicleInfo(Info vehicleInfo) {
+	public Maintenance addVehicleInfo(Info... vehicleInfo) {
 		if(this.vehicleInfoList==null) vehicleInfoList=new ArrayList<>();
-		this.vehicleInfoList.add(vehicleInfo);
+		this.vehicleInfoList.addAll(Arrays.asList(vehicleInfo));
 		return this;
 	}
 	
@@ -762,9 +805,9 @@ public class Maintenance extends Entity {
 	 * @param vehicleInfoId 车辆列表
 	 * @return 当前对象
 	*/
-	public Maintenance addVehicleInfoId(String vehicleInfoId) {
+	public Maintenance addVehicleInfoId(String... vehicleInfoId) {
 		if(this.vehicleInfoIds==null) vehicleInfoIds=new ArrayList<>();
-		this.vehicleInfoIds.add(vehicleInfoId);
+		this.vehicleInfoIds.addAll(Arrays.asList(vehicleInfoId));
 		return this;
 	}
 	
@@ -836,6 +879,65 @@ public class Maintenance extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Maintenance clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public Maintenance duplicate(boolean all) {
+		com.dt.platform.domain.vehicle.meta.MaintenanceMeta.$$proxy$$ inst = new com.dt.platform.domain.vehicle.meta.MaintenanceMeta.$$proxy$$();
+		inst.setProcId(this.getProcId());
+		inst.setReportUserName(this.getReportUserName());
+		inst.setType(this.getType());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setBusinessDate(this.getBusinessDate());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setPictureId(this.getPictureId());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setReportUserId(this.getReportUserId());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setCost(this.getCost());
+		inst.setRepairStatus(this.getRepairStatus());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setActualFinishDate(this.getActualFinishDate());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setPlanFinishDate(this.getPlanFinishDate());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setVehicleInfoIds(this.getVehicleInfoIds());
+			inst.setMaintenanceDict(this.getMaintenanceDict());
+			inst.setVehicleInfoList(this.getVehicleInfoList());
+			inst.setOriginator(this.getOriginator());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Maintenance clone(boolean deep) {
+		return EntityContext.clone(Maintenance.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 Maintenance
 	 * @param maintenanceMap 包含实体信息的 Map 对象
 	 * @return Maintenance , 转换好的的 Maintenance 对象
@@ -843,7 +945,9 @@ public class Maintenance extends Entity {
 	@Transient
 	public static Maintenance createFrom(Map<String,Object> maintenanceMap) {
 		if(maintenanceMap==null) return null;
-		Maintenance po = EntityContext.create(Maintenance.class, maintenanceMap);
+		Maintenance po = create();
+		EntityContext.copyProperties(po,maintenanceMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -855,7 +959,9 @@ public class Maintenance extends Entity {
 	@Transient
 	public static Maintenance createFrom(Object pojo) {
 		if(pojo==null) return null;
-		Maintenance po = EntityContext.create(Maintenance.class,pojo);
+		Maintenance po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -865,6 +971,154 @@ public class Maintenance extends Entity {
 	*/
 	@Transient
 	public static Maintenance create() {
-		return EntityContext.create(Maintenance.class);
+		return new com.dt.platform.domain.vehicle.meta.MaintenanceMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setProcId(DataParser.parse(String.class, map.get(MaintenanceMeta.PROC_ID)));
+			this.setReportUserName(DataParser.parse(String.class, map.get(MaintenanceMeta.REPORT_USER_NAME)));
+			this.setType(DataParser.parse(String.class, map.get(MaintenanceMeta.TYPE)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintenanceMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(MaintenanceMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(MaintenanceMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(MaintenanceMeta.BUSINESS_CODE)));
+			this.setPictureId(DataParser.parse(String.class, map.get(MaintenanceMeta.PICTURE_ID)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(MaintenanceMeta.UPDATE_BY)));
+			this.setReportUserId(DataParser.parse(String.class, map.get(MaintenanceMeta.REPORT_USER_ID)));
+			this.setId(DataParser.parse(String.class, map.get(MaintenanceMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(MaintenanceMeta.ORIGINATOR_ID)));
+			this.setCost(DataParser.parse(BigDecimal.class, map.get(MaintenanceMeta.COST)));
+			this.setRepairStatus(DataParser.parse(String.class, map.get(MaintenanceMeta.REPAIR_STATUS)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(MaintenanceMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(MaintenanceMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(MaintenanceMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(MaintenanceMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(MaintenanceMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(MaintenanceMeta.DELETE_TIME)));
+			this.setActualFinishDate(DataParser.parse(Date.class, map.get(MaintenanceMeta.ACTUAL_FINISH_DATE)));
+			this.setName(DataParser.parse(String.class, map.get(MaintenanceMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(MaintenanceMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(MaintenanceMeta.DELETE_BY)));
+			this.setPlanFinishDate(DataParser.parse(Date.class, map.get(MaintenanceMeta.PLAN_FINISH_DATE)));
+			this.setStatus(DataParser.parse(String.class, map.get(MaintenanceMeta.STATUS)));
+			// others
+			this.setMaintenanceDict(DataParser.parse(DictItem.class, map.get(MaintenanceMeta.MAINTENANCE_DICT)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(MaintenanceMeta.ORIGINATOR)));
+			return true;
+		} else {
+			try {
+				this.setProcId( (String)map.get(MaintenanceMeta.PROC_ID));
+				this.setReportUserName( (String)map.get(MaintenanceMeta.REPORT_USER_NAME));
+				this.setType( (String)map.get(MaintenanceMeta.TYPE));
+				this.setSelectedCode( (String)map.get(MaintenanceMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(MaintenanceMeta.CONTENT));
+				this.setBusinessDate( (Date)map.get(MaintenanceMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(MaintenanceMeta.BUSINESS_CODE));
+				this.setPictureId( (String)map.get(MaintenanceMeta.PICTURE_ID));
+				this.setUpdateBy( (String)map.get(MaintenanceMeta.UPDATE_BY));
+				this.setReportUserId( (String)map.get(MaintenanceMeta.REPORT_USER_ID));
+				this.setId( (String)map.get(MaintenanceMeta.ID));
+				this.setOriginatorId( (String)map.get(MaintenanceMeta.ORIGINATOR_ID));
+				this.setCost( (BigDecimal)map.get(MaintenanceMeta.COST));
+				this.setRepairStatus( (String)map.get(MaintenanceMeta.REPAIR_STATUS));
+				this.setUpdateTime( (Date)map.get(MaintenanceMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(MaintenanceMeta.VERSION));
+				this.setCreateBy( (String)map.get(MaintenanceMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(MaintenanceMeta.DELETED));
+				this.setCreateTime( (Date)map.get(MaintenanceMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(MaintenanceMeta.DELETE_TIME));
+				this.setActualFinishDate( (Date)map.get(MaintenanceMeta.ACTUAL_FINISH_DATE));
+				this.setName( (String)map.get(MaintenanceMeta.NAME));
+				this.setTenantId( (String)map.get(MaintenanceMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(MaintenanceMeta.DELETE_BY));
+				this.setPlanFinishDate( (Date)map.get(MaintenanceMeta.PLAN_FINISH_DATE));
+				this.setStatus( (String)map.get(MaintenanceMeta.STATUS));
+				// others
+				this.setMaintenanceDict( (DictItem)map.get(MaintenanceMeta.MAINTENANCE_DICT));
+				this.setOriginator( (Employee)map.get(MaintenanceMeta.ORIGINATOR));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setProcId(DataParser.parse(String.class, r.getValue(MaintenanceMeta.PROC_ID)));
+			this.setReportUserName(DataParser.parse(String.class, r.getValue(MaintenanceMeta.REPORT_USER_NAME)));
+			this.setType(DataParser.parse(String.class, r.getValue(MaintenanceMeta.TYPE)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(MaintenanceMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(MaintenanceMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(MaintenanceMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(MaintenanceMeta.BUSINESS_CODE)));
+			this.setPictureId(DataParser.parse(String.class, r.getValue(MaintenanceMeta.PICTURE_ID)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MaintenanceMeta.UPDATE_BY)));
+			this.setReportUserId(DataParser.parse(String.class, r.getValue(MaintenanceMeta.REPORT_USER_ID)));
+			this.setId(DataParser.parse(String.class, r.getValue(MaintenanceMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(MaintenanceMeta.ORIGINATOR_ID)));
+			this.setCost(DataParser.parse(BigDecimal.class, r.getValue(MaintenanceMeta.COST)));
+			this.setRepairStatus(DataParser.parse(String.class, r.getValue(MaintenanceMeta.REPAIR_STATUS)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MaintenanceMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(MaintenanceMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(MaintenanceMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MaintenanceMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MaintenanceMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MaintenanceMeta.DELETE_TIME)));
+			this.setActualFinishDate(DataParser.parse(Date.class, r.getValue(MaintenanceMeta.ACTUAL_FINISH_DATE)));
+			this.setName(DataParser.parse(String.class, r.getValue(MaintenanceMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(MaintenanceMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MaintenanceMeta.DELETE_BY)));
+			this.setPlanFinishDate(DataParser.parse(Date.class, r.getValue(MaintenanceMeta.PLAN_FINISH_DATE)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(MaintenanceMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setProcId( (String)r.getValue(MaintenanceMeta.PROC_ID));
+				this.setReportUserName( (String)r.getValue(MaintenanceMeta.REPORT_USER_NAME));
+				this.setType( (String)r.getValue(MaintenanceMeta.TYPE));
+				this.setSelectedCode( (String)r.getValue(MaintenanceMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(MaintenanceMeta.CONTENT));
+				this.setBusinessDate( (Date)r.getValue(MaintenanceMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(MaintenanceMeta.BUSINESS_CODE));
+				this.setPictureId( (String)r.getValue(MaintenanceMeta.PICTURE_ID));
+				this.setUpdateBy( (String)r.getValue(MaintenanceMeta.UPDATE_BY));
+				this.setReportUserId( (String)r.getValue(MaintenanceMeta.REPORT_USER_ID));
+				this.setId( (String)r.getValue(MaintenanceMeta.ID));
+				this.setOriginatorId( (String)r.getValue(MaintenanceMeta.ORIGINATOR_ID));
+				this.setCost( (BigDecimal)r.getValue(MaintenanceMeta.COST));
+				this.setRepairStatus( (String)r.getValue(MaintenanceMeta.REPAIR_STATUS));
+				this.setUpdateTime( (Date)r.getValue(MaintenanceMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(MaintenanceMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(MaintenanceMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(MaintenanceMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(MaintenanceMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(MaintenanceMeta.DELETE_TIME));
+				this.setActualFinishDate( (Date)r.getValue(MaintenanceMeta.ACTUAL_FINISH_DATE));
+				this.setName( (String)r.getValue(MaintenanceMeta.NAME));
+				this.setTenantId( (String)r.getValue(MaintenanceMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(MaintenanceMeta.DELETE_BY));
+				this.setPlanFinishDate( (Date)r.getValue(MaintenanceMeta.PLAN_FINISH_DATE));
+				this.setStatus( (String)r.getValue(MaintenanceMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

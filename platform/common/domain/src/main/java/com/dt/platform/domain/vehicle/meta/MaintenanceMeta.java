@@ -8,13 +8,14 @@ import com.dt.platform.domain.vehicle.Info;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-03 20:21:37
- * @sign 3A4E966C5C87E2DC30091249F5F50F93
+ * @since 2023-06-10 11:31:35
+ * @sign 72A7A59EB8199482583DC236AABF8227
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -662,5 +663,57 @@ public class MaintenanceMeta {
 			super.setMaintenanceDict(maintenanceDict);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public Maintenance clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public Maintenance duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setProcId(this.getProcId());
+			inst.setReportUserName(this.getReportUserName());
+			inst.setType(this.getType());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setContent(this.getContent());
+			inst.setBusinessDate(this.getBusinessDate());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setPictureId(this.getPictureId());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setReportUserId(this.getReportUserId());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setCost(this.getCost());
+			inst.setRepairStatus(this.getRepairStatus());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setActualFinishDate(this.getActualFinishDate());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setPlanFinishDate(this.getPlanFinishDate());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setVehicleInfoIds(this.getVehicleInfoIds());
+				inst.setMaintenanceDict(this.getMaintenanceDict());
+				inst.setVehicleInfoList(this.getVehicleInfoList());
+				inst.setOriginator(this.getOriginator());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

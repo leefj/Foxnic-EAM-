@@ -1,7 +1,6 @@
 package com.dt.platform.generator.module.oa;
 
 import com.dt.platform.constants.db.OaTables;
-import com.dt.platform.generator.module.vehicle.BaseCodeGenerator;
 import com.github.foxnic.generator.config.WriteMode;
 
 public class VehicleInsurReocrdGtr extends BaseCodeGenerator {

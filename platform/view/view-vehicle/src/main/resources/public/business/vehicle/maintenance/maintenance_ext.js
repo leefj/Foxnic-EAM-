@@ -1,7 +1,7 @@
 /**
  * 车辆维修保养 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-02 19:58:40
+ * @since 2023-06-10 11:31:37
  */
 
 layui.config({
@@ -20,49 +20,29 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-vehicle/vehicle-maintenance";
 
+
     //列表页的扩展
     var list={
-
-        billOper:function(url,btnClass,ps,successMessage){
-            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
-            var api=moduleURL+"/"+url;
-            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
-                top.layer.close(i);
-                admin.post(api, ps, function (r) {
-                    if (r.success) {
-                        top.layer.msg(successMessage, {time: 1000});
-                        window.module.refreshTableData();
-                    } else {
-                        var errs = [];
-                        if(r.errors&&r.errors.length>0){
-                            for (var i = 0; i < r.errors.length; i++) {
-                                if (errs.indexOf(r.errors[i].message) == -1) {
-                                    errs.push(r.errors[i].message);
-                                }
-                            }
-                            top.layer.msg(errs.join("<br>"), {time: 2000});
-                        } else {
-                            top.layer.msg(r.message, {time: 2000});
-                        }
-                    }
-                }, {delayLoading: 1000, elms: [btn]});
-            });
-        },
-        confirmData:function (item){
-            console.log(1111)
-            list.billOper("confirm","confirm-data-button",{id:item.id},"已确认");
-        },
-        cancelData:function (item){
-            list.billOper("cancel","cancel-data-button",{id:item.id},"已取消");
-        },
-        finishData:function (item){
-            list.billOper("finish","finish-data-button",{id:item.id},"已完成");
-        },
         /**
          * 列表页初始化前调用
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+        },
+        /**
+         * 按事件名称移除表格按钮栏的按钮
+         * */
+        removeOperationButtonByEvent(event) {
+            var template=$("#tableOperationTemplate");
+            var content=template.text();
+            content=content.split("\n");
+            var buttons=[]
+            for (let i = 0; i < content.length ; i++) {
+                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
+                    buttons.push(content[i]);
+                }
+            }
+            template.text(buttons.join("\n"))
         },
         /**
          * 表格渲染前调用
@@ -119,36 +99,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-            for (var i = 0; i < data.length; i++) {
-                if(data[i].repairStatus=="wait_repair") {
-                   // fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    //fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                    //fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.cancel-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.finish-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                }
-                else if (data[i].repairStatus=="repairing"){
-                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                   fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                  //  fox.disableButton($('.cancel-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                 //   fox.disableButton($('.finish-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                }
-                else if (data[i].repairStatus=="finish"){
-                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.cancel-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.finish-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                } else if (data[i].repairStatus=="cancel"){
-                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.cancel-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.finish-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                }
 
-            }
+        },
+        /**
+         * 单行数据刷新后调用
+         * */
+        afterRefreshRowData: function (data,remote,context) {
+
         },
         /**
          * 进一步转换 list 数据
@@ -215,7 +172,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
-
+        confirmData:function (data){
+            console.log('confirmData',data);
+        },
+        finishData:function (data){
+            console.log('finishData',data);
+        },
+        cancelData:function (data){
+            console.log('cancelData',data);
+        },
         /**
          * 末尾执行
          */
@@ -238,7 +203,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 窗口调节前
          * */
-        beforeAdjustPopup:function () {
+        beforeAdjustPopup:function (arg) {
             console.log('beforeAdjustPopup');
             return true;
         },
@@ -279,16 +244,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         onDatePickerChanged:function(id,value, date, endDate) {
             console.log('onDatePickerChanged',id,value, date, endDate);
         },
+        onRadioBoxChanged:function(id,data,checked) {
+            console.log('onRadioChanged',id,data,checked);
+        },
+        onCheckBoxChanged:function(id,data,checked) {
+            console.log('onCheckBoxChanged',id,data,checked);
+        },
+
+        /**
+         * 在流程提交前处理表单数据
+         * */
+        processFormData4Bpm:function(processInstanceId,param,callback) {
+            // 设置流程变量，并通过回调返回
+            var variables={};
+            // 此回调是必须的，否则流程提交会被中断
+            callback(variables);
+        },
         /**
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
         beforeSubmit:function (data) {
-            var dataListSize=$(".form-iframe")[0].contentWindow.module.getCheckedData();
-            if(dataListSize==0){
-                layer.msg("请选择车辆", {icon: 2, time: 1000});
-                return false;
-            }
-            data.vehicleInfoIds=dataListSize;
             console.log("beforeSubmit",data);
             return true;
         },
@@ -311,23 +286,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          */
         vehicleSelectList:function (ifr,win,data) {
             // debugger
-            console.log("vehicleSelectList ifr",ifr);
-            console.log("vehicleSelectList data",data);
+            console.log("vehicleSelectList",ifr,data);
             //设置 iframe 高度
-            ifr.height("300px");
-            var ids="";
-            if(data&&data.vehicleInfoList){
-                for(var i=0;i<data.vehicleInfoList.length;i++){
-                    if(i==0){
-                        ids=ids+data.vehicleInfoList[i].id;
-                    }else{
-                        ids=ids+","+data.vehicleInfoList[i].id;
-                    }
-                }
-            }
-            var tAction=admin.getTempData('vehicle-maintenance-form-data-form-action');
-            //设置地址 JSON.parse(string);
-            win.location="/business/vehicle/info/selected_info_list.html?action="+tAction+"&type=vehicle_maintenance&ids="+ids
+            ifr.height("400px");
+            //设置地址
+            win.location="/business/system/node/node_list.html?id="+data.id;
         },
         /**
          * 文件上传组件回调

@@ -55,6 +55,7 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_screen_project")
 					||table.startsWith("sys_screen_project_data")
 					||table.startsWith("sys_invoke_log")
+					||table.startsWith("sys_test")
 					||table.startsWith("sys_key_code")
 					||table.startsWith("sys_auto_role") ) return true;
 			return false;

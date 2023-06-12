@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 10:58:36
+ * @since 2023-06-10 11:07:59
  * @sign 2F63C86D650F5342457B80AC5AAE63B3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -172,16 +172,6 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.lang.String> PERSON_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,PERSON_ID, java.lang.String.class, "人员", "人员", java.lang.String.class, null);
 	
 	/**
-	 * 姓名 , 类型: java.lang.String
-	*/
-	public static final String USER_NAME="userName";
-	
-	/**
-	 * 姓名 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.lang.String> USER_NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,USER_NAME, java.lang.String.class, "姓名", "姓名", java.lang.String.class, null);
-	
-	/**
 	 * 工号 , 类型: java.lang.String
 	*/
 	public static final String JOB_NUMBER="jobNumber";
@@ -222,6 +212,26 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.math.BigDecimal> SJ_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,SJ_CNT, java.math.BigDecimal.class, "事假", "天)", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 病假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final String BJ_CNT="bjCnt";
+	
+	/**
+	 * 病假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.math.BigDecimal> BJ_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,BJ_CNT, java.math.BigDecimal.class, "病假", "天)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 出差 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final String CC_CNT="ccCnt";
+	
+	/**
+	 * 出差 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.math.BigDecimal> CC_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,CC_CNT, java.math.BigDecimal.class, "出差", "天)", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 其他假 , 天) , 类型: java.math.BigDecimal
 	*/
 	public static final String OTHER_CNT="otherCnt";
@@ -230,16 +240,6 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 	 * 其他假 , 天) , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.math.BigDecimal> OTHER_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,OTHER_CNT, java.math.BigDecimal.class, "其他假", "天)", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 出差 , 天) , 类型: java.math.BigDecimal
-	*/
-	public static final String CC_OUT="ccOut";
-	
-	/**
-	 * 出差 , 天) , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.math.BigDecimal> CC_OUT_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,CC_OUT, java.math.BigDecimal.class, "出差", "天)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 记录时间 , 类型: java.util.Date
@@ -374,7 +374,7 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , EMPLOYEE_ID , PERSON_ID , USER_NAME , JOB_NUMBER , JB_CNT , NJ_CNT , SJ_CNT , OTHER_CNT , CC_OUT , REC_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON , EMPLOYEE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , EMPLOYEE_ID , PERSON_ID , JOB_NUMBER , JB_CNT , NJ_CNT , SJ_CNT , BJ_CNT , CC_CNT , OTHER_CNT , REC_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON , EMPLOYEE };
 	
 	/**
 	 * 代理类
@@ -550,17 +550,6 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 		}
 		
 		/**
-		 * 设置 姓名
-		 * @param userName 姓名
-		 * @return 当前对象
-		*/
-		public PersonAttendanceRec setUserName(String userName) {
-			super.change(USER_NAME,super.getUserName(),userName);
-			super.setUserName(userName);
-			return this;
-		}
-		
-		/**
 		 * 设置 工号
 		 * @param jobNumber 工号
 		 * @return 当前对象
@@ -605,6 +594,28 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 		}
 		
 		/**
+		 * 设置 病假
+		 * @param bjCnt 病假
+		 * @return 当前对象
+		*/
+		public PersonAttendanceRec setBjCnt(BigDecimal bjCnt) {
+			super.change(BJ_CNT,super.getBjCnt(),bjCnt);
+			super.setBjCnt(bjCnt);
+			return this;
+		}
+		
+		/**
+		 * 设置 出差
+		 * @param ccCnt 出差
+		 * @return 当前对象
+		*/
+		public PersonAttendanceRec setCcCnt(BigDecimal ccCnt) {
+			super.change(CC_CNT,super.getCcCnt(),ccCnt);
+			super.setCcCnt(ccCnt);
+			return this;
+		}
+		
+		/**
 		 * 设置 其他假
 		 * @param otherCnt 其他假
 		 * @return 当前对象
@@ -612,17 +623,6 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 		public PersonAttendanceRec setOtherCnt(BigDecimal otherCnt) {
 			super.change(OTHER_CNT,super.getOtherCnt(),otherCnt);
 			super.setOtherCnt(otherCnt);
-			return this;
-		}
-		
-		/**
-		 * 设置 出差
-		 * @param ccOut 出差
-		 * @return 当前对象
-		*/
-		public PersonAttendanceRec setCcOut(BigDecimal ccOut) {
-			super.change(CC_OUT,super.getCcOut(),ccOut);
-			super.setCcOut(ccOut);
 			return this;
 		}
 		
@@ -786,12 +786,11 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
 			inst.setRecTime(this.getRecTime());
+			inst.setCcCnt(this.getCcCnt());
 			inst.setOtherCnt(this.getOtherCnt());
 			inst.setEmployeeId(this.getEmployeeId());
 			inst.setUpdateTime(this.getUpdateTime());
-			inst.setUserName(this.getUserName());
 			inst.setVersion(this.getVersion());
-			inst.setCcOut(this.getCcOut());
 			inst.setJbCnt(this.getJbCnt());
 			inst.setNjCnt(this.getNjCnt());
 			inst.setCreateBy(this.getCreateBy());
@@ -800,6 +799,7 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setSjCnt(this.getSjCnt());
+			inst.setBjCnt(this.getBjCnt());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setPersonId(this.getPersonId());

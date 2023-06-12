@@ -25,8 +25,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员考勤
  * <p>人员考勤 , 数据表 hr_person_attendance_rec 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 10:58:36
- * @sign 2D7C82CFE0FC3D04F84055D86C88EF62
+ * @since 2023-06-10 11:07:59
+ * @sign 11C877DCBF24A2751774DA7328005568
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -42,7 +42,7 @@ public class PersonAttendanceRec extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "719858287247360000")
 	private String id;
 	
 	/**
@@ -54,14 +54,8 @@ public class PersonAttendanceRec extends Entity {
 	/**
 	 * 人员：人员
 	*/
-	@ApiModelProperty(required = false,value="人员" , notes = "人员")
+	@ApiModelProperty(required = false,value="人员" , notes = "人员" , example = "717723409223516161")
 	private String personId;
-	
-	/**
-	 * 姓名：姓名
-	*/
-	@ApiModelProperty(required = false,value="姓名" , notes = "姓名")
-	private String userName;
 	
 	/**
 	 * 工号：工号
@@ -72,32 +66,38 @@ public class PersonAttendanceRec extends Entity {
 	/**
 	 * 加班：天)
 	*/
-	@ApiModelProperty(required = false,value="加班" , notes = "天)")
+	@ApiModelProperty(required = false,value="加班" , notes = "天)" , example = "0.00")
 	private BigDecimal jbCnt;
 	
 	/**
 	 * 年假：天)
 	*/
-	@ApiModelProperty(required = false,value="年假" , notes = "天)")
+	@ApiModelProperty(required = false,value="年假" , notes = "天)" , example = "0.00")
 	private BigDecimal njCnt;
 	
 	/**
 	 * 事假：天)
 	*/
-	@ApiModelProperty(required = false,value="事假" , notes = "天)")
+	@ApiModelProperty(required = false,value="事假" , notes = "天)" , example = "0.00")
 	private BigDecimal sjCnt;
 	
 	/**
-	 * 其他假：天)
+	 * 病假：天)
 	*/
-	@ApiModelProperty(required = false,value="其他假" , notes = "天)")
-	private BigDecimal otherCnt;
+	@ApiModelProperty(required = false,value="病假" , notes = "天)" , example = "0.00")
+	private BigDecimal bjCnt;
 	
 	/**
 	 * 出差：天)
 	*/
-	@ApiModelProperty(required = false,value="出差" , notes = "天)")
-	private BigDecimal ccOut;
+	@ApiModelProperty(required = false,value="出差" , notes = "天)" , example = "0.00")
+	private BigDecimal ccCnt;
+	
+	/**
+	 * 其他假：天)
+	*/
+	@ApiModelProperty(required = false,value="其他假" , notes = "天)" , example = "0.00")
+	private BigDecimal otherCnt;
 	
 	/**
 	 * 记录时间：记录时间
@@ -114,13 +114,13 @@ public class PersonAttendanceRec extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-10 10:19:50")
 	private Date createTime;
 	
 	/**
@@ -138,7 +138,7 @@ public class PersonAttendanceRec extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -159,13 +159,13 @@ public class PersonAttendanceRec extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -234,25 +234,6 @@ public class PersonAttendanceRec extends Entity {
 	*/
 	public PersonAttendanceRec setPersonId(String personId) {
 		this.personId=personId;
-		return this;
-	}
-	
-	/**
-	 * 获得 姓名<br>
-	 * 姓名
-	 * @return 姓名
-	*/
-	public String getUserName() {
-		return userName;
-	}
-	
-	/**
-	 * 设置 姓名
-	 * @param userName 姓名
-	 * @return 当前对象
-	*/
-	public PersonAttendanceRec setUserName(String userName) {
-		this.userName=userName;
 		return this;
 	}
 	
@@ -333,6 +314,44 @@ public class PersonAttendanceRec extends Entity {
 	}
 	
 	/**
+	 * 获得 病假<br>
+	 * 天)
+	 * @return 病假
+	*/
+	public BigDecimal getBjCnt() {
+		return bjCnt;
+	}
+	
+	/**
+	 * 设置 病假
+	 * @param bjCnt 病假
+	 * @return 当前对象
+	*/
+	public PersonAttendanceRec setBjCnt(BigDecimal bjCnt) {
+		this.bjCnt=bjCnt;
+		return this;
+	}
+	
+	/**
+	 * 获得 出差<br>
+	 * 天)
+	 * @return 出差
+	*/
+	public BigDecimal getCcCnt() {
+		return ccCnt;
+	}
+	
+	/**
+	 * 设置 出差
+	 * @param ccCnt 出差
+	 * @return 当前对象
+	*/
+	public PersonAttendanceRec setCcCnt(BigDecimal ccCnt) {
+		this.ccCnt=ccCnt;
+		return this;
+	}
+	
+	/**
 	 * 获得 其他假<br>
 	 * 天)
 	 * @return 其他假
@@ -348,25 +367,6 @@ public class PersonAttendanceRec extends Entity {
 	*/
 	public PersonAttendanceRec setOtherCnt(BigDecimal otherCnt) {
 		this.otherCnt=otherCnt;
-		return this;
-	}
-	
-	/**
-	 * 获得 出差<br>
-	 * 天)
-	 * @return 出差
-	*/
-	public BigDecimal getCcOut() {
-		return ccOut;
-	}
-	
-	/**
-	 * 设置 出差
-	 * @param ccOut 出差
-	 * @return 当前对象
-	*/
-	public PersonAttendanceRec setCcOut(BigDecimal ccOut) {
-		this.ccOut=ccOut;
 		return this;
 	}
 	
@@ -694,12 +694,11 @@ public class PersonAttendanceRec extends Entity {
 		com.dt.platform.domain.hr.meta.PersonAttendanceRecMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.PersonAttendanceRecMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
 		inst.setRecTime(this.getRecTime());
+		inst.setCcCnt(this.getCcCnt());
 		inst.setOtherCnt(this.getOtherCnt());
 		inst.setEmployeeId(this.getEmployeeId());
 		inst.setUpdateTime(this.getUpdateTime());
-		inst.setUserName(this.getUserName());
 		inst.setVersion(this.getVersion());
-		inst.setCcOut(this.getCcOut());
 		inst.setJbCnt(this.getJbCnt());
 		inst.setNjCnt(this.getNjCnt());
 		inst.setCreateBy(this.getCreateBy());
@@ -708,6 +707,7 @@ public class PersonAttendanceRec extends Entity {
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setSjCnt(this.getSjCnt());
+		inst.setBjCnt(this.getBjCnt());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPersonId(this.getPersonId());
@@ -777,12 +777,11 @@ public class PersonAttendanceRec extends Entity {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(PersonAttendanceRecMeta.NOTES)));
 			this.setRecTime(DataParser.parse(Date.class, map.get(PersonAttendanceRecMeta.REC_TIME)));
+			this.setCcCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecMeta.CC_CNT)));
 			this.setOtherCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecMeta.OTHER_CNT)));
 			this.setEmployeeId(DataParser.parse(String.class, map.get(PersonAttendanceRecMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(PersonAttendanceRecMeta.UPDATE_TIME)));
-			this.setUserName(DataParser.parse(String.class, map.get(PersonAttendanceRecMeta.USER_NAME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(PersonAttendanceRecMeta.VERSION)));
-			this.setCcOut(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecMeta.CC_OUT)));
 			this.setJbCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecMeta.JB_CNT)));
 			this.setNjCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecMeta.NJ_CNT)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(PersonAttendanceRecMeta.CREATE_BY)));
@@ -791,6 +790,7 @@ public class PersonAttendanceRec extends Entity {
 			this.setUpdateBy(DataParser.parse(String.class, map.get(PersonAttendanceRecMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(PersonAttendanceRecMeta.DELETE_TIME)));
 			this.setSjCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecMeta.SJ_CNT)));
+			this.setBjCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecMeta.BJ_CNT)));
 			this.setTenantId(DataParser.parse(String.class, map.get(PersonAttendanceRecMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(PersonAttendanceRecMeta.DELETE_BY)));
 			this.setPersonId(DataParser.parse(String.class, map.get(PersonAttendanceRecMeta.PERSON_ID)));
@@ -804,12 +804,11 @@ public class PersonAttendanceRec extends Entity {
 			try {
 				this.setNotes( (String)map.get(PersonAttendanceRecMeta.NOTES));
 				this.setRecTime( (Date)map.get(PersonAttendanceRecMeta.REC_TIME));
+				this.setCcCnt( (BigDecimal)map.get(PersonAttendanceRecMeta.CC_CNT));
 				this.setOtherCnt( (BigDecimal)map.get(PersonAttendanceRecMeta.OTHER_CNT));
 				this.setEmployeeId( (String)map.get(PersonAttendanceRecMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)map.get(PersonAttendanceRecMeta.UPDATE_TIME));
-				this.setUserName( (String)map.get(PersonAttendanceRecMeta.USER_NAME));
 				this.setVersion( (Integer)map.get(PersonAttendanceRecMeta.VERSION));
-				this.setCcOut( (BigDecimal)map.get(PersonAttendanceRecMeta.CC_OUT));
 				this.setJbCnt( (BigDecimal)map.get(PersonAttendanceRecMeta.JB_CNT));
 				this.setNjCnt( (BigDecimal)map.get(PersonAttendanceRecMeta.NJ_CNT));
 				this.setCreateBy( (String)map.get(PersonAttendanceRecMeta.CREATE_BY));
@@ -818,6 +817,7 @@ public class PersonAttendanceRec extends Entity {
 				this.setUpdateBy( (String)map.get(PersonAttendanceRecMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(PersonAttendanceRecMeta.DELETE_TIME));
 				this.setSjCnt( (BigDecimal)map.get(PersonAttendanceRecMeta.SJ_CNT));
+				this.setBjCnt( (BigDecimal)map.get(PersonAttendanceRecMeta.BJ_CNT));
 				this.setTenantId( (String)map.get(PersonAttendanceRecMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(PersonAttendanceRecMeta.DELETE_BY));
 				this.setPersonId( (String)map.get(PersonAttendanceRecMeta.PERSON_ID));
@@ -844,12 +844,11 @@ public class PersonAttendanceRec extends Entity {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(PersonAttendanceRecMeta.NOTES)));
 			this.setRecTime(DataParser.parse(Date.class, r.getValue(PersonAttendanceRecMeta.REC_TIME)));
+			this.setCcCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecMeta.CC_CNT)));
 			this.setOtherCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecMeta.OTHER_CNT)));
 			this.setEmployeeId(DataParser.parse(String.class, r.getValue(PersonAttendanceRecMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PersonAttendanceRecMeta.UPDATE_TIME)));
-			this.setUserName(DataParser.parse(String.class, r.getValue(PersonAttendanceRecMeta.USER_NAME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(PersonAttendanceRecMeta.VERSION)));
-			this.setCcOut(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecMeta.CC_OUT)));
 			this.setJbCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecMeta.JB_CNT)));
 			this.setNjCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecMeta.NJ_CNT)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(PersonAttendanceRecMeta.CREATE_BY)));
@@ -858,6 +857,7 @@ public class PersonAttendanceRec extends Entity {
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(PersonAttendanceRecMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(PersonAttendanceRecMeta.DELETE_TIME)));
 			this.setSjCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecMeta.SJ_CNT)));
+			this.setBjCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecMeta.BJ_CNT)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(PersonAttendanceRecMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(PersonAttendanceRecMeta.DELETE_BY)));
 			this.setPersonId(DataParser.parse(String.class, r.getValue(PersonAttendanceRecMeta.PERSON_ID)));
@@ -868,12 +868,11 @@ public class PersonAttendanceRec extends Entity {
 			try {
 				this.setNotes( (String)r.getValue(PersonAttendanceRecMeta.NOTES));
 				this.setRecTime( (Date)r.getValue(PersonAttendanceRecMeta.REC_TIME));
+				this.setCcCnt( (BigDecimal)r.getValue(PersonAttendanceRecMeta.CC_CNT));
 				this.setOtherCnt( (BigDecimal)r.getValue(PersonAttendanceRecMeta.OTHER_CNT));
 				this.setEmployeeId( (String)r.getValue(PersonAttendanceRecMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)r.getValue(PersonAttendanceRecMeta.UPDATE_TIME));
-				this.setUserName( (String)r.getValue(PersonAttendanceRecMeta.USER_NAME));
 				this.setVersion( (Integer)r.getValue(PersonAttendanceRecMeta.VERSION));
-				this.setCcOut( (BigDecimal)r.getValue(PersonAttendanceRecMeta.CC_OUT));
 				this.setJbCnt( (BigDecimal)r.getValue(PersonAttendanceRecMeta.JB_CNT));
 				this.setNjCnt( (BigDecimal)r.getValue(PersonAttendanceRecMeta.NJ_CNT));
 				this.setCreateBy( (String)r.getValue(PersonAttendanceRecMeta.CREATE_BY));
@@ -882,6 +881,7 @@ public class PersonAttendanceRec extends Entity {
 				this.setUpdateBy( (String)r.getValue(PersonAttendanceRecMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(PersonAttendanceRecMeta.DELETE_TIME));
 				this.setSjCnt( (BigDecimal)r.getValue(PersonAttendanceRecMeta.SJ_CNT));
+				this.setBjCnt( (BigDecimal)r.getValue(PersonAttendanceRecMeta.BJ_CNT));
 				this.setTenantId( (String)r.getValue(PersonAttendanceRecMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(PersonAttendanceRecMeta.DELETE_BY));
 				this.setPersonId( (String)r.getValue(PersonAttendanceRecMeta.PERSON_ID));

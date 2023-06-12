@@ -27,6 +27,8 @@ public class OpsDbDocGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"typeData","typeData","typeData");
 
+        cfg.view().field(OpsTables.OPS_DB_DOC.ID).basic().hidden();
+
         cfg.view().field(OpsTables.OPS_DB_DOC.NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_DOC.NOTES).search().fuzzySearch();
         cfg.view().search().inputLayout(
@@ -43,7 +45,7 @@ public class OpsDbDocGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
         cfg.view().field(OpsTables.OPS_DB_DOC.STATUS).form().validate().required().form().radioBox().enumType(ValidStatusEnum.class).defaultIndex(0);
-        cfg.view().field(OpsTables.OPS_DB_DOC.FILE_ID).form().upload().maxFileCount(6).acceptAllType();
+        cfg.view().field(OpsTables.OPS_DB_DOC.FILE_ID).form().upload().maxFileCount(1).acceptAllType();
 
         cfg.view().field(OpsTables.OPS_DB_DOC.TYPE)
                 .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_doc_type")
@@ -75,7 +77,7 @@ public class OpsDbDocGtr extends BaseCodeGenerator{
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //生成代码
         cfg.buildAll();
     }

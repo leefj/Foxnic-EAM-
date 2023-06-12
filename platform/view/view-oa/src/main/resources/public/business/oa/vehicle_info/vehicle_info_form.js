@@ -1,7 +1,7 @@
 /**
  * 车辆信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-09 12:38:02
+ * @since 2023-06-10 15:50:03
  */
 
 function FormPage() {
@@ -184,8 +184,41 @@ function FormPage() {
 				return opts;
 			}
 		});
+		//渲染 insuranceCompany 下拉字段
+		fox.renderSelectBox({
+			el: "insuranceCompany",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("保险公司",'','cmp:form'),
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("insuranceCompany",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("insuranceCompany",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 		laydate.render({
 			elem: '#licensingTime',
+			type:"date",
 			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -194,6 +227,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#insuranceExpireDate',
+			type:"date",
 			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -202,6 +236,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#rescueDueDate',
+			type:"date",
 			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -210,6 +245,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#scrapTime',
+			type:"date",
 			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -321,6 +357,8 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#vehicleStatus",formData.vehicleStatusDict);
 			//设置  车辆类型 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#type",formData.vehicleTypeDict);
+			//设置  保险公司 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#insuranceCompany",formData.vehicleInsuranceCompany);
 
 			//处理fillBy
 
@@ -345,7 +383,7 @@ function FormPage() {
 
 
         //禁用编辑
-		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+		if(action=="view" || (action=="edit" && disableModify) || (action=="create" && disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")
@@ -387,6 +425,8 @@ function FormPage() {
 		data["vehicleStatus"]=fox.getSelectedValue("vehicleStatus",false);
 		//获取 车辆类型 下拉框的值
 		data["type"]=fox.getSelectedValue("type",false);
+		//获取 保险公司 下拉框的值
+		data["insuranceCompany"]=fox.getSelectedValue("insuranceCompany",false);
 
 		return data;
 	}
@@ -461,6 +501,7 @@ function FormPage() {
 				inputEl:$("#ownerOrgId"),
 				buttonEl:$(this),
 				single:true,
+				autoWidth:false,
 				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
 				root: "",
 				targetType:"com",
@@ -477,6 +518,7 @@ function FormPage() {
 				inputEl:$("#useOrgId"),
 				buttonEl:$(this),
 				single:true,
+				autoWidth:false,
 				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
 				root: "",
 				targetType:"org",
@@ -493,6 +535,7 @@ function FormPage() {
 				inputEl:$("#useUserId"),
 				buttonEl:$(this),
 				single:true,
+				autoWidth:false,
 				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
 				root: "",
 				targetType:"emp",

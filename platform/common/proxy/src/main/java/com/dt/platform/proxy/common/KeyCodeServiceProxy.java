@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 菜单键值 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 19:37:06
+ * @since 2023-06-10 09:50:22
  */
 @FeignClient(value = ServiceNames.COMMON, contextId = KeyCodeServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface KeyCodeServiceProxy {

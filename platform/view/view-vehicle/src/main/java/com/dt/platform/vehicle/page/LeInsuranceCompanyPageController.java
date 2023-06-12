@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletRequest;
  * 车辆保险公司模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-28 22:03:17
+ * @since 2023-06-10 11:21:08
 */
 
-@Controller("OaVehicleInsuranceCompanyPageController")
+@Controller("OaVehicleInsuranceCompanyPageControlle121212r")
 @RequestMapping(LeInsuranceCompanyPageController.prefix)
 public class LeInsuranceCompanyPageController extends ViewController {
 

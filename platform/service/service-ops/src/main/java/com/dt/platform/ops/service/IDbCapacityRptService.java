@@ -24,7 +24,7 @@ import java.util.Map;
  * 数据库容量服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 22:36:35
+ * @since 2023-06-11 09:34:20
 */
 
 public interface IDbCapacityRptService extends  ISimpleIdService<DbCapacityRpt,String> {

@@ -1,7 +1,7 @@
 /**
  * 车辆信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-09 12:38:01
+ * @since 2023-06-10 15:50:02
  */
 
 
@@ -100,13 +100,12 @@ function ListPage() {
 					,{ field: 'frameNumber', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('车架号') , templet: function (d) { return templet('frameNumber',d.frameNumber,d);}  }
 					,{ field: 'kilometers', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('公里数') , templet: function (d) { return templet('kilometers',d.kilometers,d);}  }
 					,{ field: 'carBoatTax', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('车船税') , templet: function (d) { return templet('carBoatTax',d.carBoatTax,d);}  }
-					,{ field: 'insuranceCompany', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保险公司') , templet: function (d) { return templet('insuranceCompany',d.insuranceCompany,d);}  }
+					,{ field: 'insuranceCompany', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保险公司'), templet: function (d) { return templet('insuranceCompany' ,fox.joinLabel(d.vehicleInsuranceCompany,"name",',','','insuranceCompany'),d);}}
 					,{ field: 'licensingTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('上牌时间') ,templet: function (d) { return templet('licensingTime',fox.dateFormat(d.licensingTime,"yyyy-MM-dd"),d); }  }
 					,{ field: 'insuranceExpireDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('商业险到期') ,templet: function (d) { return templet('insuranceExpireDate',fox.dateFormat(d.insuranceExpireDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'rescueDueDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('抢险到期') ,templet: function (d) { return templet('rescueDueDate',fox.dateFormat(d.rescueDueDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'maximumPassengers', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('承载人数') , templet: function (d) { return templet('maximumPassengers',d.maximumPassengers,d);}  }
 					,{ field: 'scrapTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('报废时间') ,templet: function (d) { return templet('scrapTime',fox.dateFormat(d.scrapTime,"yyyy-MM-dd"),d); }  }
-					,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('存放位置') , templet: function (d) { return templet('positionId',d.positionId,d);}  }
 					,{ field: 'positionDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置详情') , templet: function (d) { return templet('positionDetail',d.positionDetail,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
@@ -186,7 +185,7 @@ function ListPage() {
 		value.engineNumber={ inputType:"button",value: $("#engineNumber").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.drivingLicense={ inputType:"button",value: $("#drivingLicense").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.frameNumber={ inputType:"button",value: $("#frameNumber").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.insuranceCompany={ inputType:"button",value: $("#insuranceCompany").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.insuranceCompany={ inputType:"select_box", value: $("#insuranceCompany").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" ,fillBy:["vehicleInsuranceCompany"] };
 		value.insuranceExpireDate={ inputType:"date_input", begin: $("#insuranceExpireDate-begin").val(), end: $("#insuranceExpireDate-end").val() ,matchType:"auto" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
@@ -283,6 +282,33 @@ function ListPage() {
 						opts.push(window.pageExt.list.selectBoxDataTransform("type",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 insuranceCompany 下拉字段
+		fox.renderSelectBox({
+			el: "insuranceCompany",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("insuranceCompany",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("insuranceCompany",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
 					}
 				}
 				return opts;

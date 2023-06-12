@@ -1,7 +1,7 @@
 /**
  * 数据库故障 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 22:59:28
+ * @since 2023-06-11 09:33:43
  */
 
 
@@ -84,7 +84,7 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'dbInstanceId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库'), templet: function (d) { return templet('dbInstanceId' ,fox.joinLabel(d.dbInstance,"name",',','','dbInstanceId'),d);}}
 					,{ field: 'reason', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('原因') , templet: function (d) { return templet('reason',d.reason,d);}  }

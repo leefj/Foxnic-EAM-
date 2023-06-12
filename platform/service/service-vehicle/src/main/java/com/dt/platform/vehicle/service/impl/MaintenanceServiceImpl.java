@@ -1,50 +1,51 @@
 package com.dt.platform.vehicle.service.impl;
 
-
-import com.dt.platform.constants.enums.vehicle.VehicleHandleStatusEnum;
-import com.dt.platform.constants.enums.vehicle.VehicleOperationEnum;
-import com.dt.platform.constants.enums.vehicle.VehicleRepairStatusEnum;
-import com.dt.platform.domain.vehicle.Maintenance;
-import com.dt.platform.proxy.common.CodeModuleServiceProxy;
-import com.dt.platform.vehicle.service.IMaintenanceService;
-import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.commons.collection.MapUtil;
-import com.github.foxnic.commons.lang.StringUtil;
-import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.entity.ReferCause;
-import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.excel.ExcelStructure;
-import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.dao.excel.ValidateResult;
-import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.sql.meta.DBField;
-import org.github.foxnic.web.framework.dao.DBConfigs;
-import org.github.foxnic.web.session.SessionUser;
+import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
-import javax.annotation.Resource;
-import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.util.Date;
+
+import com.dt.platform.domain.vehicle.Maintenance;
+import com.dt.platform.domain.vehicle.MaintenanceVO;
 import java.util.List;
+import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.dao.data.PagedList;
+import com.github.foxnic.dao.entity.SuperService;
+import com.github.foxnic.dao.spec.DAO;
+import java.lang.reflect.Field;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.api.error.ErrorDesc;
+import com.github.foxnic.dao.excel.ExcelWriter;
+import com.github.foxnic.dao.excel.ValidateResult;
+import com.github.foxnic.dao.excel.ExcelStructure;
+import java.io.InputStream;
+import com.github.foxnic.sql.meta.DBField;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.meta.DBColumnMeta;
+import com.github.foxnic.sql.expr.Select;
+import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import com.dt.platform.vehicle.service.IMaintenanceService;
+import org.github.foxnic.web.framework.dao.DBConfigs;
+import java.util.Date;
 import java.util.Map;
 
 /**
  * <p>
- * 车辆维修保养 服务实现
+ * 车辆维修保养服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-02 19:58:38
+ * @since 2023-06-10 11:31:35
 */
 
 
 @Service("VehicleMaintenanceService")
+
 public class MaintenanceServiceImpl extends SuperService<Maintenance> implements IMaintenanceService {
 
 	/**
@@ -58,51 +59,18 @@ public class MaintenanceServiceImpl extends SuperService<Maintenance> implements
 	 * */
 	public DAO dao() { return dao; }
 
+	/**
+     * MSelectItemServiceImpl
+     */
 	@Autowired 
 	private MSelectItemServiceImpl mSelectItemServiceImpl;
+
 
 
 	@Override
 	public Object generateId(Field field) {
 		return IDGenerator.getSnowflakeIdString();
 	}
-
-
-	@Override
-	public Result confirm(String id) {
-		Maintenance data=this.getById(id);
-		if(VehicleRepairStatusEnum.WAIT_REPAIR.code().equals(data.getRepairStatus())){
-			data.setRepairStatus(VehicleRepairStatusEnum.REPAIRING.code());
-			return super.update(data,SaveMode.NOT_NULL_FIELDS,true);
-		}else{
-			return ErrorDesc.failureMessage("当前状态不能进行该操作");
-		}
-	}
-
-	@Override
-	public Result cancel(String id) {
-		Maintenance data=this.getById(id);
-		if(VehicleRepairStatusEnum.REPAIRING.code().equals(data.getRepairStatus())){
-			data.setRepairStatus(VehicleRepairStatusEnum.CANCEL.code());
-			return super.update(data,SaveMode.NOT_NULL_FIELDS,true);
-		}else{
-			return ErrorDesc.failureMessage("当前状态不能进行该操作");
-		}
-	}
-
-	@Override
-	public Result finish(String id) {
-		Maintenance data=this.getById(id);
-		if(VehicleRepairStatusEnum.REPAIRING.code().equals(data.getRepairStatus())){
-			data.setRepairStatus(VehicleRepairStatusEnum.FINISH.code());
-			return super.update(data,SaveMode.NOT_NULL_FIELDS,true);
-		}else{
-			return ErrorDesc.failureMessage("当前状态不能进行该操作");
-		}
-	}
-
-
-
 
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
@@ -114,48 +82,13 @@ public class MaintenanceServiceImpl extends SuperService<Maintenance> implements
 	@Override
 	@Transactional
 	public Result insert(Maintenance maintenance,boolean throwsException) {
-
-		//校验数据资产
-//		if(maintenance.getVehicleInfoIds().size()==0){
-//			return ErrorDesc.failure().message("请选择车辆");
-//		}
-
-		//制单人
-		if(StringUtil.isBlank(maintenance.getOriginatorId())){
-			maintenance.setOriginatorId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
-		}
-
-		//办理状态
-		if(StringUtil.isBlank(maintenance.getStatus())){
-			maintenance.setStatus(VehicleHandleStatusEnum.INCOMPLETE.code());
-		}
-
-		//维修状态
-		if(StringUtil.isBlank(maintenance.getRepairStatus())){
-			maintenance.setRepairStatus(VehicleRepairStatusEnum.WAIT_REPAIR.code());
-		}
-
-
-		//生成编码规则
-		if(StringUtil.isBlank(maintenance.getBusinessCode())){
-			Result codeResult= CodeModuleServiceProxy.api().generateCode(VehicleOperationEnum.VEHICLE_MAINTENANCE.code());
-			if(!codeResult.isSuccess()){
-				return codeResult;
-			}else{
-				maintenance.setBusinessCode(codeResult.getData().toString());
-			}
-		}
-
-
 		Result r=super.insert(maintenance,throwsException);
 		//保存关系
-
 		if(r.success()) {
 			mSelectItemServiceImpl.saveRelation(maintenance.getId(), maintenance.getVehicleInfoIds());
 		}
 		return r;
 	}
-
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -180,7 +113,7 @@ public class MaintenanceServiceImpl extends SuperService<Maintenance> implements
 
 	
 	/**
-	 * 按主键删除 车辆维修保养
+	 * 按主键删除车辆维修保养
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -201,7 +134,7 @@ public class MaintenanceServiceImpl extends SuperService<Maintenance> implements
 	}
 	
 	/**
-	 * 按主键删除 车辆维修保养
+	 * 按主键删除车辆维修保养
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -210,7 +143,7 @@ public class MaintenanceServiceImpl extends SuperService<Maintenance> implements
 		Maintenance maintenance = new Maintenance();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		maintenance.setId(id);
-		maintenance.setDeleted(dao.getDBTreaty().getTrueValue());
+		maintenance.setDeleted(true);
 		maintenance.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		maintenance.setDeleteTime(new Date());
 		try {
@@ -267,7 +200,7 @@ public class MaintenanceServiceImpl extends SuperService<Maintenance> implements
 
 	
 	/**
-	 * 按主键更新字段 车辆维修保养
+	 * 按主键更新车辆维修保养
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -281,7 +214,7 @@ public class MaintenanceServiceImpl extends SuperService<Maintenance> implements
 
 	
 	/**
-	 * 按主键获取 车辆维修保养
+	 * 按主键获取车辆维修保养
 	 *
 	 * @param id 主键
 	 * @return Maintenance 数据对象
@@ -293,9 +226,22 @@ public class MaintenanceServiceImpl extends SuperService<Maintenance> implements
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
 	@Override
 	public List<Maintenance> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
+	@Override
+	public List<Maintenance> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
+	}
+
+	@Override
+	public Map<String, Maintenance> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, Maintenance::getId);
 	}
 
 
@@ -307,7 +253,7 @@ public class MaintenanceServiceImpl extends SuperService<Maintenance> implements
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<Maintenance> queryList(Maintenance sample) {
+	public List<Maintenance> queryList(MaintenanceVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -321,7 +267,7 @@ public class MaintenanceServiceImpl extends SuperService<Maintenance> implements
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<Maintenance> queryPagedList(Maintenance sample, int pageSize, int pageIndex) {
+	public PagedList<Maintenance> queryPagedList(MaintenanceVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -352,22 +298,7 @@ public class MaintenanceServiceImpl extends SuperService<Maintenance> implements
 		return false;
 	}
 
-	@Override
-	public ExcelWriter exportExcel(Maintenance sample) {
-		return super.exportExcel(sample);
-	}
-
-	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
-	}
-
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
-
-/**
+	/**
 	 * 批量检查引用
 	 * @param ids  检查这些ID是否又被外部表引用
 	 * */
@@ -378,10 +309,8 @@ public class MaintenanceServiceImpl extends SuperService<Maintenance> implements
 		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }

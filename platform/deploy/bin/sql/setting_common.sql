@@ -14,6 +14,7 @@ update sys_config set value='/pages/index/index' where code='eam.mobileLoginInde
 update eam_asset_label set font_path='/app/app/bin/msyh.ttf' where id='1';
 
 
+update sys_menu set css='fa fa-circle-o'  where type='page' and ( css is null or css='');
 
 update sys_user set portrait_id ='T001_image_head' where 1=1;
 
