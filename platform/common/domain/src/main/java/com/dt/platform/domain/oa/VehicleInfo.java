@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 车辆信息
  * <p>车辆信息 , 数据表 oa_vehicle_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-09 12:37:59
- * @sign 118BC999CCFCFD1FA70212E3594A0215
+ * @since 2023-06-10 15:50:00
+ * @sign 17097E5DDF79EE6A03B24F1BCBC6353A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,43 +44,43 @@ public class VehicleInfo extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "719917196876185600")
 	private String id;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "你可能")
 	private String name;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "inuse")
 	private String vehicleStatus;
 	
 	/**
 	 * 车辆类型：车辆类型
 	*/
-	@ApiModelProperty(required = false,value="车辆类型" , notes = "车辆类型")
+	@ApiModelProperty(required = false,value="车辆类型" , notes = "车辆类型" , example = "jiaoche")
 	private String type;
 	
 	/**
 	 * 车牌号：车牌号
 	*/
-	@ApiModelProperty(required = false,value="车牌号" , notes = "车牌号")
+	@ApiModelProperty(required = false,value="车牌号" , notes = "车牌号" , example = "来看看")
 	private String vehicleCode;
 	
 	/**
 	 * 品牌型号：品牌型号
 	*/
-	@ApiModelProperty(required = false,value="品牌型号" , notes = "品牌型号")
+	@ApiModelProperty(required = false,value="品牌型号" , notes = "品牌型号" , example = "空间看")
 	private String model;
 	
 	/**
 	 * 登记人：登记人
 	*/
-	@ApiModelProperty(required = false,value="登记人" , notes = "登记人")
+	@ApiModelProperty(required = false,value="登记人" , notes = "登记人" , example = "你 ")
 	private String registrant;
 	
 	/**
@@ -116,7 +116,7 @@ public class VehicleInfo extends Entity {
 	/**
 	 * 发动机号：发动机号
 	*/
-	@ApiModelProperty(required = false,value="发动机号" , notes = "发动机号")
+	@ApiModelProperty(required = false,value="发动机号" , notes = "发动机号" , example = "12345")
 	private String engineNumber;
 	
 	/**
@@ -134,61 +134,61 @@ public class VehicleInfo extends Entity {
 	/**
 	 * 公里数：公里数
 	*/
-	@ApiModelProperty(required = false,value="公里数" , notes = "公里数")
+	@ApiModelProperty(required = false,value="公里数" , notes = "公里数" , example = "0.00")
 	private BigDecimal kilometers;
 	
 	/**
 	 * 车船税：车船税
 	*/
-	@ApiModelProperty(required = false,value="车船税" , notes = "车船税")
+	@ApiModelProperty(required = false,value="车船税" , notes = "车船税" , example = "0.00")
 	private BigDecimal carBoatTax;
 	
 	/**
 	 * 抢险：元)
 	*/
-	@ApiModelProperty(required = false,value="抢险" , notes = "元)")
+	@ApiModelProperty(required = false,value="抢险" , notes = "元)" , example = "0.00")
 	private BigDecimal rescueMoney;
 	
 	/**
 	 * 商业险：元)
 	*/
-	@ApiModelProperty(required = false,value="商业险" , notes = "元)")
+	@ApiModelProperty(required = false,value="商业险" , notes = "元)" , example = "0.00")
 	private BigDecimal commercialInsuranceMoney;
 	
 	/**
 	 * 保险公司：保险公司
 	*/
-	@ApiModelProperty(required = false,value="保险公司" , notes = "保险公司")
+	@ApiModelProperty(required = false,value="保险公司" , notes = "保险公司" , example = "考虑空间")
 	private String insuranceCompany;
 	
 	/**
 	 * 上牌时间：上牌时间
 	*/
-	@ApiModelProperty(required = false,value="上牌时间" , notes = "上牌时间")
+	@ApiModelProperty(required = false,value="上牌时间" , notes = "上牌时间" , example = "2023-06-04 12:00:00")
 	private Date licensingTime;
 	
 	/**
 	 * 商业险到期：商业险到期
 	*/
-	@ApiModelProperty(required = false,value="商业险到期" , notes = "商业险到期")
+	@ApiModelProperty(required = false,value="商业险到期" , notes = "商业险到期" , example = "2023-06-26 12:00:00")
 	private Date insuranceExpireDate;
 	
 	/**
 	 * 抢险到期：抢险到期
 	*/
-	@ApiModelProperty(required = false,value="抢险到期" , notes = "抢险到期")
+	@ApiModelProperty(required = false,value="抢险到期" , notes = "抢险到期" , example = "2023-06-15 12:00:00")
 	private Date rescueDueDate;
 	
 	/**
 	 * 承载人数：承载人数
 	*/
-	@ApiModelProperty(required = false,value="承载人数" , notes = "承载人数")
+	@ApiModelProperty(required = false,value="承载人数" , notes = "承载人数" , example = "2")
 	private Integer maximumPassengers;
 	
 	/**
 	 * 报废时间：报废时间
 	*/
-	@ApiModelProperty(required = false,value="报废时间" , notes = "报废时间")
+	@ApiModelProperty(required = false,value="报废时间" , notes = "报废时间" , example = "2023-06-13 12:00:00")
 	private Date scrapTime;
 	
 	/**
@@ -200,7 +200,7 @@ public class VehicleInfo extends Entity {
 	/**
 	 * 位置详情：位置详情
 	*/
-	@ApiModelProperty(required = false,value="位置详情" , notes = "位置详情")
+	@ApiModelProperty(required = false,value="位置详情" , notes = "位置详情" , example = "12121212")
 	private String positionDetail;
 	
 	/**
@@ -212,7 +212,7 @@ public class VehicleInfo extends Entity {
 	/**
 	 * 技术参数：技术参数
 	*/
-	@ApiModelProperty(required = false,value="技术参数" , notes = "技术参数")
+	@ApiModelProperty(required = false,value="技术参数" , notes = "技术参数" , example = "考虑你们")
 	private String technicalParameter;
 	
 	/**
@@ -224,25 +224,25 @@ public class VehicleInfo extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "空间")
 	private String notes;
 	
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-10 02:13:55")
 	private Date createTime;
 	
 	/**
@@ -260,7 +260,7 @@ public class VehicleInfo extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -281,7 +281,7 @@ public class VehicleInfo extends Entity {
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -319,6 +319,12 @@ public class VehicleInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="使用人" , notes = "使用人")
 	private Employee useUser;
+	
+	/**
+	 * vehicleInsuranceCompany：vehicleInsuranceCompany
+	*/
+	@ApiModelProperty(required = false,value="vehicleInsuranceCompany" , notes = "vehicleInsuranceCompany")
+	private VehicleInsuranceCompany vehicleInsuranceCompany;
 	
 	/**
 	 * 车辆列表：车辆列表
@@ -1232,6 +1238,25 @@ public class VehicleInfo extends Entity {
 	}
 	
 	/**
+	 * 获得 vehicleInsuranceCompany<br>
+	 * vehicleInsuranceCompany
+	 * @return vehicleInsuranceCompany
+	*/
+	public VehicleInsuranceCompany getVehicleInsuranceCompany() {
+		return vehicleInsuranceCompany;
+	}
+	
+	/**
+	 * 设置 vehicleInsuranceCompany
+	 * @param vehicleInsuranceCompany vehicleInsuranceCompany
+	 * @return 当前对象
+	*/
+	public VehicleInfo setVehicleInsuranceCompany(VehicleInsuranceCompany vehicleInsuranceCompany) {
+		this.vehicleInsuranceCompany=vehicleInsuranceCompany;
+		return this;
+	}
+	
+	/**
 	 * 获得 车辆列表<br>
 	 * 车辆列表
 	 * @return 车辆列表
@@ -1337,6 +1362,7 @@ public class VehicleInfo extends Entity {
 		if(all) {
 			inst.setOwnerCompany(this.getOwnerCompany());
 			inst.setUseOrganization(this.getUseOrganization());
+			inst.setVehicleInsuranceCompany(this.getVehicleInsuranceCompany());
 			inst.setVehicleTypeDict(this.getVehicleTypeDict());
 			inst.setVehicleStatusDict(this.getVehicleStatusDict());
 			inst.setOriginator(this.getOriginator());
@@ -1444,6 +1470,7 @@ public class VehicleInfo extends Entity {
 			// others
 			this.setOwnerCompany(DataParser.parse(Organization.class, map.get(VehicleInfoMeta.OWNER_COMPANY)));
 			this.setUseOrganization(DataParser.parse(Organization.class, map.get(VehicleInfoMeta.USE_ORGANIZATION)));
+			this.setVehicleInsuranceCompany(DataParser.parse(VehicleInsuranceCompany.class, map.get(VehicleInfoMeta.VEHICLE_INSURANCE_COMPANY)));
 			this.setVehicleTypeDict(DataParser.parse(DictItem.class, map.get(VehicleInfoMeta.VEHICLE_TYPE_DICT)));
 			this.setVehicleStatusDict(DataParser.parse(DictItem.class, map.get(VehicleInfoMeta.VEHICLE_STATUS_DICT)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(VehicleInfoMeta.ORIGINATOR)));
@@ -1495,6 +1522,7 @@ public class VehicleInfo extends Entity {
 				// others
 				this.setOwnerCompany( (Organization)map.get(VehicleInfoMeta.OWNER_COMPANY));
 				this.setUseOrganization( (Organization)map.get(VehicleInfoMeta.USE_ORGANIZATION));
+				this.setVehicleInsuranceCompany( (VehicleInsuranceCompany)map.get(VehicleInfoMeta.VEHICLE_INSURANCE_COMPANY));
 				this.setVehicleTypeDict( (DictItem)map.get(VehicleInfoMeta.VEHICLE_TYPE_DICT));
 				this.setVehicleStatusDict( (DictItem)map.get(VehicleInfoMeta.VEHICLE_STATUS_DICT));
 				this.setOriginator( (Employee)map.get(VehicleInfoMeta.ORIGINATOR));

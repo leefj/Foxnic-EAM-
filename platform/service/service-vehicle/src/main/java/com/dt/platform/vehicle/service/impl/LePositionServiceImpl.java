@@ -42,7 +42,7 @@ import java.util.Map;
 */
 
 
-@Service("OaVehiclePositionService")
+@Service("OaVehiclePositionServic121212e")
 
 public class LePositionServiceImpl extends SuperService<LePosition> implements ILePositionService {
 

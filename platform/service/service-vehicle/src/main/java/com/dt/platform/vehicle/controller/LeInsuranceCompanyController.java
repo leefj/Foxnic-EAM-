@@ -44,12 +44,12 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 车辆保险公司接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-28 22:03:17
+ * @since 2023-06-10 11:21:08
 */
 
 @InDoc
 @Api(tags = "车辆保险公司")
-@RestController("OaVehicleInsuranceCompanyController")
+@RestController("O1212aVehicleInsuranceCompanyController")
 public class LeInsuranceCompanyController extends SuperController {
 
 	@Autowired

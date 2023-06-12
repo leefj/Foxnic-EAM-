@@ -1,20 +1,12 @@
 package com.dt.platform.generator.module.vehicle;
 
-import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.VehicleTables;
 import com.dt.platform.constants.enums.vehicle.VehicleHandleStatusEnum;
 import com.dt.platform.constants.enums.vehicle.VehicleRepairStatusEnum;
 import com.dt.platform.domain.vehicle.Info;
-import com.dt.platform.domain.vehicle.MSelectItem;
-import com.dt.platform.domain.vehicle.Maintenance;
-import com.dt.platform.domain.vehicle.meta.ApplyVOMeta;
-import com.dt.platform.domain.vehicle.meta.InfoMeta;
 import com.dt.platform.domain.vehicle.meta.MaintenanceMeta;
 import com.dt.platform.domain.vehicle.meta.MaintenanceVOMeta;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.vehicle.MaintenanceServiceProxy;
-import com.dt.platform.vehicle.page.MaintenancePageController;
-import com.dt.platform.vehicle.service.impl.InfoServiceImpl;
 import com.dt.platform.vehicle.service.impl.MSelectItemServiceImpl;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -146,13 +138,13 @@ public class VehicleMaintenanceGtr extends BaseCodeGenerator {
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
-                .setControllerAndAgent(WriteMode.IGNORE) //Rest
-                .setPageController(WriteMode.IGNORE) //页面控制器
+                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
+                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
+                .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
+                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
         //列表HTML页
         //生成代码
         cfg.buildAll();

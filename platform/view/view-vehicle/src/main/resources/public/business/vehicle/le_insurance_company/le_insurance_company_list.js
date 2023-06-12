@@ -1,7 +1,7 @@
 /**
  * 车辆保险公司 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-28 22:03:18
+ * @since 2023-06-10 11:21:09
  */
 
 
@@ -158,7 +158,7 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.name={ inputType:"button",value: $("#name").val()};
+		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -400,7 +400,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["75%",height+"px"],
 			type: 2,
 			id:"oa-vehicle-insurance-company-form-data-win",
 			content: '/business/vehicle/le_insurance_company/le_insurance_company_form.html' + (queryString?("?"+queryString):""),

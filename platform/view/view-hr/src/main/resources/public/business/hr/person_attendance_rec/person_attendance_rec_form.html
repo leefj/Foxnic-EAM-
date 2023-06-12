@@ -2,7 +2,7 @@
 /**
  * 人员考勤 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 10:58:38
+ * @since 2023-06-10 11:08:01
  */
  -->
  <!DOCTYPE html>
@@ -37,11 +37,11 @@
 
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5483-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9379-fieldset">
             <legend>人员信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-5483-content">
+        <div class="layui-row form-row" id="random-9379-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -52,14 +52,6 @@
                     <div class="layui-form-label "><div th:text="${lang.translate('人员')}">人员</div></div>
                     <div class="layui-input-block ">
                         <div id="personId" input-type="select" th:data="${'/service-hr/hr-person/query-paged-list'}" extraParam="{}"></div>
-                    </div>
-                </div>
-            
-                <!-- text_input : 姓名 ,  userName -->
-                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('姓名')}">姓名</div></div>
-                    <div class="layui-input-block ">
-                        <input  readonly lay-filter="userName" id="userName" name="userName" th:placeholder="${ lang.translate('请输入'+'姓名') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             
@@ -78,9 +70,9 @@
 
                 <!-- date_input : 记录时间 ,  recTime  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('记录时间')}">记录时间</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('记录时间')}">记录时间</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <input input-type="date" lay-filter="recTime" id="recTime" name="recTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'记录时间') }" type="text" class="layui-input"    lay-verify=""   />
+                        <input input-type="date" lay-filter="recTime" id="recTime" name="recTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'记录时间') }" type="text" class="layui-input"    lay-verify="|required"   />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -89,29 +81,37 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4434-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3573-fieldset">
             <legend>考勤信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-4434-content">
+        <div class="layui-row form-row" id="random-3573-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-                <!-- number_input : 加班 ,  jbCnt  -->
+                <!-- number_input : 加班(天) ,  jbCnt  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('加班')}">加班</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('加班(天)')}">加班(天)</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="jbCnt" id="jbCnt" name="jbCnt" th:placeholder="${ lang.translate('请输入'+'加班') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                        <input lay-filter="jbCnt" id="jbCnt" name="jbCnt" th:placeholder="${ lang.translate('请输入'+'加班(天)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
                     </div>
                 </div>
             
-                <!-- number_input : 年假 ,  njCnt  -->
+                <!-- number_input : 年假(天) ,  njCnt  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('年假')}">年假</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('年假(天)')}">年假(天)</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="njCnt" id="njCnt" name="njCnt" th:placeholder="${ lang.translate('请输入'+'年假') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                        <input lay-filter="njCnt" id="njCnt" name="njCnt" th:placeholder="${ lang.translate('请输入'+'年假(天)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 出差(天) ,  ccCnt  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('出差(天)')}">出差(天)</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="ccCnt" id="ccCnt" name="ccCnt" th:placeholder="${ lang.translate('请输入'+'出差(天)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -120,19 +120,27 @@
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-                <!-- number_input : 事假 ,  sjCnt  -->
+                <!-- number_input : 事假(天) ,  sjCnt  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('事假')}">事假</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('事假(天)')}">事假(天)</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="sjCnt" id="sjCnt" name="sjCnt" th:placeholder="${ lang.translate('请输入'+'事假') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                        <input lay-filter="sjCnt" id="sjCnt" name="sjCnt" th:placeholder="${ lang.translate('请输入'+'事假(天)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
                     </div>
                 </div>
             
-                <!-- number_input : 其他假 ,  otherCnt  -->
+                <!-- number_input : 病假(天) ,  bjCnt  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('其他假')}">其他假</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('病假(天)')}">病假(天)</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="otherCnt" id="otherCnt" name="otherCnt" th:placeholder="${ lang.translate('请输入'+'其他假') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                        <input lay-filter="bjCnt" id="bjCnt" name="bjCnt" th:placeholder="${ lang.translate('请输入'+'病假(天)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 其他(天) ,  otherCnt  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('其他(天)')}">其他(天)</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="otherCnt" id="otherCnt" name="otherCnt" th:placeholder="${ lang.translate('请输入'+'其他(天)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -142,7 +150,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-1912-content">
+        <div class="layui-row form-row" id="random-4239-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -180,7 +188,7 @@
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
-    var VALIDATE_CONFIG={"recTime":{"date":true,"labelInForm":"记录时间","inputType":"date_input"}};
+    var VALIDATE_CONFIG={"recTime":{"date":true,"labelInForm":"记录时间","inputType":"date_input","required":true}};
     var AUTH_PREFIX="hr_person_attendance_rec";
 
 

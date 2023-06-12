@@ -1,22 +1,12 @@
 package com.dt.platform.generator.module.vehicle;
 
-import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.VehicleTables;
-import com.dt.platform.constants.enums.eam.AssetStatusEnum;
 import com.dt.platform.constants.enums.vehicle.VehicleApplyReturnEnum;
 import com.dt.platform.constants.enums.vehicle.VehicleHandleStatusEnum;
-import com.dt.platform.domain.eam.Asset;
-import com.dt.platform.domain.ops.meta.HostVOMeta;
 import com.dt.platform.domain.vehicle.Info;
 import com.dt.platform.domain.vehicle.meta.ApplyVOMeta;
-import com.dt.platform.domain.vehicle.meta.InfoVOMeta;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.ops.service.impl.HostDbServiceImpl;
-import com.dt.platform.proxy.vehicle.ApplyServiceProxy;
-import com.dt.platform.vehicle.page.ApplyPageController;
 import com.dt.platform.vehicle.service.impl.ASelectItemServiceImpl;
-import com.dt.platform.vehicle.service.impl.InfoServiceImpl;
-import com.dt.platform.vehicle.service.impl.MSelectItemServiceImpl;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;

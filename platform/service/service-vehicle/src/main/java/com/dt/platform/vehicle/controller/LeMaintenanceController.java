@@ -54,7 +54,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 
 @InDoc
 @Api(tags = "车辆维修保养")
-@RestController("OaVehicleMaintenanceController")
+@RestController("OaVehicleMaintenanceController1212121")
 public class LeMaintenanceController extends SuperController {
 
 	@Autowired

@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 车辆信息 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-09 12:37:59
+ * @since 2023-06-10 15:50:01
  */
 @FeignClient(value = ServiceNames.OA, contextId = VehicleInfoServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface VehicleInfoServiceProxy {

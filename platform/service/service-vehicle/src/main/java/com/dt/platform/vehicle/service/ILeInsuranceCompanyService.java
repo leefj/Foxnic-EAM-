@@ -24,7 +24,7 @@ import java.util.Map;
  * 车辆保险公司服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-28 22:03:16
+ * @since 2023-06-10 11:21:08
 */
 
 public interface ILeInsuranceCompanyService extends  ISimpleIdService<LeInsuranceCompany,String> {

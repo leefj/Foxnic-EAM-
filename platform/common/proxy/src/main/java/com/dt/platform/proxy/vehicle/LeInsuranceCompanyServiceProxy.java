@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 车辆保险公司 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-28 22:03:17
+ * @since 2023-06-10 11:21:08
  */
 @FeignClient(value = ServiceNames.VEHICLE, contextId = LeInsuranceCompanyServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface LeInsuranceCompanyServiceProxy {

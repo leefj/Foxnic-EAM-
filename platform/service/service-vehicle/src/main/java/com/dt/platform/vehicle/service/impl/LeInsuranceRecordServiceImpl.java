@@ -42,7 +42,7 @@ import java.util.Map;
 */
 
 
-@Service("OaVehicleInsuranceRecordService")
+@Service("OaVehicleInsuranceRecordSer2323vice")
 
 public class LeInsuranceRecordServiceImpl extends SuperService<LeInsuranceRecord> implements ILeInsuranceRecordService {
 

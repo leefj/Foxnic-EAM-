@@ -3,7 +3,6 @@ package com.dt.platform.generator.module.vehicle;
 import com.dt.platform.constants.db.VehicleTables;
 import com.dt.platform.domain.vehicle.Apply;
 import com.dt.platform.domain.vehicle.Info;
-import com.dt.platform.domain.vehicle.Maintenance;
 import com.github.foxnic.generator.config.WriteMode;
 
 public class VehicleSelectItemAGtr extends BaseCodeGenerator {

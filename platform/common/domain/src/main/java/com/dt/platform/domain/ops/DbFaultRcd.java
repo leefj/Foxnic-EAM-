@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库故障
  * <p>数据库故障 , 数据表 ops_db_fault_rcd 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 22:59:26
+ * @since 2023-06-11 09:33:42
  * @sign 0CE6B8C486D426CFF7202AEF00C3D782
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

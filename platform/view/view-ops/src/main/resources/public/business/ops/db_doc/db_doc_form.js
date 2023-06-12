@@ -1,7 +1,7 @@
 /**
  * 数据库文档 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 19:53:59
+ * @since 2023-06-11 09:34:14
  */
 
 function FormPage() {
@@ -160,7 +160,7 @@ function FormPage() {
 	    //渲染图片字段
 		foxup.render({
 			el:"fileId",
-			maxFileCount: 6,
+			maxFileCount: 1,
 			displayFileName: true,
 			accept: "file",
 			afterPreview:function(elId,index,fileId,upload,fileName,fileType){

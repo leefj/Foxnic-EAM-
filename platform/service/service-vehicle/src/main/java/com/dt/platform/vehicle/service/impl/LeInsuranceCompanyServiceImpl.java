@@ -38,11 +38,11 @@ import java.util.Map;
  * 车辆保险公司服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-28 22:03:17
+ * @since 2023-06-10 11:21:08
 */
 
 
-@Service("OaVehicleInsuranceCompanyService")
+@Service("OaVehicleInsuranceCompanyService12122")
 
 public class LeInsuranceCompanyServiceImpl extends SuperService<LeInsuranceCompany> implements ILeInsuranceCompanyService {
 

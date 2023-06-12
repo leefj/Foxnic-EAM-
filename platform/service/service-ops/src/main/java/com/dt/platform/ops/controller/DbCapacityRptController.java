@@ -44,7 +44,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 数据库容量接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 22:36:36
+ * @since 2023-06-11 09:34:21
 */
 
 @InDoc
@@ -60,10 +60,10 @@ public class DbCapacityRptController extends SuperController {
 	*/
 	@ApiOperation(value = "添加数据库容量")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "718960904019902464"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "jj"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "719091621919981569"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "jjj"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -82,7 +82,7 @@ public class DbCapacityRptController extends SuperController {
 	*/
 	@ApiOperation(value = "删除数据库容量")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "718960904019902464")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = DbCapacityRptServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -165,10 +165,10 @@ public class DbCapacityRptController extends SuperController {
 	*/
 	@ApiOperation(value = "更新数据库容量")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "718960904019902464"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "jj"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "719091621919981569"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "jjj"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbCapacityRptVOMeta.PAGE_INDEX , DbCapacityRptVOMeta.PAGE_SIZE , DbCapacityRptVOMeta.SEARCH_FIELD , DbCapacityRptVOMeta.FUZZY_FIELD , DbCapacityRptVOMeta.SEARCH_VALUE , DbCapacityRptVOMeta.DIRTY_FIELDS , DbCapacityRptVOMeta.SORT_FIELD , DbCapacityRptVOMeta.SORT_TYPE , DbCapacityRptVOMeta.DATA_ORIGIN , DbCapacityRptVOMeta.QUERY_LOGIC , DbCapacityRptVOMeta.REQUEST_ACTION , DbCapacityRptVOMeta.IDS } )
@@ -186,10 +186,10 @@ public class DbCapacityRptController extends SuperController {
 	*/
 	@ApiOperation(value = "保存数据库容量")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "718960904019902464"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "jj"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "719091621919981569"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "jjj"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { DbCapacityRptVOMeta.PAGE_INDEX , DbCapacityRptVOMeta.PAGE_SIZE , DbCapacityRptVOMeta.SEARCH_FIELD , DbCapacityRptVOMeta.FUZZY_FIELD , DbCapacityRptVOMeta.SEARCH_VALUE , DbCapacityRptVOMeta.DIRTY_FIELDS , DbCapacityRptVOMeta.SORT_FIELD , DbCapacityRptVOMeta.SORT_TYPE , DbCapacityRptVOMeta.DATA_ORIGIN , DbCapacityRptVOMeta.QUERY_LOGIC , DbCapacityRptVOMeta.REQUEST_ACTION , DbCapacityRptVOMeta.IDS } )
@@ -246,10 +246,10 @@ public class DbCapacityRptController extends SuperController {
 	*/
 	@ApiOperation(value = "查询数据库容量")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "718960904019902464"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "jj"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "719091621919981569"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "jjj"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbCapacityRptVOMeta.PAGE_INDEX , DbCapacityRptVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = DbCapacityRptServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -268,10 +268,10 @@ public class DbCapacityRptController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询数据库容量")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbCapacityRptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "718960904019902464"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "jj"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "719091621919981569"),
+		@ApiImplicitParam(name = DbCapacityRptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "jjj"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = DbCapacityRptServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

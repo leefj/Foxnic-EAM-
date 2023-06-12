@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 菜单键值
  * <p>菜单键值 , 数据表 sys_key_code 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 19:37:06
+ * @since 2023-06-10 09:50:21
  * @sign BA50D4E16F17D0F63B87C0BDC61AC659
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

@@ -44,7 +44,7 @@ import java.util.Map;
 */
 
 
-@Service("OaVehicleMaintenanceService")
+@Service("OaVehicleMaintenanceService12121212")
 
 public class LeMaintenanceServiceImpl extends SuperService<LeMaintenance> implements ILeMaintenanceService {
 

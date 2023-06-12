@@ -1,7 +1,7 @@
 /**
  * 数据库容量 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 22:36:37
+ * @since 2023-06-11 09:34:22
  */
 
 
@@ -84,7 +84,7 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'fileId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('文件') , templet: function (d) { return templet('fileId',d.fileId,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }

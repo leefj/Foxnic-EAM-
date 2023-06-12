@@ -761,7 +761,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	public List<Map<String, Object>> getBills(List<String> ids) {
 		ConditionExpr expr=new ConditionExpr();
 		expr.andIn("id",ids);
-		PagedList<Asset> list= super.queryPagedList(new Asset(),expr,10000,1);
+		PagedList<Asset> list= super.queryPagedList(new Asset(),expr,100000,1);
 		joinData(list.getList());
 		List<Map<String, Object>> data=new ArrayList<>();
 		for(Asset e:list){

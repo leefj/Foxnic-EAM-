@@ -26,10 +26,9 @@ public class OpsDbFalutGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
         cfg.getPoClassFile().addSimpleProperty(DbInstance.class,"dbInstance","dbInstance","dbInstance");
 
-
+        cfg.view().field(OpsTables.OPS_DB_FAULT_RCD.ID).basic().hidden();
         cfg.view().field(OpsTables.OPS_DB_FAULT_RCD.NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_FAULT_RCD.NOTES).search().fuzzySearch();
-
         cfg.view().field(OpsTables.OPS_DB_FAULT_RCD.RCD_DATE).form().dateInput().format("yyyy-MM-dd");
 
         cfg.view().search().inputLayout(
@@ -54,7 +53,9 @@ public class OpsDbFalutGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_DB_FAULT_RCD.PROCESS).form()
                 .textArea().height(Config.textAreaHeight);
-        cfg.view().field(OpsTables.OPS_DB_FAULT_RCD.FILE_ID).form().upload().maxFileCount(6).acceptAllType();
+
+        cfg.view().field(OpsTables.OPS_DB_FAULT_RCD.FILE_ID).form().upload().maxFileCount(1).acceptAllType();
+
         cfg.view().field(OpsTables.OPS_DB_FAULT_RCD.NOTES).form()
                .textArea().height(Config.textAreaHeight);
 
@@ -66,7 +67,6 @@ public class OpsDbFalutGtr extends BaseCodeGenerator{
                 .valueField(DbInfoMeta.ID).textField(DbInfoMeta.NAME)
                 .toolbar(false).paging(true)
                 .fillWith(DbFaultRcdMeta.DB_INSTANCE).muliti(false);
-
 
 
         cfg.view().list().disableBatchDelete();
@@ -91,7 +91,7 @@ public class OpsDbFalutGtr extends BaseCodeGenerator{
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //生成代码
         cfg.buildAll();
     }

@@ -1,8 +1,10 @@
 package com.dt.platform.generator.module.oa;
 import com.dt.platform.constants.db.OaTables;
-import com.dt.platform.domain.vehicle.meta.InfoMeta;
+import com.dt.platform.domain.oa.VehicleInsuranceCompany;
+import com.dt.platform.domain.oa.meta.VehicleInfoMeta;
+import com.dt.platform.domain.oa.meta.VehicleInsuranceCompanyMeta;
 import com.dt.platform.generator.config.Config;
-
+import com.dt.platform.proxy.oa.VehicleInsuranceCompanyServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
@@ -20,16 +22,20 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
+
+
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"ownerCompany","所属公司","所属公司");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"useOrganization","使用公司/部门","使用公司/部门");
 
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"vehicleTypeDict","类型","类型");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"vehicleStatusDict","状态","状态");
 
-
+        cfg.view().list().disableBatchDelete();
 
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"useUser","使用人","使用人");
+
+        cfg.getPoClassFile().addSimpleProperty(VehicleInsuranceCompany.class,"vehicleInsuranceCompany","vehicleInsuranceCompany","vehicleInsuranceCompany");
 
         cfg.getPoClassFile().addSimpleProperty(String.class,"selectIds","车辆列表","车辆列表");
 
@@ -45,6 +51,8 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
         cfg.view().field(OaTables.OA_VEHICLE_INFO.LICENSING_TIME).search().search().range();
         cfg.view().field(OaTables.OA_VEHICLE_INFO.SCRAP_TIME).search().search().range();
         cfg.view().field(OaTables.OA_VEHICLE_INFO.INSURANCE_EXPIRE_DATE).search().search().range();
+
+        cfg.view().field(OaTables.OA_VEHICLE_INFO.POSITION_ID).table().disable(true);
 
         cfg.view().field(OaTables.OA_VEHICLE_INFO.NOTES).table().disable();
         cfg.view().field(OaTables.OA_VEHICLE_INFO.TECHNICAL_PARAMETER).table().disable();
@@ -111,13 +119,22 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
         cfg.view().field(OaTables.OA_VEHICLE_INFO.CAR_BOAT_TAX).form().numberInput().decimal().scale(2);
         cfg.view().field(OaTables.OA_VEHICLE_INFO.RESCUE_MONEY).form().numberInput().decimal().scale(2);
 
+
+        cfg.view().field(OaTables.OA_VEHICLE_INFO.INSURANCE_COMPANY)
+                .form().selectBox().queryApi(VehicleInsuranceCompanyServiceProxy.QUERY_LIST)
+                .paging(false).filter(false).toolbar(false)
+                .valueField(VehicleInsuranceCompanyMeta.ID).
+                textField(VehicleInsuranceCompanyMeta.NAME).
+                fillWith(VehicleInfoMeta.VEHICLE_INSURANCE_COMPANY).muliti(false);
+
+
         cfg.view().field(OaTables.OA_VEHICLE_INFO.VEHICLE_STATUS)
                 .basic().label("车辆状态")
                 .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=vehicle_status")
                 .paging(false).filter(false).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
-                fillWith(InfoMeta.VEHICLE_STATUS_DICT ).muliti(false);
+                fillWith(VehicleInfoMeta.VEHICLE_STATUS_DICT ).muliti(false);
 
         cfg.view().field(OaTables.OA_VEHICLE_INFO.TYPE)
                 .basic().label("车辆类型")
@@ -125,7 +142,7 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
                 .paging(false).filter(false).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
-                fillWith(InfoMeta.VEHICLE_TYPE_DICT).muliti(false);
+                fillWith(VehicleInfoMeta.VEHICLE_TYPE_DICT).muliti(false);
 
 
         cfg.view().field(OaTables.OA_VEHICLE_INFO.OWNER_ORG_ID)
@@ -155,14 +172,15 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
                         OaTables.OA_VEHICLE_INFO.VEHICLE_STATUS,
                         OaTables.OA_VEHICLE_INFO.TYPE,
                         OaTables.OA_VEHICLE_INFO.REGISTRANT,
-                    //    OaTables.OA_VEHICLE_INFO.VEHICLE_COUNT,
+                        OaTables.OA_VEHICLE_INFO.POSITION_DETAIL,
+
                 },
 
                 new Object[] {
                         OaTables.OA_VEHICLE_INFO.INSURANCE_COMPANY,
                         OaTables.OA_VEHICLE_INFO.INSURANCE_EXPIRE_DATE,
                         OaTables.OA_VEHICLE_INFO.RESCUE_DUE_DATE,
-                        OaTables.OA_VEHICLE_INFO.POSITION_DETAIL,
+
                 },
                 new Object[] {
                         OaTables.OA_VEHICLE_INFO.OWNER_ORG_ID,
@@ -230,7 +248,7 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
         //移除之前生成的菜单，视情况执行
 //        g.removeByBatchId("471622036347682816");
         //生成菜单
-       // g.generateMenu(InfoServiceProxy.class, InfoPageController.class);
+    //    g.generateMenu(VehicleInfoServiceProxy.class, VehicleInfoPageController.class);
     }
 
 }

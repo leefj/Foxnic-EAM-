@@ -24,7 +24,7 @@ import java.util.Map;
  * 车辆信息服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-09 12:37:59
+ * @since 2023-06-10 15:50:00
 */
 
 public interface IVehicleInfoService extends  ISimpleIdService<VehicleInfo,String> {

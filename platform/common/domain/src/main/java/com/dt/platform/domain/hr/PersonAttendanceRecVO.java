@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员考勤VO类型
  * <p>人员考勤 , 数据表 hr_person_attendance_rec 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 10:58:36
+ * @since 2023-06-10 11:07:59
  * @sign 2F63C86D650F5342457B80AC5AAE63B3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -405,12 +405,11 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 		com.dt.platform.domain.hr.meta.PersonAttendanceRecVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.PersonAttendanceRecVOMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
 		inst.setRecTime(this.getRecTime());
+		inst.setCcCnt(this.getCcCnt());
 		inst.setOtherCnt(this.getOtherCnt());
 		inst.setEmployeeId(this.getEmployeeId());
 		inst.setUpdateTime(this.getUpdateTime());
-		inst.setUserName(this.getUserName());
 		inst.setVersion(this.getVersion());
-		inst.setCcOut(this.getCcOut());
 		inst.setJbCnt(this.getJbCnt());
 		inst.setNjCnt(this.getNjCnt());
 		inst.setCreateBy(this.getCreateBy());
@@ -419,6 +418,7 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setSjCnt(this.getSjCnt());
+		inst.setBjCnt(this.getBjCnt());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPersonId(this.getPersonId());
@@ -500,12 +500,11 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(PersonAttendanceRecVOMeta.NOTES)));
 			this.setRecTime(DataParser.parse(Date.class, map.get(PersonAttendanceRecVOMeta.REC_TIME)));
+			this.setCcCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecVOMeta.CC_CNT)));
 			this.setOtherCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecVOMeta.OTHER_CNT)));
 			this.setEmployeeId(DataParser.parse(String.class, map.get(PersonAttendanceRecVOMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(PersonAttendanceRecVOMeta.UPDATE_TIME)));
-			this.setUserName(DataParser.parse(String.class, map.get(PersonAttendanceRecVOMeta.USER_NAME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(PersonAttendanceRecVOMeta.VERSION)));
-			this.setCcOut(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecVOMeta.CC_OUT)));
 			this.setJbCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecVOMeta.JB_CNT)));
 			this.setNjCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecVOMeta.NJ_CNT)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(PersonAttendanceRecVOMeta.CREATE_BY)));
@@ -514,6 +513,7 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 			this.setUpdateBy(DataParser.parse(String.class, map.get(PersonAttendanceRecVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(PersonAttendanceRecVOMeta.DELETE_TIME)));
 			this.setSjCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecVOMeta.SJ_CNT)));
+			this.setBjCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecVOMeta.BJ_CNT)));
 			this.setTenantId(DataParser.parse(String.class, map.get(PersonAttendanceRecVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(PersonAttendanceRecVOMeta.DELETE_BY)));
 			this.setPersonId(DataParser.parse(String.class, map.get(PersonAttendanceRecVOMeta.PERSON_ID)));
@@ -537,12 +537,11 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 			try {
 				this.setNotes( (String)map.get(PersonAttendanceRecVOMeta.NOTES));
 				this.setRecTime( (Date)map.get(PersonAttendanceRecVOMeta.REC_TIME));
+				this.setCcCnt( (BigDecimal)map.get(PersonAttendanceRecVOMeta.CC_CNT));
 				this.setOtherCnt( (BigDecimal)map.get(PersonAttendanceRecVOMeta.OTHER_CNT));
 				this.setEmployeeId( (String)map.get(PersonAttendanceRecVOMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)map.get(PersonAttendanceRecVOMeta.UPDATE_TIME));
-				this.setUserName( (String)map.get(PersonAttendanceRecVOMeta.USER_NAME));
 				this.setVersion( (Integer)map.get(PersonAttendanceRecVOMeta.VERSION));
-				this.setCcOut( (BigDecimal)map.get(PersonAttendanceRecVOMeta.CC_OUT));
 				this.setJbCnt( (BigDecimal)map.get(PersonAttendanceRecVOMeta.JB_CNT));
 				this.setNjCnt( (BigDecimal)map.get(PersonAttendanceRecVOMeta.NJ_CNT));
 				this.setCreateBy( (String)map.get(PersonAttendanceRecVOMeta.CREATE_BY));
@@ -551,6 +550,7 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 				this.setUpdateBy( (String)map.get(PersonAttendanceRecVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(PersonAttendanceRecVOMeta.DELETE_TIME));
 				this.setSjCnt( (BigDecimal)map.get(PersonAttendanceRecVOMeta.SJ_CNT));
+				this.setBjCnt( (BigDecimal)map.get(PersonAttendanceRecVOMeta.BJ_CNT));
 				this.setTenantId( (String)map.get(PersonAttendanceRecVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(PersonAttendanceRecVOMeta.DELETE_BY));
 				this.setPersonId( (String)map.get(PersonAttendanceRecVOMeta.PERSON_ID));
@@ -587,12 +587,11 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(PersonAttendanceRecVOMeta.NOTES)));
 			this.setRecTime(DataParser.parse(Date.class, r.getValue(PersonAttendanceRecVOMeta.REC_TIME)));
+			this.setCcCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecVOMeta.CC_CNT)));
 			this.setOtherCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecVOMeta.OTHER_CNT)));
 			this.setEmployeeId(DataParser.parse(String.class, r.getValue(PersonAttendanceRecVOMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PersonAttendanceRecVOMeta.UPDATE_TIME)));
-			this.setUserName(DataParser.parse(String.class, r.getValue(PersonAttendanceRecVOMeta.USER_NAME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(PersonAttendanceRecVOMeta.VERSION)));
-			this.setCcOut(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecVOMeta.CC_OUT)));
 			this.setJbCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecVOMeta.JB_CNT)));
 			this.setNjCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecVOMeta.NJ_CNT)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(PersonAttendanceRecVOMeta.CREATE_BY)));
@@ -601,6 +600,7 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(PersonAttendanceRecVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(PersonAttendanceRecVOMeta.DELETE_TIME)));
 			this.setSjCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecVOMeta.SJ_CNT)));
+			this.setBjCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecVOMeta.BJ_CNT)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(PersonAttendanceRecVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(PersonAttendanceRecVOMeta.DELETE_BY)));
 			this.setPersonId(DataParser.parse(String.class, r.getValue(PersonAttendanceRecVOMeta.PERSON_ID)));
@@ -611,12 +611,11 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 			try {
 				this.setNotes( (String)r.getValue(PersonAttendanceRecVOMeta.NOTES));
 				this.setRecTime( (Date)r.getValue(PersonAttendanceRecVOMeta.REC_TIME));
+				this.setCcCnt( (BigDecimal)r.getValue(PersonAttendanceRecVOMeta.CC_CNT));
 				this.setOtherCnt( (BigDecimal)r.getValue(PersonAttendanceRecVOMeta.OTHER_CNT));
 				this.setEmployeeId( (String)r.getValue(PersonAttendanceRecVOMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)r.getValue(PersonAttendanceRecVOMeta.UPDATE_TIME));
-				this.setUserName( (String)r.getValue(PersonAttendanceRecVOMeta.USER_NAME));
 				this.setVersion( (Integer)r.getValue(PersonAttendanceRecVOMeta.VERSION));
-				this.setCcOut( (BigDecimal)r.getValue(PersonAttendanceRecVOMeta.CC_OUT));
 				this.setJbCnt( (BigDecimal)r.getValue(PersonAttendanceRecVOMeta.JB_CNT));
 				this.setNjCnt( (BigDecimal)r.getValue(PersonAttendanceRecVOMeta.NJ_CNT));
 				this.setCreateBy( (String)r.getValue(PersonAttendanceRecVOMeta.CREATE_BY));
@@ -625,6 +624,7 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 				this.setUpdateBy( (String)r.getValue(PersonAttendanceRecVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(PersonAttendanceRecVOMeta.DELETE_TIME));
 				this.setSjCnt( (BigDecimal)r.getValue(PersonAttendanceRecVOMeta.SJ_CNT));
+				this.setBjCnt( (BigDecimal)r.getValue(PersonAttendanceRecVOMeta.BJ_CNT));
 				this.setTenantId( (String)r.getValue(PersonAttendanceRecVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(PersonAttendanceRecVOMeta.DELETE_BY));
 				this.setPersonId( (String)r.getValue(PersonAttendanceRecVOMeta.PERSON_ID));

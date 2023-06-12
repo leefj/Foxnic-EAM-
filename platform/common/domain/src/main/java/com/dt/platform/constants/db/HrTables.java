@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-06-06 17:58:03
+ * @since 2023-06-10 10:45:44
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -1262,6 +1262,112 @@ public class HrTables {
 	}
 	
 	/**
+	 * 人员费用
+	*/
+	public static class HR_PERSON_ATTENDANCE_MONEY extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "hr_person_attendance_money";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 人员
+		*/
+		public static final DBField PERSON_ID = new DBField(DBDataType.STRING , "person_id","personId","人员","人员",false,false,true);
+		
+		/**
+		 * 加班费用
+		*/
+		public static final DBField JB_AMOUNT = new DBField(DBDataType.DECIMAL , "jb_amount","jbAmount","加班费用","加班费用",false,false,true);
+		
+		/**
+		 * 年假费用
+		*/
+		public static final DBField NJ_AMOUNT = new DBField(DBDataType.DECIMAL , "nj_amount","njAmount","年假费用","年假费用",false,false,true);
+		
+		/**
+		 * 事假费用
+		*/
+		public static final DBField SJ_AMOUNT = new DBField(DBDataType.DECIMAL , "sj_amount","sjAmount","事假费用","事假费用",false,false,true);
+		
+		/**
+		 * 病假费用
+		*/
+		public static final DBField BJ_AMOUNT = new DBField(DBDataType.DECIMAL , "bj_amount","bjAmount","病假费用","病假费用",false,false,true);
+		
+		/**
+		 * 其他假费用
+		*/
+		public static final DBField OTHER_AMOUNT = new DBField(DBDataType.DECIMAL , "other_amount","otherAmount","其他假费用","其他假费用",false,false,true);
+		
+		/**
+		 * 出差费用
+		*/
+		public static final DBField CC_AMOUNT = new DBField(DBDataType.DECIMAL , "cc_amount","ccAmount","出差费用","出差费用",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 数据版本号
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public HR_PERSON_ATTENDANCE_MONEY() {
+			this.init($NAME,"人员费用" , ID , PERSON_ID , JB_AMOUNT , NJ_AMOUNT , SJ_AMOUNT , BJ_AMOUNT , OTHER_AMOUNT , CC_AMOUNT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final HR_PERSON_ATTENDANCE_MONEY $TABLE=new HR_PERSON_ATTENDANCE_MONEY();
+	}
+	
+	/**
 	 * 人员考勤
 	*/
 	public static class HR_PERSON_ATTENDANCE_REC extends DBTable {
@@ -1287,11 +1393,6 @@ public class HrTables {
 		public static final DBField PERSON_ID = new DBField(DBDataType.STRING , "person_id","personId","人员","人员",false,false,true);
 		
 		/**
-		 * 姓名
-		*/
-		public static final DBField USER_NAME = new DBField(DBDataType.STRING , "user_name","userName","姓名","姓名",false,false,true);
-		
-		/**
 		 * 工号
 		*/
 		public static final DBField JOB_NUMBER = new DBField(DBDataType.STRING , "job_number","jobNumber","工号","工号",false,false,true);
@@ -1312,14 +1413,19 @@ public class HrTables {
 		public static final DBField SJ_CNT = new DBField(DBDataType.DECIMAL , "sj_cnt","sjCnt","事假","天)",false,false,true);
 		
 		/**
-		 * 其他假(天)
+		 * 病假(天)
 		*/
-		public static final DBField OTHER_CNT = new DBField(DBDataType.DECIMAL , "other_cnt","otherCnt","其他假","天)",false,false,true);
+		public static final DBField BJ_CNT = new DBField(DBDataType.DECIMAL , "bj_cnt","bjCnt","病假","天)",false,false,true);
 		
 		/**
 		 * 出差(天)
 		*/
-		public static final DBField CC_OUT = new DBField(DBDataType.DECIMAL , "cc_out","ccOut","出差","天)",false,false,true);
+		public static final DBField CC_CNT = new DBField(DBDataType.DECIMAL , "cc_cnt","ccCnt","出差","天)",false,false,true);
+		
+		/**
+		 * 其他假(天)
+		*/
+		public static final DBField OTHER_CNT = new DBField(DBDataType.DECIMAL , "other_cnt","otherCnt","其他假","天)",false,false,true);
 		
 		/**
 		 * 记录时间
@@ -1377,7 +1483,7 @@ public class HrTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public HR_PERSON_ATTENDANCE_REC() {
-			this.init($NAME,"人员考勤" , ID , EMPLOYEE_ID , PERSON_ID , USER_NAME , JOB_NUMBER , JB_CNT , NJ_CNT , SJ_CNT , OTHER_CNT , CC_OUT , REC_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"人员考勤" , ID , EMPLOYEE_ID , PERSON_ID , JOB_NUMBER , JB_CNT , NJ_CNT , SJ_CNT , BJ_CNT , CC_CNT , OTHER_CNT , REC_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final HR_PERSON_ATTENDANCE_REC $TABLE=new HR_PERSON_ATTENDANCE_REC();
 	}

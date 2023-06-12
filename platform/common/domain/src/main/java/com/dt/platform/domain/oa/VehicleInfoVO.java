@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 车辆信息VO类型
  * <p>车辆信息 , 数据表 oa_vehicle_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-09 12:37:59
+ * @since 2023-06-10 15:50:00
  * @sign 7513339456463B0B4DDBEE2A307F932F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -455,6 +455,7 @@ public class VehicleInfoVO extends VehicleInfo {
 			inst.setOriginator(this.getOriginator());
 			inst.setSelectIds(this.getSelectIds());
 			inst.setUseOrganization(this.getUseOrganization());
+			inst.setVehicleInsuranceCompany(this.getVehicleInsuranceCompany());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setVehicleTypeDict(this.getVehicleTypeDict());
@@ -574,6 +575,7 @@ public class VehicleInfoVO extends VehicleInfo {
 			this.setOriginator(DataParser.parse(Employee.class, map.get(VehicleInfoVOMeta.ORIGINATOR)));
 			this.setSelectIds(DataParser.parse(String.class, map.get(VehicleInfoVOMeta.SELECT_IDS)));
 			this.setUseOrganization(DataParser.parse(Organization.class, map.get(VehicleInfoVOMeta.USE_ORGANIZATION)));
+			this.setVehicleInsuranceCompany(DataParser.parse(VehicleInsuranceCompany.class, map.get(VehicleInfoVOMeta.VEHICLE_INSURANCE_COMPANY)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(VehicleInfoVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(VehicleInfoVOMeta.SORT_TYPE)));
 			this.setVehicleTypeDict(DataParser.parse(DictItem.class, map.get(VehicleInfoVOMeta.VEHICLE_TYPE_DICT)));
@@ -635,6 +637,7 @@ public class VehicleInfoVO extends VehicleInfo {
 				this.setOriginator( (Employee)map.get(VehicleInfoVOMeta.ORIGINATOR));
 				this.setSelectIds( (String)map.get(VehicleInfoVOMeta.SELECT_IDS));
 				this.setUseOrganization( (Organization)map.get(VehicleInfoVOMeta.USE_ORGANIZATION));
+				this.setVehicleInsuranceCompany( (VehicleInsuranceCompany)map.get(VehicleInfoVOMeta.VEHICLE_INSURANCE_COMPANY));
 				this.setPageIndex( (Integer)map.get(VehicleInfoVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(VehicleInfoVOMeta.SORT_TYPE));
 				this.setVehicleTypeDict( (DictItem)map.get(VehicleInfoVOMeta.VEHICLE_TYPE_DICT));

@@ -1,6 +1,9 @@
 package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.domain.hr.Person;
+import com.dt.platform.hr.service.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -58,6 +61,8 @@ public class PersonAttendanceRecServiceImpl extends SuperService<PersonAttendanc
 	public DAO dao() { return dao; }
 
 
+	@Autowired
+	private IPersonService personService;
 
 	@Override
 	public Object generateId(Field field) {
@@ -73,6 +78,10 @@ public class PersonAttendanceRecServiceImpl extends SuperService<PersonAttendanc
 	 */
 	@Override
 	public Result insert(PersonAttendanceRec personAttendanceRec,boolean throwsException) {
+		String personId=personAttendanceRec.getPersonId();
+		Person p=personService.getById(personId);
+		personAttendanceRec.setEmployeeId(p.getEmployeeId());
+		personAttendanceRec.setJobNumber(p.getJobNumber());
 		Result r=super.insert(personAttendanceRec,throwsException);
 		return r;
 	}
@@ -163,6 +172,10 @@ public class PersonAttendanceRecServiceImpl extends SuperService<PersonAttendanc
 	 * */
 	@Override
 	public Result update(PersonAttendanceRec personAttendanceRec , SaveMode mode,boolean throwsException) {
+		String personId=personAttendanceRec.getPersonId();
+		Person p=personService.getById(personId);
+		personAttendanceRec.setEmployeeId(p.getEmployeeId());
+		personAttendanceRec.setJobNumber(p.getJobNumber());
 		Result r=super.update(personAttendanceRec , mode , throwsException);
 		return r;
 	}

@@ -50,7 +50,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 
 @InDoc
 @Api(tags = "车辆保险记录")
-@RestController("OaVehicleInsuranceRecordController")
+@RestController("OaVehicleInsuranceRecordControlle12121r")
 public class LeInsuranceRecordController extends SuperController {
 
 	@Autowired

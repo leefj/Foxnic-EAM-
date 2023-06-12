@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库容量VO类型
  * <p>数据库容量 , 数据表 ops_db_capacity_rpt 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 22:36:35
+ * @since 2023-06-11 09:34:20
  * @sign 34587261E5246F768F6B5D2743B8AA6F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

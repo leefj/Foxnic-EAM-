@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 通知公告
  * <p>通知公告 , 数据表 oa_notice 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-28 22:02:48
+ * @since 2023-06-10 13:22:30
  * @sign 337B369AB4CEFAC44CB3C1904919F89A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

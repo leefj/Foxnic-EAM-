@@ -1,7 +1,7 @@
 /**
  * 人员考勤 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 10:58:38
+ * @since 2023-06-10 11:08:01
  */
 
 
@@ -85,15 +85,14 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'employeeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工'), templet: function (d) { return templet('employeeId' ,fox.joinLabel(d.employee,"name",',','','employeeId'),d);}}
 					,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员'), templet: function (d) { return templet('personId' ,fox.joinLabel(d.person,"name",',','','personId'),d);}}
-					,{ field: 'userName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('姓名') , templet: function (d) { return templet('userName',d.userName,d);}  }
 					,{ field: 'jobNumber', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('工号') , templet: function (d) { return templet('jobNumber',d.jobNumber,d);}  }
-					,{ field: 'jbCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('加班') , templet: function (d) { return templet('jbCnt',d.jbCnt,d);}  }
-					,{ field: 'njCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('年假') , templet: function (d) { return templet('njCnt',d.njCnt,d);}  }
-					,{ field: 'sjCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('事假') , templet: function (d) { return templet('sjCnt',d.sjCnt,d);}  }
-					,{ field: 'otherCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('其他假') , templet: function (d) { return templet('otherCnt',d.otherCnt,d);}  }
-					,{ field: 'ccOut', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('出差') , templet: function (d) { return templet('ccOut',d.ccOut,d);}  }
+					,{ field: 'jbCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('加班(天)') , templet: function (d) { return templet('jbCnt',d.jbCnt,d);}  }
+					,{ field: 'njCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('年假(天)') , templet: function (d) { return templet('njCnt',d.njCnt,d);}  }
+					,{ field: 'sjCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('事假(天)') , templet: function (d) { return templet('sjCnt',d.sjCnt,d);}  }
+					,{ field: 'bjCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('病假(天)') , templet: function (d) { return templet('bjCnt',d.bjCnt,d);}  }
+					,{ field: 'ccCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('出差(天)') , templet: function (d) { return templet('ccCnt',d.ccCnt,d);}  }
+					,{ field: 'otherCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('其他(天)') , templet: function (d) { return templet('otherCnt',d.otherCnt,d);}  }
 					,{ field: 'recTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('记录时间') ,templet: function (d) { return templet('recTime',fox.dateFormat(d.recTime,"yyyy-MM-dd"),d); }  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
@@ -178,7 +177,7 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.userName={ inputType:"button",value: $("#userName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.personId={ inputType:"select_box", value: getSelectedValue("#personId","value") ,fillBy:["person"]  , label:getSelectedValue("#personId","nameStr") };
 		value.jobNumber={ inputType:"button",value: $("#jobNumber").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.recTime={ inputType:"date_input", begin: $("#recTime-begin").val(), end: $("#recTime-end").val() ,matchType:"auto" };
 		var ps={searchField:"$composite"};
@@ -227,6 +226,37 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 personId 下拉字段
+		fox.renderSelectBox({
+			el: "personId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("personId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("personId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					}
+				}
+				return opts;
+			}
+		});
 		laydate.render({
 			elem: '#recTime-begin',
 			trigger:"click",

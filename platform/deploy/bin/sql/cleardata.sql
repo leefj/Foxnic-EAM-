@@ -236,8 +236,6 @@ delete from hrm_favourite_group_item  where deleted=1;
 -- delete from hrm_person where deleted=2;
 -- delete from hrm_organization where id='586963971924295680';
 -- delete from hrm_organization where id='500994919175819264';
-delete from hr_person  where deleted=1;
-delete from hr_person_contract  where deleted=1;
 -- ops auto
 delete from ops_auto_batch  where 1=1;
 delete from ops_auto_batch_node  where  1=1;
@@ -254,10 +252,21 @@ delete from eam_c1_mapping where 1=1;
 delete from eam_c1_qh_fa_additions where 1=1;
 delete from eam_c1_sync_asset_record where 1=1;
 delete from eam_c1_sync_asset where 1=1;
-delete from hrm_organization where id not in ('2');
-delete from hrm_employee where id not in ('695575803236188160','E001');
-delete from hrm_person where id not in ('P001','695575803093581824');
-delete from sys_user where id not in ('110588348101165911','695575802854506496');
 delete from sys_log_collect where 1=1;
 delete from sys_material_resource where 1=1;
+-- clear hrm
+delete from hrm_organization where id not in ('2');
+delete from sys_user where deleted=1;
+delete from sys_user_tenant where deleted=1;
+delete from hrm_employee where deleted=1;
+delete from hrm_person where deleted=1;
+delete from sys_user where account not in (select value from sys_user_keep);
+delete from sys_user_tenant where user_id not in (select id from sys_user);
+delete from hrm_employee where id not in (select employee_id from sys_user_tenant);
+delete from hrm_person where id not in (select person_id from hrm_employee);
+-- clear hr
+delete from hr_person  where deleted=1;
+delete from hr_person_contract  where deleted=1;
+
+
 commit;

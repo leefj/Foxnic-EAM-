@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2023-05-09 12:44:56
 */
 
-@Controller("OaVehiclePositionPageController")
+@Controller("OaVehiclePositionPageControllecccr")
 @RequestMapping(LePositionPageController.prefix)
 public class LePositionPageController extends ViewController {
 
