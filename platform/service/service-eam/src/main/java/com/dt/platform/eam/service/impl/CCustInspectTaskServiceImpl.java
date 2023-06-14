@@ -250,13 +250,14 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 				item.setAssetSeq(asset.getSerialNumber());
 				item.setStatus(status);
 				item.setCt(ct);
+				item.setPictureId(picIds);
 				item.setRecordTime(new Date());
 				item.setInspectUserId(curId);
 				cCustInspectItemService.insert(item,false);
 
-
 			}
 		}else{
+			cCustInspectItem.setPictureId(picIds);
 			cCustInspectItem.setStatus(status);
 			cCustInspectItem.setCt(ct);
 			cCustInspectItem.setRecordTime(new Date());
