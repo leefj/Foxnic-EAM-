@@ -223,7 +223,7 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 //			return "";
 //		}
 		return ph.replaceAll("\\{"+ CodeAttrTypeEnum.TIME.code() +",yyyy\\}",year)
-				.replaceAll("\\{"+ CodeAttrTypeEnum.TIME.code() +",mm\\}",month)
+				.replaceAll("\\{"+ CodeAttrTypeEnum.TIME.code() +",MM\\}",month)
 				.replaceAll("\\{"+ CodeAttrTypeEnum.TIME.code() +",dd\\}",day)
 				.replaceAll("\\{"+ CodeAttrTypeEnum.TIME.code() +",hh\\}",hour)
 				.replaceAll("\\{"+ CodeAttrTypeEnum.TIME.code() +",mm\\}",mins)

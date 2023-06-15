@@ -1456,6 +1456,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 
 	@Override
 	public PagedList<Asset> queryPagedListByEmployeeSelected(AssetVO sample, String selectedCode, String ownerId,String dataType) {
+		sample.setUseUserId(null);
 		ConditionExpr queryCondition=new ConditionExpr();
 		if(ownerId!=null&&ownerId.length()>0){
 			//实现临时快照
