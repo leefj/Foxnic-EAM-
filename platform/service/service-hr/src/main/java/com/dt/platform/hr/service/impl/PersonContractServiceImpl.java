@@ -1,6 +1,13 @@
 package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.dao.data.Rcd;
+import com.github.foxnic.dao.data.RcdSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -75,6 +82,40 @@ public class PersonContractServiceImpl extends SuperService<PersonContract> impl
 	public Result insert(PersonContract personContract,boolean throwsException) {
 		Result r=super.insert(personContract,throwsException);
 		return r;
+	}
+
+	@Override
+	public Result<JSONObject> queryData(String labels) {
+
+		Result<JSONObject> res=new Result<>();
+		JSONObject data=new JSONObject();
+		String[] labelArr=labels.split(",");
+		for(int i=0;i<labelArr.length;i++){
+			String label=labelArr[i];
+			if("info_data".equals(label)){
+				String sql="select \n" +
+						"(select count(1) from hr_person_contract where deleted='0')contract_cnt,\n" +
+						"(select count(1) from hr_person_contract where deleted='0' and status='acting')contract_acting_cnt,\n" +
+						"(select count(1) from hr_person_contract where deleted='0' and status='not_effective')contract_n_effective_cnt,\n"+
+						"(select count(1) from hr_person_contract where deleted='0' and transfer_to_regular='n')contract_to_regular_cnt";
+				data.put(label,dao.queryRecord(sql).toJSONObject());
+			}else if("nf_dis_data".equals(label)){
+
+				String sql="select contract_year name,count(1) value from hr_person_contract group by contract_year order by 1 desc";
+				JSONArray col=new JSONArray();
+				JSONArray val=new JSONArray();
+				RcdSet rs=dao.query(sql);
+				for(int j=0;j<rs.size();j++){
+					col.add(rs.getRcd(j).getString("name"));
+					val.add(rs.getRcd(j).getInteger("value"));
+				}
+				data.put(label+"_col",col);
+				data.put(label+"_val",val);
+			}
+		}
+		res.success();
+		res.data(data);
+		return res;
 	}
 
 	/**

@@ -3,10 +3,9 @@ package com.dt.platform.relation.modules;
  
 import com.dt.platform.constants.db.OaTables;
 
-import com.dt.platform.domain.oa.meta.SystemInformationMeta;
-import com.dt.platform.domain.oa.meta.VehicleApplyMeta;
-import com.dt.platform.domain.oa.meta.VehicleInfoMeta;
-import com.dt.platform.domain.oa.meta.VehicleMaintenanceMeta;
+import com.dt.platform.domain.oa.SchedulePlan;
+import com.dt.platform.domain.oa.WorkRpt;
+import com.dt.platform.domain.oa.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
 
@@ -15,13 +14,43 @@ public class OaRelationManager extends RelationManager {
 	@Override
 	protected void config() {
 		this.setupSystemInformation();
-
-
 		this.setupInfo();
 		this.setupVehicleApply();
 		this.setupVehicleMaintenance();
+		this.setupSchedulePlan();
+		this.setupNotice();
+		this.setupWorkRpt();
 
 	}
+
+	public void setupWorkRpt() {
+		this.property(WorkRptMeta.RECEIVER_PROP)
+				.using(OaTables.OA_WORK_RPT.RECEIVER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(WorkRptMeta.REPORT_USER_PROP)
+				.using(OaTables.OA_WORK_RPT.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+	}
+
+
+	public void setupNotice() {
+
+		this.property(NoticeMeta.USER_PROP)
+				.using(OaTables.OA_NOTICE.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+	}
+
+
+
+
+	public void setupSchedulePlan() {
+		this.property(SchedulePlanMeta.SCHEDULE_REMIND_PROP)
+				.using(OaTables.OA_SCHEDULE_PLAN.REMIND).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='oa_schedule_remind'");
+
+	}
+
+
 
 
 	public void setupSystemInformation() {

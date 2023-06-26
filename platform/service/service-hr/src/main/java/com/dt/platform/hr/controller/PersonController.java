@@ -1,6 +1,8 @@
 package com.dt.platform.hr.controller;
 
 import java.util.*;
+
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.hr.EmployeeStatusEnum;
 import com.dt.platform.domain.eam.AssetCollection;
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -366,6 +368,17 @@ public class PersonController extends SuperController {
         return result;
     }
 
+	/**
+	 * 获取人员报表数据
+	 */
+	@ApiOperation(value = "获取人员报表数据")
+	@ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+	@SentinelResource(value = PersonServiceProxy.QUERY_REPORT_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+	@PostMapping(PersonServiceProxy.QUERY_REPORT_DATA)
+	public Result<JSONObject> queryReportData(String labels) {
+		return personService.queryReportData(labels);
+	}
+
     /**
      * 批量获取人员信息 <br>
      * 联合主键时，请自行调整实现
@@ -599,7 +612,7 @@ public class PersonController extends SuperController {
 		vo.setEmployeeId(empId);
 		List<Person> personList=personService.queryList(vo);
 		if(personList.size()>1){
-			return ErrorDesc.failureMessage("找到重复的员工配置");
+			return ErrorDesc.failureMessage("员工配置重复");
 		}else if(personList.size()==1){
 			personId=personList.get(0).getId();
 		}

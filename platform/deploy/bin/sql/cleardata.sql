@@ -265,8 +265,8 @@ delete from sys_user_tenant where user_id not in (select id from sys_user);
 delete from hrm_employee where id not in (select employee_id from sys_user_tenant);
 delete from hrm_person where id not in (select person_id from hrm_employee);
 -- clear hr
-delete from hr_person  where deleted=1;
-delete from hr_person_contract  where deleted=1;
-
+delete from hr_person where deleted=1;
+delete from hr_person_contract where deleted=1;
+delete from sys_user_import where deleted=1;
 
 commit;

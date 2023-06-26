@@ -47,6 +47,7 @@ checkService(){
     echo "mysql is not running"
   fi
   echo ""
+
   return 0
 }
 
@@ -63,6 +64,7 @@ function menu {
 	echo -e "\t7. 重启应用程序,ka_restart"
 	echo -e "\t8. 重启流程引擎,kb_restart"
 	echo -e "\t9. 重启nginx,kn_restart"
+	echo -e "\tm. 重启Mysql数据库"
 	echo -e "\tx. 重启所有服务"
 	echo -e "\tc. 检查所有服务"
 	echo -e "\th. 帮助"
@@ -79,6 +81,19 @@ function restartAllService(){
   echo "";
   sh restartNginx.sh
   return 0
+}
+function stopMysql(){
+  cnt=`ps -ef|grep mysqld|grep -v grep |grep my_plat.cnf|wc -l`
+  if [[ $cnt -gt 0 ]];then
+    ps -ef|grep mysqld|grep -v grep |grep my_plat.cnf|awk '{print $2}'|xargs kill -9
+  fi
+    echo "stop mysql success!"
+}
+function startMysql(){
+  cd /tmp
+  su - mysql -c "cd /tmp/;nohup /app/db/mysql/bin/mysqld_safe --defaults-file=/etc/my_plat.cnf &"
+  cnt=`ps -ef|grep mysqld|grep -v grep |grep my_plat.cnf`
+  echo "start mysql success!"
 }
 #主程序
 while [ 1 ]
@@ -109,6 +124,8 @@ do
 	  echo "";restartAllService ;;
 	'c')
 	  echo "";checkService ;;
+  'm')
+    echo "";stopMysql;sleep 1;startMysql;;
 	'h')
 	  help ;;
 	*)

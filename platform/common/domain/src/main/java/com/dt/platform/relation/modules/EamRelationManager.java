@@ -123,6 +123,23 @@ public class EamRelationManager extends RelationManager {
         this.setupAssetMaintenanceRecordUpdate();
         this.setupAssetBorrowReturn();
 
+        this.setupRfidLabel();
+        this.setupRfidRelease();
+
+    }
+
+    public void setupRfidRelease() {
+        this.property(RfidReleaseMeta.RFID_LABEL_LIST_PROP)
+                .using(EAMTables.EAM_RFID_RELEASE.ID).join(EAMTables.EAM_RFID_LABEL.RELEASE_ID);
+    }
+
+
+    public void setupRfidLabel() {
+        this.property(RfidLabelMeta.ASSET_PROP)
+                .using(EAMTables.EAM_RFID_LABEL.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+
+        this.property(RfidLabelMeta.OPER_USER_PROP)
+                .using(EAMTables.EAM_RFID_LABEL.OPER_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
     }
 
     public void setupCustInspectTpl() {

@@ -44,7 +44,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 车辆保险公司接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-10 14:11:38
+ * @since 2023-06-26 07:44:20
 */
 
 @InDoc
@@ -61,8 +61,8 @@ public class VehicleInsuranceCompanyController extends SuperController {
 	@ApiOperation(value = "添加车辆保险公司")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "719916205728595968"),
-		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
-		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
+		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "公司B"),
+		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "公司B"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -165,8 +165,8 @@ public class VehicleInsuranceCompanyController extends SuperController {
 	@ApiOperation(value = "更新车辆保险公司")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "719916205728595968"),
-		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
-		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
+		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "公司B"),
+		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "公司B"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { VehicleInsuranceCompanyVOMeta.PAGE_INDEX , VehicleInsuranceCompanyVOMeta.PAGE_SIZE , VehicleInsuranceCompanyVOMeta.SEARCH_FIELD , VehicleInsuranceCompanyVOMeta.FUZZY_FIELD , VehicleInsuranceCompanyVOMeta.SEARCH_VALUE , VehicleInsuranceCompanyVOMeta.DIRTY_FIELDS , VehicleInsuranceCompanyVOMeta.SORT_FIELD , VehicleInsuranceCompanyVOMeta.SORT_TYPE , VehicleInsuranceCompanyVOMeta.DATA_ORIGIN , VehicleInsuranceCompanyVOMeta.QUERY_LOGIC , VehicleInsuranceCompanyVOMeta.REQUEST_ACTION , VehicleInsuranceCompanyVOMeta.IDS } )
@@ -185,8 +185,8 @@ public class VehicleInsuranceCompanyController extends SuperController {
 	@ApiOperation(value = "保存车辆保险公司")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "719916205728595968"),
-		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
-		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
+		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "公司B"),
+		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "公司B"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { VehicleInsuranceCompanyVOMeta.PAGE_INDEX , VehicleInsuranceCompanyVOMeta.PAGE_SIZE , VehicleInsuranceCompanyVOMeta.SEARCH_FIELD , VehicleInsuranceCompanyVOMeta.FUZZY_FIELD , VehicleInsuranceCompanyVOMeta.SEARCH_VALUE , VehicleInsuranceCompanyVOMeta.DIRTY_FIELDS , VehicleInsuranceCompanyVOMeta.SORT_FIELD , VehicleInsuranceCompanyVOMeta.SORT_TYPE , VehicleInsuranceCompanyVOMeta.DATA_ORIGIN , VehicleInsuranceCompanyVOMeta.QUERY_LOGIC , VehicleInsuranceCompanyVOMeta.REQUEST_ACTION , VehicleInsuranceCompanyVOMeta.IDS } )
@@ -244,8 +244,8 @@ public class VehicleInsuranceCompanyController extends SuperController {
 	@ApiOperation(value = "查询车辆保险公司")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "719916205728595968"),
-		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
-		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
+		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "公司B"),
+		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "公司B"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { VehicleInsuranceCompanyVOMeta.PAGE_INDEX , VehicleInsuranceCompanyVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = VehicleInsuranceCompanyServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -265,8 +265,8 @@ public class VehicleInsuranceCompanyController extends SuperController {
 	@ApiOperation(value = "分页查询车辆保险公司")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "719916205728595968"),
-		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
-		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
+		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "公司B"),
+		@ApiImplicitParam(name = VehicleInsuranceCompanyVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "公司B"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = VehicleInsuranceCompanyServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

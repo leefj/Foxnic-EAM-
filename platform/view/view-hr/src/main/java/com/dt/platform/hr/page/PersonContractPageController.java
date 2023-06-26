@@ -37,7 +37,18 @@ public class PersonContractPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+
+	/**
+	 * 人员信息
+	 */
+	@RequestMapping("/person_dashboard.html")
+	public String dashboard(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"person_dashboard");
+	}
+
+
+
 	/**
 	 * 人员合同 功能主页面
 	 */

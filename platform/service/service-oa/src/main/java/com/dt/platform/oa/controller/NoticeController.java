@@ -1,9 +1,12 @@
 package com.dt.platform.oa.controller;
 
 import java.util.*;
+
+import com.dt.platform.domain.oa.meta.SchedulePlanMeta;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.sql.expr.Expr;
 import com.github.foxnic.sql.expr.OrderBy;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +72,8 @@ public class NoticeController extends SuperController {
 		@ApiImplicitParam(name = NoticeVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "<p>1212</p>"),
 		@ApiImplicitParam(name = NoticeVOMeta.IFTOP, value = "是否置顶", required = false, dataTypeClass = String.class, example = "N"),
 		@ApiImplicitParam(name = NoticeVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.VISUAL_RANGE, value = "可见范围", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NoticeVOMeta.VISUAL_RANGE, value = "可见范围", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NoticeVOMeta.USER_ID, value = "发布人", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -171,7 +175,8 @@ public class NoticeController extends SuperController {
 		@ApiImplicitParam(name = NoticeVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "<p>1212</p>"),
 		@ApiImplicitParam(name = NoticeVOMeta.IFTOP, value = "是否置顶", required = false, dataTypeClass = String.class, example = "N"),
 		@ApiImplicitParam(name = NoticeVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.VISUAL_RANGE, value = "可见范围", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NoticeVOMeta.VISUAL_RANGE, value = "可见范围", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NoticeVOMeta.USER_ID, value = "发布人", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { NoticeVOMeta.PAGE_INDEX, NoticeVOMeta.PAGE_SIZE, NoticeVOMeta.SEARCH_FIELD, NoticeVOMeta.FUZZY_FIELD, NoticeVOMeta.SEARCH_VALUE, NoticeVOMeta.DIRTY_FIELDS, NoticeVOMeta.SORT_FIELD, NoticeVOMeta.SORT_TYPE, NoticeVOMeta.DATA_ORIGIN, NoticeVOMeta.QUERY_LOGIC, NoticeVOMeta.REQUEST_ACTION, NoticeVOMeta.IDS })
@@ -195,7 +200,8 @@ public class NoticeController extends SuperController {
 		@ApiImplicitParam(name = NoticeVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "<p>1212</p>"),
 		@ApiImplicitParam(name = NoticeVOMeta.IFTOP, value = "是否置顶", required = false, dataTypeClass = String.class, example = "N"),
 		@ApiImplicitParam(name = NoticeVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.VISUAL_RANGE, value = "可见范围", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NoticeVOMeta.VISUAL_RANGE, value = "可见范围", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NoticeVOMeta.USER_ID, value = "发布人", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { NoticeVOMeta.PAGE_INDEX, NoticeVOMeta.PAGE_SIZE, NoticeVOMeta.SEARCH_FIELD, NoticeVOMeta.FUZZY_FIELD, NoticeVOMeta.SEARCH_VALUE, NoticeVOMeta.DIRTY_FIELDS, NoticeVOMeta.SORT_FIELD, NoticeVOMeta.SORT_TYPE, NoticeVOMeta.DATA_ORIGIN, NoticeVOMeta.QUERY_LOGIC, NoticeVOMeta.REQUEST_ACTION, NoticeVOMeta.IDS })
@@ -219,6 +225,8 @@ public class NoticeController extends SuperController {
     public Result<Notice> getById(String id) {
         Result<Notice> result = new Result<>();
         Notice notice = noticeService.getById(id);
+        noticeService.dao().fill(notice).with(NoticeMeta.USER).execute();
+        noticeService.dao().join(notice.getUser(), Person.class);
         result.success(true).data(notice);
         return result;
     }
@@ -254,7 +262,8 @@ public class NoticeController extends SuperController {
 		@ApiImplicitParam(name = NoticeVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "<p>1212</p>"),
 		@ApiImplicitParam(name = NoticeVOMeta.IFTOP, value = "是否置顶", required = false, dataTypeClass = String.class, example = "N"),
 		@ApiImplicitParam(name = NoticeVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.VISUAL_RANGE, value = "可见范围", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NoticeVOMeta.VISUAL_RANGE, value = "可见范围", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NoticeVOMeta.USER_ID, value = "发布人", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { NoticeVOMeta.PAGE_INDEX, NoticeVOMeta.PAGE_SIZE })
     @SentinelResource(value = NoticeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -279,7 +288,8 @@ public class NoticeController extends SuperController {
 		@ApiImplicitParam(name = NoticeVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "<p>1212</p>"),
 		@ApiImplicitParam(name = NoticeVOMeta.IFTOP, value = "是否置顶", required = false, dataTypeClass = String.class, example = "N"),
 		@ApiImplicitParam(name = NoticeVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.VISUAL_RANGE, value = "可见范围", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NoticeVOMeta.VISUAL_RANGE, value = "可见范围", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NoticeVOMeta.USER_ID, value = "发布人", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = NoticeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

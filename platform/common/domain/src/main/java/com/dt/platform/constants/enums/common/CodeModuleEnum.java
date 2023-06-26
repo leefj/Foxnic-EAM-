@@ -16,6 +16,8 @@ public enum CodeModuleEnum implements CodeTextEnum {
 	COMMON_CODE("common_code" , "通用编码"),
 
 
+	COMMON_USER_IMPORT("common_user_import" , "COMMON_员工导入"),
+
 	EAM_ASSET_STORAGE("eam_asset_storage" , "EAM_资产入库"),
 	EAM_ASSET_CODE("eam_asset_code" , "EAM_资产编码"),
 	EAM_ASSET_SOFTWARE_CODE("eam_asset_software_code" , "EAM_软件资产编码"),

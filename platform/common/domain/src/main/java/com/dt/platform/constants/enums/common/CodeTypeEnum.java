@@ -15,7 +15,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum CodeTypeEnum implements CodeTextEnum {
 
-
+	COMMON("common" , "通用"),
 	EAM("eam" , "固定资产"),
 	OPS("ops" , "运维服务"),
 	CONT("cont" , "合同服务"),

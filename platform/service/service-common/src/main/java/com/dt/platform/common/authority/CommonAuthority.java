@@ -23,7 +23,7 @@ public class CommonAuthority extends ModuleAuthority {
         KeyCodeVO vo=new KeyCodeVO();
         vo.setStatus(StatusYNEnum.YES.code());
       //  Result<List<KeyCode>> res=KeyCodeServiceProxy.api().queryList(vo);
-        String[] s=new String[] {"bigscreen","system:mngr","system_ops","common_system","data_backup","auto_perm","sys_tpl_file:mngr","system_monitor"};
+        String[] s=new String[] {"system_monitor_list","bigscreen","system:mngr","system_ops","common_system","data_backup","auto_perm","sys_tpl_file:mngr","system_monitor"};
         Logger.info("static key:"+s);
 //        if(res.isSuccess()&&res.getData().size()>0){
 //            List<KeyCode> list=res.getData();

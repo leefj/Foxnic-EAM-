@@ -23,6 +23,8 @@ public class VehicleCompanyGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().field(OaTables.OA_VEHICLE_INSURANCE_COMPANY.ID).table().disable(true);
+
         cfg.view().list().disableBatchDelete();
         cfg.view().field(OaTables.OA_VEHICLE_INSURANCE_COMPANY.NAME).form().validate().required();
         cfg.view().formWindow().bottomSpace(120);

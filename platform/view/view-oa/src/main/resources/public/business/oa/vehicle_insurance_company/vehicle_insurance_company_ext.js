@@ -1,7 +1,7 @@
 /**
  * 车辆保险公司 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-10 14:11:38
+ * @since 2023-06-26 07:44:20
  */
 
 layui.config({

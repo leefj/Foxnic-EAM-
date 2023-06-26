@@ -15,6 +15,7 @@ import com.dt.platform.domain.oa.meta.NoticeVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
 import org.github.foxnic.web.domain.system.DictItem;
+import org.github.foxnic.web.domain.hrm.Employee;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -23,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 通知公告VO类型
  * <p>通知公告 , 数据表 oa_notice 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-10 13:22:30
+ * @since 2023-06-26 07:25:44
  * @sign DBC37635BD030E726CE0AFE2306C56C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -405,6 +406,7 @@ public class NoticeVO extends Notice {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setTitle(this.getTitle());
 		inst.setType(this.getType());
+		inst.setUserId(this.getUserId());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
 		inst.setIftop(this.getIftop());
@@ -433,6 +435,7 @@ public class NoticeVO extends Notice {
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setUser(this.getUser());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -496,6 +499,7 @@ public class NoticeVO extends Notice {
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(NoticeVOMeta.UPDATE_TIME)));
 			this.setTitle(DataParser.parse(String.class, map.get(NoticeVOMeta.TITLE)));
 			this.setType(DataParser.parse(String.class, map.get(NoticeVOMeta.TYPE)));
+			this.setUserId(DataParser.parse(String.class, map.get(NoticeVOMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(NoticeVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(NoticeVOMeta.CONTENT)));
 			this.setIftop(DataParser.parse(String.class, map.get(NoticeVOMeta.IFTOP)));
@@ -522,6 +526,7 @@ public class NoticeVO extends Notice {
 			this.setSortField(DataParser.parse(String.class, map.get(NoticeVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(NoticeVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(NoticeVOMeta.QUERY_LOGIC)));
+			this.setUser(DataParser.parse(Employee.class, map.get(NoticeVOMeta.USER)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(NoticeVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -529,6 +534,7 @@ public class NoticeVO extends Notice {
 				this.setUpdateTime( (Date)map.get(NoticeVOMeta.UPDATE_TIME));
 				this.setTitle( (String)map.get(NoticeVOMeta.TITLE));
 				this.setType( (String)map.get(NoticeVOMeta.TYPE));
+				this.setUserId( (String)map.get(NoticeVOMeta.USER_ID));
 				this.setVersion( (Integer)map.get(NoticeVOMeta.VERSION));
 				this.setContent( (String)map.get(NoticeVOMeta.CONTENT));
 				this.setIftop( (String)map.get(NoticeVOMeta.IFTOP));
@@ -555,6 +561,7 @@ public class NoticeVO extends Notice {
 				this.setSortField( (String)map.get(NoticeVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(NoticeVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(NoticeVOMeta.QUERY_LOGIC));
+				this.setUser( (Employee)map.get(NoticeVOMeta.USER));
 				this.setSearchValue( (String)map.get(NoticeVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {
@@ -575,6 +582,7 @@ public class NoticeVO extends Notice {
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(NoticeVOMeta.UPDATE_TIME)));
 			this.setTitle(DataParser.parse(String.class, r.getValue(NoticeVOMeta.TITLE)));
 			this.setType(DataParser.parse(String.class, r.getValue(NoticeVOMeta.TYPE)));
+			this.setUserId(DataParser.parse(String.class, r.getValue(NoticeVOMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(NoticeVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(NoticeVOMeta.CONTENT)));
 			this.setIftop(DataParser.parse(String.class, r.getValue(NoticeVOMeta.IFTOP)));
@@ -596,6 +604,7 @@ public class NoticeVO extends Notice {
 				this.setUpdateTime( (Date)r.getValue(NoticeVOMeta.UPDATE_TIME));
 				this.setTitle( (String)r.getValue(NoticeVOMeta.TITLE));
 				this.setType( (String)r.getValue(NoticeVOMeta.TYPE));
+				this.setUserId( (String)r.getValue(NoticeVOMeta.USER_ID));
 				this.setVersion( (Integer)r.getValue(NoticeVOMeta.VERSION));
 				this.setContent( (String)r.getValue(NoticeVOMeta.CONTENT));
 				this.setIftop( (String)r.getValue(NoticeVOMeta.IFTOP));

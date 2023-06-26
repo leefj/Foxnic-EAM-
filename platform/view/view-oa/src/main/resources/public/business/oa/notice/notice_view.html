@@ -123,8 +123,11 @@
                     var lt=Y+M+D+h+m+s;
                     var ut=rdata.createTime;
                     var user=""
-                    var desc="<span>"+user+"</span><span style=\"margin-left:0px\"></span><span>"+ut+"</span>"
-                    var code="<span>No."+rdata.id+"</span>";
+                    if(rdata.user&&rdata.user.name){
+                        user=rdata.user.name;
+                    }
+                    var desc="<div style=\"font-size: 15px;width:100%;text-align: center;margin-top:8px;\"><span>发布人:"+user+"    </span><span style=\"margin-left:20px\"></span><span>发布时间:"+ut+"</span></div>"
+                    // var code="<span>No."+rdata.id+"</span>";
                     $("#desc").html(desc);
                     $("#title").html(rdata.title);
                    // $("#title").html("");

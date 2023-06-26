@@ -1,5 +1,6 @@
 package com.dt.platform.generator.module.oa;
 
+import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.OaTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.oa.NoticeIfTopEnum;
@@ -8,6 +9,7 @@ import com.dt.platform.generator.config.Config;
 import com.dt.platform.oa.page.NoticePageController;
 import com.dt.platform.proxy.oa.NoticeServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
 
 public class NoticeGtr extends BaseCodeGenerator {
@@ -19,6 +21,8 @@ public class NoticeGtr extends BaseCodeGenerator {
 
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
+
+        cfg.getPoClassFile().addSimpleProperty(Employee.class,"user","user","user");
 
         cfg.view().field(OaTables.OA_NOTICE.ID).basic().hidden(true);
         cfg.view().field(OaTables.OA_NOTICE.TITLE).search().fuzzySearch();
@@ -35,6 +39,10 @@ public class NoticeGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().field(OaTables.OA_NOTICE.USER_ID).table().disable(true);
+        cfg.view().field(OaTables.OA_NOTICE.USER_ID).table().fillBy("user","name");
+        cfg.view().field(OaTables.OA_NOTICE.USER_ID).form()
+                .button().chooseEmployee(true);
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);

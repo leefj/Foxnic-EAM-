@@ -88,6 +88,11 @@ public interface PersonServiceProxy {
     public static final String EMPLOYEE_FILE_NOT_QUERY_PAGED_LIST = API_PREFIX + "employee-file-not-query-paged-list";
 
     /**
+     * 查询人员报表数据
+     */
+    public static final String QUERY_REPORT_DATA = API_PREFIX + "query-report-data";
+
+    /**
      * 添加人员信息
      */
     @RequestMapping(PersonServiceProxy.INSERT)

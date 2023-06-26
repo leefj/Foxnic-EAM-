@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
@@ -24,8 +25,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 通知公告
  * <p>通知公告 , 数据表 oa_notice 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-10 13:22:30
- * @sign 337B369AB4CEFAC44CB3C1904919F89A
+ * @since 2023-06-26 07:25:44
+ * @sign C53CEB10340859D348D74D34B045535D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -93,6 +94,12 @@ public class Notice extends Entity {
 	private String visualRange;
 	
 	/**
+	 * 发布人：发布人
+	*/
+	@ApiModelProperty(required = false,value="发布人" , notes = "发布人")
+	private String userId;
+	
+	/**
 	 * 创建人ID：创建人ID
 	*/
 	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
@@ -148,6 +155,12 @@ public class Notice extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * user：user
+	*/
+	@ApiModelProperty(required = false,value="user" , notes = "user")
+	private Employee user;
 	
 	/**
 	 * 类型：类型
@@ -323,6 +336,25 @@ public class Notice extends Entity {
 	*/
 	public Notice setVisualRange(String visualRange) {
 		this.visualRange=visualRange;
+		return this;
+	}
+	
+	/**
+	 * 获得 发布人<br>
+	 * 发布人
+	 * @return 发布人
+	*/
+	public String getUserId() {
+		return userId;
+	}
+	
+	/**
+	 * 设置 发布人
+	 * @param userId 发布人
+	 * @return 当前对象
+	*/
+	public Notice setUserId(String userId) {
+		this.userId=userId;
 		return this;
 	}
 	
@@ -529,6 +561,25 @@ public class Notice extends Entity {
 	}
 	
 	/**
+	 * 获得 user<br>
+	 * user
+	 * @return user
+	*/
+	public Employee getUser() {
+		return user;
+	}
+	
+	/**
+	 * 设置 user
+	 * @param user user
+	 * @return 当前对象
+	*/
+	public Notice setUser(Employee user) {
+		this.user=user;
+		return this;
+	}
+	
+	/**
 	 * 获得 类型<br>
 	 * 类型
 	 * @return 类型
@@ -594,6 +645,7 @@ public class Notice extends Entity {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setTitle(this.getTitle());
 		inst.setType(this.getType());
+		inst.setUserId(this.getUserId());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
 		inst.setIftop(this.getIftop());
@@ -611,6 +663,7 @@ public class Notice extends Entity {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setTypeData(this.getTypeData());
+			inst.setUser(this.getUser());
 		}
 		inst.clearModifies();
 		return inst;
@@ -673,6 +726,7 @@ public class Notice extends Entity {
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(NoticeMeta.UPDATE_TIME)));
 			this.setTitle(DataParser.parse(String.class, map.get(NoticeMeta.TITLE)));
 			this.setType(DataParser.parse(String.class, map.get(NoticeMeta.TYPE)));
+			this.setUserId(DataParser.parse(String.class, map.get(NoticeMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(NoticeMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(NoticeMeta.CONTENT)));
 			this.setIftop(DataParser.parse(String.class, map.get(NoticeMeta.IFTOP)));
@@ -690,12 +744,14 @@ public class Notice extends Entity {
 			this.setStatus(DataParser.parse(String.class, map.get(NoticeMeta.STATUS)));
 			// others
 			this.setTypeData(DataParser.parse(DictItem.class, map.get(NoticeMeta.TYPE_DATA)));
+			this.setUser(DataParser.parse(Employee.class, map.get(NoticeMeta.USER)));
 			return true;
 		} else {
 			try {
 				this.setUpdateTime( (Date)map.get(NoticeMeta.UPDATE_TIME));
 				this.setTitle( (String)map.get(NoticeMeta.TITLE));
 				this.setType( (String)map.get(NoticeMeta.TYPE));
+				this.setUserId( (String)map.get(NoticeMeta.USER_ID));
 				this.setVersion( (Integer)map.get(NoticeMeta.VERSION));
 				this.setContent( (String)map.get(NoticeMeta.CONTENT));
 				this.setIftop( (String)map.get(NoticeMeta.IFTOP));
@@ -713,6 +769,7 @@ public class Notice extends Entity {
 				this.setStatus( (String)map.get(NoticeMeta.STATUS));
 				// others
 				this.setTypeData( (DictItem)map.get(NoticeMeta.TYPE_DATA));
+				this.setUser( (Employee)map.get(NoticeMeta.USER));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -732,6 +789,7 @@ public class Notice extends Entity {
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(NoticeMeta.UPDATE_TIME)));
 			this.setTitle(DataParser.parse(String.class, r.getValue(NoticeMeta.TITLE)));
 			this.setType(DataParser.parse(String.class, r.getValue(NoticeMeta.TYPE)));
+			this.setUserId(DataParser.parse(String.class, r.getValue(NoticeMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(NoticeMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(NoticeMeta.CONTENT)));
 			this.setIftop(DataParser.parse(String.class, r.getValue(NoticeMeta.IFTOP)));
@@ -753,6 +811,7 @@ public class Notice extends Entity {
 				this.setUpdateTime( (Date)r.getValue(NoticeMeta.UPDATE_TIME));
 				this.setTitle( (String)r.getValue(NoticeMeta.TITLE));
 				this.setType( (String)r.getValue(NoticeMeta.TYPE));
+				this.setUserId( (String)r.getValue(NoticeMeta.USER_ID));
 				this.setVersion( (Integer)r.getValue(NoticeMeta.VERSION));
 				this.setContent( (String)r.getValue(NoticeMeta.CONTENT));
 				this.setIftop( (String)r.getValue(NoticeMeta.IFTOP));

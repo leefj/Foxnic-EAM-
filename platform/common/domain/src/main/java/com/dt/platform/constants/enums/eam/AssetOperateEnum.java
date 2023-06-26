@@ -6,6 +6,9 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum AssetOperateEnum implements CodeTextEnum {
 
     //资产
+    RFID_RELEASE("rfid_release" , "RFID发卡"),
+
+    //资产
     EAM_ASSET_INSERT("eam_asset_insert" , "EAM_资产登记"),
     EAM_ASSET_IMPORT("eam_asset_import" , "EAM_资产导入"),
     EAM_BATCH_UPLOAD_ASSET("eam_batch_upload_asset" , "EAM_资产批量导入"),

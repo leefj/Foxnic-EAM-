@@ -55,6 +55,16 @@ public class PersonPageController extends ViewController {
 		return getTemplatePath(prefix,"person_file_not_list");
 	}
 
+	/**
+	 * 人员信息
+	 */
+	@RequestMapping("/person_dashboard.html")
+	public String dashboard(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"person_dashboard");
+	}
+
+
+
 
 	/**
 	 * 人员信息 功能主页面
