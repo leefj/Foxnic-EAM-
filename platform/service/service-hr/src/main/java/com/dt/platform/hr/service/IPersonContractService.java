@@ -1,5 +1,6 @@
 package com.dt.platform.hr.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
@@ -29,6 +30,13 @@ import java.util.Map;
 
 public interface IPersonContractService extends  ISimpleIdService<PersonContract,String> {
 
+
+	/**
+	 * 查询数据
+	 * @param labels 标签
+	 * @return 返回数据
+	 * */
+	Result<JSONObject> queryData(String labels);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

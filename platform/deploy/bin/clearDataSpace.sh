@@ -18,7 +18,7 @@ dbbackup=$base_dir/backup/db
 if [[ -d $dbbackup ]];then
   echo "clear db backup file start,dir:$dbbackup">>$log_file
   cd $dbbackup
-  find ./ -mtime +30 -name "*backup_*.tar.gz" -exec rm -rf {} \;
+  find ./ -mtime +7 -name "*backup_*.tar.gz" -exec rm -rf {} \;
   rec "clear db backup file finish"
 fi
 
@@ -28,7 +28,7 @@ app_log_dir=$app_dir/app/app_logs
 if [[ -d "$app_log_dir" ]];then
   cd $app_log_dir
   rec "clear app log file start,dir:$app_log_dir"
-  find ./ -mtime +30 -name "*.log" -exec rm -rf {} \;
+  find ./ -mtime +15 -name "*.log" -exec rm -rf {} \;
   rec "clear app log file finish"
 
   rec "clear app.jar.log"
@@ -51,7 +51,7 @@ bpm_log_dir=$app_dir/bpm/bpm_logs
 if [[ -d "$bpm_log_dir" ]];then
   cd $bpm_log_dir
   rec "clear app log file start,dir:$bpm_log_dir"
-  find ./ -mtime +30 -name "*.log" -exec rm -rf {} \;
+  find ./ -mtime +15 -name "*.log" -exec rm -rf {} \;
   rec "clear bpm log file finish"
 
   rec "clear bpm.jar.log"
@@ -74,10 +74,10 @@ app_tmp_dir=$app_dir/tmp
 if [[ -d "$app_tmp_dir" ]];then
   cd $app_tmp_dir
   rec "clear tmp log file start,dir:$app_tmp_dir"
-  find ./ -mtime +30 -name "*.tmp" -exec rm -rf {} \;
-  find ./ -mtime +30 -name "*.pdf" -exec rm -rf {} \;
-  find ./ -mtime +30 -name "*.xls" -exec rm -rf {} \;
-  find ./ -mtime +30 -name "*.jpg" -exec rm -rf {} \;
+  find ./ -mtime +7 -name "*.tmp" -exec rm -rf {} \;
+  find ./ -mtime +7 -name "*.pdf" -exec rm -rf {} \;
+  find ./ -mtime +7 -name "*.xls" -exec rm -rf {} \;
+  find ./ -mtime +7 -name "*.jpg" -exec rm -rf {} \;
   rec "clear tmp log file finish"
 fi
 rec "#############clear data space finish ############"

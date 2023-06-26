@@ -21,6 +21,14 @@
     </properties>
     <dependencies>
 
+        <!-- https://mvnrepository.com/artifact/cn.afterturn/easypoi-base -->
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-base</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+
+
         <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>framework</artifactId>

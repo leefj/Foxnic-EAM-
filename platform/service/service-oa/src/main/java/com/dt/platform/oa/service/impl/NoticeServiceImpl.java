@@ -1,6 +1,8 @@
 package com.dt.platform.oa.service.impl;
 
 import javax.annotation.Resource;
+
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -73,6 +75,7 @@ public class NoticeServiceImpl extends SuperService<Notice> implements INoticeSe
 	 */
 	@Override
 	public Result insert(Notice notice,boolean throwsException) {
+		notice.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
 		Result r=super.insert(notice,throwsException);
 		return r;
 	}

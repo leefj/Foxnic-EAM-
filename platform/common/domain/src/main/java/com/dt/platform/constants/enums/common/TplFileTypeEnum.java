@@ -6,6 +6,7 @@ public enum TplFileTypeEnum implements CodeTextEnum {
 
     EAM_BILL_DOCX("eam_bill_docx" , "资产单据模板"),
     EAM_ASSET_EXCEL("eam_asset_excel" , "资产下载模板"),
+    COMMON("common" , "通用模块"),
     OPS("ops" , "运维模块"),
     CONT("cont" , "合同模块"),
     ;

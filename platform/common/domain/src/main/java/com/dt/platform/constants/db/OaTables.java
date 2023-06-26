@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-06-10 15:59:38
+ * @since 2023-06-26 09:47:35
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -326,6 +326,11 @@ public class OaTables {
 		public static final DBField VISUAL_RANGE = new DBField(DBDataType.STRING , "visual_range","visualRange","可见范围","可见范围",false,false,true);
 		
 		/**
+		 * 发布人
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","发布人","发布人",false,false,true);
+		
+		/**
 		 * 创建人ID
 		*/
 		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
@@ -370,7 +375,7 @@ public class OaTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OA_NOTICE() {
-			this.init($NAME,"通知公告" , ID , NUMBER , TITLE , STATUS , TYPE , CONTENT , IFTOP , ATTACH , VISUAL_RANGE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"通知公告" , ID , NUMBER , TITLE , STATUS , TYPE , CONTENT , IFTOP , ATTACH , VISUAL_RANGE , USER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OA_NOTICE $TABLE=new OA_NOTICE();
 	}
@@ -977,6 +982,117 @@ public class OaTables {
 			this.init($NAME,"使用记录" , ID , BUSINESS_CODE , BUSINESS_TYPE , ROOM_ID , STIME , ETIME , INFO , ORIGINATOR_ID , NOTES , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
 		}
 		public static final OA_ROOM_RECORD $TABLE=new OA_ROOM_RECORD();
+	}
+	
+	/**
+	 * 日程安排
+	*/
+	public static class OA_SCHEDULE_PLAN extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_schedule_plan";
+		
+		/**
+		 * ID
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","ID","ID",true,false,false);
+		
+		/**
+		 * 优先级
+		*/
+		public static final DBField RANK = new DBField(DBDataType.STRING , "rank","rank","优先级","优先级",false,false,true);
+		
+		/**
+		 * 开始时间
+		*/
+		public static final DBField F_TIME = new DBField(DBDataType.DATE , "f_time","fTime","开始时间","开始时间",false,false,true);
+		
+		/**
+		 * 结束时间
+		*/
+		public static final DBField T_TIME = new DBField(DBDataType.DATE , "t_time","tTime","结束时间","结束时间",false,false,true);
+		
+		/**
+		 * 提醒
+		*/
+		public static final DBField REMIND = new DBField(DBDataType.STRING , "remind","remind","提醒","提醒",false,false,true);
+		
+		/**
+		 * 提醒时间
+		*/
+		public static final DBField REMIND_TIME = new DBField(DBDataType.DATE , "remind_time","remindTime","提醒时间","提醒时间",false,false,true);
+		
+		/**
+		 * 日程内容
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","日程内容","日程内容",false,false,true);
+		
+		/**
+		 * 详细描述
+		*/
+		public static final DBField DETAIL = new DBField(DBDataType.STRING , "detail","detail","详细描述","详细描述",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 数据版本号
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_SCHEDULE_PLAN() {
+			this.init($NAME,"日程安排" , ID , RANK , F_TIME , T_TIME , REMIND , REMIND_TIME , CONTENT , DETAIL , NOTES , USER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final OA_SCHEDULE_PLAN $TABLE=new OA_SCHEDULE_PLAN();
 	}
 	
 	/**
@@ -2420,5 +2536,283 @@ public class OaTables {
 			this.init($NAME,"车辆数据" , ID , HANDLE_ID , ASSET_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OA_VEHICLE_SELECT_ITEM $TABLE=new OA_VEHICLE_SELECT_ITEM();
+	}
+	
+	/**
+	 * 工作计划
+	*/
+	public static class OA_WORK_PLAN extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_work_plan";
+		
+		/**
+		 * ID
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","ID","ID",true,false,false);
+		
+		/**
+		 * 日期
+		*/
+		public static final DBField RCD = new DBField(DBDataType.DATE , "rcd","rcd","日期","日期",false,false,true);
+		
+		/**
+		 * 日期描述
+		*/
+		public static final DBField WEEK_DESC = new DBField(DBDataType.STRING , "week_desc","weekDesc","日期描述","日期描述",false,false,true);
+		
+		/**
+		 * 工作内容
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","工作内容","工作内容",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 数据版本号
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_WORK_PLAN() {
+			this.init($NAME,"工作计划" , ID , RCD , WEEK_DESC , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final OA_WORK_PLAN $TABLE=new OA_WORK_PLAN();
+	}
+	
+	/**
+	 * 工作记录
+	*/
+	public static class OA_WORK_RCD extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_work_rcd";
+		
+		/**
+		 * ID
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","ID","ID",true,false,false);
+		
+		/**
+		 * 员工
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","员工","员工",false,false,true);
+		
+		/**
+		 * 开始时间
+		*/
+		public static final DBField F_TIME = new DBField(DBDataType.DATE , "f_time","fTime","开始时间","开始时间",false,false,true);
+		
+		/**
+		 * 结束时间
+		*/
+		public static final DBField T_TIME = new DBField(DBDataType.DATE , "t_time","tTime","结束时间","结束时间",false,false,true);
+		
+		/**
+		 * 附件
+		*/
+		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","附件","附件",false,false,true);
+		
+		/**
+		 * 说明
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","说明","说明",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 数据版本号
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_WORK_RCD() {
+			this.init($NAME,"工作记录" , ID , USER_ID , F_TIME , T_TIME , FILE_ID , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final OA_WORK_RCD $TABLE=new OA_WORK_RCD();
+	}
+	
+	/**
+	 * 工作报告
+	*/
+	public static class OA_WORK_RPT extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_work_rpt";
+		
+		/**
+		 * ID
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","ID","ID",true,false,false);
+		
+		/**
+		 * 开始时间
+		*/
+		public static final DBField F_TIME = new DBField(DBDataType.DATE , "f_time","fTime","开始时间","开始时间",false,false,true);
+		
+		/**
+		 * 结束时间
+		*/
+		public static final DBField T_TIME = new DBField(DBDataType.DATE , "t_time","tTime","结束时间","结束时间",false,false,true);
+		
+		/**
+		 * 本周
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","本周","本周",false,false,true);
+		
+		/**
+		 * 下周
+		*/
+		public static final DBField NEXT_CONTENT = new DBField(DBDataType.STRING , "next_content","nextContent","下周","下周",false,false,true);
+		
+		/**
+		 * 其他事项
+		*/
+		public static final DBField OTHER = new DBField(DBDataType.STRING , "other","other","其他事项","其他事项",false,false,true);
+		
+		/**
+		 * 附件
+		*/
+		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","附件","附件",false,false,true);
+		
+		/**
+		 * 报告人
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","报告人","报告人",false,false,true);
+		
+		/**
+		 * 接收人
+		*/
+		public static final DBField RECEIVER_ID = new DBField(DBDataType.STRING , "receiver_id","receiverId","接收人","接收人",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 数据版本号
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_WORK_RPT() {
+			this.init($NAME,"工作报告" , ID , F_TIME , T_TIME , CONTENT , NEXT_CONTENT , OTHER , FILE_ID , USER_ID , RECEIVER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final OA_WORK_RPT $TABLE=new OA_WORK_RPT();
 	}
 }

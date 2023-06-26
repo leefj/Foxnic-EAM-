@@ -3,6 +3,7 @@ package com.dt.platform.domain.oa.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.oa.Notice;
 import java.util.Date;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
 import javax.persistence.Transient;
 
@@ -10,8 +11,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-10 13:22:30
- * @sign 337B369AB4CEFAC44CB3C1904919F89A
+ * @since 2023-06-26 07:25:44
+ * @sign C53CEB10340859D348D74D34B045535D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -108,6 +109,16 @@ public class NoticeMeta {
 	public static final BeanProperty<com.dt.platform.domain.oa.Notice,java.lang.String> VISUAL_RANGE_PROP = new BeanProperty(com.dt.platform.domain.oa.Notice.class ,VISUAL_RANGE, java.lang.String.class, "可见范围", "可见范围", java.lang.String.class, null);
 	
 	/**
+	 * 发布人 , 类型: java.lang.String
+	*/
+	public static final String USER_ID="userId";
+	
+	/**
+	 * 发布人 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.Notice,java.lang.String> USER_ID_PROP = new BeanProperty(com.dt.platform.domain.oa.Notice.class ,USER_ID, java.lang.String.class, "发布人", "发布人", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -198,6 +209,16 @@ public class NoticeMeta {
 	public static final BeanProperty<com.dt.platform.domain.oa.Notice,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.oa.Notice.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * user , 类型: org.github.foxnic.web.domain.hrm.Employee
+	*/
+	public static final String USER="user";
+	
+	/**
+	 * user , 类型: org.github.foxnic.web.domain.hrm.Employee
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.Notice,org.github.foxnic.web.domain.hrm.Employee> USER_PROP = new BeanProperty(com.dt.platform.domain.oa.Notice.class ,USER, org.github.foxnic.web.domain.hrm.Employee.class, "user", "user", org.github.foxnic.web.domain.hrm.Employee.class, null);
+	
+	/**
 	 * 类型 , 类型: org.github.foxnic.web.domain.system.DictItem
 	*/
 	public static final String TYPE_DATA="typeData";
@@ -210,7 +231,7 @@ public class NoticeMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NUMBER , TITLE , STATUS , TYPE , CONTENT , IFTOP , ATTACH , VISUAL_RANGE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TYPE_DATA };
+	public static final String[] $PROPS={ ID , NUMBER , TITLE , STATUS , TYPE , CONTENT , IFTOP , ATTACH , VISUAL_RANGE , USER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , USER , TYPE_DATA };
 	
 	/**
 	 * 代理类
@@ -320,6 +341,17 @@ public class NoticeMeta {
 		}
 		
 		/**
+		 * 设置 发布人
+		 * @param userId 发布人
+		 * @return 当前对象
+		*/
+		public Notice setUserId(String userId) {
+			super.change(USER_ID,super.getUserId(),userId);
+			super.setUserId(userId);
+			return this;
+		}
+		
+		/**
 		 * 设置 创建人ID
 		 * @param createBy 创建人ID
 		 * @return 当前对象
@@ -419,6 +451,17 @@ public class NoticeMeta {
 		}
 		
 		/**
+		 * 设置 user
+		 * @param user user
+		 * @return 当前对象
+		*/
+		public Notice setUser(Employee user) {
+			super.change(USER,super.getUser(),user);
+			super.setUser(user);
+			return this;
+		}
+		
+		/**
 		 * 设置 类型
 		 * @param typeData 类型
 		 * @return 当前对象
@@ -447,6 +490,7 @@ public class NoticeMeta {
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setTitle(this.getTitle());
 			inst.setType(this.getType());
+			inst.setUserId(this.getUserId());
 			inst.setVersion(this.getVersion());
 			inst.setContent(this.getContent());
 			inst.setIftop(this.getIftop());
@@ -464,6 +508,7 @@ public class NoticeMeta {
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setTypeData(this.getTypeData());
+				inst.setUser(this.getUser());
 			}
 			inst.clearModifies();
 			return inst;

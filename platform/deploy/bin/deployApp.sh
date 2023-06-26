@@ -1,10 +1,10 @@
 #!/bin/sh
-modify_date="2023/05/12"
+modify_date="2023/06/22"
 ####################################################################################
 # run:
-#   sh appInstallFull.sh
+#   sh deployApp.sh
 # check list:
-#   test on RedHat 7.9,8.0,8.2 or CentOS
+#   test on redHat 7.9,8.0,8.2 or CentOS
 #   check yum source is ok
 #   check network connect is ok
 # soft list:
@@ -17,11 +17,12 @@ modify_date="2023/05/12"
 #   rm -rf /app/app
 #   ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
 #   ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
-#
+#   ps -ef|grep nginx |grep -v grep |awk '{print $2}'|xargs kill -9
+#   ps -ef|grep redis |grep -v grep |awk '{print $2}'|xargs kill -9
 #                                                                 modify at $modify_date
 #                                                                 by lank
 # action
-#  sh deploy.sh         // app_release_last.tar.gz
+#  sh deploy.sh         // default app_release_last.tar.gz
 #  sh deploy.sh 2.6.0   // app_release_2.6.0.tar.gz
 ####################################################################################
 ################################################################  config
@@ -502,6 +503,11 @@ function installNginx(){
   sh deployNginx.sh
   return 0
 }
+function installRedis(){
+  cd $app_dir/bin
+  sh deployRedis.sh
+  return 0
+}
 ##########################################################################################
 ################################# Install Main Run Start #################################
 #################################################################### download mysql start
@@ -690,6 +696,10 @@ if [[ $db_port_cnt -eq 0 ]];then
 else
 	echo "mysql install success,password:$db_pwd"
 fi
+# start to install nginx
+installNginx
+# start to install redis
+installRedis
 ## install app
 installApp
 ## stop Firewalld
@@ -705,8 +715,6 @@ stopFirewalld
 ## start app
 cd $app_dir
 sh startAll.sh
-# start to install nginx
-installNginx
 # start to add crontab
 addCrontabTask
 ########## setting environment
@@ -778,8 +786,8 @@ exit 0
 rm -rf /app/java
 rm -rf /app/db
 rm -rf /app/app
-rm -rf /app/nginx
 ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
 ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
 ps -ef|grep nginx |grep -v grep |awk '{print $2}'|xargs kill -9
+ps -ef|grep redis |grep -v grep |awk '{print $2}'|xargs kill -9
 

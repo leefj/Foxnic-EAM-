@@ -153,3 +153,6 @@ INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_
 INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_banner2', 'banner2.png', '/image/T001/portal_banner2.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);
 INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_project', 'project.png', '/image/T001/project.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);
 
+-- common
+delete from sys_file where id like 'T001_common%';
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_common_1','common_user_import.xls','/tpl/T001/common_user_import.xls',10000,'application/octet-stream','xls');

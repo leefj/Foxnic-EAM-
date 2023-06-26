@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-06-10 13:25:51
+ * @since 2023-06-18 19:13:24
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -2806,5 +2806,146 @@ public class SysTables {
 			this.init($NAME,"车辆保险公司" , ID , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final SYS_TEST $TABLE=new SYS_TEST();
+	}
+	
+	/**
+	 * 员工导入
+	*/
+	public static class SYS_USER_IMPORT extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_user_import";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 导入批次
+		*/
+		public static final DBField ACTION_CODE = new DBField(DBDataType.STRING , "action_code","actionCode","导入批次","导入批次",false,false,true);
+		
+		/**
+		 * 操作时间
+		*/
+		public static final DBField ACTION_OPER_TIME = new DBField(DBDataType.DATE , "action_oper_time","actionOperTime","操作时间","操作时间",false,false,true);
+		
+		/**
+		 * 导入状态
+		*/
+		public static final DBField ACTION_STATUS = new DBField(DBDataType.STRING , "action_status","actionStatus","导入状态","导入状态",false,false,true);
+		
+		/**
+		 * 导入结果
+		*/
+		public static final DBField ACTION_MSG = new DBField(DBDataType.STRING , "action_msg","actionMsg","导入结果","导入结果",false,false,true);
+		
+		/**
+		 * 姓名
+		*/
+		public static final DBField USER_NAME = new DBField(DBDataType.STRING , "user_name","userName","姓名","姓名",false,false,true);
+		
+		/**
+		 * 工号
+		*/
+		public static final DBField BADGE = new DBField(DBDataType.STRING , "badge","badge","工号","工号",false,false,true);
+		
+		/**
+		 * 性别
+		*/
+		public static final DBField SEX = new DBField(DBDataType.STRING , "sex","sex","性别","性别",false,false,true);
+		
+		/**
+		 * 性别编码
+		*/
+		public static final DBField SEX_CODE = new DBField(DBDataType.STRING , "sex_code","sexCode","性别编码","性别编码",false,false,true);
+		
+		/**
+		 * 手机号
+		*/
+		public static final DBField PHONE = new DBField(DBDataType.STRING , "phone","phone","手机号","手机号",false,false,true);
+		
+		/**
+		 * 组织
+		*/
+		public static final DBField COMPANY_NAME = new DBField(DBDataType.STRING , "company_name","companyName","组织","组织",false,false,true);
+		
+		/**
+		 * 组织ID
+		*/
+		public static final DBField COMPANY_ID = new DBField(DBDataType.STRING , "company_id","companyId","组织ID","组织ID",false,false,true);
+		
+		/**
+		 * 主岗
+		*/
+		public static final DBField MASTER_POST = new DBField(DBDataType.STRING , "master_post","masterPost","主岗","主岗",false,false,true);
+		
+		/**
+		 * 主岗ID
+		*/
+		public static final DBField MASTER_POST_ID = new DBField(DBDataType.STRING , "master_post_id","masterPostId","主岗ID","主岗ID",false,false,true);
+		
+		/**
+		 * 身份证
+		*/
+		public static final DBField ID_CARD = new DBField(DBDataType.STRING , "id_card","idCard","身份证","身份证",false,false,true);
+		
+		/**
+		 * 状态，字典代码：employee_status
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","字典代码：employee_status",false,false,true);
+		
+		/**
+		 * 状态编码
+		*/
+		public static final DBField STATUS_CODE = new DBField(DBDataType.STRING , "status_code","statusCode","状态编码","状态编码",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 数据版本号
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
+		
+		public SYS_USER_IMPORT() {
+			this.init($NAME,"员工导入" , ID , ACTION_CODE , ACTION_OPER_TIME , ACTION_STATUS , ACTION_MSG , USER_NAME , BADGE , SEX , SEX_CODE , PHONE , COMPANY_NAME , COMPANY_ID , MASTER_POST , MASTER_POST_ID , ID_CARD , STATUS , STATUS_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final SYS_USER_IMPORT $TABLE=new SYS_USER_IMPORT();
 	}
 }

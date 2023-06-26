@@ -79,6 +79,12 @@ public interface PersonContractServiceProxy {
      */
     public static final String QUERY_LIST = API_PREFIX + "query-list";
 
+
+    /**
+     * 查询人员合同
+     */
+    public static final String QUERY_DATA = API_PREFIX + "query-data";
+
     /**
      * 分页查询人员合同
      */

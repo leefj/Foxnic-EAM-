@@ -1,6 +1,9 @@
 package com.dt.platform.hr.controller;
 
 import java.util.*;
+
+import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.proxy.hr.PersonServiceProxy;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -378,6 +381,17 @@ public class PersonContractController extends SuperController {
 		return result;
 	}
 
+
+	/**
+	 * 获取人员报表数据
+	 */
+	@ApiOperation(value = "获取人员报表数据")
+	@ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+	@SentinelResource(value = PersonContractServiceProxy.QUERY_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+	@PostMapping(PersonContractServiceProxy.QUERY_DATA)
+	public Result<JSONObject> queryData(String labels) {
+		return personContractService.queryData(labels);
+	}
 
 
 

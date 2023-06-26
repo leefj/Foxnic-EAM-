@@ -2,8 +2,12 @@ package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
+import com.github.foxnic.dao.data.Rcd;
+import com.github.foxnic.dao.data.RcdSet;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.proxy.hrm.EmployeeServiceProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +54,9 @@ import java.util.Map;
 @Service("HrPersonService")
 
 public class PersonServiceImpl extends SuperService<Person> implements IPersonService {
+
+
+
 
 	/**
 	 * 注入DAO对象
@@ -106,6 +113,73 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 		}
 		Result r=super.insert(person,throwsException);
 		return r;
+	}
+
+
+
+	@Override
+	public Result<JSONObject> queryReportData(String labels) {
+
+		Result<JSONObject> res=new Result<>();
+		JSONObject data=new JSONObject();
+		String[] labelArr=labels.split(",");
+		for(int i=0;i<labelArr.length;i++){
+			String label=labelArr[i];
+			if("info_data".equals(label)){
+				String sql="select \n" +
+						"(select count(1) person_cnt from hr_person where deleted=0)person_cnt,\n" +
+						"(select count(1) person_cnt from hr_person where deleted=0 and employee_identity_status in ('practice','ontrial')) ontrial_paractice_cnt,\n" +
+						"(select count(1) person_cnt from hr_person where deleted=0 and employee_status='non_employee')non_employee_cnt,\n" +
+						"(select count(1) person_cnt from hr_person where deleted=0 and employee_status='online')online_cnt,\n" +
+						"(select count(1) person_cnt from hr_person where deleted=0 and employee_status='offline')offline_cnt,\n" +
+						"(select count(1) person_cnt from hr_person where deleted=0 and (employee_id is null or employee_id=''))non_employee_setting_cnt";
+				data.put(label,dao.queryRecord(sql).toJSONObject());
+			}else if("status_dis_data".equals(label)){
+				String sql="select employee_status name_col ,count(1) value from hr_person where deleted=0 group by employee_status";
+				RcdSet rs=dao.query(sql);
+				JSONArray arr=new JSONArray();
+				for(int j=0;j<rs.size();j++){
+					JSONObject obj=rs.getRcd(i).toJSONObject();
+					if("online".equals(obj.getString("nameCol"))){
+						obj.put("name","在职");
+					}else if("offline".equals(obj.getString("nameCol"))){
+						obj.put("name","离职");
+					}else if("non_employee".equals(obj.getString("nameCol"))){
+						obj.put("name","非员工");
+					}else {
+						obj.put("name",obj.getString("name_col"));
+					}
+					arr.add(obj);
+				}
+				data.put(label,arr);
+			}else if("education_dis_data".equals(label)){
+				String sql="select education_code ,count(1) value from hr_person where deleted=0 group by education_code order by 2 desc";
+				RcdSet rs=dao.query(sql);
+				JSONArray arr=new JSONArray();
+				for(int j=0;j<rs.size();j++){
+					JSONObject obj=rs.getRcd(i).toJSONObject();
+					String educationCode=obj.getString("educationCode");
+					if(StringUtil.isBlank(educationCode)){
+						obj.put("name","未设置");
+					}else{
+						String tsql="select * from sys_dict_item where dict_code='hr_education' and code=?";
+						Rcd rcd=dao.queryRecord(tsql,educationCode);
+						if(rcd==null){
+							obj.put("name",educationCode);
+						}else{
+							obj.put("name",rcd.getString("label"));
+						}
+					}
+					arr.add(obj);
+				}
+				data.put(label,arr);
+			}
+
+		}
+		res.success();
+		res.data(data);
+
+		return res;
 	}
 
 	/**
