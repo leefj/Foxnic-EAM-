@@ -114,6 +114,7 @@ public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRf
 
 		rfidLabel.setStatus(RfidStatusEnum.SUCCESS.code());
 		rfidLabel.setOperTime(new Date());
+		rfidLabel.setOperResult("操作成功");
 		rfidLabel.setOperUserId(SessionUser.getCurrent().getActivatedEmployeeId());
 		Result r=super.update(rfidLabel,SaveMode.NOT_NULL_FIELDS,false);
 		if(r.isSuccess()){
@@ -124,7 +125,7 @@ public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRf
 			//记录
 			AssetProcessRecord record=new AssetProcessRecord();
 			record.setAssetId(rfidLabel.getAssetId());
-			record.setContent("RFID发卡,卡标签:"+rfidLabel.getLabel());
+			record.setContent("RFID发卡,RFID卡标签:"+rfidLabel.getLabel());
 			record.setProcessUserId(SessionUser.getCurrent().getActivatedEmployeeId());
 			record.setProcessdTime(new Date());
 			record.setBusinessCode(rfidLabel.getId());

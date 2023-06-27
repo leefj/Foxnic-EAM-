@@ -1,7 +1,7 @@
 /**
  * RFID标签 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-23 20:46:13
+ * @since 2023-06-27 20:56:28
  */
 
 
@@ -93,7 +93,6 @@ function ListPage() {
 					,{ field: 'operUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('操作人员') , templet: function (d) { return templet('operUserId',fox.getProperty(d,["operUser","name"],0,'','operUserId'),d);} }
 					,{ field: 'operResult', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('发卡结果') , templet: function (d) { return templet('operResult',d.operResult,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -336,9 +335,6 @@ function ListPage() {
 					break;
 				case 'tool-select-data':
 					window.pageExt.list.select_data && window.pageExt.list.select_data(selected,obj);
-					break;
-				case 'tool-import-data':
-					window.pageExt.list.import_data && window.pageExt.list.import_data(selected,obj);
 					break;
 				case 'tool-release-data':
 					window.pageExt.list.release_data && window.pageExt.list.release_data(selected,obj);

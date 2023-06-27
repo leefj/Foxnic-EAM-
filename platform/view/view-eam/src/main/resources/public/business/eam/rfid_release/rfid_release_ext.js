@@ -99,7 +99,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-
+            for (var i = 0; i < data.length; i++) {
+                //如果审批中或审批通过的不允许编辑
+                if(data[i].status=="wait") {
+                    console.log("none")
+                }else if(data[i].status=="success"){
+                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                }else if(data[i].status=="failed"){
+                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                }
+            }
         },
         /**
          * 单行数据刷新后调用
@@ -174,8 +184,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         detail_data:function (data){
             console.log('detail_data',data);
-            var queryString="?releaseId="+data.id;
-
+            var queryString="?releaseId="+data.id+"&status="+data.status;
             admin.putTempData('eam-rfid-label-list-data', data);
             var area=admin.getTempData('eam-rfid-label-list-area');
             var height= (area && area.height) ? area.height : ($(window).height()*0.6);

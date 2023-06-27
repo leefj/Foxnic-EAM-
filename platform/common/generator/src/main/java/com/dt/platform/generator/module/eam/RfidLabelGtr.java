@@ -23,6 +23,7 @@ public class RfidLabelGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
         cfg.view().field(EAMTables.EAM_RFID_LABEL.ID).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_RFID_LABEL.CREATE_TIME).basic().hidden(true);
         cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","资产","资产");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"operUser","operUser","operUser");
 
@@ -50,9 +51,9 @@ public class RfidLabelGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_RFID_LABEL.STATUS).form().validate().required().form().radioBox().enumType(RfidStatusEnum.class).defaultIndex(0);
         cfg.view().field(EAMTables.EAM_RFID_LABEL.RELEASE_ID).form().table().disable(true);
-
+        cfg.view().field(EAMTables.EAM_RFID_LABEL.CREATE_TIME).form().table().disable(true);
         cfg.view().list().addToolButton("选择资产","select_data","select_data","eam_rfid_release:select_data");
-        cfg.view().list().addToolButton("导入","import_data","import_data","eam_rfid_release:import_data");
+       // cfg.view().list().addToolButton("导入","import_data","import_data","eam_rfid_release:import_data");
         cfg.view().list().addToolButton("发卡","release_data","release_data","eam_rfid_release:release_data");
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
@@ -60,6 +61,7 @@ public class RfidLabelGtr extends BaseCodeGenerator {
                 .form().validate().required().form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(AssetMeta.ID).textField(AssetMeta.NAME).fillWith(RfidLabelMeta.ASSET).muliti(false);
 
+        cfg.view().list().excel(true,true);
         cfg.view().list().addJsVariable("RELEASE_ID",   "[[${releaseId}]]","releaseId");
         cfg.view().list().addJsVariable("STATUS",   "[[${status}]]","status");
 

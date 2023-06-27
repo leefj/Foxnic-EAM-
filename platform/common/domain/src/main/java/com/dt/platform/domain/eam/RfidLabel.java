@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * RFID标签
  * <p>RFID标签 , 数据表 eam_rfid_label 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-23 20:46:11
+ * @since 2023-06-27 20:56:26
  * @sign 62AF274B4AC9C1017836DE9E84792DB4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -41,43 +41,43 @@ public class RfidLabel extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "724716005309284352")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "726172380388392960")
 	private String id;
 	
 	/**
 	 * RFID发卡：RFID发卡
 	*/
-	@ApiModelProperty(required = false,value="RFID发卡" , notes = "RFID发卡")
+	@ApiModelProperty(required = false,value="RFID发卡" , notes = "RFID发卡" , example = "1687868972000")
 	private String releaseId;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "wait")
 	private String status;
 	
 	/**
 	 * 资产：资产
 	*/
-	@ApiModelProperty(required = false,value="资产" , notes = "资产" , example = "714558755877945344")
+	@ApiModelProperty(required = false,value="资产" , notes = "资产" , example = "705002737598726144")
 	private String assetId;
 	
 	/**
 	 * 资产编码：资产编码
 	*/
-	@ApiModelProperty(required = false,value="资产编码" , notes = "资产编码")
+	@ApiModelProperty(required = false,value="资产编码" , notes = "资产编码" , example = "AS16233")
 	private String assetCode;
 	
 	/**
 	 * 标签：标签
 	*/
-	@ApiModelProperty(required = false,value="标签" , notes = "标签" , example = "12")
+	@ApiModelProperty(required = false,value="标签" , notes = "标签")
 	private String label;
 	
 	/**
 	 * 发卡时间：发卡时间
 	*/
-	@ApiModelProperty(required = false,value="发卡时间" , notes = "发卡时间" , example = "2023-05-20 12:00:00")
+	@ApiModelProperty(required = false,value="发卡时间" , notes = "发卡时间")
 	private Date operTime;
 	
 	/**
@@ -95,19 +95,19 @@ public class RfidLabel extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "1212")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-23 08:02:40")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
 	private Date createTime;
 	
 	/**

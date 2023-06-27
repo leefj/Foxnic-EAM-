@@ -20,6 +20,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-eam/eam-rfid-label";
 
+    var timestamp = Date.parse(new Date());
+
 
     //列表页的扩展
     var list={
@@ -31,16 +33,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 console.log("none")
             }else{
                 //隐藏按钮
-                var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                var operHtml=document.getElementById("toolbarTemplate").innerHTML;
                 operHtml=operHtml.replace(/lay-event="tool-select-data"/i, "style=\"display:none\"");
                 operHtml=operHtml.replace(/lay-event="tool-import-data"/i, "style=\"display:none\"");
                 operHtml=operHtml.replace(/lay-event="tool-release-data"/i, "style=\"display:none\"");
-                document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+                operHtml=operHtml.replace(/lay-event="batch-del"/i, "style=\"display:none\"");
+                document.getElementById("toolbarTemplate").innerHTML=operHtml;
             }
 
-            var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
-            operHtml=operHtml.replace(/lay-event="tool-select-data"/i, "style=\"display:none\"");
-            document.getElementById("tableOperationTemplate").innerHTML=operHtml;
             console.log("list:beforeInit");
         },
         /**
@@ -217,6 +217,34 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     }
                 }, {delayLoading: 1000, elms: [btn]});
             });
+        },
+        select_data:function (selected,it){
+            console.log("assetSelectList",selected,it);
+            var billdata={};
+            var formAction="create";
+            billdata.searchContent={};
+            billdata.assetSelectedCode=RELEASE_ID;
+            billdata.assetBusinessType="rfid_release"
+            billdata.action=formAction;
+            billdata.ownerCode="asset";
+            var ASSET_SELECTED_CODE=RELEASE_ID;
+            admin.putTempData('eam-asset-select-action', "create",true);
+            admin.putTempData('eam-asset-select-data'+ASSET_SELECTED_CODE, billdata,true);
+            var formTop=2
+            var index=admin.popupCenter({
+                title: "选择资产",
+                resize: false,
+                offset: [formTop,null],
+                area: ["80%","90%"],
+                type: 2,
+                id:"eam-asset-select-data-win",
+                content: '/business/eam/asset/asset_select_list.html?assetSelectedCode='+ASSET_SELECTED_CODE,
+                finish: function () {
+                    console.log("select form finish");
+                    window.module.refreshTableData();
+                }
+            });
+            admin.putTempData('eam-asset-select-data-popup-index', index);
         },
         /**
          * 末尾执行
