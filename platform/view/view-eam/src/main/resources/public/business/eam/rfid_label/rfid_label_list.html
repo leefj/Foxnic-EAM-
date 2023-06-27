@@ -2,7 +2,7 @@
 /**
  * RFID标签 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-23 20:46:12
+ * @since 2023-06-27 20:56:27
  */
  -->
  <!DOCTYPE html>
@@ -96,7 +96,6 @@
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('eam_rfid_label:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除','','cmp:table.button')}">删除</span></button>
         <button id="select-data"  th:if="${perm.checkAuth('eam_rfid_release:select_data')}"class="layui-btn icon-btn layui-btn-sm  select_data " lay-event="tool-select-data"><span th:text="${lang.translate('选择资产','','cmp:table.button')}">选择资产</span></button>
-        <button id="import-data"  th:if="${perm.checkAuth('eam_rfid_release:import_data')}"class="layui-btn icon-btn layui-btn-sm  import_data " lay-event="tool-import-data"><span th:text="${lang.translate('导入','','cmp:table.button')}">导入</span></button>
         <button id="release-data"  th:if="${perm.checkAuth('eam_rfid_release:release_data')}"class="layui-btn icon-btn layui-btn-sm  release_data " lay-event="tool-release-data"><span th:text="${lang.translate('发卡','','cmp:table.button')}">发卡</span></button>
     </div>
 </script>

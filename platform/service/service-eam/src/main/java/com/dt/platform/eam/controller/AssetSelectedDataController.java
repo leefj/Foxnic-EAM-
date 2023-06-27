@@ -276,8 +276,26 @@ public class AssetSelectedDataController extends SuperController {
                     if(rs==null){
                         Insert ins=new Insert("eam_c_cust_inspect_tpl_asset");
                         ins.set("id",IDGenerator.getSnowflakeIdString());
-                        ins.setIf("owner_id",assetSelectedCode);
                         ins.setIf("asset_id",ids.get(i));
+                        ins.setIf("status","wait");
+                        ins.setIf("asset_code","");
+                        ins.setIf("release_id",assetSelectedCode);
+                        assetItemService.dao().execute(ins);
+                    }
+                }
+                return ErrorDesc.success();
+
+            }else if(AssetOperateEnum.RFID_RELEASE.code().equals(assetBusinessType)){
+                for(int i=0;i<ids.size();i++){
+                    Rcd rs= assetItemService.dao().queryRecord("select a.* from eam_rfid_label a where deleted=0 and release_id=? and asset_id=?",assetSelectedCode,ids.get(i));
+                    if(rs==null){
+                        Rcd assetRs= assetItemService.dao().queryRecord("select * from eam_asset where id=?",ids.get(i));
+                        Insert ins=new Insert("eam_rfid_label");
+                        ins.set("id",IDGenerator.getSnowflakeIdString());
+                        ins.setIf("status","wait");
+                        ins.setIf("asset_id",ids.get(i));
+                        ins.setIf("release_id",assetSelectedCode);
+                        ins.setIf("asset_code",assetRs.getString("asset_code"));
                         assetItemService.dao().execute(ins);
                     }
                 }

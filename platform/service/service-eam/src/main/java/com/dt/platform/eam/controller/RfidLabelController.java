@@ -224,6 +224,7 @@ public class RfidLabelController extends SuperController {
     public Result<RfidLabel> getById(String id) {
         Result<RfidLabel> result = new Result<>();
         RfidLabel rfidLabel = rfidLabelService.getById(id);
+        rfidLabelService.dao().fill(rfidLabel).with(RfidLabelMeta.ASSET).execute();
         result.success(true).data(rfidLabel);
         return result;
     }
@@ -319,6 +320,7 @@ public class RfidLabelController extends SuperController {
     public Result<PagedList<RfidLabel>> queryPagedList(RfidLabelVO sample) {
         Result<PagedList<RfidLabel>> result = new Result<>();
         PagedList<RfidLabel> list = rfidLabelService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        rfidLabelService.dao().fill(list).with(RfidLabelMeta.ASSET).execute();
         result.success(true).data(list);
         return result;
     }
@@ -375,4 +377,5 @@ public class RfidLabelController extends SuperController {
             return ErrorDesc.failure().message("导入失败").data(errors);
         }
     }
+
 }

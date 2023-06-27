@@ -1407,6 +1407,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 //		}
 
 
+
+
 		String tabalias=this.tableAlias();
 		System.out.println("tableAlias:"+tabalias);
 		this.tableAlias();
@@ -1417,6 +1419,10 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			if(!StringUtil.isBlank(assetSelectData)) {
 				queryCondition.andIf(tabalias+".id not in (select asset_id from eam_asset_selected_data where deleted=0 and asset_selected_code=?)" ,assetSelectData);
 			}
+		}
+
+		if(AssetOperateEnum.RFID_RELEASE.code().equals(businessType)){
+			queryCondition.andIf(tabalias+".id not in (select asset_id from eam_rfid_label where deleted=0 and release_id=?)" ,assetSelectData);
 		}
 
 		if(AssetOwnerCodeEnum.ASSET_CONSUMABLES.code().equals(sample.getOwnerCode())){
