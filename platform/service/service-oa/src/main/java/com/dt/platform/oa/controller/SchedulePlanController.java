@@ -69,7 +69,8 @@ public class SchedulePlanController extends SuperController {
 		@ApiImplicitParam(name = SchedulePlanVOMeta.CONTENT, value = "日程内容", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = SchedulePlanVOMeta.DETAIL, value = "详细描述", required = false, dataTypeClass = String.class, example = "kjn"),
 		@ApiImplicitParam(name = SchedulePlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = SchedulePlanVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SchedulePlanVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SchedulePlanVOMeta.FULL_DAY, value = "全天", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -172,7 +173,8 @@ public class SchedulePlanController extends SuperController {
 		@ApiImplicitParam(name = SchedulePlanVOMeta.CONTENT, value = "日程内容", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = SchedulePlanVOMeta.DETAIL, value = "详细描述", required = false, dataTypeClass = String.class, example = "kjn"),
 		@ApiImplicitParam(name = SchedulePlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = SchedulePlanVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SchedulePlanVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SchedulePlanVOMeta.FULL_DAY, value = "全天", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { SchedulePlanVOMeta.PAGE_INDEX, SchedulePlanVOMeta.PAGE_SIZE, SchedulePlanVOMeta.SEARCH_FIELD, SchedulePlanVOMeta.FUZZY_FIELD, SchedulePlanVOMeta.SEARCH_VALUE, SchedulePlanVOMeta.DIRTY_FIELDS, SchedulePlanVOMeta.SORT_FIELD, SchedulePlanVOMeta.SORT_TYPE, SchedulePlanVOMeta.DATA_ORIGIN, SchedulePlanVOMeta.QUERY_LOGIC, SchedulePlanVOMeta.REQUEST_ACTION, SchedulePlanVOMeta.IDS })
@@ -197,7 +199,8 @@ public class SchedulePlanController extends SuperController {
 		@ApiImplicitParam(name = SchedulePlanVOMeta.CONTENT, value = "日程内容", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = SchedulePlanVOMeta.DETAIL, value = "详细描述", required = false, dataTypeClass = String.class, example = "kjn"),
 		@ApiImplicitParam(name = SchedulePlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = SchedulePlanVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SchedulePlanVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SchedulePlanVOMeta.FULL_DAY, value = "全天", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { SchedulePlanVOMeta.PAGE_INDEX, SchedulePlanVOMeta.PAGE_SIZE, SchedulePlanVOMeta.SEARCH_FIELD, SchedulePlanVOMeta.FUZZY_FIELD, SchedulePlanVOMeta.SEARCH_VALUE, SchedulePlanVOMeta.DIRTY_FIELDS, SchedulePlanVOMeta.SORT_FIELD, SchedulePlanVOMeta.SORT_TYPE, SchedulePlanVOMeta.DATA_ORIGIN, SchedulePlanVOMeta.QUERY_LOGIC, SchedulePlanVOMeta.REQUEST_ACTION, SchedulePlanVOMeta.IDS })
@@ -259,7 +262,8 @@ public class SchedulePlanController extends SuperController {
 		@ApiImplicitParam(name = SchedulePlanVOMeta.CONTENT, value = "日程内容", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = SchedulePlanVOMeta.DETAIL, value = "详细描述", required = false, dataTypeClass = String.class, example = "kjn"),
 		@ApiImplicitParam(name = SchedulePlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = SchedulePlanVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SchedulePlanVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SchedulePlanVOMeta.FULL_DAY, value = "全天", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { SchedulePlanVOMeta.PAGE_INDEX, SchedulePlanVOMeta.PAGE_SIZE })
     @SentinelResource(value = SchedulePlanServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -285,7 +289,8 @@ public class SchedulePlanController extends SuperController {
 		@ApiImplicitParam(name = SchedulePlanVOMeta.CONTENT, value = "日程内容", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = SchedulePlanVOMeta.DETAIL, value = "详细描述", required = false, dataTypeClass = String.class, example = "kjn"),
 		@ApiImplicitParam(name = SchedulePlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = SchedulePlanVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SchedulePlanVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SchedulePlanVOMeta.FULL_DAY, value = "全天", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = SchedulePlanServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

@@ -3,6 +3,7 @@ package com.dt.platform.relation.modules;
  
 import com.dt.platform.constants.db.OaTables;
 
+import com.dt.platform.domain.oa.MeetingRoomBookRcd;
 import com.dt.platform.domain.oa.SchedulePlan;
 import com.dt.platform.domain.oa.WorkRpt;
 import com.dt.platform.domain.oa.meta.*;
@@ -20,9 +21,30 @@ public class OaRelationManager extends RelationManager {
 		this.setupSchedulePlan();
 		this.setupNotice();
 		this.setupWorkRpt();
+		this.setupMeetingRoom();
+		this.setupMeetingRoomBookRcd();
+
+	}
+	public void setupMeetingRoomBookRcd() {
+		this.property(MeetingRoomBookRcdMeta.MEETING_ROOM_PROP)
+				.using(OaTables.OA_MEETING_ROOM_BOOK_RCD.ROOM_ID).join(OaTables.OA_MEETING_ROOM.ID);
+
+		this.property(MeetingRoomBookRcdMeta.BOOKER_PROP)
+				.using(OaTables.OA_MEETING_ROOM_BOOK_RCD.BOOKER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(MeetingRoomBookRcdMeta.USER_PROP)
+				.using(OaTables.OA_MEETING_ROOM_BOOK_RCD.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(MeetingRoomBookRcdMeta.ORG_PROP)
+				.using(OaTables.OA_MEETING_ROOM_BOOK_RCD.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
 
 	}
 
+	public void setupMeetingRoom() {
+		this.property(MeetingRoomMeta.MEETING_ROOM_POSITION_PROP)
+				.using(OaTables.OA_MEETING_ROOM.POSITION_ID).join(OaTables.OA_MEETING_ROOM_POSITION.ID);
+
+	}
 	public void setupWorkRpt() {
 		this.property(WorkRptMeta.RECEIVER_PROP)
 				.using(OaTables.OA_WORK_RPT.RECEIVER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);

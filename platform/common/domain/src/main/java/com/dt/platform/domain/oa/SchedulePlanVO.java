@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 日程安排VO类型
  * <p>日程安排 , 数据表 oa_schedule_plan 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-26 06:47:16
+ * @since 2023-06-28 10:18:39
  * @sign 0054B2B526F29526416B28222C83F22F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -405,6 +405,7 @@ public class SchedulePlanVO extends SchedulePlan {
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setTTime(this.getTTime());
+		inst.setFullDay(this.getFullDay());
 		inst.setUserId(this.getUserId());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
@@ -497,6 +498,7 @@ public class SchedulePlanVO extends SchedulePlan {
 			this.setNotes(DataParser.parse(String.class, map.get(SchedulePlanVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(SchedulePlanVOMeta.UPDATE_TIME)));
 			this.setTTime(DataParser.parse(Date.class, map.get(SchedulePlanVOMeta.T_TIME)));
+			this.setFullDay(DataParser.parse(String.class, map.get(SchedulePlanVOMeta.FULL_DAY)));
 			this.setUserId(DataParser.parse(String.class, map.get(SchedulePlanVOMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(SchedulePlanVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(SchedulePlanVOMeta.CONTENT)));
@@ -531,6 +533,7 @@ public class SchedulePlanVO extends SchedulePlan {
 				this.setNotes( (String)map.get(SchedulePlanVOMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(SchedulePlanVOMeta.UPDATE_TIME));
 				this.setTTime( (Date)map.get(SchedulePlanVOMeta.T_TIME));
+				this.setFullDay( (String)map.get(SchedulePlanVOMeta.FULL_DAY));
 				this.setUserId( (String)map.get(SchedulePlanVOMeta.USER_ID));
 				this.setVersion( (Integer)map.get(SchedulePlanVOMeta.VERSION));
 				this.setContent( (String)map.get(SchedulePlanVOMeta.CONTENT));
@@ -578,6 +581,7 @@ public class SchedulePlanVO extends SchedulePlan {
 			this.setNotes(DataParser.parse(String.class, r.getValue(SchedulePlanVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(SchedulePlanVOMeta.UPDATE_TIME)));
 			this.setTTime(DataParser.parse(Date.class, r.getValue(SchedulePlanVOMeta.T_TIME)));
+			this.setFullDay(DataParser.parse(String.class, r.getValue(SchedulePlanVOMeta.FULL_DAY)));
 			this.setUserId(DataParser.parse(String.class, r.getValue(SchedulePlanVOMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(SchedulePlanVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(SchedulePlanVOMeta.CONTENT)));
@@ -600,6 +604,7 @@ public class SchedulePlanVO extends SchedulePlan {
 				this.setNotes( (String)r.getValue(SchedulePlanVOMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(SchedulePlanVOMeta.UPDATE_TIME));
 				this.setTTime( (Date)r.getValue(SchedulePlanVOMeta.T_TIME));
+				this.setFullDay( (String)r.getValue(SchedulePlanVOMeta.FULL_DAY));
 				this.setUserId( (String)r.getValue(SchedulePlanVOMeta.USER_ID));
 				this.setVersion( (Integer)r.getValue(SchedulePlanVOMeta.VERSION));
 				this.setContent( (String)r.getValue(SchedulePlanVOMeta.CONTENT));

@@ -2,7 +2,7 @@
 /**
  * 日程安排 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-26 06:47:17
+ * @since 2023-06-28 10:18:41
  */
  -->
  <!DOCTYPE html>
@@ -51,6 +51,7 @@
                     <!-- 提醒 , remind ,typeName=select_box, isHideInSearch=true -->
                     <!-- 提醒时间 , remindTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 日程内容 , content ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 全天 , fullDay ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 详细描述 , detail ,typeName=text_area, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 用户 , userId ,typeName=text_input, isHideInSearch=true -->
@@ -107,6 +108,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_RANK_DATA = [[${enum.toArray('com.dt.platform.constants.enums.oa.ScheduleRankEnum')}]];
+    var RADIO_FULLDAY_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusYNEnum')}]];
     var AUTH_PREFIX="oa_schedule_plan";
 
 

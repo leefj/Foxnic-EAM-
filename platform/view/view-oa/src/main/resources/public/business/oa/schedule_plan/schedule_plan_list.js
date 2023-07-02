@@ -1,7 +1,7 @@
 /**
  * 日程安排 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-26 06:47:18
+ * @since 2023-06-28 10:18:41
  */
 
 
@@ -90,6 +90,7 @@ function ListPage() {
 					,{ field: 'tTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('tTime',fox.dateFormat(d.tTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'remindTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('提醒时间') ,templet: function (d) { return templet('remindTime',fox.dateFormat(d.remindTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('日程内容') , templet: function (d) { return templet('content',d.content,d);}  }
+					,{ field: 'fullDay', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('全天'), templet:function (d){ return templet('fullDay',fox.getEnumText(RADIO_FULLDAY_DATA,d.fullDay,'','fullDay'),d);}}
 					,{ field: 'detail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('详细描述') , templet: function (d) { return templet('detail',d.detail,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }

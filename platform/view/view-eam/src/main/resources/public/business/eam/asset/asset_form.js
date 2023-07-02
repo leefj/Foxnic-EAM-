@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-04 15:07:39
+ * @since 2023-06-28 21:32:33
  */
 
 function FormPage() {
@@ -487,6 +487,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#purchaseDate',
+			type:"date",
 			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -495,6 +496,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#productionDate',
+			type:"date",
 			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -503,6 +505,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#registerDate',
+			type:"date",
 			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -537,6 +540,7 @@ function FormPage() {
 	    });
 		laydate.render({
 			elem: '#lastVerificationDate',
+			type:"date",
 			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -675,6 +679,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#maintenanceStartDate',
+			type:"date",
 			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -683,6 +688,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#maintenanceEndDate',
+			type:"date",
 			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -827,6 +833,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#depreciationOperTime',
+			type:"date",
 			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -835,6 +842,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#entryTime',
+			type:"date",
 			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -1033,7 +1041,7 @@ function FormPage() {
 
 
         //禁用编辑
-		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+		if(action=="view" || (action=="edit" && disableModify) || (action=="create" && disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")
@@ -1157,6 +1165,7 @@ function FormPage() {
 				inputEl:$("#ownCompanyId"),
 				buttonEl:$(this),
 				single:true,
+				autoWidth:false,
 				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
 				root: "",
 				targetType:"com",
@@ -1173,6 +1182,7 @@ function FormPage() {
 				inputEl:$("#managerId"),
 				buttonEl:$(this),
 				single:true,
+				autoWidth:false,
 				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
 				root: "",
 				targetType:"emp",
@@ -1189,6 +1199,7 @@ function FormPage() {
 				inputEl:$("#useOrganizationId"),
 				buttonEl:$(this),
 				single:true,
+				autoWidth:false,
 				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
 				root: "",
 				targetType:"org",
@@ -1205,6 +1216,7 @@ function FormPage() {
 				inputEl:$("#useUserId"),
 				buttonEl:$(this),
 				single:true,
+				autoWidth:false,
 				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
 				root: "",
 				targetType:"emp",

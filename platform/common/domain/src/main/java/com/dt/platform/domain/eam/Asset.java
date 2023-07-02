@@ -34,7 +34,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-04 15:07:37
+ * @since 2023-06-28 21:32:31
  * @sign 54639C0C17C8FD6DF6028C644C00FBB8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -267,7 +267,7 @@ public class Asset extends Entity {
 	/**
 	 * RFID标签：RFID标签
 	*/
-	@ApiModelProperty(required = false,value="RFID标签" , notes = "RFID标签")
+	@ApiModelProperty(required = false,value="RFID标签" , notes = "RFID标签" , example = "1212")
 	private String rfid;
 	
 	/**

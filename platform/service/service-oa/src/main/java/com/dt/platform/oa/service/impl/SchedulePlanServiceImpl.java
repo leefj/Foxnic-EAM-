@@ -3,6 +3,7 @@ package com.dt.platform.oa.service.impl;
 import javax.annotation.Resource;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.dao.data.RcdSet;
 import org.github.foxnic.web.session.SessionUser;
@@ -87,7 +88,7 @@ public class SchedulePlanServiceImpl extends SuperService<SchedulePlan> implemen
 	public Result<JSONArray> queryPlan(String startStr, String endStr) {
 		String userId=SessionUser.getCurrent().getActivatedEmployeeId();
 		Result<JSONArray> res=new Result<>();
-		String sql="select id,content title,rank,date_format(f_time,'%Y-%m-%d %H:%i:%s')start,date_format(t_time,'%Y-%m-%d %H:%i:%s')end from oa_schedule_plan where user_id=? and deleted=0 ";
+		String sql="select full_day,id,content title,rank,date_format(f_time,'%Y-%m-%d %H:%i:%s')start,date_format(t_time,'%Y-%m-%d %H:%i:%s')end from oa_schedule_plan where user_id=? and deleted=0 ";
 		if(!StringUtil.isBlank(startStr)){
 			sql=sql+" and f_time>=date_format('"+startStr+"','%Y-%m-%d %H:%i:%s')";
 		}
@@ -96,7 +97,14 @@ public class SchedulePlanServiceImpl extends SuperService<SchedulePlan> implemen
 		}
 		RcdSet rs=dao.query(sql,userId);
 		JSONArray data=new JSONArray();
-		data=rs.toJSONArrayWithJSONObject();
+		for(int i=0;i<rs.size();i++){
+			JSONObject obj=rs.getRcd(i).toJSONObject();
+			System.out.println("rs.getRcd(i).getString(\"full_day\")"+rs.getRcd(i).getString("full_day"));
+			if("1".equals(rs.getRcd(i).getString("full_day"))){
+				obj.put("allDay",true);
+			}
+			data.add(obj);
+		}
 		res.data(data);
 		res.success(true);
 		return res;
