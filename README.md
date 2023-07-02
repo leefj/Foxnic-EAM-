@@ -22,6 +22,16 @@
 #### 3、不推荐新手用IDEA打开本项目,本项目非标准项目，没有学习意义
 #### 4、二开前先看文档、文档很重要、文档很重要
 
+#### 最新EAM编译后的包下载(为开发同步版本，并非发布版本)
+- 1、存储过程:[下载SQL](http://foxnicweb.com/docs/chapters/base/1.1/NextVal.zip)
+- 2、SQL文件:(每日更新):http://eam-demo.rainbooow.com/upload/sql.tar.gz   ( **必须使用 source 命令导入！！！** )
+
+#### 开发环境(特别注意，严格按照以下要求)
+- 开发工具:IntelliJ IDEA 2020.2以上(不要使用eclipse)
+- 数据库:Mysql 5.7.32(必须为Mysql5.7.X)
+- Redis:5.0.12(可选)
+- Java:JDK 1.8.200 (小版本200以上,但仅支持1.8)
+
 #### 系统及相关文档下载地址
 - 链接: https://pan.baidu.com/s/1d6Yvszugq2fdGNEsW8ijmQ 提取码: lm6i
 - <img width="200"  src="https://images.gitee.com/uploads/images/2022/0621/084431_f977a14d_448530.png" />
@@ -41,15 +51,7 @@
 - 3、知乎视频资料集合 https://www.zhihu.com/people/leefj/zvideos
 - 4、知乎文档集合 https://www.zhihu.com/people/leefj/posts
 
-#### 最新EAM编译后的包下载(为开发同步版本，并非发布版本)
-- 1、存储过程:[下载SQL](http://foxnicweb.com/docs/chapters/base/1.1/NextVal.zip)
-- 2、SQL文件:(每日更新):http://eam-demo.rainbooow.com/upload/sql.tar.gz   ( **必须使用 source 命令导入！！！** )
 
-#### 开发环境(特别注意，严格按照以下要求)
-- 开发工具:IntelliJ IDEA 2020.2以上(不要使用eclipse)
-- 数据库:Mysql 5.7.32(必须为Mysql5.7.X)
-- Redis:5.0.12(可选)
-- Java:JDK 1.8.200 (小版本200以上,但仅支持1.8)
 
 #### 技术栈
 - 安全框架:Spring Security 5.3.4
@@ -75,14 +77,12 @@
 - 1、EAM系统产品开源免费(协议:GPLv3)，并且将持续提供免费的社区技术支持，个人或企业内部可自由的接入和使用，但禁止任何单位或个人修改软件后再次发行或出售的行为
 - 2、EAM系统源代码已开源，软件介质以社区版形式供免费使用,在未授权情况下，禁止修改涉及版权信息的相关代码和名称
 
-
-
 ### 方案一 一键安装Foxnic-EAM
-- 自动安装Mysql,Java,EAM应用，Mysql从官方下载，因此整体安装速度会慢些
-- 安装环境前先确认：
-- 操作系统支持:RedHat 7.9 、RedHat 8.0、RedHat 8.2 较为干净的系统。yum源配置需正确(unzip,wget,zip等包需要安装)，公有云的默认yum配置一般没问题
-- 数据库端口3306，密码root_pwd
-- 访问地址为:http://ip:8089
+- 自动安装Mysql,Java,EAM应用，Mysql从官方下载，因此整体安装速度会慢
+- 安装环境前先确认
+- 操作系统支持:RedHat 7.9-8.2 较为干净的系统，同时支持CentOS、麒麟、欧拉。yum源配置需正确(unzip,wget,zip等包需要安装)，公有云的默认yum配置一般没问题
+- 应用访问地址为:http://ip-address:8089
+- 数据库:端口3308，密码root_pwd
 - 安装目录:/app
 ```
 #安装命令
