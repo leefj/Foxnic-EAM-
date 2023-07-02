@@ -1,0 +1,222 @@
+<!--
+/**
+ * 日程安排 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2023-06-24 17:45:59
+ */
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+    <title th:text="${lang.translate('日程日历')}">日程日历</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+
+    <link rel="stylesheet" href="/extmodule/fullcalendar5/main.min.css" type="text/css" th:href="'/extmodule/fullcalendar5/main.min.css?'+${cacheKey}">
+
+
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body>
+
+
+
+
+<div class="layui-card">
+
+    <div class="layui-card-body" style="">
+
+        <div class="search-bar" style="">
+            <div class="search-input-rows" style="opacity: 0">
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('会议室')}" class="search-label roomId-label">会议室</span><span class="search-colon">:</span></div>
+                        <div id="roomId" th:data="${'/service-oa/oa-meeting-room/query-paged-list?status=available'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 按钮区域 -->
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
+                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+            </div>
+        </div>
+
+        <div id="table-area" style="margin-top: 42px ">
+            <div id='calendarE' style="background-color: white;padding-top:15px;"></div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div style="margin-top:10px;padding-top:10px"></div>
+<script type="text/javascript" src="/extmodule/axios/axios.min.js" th:src="'/extmodule/axios/axios.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/extmodule/moment/moment.min.js" th:src="'/extmodule/moment/moment.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/extmodule/fullcalendar5/main.min.js" th:src="'/extmodule/fullcalendar5/main.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<!-- 表格工具栏 -->
+<script type="text/html" id="toolbarTemplate">
+    <div class="layui-btn-container">
+    </div>
+</script>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="tableOperationTemplate">
+
+    <style>
+        body {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 1100px;
+            margin: 0 auto;
+            height:90%  ;
+        }
+
+
+    </style>
+
+</script>
+
+
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var CHECK_RANK_DATA = [[${enum.toArray('com.dt.platform.constants.enums.oa.ScheduleRankEnum')}]];
+    var AUTH_PREFIX="oa_meeting_room_book_db";
+
+    var XM_SELECT=null;
+    var calendar=null;
+    window.document.addEventListener('DOMContentLoaded', function() {
+
+        var calendarEl = document.getElementById('calendarE');
+        console.log("calendarEl",calendarEl);
+        var today=moment(new Date).format("YYYY-MM-DD");
+        console.log("today",today);
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            },
+            // height:'95%',
+            initialDate: today,
+            navLinks: true, // can click day/week names to navigate views
+            nowIndicator: true,
+            weekNumbers: true,
+            eventLimit: true,
+            // weekNumberCalculation: 'ISO',
+            editable: false,
+            selectable: true,
+            locale:'zh-cn',
+            week: {
+                // GB/T 7408-1994《数据元和交换格式·信息交换·日期和时间表示法》与ISO 8601:1988等效
+                dow: 1, // Monday is the first day of the week.
+                doy: 4, // The week that contains Jan 4th is the first week of the year.
+            },
+            buttonText: {
+                prev: '上月',
+                next: '下月',
+                today: '今天',
+                month: '月',
+                week: '周',
+                day: '日',
+                list: '日程',
+            },
+            weekText: '周',
+            allDayText: '全天',
+            moreLinkText: function(n) {
+                return '另外 ' + n + ' 个'
+            },
+            noEventsText: '没有事件显示',
+            dayMaxEvents: true, // allow "more" link when too many events
+            events: function (info,callback){
+                console.log("info",info);
+                var s="";
+                var e="";
+
+                if(info.start){
+                    s=moment(info.start).format("YYYY-MM-DD HH:mm:ss");
+                }
+                if(info.end){
+                    moment(info.end).format("YYYY-MM-DD HH:mm:ss");
+                }
+                console.log("s",s);
+                console.log("e",e);
+                var ps={};
+                ps.startStr=s;
+                ps.endStr=e;
+
+                var dataSelect=$("#roomId")
+                console.log("dataSelect",XM_SELECT);
+                if(XM_SELECT){
+                    var roomE=XM_SELECT.get("#roomId",true);
+                    var ids=roomE.getValue("");
+                    if(ids.length>0){
+                       ps.roomId=ids[0].value;
+                    }
+                    console.log("ids",ids);
+                }
+                axios.post('/service-oa/oa-meeting-room-book-rcd/query-data',ps).
+                then( function(res) {
+                    console.log("res",res);
+                    if(res.data.success){
+                        var tEvent=res.data.data;
+                        console.log("tEvent",tEvent);
+                        callback(tEvent);
+                    }
+                }).catch(err=>{
+                    console.log(err);
+                })
+            }
+        });
+
+        calendar.render();
+    });
+
+    // 搜索按钮点击事件
+    $('#search-button').click(function () {
+        console.log('1111',$('#calendar'));
+        console.log('1111',calendar);
+        calendar.refetchEvents()
+    });
+
+</script>
+
+<script th:src="'/business/oa/meeting_room_book_rcd/dashboard_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/oa/meeting_room_book_rcd/dashboard.js?'+${cacheKey}"></script>
+
+</body>
+</html>

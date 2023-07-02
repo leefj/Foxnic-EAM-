@@ -82,7 +82,7 @@ function ListPage() {
                 elem: '#data-table',
                 toolbar: '#toolbarTemplate',
                 defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-                url: moduleURL +'/query-paged-list',
+                url: moduleURL +'/my-query-paged-list',
                 height: 'full-'+(120),
                 limit: 50,
                 where: ps,

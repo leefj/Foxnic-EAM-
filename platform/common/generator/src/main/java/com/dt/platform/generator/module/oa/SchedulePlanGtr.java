@@ -3,6 +3,7 @@ package com.dt.platform.generator.module.oa;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.OaTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.constants.enums.common.StatusYNEnum;
 import com.dt.platform.constants.enums.oa.NoticeIfTopEnum;
 import com.dt.platform.constants.enums.oa.NoticeTypeEnum;
 import com.dt.platform.constants.enums.oa.ScheduleRankEnum;
@@ -52,6 +53,7 @@ public class SchedulePlanGtr extends BaseCodeGenerator {
         cfg.view().field(OaTables.OA_SCHEDULE_PLAN.F_TIME).form().validate().required().form().dateInput().type(DatePickerType.datetime);
         cfg.view().field(OaTables.OA_SCHEDULE_PLAN.T_TIME).form().validate().required().form().dateInput().type(DatePickerType.datetime);
         cfg.view().field(OaTables.OA_SCHEDULE_PLAN.REMIND_TIME).form().validate().required().form().dateInput().type(DatePickerType.datetime);
+        cfg.view().field(OaTables.OA_SCHEDULE_PLAN.FULL_DAY).form().validate().required().form().radioBox().enumType(StatusYNEnum.class).defaultIndex(1);
 
         cfg.view().field(OaTables.OA_SCHEDULE_PLAN.RANK).form().validate().required().form().radioBox().enumType(ScheduleRankEnum.class).defaultIndex(0);
         cfg.view().field(OaTables.OA_SCHEDULE_PLAN.CONTENT).form().validate().required();
@@ -81,13 +83,12 @@ public class SchedulePlanGtr extends BaseCodeGenerator {
         );
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        OaTables.OA_SCHEDULE_PLAN.FULL_DAY,
                         OaTables.OA_SCHEDULE_PLAN.REMIND,
                         OaTables.OA_SCHEDULE_PLAN.DETAIL,
                         OaTables.OA_SCHEDULE_PLAN.NOTES,
                 }
         );
-
-
 
 
         //文件生成覆盖模式

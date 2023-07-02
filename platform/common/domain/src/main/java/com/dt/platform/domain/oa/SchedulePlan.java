@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 日程安排
  * <p>日程安排 , 数据表 oa_schedule_plan 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-26 06:47:16
- * @sign 63DDF9775CC1BC19895B6DB05C9A4AD3
+ * @since 2023-06-28 10:18:39
+ * @sign E55809E077C220E6827CD45BCA006366
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -79,6 +79,12 @@ public class SchedulePlan extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="日程内容" , notes = "日程内容" , example = "1212")
 	private String content;
+	
+	/**
+	 * 全天：全天
+	*/
+	@ApiModelProperty(required = false,value="全天" , notes = "全天")
+	private String fullDay;
 	
 	/**
 	 * 详细描述：详细描述
@@ -291,6 +297,25 @@ public class SchedulePlan extends Entity {
 	*/
 	public SchedulePlan setContent(String content) {
 		this.content=content;
+		return this;
+	}
+	
+	/**
+	 * 获得 全天<br>
+	 * 全天
+	 * @return 全天
+	*/
+	public String getFullDay() {
+		return fullDay;
+	}
+	
+	/**
+	 * 设置 全天
+	 * @param fullDay 全天
+	 * @return 当前对象
+	*/
+	public SchedulePlan setFullDay(String fullDay) {
+		this.fullDay=fullDay;
 		return this;
 	}
 	
@@ -619,6 +644,7 @@ public class SchedulePlan extends Entity {
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setTTime(this.getTTime());
+		inst.setFullDay(this.getFullDay());
 		inst.setUserId(this.getUserId());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
@@ -699,6 +725,7 @@ public class SchedulePlan extends Entity {
 			this.setNotes(DataParser.parse(String.class, map.get(SchedulePlanMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(SchedulePlanMeta.UPDATE_TIME)));
 			this.setTTime(DataParser.parse(Date.class, map.get(SchedulePlanMeta.T_TIME)));
+			this.setFullDay(DataParser.parse(String.class, map.get(SchedulePlanMeta.FULL_DAY)));
 			this.setUserId(DataParser.parse(String.class, map.get(SchedulePlanMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(SchedulePlanMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(SchedulePlanMeta.CONTENT)));
@@ -723,6 +750,7 @@ public class SchedulePlan extends Entity {
 				this.setNotes( (String)map.get(SchedulePlanMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(SchedulePlanMeta.UPDATE_TIME));
 				this.setTTime( (Date)map.get(SchedulePlanMeta.T_TIME));
+				this.setFullDay( (String)map.get(SchedulePlanMeta.FULL_DAY));
 				this.setUserId( (String)map.get(SchedulePlanMeta.USER_ID));
 				this.setVersion( (Integer)map.get(SchedulePlanMeta.VERSION));
 				this.setContent( (String)map.get(SchedulePlanMeta.CONTENT));
@@ -760,6 +788,7 @@ public class SchedulePlan extends Entity {
 			this.setNotes(DataParser.parse(String.class, r.getValue(SchedulePlanMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(SchedulePlanMeta.UPDATE_TIME)));
 			this.setTTime(DataParser.parse(Date.class, r.getValue(SchedulePlanMeta.T_TIME)));
+			this.setFullDay(DataParser.parse(String.class, r.getValue(SchedulePlanMeta.FULL_DAY)));
 			this.setUserId(DataParser.parse(String.class, r.getValue(SchedulePlanMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(SchedulePlanMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(SchedulePlanMeta.CONTENT)));
@@ -782,6 +811,7 @@ public class SchedulePlan extends Entity {
 				this.setNotes( (String)r.getValue(SchedulePlanMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(SchedulePlanMeta.UPDATE_TIME));
 				this.setTTime( (Date)r.getValue(SchedulePlanMeta.T_TIME));
+				this.setFullDay( (String)r.getValue(SchedulePlanMeta.FULL_DAY));
 				this.setUserId( (String)r.getValue(SchedulePlanMeta.USER_ID));
 				this.setVersion( (Integer)r.getValue(SchedulePlanMeta.VERSION));
 				this.setContent( (String)r.getValue(SchedulePlanMeta.CONTENT));

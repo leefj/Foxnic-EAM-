@@ -1,7 +1,7 @@
 /**
  * 日程安排 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-26 06:47:19
+ * @since 2023-06-28 10:18:42
  */
 
 function FormPage() {
@@ -183,6 +183,13 @@ function FormPage() {
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("remindTime",value, date, endDate);
 			}
+		});
+		form.on('radio(fullDay)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=fullDay]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("fullDay",data,checked);
 		});
 	}
 

@@ -292,7 +292,16 @@ public interface IAssetService extends ISuperService<Asset> {
 	 * @return 查询结果
 	 * */
 	Asset queryEntity(Asset sample);
-	
+
+	/**
+	 * 分页查询实体集
+	 * @param sample  查询条件
+	 * @param pageSize 分页条数
+	 * @param pageIndex 页码
+	 * @return 查询结果
+	 * */
+	PagedList<Asset> myQueryPagedList(Asset sample,int pageSize,int pageIndex);
+
 	/**
 	 * 分页查询实体集
 	 * @param sample  查询条件

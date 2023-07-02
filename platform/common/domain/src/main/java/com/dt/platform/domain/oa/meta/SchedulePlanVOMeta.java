@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-26 06:47:16
+ * @since 2023-06-28 10:18:39
  * @sign 0054B2B526F29526416B28222C83F22F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -210,6 +210,16 @@ public class SchedulePlanVOMeta extends SchedulePlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.oa.SchedulePlanVO,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.oa.SchedulePlanVO.class ,CONTENT, java.lang.String.class, "日程内容", "日程内容", java.lang.String.class, null);
 	
 	/**
+	 * 全天 , 类型: java.lang.String
+	*/
+	public static final String FULL_DAY="fullDay";
+	
+	/**
+	 * 全天 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.SchedulePlanVO,java.lang.String> FULL_DAY_PROP = new BeanProperty(com.dt.platform.domain.oa.SchedulePlanVO.class ,FULL_DAY, java.lang.String.class, "全天", "全天", java.lang.String.class, null);
+	
+	/**
 	 * 详细描述 , 类型: java.lang.String
 	*/
 	public static final String DETAIL="detail";
@@ -342,7 +352,7 @@ public class SchedulePlanVOMeta extends SchedulePlanMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , RANK , F_TIME , T_TIME , REMIND , REMIND_TIME , CONTENT , DETAIL , NOTES , USER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SCHEDULE_REMIND };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , RANK , F_TIME , T_TIME , REMIND , REMIND_TIME , CONTENT , FULL_DAY , DETAIL , NOTES , USER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SCHEDULE_REMIND };
 	
 	/**
 	 * 代理类
@@ -562,6 +572,17 @@ public class SchedulePlanVOMeta extends SchedulePlanMeta {
 		}
 		
 		/**
+		 * 设置 全天
+		 * @param fullDay 全天
+		 * @return 当前对象
+		*/
+		public SchedulePlan setFullDay(String fullDay) {
+			super.change(FULL_DAY,super.getFullDay(),fullDay);
+			super.setFullDay(fullDay);
+			return this;
+		}
+		
+		/**
 		 * 设置 详细描述
 		 * @param detail 详细描述
 		 * @return 当前对象
@@ -722,6 +743,7 @@ public class SchedulePlanVOMeta extends SchedulePlanMeta {
 			inst.setNotes(this.getNotes());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setTTime(this.getTTime());
+			inst.setFullDay(this.getFullDay());
 			inst.setUserId(this.getUserId());
 			inst.setVersion(this.getVersion());
 			inst.setContent(this.getContent());
