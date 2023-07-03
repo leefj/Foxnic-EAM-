@@ -22,4 +22,6 @@ public interface IAssetAlarmService extends ISuperService<Asset> {
 
     public JSONArray queryAssetSerialNumberUnique();
 
+    public JSONArray queryAssetRfidRepeat();
+
 }

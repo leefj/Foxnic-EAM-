@@ -94,11 +94,19 @@ public class AssetAlarmPageController extends ViewController {
 
 
 	/**
-	 * 资产维保
+	 * 资产序列唯一
 	 */
 	@RequestMapping("/asset_sn_unique_list.html")
 	public String assetSnUniqueList(Model model,HttpServletRequest request , String id) {
 		return prefix+"/asset_sn_unique_list";
+	}
+
+	/**
+	 * 资产RFID是否重复
+	 */
+	@RequestMapping("/rfid_repeat.html")
+	public String rfidRepeat(Model model,HttpServletRequest request , String id) {
+		return prefix+"/rfid_repeat";
 	}
 
 
