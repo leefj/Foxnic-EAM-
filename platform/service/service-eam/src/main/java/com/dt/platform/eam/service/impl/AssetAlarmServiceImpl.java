@@ -131,5 +131,19 @@ public class AssetAlarmServiceImpl extends SuperService<Asset> implements IAsset
         return rs.toJSONArrayWithJSONObject();
     }
 
+    @Override
+    public JSONArray queryAssetRfidRepeat() {
+        String tenantId= SessionUser.getCurrent().getActivatedTenantId();
+        JSONArray data=new JSONArray();
+        String sql="\n" +
+                "select * from (\n" +
+                "select rfid,count(1) cnt from \n" +
+                "(   select ifnull(i.rfid,'')rfid ,i.id,i.status,i.owner_code ,i.tenant_id,i.deleted from eam_asset i) t\n" +
+                " where deleted=0  and owner_code='asset' and tenant_id=? group by rfid\n" +
+                ") t2 where  trim(rfid) <>'' and  cnt>1";
+        RcdSet rs=dao.query(sql,tenantId);
+        return rs.toJSONArrayWithJSONObject();
+    }
+
 
 }

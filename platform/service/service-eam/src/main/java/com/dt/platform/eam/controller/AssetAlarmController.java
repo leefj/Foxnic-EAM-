@@ -76,5 +76,15 @@ public class AssetAlarmController extends SuperController {
         return result;
     }
 
+    @ApiOperation(value = "RFID标签是否重复")
+    @ApiOperationSupport(order=4)
+    @SentinelResource(value = AssetAlarmServiceProxy.QUERY_ASSET_RFID_REPEAT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+    @PostMapping(AssetAlarmServiceProxy.QUERY_ASSET_RFID_REPEAT)
+    public  Result<JSONArray> queryAssetRfidRepeat(Asset sample) {
+        Result<JSONArray> result=new Result<>();
+        result.success(true).data(assetAlarmService.queryAssetRfidRepeat());
+        return result;
+    }
+
 
 }
