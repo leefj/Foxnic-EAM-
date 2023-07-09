@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_MAINTAIN_PROJECT;
@@ -9,22 +10,28 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import org.github.foxnic.web.domain.system.DictItem;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.MaintainProjectMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 保养项目
+ * <p>保养项目 , 数据表 eam_maintain_project 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-08 06:19:52
- * @sign 2FEEFB0579133A813A96349FD92BC56B
+ * @since 2023-07-07 18:15:14
+ * @sign E651BB049433A39E7BCBF8E9F6046C25
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_maintain_project")
+@ApiModel(description = "保养项目 ; 保养项目 , 数据表 eam_maintain_project 的PO类型")
 public class MaintainProject extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -35,43 +42,49 @@ public class MaintainProject extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "698150690282799104")
 	private String id;
 	
 	/**
 	 * 项目编号：项目编号
 	*/
-	@ApiModelProperty(required = false,value="项目编号" , notes = "项目编号")
+	@ApiModelProperty(required = false,value="项目编号" , notes = "项目编号" , example = "MPJ202304111204372")
 	private String code;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
 	
 	/**
 	 * 项目名称：项目名称
 	*/
-	@ApiModelProperty(required = false,value="项目名称" , notes = "项目名称")
+	@ApiModelProperty(required = false,value="项目名称" , notes = "项目名称" , example = "保养项目1")
 	private String name;
+	
+	/**
+	 * 保养内容：保养内容
+	*/
+	@ApiModelProperty(required = false,value="保养内容" , notes = "保养内容")
+	private String content;
 	
 	/**
 	 * 保养类型：保养类型
 	*/
-	@ApiModelProperty(required = false,value="保养类型" , notes = "保养类型")
+	@ApiModelProperty(required = false,value="保养类型" , notes = "保养类型" , example = "default")
 	private String maintainType;
 	
 	/**
-	 * 标准工时(小时)：标准工时(小时)
+	 * 标准工时：小时)
 	*/
-	@ApiModelProperty(required = false,value="标准工时(小时)" , notes = "标准工时(小时)")
+	@ApiModelProperty(required = false,value="标准工时" , notes = "小时)" , example = "1.00")
 	private BigDecimal baseCost;
 	
 	/**
 	 * 保养周期：保养周期
 	*/
-	@ApiModelProperty(required = false,value="保养周期" , notes = "保养周期")
+	@ApiModelProperty(required = false,value="保养周期" , notes = "保养周期" , example = "698150684763095040")
 	private String actionCycleId;
 	
 	/**
@@ -83,39 +96,40 @@ public class MaintainProject extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "保养项目111")
 	private String notes;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-11 12:41:36")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-06 05:28:19")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -133,7 +147,7 @@ public class MaintainProject extends Entity {
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -145,7 +159,7 @@ public class MaintainProject extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
@@ -237,6 +251,25 @@ public class MaintainProject extends Entity {
 	}
 	
 	/**
+	 * 获得 保养内容<br>
+	 * 保养内容
+	 * @return 保养内容
+	*/
+	public String getContent() {
+		return content;
+	}
+	
+	/**
+	 * 设置 保养内容
+	 * @param content 保养内容
+	 * @return 当前对象
+	*/
+	public MaintainProject setContent(String content) {
+		this.content=content;
+		return this;
+	}
+	
+	/**
 	 * 获得 保养类型<br>
 	 * 保养类型
 	 * @return 保养类型
@@ -256,17 +289,17 @@ public class MaintainProject extends Entity {
 	}
 	
 	/**
-	 * 获得 标准工时(小时)<br>
-	 * 标准工时(小时)
-	 * @return 标准工时(小时)
+	 * 获得 标准工时<br>
+	 * 小时)
+	 * @return 标准工时
 	*/
 	public BigDecimal getBaseCost() {
 		return baseCost;
 	}
 	
 	/**
-	 * 设置 标准工时(小时)
-	 * @param baseCost 标准工时(小时)
+	 * 设置 标准工时
+	 * @param baseCost 标准工时
 	 * @return 当前对象
 	*/
 	public MaintainProject setBaseCost(BigDecimal baseCost) {
@@ -434,6 +467,7 @@ public class MaintainProject extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public MaintainProject setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -619,6 +653,57 @@ public class MaintainProject extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MaintainProject clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public MaintainProject duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.MaintainProjectMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.MaintainProjectMeta.$$proxy$$();
+		inst.setBaseCost(this.getBaseCost());
+		inst.setCode(this.getCode());
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setActionCycleId(this.getActionCycleId());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setVersion(this.getVersion());
+		inst.setContent(this.getContent());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setMaintainType(this.getMaintainType());
+		inst.setAttachId(this.getAttachId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setActionCrontab(this.getActionCrontab());
+			inst.setMaintainTypeDict(this.getMaintainTypeDict());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MaintainProject clone(boolean deep) {
+		return EntityContext.clone(MaintainProject.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 MaintainProject
 	 * @param maintainProjectMap 包含实体信息的 Map 对象
 	 * @return MaintainProject , 转换好的的 MaintainProject 对象
@@ -626,7 +711,9 @@ public class MaintainProject extends Entity {
 	@Transient
 	public static MaintainProject createFrom(Map<String,Object> maintainProjectMap) {
 		if(maintainProjectMap==null) return null;
-		MaintainProject po = EntityContext.create(MaintainProject.class, maintainProjectMap);
+		MaintainProject po = create();
+		EntityContext.copyProperties(po,maintainProjectMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -638,7 +725,9 @@ public class MaintainProject extends Entity {
 	@Transient
 	public static MaintainProject createFrom(Object pojo) {
 		if(pojo==null) return null;
-		MaintainProject po = EntityContext.create(MaintainProject.class,pojo);
+		MaintainProject po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -648,6 +737,130 @@ public class MaintainProject extends Entity {
 	*/
 	@Transient
 	public static MaintainProject create() {
-		return EntityContext.create(MaintainProject.class);
+		return new com.dt.platform.domain.eam.meta.MaintainProjectMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setBaseCost(DataParser.parse(BigDecimal.class, map.get(MaintainProjectMeta.BASE_COST)));
+			this.setCode(DataParser.parse(String.class, map.get(MaintainProjectMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, map.get(MaintainProjectMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(MaintainProjectMeta.UPDATE_TIME)));
+			this.setActionCycleId(DataParser.parse(String.class, map.get(MaintainProjectMeta.ACTION_CYCLE_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainProjectMeta.SELECTED_CODE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(MaintainProjectMeta.VERSION)));
+			this.setContent(DataParser.parse(String.class, map.get(MaintainProjectMeta.CONTENT)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(MaintainProjectMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(MaintainProjectMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(MaintainProjectMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(MaintainProjectMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(MaintainProjectMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(MaintainProjectMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(MaintainProjectMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(MaintainProjectMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(MaintainProjectMeta.ID)));
+			this.setMaintainType(DataParser.parse(String.class, map.get(MaintainProjectMeta.MAINTAIN_TYPE)));
+			this.setAttachId(DataParser.parse(String.class, map.get(MaintainProjectMeta.ATTACH_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(MaintainProjectMeta.STATUS)));
+			// others
+			this.setActionCrontab(DataParser.parse(ActionCrontab.class, map.get(MaintainProjectMeta.ACTION_CRONTAB)));
+			this.setMaintainTypeDict(DataParser.parse(DictItem.class, map.get(MaintainProjectMeta.MAINTAIN_TYPE_DICT)));
+			return true;
+		} else {
+			try {
+				this.setBaseCost( (BigDecimal)map.get(MaintainProjectMeta.BASE_COST));
+				this.setCode( (String)map.get(MaintainProjectMeta.CODE));
+				this.setNotes( (String)map.get(MaintainProjectMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(MaintainProjectMeta.UPDATE_TIME));
+				this.setActionCycleId( (String)map.get(MaintainProjectMeta.ACTION_CYCLE_ID));
+				this.setSelectedCode( (String)map.get(MaintainProjectMeta.SELECTED_CODE));
+				this.setVersion( (Integer)map.get(MaintainProjectMeta.VERSION));
+				this.setContent( (String)map.get(MaintainProjectMeta.CONTENT));
+				this.setCreateBy( (String)map.get(MaintainProjectMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(MaintainProjectMeta.DELETED));
+				this.setCreateTime( (Date)map.get(MaintainProjectMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(MaintainProjectMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(MaintainProjectMeta.DELETE_TIME));
+				this.setName( (String)map.get(MaintainProjectMeta.NAME));
+				this.setTenantId( (String)map.get(MaintainProjectMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(MaintainProjectMeta.DELETE_BY));
+				this.setId( (String)map.get(MaintainProjectMeta.ID));
+				this.setMaintainType( (String)map.get(MaintainProjectMeta.MAINTAIN_TYPE));
+				this.setAttachId( (String)map.get(MaintainProjectMeta.ATTACH_ID));
+				this.setStatus( (String)map.get(MaintainProjectMeta.STATUS));
+				// others
+				this.setActionCrontab( (ActionCrontab)map.get(MaintainProjectMeta.ACTION_CRONTAB));
+				this.setMaintainTypeDict( (DictItem)map.get(MaintainProjectMeta.MAINTAIN_TYPE_DICT));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setBaseCost(DataParser.parse(BigDecimal.class, r.getValue(MaintainProjectMeta.BASE_COST)));
+			this.setCode(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MaintainProjectMeta.UPDATE_TIME)));
+			this.setActionCycleId(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.ACTION_CYCLE_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.SELECTED_CODE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(MaintainProjectMeta.VERSION)));
+			this.setContent(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.CONTENT)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MaintainProjectMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MaintainProjectMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MaintainProjectMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.ID)));
+			this.setMaintainType(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.MAINTAIN_TYPE)));
+			this.setAttachId(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.ATTACH_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(MaintainProjectMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setBaseCost( (BigDecimal)r.getValue(MaintainProjectMeta.BASE_COST));
+				this.setCode( (String)r.getValue(MaintainProjectMeta.CODE));
+				this.setNotes( (String)r.getValue(MaintainProjectMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(MaintainProjectMeta.UPDATE_TIME));
+				this.setActionCycleId( (String)r.getValue(MaintainProjectMeta.ACTION_CYCLE_ID));
+				this.setSelectedCode( (String)r.getValue(MaintainProjectMeta.SELECTED_CODE));
+				this.setVersion( (Integer)r.getValue(MaintainProjectMeta.VERSION));
+				this.setContent( (String)r.getValue(MaintainProjectMeta.CONTENT));
+				this.setCreateBy( (String)r.getValue(MaintainProjectMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(MaintainProjectMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(MaintainProjectMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(MaintainProjectMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(MaintainProjectMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(MaintainProjectMeta.NAME));
+				this.setTenantId( (String)r.getValue(MaintainProjectMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(MaintainProjectMeta.DELETE_BY));
+				this.setId( (String)r.getValue(MaintainProjectMeta.ID));
+				this.setMaintainType( (String)r.getValue(MaintainProjectMeta.MAINTAIN_TYPE));
+				this.setAttachId( (String)r.getValue(MaintainProjectMeta.ATTACH_ID));
+				this.setStatus( (String)r.getValue(MaintainProjectMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -38,30 +38,12 @@
             <div class="search-input-rows" style="opacity: 0">
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 任务 , taskId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 状态 , status ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 巡检状态 , pointStatus ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 操作时间 , operTime ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 巡检结果 , content ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 编码 , pointCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('编码')}" class="search-label pointCode-label">编码</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('点位编码')}" class="search-label pointCode-label">点位编码</span><span class="search-colon">:</span></div>
                         <input id="pointCode" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
-                    <!-- 巡检内容 , pointContent ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 巡检路线 , pointRouteId ,typeName=select_box, isHideInSearch=true -->
-                    <!-- RFID , pointRfid ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 位置 , pointPos ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 位置经度 , pointPosLongitude ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 位置纬度 , pointPosLatitude ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 备注 , pointNotes ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 排序 , sort ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 名称 , pointName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label pointName-label">名称</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('点位编码')}" class="search-label pointName-label">点位编码</span><span class="search-colon">:</span></div>
                         <input id="pointName" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
@@ -92,17 +74,18 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-<!--        <button th:if="${perm.checkAuth('eam_inspection_task_point:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>-->
-<!--   -->
     </div>
 </script>
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
 
-    <button th:if="${perm.checkAuth('eam_inspection_task_point:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
-    <button th:if="${perm.checkAnyAuth('eam_inspection_task_point:update','eam_inspection_task_point:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('执行')}">执行</span></button>
-    <button th:if="${perm.checkAuth('eam_inspection_task_point:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
+<!--    <button class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>-->
+<!--  -->
+    <button class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('执行')}">执行</span></button>
+    <button class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="detail" data-id="{{d.id}}"><span th:text="${lang.translate('检查项')}">检查项</span></button>
+    <button class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
+
 </script>
 
 
@@ -110,15 +93,12 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum')}]];
     var SELECT_POINTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum')}]];
-    var AUTH_PREFIX="eam_inspection_task_point";
+    var AUTH_PREFIX="eam_inspection_task_point_s";
 
     var TASK_ID = [[${taskId}]] ;
     var PAGE_TYPE = [[${pageType}]] ;
     var SELECTED_CODE = [[${selectedCode}]] ;
     var OWNER_TYPE = [[${ownerType}]] ;
-
-
-
 
 </script>
 

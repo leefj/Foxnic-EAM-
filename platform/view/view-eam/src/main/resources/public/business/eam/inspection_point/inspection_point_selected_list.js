@@ -75,18 +75,16 @@ function ListPage() {
 				limit: 50,
 				where: ps,
 				cols: [[
-					{ fixed: 'left',type: 'numbers' },
-					{ fixed: 'left',type:'checkbox'}
+					{ fixed: 'left',type: 'numbers' }
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}}
 					 ,{ field: 'routeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检路线'), templet: function (d) { return templet('routeId' ,fox.joinLabel(d.route,"name"),d);}}
 					,{ field: 'posId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置'), templet: function (d) { return templet('posId' ,fox.joinLabel(d.inspectionPointPos,"hierarchyName",',','','posId'),d);}}
-					,{ field: 'pos', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置') , templet: function (d) { return templet('pos',d.pos,d);}  }
-					,{ field: 'posLongitude', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置经度') , templet: function (d) { return templet('posLongitude',d.posLongitude,d);}  }
-					,{ field: 'posLatitude', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置纬度') , templet: function (d) { return templet('posLatitude',d.posLatitude,d);}  }
-				 ,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
+					,{ field: 'pos', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置详情') , templet: function (d) { return templet('pos',d.pos,d);}  }
+					,{ field: 'itemCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('检查项数') , templet: function (d) { return templet('itemCount',d.itemCount,d);}  }
+					,{ field: 'itemDisableCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('检查项数(未启用)') , templet: function (d) { return templet('itemDisableCount',d.itemDisableCount,d);}  }
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
@@ -106,6 +104,7 @@ function ListPage() {
 					}:false
 				}
 			};
+
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
 			dataTable=fox.renderTable(tableConfig);
 			//绑定排序事件
@@ -114,7 +113,7 @@ function ListPage() {
 			});
 			window.pageExt.list.afterTableRender && window.pageExt.list.afterTableRender();
 		}
-		setTimeout(renderTableInternal,1);
+		setTimeout(renderTableInternal,500);
     };
 
 	/**
@@ -266,7 +265,7 @@ function ListPage() {
 				case 'create':
 					var queryString="?selectedCode="+SELECTED_CODE+"&ownerId="+OWNER_ID+"&ownerType="+OWNER_TYPE;
 					admin.popupCenter({
-						title: "选择保养项目",
+						title: "选择项目",
 						resize: false,
 						offset: [2,null],
 						area: ["80%","85%"],
@@ -363,6 +362,25 @@ function ListPage() {
 					}
 				});
 			}
+			else if(layEvent === 'detail'){
+				console.log("data",data);
+				var timestamp2 = Date.parse(new Date());
+				var top=10
+				var q="?ownerId="+data.id+"&pageType=view&selectCode="+timestamp2
+				admin.popupCenter({
+					title: "检查项目",
+					resize: false,
+					offset: [top,null],
+					area: ["80%","85%"],
+					type: 2,
+					id:"eam-inspection-point-form-data-win",
+					content: '/business/eam/check_item/check_item_selected_list.html'+q,
+					finish: function () {
+
+					}
+				});
+
+			}
 			else if (layEvent === 'del') { // 删除
 
 				if(window.pageExt.list.beforeSingleDelete) {
@@ -373,7 +391,7 @@ function ListPage() {
 					top.layer.close(i);
 
 					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.request(moduleURL+"/select-delete-by-id", {ownerId:OWNER_ID, id : data.id,selectedCode:SELECTED_CODE}, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {

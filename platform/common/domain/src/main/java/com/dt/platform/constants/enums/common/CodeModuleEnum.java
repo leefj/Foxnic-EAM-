@@ -14,7 +14,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum CodeModuleEnum implements CodeTextEnum {
 
 	COMMON_CODE("common_code" , "通用编码"),
-
+	COMMON_SEQ_CODE("common_seq_code" , "通用顺序编码"),
 
 	COMMON_USER_IMPORT("common_user_import" , "COMMON_员工导入"),
 

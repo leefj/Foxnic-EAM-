@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_INSPECTION_POINT_OWNER;
@@ -8,21 +9,30 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.InspectionPointOwnerMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 巡检点
+ * <p>巡检点 , 数据表 eam_inspection_point_owner 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-11 17:33:03
- * @sign 59DCA4B80D672310953383765B76964B
+ * @since 2023-07-06 20:04:13
+ * @sign AA4A15C565F05375AD9EAA119F11D0C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_inspection_point_owner")
+@ApiModel(description = "巡检点 ; 巡检点 , 数据表 eam_inspection_point_owner 的PO类型")
 public class InspectionPointOwner extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -33,25 +43,25 @@ public class InspectionPointOwner extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1c2c458b-1bd3-11ee-a48e-00163e1b60a7")
 	private String id;
 	
 	/**
 	 * 巡检计划：巡检计划
 	*/
-	@ApiModelProperty(required = false,value="巡检计划" , notes = "巡检计划")
+	@ApiModelProperty(required = false,value="巡检计划" , notes = "巡检计划" , example = "729365478572556288")
 	private String ownerId;
 	
 	/**
 	 * 巡检点：巡检点
 	*/
-	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点")
+	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点" , example = "729333314053210112")
 	private String pointId;
 	
 	/**
 	 * 排序：排序
 	*/
-	@ApiModelProperty(required = false,value="排序" , notes = "排序")
+	@ApiModelProperty(required = false,value="排序" , notes = "排序" , example = "0")
 	private Integer sort;
 	
 	/**
@@ -63,7 +73,7 @@ public class InspectionPointOwner extends Entity {
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1688630401000")
 	private String selectedCode;
 	
 	/**
@@ -93,9 +103,10 @@ public class InspectionPointOwner extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -119,8 +130,20 @@ public class InspectionPointOwner extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
+	
+	/**
+	 * inspectionPoint：inspectionPoint
+	*/
+	@ApiModelProperty(required = false,value="inspectionPoint" , notes = "inspectionPoint")
+	private InspectionPoint inspectionPoint;
+	
+	/**
+	 * checkItemList：checkItemList
+	*/
+	@ApiModelProperty(required = false,value="checkItemList" , notes = "checkItemList")
+	private List<CheckItem> checkItemList;
 	
 	/**
 	 * 获得 主键<br>
@@ -339,6 +362,7 @@ public class InspectionPointOwner extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public InspectionPointOwner setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -436,6 +460,55 @@ public class InspectionPointOwner extends Entity {
 		this.version=version;
 		return this;
 	}
+	
+	/**
+	 * 获得 inspectionPoint<br>
+	 * inspectionPoint
+	 * @return inspectionPoint
+	*/
+	public InspectionPoint getInspectionPoint() {
+		return inspectionPoint;
+	}
+	
+	/**
+	 * 设置 inspectionPoint
+	 * @param inspectionPoint inspectionPoint
+	 * @return 当前对象
+	*/
+	public InspectionPointOwner setInspectionPoint(InspectionPoint inspectionPoint) {
+		this.inspectionPoint=inspectionPoint;
+		return this;
+	}
+	
+	/**
+	 * 获得 checkItemList<br>
+	 * checkItemList
+	 * @return checkItemList
+	*/
+	public List<CheckItem> getCheckItemList() {
+		return checkItemList;
+	}
+	
+	/**
+	 * 设置 checkItemList
+	 * @param checkItemList checkItemList
+	 * @return 当前对象
+	*/
+	public InspectionPointOwner setCheckItemList(List<CheckItem> checkItemList) {
+		this.checkItemList=checkItemList;
+		return this;
+	}
+	
+	/**
+	 * 添加 checkItemList
+	 * @param checkItem checkItemList
+	 * @return 当前对象
+	*/
+	public InspectionPointOwner addCheckItem(CheckItem... checkItem) {
+		if(this.checkItemList==null) checkItemList=new ArrayList<>();
+		this.checkItemList.addAll(Arrays.asList(checkItem));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -467,6 +540,52 @@ public class InspectionPointOwner extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public InspectionPointOwner clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public InspectionPointOwner duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.InspectionPointOwnerMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.InspectionPointOwnerMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setSort(this.getSort());
+		inst.setOwnerId(this.getOwnerId());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setPointId(this.getPointId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		if(all) {
+			inst.setCheckItemList(this.getCheckItemList());
+			inst.setInspectionPoint(this.getInspectionPoint());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public InspectionPointOwner clone(boolean deep) {
+		return EntityContext.clone(InspectionPointOwner.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 InspectionPointOwner
 	 * @param inspectionPointOwnerMap 包含实体信息的 Map 对象
 	 * @return InspectionPointOwner , 转换好的的 InspectionPointOwner 对象
@@ -474,7 +593,9 @@ public class InspectionPointOwner extends Entity {
 	@Transient
 	public static InspectionPointOwner createFrom(Map<String,Object> inspectionPointOwnerMap) {
 		if(inspectionPointOwnerMap==null) return null;
-		InspectionPointOwner po = EntityContext.create(InspectionPointOwner.class, inspectionPointOwnerMap);
+		InspectionPointOwner po = create();
+		EntityContext.copyProperties(po,inspectionPointOwnerMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -486,7 +607,9 @@ public class InspectionPointOwner extends Entity {
 	@Transient
 	public static InspectionPointOwner createFrom(Object pojo) {
 		if(pojo==null) return null;
-		InspectionPointOwner po = EntityContext.create(InspectionPointOwner.class,pojo);
+		InspectionPointOwner po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -496,6 +619,108 @@ public class InspectionPointOwner extends Entity {
 	*/
 	@Transient
 	public static InspectionPointOwner create() {
-		return EntityContext.create(InspectionPointOwner.class);
+		return new com.dt.platform.domain.eam.meta.InspectionPointOwnerMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(InspectionPointOwnerMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(InspectionPointOwnerMeta.UPDATE_TIME)));
+			this.setSort(DataParser.parse(Integer.class, map.get(InspectionPointOwnerMeta.SORT)));
+			this.setOwnerId(DataParser.parse(String.class, map.get(InspectionPointOwnerMeta.OWNER_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionPointOwnerMeta.SELECTED_CODE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(InspectionPointOwnerMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(InspectionPointOwnerMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(InspectionPointOwnerMeta.DELETED)));
+			this.setPointId(DataParser.parse(String.class, map.get(InspectionPointOwnerMeta.POINT_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(InspectionPointOwnerMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(InspectionPointOwnerMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(InspectionPointOwnerMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(InspectionPointOwnerMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(InspectionPointOwnerMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(InspectionPointOwnerMeta.ID)));
+			// others
+			this.setInspectionPoint(DataParser.parse(InspectionPoint.class, map.get(InspectionPointOwnerMeta.INSPECTION_POINT)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(InspectionPointOwnerMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(InspectionPointOwnerMeta.UPDATE_TIME));
+				this.setSort( (Integer)map.get(InspectionPointOwnerMeta.SORT));
+				this.setOwnerId( (String)map.get(InspectionPointOwnerMeta.OWNER_ID));
+				this.setSelectedCode( (String)map.get(InspectionPointOwnerMeta.SELECTED_CODE));
+				this.setVersion( (Integer)map.get(InspectionPointOwnerMeta.VERSION));
+				this.setCreateBy( (String)map.get(InspectionPointOwnerMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(InspectionPointOwnerMeta.DELETED));
+				this.setPointId( (String)map.get(InspectionPointOwnerMeta.POINT_ID));
+				this.setCreateTime( (Date)map.get(InspectionPointOwnerMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(InspectionPointOwnerMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(InspectionPointOwnerMeta.DELETE_TIME));
+				this.setTenantId( (String)map.get(InspectionPointOwnerMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(InspectionPointOwnerMeta.DELETE_BY));
+				this.setId( (String)map.get(InspectionPointOwnerMeta.ID));
+				// others
+				this.setInspectionPoint( (InspectionPoint)map.get(InspectionPointOwnerMeta.INSPECTION_POINT));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(InspectionPointOwnerMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InspectionPointOwnerMeta.UPDATE_TIME)));
+			this.setSort(DataParser.parse(Integer.class, r.getValue(InspectionPointOwnerMeta.SORT)));
+			this.setOwnerId(DataParser.parse(String.class, r.getValue(InspectionPointOwnerMeta.OWNER_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionPointOwnerMeta.SELECTED_CODE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(InspectionPointOwnerMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(InspectionPointOwnerMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(InspectionPointOwnerMeta.DELETED)));
+			this.setPointId(DataParser.parse(String.class, r.getValue(InspectionPointOwnerMeta.POINT_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(InspectionPointOwnerMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InspectionPointOwnerMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(InspectionPointOwnerMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(InspectionPointOwnerMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InspectionPointOwnerMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(InspectionPointOwnerMeta.ID)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(InspectionPointOwnerMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(InspectionPointOwnerMeta.UPDATE_TIME));
+				this.setSort( (Integer)r.getValue(InspectionPointOwnerMeta.SORT));
+				this.setOwnerId( (String)r.getValue(InspectionPointOwnerMeta.OWNER_ID));
+				this.setSelectedCode( (String)r.getValue(InspectionPointOwnerMeta.SELECTED_CODE));
+				this.setVersion( (Integer)r.getValue(InspectionPointOwnerMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(InspectionPointOwnerMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(InspectionPointOwnerMeta.DELETED));
+				this.setPointId( (String)r.getValue(InspectionPointOwnerMeta.POINT_ID));
+				this.setCreateTime( (Date)r.getValue(InspectionPointOwnerMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(InspectionPointOwnerMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(InspectionPointOwnerMeta.DELETE_TIME));
+				this.setTenantId( (String)r.getValue(InspectionPointOwnerMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(InspectionPointOwnerMeta.DELETE_BY));
+				this.setId( (String)r.getValue(InspectionPointOwnerMeta.ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -1,6 +1,7 @@
 package com.dt.platform.eam.service;
 
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -28,6 +29,8 @@ import java.util.Map;
 */
 
 public interface IInspectionTaskService extends ISuperService<InspectionTask> {
+
+	Result<JSONArray> queryDataByCal(String status, String startStr, String endStr);
 
 
 	Result<JSONObject> check(String taskId, String pointCode);

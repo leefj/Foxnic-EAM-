@@ -20,6 +20,7 @@ fi
 #app.jar will overwrite if exist
 echo "######## start to update app.jar ##############"
 if [[ -f "$prod_app_dir/app/app.jar" ]];then
+  rm -rf $prod_app_dir/app/app.jar
   cd $app_dir/app/app
   echo "cp app.jar $prod_app_dir/app/"
   cp app.jar $prod_app_dir/app/

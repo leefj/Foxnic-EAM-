@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-06-18 19:13:24
+ * @since 2023-07-04 16:08:35
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -2195,6 +2195,956 @@ public class SysTables {
 			this.init($NAME,"节点负载" , ID , NODE , IP , USER , SYS , IDLE , WIO , LOAD1 , LOAD5 , LOAD15 , MEMORY_USED , MEMORY_USED_PCT , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final SYS_NODE_LOAD $TABLE=new SYS_NODE_LOAD();
+	}
+	
+	/**
+	 * 应用
+	*/
+	public static class SYS_PAY_APP extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_pay_app";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 应用编号
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","应用编号","应用编号",false,false,true);
+		
+		/**
+		 * 应用名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","应用名称","应用名称",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 支付结果回调
+		*/
+		public static final DBField PAY_NOTIFY_URL = new DBField(DBDataType.STRING , "pay_notify_url","payNotifyUrl","支付结果回调","支付结果回调",false,false,true);
+		
+		/**
+		 * 退款结果回调
+		*/
+		public static final DBField REFUND_NOTIFY_URL = new DBField(DBDataType.STRING , "refund_notify_url","refundNotifyUrl","退款结果回调","退款结果回调",false,false,true);
+		
+		/**
+		 * 商户
+		*/
+		public static final DBField MERCHANT_ID = new DBField(DBDataType.STRING , "merchant_id","merchantId","商户","商户",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public SYS_PAY_APP() {
+			this.init($NAME,"应用" , ID , CODE , NAME , STATUS , PAY_NOTIFY_URL , REFUND_NOTIFY_URL , MERCHANT_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final SYS_PAY_APP $TABLE=new SYS_PAY_APP();
+	}
+	
+	/**
+	 * 支付渠道
+	*/
+	public static class SYS_PAY_CHANNEL extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_pay_channel";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 商户
+		*/
+		public static final DBField MERCHANT_ID = new DBField(DBDataType.STRING , "merchant_id","merchantId","商户","商户",false,false,true);
+		
+		/**
+		 * 应用
+		*/
+		public static final DBField APP_ID = new DBField(DBDataType.STRING , "app_id","appId","应用","应用",false,false,true);
+		
+		/**
+		 * 渠道编码
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","渠道编码","渠道编码",false,false,true);
+		
+		/**
+		 * 渠道名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","渠道名称","渠道名称",false,false,true);
+		
+		/**
+		 * 渠道费率
+		*/
+		public static final DBField FEE_RATE = new DBField(DBDataType.DECIMAL , "fee_rate","feeRate","渠道费率","渠道费率",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 配置
+		*/
+		public static final DBField CONFIG = new DBField(DBDataType.STRING , "config","config","配置","配置",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public SYS_PAY_CHANNEL() {
+			this.init($NAME,"支付渠道" , ID , MERCHANT_ID , APP_ID , CODE , NAME , FEE_RATE , STATUS , CONFIG , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final SYS_PAY_CHANNEL $TABLE=new SYS_PAY_CHANNEL();
+	}
+	
+	/**
+	 * 商户信息
+	*/
+	public static class SYS_PAY_MERCHANT extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_pay_merchant";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 商户号
+		*/
+		public static final DBField NUMBER = new DBField(DBDataType.STRING , "number","number","商户号","商户号",false,false,true);
+		
+		/**
+		 * 商户全称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","商户全称","商户全称",false,false,true);
+		
+		/**
+		 * 商户简称
+		*/
+		public static final DBField SHORT_NAME = new DBField(DBDataType.STRING , "short_name","shortName","商户简称","商户简称",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public SYS_PAY_MERCHANT() {
+			this.init($NAME,"商户信息" , ID , NUMBER , NAME , SHORT_NAME , STATUS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final SYS_PAY_MERCHANT $TABLE=new SYS_PAY_MERCHANT();
+	}
+	
+	/**
+	 * 支付通知日志
+	*/
+	public static class SYS_PAY_NOTIFY_LOG extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_pay_notify_log";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 通知状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","通知状态","通知状态",false,false,false);
+		
+		/**
+		 * 通知任务编号
+		*/
+		public static final DBField TASK_ID = new DBField(DBDataType.STRING , "task_id","taskId","通知任务编号","通知任务编号",false,false,false);
+		
+		/**
+		 * 第几次被通知
+		*/
+		public static final DBField NOTIFY_TIMES = new DBField(DBDataType.INTEGER , "notify_times","notifyTimes","第几次被通知","第几次被通知",false,false,false);
+		
+		/**
+		 * 请求参数
+		*/
+		public static final DBField RESPONSE = new DBField(DBDataType.STRING , "response","response","请求参数","请求参数",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public SYS_PAY_NOTIFY_LOG() {
+			this.init($NAME,"支付通知日志" , ID , STATUS , TASK_ID , NOTIFY_TIMES , RESPONSE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final SYS_PAY_NOTIFY_LOG $TABLE=new SYS_PAY_NOTIFY_LOG();
+	}
+	
+	/**
+	 * 任务通知
+	*/
+	public static class SYS_PAY_NOTIFY_TASK extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_pay_notify_task";
+		
+		/**
+		 * 任务编号
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","任务编号","任务编号",true,false,false);
+		
+		/**
+		 * 通知状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","通知状态","通知状态",false,false,false);
+		
+		/**
+		 * 商户编号
+		*/
+		public static final DBField MERCHANT_ID = new DBField(DBDataType.STRING , "merchant_id","merchantId","商户编号","商户编号",false,false,false);
+		
+		/**
+		 * 应用编号
+		*/
+		public static final DBField APP_ID = new DBField(DBDataType.STRING , "app_id","appId","应用编号","应用编号",false,false,false);
+		
+		/**
+		 * 通知类型
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","通知类型","通知类型",false,false,false);
+		
+		/**
+		 * 数据编号
+		*/
+		public static final DBField DATA_ID = new DBField(DBDataType.STRING , "data_id","dataId","数据编号","数据编号",false,false,false);
+		
+		/**
+		 * 商户订单编号
+		*/
+		public static final DBField MERCHANT_ORDER_ID = new DBField(DBDataType.STRING , "merchant_order_id","merchantOrderId","商户订单编号","商户订单编号",false,false,false);
+		
+		/**
+		 * 下一次通知时间
+		*/
+		public static final DBField NEXT_NOTIFY_TIME = new DBField(DBDataType.DATE , "next_notify_time","nextNotifyTime","下一次通知时间","下一次通知时间",false,false,false);
+		
+		/**
+		 * 最后一次执行时间
+		*/
+		public static final DBField LAST_EXECUTE_TIME = new DBField(DBDataType.DATE , "last_execute_time","lastExecuteTime","最后一次执行时间","最后一次执行时间",false,false,false);
+		
+		/**
+		 * 当前通知次数
+		*/
+		public static final DBField NOTIFY_TIMES = new DBField(DBDataType.INTEGER , "notify_times","notifyTimes","当前通知次数","当前通知次数",false,false,false);
+		
+		/**
+		 * 最大可通知次数
+		*/
+		public static final DBField MAX_NOTIFY_TIMES = new DBField(DBDataType.INTEGER , "max_notify_times","maxNotifyTimes","最大可通知次数","最大可通知次数",false,false,false);
+		
+		/**
+		 * 异步通知地址
+		*/
+		public static final DBField NOTIFY_URL = new DBField(DBDataType.STRING , "notify_url","notifyUrl","异步通知地址","异步通知地址",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public SYS_PAY_NOTIFY_TASK() {
+			this.init($NAME,"任务通知" , ID , STATUS , MERCHANT_ID , APP_ID , TYPE , DATA_ID , MERCHANT_ORDER_ID , NEXT_NOTIFY_TIME , LAST_EXECUTE_TIME , NOTIFY_TIMES , MAX_NOTIFY_TIMES , NOTIFY_URL , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final SYS_PAY_NOTIFY_TASK $TABLE=new SYS_PAY_NOTIFY_TASK();
+	}
+	
+	/**
+	 * 支付订单
+	*/
+	public static class SYS_PAY_ORDER extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_pay_order";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 支付状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.INTEGER , "status","status","支付状态","支付状态",false,false,false);
+		
+		/**
+		 * 交易单号
+		*/
+		public static final DBField TRADE_NO = new DBField(DBDataType.STRING , "trade_no","tradeNo","交易单号","交易单号",false,false,true);
+		
+		/**
+		 * 商户编号
+		*/
+		public static final DBField MERCHANT_ID = new DBField(DBDataType.STRING , "merchant_id","merchantId","商户编号","商户编号",false,false,false);
+		
+		/**
+		 * 应用编号
+		*/
+		public static final DBField APP_ID = new DBField(DBDataType.STRING , "app_id","appId","应用编号","应用编号",false,false,false);
+		
+		/**
+		 * 商户订单
+		*/
+		public static final DBField MERCHANT_ORDER_ID = new DBField(DBDataType.STRING , "merchant_order_id","merchantOrderId","商户订单","商户订单",false,false,false);
+		
+		/**
+		 * 商品标题
+		*/
+		public static final DBField SUBJECT = new DBField(DBDataType.STRING , "subject","subject","商品标题","商品标题",false,false,false);
+		
+		/**
+		 * 商品描述
+		*/
+		public static final DBField BODY = new DBField(DBDataType.STRING , "body","body","商品描述","商品描述",false,false,false);
+		
+		/**
+		 * 异步通知地址
+		*/
+		public static final DBField NOTIFY_URL = new DBField(DBDataType.STRING , "notify_url","notifyUrl","异步通知地址","异步通知地址",false,false,false);
+		
+		/**
+		 * 回调状态,通知商户支付结果的
+		*/
+		public static final DBField NOTIFY_STATUS = new DBField(DBDataType.STRING , "notify_status","notifyStatus","回调状态","通知商户支付结果的",false,false,false);
+		
+		/**
+		 * 支付金额，单位：分
+		*/
+		public static final DBField AMOUNT = new DBField(DBDataType.LONG , "amount","amount","支付金额","单位：分",false,false,false);
+		
+		/**
+		 * 用户 IP
+		*/
+		public static final DBField USER_IP = new DBField(DBDataType.STRING , "user_ip","userIp","用户","IP",false,false,false);
+		
+		/**
+		 * 订单失效时间
+		*/
+		public static final DBField EXPIRE_TIME = new DBField(DBDataType.DATE , "expire_time","expireTime","订单失效时间","订单失效时间",false,false,false);
+		
+		/**
+		 * 订单支付成功时间
+		*/
+		public static final DBField SUCCESS_TIME = new DBField(DBDataType.DATE , "success_time","successTime","订单支付成功时间","订单支付成功时间",false,false,true);
+		
+		/**
+		 * 订单支付通知时间
+		*/
+		public static final DBField NOTIFY_TIME = new DBField(DBDataType.DATE , "notify_time","notifyTime","订单支付通知时间","订单支付通知时间",false,false,true);
+		
+		/**
+		 * 支付成功的订单拓展单编号
+		*/
+		public static final DBField SUCCESS_EXTENSION_ID = new DBField(DBDataType.STRING , "success_extension_id","successExtensionId","支付成功的订单拓展单编号","支付成功的订单拓展单编号",false,false,true);
+		
+		/**
+		 * 退款状态
+		*/
+		public static final DBField REFUND_STATUS = new DBField(DBDataType.STRING , "refund_status","refundStatus","退款状态","退款状态",false,false,false);
+		
+		/**
+		 * 退款次数
+		*/
+		public static final DBField REFUND_TIMES = new DBField(DBDataType.INTEGER , "refund_times","refundTimes","退款次数","退款次数",false,false,false);
+		
+		/**
+		 * 退款总金额，单位：分
+		*/
+		public static final DBField REFUND_AMOUNT = new DBField(DBDataType.LONG , "refund_amount","refundAmount","退款总金额","单位：分",false,false,false);
+		
+		/**
+		 * 渠道编号
+		*/
+		public static final DBField CHANNEL_ID = new DBField(DBDataType.STRING , "channel_id","channelId","渠道编号","渠道编号",false,false,true);
+		
+		/**
+		 * 渠道编码
+		*/
+		public static final DBField CHANNEL_CODE = new DBField(DBDataType.STRING , "channel_code","channelCode","渠道编码","渠道编码",false,false,true);
+		
+		/**
+		 * 渠道用户
+		*/
+		public static final DBField CHANNEL_USER_ID = new DBField(DBDataType.STRING , "channel_user_id","channelUserId","渠道用户","渠道用户",false,false,true);
+		
+		/**
+		 * 渠道手续费，单位：百分比
+		*/
+		public static final DBField CHANNEL_FEE_RATE = new DBField(DBDataType.DECIMAL , "channel_fee_rate","channelFeeRate","渠道手续费","单位：百分比",false,false,true);
+		
+		/**
+		 * 渠道手续金额，单位：分
+		*/
+		public static final DBField CHANNEL_FEE_AMOUNT = new DBField(DBDataType.LONG , "channel_fee_amount","channelFeeAmount","渠道手续金额","单位：分",false,false,true);
+		
+		/**
+		 * 渠道订单
+		*/
+		public static final DBField CHANNEL_ORDER_NO = new DBField(DBDataType.STRING , "channel_order_no","channelOrderNo","渠道订单","渠道订单",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public SYS_PAY_ORDER() {
+			this.init($NAME,"支付订单" , ID , STATUS , TRADE_NO , MERCHANT_ID , APP_ID , MERCHANT_ORDER_ID , SUBJECT , BODY , NOTIFY_URL , NOTIFY_STATUS , AMOUNT , USER_IP , EXPIRE_TIME , SUCCESS_TIME , NOTIFY_TIME , SUCCESS_EXTENSION_ID , REFUND_STATUS , REFUND_TIMES , REFUND_AMOUNT , CHANNEL_ID , CHANNEL_CODE , CHANNEL_USER_ID , CHANNEL_FEE_RATE , CHANNEL_FEE_AMOUNT , CHANNEL_ORDER_NO , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final SYS_PAY_ORDER $TABLE=new SYS_PAY_ORDER();
+	}
+	
+	/**
+	 * 支付订单
+	*/
+	public static class SYS_PAY_ORDER_EXT extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_pay_order_ext";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 支付订单编号
+		*/
+		public static final DBField ORDER_ID = new DBField(DBDataType.STRING , "order_id","orderId","支付订单编号","支付订单编号",false,false,false);
+		
+		/**
+		 * 支付渠道的额外参数
+		*/
+		public static final DBField CHANNEL_EXTRAS = new DBField(DBDataType.STRING , "channel_extras","channelExtras","支付渠道的额外参数","支付渠道的额外参数",false,false,true);
+		
+		/**
+		 * 支付渠道异步通知的内容
+		*/
+		public static final DBField CHANNEL_NOTIFY_DATA = new DBField(DBDataType.STRING , "channel_notify_data","channelNotifyData","支付渠道异步通知的内容","支付渠道异步通知的内容",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public SYS_PAY_ORDER_EXT() {
+			this.init($NAME,"支付订单" , ID , ORDER_ID , CHANNEL_EXTRAS , CHANNEL_NOTIFY_DATA , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final SYS_PAY_ORDER_EXT $TABLE=new SYS_PAY_ORDER_EXT();
+	}
+	
+	/**
+	 * 退款订单
+	*/
+	public static class SYS_PAY_REFUND extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_pay_refund";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 退款状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","退款状态","退款状态",false,false,false);
+		
+		/**
+		 * 商户编号
+		*/
+		public static final DBField MERCHANT_ID = new DBField(DBDataType.STRING , "merchant_id","merchantId","商户编号","商户编号",false,false,false);
+		
+		/**
+		 * 应用编号
+		*/
+		public static final DBField APP_ID = new DBField(DBDataType.STRING , "app_id","appId","应用编号","应用编号",false,false,false);
+		
+		/**
+		 * 渠道编号
+		*/
+		public static final DBField CHANNEL_ID = new DBField(DBDataType.STRING , "channel_id","channelId","渠道编号","渠道编号",false,false,false);
+		
+		/**
+		 * 渠道编码
+		*/
+		public static final DBField CHANNEL_CODE = new DBField(DBDataType.STRING , "channel_code","channelCode","渠道编码","渠道编码",false,false,false);
+		
+		/**
+		 * 支付订单，pay_order 表id
+		*/
+		public static final DBField ORDER_ID = new DBField(DBDataType.STRING , "order_id","orderId","支付订单","pay_order 表id",false,false,false);
+		
+		/**
+		 * 交易订单，pay_extension 表no 字段
+		*/
+		public static final DBField TRADE_NO = new DBField(DBDataType.STRING , "trade_no","tradeNo","交易订单","pay_extension 表no 字段",false,false,false);
+		
+		/**
+		 * 商户订单编号（商户系统生成）
+		*/
+		public static final DBField MERCHANT_ORDER_ID = new DBField(DBDataType.STRING , "merchant_order_id","merchantOrderId","商户订单编号","商户系统生成）",false,false,false);
+		
+		/**
+		 * 商户退款订单号（商户系统生成）
+		*/
+		public static final DBField MERCHANT_REFUND_NO = new DBField(DBDataType.STRING , "merchant_refund_no","merchantRefundNo","商户退款订单号","商户系统生成）",false,false,false);
+		
+		/**
+		 * 异步通知商户地址
+		*/
+		public static final DBField NOTIFY_URL = new DBField(DBDataType.STRING , "notify_url","notifyUrl","异步通知商户地址","异步通知商户地址",false,false,false);
+		
+		/**
+		 * 回调状态，通知商户退款结果的
+		*/
+		public static final DBField NOTIFY_STATUS = new DBField(DBDataType.STRING , "notify_status","notifyStatus","回调状态","通知商户退款结果的",false,false,false);
+		
+		/**
+		 * 退款类型(部分退款，全部退款)
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","退款类型","部分退款，全部退款)",false,false,false);
+		
+		/**
+		 * 支付金额,单位分
+		*/
+		public static final DBField PAY_AMOUNT = new DBField(DBDataType.LONG , "pay_amount","payAmount","支付金额","单位分",false,false,false);
+		
+		/**
+		 * 退款金额,单位分
+		*/
+		public static final DBField REFUND_AMOUNT = new DBField(DBDataType.LONG , "refund_amount","refundAmount","退款金额","单位分",false,false,false);
+		
+		/**
+		 * 退款原因
+		*/
+		public static final DBField REASON = new DBField(DBDataType.STRING , "reason","reason","退款原因","退款原因",false,false,false);
+		
+		/**
+		 * 用户 IP
+		*/
+		public static final DBField USER_IP = new DBField(DBDataType.STRING , "user_ip","userIp","用户","IP",false,false,true);
+		
+		/**
+		 * 渠道订单号，pay_order 中的channel_order_no 对应
+		*/
+		public static final DBField CHANNEL_ORDER_NO = new DBField(DBDataType.STRING , "channel_order_no","channelOrderNo","渠道订单号","pay_order 中的channel_order_no 对应",false,false,false);
+		
+		/**
+		 * 渠道退款单号，渠道返回
+		*/
+		public static final DBField CHANNEL_REFUND_NO = new DBField(DBDataType.STRING , "channel_refund_no","channelRefundNo","渠道退款单号","渠道返回",false,false,true);
+		
+		/**
+		 * 渠道调用报错时，错误码
+		*/
+		public static final DBField CHANNEL_ERROR_CODE = new DBField(DBDataType.STRING , "channel_error_code","channelErrorCode","渠道调用报错时","错误码",false,false,true);
+		
+		/**
+		 * 渠道调用报错时，错误信息
+		*/
+		public static final DBField CHANNEL_ERROR_MSG = new DBField(DBDataType.STRING , "channel_error_msg","channelErrorMsg","渠道调用报错时","错误信息",false,false,true);
+		
+		/**
+		 * 支付渠道的额外参数
+		*/
+		public static final DBField CHANNEL_EXTRAS = new DBField(DBDataType.STRING , "channel_extras","channelExtras","支付渠道的额外参数","支付渠道的额外参数",false,false,true);
+		
+		/**
+		 * 退款失效时间
+		*/
+		public static final DBField EXPIRE_TIME = new DBField(DBDataType.DATE , "expire_time","expireTime","退款失效时间","退款失效时间",false,false,true);
+		
+		/**
+		 * 退款成功时间
+		*/
+		public static final DBField SUCCESS_TIME = new DBField(DBDataType.DATE , "success_time","successTime","退款成功时间","退款成功时间",false,false,true);
+		
+		/**
+		 * 退款通知时间
+		*/
+		public static final DBField NOTIFY_TIME = new DBField(DBDataType.DATE , "notify_time","notifyTime","退款通知时间","退款通知时间",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public SYS_PAY_REFUND() {
+			this.init($NAME,"退款订单" , ID , STATUS , MERCHANT_ID , APP_ID , CHANNEL_ID , CHANNEL_CODE , ORDER_ID , TRADE_NO , MERCHANT_ORDER_ID , MERCHANT_REFUND_NO , NOTIFY_URL , NOTIFY_STATUS , TYPE , PAY_AMOUNT , REFUND_AMOUNT , REASON , USER_IP , CHANNEL_ORDER_NO , CHANNEL_REFUND_NO , CHANNEL_ERROR_CODE , CHANNEL_ERROR_MSG , CHANNEL_EXTRAS , EXPIRE_TIME , SUCCESS_TIME , NOTIFY_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final SYS_PAY_REFUND $TABLE=new SYS_PAY_REFUND();
 	}
 	
 	/**

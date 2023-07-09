@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import com.dt.platform.domain.eam.InspectionGroup;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.ActionCrontab;
-import com.dt.platform.domain.eam.InspectionPlanPoint;
+import com.dt.platform.domain.eam.InspectionPoint;
 import java.util.List;
 import com.dt.platform.domain.eam.InspectionPointOwner;
 import javax.persistence.Transient;
@@ -16,8 +16,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-12 21:22:49
- * @sign 6FBD0C95F2995FEC17B9966D5022DFA9
+ * @since 2023-07-07 18:20:42
+ * @sign 46CFD843A611B73D1E30D45D0F4F9536
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -104,6 +104,16 @@ public class InspectionPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> GROUP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,GROUP_ID, java.lang.String.class, "班组", "班组", java.lang.String.class, null);
 	
 	/**
+	 * 位置范围 , 类型: java.lang.String
+	*/
+	public static final String POS_DETAIL="posDetail";
+	
+	/**
+	 * 位置范围 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> POS_DETAIL_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,POS_DETAIL, java.lang.String.class, "位置范围", "位置范围", java.lang.String.class, null);
+	
+	/**
 	 * 开始日期 , 类型: java.util.Date
 	*/
 	public static final String START_DATE="startDate";
@@ -172,6 +182,26 @@ public class InspectionPlanMeta {
 	 * 提醒时间 , 小时) , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.math.BigDecimal> REMIND_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,REMIND_TIME, java.math.BigDecimal.class, "提醒时间", "小时)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 上次执行 , 类型: java.util.Date
+	*/
+	public static final String LAST_TIME="lastTime";
+	
+	/**
+	 * 上次执行 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.util.Date> LAST_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,LAST_TIME, java.util.Date.class, "上次执行", "上次执行", java.util.Date.class, null);
+	
+	/**
+	 * 下次执行 , 类型: java.util.Date
+	*/
+	public static final String NEXT_TIME="nextTime";
+	
+	/**
+	 * 下次执行 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.util.Date> NEXT_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,NEXT_TIME, java.util.Date.class, "下次执行", "下次执行", java.util.Date.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -274,16 +304,6 @@ public class InspectionPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
-	 * 选择 , 类型: java.lang.String
-	*/
-	public static final String SELECTED_CODE="selectedCode";
-	
-	/**
-	 * 选择 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
-	
-	/**
 	 * 班组 , 类型: com.dt.platform.domain.eam.InspectionGroup
 	*/
 	public static final String INSPECTION_GROUP="inspectionGroup";
@@ -314,14 +334,14 @@ public class InspectionPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,com.dt.platform.domain.eam.ActionCrontab> ACTION_CRONTAB_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,ACTION_CRONTAB, com.dt.platform.domain.eam.ActionCrontab.class, "周期", "周期", com.dt.platform.domain.eam.ActionCrontab.class, null);
 	
 	/**
-	 * 巡检点 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.InspectionPlanPoint
+	 * inspectionPointList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.InspectionPoint
 	*/
-	public static final String INSPECTION_PLAN_POINT_LIST="inspectionPlanPointList";
+	public static final String INSPECTION_POINT_LIST="inspectionPointList";
 	
 	/**
-	 * 巡检点 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.InspectionPlanPoint
+	 * inspectionPointList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.InspectionPoint
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,com.dt.platform.domain.eam.InspectionPlanPoint> INSPECTION_PLAN_POINT_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,INSPECTION_PLAN_POINT_LIST, java.util.List.class, "巡检点", "巡检点", com.dt.platform.domain.eam.InspectionPlanPoint.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,com.dt.platform.domain.eam.InspectionPoint> INSPECTION_POINT_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,INSPECTION_POINT_LIST, java.util.List.class, "inspectionPointList", "inspectionPointList", com.dt.platform.domain.eam.InspectionPoint.class, null);
 	
 	/**
 	 * 巡检点 , 集合类型: LIST , 类型: java.lang.String
@@ -354,9 +374,39 @@ public class InspectionPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> INSPECTION_POINT_OWNER_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,INSPECTION_POINT_OWNER_IDS, java.util.List.class, "巡检点", "巡检点", java.lang.String.class, null);
 	
 	/**
+	 * selectedCode , 类型: java.lang.String
+	*/
+	public static final String SELECTED_CODE="selectedCode";
+	
+	/**
+	 * selectedCode , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,SELECTED_CODE, java.lang.String.class, "selectedCode", "selectedCode", java.lang.String.class, null);
+	
+	/**
+	 * itemCount , 类型: java.lang.String
+	*/
+	public static final String ITEM_COUNT="itemCount";
+	
+	/**
+	 * itemCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> ITEM_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,ITEM_COUNT, java.lang.String.class, "itemCount", "itemCount", java.lang.String.class, null);
+	
+	/**
+	 * itemDisableCount , 类型: java.lang.String
+	*/
+	public static final String ITEM_DISABLE_COUNT="itemDisableCount";
+	
+	/**
+	 * itemDisableCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> ITEM_DISABLE_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,ITEM_DISABLE_COUNT, java.lang.String.class, "itemDisableCount", "itemDisableCount", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PLAN_CODE , NAME , STATUS , PLAN_STATUS , PLAN_TYPE , LEADER_ID , GROUP_ID , START_DATE , END_DATE , ACTION_CYCLE_ID , INSPECTION_METHOD , COMPLETION_TIME , OVERTIME_METHOD , REMIND_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , SELECTED_CODE , INSPECTION_GROUP , INSPECTION_TYPE_DICT , ACTION_CRONTAB , INSPECTION_PLAN_POINT_LIST , INSPECTION_PLAN_POINT_IDS , INSPECTION_POINT_OWNER_LIST , INSPECTION_POINT_OWNER_IDS };
+	public static final String[] $PROPS={ ID , PLAN_CODE , NAME , STATUS , PLAN_STATUS , PLAN_TYPE , LEADER_ID , GROUP_ID , POS_DETAIL , START_DATE , END_DATE , ACTION_CYCLE_ID , INSPECTION_METHOD , COMPLETION_TIME , OVERTIME_METHOD , REMIND_TIME , LAST_TIME , NEXT_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , INSPECTION_GROUP , INSPECTION_TYPE_DICT , ACTION_CRONTAB , INSPECTION_POINT_LIST , INSPECTION_PLAN_POINT_IDS , INSPECTION_POINT_OWNER_LIST , INSPECTION_POINT_OWNER_IDS , SELECTED_CODE , ITEM_COUNT , ITEM_DISABLE_COUNT };
 	
 	/**
 	 * 代理类
@@ -455,6 +505,17 @@ public class InspectionPlanMeta {
 		}
 		
 		/**
+		 * 设置 位置范围
+		 * @param posDetail 位置范围
+		 * @return 当前对象
+		*/
+		public InspectionPlan setPosDetail(String posDetail) {
+			super.change(POS_DETAIL,super.getPosDetail(),posDetail);
+			super.setPosDetail(posDetail);
+			return this;
+		}
+		
+		/**
 		 * 设置 开始日期
 		 * @param startDate 开始日期
 		 * @return 当前对象
@@ -528,6 +589,28 @@ public class InspectionPlanMeta {
 		public InspectionPlan setRemindTime(BigDecimal remindTime) {
 			super.change(REMIND_TIME,super.getRemindTime(),remindTime);
 			super.setRemindTime(remindTime);
+			return this;
+		}
+		
+		/**
+		 * 设置 上次执行
+		 * @param lastTime 上次执行
+		 * @return 当前对象
+		*/
+		public InspectionPlan setLastTime(Date lastTime) {
+			super.change(LAST_TIME,super.getLastTime(),lastTime);
+			super.setLastTime(lastTime);
+			return this;
+		}
+		
+		/**
+		 * 设置 下次执行
+		 * @param nextTime 下次执行
+		 * @return 当前对象
+		*/
+		public InspectionPlan setNextTime(Date nextTime) {
+			super.change(NEXT_TIME,super.getNextTime(),nextTime);
+			super.setNextTime(nextTime);
 			return this;
 		}
 		
@@ -642,17 +725,6 @@ public class InspectionPlanMeta {
 		}
 		
 		/**
-		 * 设置 选择
-		 * @param selectedCode 选择
-		 * @return 当前对象
-		*/
-		public InspectionPlan setSelectedCode(String selectedCode) {
-			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
-			super.setSelectedCode(selectedCode);
-			return this;
-		}
-		
-		/**
 		 * 设置 班组
 		 * @param inspectionGroup 班组
 		 * @return 当前对象
@@ -686,13 +758,13 @@ public class InspectionPlanMeta {
 		}
 		
 		/**
-		 * 设置 巡检点
-		 * @param inspectionPlanPointList 巡检点
+		 * 设置 inspectionPointList
+		 * @param inspectionPointList inspectionPointList
 		 * @return 当前对象
 		*/
-		public InspectionPlan setInspectionPlanPointList(List<InspectionPlanPoint> inspectionPlanPointList) {
-			super.change(INSPECTION_PLAN_POINT_LIST,super.getInspectionPlanPointList(),inspectionPlanPointList);
-			super.setInspectionPlanPointList(inspectionPlanPointList);
+		public InspectionPlan setInspectionPointList(List<InspectionPoint> inspectionPointList) {
+			super.change(INSPECTION_POINT_LIST,super.getInspectionPointList(),inspectionPointList);
+			super.setInspectionPointList(inspectionPointList);
 			return this;
 		}
 		
@@ -728,6 +800,39 @@ public class InspectionPlanMeta {
 			super.setInspectionPointOwnerIds(inspectionPointOwnerIds);
 			return this;
 		}
+		
+		/**
+		 * 设置 selectedCode
+		 * @param selectedCode selectedCode
+		 * @return 当前对象
+		*/
+		public InspectionPlan setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 itemCount
+		 * @param itemCount itemCount
+		 * @return 当前对象
+		*/
+		public InspectionPlan setItemCount(String itemCount) {
+			super.change(ITEM_COUNT,super.getItemCount(),itemCount);
+			super.setItemCount(itemCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 itemDisableCount
+		 * @param itemDisableCount itemDisableCount
+		 * @return 当前对象
+		*/
+		public InspectionPlan setItemDisableCount(String itemDisableCount) {
+			super.change(ITEM_DISABLE_COUNT,super.getItemDisableCount(),itemDisableCount);
+			super.setItemDisableCount(itemDisableCount);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -744,11 +849,13 @@ public class InspectionPlanMeta {
 		@Transient
 		public InspectionPlan duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setLastTime(this.getLastTime());
 			inst.setNotes(this.getNotes());
 			inst.setEndDate(this.getEndDate());
+			inst.setNextTime(this.getNextTime());
 			inst.setGroupId(this.getGroupId());
 			inst.setPlanStatus(this.getPlanStatus());
-			inst.setSelectedCode(this.getSelectedCode());
+			inst.setPosDetail(this.getPosDetail());
 			inst.setLeaderId(this.getLeaderId());
 			inst.setCompletionTime(this.getCompletionTime());
 			inst.setRemindTime(this.getRemindTime());
@@ -771,13 +878,16 @@ public class InspectionPlanMeta {
 			inst.setStartDate(this.getStartDate());
 			inst.setStatus(this.getStatus());
 			if(all) {
+				inst.setInspectionPointList(this.getInspectionPointList());
 				inst.setActionCrontab(this.getActionCrontab());
 				inst.setInspectionPointOwnerIds(this.getInspectionPointOwnerIds());
 				inst.setInspectionTypeDict(this.getInspectionTypeDict());
 				inst.setInspectionPointOwnerList(this.getInspectionPointOwnerList());
-				inst.setInspectionPlanPointList(this.getInspectionPlanPointList());
+				inst.setSelectedCode(this.getSelectedCode());
 				inst.setInspectionGroup(this.getInspectionGroup());
 				inst.setInspectionPlanPointIds(this.getInspectionPlanPointIds());
+				inst.setItemCount(this.getItemCount());
+				inst.setItemDisableCount(this.getItemDisableCount());
 			}
 			inst.clearModifies();
 			return inst;

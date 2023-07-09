@@ -29,7 +29,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养任务
  * <p>保养任务 , 数据表 eam_maintain_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-14 07:30:10
+ * @since 2023-07-07 19:40:42
  * @sign 234089915D37B5B0886AFBFCB4AB3A0F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -46,31 +46,31 @@ public class MaintainTask extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "698202584300650496")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "699403533178372096")
 	private String id;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "12")
 	private String name;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "acting")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "finish")
 	private String status;
 	
 	/**
 	 * 任务单据：任务单据
 	*/
-	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "MT202304111604551")
+	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "MT202304142304491")
 	private String businessCode;
 	
 	/**
 	 * 方案：方案
 	*/
-	@ApiModelProperty(required = false,value="方案" , notes = "方案" , example = "698202515644088320")
+	@ApiModelProperty(required = false,value="方案" , notes = "方案" , example = "698227115643895808")
 	private String planId;
 	
 	/**
@@ -88,25 +88,25 @@ public class MaintainTask extends Entity {
 	/**
 	 * 设备：设备
 	*/
-	@ApiModelProperty(required = false,value="设备" , notes = "设备" , example = "690281218771517440")
+	@ApiModelProperty(required = false,value="设备" , notes = "设备" , example = "681881153086423040")
 	private String assetId;
 	
 	/**
 	 * 设备名称：设备名称
 	*/
-	@ApiModelProperty(required = false,value="设备名称" , notes = "设备名称" , example = "这是一个测试")
+	@ApiModelProperty(required = false,value="设备名称" , notes = "设备名称" , example = "服务器")
 	private String assetName;
 	
 	/**
 	 * 设备编码：设备编码
 	*/
-	@ApiModelProperty(required = false,value="设备编码" , notes = "设备编码")
+	@ApiModelProperty(required = false,value="设备编码" , notes = "设备编码" , example = "sn")
 	private String assetCode;
 	
 	/**
 	 * 设备型号：设备型号
 	*/
-	@ApiModelProperty(required = false,value="设备型号" , notes = "设备型号" , example = "规格")
+	@ApiModelProperty(required = false,value="设备型号" , notes = "设备型号" , example = "型号")
 	private String assetModel;
 	
 	/**
@@ -118,13 +118,13 @@ public class MaintainTask extends Entity {
 	/**
 	 * 设备序列号：设备序列号
 	*/
-	@ApiModelProperty(required = false,value="设备序列号" , notes = "设备序列号")
+	@ApiModelProperty(required = false,value="设备序列号" , notes = "设备序列号" , example = "sn")
 	private String assetSn;
 	
 	/**
 	 * 位置：位置
 	*/
-	@ApiModelProperty(required = false,value="位置" , notes = "位置")
+	@ApiModelProperty(required = false,value="位置" , notes = "位置" , example = "位置1/位置1-1")
 	private String assetPos;
 	
 	/**
@@ -136,31 +136,31 @@ public class MaintainTask extends Entity {
 	/**
 	 * 执行人：执行人
 	*/
-	@ApiModelProperty(required = false,value="执行人" , notes = "执行人")
+	@ApiModelProperty(required = false,value="执行人" , notes = "执行人" , example = "E001")
 	private String executorId;
 	
 	/**
 	 * 应开始时间：应开始时间
 	*/
-	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2023-04-11 04:07:48")
+	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2023-04-14 11:39:57")
 	private Date planStartTime;
 	
 	/**
 	 * 实际开始时间：实际开始时间
 	*/
-	@ApiModelProperty(required = false,value="实际开始时间" , notes = "实际开始时间")
+	@ApiModelProperty(required = false,value="实际开始时间" , notes = "实际开始时间" , example = "2023-04-14 11:43:00")
 	private Date actStartTime;
 	
 	/**
 	 * 实际完成时间：实际完成时间
 	*/
-	@ApiModelProperty(required = false,value="实际完成时间" , notes = "实际完成时间")
+	@ApiModelProperty(required = false,value="实际完成时间" , notes = "实际完成时间" , example = "2023-04-14 11:43:00")
 	private Date actFinishTime;
 	
 	/**
 	 * 超时时间：超时时间
 	*/
-	@ApiModelProperty(required = false,value="超时时间" , notes = "超时时间")
+	@ApiModelProperty(required = false,value="超时时间" , notes = "超时时间" , example = "2.00")
 	private BigDecimal timeout;
 	
 	/**
@@ -214,19 +214,19 @@ public class MaintainTask extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-11 04:07:48")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-14 11:39:57")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-14 11:43:20")
 	private Date updateTime;
 	
 	/**

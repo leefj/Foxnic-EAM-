@@ -14,6 +14,7 @@ import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.dt.platform.proxy.eam.MaintainGroupServiceProxy;
 import com.dt.platform.proxy.eam.MaintainPlanServiceProxy;
+import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
@@ -35,6 +36,8 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
+
+
         cfg.getPoClassFile().addListProperty(MaintainProject.class,"projectList","项目","项目");
         cfg.getPoClassFile().addListProperty(String.class,"projectIds","项目","项目");
 
@@ -45,6 +48,8 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
 
         cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","asset","asset");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
+
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NAME).search().fuzzySearch();
@@ -91,12 +96,12 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_ID)
                 .form().validate().required().form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST+"?ownerCode=asset")
-                .paging(false).filter(true).toolbar(false)
+                .paging(true).filter(true).toolbar(false)
                 .valueField(AssetMeta.ID).
-                textField(AssetMeta.NAME).
+                textField(AssetMeta.ASSET_CODE).
                 fillWith(MaintainPlanMeta.ASSET).muliti(false);
 
-
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ORIGINATOR_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ORIGINATOR_ID).table().fillBy("originator","name");
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.GROUP_ID)
@@ -108,13 +113,24 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NOTES).table().disable(true);
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.SELECTED_CODE).table().disable(true);
+//        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.SELECTED_CODE).table().disable(true);
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TOTAL_COST).form().validate().required().form().numberInput().defaultValue(0).scale(2);
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT).form().validate().required().form().numberInput().defaultValue(2.0).scale(2);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TOTAL_COST).form().validate().required().form().numberInput().defaultValue(0.0).scale(2).decimal();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT).form().validate().required().form().numberInput().defaultValue(2.0).scale(2).decimal();
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NOTES).form().textArea().height(80);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.INFO).form().textArea().height(80);
       //  cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NOTES).form().textArea().height(Config.textAreaHeight);
+
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.START_TIME).form().dateInput().format("yyyy-MM-dd").search().range();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.END_TIME).form().dateInput().format("yyyy-MM-dd").search().range();
+
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.START_TIME).form().dateInput().type(DatePickerType.date);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.END_TIME).form().dateInput().type(DatePickerType.date);
+
+
+
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
         cfg.view().formWindow().width("95%");

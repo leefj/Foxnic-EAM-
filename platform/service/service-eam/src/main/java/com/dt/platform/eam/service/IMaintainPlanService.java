@@ -44,10 +44,9 @@ public interface IMaintainPlanService extends ISuperService<MaintainPlan> {
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
-	 * @param id id
 	 * @return 执行
 	 * */
-	Result execute(String id);
+	Result execute();
 
 
 	Result createTask(String id);

@@ -3,7 +3,7 @@ package com.dt.platform.relation.modules;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.SysTables;
-import com.dt.platform.domain.common.BpmFormData;
+import com.dt.platform.domain.common.*;
 import com.dt.platform.domain.common.meta.*;
 import com.dt.platform.domain.eam.meta.RepairOrderActMeta;
 import com.github.foxnic.dao.relation.RelationManager;
@@ -23,6 +23,77 @@ public class CommonRelationManager extends RelationManager {
         this.setupFormInfo();
         this.setupBpmFormData();
 
+        this.setupPayApp();
+        this.setupPayChannel();
+        this.setupPayNotifyLog();
+        this.setupPayNotifyTask();
+        this.setupPayOrderExt();
+        this.setupPayOrder();
+        this.setupRefund();
+
+
+
+    }
+
+    public void setupPayOrderExt() {
+        this.property(PayOrderExtMeta.PAY_ORDER_PROP)
+                .using(SysTables.SYS_PAY_ORDER_EXT.ORDER_ID).join(SysTables.SYS_PAY_ORDER.ID);
+    }
+
+
+    public void setupPayNotifyLog() {
+        this.property(PayNotifyLogMeta.PAY_NOTIFY_TASK_PROP)
+                .using(SysTables.SYS_PAY_NOTIFY_LOG.TASK_ID).join(SysTables.SYS_PAY_NOTIFY_TASK.ID);
+
+    }
+
+    public void setupPayNotifyTask() {
+        this.property(PayNotifyTaskMeta.PAY_APP_PROP)
+                .using(SysTables.SYS_PAY_NOTIFY_TASK.APP_ID).join(SysTables.SYS_PAY_APP.ID);
+        this.property(PayNotifyTaskMeta.PAY_MERCHANT_PROP)
+                .using(SysTables.SYS_PAY_NOTIFY_TASK.MERCHANT_ID).join(SysTables.SYS_PAY_MERCHANT.ID);
+    }
+
+
+
+    public void setupPayOrder() {
+
+        this.property(PayOrderMeta.PAY_APP_PROP)
+                .using(SysTables.SYS_PAY_ORDER.APP_ID).join(SysTables.SYS_PAY_APP.ID);
+        this.property(PayOrderMeta.PAY_MERCHANT_PROP)
+                .using(SysTables.SYS_PAY_ORDER.MERCHANT_ID).join(SysTables.SYS_PAY_MERCHANT.ID);
+        this.property(PayOrderMeta.PAY_CHANNEL_PROP)
+                .using(SysTables.SYS_PAY_ORDER.CHANNEL_ID).join(SysTables.SYS_PAY_CHANNEL.ID);
+        this.property(PayOrderMeta.PAY_ORDER_EXT_PROP)
+                .using(SysTables.SYS_PAY_ORDER.ID).join(SysTables.SYS_PAY_ORDER_EXT.ORDER_ID);
+
+    }
+
+    public void setupRefund() {
+        this.property(PayRefundMeta.PAY_APP_PROP)
+                .using(SysTables.SYS_PAY_REFUND.ID).join(SysTables.SYS_PAY_APP.ID);
+
+        this.property(PayRefundMeta.PAY_MERCHANT_PROP)
+                .using(SysTables.SYS_PAY_REFUND.MERCHANT_ID).join(SysTables.SYS_PAY_MERCHANT.ID);
+
+        this.property(PayRefundMeta.PAY_CHANNEL_PROP)
+                .using(SysTables.SYS_PAY_REFUND.CHANNEL_ID).join(SysTables.SYS_PAY_CHANNEL.ID);
+
+        this.property(PayRefundMeta.PAY_ORDER_PROP)
+                .using(SysTables.SYS_PAY_REFUND.ORDER_ID).join(SysTables.SYS_PAY_ORDER.ID);
+    }
+
+    public void setupPayApp() {
+        this.property(PayAppMeta.PAY_MERCHANT_PROP)
+                .using(SysTables.SYS_PAY_APP.MERCHANT_ID).join(SysTables.SYS_PAY_MERCHANT.ID);
+
+    }
+    public void setupPayChannel() {
+        this.property(PayChannelMeta.PAY_MERCHANT_PROP)
+                .using(SysTables.SYS_PAY_CHANNEL.MERCHANT_ID).join(SysTables.SYS_PAY_MERCHANT.ID);
+
+        this.property(PayChannelMeta.PAY_APP_PROP)
+                .using(SysTables.SYS_PAY_CHANNEL.APP_ID).join(SysTables.SYS_PAY_APP.ID);
     }
 
     public void setupBpmFormData() {

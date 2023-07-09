@@ -3,13 +3,17 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.InspectionPointOwner;
 import java.util.Date;
+import com.dt.platform.domain.eam.InspectionPoint;
+import com.dt.platform.domain.eam.CheckItem;
+import java.util.List;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-11 17:33:03
- * @sign 59DCA4B80D672310953383765B76964B
+ * @since 2023-07-06 20:04:13
+ * @sign AA4A15C565F05375AD9EAA119F11D0C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -166,9 +170,29 @@ public class InspectionPointOwnerMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointOwner,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointOwner.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
+	 * inspectionPoint , 类型: com.dt.platform.domain.eam.InspectionPoint
+	*/
+	public static final String INSPECTION_POINT="inspectionPoint";
+	
+	/**
+	 * inspectionPoint , 类型: com.dt.platform.domain.eam.InspectionPoint
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointOwner,com.dt.platform.domain.eam.InspectionPoint> INSPECTION_POINT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointOwner.class ,INSPECTION_POINT, com.dt.platform.domain.eam.InspectionPoint.class, "inspectionPoint", "inspectionPoint", com.dt.platform.domain.eam.InspectionPoint.class, null);
+	
+	/**
+	 * checkItemList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CheckItem
+	*/
+	public static final String CHECK_ITEM_LIST="checkItemList";
+	
+	/**
+	 * checkItemList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CheckItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointOwner,com.dt.platform.domain.eam.CheckItem> CHECK_ITEM_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointOwner.class ,CHECK_ITEM_LIST, java.util.List.class, "checkItemList", "checkItemList", com.dt.platform.domain.eam.CheckItem.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER_ID , POINT_ID , SORT , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION };
+	public static final String[] $PROPS={ ID , OWNER_ID , POINT_ID , SORT , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , INSPECTION_POINT , CHECK_ITEM_LIST };
 	
 	/**
 	 * 代理类
@@ -342,5 +366,66 @@ public class InspectionPointOwnerMeta {
 			super.setVersion(version);
 			return this;
 		}
+		
+		/**
+		 * 设置 inspectionPoint
+		 * @param inspectionPoint inspectionPoint
+		 * @return 当前对象
+		*/
+		public InspectionPointOwner setInspectionPoint(InspectionPoint inspectionPoint) {
+			super.change(INSPECTION_POINT,super.getInspectionPoint(),inspectionPoint);
+			super.setInspectionPoint(inspectionPoint);
+			return this;
+		}
+		
+		/**
+		 * 设置 checkItemList
+		 * @param checkItemList checkItemList
+		 * @return 当前对象
+		*/
+		public InspectionPointOwner setCheckItemList(List<CheckItem> checkItemList) {
+			super.change(CHECK_ITEM_LIST,super.getCheckItemList(),checkItemList);
+			super.setCheckItemList(checkItemList);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public InspectionPointOwner clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public InspectionPointOwner duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSort(this.getSort());
+			inst.setOwnerId(this.getOwnerId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setPointId(this.getPointId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			if(all) {
+				inst.setCheckItemList(this.getCheckItemList());
+				inst.setInspectionPoint(this.getInspectionPoint());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

@@ -54,12 +54,12 @@
                     <!-- 图片 , pictureId ,typeName=upload, isHideInSearch=true -->
                     <!-- 编码 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('编码')}" class="search-label code-label">编码</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('点位编码')}" class="search-label code-label">点位编码</span><span class="search-colon">:</span></div>
                         <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('点位名称')}" class="search-label name-label">点位名称</span><span class="search-colon">:</span></div>
                         <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
@@ -87,20 +87,22 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-        <button th:if="${perm.checkAuth('eam_inspection_point:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('选择')}">选择</span></button>
+        <button  id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('选择')}">选择</span></button>
     </div>
 </script>
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
-    <button th:if="${perm.checkAuth('eam_inspection_point:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
+    <button  class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
+    <button  class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="detail" data-id="{{d.id}}"><span th:text="${lang.translate('检查项')}">检查项</span></button>
+
 </script>
 
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
-    var AUTH_PREFIX="eam_inspection_point";
+    var AUTH_PREFIX="eam_point_select";
 
 
     var SELECTED_CODE = [[${selectedCode}]] ;

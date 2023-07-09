@@ -73,6 +73,12 @@ public interface InspectionTaskServiceProxy {
     public static final String FINISH = API_PREFIX + "finish";
     public static final String CHECK = API_PREFIX + "check";
 
+
+
+
+    public static final String QUERY_DATA_BY_CAL = API_PREFIX + "query-data-by-cal";
+
+
     /**
      * 获取多个巡检任务
      */

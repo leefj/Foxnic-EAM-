@@ -11,8 +11,11 @@ import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
 import org.github.foxnic.web.domain.hrm.Employee;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.eam.meta.InspectionTaskPointMeta;
@@ -24,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_task_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-11 12:47:53
- * @sign BB247BF598F67C6419ECC5C306B2E9DB
+ * @since 2023-07-07 22:53:43
+ * @sign 77A3172F6CD0C3F329A970EE479ED419
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,19 +44,19 @@ public class InspectionTaskPoint extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "697562178735046656")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "729467044474388480")
 	private String id;
 	
 	/**
 	 * 任务：任务
 	*/
-	@ApiModelProperty(required = false,value="任务" , notes = "任务" , example = "697562178361753600")
+	@ApiModelProperty(required = false,value="任务" , notes = "任务" , example = "729467044197564416")
 	private String taskId;
 	
 	/**
 	 * 巡检状态：巡检状态
 	*/
-	@ApiModelProperty(required = false,value="巡检状态" , notes = "巡检状态" , example = "normal")
+	@ApiModelProperty(required = false,value="巡检状态" , notes = "巡检状态" , example = "wait")
 	private String pointStatus;
 	
 	/**
@@ -71,19 +74,19 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 巡检点：巡检点
 	*/
-	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点")
+	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点" , example = "729333314053210112")
 	private String pointId;
 	
 	/**
 	 * 编码：编码
 	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "point2")
+	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "C0000000009")
 	private String pointCode;
 	
 	/**
-	 * 检：检
+	 * 巡检点：巡检点
 	*/
-	@ApiModelProperty(required = false,value="检" , notes = "检" , example = "point2")
+	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点" , example = "121212")
 	private String pointName;
 	
 	/**
@@ -161,7 +164,7 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-09 09:43:04")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-06 10:41:36")
 	private Date createTime;
 	
 	/**
@@ -198,12 +201,6 @@ public class InspectionTaskPoint extends Entity {
 	private Date deleteTime;
 	
 	/**
-	 * 租户：租户
-	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
-	private String tenantId;
-	
-	/**
 	 * 选择：选择
 	*/
 	@ApiModelProperty(required = false,value="选择" , notes = "选择")
@@ -238,6 +235,30 @@ public class InspectionTaskPoint extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="inspectionPointPos" , notes = "inspectionPointPos")
 	private InspectionPointPos inspectionPointPos;
+	
+	/**
+	 * checkItemList：checkItemList
+	*/
+	@ApiModelProperty(required = false,value="checkItemList" , notes = "checkItemList")
+	private List<CheckItem> checkItemList;
+	
+	/**
+	 * checkSelectList：checkSelectList
+	*/
+	@ApiModelProperty(required = false,value="checkSelectList" , notes = "checkSelectList")
+	private List<CheckSelect> checkSelectList;
+	
+	/**
+	 * inspectionPoint：inspectionPoint
+	*/
+	@ApiModelProperty(required = false,value="inspectionPoint" , notes = "inspectionPoint")
+	private InspectionPoint inspectionPoint;
+	
+	/**
+	 * itemCount：itemCount
+	*/
+	@ApiModelProperty(required = false,value="itemCount" , notes = "itemCount")
+	private String itemCount;
 	
 	/**
 	 * 获得 主键<br>
@@ -373,17 +394,17 @@ public class InspectionTaskPoint extends Entity {
 	}
 	
 	/**
-	 * 获得 检<br>
-	 * 检
-	 * @return 检
+	 * 获得 巡检点<br>
+	 * 巡检点
+	 * @return 巡检点
 	*/
 	public String getPointName() {
 		return pointName;
 	}
 	
 	/**
-	 * 设置 检
-	 * @param pointName 检
+	 * 设置 巡检点
+	 * @param pointName 巡检点
 	 * @return 当前对象
 	*/
 	public InspectionTaskPoint setPointName(String pointName) {
@@ -765,25 +786,6 @@ public class InspectionTaskPoint extends Entity {
 	}
 	
 	/**
-	 * 获得 租户<br>
-	 * 租户
-	 * @return 租户
-	*/
-	public String getTenantId() {
-		return tenantId;
-	}
-	
-	/**
-	 * 设置 租户
-	 * @param tenantId 租户
-	 * @return 当前对象
-	*/
-	public InspectionTaskPoint setTenantId(String tenantId) {
-		this.tenantId=tenantId;
-		return this;
-	}
-	
-	/**
 	 * 获得 选择<br>
 	 * 选择
 	 * @return 选择
@@ -896,6 +898,104 @@ public class InspectionTaskPoint extends Entity {
 		this.inspectionPointPos=inspectionPointPos;
 		return this;
 	}
+	
+	/**
+	 * 获得 checkItemList<br>
+	 * checkItemList
+	 * @return checkItemList
+	*/
+	public List<CheckItem> getCheckItemList() {
+		return checkItemList;
+	}
+	
+	/**
+	 * 设置 checkItemList
+	 * @param checkItemList checkItemList
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint setCheckItemList(List<CheckItem> checkItemList) {
+		this.checkItemList=checkItemList;
+		return this;
+	}
+	
+	/**
+	 * 添加 checkItemList
+	 * @param checkItem checkItemList
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint addCheckItem(CheckItem... checkItem) {
+		if(this.checkItemList==null) checkItemList=new ArrayList<>();
+		this.checkItemList.addAll(Arrays.asList(checkItem));
+		return this;
+	}
+	
+	/**
+	 * 获得 checkSelectList<br>
+	 * checkSelectList
+	 * @return checkSelectList
+	*/
+	public List<CheckSelect> getCheckSelectList() {
+		return checkSelectList;
+	}
+	
+	/**
+	 * 设置 checkSelectList
+	 * @param checkSelectList checkSelectList
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint setCheckSelectList(List<CheckSelect> checkSelectList) {
+		this.checkSelectList=checkSelectList;
+		return this;
+	}
+	
+	/**
+	 * 添加 checkSelectList
+	 * @param checkSelect checkSelectList
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint addCheckSelect(CheckSelect... checkSelect) {
+		if(this.checkSelectList==null) checkSelectList=new ArrayList<>();
+		this.checkSelectList.addAll(Arrays.asList(checkSelect));
+		return this;
+	}
+	
+	/**
+	 * 获得 inspectionPoint<br>
+	 * inspectionPoint
+	 * @return inspectionPoint
+	*/
+	public InspectionPoint getInspectionPoint() {
+		return inspectionPoint;
+	}
+	
+	/**
+	 * 设置 inspectionPoint
+	 * @param inspectionPoint inspectionPoint
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint setInspectionPoint(InspectionPoint inspectionPoint) {
+		this.inspectionPoint=inspectionPoint;
+		return this;
+	}
+	
+	/**
+	 * 获得 itemCount<br>
+	 * itemCount
+	 * @return itemCount
+	*/
+	public String getItemCount() {
+		return itemCount;
+	}
+	
+	/**
+	 * 设置 itemCount
+	 * @param itemCount itemCount
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint setItemCount(String itemCount) {
+		this.itemCount=itemCount;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -965,16 +1065,19 @@ public class InspectionTaskPoint extends Entity {
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setDeleteTime(this.getDeleteTime());
-		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPointPosId(this.getPointPosId());
 		inst.setPointPosLatitude(this.getPointPosLatitude());
 		inst.setTaskId(this.getTaskId());
 		if(all) {
+			inst.setCheckItemList(this.getCheckItemList());
 			inst.setRoute(this.getRoute());
 			inst.setTask(this.getTask());
 			inst.setInspectionPointPos(this.getInspectionPointPos());
+			inst.setCheckSelectList(this.getCheckSelectList());
 			inst.setOperUser(this.getOperUser());
+			inst.setInspectionPoint(this.getInspectionPoint());
+			inst.setItemCount(this.getItemCount());
 		}
 		inst.clearModifies();
 		return inst;
@@ -1058,7 +1161,6 @@ public class InspectionTaskPoint extends Entity {
 			this.setDeleted(DataParser.parse(Integer.class, map.get(InspectionTaskPointMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(InspectionTaskPointMeta.CREATE_TIME)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(InspectionTaskPointMeta.DELETE_TIME)));
-			this.setTenantId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.DELETE_BY)));
 			this.setPointPosId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_POS_ID)));
 			this.setPointPosLatitude(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_POS_LATITUDE)));
@@ -1068,6 +1170,8 @@ public class InspectionTaskPoint extends Entity {
 			this.setTask(DataParser.parse(InspectionTask.class, map.get(InspectionTaskPointMeta.TASK)));
 			this.setInspectionPointPos(DataParser.parse(InspectionPointPos.class, map.get(InspectionTaskPointMeta.INSPECTION_POINT_POS)));
 			this.setOperUser(DataParser.parse(Employee.class, map.get(InspectionTaskPointMeta.OPER_USER)));
+			this.setInspectionPoint(DataParser.parse(InspectionPoint.class, map.get(InspectionTaskPointMeta.INSPECTION_POINT)));
+			this.setItemCount(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.ITEM_COUNT)));
 			return true;
 		} else {
 			try {
@@ -1095,7 +1199,6 @@ public class InspectionTaskPoint extends Entity {
 				this.setDeleted( (Integer)map.get(InspectionTaskPointMeta.DELETED));
 				this.setCreateTime( (Date)map.get(InspectionTaskPointMeta.CREATE_TIME));
 				this.setDeleteTime( (Date)map.get(InspectionTaskPointMeta.DELETE_TIME));
-				this.setTenantId( (String)map.get(InspectionTaskPointMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(InspectionTaskPointMeta.DELETE_BY));
 				this.setPointPosId( (String)map.get(InspectionTaskPointMeta.POINT_POS_ID));
 				this.setPointPosLatitude( (String)map.get(InspectionTaskPointMeta.POINT_POS_LATITUDE));
@@ -1105,6 +1208,8 @@ public class InspectionTaskPoint extends Entity {
 				this.setTask( (InspectionTask)map.get(InspectionTaskPointMeta.TASK));
 				this.setInspectionPointPos( (InspectionPointPos)map.get(InspectionTaskPointMeta.INSPECTION_POINT_POS));
 				this.setOperUser( (Employee)map.get(InspectionTaskPointMeta.OPER_USER));
+				this.setInspectionPoint( (InspectionPoint)map.get(InspectionTaskPointMeta.INSPECTION_POINT));
+				this.setItemCount( (String)map.get(InspectionTaskPointMeta.ITEM_COUNT));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -1145,7 +1250,6 @@ public class InspectionTaskPoint extends Entity {
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(InspectionTaskPointMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(InspectionTaskPointMeta.CREATE_TIME)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(InspectionTaskPointMeta.DELETE_TIME)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.DELETE_BY)));
 			this.setPointPosId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_POS_ID)));
 			this.setPointPosLatitude(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_POS_LATITUDE)));
@@ -1177,7 +1281,6 @@ public class InspectionTaskPoint extends Entity {
 				this.setDeleted( (Integer)r.getValue(InspectionTaskPointMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(InspectionTaskPointMeta.CREATE_TIME));
 				this.setDeleteTime( (Date)r.getValue(InspectionTaskPointMeta.DELETE_TIME));
-				this.setTenantId( (String)r.getValue(InspectionTaskPointMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(InspectionTaskPointMeta.DELETE_BY));
 				this.setPointPosId( (String)r.getValue(InspectionTaskPointMeta.POINT_POS_ID));
 				this.setPointPosLatitude( (String)r.getValue(InspectionTaskPointMeta.POINT_POS_LATITUDE));

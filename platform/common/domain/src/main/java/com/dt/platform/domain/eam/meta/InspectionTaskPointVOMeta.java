@@ -9,13 +9,16 @@ import com.dt.platform.domain.eam.InspectionRoute;
 import com.dt.platform.domain.eam.InspectionTask;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.InspectionPointPos;
+import com.dt.platform.domain.eam.CheckItem;
+import com.dt.platform.domain.eam.CheckSelect;
+import com.dt.platform.domain.eam.InspectionPoint;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-11 12:47:53
+ * @since 2023-07-07 22:53:43
  * @sign 651D328B81E70EC1A0B8941BD7D880C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -213,14 +216,14 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> POINT_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,POINT_CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
 	
 	/**
-	 * 检 , 类型: java.lang.String
+	 * 巡检点 , 类型: java.lang.String
 	*/
 	public static final String POINT_NAME="pointName";
 	
 	/**
-	 * 检 , 类型: java.lang.String
+	 * 巡检点 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> POINT_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,POINT_NAME, java.lang.String.class, "检", "检", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> POINT_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,POINT_NAME, java.lang.String.class, "巡检点", "巡检点", java.lang.String.class, null);
 	
 	/**
 	 * 巡检内容 , 类型: java.lang.String
@@ -403,16 +406,6 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.util.Date> DELETE_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,DELETE_TIME, java.util.Date.class, "删除时间", "删除时间", java.util.Date.class, null);
 	
 	/**
-	 * 租户 , 类型: java.lang.String
-	*/
-	public static final String TENANT_ID="tenantId";
-	
-	/**
-	 * 租户 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
-	
-	/**
 	 * 选择 , 类型: java.lang.String
 	*/
 	public static final String SELECTED_CODE="selectedCode";
@@ -473,9 +466,49 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,com.dt.platform.domain.eam.InspectionPointPos> INSPECTION_POINT_POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,INSPECTION_POINT_POS, com.dt.platform.domain.eam.InspectionPointPos.class, "inspectionPointPos", "inspectionPointPos", com.dt.platform.domain.eam.InspectionPointPos.class, null);
 	
 	/**
+	 * checkItemList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CheckItem
+	*/
+	public static final String CHECK_ITEM_LIST="checkItemList";
+	
+	/**
+	 * checkItemList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CheckItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,com.dt.platform.domain.eam.CheckItem> CHECK_ITEM_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,CHECK_ITEM_LIST, java.util.List.class, "checkItemList", "checkItemList", com.dt.platform.domain.eam.CheckItem.class, null);
+	
+	/**
+	 * checkSelectList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CheckSelect
+	*/
+	public static final String CHECK_SELECT_LIST="checkSelectList";
+	
+	/**
+	 * checkSelectList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CheckSelect
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,com.dt.platform.domain.eam.CheckSelect> CHECK_SELECT_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,CHECK_SELECT_LIST, java.util.List.class, "checkSelectList", "checkSelectList", com.dt.platform.domain.eam.CheckSelect.class, null);
+	
+	/**
+	 * inspectionPoint , 类型: com.dt.platform.domain.eam.InspectionPoint
+	*/
+	public static final String INSPECTION_POINT="inspectionPoint";
+	
+	/**
+	 * inspectionPoint , 类型: com.dt.platform.domain.eam.InspectionPoint
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,com.dt.platform.domain.eam.InspectionPoint> INSPECTION_POINT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,INSPECTION_POINT, com.dt.platform.domain.eam.InspectionPoint.class, "inspectionPoint", "inspectionPoint", com.dt.platform.domain.eam.InspectionPoint.class, null);
+	
+	/**
+	 * itemCount , 类型: java.lang.String
+	*/
+	public static final String ITEM_COUNT="itemCount";
+	
+	/**
+	 * itemCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> ITEM_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,ITEM_COUNT, java.lang.String.class, "itemCount", "itemCount", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , POINT_ID , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , ROUTE , TASK , OPER_USER , INSPECTION_POINT_POS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , POINT_ID , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION , ROUTE , TASK , OPER_USER , INSPECTION_POINT_POS , CHECK_ITEM_LIST , CHECK_SELECT_LIST , INSPECTION_POINT , ITEM_COUNT };
 	
 	/**
 	 * 代理类
@@ -695,8 +728,8 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 		}
 		
 		/**
-		 * 设置 检
-		 * @param pointName 检
+		 * 设置 巡检点
+		 * @param pointName 巡检点
 		 * @return 当前对象
 		*/
 		public InspectionTaskPoint setPointName(String pointName) {
@@ -904,17 +937,6 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 		}
 		
 		/**
-		 * 设置 租户
-		 * @param tenantId 租户
-		 * @return 当前对象
-		*/
-		public InspectionTaskPoint setTenantId(String tenantId) {
-			super.change(TENANT_ID,super.getTenantId(),tenantId);
-			super.setTenantId(tenantId);
-			return this;
-		}
-		
-		/**
 		 * 设置 选择
 		 * @param selectedCode 选择
 		 * @return 当前对象
@@ -979,6 +1001,50 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 			super.setInspectionPointPos(inspectionPointPos);
 			return this;
 		}
+		
+		/**
+		 * 设置 checkItemList
+		 * @param checkItemList checkItemList
+		 * @return 当前对象
+		*/
+		public InspectionTaskPoint setCheckItemList(List<CheckItem> checkItemList) {
+			super.change(CHECK_ITEM_LIST,super.getCheckItemList(),checkItemList);
+			super.setCheckItemList(checkItemList);
+			return this;
+		}
+		
+		/**
+		 * 设置 checkSelectList
+		 * @param checkSelectList checkSelectList
+		 * @return 当前对象
+		*/
+		public InspectionTaskPoint setCheckSelectList(List<CheckSelect> checkSelectList) {
+			super.change(CHECK_SELECT_LIST,super.getCheckSelectList(),checkSelectList);
+			super.setCheckSelectList(checkSelectList);
+			return this;
+		}
+		
+		/**
+		 * 设置 inspectionPoint
+		 * @param inspectionPoint inspectionPoint
+		 * @return 当前对象
+		*/
+		public InspectionTaskPoint setInspectionPoint(InspectionPoint inspectionPoint) {
+			super.change(INSPECTION_POINT,super.getInspectionPoint(),inspectionPoint);
+			super.setInspectionPoint(inspectionPoint);
+			return this;
+		}
+		
+		/**
+		 * 设置 itemCount
+		 * @param itemCount itemCount
+		 * @return 当前对象
+		*/
+		public InspectionTaskPoint setItemCount(String itemCount) {
+			super.change(ITEM_COUNT,super.getItemCount(),itemCount);
+			super.setItemCount(itemCount);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1019,17 +1085,19 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setDeleteTime(this.getDeleteTime());
-			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setPointPosId(this.getPointPosId());
 			inst.setPointPosLatitude(this.getPointPosLatitude());
 			inst.setTaskId(this.getTaskId());
 			if(all) {
+				inst.setCheckItemList(this.getCheckItemList());
 				inst.setSearchField(this.getSearchField());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
 				inst.setInspectionPointPos(this.getInspectionPointPos());
+				inst.setCheckSelectList(this.getCheckSelectList());
+				inst.setItemCount(this.getItemCount());
 				inst.setRoute(this.getRoute());
 				inst.setTask(this.getTask());
 				inst.setPageIndex(this.getPageIndex());
@@ -1041,6 +1109,7 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
 				inst.setOperUser(this.getOperUser());
+				inst.setInspectionPoint(this.getInspectionPoint());
 			}
 			inst.clearModifies();
 			return inst;

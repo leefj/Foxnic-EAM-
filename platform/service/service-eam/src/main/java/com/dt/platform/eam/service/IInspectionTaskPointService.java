@@ -29,6 +29,15 @@ public interface IInspectionTaskPointService extends ISuperService<InspectionTas
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
+	 *  @param posData 数据对象
+	 * @param taskPointId 数据对象
+	*  @param imageId 数据对象
+	 * @return 是否成功
+	 * */
+	Result finish(String taskPointId,String status,String content,String imageId,String posData);
+
+	/**
+	 * 添加，如果语句错误，则抛出异常
 	 * @param inspectionTaskPoint 数据对象
 	 * @return 插入是否成功
 	 * */

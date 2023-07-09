@@ -17,8 +17,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-12 21:34:12
- * @sign CB852288668EC4A24DDBEFD8FB6F807E
+ * @since 2023-07-07 19:34:52
+ * @sign A8B9C927FE43E7BC8B71E3D5C0C3B0A9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -185,14 +185,24 @@ public class MaintainPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,ORIGINATOR_ID, java.lang.String.class, "制单人", "制单人", java.lang.String.class, null);
 	
 	/**
-	 * 选择 , 类型: java.lang.String
+	 * 上次执行 , 类型: java.util.Date
 	*/
-	public static final String SELECTED_CODE="selectedCode";
+	public static final String LAST_TIME="lastTime";
 	
 	/**
-	 * 选择 , 类型: java.lang.String
+	 * 上次执行 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,java.util.Date> LAST_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,LAST_TIME, java.util.Date.class, "上次执行", "上次执行", java.util.Date.class, null);
+	
+	/**
+	 * 下次执行 , 类型: java.util.Date
+	*/
+	public static final String NEXT_TIME="nextTime";
+	
+	/**
+	 * 下次执行 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,java.util.Date> NEXT_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,NEXT_TIME, java.util.Date.class, "下次执行", "下次执行", java.util.Date.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -375,9 +385,19 @@ public class MaintainPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,com.dt.platform.domain.eam.Asset> ASSET_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,ASSET, com.dt.platform.domain.eam.Asset.class, "asset", "asset", com.dt.platform.domain.eam.Asset.class, null);
 	
 	/**
+	 * selectedCode , 类型: java.lang.String
+	*/
+	public static final String SELECTED_CODE="selectedCode";
+	
+	/**
+	 * selectedCode , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,SELECTED_CODE, java.lang.String.class, "selectedCode", "selectedCode", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , NAME , STATUS , ASSET_ID , GROUP_ID , MAINTAIN_TYPE , CYCLE_METHOD , ACTION_CYCLE_ID , START_TIME , END_TIME , TOTAL_COST , TIMEOUT , INFO , NOTES , ORIGINATOR_ID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , ASSET_LIST , ASSET_IDS , PROJECT_LIST , PROJECT_IDS , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ACTION_CRONTAB , ORIGINATOR , ASSET };
+	public static final String[] $PROPS={ ID , CODE , NAME , STATUS , ASSET_ID , GROUP_ID , MAINTAIN_TYPE , CYCLE_METHOD , ACTION_CYCLE_ID , START_TIME , END_TIME , TOTAL_COST , TIMEOUT , INFO , NOTES , ORIGINATOR_ID , LAST_TIME , NEXT_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , ASSET_LIST , ASSET_IDS , PROJECT_LIST , PROJECT_IDS , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ACTION_CRONTAB , ORIGINATOR , ASSET , SELECTED_CODE };
 	
 	/**
 	 * 代理类
@@ -564,13 +584,24 @@ public class MaintainPlanMeta {
 		}
 		
 		/**
-		 * 设置 选择
-		 * @param selectedCode 选择
+		 * 设置 上次执行
+		 * @param lastTime 上次执行
 		 * @return 当前对象
 		*/
-		public MaintainPlan setSelectedCode(String selectedCode) {
-			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
-			super.setSelectedCode(selectedCode);
+		public MaintainPlan setLastTime(Date lastTime) {
+			super.change(LAST_TIME,super.getLastTime(),lastTime);
+			super.setLastTime(lastTime);
+			return this;
+		}
+		
+		/**
+		 * 设置 下次执行
+		 * @param nextTime 下次执行
+		 * @return 当前对象
+		*/
+		public MaintainPlan setNextTime(Date nextTime) {
+			super.change(NEXT_TIME,super.getNextTime(),nextTime);
+			super.setNextTime(nextTime);
 			return this;
 		}
 		
@@ -771,6 +802,17 @@ public class MaintainPlanMeta {
 			super.setAsset(asset);
 			return this;
 		}
+		
+		/**
+		 * 设置 selectedCode
+		 * @param selectedCode selectedCode
+		 * @return 当前对象
+		*/
+		public MaintainPlan setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -787,10 +829,11 @@ public class MaintainPlanMeta {
 		@Transient
 		public MaintainPlan duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setLastTime(this.getLastTime());
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
+			inst.setNextTime(this.getNextTime());
 			inst.setGroupId(this.getGroupId());
-			inst.setSelectedCode(this.getSelectedCode());
 			inst.setTimeout(this.getTimeout());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setAssetId(this.getAssetId());
@@ -821,6 +864,7 @@ public class MaintainPlanMeta {
 				inst.setOriginator(this.getOriginator());
 				inst.setAssetList(this.getAssetList());
 				inst.setAsset(this.getAsset());
+				inst.setSelectedCode(this.getSelectedCode());
 				inst.setMaintainTypeDict(this.getMaintainTypeDict());
 				inst.setMaintainGroup(this.getMaintainGroup());
 			}

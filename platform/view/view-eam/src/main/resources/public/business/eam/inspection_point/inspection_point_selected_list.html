@@ -32,7 +32,41 @@
 <div class="layui-card">
 
     <div class="layui-card-body" style="">
-        <div id="table-area" style="margin-top: 8px ">
+
+        <div class="search-bar" style="">
+
+            <div class="search-input-rows" style="opacity: 0">
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 状态 , status ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 编码 , code ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('点位编码')}" class="search-label code-label">点位编码</span><span class="search-colon">:</span></div>
+                        <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('点位名称')}" class="search-label name-label">点位名称</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!-- 按钮区域 -->
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
+                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+            </div>
+        </div>
+
+        <div id="table-area" style="margin-top: 42px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -47,25 +81,28 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-        <button th:if="${perm.checkAuth('eam_inspection_point:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('选择')}">选择</span></button>
+        <button id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('选择')}">选择</span></button>
     </div>
 </script>
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
-    <button th:if="${perm.checkAuth('eam_inspection_point:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
-    <button th:if="${perm.checkAuth('eam_inspection_point:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
+    <button  class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
+    <button  class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
+    <button  class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="detail" data-id="{{d.id}}"><span th:text="${lang.translate('检查项')}">检查项</span></button>
 </script>
+
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
-    var AUTH_PREFIX="eam_inspection_point";
+    var AUTH_PREFIX="eam_point_selected";
     var SELECTED_CODE = [[${selectedCode}]] ;
     var OWNER_ID = [[${ownerId}]] ;
     var OWNER_TYPE = [[${ownerType}]] ;
     var PAGE_TYPE = [[${pageType}]] ;
 </script>
-<script th:src="'/business/eam/inspection_point/inspection_point_selected_ext.js?'+${cacheKey}"></script>
+
 <script th:src="'/business/eam/inspection_point/inspection_point_selected_list.js?'+${cacheKey}"></script>
+<script th:src="'/business/eam/inspection_point/inspection_point_selected_ext.js?'+${cacheKey}"></script>
 </body>
 </html>

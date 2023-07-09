@@ -17,6 +17,7 @@ import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.GroupUserServiceProxy;
 import com.dt.platform.proxy.eam.InspectionGroupServiceProxy;
 import com.dt.platform.proxy.eam.InspectionTaskServiceProxy;
+import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.meta.PersonMeta;
@@ -39,6 +40,9 @@ public class InspTaskGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(String.class,"inspectionPointIds","巡检点","巡检点");
 
         cfg.getPoClassFile().addListProperty(InspectionTaskPoint.class,"inspectionTaskPointList","任务巡检点","任务巡检点");
+
+
+
         cfg.getPoClassFile().addListProperty(String.class,"inspectionTaskPointIds","任务巡检点","任务巡检点");
 
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"timeDict","时间","时间");
@@ -47,6 +51,29 @@ public class InspTaskGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(InspectionGroup.class,"inspectionGroup","班组","班组");
 
         cfg.getPoClassFile().addListProperty(Employee.class,"inspectUserList","inspectUserList","inspectUserList");
+
+
+        cfg.getPoClassFile().addSimpleProperty(String.class,"pointCount","pointCount","pointCount");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"pointNormalCount","pointNormalCount","pointNormalCount");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"pointAbormalCount","pointAbormalCount","pointAbormalCount");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"pointWaitCount","pointWaitCount","pointWaitCount");
+
+
+
+        cfg.view().field(InspectionTaskMeta.POINT_COUNT).basic().label("巡检点数(总数)").table().alignLeft().disable(false);
+        cfg.view().field(InspectionTaskMeta.POINT_WAIT_COUNT).basic().label("巡检点数(待检)").table().alignLeft().disable(false);
+        cfg.view().field(InspectionTaskMeta.POINT_NORMAL_COUNT).basic().label("巡检点数(正常)").table().alignLeft().disable(false);
+        cfg.view().field(InspectionTaskMeta.POINT_ABORMAL_COUNT).basic().label("巡检点数(异常)").table().alignLeft().disable(false);
+
+        cfg.view().field(InspectionTaskMeta.EXECUTOR_ID).table().disable(true);
+        cfg.view().field(InspectionTaskMeta.GROUP_ID).table().disable(true);
+        cfg.view().field(InspectionTaskMeta.ORIGINATOR_ID).table().disable(true);
+        cfg.view().field(InspectionTaskMeta.ACT_FINISH_TIME).table().disable(true);
+        cfg.view().field(InspectionTaskMeta.ACT_START_TIME).table().disable(true);
+        cfg.view().field(InspectionTaskMeta.ACT_TOTAL_COST).table().disable(true);
+        cfg.view().field(InspectionTaskMeta.PLAN_COMPLETION_TIME).table().disable(true);
+        cfg.view().field(InspectionTaskMeta.PLAN_START_TIME).table().disable(true);
+
 
 
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
@@ -76,11 +103,21 @@ public class InspTaskGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.NOTES).table().disable(true);
         cfg.view().list().disableBatchDelete();
 
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_CODE).table().disable();
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_INSPECTION_METHOD).table().disable();
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_START_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_FINISH_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_START_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
 
 
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_START_TIME).form().dateInput().type(DatePickerType.datetime);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_FINISH_TIME).form().dateInput().type(DatePickerType.datetime);
+
+
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_TOTAL_COST).form().numberInput().defaultValue(2.0).decimal().scale(2);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_COMPLETION_TIME).form().numberInput().defaultValue(2.0).decimal().scale(2);
+
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.CREATE_TIME).table().hidden(true);
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.GROUP_ID)
                 .form().selectBox().

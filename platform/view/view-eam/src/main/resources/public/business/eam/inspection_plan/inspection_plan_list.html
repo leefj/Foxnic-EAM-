@@ -2,7 +2,7 @@
 /**
  * 巡检计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-12 21:22:50
+ * @since 2023-07-07 18:20:43
  */
  -->
  <!DOCTYPE html>
@@ -46,14 +46,18 @@
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}" style="width:150px" extraParam="{}"></div>
                     </div>
                     <!-- 负责人 , leaderId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 位置范围 , posDetail ,typeName=text_input, isHideInSearch=true -->
                     <!-- 开始日期 , startDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 截止日期 , endDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 周期 , actionCycleId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 时间要求 , completionTime ,typeName=number_input, isHideInSearch=true -->
                     <!-- 超时处理 , overtimeMethod ,typeName=select_box, isHideInSearch=true -->
                     <!-- 提醒时间 , remindTime ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 上次执行 , lastTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 下次执行 , nextTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
-                    <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 巡检点数 , itemCount ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 巡检点数(未启用) , itemDisableCount ,typeName=text_input, isHideInSearch=true -->
                     <!-- 状态 , planStatus ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label planStatus-label">状态</span><span class="search-colon">:</span></div>

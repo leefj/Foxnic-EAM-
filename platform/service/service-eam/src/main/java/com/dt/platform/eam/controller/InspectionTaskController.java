@@ -1,6 +1,8 @@
 package com.dt.platform.eam.controller;
 
 import java.util.List;
+
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.eam.meta.MaintainTaskVOMeta;
 import com.dt.platform.proxy.eam.MaintainTaskServiceProxy;
@@ -303,7 +305,7 @@ public class InspectionTaskController extends SuperController {
         Result<PagedList<InspectionTask>> result = new Result<>();
         PagedList<InspectionTask> list = inspectionTaskService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        inspectionTaskService.dao().fill(list).with("originator").with(InspectionTaskMeta.INSPECTION_GROUP).with(InspectionTaskMeta.EXECUTOR).execute();
+        inspectionTaskService.dao().fill(list).with("originator").with(InspectionTaskMeta.INSPECTION_TASK_POINT_LIST).with(InspectionTaskMeta.INSPECTION_GROUP).with(InspectionTaskMeta.EXECUTOR).execute();
         List<Employee> user2 = CollectorUtil.collectList(list, InspectionTask::getExecutor);
         inspectionTaskService.dao().join(user2, Person.class);
         result.success(true).data(list);
@@ -348,6 +350,12 @@ public class InspectionTaskController extends SuperController {
     @PostMapping(InspectionTaskServiceProxy.EXECUTE)
     public Result execute(String taskId, String pointCode, String status, String ct, String pics) {
         return inspectionTaskService.execute(taskId, pointCode, status, ct, pics);
+    }
+
+    @SentinelResource(value = InspectionTaskServiceProxy.QUERY_DATA_BY_CAL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(InspectionTaskServiceProxy.QUERY_DATA_BY_CAL)
+    public Result<JSONArray> queryDataByCal(String status,String startStr,String endStr){
+        return inspectionTaskService.queryDataByCal(status,startStr,endStr);
     }
 
     /**

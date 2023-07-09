@@ -44,10 +44,9 @@ public interface IInspectionPlanService extends ISuperService<InspectionPlan> {
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
-	 * @param id id
 	 * @return 执行
 	 * */
-	Result execute(String id);
+	Result execute();
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

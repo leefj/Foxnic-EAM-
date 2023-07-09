@@ -77,6 +77,12 @@ public interface InspectionTaskPointServiceProxy {
      */
     public static final String QUERY_LIST = API_PREFIX + "query-list";
 
+
+    /**
+     * 结束巡检
+     */
+    public static final String FINISH = API_PREFIX + "finish";
+
     /**
      * 分页查询巡检点
      */

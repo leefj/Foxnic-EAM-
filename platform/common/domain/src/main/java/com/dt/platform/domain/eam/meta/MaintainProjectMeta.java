@@ -6,13 +6,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.ActionCrontab;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-08 06:19:52
- * @sign 2FEEFB0579133A813A96349FD92BC56B
+ * @since 2023-07-07 18:15:14
+ * @sign E651BB049433A39E7BCBF8E9F6046C25
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -59,6 +60,16 @@ public class MaintainProjectMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProject,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProject.class ,NAME, java.lang.String.class, "项目名称", "项目名称", java.lang.String.class, null);
 	
 	/**
+	 * 保养内容 , 类型: java.lang.String
+	*/
+	public static final String CONTENT="content";
+	
+	/**
+	 * 保养内容 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProject,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProject.class ,CONTENT, java.lang.String.class, "保养内容", "保养内容", java.lang.String.class, null);
+	
+	/**
 	 * 保养类型 , 类型: java.lang.String
 	*/
 	public static final String MAINTAIN_TYPE="maintainType";
@@ -69,14 +80,14 @@ public class MaintainProjectMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProject,java.lang.String> MAINTAIN_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProject.class ,MAINTAIN_TYPE, java.lang.String.class, "保养类型", "保养类型", java.lang.String.class, null);
 	
 	/**
-	 * 标准工时(小时) , 类型: java.math.BigDecimal
+	 * 标准工时 , 小时) , 类型: java.math.BigDecimal
 	*/
 	public static final String BASE_COST="baseCost";
 	
 	/**
-	 * 标准工时(小时) , 类型: java.math.BigDecimal
+	 * 标准工时 , 小时) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProject,java.math.BigDecimal> BASE_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProject.class ,BASE_COST, java.math.BigDecimal.class, "标准工时(小时)", "标准工时(小时)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProject,java.math.BigDecimal> BASE_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProject.class ,BASE_COST, java.math.BigDecimal.class, "标准工时", "小时)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 保养周期 , 类型: java.lang.String
@@ -231,7 +242,7 @@ public class MaintainProjectMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , STATUS , NAME , MAINTAIN_TYPE , BASE_COST , ACTION_CYCLE_ID , ATTACH_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , MAINTAIN_TYPE_DICT , ACTION_CRONTAB };
+	public static final String[] $PROPS={ ID , CODE , STATUS , NAME , CONTENT , MAINTAIN_TYPE , BASE_COST , ACTION_CYCLE_ID , ATTACH_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , MAINTAIN_TYPE_DICT , ACTION_CRONTAB };
 	
 	/**
 	 * 代理类
@@ -286,6 +297,17 @@ public class MaintainProjectMeta {
 		}
 		
 		/**
+		 * 设置 保养内容
+		 * @param content 保养内容
+		 * @return 当前对象
+		*/
+		public MaintainProject setContent(String content) {
+			super.change(CONTENT,super.getContent(),content);
+			super.setContent(content);
+			return this;
+		}
+		
+		/**
 		 * 设置 保养类型
 		 * @param maintainType 保养类型
 		 * @return 当前对象
@@ -297,8 +319,8 @@ public class MaintainProjectMeta {
 		}
 		
 		/**
-		 * 设置 标准工时(小时)
-		 * @param baseCost 标准工时(小时)
+		 * 设置 标准工时
+		 * @param baseCost 标准工时
 		 * @return 当前对象
 		*/
 		public MaintainProject setBaseCost(BigDecimal baseCost) {
@@ -471,5 +493,49 @@ public class MaintainProjectMeta {
 			super.setActionCrontab(actionCrontab);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public MaintainProject clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public MaintainProject duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setBaseCost(this.getBaseCost());
+			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setActionCycleId(this.getActionCycleId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
+			inst.setContent(this.getContent());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setMaintainType(this.getMaintainType());
+			inst.setAttachId(this.getAttachId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setActionCrontab(this.getActionCrontab());
+				inst.setMaintainTypeDict(this.getMaintainTypeDict());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

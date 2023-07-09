@@ -29,7 +29,9 @@ import java.util.Map;
 
 public interface IInspectionPointService extends ISuperService<InspectionPoint> {
 
+	Result selectDeleteById(String ownerId,String id,String selectCode);
 
+	Result selectSaveIds(String ownerId,String ids,String selectCode);
 
 	PagedList<InspectionPoint> queryPagedListBySelected(InspectionPointVO sample,String ownerId,String ownerType);
 

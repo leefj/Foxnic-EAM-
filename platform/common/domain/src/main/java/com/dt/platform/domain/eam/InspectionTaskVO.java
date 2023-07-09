@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务VO类型
  * <p>巡检任务 , 数据表 eam_inspection_task 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-14 07:30:19
+ * @since 2023-07-07 18:22:43
  * @sign FC0E307EB7CDFD362C699424737E2FFB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -435,26 +435,30 @@ public class InspectionTaskVO extends InspectionTask {
 		if(all) {
 			inst.setSearchField(this.getSearchField());
 			inst.setTimeDict(this.getTimeDict());
-			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
-			inst.setInspectionTaskPointList(this.getInspectionTaskPointList());
 			inst.setPageSize(this.getPageSize());
 			inst.setInspectionTaskPointIds(this.getInspectionTaskPointIds());
 			inst.setInspectUserList(this.getInspectUserList());
 			inst.setOriginator(this.getOriginator());
-			inst.setInspectionPointIds(this.getInspectionPointIds());
-			inst.setInspectionGroup(this.getInspectionGroup());
 			inst.setInspectionPointList(this.getInspectionPointList());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setExecutor(this.getExecutor());
-			inst.setInspectionTypeDict(this.getInspectionTypeDict());
 			inst.setInspectionPlan(this.getInspectionPlan());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setDataOrigin(this.getDataOrigin());
-			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setInspectionTaskPointList(this.getInspectionTaskPointList());
+			inst.setInspectionPointIds(this.getInspectionPointIds());
+			inst.setInspectionGroup(this.getInspectionGroup());
+			inst.setPointCount(this.getPointCount());
+			inst.setPointWaitCount(this.getPointWaitCount());
+			inst.setPointAbormalCount(this.getPointAbormalCount());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setInspectionTypeDict(this.getInspectionTypeDict());
+			inst.setIds(this.getIds());
+			inst.setPointNormalCount(this.getPointNormalCount());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -546,19 +550,23 @@ public class InspectionTaskVO extends InspectionTask {
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.SEARCH_FIELD)));
 			this.setTimeDict(DataParser.parse(DictItem.class, map.get(InspectionTaskVOMeta.TIME_DICT)));
-			this.setRequestAction(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(InspectionTaskVOMeta.PAGE_SIZE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(InspectionTaskVOMeta.ORIGINATOR)));
-			this.setInspectionGroup(DataParser.parse(InspectionGroup.class, map.get(InspectionTaskVOMeta.INSPECTION_GROUP)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(InspectionTaskVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.SORT_TYPE)));
 			this.setExecutor(DataParser.parse(Employee.class, map.get(InspectionTaskVOMeta.EXECUTOR)));
-			this.setInspectionTypeDict(DataParser.parse(DictItem.class, map.get(InspectionTaskVOMeta.INSPECTION_TYPE_DICT)));
 			this.setInspectionPlan(DataParser.parse(InspectionPlan.class, map.get(InspectionTaskVOMeta.INSPECTION_PLAN)));
 			this.setSortField(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.QUERY_LOGIC)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.REQUEST_ACTION)));
+			this.setInspectionGroup(DataParser.parse(InspectionGroup.class, map.get(InspectionTaskVOMeta.INSPECTION_GROUP)));
+			this.setPointCount(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.POINT_COUNT)));
+			this.setPointWaitCount(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.POINT_WAIT_COUNT)));
+			this.setPointAbormalCount(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.POINT_ABORMAL_COUNT)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(InspectionTaskVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.SORT_TYPE)));
+			this.setInspectionTypeDict(DataParser.parse(DictItem.class, map.get(InspectionTaskVOMeta.INSPECTION_TYPE_DICT)));
+			this.setPointNormalCount(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.POINT_NORMAL_COUNT)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -594,19 +602,23 @@ public class InspectionTaskVO extends InspectionTask {
 				// others
 				this.setSearchField( (String)map.get(InspectionTaskVOMeta.SEARCH_FIELD));
 				this.setTimeDict( (DictItem)map.get(InspectionTaskVOMeta.TIME_DICT));
-				this.setRequestAction( (String)map.get(InspectionTaskVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(InspectionTaskVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(InspectionTaskVOMeta.PAGE_SIZE));
 				this.setOriginator( (Employee)map.get(InspectionTaskVOMeta.ORIGINATOR));
-				this.setInspectionGroup( (InspectionGroup)map.get(InspectionTaskVOMeta.INSPECTION_GROUP));
-				this.setPageIndex( (Integer)map.get(InspectionTaskVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(InspectionTaskVOMeta.SORT_TYPE));
 				this.setExecutor( (Employee)map.get(InspectionTaskVOMeta.EXECUTOR));
-				this.setInspectionTypeDict( (DictItem)map.get(InspectionTaskVOMeta.INSPECTION_TYPE_DICT));
 				this.setInspectionPlan( (InspectionPlan)map.get(InspectionTaskVOMeta.INSPECTION_PLAN));
 				this.setSortField( (String)map.get(InspectionTaskVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(InspectionTaskVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(InspectionTaskVOMeta.QUERY_LOGIC));
+				this.setRequestAction( (String)map.get(InspectionTaskVOMeta.REQUEST_ACTION));
+				this.setInspectionGroup( (InspectionGroup)map.get(InspectionTaskVOMeta.INSPECTION_GROUP));
+				this.setPointCount( (String)map.get(InspectionTaskVOMeta.POINT_COUNT));
+				this.setPointWaitCount( (String)map.get(InspectionTaskVOMeta.POINT_WAIT_COUNT));
+				this.setPointAbormalCount( (String)map.get(InspectionTaskVOMeta.POINT_ABORMAL_COUNT));
+				this.setPageIndex( (Integer)map.get(InspectionTaskVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(InspectionTaskVOMeta.SORT_TYPE));
+				this.setInspectionTypeDict( (DictItem)map.get(InspectionTaskVOMeta.INSPECTION_TYPE_DICT));
+				this.setPointNormalCount( (String)map.get(InspectionTaskVOMeta.POINT_NORMAL_COUNT));
 				this.setSearchValue( (String)map.get(InspectionTaskVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {

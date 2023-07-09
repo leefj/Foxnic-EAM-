@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检计划
  * <p>巡检计划 , 数据表 eam_inspection_plan 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-12 21:22:49
- * @sign 6FBD0C95F2995FEC17B9966D5022DFA9
+ * @since 2023-07-07 18:20:42
+ * @sign 46CFD843A611B73D1E30D45D0F4F9536
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -69,7 +69,7 @@ public class InspectionPlan extends Entity {
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "acting")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "stop")
 	private String planStatus;
 	
 	/**
@@ -89,6 +89,12 @@ public class InspectionPlan extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="班组" , notes = "班组" , example = "571667627504570368")
 	private String groupId;
+	
+	/**
+	 * 位置范围：位置范围
+	*/
+	@ApiModelProperty(required = false,value="位置范围" , notes = "位置范围")
+	private String posDetail;
 	
 	/**
 	 * 开始日期：开始日期
@@ -131,6 +137,18 @@ public class InspectionPlan extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="提醒时间" , notes = "小时)" , example = "2.00")
 	private BigDecimal remindTime;
+	
+	/**
+	 * 上次执行：上次执行
+	*/
+	@ApiModelProperty(required = false,value="上次执行" , notes = "上次执行")
+	private Date lastTime;
+	
+	/**
+	 * 下次执行：下次执行
+	*/
+	@ApiModelProperty(required = false,value="下次执行" , notes = "下次执行")
+	private Date nextTime;
 	
 	/**
 	 * 备注：备注
@@ -196,12 +214,6 @@ public class InspectionPlan extends Entity {
 	private Integer version;
 	
 	/**
-	 * 选择：选择
-	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1681049719000")
-	private String selectedCode;
-	
-	/**
 	 * 班组：班组
 	*/
 	@ApiModelProperty(required = false,value="班组" , notes = "班组")
@@ -220,10 +232,10 @@ public class InspectionPlan extends Entity {
 	private ActionCrontab actionCrontab;
 	
 	/**
-	 * 巡检点：巡检点
+	 * inspectionPointList：inspectionPointList
 	*/
-	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点")
-	private List<InspectionPlanPoint> inspectionPlanPointList;
+	@ApiModelProperty(required = false,value="inspectionPointList" , notes = "inspectionPointList")
+	private List<InspectionPoint> inspectionPointList;
 	
 	/**
 	 * 巡检点：巡检点
@@ -242,6 +254,24 @@ public class InspectionPlan extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点")
 	private List<String> inspectionPointOwnerIds;
+	
+	/**
+	 * selectedCode：selectedCode
+	*/
+	@ApiModelProperty(required = false,value="selectedCode" , notes = "selectedCode")
+	private String selectedCode;
+	
+	/**
+	 * itemCount：itemCount
+	*/
+	@ApiModelProperty(required = false,value="itemCount" , notes = "itemCount")
+	private String itemCount;
+	
+	/**
+	 * itemDisableCount：itemDisableCount
+	*/
+	@ApiModelProperty(required = false,value="itemDisableCount" , notes = "itemDisableCount")
+	private String itemDisableCount;
 	
 	/**
 	 * 获得 主键<br>
@@ -396,6 +426,25 @@ public class InspectionPlan extends Entity {
 	}
 	
 	/**
+	 * 获得 位置范围<br>
+	 * 位置范围
+	 * @return 位置范围
+	*/
+	public String getPosDetail() {
+		return posDetail;
+	}
+	
+	/**
+	 * 设置 位置范围
+	 * @param posDetail 位置范围
+	 * @return 当前对象
+	*/
+	public InspectionPlan setPosDetail(String posDetail) {
+		this.posDetail=posDetail;
+		return this;
+	}
+	
+	/**
 	 * 获得 开始日期<br>
 	 * 开始日期
 	 * @return 开始日期
@@ -525,6 +574,44 @@ public class InspectionPlan extends Entity {
 	*/
 	public InspectionPlan setRemindTime(BigDecimal remindTime) {
 		this.remindTime=remindTime;
+		return this;
+	}
+	
+	/**
+	 * 获得 上次执行<br>
+	 * 上次执行
+	 * @return 上次执行
+	*/
+	public Date getLastTime() {
+		return lastTime;
+	}
+	
+	/**
+	 * 设置 上次执行
+	 * @param lastTime 上次执行
+	 * @return 当前对象
+	*/
+	public InspectionPlan setLastTime(Date lastTime) {
+		this.lastTime=lastTime;
+		return this;
+	}
+	
+	/**
+	 * 获得 下次执行<br>
+	 * 下次执行
+	 * @return 下次执行
+	*/
+	public Date getNextTime() {
+		return nextTime;
+	}
+	
+	/**
+	 * 设置 下次执行
+	 * @param nextTime 下次执行
+	 * @return 当前对象
+	*/
+	public InspectionPlan setNextTime(Date nextTime) {
+		this.nextTime=nextTime;
 		return this;
 	}
 	
@@ -750,25 +837,6 @@ public class InspectionPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 选择<br>
-	 * 选择
-	 * @return 选择
-	*/
-	public String getSelectedCode() {
-		return selectedCode;
-	}
-	
-	/**
-	 * 设置 选择
-	 * @param selectedCode 选择
-	 * @return 当前对象
-	*/
-	public InspectionPlan setSelectedCode(String selectedCode) {
-		this.selectedCode=selectedCode;
-		return this;
-	}
-	
-	/**
 	 * 获得 班组<br>
 	 * 班组
 	 * @return 班组
@@ -826,32 +894,32 @@ public class InspectionPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 巡检点<br>
-	 * 巡检点
-	 * @return 巡检点
+	 * 获得 inspectionPointList<br>
+	 * inspectionPointList
+	 * @return inspectionPointList
 	*/
-	public List<InspectionPlanPoint> getInspectionPlanPointList() {
-		return inspectionPlanPointList;
+	public List<InspectionPoint> getInspectionPointList() {
+		return inspectionPointList;
 	}
 	
 	/**
-	 * 设置 巡检点
-	 * @param inspectionPlanPointList 巡检点
+	 * 设置 inspectionPointList
+	 * @param inspectionPointList inspectionPointList
 	 * @return 当前对象
 	*/
-	public InspectionPlan setInspectionPlanPointList(List<InspectionPlanPoint> inspectionPlanPointList) {
-		this.inspectionPlanPointList=inspectionPlanPointList;
+	public InspectionPlan setInspectionPointList(List<InspectionPoint> inspectionPointList) {
+		this.inspectionPointList=inspectionPointList;
 		return this;
 	}
 	
 	/**
-	 * 添加 巡检点
-	 * @param inspectionPlanPoint 巡检点
+	 * 添加 inspectionPointList
+	 * @param inspectionPoint inspectionPointList
 	 * @return 当前对象
 	*/
-	public InspectionPlan addInspectionPlanPoint(InspectionPlanPoint... inspectionPlanPoint) {
-		if(this.inspectionPlanPointList==null) inspectionPlanPointList=new ArrayList<>();
-		this.inspectionPlanPointList.addAll(Arrays.asList(inspectionPlanPoint));
+	public InspectionPlan addInspectionPoint(InspectionPoint... inspectionPoint) {
+		if(this.inspectionPointList==null) inspectionPointList=new ArrayList<>();
+		this.inspectionPointList.addAll(Arrays.asList(inspectionPoint));
 		return this;
 	}
 	
@@ -944,6 +1012,63 @@ public class InspectionPlan extends Entity {
 		this.inspectionPointOwnerIds.addAll(Arrays.asList(inspectionPointOwnerId));
 		return this;
 	}
+	
+	/**
+	 * 获得 selectedCode<br>
+	 * selectedCode
+	 * @return selectedCode
+	*/
+	public String getSelectedCode() {
+		return selectedCode;
+	}
+	
+	/**
+	 * 设置 selectedCode
+	 * @param selectedCode selectedCode
+	 * @return 当前对象
+	*/
+	public InspectionPlan setSelectedCode(String selectedCode) {
+		this.selectedCode=selectedCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 itemCount<br>
+	 * itemCount
+	 * @return itemCount
+	*/
+	public String getItemCount() {
+		return itemCount;
+	}
+	
+	/**
+	 * 设置 itemCount
+	 * @param itemCount itemCount
+	 * @return 当前对象
+	*/
+	public InspectionPlan setItemCount(String itemCount) {
+		this.itemCount=itemCount;
+		return this;
+	}
+	
+	/**
+	 * 获得 itemDisableCount<br>
+	 * itemDisableCount
+	 * @return itemDisableCount
+	*/
+	public String getItemDisableCount() {
+		return itemDisableCount;
+	}
+	
+	/**
+	 * 设置 itemDisableCount
+	 * @param itemDisableCount itemDisableCount
+	 * @return 当前对象
+	*/
+	public InspectionPlan setItemDisableCount(String itemDisableCount) {
+		this.itemDisableCount=itemDisableCount;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -989,11 +1114,13 @@ public class InspectionPlan extends Entity {
 	@Transient
 	public InspectionPlan duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.InspectionPlanMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.InspectionPlanMeta.$$proxy$$();
+		inst.setLastTime(this.getLastTime());
 		inst.setNotes(this.getNotes());
 		inst.setEndDate(this.getEndDate());
+		inst.setNextTime(this.getNextTime());
 		inst.setGroupId(this.getGroupId());
 		inst.setPlanStatus(this.getPlanStatus());
-		inst.setSelectedCode(this.getSelectedCode());
+		inst.setPosDetail(this.getPosDetail());
 		inst.setLeaderId(this.getLeaderId());
 		inst.setCompletionTime(this.getCompletionTime());
 		inst.setRemindTime(this.getRemindTime());
@@ -1016,13 +1143,16 @@ public class InspectionPlan extends Entity {
 		inst.setStartDate(this.getStartDate());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setInspectionPointList(this.getInspectionPointList());
 			inst.setActionCrontab(this.getActionCrontab());
 			inst.setInspectionPointOwnerIds(this.getInspectionPointOwnerIds());
 			inst.setInspectionTypeDict(this.getInspectionTypeDict());
 			inst.setInspectionPointOwnerList(this.getInspectionPointOwnerList());
-			inst.setInspectionPlanPointList(this.getInspectionPlanPointList());
+			inst.setSelectedCode(this.getSelectedCode());
 			inst.setInspectionGroup(this.getInspectionGroup());
 			inst.setInspectionPlanPointIds(this.getInspectionPlanPointIds());
+			inst.setItemCount(this.getItemCount());
+			inst.setItemDisableCount(this.getItemDisableCount());
 		}
 		inst.clearModifies();
 		return inst;
@@ -1082,11 +1212,13 @@ public class InspectionPlan extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setLastTime(DataParser.parse(Date.class, map.get(InspectionPlanMeta.LAST_TIME)));
 			this.setNotes(DataParser.parse(String.class, map.get(InspectionPlanMeta.NOTES)));
 			this.setEndDate(DataParser.parse(Date.class, map.get(InspectionPlanMeta.END_DATE)));
+			this.setNextTime(DataParser.parse(Date.class, map.get(InspectionPlanMeta.NEXT_TIME)));
 			this.setGroupId(DataParser.parse(String.class, map.get(InspectionPlanMeta.GROUP_ID)));
 			this.setPlanStatus(DataParser.parse(String.class, map.get(InspectionPlanMeta.PLAN_STATUS)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionPlanMeta.SELECTED_CODE)));
+			this.setPosDetail(DataParser.parse(String.class, map.get(InspectionPlanMeta.POS_DETAIL)));
 			this.setLeaderId(DataParser.parse(String.class, map.get(InspectionPlanMeta.LEADER_ID)));
 			this.setCompletionTime(DataParser.parse(BigDecimal.class, map.get(InspectionPlanMeta.COMPLETION_TIME)));
 			this.setRemindTime(DataParser.parse(BigDecimal.class, map.get(InspectionPlanMeta.REMIND_TIME)));
@@ -1111,15 +1243,20 @@ public class InspectionPlan extends Entity {
 			// others
 			this.setActionCrontab(DataParser.parse(ActionCrontab.class, map.get(InspectionPlanMeta.ACTION_CRONTAB)));
 			this.setInspectionTypeDict(DataParser.parse(DictItem.class, map.get(InspectionPlanMeta.INSPECTION_TYPE_DICT)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionPlanMeta.SELECTED_CODE)));
 			this.setInspectionGroup(DataParser.parse(InspectionGroup.class, map.get(InspectionPlanMeta.INSPECTION_GROUP)));
+			this.setItemCount(DataParser.parse(String.class, map.get(InspectionPlanMeta.ITEM_COUNT)));
+			this.setItemDisableCount(DataParser.parse(String.class, map.get(InspectionPlanMeta.ITEM_DISABLE_COUNT)));
 			return true;
 		} else {
 			try {
+				this.setLastTime( (Date)map.get(InspectionPlanMeta.LAST_TIME));
 				this.setNotes( (String)map.get(InspectionPlanMeta.NOTES));
 				this.setEndDate( (Date)map.get(InspectionPlanMeta.END_DATE));
+				this.setNextTime( (Date)map.get(InspectionPlanMeta.NEXT_TIME));
 				this.setGroupId( (String)map.get(InspectionPlanMeta.GROUP_ID));
 				this.setPlanStatus( (String)map.get(InspectionPlanMeta.PLAN_STATUS));
-				this.setSelectedCode( (String)map.get(InspectionPlanMeta.SELECTED_CODE));
+				this.setPosDetail( (String)map.get(InspectionPlanMeta.POS_DETAIL));
 				this.setLeaderId( (String)map.get(InspectionPlanMeta.LEADER_ID));
 				this.setCompletionTime( (BigDecimal)map.get(InspectionPlanMeta.COMPLETION_TIME));
 				this.setRemindTime( (BigDecimal)map.get(InspectionPlanMeta.REMIND_TIME));
@@ -1144,7 +1281,10 @@ public class InspectionPlan extends Entity {
 				// others
 				this.setActionCrontab( (ActionCrontab)map.get(InspectionPlanMeta.ACTION_CRONTAB));
 				this.setInspectionTypeDict( (DictItem)map.get(InspectionPlanMeta.INSPECTION_TYPE_DICT));
+				this.setSelectedCode( (String)map.get(InspectionPlanMeta.SELECTED_CODE));
 				this.setInspectionGroup( (InspectionGroup)map.get(InspectionPlanMeta.INSPECTION_GROUP));
+				this.setItemCount( (String)map.get(InspectionPlanMeta.ITEM_COUNT));
+				this.setItemDisableCount( (String)map.get(InspectionPlanMeta.ITEM_DISABLE_COUNT));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -1161,11 +1301,13 @@ public class InspectionPlan extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setLastTime(DataParser.parse(Date.class, r.getValue(InspectionPlanMeta.LAST_TIME)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(InspectionPlanMeta.NOTES)));
 			this.setEndDate(DataParser.parse(Date.class, r.getValue(InspectionPlanMeta.END_DATE)));
+			this.setNextTime(DataParser.parse(Date.class, r.getValue(InspectionPlanMeta.NEXT_TIME)));
 			this.setGroupId(DataParser.parse(String.class, r.getValue(InspectionPlanMeta.GROUP_ID)));
 			this.setPlanStatus(DataParser.parse(String.class, r.getValue(InspectionPlanMeta.PLAN_STATUS)));
-			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionPlanMeta.SELECTED_CODE)));
+			this.setPosDetail(DataParser.parse(String.class, r.getValue(InspectionPlanMeta.POS_DETAIL)));
 			this.setLeaderId(DataParser.parse(String.class, r.getValue(InspectionPlanMeta.LEADER_ID)));
 			this.setCompletionTime(DataParser.parse(BigDecimal.class, r.getValue(InspectionPlanMeta.COMPLETION_TIME)));
 			this.setRemindTime(DataParser.parse(BigDecimal.class, r.getValue(InspectionPlanMeta.REMIND_TIME)));
@@ -1190,11 +1332,13 @@ public class InspectionPlan extends Entity {
 			return true;
 		} else {
 			try {
+				this.setLastTime( (Date)r.getValue(InspectionPlanMeta.LAST_TIME));
 				this.setNotes( (String)r.getValue(InspectionPlanMeta.NOTES));
 				this.setEndDate( (Date)r.getValue(InspectionPlanMeta.END_DATE));
+				this.setNextTime( (Date)r.getValue(InspectionPlanMeta.NEXT_TIME));
 				this.setGroupId( (String)r.getValue(InspectionPlanMeta.GROUP_ID));
 				this.setPlanStatus( (String)r.getValue(InspectionPlanMeta.PLAN_STATUS));
-				this.setSelectedCode( (String)r.getValue(InspectionPlanMeta.SELECTED_CODE));
+				this.setPosDetail( (String)r.getValue(InspectionPlanMeta.POS_DETAIL));
 				this.setLeaderId( (String)r.getValue(InspectionPlanMeta.LEADER_ID));
 				this.setCompletionTime( (BigDecimal)r.getValue(InspectionPlanMeta.COMPLETION_TIME));
 				this.setRemindTime( (BigDecimal)r.getValue(InspectionPlanMeta.REMIND_TIME));

@@ -61,7 +61,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     $("#actionCycleId").click(function(){
         var ownerId=""
         var queryString="";
+        console.log("1111 method")
         if(formAction=="create"){
+            console.log("create method")
             url="/service-eam/eam-action-crontab/get-by-owner-id"
             ownerId=time;
             ps.ownerId=ownerId;
@@ -70,18 +72,34 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var tD={};
             openCronForm(tD,queryString,url,ps);
         }else if(formAction=="edit"){
-            url="/service-eam/eam-action-crontab/get-by-id"
-            admin.putTempData('eam-action-crontab-form-data-form-action', "edit",true);
-            queryString="?id="+actionCycleId;
-            ps.id=actionCycleId;
-            admin.post(url, ps, function (r) {
-                if (r.success) {
-                    openCronForm(r.data,queryString,url,ps);
-                } else {
-                    fox.showMessage(r);
-                }
-            });
+            if(actionCycleId&&actionCycleId.length>5){
+                console.log("edit method")
+                queryString="?id="+actionCycleId
+                url="/service-eam/eam-action-crontab/get-by-id"
+                admin.putTempData('eam-action-crontab-form-data-form-action', "edit",true);
+                ps.id=actionCycleId;
+                admin.post(url, ps, function (r) {
+                    if (r.success) {
+                        openCronForm(r.data,queryString,url,ps);
+                    } else {
+                        fox.showMessage(r);
+                    }
+                });
+            }else{
+                //按照create 方式
+                console.log("create method")
+                url="/service-eam/eam-action-crontab/get-by-owner-id"
+                ownerId=time;
+                ps.ownerId=ownerId;
+                admin.putTempData('eam-action-crontab-form-data-form-action', "create",true);
+                queryString="?ownerId="+ownerId;
+                var tD={};
+                openCronForm(tD,queryString,url,ps);
+            }
+
+
         }else if(formAction=="view"){
+            console.log("view method")
             url="/service-eam/eam-action-crontab/get-by-id"
             admin.putTempData('eam-action-crontab-form-data-form-action', "view",true);
             queryString="?id="+actionCycleId;

@@ -21,7 +21,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     const moduleURL="/service-eam/eam-inspection-task";
 
     var timestamp = Date.parse(new Date());
-    var formAction=admin.getTempData('eam-maintain-task-form-data-form-action');
+    var formAction=admin.getTempData('eam-inspection-task-form-data-form-action');
 
 
     //列表页的扩展
@@ -120,6 +120,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="pointCount" ||field=="pointNormalCount" ||field=="pointAbormalCount"   ||field=="pointWaitCount"){
+                if(value){
+                    return value
+                }else{
+                    return 0;
+                }
+            }
+
             if(value==null) return "";
             return value;
         },

@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点VO类型
  * <p>巡检点 , 数据表 eam_inspection_task_point 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-11 12:47:53
+ * @since 2023-07-07 22:53:43
  * @sign 651D328B81E70EC1A0B8941BD7D880C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -426,17 +426,19 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setDeleteTime(this.getDeleteTime());
-		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPointPosId(this.getPointPosId());
 		inst.setPointPosLatitude(this.getPointPosLatitude());
 		inst.setTaskId(this.getTaskId());
 		if(all) {
+			inst.setCheckItemList(this.getCheckItemList());
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setInspectionPointPos(this.getInspectionPointPos());
+			inst.setCheckSelectList(this.getCheckSelectList());
+			inst.setItemCount(this.getItemCount());
 			inst.setRoute(this.getRoute());
 			inst.setTask(this.getTask());
 			inst.setPageIndex(this.getPageIndex());
@@ -448,6 +450,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setOperUser(this.getOperUser());
 			inst.setSearchValue(this.getSearchValue());
+			inst.setInspectionPoint(this.getInspectionPoint());
 		}
 		inst.clearModifies();
 		return inst;
@@ -531,7 +534,6 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			this.setDeleted(DataParser.parse(Integer.class, map.get(InspectionTaskPointVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(InspectionTaskPointVOMeta.CREATE_TIME)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(InspectionTaskPointVOMeta.DELETE_TIME)));
-			this.setTenantId(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.DELETE_BY)));
 			this.setPointPosId(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.POINT_POS_ID)));
 			this.setPointPosLatitude(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.POINT_POS_LATITUDE)));
@@ -542,6 +544,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			this.setFuzzyField(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(InspectionTaskPointVOMeta.PAGE_SIZE)));
 			this.setInspectionPointPos(DataParser.parse(InspectionPointPos.class, map.get(InspectionTaskPointVOMeta.INSPECTION_POINT_POS)));
+			this.setItemCount(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.ITEM_COUNT)));
 			this.setRoute(DataParser.parse(InspectionRoute.class, map.get(InspectionTaskPointVOMeta.ROUTE)));
 			this.setTask(DataParser.parse(InspectionTask.class, map.get(InspectionTaskPointVOMeta.TASK)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(InspectionTaskPointVOMeta.PAGE_INDEX)));
@@ -551,6 +554,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			this.setQueryLogic(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.QUERY_LOGIC)));
 			this.setOperUser(DataParser.parse(Employee.class, map.get(InspectionTaskPointVOMeta.OPER_USER)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.SEARCH_VALUE)));
+			this.setInspectionPoint(DataParser.parse(InspectionPoint.class, map.get(InspectionTaskPointVOMeta.INSPECTION_POINT)));
 			return true;
 		} else {
 			try {
@@ -578,7 +582,6 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 				this.setDeleted( (Integer)map.get(InspectionTaskPointVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(InspectionTaskPointVOMeta.CREATE_TIME));
 				this.setDeleteTime( (Date)map.get(InspectionTaskPointVOMeta.DELETE_TIME));
-				this.setTenantId( (String)map.get(InspectionTaskPointVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(InspectionTaskPointVOMeta.DELETE_BY));
 				this.setPointPosId( (String)map.get(InspectionTaskPointVOMeta.POINT_POS_ID));
 				this.setPointPosLatitude( (String)map.get(InspectionTaskPointVOMeta.POINT_POS_LATITUDE));
@@ -589,6 +592,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 				this.setFuzzyField( (String)map.get(InspectionTaskPointVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(InspectionTaskPointVOMeta.PAGE_SIZE));
 				this.setInspectionPointPos( (InspectionPointPos)map.get(InspectionTaskPointVOMeta.INSPECTION_POINT_POS));
+				this.setItemCount( (String)map.get(InspectionTaskPointVOMeta.ITEM_COUNT));
 				this.setRoute( (InspectionRoute)map.get(InspectionTaskPointVOMeta.ROUTE));
 				this.setTask( (InspectionTask)map.get(InspectionTaskPointVOMeta.TASK));
 				this.setPageIndex( (Integer)map.get(InspectionTaskPointVOMeta.PAGE_INDEX));
@@ -598,6 +602,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 				this.setQueryLogic( (String)map.get(InspectionTaskPointVOMeta.QUERY_LOGIC));
 				this.setOperUser( (Employee)map.get(InspectionTaskPointVOMeta.OPER_USER));
 				this.setSearchValue( (String)map.get(InspectionTaskPointVOMeta.SEARCH_VALUE));
+				this.setInspectionPoint( (InspectionPoint)map.get(InspectionTaskPointVOMeta.INSPECTION_POINT));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -638,7 +643,6 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(InspectionTaskPointVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(InspectionTaskPointVOMeta.CREATE_TIME)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(InspectionTaskPointVOMeta.DELETE_TIME)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(InspectionTaskPointVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InspectionTaskPointVOMeta.DELETE_BY)));
 			this.setPointPosId(DataParser.parse(String.class, r.getValue(InspectionTaskPointVOMeta.POINT_POS_ID)));
 			this.setPointPosLatitude(DataParser.parse(String.class, r.getValue(InspectionTaskPointVOMeta.POINT_POS_LATITUDE)));
@@ -670,7 +674,6 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 				this.setDeleted( (Integer)r.getValue(InspectionTaskPointVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(InspectionTaskPointVOMeta.CREATE_TIME));
 				this.setDeleteTime( (Date)r.getValue(InspectionTaskPointVOMeta.DELETE_TIME));
-				this.setTenantId( (String)r.getValue(InspectionTaskPointVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(InspectionTaskPointVOMeta.DELETE_BY));
 				this.setPointPosId( (String)r.getValue(InspectionTaskPointVOMeta.POINT_POS_ID));
 				this.setPointPosLatitude( (String)r.getValue(InspectionTaskPointVOMeta.POINT_POS_LATITUDE));

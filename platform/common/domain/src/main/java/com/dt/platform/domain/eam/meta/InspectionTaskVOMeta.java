@@ -18,7 +18,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-14 07:30:19
+ * @since 2023-07-07 18:22:43
  * @sign FC0E307EB7CDFD362C699424737E2FFB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -516,6 +516,46 @@ public class InspectionTaskVOMeta extends InspectionTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskVO,org.github.foxnic.web.domain.hrm.Employee> INSPECT_USER_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskVO.class ,INSPECT_USER_LIST, java.util.List.class, "inspectUserList", "inspectUserList", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * pointCount , 类型: java.lang.String
+	*/
+	public static final String POINT_COUNT="pointCount";
+	
+	/**
+	 * pointCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskVO,java.lang.String> POINT_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskVO.class ,POINT_COUNT, java.lang.String.class, "pointCount", "pointCount", java.lang.String.class, null);
+	
+	/**
+	 * pointNormalCount , 类型: java.lang.String
+	*/
+	public static final String POINT_NORMAL_COUNT="pointNormalCount";
+	
+	/**
+	 * pointNormalCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskVO,java.lang.String> POINT_NORMAL_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskVO.class ,POINT_NORMAL_COUNT, java.lang.String.class, "pointNormalCount", "pointNormalCount", java.lang.String.class, null);
+	
+	/**
+	 * pointAbormalCount , 类型: java.lang.String
+	*/
+	public static final String POINT_ABORMAL_COUNT="pointAbormalCount";
+	
+	/**
+	 * pointAbormalCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskVO,java.lang.String> POINT_ABORMAL_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskVO.class ,POINT_ABORMAL_COUNT, java.lang.String.class, "pointAbormalCount", "pointAbormalCount", java.lang.String.class, null);
+	
+	/**
+	 * pointWaitCount , 类型: java.lang.String
+	*/
+	public static final String POINT_WAIT_COUNT="pointWaitCount";
+	
+	/**
+	 * pointWaitCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskVO,java.lang.String> POINT_WAIT_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskVO.class ,POINT_WAIT_COUNT, java.lang.String.class, "pointWaitCount", "pointWaitCount", java.lang.String.class, null);
+	
+	/**
 	 * 制单人 , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final String ORIGINATOR="originator";
@@ -538,7 +578,7 @@ public class InspectionTaskVOMeta extends InspectionTaskMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PLAN_ID , TASK_STATUS , TASK_CODE , PLAN_CODE , PLAN_NAME , PLAN_INSPECTION_METHOD , PLAN_COMPLETION_TIME , PLAN_NOTES , GROUP_ID , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , ACT_TOTAL_COST , CONTENT , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , SELECTED_CODE , INSPECTION_PLAN , INSPECTION_POINT_LIST , INSPECTION_POINT_IDS , INSPECTION_TASK_POINT_LIST , INSPECTION_TASK_POINT_IDS , TIME_DICT , INSPECTION_TYPE_DICT , INSPECTION_GROUP , INSPECT_USER_LIST , ORIGINATOR , EXECUTOR };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PLAN_ID , TASK_STATUS , TASK_CODE , PLAN_CODE , PLAN_NAME , PLAN_INSPECTION_METHOD , PLAN_COMPLETION_TIME , PLAN_NOTES , GROUP_ID , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , ACT_TOTAL_COST , CONTENT , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , SELECTED_CODE , INSPECTION_PLAN , INSPECTION_POINT_LIST , INSPECTION_POINT_IDS , INSPECTION_TASK_POINT_LIST , INSPECTION_TASK_POINT_IDS , TIME_DICT , INSPECTION_TYPE_DICT , INSPECTION_GROUP , INSPECT_USER_LIST , POINT_COUNT , POINT_NORMAL_COUNT , POINT_ABORMAL_COUNT , POINT_WAIT_COUNT , ORIGINATOR , EXECUTOR };
 	
 	/**
 	 * 代理类
@@ -1088,6 +1128,50 @@ public class InspectionTaskVOMeta extends InspectionTaskMeta {
 		}
 		
 		/**
+		 * 设置 pointCount
+		 * @param pointCount pointCount
+		 * @return 当前对象
+		*/
+		public InspectionTask setPointCount(String pointCount) {
+			super.change(POINT_COUNT,super.getPointCount(),pointCount);
+			super.setPointCount(pointCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 pointNormalCount
+		 * @param pointNormalCount pointNormalCount
+		 * @return 当前对象
+		*/
+		public InspectionTask setPointNormalCount(String pointNormalCount) {
+			super.change(POINT_NORMAL_COUNT,super.getPointNormalCount(),pointNormalCount);
+			super.setPointNormalCount(pointNormalCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 pointAbormalCount
+		 * @param pointAbormalCount pointAbormalCount
+		 * @return 当前对象
+		*/
+		public InspectionTask setPointAbormalCount(String pointAbormalCount) {
+			super.change(POINT_ABORMAL_COUNT,super.getPointAbormalCount(),pointAbormalCount);
+			super.setPointAbormalCount(pointAbormalCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 pointWaitCount
+		 * @param pointWaitCount pointWaitCount
+		 * @return 当前对象
+		*/
+		public InspectionTask setPointWaitCount(String pointWaitCount) {
+			super.change(POINT_WAIT_COUNT,super.getPointWaitCount(),pointWaitCount);
+			super.setPointWaitCount(pointWaitCount);
+			return this;
+		}
+		
+		/**
 		 * 设置 制单人
 		 * @param originator 制单人
 		 * @return 当前对象
@@ -1154,27 +1238,31 @@ public class InspectionTaskVOMeta extends InspectionTaskMeta {
 			inst.setPlanCompletionTime(this.getPlanCompletionTime());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
-				inst.setRequestAction(this.getRequestAction());
 				inst.setTimeDict(this.getTimeDict());
 				inst.setFuzzyField(this.getFuzzyField());
-				inst.setInspectionTaskPointList(this.getInspectionTaskPointList());
 				inst.setPageSize(this.getPageSize());
 				inst.setInspectionTaskPointIds(this.getInspectionTaskPointIds());
 				inst.setInspectUserList(this.getInspectUserList());
 				inst.setOriginator(this.getOriginator());
-				inst.setInspectionPointIds(this.getInspectionPointIds());
-				inst.setInspectionGroup(this.getInspectionGroup());
 				inst.setInspectionPointList(this.getInspectionPointList());
-				inst.setPageIndex(this.getPageIndex());
-				inst.setSortType(this.getSortType());
 				inst.setExecutor(this.getExecutor());
-				inst.setInspectionTypeDict(this.getInspectionTypeDict());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setInspectionPlan(this.getInspectionPlan());
 				inst.setDataOrigin(this.getDataOrigin());
-				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setInspectionTaskPointList(this.getInspectionTaskPointList());
+				inst.setInspectionPointIds(this.getInspectionPointIds());
+				inst.setInspectionGroup(this.getInspectionGroup());
+				inst.setPointCount(this.getPointCount());
+				inst.setPointWaitCount(this.getPointWaitCount());
+				inst.setPointAbormalCount(this.getPointAbormalCount());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setInspectionTypeDict(this.getInspectionTypeDict());
+				inst.setIds(this.getIds());
+				inst.setPointNormalCount(this.getPointNormalCount());
 				inst.setSearchValue(this.getSearchValue());
 			}
 			inst.clearModifies();

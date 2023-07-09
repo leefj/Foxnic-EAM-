@@ -1,0 +1,285 @@
+<!--
+/**
+ * 退款订单 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2023-07-04 16:15:47
+ */
+ -->
+ <!DOCTYPE html>
+<html style="background-color: #FFFFFF;">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+	<title th:text="${lang.translate('退款订单')}">退款订单</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}"/>
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden;">
+<div class="form-container" >
+
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="opacity:0">
+
+
+         <!--开始：group 循环-->
+
+
+        <div class="layui-row form-row" id="default-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs12 form-column" >
+
+                <!-- text_input : 主键 ,  id -->
+                <div class="layui-form-item" style="display: none"inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('主键')}">主键</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入'+'主键') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- radio_box : 退款状态 ,  status  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('退款状态')}">退款状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.PayRefundStatusEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
+                    </div>
+                </div>
+            
+                <!-- select_box : 商户编号 ,  merchantId  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('商户编号')}">商户编号</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <div id="merchantId" input-type="select" th:data="${'/service-common/sys-pay-merchant/query-paged-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- select_box : 应用编号 ,  appId  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('应用编号')}">应用编号</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <div id="appId" input-type="select" th:data="${'/service-common/sys-pay-app/query-paged-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- select_box : 渠道编号 ,  channelId  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('渠道编号')}">渠道编号</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <div id="channelId" input-type="select" th:data="${'/service-common/sys-pay-app/query-paged-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- text_input : 渠道编码 ,  channelCode -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('渠道编码')}">渠道编码</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="channelCode" id="channelCode" name="channelCode" th:placeholder="${ lang.translate('请输入'+'渠道编码') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            
+                <!-- select_box : 支付订单 ,  orderId  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('支付订单')}">支付订单</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <div id="orderId" input-type="select" th:data="${'/service-common/sys-pay-order/query-paged-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- text_input : 交易订单 ,  tradeNo -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('交易订单')}">交易订单</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="tradeNo" id="tradeNo" name="tradeNo" th:placeholder="${ lang.translate('请输入'+'交易订单') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 商户订单编号 ,  merchantOrderId -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('商户订单编号')}">商户订单编号</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="merchantOrderId" id="merchantOrderId" name="merchantOrderId" th:placeholder="${ lang.translate('请输入'+'商户订单编号') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 商户退款订单号 ,  merchantRefundNo -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('商户退款订单号')}">商户退款订单号</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="merchantRefundNo" id="merchantRefundNo" name="merchantRefundNo" th:placeholder="${ lang.translate('请输入'+'商户退款订单号') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            
+                <!-- text_area : 异步通知商户地址 ,  notifyUrl  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('异步通知商户地址')}">异步通知商户地址</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <textarea lay-filter="notifyUrl" id="notifyUrl" name="notifyUrl" th:placeholder="${ lang.translate('请输入'+'异步通知商户地址') }" class="layui-textarea" style="height: 120px" ></textarea>
+                    </div>
+                </div>
+            
+                <!-- radio_box : 回调状态 ,  notifyStatus  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('回调状态')}">回调状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input input-type="radio" type="radio" name="notifyStatus" lay-filter="notifyStatus" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.PayNotifyStatusEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
+                    </div>
+                </div>
+            
+                <!-- radio_box : 退款类型 ,  type  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('退款类型')}">退款类型</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input input-type="radio" type="radio" name="type" lay-filter="type" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.PayRefundTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
+                    </div>
+                </div>
+            
+                <!-- text_input : 支付金额 ,  payAmount -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('支付金额')}">支付金额</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="payAmount" id="payAmount" name="payAmount" th:placeholder="${ lang.translate('请输入'+'支付金额') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 退款金额 ,  refundAmount -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('退款金额')}">退款金额</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="refundAmount" id="refundAmount" name="refundAmount" th:placeholder="${ lang.translate('请输入'+'退款金额') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 退款原因 ,  reason -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('退款原因')}">退款原因</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="reason" id="reason" name="reason" th:placeholder="${ lang.translate('请输入'+'退款原因') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 用户 ,  userIp -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('用户')}">用户</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="userIp" id="userIp" name="userIp" th:placeholder="${ lang.translate('请输入'+'用户') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 渠道订单号 ,  channelOrderNo -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('渠道订单号')}">渠道订单号</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="channelOrderNo" id="channelOrderNo" name="channelOrderNo" th:placeholder="${ lang.translate('请输入'+'渠道订单号') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 渠道退款单号 ,  channelRefundNo -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('渠道退款单号')}">渠道退款单号</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="channelRefundNo" id="channelRefundNo" name="channelRefundNo" th:placeholder="${ lang.translate('请输入'+'渠道退款单号') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 渠道调用报错时 ,  channelErrorCode -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('渠道调用报错时')}">渠道调用报错时</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="channelErrorCode" id="channelErrorCode" name="channelErrorCode" th:placeholder="${ lang.translate('请输入'+'渠道调用报错时') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 渠道调用报错时 ,  channelErrorMsg -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('渠道调用报错时')}">渠道调用报错时</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="channelErrorMsg" id="channelErrorMsg" name="channelErrorMsg" th:placeholder="${ lang.translate('请输入'+'渠道调用报错时') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_area : 支付渠道的额外参数 ,  channelExtras  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('支付渠道的额外参数')}">支付渠道的额外参数</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <textarea lay-filter="channelExtras" id="channelExtras" name="channelExtras" th:placeholder="${ lang.translate('请输入'+'支付渠道的额外参数') }" class="layui-textarea" style="height: 120px" ></textarea>
+                    </div>
+                </div>
+            
+                <!-- date_input : 退款失效时间 ,  expireTime  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('退款失效时间')}">退款失效时间</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input input-type="date" lay-filter="expireTime" id="expireTime" name="expireTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'退款失效时间') }" type="text" class="layui-input"    lay-verify=""   />
+                    </div>
+                </div>
+            
+                <!-- date_input : 退款成功时间 ,  successTime  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('退款成功时间')}">退款成功时间</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input input-type="date" lay-filter="successTime" id="successTime" name="successTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'退款成功时间') }" type="text" class="layui-input"    lay-verify=""   />
+                    </div>
+                </div>
+            
+                <!-- date_input : 退款通知时间 ,  notifyTime  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('退款通知时间')}">退款通知时间</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input input-type="date" lay-filter="notifyTime" id="notifyTime" name="notifyTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'退款通知时间') }" type="text" class="layui-input"    lay-verify=""   />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+        <!--结束：group循环-->
+
+        <div style="height: 8px"></div>
+        <div style="height: 100px"></div>
+
+
+    </form>
+
+</div>
+<div class="model-form-footer">
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('sys_pay_refund:create','sys_pay_refund:update','sys_pay_refund:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.PayRefundStatusEnum')}]];
+    var RADIO_NOTIFYSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.PayNotifyStatusEnum')}]];
+    var RADIO_TYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.PayRefundTypeEnum')}]];
+    var VALIDATE_CONFIG={"reason":{"labelInForm":"退款原因","inputType":"text_input","required":true},"tradeNo":{"labelInForm":"交易订单","inputType":"text_input","required":true},"orderId":{"labelInForm":"支付订单","inputType":"select_box","required":true},"merchantRefundNo":{"labelInForm":"商户退款订单号","inputType":"text_input","required":true},"notifyTime":{"date":true,"labelInForm":"退款通知时间","inputType":"date_input"},"notifyStatus":{"labelInForm":"回调状态","inputType":"radio_box","required":true},"channelOrderNo":{"labelInForm":"渠道订单号","inputType":"text_input","required":true},"merchantOrderId":{"labelInForm":"商户订单编号","inputType":"text_input","required":true},"type":{"labelInForm":"退款类型","inputType":"radio_box","required":true},"payAmount":{"labelInForm":"支付金额","inputType":"text_input","required":true},"expireTime":{"date":true,"labelInForm":"退款失效时间","inputType":"date_input"},"merchantId":{"labelInForm":"商户编号","inputType":"select_box","required":true},"appId":{"labelInForm":"应用编号","inputType":"select_box","required":true},"successTime":{"date":true,"labelInForm":"退款成功时间","inputType":"date_input"},"notifyUrl":{"labelInForm":"异步通知商户地址","inputType":"text_area","required":true},"channelId":{"labelInForm":"渠道编号","inputType":"select_box","required":true},"status":{"labelInForm":"退款状态","inputType":"radio_box","required":true},"channelCode":{"labelInForm":"渠道编码","inputType":"text_input","required":true},"refundAmount":{"labelInForm":"退款金额","inputType":"text_input","required":true}};
+    var AUTH_PREFIX="sys_pay_refund";
+
+
+</script>
+
+
+
+<script th:src="'/business/common/pay_refund/pay_refund_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/common/pay_refund/pay_refund_form.js?'+${cacheKey}"></script>
+
+</body>
+</html>

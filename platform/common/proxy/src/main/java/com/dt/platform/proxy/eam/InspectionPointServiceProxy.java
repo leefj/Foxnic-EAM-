@@ -110,7 +110,15 @@ public interface InspectionPointServiceProxy {
 
     public static final String SELECTED = API_PREFIX + "selected";
 
+    /**
+     * 分页查询检查项
+     */
+    public static final String SELECT_SAVE_IDS = API_PREFIX + "select-save-ids";
 
+    /**
+     * 分页查询检查项
+     */
+    public static final String SELECT_DELETE_BY_ID = API_PREFIX + "select-delete-by-id";
 
     /**
      * 添加巡检点

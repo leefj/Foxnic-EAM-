@@ -2,7 +2,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-11 12:47:55
+ * @since 2023-07-07 22:53:45
  */
  -->
  <!DOCTYPE html>
@@ -41,9 +41,9 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 任务 , taskId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 巡检状态 , pointStatus ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 巡检状态 , pointStatus ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 操作时间 , operTime ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 巡检结果 , content ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 巡检结果 , content ,typeName=text_area, isHideInSearch=true -->
                     <!-- 巡检点 , pointId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 巡检内容 , pointContent ,typeName=text_input, isHideInSearch=true -->
                     <!-- 巡检路线 , pointRouteId ,typeName=select_box, isHideInSearch=true -->
@@ -65,9 +65,9 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('编码')}" class="search-label pointCode-label">编码</span><span class="search-colon">:</span></div>
                         <input id="pointCode" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
-                    <!-- 检 , pointName ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 巡检点 , pointName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('检')}" class="search-label pointName-label">检</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('巡检点')}" class="search-label pointName-label">巡检点</span><span class="search-colon">:</span></div>
                         <input id="pointName" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
                     <!-- 位置详情 , pointPos ,typeName=text_input, isHideInSearch=false -->
@@ -121,7 +121,7 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
-    var SELECT_POINTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum')}]];
+    var RADIO_POINTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum')}]];
     var AUTH_PREFIX="eam_inspection_task_point";
 
 

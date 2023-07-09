@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点VO类型
  * <p>巡检点 , 数据表 eam_inspection_point 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-11 20:39:36
+ * @since 2023-07-07 14:01:23
  * @sign 371CE6A618210E29DF0A57D83CAB6C81
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -405,7 +405,6 @@ public class InspectionPointVO extends InspectionPoint {
 		inst.setNotes(this.getNotes());
 		inst.setPosLatitude(this.getPosLatitude());
 		inst.setUpdateTime(this.getUpdateTime());
-		inst.setSelectedCode(this.getSelectedCode());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
 		inst.setPosId(this.getPosId());
@@ -417,6 +416,7 @@ public class InspectionPointVO extends InspectionPoint {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setAssetId(this.getAssetId());
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
@@ -425,11 +425,14 @@ public class InspectionPointVO extends InspectionPoint {
 		inst.setId(this.getId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setCheckItemList(this.getCheckItemList());
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setInspectionPointPos(this.getInspectionPointPos());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setItemCount(this.getItemCount());
 			inst.setRoute(this.getRoute());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
@@ -438,7 +441,10 @@ public class InspectionPointVO extends InspectionPoint {
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setAsset(this.getAsset());
+			inst.setIdsList(this.getIdsList());
 			inst.setSearchValue(this.getSearchValue());
+			inst.setItemDisableCount(this.getItemDisableCount());
 		}
 		inst.clearModifies();
 		return inst;
@@ -502,7 +508,6 @@ public class InspectionPointVO extends InspectionPoint {
 			this.setNotes(DataParser.parse(String.class, map.get(InspectionPointVOMeta.NOTES)));
 			this.setPosLatitude(DataParser.parse(String.class, map.get(InspectionPointVOMeta.POS_LATITUDE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(InspectionPointVOMeta.UPDATE_TIME)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionPointVOMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(InspectionPointVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(InspectionPointVOMeta.CONTENT)));
 			this.setPosId(DataParser.parse(String.class, map.get(InspectionPointVOMeta.POS_ID)));
@@ -514,6 +519,7 @@ public class InspectionPointVO extends InspectionPoint {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(InspectionPointVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InspectionPointVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(InspectionPointVOMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, map.get(InspectionPointVOMeta.ASSET_ID)));
 			this.setName(DataParser.parse(String.class, map.get(InspectionPointVOMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(InspectionPointVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(InspectionPointVOMeta.DELETE_BY)));
@@ -527,13 +533,17 @@ public class InspectionPointVO extends InspectionPoint {
 			this.setFuzzyField(DataParser.parse(String.class, map.get(InspectionPointVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(InspectionPointVOMeta.PAGE_SIZE)));
 			this.setInspectionPointPos(DataParser.parse(InspectionPointPos.class, map.get(InspectionPointVOMeta.INSPECTION_POINT_POS)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionPointVOMeta.SELECTED_CODE)));
+			this.setItemCount(DataParser.parse(String.class, map.get(InspectionPointVOMeta.ITEM_COUNT)));
 			this.setRoute(DataParser.parse(InspectionRoute.class, map.get(InspectionPointVOMeta.ROUTE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(InspectionPointVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(InspectionPointVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(InspectionPointVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(InspectionPointVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(InspectionPointVOMeta.QUERY_LOGIC)));
+			this.setAsset(DataParser.parse(Asset.class, map.get(InspectionPointVOMeta.ASSET)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(InspectionPointVOMeta.SEARCH_VALUE)));
+			this.setItemDisableCount(DataParser.parse(String.class, map.get(InspectionPointVOMeta.ITEM_DISABLE_COUNT)));
 			return true;
 		} else {
 			try {
@@ -541,7 +551,6 @@ public class InspectionPointVO extends InspectionPoint {
 				this.setNotes( (String)map.get(InspectionPointVOMeta.NOTES));
 				this.setPosLatitude( (String)map.get(InspectionPointVOMeta.POS_LATITUDE));
 				this.setUpdateTime( (Date)map.get(InspectionPointVOMeta.UPDATE_TIME));
-				this.setSelectedCode( (String)map.get(InspectionPointVOMeta.SELECTED_CODE));
 				this.setVersion( (Integer)map.get(InspectionPointVOMeta.VERSION));
 				this.setContent( (String)map.get(InspectionPointVOMeta.CONTENT));
 				this.setPosId( (String)map.get(InspectionPointVOMeta.POS_ID));
@@ -553,6 +562,7 @@ public class InspectionPointVO extends InspectionPoint {
 				this.setCreateTime( (Date)map.get(InspectionPointVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(InspectionPointVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(InspectionPointVOMeta.DELETE_TIME));
+				this.setAssetId( (String)map.get(InspectionPointVOMeta.ASSET_ID));
 				this.setName( (String)map.get(InspectionPointVOMeta.NAME));
 				this.setTenantId( (String)map.get(InspectionPointVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(InspectionPointVOMeta.DELETE_BY));
@@ -566,13 +576,17 @@ public class InspectionPointVO extends InspectionPoint {
 				this.setFuzzyField( (String)map.get(InspectionPointVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(InspectionPointVOMeta.PAGE_SIZE));
 				this.setInspectionPointPos( (InspectionPointPos)map.get(InspectionPointVOMeta.INSPECTION_POINT_POS));
+				this.setSelectedCode( (String)map.get(InspectionPointVOMeta.SELECTED_CODE));
+				this.setItemCount( (String)map.get(InspectionPointVOMeta.ITEM_COUNT));
 				this.setRoute( (InspectionRoute)map.get(InspectionPointVOMeta.ROUTE));
 				this.setPageIndex( (Integer)map.get(InspectionPointVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(InspectionPointVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(InspectionPointVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(InspectionPointVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(InspectionPointVOMeta.QUERY_LOGIC));
+				this.setAsset( (Asset)map.get(InspectionPointVOMeta.ASSET));
 				this.setSearchValue( (String)map.get(InspectionPointVOMeta.SEARCH_VALUE));
+				this.setItemDisableCount( (String)map.get(InspectionPointVOMeta.ITEM_DISABLE_COUNT));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -593,7 +607,6 @@ public class InspectionPointVO extends InspectionPoint {
 			this.setNotes(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.NOTES)));
 			this.setPosLatitude(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.POS_LATITUDE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InspectionPointVOMeta.UPDATE_TIME)));
-			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(InspectionPointVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.CONTENT)));
 			this.setPosId(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.POS_ID)));
@@ -605,6 +618,7 @@ public class InspectionPointVO extends InspectionPoint {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(InspectionPointVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(InspectionPointVOMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.ASSET_ID)));
 			this.setName(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.DELETE_BY)));
@@ -619,7 +633,6 @@ public class InspectionPointVO extends InspectionPoint {
 				this.setNotes( (String)r.getValue(InspectionPointVOMeta.NOTES));
 				this.setPosLatitude( (String)r.getValue(InspectionPointVOMeta.POS_LATITUDE));
 				this.setUpdateTime( (Date)r.getValue(InspectionPointVOMeta.UPDATE_TIME));
-				this.setSelectedCode( (String)r.getValue(InspectionPointVOMeta.SELECTED_CODE));
 				this.setVersion( (Integer)r.getValue(InspectionPointVOMeta.VERSION));
 				this.setContent( (String)r.getValue(InspectionPointVOMeta.CONTENT));
 				this.setPosId( (String)r.getValue(InspectionPointVOMeta.POS_ID));
@@ -631,6 +644,7 @@ public class InspectionPointVO extends InspectionPoint {
 				this.setCreateTime( (Date)r.getValue(InspectionPointVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(InspectionPointVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(InspectionPointVOMeta.DELETE_TIME));
+				this.setAssetId( (String)r.getValue(InspectionPointVOMeta.ASSET_ID));
 				this.setName( (String)r.getValue(InspectionPointVOMeta.NAME));
 				this.setTenantId( (String)r.getValue(InspectionPointVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(InspectionPointVOMeta.DELETE_BY));

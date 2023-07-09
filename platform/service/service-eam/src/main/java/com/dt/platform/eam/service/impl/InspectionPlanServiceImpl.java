@@ -1,16 +1,13 @@
 package com.dt.platform.eam.service.impl;
 
 
-import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.constants.enums.eam.EamPlanStatusEnum;
-import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
-import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
+import com.alibaba.fastjson.JSON;
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.InspectionPlanMeta;
-import com.dt.platform.eam.service.IInspectionPlanService;
-import com.dt.platform.eam.service.IInspectionPointService;
-import com.dt.platform.eam.service.IInspectionTaskPointService;
-import com.dt.platform.eam.service.IInspectionTaskService;
+import com.dt.platform.domain.eam.meta.InspectionPointOwnerMeta;
+import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
@@ -28,13 +25,16 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.sql.meta.DBField;
+import org.checkerframework.checker.units.qual.C;
 import org.github.foxnic.web.framework.dao.DBConfigs;
+import org.quartz.CronExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.dt.platform.eam.service.ICheckSelectService;
 import javax.annotation.Resource;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +51,8 @@ import java.util.Map;
 @Service("EamInspectionPlanService")
 public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> implements IInspectionPlanService {
 
+	@Autowired
+	private ICheckSelectService checkSelectService;
 
 	@Autowired
 	private IInspectionPointService inspectionPointService;
@@ -58,6 +60,8 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 	@Autowired
 	private IInspectionTaskPointService inspectionTaskPointService;
 
+	@Autowired
+	private IPlanExecuteLogService planExecuteLogService;
 
 	@Autowired
 	private IInspectionTaskService inspectionTaskService;
@@ -98,11 +102,100 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 	}
 
 	@Override
-	public Result execute(String id) {
+	public Result execute() {
+		InspectionPlan plan=new InspectionPlan();
+		plan.setPlanStatus(EamPlanStatusEnum.ACTING.code());
+		List<InspectionPlan> planList=this.queryList(plan);
+		dao.fill(planList).with(InspectionPlanMeta.ACTION_CRONTAB).execute();
+		for(int i=0;i<planList.size();i++){
+			executePlan(planList.get(i));
+		}
+		return ErrorDesc.success();
+	}
 
+	private Result executePlan(InspectionPlan plan){
+
+		ActionCrontab cron=plan.getActionCrontab();
+		if(StringUtil.isBlank(cron)){
+			Logger.info("当前crontab为空，plan:"+plan.getId());
+			return ErrorDesc.failure("当前crontab为空");
+		}
+
+		// 理论上只有一个待执行的日志
+		PlanExecuteLog log = this.getOrCreateLog(plan);
+		// 如果 long 是 null 大概率是 cron 表达式错误
+		if(log==null){
+			Logger.info("log is null，plan:"+plan.getId());
+			return ErrorDesc.failure("log is null");
+		}
+		// 如果预期的执行时间已经超过当前，就执行
+		if(log.getExecuteTime().getTime()<=(new Date()).getTime()) {
+			// 设置为已执行，意味着执行失败就跳过，下一次继续执行
+			log.setExecuted(1);
+			try {
+				// 执行
+				//Result execResult = this.createTask(plan.getId(), "auto");
+				Result execResult = this.createTask(plan.getId());
+				// 失败时记录失败原因
+				if (!execResult.success()) {
+					log.setErrors(JSON.toJSONString(execResult));
+				}
+			} catch (Exception e) {
+				// 记录异常堆栈
+				log.setErrors(StringUtil.toString(e));
+			}
+			planExecuteLogService.updateDirtyFields(log);
+			// 为下一次执行做准备，同时使界面上也能看到下次执行时间
+			this.getOrCreateLog(plan);
+		}
 
 		return ErrorDesc.success();
 	}
+
+
+	private Date getNextExecuteTime(InspectionPlan plan) {
+		Date next=null;
+		try {
+			CronExpression cronExpression = new CronExpression(plan.getActionCrontab().getCrontab());
+			next=cronExpression.getNextValidTimeAfter(new Date());
+		} catch (Exception e) {
+			Logger.exception("cron "+plan.getActionCrontab().getCrontab()+" error",e);
+		}
+		return next;
+	}
+
+	private PlanExecuteLog getOrCreateLog(InspectionPlan plan) {
+		// 获得计划的下一个执行时间点
+		Date next=getNextExecuteTime(plan);
+		// 如果表达式异常就执行下一个计划
+		if(next==null) return null;
+		// 更新下一个计划时间
+		plan.setNextTime(next);
+		InspectionPlan newPlan=new InspectionPlan();
+		newPlan.setId(plan.getId());
+		newPlan.setNextTime(next);
+		super.update(newPlan,SaveMode.NOT_NULL_FIELDS,true);
+
+		// 查询未执行的日志
+		List<PlanExecuteLog> logs=planExecuteLogService.queryList(new ConditionExpr("plan_id=? and executed!=1",plan.getId()));
+		PlanExecuteLog log = null;
+		// 如果没有未执行的日志就新建一个
+		if(logs==null || logs.isEmpty()) {
+			log=new PlanExecuteLog();
+			log.setPlanId(plan.getId());
+			log.setExecuteTime(plan.getNextTime());
+			log.setExecuted(0);
+			planExecuteLogService.insert(log);
+			logs=planExecuteLogService.queryList(new ConditionExpr("plan_id=? and executed!=1",plan.getId()));
+			// 并发执行可能存在这种情况，判断的一下
+			if(logs==null || logs.isEmpty()) {
+				return null;
+			}
+		}
+		log=logs.get(0);
+		return log;
+	}
+
 
 	@Override
 	public Result createTask(String id) {
@@ -115,19 +208,25 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 			Logger.info("########## plan name:"+plan.getName()+" ###########");
 			Logger.info("########## plan trigger end ###########");
 			this.dao().fill(plan)
-					.with(InspectionPlanMeta.INSPECTION_PLAN_POINT_LIST)
+					.with(InspectionPlanMeta.INSPECTION_POINT_LIST)
 					.with(InspectionPlanMeta.INSPECTION_POINT_OWNER_LIST)
 					.execute();
 			List<InspectionPointOwner> pointOwnerList=plan.getInspectionPointOwnerList();
-			if(pointOwnerList==null&&pointOwnerList.size()==0){
+			List<InspectionPoint> pointList=plan.getInspectionPointList();
+
+			if(pointList==null&&pointList.size()==0){
 				return ErrorDesc.failureMessage("当前巡检计划未设置巡检点");
 			}
+
+			SimpleDateFormat f=new SimpleDateFormat("yyyy-MM-dd");
+			String sf=f.format(new Date());
+
 			//按照计划生成任务单
 			InspectionTask task=new InspectionTask();
 			String taskId=IDGenerator.getSnowflakeIdString();
 			task.setId(taskId);
 			task.setPlanId(plan.getId());
-			task.setPlanName(plan.getName());
+			task.setPlanName(plan.getName()+"-"+sf);
 			task.setPlanStartTime(new Date());
 			task.setPlanCode(plan.getPlanCode());
 			task.setPlanNotes(plan.getNotes());
@@ -136,13 +235,27 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 			task.setGroupId(plan.getGroupId());
 			task.setTaskStatus(InspectionTaskStatusEnum.WAIT.code());
 			inspectionTaskService.insert(task,false);
+
+			this.dao().fill(pointOwnerList).with(InspectionPointOwnerMeta.CHECK_ITEM_LIST).
+					with(InspectionPointOwnerMeta.INSPECTION_POINT).execute();
+
 			//生成巡检点
-			for(int i=0;i<pointOwnerList.size();i++){
+			for(int i=0;i<pointList.size();i++){
 				InspectionPointOwner pointOwner=pointOwnerList.get(i);
-				InspectionPoint point=inspectionPointService.getById(pointOwner.getPointId());
+				String selectedCode=pointOwner.getSelectedCode();
+				if(!StringUtil.isBlank(selectedCode)){
+					continue;
+				}
+				InspectionPoint point=pointOwner.getInspectionPoint();
+				List<CheckItem> itemList=pointOwner.getCheckItemList();
+				if(StatusEnableEnum.DISABLE.code().equals(point.getStatus())){
+					Logger.info("本次任务:"+taskId+",巡检点未启用,巡检点:"+point.getId());
+					continue;
+				}
 				InspectionTaskPoint taskPoint=new InspectionTaskPoint();
 				taskPoint.setTaskId(taskId);
 				taskPoint.setPointStatus(InspectionTaskPointStatusEnum.WAIT.code());
+				taskPoint.setPointId(point.getId());
 				taskPoint.setPointCode(point.getCode());
 				taskPoint.setPointName(point.getName());
 				taskPoint.setPointContent(point.getContent());
@@ -154,7 +267,34 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 				taskPoint.setPointPosLongitude(point.getPosLongitude());
 				taskPoint.setNotes(point.getNotes());
 				taskPoint.setSort(pointOwner.getSort());
-				inspectionTaskPointService.insert(taskPoint,false);
+				inspectionTaskPointService.insert(taskPoint,true);
+
+				//插入检查项目
+				if(itemList!=null&&itemList.size()>0){
+					for(int j=0;j<itemList.size();j++){
+						CheckItem item=itemList.get(j);
+						if(StatusEnableEnum.ENABLE.code().equals(item.getStatus())){
+							CheckSelect checkSelect=new CheckSelect();
+							checkSelect.setPointId(point.getId());
+							checkSelect.setTaskPointId(taskPoint.getId());
+							checkSelect.setTaskId(task.getId());
+							checkSelect.setItemId(item.getId());
+							checkSelect.setItemCode(item.getCode());
+							checkSelect.setItemName(item.getName());
+							checkSelect.setIfCheck(CheckIfCheckEnum.NO.code());
+							checkSelect.setItemDesc(item.getCheckDesc());
+							checkSelect.setType(item.getType());
+							checkSelect.setConfig(item.getConfig());
+							checkSelect.setConfigDefValue(item.getDefValue());
+							checkSelect.setResultMetaData(item.getDefValue());
+							checkSelect.setSort(j);
+							checkSelectService.insert(checkSelect,true);
+						}else{
+							Logger.info("任务:"+task.getId()+",巡检点:"+taskPoint.getId()+",当前检查项未启用:"+item.getId());
+						}
+
+					}
+				}
 			}
 		}else{
 			return ErrorDesc.failureMessage("当前巡检计划状态不能生成巡检任务");
@@ -196,8 +336,7 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 		}
 		Result r=super.insert(inspectionPlan,throwsException);
 		if(r.isSuccess()){
-
-			dao.execute("update eam_inspection_point_owner set owner_id=? where selected_code=?",inspectionPlan.getId(),selectedCode);
+			dao.execute("update eam_inspection_point_owner set selected_code=?,owner_id=? where owner_id=? and selected_code=?","",inspectionPlan.getId(),selectedCode,selectedCode);
 		}
 		return r;
 	}
@@ -288,9 +427,11 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 	 * */
 	@Override
 	public Result update(InspectionPlan inspectionPlan , SaveMode mode,boolean throwsException) {
-
+		String selectedCode=inspectionPlan.getSelectedCode();
 		Result r=super.update(inspectionPlan , mode , throwsException);
 		if(r.isSuccess()){
+			dao.execute("delete from eam_inspection_point_owner where owner_id=? and (selected_code ='' or selected_code is null)",inspectionPlan.getId(),selectedCode);
+			dao.execute("update eam_inspection_point_owner set selected_code='' where owner_id=? and selected_code=?",inspectionPlan.getId(),selectedCode);
 		}
 		return r;
 	}

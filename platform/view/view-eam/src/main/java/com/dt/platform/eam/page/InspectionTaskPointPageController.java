@@ -36,7 +36,13 @@ public class InspectionTaskPointPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+	@RequestMapping("/inspection_point_exec.html")
+	public String exec(Model model,HttpServletRequest request,String id) {
+		model.addAttribute("id",id);
+		return prefix+"/inspection_point_exec";
+	}
+
 	/**
 	 * 巡检点 功能主页面
 	 */

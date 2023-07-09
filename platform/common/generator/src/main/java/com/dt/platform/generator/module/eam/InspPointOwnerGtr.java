@@ -1,8 +1,11 @@
 package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
+import com.dt.platform.domain.eam.CheckItem;
+import com.dt.platform.domain.eam.InspectionPoint;
 import com.dt.platform.generator.config.Config;
 import com.github.foxnic.generator.config.WriteMode;
+import org.github.foxnic.web.domain.system.DictItem;
 
 public class InspPointOwnerGtr extends BaseCodeGenerator {
 
@@ -13,6 +16,9 @@ public class InspPointOwnerGtr extends BaseCodeGenerator {
 
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
+        cfg.getPoClassFile().addSimpleProperty(InspectionPoint.class,"inspectionPoint","inspectionPoint","inspectionPoint");
+        cfg.getPoClassFile().addListProperty(CheckItem.class,"checkItemList","checkItemList","checkItemList");
+
         cfg.view().field(EAMTables.EAM_INSPECTION_POINT.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_POINT.CODE).search().fuzzySearch();
         cfg.view().search().inputLayout(

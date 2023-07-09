@@ -2,8 +2,10 @@ package com.dt.platform.relation.modules;
 
 import com.dt.platform.constants.db.DataCenterTables;
 import com.dt.platform.constants.db.EAMTables;
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.AssetInventoryDetailStatusEnum;
 
+import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
@@ -75,6 +77,8 @@ public class EamRelationManager extends RelationManager {
         this.setupInspectionPoint();
         this.setupInspectionTask();
         this.setupInspectionTaskPoint();
+        this.setupInspectionOwner();
+
 
         this.setupAssetDepreciationDetail();
         this.setupAssetDepreciationOper();
@@ -125,8 +129,32 @@ public class EamRelationManager extends RelationManager {
 
         this.setupRfidLabel();
         this.setupRfidRelease();
+        this.setupCheckGroup();
+        this.setupCheckSelect();
 
     }
+    public void setupCheckSelect() {
+        this.property(CheckSelectMeta.CHECK_ITEM_PROP)
+                .using(EAMTables.EAM_CHECK_SELECT.ITEM_ID).join(EAMTables.EAM_CHECK_ITEM.ID);
+
+        this.property(CheckSelectMeta.INSPECTION_POINT_PROP)
+                .using(EAMTables.EAM_CHECK_SELECT.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID);
+
+        this.property(CheckSelectMeta.INSPECTION_TASK_POINT_PROP)
+                .using(EAMTables.EAM_CHECK_SELECT.TASK_POINT_ID).join(EAMTables.EAM_INSPECTION_TASK_POINT.ID);
+
+        this.property(CheckSelectMeta.INSPECTION_TASK_PROP)
+                .using(EAMTables.EAM_CHECK_SELECT.TASK_ID).join(EAMTables.EAM_INSPECTION_TASK.ID);
+
+    }
+
+    public void setupCheckGroup() {
+
+        this.property(CheckGroupMeta.ITEM_LIST_PROP)
+                .using(EAMTables.EAM_CHECK_GROUP.ID).join(EAMTables.EAM_CHECK_GROUP_ITEM.GROUP_ID)
+             .using(EAMTables.EAM_CHECK_GROUP_ITEM.ITEM_ID).join(EAMTables.EAM_CHECK_ITEM.ID);
+    }
+
 
     public void setupRfidRelease() {
         this.property(RfidReleaseMeta.RFID_LABEL_LIST_PROP)
@@ -879,18 +907,49 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_INSPECTION_GROUP_USER.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
     }
+
+    private HashMap<String,Integer> calculateInspectPointStatusStatistics(List<InspectionPoint> assets){
+        HashMap<String,Integer> map=new HashMap<>();
+        int allCount=0;
+        int disableCount=0;
+        if(assets!=null&&assets.size()>0){
+            for(int i=0;i<assets.size();i++){
+                allCount++;
+                if(StatusEnableEnum.DISABLE.code().equals(assets.get(i).getStatus())){
+                    disableCount++;
+                }
+            }
+            map.put("allCount",allCount);
+            map.put("disableCount",disableCount);
+        }
+        return map;
+    }
+
     public void setupInspectionPlan() {
+        this.property(InspectionPlanMeta.INSPECTION_POINT_LIST_PROP)
+                .using(EAMTables.EAM_INSPECTION_PLAN.ID).join(EAMTables.EAM_INSPECTION_POINT_OWNER.OWNER_ID)
+                .condition(" (selected_code='' or selected_code is null)")
+                .using(EAMTables.EAM_INSPECTION_POINT_OWNER.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID).after((tag,point,checkItems,map)->{
+            if(checkItems==null||checkItems.size()==0) {
+                point.setItemDisableCount("0");
+                point.setItemCount("0");
+            }
+            HashMap<String,Integer> data= calculateInspectPointStatusStatistics(checkItems);
+            point.setItemDisableCount(data.getOrDefault("disableCount",0)+"");
+            point.setItemCount(data.getOrDefault("allCount",0)+"");
+            return checkItems;
+        });
 
         this.property(InspectionPlanMeta.ACTION_CRONTAB_PROP)
                 .using(EAMTables.EAM_INSPECTION_PLAN.ACTION_CYCLE_ID).join(EAMTables.EAM_ACTION_CRONTAB.ID);
 
-
-        this.property(InspectionPlanMeta.INSPECTION_PLAN_POINT_LIST_PROP)
-                .using(EAMTables.EAM_INSPECTION_PLAN.ID).join(EAMTables.EAM_INSPECTION_POINT_OWNER.OWNER_ID)
-                .using(EAMTables.EAM_INSPECTION_POINT_OWNER.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID);
+//        this.property(InspectionPlanMeta.INSPECTION_PLAN_POINT_LIST_PROP)
+//                .using(EAMTables.EAM_INSPECTION_PLAN.ID).join(EAMTables.EAM_INSPECTION_POINT_OWNER.OWNER_ID)
+//                .using(EAMTables.EAM_INSPECTION_POINT_OWNER.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID);
 
         this.property(InspectionPlanMeta.INSPECTION_POINT_OWNER_LIST_PROP)
-                .using(EAMTables.EAM_INSPECTION_PLAN.ID).join(EAMTables.EAM_INSPECTION_POINT_OWNER.OWNER_ID);
+                .using(EAMTables.EAM_INSPECTION_PLAN.ID).join(EAMTables.EAM_INSPECTION_POINT_OWNER.OWNER_ID)
+                .condition(" (selected_code='' or selected_code is null)");
 
         this.property(InspectionPlanMeta.INSPECTION_GROUP_PROP)
                 .using(EAMTables.EAM_INSPECTION_PLAN.GROUP_ID).join(EAMTables.EAM_INSPECTION_GROUP.ID);
@@ -901,7 +960,40 @@ public class EamRelationManager extends RelationManager {
 
 
     }
+    private HashMap<String,Integer> calculateInspectPointCheckItemStatusStatistics(List<CheckItem> assets){
+        HashMap<String,Integer> map=new HashMap<>();
+        int allCount=0;
+        int disableCount=0;
+        if(assets!=null&&assets.size()>0){
+            for(int i=0;i<assets.size();i++){
+                allCount++;
+                if(StatusEnableEnum.DISABLE.code().equals(assets.get(i).getStatus())){
+                    disableCount++;
+                }
+            }
+            map.put("allCount",allCount);
+            map.put("disableCount",disableCount);
+        }
+        return map;
+    }
     public void setupInspectionPoint() {
+        this.property(InspectionPointMeta.CHECK_ITEM_LIST_PROP)
+                .using(EAMTables.EAM_INSPECTION_POINT.ID).join(EAMTables.EAM_INSPECTION_POINT_ITEM.POINT_ID)
+                .condition(" (select_code='' or select_code is null)")
+              .using(EAMTables.EAM_INSPECTION_POINT_ITEM.ITEM_ID).join(EAMTables.EAM_CHECK_ITEM.ID).after((tag,point,checkItems,map)->{
+            if(checkItems==null||checkItems.size()==0) {
+                point.setItemDisableCount("0");
+                point.setItemCount("0");
+            }
+            HashMap<String,Integer> data= calculateInspectPointCheckItemStatusStatistics(checkItems);
+            point.setItemDisableCount(data.getOrDefault("disableCount",0)+"");
+            point.setItemCount(data.getOrDefault("allCount",0)+"");
+            return checkItems;
+        });
+
+
+        this.property(InspectionPointMeta.ASSET_PROP)
+                .using(EAMTables.EAM_INSPECTION_POINT.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
 
 
         this.property(InspectionPointMeta.INSPECTION_POINT_POS_PROP)
@@ -911,10 +1003,53 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_INSPECTION_POINT.ROUTE_ID).join(EAMTables.EAM_INSPECTION_ROUTE.ID);
     }
 
+    public void setupInspectionOwner() {
+        this.property(InspectionPointOwnerMeta.INSPECTION_POINT_PROP)
+                .using(EAMTables.EAM_INSPECTION_POINT_OWNER.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID);
+
+        this.property(InspectionPointOwnerMeta.CHECK_ITEM_LIST_PROP)
+                .using(EAMTables.EAM_INSPECTION_POINT_OWNER.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID)
+                 .using(EAMTables.EAM_INSPECTION_POINT.ID).join(EAMTables.EAM_INSPECTION_POINT_ITEM.POINT_ID)
+                .condition(" (select_code='' or select_code is null)")
+                 .using(EAMTables.EAM_INSPECTION_POINT_ITEM.ITEM_ID).join(EAMTables.EAM_CHECK_ITEM.ID);
+
+
+    }
+
+    private HashMap<String,Integer> calculateInspectTaskPointItemStatistics(List<CheckSelect> assets){
+        HashMap<String,Integer> map=new HashMap<>();
+        int allCount=0;
+        if(assets!=null&&assets.size()>0){
+            map.put("allCount",assets.size());
+        }else{
+            map.put("allCount",0);
+        }
+        return map;
+    }
+
     public void setupInspectionTaskPoint() {
+
+        this.property(InspectionTaskPointMeta.INSPECTION_POINT_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID);
+
+
+
+        this.property(InspectionTaskPointMeta.CHECK_ITEM_LIST_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID)
+                  .using(EAMTables.EAM_INSPECTION_POINT.ID).join(EAMTables.EAM_INSPECTION_POINT_ITEM.POINT_ID)
+                  .using(EAMTables.EAM_INSPECTION_POINT_ITEM.ITEM_ID).join(EAMTables.EAM_CHECK_ITEM.ID);
+
+
+        this.property(InspectionTaskPointMeta.CHECK_SELECT_LIST_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK_POINT.ID).join(EAMTables.EAM_CHECK_SELECT.TASK_POINT_ID)
+                .after((tag,point,checkItems,map)->{
+                    HashMap<String,Integer> data= calculateInspectTaskPointItemStatistics(checkItems);
+                point.setItemCount(data.getOrDefault("allCount",0)+"");
+                    return checkItems;
+                });
+
         this.property(InspectionTaskPointMeta.OPER_USER_PROP)
                 .using(EAMTables.EAM_INSPECTION_TASK_POINT.OPER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
 
         this.property(InspectionTaskPointMeta.ROUTE_PROP)
                 .using(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_ROUTE_ID).join(EAMTables.EAM_INSPECTION_ROUTE.ID);
@@ -928,8 +1063,44 @@ public class EamRelationManager extends RelationManager {
     }
 
 
+    private HashMap<String,Integer> calculateInspectTaskPointStatusStatistics(List<InspectionTaskPoint> assets){
+        HashMap<String,Integer> map=new HashMap<>();
+        int pointCount=0;
+        int pointNormalCount=0;
+        int pointAbormalCount=0;
+        int pointWaitCount=0;
+
+        if(assets!=null&&assets.size()>0){
+            for(int i=0;i<assets.size();i++){
+                pointCount++;
+                if(InspectionTaskPointStatusEnum.WAIT.code().equals(assets.get(i).getPointStatus())){
+                    pointWaitCount++;
+                }else if(InspectionTaskPointStatusEnum.NORMAL.code().equals(assets.get(i).getPointStatus())){
+                    pointNormalCount++;
+                }else if(InspectionTaskPointStatusEnum.ABNORMAL.code().equals(assets.get(i).getPointStatus())){
+                    pointAbormalCount++;
+                }
+            }
+            map.put("pointCount",pointCount);
+            map.put("pointNormalCount",pointNormalCount);
+            map.put("pointAbormalCount",pointAbormalCount);
+            map.put("pointWaitCount",pointWaitCount);
+        }
+        return map;
+    }
 
     public void setupInspectionTask() {
+
+        this.property(InspectionTaskMeta.INSPECTION_TASK_POINT_LIST_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK.ID).join(EAMTables.EAM_INSPECTION_TASK_POINT.TASK_ID).after((tag,point,checkItems,map)->{
+            HashMap<String,Integer> data= calculateInspectTaskPointStatusStatistics(checkItems);
+            point.setPointCount(data.getOrDefault("pointCount",0)+"");
+            point.setPointNormalCount(data.getOrDefault("pointNormalCount",0)+"");
+            point.setPointAbormalCount(data.getOrDefault("pointAbormalCount",0)+"");
+            point.setPointWaitCount(data.getOrDefault("pointWaitCount",0)+"");
+            return checkItems;
+        });
+
         // 关联来源
         this.property(InspectionTaskMeta.INSPECTION_PLAN_PROP)
                 .using(EAMTables.EAM_INSPECTION_TASK.PLAN_ID).join(EAMTables.EAM_INSPECTION_PLAN.ID);
@@ -942,8 +1113,7 @@ public class EamRelationManager extends RelationManager {
         this.property(InspectionTaskMeta.EXECUTOR_PROP)
                 .using(EAMTables.EAM_INSPECTION_TASK.EXECUTOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
-        this.property(InspectionTaskMeta.INSPECTION_TASK_POINT_LIST_PROP)
-                .using(EAMTables.EAM_INSPECTION_TASK.ID).join(EAMTables.EAM_INSPECTION_TASK_POINT.TASK_ID);
+
 
 
         this.property(InspectionTaskMeta.INSPECTION_GROUP_PROP)

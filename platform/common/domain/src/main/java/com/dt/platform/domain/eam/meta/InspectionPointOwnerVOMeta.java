@@ -5,13 +5,16 @@ import com.dt.platform.domain.eam.InspectionPointOwnerVO;
 import java.util.List;
 import com.dt.platform.domain.eam.InspectionPointOwner;
 import java.util.Date;
+import com.dt.platform.domain.eam.InspectionPoint;
+import com.dt.platform.domain.eam.CheckItem;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-11 17:33:03
- * @sign A7C4FCEFF2D60DE660CE2294A47B064B
+ * @since 2023-07-06 20:04:13
+ * @sign 742607C2677D46269EDD6BB37DC4EBC5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -96,6 +99,36 @@ public class InspectionPointOwnerVOMeta extends InspectionPointOwnerMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointOwnerVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointOwnerVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointOwnerVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointOwnerVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointOwnerVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointOwnerVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointOwnerVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointOwnerVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -258,9 +291,29 @@ public class InspectionPointOwnerVOMeta extends InspectionPointOwnerMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointOwnerVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointOwnerVO.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
+	 * inspectionPoint , 类型: com.dt.platform.domain.eam.InspectionPoint
+	*/
+	public static final String INSPECTION_POINT="inspectionPoint";
+	
+	/**
+	 * inspectionPoint , 类型: com.dt.platform.domain.eam.InspectionPoint
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointOwnerVO,com.dt.platform.domain.eam.InspectionPoint> INSPECTION_POINT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointOwnerVO.class ,INSPECTION_POINT, com.dt.platform.domain.eam.InspectionPoint.class, "inspectionPoint", "inspectionPoint", com.dt.platform.domain.eam.InspectionPoint.class, null);
+	
+	/**
+	 * checkItemList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CheckItem
+	*/
+	public static final String CHECK_ITEM_LIST="checkItemList";
+	
+	/**
+	 * checkItemList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CheckItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointOwnerVO,com.dt.platform.domain.eam.CheckItem> CHECK_ITEM_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointOwnerVO.class ,CHECK_ITEM_LIST, java.util.List.class, "checkItemList", "checkItemList", com.dt.platform.domain.eam.CheckItem.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , OWNER_ID , POINT_ID , SORT , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , OWNER_ID , POINT_ID , SORT , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , INSPECTION_POINT , CHECK_ITEM_LIST };
 	
 	/**
 	 * 代理类
@@ -355,6 +408,39 @@ public class InspectionPointOwnerVOMeta extends InspectionPointOwnerMeta {
 		public InspectionPointOwnerVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public InspectionPointOwnerVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public InspectionPointOwnerVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public InspectionPointOwnerVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
 			return this;
 		}
 		
@@ -533,5 +619,78 @@ public class InspectionPointOwnerVOMeta extends InspectionPointOwnerMeta {
 			super.setVersion(version);
 			return this;
 		}
+		
+		/**
+		 * 设置 inspectionPoint
+		 * @param inspectionPoint inspectionPoint
+		 * @return 当前对象
+		*/
+		public InspectionPointOwner setInspectionPoint(InspectionPoint inspectionPoint) {
+			super.change(INSPECTION_POINT,super.getInspectionPoint(),inspectionPoint);
+			super.setInspectionPoint(inspectionPoint);
+			return this;
+		}
+		
+		/**
+		 * 设置 checkItemList
+		 * @param checkItemList checkItemList
+		 * @return 当前对象
+		*/
+		public InspectionPointOwner setCheckItemList(List<CheckItem> checkItemList) {
+			super.change(CHECK_ITEM_LIST,super.getCheckItemList(),checkItemList);
+			super.setCheckItemList(checkItemList);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public InspectionPointOwnerVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public InspectionPointOwnerVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSort(this.getSort());
+			inst.setOwnerId(this.getOwnerId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setPointId(this.getPointId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			if(all) {
+				inst.setCheckItemList(this.getCheckItemList());
+				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setSearchValue(this.getSearchValue());
+				inst.setInspectionPoint(this.getInspectionPoint());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

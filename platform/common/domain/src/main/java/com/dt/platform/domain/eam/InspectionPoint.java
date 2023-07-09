@@ -10,8 +10,11 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.eam.meta.InspectionPointMeta;
@@ -23,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-11 20:39:36
- * @sign C8B21B8D61FF7E52EAEDF4E6DB9A7178
+ * @since 2023-07-07 14:01:23
+ * @sign EC98EC4A861A1EAC72A057B54E164865
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -116,6 +119,12 @@ public class InspectionPoint extends Entity {
 	private String notes;
 	
 	/**
+	 * 关联设备：关联设备
+	*/
+	@ApiModelProperty(required = false,value="关联设备" , notes = "关联设备")
+	private String assetId;
+	
+	/**
 	 * 创建人ID：创建人ID
 	*/
 	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
@@ -167,16 +176,16 @@ public class InspectionPoint extends Entity {
 	private String tenantId;
 	
 	/**
-	 * 选择：选择
-	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择")
-	private String selectedCode;
-	
-	/**
 	 * version：version
 	*/
 	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
 	private Integer version;
+	
+	/**
+	 * asset：asset
+	*/
+	@ApiModelProperty(required = false,value="asset" , notes = "asset")
+	private Asset asset;
 	
 	/**
 	 * route：route
@@ -189,6 +198,36 @@ public class InspectionPoint extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="inspectionPointPos" , notes = "inspectionPointPos")
 	private InspectionPointPos inspectionPointPos;
+	
+	/**
+	 * checkItemList：checkItemList
+	*/
+	@ApiModelProperty(required = false,value="checkItemList" , notes = "checkItemList")
+	private List<CheckItem> checkItemList;
+	
+	/**
+	 * idsList：idsList
+	*/
+	@ApiModelProperty(required = false,value="idsList" , notes = "idsList")
+	private List<String> idsList;
+	
+	/**
+	 * selectedCode：selectedCode
+	*/
+	@ApiModelProperty(required = false,value="selectedCode" , notes = "selectedCode")
+	private String selectedCode;
+	
+	/**
+	 * itemCount：itemCount
+	*/
+	@ApiModelProperty(required = false,value="itemCount" , notes = "itemCount")
+	private String itemCount;
+	
+	/**
+	 * itemDisableCount：itemDisableCount
+	*/
+	@ApiModelProperty(required = false,value="itemDisableCount" , notes = "itemDisableCount")
+	private String itemDisableCount;
 	
 	/**
 	 * 获得 主键<br>
@@ -438,6 +477,25 @@ public class InspectionPoint extends Entity {
 	}
 	
 	/**
+	 * 获得 关联设备<br>
+	 * 关联设备
+	 * @return 关联设备
+	*/
+	public String getAssetId() {
+		return assetId;
+	}
+	
+	/**
+	 * 设置 关联设备
+	 * @param assetId 关联设备
+	 * @return 当前对象
+	*/
+	public InspectionPoint setAssetId(String assetId) {
+		this.assetId=assetId;
+		return this;
+	}
+	
+	/**
 	 * 获得 创建人ID<br>
 	 * 创建人ID
 	 * @return 创建人ID
@@ -621,25 +679,6 @@ public class InspectionPoint extends Entity {
 	}
 	
 	/**
-	 * 获得 选择<br>
-	 * 选择
-	 * @return 选择
-	*/
-	public String getSelectedCode() {
-		return selectedCode;
-	}
-	
-	/**
-	 * 设置 选择
-	 * @param selectedCode 选择
-	 * @return 当前对象
-	*/
-	public InspectionPoint setSelectedCode(String selectedCode) {
-		this.selectedCode=selectedCode;
-		return this;
-	}
-	
-	/**
 	 * 获得 version<br>
 	 * version
 	 * @return version
@@ -655,6 +694,25 @@ public class InspectionPoint extends Entity {
 	*/
 	public InspectionPoint setVersion(Integer version) {
 		this.version=version;
+		return this;
+	}
+	
+	/**
+	 * 获得 asset<br>
+	 * asset
+	 * @return asset
+	*/
+	public Asset getAsset() {
+		return asset;
+	}
+	
+	/**
+	 * 设置 asset
+	 * @param asset asset
+	 * @return 当前对象
+	*/
+	public InspectionPoint setAsset(Asset asset) {
+		this.asset=asset;
 		return this;
 	}
 	
@@ -693,6 +751,123 @@ public class InspectionPoint extends Entity {
 	*/
 	public InspectionPoint setInspectionPointPos(InspectionPointPos inspectionPointPos) {
 		this.inspectionPointPos=inspectionPointPos;
+		return this;
+	}
+	
+	/**
+	 * 获得 checkItemList<br>
+	 * checkItemList
+	 * @return checkItemList
+	*/
+	public List<CheckItem> getCheckItemList() {
+		return checkItemList;
+	}
+	
+	/**
+	 * 设置 checkItemList
+	 * @param checkItemList checkItemList
+	 * @return 当前对象
+	*/
+	public InspectionPoint setCheckItemList(List<CheckItem> checkItemList) {
+		this.checkItemList=checkItemList;
+		return this;
+	}
+	
+	/**
+	 * 添加 checkItemList
+	 * @param checkItem checkItemList
+	 * @return 当前对象
+	*/
+	public InspectionPoint addCheckItem(CheckItem... checkItem) {
+		if(this.checkItemList==null) checkItemList=new ArrayList<>();
+		this.checkItemList.addAll(Arrays.asList(checkItem));
+		return this;
+	}
+	
+	/**
+	 * 获得 idsList<br>
+	 * idsList
+	 * @return idsList
+	*/
+	public List<String> getIdsList() {
+		return idsList;
+	}
+	
+	/**
+	 * 设置 idsList
+	 * @param idsList idsList
+	 * @return 当前对象
+	*/
+	public InspectionPoint setIdsList(List<String> idsList) {
+		this.idsList=idsList;
+		return this;
+	}
+	
+	/**
+	 * 添加 idsList
+	 * @param ids idsList
+	 * @return 当前对象
+	*/
+	public InspectionPoint addIds(String... ids) {
+		if(this.idsList==null) idsList=new ArrayList<>();
+		this.idsList.addAll(Arrays.asList(ids));
+		return this;
+	}
+	
+	/**
+	 * 获得 selectedCode<br>
+	 * selectedCode
+	 * @return selectedCode
+	*/
+	public String getSelectedCode() {
+		return selectedCode;
+	}
+	
+	/**
+	 * 设置 selectedCode
+	 * @param selectedCode selectedCode
+	 * @return 当前对象
+	*/
+	public InspectionPoint setSelectedCode(String selectedCode) {
+		this.selectedCode=selectedCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 itemCount<br>
+	 * itemCount
+	 * @return itemCount
+	*/
+	public String getItemCount() {
+		return itemCount;
+	}
+	
+	/**
+	 * 设置 itemCount
+	 * @param itemCount itemCount
+	 * @return 当前对象
+	*/
+	public InspectionPoint setItemCount(String itemCount) {
+		this.itemCount=itemCount;
+		return this;
+	}
+	
+	/**
+	 * 获得 itemDisableCount<br>
+	 * itemDisableCount
+	 * @return itemDisableCount
+	*/
+	public String getItemDisableCount() {
+		return itemDisableCount;
+	}
+	
+	/**
+	 * 设置 itemDisableCount
+	 * @param itemDisableCount itemDisableCount
+	 * @return 当前对象
+	*/
+	public InspectionPoint setItemDisableCount(String itemDisableCount) {
+		this.itemDisableCount=itemDisableCount;
 		return this;
 	}
 
@@ -744,7 +919,6 @@ public class InspectionPoint extends Entity {
 		inst.setNotes(this.getNotes());
 		inst.setPosLatitude(this.getPosLatitude());
 		inst.setUpdateTime(this.getUpdateTime());
-		inst.setSelectedCode(this.getSelectedCode());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
 		inst.setPosId(this.getPosId());
@@ -756,6 +930,7 @@ public class InspectionPoint extends Entity {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setAssetId(this.getAssetId());
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
@@ -764,8 +939,14 @@ public class InspectionPoint extends Entity {
 		inst.setId(this.getId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setCheckItemList(this.getCheckItemList());
 			inst.setRoute(this.getRoute());
 			inst.setInspectionPointPos(this.getInspectionPointPos());
+			inst.setAsset(this.getAsset());
+			inst.setIdsList(this.getIdsList());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setItemCount(this.getItemCount());
+			inst.setItemDisableCount(this.getItemDisableCount());
 		}
 		inst.clearModifies();
 		return inst;
@@ -829,7 +1010,6 @@ public class InspectionPoint extends Entity {
 			this.setNotes(DataParser.parse(String.class, map.get(InspectionPointMeta.NOTES)));
 			this.setPosLatitude(DataParser.parse(String.class, map.get(InspectionPointMeta.POS_LATITUDE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(InspectionPointMeta.UPDATE_TIME)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionPointMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(InspectionPointMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(InspectionPointMeta.CONTENT)));
 			this.setPosId(DataParser.parse(String.class, map.get(InspectionPointMeta.POS_ID)));
@@ -841,6 +1021,7 @@ public class InspectionPoint extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(InspectionPointMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InspectionPointMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(InspectionPointMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, map.get(InspectionPointMeta.ASSET_ID)));
 			this.setName(DataParser.parse(String.class, map.get(InspectionPointMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(InspectionPointMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(InspectionPointMeta.DELETE_BY)));
@@ -851,6 +1032,10 @@ public class InspectionPoint extends Entity {
 			// others
 			this.setRoute(DataParser.parse(InspectionRoute.class, map.get(InspectionPointMeta.ROUTE)));
 			this.setInspectionPointPos(DataParser.parse(InspectionPointPos.class, map.get(InspectionPointMeta.INSPECTION_POINT_POS)));
+			this.setAsset(DataParser.parse(Asset.class, map.get(InspectionPointMeta.ASSET)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionPointMeta.SELECTED_CODE)));
+			this.setItemCount(DataParser.parse(String.class, map.get(InspectionPointMeta.ITEM_COUNT)));
+			this.setItemDisableCount(DataParser.parse(String.class, map.get(InspectionPointMeta.ITEM_DISABLE_COUNT)));
 			return true;
 		} else {
 			try {
@@ -858,7 +1043,6 @@ public class InspectionPoint extends Entity {
 				this.setNotes( (String)map.get(InspectionPointMeta.NOTES));
 				this.setPosLatitude( (String)map.get(InspectionPointMeta.POS_LATITUDE));
 				this.setUpdateTime( (Date)map.get(InspectionPointMeta.UPDATE_TIME));
-				this.setSelectedCode( (String)map.get(InspectionPointMeta.SELECTED_CODE));
 				this.setVersion( (Integer)map.get(InspectionPointMeta.VERSION));
 				this.setContent( (String)map.get(InspectionPointMeta.CONTENT));
 				this.setPosId( (String)map.get(InspectionPointMeta.POS_ID));
@@ -870,6 +1054,7 @@ public class InspectionPoint extends Entity {
 				this.setCreateTime( (Date)map.get(InspectionPointMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(InspectionPointMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(InspectionPointMeta.DELETE_TIME));
+				this.setAssetId( (String)map.get(InspectionPointMeta.ASSET_ID));
 				this.setName( (String)map.get(InspectionPointMeta.NAME));
 				this.setTenantId( (String)map.get(InspectionPointMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(InspectionPointMeta.DELETE_BY));
@@ -880,6 +1065,10 @@ public class InspectionPoint extends Entity {
 				// others
 				this.setRoute( (InspectionRoute)map.get(InspectionPointMeta.ROUTE));
 				this.setInspectionPointPos( (InspectionPointPos)map.get(InspectionPointMeta.INSPECTION_POINT_POS));
+				this.setAsset( (Asset)map.get(InspectionPointMeta.ASSET));
+				this.setSelectedCode( (String)map.get(InspectionPointMeta.SELECTED_CODE));
+				this.setItemCount( (String)map.get(InspectionPointMeta.ITEM_COUNT));
+				this.setItemDisableCount( (String)map.get(InspectionPointMeta.ITEM_DISABLE_COUNT));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -900,7 +1089,6 @@ public class InspectionPoint extends Entity {
 			this.setNotes(DataParser.parse(String.class, r.getValue(InspectionPointMeta.NOTES)));
 			this.setPosLatitude(DataParser.parse(String.class, r.getValue(InspectionPointMeta.POS_LATITUDE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InspectionPointMeta.UPDATE_TIME)));
-			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionPointMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(InspectionPointMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(InspectionPointMeta.CONTENT)));
 			this.setPosId(DataParser.parse(String.class, r.getValue(InspectionPointMeta.POS_ID)));
@@ -912,6 +1100,7 @@ public class InspectionPoint extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(InspectionPointMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InspectionPointMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(InspectionPointMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, r.getValue(InspectionPointMeta.ASSET_ID)));
 			this.setName(DataParser.parse(String.class, r.getValue(InspectionPointMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(InspectionPointMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InspectionPointMeta.DELETE_BY)));
@@ -926,7 +1115,6 @@ public class InspectionPoint extends Entity {
 				this.setNotes( (String)r.getValue(InspectionPointMeta.NOTES));
 				this.setPosLatitude( (String)r.getValue(InspectionPointMeta.POS_LATITUDE));
 				this.setUpdateTime( (Date)r.getValue(InspectionPointMeta.UPDATE_TIME));
-				this.setSelectedCode( (String)r.getValue(InspectionPointMeta.SELECTED_CODE));
 				this.setVersion( (Integer)r.getValue(InspectionPointMeta.VERSION));
 				this.setContent( (String)r.getValue(InspectionPointMeta.CONTENT));
 				this.setPosId( (String)r.getValue(InspectionPointMeta.POS_ID));
@@ -938,6 +1126,7 @@ public class InspectionPoint extends Entity {
 				this.setCreateTime( (Date)r.getValue(InspectionPointMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(InspectionPointMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(InspectionPointMeta.DELETE_TIME));
+				this.setAssetId( (String)r.getValue(InspectionPointMeta.ASSET_ID));
 				this.setName( (String)r.getValue(InspectionPointMeta.NAME));
 				this.setTenantId( (String)r.getValue(InspectionPointMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(InspectionPointMeta.DELETE_BY));

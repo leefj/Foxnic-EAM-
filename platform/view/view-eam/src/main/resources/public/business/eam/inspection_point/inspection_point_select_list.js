@@ -84,10 +84,10 @@ function ListPage() {
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检内容') , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'routeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检路线'), templet: function (d) { return templet('routeId' ,fox.joinLabel(d.route,"name"),d);}}
 					,{ field: 'posId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置'), templet: function (d) { return templet('posId' ,fox.joinLabel(d.inspectionPointPos,"hierarchyName",',','','posId'),d);}}
-					,{ field: 'pos', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置') , templet: function (d) { return templet('pos',d.pos,d);}  }
-					,{ field: 'posLongitude', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置经度') , templet: function (d) { return templet('posLongitude',d.posLongitude,d);}  }
-					,{ field: 'posLatitude', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置纬度') , templet: function (d) { return templet('posLatitude',d.posLatitude,d);}  }
-				 	,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
+					,{ field: 'pos', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置详情') , templet: function (d) { return templet('pos',d.pos,d);}  }
+					,{ field: 'itemCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('检查项数') , templet: function (d) { return templet('itemCount',d.itemCount,d);}  }
+					,{ field: 'itemDisableCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('检查项数(未启用)') , templet: function (d) { return templet('itemDisableCount',d.itemDisableCount,d);}  }
+					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
@@ -366,6 +366,25 @@ function ListPage() {
 						fox.showMessage(data);
 					}
 				});
+			}
+			else if(layEvent === 'detail'){
+				console.log("data",data);
+				var timestamp2 = Date.parse(new Date());
+				var top=10
+				var q="?ownerId="+data.id+"&pageType=view&selectCode="+timestamp2
+				admin.popupCenter({
+					title: "检查项目",
+					resize: false,
+					offset: [top,null],
+					area: ["80%","85%"],
+					type: 2,
+					id:"eam-inspection-point-form-data-win",
+					content: '/business/eam/check_item/check_item_selected_list.html'+q,
+					finish: function () {
+
+					}
+				});
+
 			}
 			else if (layEvent === 'del') { // 删除
 

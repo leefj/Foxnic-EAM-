@@ -32,9 +32,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 toolHtml=toolHtml.repeat(/lay-event="batch-del"/i,"style=\"display:none\"")
                 document.getElementById("toolbarTemplate").innerHTML=toolHtml;
 
-                var toolHtml=document.getElementById("tableOperationTemplate").innerHTML;
-                toolHtml=toolHtml.repeat(/lay-event="del"/i,"style=\"display:none\"")
-                document.getElementById("tableOperationTemplate").innerHTML=toolHtml;
+                var toolHtml2=document.getElementById("tableOperationTemplate").innerHTML;
+                toolHtml2=toolHtml2.repeat(/lay-event="del"/i,"style=\"display:none\"")
+                document.getElementById("tableOperationTemplate").innerHTML=toolHtml2;
             }
             console.log("list:beforeInit");
         },
@@ -103,6 +103,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+            if(field=="itemCount"){
+                if(value){
+                    return value
+                }else{
+                    return 0;
+                }
+            }
+
+            if(field=="itemDisableCount"){
+                if(value){
+                    return value
+                }else{
+                    return 0;
+                }
+            }
             if(value==null) return "";
             return value;
         },

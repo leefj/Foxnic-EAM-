@@ -68,11 +68,10 @@ public class MaintainProjectGtr extends BaseCodeGenerator {
                 fillWith(MaintainProjectMeta.MAINTAIN_TYPE_DICT).muliti(false).defaultIndex(0);
 
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.BASE_COST).form().validate().required().form().numberInput().defaultValue(1.0);
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.ACTION_CYCLE_ID).form().validate().required().form().readOnly();
-
-
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.BASE_COST).form().validate().required().form().numberInput().defaultValue(1.0).scale(2).decimal();
         cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.ACTION_CYCLE_ID).table().disable(true);
+
+
         cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.ATTACH_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.NOTES).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.SELECTED_CODE).table().disable(true);
@@ -81,6 +80,7 @@ public class MaintainProjectGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.CONTENT).form().textArea().height(Config.textAreaHeight);
         cfg.view().list().disableBatchDelete();
         cfg.view().search().inputWidth(Config.searchInputWidth);
          cfg.view().formWindow().width(Config.baseFormWidth);;
@@ -88,20 +88,19 @@ public class MaintainProjectGtr extends BaseCodeGenerator {
 
         cfg.view().form().addGroup(null,
                 new Object[] {
-                    //    EAMTables.EAM_MAINTAIN_PROJECT.CODE,
+                        EAMTables.EAM_MAINTAIN_PROJECT.CODE,
                         EAMTables.EAM_MAINTAIN_PROJECT.NAME,
-                        EAMTables.EAM_MAINTAIN_PROJECT.STATUS,
                         EAMTables.EAM_MAINTAIN_PROJECT.BASE_COST,
                 },
                 new Object[] {
+                        EAMTables.EAM_MAINTAIN_PROJECT.STATUS,
                         EAMTables.EAM_MAINTAIN_PROJECT.MAINTAIN_TYPE,
-                        EAMTables.EAM_MAINTAIN_PROJECT.ACTION_CYCLE_ID,
-
                 }
         );
 
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        EAMTables.EAM_MAINTAIN_PROJECT.CONTENT,
                         EAMTables.EAM_MAINTAIN_PROJECT.NOTES,
                         EAMTables.EAM_MAINTAIN_PROJECT.ATTACH_ID,
                 }

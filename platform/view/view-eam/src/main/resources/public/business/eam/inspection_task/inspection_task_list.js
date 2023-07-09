@@ -1,7 +1,7 @@
 /**
  * 巡检任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-14 07:30:20
+ * @since 2023-07-07 18:22:44
  */
 
 
@@ -86,21 +86,19 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'taskStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('任务状态'), templet:function (d){ return templet('taskStatus',fox.getEnumText(SELECT_TASKSTATUS_DATA,d.taskStatus,'','taskStatus'),d);}}
 					,{ field: 'taskCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('任务单据') , templet: function (d) { return templet('taskCode',d.taskCode,d);}  }
-					,{ field: 'planCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检编码') , templet: function (d) { return templet('planCode',d.planCode,d);}  }
 					,{ field: 'planName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检名称') , templet: function (d) { return templet('planName',d.planName,d);}  }
-					,{ field: 'planInspectionMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检顺序'), templet:function (d){ return templet('planInspectionMethod',fox.getEnumText(SELECT_PLANINSPECTIONMETHOD_DATA,d.planInspectionMethod,'','planInspectionMethod'),d);}}
-					,{ field: 'planCompletionTime', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('时间要求') , templet: function (d) { return templet('planCompletionTime',d.planCompletionTime,d);}  }
-					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检班组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.inspectionGroup,"name",',','','groupId'),d);}}
-					,{ field: 'executorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('执行人') , templet: function (d) { return templet('executorId',fox.getProperty(d,["executor","name"],0,'','executorId'),d);} }
-					,{ field: 'planStartTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('应开始时间') ,templet: function (d) { return templet('planStartTime',fox.dateFormat(d.planStartTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'actStartTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('实际开始时间') ,templet: function (d) { return templet('actStartTime',fox.dateFormat(d.actStartTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'actFinishTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('实际完成时间') ,templet: function (d) { return templet('actFinishTime',fox.dateFormat(d.actFinishTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'actTotalCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('实际工时') , templet: function (d) { return templet('actTotalCost',d.actTotalCost,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'createTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'pointCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('巡检点数(总数)') , templet: function (d) { return templet('pointCount',d.pointCount,d);}  }
+					,{ field: 'pointWaitCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('巡检点数(待检)') , templet: function (d) { return templet('pointWaitCount',d.pointWaitCount,d);}  }
+					,{ field: 'pointNormalCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('巡检点数(正常)') , templet: function (d) { return templet('pointNormalCount',d.pointNormalCount,d);}  }
+					,{ field: 'pointAbormalCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('巡检点数(异常)') , templet: function (d) { return templet('pointAbormalCount',d.pointAbormalCount,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
-				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
+				done: function (data) {
+					lockSwitchInputs();
+					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
+				},
 				footer : {
 					exportExcel : false ,
 					importExcel : false 
@@ -129,6 +127,8 @@ function ListPage() {
 					data = r.data;
 					context.update(data);
 					fox.renderFormInputs(form);
+					lockSwitchInputs();
+					window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 				} else {
 					fox.showMessage(data);
 				}
@@ -136,7 +136,24 @@ function ListPage() {
 		} else {
 			context.update(data);
 			fox.renderFormInputs(form);
+			lockSwitchInputs();
+			window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 		}
+	}
+
+
+
+	function lockSwitchInputs() {
+	}
+
+	function lockSwitchInput(field) {
+		var inputs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find("input");
+		var switchs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find(".layui-form-switch");
+		inputs.attr("readonly", "yes");
+		inputs.attr("disabled", "yes");
+		switchs.addClass("layui-disabled");
+		switchs.addClass("layui-checkbox-disabled");
+		switchs.addClass("layui-form-switch-disabled");
 	}
 
 	/**
@@ -392,7 +409,10 @@ function ListPage() {
 
 			admin.putTempData('eam-inspection-task-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('eam-inspection-task-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -401,7 +421,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('eam-inspection-task-form-data-form-action', "view",true);
 						showEditForm(data.data);

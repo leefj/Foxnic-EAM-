@@ -33,14 +33,23 @@ public class InspPlanGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"inspectionTypeDict","类型","类型");
         cfg.getPoClassFile().addSimpleProperty(ActionCrontab.class,"actionCrontab","周期","周期");
 
-        cfg.getPoClassFile().addListProperty(InspectionPlanPoint.class,"inspectionPlanPointList","巡检点","巡检点");
+
+        cfg.getPoClassFile().addListProperty(InspectionPoint.class,"inspectionPointList","inspectionPointList","inspectionPointList");
         cfg.getPoClassFile().addListProperty(String.class,"inspectionPlanPointIds","巡检点","巡检点");
 
         cfg.getPoClassFile().addListProperty(InspectionPointOwner.class,"inspectionPointOwnerList","巡检点","巡检点");
         cfg.getPoClassFile().addListProperty(String.class,"inspectionPointOwnerIds","巡检点","巡检点");
 
+        cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
+
+        cfg.getPoClassFile().addSimpleProperty(String.class,"itemCount","itemCount","itemCount");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"itemDisableCount","itemDisableCount","itemDisableCount");
+
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.CREATE_TIME).table().hidden(true);
 
 
+        cfg.view().field(InspectionPlanMeta.ITEM_COUNT).basic().label("巡检点数").table().table().alignLeft().disable(false);
+        cfg.view().field(InspectionPlanMeta.ITEM_DISABLE_COUNT).basic().label("巡检点数(未启用)").table().alignLeft().table().disable(false);
 
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.PLAN_CODE).search().fuzzySearch();
@@ -74,12 +83,17 @@ public class InspPlanGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.START_DATE).form().validate().required().form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.END_DATE).form().validate().required().form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
 
-
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.PLAN_TYPE).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.INSPECTION_METHOD).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.NOTES).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.OVERTIME_METHOD).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.CREATE_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.REMIND_TIME).table().disable(true);
 //         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.LAST_EXECUTION_TIME).table().disable(true);
 //         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.NEXT_EXECUTION_TIME).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.LEADER_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.STATUS).table().disable(true);
-        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.SELECTED_CODE).table().disable(true);
+//        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.SELECTED_CODE).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.ACTION_CYCLE_ID).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.STATUS).form()
@@ -94,8 +108,9 @@ public class InspPlanGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.NAME).form().validate().required().form();
 
-        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.COMPLETION_TIME).form().validate().required().form().numberInput().defaultValue(2.0);
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.COMPLETION_TIME).form().validate().required().form().numberInput().defaultValue(2.0).decimal().scale(2);
 
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.REMIND_TIME).form().numberInput().defaultValue(2.0).decimal().scale(2);
 
 //        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.COMPLETION_TIME)
 //                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_completion_time")
@@ -136,6 +151,7 @@ public class InspPlanGtr extends BaseCodeGenerator {
                         EAMTables.EAM_INSPECTION_PLAN.START_DATE,
                         EAMTables.EAM_INSPECTION_PLAN.END_DATE,
                         EAMTables.EAM_INSPECTION_PLAN.COMPLETION_TIME,
+                        EAMTables.EAM_INSPECTION_PLAN.POS_DETAIL,
                 },
                 new Object[] {
                         EAMTables.EAM_INSPECTION_PLAN.ACTION_CYCLE_ID,

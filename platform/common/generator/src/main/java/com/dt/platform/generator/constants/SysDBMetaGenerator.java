@@ -58,7 +58,20 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_test")
 					||table.startsWith("sys_key_code")
 					||table.startsWith("sys_user_import")
-					||table.startsWith("sys_auto_role") ) return true;
+					||table.startsWith("sys_auto_role")
+
+					||table.startsWith("sys_pay_app")
+					||table.startsWith("sys_pay_channel")
+					||table.startsWith("sys_pay_merchant")
+					||table.startsWith("sys_pay_notify_log")
+					||table.startsWith("sys_pay_notify_task")
+					||table.startsWith("sys_pay_order")
+					||table.startsWith("sys_pay_order_ext")
+					||table.startsWith("sys_pay_refund")
+
+			)
+
+				return true;
 			return false;
 		});
 		dbMetaBuilder.save(true);

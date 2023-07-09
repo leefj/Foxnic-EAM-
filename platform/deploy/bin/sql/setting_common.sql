@@ -22,14 +22,14 @@ update sys_user set portrait_id ='T001_image_head' where 1=1;
 update sys_user set language ='zh_cn' where 1=1;
 
 -- 协同
-update sys_menu set hidden=1 where id='616256291005792256';
+-- update sys_menu set hidden=1 where id='616256291005792256';
 -- 功能演示
 update sys_menu set hidden=1 where id='495201409763901440';
 update sys_menu set hidden=1 where id='610152549789466624';
 -- 回收站
 update sys_menu set hidden=1 where id='473612721665867776';
 -- 流程中心
--- update sys_menu set hidden=1 where id='577783476611198976';
+update sys_menu set hidden=1 where id='577783476611198976';
 -- 工单
 update sys_menu set hidden=1 where id='472358185009676289';
 -- 知识库

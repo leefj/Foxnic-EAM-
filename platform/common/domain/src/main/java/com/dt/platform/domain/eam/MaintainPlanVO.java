@@ -13,8 +13,8 @@ import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
 import com.dt.platform.domain.eam.meta.MaintainPlanVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
-import java.math.BigDecimal;
 import java.util.Date;
+import java.math.BigDecimal;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.github.foxnic.sql.data.ExprRcd;
@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养方案VO类型
  * <p>保养方案 , 数据表 eam_maintain_plan 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-12 21:34:12
+ * @since 2023-07-07 19:34:52
  * @sign C8E16B1999220CF1B368CB50BBEA512E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -404,10 +404,11 @@ public class MaintainPlanVO extends MaintainPlan {
 	@Transient
 	public MaintainPlanVO duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.MaintainPlanVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.MaintainPlanVOMeta.$$proxy$$();
+		inst.setLastTime(this.getLastTime());
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
+		inst.setNextTime(this.getNextTime());
 		inst.setGroupId(this.getGroupId());
-		inst.setSelectedCode(this.getSelectedCode());
 		inst.setTimeout(this.getTimeout());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setAssetId(this.getAssetId());
@@ -440,6 +441,7 @@ public class MaintainPlanVO extends MaintainPlan {
 			inst.setProjectIds(this.getProjectIds());
 			inst.setOriginator(this.getOriginator());
 			inst.setAssetList(this.getAssetList());
+			inst.setSelectedCode(this.getSelectedCode());
 			inst.setMaintainTypeDict(this.getMaintainTypeDict());
 			inst.setActionCrontab(this.getActionCrontab());
 			inst.setPageIndex(this.getPageIndex());
@@ -511,10 +513,11 @@ public class MaintainPlanVO extends MaintainPlan {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setLastTime(DataParser.parse(Date.class, map.get(MaintainPlanVOMeta.LAST_TIME)));
 			this.setCode(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.NOTES)));
+			this.setNextTime(DataParser.parse(Date.class, map.get(MaintainPlanVOMeta.NEXT_TIME)));
 			this.setGroupId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.GROUP_ID)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.SELECTED_CODE)));
 			this.setTimeout(DataParser.parse(BigDecimal.class, map.get(MaintainPlanVOMeta.TIMEOUT)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.UPDATE_BY)));
 			this.setAssetId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ASSET_ID)));
@@ -543,6 +546,7 @@ public class MaintainPlanVO extends MaintainPlan {
 			this.setFuzzyField(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(MaintainPlanVOMeta.PAGE_SIZE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(MaintainPlanVOMeta.ORIGINATOR)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.SELECTED_CODE)));
 			this.setMaintainTypeDict(DataParser.parse(DictItem.class, map.get(MaintainPlanVOMeta.MAINTAIN_TYPE_DICT)));
 			this.setActionCrontab(DataParser.parse(ActionCrontab.class, map.get(MaintainPlanVOMeta.ACTION_CRONTAB)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(MaintainPlanVOMeta.PAGE_INDEX)));
@@ -556,10 +560,11 @@ public class MaintainPlanVO extends MaintainPlan {
 			return true;
 		} else {
 			try {
+				this.setLastTime( (Date)map.get(MaintainPlanVOMeta.LAST_TIME));
 				this.setCode( (String)map.get(MaintainPlanVOMeta.CODE));
 				this.setNotes( (String)map.get(MaintainPlanVOMeta.NOTES));
+				this.setNextTime( (Date)map.get(MaintainPlanVOMeta.NEXT_TIME));
 				this.setGroupId( (String)map.get(MaintainPlanVOMeta.GROUP_ID));
-				this.setSelectedCode( (String)map.get(MaintainPlanVOMeta.SELECTED_CODE));
 				this.setTimeout( (BigDecimal)map.get(MaintainPlanVOMeta.TIMEOUT));
 				this.setUpdateBy( (String)map.get(MaintainPlanVOMeta.UPDATE_BY));
 				this.setAssetId( (String)map.get(MaintainPlanVOMeta.ASSET_ID));
@@ -588,6 +593,7 @@ public class MaintainPlanVO extends MaintainPlan {
 				this.setFuzzyField( (String)map.get(MaintainPlanVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(MaintainPlanVOMeta.PAGE_SIZE));
 				this.setOriginator( (Employee)map.get(MaintainPlanVOMeta.ORIGINATOR));
+				this.setSelectedCode( (String)map.get(MaintainPlanVOMeta.SELECTED_CODE));
 				this.setMaintainTypeDict( (DictItem)map.get(MaintainPlanVOMeta.MAINTAIN_TYPE_DICT));
 				this.setActionCrontab( (ActionCrontab)map.get(MaintainPlanVOMeta.ACTION_CRONTAB));
 				this.setPageIndex( (Integer)map.get(MaintainPlanVOMeta.PAGE_INDEX));
@@ -614,10 +620,11 @@ public class MaintainPlanVO extends MaintainPlan {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setLastTime(DataParser.parse(Date.class, r.getValue(MaintainPlanVOMeta.LAST_TIME)));
 			this.setCode(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.NOTES)));
+			this.setNextTime(DataParser.parse(Date.class, r.getValue(MaintainPlanVOMeta.NEXT_TIME)));
 			this.setGroupId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.GROUP_ID)));
-			this.setSelectedCode(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.SELECTED_CODE)));
 			this.setTimeout(DataParser.parse(BigDecimal.class, r.getValue(MaintainPlanVOMeta.TIMEOUT)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.UPDATE_BY)));
 			this.setAssetId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ASSET_ID)));
@@ -643,10 +650,11 @@ public class MaintainPlanVO extends MaintainPlan {
 			return true;
 		} else {
 			try {
+				this.setLastTime( (Date)r.getValue(MaintainPlanVOMeta.LAST_TIME));
 				this.setCode( (String)r.getValue(MaintainPlanVOMeta.CODE));
 				this.setNotes( (String)r.getValue(MaintainPlanVOMeta.NOTES));
+				this.setNextTime( (Date)r.getValue(MaintainPlanVOMeta.NEXT_TIME));
 				this.setGroupId( (String)r.getValue(MaintainPlanVOMeta.GROUP_ID));
-				this.setSelectedCode( (String)r.getValue(MaintainPlanVOMeta.SELECTED_CODE));
 				this.setTimeout( (BigDecimal)r.getValue(MaintainPlanVOMeta.TIMEOUT));
 				this.setUpdateBy( (String)r.getValue(MaintainPlanVOMeta.UPDATE_BY));
 				this.setAssetId( (String)r.getValue(MaintainPlanVOMeta.ASSET_ID));

@@ -108,6 +108,13 @@ public interface InspectionPlanServiceProxy {
     public static final String CREATE_TASK = API_PREFIX + "create-task";
 
     public static final String EXECUTE = API_PREFIX + "execute";
+  
+
+    /**
+     * 执行计划
+     */
+    @RequestMapping(CCustInspectPlanServiceProxy.EXECUTE)
+    Result execute();
 
 
     /**
