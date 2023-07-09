@@ -1,10 +1,12 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.alibaba.fastjson.JSON;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.AssetMeta;
+import com.dt.platform.domain.eam.meta.InspectionPlanMeta;
 import com.dt.platform.domain.eam.meta.MaintainPlanMeta;
 import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
@@ -26,6 +28,7 @@ import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.session.SessionUser;
+import org.quartz.CronExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,7 +66,8 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 	@Autowired
 	private IAssetSelectedDataService assetSelectedDataService;
 
-
+	@Autowired
+	private IPlanExecuteLogService planExecuteLogService;
 
 	@Autowired
 	private IMaintainTaskProjectService maintainTaskProjectService;
@@ -117,9 +121,98 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 		return ErrorDesc.success();
 	}
 
-	@Override
-	public Result execute(String id) {
 
+	private Date getNextExecuteTime(MaintainPlan plan) {
+		Date next=null;
+		try {
+			CronExpression cronExpression = new CronExpression(plan.getActionCrontab().getCrontab());
+			next=cronExpression.getNextValidTimeAfter(new Date());
+		} catch (Exception e) {
+			Logger.exception("cron "+plan.getActionCrontab().getCrontab()+" error",e);
+		}
+		return next;
+	}
+
+	private PlanExecuteLog getOrCreateLog(MaintainPlan plan) {
+		// 获得计划的下一个执行时间点
+		Date next=getNextExecuteTime(plan);
+		// 如果表达式异常就执行下一个计划
+		if(next==null) return null;
+		// 更新下一个计划时间
+		plan.setNextTime(next);
+		MaintainPlan newPlan=new MaintainPlan();
+		newPlan.setId(plan.getId());
+		newPlan.setNextTime(next);
+		super.update(newPlan,SaveMode.NOT_NULL_FIELDS,true);
+
+		// 查询未执行的日志
+		List<PlanExecuteLog> logs=planExecuteLogService.queryList(new ConditionExpr("plan_id=? and executed!=1",plan.getId()));
+		PlanExecuteLog log = null;
+		// 如果没有未执行的日志就新建一个
+		if(logs==null || logs.isEmpty()) {
+			log=new PlanExecuteLog();
+			log.setPlanId(plan.getId());
+			log.setExecuteTime(plan.getNextTime());
+			log.setExecuted(0);
+			planExecuteLogService.insert(log);
+			logs=planExecuteLogService.queryList(new ConditionExpr("plan_id=? and executed!=1",plan.getId()));
+			// 并发执行可能存在这种情况，判断的一下
+			if(logs==null || logs.isEmpty()) {
+				return null;
+			}
+		}
+		log=logs.get(0);
+		return log;
+	}
+
+	private Result executePlan(MaintainPlan plan){
+
+		ActionCrontab cron=plan.getActionCrontab();
+		if(StringUtil.isBlank(cron)){
+			Logger.info("当前crontab为空，plan:"+plan.getId());
+			return ErrorDesc.failure("当前crontab为空");
+		}
+
+		// 理论上只有一个待执行的日志
+		PlanExecuteLog log = this.getOrCreateLog(plan);
+		// 如果 long 是 null 大概率是 cron 表达式错误
+		if(log==null){
+			Logger.info("log is null，plan:"+plan.getId());
+			return ErrorDesc.failure("log is null");
+		}
+		// 如果预期的执行时间已经超过当前，就执行
+		if(log.getExecuteTime().getTime()<=(new Date()).getTime()) {
+			// 设置为已执行，意味着执行失败就跳过，下一次继续执行
+			log.setExecuted(1);
+			try {
+				// 执行
+				//Result execResult = this.createTask(plan.getId(), "auto");
+				Result execResult = this.createTask(plan.getId());
+				// 失败时记录失败原因
+				if (!execResult.success()) {
+					log.setErrors(JSON.toJSONString(execResult));
+				}
+			} catch (Exception e) {
+				// 记录异常堆栈
+				log.setErrors(StringUtil.toString(e));
+			}
+			planExecuteLogService.updateDirtyFields(log);
+			// 为下一次执行做准备，同时使界面上也能看到下次执行时间
+			this.getOrCreateLog(plan);
+		}
+
+		return ErrorDesc.success();
+	}
+	@Override
+	public Result execute() {
+		MaintainPlan plan=new MaintainPlan();
+		plan.setStatus(EamPlanStatusEnum.ACTING.code());
+		plan.setCycleMethod(MaintainCycleMethodEnum.CYCLE.code());
+		List<MaintainPlan> planList=this.queryList(plan);
+		dao.fill(planList).with(InspectionPlanMeta.ACTION_CRONTAB).execute();
+		for(int i=0;i<planList.size();i++){
+			executePlan(planList.get(i));
+		}
 		return ErrorDesc.success();
 	}
 

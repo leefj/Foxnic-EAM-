@@ -8,13 +8,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.ActionCrontab;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-08 06:19:52
- * @sign 68A6BD1A3D45BBCFC0472F1687B23C26
+ * @since 2023-07-07 18:15:14
+ * @sign 8F84246B7974EC5E6388A6E6B6D6086B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -101,6 +102,36 @@ public class MaintainProjectVOMeta extends MaintainProjectMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProjectVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProjectVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProjectVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProjectVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProjectVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProjectVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProjectVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProjectVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
 	*/
 	public static final String IDS="ids";
@@ -151,6 +182,16 @@ public class MaintainProjectVOMeta extends MaintainProjectMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProjectVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProjectVO.class ,NAME, java.lang.String.class, "项目名称", "项目名称", java.lang.String.class, null);
 	
 	/**
+	 * 保养内容 , 类型: java.lang.String
+	*/
+	public static final String CONTENT="content";
+	
+	/**
+	 * 保养内容 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProjectVO,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProjectVO.class ,CONTENT, java.lang.String.class, "保养内容", "保养内容", java.lang.String.class, null);
+	
+	/**
 	 * 保养类型 , 类型: java.lang.String
 	*/
 	public static final String MAINTAIN_TYPE="maintainType";
@@ -161,14 +202,14 @@ public class MaintainProjectVOMeta extends MaintainProjectMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProjectVO,java.lang.String> MAINTAIN_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProjectVO.class ,MAINTAIN_TYPE, java.lang.String.class, "保养类型", "保养类型", java.lang.String.class, null);
 	
 	/**
-	 * 标准工时(小时) , 类型: java.math.BigDecimal
+	 * 标准工时 , 小时) , 类型: java.math.BigDecimal
 	*/
 	public static final String BASE_COST="baseCost";
 	
 	/**
-	 * 标准工时(小时) , 类型: java.math.BigDecimal
+	 * 标准工时 , 小时) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProjectVO,java.math.BigDecimal> BASE_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProjectVO.class ,BASE_COST, java.math.BigDecimal.class, "标准工时(小时)", "标准工时(小时)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainProjectVO,java.math.BigDecimal> BASE_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainProjectVO.class ,BASE_COST, java.math.BigDecimal.class, "标准工时", "小时)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 保养周期 , 类型: java.lang.String
@@ -323,7 +364,7 @@ public class MaintainProjectVOMeta extends MaintainProjectMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CODE , STATUS , NAME , MAINTAIN_TYPE , BASE_COST , ACTION_CYCLE_ID , ATTACH_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , MAINTAIN_TYPE_DICT , ACTION_CRONTAB };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , STATUS , NAME , CONTENT , MAINTAIN_TYPE , BASE_COST , ACTION_CYCLE_ID , ATTACH_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , MAINTAIN_TYPE_DICT , ACTION_CRONTAB };
 	
 	/**
 	 * 代理类
@@ -422,6 +463,39 @@ public class MaintainProjectVOMeta extends MaintainProjectMeta {
 		}
 		
 		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public MaintainProjectVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public MaintainProjectVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public MaintainProjectVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
+			return this;
+		}
+		
+		/**
 		 * 设置 主键清单
 		 * @param ids 主键清单
 		 * @return 当前对象
@@ -477,6 +551,17 @@ public class MaintainProjectVOMeta extends MaintainProjectMeta {
 		}
 		
 		/**
+		 * 设置 保养内容
+		 * @param content 保养内容
+		 * @return 当前对象
+		*/
+		public MaintainProject setContent(String content) {
+			super.change(CONTENT,super.getContent(),content);
+			super.setContent(content);
+			return this;
+		}
+		
+		/**
 		 * 设置 保养类型
 		 * @param maintainType 保养类型
 		 * @return 当前对象
@@ -488,8 +573,8 @@ public class MaintainProjectVOMeta extends MaintainProjectMeta {
 		}
 		
 		/**
-		 * 设置 标准工时(小时)
-		 * @param baseCost 标准工时(小时)
+		 * 设置 标准工时
+		 * @param baseCost 标准工时
 		 * @return 当前对象
 		*/
 		public MaintainProject setBaseCost(BigDecimal baseCost) {
@@ -662,5 +747,61 @@ public class MaintainProjectVOMeta extends MaintainProjectMeta {
 			super.setActionCrontab(actionCrontab);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public MaintainProjectVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public MaintainProjectVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setBaseCost(this.getBaseCost());
+			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setActionCycleId(this.getActionCycleId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
+			inst.setContent(this.getContent());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setMaintainType(this.getMaintainType());
+			inst.setAttachId(this.getAttachId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setMaintainTypeDict(this.getMaintainTypeDict());
+				inst.setActionCrontab(this.getActionCrontab());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

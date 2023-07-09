@@ -75,17 +75,28 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
 
         }else if(formAction=="edit"){
-            url="/service-eam/eam-action-crontab/get-by-id"
-            admin.putTempData('eam-action-crontab-form-data-form-action', "edit",true);
-            queryString="?id="+actionCycleId;
-            ps.id=actionCycleId;
-            admin.post(url, ps, function (r) {
-                if (r.success) {
-                    openCronForm(r.data,queryString,url,ps);
-                } else {
-                    fox.showMessage(r);
-                }
-            });
+            if(actionCycleId&&actionCycleId.length>5){
+                url="/service-eam/eam-action-crontab/get-by-id"
+                admin.putTempData('eam-action-crontab-form-data-form-action', "edit",true);
+                queryString="?id="+actionCycleId;
+                ps.id=actionCycleId;
+                admin.post(url, ps, function (r) {
+                    if (r.success) {
+                        openCronForm(r.data,queryString,url,ps);
+                    } else {
+                        fox.showMessage(r);
+                    }
+                });
+            }else{
+                url="/service-eam/eam-action-crontab/get-by-owner-id"
+                ownerId=time;
+                ps.ownerId=ownerId;
+                admin.putTempData('eam-action-crontab-form-data-form-action', "create",true);
+                queryString="?ownerId="+ownerId;
+                var tD={};
+                openCronForm(tD,queryString,url,ps);
+            }
+
         }else if(formAction=="view"){
             url="/service-eam/eam-action-crontab/get-by-id"
             admin.putTempData('eam-action-crontab-form-data-form-action', "view",true);
@@ -186,6 +197,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="itemCount" ||field=="itemDisableCount"){
+                if(value){
+                    return value
+                }else{
+                    return 0;
+                }
+            }
+
             if(value==null) return "";
             return value;
         },
@@ -399,9 +419,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         pointSelectList:function (ifr,win,data) {
             console.log("goodsSelectList",ifr,data);
             //设置 iframe 高度
-            ifr.height("450px");
+            ifr.height("400px");
             var ownerId="";
-            if(data&&data.id){
+            if(formAction=="create"){
+                ownerId=timestamp;
+            }else{
                 ownerId=data.id;
             }
             var ownerType="eam_asset_inspect_point"

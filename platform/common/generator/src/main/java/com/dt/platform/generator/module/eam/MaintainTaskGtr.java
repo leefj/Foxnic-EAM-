@@ -14,6 +14,7 @@ import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.dt.platform.proxy.eam.GroupUserServiceProxy;
 import com.dt.platform.proxy.eam.MaintainGroupServiceProxy;
 import com.dt.platform.proxy.eam.MaintainTaskServiceProxy;
+import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.meta.PersonMeta;
@@ -125,6 +126,22 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
                 textField(MaintainGroupMeta.NAME).
                 fillWith(MaintainTaskMeta.MAINTAIN_GROUP).muliti(false);
 
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.TIMEOUT).form().numberInput().defaultValue(2.0).scale(2).decimal();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.TOTAL_COST).form().numberInput().defaultValue(2.0).scale(2).decimal();
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_TOTAL_COST).form().numberInput().defaultValue(2.0).scale(2).decimal();
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.COST).form().numberInput().defaultValue(2.0).scale(2).decimal();
+
+
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_START_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_FINISH_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_START_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_START_TIME).form().dateInput().type(DatePickerType.datetime);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_FINISH_TIME).form().dateInput().type(DatePickerType.datetime);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_START_TIME).form().dateInput().type(DatePickerType.datetime);
 
 
 

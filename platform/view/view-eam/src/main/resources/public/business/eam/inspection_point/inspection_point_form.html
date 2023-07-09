@@ -2,7 +2,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-11 20:39:38
+ * @since 2023-07-07 14:01:25
  */
  -->
  <!DOCTYPE html>
@@ -31,40 +31,40 @@
 <body style="overflow-y: hidden;">
 <div class="form-container" >
 
-    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="display:none">
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="opacity:0">
 
         <input name="id" id="id"  type="hidden"/>
 
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-5859-content">
+        <div class="layui-row form-row" id="random-4784-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs4 form-column" >
 
-                <!-- select_box : 状态 ,  status  -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                <!-- text_input : 名称 ,  name -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <div id="status" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" extraParam="{}"></div>
+                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
             
                 <!-- text_input : 编码 ,  code -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('编码')}">编码</div><div class="layui-required">*</div></div>
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('编码')}">编码</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="code" id="code" name="code" th:placeholder="${ lang.translate('请输入'+'编码') }" type="text" class="layui-input"    lay-verify="|required"  />
+                        <input lay-filter="code" id="code" name="code" th:placeholder="${ lang.translate('请输入'+'编码') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             
-                <!-- text_input : 名称 ,  name -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
+                <!-- select_box : 状态 ,  status  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'名称') }" type="text" class="layui-input"    lay-verify="|required"  />
+                        <div id="status" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" extraParam="{}"></div>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -74,7 +74,7 @@
             <div class="layui-col-xs4 form-column" >
 
                 <!-- text_input : RFID ,  rfid -->
-                <div class="layui-form-item" >
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('RFID')}">RFID</div></div>
                     <div class="layui-input-block ">
                         <input lay-filter="rfid" id="rfid" name="rfid" th:placeholder="${ lang.translate('请输入'+'RFID') }" type="text" class="layui-input"  />
@@ -82,7 +82,7 @@
                 </div>
             
                 <!-- number_input : 位置经度 ,  posLongitude  -->
-                <div class="layui-form-item" >
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('位置经度')}">位置经度</div></div>
                     <div class="layui-input-block ">
                         <input lay-filter="posLongitude" id="posLongitude" name="posLongitude" th:placeholder="${ lang.translate('请输入'+'位置经度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0"  value="0.0" />
@@ -90,7 +90,7 @@
                 </div>
             
                 <!-- number_input : 位置纬度 ,  posLatitude  -->
-                <div class="layui-form-item" >
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('位置纬度')}">位置纬度</div></div>
                     <div class="layui-input-block ">
                         <input lay-filter="posLatitude" id="posLatitude" name="posLatitude" th:placeholder="${ lang.translate('请输入'+'位置纬度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0"  value="0.0" />
@@ -103,7 +103,7 @@
             <div class="layui-col-xs4 form-column" >
 
                 <!-- select_box : 巡检路线 ,  routeId  -->
-                <div class="layui-form-item" >
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('巡检路线')}">巡检路线</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
                         <div id="routeId" input-type="select" th:data="${'/service-eam/eam-inspection-route/query-list'}" extraParam="{}"></div>
@@ -111,7 +111,7 @@
                 </div>
             
                 <!-- select_box : 位置 ,  posId  -->
-                <div class="layui-form-item" >
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('位置')}">位置</div></div>
                     <div class="layui-input-block ">
                         <div id="posId" input-type="select" th:data="${'/service-eam/eam-inspection-point-pos/query-paged-list'}" extraParam="{}"></div>
@@ -119,7 +119,7 @@
                 </div>
             
                 <!-- text_input : 位置详情 ,  pos -->
-                <div class="layui-form-item" >
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('位置详情')}">位置详情</div></div>
                     <div class="layui-input-block ">
                         <input lay-filter="pos" id="pos" name="pos" th:placeholder="${ lang.translate('请输入'+'位置详情') }" type="text" class="layui-input"  />
@@ -132,14 +132,22 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-5608-content">
+        <div class="layui-row form-row" id="random-1180-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
 
+                <!-- select_box : 关联设备 ,  assetId  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('关联设备')}">关联设备</div></div>
+                    <div class="layui-input-block ">
+                        <div id="assetId" input-type="select" th:data="${'/service-eam/eam-asset/query-list?ownerCode=asset'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
                 <!-- text_area : 巡检内容 ,  content  -->
-                <div class="layui-form-item" >
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('巡检内容')}">巡检内容</div></div>
                     <div class="layui-input-block ">
                         <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入'+'巡检内容') }" class="layui-textarea" style="height: 120px" ></textarea>
@@ -147,14 +155,14 @@
                 </div>
             
                 <!-- text_area : 备注 ,  notes  -->
-                <div class="layui-form-item" >
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block ">
                         <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
                             <!-- upload : 图片 ,  pictureId  -->
-                <div class="layui-form-item" >
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('图片')}">图片</div></div>
                     <div class="layui-upload layui-input-block ">
                         <input input-type="upload" id="pictureId"  name="pictureId" lay-filter="pictureId" style="display: none">
@@ -165,6 +173,15 @@
             <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1034-fieldset">
+        <legend>巡检项</legend>
+        </fieldset>
+        <div class="layui-row form-row" style="text-align: center;" id="random-1034-content">
+            <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
+            <iframe id="random-1034-iframe" js-fn="checkSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+            </div>
         </div>
         <!--结束：group循环-->
 
@@ -188,7 +205,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
-    var VALIDATE_CONFIG={"code":{"labelInForm":"编码","inputType":"text_input","required":true},"routeId":{"labelInForm":"巡检路线","inputType":"select_box","required":true},"name":{"labelInForm":"名称","inputType":"text_input","required":true},"status":{"labelInForm":"状态","inputType":"select_box","required":true}};
+    var VALIDATE_CONFIG={"routeId":{"labelInForm":"巡检路线","inputType":"select_box","required":true},"name":{"labelInForm":"名称","inputType":"text_input","required":true},"status":{"labelInForm":"状态","inputType":"select_box","required":true}};
     var AUTH_PREFIX="eam_inspection_point";
 
 

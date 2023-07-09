@@ -1,16 +1,22 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.domain.eam.InspectionPoint;
+import com.dt.platform.domain.eam.InspectionPointItem;
 import com.dt.platform.domain.eam.InspectionPointOwner;
 import com.dt.platform.domain.eam.InspectionPointVO;
+import com.dt.platform.eam.service.IInspectionPointItemService;
 import com.dt.platform.eam.service.IInspectionPointOwnerService;
 import com.dt.platform.eam.service.IInspectionPointService;
+import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.dao.data.SaveMode;
@@ -49,6 +55,8 @@ public class InspectionPointServiceImpl extends SuperService<InspectionPoint> im
 	@Autowired
 	private IInspectionPointOwnerService inspectionPointOwnerService;
 
+	@Autowired
+	private IInspectionPointItemService inspectionPointItemService;
 	/**
 	 * 注入DAO对象
 	 * */
@@ -76,50 +84,79 @@ public class InspectionPointServiceImpl extends SuperService<InspectionPoint> im
 	 */
 	@Override
 	public Result insert(InspectionPoint inspectionPoint,boolean throwsException) {
+
+
+		if(StringUtil.isBlank(inspectionPoint.getCode())){
+			Result codeResult= CodeModuleServiceProxy.api().generateCode(CodeModuleEnum.COMMON_SEQ_CODE.code());
+			if(!codeResult.isSuccess()){
+				return codeResult;
+			}else{
+				inspectionPoint.setCode(codeResult.getData().toString());
+			}
+		}
+
+		String selectedCode=inspectionPoint.getSelectedCode();
 		Result r=super.insert(inspectionPoint,throwsException);
+		if(r.isSuccess()){
+			//更新
+			dao.execute("update eam_inspection_point_item set select_code=?,point_id=? where point_id=? and select_code=?","",inspectionPoint.getId(),selectedCode,selectedCode);
+		}
 		return r;
 	}
 
 	@Override
-	public PagedList<InspectionPoint> queryPagedListBySelected(InspectionPointVO sample, String ownerId, String ownerType) {
-		ConditionExpr expr=new ConditionExpr();
-		List<String> idsList=new ArrayList<>();
-		String selectedCode=sample.getSelectedCode();
-		sample.setSelectedCode(null);
-		RcdSet rs=null;
+	public Result selectDeleteById(String ownerId, String id, String selectCode) {
+		dao.execute("delete from eam_inspection_point_owner where owner_id=? and point_id=? and selected_code=?",ownerId,id,selectCode);
+		return ErrorDesc.success();
+	}
+
+	@Override
+	public Result selectSaveIds(String ownerId, String ids, String selectCode) {
+		if(StringUtil.isBlank(selectCode)){
+			return ErrorDesc.failureMessage("selectCode 参数为空");
+		}
 		if(StringUtil.isBlank(ownerId)){
-			rs=dao.query("select point_id from eam_inspection_point_owner where deleted=0 and selected_code=?",selectedCode);
-		}else{
-			rs=dao.query("select point_id from eam_inspection_point_owner where deleted=0 and owner_id=?",ownerId);
+			return ErrorDesc.failureMessage("ownerId 参数为空");
 		}
-		if(rs.size()>0){
-			idsList=rs.getValueList("pointId",String.class);
+		if(StringUtil.isBlank(ids)){
+			return ErrorDesc.failureMessage("ids 参数为空");
 		}
-		if(idsList.size()==0){
-			idsList.add("-1");
+		JSONArray idsArr=JSONArray.parseArray(ids);
+		if(idsArr.size()>0){
+			for(int i=0;i<idsArr.size();i++){
+				String itemId=idsArr.getString(i);
+				if(dao.queryRecord("select count(1) cnt from eam_inspection_point_owner where deleted=0 and owner_id=? and point_id=? and selected_code=?",ownerId,itemId,selectCode).getInteger("cnt")==0){
+					InspectionPointOwner item=new InspectionPointOwner();
+					item.setPointId(itemId);
+					item.setOwnerId(ownerId);
+					item.setSelectedCode(selectCode);
+					inspectionPointOwnerService.insert(item,true);
+				}else{
+					Logger.info("repeat,id:"+itemId+",ignore");
+				}
+			}
 		}
-		expr.andIn("id",idsList);
+		return ErrorDesc.success();
+	}
+
+	@Override
+	public PagedList<InspectionPoint> queryPagedListBySelected(InspectionPointVO sample, String ownerId, String ownerType) {
+
+		String selectCode=sample.getSelectedCode();
+		ConditionExpr expr=new ConditionExpr();
+		if(dao().queryRecord("select count(1) cnt from eam_inspection_point_owner where deleted=0 and owner_id=? and selected_code=?",ownerId,selectCode).getInteger("cnt")==0){
+			//做一份转
+			String sql="insert into eam_inspection_point_owner(id,owner_id,point_id,deleted,selected_code)  select uuid(),owner_id,point_id,0,'"+selectCode+"' from eam_inspection_point_owner where deleted=0 and owner_id=? and (selected_code='' or selected_code is null)  ";
+			dao().execute(sql,ownerId);
+		}
+		expr.and("id in (select point_id from eam_inspection_point_owner where deleted=0 and owner_id=? and selected_code=?)",ownerId,selectCode);
 		return super.queryPagedList(sample,expr,sample.getPageSize(),sample.getPageIndex());
 	}
 
 	@Override
 	public PagedList<InspectionPoint> queryPagedListBySelect(InspectionPointVO sample, String ownerId, String ownerType) {
 		ConditionExpr expr=new ConditionExpr();
-		expr.and("1=1");
-		List<String> idsList=new ArrayList<>();
-
-		String selectedCode=sample.getSelectedCode();
-		sample.setSelectedCode(null);
-		RcdSet rs=null;
-		if(StringUtil.isBlank(ownerId)){
-			rs=dao.query("select point_id from eam_inspection_point_owner where deleted=0 and selected_code=?",selectedCode);
-		}else{
-			rs=dao.query("select point_id from eam_inspection_point_owner where deleted=0 and owner_id=?",ownerId);
-		}
-		if(rs.size()>0){
-			idsList=rs.getValueList("pointId",String.class);
-			expr.andNotIn("id",idsList.toArray());
-		}
+		expr.and("id not in (select point_id from eam_inspection_point_owner where deleted=0 and owner_id=? and selected_code=?)",ownerId,sample.getSelectedCode());
 		return super.queryPagedList(sample,expr,sample.getPageSize(),sample.getPageIndex());
 	}
 
@@ -230,7 +267,14 @@ public class InspectionPointServiceImpl extends SuperService<InspectionPoint> im
 	 * */
 	@Override
 	public Result update(InspectionPoint inspectionPoint , SaveMode mode,boolean throwsException) {
+
+		String selectedCode=inspectionPoint.getSelectedCode();
+		//删除原来的
 		Result r=super.update(inspectionPoint , mode , throwsException);
+		if(r.isSuccess()){
+			dao.execute("delete from eam_inspection_point_item where point_id=? and (select_code ='' or select_code is null)",inspectionPoint.getId(),selectedCode);
+			dao.execute("update eam_inspection_point_item set select_code='' where point_id=? and select_code=?",inspectionPoint.getId(),selectedCode);
+		}
 		return r;
 	}
 

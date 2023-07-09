@@ -1,0 +1,185 @@
+<!--
+/**
+ * 退款订单 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2023-07-04 16:15:47
+ */
+ -->
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+    <title th:text="${lang.translate('退款订单')}">退款订单</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden">
+
+<div class="layui-card">
+
+    <div class="layui-card-body" style="">
+
+        <div class="search-bar" style="">
+
+            <div class="search-input-rows" style="opacity: 0">
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 应用编号 , appId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('应用编号')}" class="search-label appId-label">应用编号</span><span class="search-colon">:</span></div>
+                        <div id="appId" th:data="${'/service-common/sys-pay-app/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 渠道编码 , channelCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 商户订单编号 , merchantOrderId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 商户退款订单号 , merchantRefundNo ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 异步通知商户地址 , notifyUrl ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 支付金额 , payAmount ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 退款金额 , refundAmount ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 用户 , userIp ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 渠道订单号 , channelOrderNo ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 渠道退款单号 , channelRefundNo ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 渠道调用报错时 , channelErrorCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 渠道调用报错时 , channelErrorMsg ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 支付渠道的额外参数 , channelExtras ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 退款失效时间 , expireTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 退款成功时间 , successTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 退款通知时间 , notifyTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 商户编号 , merchantId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('商户编号')}" class="search-label merchantId-label">商户编号</span><span class="search-colon">:</span></div>
+                        <div id="merchantId" th:data="${'/service-common/sys-pay-merchant/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 渠道编号 , channelId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('渠道编号')}" class="search-label channelId-label">渠道编号</span><span class="search-colon">:</span></div>
+                        <div id="channelId" th:data="${'/service-common/sys-pay-app/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 交易订单 , tradeNo ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('交易订单')}" class="search-label tradeNo-label">交易订单</span><span class="search-colon">:</span></div>
+                        <input id="tradeNo" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 退款状态 , status ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('退款状态')}" class="search-label status-label">退款状态</span><span class="search-colon">:</span></div>
+
+
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.PayRefundStatusEnum')}" style="width:150px"></div>
+                    </div>
+                    <!-- 回调状态 , notifyStatus ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('回调状态')}" class="search-label notifyStatus-label">回调状态</span><span class="search-colon">:</span></div>
+
+
+                        <div id="notifyStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.common.PayNotifyStatusEnum')}" style="width:150px"></div>
+                    </div>
+                    <!-- 支付订单 , orderId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('支付订单')}" class="search-label orderId-label">支付订单</span><span class="search-colon">:</span></div>
+                        <div id="orderId" th:data="${'/service-common/sys-pay-order/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 退款类型 , type ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('退款类型')}" class="search-label type-label">退款类型</span><span class="search-colon">:</span></div>
+
+
+                        <div id="type" th:data="${enum.toArray('com.dt.platform.constants.enums.common.PayRefundTypeEnum')}" style="width:150px"></div>
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 退款原因 , reason ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('退款原因')}" class="search-label reason-label">退款原因</span><span class="search-colon">:</span></div>
+                        <input id="reason" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 创建时间 , createTime ,typeName=date_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('创建时间')}" class="search-label createTime-label">创建时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="createTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                            <span class="search-dash">-</span>
+                            <input type="text" id="createTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!-- 按钮区域 -->
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
+                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多','','cmp:table.search')}">更多</span></button>
+            </div>
+        </div>
+
+        <div id="table-area" style="margin-top: 84px ">
+            <table class="layui-table" id="data-table" lay-filter="data-table"></table>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<!-- 表格工具栏 -->
+<script type="text/html" id="toolbarTemplate">
+    <div class="layui-btn-container">
+        <button th:if="${perm.checkAuth('sys_pay_refund:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
+    </div>
+</script>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="tableOperationTemplate">
+
+    <button th:if="${perm.checkAuth('sys_pay_refund:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>
+    <button th:if="${perm.checkAnyAuth('sys_pay_refund:update','sys_pay_refund:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改','','cmp:table.ops')}">修改</span></button>
+
+
+    <button th:if="${perm.checkAuth('sys_pay_refund:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
+
+
+</script>
+
+
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.PayRefundStatusEnum')}]];
+    var RADIO_NOTIFYSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.PayNotifyStatusEnum')}]];
+    var RADIO_TYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.PayRefundTypeEnum')}]];
+    var AUTH_PREFIX="sys_pay_refund";
+
+
+</script>
+
+<script th:src="'/business/common/pay_refund/pay_refund_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/common/pay_refund/pay_refund_list.js?'+${cacheKey}"></script>
+
+</body>
+</html>

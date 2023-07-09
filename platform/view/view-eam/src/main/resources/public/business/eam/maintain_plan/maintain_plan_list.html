@@ -2,7 +2,7 @@
 /**
  * 保养方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-12 21:34:13
+ * @since 2023-07-07 19:34:53
  */
  -->
  <!DOCTYPE html>
@@ -54,7 +54,8 @@
                     <!-- 方案说明 , info ,typeName=text_area, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 制单人 , originatorId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 上次执行 , lastTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 下次执行 , nextTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 保养类型 , maintainType ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('保养类型')}" class="search-label maintainType-label">保养类型</span><span class="search-colon">:</span></div>

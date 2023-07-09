@@ -3,6 +3,7 @@ package com.dt.platform.eam.controller;
 import java.util.List;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.MaintainProjectMeta;
+import com.dt.platform.proxy.eam.CheckItemServiceProxy;
 import com.dt.platform.proxy.eam.MaintainProjectServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -74,7 +75,8 @@ public class InspectionPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.POS_ID, value = "位置", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InspectionPointServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -134,7 +136,8 @@ public class InspectionPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.POS_ID, value = "位置", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InspectionPointVOMeta.PAGE_INDEX, InspectionPointVOMeta.PAGE_SIZE, InspectionPointVOMeta.SEARCH_FIELD, InspectionPointVOMeta.FUZZY_FIELD, InspectionPointVOMeta.SEARCH_VALUE, InspectionPointVOMeta.DIRTY_FIELDS, InspectionPointVOMeta.SORT_FIELD, InspectionPointVOMeta.SORT_TYPE, InspectionPointVOMeta.IDS })
     @SentinelResource(value = InspectionPointServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -163,7 +166,8 @@ public class InspectionPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.POS_ID, value = "位置", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionPointVOMeta.PAGE_INDEX, InspectionPointVOMeta.PAGE_SIZE, InspectionPointVOMeta.SEARCH_FIELD, InspectionPointVOMeta.FUZZY_FIELD, InspectionPointVOMeta.SEARCH_VALUE, InspectionPointVOMeta.DIRTY_FIELDS, InspectionPointVOMeta.SORT_FIELD, InspectionPointVOMeta.SORT_TYPE, InspectionPointVOMeta.IDS })
     @SentinelResource(value = InspectionPointServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -188,7 +192,7 @@ public class InspectionPointController extends SuperController {
         Result<InspectionPoint> result = new Result<>();
         InspectionPoint inspectionPoint = inspectionPointService.getById(id);
         // join 关联的对象
-        inspectionPointService.dao().fill(inspectionPoint).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.INSPECTION_POINT_POS).execute();
+        inspectionPointService.dao().fill(inspectionPoint).with(InspectionPointMeta.ASSET).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.INSPECTION_POINT_POS).execute();
         result.success(true).data(inspectionPoint);
         return result;
     }
@@ -229,7 +233,8 @@ public class InspectionPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.POS_ID, value = "位置", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionPointVOMeta.PAGE_INDEX, InspectionPointVOMeta.PAGE_SIZE })
     @SentinelResource(value = InspectionPointServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -259,7 +264,8 @@ public class InspectionPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.POS_ID, value = "位置", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InspectionPointServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -268,7 +274,7 @@ public class InspectionPointController extends SuperController {
         Result<PagedList<InspectionPoint>> result = new Result<>();
         PagedList<InspectionPoint> list = inspectionPointService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        inspectionPointService.dao().fill(list).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.INSPECTION_POINT_POS).execute();
+        inspectionPointService.dao().fill(list).with(InspectionPointMeta.CHECK_ITEM_LIST).with(InspectionPointMeta.ASSET).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.INSPECTION_POINT_POS).execute();
         result.success(true).data(list);
         return result;
     }
@@ -285,7 +291,7 @@ public class InspectionPointController extends SuperController {
         Result<PagedList<InspectionPoint>> result = new Result<>();
         PagedList<InspectionPoint> list = inspectionPointService.queryPagedListBySelect(sample, ownerId, ownerType);
         // join 关联的对象
-        inspectionPointService.dao().fill(list).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.INSPECTION_POINT_POS).execute();
+        inspectionPointService.dao().fill(list).with(InspectionPointMeta.CHECK_ITEM_LIST).with(InspectionPointMeta.ASSET).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.INSPECTION_POINT_POS).execute();
         result.success(true).data(list);
         return result;
     }
@@ -302,7 +308,7 @@ public class InspectionPointController extends SuperController {
         Result<PagedList<InspectionPoint>> result = new Result<>();
         PagedList<InspectionPoint> list = inspectionPointService.queryPagedListBySelected(sample, ownerId, ownerType);
         // join 关联的对象
-        inspectionPointService.dao().fill(list).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.INSPECTION_POINT_POS).execute();
+        inspectionPointService.dao().fill(list).with(InspectionPointMeta.CHECK_ITEM_LIST).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.INSPECTION_POINT_POS).execute();
         result.success(true).data(list);
         return result;
     }
@@ -334,6 +340,30 @@ public class InspectionPointController extends SuperController {
             DownloadUtil.writeDownloadError(response, e);
         }
     }
+
+    /**
+     * 分页查询检查项
+     */
+    @ApiOperation(value = "分页查询检查项")
+    @ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
+    @SentinelResource(value = InspectionPointServiceProxy.SELECT_SAVE_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+    @PostMapping(InspectionPointServiceProxy.SELECT_SAVE_IDS)
+    public Result selectSaveIds(String ownerId,String ids,String selectedCode) {
+        return inspectionPointService.selectSaveIds(ownerId,ids,selectedCode);
+    }
+
+
+    /**
+     * 分页查询检查项
+     */
+    @ApiOperation(value = "分页查询检查项")
+    @ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
+    @SentinelResource(value = InspectionPointServiceProxy.SELECT_DELETE_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+    @PostMapping(InspectionPointServiceProxy.SELECT_DELETE_BY_ID)
+    public Result selectDeleteById(String ownerId,String id,String selectedCode) {
+        return inspectionPointService.selectDeleteById(ownerId,id,selectedCode);
+    }
+
 
     /**
      * 导出 Excel 模板

@@ -1,13 +1,23 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.constants.enums.eam.CheckItemTypeEnum;
+import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
+import com.dt.platform.domain.eam.CheckItem;
+import com.dt.platform.domain.eam.CheckSelect;
 import com.dt.platform.domain.eam.InspectionTaskPoint;
+import com.dt.platform.domain.eam.meta.InspectionTaskPointMeta;
+import com.dt.platform.eam.service.ICheckSelectService;
 import com.dt.platform.eam.service.IInspectionTaskPointService;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -18,12 +28,16 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.sql.meta.DBField;
+import com.mysql.jdbc.log.Log;
 import org.github.foxnic.web.framework.dao.DBConfigs;
+import org.github.foxnic.web.session.SessionUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +59,10 @@ public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskP
 	 * */
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
+
+
+	@Autowired
+	private ICheckSelectService checkSelectService;
 
 	/**
 	 * 获得 DAO 对象
@@ -69,6 +87,66 @@ public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskP
 	public Result insert(InspectionTaskPoint inspectionTaskPoint,boolean throwsException) {
 		Result r=super.insert(inspectionTaskPoint,throwsException);
 		return r;
+	}
+
+	@Override
+	public Result finish(String id, String pointStatus, String content, String imageId,String itemData) {
+		//判断是否可以进行巡检
+		String cUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+		String sql="select count(1) cnt from eam_inspection_task_point a,eam_inspection_task b,eam_inspection_group c,eam_inspection_group_user d \n" +
+				"where a.id=? and a.task_id=b.id and b.group_id=c.id and c.id=d.group_id and d.user_id=?";
+		if(dao.queryRecord(sql,id,cUserId).getInteger("cnt")>0){
+			Logger.info("巡检操作权限匹配正确");
+		}else{
+			return ErrorDesc.failure("本巡检任务的巡检组中未找到当前用户，无法进行巡检的操作");
+		}
+
+		InspectionTaskPoint sourceTaskPoint=this.getById(id);
+		dao.fill(sourceTaskPoint).with(InspectionTaskPointMeta.CHECK_SELECT_LIST).execute();
+		List<CheckSelect> itemList=sourceTaskPoint.getCheckSelectList();
+		Logger.info("巡检点:"+id+",巡检项:"+itemList.size());
+		if(itemList!=null&&itemList.size()>0&&!StringUtil.isBlank(itemData)){
+			JSONObject itemsObj=JSONObject.parseObject(itemData);
+			if(itemsObj!=null){
+				for(int j=0;j<itemList.size();j++){
+					CheckSelect checkSelect=itemList.get(j);
+					if(itemsObj.containsKey(checkSelect.getId())){
+						JSONObject obj=itemsObj.getJSONObject(checkSelect.getId());
+						if(CheckItemTypeEnum.INPUT.code().equals(checkSelect.getType())){
+							checkSelect.setIfCheck("yes");
+							checkSelect.setResultMetaData(obj.getString("value"));
+							checkSelect.setResult(obj.getString("value"));
+						}else if(CheckItemTypeEnum.NUMBER_RANGE.code().equals(checkSelect.getType())){
+							checkSelect.setIfCheck("yes");
+							checkSelect.setResultMetaData(obj.getString("value"));
+							checkSelect.setResult(obj.getString("value"));
+						}else if(CheckItemTypeEnum.RADIOBOX.code().equals(checkSelect.getType())){
+							checkSelect.setIfCheck("yes");
+							checkSelect.setResultMetaData(obj.getString("value"));
+							JSONArray arr=JSONArray.parseArray(checkSelect.getConfig());
+							checkSelect.setResult(obj.getString("value"));
+							for(int k=0;k<arr.size();k++){
+								if(obj.getString("value").equals( arr.getJSONObject(k).getString("code"))){
+									checkSelect.setResult(arr.getJSONObject(k).getString("label"));
+									break;
+								}
+							}
+						}
+						Result rcdR=checkSelectService.update(checkSelect,SaveMode.NOT_NULL_FIELDS,true);
+					}else{
+						Logger.info("巡检点:"+id+",当前key没有数据,key:"+checkSelect.getId());
+					}
+				}
+			}
+		}
+		InspectionTaskPoint taskPoint=new InspectionTaskPoint();
+		taskPoint.setId(id);
+		taskPoint.setOperTime(new Date());
+		taskPoint.setPointStatus(pointStatus);
+		taskPoint.setOperId(SessionUser.getCurrent().getActivatedEmployeeId());
+		taskPoint.setContent(content);
+		Result r=this.update(taskPoint,SaveMode.NOT_NULL_FIELDS,true);
+		return ErrorDesc.success();
 	}
 
 	/**

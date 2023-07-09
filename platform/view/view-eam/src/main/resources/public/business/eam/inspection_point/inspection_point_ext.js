@@ -1,7 +1,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-11 20:39:37
+ * @since 2023-07-05 14:19:29
  */
 
 layui.config({
@@ -20,7 +20,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-eam/eam-inspection-point";
 
-
+    var timestamp = Date.parse(new Date());
     //列表页的扩展
     var list={
         /**
@@ -102,9 +102,32 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
         },
         /**
+         * 单行数据刷新后调用
+         * */
+        afterRefreshRowData: function (data,remote,context) {
+
+        },
+        /**
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="itemCount"){
+                if(value){
+                    return value
+                }else{
+                    return 0;
+                }
+            }
+
+            if(field=="itemDisableCount"){
+                if(value){
+                    return value
+                }else{
+                    return 0;
+                }
+            }
+
             if(value==null) return "";
             return value;
         },
@@ -184,11 +207,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
+            $("#code").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#code").attr("placeholder","自动填充")
         },
         /**
          * 窗口调节前
          * */
-        beforeAdjustPopup:function () {
+        beforeAdjustPopup:function (arg) {
             console.log('beforeAdjustPopup');
             return true;
         },
@@ -249,6 +274,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
         beforeSubmit:function (data) {
+            data.selectedCode=timestamp;
             console.log("beforeSubmit",data);
             return true;
         },
@@ -266,6 +292,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("afterSubmitt",param,result);
         },
 
+        /**
+         *  加载 巡检项
+         */
+        checkSelectList:function (ifr,win,data) {
+            // debugger
+            console.log("checkSelectList",ifr,data);
+            //设置 iframe 高度
+            ifr.height("400px");
+            var selectCode=timestamp;
+            var formAction=admin.getTempData('eam-inspection-point-form-data-form-action');
+            var pageType=formAction;
+            var ownerId="";
+            if(formAction=="create"){
+                ownerId=timestamp;
+            }else{
+                ownerId=data.id;
+            }
+            //设置地址
+            win.location="/business/eam/check_item/check_item_selected_list.html?ownerId="+ownerId+"&pageType="+pageType+"&selectCode="+selectCode
+        },
         /**
          * 文件上传组件回调
          *  event 类型包括：

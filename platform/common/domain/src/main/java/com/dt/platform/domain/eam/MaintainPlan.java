@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养方案
  * <p>保养方案 , 数据表 eam_maintain_plan 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-12 21:34:12
- * @sign CB852288668EC4A24DDBEFD8FB6F807E
+ * @since 2023-07-07 19:34:52
+ * @sign A8B9C927FE43E7BC8B71E3D5C0C3B0A9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -140,10 +140,16 @@ public class MaintainPlan extends Entity {
 	private String originatorId;
 	
 	/**
-	 * 选择：选择
+	 * 上次执行：上次执行
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1681200299000")
-	private String selectedCode;
+	@ApiModelProperty(required = false,value="上次执行" , notes = "上次执行")
+	private Date lastTime;
+	
+	/**
+	 * 下次执行：下次执行
+	*/
+	@ApiModelProperty(required = false,value="下次执行" , notes = "下次执行")
+	private Date nextTime;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -255,6 +261,12 @@ public class MaintainPlan extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="asset" , notes = "asset")
 	private Asset asset;
+	
+	/**
+	 * selectedCode：selectedCode
+	*/
+	@ApiModelProperty(required = false,value="selectedCode" , notes = "selectedCode")
+	private String selectedCode;
 	
 	/**
 	 * 获得 主键<br>
@@ -561,21 +573,40 @@ public class MaintainPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 选择<br>
-	 * 选择
-	 * @return 选择
+	 * 获得 上次执行<br>
+	 * 上次执行
+	 * @return 上次执行
 	*/
-	public String getSelectedCode() {
-		return selectedCode;
+	public Date getLastTime() {
+		return lastTime;
 	}
 	
 	/**
-	 * 设置 选择
-	 * @param selectedCode 选择
+	 * 设置 上次执行
+	 * @param lastTime 上次执行
 	 * @return 当前对象
 	*/
-	public MaintainPlan setSelectedCode(String selectedCode) {
-		this.selectedCode=selectedCode;
+	public MaintainPlan setLastTime(Date lastTime) {
+		this.lastTime=lastTime;
+		return this;
+	}
+	
+	/**
+	 * 获得 下次执行<br>
+	 * 下次执行
+	 * @return 下次执行
+	*/
+	public Date getNextTime() {
+		return nextTime;
+	}
+	
+	/**
+	 * 设置 下次执行
+	 * @param nextTime 下次执行
+	 * @return 当前对象
+	*/
+	public MaintainPlan setNextTime(Date nextTime) {
+		this.nextTime=nextTime;
 		return this;
 	}
 	
@@ -995,6 +1026,25 @@ public class MaintainPlan extends Entity {
 		this.asset=asset;
 		return this;
 	}
+	
+	/**
+	 * 获得 selectedCode<br>
+	 * selectedCode
+	 * @return selectedCode
+	*/
+	public String getSelectedCode() {
+		return selectedCode;
+	}
+	
+	/**
+	 * 设置 selectedCode
+	 * @param selectedCode selectedCode
+	 * @return 当前对象
+	*/
+	public MaintainPlan setSelectedCode(String selectedCode) {
+		this.selectedCode=selectedCode;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1040,10 +1090,11 @@ public class MaintainPlan extends Entity {
 	@Transient
 	public MaintainPlan duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.MaintainPlanMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.MaintainPlanMeta.$$proxy$$();
+		inst.setLastTime(this.getLastTime());
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
+		inst.setNextTime(this.getNextTime());
 		inst.setGroupId(this.getGroupId());
-		inst.setSelectedCode(this.getSelectedCode());
 		inst.setTimeout(this.getTimeout());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setAssetId(this.getAssetId());
@@ -1074,6 +1125,7 @@ public class MaintainPlan extends Entity {
 			inst.setOriginator(this.getOriginator());
 			inst.setAssetList(this.getAssetList());
 			inst.setAsset(this.getAsset());
+			inst.setSelectedCode(this.getSelectedCode());
 			inst.setMaintainTypeDict(this.getMaintainTypeDict());
 			inst.setMaintainGroup(this.getMaintainGroup());
 		}
@@ -1135,10 +1187,11 @@ public class MaintainPlan extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setLastTime(DataParser.parse(Date.class, map.get(MaintainPlanMeta.LAST_TIME)));
 			this.setCode(DataParser.parse(String.class, map.get(MaintainPlanMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(MaintainPlanMeta.NOTES)));
+			this.setNextTime(DataParser.parse(Date.class, map.get(MaintainPlanMeta.NEXT_TIME)));
 			this.setGroupId(DataParser.parse(String.class, map.get(MaintainPlanMeta.GROUP_ID)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainPlanMeta.SELECTED_CODE)));
 			this.setTimeout(DataParser.parse(BigDecimal.class, map.get(MaintainPlanMeta.TIMEOUT)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(MaintainPlanMeta.UPDATE_BY)));
 			this.setAssetId(DataParser.parse(String.class, map.get(MaintainPlanMeta.ASSET_ID)));
@@ -1165,15 +1218,17 @@ public class MaintainPlan extends Entity {
 			this.setActionCrontab(DataParser.parse(ActionCrontab.class, map.get(MaintainPlanMeta.ACTION_CRONTAB)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(MaintainPlanMeta.ORIGINATOR)));
 			this.setAsset(DataParser.parse(Asset.class, map.get(MaintainPlanMeta.ASSET)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainPlanMeta.SELECTED_CODE)));
 			this.setMaintainTypeDict(DataParser.parse(DictItem.class, map.get(MaintainPlanMeta.MAINTAIN_TYPE_DICT)));
 			this.setMaintainGroup(DataParser.parse(MaintainGroup.class, map.get(MaintainPlanMeta.MAINTAIN_GROUP)));
 			return true;
 		} else {
 			try {
+				this.setLastTime( (Date)map.get(MaintainPlanMeta.LAST_TIME));
 				this.setCode( (String)map.get(MaintainPlanMeta.CODE));
 				this.setNotes( (String)map.get(MaintainPlanMeta.NOTES));
+				this.setNextTime( (Date)map.get(MaintainPlanMeta.NEXT_TIME));
 				this.setGroupId( (String)map.get(MaintainPlanMeta.GROUP_ID));
-				this.setSelectedCode( (String)map.get(MaintainPlanMeta.SELECTED_CODE));
 				this.setTimeout( (BigDecimal)map.get(MaintainPlanMeta.TIMEOUT));
 				this.setUpdateBy( (String)map.get(MaintainPlanMeta.UPDATE_BY));
 				this.setAssetId( (String)map.get(MaintainPlanMeta.ASSET_ID));
@@ -1200,6 +1255,7 @@ public class MaintainPlan extends Entity {
 				this.setActionCrontab( (ActionCrontab)map.get(MaintainPlanMeta.ACTION_CRONTAB));
 				this.setOriginator( (Employee)map.get(MaintainPlanMeta.ORIGINATOR));
 				this.setAsset( (Asset)map.get(MaintainPlanMeta.ASSET));
+				this.setSelectedCode( (String)map.get(MaintainPlanMeta.SELECTED_CODE));
 				this.setMaintainTypeDict( (DictItem)map.get(MaintainPlanMeta.MAINTAIN_TYPE_DICT));
 				this.setMaintainGroup( (MaintainGroup)map.get(MaintainPlanMeta.MAINTAIN_GROUP));
 				return true;
@@ -1218,10 +1274,11 @@ public class MaintainPlan extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setLastTime(DataParser.parse(Date.class, r.getValue(MaintainPlanMeta.LAST_TIME)));
 			this.setCode(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.NOTES)));
+			this.setNextTime(DataParser.parse(Date.class, r.getValue(MaintainPlanMeta.NEXT_TIME)));
 			this.setGroupId(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.GROUP_ID)));
-			this.setSelectedCode(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.SELECTED_CODE)));
 			this.setTimeout(DataParser.parse(BigDecimal.class, r.getValue(MaintainPlanMeta.TIMEOUT)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.UPDATE_BY)));
 			this.setAssetId(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.ASSET_ID)));
@@ -1247,10 +1304,11 @@ public class MaintainPlan extends Entity {
 			return true;
 		} else {
 			try {
+				this.setLastTime( (Date)r.getValue(MaintainPlanMeta.LAST_TIME));
 				this.setCode( (String)r.getValue(MaintainPlanMeta.CODE));
 				this.setNotes( (String)r.getValue(MaintainPlanMeta.NOTES));
+				this.setNextTime( (Date)r.getValue(MaintainPlanMeta.NEXT_TIME));
 				this.setGroupId( (String)r.getValue(MaintainPlanMeta.GROUP_ID));
-				this.setSelectedCode( (String)r.getValue(MaintainPlanMeta.SELECTED_CODE));
 				this.setTimeout( (BigDecimal)r.getValue(MaintainPlanMeta.TIMEOUT));
 				this.setUpdateBy( (String)r.getValue(MaintainPlanMeta.UPDATE_BY));
 				this.setAssetId( (String)r.getValue(MaintainPlanMeta.ASSET_ID));

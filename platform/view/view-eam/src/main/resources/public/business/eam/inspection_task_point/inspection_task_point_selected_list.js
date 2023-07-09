@@ -75,8 +75,7 @@ function ListPage() {
 				limit: 50,
 				where: ps,
 				cols: [[
-					{ fixed: 'left',type: 'numbers' },
-					{ fixed: 'left',type:'checkbox'}
+					{ fixed: 'left',type: 'numbers' }
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 				    ,{ field: 'pointStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检状态'), templet:function (d){ return templet('pointStatus',fox.getEnumText(SELECT_POINTSTATUS_DATA,d.pointStatus),d);}}
 					,{ field: 'operId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('操作人') , templet: function (d) { return templet('operId',fox.getProperty(d,["operUser","name"],0,'','operId'),d);} }
@@ -87,8 +86,9 @@ function ListPage() {
 					,{ field: 'pointPosId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置'), templet: function (d) { return templet('pointPosId' ,fox.joinLabel(d.inspectionPointPos,"hierarchyName",',','','pointPosId'),d);}}
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检结果') , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'pointNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检点备注') , templet: function (d) { return templet('pointNotes',d.pointNotes,d);}  }
-					,{ field: 'sort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('排序') , templet: function (d) { return templet('sort',d.sort,d);}  }
-					 ,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'itemCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('检查项数') , templet: function (d) { return templet('itemCount',d.itemCount,d);}  }
+				//	,{ field: 'sort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('排序') , templet: function (d) { return templet('sort',d.sort,d);}  }
+				//	 ,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
@@ -313,12 +313,26 @@ function ListPage() {
 
 			admin.putTempData('eam-inspection-task-point-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
-					if(data.success) {
+				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (res) {
+					if(res.success) {
 						admin.putTempData('eam-inspection-task-point-form-data-form-action', "edit",true);
-						showEditForm(data.data);
+						admin.putTempData('eam-inspection-task-point-form-data', res.data);
+						var queryString="?id="+data.id;
+						admin.popupCenter({
+							title: "巡检点巡检",
+							resize: false,
+							offset: [10,null],
+							area: ["85%","95%"],
+							type: 2,
+							id:"eam-inspection-task-point-form-data-win",
+							content: '/business/eam/inspection_task_point/inspection_point_exec.html' + queryString,
+							finish: function () {
+								refreshTableData();
+							}
+						});
+
 					} else {
-						 fox.showMessage(data);
+						 fox.showMessage(res);
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
@@ -330,6 +344,23 @@ function ListPage() {
 						fox.showMessage(data);
 					}
 				});
+			}
+			else if(layEvent === 'detail'){
+				var q="?taskPointId="+data.id;
+				var top=10;
+				admin.popupCenter({
+					title: "巡检检查项目",
+					resize: false,
+					offset: [top,null],
+					area: ["80%","85%"],
+					type: 2,
+					id:"eam-inspection-point-form-data-win",
+					content: '/business/eam/check_select/check_select_show_list.html'+q,
+					finish: function () {
+
+					}
+				});
+
 			}
 			else if (layEvent === 'del') { // 删除
 

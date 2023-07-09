@@ -3,16 +3,19 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.InspectionPoint;
 import java.util.Date;
+import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.InspectionRoute;
 import com.dt.platform.domain.eam.InspectionPointPos;
+import com.dt.platform.domain.eam.CheckItem;
+import java.util.List;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-11 20:39:36
- * @sign C8B21B8D61FF7E52EAEDF4E6DB9A7178
+ * @since 2023-07-07 14:01:23
+ * @sign EC98EC4A861A1EAC72A057B54E164865
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -149,6 +152,16 @@ public class InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
+	 * 关联设备 , 类型: java.lang.String
+	*/
+	public static final String ASSET_ID="assetId";
+	
+	/**
+	 * 关联设备 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,ASSET_ID, java.lang.String.class, "关联设备", "关联设备", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -229,16 +242,6 @@ public class InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
-	 * 选择 , 类型: java.lang.String
-	*/
-	public static final String SELECTED_CODE="selectedCode";
-	
-	/**
-	 * 选择 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
-	
-	/**
 	 * version , 类型: java.lang.Integer
 	*/
 	public static final String VERSION="version";
@@ -247,6 +250,16 @@ public class InspectionPointMeta {
 	 * version , 类型: java.lang.Integer
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
+	
+	/**
+	 * asset , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET="asset";
+	
+	/**
+	 * asset , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,com.dt.platform.domain.eam.Asset> ASSET_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,ASSET, com.dt.platform.domain.eam.Asset.class, "asset", "asset", com.dt.platform.domain.eam.Asset.class, null);
 	
 	/**
 	 * route , 类型: com.dt.platform.domain.eam.InspectionRoute
@@ -269,9 +282,59 @@ public class InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,com.dt.platform.domain.eam.InspectionPointPos> INSPECTION_POINT_POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,INSPECTION_POINT_POS, com.dt.platform.domain.eam.InspectionPointPos.class, "inspectionPointPos", "inspectionPointPos", com.dt.platform.domain.eam.InspectionPointPos.class, null);
 	
 	/**
+	 * checkItemList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CheckItem
+	*/
+	public static final String CHECK_ITEM_LIST="checkItemList";
+	
+	/**
+	 * checkItemList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CheckItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,com.dt.platform.domain.eam.CheckItem> CHECK_ITEM_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,CHECK_ITEM_LIST, java.util.List.class, "checkItemList", "checkItemList", com.dt.platform.domain.eam.CheckItem.class, null);
+	
+	/**
+	 * idsList , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String IDS_LIST="idsList";
+	
+	/**
+	 * idsList , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> IDS_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,IDS_LIST, java.util.List.class, "idsList", "idsList", java.lang.String.class, null);
+	
+	/**
+	 * selectedCode , 类型: java.lang.String
+	*/
+	public static final String SELECTED_CODE="selectedCode";
+	
+	/**
+	 * selectedCode , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,SELECTED_CODE, java.lang.String.class, "selectedCode", "selectedCode", java.lang.String.class, null);
+	
+	/**
+	 * itemCount , 类型: java.lang.String
+	*/
+	public static final String ITEM_COUNT="itemCount";
+	
+	/**
+	 * itemCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> ITEM_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,ITEM_COUNT, java.lang.String.class, "itemCount", "itemCount", java.lang.String.class, null);
+	
+	/**
+	 * itemDisableCount , 类型: java.lang.String
+	*/
+	public static final String ITEM_DISABLE_COUNT="itemDisableCount";
+	
+	/**
+	 * itemDisableCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> ITEM_DISABLE_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,ITEM_DISABLE_COUNT, java.lang.String.class, "itemDisableCount", "itemDisableCount", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , NAME , STATUS , CONTENT , ROUTE_ID , RFID , POS_ID , POS , POS_LONGITUDE , POS_LATITUDE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , ROUTE , INSPECTION_POINT_POS };
+	public static final String[] $PROPS={ ID , CODE , NAME , STATUS , CONTENT , ROUTE_ID , RFID , POS_ID , POS , POS_LONGITUDE , POS_LATITUDE , PICTURE_ID , NOTES , ASSET_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , ASSET , ROUTE , INSPECTION_POINT_POS , CHECK_ITEM_LIST , IDS_LIST , SELECTED_CODE , ITEM_COUNT , ITEM_DISABLE_COUNT };
 	
 	/**
 	 * 代理类
@@ -425,6 +488,17 @@ public class InspectionPointMeta {
 		}
 		
 		/**
+		 * 设置 关联设备
+		 * @param assetId 关联设备
+		 * @return 当前对象
+		*/
+		public InspectionPoint setAssetId(String assetId) {
+			super.change(ASSET_ID,super.getAssetId(),assetId);
+			super.setAssetId(assetId);
+			return this;
+		}
+		
+		/**
 		 * 设置 创建人ID
 		 * @param createBy 创建人ID
 		 * @return 当前对象
@@ -513,17 +587,6 @@ public class InspectionPointMeta {
 		}
 		
 		/**
-		 * 设置 选择
-		 * @param selectedCode 选择
-		 * @return 当前对象
-		*/
-		public InspectionPoint setSelectedCode(String selectedCode) {
-			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
-			super.setSelectedCode(selectedCode);
-			return this;
-		}
-		
-		/**
 		 * 设置 version
 		 * @param version version
 		 * @return 当前对象
@@ -531,6 +594,17 @@ public class InspectionPointMeta {
 		public InspectionPoint setVersion(Integer version) {
 			super.change(VERSION,super.getVersion(),version);
 			super.setVersion(version);
+			return this;
+		}
+		
+		/**
+		 * 设置 asset
+		 * @param asset asset
+		 * @return 当前对象
+		*/
+		public InspectionPoint setAsset(Asset asset) {
+			super.change(ASSET,super.getAsset(),asset);
+			super.setAsset(asset);
 			return this;
 		}
 		
@@ -555,6 +629,61 @@ public class InspectionPointMeta {
 			super.setInspectionPointPos(inspectionPointPos);
 			return this;
 		}
+		
+		/**
+		 * 设置 checkItemList
+		 * @param checkItemList checkItemList
+		 * @return 当前对象
+		*/
+		public InspectionPoint setCheckItemList(List<CheckItem> checkItemList) {
+			super.change(CHECK_ITEM_LIST,super.getCheckItemList(),checkItemList);
+			super.setCheckItemList(checkItemList);
+			return this;
+		}
+		
+		/**
+		 * 设置 idsList
+		 * @param idsList idsList
+		 * @return 当前对象
+		*/
+		public InspectionPoint setIdsList(List<String> idsList) {
+			super.change(IDS_LIST,super.getIdsList(),idsList);
+			super.setIdsList(idsList);
+			return this;
+		}
+		
+		/**
+		 * 设置 selectedCode
+		 * @param selectedCode selectedCode
+		 * @return 当前对象
+		*/
+		public InspectionPoint setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 itemCount
+		 * @param itemCount itemCount
+		 * @return 当前对象
+		*/
+		public InspectionPoint setItemCount(String itemCount) {
+			super.change(ITEM_COUNT,super.getItemCount(),itemCount);
+			super.setItemCount(itemCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 itemDisableCount
+		 * @param itemDisableCount itemDisableCount
+		 * @return 当前对象
+		*/
+		public InspectionPoint setItemDisableCount(String itemDisableCount) {
+			super.change(ITEM_DISABLE_COUNT,super.getItemDisableCount(),itemDisableCount);
+			super.setItemDisableCount(itemDisableCount);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -575,7 +704,6 @@ public class InspectionPointMeta {
 			inst.setNotes(this.getNotes());
 			inst.setPosLatitude(this.getPosLatitude());
 			inst.setUpdateTime(this.getUpdateTime());
-			inst.setSelectedCode(this.getSelectedCode());
 			inst.setVersion(this.getVersion());
 			inst.setContent(this.getContent());
 			inst.setPosId(this.getPosId());
@@ -587,6 +715,7 @@ public class InspectionPointMeta {
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
+			inst.setAssetId(this.getAssetId());
 			inst.setName(this.getName());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
@@ -595,8 +724,14 @@ public class InspectionPointMeta {
 			inst.setId(this.getId());
 			inst.setStatus(this.getStatus());
 			if(all) {
+				inst.setCheckItemList(this.getCheckItemList());
 				inst.setRoute(this.getRoute());
 				inst.setInspectionPointPos(this.getInspectionPointPos());
+				inst.setAsset(this.getAsset());
+				inst.setIdsList(this.getIdsList());
+				inst.setSelectedCode(this.getSelectedCode());
+				inst.setItemCount(this.getItemCount());
+				inst.setItemDisableCount(this.getItemDisableCount());
 			}
 			inst.clearModifies();
 			return inst;

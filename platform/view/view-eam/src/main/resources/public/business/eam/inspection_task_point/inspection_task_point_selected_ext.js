@@ -27,6 +27,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+
+            if(PAGE_TYPE=="view"){
+                var operHtml2=document.getElementById("tableOperationTemplate").innerHTML;
+                operHtml2=operHtml2.replace(/lay-event="del"/i, "style=\"display:none\"")
+                operHtml2=operHtml2.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                document.getElementById("tableOperationTemplate").innerHTML=operHtml2;
+            }
         },
         /**
          * 表格渲染前调用
@@ -90,6 +97,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="itemCount"){
+                if(value){
+                    return value
+                }else{
+                    return 0;
+                }
+            }
+
             if(value==null) return "";
             return value;
         },

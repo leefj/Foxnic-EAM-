@@ -81,7 +81,9 @@ public class MaintainPlanController extends SuperController {
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_ID, value = "设备", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.TIMEOUT, value = "超时时间", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681200299000")
+		@ApiImplicitParam(name = MaintainPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681200299000"),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.LAST_TIME, value = "上次执行", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.NEXT_TIME, value = "下次执行", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MaintainPlanServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -144,7 +146,9 @@ public class MaintainPlanController extends SuperController {
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_ID, value = "设备", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.TIMEOUT, value = "超时时间", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681200299000")
+		@ApiImplicitParam(name = MaintainPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681200299000"),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.LAST_TIME, value = "上次执行", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.NEXT_TIME, value = "下次执行", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MaintainPlanVOMeta.PAGE_INDEX, MaintainPlanVOMeta.PAGE_SIZE, MaintainPlanVOMeta.SEARCH_FIELD, MaintainPlanVOMeta.FUZZY_FIELD, MaintainPlanVOMeta.SEARCH_VALUE, MaintainPlanVOMeta.DIRTY_FIELDS, MaintainPlanVOMeta.SORT_FIELD, MaintainPlanVOMeta.SORT_TYPE, MaintainPlanVOMeta.IDS })
     @SentinelResource(value = MaintainPlanServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -176,7 +180,9 @@ public class MaintainPlanController extends SuperController {
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_ID, value = "设备", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.TIMEOUT, value = "超时时间", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681200299000")
+		@ApiImplicitParam(name = MaintainPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681200299000"),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.LAST_TIME, value = "上次执行", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.NEXT_TIME, value = "下次执行", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MaintainPlanVOMeta.PAGE_INDEX, MaintainPlanVOMeta.PAGE_SIZE, MaintainPlanVOMeta.SEARCH_FIELD, MaintainPlanVOMeta.FUZZY_FIELD, MaintainPlanVOMeta.SEARCH_VALUE, MaintainPlanVOMeta.DIRTY_FIELDS, MaintainPlanVOMeta.SORT_FIELD, MaintainPlanVOMeta.SORT_TYPE, MaintainPlanVOMeta.IDS })
     @SentinelResource(value = MaintainPlanServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -245,7 +251,9 @@ public class MaintainPlanController extends SuperController {
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_ID, value = "设备", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.TIMEOUT, value = "超时时间", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681200299000")
+		@ApiImplicitParam(name = MaintainPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681200299000"),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.LAST_TIME, value = "上次执行", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.NEXT_TIME, value = "下次执行", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MaintainPlanVOMeta.PAGE_INDEX, MaintainPlanVOMeta.PAGE_SIZE })
     @SentinelResource(value = MaintainPlanServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -278,7 +286,9 @@ public class MaintainPlanController extends SuperController {
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_ID, value = "设备", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.TIMEOUT, value = "超时时间", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681200299000")
+		@ApiImplicitParam(name = MaintainPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681200299000"),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.LAST_TIME, value = "上次执行", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.NEXT_TIME, value = "下次执行", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MaintainPlanServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -332,8 +342,8 @@ public class MaintainPlanController extends SuperController {
     @ApiOperationSupport(order = 11)
     @SentinelResource(value = MaintainPlanServiceProxy.EXECUTE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainPlanServiceProxy.EXECUTE)
-    public Result execute(String id) {
-        return maintainPlanService.execute(id);
+    public Result execute() {
+        return maintainPlanService.execute();
     }
 
     /**

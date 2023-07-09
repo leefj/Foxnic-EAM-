@@ -62,17 +62,18 @@ public class MaintainProjectController extends SuperController {
      * 添加保养项目
      */
     @ApiOperation(value = "添加保养项目")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585209383214907392"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.CODE, value = "项目编号", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.MAINTAIN_TYPE, value = "保养类型", required = false, dataTypeClass = String.class, example = "default"),
-		@ApiImplicitParam(name = MaintainProjectVOMeta.BASE_COST, value = "标准工时(小时)", required = false, dataTypeClass = BigDecimal.class, example = "12.00"),
+		@ApiImplicitParam(name = MaintainProjectVOMeta.BASE_COST, value = "标准工时", required = false, dataTypeClass = BigDecimal.class, example = "12.00"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ACTION_CYCLE_ID, value = "保养周期", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ATTACH_ID, value = "保养手册", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainProjectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainProjectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectVOMeta.CONTENT, value = "保养内容", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MaintainProjectServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -87,7 +88,7 @@ public class MaintainProjectController extends SuperController {
      * 删除保养项目
      */
     @ApiOperation(value = "删除保养项目")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585209383214907392")
 	})
     @ApiOperationSupport(order = 2)
@@ -103,7 +104,7 @@ public class MaintainProjectController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除保养项目")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainProjectVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -118,17 +119,18 @@ public class MaintainProjectController extends SuperController {
      * 更新保养项目
      */
     @ApiOperation(value = "更新保养项目")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585209383214907392"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.CODE, value = "项目编号", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.MAINTAIN_TYPE, value = "保养类型", required = false, dataTypeClass = String.class, example = "default"),
-		@ApiImplicitParam(name = MaintainProjectVOMeta.BASE_COST, value = "标准工时(小时)", required = false, dataTypeClass = BigDecimal.class, example = "12.00"),
+		@ApiImplicitParam(name = MaintainProjectVOMeta.BASE_COST, value = "标准工时", required = false, dataTypeClass = BigDecimal.class, example = "12.00"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ACTION_CYCLE_ID, value = "保养周期", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ATTACH_ID, value = "保养手册", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainProjectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainProjectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectVOMeta.CONTENT, value = "保养内容", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MaintainProjectVOMeta.PAGE_INDEX, MaintainProjectVOMeta.PAGE_SIZE, MaintainProjectVOMeta.SEARCH_FIELD, MaintainProjectVOMeta.FUZZY_FIELD, MaintainProjectVOMeta.SEARCH_VALUE, MaintainProjectVOMeta.DIRTY_FIELDS, MaintainProjectVOMeta.SORT_FIELD, MaintainProjectVOMeta.SORT_TYPE, MaintainProjectVOMeta.IDS })
     @SentinelResource(value = MaintainProjectServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -143,17 +145,18 @@ public class MaintainProjectController extends SuperController {
      * 保存保养项目
      */
     @ApiOperation(value = "保存保养项目")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585209383214907392"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.CODE, value = "项目编号", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.MAINTAIN_TYPE, value = "保养类型", required = false, dataTypeClass = String.class, example = "default"),
-		@ApiImplicitParam(name = MaintainProjectVOMeta.BASE_COST, value = "标准工时(小时)", required = false, dataTypeClass = BigDecimal.class, example = "12.00"),
+		@ApiImplicitParam(name = MaintainProjectVOMeta.BASE_COST, value = "标准工时", required = false, dataTypeClass = BigDecimal.class, example = "12.00"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ACTION_CYCLE_ID, value = "保养周期", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ATTACH_ID, value = "保养手册", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainProjectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainProjectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectVOMeta.CONTENT, value = "保养内容", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MaintainProjectVOMeta.PAGE_INDEX, MaintainProjectVOMeta.PAGE_SIZE, MaintainProjectVOMeta.SEARCH_FIELD, MaintainProjectVOMeta.FUZZY_FIELD, MaintainProjectVOMeta.SEARCH_VALUE, MaintainProjectVOMeta.DIRTY_FIELDS, MaintainProjectVOMeta.SORT_FIELD, MaintainProjectVOMeta.SORT_TYPE, MaintainProjectVOMeta.IDS })
     @SentinelResource(value = MaintainProjectServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -168,7 +171,7 @@ public class MaintainProjectController extends SuperController {
      * 获取保养项目
      */
     @ApiOperation(value = "获取保养项目")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -188,7 +191,7 @@ public class MaintainProjectController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取保养项目")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainProjectVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -205,17 +208,18 @@ public class MaintainProjectController extends SuperController {
      * 查询保养项目
      */
     @ApiOperation(value = "查询保养项目")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585209383214907392"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.CODE, value = "项目编号", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.MAINTAIN_TYPE, value = "保养类型", required = false, dataTypeClass = String.class, example = "default"),
-		@ApiImplicitParam(name = MaintainProjectVOMeta.BASE_COST, value = "标准工时(小时)", required = false, dataTypeClass = BigDecimal.class, example = "12.00"),
+		@ApiImplicitParam(name = MaintainProjectVOMeta.BASE_COST, value = "标准工时", required = false, dataTypeClass = BigDecimal.class, example = "12.00"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ACTION_CYCLE_ID, value = "保养周期", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ATTACH_ID, value = "保养手册", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainProjectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainProjectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectVOMeta.CONTENT, value = "保养内容", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MaintainProjectVOMeta.PAGE_INDEX, MaintainProjectVOMeta.PAGE_SIZE })
     @SentinelResource(value = MaintainProjectServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -231,7 +235,7 @@ public class MaintainProjectController extends SuperController {
      * 分页查询保养项目
      */
     @ApiOperation(value = "分页查询保养项目")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainProjectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585209383214907392"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.CODE, value = "项目编号", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
@@ -246,7 +250,7 @@ public class MaintainProjectController extends SuperController {
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MaintainProjectServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainProjectServiceProxy.QUERY_PAGED_LIST)
-    public Result<PagedList<MaintainProject>> queryPagedList(MaintainProjectVO sample) {
+    public Result<PagedList<MaintainProject>> queryPagedList1(MaintainProjectVO sample) {
         Result<PagedList<MaintainProject>> result = new Result<>();
         PagedList<MaintainProject> list = maintainProjectService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
@@ -263,7 +267,7 @@ public class MaintainProjectController extends SuperController {
     @ApiOperationSupport(order = 10)
     @SentinelResource(value = MaintainProjectServiceProxy.QUERY_PAGED_LIST_BY_SELECT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainProjectServiceProxy.QUERY_PAGED_LIST_BY_SELECT)
-    public Result<PagedList<MaintainProject>> queryPagedList(MaintainProjectVO sample, String ownerId, String ownerType) {
+    public Result<PagedList<MaintainProject>> queryPagedList2(MaintainProjectVO sample, String ownerId, String ownerType) {
         Result<PagedList<MaintainProject>> result = new Result<>();
         PagedList<MaintainProject> list = maintainProjectService.queryPagedListBySelect(sample, ownerId, ownerType);
         // join 关联的对象

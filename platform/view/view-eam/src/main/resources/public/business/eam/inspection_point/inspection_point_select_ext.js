@@ -76,6 +76,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param location 调用的代码位置
          * */
         beforeQuery:function (conditions,param,location) {
+            param.ownerId=OWNER_ID;
+            param.selectedCode=SELECTED_CODE;
             console.log('beforeQuery',conditions,param,location);
             return true;
         },
@@ -89,6 +91,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+            if(field=="itemCount"){
+                if(value){
+                    return value
+                }else{
+                    return 0;
+                }
+            }
+
+            if(field=="itemDisableCount"){
+                if(value){
+                    return value
+                }else{
+                    return 0;
+                }
+            }
             if(value==null) return "";
             return value;
         },

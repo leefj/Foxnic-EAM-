@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检计划VO类型
  * <p>巡检计划 , 数据表 eam_inspection_plan 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-12 21:22:49
+ * @since 2023-07-07 18:20:42
  * @sign EC46F8F634C939A1F754AC634AAD5555
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -403,11 +403,13 @@ public class InspectionPlanVO extends InspectionPlan {
 	@Transient
 	public InspectionPlanVO duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.InspectionPlanVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.InspectionPlanVOMeta.$$proxy$$();
+		inst.setLastTime(this.getLastTime());
 		inst.setNotes(this.getNotes());
 		inst.setEndDate(this.getEndDate());
+		inst.setNextTime(this.getNextTime());
 		inst.setGroupId(this.getGroupId());
 		inst.setPlanStatus(this.getPlanStatus());
-		inst.setSelectedCode(this.getSelectedCode());
+		inst.setPosDetail(this.getPosDetail());
 		inst.setLeaderId(this.getLeaderId());
 		inst.setCompletionTime(this.getCompletionTime());
 		inst.setRemindTime(this.getRemindTime());
@@ -436,8 +438,10 @@ public class InspectionPlanVO extends InspectionPlan {
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setInspectionPointOwnerList(this.getInspectionPointOwnerList());
-			inst.setInspectionPlanPointList(this.getInspectionPlanPointList());
+			inst.setSelectedCode(this.getSelectedCode());
 			inst.setInspectionGroup(this.getInspectionGroup());
+			inst.setItemCount(this.getItemCount());
+			inst.setInspectionPointList(this.getInspectionPointList());
 			inst.setActionCrontab(this.getActionCrontab());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
@@ -449,6 +453,7 @@ public class InspectionPlanVO extends InspectionPlan {
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
 			inst.setInspectionPlanPointIds(this.getInspectionPlanPointIds());
+			inst.setItemDisableCount(this.getItemDisableCount());
 		}
 		inst.clearModifies();
 		return inst;
@@ -508,11 +513,13 @@ public class InspectionPlanVO extends InspectionPlan {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setLastTime(DataParser.parse(Date.class, map.get(InspectionPlanVOMeta.LAST_TIME)));
 			this.setNotes(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.NOTES)));
 			this.setEndDate(DataParser.parse(Date.class, map.get(InspectionPlanVOMeta.END_DATE)));
+			this.setNextTime(DataParser.parse(Date.class, map.get(InspectionPlanVOMeta.NEXT_TIME)));
 			this.setGroupId(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.GROUP_ID)));
 			this.setPlanStatus(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.PLAN_STATUS)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.SELECTED_CODE)));
+			this.setPosDetail(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.POS_DETAIL)));
 			this.setLeaderId(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.LEADER_ID)));
 			this.setCompletionTime(DataParser.parse(BigDecimal.class, map.get(InspectionPlanVOMeta.COMPLETION_TIME)));
 			this.setRemindTime(DataParser.parse(BigDecimal.class, map.get(InspectionPlanVOMeta.REMIND_TIME)));
@@ -539,7 +546,9 @@ public class InspectionPlanVO extends InspectionPlan {
 			this.setRequestAction(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(InspectionPlanVOMeta.PAGE_SIZE)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.SELECTED_CODE)));
 			this.setInspectionGroup(DataParser.parse(InspectionGroup.class, map.get(InspectionPlanVOMeta.INSPECTION_GROUP)));
+			this.setItemCount(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.ITEM_COUNT)));
 			this.setActionCrontab(DataParser.parse(ActionCrontab.class, map.get(InspectionPlanVOMeta.ACTION_CRONTAB)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(InspectionPlanVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.SORT_TYPE)));
@@ -548,14 +557,17 @@ public class InspectionPlanVO extends InspectionPlan {
 			this.setDataOrigin(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.SEARCH_VALUE)));
+			this.setItemDisableCount(DataParser.parse(String.class, map.get(InspectionPlanVOMeta.ITEM_DISABLE_COUNT)));
 			return true;
 		} else {
 			try {
+				this.setLastTime( (Date)map.get(InspectionPlanVOMeta.LAST_TIME));
 				this.setNotes( (String)map.get(InspectionPlanVOMeta.NOTES));
 				this.setEndDate( (Date)map.get(InspectionPlanVOMeta.END_DATE));
+				this.setNextTime( (Date)map.get(InspectionPlanVOMeta.NEXT_TIME));
 				this.setGroupId( (String)map.get(InspectionPlanVOMeta.GROUP_ID));
 				this.setPlanStatus( (String)map.get(InspectionPlanVOMeta.PLAN_STATUS));
-				this.setSelectedCode( (String)map.get(InspectionPlanVOMeta.SELECTED_CODE));
+				this.setPosDetail( (String)map.get(InspectionPlanVOMeta.POS_DETAIL));
 				this.setLeaderId( (String)map.get(InspectionPlanVOMeta.LEADER_ID));
 				this.setCompletionTime( (BigDecimal)map.get(InspectionPlanVOMeta.COMPLETION_TIME));
 				this.setRemindTime( (BigDecimal)map.get(InspectionPlanVOMeta.REMIND_TIME));
@@ -582,7 +594,9 @@ public class InspectionPlanVO extends InspectionPlan {
 				this.setRequestAction( (String)map.get(InspectionPlanVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(InspectionPlanVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(InspectionPlanVOMeta.PAGE_SIZE));
+				this.setSelectedCode( (String)map.get(InspectionPlanVOMeta.SELECTED_CODE));
 				this.setInspectionGroup( (InspectionGroup)map.get(InspectionPlanVOMeta.INSPECTION_GROUP));
+				this.setItemCount( (String)map.get(InspectionPlanVOMeta.ITEM_COUNT));
 				this.setActionCrontab( (ActionCrontab)map.get(InspectionPlanVOMeta.ACTION_CRONTAB));
 				this.setPageIndex( (Integer)map.get(InspectionPlanVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(InspectionPlanVOMeta.SORT_TYPE));
@@ -591,6 +605,7 @@ public class InspectionPlanVO extends InspectionPlan {
 				this.setDataOrigin( (String)map.get(InspectionPlanVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(InspectionPlanVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(InspectionPlanVOMeta.SEARCH_VALUE));
+				this.setItemDisableCount( (String)map.get(InspectionPlanVOMeta.ITEM_DISABLE_COUNT));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -607,11 +622,13 @@ public class InspectionPlanVO extends InspectionPlan {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setLastTime(DataParser.parse(Date.class, r.getValue(InspectionPlanVOMeta.LAST_TIME)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(InspectionPlanVOMeta.NOTES)));
 			this.setEndDate(DataParser.parse(Date.class, r.getValue(InspectionPlanVOMeta.END_DATE)));
+			this.setNextTime(DataParser.parse(Date.class, r.getValue(InspectionPlanVOMeta.NEXT_TIME)));
 			this.setGroupId(DataParser.parse(String.class, r.getValue(InspectionPlanVOMeta.GROUP_ID)));
 			this.setPlanStatus(DataParser.parse(String.class, r.getValue(InspectionPlanVOMeta.PLAN_STATUS)));
-			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionPlanVOMeta.SELECTED_CODE)));
+			this.setPosDetail(DataParser.parse(String.class, r.getValue(InspectionPlanVOMeta.POS_DETAIL)));
 			this.setLeaderId(DataParser.parse(String.class, r.getValue(InspectionPlanVOMeta.LEADER_ID)));
 			this.setCompletionTime(DataParser.parse(BigDecimal.class, r.getValue(InspectionPlanVOMeta.COMPLETION_TIME)));
 			this.setRemindTime(DataParser.parse(BigDecimal.class, r.getValue(InspectionPlanVOMeta.REMIND_TIME)));
@@ -636,11 +653,13 @@ public class InspectionPlanVO extends InspectionPlan {
 			return true;
 		} else {
 			try {
+				this.setLastTime( (Date)r.getValue(InspectionPlanVOMeta.LAST_TIME));
 				this.setNotes( (String)r.getValue(InspectionPlanVOMeta.NOTES));
 				this.setEndDate( (Date)r.getValue(InspectionPlanVOMeta.END_DATE));
+				this.setNextTime( (Date)r.getValue(InspectionPlanVOMeta.NEXT_TIME));
 				this.setGroupId( (String)r.getValue(InspectionPlanVOMeta.GROUP_ID));
 				this.setPlanStatus( (String)r.getValue(InspectionPlanVOMeta.PLAN_STATUS));
-				this.setSelectedCode( (String)r.getValue(InspectionPlanVOMeta.SELECTED_CODE));
+				this.setPosDetail( (String)r.getValue(InspectionPlanVOMeta.POS_DETAIL));
 				this.setLeaderId( (String)r.getValue(InspectionPlanVOMeta.LEADER_ID));
 				this.setCompletionTime( (BigDecimal)r.getValue(InspectionPlanVOMeta.COMPLETION_TIME));
 				this.setRemindTime( (BigDecimal)r.getValue(InspectionPlanVOMeta.REMIND_TIME));

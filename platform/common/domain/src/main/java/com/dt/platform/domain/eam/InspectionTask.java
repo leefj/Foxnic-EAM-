@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务
  * <p>巡检任务 , 数据表 eam_inspection_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-14 07:30:19
- * @sign A0A137B1407B3775EBF078093B3E3696
+ * @since 2023-07-07 18:22:43
+ * @sign 782ECC78445E35D7DB3C65B910E32FE6
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -267,6 +267,30 @@ public class InspectionTask extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="inspectUserList" , notes = "inspectUserList")
 	private List<Employee> inspectUserList;
+	
+	/**
+	 * pointCount：pointCount
+	*/
+	@ApiModelProperty(required = false,value="pointCount" , notes = "pointCount")
+	private String pointCount;
+	
+	/**
+	 * pointNormalCount：pointNormalCount
+	*/
+	@ApiModelProperty(required = false,value="pointNormalCount" , notes = "pointNormalCount")
+	private String pointNormalCount;
+	
+	/**
+	 * pointAbormalCount：pointAbormalCount
+	*/
+	@ApiModelProperty(required = false,value="pointAbormalCount" , notes = "pointAbormalCount")
+	private String pointAbormalCount;
+	
+	/**
+	 * pointWaitCount：pointWaitCount
+	*/
+	@ApiModelProperty(required = false,value="pointWaitCount" , notes = "pointWaitCount")
+	private String pointWaitCount;
 	
 	/**
 	 * 制单人：制单人
@@ -1070,6 +1094,82 @@ public class InspectionTask extends Entity {
 	}
 	
 	/**
+	 * 获得 pointCount<br>
+	 * pointCount
+	 * @return pointCount
+	*/
+	public String getPointCount() {
+		return pointCount;
+	}
+	
+	/**
+	 * 设置 pointCount
+	 * @param pointCount pointCount
+	 * @return 当前对象
+	*/
+	public InspectionTask setPointCount(String pointCount) {
+		this.pointCount=pointCount;
+		return this;
+	}
+	
+	/**
+	 * 获得 pointNormalCount<br>
+	 * pointNormalCount
+	 * @return pointNormalCount
+	*/
+	public String getPointNormalCount() {
+		return pointNormalCount;
+	}
+	
+	/**
+	 * 设置 pointNormalCount
+	 * @param pointNormalCount pointNormalCount
+	 * @return 当前对象
+	*/
+	public InspectionTask setPointNormalCount(String pointNormalCount) {
+		this.pointNormalCount=pointNormalCount;
+		return this;
+	}
+	
+	/**
+	 * 获得 pointAbormalCount<br>
+	 * pointAbormalCount
+	 * @return pointAbormalCount
+	*/
+	public String getPointAbormalCount() {
+		return pointAbormalCount;
+	}
+	
+	/**
+	 * 设置 pointAbormalCount
+	 * @param pointAbormalCount pointAbormalCount
+	 * @return 当前对象
+	*/
+	public InspectionTask setPointAbormalCount(String pointAbormalCount) {
+		this.pointAbormalCount=pointAbormalCount;
+		return this;
+	}
+	
+	/**
+	 * 获得 pointWaitCount<br>
+	 * pointWaitCount
+	 * @return pointWaitCount
+	*/
+	public String getPointWaitCount() {
+		return pointWaitCount;
+	}
+	
+	/**
+	 * 设置 pointWaitCount
+	 * @param pointWaitCount pointWaitCount
+	 * @return 当前对象
+	*/
+	public InspectionTask setPointWaitCount(String pointWaitCount) {
+		this.pointWaitCount=pointWaitCount;
+		return this;
+	}
+	
+	/**
 	 * 获得 制单人<br>
 	 * 制单人
 	 * @return 制单人
@@ -1180,17 +1280,21 @@ public class InspectionTask extends Entity {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPlanCompletionTime(this.getPlanCompletionTime());
 		if(all) {
-			inst.setInspectionPointList(this.getInspectionPointList());
 			inst.setTimeDict(this.getTimeDict());
-			inst.setExecutor(this.getExecutor());
-			inst.setInspectionTypeDict(this.getInspectionTypeDict());
-			inst.setInspectionPlan(this.getInspectionPlan());
 			inst.setInspectionTaskPointList(this.getInspectionTaskPointList());
 			inst.setInspectionTaskPointIds(this.getInspectionTaskPointIds());
 			inst.setInspectUserList(this.getInspectUserList());
 			inst.setOriginator(this.getOriginator());
 			inst.setInspectionPointIds(this.getInspectionPointIds());
 			inst.setInspectionGroup(this.getInspectionGroup());
+			inst.setInspectionPointList(this.getInspectionPointList());
+			inst.setPointCount(this.getPointCount());
+			inst.setPointWaitCount(this.getPointWaitCount());
+			inst.setPointAbormalCount(this.getPointAbormalCount());
+			inst.setExecutor(this.getExecutor());
+			inst.setInspectionTypeDict(this.getInspectionTypeDict());
+			inst.setInspectionPlan(this.getInspectionPlan());
+			inst.setPointNormalCount(this.getPointNormalCount());
 		}
 		inst.clearModifies();
 		return inst;
@@ -1280,11 +1384,15 @@ public class InspectionTask extends Entity {
 			this.setPlanCompletionTime(DataParser.parse(BigDecimal.class, map.get(InspectionTaskMeta.PLAN_COMPLETION_TIME)));
 			// others
 			this.setTimeDict(DataParser.parse(DictItem.class, map.get(InspectionTaskMeta.TIME_DICT)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(InspectionTaskMeta.ORIGINATOR)));
+			this.setInspectionGroup(DataParser.parse(InspectionGroup.class, map.get(InspectionTaskMeta.INSPECTION_GROUP)));
+			this.setPointCount(DataParser.parse(String.class, map.get(InspectionTaskMeta.POINT_COUNT)));
+			this.setPointWaitCount(DataParser.parse(String.class, map.get(InspectionTaskMeta.POINT_WAIT_COUNT)));
+			this.setPointAbormalCount(DataParser.parse(String.class, map.get(InspectionTaskMeta.POINT_ABORMAL_COUNT)));
 			this.setExecutor(DataParser.parse(Employee.class, map.get(InspectionTaskMeta.EXECUTOR)));
 			this.setInspectionTypeDict(DataParser.parse(DictItem.class, map.get(InspectionTaskMeta.INSPECTION_TYPE_DICT)));
 			this.setInspectionPlan(DataParser.parse(InspectionPlan.class, map.get(InspectionTaskMeta.INSPECTION_PLAN)));
-			this.setOriginator(DataParser.parse(Employee.class, map.get(InspectionTaskMeta.ORIGINATOR)));
-			this.setInspectionGroup(DataParser.parse(InspectionGroup.class, map.get(InspectionTaskMeta.INSPECTION_GROUP)));
+			this.setPointNormalCount(DataParser.parse(String.class, map.get(InspectionTaskMeta.POINT_NORMAL_COUNT)));
 			return true;
 		} else {
 			try {
@@ -1318,11 +1426,15 @@ public class InspectionTask extends Entity {
 				this.setPlanCompletionTime( (BigDecimal)map.get(InspectionTaskMeta.PLAN_COMPLETION_TIME));
 				// others
 				this.setTimeDict( (DictItem)map.get(InspectionTaskMeta.TIME_DICT));
+				this.setOriginator( (Employee)map.get(InspectionTaskMeta.ORIGINATOR));
+				this.setInspectionGroup( (InspectionGroup)map.get(InspectionTaskMeta.INSPECTION_GROUP));
+				this.setPointCount( (String)map.get(InspectionTaskMeta.POINT_COUNT));
+				this.setPointWaitCount( (String)map.get(InspectionTaskMeta.POINT_WAIT_COUNT));
+				this.setPointAbormalCount( (String)map.get(InspectionTaskMeta.POINT_ABORMAL_COUNT));
 				this.setExecutor( (Employee)map.get(InspectionTaskMeta.EXECUTOR));
 				this.setInspectionTypeDict( (DictItem)map.get(InspectionTaskMeta.INSPECTION_TYPE_DICT));
 				this.setInspectionPlan( (InspectionPlan)map.get(InspectionTaskMeta.INSPECTION_PLAN));
-				this.setOriginator( (Employee)map.get(InspectionTaskMeta.ORIGINATOR));
-				this.setInspectionGroup( (InspectionGroup)map.get(InspectionTaskMeta.INSPECTION_GROUP));
+				this.setPointNormalCount( (String)map.get(InspectionTaskMeta.POINT_NORMAL_COUNT));
 				return true;
 			} catch (Exception e) {
 				return false;

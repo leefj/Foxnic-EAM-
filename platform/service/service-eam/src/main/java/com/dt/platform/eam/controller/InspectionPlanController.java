@@ -83,7 +83,10 @@ public class InspectionPlanController extends SuperController {
 		@ApiImplicitParam(name = InspectionPlanVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.REMIND_TIME, value = "提醒时间", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681049719000")
+		@ApiImplicitParam(name = InspectionPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681049719000"),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.POS_DETAIL, value = "位置范围", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.LAST_TIME, value = "上次执行", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.NEXT_TIME, value = "下次执行", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InspectionPlanServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -146,7 +149,10 @@ public class InspectionPlanController extends SuperController {
 		@ApiImplicitParam(name = InspectionPlanVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.REMIND_TIME, value = "提醒时间", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681049719000")
+		@ApiImplicitParam(name = InspectionPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681049719000"),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.POS_DETAIL, value = "位置范围", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.LAST_TIME, value = "上次执行", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.NEXT_TIME, value = "下次执行", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InspectionPlanVOMeta.PAGE_INDEX, InspectionPlanVOMeta.PAGE_SIZE, InspectionPlanVOMeta.SEARCH_FIELD, InspectionPlanVOMeta.FUZZY_FIELD, InspectionPlanVOMeta.SEARCH_VALUE, InspectionPlanVOMeta.DIRTY_FIELDS, InspectionPlanVOMeta.SORT_FIELD, InspectionPlanVOMeta.SORT_TYPE, InspectionPlanVOMeta.IDS })
     @SentinelResource(value = InspectionPlanServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -178,7 +184,10 @@ public class InspectionPlanController extends SuperController {
 		@ApiImplicitParam(name = InspectionPlanVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.REMIND_TIME, value = "提醒时间", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681049719000")
+		@ApiImplicitParam(name = InspectionPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681049719000"),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.POS_DETAIL, value = "位置范围", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.LAST_TIME, value = "上次执行", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.NEXT_TIME, value = "下次执行", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionPlanVOMeta.PAGE_INDEX, InspectionPlanVOMeta.PAGE_SIZE, InspectionPlanVOMeta.SEARCH_FIELD, InspectionPlanVOMeta.FUZZY_FIELD, InspectionPlanVOMeta.SEARCH_VALUE, InspectionPlanVOMeta.DIRTY_FIELDS, InspectionPlanVOMeta.SORT_FIELD, InspectionPlanVOMeta.SORT_TYPE, InspectionPlanVOMeta.IDS })
     @SentinelResource(value = InspectionPlanServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -247,7 +256,10 @@ public class InspectionPlanController extends SuperController {
 		@ApiImplicitParam(name = InspectionPlanVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.REMIND_TIME, value = "提醒时间", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681049719000")
+		@ApiImplicitParam(name = InspectionPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681049719000"),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.POS_DETAIL, value = "位置范围", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.LAST_TIME, value = "上次执行", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.NEXT_TIME, value = "下次执行", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionPlanVOMeta.PAGE_INDEX, InspectionPlanVOMeta.PAGE_SIZE })
     @SentinelResource(value = InspectionPlanServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -280,7 +292,10 @@ public class InspectionPlanController extends SuperController {
 		@ApiImplicitParam(name = InspectionPlanVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.REMIND_TIME, value = "提醒时间", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681049719000")
+		@ApiImplicitParam(name = InspectionPlanVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1681049719000"),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.POS_DETAIL, value = "位置范围", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.LAST_TIME, value = "上次执行", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.NEXT_TIME, value = "下次执行", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InspectionPlanServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -289,7 +304,7 @@ public class InspectionPlanController extends SuperController {
         Result<PagedList<InspectionPlan>> result = new Result<>();
         PagedList<InspectionPlan> list = inspectionPlanService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        inspectionPlanService.dao().fill(list).with(InspectionPlanMeta.INSPECTION_GROUP).execute();
+        inspectionPlanService.dao().fill(list).with(InspectionPlanMeta.INSPECTION_POINT_LIST).with(InspectionPlanMeta.INSPECTION_GROUP).execute();
         result.success(true).data(list);
         return result;
     }
@@ -332,8 +347,8 @@ public class InspectionPlanController extends SuperController {
     @ApiOperationSupport(order = 11)
     @SentinelResource(value = InspectionPlanServiceProxy.EXECUTE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionPlanServiceProxy.EXECUTE)
-    public Result execute(String id) {
-        return inspectionPlanService.execute(id);
+    public Result execute() {
+        return inspectionPlanService.execute();
     }
 
     /**

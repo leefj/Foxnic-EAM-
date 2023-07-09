@@ -2,7 +2,7 @@
 /**
  * 保养项目 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-08 06:19:53
+ * @since 2023-07-07 18:15:16
  */
  -->
  <!DOCTYPE html>
@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
 	<title th:text="${lang.translate('保养项目')}">保养项目</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
@@ -30,92 +31,93 @@
 <body style="overflow-y: hidden;">
 <div class="form-container" >
 
-    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="display:none">
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="opacity:0">
 
         <input name="id" id="id"  type="hidden"/>
 
          <!--开始：group 循环-->
 
 
-
-        <div class="layui-row form-row" id="random-5654-content">
+        <div class="layui-row form-row" id="random-7720-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('项目名称')}">项目名称</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('项目名称') }" type="text" class="layui-input"    lay-verify="|required"  />
-                        </div>
+                <!-- text_input : 项目编号 ,  code -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('项目编号')}">项目编号</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="code" id="code" name="code" th:placeholder="${ lang.translate('请输入'+'项目编号') }" type="text" class="layui-input"  />
                     </div>
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <div id="status" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" extraParam="{}"></div>
-                        </div>
+                </div>
+            
+                <!-- text_input : 项目名称 ,  name -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('项目名称')}">项目名称</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'项目名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
-
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('标准工时(小时)')}">标准工时(小时)</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="baseCost" id="baseCost" name="baseCost" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('标准工时(小时)') }" type="text" class="layui-input"    lay-verify="|required"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0"  value="1.0" />
-                        </div>
+                </div>
+            
+                <!-- number_input : 标准工时 ,  baseCost  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('标准工时')}">标准工时</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="baseCost" id="baseCost" name="baseCost" th:placeholder="${ lang.translate('请输入'+'标准工时') }" type="text" class="layui-input"    lay-verify="|required"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="1.0" />
                     </div>
-
-
-                <!--结束：栏次内字段循环-->
+                </div>
+            <!--结束：栏次内字段循环-->
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('保养类型')}">保养类型</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <div id="maintainType" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_maintain_type'}" extraParam="{}"></div>
-                        </div>
+                <!-- select_box : 状态 ,  status  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="status" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" extraParam="{}"></div>
                     </div>
-
-
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('保养周期')}">保养周期</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <input  readonly lay-filter="actionCycleId" id="actionCycleId" name="actionCycleId" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('保养周期') }" type="text" class="layui-input"    lay-verify="|required"  />
-                        </div>
+                </div>
+            
+                <!-- select_box : 保养类型 ,  maintainType  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('保养类型')}">保养类型</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="maintainType" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_maintain_type'}" extraParam="{}"></div>
                     </div>
-
-                <!--结束：栏次内字段循环-->
+                </div>
+            <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
 
 
-
-        <div class="layui-row form-row" id="random-7804-content">
+        <div class="layui-row form-row" id="random-5833-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
 
-
-                    <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
+                <!-- text_area : 保养内容 ,  content  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('保养内容')}">保养内容</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                        <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入'+'保养内容') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
-
-
-
-                <div class="layui-form-item" >
+            
+                <!-- text_area : 备注 ,  notes  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                    </div>
+                </div>
+                            <!-- upload : 保养手册 ,  attachId  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('保养手册')}">保养手册</div></div>
                     <div class="layui-upload layui-input-block ">
                         <input input-type="upload" id="attachId"  name="attachId" lay-filter="attachId" style="display: none">
@@ -123,10 +125,7 @@
                         <div class="layui-upload-list" id="attachId-file-list"></div>
                     </div>
                 </div>
-
-
-
-                <!--结束：栏次内字段循环-->
+            <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
@@ -140,8 +139,8 @@
 
 </div>
 <div class="model-form-footer">
-    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('eam_maintain_project:create','eam_maintain_project:update','eam_maintain_project:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('eam_maintain_project:create','eam_maintain_project:update','eam_maintain_project:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
@@ -149,11 +148,10 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
-    var VALIDATE_CONFIG={"baseCost":{"labelInForm":"标准工时(小时)","inputType":"number_input","required":true},"name":{"labelInForm":"项目名称","inputType":"text_input","required":true},"maintainType":{"labelInForm":"保养类型","inputType":"select_box","required":true},"actionCycleId":{"labelInForm":"保养周期","inputType":"text_input","required":true},"status":{"labelInForm":"状态","inputType":"select_box","required":true}};
+    var VALIDATE_CONFIG={"baseCost":{"labelInForm":"标准工时","inputType":"number_input","required":true},"name":{"labelInForm":"项目名称","inputType":"text_input","required":true},"maintainType":{"labelInForm":"保养类型","inputType":"select_box","required":true},"status":{"labelInForm":"状态","inputType":"select_box","required":true}};
     var AUTH_PREFIX="eam_maintain_project";
 
 

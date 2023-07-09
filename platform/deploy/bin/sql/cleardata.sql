@@ -269,4 +269,6 @@ delete from hr_person where deleted=1;
 delete from hr_person_contract where deleted=1;
 delete from sys_user_import where deleted=1;
 
+-- clear oa
+delete from oa_notice where 1=1;
 commit;

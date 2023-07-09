@@ -84,15 +84,17 @@ public interface CCustInspectPlanServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
-    /**
-     * 分页查询巡检计划
-     */
-    public static final String EXECUTE = API_PREFIX + "execute";
 
     /**
      * 分页查询巡检计划
      */
     public static final String CREATE_TASK = API_PREFIX + "create-task";
+
+
+    /**
+     * 执行巡检计划
+     */
+    public static final String EXECUTE = API_PREFIX + "execute";
 
     /**
      * 执行计划

@@ -36,7 +36,16 @@ public class InspectionTaskPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+	/**
+	 * 巡检日历
+	 */
+	@RequestMapping("/inspection_task_cal.html")
+	public String cal(Model model,HttpServletRequest request) {
+		return prefix+"/inspection_task_cal";
+	}
+
+
 	/**
 	 * 巡检任务 功能主页面
 	 */

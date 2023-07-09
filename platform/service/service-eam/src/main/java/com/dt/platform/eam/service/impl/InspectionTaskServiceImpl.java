@@ -1,13 +1,17 @@
 package com.dt.platform.eam.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskStatusEnum;
+import com.dt.platform.constants.enums.oa.MeetingRoomBookStatusEnum;
 import com.dt.platform.domain.eam.InspectionTask;
 import com.dt.platform.domain.eam.InspectionTaskPoint;
 import com.dt.platform.domain.eam.meta.InspectionTaskMeta;
+import com.dt.platform.domain.oa.MeetingRoomBookRcd;
+import com.dt.platform.domain.oa.meta.MeetingRoomBookRcdMeta;
 import com.dt.platform.eam.service.IInspectionTaskPointService;
 import com.dt.platform.eam.service.IInspectionTaskService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
@@ -35,6 +39,7 @@ import javax.annotation.Resource;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -104,6 +109,50 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 		}
 		Result r=super.insert(inspectionTask,throwsException);
 		return r;
+	}
+
+	@Override
+	public Result<JSONArray> queryDataByCal(String status, String startStr, String endStr) {
+		Result<JSONArray> res=new Result<>();
+		ConditionExpr expr=new ConditionExpr();
+		JSONArray data=new JSONArray();
+		if(!StringUtil.isBlank(startStr)){
+			expr.and(" plan_start_time>=date_format('"+startStr+"','%Y-%m-%d %H:%i:%s')");
+		}
+		if(!StringUtil.isBlank(endStr)){
+			expr.and(" plan_start_time<=date_format('"+endStr+"','%Y-%m-%d %H:%i:%s')");
+		}
+		if(!StringUtil.isBlank(status)){
+			expr.and(" task_status=?",status);
+		}
+		List<InspectionTask> rcdList=this.queryList(expr);
+		dao.fill(rcdList).with(InspectionTaskMeta.INSPECTION_GROUP).execute();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		for(int i=0;i<rcdList.size();i++){
+			JSONObject obj=new JSONObject();
+			InspectionTask rcd=rcdList.get(i);
+			String name=rcd.getPlanName();
+			String statusName="未知";
+			if(InspectionTaskStatusEnum.ACTING.code().equals(rcd.getTaskStatus())){
+				statusName=InspectionTaskStatusEnum.ACTING.text();
+			}else if(InspectionTaskStatusEnum.WAIT.code().equals(rcd.getTaskStatus())){
+				statusName=InspectionTaskStatusEnum.WAIT.text();
+			}else if(InspectionTaskStatusEnum.FINISH.code().equals(rcd.getTaskStatus())){
+				statusName=InspectionTaskStatusEnum.FINISH.text();
+			}else if(InspectionTaskStatusEnum.CANCEL.code().equals(rcd.getTaskStatus())){
+				statusName=InspectionTaskStatusEnum.CANCEL.text();
+			}
+			obj.put("title","【"+statusName+"】"+name);
+			obj.put("start",sdf.format(rcd.getPlanStartTime()));
+			if(rcd.getActFinishTime()!=null){
+				obj.put("end",sdf.format(rcd.getActFinishTime()));
+			}
+
+			data.add(obj);
+		}
+		res.data(data);
+		res.success(true);
+		return res;
 	}
 
 	@Override
