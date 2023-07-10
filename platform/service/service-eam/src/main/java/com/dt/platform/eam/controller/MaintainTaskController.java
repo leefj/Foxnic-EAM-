@@ -1,7 +1,10 @@
 package com.dt.platform.eam.controller;
 
 import java.util.List;
+
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.eam.*;
+import com.dt.platform.proxy.eam.InspectionTaskServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import org.github.foxnic.web.domain.hrm.Person;
 import com.github.foxnic.commons.collection.CollectorUtil;
@@ -394,6 +397,20 @@ public class MaintainTaskController extends SuperController {
     public Result execute(String taskId, String startTime, String finishTime, String ct, String pics, String projects,String parts) {
         return maintainTaskService.execute(taskId, startTime, finishTime, ct, pics, projects,parts);
     }
+
+
+
+    /**
+     * 查询面板数据
+     */
+    @ApiOperation(value = "查询面板数据")
+    @ApiOperationSupport(order = 10)
+    @SentinelResource(value = MaintainTaskServiceProxy.QUERY_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(MaintainTaskServiceProxy.QUERY_DATA)
+    public Result<JSONObject> queryData(String labels) {
+        return maintainTaskService.queryData(labels);
+    }
+
 
     /**
      * 导出 Excel

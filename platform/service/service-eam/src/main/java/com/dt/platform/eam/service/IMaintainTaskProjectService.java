@@ -1,5 +1,7 @@
 package com.dt.platform.eam.service;
 
+import com.dt.platform.domain.eam.MaintainProject;
+import com.dt.platform.domain.eam.MaintainProjectVO;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
@@ -24,11 +26,18 @@ import java.util.Map;
  * 保养项目服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-14 07:42:51
+ * @since 2023-07-10 15:51:09
 */
 
 public interface IMaintainTaskProjectService extends  ISimpleIdService<MaintainTaskProject,String> {
 
+
+
+	Result selectDeleteByIds(String ownerId,String ids,String selectedCode);
+
+	public Result selectSaveIds(String ownerId, String ids, String selectedCode);
+
+	PagedList<MaintainTaskProject> queryPagedListBySelected(MaintainTaskProjectVO sample, String ownerId, String ownerType);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

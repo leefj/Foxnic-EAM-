@@ -370,12 +370,12 @@ function ListPage() {
 			else if(layEvent === 'detail'){
 				console.log("data",data);
 				var timestamp2 = Date.parse(new Date());
-				var top=10
+				var top2=10
 				var q="?ownerId="+data.id+"&pageType=view&selectCode="+timestamp2
 				admin.popupCenter({
 					title: "检查项目",
 					resize: false,
-					offset: [top,null],
+					offset: [top2,null],
 					area: ["80%","85%"],
 					type: 2,
 					id:"eam-inspection-point-form-data-win",

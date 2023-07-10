@@ -100,7 +100,7 @@
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
 
-    <button th:if="${perm.checkAuth('eam_maintain_project:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
+    <button  class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
 
 </script>
 

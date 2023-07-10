@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 检查项
  * <p>检查项 , 数据表 eam_check_item 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 13:59:01
+ * @since 2023-07-10 12:35:18
  * @sign 015FCE7FC422A1104EA86D12D411D1ED
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -64,7 +64,7 @@ public class CheckItem extends Entity {
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "检查项目1")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "外观检查项")
 	private String name;
 	
 	/**
@@ -88,7 +88,7 @@ public class CheckItem extends Entity {
 	/**
 	 * 默认内容：默认内容
 	*/
-	@ApiModelProperty(required = false,value="默认内容" , notes = "默认内容" , example = "正常")
+	@ApiModelProperty(required = false,value="默认内容" , notes = "默认内容" , example = "检查正常")
 	private String defValue;
 	
 	/**
@@ -118,7 +118,7 @@ public class CheckItem extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-05 04:11:05")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-09 06:55:17")
 	private Date updateTime;
 	
 	/**
@@ -145,7 +145,7 @@ public class CheckItem extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
 	private Integer version;
 	
 	/**

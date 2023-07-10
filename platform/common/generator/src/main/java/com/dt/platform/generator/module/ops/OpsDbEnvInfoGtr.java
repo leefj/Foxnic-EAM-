@@ -41,6 +41,7 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
                 new Object[]{
                         OpsTables.OPS_DB_ENV_INFO.LABEL,
                         OpsTables.OPS_DB_ENV_INFO.IP,
+                        OpsTables.OPS_DB_ENV_INFO.DB_DESC,
                         OpsTables.OPS_DB_ENV_INFO.NOTES,
                 }
         );
@@ -68,9 +69,16 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().list().disableBatchDelete();
+        cfg.view().list().disableCreateNew();
+
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.IP).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.LABEL).form().validate().required().form()
                 .radioBox().enumType(OpsDbEnvEnum.class).defaultIndex(0);
+
+
+
+        cfg.view().field(OpsTables.OPS_DB_ENV_INFO.DB).form().validate().required();
 
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.NOTES).form().textArea().height(120);
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.VOUCHER).form().textArea().height(150);
@@ -87,7 +95,7 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
                 },
                 new Object[] {
                         OpsTables.OPS_DB_ENV_INFO.IP,
-
+                        OpsTables.OPS_DB_ENV_INFO.DB_DESC,
                 }
         );
         cfg.view().form().addGroup(null,
@@ -120,7 +128,7 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
         OpsDbEnvInfoGtr g=new OpsDbEnvInfoGtr();
         //生成代码
         g.generateCode();
-        g.generateMenu(DbEnvInfoServiceProxy.class, DbEnvInfoPageController.class);
+       // g.generateMenu(DbEnvInfoServiceProxy.class, DbEnvInfoPageController.class);
 
     }
 }

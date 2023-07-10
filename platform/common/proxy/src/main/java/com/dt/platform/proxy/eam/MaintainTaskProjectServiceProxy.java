@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 保养项目 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-14 07:42:51
+ * @since 2023-07-10 15:51:09
  */
 @FeignClient(value = ServiceNames.EAM, contextId = MaintainTaskProjectServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface MaintainTaskProjectServiceProxy {
@@ -84,6 +84,13 @@ public interface MaintainTaskProjectServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+
+    public static final String SELECT_SAVE_IDS = API_PREFIX + "select-save-ids";
+
+
+    public static final String SELECT_DELETE_BY_IDS = API_PREFIX + "select-delete-by-ids";
+
+    public static final String QUERY_PAGED_LIST_BY_SELECTED = API_PREFIX + "query-paged-list-by-selected";
     /**
      * 添加保养项目
      */

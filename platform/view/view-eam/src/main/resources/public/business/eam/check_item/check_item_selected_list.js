@@ -85,14 +85,14 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'owner', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('归属'), templet:function (d){ return templet('owner',fox.getEnumText(RADIO_OWNER_DATA,d.owner,'','owner'),d);}}
+					,{ field: 'owner', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('归属'), templet:function (d){ return templet('owner',fox.getEnumText(RADIO_OWNER_DATA,d.owner,'','owner'),d);}}
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('组件类型'), templet:function (d){ return templet('type',fox.getEnumText(RADIO_TYPE_DATA,d.type,'','type'),d);}}
+					,{ field: 'type', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('组件类型'), templet:function (d){ return templet('type',fox.getEnumText(RADIO_TYPE_DATA,d.type,'','type'),d);}}
 					,{ field: 'config', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('配置项') , templet: function (d) { return templet('config',d.config,d);}  }
 					,{ field: 'defValue', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('默认内容') , templet: function (d) { return templet('defValue',d.defValue,d);}  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'notes', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 				 	,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

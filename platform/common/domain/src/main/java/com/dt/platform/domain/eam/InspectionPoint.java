@@ -7,6 +7,7 @@ import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_INSPECTION_POINT;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
@@ -26,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 14:01:23
- * @sign EC98EC4A861A1EAC72A057B54E164865
+ * @since 2023-07-10 13:48:29
+ * @sign 24DD05B5189BC8264146C960BA1DD4AF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -97,14 +98,14 @@ public class InspectionPoint extends Entity {
 	/**
 	 * 位置经度：位置经度
 	*/
-	@ApiModelProperty(required = false,value="位置经度" , notes = "位置经度" , example = "0.0")
-	private String posLongitude;
+	@ApiModelProperty(required = false,value="位置经度" , notes = "位置经度" , example = "0.00")
+	private BigDecimal posLongitude;
 	
 	/**
 	 * 位置纬度：位置纬度
 	*/
-	@ApiModelProperty(required = false,value="位置纬度" , notes = "位置纬度" , example = "0.0")
-	private String posLatitude;
+	@ApiModelProperty(required = false,value="位置纬度" , notes = "位置纬度" , example = "0.00")
+	private BigDecimal posLatitude;
 	
 	/**
 	 * 图片：图片
@@ -121,7 +122,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * 关联设备：关联设备
 	*/
-	@ApiModelProperty(required = false,value="关联设备" , notes = "关联设备")
+	@ApiModelProperty(required = false,value="关联设备" , notes = "关联设备" , example = "706795885647888384")
 	private String assetId;
 	
 	/**
@@ -145,7 +146,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-11 10:15:52")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-10 01:07:31")
 	private Date updateTime;
 	
 	/**
@@ -178,7 +179,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "4")
 	private Integer version;
 	
 	/**
@@ -405,7 +406,7 @@ public class InspectionPoint extends Entity {
 	 * 位置经度
 	 * @return 位置经度
 	*/
-	public String getPosLongitude() {
+	public BigDecimal getPosLongitude() {
 		return posLongitude;
 	}
 	
@@ -414,7 +415,7 @@ public class InspectionPoint extends Entity {
 	 * @param posLongitude 位置经度
 	 * @return 当前对象
 	*/
-	public InspectionPoint setPosLongitude(String posLongitude) {
+	public InspectionPoint setPosLongitude(BigDecimal posLongitude) {
 		this.posLongitude=posLongitude;
 		return this;
 	}
@@ -424,7 +425,7 @@ public class InspectionPoint extends Entity {
 	 * 位置纬度
 	 * @return 位置纬度
 	*/
-	public String getPosLatitude() {
+	public BigDecimal getPosLatitude() {
 		return posLatitude;
 	}
 	
@@ -433,7 +434,7 @@ public class InspectionPoint extends Entity {
 	 * @param posLatitude 位置纬度
 	 * @return 当前对象
 	*/
-	public InspectionPoint setPosLatitude(String posLatitude) {
+	public InspectionPoint setPosLatitude(BigDecimal posLatitude) {
 		this.posLatitude=posLatitude;
 		return this;
 	}
@@ -1008,7 +1009,7 @@ public class InspectionPoint extends Entity {
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, map.get(InspectionPointMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(InspectionPointMeta.NOTES)));
-			this.setPosLatitude(DataParser.parse(String.class, map.get(InspectionPointMeta.POS_LATITUDE)));
+			this.setPosLatitude(DataParser.parse(BigDecimal.class, map.get(InspectionPointMeta.POS_LATITUDE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(InspectionPointMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(InspectionPointMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(InspectionPointMeta.CONTENT)));
@@ -1026,7 +1027,7 @@ public class InspectionPoint extends Entity {
 			this.setTenantId(DataParser.parse(String.class, map.get(InspectionPointMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(InspectionPointMeta.DELETE_BY)));
 			this.setRfid(DataParser.parse(String.class, map.get(InspectionPointMeta.RFID)));
-			this.setPosLongitude(DataParser.parse(String.class, map.get(InspectionPointMeta.POS_LONGITUDE)));
+			this.setPosLongitude(DataParser.parse(BigDecimal.class, map.get(InspectionPointMeta.POS_LONGITUDE)));
 			this.setId(DataParser.parse(String.class, map.get(InspectionPointMeta.ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(InspectionPointMeta.STATUS)));
 			// others
@@ -1041,7 +1042,7 @@ public class InspectionPoint extends Entity {
 			try {
 				this.setCode( (String)map.get(InspectionPointMeta.CODE));
 				this.setNotes( (String)map.get(InspectionPointMeta.NOTES));
-				this.setPosLatitude( (String)map.get(InspectionPointMeta.POS_LATITUDE));
+				this.setPosLatitude( (BigDecimal)map.get(InspectionPointMeta.POS_LATITUDE));
 				this.setUpdateTime( (Date)map.get(InspectionPointMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(InspectionPointMeta.VERSION));
 				this.setContent( (String)map.get(InspectionPointMeta.CONTENT));
@@ -1059,7 +1060,7 @@ public class InspectionPoint extends Entity {
 				this.setTenantId( (String)map.get(InspectionPointMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(InspectionPointMeta.DELETE_BY));
 				this.setRfid( (String)map.get(InspectionPointMeta.RFID));
-				this.setPosLongitude( (String)map.get(InspectionPointMeta.POS_LONGITUDE));
+				this.setPosLongitude( (BigDecimal)map.get(InspectionPointMeta.POS_LONGITUDE));
 				this.setId( (String)map.get(InspectionPointMeta.ID));
 				this.setStatus( (String)map.get(InspectionPointMeta.STATUS));
 				// others
@@ -1087,7 +1088,7 @@ public class InspectionPoint extends Entity {
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, r.getValue(InspectionPointMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(InspectionPointMeta.NOTES)));
-			this.setPosLatitude(DataParser.parse(String.class, r.getValue(InspectionPointMeta.POS_LATITUDE)));
+			this.setPosLatitude(DataParser.parse(BigDecimal.class, r.getValue(InspectionPointMeta.POS_LATITUDE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InspectionPointMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(InspectionPointMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(InspectionPointMeta.CONTENT)));
@@ -1105,7 +1106,7 @@ public class InspectionPoint extends Entity {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(InspectionPointMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InspectionPointMeta.DELETE_BY)));
 			this.setRfid(DataParser.parse(String.class, r.getValue(InspectionPointMeta.RFID)));
-			this.setPosLongitude(DataParser.parse(String.class, r.getValue(InspectionPointMeta.POS_LONGITUDE)));
+			this.setPosLongitude(DataParser.parse(BigDecimal.class, r.getValue(InspectionPointMeta.POS_LONGITUDE)));
 			this.setId(DataParser.parse(String.class, r.getValue(InspectionPointMeta.ID)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(InspectionPointMeta.STATUS)));
 			return true;
@@ -1113,7 +1114,7 @@ public class InspectionPoint extends Entity {
 			try {
 				this.setCode( (String)r.getValue(InspectionPointMeta.CODE));
 				this.setNotes( (String)r.getValue(InspectionPointMeta.NOTES));
-				this.setPosLatitude( (String)r.getValue(InspectionPointMeta.POS_LATITUDE));
+				this.setPosLatitude( (BigDecimal)r.getValue(InspectionPointMeta.POS_LATITUDE));
 				this.setUpdateTime( (Date)r.getValue(InspectionPointMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(InspectionPointMeta.VERSION));
 				this.setContent( (String)r.getValue(InspectionPointMeta.CONTENT));
@@ -1131,7 +1132,7 @@ public class InspectionPoint extends Entity {
 				this.setTenantId( (String)r.getValue(InspectionPointMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(InspectionPointMeta.DELETE_BY));
 				this.setRfid( (String)r.getValue(InspectionPointMeta.RFID));
-				this.setPosLongitude( (String)r.getValue(InspectionPointMeta.POS_LONGITUDE));
+				this.setPosLongitude( (BigDecimal)r.getValue(InspectionPointMeta.POS_LONGITUDE));
 				this.setId( (String)r.getValue(InspectionPointMeta.ID));
 				this.setStatus( (String)r.getValue(InspectionPointMeta.STATUS));
 				return true;

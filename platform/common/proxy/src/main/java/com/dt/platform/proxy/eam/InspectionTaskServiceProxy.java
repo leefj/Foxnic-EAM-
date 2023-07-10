@@ -69,12 +69,14 @@ public interface InspectionTaskServiceProxy {
 
 
     public static final String EXECUTE = API_PREFIX + "execute";
+
     public static final String CANCEL = API_PREFIX + "cancel";
+
     public static final String FINISH = API_PREFIX + "finish";
+
     public static final String CHECK = API_PREFIX + "check";
 
-
-
+    public static final String QUERY_DATA = API_PREFIX + "query-data";
 
     public static final String QUERY_DATA_BY_CAL = API_PREFIX + "query-data-by-cal";
 

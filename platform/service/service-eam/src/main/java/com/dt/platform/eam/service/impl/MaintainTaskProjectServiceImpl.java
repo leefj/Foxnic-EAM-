@@ -1,6 +1,10 @@
 package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
+
+import com.alibaba.fastjson.JSONArray;
+import com.dt.platform.domain.eam.MappingOwner;
+import com.dt.platform.eam.service.IMappingOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -38,7 +42,7 @@ import java.util.Map;
  * 保养项目服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-14 07:42:51
+ * @since 2023-07-10 15:51:09
 */
 
 
@@ -57,6 +61,8 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 	 * */
 	public DAO dao() { return dao; }
 
+	@Autowired
+	private IMappingOwnerService mappingOwnerService;
 
 
 	@Override
@@ -71,10 +77,56 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
+
 	@Override
 	public Result insert(MaintainTaskProject maintainTaskProject,boolean throwsException) {
 		Result r=super.insert(maintainTaskProject,throwsException);
 		return r;
+	}
+
+	@Override
+	public Result selectDeleteByIds(String ownerId, String ids, String selectedCode) {
+
+		JSONArray idsArr=JSONArray.parseArray(ids);
+		for(int i=0;i<idsArr.size();i++){
+			String id=idsArr.getString(i);
+			dao.execute("update eam_maintain_task_project set deleted=1 where deleted=0 and id=?",id);
+		}
+		return ErrorDesc.success();
+	}
+
+	@Override
+	public Result selectSaveIds(String ownerId, String ids, String selectedCode) {
+		return ErrorDesc.failure("未实现");
+	}
+
+	@Override
+	public PagedList<MaintainTaskProject> queryPagedListBySelected(MaintainTaskProjectVO sample, String ownerId, String ownerType) {
+		String selectCode=sample.getSelectedCode();
+		sample.setSelectedCode(null);
+		ConditionExpr expr=new ConditionExpr();
+		if(dao().queryRecord("select count(1) cnt from eam_mapping_owner where deleted=0 and owner_id=? and selected_code=?",ownerId,selectCode).getInteger("cnt")==0){
+			//做一份转
+			MaintainTaskProjectVO vo=new MaintainTaskProjectVO();
+			vo.setSelectedCode("def");
+			vo.setTaskId(ownerId);
+			List<MaintainTaskProject> list=this.queryList(vo);
+			if(list!=null&&list.size()>0){
+				for(int i=0;i<list.size();i++){
+					MaintainTaskProject newObj=list.get(i);
+					newObj.setId(IDGenerator.getSnowflakeIdString());
+					newObj.setSelectedCode(selectCode);
+					super.insert(newObj,true);
+				}
+			}
+			MappingOwner mappingOwner=new MappingOwner();
+			mappingOwner.setOwnerId(ownerId);
+			mappingOwner.setSelectedCode(selectCode);
+			mappingOwnerService.insert(mappingOwner,true);
+
+		}
+		expr.and(" task_id=? and selected_code=? ",ownerId,selectCode);
+		return super.queryPagedList(sample,expr,sample.getPageSize(),sample.getPageIndex());
 	}
 
 	/**

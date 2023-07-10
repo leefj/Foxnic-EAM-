@@ -247,6 +247,22 @@ public class MaintainProjectController extends SuperController {
 		@ApiImplicitParam(name = MaintainProjectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainProjectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
 	})
+
+    @ApiOperationSupport(order = 8)
+    @SentinelResource(value = MaintainProjectServiceProxy.SELECT_SAVE_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(MaintainProjectServiceProxy.SELECT_SAVE_IDS)
+    public Result selectSaveIds(String ownerId, String ids, String selectedCode,String ownerType) {
+        return maintainProjectService.selectSaveIds( ownerId,  ids,  selectedCode,ownerType);
+    }
+
+    @ApiOperationSupport(order = 8)
+    @SentinelResource(value = MaintainProjectServiceProxy.SELECT_DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(MaintainProjectServiceProxy.SELECT_DELETE_BY_IDS)
+    public Result selectDeleteByIds(String ownerId,String ids,String selectedCode) {
+        return maintainProjectService.selectDeleteByIds( ownerId, ids, selectedCode);
+    }
+
+
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MaintainProjectServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainProjectServiceProxy.QUERY_PAGED_LIST)

@@ -3,13 +3,11 @@ package com.dt.platform.eam.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
-import com.dt.platform.domain.eam.InspectionPoint;
-import com.dt.platform.domain.eam.InspectionPointItem;
-import com.dt.platform.domain.eam.InspectionPointOwner;
-import com.dt.platform.domain.eam.InspectionPointVO;
+import com.dt.platform.domain.eam.*;
 import com.dt.platform.eam.service.IInspectionPointItemService;
 import com.dt.platform.eam.service.IInspectionPointOwnerService;
 import com.dt.platform.eam.service.IInspectionPointService;
+import com.dt.platform.eam.service.IMappingOwnerService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
@@ -51,6 +49,9 @@ import java.util.Map;
 
 @Service("EamInspectionPointService")
 public class InspectionPointServiceImpl extends SuperService<InspectionPoint> implements IInspectionPointService {
+
+	@Autowired
+	private IMappingOwnerService mappingOwnerService;
 
 	@Autowired
 	private IInspectionPointOwnerService inspectionPointOwnerService;
@@ -96,17 +97,20 @@ public class InspectionPointServiceImpl extends SuperService<InspectionPoint> im
 		}
 
 		String selectedCode=inspectionPoint.getSelectedCode();
+		if(StringUtil.isBlank(selectedCode)){
+			return ErrorDesc.failure("selectCode参数为空");
+		}
 		Result r=super.insert(inspectionPoint,throwsException);
 		if(r.isSuccess()){
 			//更新
-			dao.execute("update eam_inspection_point_item set select_code=?,point_id=? where point_id=? and select_code=?","",inspectionPoint.getId(),selectedCode,selectedCode);
+			dao.execute("update eam_inspection_point_item set select_code=?,point_id=? where point_id=? and select_code=?","def",inspectionPoint.getId(),selectedCode,selectedCode);
 		}
 		return r;
 	}
 
 	@Override
 	public Result selectDeleteById(String ownerId, String id, String selectCode) {
-		dao.execute("delete from eam_inspection_point_owner where owner_id=? and point_id=? and selected_code=?",ownerId,id,selectCode);
+		dao.execute("update eam_inspection_point_owner set deleted=1 where deleted=0 and owner_id=? and point_id=? and selected_code=?",ownerId,id,selectCode);
 		return ErrorDesc.success();
 	}
 
@@ -144,10 +148,15 @@ public class InspectionPointServiceImpl extends SuperService<InspectionPoint> im
 
 		String selectCode=sample.getSelectedCode();
 		ConditionExpr expr=new ConditionExpr();
-		if(dao().queryRecord("select count(1) cnt from eam_inspection_point_owner where deleted=0 and owner_id=? and selected_code=?",ownerId,selectCode).getInteger("cnt")==0){
+		if(dao().queryRecord("select count(1) cnt from eam_mapping_owner where deleted=0 and owner_id=? and selected_code=?",ownerId,selectCode).getInteger("cnt")==0){
 			//做一份转
-			String sql="insert into eam_inspection_point_owner(id,owner_id,point_id,deleted,selected_code)  select uuid(),owner_id,point_id,0,'"+selectCode+"' from eam_inspection_point_owner where deleted=0 and owner_id=? and (selected_code='' or selected_code is null)  ";
+			String sql="insert into eam_inspection_point_owner(id,owner_id,point_id,deleted,selected_code)  select uuid(),owner_id,point_id,0,'"+selectCode+"' from eam_inspection_point_owner where deleted=0 and owner_id=? and selected_code='def'  ";
 			dao().execute(sql,ownerId);
+			MappingOwner mappingOwner=new MappingOwner();
+			mappingOwner.setOwnerId(ownerId);
+			mappingOwner.setSelectedCode(selectCode);
+			mappingOwnerService.insert(mappingOwner,true);
+
 		}
 		expr.and("id in (select point_id from eam_inspection_point_owner where deleted=0 and owner_id=? and selected_code=?)",ownerId,selectCode);
 		return super.queryPagedList(sample,expr,sample.getPageSize(),sample.getPageIndex());
@@ -272,8 +281,8 @@ public class InspectionPointServiceImpl extends SuperService<InspectionPoint> im
 		//删除原来的
 		Result r=super.update(inspectionPoint , mode , throwsException);
 		if(r.isSuccess()){
-			dao.execute("delete from eam_inspection_point_item where point_id=? and (select_code ='' or select_code is null)",inspectionPoint.getId(),selectedCode);
-			dao.execute("update eam_inspection_point_item set select_code='' where point_id=? and select_code=?",inspectionPoint.getId(),selectedCode);
+			dao.execute("delete from eam_inspection_point_item where point_id=? and select_code='def'",inspectionPoint.getId(),selectedCode);
+			dao.execute("update eam_inspection_point_item set select_code='def' where point_id=? and select_code=?",inspectionPoint.getId(),selectedCode);
 		}
 		return r;
 	}

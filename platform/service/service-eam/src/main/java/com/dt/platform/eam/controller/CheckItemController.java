@@ -1,6 +1,9 @@
 package com.dt.platform.eam.controller;
 
 import java.util.*;
+
+import com.dt.platform.domain.eam.MappingOwner;
+import com.dt.platform.eam.service.IMappingOwnerService;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,6 +56,8 @@ public class CheckItemController extends SuperController {
     @Autowired
     private ICheckItemService checkItemService;
 
+    @Autowired
+    private IMappingOwnerService mappingOwnerService;
     /**
      * 添加检查项
      */
@@ -346,10 +351,15 @@ public class CheckItemController extends SuperController {
     public Result<PagedList<CheckItem>> querySelectedPagedList(CheckItemVO sample, String ownerId, String selectCode) {
         Result<PagedList<CheckItem>> result = new Result<>();
         ConditionExpr expr = new ConditionExpr();
-        if (checkItemService.dao().queryRecord("select count(1) cnt from eam_inspection_point_item where deleted=0 and point_id=? and select_code=?", ownerId, selectCode).getInteger("cnt") == 0) {
+
+        if (checkItemService.dao().queryRecord(" select count(1) cnt from eam_mapping_owner where deleted=0 and owner_id=? and selected_code=?", ownerId, selectCode).getInteger("cnt") == 0) {
             // 做一份转
-            String sql = "insert into eam_inspection_point_item(id,point_id,item_id,deleted,select_code)  select uuid(),point_id,item_id,0,'" + selectCode + "' from eam_inspection_point_item where deleted=0 and point_id=? and (select_code='' or select_code is null)  ";
+            String sql = "insert into eam_inspection_point_item(id,point_id,item_id,deleted,select_code)  select uuid(),point_id,item_id,0,'" + selectCode + "' from eam_inspection_point_item where deleted=0 and point_id=? and select_code='def'  ";
             checkItemService.dao().execute(sql, ownerId);
+            MappingOwner mappingOwner=new MappingOwner();
+            mappingOwner.setOwnerId(ownerId);
+            mappingOwner.setSelectedCode(selectCode);
+            mappingOwnerService.insert(mappingOwner,true);
         }
         expr.and("id in (select item_id from eam_inspection_point_item where deleted=0 and point_id=? and select_code=?)", ownerId, selectCode);
         PagedList<CheckItem> list = checkItemService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());

@@ -64,8 +64,8 @@ public class InspPointGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_INSPECTION_POINT.STATUS).form().validate().required().form().selectBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(EAMTables.EAM_INSPECTION_POINT.NAME).form().validate().required();
 
-        cfg.view().field(EAMTables.EAM_INSPECTION_POINT.POS_LATITUDE).form().numberInput().defaultValue(0);
-        cfg.view().field(EAMTables.EAM_INSPECTION_POINT.POS_LONGITUDE).form().numberInput().defaultValue(0);
+        cfg.view().field(EAMTables.EAM_INSPECTION_POINT.POS_LATITUDE).form().numberInput().defaultValue(0).decimal().scale(2);
+        cfg.view().field(EAMTables.EAM_INSPECTION_POINT.POS_LONGITUDE).form().numberInput().defaultValue(0).decimal().scale(2);
 
 
 
@@ -78,8 +78,8 @@ public class InspPointGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(EAMTables.EAM_INSPECTION_POINT.ASSET_ID)
-                .form().selectBox().queryApi(AssetServiceProxy.QUERY_LIST+"?ownerCode=asset")
-                .paging(false).filter(true).toolbar(false)
+                .form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST+"?ownerCode=asset")
+                .paging(true).filter(true).toolbar(false)
                 .valueField(AssetMeta.ID).
                 textField(AssetMeta.ASSET_CODE).
                 fillWith(InspectionPointMeta.ASSET).muliti(false);

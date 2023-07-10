@@ -359,6 +359,17 @@ public class InspectionTaskController extends SuperController {
     }
 
     /**
+     * 查询面板数据
+     */
+    @ApiOperation(value = "查询面板数据")
+    @ApiOperationSupport(order = 10)
+    @SentinelResource(value = InspectionTaskServiceProxy.QUERY_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(InspectionTaskServiceProxy.QUERY_DATA)
+    public Result<JSONObject> queryData(String labels) {
+        return inspectionTaskService.queryData(labels);
+    }
+
+    /**
      * 导出 Excel
      */
     @SentinelResource(value = InspectionTaskServiceProxy.EXPORT_EXCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

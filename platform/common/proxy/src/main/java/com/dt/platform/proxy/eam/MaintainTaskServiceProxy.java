@@ -103,9 +103,10 @@ public interface MaintainTaskServiceProxy {
     public static final String EXECUTE = API_PREFIX + "execute";
 
     public static final String CANCEL = API_PREFIX + "cancel";
+
     public static final String FINISH = API_PREFIX + "finish";
 
-
+    public static final String QUERY_DATA = API_PREFIX + "query-data";
     /**
      * 添加保养任务
      */

@@ -1,7 +1,7 @@
 /**
  * 保养项目 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-14 07:42:53
+ * @since 2023-07-10 16:07:48
  */
 
 function FormPage() {
@@ -14,6 +14,7 @@ function FormPage() {
 	const insertURL=moduleURL+"/insert";
 	const updateURL=moduleURL+"/update";
 
+	var rawFormData=null;
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
@@ -67,9 +68,9 @@ function FormPage() {
 	 * 自动调节窗口高度
 	 * */
 	var adjustPopupTask=-1;
-	function adjustPopup() {
+	function adjustPopup(arg) {
 		if(window.pageExt.form.beforeAdjustPopup) {
-			var doNext=window.pageExt.form.beforeAdjustPopup();
+			var doNext=window.pageExt.form.beforeAdjustPopup(arg);
 			if(!doNext) return;
 		}
 
@@ -88,7 +89,7 @@ function FormPage() {
 				if(bodyHeight>0 && bodyHeight!=prevBodyHeight) {
 					updateFormIframeHeight && updateFormIframeHeight(bodyHeight);
 				} else {
-					setTimeout(adjustPopup,1000);
+					setTimeout(function() {adjustPopup(arg);},1000);
 				}
 				prevBodyHeight = bodyHeight;
 				return;
@@ -119,6 +120,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "status",
 			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("状态",'','cmp:form'),
 			filterable: false,
 			on: function(data){
 				setTimeout(function () {
@@ -149,6 +151,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "projectMaintainType",
 			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("保养类型",'','cmp:form'),
 			filterable: true,
 			on: function(data){
 				setTimeout(function () {
@@ -206,6 +209,7 @@ function FormPage() {
 	    });
 		laydate.render({
 			elem: '#startTime',
+			type:"date",
 			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -214,6 +218,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#endTime',
+			type:"date",
 			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -253,6 +258,7 @@ function FormPage() {
 		if(!formData) {
 			formData = admin.getTempData('eam-maintain-task-project-form-data');
 		}
+		rawFormData=formData;
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
 
@@ -303,15 +309,16 @@ function FormPage() {
 		//渐显效果
 		fm.css("opacity","0.0");
         fm.css("display","");
-        setTimeout(function (){
-            fm.animate({
-                opacity:'1.0'
-            },100,null,function (){
+		setTimeout(function (){
+			fm.animate({
+				opacity:'1.0'
+			},100,null,function (){
 				fm.css("opacity","1.0");});
-        },1);
+		},1);
+
 
         //禁用编辑
-		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+		if(action=="view" || (action=="edit" && disableModify) || (action=="create" && disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")
@@ -332,6 +339,16 @@ function FormPage() {
 
 		dataBeforeEdit=getFormData();
 
+	}
+
+	/**
+	 * 获得从服务器请求的原始表单数据
+	 * */
+	function getRawFormData() {
+		if(!rawFormData) {
+			rawFormData = admin.getTempData('eam-maintain-task-project-form-data');
+		}
+		return rawFormData;
 	}
 
 	function getFormData() {
@@ -417,7 +434,9 @@ function FormPage() {
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,
+		getRawFormData:getRawFormData,
 		verifyAndSaveForm:verifyAndSaveForm,
+		renderFormFields:renderFormFields,
 		fillFormData: fillFormData,
 		fillFormDataByIds:fillFormDataByIds,
 		processFormData4Bpm:processFormData4Bpm,

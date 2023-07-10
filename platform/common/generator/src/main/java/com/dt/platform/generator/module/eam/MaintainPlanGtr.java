@@ -51,6 +51,21 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
 
 
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.MAINTAIN_TYPE).table().disable();
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.CYCLE_METHOD).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ACTION_CYCLE_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NOTES).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ORIGINATOR_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.CREATE_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.INFO).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.LAST_TIME).table().hidden(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NEXT_TIME).table().hidden(true);
+
+
+
+
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NAME).search().fuzzySearch();
         cfg.view().search().inputLayout(

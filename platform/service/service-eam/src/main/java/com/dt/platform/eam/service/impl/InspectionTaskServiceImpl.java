@@ -79,6 +79,15 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 		return IDGenerator.getSnowflakeIdString();
 	}
 
+
+
+
+	@Override
+	public Result<JSONObject> queryData(String labels) {
+		return null;
+	}
+
+
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
@@ -215,12 +224,13 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 	@Override
 	public Result execute(String taskId, String pointCode, String status, String ct, String pics) {
 
+
+
 		Result<JSONObject> checkResult=check(taskId,pointCode);
 		if(!checkResult.isSuccess()){
 			return checkResult;
 		}
 		String curId= SessionUser.getCurrent().getActivatedEmployeeId();
-
 
 		InspectionTask task=this.getById(taskId);
 		if(InspectionTaskStatusEnum.ACTING.code().equals(task.getTaskStatus())){
@@ -419,7 +429,7 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 	 * */
 	@Override
 	public Result update(InspectionTask inspectionTask , SaveMode mode,boolean throwsException) {
-		inspectionTask.setTaskStatus(InspectionTaskStatusEnum.ACTING.code());
+
 		Result r=super.update(inspectionTask , mode , throwsException);
 		return r;
 

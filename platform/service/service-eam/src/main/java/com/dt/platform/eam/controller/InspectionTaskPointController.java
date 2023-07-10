@@ -81,7 +81,8 @@ public class InspectionTaskPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_ID, value = "位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_ID, value = "操作人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.IMAGE_ID, value = "图片", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InspectionTaskPointServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -147,7 +148,8 @@ public class InspectionTaskPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_ID, value = "位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_ID, value = "操作人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.IMAGE_ID, value = "图片", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InspectionTaskPointVOMeta.PAGE_INDEX, InspectionTaskPointVOMeta.PAGE_SIZE, InspectionTaskPointVOMeta.SEARCH_FIELD, InspectionTaskPointVOMeta.FUZZY_FIELD, InspectionTaskPointVOMeta.SEARCH_VALUE, InspectionTaskPointVOMeta.DIRTY_FIELDS, InspectionTaskPointVOMeta.SORT_FIELD, InspectionTaskPointVOMeta.SORT_TYPE, InspectionTaskPointVOMeta.IDS })
     @SentinelResource(value = InspectionTaskPointServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -182,7 +184,8 @@ public class InspectionTaskPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_ID, value = "位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_ID, value = "操作人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.IMAGE_ID, value = "图片", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionTaskPointVOMeta.PAGE_INDEX, InspectionTaskPointVOMeta.PAGE_SIZE, InspectionTaskPointVOMeta.SEARCH_FIELD, InspectionTaskPointVOMeta.FUZZY_FIELD, InspectionTaskPointVOMeta.SEARCH_VALUE, InspectionTaskPointVOMeta.DIRTY_FIELDS, InspectionTaskPointVOMeta.SORT_FIELD, InspectionTaskPointVOMeta.SORT_TYPE, InspectionTaskPointVOMeta.IDS })
     @SentinelResource(value = InspectionTaskPointServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -254,7 +257,8 @@ public class InspectionTaskPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_ID, value = "位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_ID, value = "操作人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.IMAGE_ID, value = "图片", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionTaskPointVOMeta.PAGE_INDEX, InspectionTaskPointVOMeta.PAGE_SIZE })
     @SentinelResource(value = InspectionTaskPointServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -290,7 +294,8 @@ public class InspectionTaskPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_ID, value = "位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_ID, value = "操作人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.IMAGE_ID, value = "图片", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InspectionTaskPointServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -308,8 +313,8 @@ public class InspectionTaskPointController extends SuperController {
 
     @SentinelResource(value = InspectionTaskPointServiceProxy.FINISH, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(InspectionTaskPointServiceProxy.FINISH)
-    public Result finish(String id,String pointStatus,String content,String imageId,String itemData){
-        return inspectionTaskPointService.finish( id, pointStatus, content, imageId, itemData);
+    public Result finish(String id, String pointStatus, String content, String imageId, String itemData) {
+        return inspectionTaskPointService.finish(id, pointStatus, content, imageId, itemData);
     }
 
     /**

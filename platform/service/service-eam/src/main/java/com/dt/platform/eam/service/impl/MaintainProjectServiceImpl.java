@@ -1,18 +1,22 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.domain.eam.MaintainProject;
-import com.dt.platform.domain.eam.MaintainProjectSelect;
-import com.dt.platform.domain.eam.MaintainProjectVO;
+import com.dt.platform.constants.enums.eam.MaintainTaskProjectStatusEnum;
+import com.dt.platform.domain.eam.*;
 import com.dt.platform.eam.service.IMaintainProjectSelectService;
 import com.dt.platform.eam.service.IMaintainProjectService;
+import com.dt.platform.eam.service.IMaintainTaskProjectService;
+import com.dt.platform.eam.service.IMappingOwnerService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.dao.data.SaveMode;
@@ -50,6 +54,12 @@ public class MaintainProjectServiceImpl extends SuperService<MaintainProject> im
 
 	@Autowired
 	private IMaintainProjectSelectService maintainProjectSelectService;
+
+	@Autowired
+	private IMappingOwnerService mappingOwnerService;
+
+	@Autowired
+	private IMaintainTaskProjectService maintainTaskProjectService;
 
 	/**
 	 * 注入DAO对象
@@ -95,44 +105,34 @@ public class MaintainProjectServiceImpl extends SuperService<MaintainProject> im
 
 	@Override
 	public PagedList<MaintainProject> queryPagedListBySelected(MaintainProjectVO sample, String ownerId, String ownerType) {
-		ConditionExpr expr=new ConditionExpr();
-		List<String> idsList=new ArrayList<>();
 		String selectedCode=sample.getSelectedCode();
 		sample.setSelectedCode(null);
-		RcdSet rs=null;
-		if(StringUtil.isBlank(ownerId)){
-			rs=dao.query("select project_id from eam_maintain_project_select where deleted=0 and selected_code=?",selectedCode);
-		 }else{
-			rs=dao.query("select project_id from eam_maintain_project_select where deleted=0 and owner_id=?",ownerId);
+		ConditionExpr expr=new ConditionExpr();
+		if(dao().queryRecord("select count(1) cnt from eam_mapping_owner where deleted=0 and owner_id=? and selected_code=?",ownerId,selectedCode).getInteger("cnt")==0){
+			//做一份转
+			String sql="insert into eam_maintain_project_select(id,owner_id,project_id,deleted,selected_code)  select uuid(),owner_id,project_id,0,'"+selectedCode+"' from eam_maintain_project_select where deleted=0 and owner_id=? and selected_code='def' ";
+			dao().execute(sql,ownerId);
+			MappingOwner mappingOwner=new MappingOwner();
+			mappingOwner.setOwnerId(ownerId);
+			mappingOwner.setSelectedCode(selectedCode);
+			mappingOwnerService.insert(mappingOwner,true);
 		}
-		if(rs.size()>0){
-			idsList=rs.getValueList("projectId",String.class);
-		}
-		if(idsList.size()==0){
-			idsList.add("-1");
-		}
-		expr.andIn("id",idsList);
-
+		expr.and("id in (select project_id from eam_maintain_project_select where deleted=0 and owner_id=? and selected_code=?)",ownerId,selectedCode);
 		return super.queryPagedList(sample,expr,sample.getPageSize(),sample.getPageIndex());
+
+
 	}
 
 	@Override
 	public PagedList<MaintainProject> queryPagedListBySelect(MaintainProjectVO sample, String ownerId, String ownerType) {
-		ConditionExpr expr=new ConditionExpr();
-		expr.and("1=1");
-		List<String> idsList=new ArrayList<>();
 
 		String selectedCode=sample.getSelectedCode();
 		sample.setSelectedCode(null);
-		RcdSet rs=null;
-		if(StringUtil.isBlank(ownerId)){
-			rs=dao.query("select project_id from eam_maintain_project_select where deleted=0 and selected_code=?",selectedCode);
-		}else{
-			rs=dao.query("select project_id from eam_maintain_project_select where deleted=0 and owner_id=?",ownerId);
-		}
-		if(rs.size()>0){
-			idsList=rs.getValueList("projectId",String.class);
-			expr.andNotIn("id",idsList.toArray());
+		ConditionExpr expr=new ConditionExpr();
+		if("eam_asset_maintain_project".equals(ownerType)){
+			expr.and("id not in (select project_id from eam_maintain_project_select where deleted=0 and owner_id=? and selected_code=?)",ownerId,selectedCode);
+		}else if("eam_asset_maintain_task".equals(ownerType)){
+			expr.and("id not in (select project_id from eam_maintain_task_project where deleted=0 and task_id=? and selected_code=?)",ownerId,selectedCode);
 		}
 		return super.queryPagedList(sample,expr,sample.getPageSize(),sample.getPageIndex());
 	}
@@ -158,6 +158,68 @@ public class MaintainProjectServiceImpl extends SuperService<MaintainProject> im
 		return ErrorDesc.success();
 	}
 
+	@Override
+	public Result selectDeleteByIds(String ownerId, String ids, String selectedCode) {
+		JSONArray arr= JSONArray.parseArray(ids);
+		if(arr!=null&&arr.size()>0){
+			for(int i=0;i<arr.size();i++){
+				String projectId=arr.getString(i);
+				dao.execute("update eam_maintain_project_select set deleted=1 where deleted=0 and owner_id=? and project_id=? and selected_code=?",ownerId,projectId,selectedCode);
+			}
+		}
+		return ErrorDesc.success();
+	}
+
+	@Override
+	public Result selectSaveIds(String ownerId, String ids, String selectedCode,String ownerType) {
+		if(StringUtil.isBlank(selectedCode)){
+			return ErrorDesc.failureMessage("selectCode 参数为空");
+		}
+		if(StringUtil.isBlank(ownerId)){
+			return ErrorDesc.failureMessage("ownerId 参数为空");
+		}
+		if(StringUtil.isBlank(ids)){
+			return ErrorDesc.failureMessage("ids 参数为空");
+		}
+		JSONArray idsArr=JSONArray.parseArray(ids);
+
+		if("eam_asset_maintain_project".equals(ownerType)){
+			if(idsArr!=null&&idsArr.size()>0){
+				for(int i=0;i<idsArr.size();i++){
+					String itemId=idsArr.getString(i);
+					if(dao.queryRecord("select count(1) cnt from eam_maintain_project_select where deleted=0 and owner_id=? and project_id=? and selected_code=?",ownerId,itemId,selectedCode).getInteger("cnt")==0){
+						MaintainProjectSelect item=new MaintainProjectSelect();
+						item.setProjectId(itemId);
+						item.setOwnerId(ownerId);
+						item.setSelectedCode(selectedCode);
+						maintainProjectSelectService.insert(item,true);
+					}else{
+						Logger.info("repeat,id:"+itemId+",ignore");
+					}
+				}
+			}
+		}else if("eam_asset_maintain_task".equals(ownerType)){
+			if(idsArr!=null&&idsArr.size()>0){
+				for(int i=0;i<idsArr.size();i++){
+					String itemId=idsArr.getString(i);
+					MaintainProject project=this.getById(itemId);
+					MaintainTaskProject item=new MaintainTaskProject();
+					item.setProjectId(itemId);
+					item.setSelectedCode(selectedCode);
+					item.setTaskId(ownerId);
+					item.setStatus(MaintainTaskProjectStatusEnum.UNEXECUTED.code());
+					item.setProjectName(project.getName());
+					item.setProjectNotes(project.getNotes());
+					item.setProjectCode(project.getCode());
+					item.setProjectMaintainType(project.getMaintainType());
+					item.setProjectBaseCost(project.getBaseCost());
+					item.setProjectAttachId(project.getAttachId());
+					maintainTaskProjectService.insert(item,true);
+				}
+			}
+		}
+		return ErrorDesc.success();
+	}
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param maintainProject 数据对象

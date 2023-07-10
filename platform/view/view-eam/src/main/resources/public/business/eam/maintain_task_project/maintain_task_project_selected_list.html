@@ -2,15 +2,16 @@
 /**
  * 保养项目 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-08 13:08:56
+ * @since 2023-07-10 16:07:47
  */
  -->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
     <title th:text="${lang.translate('保养项目')}">保养项目</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
@@ -33,8 +34,51 @@
 
     <div class="layui-card-body" style="">
 
+        <div class="search-bar" style="">
 
-        <div id="table-area" style="margin-top: 8px ">
+            <div class="search-input-rows" style="opacity: 0">
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 项目 , projectId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 任务 , taskId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 状态 , status ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.MaintainTaskProjectStatusEnum')}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 保养结果 , content ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 标准工时 , projectBaseCost ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 保养手册 , projectAttachId ,typeName=upload, isHideInSearch=true -->
+                    <!-- 项目备注 , projectNotes ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 标准工时 , baseCost ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 开始时间 , startTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 结束时间 , endTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 保养类型 , projectMaintainType ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 项目编号 , projectCode ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('项目编号')}" class="search-label projectCode-label">项目编号</span><span class="search-colon">:</span></div>
+                        <input id="projectCode" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 项目名称 , projectName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('项目名称')}" class="search-label projectName-label">项目名称</span><span class="search-colon">:</span></div>
+                        <input id="projectName" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!-- 按钮区域 -->
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
+                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+            </div>
+        </div>
+
+        <div id="table-area" style="margin-top: 42px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -46,19 +90,18 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-     </div>
+        <button  id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('选择','','cmp:table.button')}">选择</span></button>
+        <button id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除')}">删除</span></button>
+
+    </div>
 </script>
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
 
-    <button th:if="${perm.checkAuth('eam_maintain_task_project:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
-    <button th:if="${perm.checkAnyAuth('eam_maintain_task_project:update','eam_maintain_task_project:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('执行')}">修改</span></button>
-    <button th:if="${perm.checkAuth('eam_maintain_task_project:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
 
 </script>
 
@@ -66,7 +109,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.MaintainTaskProjectStatusEnum')}]];
-    var AUTH_PREFIX="eam_maintain_task_project";
+    var AUTH_PREFIX="eam_maintain_task_project2";
 
     var SELECTED_CODE = [[${selectedCode}]] ;
     var OWNER_ID = [[${ownerId}]] ;

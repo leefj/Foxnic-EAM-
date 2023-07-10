@@ -243,7 +243,7 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 			for(int i=0;i<pointList.size();i++){
 				InspectionPointOwner pointOwner=pointOwnerList.get(i);
 				String selectedCode=pointOwner.getSelectedCode();
-				if(!StringUtil.isBlank(selectedCode)){
+				if(!"def".equals(selectedCode)){
 					continue;
 				}
 				InspectionPoint point=pointOwner.getInspectionPoint();
@@ -259,6 +259,7 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 				taskPoint.setPointCode(point.getCode());
 				taskPoint.setPointName(point.getName());
 				taskPoint.setPointContent(point.getContent());
+				taskPoint.setSelectedCode("def");
 				taskPoint.setPointRouteId(point.getRouteId());
 				taskPoint.setPointRfid(point.getRfid());
 				taskPoint.setPointPosId(point.getPosId());
@@ -336,7 +337,7 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 		}
 		Result r=super.insert(inspectionPlan,throwsException);
 		if(r.isSuccess()){
-			dao.execute("update eam_inspection_point_owner set selected_code=?,owner_id=? where owner_id=? and selected_code=?","",inspectionPlan.getId(),selectedCode,selectedCode);
+			dao.execute("update eam_inspection_point_owner set selected_code=?,owner_id=? where owner_id=? and selected_code=?","def",inspectionPlan.getId(),selectedCode,selectedCode);
 		}
 		return r;
 	}
@@ -430,8 +431,8 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 		String selectedCode=inspectionPlan.getSelectedCode();
 		Result r=super.update(inspectionPlan , mode , throwsException);
 		if(r.isSuccess()){
-			dao.execute("delete from eam_inspection_point_owner where owner_id=? and (selected_code ='' or selected_code is null)",inspectionPlan.getId(),selectedCode);
-			dao.execute("update eam_inspection_point_owner set selected_code='' where owner_id=? and selected_code=?",inspectionPlan.getId(),selectedCode);
+			dao.execute("delete from eam_inspection_point_owner where owner_id=? and selected_code='def'",inspectionPlan.getId(),selectedCode);
+			dao.execute("update eam_inspection_point_owner set selected_code='def' where owner_id=? and selected_code=?",inspectionPlan.getId(),selectedCode);
 		}
 		return r;
 	}

@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养任务VO类型
  * <p>保养任务 , 数据表 eam_maintain_task 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 19:40:42
+ * @since 2023-07-10 19:53:48
  * @sign 8B3D8B895A93C4002249F053A1457FB2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -407,7 +407,6 @@ public class MaintainTaskVO extends MaintainTask {
 		inst.setNotes(this.getNotes());
 		inst.setAssetPos(this.getAssetPos());
 		inst.setGroupId(this.getGroupId());
-		inst.setSelectedCode(this.getSelectedCode());
 		inst.setContent(this.getContent());
 		inst.setTimeout(this.getTimeout());
 		inst.setBusinessCode(this.getBusinessCode());
@@ -451,6 +450,7 @@ public class MaintainTaskVO extends MaintainTask {
 			inst.setProjectIds(this.getProjectIds());
 			inst.setTaskProjectIds(this.getTaskProjectIds());
 			inst.setOriginator(this.getOriginator());
+			inst.setSelectedCode(this.getSelectedCode());
 			inst.setMaintainTypeDict(this.getMaintainTypeDict());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
@@ -525,7 +525,6 @@ public class MaintainTaskVO extends MaintainTask {
 			this.setNotes(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.NOTES)));
 			this.setAssetPos(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.ASSET_POS)));
 			this.setGroupId(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.GROUP_ID)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.CONTENT)));
 			this.setTimeout(DataParser.parse(BigDecimal.class, map.get(MaintainTaskVOMeta.TIMEOUT)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.BUSINESS_CODE)));
@@ -565,6 +564,7 @@ public class MaintainTaskVO extends MaintainTask {
 			this.setFuzzyField(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(MaintainTaskVOMeta.PAGE_SIZE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(MaintainTaskVOMeta.ORIGINATOR)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.SELECTED_CODE)));
 			this.setMaintainTypeDict(DataParser.parse(DictItem.class, map.get(MaintainTaskVOMeta.MAINTAIN_TYPE_DICT)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(MaintainTaskVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.SORT_TYPE)));
@@ -581,7 +581,6 @@ public class MaintainTaskVO extends MaintainTask {
 				this.setNotes( (String)map.get(MaintainTaskVOMeta.NOTES));
 				this.setAssetPos( (String)map.get(MaintainTaskVOMeta.ASSET_POS));
 				this.setGroupId( (String)map.get(MaintainTaskVOMeta.GROUP_ID));
-				this.setSelectedCode( (String)map.get(MaintainTaskVOMeta.SELECTED_CODE));
 				this.setContent( (String)map.get(MaintainTaskVOMeta.CONTENT));
 				this.setTimeout( (BigDecimal)map.get(MaintainTaskVOMeta.TIMEOUT));
 				this.setBusinessCode( (String)map.get(MaintainTaskVOMeta.BUSINESS_CODE));
@@ -621,6 +620,7 @@ public class MaintainTaskVO extends MaintainTask {
 				this.setFuzzyField( (String)map.get(MaintainTaskVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(MaintainTaskVOMeta.PAGE_SIZE));
 				this.setOriginator( (Employee)map.get(MaintainTaskVOMeta.ORIGINATOR));
+				this.setSelectedCode( (String)map.get(MaintainTaskVOMeta.SELECTED_CODE));
 				this.setMaintainTypeDict( (DictItem)map.get(MaintainTaskVOMeta.MAINTAIN_TYPE_DICT));
 				this.setPageIndex( (Integer)map.get(MaintainTaskVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(MaintainTaskVOMeta.SORT_TYPE));
@@ -650,7 +650,6 @@ public class MaintainTaskVO extends MaintainTask {
 			this.setNotes(DataParser.parse(String.class, r.getValue(MaintainTaskVOMeta.NOTES)));
 			this.setAssetPos(DataParser.parse(String.class, r.getValue(MaintainTaskVOMeta.ASSET_POS)));
 			this.setGroupId(DataParser.parse(String.class, r.getValue(MaintainTaskVOMeta.GROUP_ID)));
-			this.setSelectedCode(DataParser.parse(String.class, r.getValue(MaintainTaskVOMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, r.getValue(MaintainTaskVOMeta.CONTENT)));
 			this.setTimeout(DataParser.parse(BigDecimal.class, r.getValue(MaintainTaskVOMeta.TIMEOUT)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(MaintainTaskVOMeta.BUSINESS_CODE)));
@@ -689,7 +688,6 @@ public class MaintainTaskVO extends MaintainTask {
 				this.setNotes( (String)r.getValue(MaintainTaskVOMeta.NOTES));
 				this.setAssetPos( (String)r.getValue(MaintainTaskVOMeta.ASSET_POS));
 				this.setGroupId( (String)r.getValue(MaintainTaskVOMeta.GROUP_ID));
-				this.setSelectedCode( (String)r.getValue(MaintainTaskVOMeta.SELECTED_CODE));
 				this.setContent( (String)r.getValue(MaintainTaskVOMeta.CONTENT));
 				this.setTimeout( (BigDecimal)r.getValue(MaintainTaskVOMeta.TIMEOUT));
 				this.setBusinessCode( (String)r.getValue(MaintainTaskVOMeta.BUSINESS_CODE));

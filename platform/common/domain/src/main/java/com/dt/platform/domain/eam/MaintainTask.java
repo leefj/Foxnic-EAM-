@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养任务
  * <p>保养任务 , 数据表 eam_maintain_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 19:40:42
- * @sign 234089915D37B5B0886AFBFCB4AB3A0F
+ * @since 2023-07-10 19:53:48
+ * @sign 14E9EF3E25793EDBD58FA3B2A38A1795
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -194,12 +194,6 @@ public class MaintainTask extends Entity {
 	private String notes;
 	
 	/**
-	 * 选择：选择
-	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择")
-	private String selectedCode;
-	
-	/**
 	 * 制单人：制单人
 	*/
 	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
@@ -321,6 +315,12 @@ public class MaintainTask extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="执行人" , notes = "执行人")
 	private Employee executor;
+	
+	/**
+	 * selectedCode：selectedCode
+	*/
+	@ApiModelProperty(required = false,value="selectedCode" , notes = "selectedCode")
+	private String selectedCode;
 	
 	/**
 	 * 获得 主键<br>
@@ -798,25 +798,6 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
-	 * 获得 选择<br>
-	 * 选择
-	 * @return 选择
-	*/
-	public String getSelectedCode() {
-		return selectedCode;
-	}
-	
-	/**
-	 * 设置 选择
-	 * @param selectedCode 选择
-	 * @return 当前对象
-	*/
-	public MaintainTask setSelectedCode(String selectedCode) {
-		this.selectedCode=selectedCode;
-		return this;
-	}
-	
-	/**
 	 * 获得 制单人<br>
 	 * 制单人
 	 * @return 制单人
@@ -1270,6 +1251,25 @@ public class MaintainTask extends Entity {
 		this.executor=executor;
 		return this;
 	}
+	
+	/**
+	 * 获得 selectedCode<br>
+	 * selectedCode
+	 * @return selectedCode
+	*/
+	public String getSelectedCode() {
+		return selectedCode;
+	}
+	
+	/**
+	 * 设置 selectedCode
+	 * @param selectedCode selectedCode
+	 * @return 当前对象
+	*/
+	public MaintainTask setSelectedCode(String selectedCode) {
+		this.selectedCode=selectedCode;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1318,7 +1318,6 @@ public class MaintainTask extends Entity {
 		inst.setNotes(this.getNotes());
 		inst.setAssetPos(this.getAssetPos());
 		inst.setGroupId(this.getGroupId());
-		inst.setSelectedCode(this.getSelectedCode());
 		inst.setContent(this.getContent());
 		inst.setTimeout(this.getTimeout());
 		inst.setBusinessCode(this.getBusinessCode());
@@ -1360,6 +1359,7 @@ public class MaintainTask extends Entity {
 			inst.setTaskProjectIds(this.getTaskProjectIds());
 			inst.setOriginator(this.getOriginator());
 			inst.setAsset(this.getAsset());
+			inst.setSelectedCode(this.getSelectedCode());
 			inst.setMaintainTypeDict(this.getMaintainTypeDict());
 			inst.setMaintainGroup(this.getMaintainGroup());
 		}
@@ -1424,7 +1424,6 @@ public class MaintainTask extends Entity {
 			this.setNotes(DataParser.parse(String.class, map.get(MaintainTaskMeta.NOTES)));
 			this.setAssetPos(DataParser.parse(String.class, map.get(MaintainTaskMeta.ASSET_POS)));
 			this.setGroupId(DataParser.parse(String.class, map.get(MaintainTaskMeta.GROUP_ID)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainTaskMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, map.get(MaintainTaskMeta.CONTENT)));
 			this.setTimeout(DataParser.parse(BigDecimal.class, map.get(MaintainTaskMeta.TIMEOUT)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(MaintainTaskMeta.BUSINESS_CODE)));
@@ -1462,6 +1461,7 @@ public class MaintainTask extends Entity {
 			this.setExecutor(DataParser.parse(Employee.class, map.get(MaintainTaskMeta.EXECUTOR)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(MaintainTaskMeta.ORIGINATOR)));
 			this.setAsset(DataParser.parse(Asset.class, map.get(MaintainTaskMeta.ASSET)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainTaskMeta.SELECTED_CODE)));
 			this.setMaintainTypeDict(DataParser.parse(DictItem.class, map.get(MaintainTaskMeta.MAINTAIN_TYPE_DICT)));
 			this.setMaintainGroup(DataParser.parse(MaintainGroup.class, map.get(MaintainTaskMeta.MAINTAIN_GROUP)));
 			return true;
@@ -1470,7 +1470,6 @@ public class MaintainTask extends Entity {
 				this.setNotes( (String)map.get(MaintainTaskMeta.NOTES));
 				this.setAssetPos( (String)map.get(MaintainTaskMeta.ASSET_POS));
 				this.setGroupId( (String)map.get(MaintainTaskMeta.GROUP_ID));
-				this.setSelectedCode( (String)map.get(MaintainTaskMeta.SELECTED_CODE));
 				this.setContent( (String)map.get(MaintainTaskMeta.CONTENT));
 				this.setTimeout( (BigDecimal)map.get(MaintainTaskMeta.TIMEOUT));
 				this.setBusinessCode( (String)map.get(MaintainTaskMeta.BUSINESS_CODE));
@@ -1508,6 +1507,7 @@ public class MaintainTask extends Entity {
 				this.setExecutor( (Employee)map.get(MaintainTaskMeta.EXECUTOR));
 				this.setOriginator( (Employee)map.get(MaintainTaskMeta.ORIGINATOR));
 				this.setAsset( (Asset)map.get(MaintainTaskMeta.ASSET));
+				this.setSelectedCode( (String)map.get(MaintainTaskMeta.SELECTED_CODE));
 				this.setMaintainTypeDict( (DictItem)map.get(MaintainTaskMeta.MAINTAIN_TYPE_DICT));
 				this.setMaintainGroup( (MaintainGroup)map.get(MaintainTaskMeta.MAINTAIN_GROUP));
 				return true;
@@ -1529,7 +1529,6 @@ public class MaintainTask extends Entity {
 			this.setNotes(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.NOTES)));
 			this.setAssetPos(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.ASSET_POS)));
 			this.setGroupId(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.GROUP_ID)));
-			this.setSelectedCode(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.CONTENT)));
 			this.setTimeout(DataParser.parse(BigDecimal.class, r.getValue(MaintainTaskMeta.TIMEOUT)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.BUSINESS_CODE)));
@@ -1568,7 +1567,6 @@ public class MaintainTask extends Entity {
 				this.setNotes( (String)r.getValue(MaintainTaskMeta.NOTES));
 				this.setAssetPos( (String)r.getValue(MaintainTaskMeta.ASSET_POS));
 				this.setGroupId( (String)r.getValue(MaintainTaskMeta.GROUP_ID));
-				this.setSelectedCode( (String)r.getValue(MaintainTaskMeta.SELECTED_CODE));
 				this.setContent( (String)r.getValue(MaintainTaskMeta.CONTENT));
 				this.setTimeout( (BigDecimal)r.getValue(MaintainTaskMeta.TIMEOUT));
 				this.setBusinessCode( (String)r.getValue(MaintainTaskMeta.BUSINESS_CODE));

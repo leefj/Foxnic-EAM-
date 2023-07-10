@@ -5,6 +5,7 @@ import com.dt.platform.domain.eam.InspectionTaskPointVO;
 import java.util.List;
 import com.dt.platform.domain.eam.InspectionTaskPoint;
 import java.util.Date;
+import java.math.BigDecimal;
 import com.dt.platform.domain.eam.InspectionRoute;
 import com.dt.platform.domain.eam.InspectionTask;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -18,7 +19,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 22:53:43
+ * @since 2023-07-10 13:13:56
  * @sign 651D328B81E70EC1A0B8941BD7D880C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -196,6 +197,16 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,CONTENT, java.lang.String.class, "巡检结果", "巡检结果", java.lang.String.class, null);
 	
 	/**
+	 * 图片 , 类型: java.lang.String
+	*/
+	public static final String IMAGE_ID="imageId";
+	
+	/**
+	 * 图片 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> IMAGE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,IMAGE_ID, java.lang.String.class, "图片", "图片", java.lang.String.class, null);
+	
+	/**
 	 * 巡检点 , 类型: java.lang.String
 	*/
 	public static final String POINT_ID="pointId";
@@ -276,24 +287,24 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> POINT_POS_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,POINT_POS_ID, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
 	
 	/**
-	 * 位置经度 , 类型: java.lang.String
+	 * 位置经度 , 类型: java.math.BigDecimal
 	*/
 	public static final String POINT_POS_LONGITUDE="pointPosLongitude";
 	
 	/**
-	 * 位置经度 , 类型: java.lang.String
+	 * 位置经度 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> POINT_POS_LONGITUDE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,POINT_POS_LONGITUDE, java.lang.String.class, "位置经度", "位置经度", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.math.BigDecimal> POINT_POS_LONGITUDE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,POINT_POS_LONGITUDE, java.math.BigDecimal.class, "位置经度", "位置经度", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 位置纬度 , 类型: java.lang.String
+	 * 位置纬度 , 类型: java.math.BigDecimal
 	*/
 	public static final String POINT_POS_LATITUDE="pointPosLatitude";
 	
 	/**
-	 * 位置纬度 , 类型: java.lang.String
+	 * 位置纬度 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> POINT_POS_LATITUDE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,POINT_POS_LATITUDE, java.lang.String.class, "位置纬度", "位置纬度", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.math.BigDecimal> POINT_POS_LATITUDE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,POINT_POS_LATITUDE, java.math.BigDecimal.class, "位置纬度", "位置纬度", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -508,7 +519,7 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , POINT_ID , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION , ROUTE , TASK , OPER_USER , INSPECTION_POINT_POS , CHECK_ITEM_LIST , CHECK_SELECT_LIST , INSPECTION_POINT , ITEM_COUNT };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , IMAGE_ID , POINT_ID , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION , ROUTE , TASK , OPER_USER , INSPECTION_POINT_POS , CHECK_ITEM_LIST , CHECK_SELECT_LIST , INSPECTION_POINT , ITEM_COUNT };
 	
 	/**
 	 * 代理类
@@ -706,6 +717,17 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 		}
 		
 		/**
+		 * 设置 图片
+		 * @param imageId 图片
+		 * @return 当前对象
+		*/
+		public InspectionTaskPoint setImageId(String imageId) {
+			super.change(IMAGE_ID,super.getImageId(),imageId);
+			super.setImageId(imageId);
+			return this;
+		}
+		
+		/**
 		 * 设置 巡检点
 		 * @param pointId 巡检点
 		 * @return 当前对象
@@ -798,7 +820,7 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 		 * @param pointPosLongitude 位置经度
 		 * @return 当前对象
 		*/
-		public InspectionTaskPoint setPointPosLongitude(String pointPosLongitude) {
+		public InspectionTaskPoint setPointPosLongitude(BigDecimal pointPosLongitude) {
 			super.change(POINT_POS_LONGITUDE,super.getPointPosLongitude(),pointPosLongitude);
 			super.setPointPosLongitude(pointPosLongitude);
 			return this;
@@ -809,7 +831,7 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 		 * @param pointPosLatitude 位置纬度
 		 * @return 当前对象
 		*/
-		public InspectionTaskPoint setPointPosLatitude(String pointPosLatitude) {
+		public InspectionTaskPoint setPointPosLatitude(BigDecimal pointPosLatitude) {
 			super.change(POINT_POS_LATITUDE,super.getPointPosLatitude(),pointPosLatitude);
 			super.setPointPosLatitude(pointPosLatitude);
 			return this;
@@ -1074,6 +1096,7 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 			inst.setId(this.getId());
 			inst.setPointStatus(this.getPointStatus());
 			inst.setOperTime(this.getOperTime());
+			inst.setImageId(this.getImageId());
 			inst.setPointCode(this.getPointCode());
 			inst.setPointContent(this.getPointContent());
 			inst.setUpdateTime(this.getUpdateTime());

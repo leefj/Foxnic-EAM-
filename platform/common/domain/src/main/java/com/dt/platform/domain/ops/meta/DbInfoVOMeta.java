@@ -18,7 +18,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 06:52:38
+ * @since 2023-07-10 09:21:11
  * @sign 072C5A86F75E9E21D5871FA491A60284
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -166,14 +166,14 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> HOST_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,HOST_ID, java.lang.String.class, "主机", "主机", java.lang.String.class, null);
 	
 	/**
-	 * 数据库类型 , 类型: java.lang.String
+	 * 库类型 , 类型: java.lang.String
 	*/
 	public static final String TYPE_ID="typeId";
 	
 	/**
-	 * 数据库类型 , 类型: java.lang.String
+	 * 库类型 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> TYPE_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,TYPE_ID, java.lang.String.class, "数据库类型", "数据库类型", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> TYPE_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,TYPE_ID, java.lang.String.class, "库类型", "库类型", java.lang.String.class, null);
 	
 	/**
 	 * 数据库名 , 类型: java.lang.String
@@ -186,14 +186,14 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,NAME, java.lang.String.class, "数据库名", "数据库名", java.lang.String.class, null);
 	
 	/**
-	 * 数据库状态 , 类型: java.lang.String
+	 * 库状态 , 类型: java.lang.String
 	*/
 	public static final String STATUS="status";
 	
 	/**
-	 * 数据库状态 , 类型: java.lang.String
+	 * 库状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,STATUS, java.lang.String.class, "数据库状态", "数据库状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,STATUS, java.lang.String.class, "库状态", "库状态", java.lang.String.class, null);
 	
 	/**
 	 * 备份状态 , 类型: java.lang.String
@@ -783,8 +783,8 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		}
 		
 		/**
-		 * 设置 数据库类型
-		 * @param typeId 数据库类型
+		 * 设置 库类型
+		 * @param typeId 库类型
 		 * @return 当前对象
 		*/
 		public DbInfo setTypeId(String typeId) {
@@ -805,8 +805,8 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		}
 		
 		/**
-		 * 设置 数据库状态
-		 * @param status 数据库状态
+		 * 设置 库状态
+		 * @param status 库状态
 		 * @return 当前对象
 		*/
 		public DbInfo setStatus(String status) {

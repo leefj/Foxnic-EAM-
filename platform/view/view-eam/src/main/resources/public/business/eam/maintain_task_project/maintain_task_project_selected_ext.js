@@ -27,11 +27,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
-            if(PAGE_TYPE&&PAGE_TYPE=="view"){
-                var toolHtml=document.getElementById("tableOperationTemplate").innerHTML;
-                toolHtml=toolHtml.repeat(/lay-event="edit"/i,"style=\"display:none\"")
-                toolHtml=toolHtml.repeat(/lay-event="del"/i,"style=\"display:none\"")
-                document.getElementById("tableOperationTemplate").innerHTML=toolHtml;
+
+            if(PAGE_TYPE=="view"){
+                var operHtml=document.getElementById("toolbarTemplate").innerHTML;
+                operHtml=operHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="batch-del"/i, "style=\"display:none\"")
+                document.getElementById("toolbarTemplate").innerHTML=operHtml;
             }
         },
         /**
@@ -82,13 +83,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param location 调用的代码位置
          * */
         beforeQuery:function (conditions,param,location) {
-            if(OWNER_ID){
-                param.taskId=OWNER_ID;
-            }else{
-                //param.taskId=""
-            }
-
             console.log('beforeQuery',conditions,param,location);
+            param.ownerId=OWNER_ID;
+            param.selectedCode=SELECTED_CODE;
+
             return true;
         },
         /**
@@ -179,6 +177,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //获取参数，并调整下拉框查询用的URL
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
+
+            $("#projectName").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#projectCode").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#projectBaseCost").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#projectAttachId").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#projectNotes").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#baseCost").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#projectAttachId-button").attr("disabled","disabled").css("background-color","#e6e6e6");
+
+
             console.log("form:beforeInit")
         },
         /**
@@ -199,6 +207,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterDataFill:function (data) {
             console.log('afterDataFill',data);
+            $("#projectMaintainType").find("xm-select").css("background-color","#e6e6e6");
+            var projectMaintainTypeSelect= xmSelect.get('#projectMaintainType',true);
+            if(projectMaintainTypeSelect){
+                projectMaintainTypeSelect.update({disabled:true})
+            }
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框

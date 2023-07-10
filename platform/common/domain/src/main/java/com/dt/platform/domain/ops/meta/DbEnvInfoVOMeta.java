@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 14:42:00
+ * @since 2023-07-10 09:17:24
  * @sign EC2F1D6890780FBBFB6F490CDBDA54F0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -180,6 +180,16 @@ public class DbEnvInfoVOMeta extends DbEnvInfoMeta {
 	 * 数据库 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbEnvInfoVO,java.lang.String> DB_PROP = new BeanProperty(com.dt.platform.domain.ops.DbEnvInfoVO.class ,DB, java.lang.String.class, "数据库", "数据库", java.lang.String.class, null);
+	
+	/**
+	 * 描述 , 类型: java.lang.String
+	*/
+	public static final String DB_DESC="dbDesc";
+	
+	/**
+	 * 描述 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbEnvInfoVO,java.lang.String> DB_DESC_PROP = new BeanProperty(com.dt.platform.domain.ops.DbEnvInfoVO.class ,DB_DESC, java.lang.String.class, "描述", "描述", java.lang.String.class, null);
 	
 	/**
 	 * IP , 类型: java.lang.String
@@ -364,7 +374,7 @@ public class DbEnvInfoVOMeta extends DbEnvInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , LABEL , DB_INST_ID , DB , IP , VOUCHER , FILE_IDS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , HOST , HOST_NAME , HOST_IP , DB_INFO , DB_NAME , CIPHERTEXT_BOX_DATA };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , LABEL , DB_INST_ID , DB , DB_DESC , IP , VOUCHER , FILE_IDS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , HOST , HOST_NAME , HOST_IP , DB_INFO , DB_NAME , CIPHERTEXT_BOX_DATA };
 	
 	/**
 	 * 代理类
@@ -547,6 +557,17 @@ public class DbEnvInfoVOMeta extends DbEnvInfoMeta {
 		public DbEnvInfo setDb(String db) {
 			super.change(DB,super.getDb(),db);
 			super.setDb(db);
+			return this;
+		}
+		
+		/**
+		 * 设置 描述
+		 * @param dbDesc 描述
+		 * @return 当前对象
+		*/
+		public DbEnvInfo setDbDesc(String dbDesc) {
+			super.change(DB_DESC,super.getDbDesc(),dbDesc);
+			super.setDbDesc(dbDesc);
 			return this;
 		}
 		
@@ -764,6 +785,7 @@ public class DbEnvInfoVOMeta extends DbEnvInfoMeta {
 		public DbEnvInfoVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
+			inst.setDbDesc(this.getDbDesc());
 			inst.setVoucher(this.getVoucher());
 			inst.setIp(this.getIp());
 			inst.setUpdateTime(this.getUpdateTime());

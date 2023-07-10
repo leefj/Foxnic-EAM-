@@ -2,9 +2,12 @@ package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.constants.enums.eam.CheckItemTypeEnum;
 import com.dt.platform.domain.eam.InspectionPointItem;
 import com.dt.platform.eam.service.IInspectionPointItemService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
@@ -86,6 +89,32 @@ public class CheckItemServiceImpl extends SuperService<CheckItem> implements ICh
 	@Override
 	public Result insert(CheckItem checkItem,boolean throwsException) {
 
+		//验证配置信息
+		if(CheckItemTypeEnum.INPUT.code().equals(checkItem.getType())){
+			checkItem.setConfig("");
+		}else if(CheckItemTypeEnum.NUMBER_RANGE.code().equals(checkItem.getType())){
+			if(StringUtil.isBlank(checkItem.getConfig())|| JSONObject.parseObject(checkItem.getConfig())==null ){
+				return ErrorDesc.failure("当前配置为空");
+			}
+			JSONObject obj= JSONObject.parseObject(checkItem.getConfig());
+			if(obj.size()==0){
+				return ErrorDesc.failure("当前配置为空");
+			}
+
+		}else if(CheckItemTypeEnum.RADIOBOX.code().equals(checkItem.getType()) ||JSONArray.parseArray(checkItem.getConfig())==null ){
+			if(StringUtil.isBlank(checkItem.getConfig())){
+				return ErrorDesc.failure("当前配置为空");
+			}
+			JSONArray arr= JSONArray.parseArray(checkItem.getConfig());
+			if(arr.size()==0){
+				return ErrorDesc.failure("当前配置为空");
+			}
+		}else{
+			return ErrorDesc.failure("保存错误,当前类型不支持");
+		}
+
+
+
 		if(StringUtil.isBlank(checkItem.getCode())){
 			Result codeResult= CodeModuleServiceProxy.api().generateCode(CodeModuleEnum.COMMON_SEQ_CODE.code());
 			if(!codeResult.isSuccess()){
@@ -101,7 +130,7 @@ public class CheckItemServiceImpl extends SuperService<CheckItem> implements ICh
 
 	@Override
 	public Result selectDeleteById(String ownerId, String id,String selectCode) {
-		dao.execute("delete from eam_inspection_point_item where point_id=? and item_id=? and select_code=?",ownerId,id,selectCode);
+		dao.execute("update eam_inspection_point_item set deleted=1 where deleted=0 and point_id=? and item_id=? and select_code=?",ownerId,id,selectCode);
 		return ErrorDesc.success();
 	}
 	@Override
@@ -220,6 +249,31 @@ public class CheckItemServiceImpl extends SuperService<CheckItem> implements ICh
 	 * */
 	@Override
 	public Result update(CheckItem checkItem , SaveMode mode,boolean throwsException) {
+		//验证配置信息
+		if(CheckItemTypeEnum.INPUT.code().equals(checkItem.getType())){
+			checkItem.setConfig("");
+		}else if(CheckItemTypeEnum.NUMBER_RANGE.code().equals(checkItem.getType())){
+			if(StringUtil.isBlank(checkItem.getConfig())|| JSONObject.parseObject(checkItem.getConfig())==null ){
+				return ErrorDesc.failure("当前配置为空");
+			}
+			JSONObject obj= JSONObject.parseObject(checkItem.getConfig());
+			if(obj.size()==0){
+				return ErrorDesc.failure("当前配置为空");
+			}
+
+		}else if(CheckItemTypeEnum.RADIOBOX.code().equals(checkItem.getType()) ||JSONArray.parseArray(checkItem.getConfig())==null ){
+			if(StringUtil.isBlank(checkItem.getConfig())){
+				return ErrorDesc.failure("当前配置为空");
+			}
+			JSONArray arr= JSONArray.parseArray(checkItem.getConfig());
+			if(arr.size()==0){
+				return ErrorDesc.failure("当前配置为空");
+			}
+		}else{
+			return ErrorDesc.failure("保存错误,当前类型不支持");
+		}
+
+
 	//	checkItem.setCode(null);
 		Result r=super.update(checkItem , mode , throwsException);
 		return r;

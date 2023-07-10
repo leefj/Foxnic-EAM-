@@ -347,11 +347,11 @@ function ListPage() {
 			}
 			else if(layEvent === 'detail'){
 				var q="?taskPointId="+data.id;
-				var top=10;
+				var top2=10;
 				admin.popupCenter({
 					title: "巡检检查项目",
 					resize: false,
-					offset: [top,null],
+					offset: [top2,null],
 					area: ["80%","85%"],
 					type: 2,
 					id:"eam-inspection-point-form-data-win",
@@ -372,7 +372,9 @@ function ListPage() {
 					top.layer.close(i);
 
 					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					var ps={}
+
+					admin.request(moduleURL+"/select-delete-by-id", ps, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {

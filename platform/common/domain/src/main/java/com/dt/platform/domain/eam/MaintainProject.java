@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养项目
  * <p>保养项目 , 数据表 eam_maintain_project 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 18:15:14
+ * @since 2023-07-10 13:32:22
  * @sign E651BB049433A39E7BCBF8E9F6046C25
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -66,7 +66,7 @@ public class MaintainProject extends Entity {
 	/**
 	 * 保养内容：保养内容
 	*/
-	@ApiModelProperty(required = false,value="保养内容" , notes = "保养内容")
+	@ApiModelProperty(required = false,value="保养内容" , notes = "保养内容" , example = "保养内容1")
 	private String content;
 	
 	/**
@@ -78,7 +78,7 @@ public class MaintainProject extends Entity {
 	/**
 	 * 标准工时：小时)
 	*/
-	@ApiModelProperty(required = false,value="标准工时" , notes = "小时)" , example = "1.00")
+	@ApiModelProperty(required = false,value="标准工时" , notes = "小时)" , example = "1.50")
 	private BigDecimal baseCost;
 	
 	/**
@@ -120,7 +120,7 @@ public class MaintainProject extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-06 05:28:19")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-07 07:44:22")
 	private Date updateTime;
 	
 	/**
@@ -159,7 +159,7 @@ public class MaintainProject extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "5")
 	private Integer version;
 	
 	/**

@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库环境VO类型
  * <p>数据库环境 , 数据表 ops_db_env_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 14:42:00
+ * @since 2023-07-10 09:17:24
  * @sign EC2F1D6890780FBBFB6F490CDBDA54F0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -402,6 +402,7 @@ public class DbEnvInfoVO extends DbEnvInfo {
 	public DbEnvInfoVO duplicate(boolean all) {
 		com.dt.platform.domain.ops.meta.DbEnvInfoVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.DbEnvInfoVOMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
+		inst.setDbDesc(this.getDbDesc());
 		inst.setVoucher(this.getVoucher());
 		inst.setIp(this.getIp());
 		inst.setUpdateTime(this.getUpdateTime());
@@ -496,6 +497,7 @@ public class DbEnvInfoVO extends DbEnvInfo {
 		if(map==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(DbEnvInfoVOMeta.NOTES)));
+			this.setDbDesc(DataParser.parse(String.class, map.get(DbEnvInfoVOMeta.DB_DESC)));
 			this.setVoucher(DataParser.parse(String.class, map.get(DbEnvInfoVOMeta.VOUCHER)));
 			this.setIp(DataParser.parse(String.class, map.get(DbEnvInfoVOMeta.IP)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbEnvInfoVOMeta.UPDATE_TIME)));
@@ -532,6 +534,7 @@ public class DbEnvInfoVO extends DbEnvInfo {
 		} else {
 			try {
 				this.setNotes( (String)map.get(DbEnvInfoVOMeta.NOTES));
+				this.setDbDesc( (String)map.get(DbEnvInfoVOMeta.DB_DESC));
 				this.setVoucher( (String)map.get(DbEnvInfoVOMeta.VOUCHER));
 				this.setIp( (String)map.get(DbEnvInfoVOMeta.IP));
 				this.setUpdateTime( (Date)map.get(DbEnvInfoVOMeta.UPDATE_TIME));
@@ -581,6 +584,7 @@ public class DbEnvInfoVO extends DbEnvInfo {
 		if(r==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(DbEnvInfoVOMeta.NOTES)));
+			this.setDbDesc(DataParser.parse(String.class, r.getValue(DbEnvInfoVOMeta.DB_DESC)));
 			this.setVoucher(DataParser.parse(String.class, r.getValue(DbEnvInfoVOMeta.VOUCHER)));
 			this.setIp(DataParser.parse(String.class, r.getValue(DbEnvInfoVOMeta.IP)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbEnvInfoVOMeta.UPDATE_TIME)));
@@ -600,6 +604,7 @@ public class DbEnvInfoVO extends DbEnvInfo {
 		} else {
 			try {
 				this.setNotes( (String)r.getValue(DbEnvInfoVOMeta.NOTES));
+				this.setDbDesc( (String)r.getValue(DbEnvInfoVOMeta.DB_DESC));
 				this.setVoucher( (String)r.getValue(DbEnvInfoVOMeta.VOUCHER));
 				this.setIp( (String)r.getValue(DbEnvInfoVOMeta.IP));
 				this.setUpdateTime( (Date)r.getValue(DbEnvInfoVOMeta.UPDATE_TIME));

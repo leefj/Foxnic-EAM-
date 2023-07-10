@@ -446,6 +446,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var ownerId="";
             if(data&&data.id){
                 ownerId=data.id;
+            }else{
+                ownerId=timestamp;
             }
             var ownerType="eam_asset_maintain_project"
             var queryString="?pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId+"&ownerType="+ownerType;

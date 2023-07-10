@@ -73,7 +73,8 @@ public class DbEnvInfoController extends SuperController {
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
-		@ApiImplicitParam(name = DbEnvInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_DESC, value = "描述", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -174,7 +175,8 @@ public class DbEnvInfoController extends SuperController {
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
-		@ApiImplicitParam(name = DbEnvInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_DESC, value = "描述", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { DbEnvInfoVOMeta.PAGE_INDEX, DbEnvInfoVOMeta.PAGE_SIZE, DbEnvInfoVOMeta.SEARCH_FIELD, DbEnvInfoVOMeta.FUZZY_FIELD, DbEnvInfoVOMeta.SEARCH_VALUE, DbEnvInfoVOMeta.DIRTY_FIELDS, DbEnvInfoVOMeta.SORT_FIELD, DbEnvInfoVOMeta.SORT_TYPE, DbEnvInfoVOMeta.DATA_ORIGIN, DbEnvInfoVOMeta.QUERY_LOGIC, DbEnvInfoVOMeta.REQUEST_ACTION, DbEnvInfoVOMeta.IDS })
@@ -197,7 +199,8 @@ public class DbEnvInfoController extends SuperController {
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
-		@ApiImplicitParam(name = DbEnvInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_DESC, value = "描述", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { DbEnvInfoVOMeta.PAGE_INDEX, DbEnvInfoVOMeta.PAGE_SIZE, DbEnvInfoVOMeta.SEARCH_FIELD, DbEnvInfoVOMeta.FUZZY_FIELD, DbEnvInfoVOMeta.SEARCH_VALUE, DbEnvInfoVOMeta.DIRTY_FIELDS, DbEnvInfoVOMeta.SORT_FIELD, DbEnvInfoVOMeta.SORT_TYPE, DbEnvInfoVOMeta.DATA_ORIGIN, DbEnvInfoVOMeta.QUERY_LOGIC, DbEnvInfoVOMeta.REQUEST_ACTION, DbEnvInfoVOMeta.IDS })
@@ -257,7 +260,8 @@ public class DbEnvInfoController extends SuperController {
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
-		@ApiImplicitParam(name = DbEnvInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_DESC, value = "描述", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { DbEnvInfoVOMeta.PAGE_INDEX, DbEnvInfoVOMeta.PAGE_SIZE })
     @SentinelResource(value = DbEnvInfoServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -281,7 +285,8 @@ public class DbEnvInfoController extends SuperController {
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
-		@ApiImplicitParam(name = DbEnvInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_DESC, value = "描述", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = DbEnvInfoServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

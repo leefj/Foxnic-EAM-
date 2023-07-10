@@ -14,8 +14,8 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum EamPlanStatusEnum implements CodeTextEnum {
 
 	STOP("stop" , "停用"),
+	ACTING("acting" , "运行中"),
 	FINISH("finish" , "结束"),
-	ACTING("acting" , "待执行"),
 	EXPIRED("expired" , "已过期");
 
 	private String code;
