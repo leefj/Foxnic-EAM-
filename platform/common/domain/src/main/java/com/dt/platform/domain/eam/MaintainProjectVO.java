@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养项目VO类型
  * <p>保养项目 , 数据表 eam_maintain_project 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 18:15:14
+ * @since 2023-07-10 13:32:22
  * @sign 8F84246B7974EC5E6388A6E6B6D6086B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

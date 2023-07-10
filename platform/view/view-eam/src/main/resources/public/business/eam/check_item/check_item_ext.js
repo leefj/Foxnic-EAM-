@@ -17,6 +17,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
+    var eamCommonFunc=layui.eamCommonFunc;
     //模块基础路径
     const moduleURL="/service-eam/eam-check-item";
 
@@ -111,6 +112,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+
+            if(field=="config"){
+                return eamCommonFunc.parseInspectPointItemConfig(field,value,r);
+            }else if(field=="defValue"){
+                return eamCommonFunc.parseInspectPointItemConfig(field,value,r);
+            }
+
             if(value==null) return "";
             return value;
         },

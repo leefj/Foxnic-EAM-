@@ -39,7 +39,7 @@ public class CheckItemGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(80);
-        cfg.view().field(EAMTables.EAM_CHECK_ITEM.CHECK_DESC).table().disable(true);
+
         cfg.view().field(EAMTables.EAM_CHECK_ITEM.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_CHECK_ITEM.NOTES).form().textArea().height(150);
         cfg.view().field(EAMTables.EAM_CHECK_ITEM.TYPE).form().validate().required().form().radioBox().enumType(CheckItemTypeEnum.class).defaultIndex(0);
@@ -73,6 +73,7 @@ public class CheckItemGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().list().addJs("/module/commonFunction/eamCommonFunction.js");
 
         //文件生成覆盖模式
         cfg.overrides()

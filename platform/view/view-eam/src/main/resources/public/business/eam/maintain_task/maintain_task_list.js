@@ -1,7 +1,7 @@
 /**
  * 保养任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 19:40:44
+ * @since 2023-07-10 19:53:49
  */
 
 
@@ -95,17 +95,9 @@ function ListPage() {
 					,{ field: 'assetModel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备型号') , templet: function (d) { return templet('assetModel',d.assetModel,d);}  }
 					,{ field: 'assetStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备状态'), templet:function (d){ return templet('assetStatus',fox.getEnumText(SELECT_ASSETSTATUS_DATA,d.assetStatus,'','assetStatus'),d);}}
 					,{ field: 'assetSn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备序列号') , templet: function (d) { return templet('assetSn',d.assetSn,d);}  }
-					,{ field: 'assetPos', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置') , templet: function (d) { return templet('assetPos',d.assetPos,d);}  }
-					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保养结果') , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'executorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('执行人'), templet: function (d) { return templet('executorId' ,fox.joinLabel(d.executor,"name",',','','executorId'),d);}}
-					,{ field: 'planStartTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('应开始时间') ,templet: function (d) { return templet('planStartTime',fox.dateFormat(d.planStartTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'actStartTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('实际开始时间') ,templet: function (d) { return templet('actStartTime',fox.dateFormat(d.actStartTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'actFinishTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('实际完成时间') ,templet: function (d) { return templet('actFinishTime',fox.dateFormat(d.actFinishTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'timeout', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('超时时间') , templet: function (d) { return templet('timeout',d.timeout,d);}  }
-					,{ field: 'totalCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('预计工时') , templet: function (d) { return templet('totalCost',d.totalCost,d);}  }
-					,{ field: 'actTotalCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('实际工时') , templet: function (d) { return templet('actTotalCost',d.actTotalCost,d);}  }
 					,{ field: 'cost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('费用') , templet: function (d) { return templet('cost',d.cost,d);}  }
-					,{ field: 'overdue', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('逾期'), templet:function (d){ return templet('overdue',fox.getEnumText(SELECT_OVERDUE_DATA,d.overdue,'','overdue'),d);}}
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }

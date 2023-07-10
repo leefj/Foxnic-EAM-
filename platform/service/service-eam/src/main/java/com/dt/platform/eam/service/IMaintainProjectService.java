@@ -29,11 +29,15 @@ import java.util.Map;
 
 public interface IMaintainProjectService extends ISuperService<MaintainProject> {
 
+	Result selectDeleteByIds(String ownerId,String ids,String selectedCode);
+
+	public Result selectSaveIds(String ownerId, String ids, String selectedCode,String ownerType);
 
 	PagedList<MaintainProject> queryPagedListBySelected(MaintainProjectVO sample, String ownerId, String ownerType);
 
 	PagedList<MaintainProject> queryPagedListBySelect(MaintainProjectVO sample,String ownerId,String ownerType);
 
+	//不在使用
 	Result selected(List<String> ids,String ownerId,String selectedCode);
 
 	/**

@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点项
  * <p>巡检点项 , 数据表 eam_inspection_point_item 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-06 07:50:25
+ * @since 2023-07-10 12:35:13
  * @sign 2BD08DDF8723FDDB097B87BD23D92B79
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -40,25 +40,25 @@ public class InspectionPointItem extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "25593b52-1bf9-11ee-a48e-00163e1b60a7")
 	private String id;
 	
 	/**
 	 * 巡检点：巡检点
 	*/
-	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点")
+	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点" , example = "729333314053210112")
 	private String pointId;
 	
 	/**
 	 * 巡检项：巡检项
 	*/
-	@ApiModelProperty(required = false,value="巡检项" , notes = "巡检项")
+	@ApiModelProperty(required = false,value="巡检项" , notes = "巡检项" , example = "728973556154630145")
 	private String itemId;
 	
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1688646736000")
 	private String selectCode;
 	
 	/**
@@ -88,7 +88,7 @@ public class InspectionPointItem extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -109,7 +109,7 @@ public class InspectionPointItem extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**

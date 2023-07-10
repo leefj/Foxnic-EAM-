@@ -5,11 +5,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskOverdueEnum;
-import com.dt.platform.constants.enums.eam.MaintainTaskProjectStatusEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskStatusEnum;
+import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.MaintainTask;
 import com.dt.platform.domain.eam.MaintainTaskProject;
 import com.dt.platform.domain.eam.meta.MaintainTaskMeta;
+import com.dt.platform.eam.service.IAssetService;
 import com.dt.platform.eam.service.IMaintainTaskProjectService;
 import com.dt.platform.eam.service.IMaintainTaskService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
@@ -58,6 +59,9 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 	@Autowired
 	private IMaintainTaskProjectService maintainTaskProjectService;
 
+
+	@Autowired
+	private IAssetService assetService;
 	/**
 	 * 注入DAO对象
 	 * */
@@ -147,6 +151,10 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 	}
 
 
+	@Override
+	public Result<JSONObject> queryData(String labels) {
+		return null;
+	}
 
 	@Override
 	public Result batchCancel(List<String> ids) {
@@ -188,12 +196,25 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 
 
 		if(StringUtil.isBlank(maintainTask.getAssetId())){
-			return ErrorDesc.failureMessage("资产未选择");
+			return ErrorDesc.failureMessage("设备未选择");
 		}
 
-		if(StringUtil.isBlank(maintainTask.getPlanId())){
-			return ErrorDesc.failureMessage("方案未选择");
+		Asset asset=assetService.getById(maintainTask.getAssetId());
+		if (asset == null) {
+			return ErrorDesc.failureMessage("设备未找到");
 		}
+		maintainTask.setAssetSn(asset.getSerialNumber());
+		maintainTask.setAssetName(asset.getName());
+		maintainTask.setAssetModel(asset.getModel());
+		maintainTask.setAssetCode(asset.getAssetCode());
+		maintainTask.setAssetStatus(asset.getAssetStatus());
+		maintainTask.setAssetPos(asset.getPositionDetail());
+
+
+
+//		if(StringUtil.isBlank(maintainTask.getPlanId())){
+//			return ErrorDesc.failureMessage("方案未选择");
+//		}
 
 		if(StringUtil.isBlank(maintainTask.getStatus())){
 			maintainTask.setStatus(MaintainTaskStatusEnum.WAIT.code());
@@ -202,7 +223,6 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 		if(StringUtil.isBlank(maintainTask.getOverdue())){
 			maintainTask.setOverdue(MaintainTaskOverdueEnum.NORMAL.code());
 		}
-
 
 		//生成编码规则
 		//编码
@@ -215,8 +235,10 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 			}
 		}
 
-
 		Result r=super.insert(maintainTask,throwsException);
+		if(r.isSuccess()){
+			dao.execute("update eam_maintain_task_project set selected_code=?,task_id=? where task_id=? and selected_code=?","def",maintainTask.getId(),maintainTask.getSelectedCode(),maintainTask.getSelectedCode());
+		}
 		return r;
 	}
 
@@ -375,6 +397,17 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 		){
 			return ErrorDesc.failureMessage("当前状态操作异常");
 		}
+
+		Asset asset=assetService.getById(maintainTask.getAssetId());
+		if (asset == null) {
+			return ErrorDesc.failureMessage("设备未找到");
+		}
+		maintainTask.setAssetSn(asset.getSerialNumber());
+		maintainTask.setAssetName(asset.getName());
+		maintainTask.setAssetModel(asset.getModel());
+		maintainTask.setAssetCode(asset.getAssetCode());
+		maintainTask.setAssetStatus(asset.getAssetStatus());
+		maintainTask.setAssetPos(asset.getPositionDetail());
 //maintainTask
 //		this.dao().fill(maintainTask)
 //				.with(MaintainTaskMeta.PROJECT_LIST)
@@ -424,9 +457,15 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 //		}
 //		maintainTask.setActStartTime(minDate);
 //		maintainTask.setActFinishTime(maxDate);
-		maintainTask.setStatus(MaintainTaskStatusEnum.ACTING.code());
+	//	maintainTask.setStatus(MaintainTaskStatusEnum.ACTING.code());
 	//	maintainTask.setActTotalCost(new BigDecimal(sumDiffTime));
 		Result r=super.update(maintainTask , mode , throwsException);
+		if(r.isSuccess()){
+			if(r.isSuccess()){
+				dao.execute("delete from eam_maintain_task_project where task_id=? and selected_code='def'",maintainTask.getId(),maintainTask.getSelectedCode());
+				dao.execute("update eam_maintain_task_project set selected_code='def' where task_id=? and selected_code=?",maintainTask.getId(),maintainTask.getSelectedCode());
+			}
+		}
 		return r;
 	}
 

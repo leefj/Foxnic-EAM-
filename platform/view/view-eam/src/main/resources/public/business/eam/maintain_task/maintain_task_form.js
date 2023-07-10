@@ -1,7 +1,7 @@
 /**
  * 保养任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 19:40:45
+ * @since 2023-07-10 19:53:50
  */
 
 function FormPage() {
@@ -227,6 +227,8 @@ function FormPage() {
 			radio: true,
 			tips: fox.translate("请选择",'','cmp:form')+fox.translate("设备",'','cmp:form'),
 			filterable: true,
+			paging: true,
+			pageRemote: true,
 			layVerify: 'required',
 			layVerType: 'msg',
 			on: function(data){
@@ -235,7 +237,7 @@ function FormPage() {
 				},1);
 			},
 			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
+			searchField: "assetCode", //请自行调整用于搜索的字段名称
 			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
@@ -249,9 +251,9 @@ function FormPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
 					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("assetId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+						opts.push(window.pageExt.form.selectBoxDataTransform("assetId",{data:data[i],name:data[i].assetCode,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
 					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+						opts.push({data:data[i],name:data[i].assetCode,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
 					}
 				}
 				return opts;

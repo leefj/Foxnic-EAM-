@@ -44,7 +44,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 巡检点项接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-06 07:50:25
+ * @since 2023-07-10 12:35:13
 */
 
 @InDoc
@@ -60,10 +60,10 @@ public class InspectionPointItemController extends SuperController {
 	*/
 	@ApiOperation(value = "添加巡检点项")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.POINT_ID , value = "巡检点" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.ITEM_ID , value = "巡检项" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.SELECT_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "25593b52-1bf9-11ee-a48e-00163e1b60a7"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.POINT_ID , value = "巡检点" , required = false , dataTypeClass=String.class , example = "729333314053210112"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.ITEM_ID , value = "巡检项" , required = false , dataTypeClass=String.class , example = "728973556154630145"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.SELECT_CODE , value = "选择" , required = false , dataTypeClass=String.class , example = "1688646736000"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -82,7 +82,7 @@ public class InspectionPointItemController extends SuperController {
 	*/
 	@ApiOperation(value = "删除巡检点项")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "25593b52-1bf9-11ee-a48e-00163e1b60a7")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = InspectionPointItemServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -165,10 +165,10 @@ public class InspectionPointItemController extends SuperController {
 	*/
 	@ApiOperation(value = "更新巡检点项")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.POINT_ID , value = "巡检点" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.ITEM_ID , value = "巡检项" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.SELECT_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "25593b52-1bf9-11ee-a48e-00163e1b60a7"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.POINT_ID , value = "巡检点" , required = false , dataTypeClass=String.class , example = "729333314053210112"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.ITEM_ID , value = "巡检项" , required = false , dataTypeClass=String.class , example = "728973556154630145"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.SELECT_CODE , value = "选择" , required = false , dataTypeClass=String.class , example = "1688646736000"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { InspectionPointItemVOMeta.PAGE_INDEX , InspectionPointItemVOMeta.PAGE_SIZE , InspectionPointItemVOMeta.SEARCH_FIELD , InspectionPointItemVOMeta.FUZZY_FIELD , InspectionPointItemVOMeta.SEARCH_VALUE , InspectionPointItemVOMeta.DIRTY_FIELDS , InspectionPointItemVOMeta.SORT_FIELD , InspectionPointItemVOMeta.SORT_TYPE , InspectionPointItemVOMeta.DATA_ORIGIN , InspectionPointItemVOMeta.QUERY_LOGIC , InspectionPointItemVOMeta.REQUEST_ACTION , InspectionPointItemVOMeta.IDS } )
@@ -186,10 +186,10 @@ public class InspectionPointItemController extends SuperController {
 	*/
 	@ApiOperation(value = "保存巡检点项")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.POINT_ID , value = "巡检点" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.ITEM_ID , value = "巡检项" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.SELECT_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "25593b52-1bf9-11ee-a48e-00163e1b60a7"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.POINT_ID , value = "巡检点" , required = false , dataTypeClass=String.class , example = "729333314053210112"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.ITEM_ID , value = "巡检项" , required = false , dataTypeClass=String.class , example = "728973556154630145"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.SELECT_CODE , value = "选择" , required = false , dataTypeClass=String.class , example = "1688646736000"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { InspectionPointItemVOMeta.PAGE_INDEX , InspectionPointItemVOMeta.PAGE_SIZE , InspectionPointItemVOMeta.SEARCH_FIELD , InspectionPointItemVOMeta.FUZZY_FIELD , InspectionPointItemVOMeta.SEARCH_VALUE , InspectionPointItemVOMeta.DIRTY_FIELDS , InspectionPointItemVOMeta.SORT_FIELD , InspectionPointItemVOMeta.SORT_TYPE , InspectionPointItemVOMeta.DATA_ORIGIN , InspectionPointItemVOMeta.QUERY_LOGIC , InspectionPointItemVOMeta.REQUEST_ACTION , InspectionPointItemVOMeta.IDS } )
@@ -246,10 +246,10 @@ public class InspectionPointItemController extends SuperController {
 	*/
 	@ApiOperation(value = "查询巡检点项")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.POINT_ID , value = "巡检点" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.ITEM_ID , value = "巡检项" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.SELECT_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "25593b52-1bf9-11ee-a48e-00163e1b60a7"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.POINT_ID , value = "巡检点" , required = false , dataTypeClass=String.class , example = "729333314053210112"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.ITEM_ID , value = "巡检项" , required = false , dataTypeClass=String.class , example = "728973556154630145"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.SELECT_CODE , value = "选择" , required = false , dataTypeClass=String.class , example = "1688646736000"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { InspectionPointItemVOMeta.PAGE_INDEX , InspectionPointItemVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = InspectionPointItemServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -268,10 +268,10 @@ public class InspectionPointItemController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询巡检点项")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.POINT_ID , value = "巡检点" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.ITEM_ID , value = "巡检项" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionPointItemVOMeta.SELECT_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "25593b52-1bf9-11ee-a48e-00163e1b60a7"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.POINT_ID , value = "巡检点" , required = false , dataTypeClass=String.class , example = "729333314053210112"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.ITEM_ID , value = "巡检项" , required = false , dataTypeClass=String.class , example = "728973556154630145"),
+		@ApiImplicitParam(name = InspectionPointItemVOMeta.SELECT_CODE , value = "选择" , required = false , dataTypeClass=String.class , example = "1688646736000"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = InspectionPointItemServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

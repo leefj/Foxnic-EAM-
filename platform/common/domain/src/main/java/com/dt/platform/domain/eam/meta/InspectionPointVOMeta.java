@@ -4,6 +4,7 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.InspectionPointVO;
 import java.util.List;
 import com.dt.platform.domain.eam.InspectionPoint;
+import java.math.BigDecimal;
 import java.util.Date;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.InspectionRoute;
@@ -15,7 +16,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 14:01:23
+ * @since 2023-07-10 13:48:29
  * @sign 371CE6A618210E29DF0A57D83CAB6C81
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -233,24 +234,24 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,POS, java.lang.String.class, "位置详情", "位置详情", java.lang.String.class, null);
 	
 	/**
-	 * 位置经度 , 类型: java.lang.String
+	 * 位置经度 , 类型: java.math.BigDecimal
 	*/
 	public static final String POS_LONGITUDE="posLongitude";
 	
 	/**
-	 * 位置经度 , 类型: java.lang.String
+	 * 位置经度 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> POS_LONGITUDE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,POS_LONGITUDE, java.lang.String.class, "位置经度", "位置经度", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.math.BigDecimal> POS_LONGITUDE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,POS_LONGITUDE, java.math.BigDecimal.class, "位置经度", "位置经度", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 位置纬度 , 类型: java.lang.String
+	 * 位置纬度 , 类型: java.math.BigDecimal
 	*/
 	public static final String POS_LATITUDE="posLatitude";
 	
 	/**
-	 * 位置纬度 , 类型: java.lang.String
+	 * 位置纬度 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> POS_LATITUDE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,POS_LATITUDE, java.lang.String.class, "位置纬度", "位置纬度", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.math.BigDecimal> POS_LATITUDE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,POS_LATITUDE, java.math.BigDecimal.class, "位置纬度", "位置纬度", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 图片 , 类型: java.lang.String
@@ -701,7 +702,7 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 		 * @param posLongitude 位置经度
 		 * @return 当前对象
 		*/
-		public InspectionPoint setPosLongitude(String posLongitude) {
+		public InspectionPoint setPosLongitude(BigDecimal posLongitude) {
 			super.change(POS_LONGITUDE,super.getPosLongitude(),posLongitude);
 			super.setPosLongitude(posLongitude);
 			return this;
@@ -712,7 +713,7 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 		 * @param posLatitude 位置纬度
 		 * @return 当前对象
 		*/
-		public InspectionPoint setPosLatitude(String posLatitude) {
+		public InspectionPoint setPosLatitude(BigDecimal posLatitude) {
 			super.change(POS_LATITUDE,super.getPosLatitude(),posLatitude);
 			super.setPosLatitude(posLatitude);
 			return this;

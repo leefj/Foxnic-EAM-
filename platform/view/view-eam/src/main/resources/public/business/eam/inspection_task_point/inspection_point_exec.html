@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
     <meta name="referrer" content="no-referrer">
-    <title th:text="${lang.translate('巡检点')}">巡检点</title>
+    <title th:text="${lang.translate('巡检点检查项')}">巡检点检查项</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -72,6 +72,17 @@
                 </div>
                 <!--结束：栏次内字段循环-->
             </div>
+
+            <!-- upload : 图片 ,  imageId  -->
+            <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                <div class="layui-form-label "><div th:text="${lang.translate('图片')}">图片</div></div>
+                <div class="layui-upload layui-input-block ">
+                    <input input-type="upload" id="imageId"  name="imageId" lay-filter="imageId" style="display: none">
+                    <button type="button" class="layui-btn" id="imageId-button" th:text="${lang.translate('选择图片')}">选择图片</button>
+                    <div class="layui-upload-list" id="imageId-file-list"></div>
+                </div>
+            </div>
+
             <!--结束：栏次输入框循环-->
         </div>
         <!--开始：group 循环-->

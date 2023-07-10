@@ -52,18 +52,34 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"executor","执行人","执行人");
 
 
+        cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_START_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_FINISH_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
-
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_START_TIME).form().validate().required().form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_ID)
                 .form().validate().required().form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST+"?ownerCode=asset")
-                .paging(false).filter(true).toolbar(false)
+                .paging(true).filter(true).toolbar(false)
                 .valueField(AssetMeta.ID).
-                textField(AssetMeta.NAME).
+                textField(AssetMeta.ASSET_CODE).
                 fillWith(MaintainTaskMeta.ASSET).muliti(false);
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_ID).table().disable(true);
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.CONTENT).table().disable(true);
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_START_TIME).table().disable(true);
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_FINISH_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.TIMEOUT).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.TOTAL_COST).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_TOTAL_COST).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.OVERDUE).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.NOTES).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ORIGINATOR_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_POS).table().disable(true);
+
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.BUSINESS_CODE).search().fuzzySearch();
      //   cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_NAME).search().fuzzySearch();
@@ -170,11 +186,11 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.SELECTED_CODE).table().disable(true);
+//        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.SELECTED_CODE).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.NOTES).table().disable(true);
    //     cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_NOTES).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ORIGINATOR_ID).table().disable(true);
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_ID).table().disable(true);
+
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID).form().readOnly();
 
@@ -213,7 +229,7 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
                 }
         );
 
-        cfg.view().form().addGroup("设备",
+        cfg.view().form().addGroup("设备信息",
                 new Object[] {
                         EAMTables.EAM_MAINTAIN_TASK.ASSET_ID,
                         EAMTables.EAM_MAINTAIN_TASK.ASSET_NAME,

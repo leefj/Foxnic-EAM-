@@ -245,6 +245,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
+
+            console.log("form:beforeInit")
+            $("#code").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#code").attr("placeholder","自动填充")
         },
         /**
          * 窗口调节前

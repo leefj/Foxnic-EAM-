@@ -76,8 +76,8 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS_LONGITUDE).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_RFID).table().disable(true);
 
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS_LATITUDE).form().numberInput().defaultValue(0);
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS_LONGITUDE).form().numberInput().defaultValue(0);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS_LATITUDE).form().numberInput().defaultValue(0).decimal().scale(2);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS_LONGITUDE).form().numberInput().defaultValue(0).decimal().scale(2);
 
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.IMAGE_ID).table().disable(true);
@@ -106,6 +106,7 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
          cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().bottomSpace(20);
+
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_INSPECTION_TASK_POINT.POINT_STATUS,
@@ -113,7 +114,8 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
         );
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        EAMTables.EAM_INSPECTION_TASK_POINT.CONTENT
+                        EAMTables.EAM_INSPECTION_TASK_POINT.CONTENT,
+                        EAMTables.EAM_INSPECTION_TASK_POINT.IMAGE_ID
                 }
         );
         cfg.view().form().addGroup("巡检点",

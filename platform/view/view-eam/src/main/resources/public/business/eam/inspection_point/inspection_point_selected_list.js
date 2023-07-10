@@ -20,6 +20,7 @@ function ListPage() {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
 		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
 
+		var _top=top;
 		if(window.pageExt.list.beforeInit) {
 			window.pageExt.list.beforeInit();
 		}
@@ -365,12 +366,12 @@ function ListPage() {
 			else if(layEvent === 'detail'){
 				console.log("data",data);
 				var timestamp2 = Date.parse(new Date());
-				var top=10
+				var top2=10
 				var q="?ownerId="+data.id+"&pageType=view&selectCode="+timestamp2
 				admin.popupCenter({
 					title: "检查项目",
 					resize: false,
-					offset: [top,null],
+					offset: [top2,null],
 					area: ["80%","85%"],
 					type: 2,
 					id:"eam-inspection-point-form-data-win",
@@ -428,7 +429,7 @@ function ListPage() {
 		admin.putTempData('eam-inspection-point-form-data', data);
 		var area=admin.getTempData('eam-inspection-point-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
-		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
+		var top3= (area && area.top) ? area.top : (($(window).height()-height)/2);
 		var title = fox.translate('巡检点');
 		if(action=="create") title=fox.translate('添加')+title;
 		else if(action=="edit") title=fox.translate('修改')+title;
@@ -437,7 +438,7 @@ function ListPage() {
 		admin.popupCenter({
 			title: title,
 			resize: false,
-			offset: [top,null],
+			offset: [top3,null],
 			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-inspection-point-form-data-win",

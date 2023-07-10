@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 06:52:38
- * @sign 4C1527175A330F570ED75825DA2FA8D1
+ * @since 2023-07-10 09:21:11
+ * @sign FBC1E56604C5160DE1F5C9AEF1708902
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -55,9 +55,9 @@ public class DbInfo extends Entity {
 	private String hostId;
 	
 	/**
-	 * 数据库类型：数据库类型
+	 * 库类型：库类型
 	*/
-	@ApiModelProperty(required = false,value="数据库类型" , notes = "数据库类型" , example = "621958080015368192")
+	@ApiModelProperty(required = false,value="库类型" , notes = "库类型" , example = "621958080015368192")
 	private String typeId;
 	
 	/**
@@ -67,9 +67,9 @@ public class DbInfo extends Entity {
 	private String name;
 	
 	/**
-	 * 数据库状态：数据库状态
+	 * 库状态：库状态
 	*/
-	@ApiModelProperty(required = false,value="数据库状态" , notes = "数据库状态" , example = "not_onine")
+	@ApiModelProperty(required = false,value="库状态" , notes = "库状态" , example = "not_onine")
 	private String status;
 	
 	/**
@@ -366,17 +366,17 @@ public class DbInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 数据库类型<br>
-	 * 数据库类型
-	 * @return 数据库类型
+	 * 获得 库类型<br>
+	 * 库类型
+	 * @return 库类型
 	*/
 	public String getTypeId() {
 		return typeId;
 	}
 	
 	/**
-	 * 设置 数据库类型
-	 * @param typeId 数据库类型
+	 * 设置 库类型
+	 * @param typeId 库类型
 	 * @return 当前对象
 	*/
 	public DbInfo setTypeId(String typeId) {
@@ -404,17 +404,17 @@ public class DbInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 数据库状态<br>
-	 * 数据库状态
-	 * @return 数据库状态
+	 * 获得 库状态<br>
+	 * 库状态
+	 * @return 库状态
 	*/
 	public String getStatus() {
 		return status;
 	}
 	
 	/**
-	 * 设置 数据库状态
-	 * @param status 数据库状态
+	 * 设置 库状态
+	 * @param status 库状态
 	 * @return 当前对象
 	*/
 	public DbInfo setStatus(String status) {

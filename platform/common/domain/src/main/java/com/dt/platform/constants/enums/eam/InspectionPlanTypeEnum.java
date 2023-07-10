@@ -5,11 +5,8 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum InspectionPlanTypeEnum implements CodeTextEnum {
 
-    INSPECTION("inspection" , "巡检"),
-    POINT_CHECK("point_check" , "点检"),
+    INSPECTION("inspection" , "巡检");
 
-
-    ;
     private String code;
     private String text;
     private InspectionPlanTypeEnum(String code, String text)  {

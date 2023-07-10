@@ -1,7 +1,7 @@
 /**
  * 数据库环境 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 14:42:02
+ * @since 2023-07-10 09:17:26
  */
 
 function FormPage() {
@@ -17,7 +17,7 @@ function FormPage() {
 	var rawFormData=null;
 	// 表单执行操作类型：view，create，edit
 	var action=null;
-	var disableCreateNew=false;
+	var disableCreateNew=true;
 	var disableModify=false;
 	var dataBeforeEdit=null;
 	const bpmIntegrateMode="none";
@@ -232,7 +232,7 @@ function FormPage() {
 
 
         //禁用编辑
-	if((action=="edit" && hasData && disableModify) || (action=="create" && !hasData &&disableCreateNew)) {
+		if(action=="view" || (action=="edit" && disableModify) || (action=="create" && disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")

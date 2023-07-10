@@ -8,6 +8,7 @@ import com.dt.platform.constants.db.EAMTables.EAM_INSPECTION_TASK_POINT;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
+import java.math.BigDecimal;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -27,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_task_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 22:53:43
- * @sign 77A3172F6CD0C3F329A970EE479ED419
+ * @since 2023-07-10 13:13:56
+ * @sign EF91A423ABEE68434DD60CF053842078
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -70,6 +71,12 @@ public class InspectionTaskPoint extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="巡检结果" , notes = "巡检结果")
 	private String content;
+	
+	/**
+	 * 图片：图片
+	*/
+	@ApiModelProperty(required = false,value="图片" , notes = "图片")
+	private String imageId;
 	
 	/**
 	 * 巡检点：巡检点
@@ -122,14 +129,14 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 位置经度：位置经度
 	*/
-	@ApiModelProperty(required = false,value="位置经度" , notes = "位置经度" , example = "0.0")
-	private String pointPosLongitude;
+	@ApiModelProperty(required = false,value="位置经度" , notes = "位置经度" , example = "0.00")
+	private BigDecimal pointPosLongitude;
 	
 	/**
 	 * 位置纬度：位置纬度
 	*/
-	@ApiModelProperty(required = false,value="位置纬度" , notes = "位置纬度" , example = "0.0")
-	private String pointPosLatitude;
+	@ApiModelProperty(required = false,value="位置纬度" , notes = "位置纬度" , example = "0.00")
+	private BigDecimal pointPosLatitude;
 	
 	/**
 	 * 备注：备注
@@ -356,6 +363,25 @@ public class InspectionTaskPoint extends Entity {
 	}
 	
 	/**
+	 * 获得 图片<br>
+	 * 图片
+	 * @return 图片
+	*/
+	public String getImageId() {
+		return imageId;
+	}
+	
+	/**
+	 * 设置 图片
+	 * @param imageId 图片
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint setImageId(String imageId) {
+		this.imageId=imageId;
+		return this;
+	}
+	
+	/**
 	 * 获得 巡检点<br>
 	 * 巡检点
 	 * @return 巡检点
@@ -512,7 +538,7 @@ public class InspectionTaskPoint extends Entity {
 	 * 位置经度
 	 * @return 位置经度
 	*/
-	public String getPointPosLongitude() {
+	public BigDecimal getPointPosLongitude() {
 		return pointPosLongitude;
 	}
 	
@@ -521,7 +547,7 @@ public class InspectionTaskPoint extends Entity {
 	 * @param pointPosLongitude 位置经度
 	 * @return 当前对象
 	*/
-	public InspectionTaskPoint setPointPosLongitude(String pointPosLongitude) {
+	public InspectionTaskPoint setPointPosLongitude(BigDecimal pointPosLongitude) {
 		this.pointPosLongitude=pointPosLongitude;
 		return this;
 	}
@@ -531,7 +557,7 @@ public class InspectionTaskPoint extends Entity {
 	 * 位置纬度
 	 * @return 位置纬度
 	*/
-	public String getPointPosLatitude() {
+	public BigDecimal getPointPosLatitude() {
 		return pointPosLatitude;
 	}
 	
@@ -540,7 +566,7 @@ public class InspectionTaskPoint extends Entity {
 	 * @param pointPosLatitude 位置纬度
 	 * @return 当前对象
 	*/
-	public InspectionTaskPoint setPointPosLatitude(String pointPosLatitude) {
+	public InspectionTaskPoint setPointPosLatitude(BigDecimal pointPosLatitude) {
 		this.pointPosLatitude=pointPosLatitude;
 		return this;
 	}
@@ -1054,6 +1080,7 @@ public class InspectionTaskPoint extends Entity {
 		inst.setId(this.getId());
 		inst.setPointStatus(this.getPointStatus());
 		inst.setOperTime(this.getOperTime());
+		inst.setImageId(this.getImageId());
 		inst.setPointCode(this.getPointCode());
 		inst.setPointContent(this.getPointContent());
 		inst.setUpdateTime(this.getUpdateTime());
@@ -1150,12 +1177,13 @@ public class InspectionTaskPoint extends Entity {
 			this.setId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.ID)));
 			this.setPointStatus(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_STATUS)));
 			this.setOperTime(DataParser.parse(Date.class, map.get(InspectionTaskPointMeta.OPER_TIME)));
+			this.setImageId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.IMAGE_ID)));
 			this.setPointCode(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_CODE)));
 			this.setPointContent(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_CONTENT)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(InspectionTaskPointMeta.UPDATE_TIME)));
 			this.setSort(DataParser.parse(Integer.class, map.get(InspectionTaskPointMeta.SORT)));
 			this.setPointPos(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_POS)));
-			this.setPointPosLongitude(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_POS_LONGITUDE)));
+			this.setPointPosLongitude(DataParser.parse(BigDecimal.class, map.get(InspectionTaskPointMeta.POINT_POS_LONGITUDE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(InspectionTaskPointMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(InspectionTaskPointMeta.DELETED)));
@@ -1163,7 +1191,7 @@ public class InspectionTaskPoint extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(InspectionTaskPointMeta.DELETE_TIME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.DELETE_BY)));
 			this.setPointPosId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_POS_ID)));
-			this.setPointPosLatitude(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_POS_LATITUDE)));
+			this.setPointPosLatitude(DataParser.parse(BigDecimal.class, map.get(InspectionTaskPointMeta.POINT_POS_LATITUDE)));
 			this.setTaskId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.TASK_ID)));
 			// others
 			this.setRoute(DataParser.parse(InspectionRoute.class, map.get(InspectionTaskPointMeta.ROUTE)));
@@ -1188,12 +1216,13 @@ public class InspectionTaskPoint extends Entity {
 				this.setId( (String)map.get(InspectionTaskPointMeta.ID));
 				this.setPointStatus( (String)map.get(InspectionTaskPointMeta.POINT_STATUS));
 				this.setOperTime( (Date)map.get(InspectionTaskPointMeta.OPER_TIME));
+				this.setImageId( (String)map.get(InspectionTaskPointMeta.IMAGE_ID));
 				this.setPointCode( (String)map.get(InspectionTaskPointMeta.POINT_CODE));
 				this.setPointContent( (String)map.get(InspectionTaskPointMeta.POINT_CONTENT));
 				this.setUpdateTime( (Date)map.get(InspectionTaskPointMeta.UPDATE_TIME));
 				this.setSort( (Integer)map.get(InspectionTaskPointMeta.SORT));
 				this.setPointPos( (String)map.get(InspectionTaskPointMeta.POINT_POS));
-				this.setPointPosLongitude( (String)map.get(InspectionTaskPointMeta.POINT_POS_LONGITUDE));
+				this.setPointPosLongitude( (BigDecimal)map.get(InspectionTaskPointMeta.POINT_POS_LONGITUDE));
 				this.setVersion( (Integer)map.get(InspectionTaskPointMeta.VERSION));
 				this.setCreateBy( (String)map.get(InspectionTaskPointMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(InspectionTaskPointMeta.DELETED));
@@ -1201,7 +1230,7 @@ public class InspectionTaskPoint extends Entity {
 				this.setDeleteTime( (Date)map.get(InspectionTaskPointMeta.DELETE_TIME));
 				this.setDeleteBy( (String)map.get(InspectionTaskPointMeta.DELETE_BY));
 				this.setPointPosId( (String)map.get(InspectionTaskPointMeta.POINT_POS_ID));
-				this.setPointPosLatitude( (String)map.get(InspectionTaskPointMeta.POINT_POS_LATITUDE));
+				this.setPointPosLatitude( (BigDecimal)map.get(InspectionTaskPointMeta.POINT_POS_LATITUDE));
 				this.setTaskId( (String)map.get(InspectionTaskPointMeta.TASK_ID));
 				// others
 				this.setRoute( (InspectionRoute)map.get(InspectionTaskPointMeta.ROUTE));
@@ -1239,12 +1268,13 @@ public class InspectionTaskPoint extends Entity {
 			this.setId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.ID)));
 			this.setPointStatus(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_STATUS)));
 			this.setOperTime(DataParser.parse(Date.class, r.getValue(InspectionTaskPointMeta.OPER_TIME)));
+			this.setImageId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.IMAGE_ID)));
 			this.setPointCode(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_CODE)));
 			this.setPointContent(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_CONTENT)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InspectionTaskPointMeta.UPDATE_TIME)));
 			this.setSort(DataParser.parse(Integer.class, r.getValue(InspectionTaskPointMeta.SORT)));
 			this.setPointPos(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_POS)));
-			this.setPointPosLongitude(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_POS_LONGITUDE)));
+			this.setPointPosLongitude(DataParser.parse(BigDecimal.class, r.getValue(InspectionTaskPointMeta.POINT_POS_LONGITUDE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(InspectionTaskPointMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(InspectionTaskPointMeta.DELETED)));
@@ -1252,7 +1282,7 @@ public class InspectionTaskPoint extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(InspectionTaskPointMeta.DELETE_TIME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.DELETE_BY)));
 			this.setPointPosId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_POS_ID)));
-			this.setPointPosLatitude(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_POS_LATITUDE)));
+			this.setPointPosLatitude(DataParser.parse(BigDecimal.class, r.getValue(InspectionTaskPointMeta.POINT_POS_LATITUDE)));
 			this.setTaskId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.TASK_ID)));
 			return true;
 		} else {
@@ -1270,12 +1300,13 @@ public class InspectionTaskPoint extends Entity {
 				this.setId( (String)r.getValue(InspectionTaskPointMeta.ID));
 				this.setPointStatus( (String)r.getValue(InspectionTaskPointMeta.POINT_STATUS));
 				this.setOperTime( (Date)r.getValue(InspectionTaskPointMeta.OPER_TIME));
+				this.setImageId( (String)r.getValue(InspectionTaskPointMeta.IMAGE_ID));
 				this.setPointCode( (String)r.getValue(InspectionTaskPointMeta.POINT_CODE));
 				this.setPointContent( (String)r.getValue(InspectionTaskPointMeta.POINT_CONTENT));
 				this.setUpdateTime( (Date)r.getValue(InspectionTaskPointMeta.UPDATE_TIME));
 				this.setSort( (Integer)r.getValue(InspectionTaskPointMeta.SORT));
 				this.setPointPos( (String)r.getValue(InspectionTaskPointMeta.POINT_POS));
-				this.setPointPosLongitude( (String)r.getValue(InspectionTaskPointMeta.POINT_POS_LONGITUDE));
+				this.setPointPosLongitude( (BigDecimal)r.getValue(InspectionTaskPointMeta.POINT_POS_LONGITUDE));
 				this.setVersion( (Integer)r.getValue(InspectionTaskPointMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(InspectionTaskPointMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(InspectionTaskPointMeta.DELETED));
@@ -1283,7 +1314,7 @@ public class InspectionTaskPoint extends Entity {
 				this.setDeleteTime( (Date)r.getValue(InspectionTaskPointMeta.DELETE_TIME));
 				this.setDeleteBy( (String)r.getValue(InspectionTaskPointMeta.DELETE_BY));
 				this.setPointPosId( (String)r.getValue(InspectionTaskPointMeta.POINT_POS_ID));
-				this.setPointPosLatitude( (String)r.getValue(InspectionTaskPointMeta.POINT_POS_LATITUDE));
+				this.setPointPosLatitude( (BigDecimal)r.getValue(InspectionTaskPointMeta.POINT_POS_LATITUDE));
 				this.setTaskId( (String)r.getValue(InspectionTaskPointMeta.TASK_ID));
 				return true;
 			} catch (Exception e) {

@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-06-07 22:29:16
+ * @since 2023-07-10 09:18:22
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -4191,6 +4191,11 @@ public class OpsTables {
 		public static final DBField DB = new DBField(DBDataType.STRING , "db","db","数据库","数据库",false,false,true);
 		
 		/**
+		 * 描述
+		*/
+		public static final DBField DB_DESC = new DBField(DBDataType.STRING , "db_desc","dbDesc","描述","描述",false,false,true);
+		
+		/**
 		 * IP
 		*/
 		public static final DBField IP = new DBField(DBDataType.STRING , "ip","ip","IP","IP",false,false,true);
@@ -4250,7 +4255,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_ENV_INFO() {
-			this.init($NAME,"数据库环境" , ID , LABEL , DB_INST_ID , DB , IP , VOUCHER , FILE_IDS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"数据库环境" , ID , LABEL , DB_INST_ID , DB , DB_DESC , IP , VOUCHER , FILE_IDS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_ENV_INFO $TABLE=new OPS_DB_ENV_INFO();
 	}
@@ -4376,9 +4381,9 @@ public class OpsTables {
 		public static final DBField HOST_ID = new DBField(DBDataType.STRING , "host_id","hostId","主机","主机",false,false,true);
 		
 		/**
-		 * 数据库类型
+		 * 库类型
 		*/
-		public static final DBField TYPE_ID = new DBField(DBDataType.STRING , "type_id","typeId","数据库类型","数据库类型",false,false,true);
+		public static final DBField TYPE_ID = new DBField(DBDataType.STRING , "type_id","typeId","库类型","库类型",false,false,true);
 		
 		/**
 		 * 数据库名
@@ -4386,9 +4391,9 @@ public class OpsTables {
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","数据库名","数据库名",false,false,true);
 		
 		/**
-		 * 数据库状态
+		 * 库状态
 		*/
-		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","数据库状态","数据库状态",false,false,true);
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","库状态","库状态",false,false,true);
 		
 		/**
 		 * 备份状态

@@ -1,6 +1,9 @@
 package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.constants.enums.eam.CheckItemTypeEnum;
+import com.dt.platform.constants.enums.eam.InspectionTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -38,7 +41,7 @@ import java.util.Map;
  * 巡检点项服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-06 07:50:25
+ * @since 2023-07-10 10:59:56
 */
 
 
@@ -73,6 +76,7 @@ public class InspectionPointItemServiceImpl extends SuperService<InspectionPoint
 	 */
 	@Override
 	public Result insert(InspectionPointItem inspectionPointItem,boolean throwsException) {
+
 		Result r=super.insert(inspectionPointItem,throwsException);
 		return r;
 	}

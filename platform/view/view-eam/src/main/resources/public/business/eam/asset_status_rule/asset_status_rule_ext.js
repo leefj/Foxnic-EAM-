@@ -154,11 +154,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         item:function (data){
             console.log('item',data);
             var q="?operCode="+data.operCode;
-            var top=10
+            var top2=10
             admin.popupCenter({
                 title: "条目",
                 resize: false,
-                offset: [top,null],
+                offset: [top2,null],
                 area: ["80%","85%"],
                 type: 2,
                 id:"eam-asset-status-rule-v-list-data-win",

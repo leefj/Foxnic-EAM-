@@ -11,8 +11,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-14 07:42:51
- * @sign A8249301F89714C5DFE15372E32FAE64
+ * @since 2023-07-10 16:07:46
+ * @sign 2ECC4D70C0B9187724D5D00BDE0A9AD8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -229,16 +229,6 @@ public class MaintainTaskProjectMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.util.Date> DELETE_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,DELETE_TIME, java.util.Date.class, "删除时间", "删除时间", java.util.Date.class, null);
 	
 	/**
-	 * 租户 , 类型: java.lang.String
-	*/
-	public static final String TENANT_ID="tenantId";
-	
-	/**
-	 * 租户 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
-	
-	/**
 	 * 选择 , 类型: java.lang.String
 	*/
 	public static final String SELECTED_CODE="selectedCode";
@@ -271,7 +261,7 @@ public class MaintainTaskProjectMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PROJECT_ID , TASK_ID , STATUS , CONTENT , PROJECT_CODE , PROJECT_NAME , PROJECT_MAINTAIN_TYPE , PROJECT_BASE_COST , PROJECT_ATTACH_ID , PROJECT_NOTES , BASE_COST , START_TIME , END_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , MAINTAIN_TYPE_DICT };
+	public static final String[] $PROPS={ ID , PROJECT_ID , TASK_ID , STATUS , CONTENT , PROJECT_CODE , PROJECT_NAME , PROJECT_MAINTAIN_TYPE , PROJECT_BASE_COST , PROJECT_ATTACH_ID , PROJECT_NOTES , BASE_COST , START_TIME , END_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION , MAINTAIN_TYPE_DICT };
 	
 	/**
 	 * 代理类
@@ -513,17 +503,6 @@ public class MaintainTaskProjectMeta {
 		}
 		
 		/**
-		 * 设置 租户
-		 * @param tenantId 租户
-		 * @return 当前对象
-		*/
-		public MaintainTaskProject setTenantId(String tenantId) {
-			super.change(TENANT_ID,super.getTenantId(),tenantId);
-			super.setTenantId(tenantId);
-			return this;
-		}
-		
-		/**
 		 * 设置 选择
 		 * @param selectedCode 选择
 		 * @return 当前对象
@@ -586,7 +565,6 @@ public class MaintainTaskProjectMeta {
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setProjectMaintainType(this.getProjectMaintainType());
-			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setStartTime(this.getStartTime());
 			inst.setId(this.getId());

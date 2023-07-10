@@ -13,6 +13,7 @@ import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
 import com.dt.platform.domain.eam.meta.InspectionPointVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
+import java.math.BigDecimal;
 import java.util.Date;
 import com.github.foxnic.sql.data.ExprRcd;
 
@@ -22,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点VO类型
  * <p>巡检点 , 数据表 eam_inspection_point 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 14:01:23
+ * @since 2023-07-10 13:48:29
  * @sign 371CE6A618210E29DF0A57D83CAB6C81
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -506,7 +507,7 @@ public class InspectionPointVO extends InspectionPoint {
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, map.get(InspectionPointVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(InspectionPointVOMeta.NOTES)));
-			this.setPosLatitude(DataParser.parse(String.class, map.get(InspectionPointVOMeta.POS_LATITUDE)));
+			this.setPosLatitude(DataParser.parse(BigDecimal.class, map.get(InspectionPointVOMeta.POS_LATITUDE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(InspectionPointVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(InspectionPointVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(InspectionPointVOMeta.CONTENT)));
@@ -524,7 +525,7 @@ public class InspectionPointVO extends InspectionPoint {
 			this.setTenantId(DataParser.parse(String.class, map.get(InspectionPointVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(InspectionPointVOMeta.DELETE_BY)));
 			this.setRfid(DataParser.parse(String.class, map.get(InspectionPointVOMeta.RFID)));
-			this.setPosLongitude(DataParser.parse(String.class, map.get(InspectionPointVOMeta.POS_LONGITUDE)));
+			this.setPosLongitude(DataParser.parse(BigDecimal.class, map.get(InspectionPointVOMeta.POS_LONGITUDE)));
 			this.setId(DataParser.parse(String.class, map.get(InspectionPointVOMeta.ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(InspectionPointVOMeta.STATUS)));
 			// others
@@ -549,7 +550,7 @@ public class InspectionPointVO extends InspectionPoint {
 			try {
 				this.setCode( (String)map.get(InspectionPointVOMeta.CODE));
 				this.setNotes( (String)map.get(InspectionPointVOMeta.NOTES));
-				this.setPosLatitude( (String)map.get(InspectionPointVOMeta.POS_LATITUDE));
+				this.setPosLatitude( (BigDecimal)map.get(InspectionPointVOMeta.POS_LATITUDE));
 				this.setUpdateTime( (Date)map.get(InspectionPointVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(InspectionPointVOMeta.VERSION));
 				this.setContent( (String)map.get(InspectionPointVOMeta.CONTENT));
@@ -567,7 +568,7 @@ public class InspectionPointVO extends InspectionPoint {
 				this.setTenantId( (String)map.get(InspectionPointVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(InspectionPointVOMeta.DELETE_BY));
 				this.setRfid( (String)map.get(InspectionPointVOMeta.RFID));
-				this.setPosLongitude( (String)map.get(InspectionPointVOMeta.POS_LONGITUDE));
+				this.setPosLongitude( (BigDecimal)map.get(InspectionPointVOMeta.POS_LONGITUDE));
 				this.setId( (String)map.get(InspectionPointVOMeta.ID));
 				this.setStatus( (String)map.get(InspectionPointVOMeta.STATUS));
 				// others
@@ -605,7 +606,7 @@ public class InspectionPointVO extends InspectionPoint {
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.NOTES)));
-			this.setPosLatitude(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.POS_LATITUDE)));
+			this.setPosLatitude(DataParser.parse(BigDecimal.class, r.getValue(InspectionPointVOMeta.POS_LATITUDE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InspectionPointVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(InspectionPointVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.CONTENT)));
@@ -623,7 +624,7 @@ public class InspectionPointVO extends InspectionPoint {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.DELETE_BY)));
 			this.setRfid(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.RFID)));
-			this.setPosLongitude(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.POS_LONGITUDE)));
+			this.setPosLongitude(DataParser.parse(BigDecimal.class, r.getValue(InspectionPointVOMeta.POS_LONGITUDE)));
 			this.setId(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.ID)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(InspectionPointVOMeta.STATUS)));
 			return true;
@@ -631,7 +632,7 @@ public class InspectionPointVO extends InspectionPoint {
 			try {
 				this.setCode( (String)r.getValue(InspectionPointVOMeta.CODE));
 				this.setNotes( (String)r.getValue(InspectionPointVOMeta.NOTES));
-				this.setPosLatitude( (String)r.getValue(InspectionPointVOMeta.POS_LATITUDE));
+				this.setPosLatitude( (BigDecimal)r.getValue(InspectionPointVOMeta.POS_LATITUDE));
 				this.setUpdateTime( (Date)r.getValue(InspectionPointVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(InspectionPointVOMeta.VERSION));
 				this.setContent( (String)r.getValue(InspectionPointVOMeta.CONTENT));
@@ -649,7 +650,7 @@ public class InspectionPointVO extends InspectionPoint {
 				this.setTenantId( (String)r.getValue(InspectionPointVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(InspectionPointVOMeta.DELETE_BY));
 				this.setRfid( (String)r.getValue(InspectionPointVOMeta.RFID));
-				this.setPosLongitude( (String)r.getValue(InspectionPointVOMeta.POS_LONGITUDE));
+				this.setPosLongitude( (BigDecimal)r.getValue(InspectionPointVOMeta.POS_LONGITUDE));
 				this.setId( (String)r.getValue(InspectionPointVOMeta.ID));
 				this.setStatus( (String)r.getValue(InspectionPointVOMeta.STATUS));
 				return true;

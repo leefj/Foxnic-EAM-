@@ -320,16 +320,16 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 	public Result insert(MaintainPlan maintainPlan,boolean throwsException) {
 
 		String selectedCode=maintainPlan.getSelectedCode();
-		if(maintainPlan.getAssetIds()==null||maintainPlan.getAssetIds().size()==0){
-			ConditionExpr condition=new ConditionExpr();
-			condition.andIn("asset_selected_code",selectedCode==null?"":selectedCode);
-			List<String> list=assetSelectedDataService.queryValues(EAMTables.EAM_ASSET_SELECTED_DATA.ASSET_ID,String.class,condition);
-			maintainPlan.setAssetIds(list);
-		}
-
-		if(maintainPlan.getAssetIds()==null||maintainPlan.getAssetIds().size()==0){
-			return ErrorDesc.failureMessage("请选择要保养的设备");
-		}
+//		if(maintainPlan.getAssetIds()==null||maintainPlan.getAssetIds().size()==0){
+//			ConditionExpr condition=new ConditionExpr();
+//			condition.andIn("asset_selected_code",selectedCode==null?"":selectedCode);
+//			List<String> list=assetSelectedDataService.queryValues(EAMTables.EAM_ASSET_SELECTED_DATA.ASSET_ID,String.class,condition);
+//			maintainPlan.setAssetIds(list);
+//		}
+//
+//		if(maintainPlan.getAssetIds()==null||maintainPlan.getAssetIds().size()==0){
+//			return ErrorDesc.failureMessage("请选择要保养的设备");
+//		}
 
 		if(maintainPlan.getProjectIds()==null||maintainPlan.getProjectIds().size()==0){
 			ConditionExpr condition=new ConditionExpr();
@@ -388,23 +388,22 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 		Result r=super.insert(maintainPlan,throwsException);
 		if(r.isSuccess()){
 			//保存表单数据
-			List<AssetItem> saveList=new ArrayList<AssetItem>();
-			for(int i=0;i<maintainPlan.getAssetIds().size();i++){
-				AssetItem asset=new AssetItem();
-				asset.setId(IDGenerator.getSnowflakeIdString());
-				asset.setHandleId(maintainPlan.getId());
-				asset.setAssetId(maintainPlan.getAssetIds().get(i));
-				saveList.add(asset);
-			}
-			Result batchInsertReuslt= assetItemService.insertList(saveList);
-			if(!batchInsertReuslt.isSuccess()){
-				return batchInsertReuslt;
-			}
-			dao.execute("update eam_maintain_project_select set owner_id=? where selected_code=?",maintainPlan.getId(),selectedCode);
+//			List<AssetItem> saveList=new ArrayList<AssetItem>();
+//			for(int i=0;i<maintainPlan.getAssetIds().size();i++){
+//				AssetItem asset=new AssetItem();
+//				asset.setId(IDGenerator.getSnowflakeIdString());
+//				asset.setHandleId(maintainPlan.getId());
+//				asset.setAssetId(maintainPlan.getAssetIds().get(i));
+//				saveList.add(asset);
+//			}
+//			Result batchInsertReuslt= assetItemService.insertList(saveList);
+//			if(!batchInsertReuslt.isSuccess()){
+//				return batchInsertReuslt;
+//			}
+			dao.execute("update eam_maintain_project_select set selected_code=?,owner_id=? where owner_id=? and selected_code=?","def",maintainPlan.getId(),selectedCode,selectedCode);
 		}
 		return r;
 	}
-
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -517,11 +516,11 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 				return ErrorDesc.failureMessage("请设置循环周期");
 			}
 		}
+		String selectedCode=maintainPlan.getSelectedCode();
 		Result r=super.update(maintainPlan , mode , throwsException);
 		if(r.isSuccess()){
-			//保存表单数据
-			dao.execute("update eam_asset_item set crd='r' where crd='c' and handle_id=?",maintainPlan.getId());
-			dao.execute("delete from eam_asset_item where crd in ('d','rd') and  handle_id=?",maintainPlan.getId());
+			dao.execute("delete from eam_maintain_project_select where owner_id=? and selected_code='def'",maintainPlan.getId());
+			dao.execute("update eam_maintain_project_select set selected_code=? where owner_id=? and selected_code=?","def",maintainPlan.getId(),selectedCode);
 		}
 		return r;
 	}

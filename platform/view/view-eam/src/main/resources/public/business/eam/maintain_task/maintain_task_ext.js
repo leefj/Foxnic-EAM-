@@ -27,10 +27,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 列表页初始化前调用
          * */
         beforeInit:function () {
+
             console.log("list:beforeInit");
             var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
             operHtml=operHtml.replace(/lay-event="maintain"/i, "style=\"display:none\"")
             document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
         },
         /**
          * 表格渲染前调用
@@ -382,8 +384,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
-
-
+            data.selectedCode=timestamp;
             return true;
         },
         /**

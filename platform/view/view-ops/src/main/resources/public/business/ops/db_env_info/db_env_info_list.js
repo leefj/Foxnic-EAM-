@@ -1,7 +1,7 @@
 /**
  * 数据库环境 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 14:42:02
+ * @since 2023-07-10 09:17:25
  */
 
 
@@ -86,6 +86,7 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'label', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签'), templet:function (d){ return templet('label',fox.getEnumText(RADIO_LABEL_DATA,d.label,'','label'),d);}}
 					,{ field: 'db', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库') , templet: function (d) { return templet('db',d.db,d);}  }
+					,{ field: 'dbDesc', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('描述') , templet: function (d) { return templet('dbDesc',d.dbDesc,d);}  }
 					,{ field: 'ip', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('IP') , templet: function (d) { return templet('ip',d.ip,d);}  }
 					,{ field: 'voucher', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('凭证') , templet: function (d) { return templet('voucher',d.voucher,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
@@ -163,6 +164,7 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.label={ inputType:"radio_box", value: getSelectedValue("#label","value"), label:getSelectedValue("#label","nameStr") };
+		value.dbDesc={ inputType:"button",value: $("#dbDesc").val()};
 		value.ip={ inputType:"button",value: $("#ip").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.notes={ inputType:"button",value: $("#notes").val()};
 		var ps={searchField:"$composite"};
@@ -357,7 +359,10 @@ function ListPage() {
 
 			admin.putTempData('ops-db-env-info-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('ops-db-env-info-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -366,7 +371,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('ops-db-env-info-form-data-form-action', "view",true);
 						showEditForm(data.data);

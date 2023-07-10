@@ -24,7 +24,7 @@ import java.util.Map;
  * 巡检点项服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-06 07:50:25
+ * @since 2023-07-10 10:59:55
 */
 
 public interface IInspectionPointItemService extends  ISimpleIdService<InspectionPointItem,String> {

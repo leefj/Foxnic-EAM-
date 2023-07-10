@@ -20,7 +20,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-eam/eam-check-item";
 
-
+    var eamCommonFunc=layui.eamCommonFunc;
     //列表页的扩展
     var list={
         /**
@@ -113,6 +113,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+            if(field=="config"){
+                return eamCommonFunc.parseInspectPointItemConfig(field,value,r);
+            }else if(field=="defValue"){
+                return eamCommonFunc.parseInspectPointItemConfig(field,value,r);
+            }
+
             if(value==null) return "";
             return value;
         },

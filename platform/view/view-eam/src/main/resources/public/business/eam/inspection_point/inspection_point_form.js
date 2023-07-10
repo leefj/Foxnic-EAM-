@@ -1,7 +1,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 14:01:25
+ * @since 2023-07-10 13:48:31
  */
 
 function FormPage() {
@@ -255,6 +255,8 @@ function FormPage() {
 			radio: true,
 			tips: fox.translate("请选择",'','cmp:form')+fox.translate("关联设备",'','cmp:form'),
 			filterable: true,
+			paging: true,
+			pageRemote: true,
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("assetId",data.arr,data.change,data.isAdd);

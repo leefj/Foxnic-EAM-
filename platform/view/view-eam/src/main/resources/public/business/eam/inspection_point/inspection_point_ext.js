@@ -323,6 +323,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         onUploadEvent: function(e) {
             console.log("onUploadEvent",e);
         },
+         selectBoxDataTransform:function(label,curItem,item,data,i){
+            if(label&&label=="assetId"){
+                var name=data[i].assetCode
+                if(data[i].name){
+                    name=name+"-"+data[i].name
+                }
+                curItem.name=name;
+                return curItem;
+            }
+            return curItem;
+
+        },
         /**
          * 末尾执行
          */

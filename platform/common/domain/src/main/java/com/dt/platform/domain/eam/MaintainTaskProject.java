@@ -25,8 +25,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养项目
  * <p>保养项目 , 数据表 eam_maintain_task_project 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-14 07:42:51
- * @sign A8249301F89714C5DFE15372E32FAE64
+ * @since 2023-07-10 16:07:46
+ * @sign 2ECC4D70C0B9187724D5D00BDE0A9AD8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -42,7 +42,7 @@ public class MaintainTaskProject extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "698202584640389120")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "699403533341949952")
 	private String id;
 	
 	/**
@@ -54,13 +54,13 @@ public class MaintainTaskProject extends Entity {
 	/**
 	 * 任务：任务
 	*/
-	@ApiModelProperty(required = false,value="任务" , notes = "任务" , example = "698202584300650496")
+	@ApiModelProperty(required = false,value="任务" , notes = "任务" , example = "699403533178372096")
 	private String taskId;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "unexecuted")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "executed")
 	private String status;
 	
 	/**
@@ -132,19 +132,19 @@ public class MaintainTaskProject extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-11 04:07:48")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-14 11:39:57")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-14 11:43:20")
 	private Date updateTime;
 	
 	/**
@@ -169,12 +169,6 @@ public class MaintainTaskProject extends Entity {
 	private Date deleteTime;
 	
 	/**
-	 * 租户：租户
-	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
-	private String tenantId;
-	
-	/**
 	 * 选择：选择
 	*/
 	@ApiModelProperty(required = false,value="选择" , notes = "选择")
@@ -183,7 +177,7 @@ public class MaintainTaskProject extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
@@ -623,25 +617,6 @@ public class MaintainTaskProject extends Entity {
 	}
 	
 	/**
-	 * 获得 租户<br>
-	 * 租户
-	 * @return 租户
-	*/
-	public String getTenantId() {
-		return tenantId;
-	}
-	
-	/**
-	 * 设置 租户
-	 * @param tenantId 租户
-	 * @return 当前对象
-	*/
-	public MaintainTaskProject setTenantId(String tenantId) {
-		this.tenantId=tenantId;
-		return this;
-	}
-	
-	/**
 	 * 获得 选择<br>
 	 * 选择
 	 * @return 选择
@@ -757,7 +732,6 @@ public class MaintainTaskProject extends Entity {
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setProjectMaintainType(this.getProjectMaintainType());
-		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setStartTime(this.getStartTime());
 		inst.setId(this.getId());
@@ -842,7 +816,6 @@ public class MaintainTaskProject extends Entity {
 			this.setUpdateBy(DataParser.parse(String.class, map.get(MaintainTaskProjectMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(MaintainTaskProjectMeta.DELETE_TIME)));
 			this.setProjectMaintainType(DataParser.parse(String.class, map.get(MaintainTaskProjectMeta.PROJECT_MAINTAIN_TYPE)));
-			this.setTenantId(DataParser.parse(String.class, map.get(MaintainTaskProjectMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(MaintainTaskProjectMeta.DELETE_BY)));
 			this.setStartTime(DataParser.parse(Date.class, map.get(MaintainTaskProjectMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(MaintainTaskProjectMeta.ID)));
@@ -871,7 +844,6 @@ public class MaintainTaskProject extends Entity {
 				this.setUpdateBy( (String)map.get(MaintainTaskProjectMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(MaintainTaskProjectMeta.DELETE_TIME));
 				this.setProjectMaintainType( (String)map.get(MaintainTaskProjectMeta.PROJECT_MAINTAIN_TYPE));
-				this.setTenantId( (String)map.get(MaintainTaskProjectMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(MaintainTaskProjectMeta.DELETE_BY));
 				this.setStartTime( (Date)map.get(MaintainTaskProjectMeta.START_TIME));
 				this.setId( (String)map.get(MaintainTaskProjectMeta.ID));
@@ -913,7 +885,6 @@ public class MaintainTaskProject extends Entity {
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MaintainTaskProjectMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MaintainTaskProjectMeta.DELETE_TIME)));
 			this.setProjectMaintainType(DataParser.parse(String.class, r.getValue(MaintainTaskProjectMeta.PROJECT_MAINTAIN_TYPE)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(MaintainTaskProjectMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MaintainTaskProjectMeta.DELETE_BY)));
 			this.setStartTime(DataParser.parse(Date.class, r.getValue(MaintainTaskProjectMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(MaintainTaskProjectMeta.ID)));
@@ -940,7 +911,6 @@ public class MaintainTaskProject extends Entity {
 				this.setUpdateBy( (String)r.getValue(MaintainTaskProjectMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(MaintainTaskProjectMeta.DELETE_TIME));
 				this.setProjectMaintainType( (String)r.getValue(MaintainTaskProjectMeta.PROJECT_MAINTAIN_TYPE));
-				this.setTenantId( (String)r.getValue(MaintainTaskProjectMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(MaintainTaskProjectMeta.DELETE_BY));
 				this.setStartTime( (Date)r.getValue(MaintainTaskProjectMeta.START_TIME));
 				this.setId( (String)r.getValue(MaintainTaskProjectMeta.ID));

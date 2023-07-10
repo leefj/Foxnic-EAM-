@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库环境
  * <p>数据库环境 , 数据表 ops_db_env_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-30 14:42:00
- * @sign F7A9904226808419DAB0284B0690768B
+ * @since 2023-07-10 09:17:24
+ * @sign 7A046F0890C92B29C0B976DB755E67CB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -60,6 +60,12 @@ public class DbEnvInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="数据库" , notes = "数据库")
 	private String db;
+	
+	/**
+	 * 描述：描述
+	*/
+	@ApiModelProperty(required = false,value="描述" , notes = "描述")
+	private String dbDesc;
 	
 	/**
 	 * IP：IP
@@ -245,6 +251,25 @@ public class DbEnvInfo extends Entity {
 	*/
 	public DbEnvInfo setDb(String db) {
 		this.db=db;
+		return this;
+	}
+	
+	/**
+	 * 获得 描述<br>
+	 * 描述
+	 * @return 描述
+	*/
+	public String getDbDesc() {
+		return dbDesc;
+	}
+	
+	/**
+	 * 设置 描述
+	 * @param dbDesc 描述
+	 * @return 当前对象
+	*/
+	public DbEnvInfo setDbDesc(String dbDesc) {
+		this.dbDesc=dbDesc;
 		return this;
 	}
 	
@@ -666,6 +691,7 @@ public class DbEnvInfo extends Entity {
 	public DbEnvInfo duplicate(boolean all) {
 		com.dt.platform.domain.ops.meta.DbEnvInfoMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.DbEnvInfoMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
+		inst.setDbDesc(this.getDbDesc());
 		inst.setVoucher(this.getVoucher());
 		inst.setIp(this.getIp());
 		inst.setUpdateTime(this.getUpdateTime());
@@ -748,6 +774,7 @@ public class DbEnvInfo extends Entity {
 		if(map==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(DbEnvInfoMeta.NOTES)));
+			this.setDbDesc(DataParser.parse(String.class, map.get(DbEnvInfoMeta.DB_DESC)));
 			this.setVoucher(DataParser.parse(String.class, map.get(DbEnvInfoMeta.VOUCHER)));
 			this.setIp(DataParser.parse(String.class, map.get(DbEnvInfoMeta.IP)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbEnvInfoMeta.UPDATE_TIME)));
@@ -774,6 +801,7 @@ public class DbEnvInfo extends Entity {
 		} else {
 			try {
 				this.setNotes( (String)map.get(DbEnvInfoMeta.NOTES));
+				this.setDbDesc( (String)map.get(DbEnvInfoMeta.DB_DESC));
 				this.setVoucher( (String)map.get(DbEnvInfoMeta.VOUCHER));
 				this.setIp( (String)map.get(DbEnvInfoMeta.IP));
 				this.setUpdateTime( (Date)map.get(DbEnvInfoMeta.UPDATE_TIME));
@@ -813,6 +841,7 @@ public class DbEnvInfo extends Entity {
 		if(r==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(DbEnvInfoMeta.NOTES)));
+			this.setDbDesc(DataParser.parse(String.class, r.getValue(DbEnvInfoMeta.DB_DESC)));
 			this.setVoucher(DataParser.parse(String.class, r.getValue(DbEnvInfoMeta.VOUCHER)));
 			this.setIp(DataParser.parse(String.class, r.getValue(DbEnvInfoMeta.IP)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbEnvInfoMeta.UPDATE_TIME)));
@@ -832,6 +861,7 @@ public class DbEnvInfo extends Entity {
 		} else {
 			try {
 				this.setNotes( (String)r.getValue(DbEnvInfoMeta.NOTES));
+				this.setDbDesc( (String)r.getValue(DbEnvInfoMeta.DB_DESC));
 				this.setVoucher( (String)r.getValue(DbEnvInfoMeta.VOUCHER));
 				this.setIp( (String)r.getValue(DbEnvInfoMeta.IP));
 				this.setUpdateTime( (Date)r.getValue(DbEnvInfoMeta.UPDATE_TIME));

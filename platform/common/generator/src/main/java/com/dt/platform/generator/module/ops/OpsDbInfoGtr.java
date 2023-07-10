@@ -113,6 +113,10 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).form().textInput();
 
         cfg.view().field(OpsTables.OPS_DB_INFO.DATA_LOC).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.FILE_IDS).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.DB_SIZE).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.DB_PORT).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.LOG_METHOD).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_DB_INFO.VOUCHER_STR).form().textArea().height(100);
         cfg.view().field(OpsTables.OPS_DB_INFO.USER_INFO).form().textArea().height(100);

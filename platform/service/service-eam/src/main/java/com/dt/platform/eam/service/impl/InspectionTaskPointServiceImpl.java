@@ -8,10 +8,12 @@ import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
 import com.dt.platform.domain.eam.CheckItem;
 import com.dt.platform.domain.eam.CheckSelect;
+import com.dt.platform.domain.eam.InspectionTask;
 import com.dt.platform.domain.eam.InspectionTaskPoint;
 import com.dt.platform.domain.eam.meta.InspectionTaskPointMeta;
 import com.dt.platform.eam.service.ICheckSelectService;
 import com.dt.platform.eam.service.IInspectionTaskPointService;
+import com.dt.platform.eam.service.IInspectionTaskService;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
@@ -60,6 +62,9 @@ public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskP
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
+	@Autowired
+	private IInspectionTaskService inspectionTaskService;
+
 
 	@Autowired
 	private ICheckSelectService checkSelectService;
@@ -102,6 +107,23 @@ public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskP
 		}
 
 		InspectionTaskPoint sourceTaskPoint=this.getById(id);
+
+		String taskId=sourceTaskPoint.getTaskId();
+		InspectionTask task=inspectionTaskService.getById(taskId);
+		if(InspectionTaskStatusEnum.ACTING.code().equals(task.getTaskStatus())){
+			System.out.println("可以进行巡检");
+		}else if(InspectionTaskStatusEnum.WAIT.code().equals(task.getTaskStatus())){
+			//更新巡检状态
+			InspectionTask taskUps=new InspectionTask();
+			taskUps.setTaskStatus(InspectionTaskStatusEnum.ACTING.code());
+			taskUps.setId(taskId);
+			taskUps.setActStartTime(new Date());
+			inspectionTaskService.update(taskUps,SaveMode.NOT_NULL_FIELDS,false);
+		}else{
+			return ErrorDesc.failureMessage("当前巡检任务状态不能进行巡检操作");
+		}
+
+
 		dao.fill(sourceTaskPoint).with(InspectionTaskPointMeta.CHECK_SELECT_LIST).execute();
 		List<CheckSelect> itemList=sourceTaskPoint.getCheckSelectList();
 		Logger.info("巡检点:"+id+",巡检项:"+itemList.size());
@@ -141,6 +163,7 @@ public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskP
 		}
 		InspectionTaskPoint taskPoint=new InspectionTaskPoint();
 		taskPoint.setId(id);
+		taskPoint.setImageId(imageId);
 		taskPoint.setOperTime(new Date());
 		taskPoint.setPointStatus(pointStatus);
 		taskPoint.setOperId(SessionUser.getCurrent().getActivatedEmployeeId());

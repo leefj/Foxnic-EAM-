@@ -2,7 +2,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 22:53:46
+ * @since 2023-07-10 13:14:01
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-9135-content">
+        <div class="layui-row form-row" id="random-5306-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -58,7 +58,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-0526-content">
+        <div class="layui-row form-row" id="random-7068-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -71,17 +71,26 @@
                         <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入'+'巡检结果') }" class="layui-textarea" style="height: 150px" ></textarea>
                     </div>
                 </div>
+                            <!-- upload : 图片 ,  imageId  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('图片')}">图片</div></div>
+                    <div class="layui-upload layui-input-block ">
+                        <input input-type="upload" id="imageId"  name="imageId" lay-filter="imageId" style="display: none">
+                        <button type="button" class="layui-btn" id="imageId-button" th:text="${lang.translate('选择附件')}">选择附件</button>
+                        <div class="layui-upload-list" id="imageId-file-list"></div>
+                    </div>
+                </div>
             <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4745-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4322-fieldset">
             <legend>巡检点</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-4745-content">
+        <div class="layui-row form-row" id="random-4322-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -141,7 +150,7 @@
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('位置经度')}">位置经度</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="pointPosLongitude" id="pointPosLongitude" name="pointPosLongitude" th:placeholder="${ lang.translate('请输入'+'位置经度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0"  value="0.0" />
+                        <input lay-filter="pointPosLongitude" id="pointPosLongitude" name="pointPosLongitude" th:placeholder="${ lang.translate('请输入'+'位置经度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
                     </div>
                 </div>
             
@@ -149,7 +158,7 @@
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('位置纬度')}">位置纬度</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="pointPosLatitude" id="pointPosLatitude" name="pointPosLatitude" th:placeholder="${ lang.translate('请输入'+'位置纬度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0"  value="0.0" />
+                        <input lay-filter="pointPosLatitude" id="pointPosLatitude" name="pointPosLatitude" th:placeholder="${ lang.translate('请输入'+'位置纬度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->

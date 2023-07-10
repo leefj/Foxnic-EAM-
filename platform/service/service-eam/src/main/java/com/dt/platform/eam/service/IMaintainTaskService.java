@@ -1,6 +1,7 @@
 package com.dt.platform.eam.service;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
 import com.dt.platform.domain.eam.MaintainTask;
@@ -27,6 +28,7 @@ import java.util.Map;
 
 public interface IMaintainTaskService extends ISuperService<MaintainTask> {
 
+	Result<JSONObject> queryData(String labels);
 
 	/**
 	 * @param ids

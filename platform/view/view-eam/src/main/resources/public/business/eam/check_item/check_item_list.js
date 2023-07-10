@@ -1,7 +1,7 @@
 /**
  * 检查项 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 13:59:03
+ * @since 2023-07-10 12:35:20
  */
 
 
@@ -89,6 +89,7 @@ function ListPage() {
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'checkDesc', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('描述') , templet: function (d) { return templet('checkDesc',d.checkDesc,d);}  }
 					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('组件类型'), templet:function (d){ return templet('type',fox.getEnumText(RADIO_TYPE_DATA,d.type,'','type'),d);}}
 					,{ field: 'config', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('配置项') , templet: function (d) { return templet('config',d.config,d);}  }
 					,{ field: 'defValue', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('默认内容') , templet: function (d) { return templet('defValue',d.defValue,d);}  }

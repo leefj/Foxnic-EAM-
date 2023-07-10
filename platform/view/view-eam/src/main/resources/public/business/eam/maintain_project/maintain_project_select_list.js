@@ -83,7 +83,7 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('项目名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'maintainType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保养类型'), templet: function (d) { return templet('maintainType' ,fox.joinLabel(d.maintainTypeDict,"label"),d);}}
 					,{ field: 'baseCose', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标准工时(小时)') , templet: function (d) { return templet('baseCose',d.baseCose,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+				//	,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
@@ -291,11 +291,12 @@ function ListPage() {
 					var ps={};
 					ps.selectedCode=SELECTED_CODE;
 					ps.ownerId=OWNER_ID;
+					ps.ownerType=OWNER_TYPE;
 					var ids=getCheckedList("id");
-					ps.ids=ids;
+					ps.ids=JSON.stringify(ids);
 					//调用批量删除接口
 					top.layer.confirm(fox.translate('确定选择已选中的')+fox.translate('保养项目')+fox.translate('吗？'), function (i) {
-						admin.post(moduleURL+"/selected", ps, function (data) {
+						admin.post(moduleURL+"/select-save-ids", ps, function (data) {
 							if (data.success) {
 								admin.finishPopupCenterById('eam-maintain-project-select-list-data-win');
 								fox.showMessage(data);

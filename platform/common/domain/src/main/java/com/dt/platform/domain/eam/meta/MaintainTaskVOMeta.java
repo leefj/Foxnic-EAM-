@@ -19,7 +19,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 19:40:42
+ * @since 2023-07-10 19:53:48
  * @sign 8B3D8B895A93C4002249F053A1457FB2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -397,16 +397,6 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
-	 * 选择 , 类型: java.lang.String
-	*/
-	public static final String SELECTED_CODE="selectedCode";
-	
-	/**
-	 * 选择 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
-	
-	/**
 	 * 制单人 , 类型: java.lang.String
 	*/
 	public static final String ORIGINATOR_ID="originatorId";
@@ -607,9 +597,19 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,org.github.foxnic.web.domain.hrm.Employee> EXECUTOR_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,EXECUTOR, org.github.foxnic.web.domain.hrm.Employee.class, "执行人", "执行人", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * selectedCode , 类型: java.lang.String
+	*/
+	public static final String SELECTED_CODE="selectedCode";
+	
+	/**
+	 * selectedCode , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,SELECTED_CODE, java.lang.String.class, "selectedCode", "selectedCode", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , STATUS , BUSINESS_CODE , PLAN_ID , MAINTAIN_TYPE , GROUP_ID , ASSET_ID , ASSET_NAME , ASSET_CODE , ASSET_MODEL , ASSET_STATUS , ASSET_SN , ASSET_POS , CONTENT , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , TIMEOUT , TOTAL_COST , ACT_TOTAL_COST , COST , OVERDUE , NOTES , SELECTED_CODE , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , PROJECT_LIST , PROJECT_IDS , TASK_PROJECT_LIST , TASK_PROJECT_IDS , ASSET , MAINTAIN_PLAN , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ORIGINATOR , EXECUTOR };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , STATUS , BUSINESS_CODE , PLAN_ID , MAINTAIN_TYPE , GROUP_ID , ASSET_ID , ASSET_NAME , ASSET_CODE , ASSET_MODEL , ASSET_STATUS , ASSET_SN , ASSET_POS , CONTENT , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , TIMEOUT , TOTAL_COST , ACT_TOTAL_COST , COST , OVERDUE , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , PROJECT_LIST , PROJECT_IDS , TASK_PROJECT_LIST , TASK_PROJECT_IDS , ASSET , MAINTAIN_PLAN , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ORIGINATOR , EXECUTOR , SELECTED_CODE };
 	
 	/**
 	 * 代理类
@@ -1027,17 +1027,6 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 		}
 		
 		/**
-		 * 设置 选择
-		 * @param selectedCode 选择
-		 * @return 当前对象
-		*/
-		public MaintainTask setSelectedCode(String selectedCode) {
-			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
-			super.setSelectedCode(selectedCode);
-			return this;
-		}
-		
-		/**
 		 * 设置 制单人
 		 * @param originatorId 制单人
 		 * @return 当前对象
@@ -1256,6 +1245,17 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 			super.setExecutor(executor);
 			return this;
 		}
+		
+		/**
+		 * 设置 selectedCode
+		 * @param selectedCode selectedCode
+		 * @return 当前对象
+		*/
+		public MaintainTask setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1275,7 +1275,6 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 			inst.setNotes(this.getNotes());
 			inst.setAssetPos(this.getAssetPos());
 			inst.setGroupId(this.getGroupId());
-			inst.setSelectedCode(this.getSelectedCode());
 			inst.setContent(this.getContent());
 			inst.setTimeout(this.getTimeout());
 			inst.setBusinessCode(this.getBusinessCode());
@@ -1319,6 +1318,7 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 				inst.setProjectIds(this.getProjectIds());
 				inst.setTaskProjectIds(this.getTaskProjectIds());
 				inst.setOriginator(this.getOriginator());
+				inst.setSelectedCode(this.getSelectedCode());
 				inst.setMaintainTypeDict(this.getMaintainTypeDict());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());

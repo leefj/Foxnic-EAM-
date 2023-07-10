@@ -928,7 +928,7 @@ public class EamRelationManager extends RelationManager {
     public void setupInspectionPlan() {
         this.property(InspectionPlanMeta.INSPECTION_POINT_LIST_PROP)
                 .using(EAMTables.EAM_INSPECTION_PLAN.ID).join(EAMTables.EAM_INSPECTION_POINT_OWNER.OWNER_ID)
-                .condition(" (selected_code='' or selected_code is null)")
+                .condition("selected_code='def'")
                 .using(EAMTables.EAM_INSPECTION_POINT_OWNER.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID).after((tag,point,checkItems,map)->{
             if(checkItems==null||checkItems.size()==0) {
                 point.setItemDisableCount("0");
@@ -949,7 +949,7 @@ public class EamRelationManager extends RelationManager {
 
         this.property(InspectionPlanMeta.INSPECTION_POINT_OWNER_LIST_PROP)
                 .using(EAMTables.EAM_INSPECTION_PLAN.ID).join(EAMTables.EAM_INSPECTION_POINT_OWNER.OWNER_ID)
-                .condition(" (selected_code='' or selected_code is null)");
+                .condition("selected_code='def'");
 
         this.property(InspectionPlanMeta.INSPECTION_GROUP_PROP)
                 .using(EAMTables.EAM_INSPECTION_PLAN.GROUP_ID).join(EAMTables.EAM_INSPECTION_GROUP.ID);
@@ -979,7 +979,7 @@ public class EamRelationManager extends RelationManager {
     public void setupInspectionPoint() {
         this.property(InspectionPointMeta.CHECK_ITEM_LIST_PROP)
                 .using(EAMTables.EAM_INSPECTION_POINT.ID).join(EAMTables.EAM_INSPECTION_POINT_ITEM.POINT_ID)
-                .condition(" (select_code='' or select_code is null)")
+                .condition("select_code='def'")
               .using(EAMTables.EAM_INSPECTION_POINT_ITEM.ITEM_ID).join(EAMTables.EAM_CHECK_ITEM.ID).after((tag,point,checkItems,map)->{
             if(checkItems==null||checkItems.size()==0) {
                 point.setItemDisableCount("0");
@@ -1010,7 +1010,7 @@ public class EamRelationManager extends RelationManager {
         this.property(InspectionPointOwnerMeta.CHECK_ITEM_LIST_PROP)
                 .using(EAMTables.EAM_INSPECTION_POINT_OWNER.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID)
                  .using(EAMTables.EAM_INSPECTION_POINT.ID).join(EAMTables.EAM_INSPECTION_POINT_ITEM.POINT_ID)
-                .condition(" (select_code='' or select_code is null)")
+                .condition(" select_code='def'")
                  .using(EAMTables.EAM_INSPECTION_POINT_ITEM.ITEM_ID).join(EAMTables.EAM_CHECK_ITEM.ID);
 
 

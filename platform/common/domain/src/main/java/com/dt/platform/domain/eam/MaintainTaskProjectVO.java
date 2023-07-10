@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养项目VO类型
  * <p>保养项目 , 数据表 eam_maintain_task_project 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-14 07:42:51
+ * @since 2023-07-10 16:07:46
  * @sign 405854482C050162614726994D692BB5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -418,7 +418,6 @@ public class MaintainTaskProjectVO extends MaintainTaskProject {
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setProjectMaintainType(this.getProjectMaintainType());
-		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setStartTime(this.getStartTime());
 		inst.setId(this.getId());
@@ -515,7 +514,6 @@ public class MaintainTaskProjectVO extends MaintainTaskProject {
 			this.setUpdateBy(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(MaintainTaskProjectVOMeta.DELETE_TIME)));
 			this.setProjectMaintainType(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.PROJECT_MAINTAIN_TYPE)));
-			this.setTenantId(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.DELETE_BY)));
 			this.setStartTime(DataParser.parse(Date.class, map.get(MaintainTaskProjectVOMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.ID)));
@@ -554,7 +552,6 @@ public class MaintainTaskProjectVO extends MaintainTaskProject {
 				this.setUpdateBy( (String)map.get(MaintainTaskProjectVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(MaintainTaskProjectVOMeta.DELETE_TIME));
 				this.setProjectMaintainType( (String)map.get(MaintainTaskProjectVOMeta.PROJECT_MAINTAIN_TYPE));
-				this.setTenantId( (String)map.get(MaintainTaskProjectVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(MaintainTaskProjectVOMeta.DELETE_BY));
 				this.setStartTime( (Date)map.get(MaintainTaskProjectVOMeta.START_TIME));
 				this.setId( (String)map.get(MaintainTaskProjectVOMeta.ID));
@@ -606,7 +603,6 @@ public class MaintainTaskProjectVO extends MaintainTaskProject {
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MaintainTaskProjectVOMeta.DELETE_TIME)));
 			this.setProjectMaintainType(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.PROJECT_MAINTAIN_TYPE)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.DELETE_BY)));
 			this.setStartTime(DataParser.parse(Date.class, r.getValue(MaintainTaskProjectVOMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.ID)));
@@ -633,7 +629,6 @@ public class MaintainTaskProjectVO extends MaintainTaskProject {
 				this.setUpdateBy( (String)r.getValue(MaintainTaskProjectVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(MaintainTaskProjectVOMeta.DELETE_TIME));
 				this.setProjectMaintainType( (String)r.getValue(MaintainTaskProjectVOMeta.PROJECT_MAINTAIN_TYPE));
-				this.setTenantId( (String)r.getValue(MaintainTaskProjectVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(MaintainTaskProjectVOMeta.DELETE_BY));
 				this.setStartTime( (Date)r.getValue(MaintainTaskProjectVOMeta.START_TIME));
 				this.setId( (String)r.getValue(MaintainTaskProjectVOMeta.ID));
