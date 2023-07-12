@@ -14,6 +14,7 @@ import com.dt.platform.domain.oa.MeetingRoomBookRcd;
 import com.dt.platform.domain.oa.meta.MeetingRoomBookRcdMeta;
 import com.dt.platform.eam.service.IInspectionTaskPointService;
 import com.dt.platform.eam.service.IInspectionTaskService;
+import com.dt.platform.eam.service.IMaintainTaskService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
@@ -224,8 +225,6 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 	@Override
 	public Result execute(String taskId, String pointCode, String status, String ct, String pics) {
 
-
-
 		Result<JSONObject> checkResult=check(taskId,pointCode);
 		if(!checkResult.isSuccess()){
 			return checkResult;
@@ -233,6 +232,15 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 		String curId= SessionUser.getCurrent().getActivatedEmployeeId();
 
 		InspectionTask task=this.getById(taskId);
+//		dao.fill(task).with(InspectionTaskMeta.INSPECTION_TASK_POINT_LIST).execute();
+//
+//		if(StringUtil.isBlank(task.getPointWaitCount())){
+//			task.setPointWaitCount("0");
+//		}
+//		if(Integer.parseInt(task.getPointWaitCount())>0){
+//			return ErrorDesc.failureMessage("部分巡检点未完成巡检");
+//		}
+
 		if(InspectionTaskStatusEnum.ACTING.code().equals(task.getTaskStatus())){
 			System.out.println("可以进行巡检");
 		}else if(InspectionTaskStatusEnum.WAIT.code().equals(task.getTaskStatus())){

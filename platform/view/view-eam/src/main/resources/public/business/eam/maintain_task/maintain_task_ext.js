@@ -29,9 +29,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         beforeInit:function () {
 
             console.log("list:beforeInit");
-            var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
-            operHtml=operHtml.replace(/lay-event="maintain"/i, "style=\"display:none\"")
-            document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+          //  var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+          //  operHtml=operHtml.replace(/lay-event="maintain"/i, "style=\"display:none\"")
+           // document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
         },
         /**
@@ -98,6 +98,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     fox.disableButton($('.finish-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.cancel-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.execute-button').filter("[data-id='" + data[i].id + "']"), true);
+
                 }else if(data[i].status=="cancel"){
                     fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.finish-button').filter("[data-id='" + data[i].id + "']"), true);
@@ -120,6 +121,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+
+            if(field=="itemCount" ||field=="waitCount" ){
+                if(value){
+                    return value
+                }else{
+                    return 0;
+                }
+            }
+
             if(value==null) return "";
             return value;
         },
@@ -216,6 +227,30 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             list.billOper("cancel","cancel-button",{id:item.id},"已取消");
         },
         maintain:function(item,it){
+            admin.post("/service-eam/eam-maintain-task/get-by-id", { id : item.id }, function (r) {
+                if (r.success) {
+                    var top2=10
+                    var q="?id="+item.id;
+                    admin.putTempData('eam-maintain-task-form-data-form-action', "edit",true);
+                    admin.putTempData('eam-maintain-task-form-data', r.data);
+                    admin.popupCenter({
+                        title: "保养",
+                        resize: false,
+                        offset: [top2,null],
+                        area: ["80%","85%"],
+                        type: 2,
+                        id:"eam-maintain-task-form-data-win2",
+                        content: '/business/eam/maintain_task/maintain_task_exec_form.html' +q,
+                        finish: function () {
+                            window.module.refreshTableData();
+                        }
+                    });
+
+
+                } else {
+                    fox.showMessage(data);
+                }
+            });
 
         },
         /**
@@ -247,6 +282,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             $("#assetSn").attr("disabled","disabled").css("background-color","#e6e6e6");
             $("#assetPos").attr("disabled","disabled").css("background-color","#e6e6e6");
             $("#assetStatus").attr("disabled","disabled").css("background-color","#e6e6e6");
+
+            var placeholder="";
+            if (formAction=="create"){
+                placeholder="自动填充"
+            }
+            $("#assetCode").attr('placeholder',placeholder);
+            $("#assetName").attr('placeholder',placeholder);
+            $("#assetModel").attr('placeholder',placeholder);
+            $("#assetSn").attr('placeholder',placeholder);
+            $("#assetPos").attr('placeholder',placeholder);
+            $("#assetStatus").attr('placeholder',placeholder);
 
         },
         /**

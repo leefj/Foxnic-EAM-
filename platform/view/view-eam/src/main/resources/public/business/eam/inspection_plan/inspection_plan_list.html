@@ -2,7 +2,7 @@
 /**
  * 巡检计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 18:20:43
+ * @since 2023-07-12 13:51:26
  */
  -->
  <!DOCTYPE html>
@@ -49,23 +49,23 @@
                     <!-- 位置范围 , posDetail ,typeName=text_input, isHideInSearch=true -->
                     <!-- 开始日期 , startDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 截止日期 , endDate ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 周期 , actionCycleId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 时间要求 , completionTime ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 计划周期 , actionCycleId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 预计用时(时) , completionTime ,typeName=number_input, isHideInSearch=true -->
                     <!-- 超时处理 , overtimeMethod ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 提醒时间 , remindTime ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 提醒时间(时) , remindTime ,typeName=number_input, isHideInSearch=true -->
                     <!-- 上次执行 , lastTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 下次执行 , nextTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 巡检点数 , itemCount ,typeName=text_input, isHideInSearch=true -->
                     <!-- 巡检点数(未启用) , itemDisableCount ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 状态 , planStatus ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 计划状态 , planStatus ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label planStatus-label">状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('计划状态')}" class="search-label planStatus-label">计划状态</span><span class="search-colon">:</span></div>
                         <div id="planStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.EamPlanStatusEnum')}" style="width:150px" extraParam="{}"></div>
                     </div>
-                    <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 计划名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('计划名称')}" class="search-label name-label">计划名称</span><span class="search-colon">:</span></div>
                         <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
                     <!-- 计划编号 , planCode ,typeName=text_input, isHideInSearch=false -->
@@ -78,9 +78,9 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 班组 , groupId ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 巡检班组 , groupId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('班组')}" class="search-label groupId-label">班组</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('巡检班组')}" class="search-label groupId-label">巡检班组</span><span class="search-colon">:</span></div>
                         <div id="groupId" th:data="${'/service-eam/eam-inspection-group/query-paged-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
                     <!-- 巡检顺序 , inspectionMethod ,typeName=select_box, isHideInSearch=false -->

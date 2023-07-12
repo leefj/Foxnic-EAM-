@@ -6,6 +6,7 @@ import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.AssetInventoryDetailStatusEnum;
 
 import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
+import com.dt.platform.constants.enums.eam.MaintainTaskProjectStatusEnum;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
@@ -399,6 +400,22 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_ACTION_CRONTAB.ID).join(EAMTables.EAM_ACTION_CRONTAB_LOG.CRONTAB_ID);
     }
 
+    private HashMap<String,Integer> calculateMaintainTaskProjectStatusStatistics(List<MaintainTaskProject> assets){
+        HashMap<String,Integer> map=new HashMap<>();
+        int allCount=0;
+        int waitCount=0;
+        if(assets!=null&&assets.size()>0){
+            for(int i=0;i<assets.size();i++){
+                allCount++;
+                if(MaintainTaskProjectStatusEnum.UNEXECUTED.code().equals(assets.get(i).getStatus())){
+                    waitCount++;
+                }
+            }
+            map.put("itemCount",allCount);
+            map.put("waitCount",waitCount);
+        }
+        return map;
+    }
 
 
 
@@ -407,7 +424,12 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_MAINTAIN_TASK.ASSET_ID ).join( EAMTables.EAM_ASSET.ID);
 
         this.property(MaintainTaskMeta.TASK_PROJECT_LIST_PROP)
-                .using(EAMTables.EAM_MAINTAIN_TASK.ID).join(EAMTables.EAM_MAINTAIN_TASK_PROJECT.TASK_ID);
+                .using(EAMTables.EAM_MAINTAIN_TASK.ID).join(EAMTables.EAM_MAINTAIN_TASK_PROJECT.TASK_ID).after((tag,point,checkItems,map)->{
+            HashMap<String,Integer> data= calculateMaintainTaskProjectStatusStatistics(checkItems);
+            point.setItemCount(data.getOrDefault("itemCount",0)+"");
+            point.setWaitCount(data.getOrDefault("waitCount",0)+"");
+            return checkItems;
+        }).condition("selected_code='def'");
 
 
         this.property(MaintainTaskMeta.PROJECT_LIST_PROP)
@@ -438,6 +460,24 @@ public class EamRelationManager extends RelationManager {
 
     }
 
+    private HashMap<String,Integer> calculateMaintainPlanProjectStatusStatistics(List<MaintainProject> assets){
+        HashMap<String,Integer> map=new HashMap<>();
+        int allCount=0;
+        int waitCount=0;
+        if(assets!=null&&assets.size()>0){
+//            for(int i=0;i<assets.size();i++){
+//                allCount++;
+//                if(MaintainTaskProjectStatusEnum.UNEXECUTED.code().equals(assets.get(i).getStatus())){
+//                    waitCount++;
+//                }
+//            }
+            map.put("itemCount",assets.size());
+        }else{
+            map.put("itemCount",0);
+        }
+        return map;
+    }
+
 
     public void setupMaintainPlan() {
 
@@ -449,8 +489,12 @@ public class EamRelationManager extends RelationManager {
 
         //项目
         this.property(MaintainPlanMeta.PROJECT_LIST_PROP)
-                .using(EAMTables.EAM_MAINTAIN_PLAN.ID ).join(EAMTables.EAM_MAINTAIN_PROJECT_SELECT.OWNER_ID)
-                .using( EAMTables.EAM_MAINTAIN_PROJECT_SELECT.PROJECT_ID).join( EAMTables.EAM_MAINTAIN_PROJECT.ID);
+                .using(EAMTables.EAM_MAINTAIN_PLAN.ID ).join(EAMTables.EAM_MAINTAIN_PROJECT_SELECT.OWNER_ID).condition("selected_code='def'")
+                .using( EAMTables.EAM_MAINTAIN_PROJECT_SELECT.PROJECT_ID).join(EAMTables.EAM_MAINTAIN_PROJECT.ID).after((tag,point,checkItems,map)->{
+            HashMap<String,Integer> data= calculateMaintainPlanProjectStatusStatistics(checkItems);
+            point.setItemCount(data.getOrDefault("itemCount",0)+"");
+            return checkItems;
+        });
 
 
 

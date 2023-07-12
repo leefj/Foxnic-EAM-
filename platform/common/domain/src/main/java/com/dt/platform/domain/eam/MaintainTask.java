@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养任务
  * <p>保养任务 , 数据表 eam_maintain_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 19:53:48
- * @sign 14E9EF3E25793EDBD58FA3B2A38A1795
+ * @since 2023-07-12 13:20:59
+ * @sign 8CD2B08F6E7CDC48FE0338493B600191
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -46,31 +46,31 @@ public class MaintainTask extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "699403533178372096")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "731451914251665408")
 	private String id;
 	
 	/**
-	 * 名称：名称
+	 * 任务名称：任务名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "12")
+	@ApiModelProperty(required = false,value="任务名称" , notes = "任务名称" , example = "1212")
 	private String name;
 	
 	/**
-	 * 状态：状态
+	 * 任务状态：任务状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "finish")
+	@ApiModelProperty(required = false,value="任务状态" , notes = "任务状态" , example = "finish")
 	private String status;
 	
 	/**
 	 * 任务单据：任务单据
 	*/
-	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "MT202304142304491")
+	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "MT202308121008615")
 	private String businessCode;
 	
 	/**
 	 * 方案：方案
 	*/
-	@ApiModelProperty(required = false,value="方案" , notes = "方案" , example = "698227115643895808")
+	@ApiModelProperty(required = false,value="方案" , notes = "方案" , example = "730872799438045184")
 	private String planId;
 	
 	/**
@@ -80,15 +80,15 @@ public class MaintainTask extends Entity {
 	private String maintainType;
 	
 	/**
-	 * 执行班组：执行班组
+	 * 保养班组：保养班组
 	*/
-	@ApiModelProperty(required = true,value="执行班组" , notes = "执行班组" , example = "698150545436704768")
+	@ApiModelProperty(required = true,value="保养班组" , notes = "保养班组" , example = "698150545436704768")
 	private String groupId;
 	
 	/**
-	 * 设备：设备
+	 * 保养设备：保养设备
 	*/
-	@ApiModelProperty(required = false,value="设备" , notes = "设备" , example = "681881153086423040")
+	@ApiModelProperty(required = false,value="保养设备" , notes = "保养设备" , example = "681881153086423040")
 	private String assetId;
 	
 	/**
@@ -100,7 +100,7 @@ public class MaintainTask extends Entity {
 	/**
 	 * 设备编码：设备编码
 	*/
-	@ApiModelProperty(required = false,value="设备编码" , notes = "设备编码" , example = "sn")
+	@ApiModelProperty(required = false,value="设备编码" , notes = "设备编码" , example = "AS16217")
 	private String assetCode;
 	
 	/**
@@ -112,19 +112,19 @@ public class MaintainTask extends Entity {
 	/**
 	 * 设备状态：设备状态
 	*/
-	@ApiModelProperty(required = false,value="设备状态" , notes = "设备状态" , example = "idle")
+	@ApiModelProperty(required = false,value="设备状态" , notes = "设备状态" , example = "repair")
 	private String assetStatus;
 	
 	/**
-	 * 设备序列号：设备序列号
+	 * 设备序列：设备序列
 	*/
-	@ApiModelProperty(required = false,value="设备序列号" , notes = "设备序列号" , example = "sn")
+	@ApiModelProperty(required = false,value="设备序列" , notes = "设备序列" , example = "sn")
 	private String assetSn;
 	
 	/**
-	 * 位置：位置
+	 * 设备位置：设备位置
 	*/
-	@ApiModelProperty(required = false,value="位置" , notes = "位置" , example = "位置1/位置1-1")
+	@ApiModelProperty(required = false,value="设备位置" , notes = "设备位置" , example = "detail")
 	private String assetPos;
 	
 	/**
@@ -142,19 +142,19 @@ public class MaintainTask extends Entity {
 	/**
 	 * 应开始时间：应开始时间
 	*/
-	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2023-04-14 11:39:57")
+	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2023-07-12 10:08:46")
 	private Date planStartTime;
 	
 	/**
-	 * 实际开始时间：实际开始时间
+	 * 实际开始：实际开始
 	*/
-	@ApiModelProperty(required = false,value="实际开始时间" , notes = "实际开始时间" , example = "2023-04-14 11:43:00")
+	@ApiModelProperty(required = false,value="实际开始" , notes = "实际开始" , example = "2023-07-12 10:09:03")
 	private Date actStartTime;
 	
 	/**
-	 * 实际完成时间：实际完成时间
+	 * 实际完成：实际完成
 	*/
-	@ApiModelProperty(required = false,value="实际完成时间" , notes = "实际完成时间" , example = "2023-04-14 11:43:00")
+	@ApiModelProperty(required = false,value="实际完成" , notes = "实际完成" , example = "2023-07-12 10:09:13")
 	private Date actFinishTime;
 	
 	/**
@@ -188,6 +188,12 @@ public class MaintainTask extends Entity {
 	private String overdue;
 	
 	/**
+	 * 结果：结果
+	*/
+	@ApiModelProperty(required = false,value="结果" , notes = "结果")
+	private String result;
+	
+	/**
 	 * 备注：备注
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注")
@@ -208,7 +214,7 @@ public class MaintainTask extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-14 11:39:57")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-12 10:08:46")
 	private Date createTime;
 	
 	/**
@@ -220,7 +226,7 @@ public class MaintainTask extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-14 11:43:20")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-12 10:09:03")
 	private Date updateTime;
 	
 	/**
@@ -323,6 +329,18 @@ public class MaintainTask extends Entity {
 	private String selectedCode;
 	
 	/**
+	 * itemCount：itemCount
+	*/
+	@ApiModelProperty(required = false,value="itemCount" , notes = "itemCount")
+	private String itemCount;
+	
+	/**
+	 * waitCount：waitCount
+	*/
+	@ApiModelProperty(required = false,value="waitCount" , notes = "waitCount")
+	private String waitCount;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -342,17 +360,17 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
-	 * 获得 名称<br>
-	 * 名称
-	 * @return 名称
+	 * 获得 任务名称<br>
+	 * 任务名称
+	 * @return 任务名称
 	*/
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * 设置 名称
-	 * @param name 名称
+	 * 设置 任务名称
+	 * @param name 任务名称
 	 * @return 当前对象
 	*/
 	public MaintainTask setName(String name) {
@@ -361,17 +379,17 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
-	 * 获得 状态<br>
-	 * 状态
-	 * @return 状态
+	 * 获得 任务状态<br>
+	 * 任务状态
+	 * @return 任务状态
 	*/
 	public String getStatus() {
 		return status;
 	}
 	
 	/**
-	 * 设置 状态
-	 * @param status 状态
+	 * 设置 任务状态
+	 * @param status 任务状态
 	 * @return 当前对象
 	*/
 	public MaintainTask setStatus(String status) {
@@ -437,17 +455,17 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
-	 * 获得 执行班组<br>
-	 * 执行班组
-	 * @return 执行班组
+	 * 获得 保养班组<br>
+	 * 保养班组
+	 * @return 保养班组
 	*/
 	public String getGroupId() {
 		return groupId;
 	}
 	
 	/**
-	 * 设置 执行班组
-	 * @param groupId 执行班组
+	 * 设置 保养班组
+	 * @param groupId 保养班组
 	 * @return 当前对象
 	*/
 	public MaintainTask setGroupId(String groupId) {
@@ -456,17 +474,17 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
-	 * 获得 设备<br>
-	 * 设备
-	 * @return 设备
+	 * 获得 保养设备<br>
+	 * 保养设备
+	 * @return 保养设备
 	*/
 	public String getAssetId() {
 		return assetId;
 	}
 	
 	/**
-	 * 设置 设备
-	 * @param assetId 设备
+	 * 设置 保养设备
+	 * @param assetId 保养设备
 	 * @return 当前对象
 	*/
 	public MaintainTask setAssetId(String assetId) {
@@ -551,17 +569,17 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
-	 * 获得 设备序列号<br>
-	 * 设备序列号
-	 * @return 设备序列号
+	 * 获得 设备序列<br>
+	 * 设备序列
+	 * @return 设备序列
 	*/
 	public String getAssetSn() {
 		return assetSn;
 	}
 	
 	/**
-	 * 设置 设备序列号
-	 * @param assetSn 设备序列号
+	 * 设置 设备序列
+	 * @param assetSn 设备序列
 	 * @return 当前对象
 	*/
 	public MaintainTask setAssetSn(String assetSn) {
@@ -570,17 +588,17 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
-	 * 获得 位置<br>
-	 * 位置
-	 * @return 位置
+	 * 获得 设备位置<br>
+	 * 设备位置
+	 * @return 设备位置
 	*/
 	public String getAssetPos() {
 		return assetPos;
 	}
 	
 	/**
-	 * 设置 位置
-	 * @param assetPos 位置
+	 * 设置 设备位置
+	 * @param assetPos 设备位置
 	 * @return 当前对象
 	*/
 	public MaintainTask setAssetPos(String assetPos) {
@@ -646,17 +664,17 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
-	 * 获得 实际开始时间<br>
-	 * 实际开始时间
-	 * @return 实际开始时间
+	 * 获得 实际开始<br>
+	 * 实际开始
+	 * @return 实际开始
 	*/
 	public Date getActStartTime() {
 		return actStartTime;
 	}
 	
 	/**
-	 * 设置 实际开始时间
-	 * @param actStartTime 实际开始时间
+	 * 设置 实际开始
+	 * @param actStartTime 实际开始
 	 * @return 当前对象
 	*/
 	public MaintainTask setActStartTime(Date actStartTime) {
@@ -665,17 +683,17 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
-	 * 获得 实际完成时间<br>
-	 * 实际完成时间
-	 * @return 实际完成时间
+	 * 获得 实际完成<br>
+	 * 实际完成
+	 * @return 实际完成
 	*/
 	public Date getActFinishTime() {
 		return actFinishTime;
 	}
 	
 	/**
-	 * 设置 实际完成时间
-	 * @param actFinishTime 实际完成时间
+	 * 设置 实际完成
+	 * @param actFinishTime 实际完成
 	 * @return 当前对象
 	*/
 	public MaintainTask setActFinishTime(Date actFinishTime) {
@@ -775,6 +793,25 @@ public class MaintainTask extends Entity {
 	*/
 	public MaintainTask setOverdue(String overdue) {
 		this.overdue=overdue;
+		return this;
+	}
+	
+	/**
+	 * 获得 结果<br>
+	 * 结果
+	 * @return 结果
+	*/
+	public String getResult() {
+		return result;
+	}
+	
+	/**
+	 * 设置 结果
+	 * @param result 结果
+	 * @return 当前对象
+	*/
+	public MaintainTask setResult(String result) {
+		this.result=result;
 		return this;
 	}
 	
@@ -1270,6 +1307,44 @@ public class MaintainTask extends Entity {
 		this.selectedCode=selectedCode;
 		return this;
 	}
+	
+	/**
+	 * 获得 itemCount<br>
+	 * itemCount
+	 * @return itemCount
+	*/
+	public String getItemCount() {
+		return itemCount;
+	}
+	
+	/**
+	 * 设置 itemCount
+	 * @param itemCount itemCount
+	 * @return 当前对象
+	*/
+	public MaintainTask setItemCount(String itemCount) {
+		this.itemCount=itemCount;
+		return this;
+	}
+	
+	/**
+	 * 获得 waitCount<br>
+	 * waitCount
+	 * @return waitCount
+	*/
+	public String getWaitCount() {
+		return waitCount;
+	}
+	
+	/**
+	 * 设置 waitCount
+	 * @param waitCount waitCount
+	 * @return 当前对象
+	*/
+	public MaintainTask setWaitCount(String waitCount) {
+		this.waitCount=waitCount;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1320,6 +1395,7 @@ public class MaintainTask extends Entity {
 		inst.setGroupId(this.getGroupId());
 		inst.setContent(this.getContent());
 		inst.setTimeout(this.getTimeout());
+		inst.setResult(this.getResult());
 		inst.setBusinessCode(this.getBusinessCode());
 		inst.setActStartTime(this.getActStartTime());
 		inst.setOverdue(this.getOverdue());
@@ -1354,13 +1430,15 @@ public class MaintainTask extends Entity {
 			inst.setProjectList(this.getProjectList());
 			inst.setTaskProjectList(this.getTaskProjectList());
 			inst.setMaintainPlan(this.getMaintainPlan());
-			inst.setExecutor(this.getExecutor());
 			inst.setProjectIds(this.getProjectIds());
 			inst.setTaskProjectIds(this.getTaskProjectIds());
 			inst.setOriginator(this.getOriginator());
-			inst.setAsset(this.getAsset());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setMaintainTypeDict(this.getMaintainTypeDict());
+			inst.setItemCount(this.getItemCount());
+			inst.setExecutor(this.getExecutor());
+			inst.setAsset(this.getAsset());
+			inst.setWaitCount(this.getWaitCount());
 			inst.setMaintainGroup(this.getMaintainGroup());
 		}
 		inst.clearModifies();
@@ -1426,6 +1504,7 @@ public class MaintainTask extends Entity {
 			this.setGroupId(DataParser.parse(String.class, map.get(MaintainTaskMeta.GROUP_ID)));
 			this.setContent(DataParser.parse(String.class, map.get(MaintainTaskMeta.CONTENT)));
 			this.setTimeout(DataParser.parse(BigDecimal.class, map.get(MaintainTaskMeta.TIMEOUT)));
+			this.setResult(DataParser.parse(String.class, map.get(MaintainTaskMeta.RESULT)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(MaintainTaskMeta.BUSINESS_CODE)));
 			this.setActStartTime(DataParser.parse(Date.class, map.get(MaintainTaskMeta.ACT_START_TIME)));
 			this.setOverdue(DataParser.parse(String.class, map.get(MaintainTaskMeta.OVERDUE)));
@@ -1458,11 +1537,13 @@ public class MaintainTask extends Entity {
 			this.setStatus(DataParser.parse(String.class, map.get(MaintainTaskMeta.STATUS)));
 			// others
 			this.setMaintainPlan(DataParser.parse(MaintainPlan.class, map.get(MaintainTaskMeta.MAINTAIN_PLAN)));
-			this.setExecutor(DataParser.parse(Employee.class, map.get(MaintainTaskMeta.EXECUTOR)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(MaintainTaskMeta.ORIGINATOR)));
-			this.setAsset(DataParser.parse(Asset.class, map.get(MaintainTaskMeta.ASSET)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainTaskMeta.SELECTED_CODE)));
 			this.setMaintainTypeDict(DataParser.parse(DictItem.class, map.get(MaintainTaskMeta.MAINTAIN_TYPE_DICT)));
+			this.setItemCount(DataParser.parse(String.class, map.get(MaintainTaskMeta.ITEM_COUNT)));
+			this.setExecutor(DataParser.parse(Employee.class, map.get(MaintainTaskMeta.EXECUTOR)));
+			this.setAsset(DataParser.parse(Asset.class, map.get(MaintainTaskMeta.ASSET)));
+			this.setWaitCount(DataParser.parse(String.class, map.get(MaintainTaskMeta.WAIT_COUNT)));
 			this.setMaintainGroup(DataParser.parse(MaintainGroup.class, map.get(MaintainTaskMeta.MAINTAIN_GROUP)));
 			return true;
 		} else {
@@ -1472,6 +1553,7 @@ public class MaintainTask extends Entity {
 				this.setGroupId( (String)map.get(MaintainTaskMeta.GROUP_ID));
 				this.setContent( (String)map.get(MaintainTaskMeta.CONTENT));
 				this.setTimeout( (BigDecimal)map.get(MaintainTaskMeta.TIMEOUT));
+				this.setResult( (String)map.get(MaintainTaskMeta.RESULT));
 				this.setBusinessCode( (String)map.get(MaintainTaskMeta.BUSINESS_CODE));
 				this.setActStartTime( (Date)map.get(MaintainTaskMeta.ACT_START_TIME));
 				this.setOverdue( (String)map.get(MaintainTaskMeta.OVERDUE));
@@ -1504,11 +1586,13 @@ public class MaintainTask extends Entity {
 				this.setStatus( (String)map.get(MaintainTaskMeta.STATUS));
 				// others
 				this.setMaintainPlan( (MaintainPlan)map.get(MaintainTaskMeta.MAINTAIN_PLAN));
-				this.setExecutor( (Employee)map.get(MaintainTaskMeta.EXECUTOR));
 				this.setOriginator( (Employee)map.get(MaintainTaskMeta.ORIGINATOR));
-				this.setAsset( (Asset)map.get(MaintainTaskMeta.ASSET));
 				this.setSelectedCode( (String)map.get(MaintainTaskMeta.SELECTED_CODE));
 				this.setMaintainTypeDict( (DictItem)map.get(MaintainTaskMeta.MAINTAIN_TYPE_DICT));
+				this.setItemCount( (String)map.get(MaintainTaskMeta.ITEM_COUNT));
+				this.setExecutor( (Employee)map.get(MaintainTaskMeta.EXECUTOR));
+				this.setAsset( (Asset)map.get(MaintainTaskMeta.ASSET));
+				this.setWaitCount( (String)map.get(MaintainTaskMeta.WAIT_COUNT));
 				this.setMaintainGroup( (MaintainGroup)map.get(MaintainTaskMeta.MAINTAIN_GROUP));
 				return true;
 			} catch (Exception e) {
@@ -1531,6 +1615,7 @@ public class MaintainTask extends Entity {
 			this.setGroupId(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.GROUP_ID)));
 			this.setContent(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.CONTENT)));
 			this.setTimeout(DataParser.parse(BigDecimal.class, r.getValue(MaintainTaskMeta.TIMEOUT)));
+			this.setResult(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.RESULT)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.BUSINESS_CODE)));
 			this.setActStartTime(DataParser.parse(Date.class, r.getValue(MaintainTaskMeta.ACT_START_TIME)));
 			this.setOverdue(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.OVERDUE)));
@@ -1569,6 +1654,7 @@ public class MaintainTask extends Entity {
 				this.setGroupId( (String)r.getValue(MaintainTaskMeta.GROUP_ID));
 				this.setContent( (String)r.getValue(MaintainTaskMeta.CONTENT));
 				this.setTimeout( (BigDecimal)r.getValue(MaintainTaskMeta.TIMEOUT));
+				this.setResult( (String)r.getValue(MaintainTaskMeta.RESULT));
 				this.setBusinessCode( (String)r.getValue(MaintainTaskMeta.BUSINESS_CODE));
 				this.setActStartTime( (Date)r.getValue(MaintainTaskMeta.ACT_START_TIME));
 				this.setOverdue( (String)r.getValue(MaintainTaskMeta.OVERDUE));

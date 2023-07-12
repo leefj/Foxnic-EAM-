@@ -1,7 +1,7 @@
 /**
  * 数据库环境 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 09:17:25
+ * @since 2023-07-12 17:13:27
  */
 
 
@@ -164,9 +164,9 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.label={ inputType:"radio_box", value: getSelectedValue("#label","value"), label:getSelectedValue("#label","nameStr") };
-		value.dbDesc={ inputType:"button",value: $("#dbDesc").val()};
+		value.dbDesc={ inputType:"button",value: $("#dbDesc").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.ip={ inputType:"button",value: $("#ip").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.notes={ inputType:"button",value: $("#notes").val()};
+		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;

@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-07-10 18:21:19
+ * @since 2023-07-12 13:48:29
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -13917,9 +13917,9 @@ public class EAMTables {
 		public static final DBField PLAN_CODE = new DBField(DBDataType.STRING , "plan_code","planCode","计划编号","计划编号",false,false,true);
 		
 		/**
-		 * 名称
+		 * 计划名称
 		*/
-		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","计划名称","计划名称",false,false,true);
 		
 		/**
 		 * 办理状态
@@ -13927,9 +13927,9 @@ public class EAMTables {
 		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","办理状态","办理状态",false,false,true);
 		
 		/**
-		 * 状态
+		 * 计划状态
 		*/
-		public static final DBField PLAN_STATUS = new DBField(DBDataType.STRING , "plan_status","planStatus","状态","状态",false,false,true);
+		public static final DBField PLAN_STATUS = new DBField(DBDataType.STRING , "plan_status","planStatus","计划状态","计划状态",false,false,true);
 		
 		/**
 		 * 计划类型
@@ -13942,9 +13942,9 @@ public class EAMTables {
 		public static final DBField LEADER_ID = new DBField(DBDataType.STRING , "leader_id","leaderId","负责人","负责人",false,false,true);
 		
 		/**
-		 * 班组
+		 * 巡检班组
 		*/
-		public static final DBField GROUP_ID = new DBField(DBDataType.STRING , "group_id","groupId","班组","班组",false,false,true);
+		public static final DBField GROUP_ID = new DBField(DBDataType.STRING , "group_id","groupId","巡检班组","巡检班组",false,false,true);
 		
 		/**
 		 * 位置范围
@@ -13962,9 +13962,9 @@ public class EAMTables {
 		public static final DBField END_DATE = new DBField(DBDataType.DATE , "end_date","endDate","截止日期","截止日期",false,false,true);
 		
 		/**
-		 * 周期
+		 * 计划周期
 		*/
-		public static final DBField ACTION_CYCLE_ID = new DBField(DBDataType.STRING , "action_cycle_id","actionCycleId","周期","周期",false,false,true);
+		public static final DBField ACTION_CYCLE_ID = new DBField(DBDataType.STRING , "action_cycle_id","actionCycleId","计划周期","计划周期",false,false,true);
 		
 		/**
 		 * 巡检顺序
@@ -14477,9 +14477,9 @@ public class EAMTables {
 		public static final DBField HIERARCHY = new DBField(DBDataType.STRING , "hierarchy","hierarchy","节点路径","节点路径",false,false,true);
 		
 		/**
-		 * 节点路径名称
+		 * 路径名称
 		*/
-		public static final DBField HIERARCHY_NAME = new DBField(DBDataType.STRING , "hierarchy_name","hierarchyName","节点路径名称","节点路径名称",false,false,true);
+		public static final DBField HIERARCHY_NAME = new DBField(DBDataType.STRING , "hierarchy_name","hierarchyName","路径名称","路径名称",false,false,true);
 		
 		/**
 		 * 排序
@@ -14692,19 +14692,29 @@ public class EAMTables {
 		public static final DBField PLAN_START_TIME = new DBField(DBDataType.DATE , "plan_start_time","planStartTime","应开始时间","应开始时间",false,false,true);
 		
 		/**
-		 * 实际开始时间
+		 * 实际开始
 		*/
-		public static final DBField ACT_START_TIME = new DBField(DBDataType.DATE , "act_start_time","actStartTime","实际开始时间","实际开始时间",false,false,true);
+		public static final DBField ACT_START_TIME = new DBField(DBDataType.DATE , "act_start_time","actStartTime","实际开始","实际开始",false,false,true);
 		
 		/**
-		 * 实际完成时间
+		 * 实际完成
 		*/
-		public static final DBField ACT_FINISH_TIME = new DBField(DBDataType.DATE , "act_finish_time","actFinishTime","实际完成时间","实际完成时间",false,false,true);
+		public static final DBField ACT_FINISH_TIME = new DBField(DBDataType.DATE , "act_finish_time","actFinishTime","实际完成","实际完成",false,false,true);
 		
 		/**
 		 * 实际工时
 		*/
 		public static final DBField ACT_TOTAL_COST = new DBField(DBDataType.DECIMAL , "act_total_cost","actTotalCost","实际工时","实际工时",false,false,true);
+		
+		/**
+		 * 提醒时间
+		*/
+		public static final DBField REMIND_TIME = new DBField(DBDataType.DECIMAL , "remind_time","remindTime","提醒时间","提醒时间",false,false,true);
+		
+		/**
+		 * 超时处理
+		*/
+		public static final DBField OVERTIME_METHOD = new DBField(DBDataType.STRING , "overtime_method","overtimeMethod","超时处理","超时处理",false,false,true);
 		
 		/**
 		 * 任务反馈
@@ -14771,7 +14781,7 @@ public class EAMTables {
 		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择","选择",false,false,true);
 		
 		public EAM_INSPECTION_TASK() {
-			this.init($NAME,"巡检任务" , ID , PLAN_ID , TASK_STATUS , TASK_CODE , PLAN_CODE , PLAN_NAME , PLAN_INSPECTION_METHOD , PLAN_COMPLETION_TIME , PLAN_NOTES , GROUP_ID , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , ACT_TOTAL_COST , CONTENT , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , SELECTED_CODE);
+			this.init($NAME,"巡检任务" , ID , PLAN_ID , TASK_STATUS , TASK_CODE , PLAN_CODE , PLAN_NAME , PLAN_INSPECTION_METHOD , PLAN_COMPLETION_TIME , PLAN_NOTES , GROUP_ID , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , ACT_TOTAL_COST , REMIND_TIME , OVERTIME_METHOD , CONTENT , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , SELECTED_CODE);
 		}
 		public static final EAM_INSPECTION_TASK $TABLE=new EAM_INSPECTION_TASK();
 	}
@@ -16139,34 +16149,49 @@ public class EAMTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 编号
+		 * 计划编号
 		*/
-		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编号","编号",false,false,true);
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","计划编号","计划编号",false,false,true);
 		
 		/**
-		 * 方案名称
+		 * 计划名称
 		*/
-		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","方案名称","方案名称",false,false,true);
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","计划名称","计划名称",false,false,true);
 		
 		/**
-		 * 状态
+		 * 计划状态
 		*/
-		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","计划状态","计划状态",false,false,true);
 		
 		/**
-		 * 设备
+		 * 保养设备
 		*/
-		public static final DBField ASSET_ID = new DBField(DBDataType.STRING , "asset_id","assetId","设备","设备",false,false,true);
+		public static final DBField ASSET_ID = new DBField(DBDataType.STRING , "asset_id","assetId","保养设备","保养设备",false,false,true);
 		
 		/**
-		 * 设备
+		 * 保养设备
 		*/
-		public static final DBField ASSET_CODE = new DBField(DBDataType.STRING , "asset_code","assetCode","设备","设备",false,false,true);
+		public static final DBField ASSET_CODE = new DBField(DBDataType.STRING , "asset_code","assetCode","保养设备","保养设备",false,false,true);
 		
 		/**
-		 * 执行班组
+		 * 设备名称
 		*/
-		public static final DBField GROUP_ID = new DBField(DBDataType.STRING , "group_id","groupId","执行班组","执行班组",false,false,true);
+		public static final DBField ASSET_NAME = new DBField(DBDataType.STRING , "asset_name","assetName","设备名称","设备名称",false,false,true);
+		
+		/**
+		 * 设备型号
+		*/
+		public static final DBField ASSET_MODEL = new DBField(DBDataType.STRING , "asset_model","assetModel","设备型号","设备型号",false,false,true);
+		
+		/**
+		 * 设备序列
+		*/
+		public static final DBField ASSET_SN = new DBField(DBDataType.STRING , "asset_sn","assetSn","设备序列","设备序列",false,false,true);
+		
+		/**
+		 * 保养班组
+		*/
+		public static final DBField GROUP_ID = new DBField(DBDataType.STRING , "group_id","groupId","保养班组","保养班组",false,false,true);
 		
 		/**
 		 * 保养类型
@@ -16199,9 +16224,9 @@ public class EAMTables {
 		public static final DBField TOTAL_COST = new DBField(DBDataType.DECIMAL , "total_cost","totalCost","预计工时","小时)",false,false,true);
 		
 		/**
-		 * 超时时间(小时)
+		 * 超时时间(分)
 		*/
-		public static final DBField TIMEOUT = new DBField(DBDataType.DECIMAL , "timeout","timeout","超时时间","小时)",false,false,true);
+		public static final DBField TIMEOUT = new DBField(DBDataType.DECIMAL , "timeout","timeout","超时时间","分)",false,false,true);
 		
 		/**
 		 * 方案说明
@@ -16273,7 +16298,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public EAM_MAINTAIN_PLAN() {
-			this.init($NAME,"保养方案" , ID , CODE , NAME , STATUS , ASSET_ID , ASSET_CODE , GROUP_ID , MAINTAIN_TYPE , CYCLE_METHOD , ACTION_CYCLE_ID , START_TIME , END_TIME , TOTAL_COST , TIMEOUT , INFO , NOTES , ORIGINATOR_ID , LAST_TIME , NEXT_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION);
+			this.init($NAME,"保养方案" , ID , CODE , NAME , STATUS , ASSET_ID , ASSET_CODE , ASSET_NAME , ASSET_MODEL , ASSET_SN , GROUP_ID , MAINTAIN_TYPE , CYCLE_METHOD , ACTION_CYCLE_ID , START_TIME , END_TIME , TOTAL_COST , TIMEOUT , INFO , NOTES , ORIGINATOR_ID , LAST_TIME , NEXT_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION);
 		}
 		public static final EAM_MAINTAIN_PLAN $TABLE=new EAM_MAINTAIN_PLAN();
 	}
@@ -16484,14 +16509,14 @@ public class EAMTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 名称
+		 * 任务名称
 		*/
-		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","任务名称","任务名称",false,false,true);
 		
 		/**
-		 * 状态
+		 * 任务状态
 		*/
-		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","任务状态","任务状态",false,false,true);
 		
 		/**
 		 * 任务单据
@@ -16509,14 +16534,14 @@ public class EAMTables {
 		public static final DBField MAINTAIN_TYPE = new DBField(DBDataType.STRING , "maintain_type","maintainType","保养类型","保养类型",false,false,true);
 		
 		/**
-		 * 执行班组
+		 * 保养班组
 		*/
-		public static final DBField GROUP_ID = new DBField(DBDataType.STRING , "group_id","groupId","执行班组","执行班组",false,false,false);
+		public static final DBField GROUP_ID = new DBField(DBDataType.STRING , "group_id","groupId","保养班组","保养班组",false,false,false);
 		
 		/**
-		 * 设备
+		 * 保养设备
 		*/
-		public static final DBField ASSET_ID = new DBField(DBDataType.STRING , "asset_id","assetId","设备","设备",false,false,true);
+		public static final DBField ASSET_ID = new DBField(DBDataType.STRING , "asset_id","assetId","保养设备","保养设备",false,false,true);
 		
 		/**
 		 * 设备名称
@@ -16539,14 +16564,14 @@ public class EAMTables {
 		public static final DBField ASSET_STATUS = new DBField(DBDataType.STRING , "asset_status","assetStatus","设备状态","设备状态",false,false,true);
 		
 		/**
-		 * 设备序列号
+		 * 设备序列
 		*/
-		public static final DBField ASSET_SN = new DBField(DBDataType.STRING , "asset_sn","assetSn","设备序列号","设备序列号",false,false,true);
+		public static final DBField ASSET_SN = new DBField(DBDataType.STRING , "asset_sn","assetSn","设备序列","设备序列",false,false,true);
 		
 		/**
-		 * 位置
+		 * 设备位置
 		*/
-		public static final DBField ASSET_POS = new DBField(DBDataType.STRING , "asset_pos","assetPos","位置","位置",false,false,true);
+		public static final DBField ASSET_POS = new DBField(DBDataType.STRING , "asset_pos","assetPos","设备位置","设备位置",false,false,true);
 		
 		/**
 		 * 保养结果
@@ -16564,14 +16589,14 @@ public class EAMTables {
 		public static final DBField PLAN_START_TIME = new DBField(DBDataType.DATE , "plan_start_time","planStartTime","应开始时间","应开始时间",false,false,true);
 		
 		/**
-		 * 实际开始时间
+		 * 实际开始
 		*/
-		public static final DBField ACT_START_TIME = new DBField(DBDataType.DATE , "act_start_time","actStartTime","实际开始时间","实际开始时间",false,false,true);
+		public static final DBField ACT_START_TIME = new DBField(DBDataType.DATE , "act_start_time","actStartTime","实际开始","实际开始",false,false,true);
 		
 		/**
-		 * 实际完成时间
+		 * 实际完成
 		*/
-		public static final DBField ACT_FINISH_TIME = new DBField(DBDataType.DATE , "act_finish_time","actFinishTime","实际完成时间","实际完成时间",false,false,true);
+		public static final DBField ACT_FINISH_TIME = new DBField(DBDataType.DATE , "act_finish_time","actFinishTime","实际完成","实际完成",false,false,true);
 		
 		/**
 		 * 超时时间
@@ -16597,6 +16622,11 @@ public class EAMTables {
 		 * 逾期
 		*/
 		public static final DBField OVERDUE = new DBField(DBDataType.STRING , "overdue","overdue","逾期","逾期",false,false,true);
+		
+		/**
+		 * 结果
+		*/
+		public static final DBField RESULT = new DBField(DBDataType.STRING , "result","result","结果","结果",false,false,true);
 		
 		/**
 		 * 备注
@@ -16653,7 +16683,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public EAM_MAINTAIN_TASK() {
-			this.init($NAME,"保养任务" , ID , NAME , STATUS , BUSINESS_CODE , PLAN_ID , MAINTAIN_TYPE , GROUP_ID , ASSET_ID , ASSET_NAME , ASSET_CODE , ASSET_MODEL , ASSET_STATUS , ASSET_SN , ASSET_POS , CONTENT , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , TIMEOUT , TOTAL_COST , ACT_TOTAL_COST , COST , OVERDUE , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION);
+			this.init($NAME,"保养任务" , ID , NAME , STATUS , BUSINESS_CODE , PLAN_ID , MAINTAIN_TYPE , GROUP_ID , ASSET_ID , ASSET_NAME , ASSET_CODE , ASSET_MODEL , ASSET_STATUS , ASSET_SN , ASSET_POS , CONTENT , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , TIMEOUT , TOTAL_COST , ACT_TOTAL_COST , COST , OVERDUE , RESULT , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION);
 		}
 		public static final EAM_MAINTAIN_TASK $TABLE=new EAM_MAINTAIN_TASK();
 	}
@@ -16694,6 +16724,31 @@ public class EAMTables {
 		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","保养结果","保养结果",false,false,true);
 		
 		/**
+		 * 标准工时(小时)
+		*/
+		public static final DBField BASE_COST = new DBField(DBDataType.DECIMAL , "base_cost","baseCost","标准工时","小时)",false,false,true);
+		
+		/**
+		 * 开始时间
+		*/
+		public static final DBField START_TIME = new DBField(DBDataType.DATE , "start_time","startTime","开始时间","开始时间",false,false,true);
+		
+		/**
+		 * 结束时间
+		*/
+		public static final DBField END_TIME = new DBField(DBDataType.DATE , "end_time","endTime","结束时间","结束时间",false,false,true);
+		
+		/**
+		 * 操作人
+		*/
+		public static final DBField OPER_USER_ID = new DBField(DBDataType.STRING , "oper_user_id","operUserId","操作人","操作人",false,false,true);
+		
+		/**
+		 * 操作时间
+		*/
+		public static final DBField OPER_TIME = new DBField(DBDataType.DATE , "oper_time","operTime","操作时间","操作时间",false,false,true);
+		
+		/**
 		 * 项目编号
 		*/
 		public static final DBField PROJECT_CODE = new DBField(DBDataType.STRING , "project_code","projectCode","项目编号","项目编号",false,false,true);
@@ -16722,21 +16777,6 @@ public class EAMTables {
 		 * 项目备注
 		*/
 		public static final DBField PROJECT_NOTES = new DBField(DBDataType.STRING , "project_notes","projectNotes","项目备注","项目备注",false,false,true);
-		
-		/**
-		 * 标准工时(小时)
-		*/
-		public static final DBField BASE_COST = new DBField(DBDataType.DECIMAL , "base_cost","baseCost","标准工时","小时)",false,false,true);
-		
-		/**
-		 * 开始时间
-		*/
-		public static final DBField START_TIME = new DBField(DBDataType.DATE , "start_time","startTime","开始时间","开始时间",false,false,true);
-		
-		/**
-		 * 结束时间
-		*/
-		public static final DBField END_TIME = new DBField(DBDataType.DATE , "end_time","endTime","结束时间","结束时间",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -16783,7 +16823,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public EAM_MAINTAIN_TASK_PROJECT() {
-			this.init($NAME,"保养项目" , ID , PROJECT_ID , TASK_ID , STATUS , CONTENT , PROJECT_CODE , PROJECT_NAME , PROJECT_MAINTAIN_TYPE , PROJECT_BASE_COST , PROJECT_ATTACH_ID , PROJECT_NOTES , BASE_COST , START_TIME , END_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION);
+			this.init($NAME,"保养项目" , ID , PROJECT_ID , TASK_ID , STATUS , CONTENT , BASE_COST , START_TIME , END_TIME , OPER_USER_ID , OPER_TIME , PROJECT_CODE , PROJECT_NAME , PROJECT_MAINTAIN_TYPE , PROJECT_BASE_COST , PROJECT_ATTACH_ID , PROJECT_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION);
 		}
 		public static final EAM_MAINTAIN_TASK_PROJECT $TABLE=new EAM_MAINTAIN_TASK_PROJECT();
 	}

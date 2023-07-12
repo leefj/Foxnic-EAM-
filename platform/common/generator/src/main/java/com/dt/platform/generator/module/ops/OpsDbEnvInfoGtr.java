@@ -37,6 +37,15 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
 
         cfg.getPoClassFile().addSimpleProperty(CiphertextBoxData.class,"ciphertextBoxData","ciphertextBoxData","ciphertextBoxData");
 
+
+        cfg.view().field(OpsTables.OPS_DB_ENV_INFO.IP).search().fuzzySearch();
+
+
+        cfg.view().field(OpsTables.OPS_DB_ENV_INFO.DB_DESC).search().fuzzySearch();
+
+        cfg.view().field(OpsTables.OPS_DB_ENV_INFO.NOTES).search().fuzzySearch();
+
+
         cfg.view().search().inputLayout(
                 new Object[]{
                         OpsTables.OPS_DB_ENV_INFO.LABEL,
@@ -70,7 +79,7 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().list().disableCreateNew();
+      //  cfg.view().list().disableCreateNew();
 
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.IP).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.LABEL).form().validate().required().form()

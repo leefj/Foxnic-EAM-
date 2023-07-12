@@ -167,10 +167,13 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 
 	private Result executePlan(MaintainPlan plan){
 
+
+
+
 		ActionCrontab cron=plan.getActionCrontab();
 		if(StringUtil.isBlank(cron)){
 			Logger.info("当前crontab为空，plan:"+plan.getId());
-			return ErrorDesc.failure("当前crontab为空");
+			return ErrorDesc.failureMessage("当前crontab为空");
 		}
 
 		// 理论上只有一个待执行的日志
@@ -178,7 +181,7 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 		// 如果 long 是 null 大概率是 cron 表达式错误
 		if(log==null){
 			Logger.info("log is null，plan:"+plan.getId());
-			return ErrorDesc.failure("log is null");
+			return ErrorDesc.failureMessage("log is null");
 		}
 		// 如果预期的执行时间已经超过当前，就执行
 		if(log.getExecuteTime().getTime()<=(new Date()).getTime()) {
@@ -276,17 +279,23 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 			task.setAssetStatus(asset.getAssetStatus());
 			task.setAssetSn(asset.getSerialNumber());
 			task.setAssetCode(asset.getSerialNumber());
+			task.setNotes(plan.getNotes());
+
 
 			if(asset.getPosition()!=null){
 				task.setAssetPos(asset.getPosition().getHierarchyName());
 			}
+			if(projectList==null||projectList.size()==0){
+				return ErrorDesc.failureMessage("当前计划没有配置保养项目，保养任务单生成失败");
+			}
+			maintainTaskService.insert(task,true);
 			//保养项目
 			for(int j=0;j<projectList.size();j++){
 				MaintainProject project=projectList.get(j);
-				MaintainProjectSelect sel=new MaintainProjectSelect();
-				sel.setOwnerId(taskId);
-				sel.setProjectId(project.getId());
-				maintainProjectSelectService.insert(sel);
+//				MaintainProjectSelect sel=new MaintainProjectSelect();
+//				sel.setOwnerId(taskId);
+//				sel.setProjectId(project.getId());
+//				maintainProjectSelectService.insert(sel);
 				MaintainTaskProject taskProject=new MaintainTaskProject();
 				taskProject.setTaskId(taskId);
 				taskProject.setProjectId(project.getId());
@@ -297,10 +306,9 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 				taskProject.setProjectNotes(project.getNotes());
 				taskProject.setProjectAttachId(project.getAttachId());
 				taskProject.setProjectBaseCost(project.getBaseCost());
-				maintainTaskProjectService.insert(taskProject);
+				taskProject.setSelectedCode("def");
+				maintainTaskProjectService.insert(taskProject,false);
 			}
-			maintainTaskService.insert(task);
-
 		}else{
 			Logger.info("########## plan not execute ###########");
 			return ErrorDesc.failureMessage("当前执行失败");
@@ -318,6 +326,19 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 	 */
 	@Override
 	public Result insert(MaintainPlan maintainPlan,boolean throwsException) {
+
+		if(StringUtil.isBlank(maintainPlan.getAssetId())){
+			return ErrorDesc.failureMessage("请选择要保养的设备");
+		}
+		Asset asset=assetService.getById(maintainPlan.getAssetId());
+		if(asset==null){
+			return ErrorDesc.failureMessage("没有找到保养的设备");
+		}
+		maintainPlan.setAssetCode(asset.getAssetCode());
+		maintainPlan.setAssetName(asset.getName());
+		maintainPlan.setAssetModel(asset.getModel());
+		maintainPlan.setAssetSn(asset.getSerialNumber());
+
 
 		String selectedCode=maintainPlan.getSelectedCode();
 //		if(maintainPlan.getAssetIds()==null||maintainPlan.getAssetIds().size()==0){
@@ -400,7 +421,9 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 //			if(!batchInsertReuslt.isSuccess()){
 //				return batchInsertReuslt;
 //			}
-			dao.execute("update eam_maintain_project_select set selected_code=?,owner_id=? where owner_id=? and selected_code=?","def",maintainPlan.getId(),selectedCode,selectedCode);
+			if(!StringUtil.isBlank(selectedCode)){
+				dao.execute("update eam_maintain_project_select set selected_code=?,owner_id=? where owner_id=? and selected_code=?","def",maintainPlan.getId(),selectedCode,selectedCode);
+			}
 		}
 		return r;
 	}
@@ -492,6 +515,19 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 	@Override
 	public Result update(MaintainPlan maintainPlan , SaveMode mode,boolean throwsException) {
 
+		if(StringUtil.isBlank(maintainPlan.getAssetId())){
+			return ErrorDesc.failureMessage("请选择要保养的设备");
+		}
+		Asset asset=assetService.getById(maintainPlan.getAssetId());
+		if(asset==null){
+			return ErrorDesc.failureMessage("没有找到保养的设备");
+		}
+		maintainPlan.setAssetCode(asset.getAssetCode());
+		maintainPlan.setAssetName(asset.getName());
+		maintainPlan.setAssetModel(asset.getModel());
+		maintainPlan.setAssetSn(asset.getSerialNumber());
+
+
 		if(maintainPlan.getEndTime()!=null){
 			Calendar c = Calendar.getInstance();
 			Date now = new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH));
@@ -519,8 +555,10 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 		String selectedCode=maintainPlan.getSelectedCode();
 		Result r=super.update(maintainPlan , mode , throwsException);
 		if(r.isSuccess()){
-			dao.execute("delete from eam_maintain_project_select where owner_id=? and selected_code='def'",maintainPlan.getId());
-			dao.execute("update eam_maintain_project_select set selected_code=? where owner_id=? and selected_code=?","def",maintainPlan.getId(),selectedCode);
+			if(!StringUtil.isBlank(selectedCode)){
+				dao.execute("delete from eam_maintain_project_select where owner_id=? and selected_code='def'",maintainPlan.getId());
+				dao.execute("update eam_maintain_project_select set selected_code=? where owner_id=? and selected_code=?","def",maintainPlan.getId(),selectedCode);
+			}
 		}
 		return r;
 	}

@@ -51,6 +51,7 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
 
 
+        cfg.getPoClassFile().addSimpleProperty(String.class,"itemCount","itemCount","itemCount");
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.MAINTAIN_TYPE).table().disable();
 
@@ -62,12 +63,18 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.INFO).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.LAST_TIME).table().hidden(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NEXT_TIME).table().hidden(true);
+        cfg.view().field(MaintainPlanMeta.ITEM_COUNT).basic().label("保养项目数").table().disable(false);
 
-
-
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_ID).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NAME).search().fuzzySearch();
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_CODE).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_NAME).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_MODEL).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_SN).search().fuzzySearch();
+
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_MAINTAIN_PLAN.STATUS,
@@ -78,6 +85,12 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
                 new Object[]{
                         EAMTables.EAM_MAINTAIN_PLAN.CYCLE_METHOD,
                         EAMTables.EAM_MAINTAIN_PLAN.GROUP_ID,
+                        EAMTables.EAM_MAINTAIN_PLAN.ASSET_CODE,
+                        EAMTables.EAM_MAINTAIN_PLAN.ASSET_NAME,
+                },
+                new Object[]{
+                        EAMTables.EAM_MAINTAIN_PLAN.ASSET_MODEL,
+                        EAMTables.EAM_MAINTAIN_PLAN.ASSET_SN,
                 }
         );
 
@@ -85,6 +98,10 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TOTAL_COST).basic().label("预计工时(时)");
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT).basic().label("超时工时(分)");
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ACTION_CYCLE_ID).table().disable();
 

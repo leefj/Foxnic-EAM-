@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 09:21:13
+ * @since 2023-07-12 17:55:39
  */
 
 function FormPage() {
@@ -277,7 +277,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "dbTypeIds",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("数据库类型",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("库类型",'','cmp:form'),
 			filterable: false,
 			on: function(data){
 				setTimeout(function () {

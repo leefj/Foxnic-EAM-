@@ -2,7 +2,7 @@
 /**
  * 保养项目 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:32:24
+ * @since 2023-07-12 13:16:13
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-9895-content">
+        <div class="layui-row form-row" id="random-4056-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -60,11 +60,11 @@
                     </div>
                 </div>
             
-                <!-- number_input : 标准工时 ,  baseCost  -->
+                <!-- number_input : 工时(时) ,  baseCost  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('标准工时')}">标准工时</div><div class="layui-required">*</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('工时(时)')}">工时(时)</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="baseCost" id="baseCost" name="baseCost" th:placeholder="${ lang.translate('请输入'+'标准工时') }" type="text" class="layui-input"    lay-verify="|required"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="1.0" />
+                        <input lay-filter="baseCost" id="baseCost" name="baseCost" th:placeholder="${ lang.translate('请输入'+'工时(时)') }" type="text" class="layui-input"    lay-verify="|required"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="1.0" />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -95,7 +95,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-3766-content">
+        <div class="layui-row form-row" id="random-7410-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -151,7 +151,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
-    var VALIDATE_CONFIG={"baseCost":{"labelInForm":"标准工时","inputType":"number_input","required":true},"name":{"labelInForm":"项目名称","inputType":"text_input","required":true},"maintainType":{"labelInForm":"保养类型","inputType":"select_box","required":true},"status":{"labelInForm":"状态","inputType":"select_box","required":true}};
+    var VALIDATE_CONFIG={"baseCost":{"labelInForm":"工时(时)","inputType":"number_input","required":true},"name":{"labelInForm":"项目名称","inputType":"text_input","required":true},"maintainType":{"labelInForm":"保养类型","inputType":"select_box","required":true},"status":{"labelInForm":"状态","inputType":"select_box","required":true}};
     var AUTH_PREFIX="eam_maintain_project";
 
 

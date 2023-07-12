@@ -1,7 +1,7 @@
 /**
  * 保养方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:48:41
+ * @since 2023-07-12 13:19:09
  */
 
 function FormPage() {
@@ -122,7 +122,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "status",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("状态",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("计划状态",'','cmp:form'),
 			filterable: false,
 			on: function(data){
 				setTimeout(function () {
@@ -153,7 +153,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "assetId",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("设备",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("保养设备",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -191,7 +191,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "groupId",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("执行班组",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("保养班组",'','cmp:form'),
 			filterable: true,
 			layVerify: 'required',
 			layVerType: 'msg',
@@ -390,9 +390,9 @@ function FormPage() {
 			}
 
 
-			//设置  设备 设置下拉框勾选
+			//设置  保养设备 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#assetId",formData.asset);
-			//设置  执行班组 设置下拉框勾选
+			//设置  保养班组 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#groupId",formData.maintainGroup);
 			//设置  保养类型 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#maintainType",formData.maintainTypeDict);
@@ -460,9 +460,9 @@ function FormPage() {
 
 
 
-		//获取 设备 下拉框的值
+		//获取 保养设备 下拉框的值
 		data["assetId"]=fox.getSelectedValue("assetId",false);
-		//获取 执行班组 下拉框的值
+		//获取 保养班组 下拉框的值
 		data["groupId"]=fox.getSelectedValue("groupId",false);
 		//获取 保养类型 下拉框的值
 		data["maintainType"]=fox.getSelectedValue("maintainType",false);

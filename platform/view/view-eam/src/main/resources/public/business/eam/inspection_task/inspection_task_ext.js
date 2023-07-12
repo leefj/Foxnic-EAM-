@@ -233,12 +233,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
 
-            $("#planCode").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#planName").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#planCompletionTime").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#planStartTime").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#planNotes").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#actTotalCost").attr("disabled","disabled").css("background-color","#e6e6e6");
+             $("#planCode").attr("disabled","disabled").css("background-color","#e6e6e6");
+            // $("#planName").attr("disabled","disabled").css("background-color","#e6e6e6");
+            // $("#planCompletionTime").attr("disabled","disabled").css("background-color","#e6e6e6");
+            // $("#planStartTime").attr("disabled","disabled").css("background-color","#e6e6e6");
+            // $("#planNotes").attr("disabled","disabled").css("background-color","#e6e6e6");
+            // $("#actTotalCost").attr("disabled","disabled").css("background-color","#e6e6e6");
+
+            var placeholder="";
+            if (formAction=="create"){
+                placeholder="自动填充"
+            }
+            $("#planCode").attr('placeholder',placeholder);
+            $("#planName").attr('placeholder',placeholder);
+            $("#planNotes").attr('placeholder',placeholder);
+
 
         },
         /**
@@ -260,17 +269,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterDataFill:function (data) {
             console.log('afterDataFill',data);
 
-            $("#planInspectionMethod").find("xm-select").css("background-color","#e6e6e6");
-            var planInspectionMethodSel= xmSelect.get('#planInspectionMethod',true);
-            if(planInspectionMethodSel){
-                planInspectionMethodSel.update({disabled:true})
-            }
+            // $("#planInspectionMethod").find("xm-select").css("background-color","#e6e6e6");
+            // var planInspectionMethodSel= xmSelect.get('#planInspectionMethod',true);
+            // if(planInspectionMethodSel){
+            //     planInspectionMethodSel.update({disabled:true})
+            // }
 
-            $("#groupId").find("xm-select").css("background-color","#e6e6e6");
-            var groupIdSel= xmSelect.get('#groupId',true);
-            if(groupIdSel){
-                groupIdSel.update({disabled:true})
-            }
+            // $("#groupId").find("xm-select").css("background-color","#e6e6e6");
+            // var groupIdSel= xmSelect.get('#groupId',true);
+            // if(groupIdSel){
+            //     groupIdSel.update({disabled:true})
+            // }
 
 
         },

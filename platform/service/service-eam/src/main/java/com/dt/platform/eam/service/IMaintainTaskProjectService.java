@@ -31,7 +31,7 @@ import java.util.Map;
 
 public interface IMaintainTaskProjectService extends  ISimpleIdService<MaintainTaskProject,String> {
 
-
+	Result execute(String id,String status,String content);
 
 	Result selectDeleteByIds(String ownerId,String ids,String selectedCode);
 

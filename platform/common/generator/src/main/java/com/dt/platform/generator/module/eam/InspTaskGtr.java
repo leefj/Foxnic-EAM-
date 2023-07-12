@@ -4,6 +4,7 @@ import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.InspectionMethodEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
+import com.dt.platform.constants.enums.eam.InspectionTimeoutHandleEnum;
 import com.dt.platform.domain.eam.InspectionGroup;
 import com.dt.platform.domain.eam.InspectionPlan;
 import com.dt.platform.domain.eam.InspectionPoint;
@@ -109,13 +110,13 @@ public class InspTaskGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_FINISH_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_START_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
 
-
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_START_TIME).form().dateInput().type(DatePickerType.datetime);
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_START_TIME).form().dateInput().type(DatePickerType.datetime);
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_FINISH_TIME).form().dateInput().type(DatePickerType.datetime);
 
-
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_TOTAL_COST).form().numberInput().defaultValue(2.0).decimal().scale(2);
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_COMPLETION_TIME).form().numberInput().defaultValue(2.0).decimal().scale(2);
+//
+//        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_TOTAL_COST).form().numberInput().defaultValue(2.0).decimal().scale(2);
+//        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_COMPLETION_TIME).form().numberInput().defaultValue(2.0).decimal().scale(2);
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.CREATE_TIME).table().hidden(true);
 
@@ -126,11 +127,25 @@ public class InspTaskGtr extends BaseCodeGenerator {
                 .fillWith(InspectionTaskMeta.INSPECTION_GROUP).muliti(false);
 
 
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_COMPLETION_TIME).basic().label("预计用时(时)");
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_TOTAL_COST).basic().label("实际用实(时)");
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.REMIND_TIME).basic().label("提醒时间(时)");
+
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.REMIND_TIME).form().validate().required().form().numberInput().defaultValue(2.0).decimal().scale(2);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_TOTAL_COST).form().numberInput().defaultValue(2.0).decimal().scale(2);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_COMPLETION_TIME).form().numberInput().defaultValue(2.0).decimal().scale(2);
+
+
+
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.OVERTIME_METHOD).form().validate().required().form().selectBox().enumType(InspectionTimeoutHandleEnum.class).defaultIndex(0);
+
+
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ORIGINATOR_ID).table().fillBy("originator","name");
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.EXECUTOR_ID).table().fillBy("executor","name");
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.EXECUTOR_ID).form()
                 .button().chooseEmployee(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.REMIND_TIME).basic().label("提醒时间(时)");
 
 
 //        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.EXECUTOR_ID)
@@ -147,34 +162,52 @@ public class InspTaskGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.TASK_STATUS).form()
                 .selectBox().enumType(InspectionTaskStatusEnum.class);
 
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_TOTAL_COST).basic().label("完成用时(时)");
+
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_ID).form().readOnly();
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_CODE).form().readOnly();
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_NAME).form().readOnly();
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_CODE).form().readOnly();
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.GROUP_ID).form().readOnly();
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_INSPECTION_METHOD).form().readOnly();
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_COMPLETION_TIME).form().readOnly();
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_START_TIME).form().readOnly();
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_NOTES).form().readOnly();
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_TOTAL_COST).form().readOnly();
+     //   cfg.view().field(EAMTables.EAM_INSPECTION_TASK.GROUP_ID).form().readOnly();
+
+//        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_INSPECTION_METHOD).form().readOnly();
+//        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_COMPLETION_TIME).form().readOnly();
+//        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_START_TIME).form().readOnly();
+//        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_NOTES).form().readOnly();
+//        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_TOTAL_COST).form().readOnly();
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth+50);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth+50);
         cfg.view().search().labelWidth(3,Config.searchLabelWidth+50);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth+50);
         cfg.view().search().inputWidth(Config.searchInputWidth);
-         cfg.view().formWindow().width(Config.baseFormWidth);;
+        cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(85);
+
+
+
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_NAME).form().validate().required();
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.REMIND_TIME).form().validate().required();
+
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        EAMTables.EAM_INSPECTION_TASK.PLAN_NAME,
+                },
+                new Object[] {
+                        EAMTables.EAM_INSPECTION_TASK.PLAN_CODE,
+                }
+        );
+
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_INSPECTION_TASK.GROUP_ID,
-                        EAMTables.EAM_INSPECTION_TASK.ACT_TOTAL_COST,
-                    //    EAMTables.EAM_INSPECTION_TASK.EXECUTOR_ID,
+                        EAMTables.EAM_INSPECTION_TASK.REMIND_TIME,
+                        EAMTables.EAM_INSPECTION_TASK.OVERTIME_METHOD,
+
                 },
                 new Object[] {
                         EAMTables.EAM_INSPECTION_TASK.ACT_START_TIME,
                         EAMTables.EAM_INSPECTION_TASK.ACT_FINISH_TIME,
+                        EAMTables.EAM_INSPECTION_TASK.ACT_TOTAL_COST,
                 }
 
         );
@@ -187,18 +220,20 @@ public class InspTaskGtr extends BaseCodeGenerator {
 
         cfg.view().form().addGroup("巡检计划",
                 new Object[] {
-                        EAMTables.EAM_INSPECTION_TASK.PLAN_CODE,
-                        EAMTables.EAM_INSPECTION_TASK.PLAN_NAME,
-                },
-                new Object[] {
                         EAMTables.EAM_INSPECTION_TASK.PLAN_COMPLETION_TIME,
                         EAMTables.EAM_INSPECTION_TASK.PLAN_START_TIME,
                 },
                 new Object[] {
                         EAMTables.EAM_INSPECTION_TASK.PLAN_INSPECTION_METHOD,
-                        EAMTables.EAM_INSPECTION_TASK.PLAN_NOTES,
+
                 }
         );
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        EAMTables.EAM_INSPECTION_TASK.PLAN_NOTES
+                }
+        );
+
 
         cfg.view().form().addPage("巡检点","pointSelectList");
      //   cfg.view().list().operationColumn().addActionButton("巡检","inspect","execute-button","eam_inspection_task:execute");

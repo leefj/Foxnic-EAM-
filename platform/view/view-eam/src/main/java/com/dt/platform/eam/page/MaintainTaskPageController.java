@@ -54,8 +54,21 @@ public class MaintainTaskPageController extends ViewController {
 
 		String employeeId= SessionUser.getCurrent().getActivatedEmployeeId();
 		model.addAttribute("employeeId",employeeId);
-
 		model.addAttribute("groupEmployee",employeeId);
 		return prefix+"/maintain_task_form";
 	}
+
+	/**
+	 * 保养任务 表单页面
+	 */
+	@RequestMapping("/maintain_task_exec_form.html")
+	public String execForm(Model model,HttpServletRequest request , String id) {
+
+		String employeeId= SessionUser.getCurrent().getActivatedEmployeeId();
+		model.addAttribute("employeeId",employeeId);
+
+		model.addAttribute("groupEmployee",employeeId);
+		return prefix+"/maintain_task_exec_form";
+	}
+
 }

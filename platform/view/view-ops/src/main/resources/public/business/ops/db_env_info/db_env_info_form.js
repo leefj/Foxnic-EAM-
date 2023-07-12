@@ -1,7 +1,7 @@
 /**
  * 数据库环境 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 09:17:26
+ * @since 2023-07-12 17:13:27
  */
 
 function FormPage() {
@@ -17,7 +17,7 @@ function FormPage() {
 	var rawFormData=null;
 	// 表单执行操作类型：view，create，edit
 	var action=null;
-	var disableCreateNew=true;
+	var disableCreateNew=false;
 	var disableModify=false;
 	var dataBeforeEdit=null;
 	const bpmIntegrateMode="none";

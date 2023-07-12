@@ -90,6 +90,10 @@ public class DbEnvInfoServiceImpl extends SuperService<DbEnvInfo> implements IDb
 	@Override
 	public Result insert(DbEnvInfo dbEnvInfo,boolean throwsException) {
 		String voucher=dbEnvInfo.getVoucher();
+
+		if(StringUtil.isBlank(dbEnvInfo.getDbInstId())){
+			return ErrorDesc.failureMessage("数据库实例不能为空");
+		}
 		dbEnvInfo.setVoucher("");
 		Result r=super.insert(dbEnvInfo,throwsException);
 		if(r.isSuccess()){

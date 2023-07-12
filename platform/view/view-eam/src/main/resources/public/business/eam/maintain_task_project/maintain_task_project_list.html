@@ -2,7 +2,7 @@
 /**
  * 保养项目 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 16:07:47
+ * @since 2023-07-11 16:57:02
  */
  -->
  <!DOCTYPE html>
@@ -42,18 +42,22 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 项目 , projectId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 任务 , taskId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 状态 , status ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
-                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.MaintainTaskProjectStatusEnum')}" style="width:150px" extraParam="{}"></div>
+
+
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.MaintainTaskProjectStatusEnum')}" style="width:150px"></div>
                     </div>
                     <!-- 保养结果 , content ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 标准工时 , projectBaseCost ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 保养手册 , projectAttachId ,typeName=upload, isHideInSearch=true -->
-                    <!-- 项目备注 , projectNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 标准工时 , baseCost ,typeName=number_input, isHideInSearch=true -->
                     <!-- 开始时间 , startTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 结束时间 , endTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 操作人 , operUserId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 操作时间 , operTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 标准工时 , projectBaseCost ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 保养手册 , projectAttachId ,typeName=upload, isHideInSearch=true -->
+                    <!-- 项目备注 , projectNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 保养类型 , projectMaintainType ,typeName=select_box, isHideInSearch=true -->
                     <!-- 项目编号 , projectCode ,typeName=text_input, isHideInSearch=false -->
@@ -112,7 +116,7 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
-    var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.MaintainTaskProjectStatusEnum')}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.MaintainTaskProjectStatusEnum')}]];
     var AUTH_PREFIX="eam_maintain_task_project";
 
 

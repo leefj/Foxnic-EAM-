@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养任务VO类型
  * <p>保养任务 , 数据表 eam_maintain_task 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 19:53:48
+ * @since 2023-07-12 13:20:59
  * @sign 8B3D8B895A93C4002249F053A1457FB2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -409,6 +409,7 @@ public class MaintainTaskVO extends MaintainTask {
 		inst.setGroupId(this.getGroupId());
 		inst.setContent(this.getContent());
 		inst.setTimeout(this.getTimeout());
+		inst.setResult(this.getResult());
 		inst.setBusinessCode(this.getBusinessCode());
 		inst.setActStartTime(this.getActStartTime());
 		inst.setOverdue(this.getOverdue());
@@ -440,27 +441,29 @@ public class MaintainTaskVO extends MaintainTask {
 		inst.setTotalCost(this.getTotalCost());
 		inst.setStatus(this.getStatus());
 		if(all) {
-			inst.setProjectList(this.getProjectList());
-			inst.setTaskProjectList(this.getTaskProjectList());
-			inst.setMaintainPlan(this.getMaintainPlan());
 			inst.setSearchField(this.getSearchField());
-			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setProjectIds(this.getProjectIds());
-			inst.setTaskProjectIds(this.getTaskProjectIds());
 			inst.setOriginator(this.getOriginator());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setMaintainTypeDict(this.getMaintainTypeDict());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setExecutor(this.getExecutor());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setDataOrigin(this.getDataOrigin());
-			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setProjectList(this.getProjectList());
+			inst.setTaskProjectList(this.getTaskProjectList());
+			inst.setMaintainPlan(this.getMaintainPlan());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setTaskProjectIds(this.getTaskProjectIds());
+			inst.setItemCount(this.getItemCount());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setIds(this.getIds());
 			inst.setAsset(this.getAsset());
+			inst.setWaitCount(this.getWaitCount());
 			inst.setSearchValue(this.getSearchValue());
 			inst.setMaintainGroup(this.getMaintainGroup());
 		}
@@ -527,6 +530,7 @@ public class MaintainTaskVO extends MaintainTask {
 			this.setGroupId(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.GROUP_ID)));
 			this.setContent(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.CONTENT)));
 			this.setTimeout(DataParser.parse(BigDecimal.class, map.get(MaintainTaskVOMeta.TIMEOUT)));
+			this.setResult(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.RESULT)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.BUSINESS_CODE)));
 			this.setActStartTime(DataParser.parse(Date.class, map.get(MaintainTaskVOMeta.ACT_START_TIME)));
 			this.setOverdue(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.OVERDUE)));
@@ -558,21 +562,23 @@ public class MaintainTaskVO extends MaintainTask {
 			this.setTotalCost(DataParser.parse(BigDecimal.class, map.get(MaintainTaskVOMeta.TOTAL_COST)));
 			this.setStatus(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.STATUS)));
 			// others
-			this.setMaintainPlan(DataParser.parse(MaintainPlan.class, map.get(MaintainTaskVOMeta.MAINTAIN_PLAN)));
 			this.setSearchField(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.SEARCH_FIELD)));
-			this.setRequestAction(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(MaintainTaskVOMeta.PAGE_SIZE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(MaintainTaskVOMeta.ORIGINATOR)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.SELECTED_CODE)));
 			this.setMaintainTypeDict(DataParser.parse(DictItem.class, map.get(MaintainTaskVOMeta.MAINTAIN_TYPE_DICT)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(MaintainTaskVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.SORT_TYPE)));
 			this.setExecutor(DataParser.parse(Employee.class, map.get(MaintainTaskVOMeta.EXECUTOR)));
 			this.setSortField(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.QUERY_LOGIC)));
+			this.setMaintainPlan(DataParser.parse(MaintainPlan.class, map.get(MaintainTaskVOMeta.MAINTAIN_PLAN)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.REQUEST_ACTION)));
+			this.setItemCount(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.ITEM_COUNT)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(MaintainTaskVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.SORT_TYPE)));
 			this.setAsset(DataParser.parse(Asset.class, map.get(MaintainTaskVOMeta.ASSET)));
+			this.setWaitCount(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.WAIT_COUNT)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(MaintainTaskVOMeta.SEARCH_VALUE)));
 			this.setMaintainGroup(DataParser.parse(MaintainGroup.class, map.get(MaintainTaskVOMeta.MAINTAIN_GROUP)));
 			return true;
@@ -583,6 +589,7 @@ public class MaintainTaskVO extends MaintainTask {
 				this.setGroupId( (String)map.get(MaintainTaskVOMeta.GROUP_ID));
 				this.setContent( (String)map.get(MaintainTaskVOMeta.CONTENT));
 				this.setTimeout( (BigDecimal)map.get(MaintainTaskVOMeta.TIMEOUT));
+				this.setResult( (String)map.get(MaintainTaskVOMeta.RESULT));
 				this.setBusinessCode( (String)map.get(MaintainTaskVOMeta.BUSINESS_CODE));
 				this.setActStartTime( (Date)map.get(MaintainTaskVOMeta.ACT_START_TIME));
 				this.setOverdue( (String)map.get(MaintainTaskVOMeta.OVERDUE));
@@ -614,21 +621,23 @@ public class MaintainTaskVO extends MaintainTask {
 				this.setTotalCost( (BigDecimal)map.get(MaintainTaskVOMeta.TOTAL_COST));
 				this.setStatus( (String)map.get(MaintainTaskVOMeta.STATUS));
 				// others
-				this.setMaintainPlan( (MaintainPlan)map.get(MaintainTaskVOMeta.MAINTAIN_PLAN));
 				this.setSearchField( (String)map.get(MaintainTaskVOMeta.SEARCH_FIELD));
-				this.setRequestAction( (String)map.get(MaintainTaskVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(MaintainTaskVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(MaintainTaskVOMeta.PAGE_SIZE));
 				this.setOriginator( (Employee)map.get(MaintainTaskVOMeta.ORIGINATOR));
 				this.setSelectedCode( (String)map.get(MaintainTaskVOMeta.SELECTED_CODE));
 				this.setMaintainTypeDict( (DictItem)map.get(MaintainTaskVOMeta.MAINTAIN_TYPE_DICT));
-				this.setPageIndex( (Integer)map.get(MaintainTaskVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(MaintainTaskVOMeta.SORT_TYPE));
 				this.setExecutor( (Employee)map.get(MaintainTaskVOMeta.EXECUTOR));
 				this.setSortField( (String)map.get(MaintainTaskVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(MaintainTaskVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(MaintainTaskVOMeta.QUERY_LOGIC));
+				this.setMaintainPlan( (MaintainPlan)map.get(MaintainTaskVOMeta.MAINTAIN_PLAN));
+				this.setRequestAction( (String)map.get(MaintainTaskVOMeta.REQUEST_ACTION));
+				this.setItemCount( (String)map.get(MaintainTaskVOMeta.ITEM_COUNT));
+				this.setPageIndex( (Integer)map.get(MaintainTaskVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(MaintainTaskVOMeta.SORT_TYPE));
 				this.setAsset( (Asset)map.get(MaintainTaskVOMeta.ASSET));
+				this.setWaitCount( (String)map.get(MaintainTaskVOMeta.WAIT_COUNT));
 				this.setSearchValue( (String)map.get(MaintainTaskVOMeta.SEARCH_VALUE));
 				this.setMaintainGroup( (MaintainGroup)map.get(MaintainTaskVOMeta.MAINTAIN_GROUP));
 				return true;
@@ -652,6 +661,7 @@ public class MaintainTaskVO extends MaintainTask {
 			this.setGroupId(DataParser.parse(String.class, r.getValue(MaintainTaskVOMeta.GROUP_ID)));
 			this.setContent(DataParser.parse(String.class, r.getValue(MaintainTaskVOMeta.CONTENT)));
 			this.setTimeout(DataParser.parse(BigDecimal.class, r.getValue(MaintainTaskVOMeta.TIMEOUT)));
+			this.setResult(DataParser.parse(String.class, r.getValue(MaintainTaskVOMeta.RESULT)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(MaintainTaskVOMeta.BUSINESS_CODE)));
 			this.setActStartTime(DataParser.parse(Date.class, r.getValue(MaintainTaskVOMeta.ACT_START_TIME)));
 			this.setOverdue(DataParser.parse(String.class, r.getValue(MaintainTaskVOMeta.OVERDUE)));
@@ -690,6 +700,7 @@ public class MaintainTaskVO extends MaintainTask {
 				this.setGroupId( (String)r.getValue(MaintainTaskVOMeta.GROUP_ID));
 				this.setContent( (String)r.getValue(MaintainTaskVOMeta.CONTENT));
 				this.setTimeout( (BigDecimal)r.getValue(MaintainTaskVOMeta.TIMEOUT));
+				this.setResult( (String)r.getValue(MaintainTaskVOMeta.RESULT));
 				this.setBusinessCode( (String)r.getValue(MaintainTaskVOMeta.BUSINESS_CODE));
 				this.setActStartTime( (Date)r.getValue(MaintainTaskVOMeta.ACT_START_TIME));
 				this.setOverdue( (String)r.getValue(MaintainTaskVOMeta.OVERDUE));

@@ -54,6 +54,9 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
 
+        cfg.getPoClassFile().addSimpleProperty(String.class,"itemCount","itemCount","itemCount");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"waitCount","waitCount","waitCount");
+
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_START_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_FINISH_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_START_TIME).form().validate().required().form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
@@ -69,6 +72,8 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.CONTENT).table().disable(true);
 
+        cfg.view().field(MaintainTaskMeta.ITEM_COUNT).basic().label("保养项目数").table().disable(false);
+        cfg.view().field(MaintainTaskMeta.WAIT_COUNT).basic().label("待保养项目数").table().disable(false);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_START_TIME).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_FINISH_TIME).table().disable(true);
@@ -123,12 +128,16 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ORIGINATOR_ID).table().fillBy("originator","name");
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID)
-                .form().selectBox().queryApi(GroupUserServiceProxy.QUERY_EMPLOYEE_PERSON)
-                .paging(false).filter(false).toolbar(false)
-                .valueField("employeeId").
-                textField(PersonMeta.NAME).
-                fillWith(MaintainTaskMeta.EXECUTOR).muliti(false);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID).table().fillBy("executor","name");
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID).form()
+                .button().chooseEmployee(true);
+
+//        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID)
+//                .form().selectBox().queryApi(GroupUserServiceProxy.QUERY_EMPLOYEE_PERSON)
+//                .paging(false).filter(false).toolbar(false)
+//                .valueField("employeeId").
+//                textField(PersonMeta.NAME).
+//                fillWith(MaintainTaskMeta.EXECUTOR).muliti(false);
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.NOTES).form().textArea().height(Config.textAreaHeight);
 
@@ -160,7 +169,9 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_START_TIME).form().dateInput().type(DatePickerType.datetime);
 
 
-
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.TOTAL_COST).basic().label("预计工时(时)");
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.TIMEOUT).basic().label("超时工时(分)");
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_TOTAL_COST).basic().label("实际工时(时)");
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.MAINTAIN_TYPE).form().validate().required().form()
                .selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_maintain_type")
@@ -174,6 +185,7 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 //        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_CYCLE_METHOD).form().readOnly();
 //        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_CYCLE_METHOD).form().selectBox().enumType(MaintainCycleMethodEnum.class);
 
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.NAME).form().validate().required();
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_START_TIME).form().readOnly();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_CODE).form().readOnly();
@@ -192,7 +204,10 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ORIGINATOR_ID).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_ID).table().disable(true);
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID).form().readOnly();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.RESULT).table().disable(true);
+
+//
+//        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID).form().readOnly();
 
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.TOTAL_COST).form().validate().required().form().numberInput().defaultValue(0).scale(2);

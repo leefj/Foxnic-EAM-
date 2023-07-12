@@ -85,6 +85,8 @@ public interface MaintainTaskProjectServiceProxy {
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
 
+    public static final String EXECUTE = API_PREFIX + "execute";
+
     public static final String SELECT_SAVE_IDS = API_PREFIX + "select-save-ids";
 
 

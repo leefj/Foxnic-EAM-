@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskOverdueEnum;
+import com.dt.platform.constants.enums.eam.MaintainTaskProjectStatusEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskStatusEnum;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.MaintainTask;
@@ -89,7 +90,9 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 	}
 
 	@Override
-	public Result finish(String id) {
+	public Result finish(String id,String status,String result) {
+
+
 		MaintainTask maintainTask=this.getById(id);
 		if(!MaintainTaskStatusEnum.ACTING.code().equals(maintainTask.getStatus())){
 			return ErrorDesc.failureMessage("当前保养任务状态异常，不能进行完成任务操作");
@@ -101,14 +104,16 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 				.execute();
 		List<MaintainTaskProject> list=maintainTask.getTaskProjectList();
 
-
-
 		double sumDiffTime=0.0;
 		Date minDate=null;
 		Date maxDate=null;;
-//		if(list!=null&&list.size()>0){
-//			for(int i=0;i<list.size();i++){
-//				MaintainTaskProject maintainTaskProject=list.get(i);
+		if(list!=null){
+			for(int i=0;i<list.size();i++){
+				MaintainTaskProject maintainTaskProject=list.get(i);
+				if(MaintainTaskProjectStatusEnum.UNEXECUTED.code().equals(maintainTaskProject.getStatus())){
+					return ErrorDesc.failureMessage("项目:"+maintainTaskProject.getProjectName()+"未做保养操作");
+				}
+
 //				if(maintainTaskProject.getStartTime()==null||maintainTaskProject.getEndTime()==null){
 //					return ErrorDesc.failureMessage("维保项目编号:"+maintainTaskProject.getProjectCode()+"未选择时间");
 //				}else{
@@ -132,17 +137,17 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 //					BigDecimal a= BigDecimal.valueOf(hours);
 //					double diffTime = a.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 //					sumDiffTime=sumDiffTime+diffTime;
-//
-//					list.get(i).setBaseCost(new BigDecimal(diffTime));
-//					list.get(i).setStatus(MaintainTaskProjectStatusEnum.EXECUTED.code());
+
+				//	list.get(i).setBaseCost(new BigDecimal(diffTime));
+				//	list.get(i).setStatus(MaintainTaskProjectStatusEnum.EXECUTED.code());
 //				}
-//			}
-//			maintainTaskProjectService.updateList(list,SaveMode.NOT_NULL_FIELDS);
-//		}else{
-//			return ErrorDesc.failureMessage("没有需要的保养项目");
-//		}
-//		maintainTask.setActStartTime(minDate);
-//		maintainTask.setActFinishTime(maxDate);
+			}
+			//maintainTaskProjectService.updateList(list,SaveMode.NOT_NULL_FIELDS);
+		}else{
+			return ErrorDesc.failureMessage("没有需要的保养项目");
+		}
+		maintainTask.setActStartTime(minDate);
+		maintainTask.setActFinishTime(new Date());
 		maintainTask.setStatus(MaintainTaskStatusEnum.FINISH.code());
 		maintainTask.setExecutorId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
 		maintainTask.setActTotalCost(new BigDecimal(sumDiffTime));
@@ -254,6 +259,11 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 		return this.insert(maintainTask,true);
 	}
 
+
+
+
+
+
 	@Override
 	public Result execute(String taskId, String startTime, String finishTime, String ct, String pics, String projects,String parts) {
 
@@ -270,7 +280,6 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 		}else{
 			return ErrorDesc.failureMessage("当前任务单状态不允许进行操作");
 		}
-
 
 		String userId=SessionUser.getCurrent().getActivatedEmployeeId();
 		maintainTask.setExecutorId(userId);
@@ -397,7 +406,6 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 		){
 			return ErrorDesc.failureMessage("当前状态操作异常");
 		}
-
 		Asset asset=assetService.getById(maintainTask.getAssetId());
 		if (asset == null) {
 			return ErrorDesc.failureMessage("设备未找到");
@@ -462,8 +470,10 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 		Result r=super.update(maintainTask , mode , throwsException);
 		if(r.isSuccess()){
 			if(r.isSuccess()){
-				dao.execute("delete from eam_maintain_task_project where task_id=? and selected_code='def'",maintainTask.getId(),maintainTask.getSelectedCode());
-				dao.execute("update eam_maintain_task_project set selected_code='def' where task_id=? and selected_code=?",maintainTask.getId(),maintainTask.getSelectedCode());
+				if(!StringUtil.isBlank(maintainTask.getSelectedCode())){
+					dao.execute("delete from eam_maintain_task_project where task_id=? and selected_code='def'",maintainTask.getId(),maintainTask.getSelectedCode());
+					dao.execute("update eam_maintain_task_project set selected_code='def' where task_id=? and selected_code=?",maintainTask.getId(),maintainTask.getSelectedCode());
+				}
 			}
 		}
 		return r;

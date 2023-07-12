@@ -11,8 +11,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 16:07:46
- * @sign 2ECC4D70C0B9187724D5D00BDE0A9AD8
+ * @since 2023-07-11 16:57:01
+ * @sign 0A052441793ADB6E011CCA51B1530CEB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -67,6 +67,56 @@ public class MaintainTaskProjectMeta {
 	 * 保养结果 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,CONTENT, java.lang.String.class, "保养结果", "保养结果", java.lang.String.class, null);
+	
+	/**
+	 * 标准工时 , 小时) , 类型: java.math.BigDecimal
+	*/
+	public static final String BASE_COST="baseCost";
+	
+	/**
+	 * 标准工时 , 小时) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.math.BigDecimal> BASE_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,BASE_COST, java.math.BigDecimal.class, "标准工时", "小时)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 开始时间 , 类型: java.util.Date
+	*/
+	public static final String START_TIME="startTime";
+	
+	/**
+	 * 开始时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.util.Date> START_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,START_TIME, java.util.Date.class, "开始时间", "开始时间", java.util.Date.class, null);
+	
+	/**
+	 * 结束时间 , 类型: java.util.Date
+	*/
+	public static final String END_TIME="endTime";
+	
+	/**
+	 * 结束时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.util.Date> END_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,END_TIME, java.util.Date.class, "结束时间", "结束时间", java.util.Date.class, null);
+	
+	/**
+	 * 操作人 , 类型: java.lang.String
+	*/
+	public static final String OPER_USER_ID="operUserId";
+	
+	/**
+	 * 操作人 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.lang.String> OPER_USER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,OPER_USER_ID, java.lang.String.class, "操作人", "操作人", java.lang.String.class, null);
+	
+	/**
+	 * 操作时间 , 类型: java.util.Date
+	*/
+	public static final String OPER_TIME="operTime";
+	
+	/**
+	 * 操作时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.util.Date> OPER_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,OPER_TIME, java.util.Date.class, "操作时间", "操作时间", java.util.Date.class, null);
 	
 	/**
 	 * 项目编号 , 类型: java.lang.String
@@ -127,36 +177,6 @@ public class MaintainTaskProjectMeta {
 	 * 项目备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.lang.String> PROJECT_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,PROJECT_NOTES, java.lang.String.class, "项目备注", "项目备注", java.lang.String.class, null);
-	
-	/**
-	 * 标准工时 , 小时) , 类型: java.math.BigDecimal
-	*/
-	public static final String BASE_COST="baseCost";
-	
-	/**
-	 * 标准工时 , 小时) , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.math.BigDecimal> BASE_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,BASE_COST, java.math.BigDecimal.class, "标准工时", "小时)", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 开始时间 , 类型: java.util.Date
-	*/
-	public static final String START_TIME="startTime";
-	
-	/**
-	 * 开始时间 , 类型: java.util.Date
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.util.Date> START_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,START_TIME, java.util.Date.class, "开始时间", "开始时间", java.util.Date.class, null);
-	
-	/**
-	 * 结束时间 , 类型: java.util.Date
-	*/
-	public static final String END_TIME="endTime";
-	
-	/**
-	 * 结束时间 , 类型: java.util.Date
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.util.Date> END_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,END_TIME, java.util.Date.class, "结束时间", "结束时间", java.util.Date.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -261,7 +281,7 @@ public class MaintainTaskProjectMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PROJECT_ID , TASK_ID , STATUS , CONTENT , PROJECT_CODE , PROJECT_NAME , PROJECT_MAINTAIN_TYPE , PROJECT_BASE_COST , PROJECT_ATTACH_ID , PROJECT_NOTES , BASE_COST , START_TIME , END_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION , MAINTAIN_TYPE_DICT };
+	public static final String[] $PROPS={ ID , PROJECT_ID , TASK_ID , STATUS , CONTENT , BASE_COST , START_TIME , END_TIME , OPER_USER_ID , OPER_TIME , PROJECT_CODE , PROJECT_NAME , PROJECT_MAINTAIN_TYPE , PROJECT_BASE_COST , PROJECT_ATTACH_ID , PROJECT_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION , MAINTAIN_TYPE_DICT };
 	
 	/**
 	 * 代理类
@@ -323,6 +343,61 @@ public class MaintainTaskProjectMeta {
 		public MaintainTaskProject setContent(String content) {
 			super.change(CONTENT,super.getContent(),content);
 			super.setContent(content);
+			return this;
+		}
+		
+		/**
+		 * 设置 标准工时
+		 * @param baseCost 标准工时
+		 * @return 当前对象
+		*/
+		public MaintainTaskProject setBaseCost(BigDecimal baseCost) {
+			super.change(BASE_COST,super.getBaseCost(),baseCost);
+			super.setBaseCost(baseCost);
+			return this;
+		}
+		
+		/**
+		 * 设置 开始时间
+		 * @param startTime 开始时间
+		 * @return 当前对象
+		*/
+		public MaintainTaskProject setStartTime(Date startTime) {
+			super.change(START_TIME,super.getStartTime(),startTime);
+			super.setStartTime(startTime);
+			return this;
+		}
+		
+		/**
+		 * 设置 结束时间
+		 * @param endTime 结束时间
+		 * @return 当前对象
+		*/
+		public MaintainTaskProject setEndTime(Date endTime) {
+			super.change(END_TIME,super.getEndTime(),endTime);
+			super.setEndTime(endTime);
+			return this;
+		}
+		
+		/**
+		 * 设置 操作人
+		 * @param operUserId 操作人
+		 * @return 当前对象
+		*/
+		public MaintainTaskProject setOperUserId(String operUserId) {
+			super.change(OPER_USER_ID,super.getOperUserId(),operUserId);
+			super.setOperUserId(operUserId);
+			return this;
+		}
+		
+		/**
+		 * 设置 操作时间
+		 * @param operTime 操作时间
+		 * @return 当前对象
+		*/
+		public MaintainTaskProject setOperTime(Date operTime) {
+			super.change(OPER_TIME,super.getOperTime(),operTime);
+			super.setOperTime(operTime);
 			return this;
 		}
 		
@@ -389,39 +464,6 @@ public class MaintainTaskProjectMeta {
 		public MaintainTaskProject setProjectNotes(String projectNotes) {
 			super.change(PROJECT_NOTES,super.getProjectNotes(),projectNotes);
 			super.setProjectNotes(projectNotes);
-			return this;
-		}
-		
-		/**
-		 * 设置 标准工时
-		 * @param baseCost 标准工时
-		 * @return 当前对象
-		*/
-		public MaintainTaskProject setBaseCost(BigDecimal baseCost) {
-			super.change(BASE_COST,super.getBaseCost(),baseCost);
-			super.setBaseCost(baseCost);
-			return this;
-		}
-		
-		/**
-		 * 设置 开始时间
-		 * @param startTime 开始时间
-		 * @return 当前对象
-		*/
-		public MaintainTaskProject setStartTime(Date startTime) {
-			super.change(START_TIME,super.getStartTime(),startTime);
-			super.setStartTime(startTime);
-			return this;
-		}
-		
-		/**
-		 * 设置 结束时间
-		 * @param endTime 结束时间
-		 * @return 当前对象
-		*/
-		public MaintainTaskProject setEndTime(Date endTime) {
-			super.change(END_TIME,super.getEndTime(),endTime);
-			super.setEndTime(endTime);
 			return this;
 		}
 		
@@ -550,24 +592,26 @@ public class MaintainTaskProjectMeta {
 		@Transient
 		public MaintainTaskProject duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setOperUserId(this.getOperUserId());
 			inst.setProjectAttachId(this.getProjectAttachId());
+			inst.setProjectBaseCost(this.getProjectBaseCost());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setContent(this.getContent());
+			inst.setProjectCode(this.getProjectCode());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setProjectMaintainType(this.getProjectMaintainType());
+			inst.setStartTime(this.getStartTime());
+			inst.setId(this.getId());
+			inst.setOperTime(this.getOperTime());
 			inst.setBaseCost(this.getBaseCost());
 			inst.setProjectNotes(this.getProjectNotes());
 			inst.setUpdateTime(this.getUpdateTime());
-			inst.setProjectBaseCost(this.getProjectBaseCost());
-			inst.setSelectedCode(this.getSelectedCode());
 			inst.setVersion(this.getVersion());
-			inst.setContent(this.getContent());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
-			inst.setProjectCode(this.getProjectCode());
 			inst.setCreateTime(this.getCreateTime());
-			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
-			inst.setProjectMaintainType(this.getProjectMaintainType());
 			inst.setDeleteBy(this.getDeleteBy());
-			inst.setStartTime(this.getStartTime());
-			inst.setId(this.getId());
 			inst.setEndTime(this.getEndTime());
 			inst.setProjectName(this.getProjectName());
 			inst.setProjectId(this.getProjectId());

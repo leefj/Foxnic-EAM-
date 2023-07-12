@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_INSPECTION_ROUTE;
@@ -8,21 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.InspectionRouteMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 巡检路径
+ * <p>巡检路径 , 数据表 eam_inspection_route 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 14:02:52
- * @sign 8FDFE2FD29E44A0F4BC495457B5D3408
+ * @since 2023-07-11 07:43:03
+ * @sign 27E42E89786839C83D86CEC17C9FC62E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_inspection_route")
+@ApiModel(description = "巡检路径 ; 巡检路径 , 数据表 eam_inspection_route 的PO类型")
 public class InspectionRoute extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -33,19 +40,19 @@ public class InspectionRoute extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "697560681343352832")
 	private String id;
 	
 	/**
 	 * 路径：路径
 	*/
-	@ApiModelProperty(required = false,value="路径" , notes = "路径")
+	@ApiModelProperty(required = false,value="路径" , notes = "路径" , example = "路线1")
 	private String name;
 	
 	/**
 	 * 排序：排序
 	*/
-	@ApiModelProperty(required = false,value="排序" , notes = "排序")
+	@ApiModelProperty(required = false,value="排序" , notes = "排序" , example = "0")
 	private Integer sort;
 	
 	/**
@@ -57,13 +64,13 @@ public class InspectionRoute extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-09 09:37:06")
 	private Date createTime;
 	
 	/**
@@ -81,9 +88,10 @@ public class InspectionRoute extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -101,13 +109,13 @@ public class InspectionRoute extends Entity {
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -289,6 +297,7 @@ public class InspectionRoute extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public InspectionRoute setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -417,6 +426,46 @@ public class InspectionRoute extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public InspectionRoute clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public InspectionRoute duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.InspectionRouteMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.InspectionRouteMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setSort(this.getSort());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public InspectionRoute clone(boolean deep) {
+		return EntityContext.clone(InspectionRoute.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 InspectionRoute
 	 * @param inspectionRouteMap 包含实体信息的 Map 对象
 	 * @return InspectionRoute , 转换好的的 InspectionRoute 对象
@@ -424,7 +473,9 @@ public class InspectionRoute extends Entity {
 	@Transient
 	public static InspectionRoute createFrom(Map<String,Object> inspectionRouteMap) {
 		if(inspectionRouteMap==null) return null;
-		InspectionRoute po = EntityContext.create(InspectionRoute.class, inspectionRouteMap);
+		InspectionRoute po = create();
+		EntityContext.copyProperties(po,inspectionRouteMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -436,7 +487,9 @@ public class InspectionRoute extends Entity {
 	@Transient
 	public static InspectionRoute createFrom(Object pojo) {
 		if(pojo==null) return null;
-		InspectionRoute po = EntityContext.create(InspectionRoute.class,pojo);
+		InspectionRoute po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -446,6 +499,98 @@ public class InspectionRoute extends Entity {
 	*/
 	@Transient
 	public static InspectionRoute create() {
-		return EntityContext.create(InspectionRoute.class);
+		return new com.dt.platform.domain.eam.meta.InspectionRouteMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(InspectionRouteMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(InspectionRouteMeta.UPDATE_TIME)));
+			this.setSort(DataParser.parse(Integer.class, map.get(InspectionRouteMeta.SORT)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(InspectionRouteMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(InspectionRouteMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(InspectionRouteMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(InspectionRouteMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(InspectionRouteMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(InspectionRouteMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(InspectionRouteMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(InspectionRouteMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(InspectionRouteMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(InspectionRouteMeta.ID)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(InspectionRouteMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(InspectionRouteMeta.UPDATE_TIME));
+				this.setSort( (Integer)map.get(InspectionRouteMeta.SORT));
+				this.setVersion( (Integer)map.get(InspectionRouteMeta.VERSION));
+				this.setCreateBy( (String)map.get(InspectionRouteMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(InspectionRouteMeta.DELETED));
+				this.setCreateTime( (Date)map.get(InspectionRouteMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(InspectionRouteMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(InspectionRouteMeta.DELETE_TIME));
+				this.setName( (String)map.get(InspectionRouteMeta.NAME));
+				this.setTenantId( (String)map.get(InspectionRouteMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(InspectionRouteMeta.DELETE_BY));
+				this.setId( (String)map.get(InspectionRouteMeta.ID));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(InspectionRouteMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InspectionRouteMeta.UPDATE_TIME)));
+			this.setSort(DataParser.parse(Integer.class, r.getValue(InspectionRouteMeta.SORT)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(InspectionRouteMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(InspectionRouteMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(InspectionRouteMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(InspectionRouteMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InspectionRouteMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(InspectionRouteMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(InspectionRouteMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(InspectionRouteMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InspectionRouteMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(InspectionRouteMeta.ID)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(InspectionRouteMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(InspectionRouteMeta.UPDATE_TIME));
+				this.setSort( (Integer)r.getValue(InspectionRouteMeta.SORT));
+				this.setVersion( (Integer)r.getValue(InspectionRouteMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(InspectionRouteMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(InspectionRouteMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(InspectionRouteMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(InspectionRouteMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(InspectionRouteMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(InspectionRouteMeta.NAME));
+				this.setTenantId( (String)r.getValue(InspectionRouteMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(InspectionRouteMeta.DELETE_BY));
+				this.setId( (String)r.getValue(InspectionRouteMeta.ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

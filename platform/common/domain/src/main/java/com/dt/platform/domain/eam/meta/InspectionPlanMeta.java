@@ -16,8 +16,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 18:20:42
- * @sign 46CFD843A611B73D1E30D45D0F4F9536
+ * @since 2023-07-12 13:51:25
+ * @sign 31ECC9E9A2BB3D2FFBF39A1DB0D2446F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,14 +44,14 @@ public class InspectionPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> PLAN_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,PLAN_CODE, java.lang.String.class, "计划编号", "计划编号", java.lang.String.class, null);
 	
 	/**
-	 * 名称 , 类型: java.lang.String
+	 * 计划名称 , 类型: java.lang.String
 	*/
 	public static final String NAME="name";
 	
 	/**
-	 * 名称 , 类型: java.lang.String
+	 * 计划名称 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,NAME, java.lang.String.class, "计划名称", "计划名称", java.lang.String.class, null);
 	
 	/**
 	 * 办理状态 , 类型: java.lang.String
@@ -64,14 +64,14 @@ public class InspectionPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,STATUS, java.lang.String.class, "办理状态", "办理状态", java.lang.String.class, null);
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 计划状态 , 类型: java.lang.String
 	*/
 	public static final String PLAN_STATUS="planStatus";
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 计划状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> PLAN_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,PLAN_STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> PLAN_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,PLAN_STATUS, java.lang.String.class, "计划状态", "计划状态", java.lang.String.class, null);
 	
 	/**
 	 * 计划类型 , 类型: java.lang.String
@@ -94,14 +94,14 @@ public class InspectionPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> LEADER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,LEADER_ID, java.lang.String.class, "负责人", "负责人", java.lang.String.class, null);
 	
 	/**
-	 * 班组 , 类型: java.lang.String
+	 * 巡检班组 , 类型: java.lang.String
 	*/
 	public static final String GROUP_ID="groupId";
 	
 	/**
-	 * 班组 , 类型: java.lang.String
+	 * 巡检班组 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> GROUP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,GROUP_ID, java.lang.String.class, "班组", "班组", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> GROUP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,GROUP_ID, java.lang.String.class, "巡检班组", "巡检班组", java.lang.String.class, null);
 	
 	/**
 	 * 位置范围 , 类型: java.lang.String
@@ -134,14 +134,14 @@ public class InspectionPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.util.Date> END_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,END_DATE, java.util.Date.class, "截止日期", "截止日期", java.util.Date.class, null);
 	
 	/**
-	 * 周期 , 类型: java.lang.String
+	 * 计划周期 , 类型: java.lang.String
 	*/
 	public static final String ACTION_CYCLE_ID="actionCycleId";
 	
 	/**
-	 * 周期 , 类型: java.lang.String
+	 * 计划周期 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> ACTION_CYCLE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,ACTION_CYCLE_ID, java.lang.String.class, "周期", "周期", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> ACTION_CYCLE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,ACTION_CYCLE_ID, java.lang.String.class, "计划周期", "计划周期", java.lang.String.class, null);
 	
 	/**
 	 * 巡检顺序 , 类型: java.lang.String
@@ -439,8 +439,8 @@ public class InspectionPlanMeta {
 		}
 		
 		/**
-		 * 设置 名称
-		 * @param name 名称
+		 * 设置 计划名称
+		 * @param name 计划名称
 		 * @return 当前对象
 		*/
 		public InspectionPlan setName(String name) {
@@ -461,8 +461,8 @@ public class InspectionPlanMeta {
 		}
 		
 		/**
-		 * 设置 状态
-		 * @param planStatus 状态
+		 * 设置 计划状态
+		 * @param planStatus 计划状态
 		 * @return 当前对象
 		*/
 		public InspectionPlan setPlanStatus(String planStatus) {
@@ -494,8 +494,8 @@ public class InspectionPlanMeta {
 		}
 		
 		/**
-		 * 设置 班组
-		 * @param groupId 班组
+		 * 设置 巡检班组
+		 * @param groupId 巡检班组
 		 * @return 当前对象
 		*/
 		public InspectionPlan setGroupId(String groupId) {
@@ -538,8 +538,8 @@ public class InspectionPlanMeta {
 		}
 		
 		/**
-		 * 设置 周期
-		 * @param actionCycleId 周期
+		 * 设置 计划周期
+		 * @param actionCycleId 计划周期
 		 * @return 当前对象
 		*/
 		public InspectionPlan setActionCycleId(String actionCycleId) {

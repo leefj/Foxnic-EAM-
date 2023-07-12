@@ -3,8 +3,12 @@ package com.dt.platform.eam.service.impl;
 import javax.annotation.Resource;
 
 import com.alibaba.fastjson.JSONArray;
+import com.dt.platform.constants.enums.eam.MaintainTaskStatusEnum;
+import com.dt.platform.domain.eam.MaintainTask;
 import com.dt.platform.domain.eam.MappingOwner;
+import com.dt.platform.eam.service.IMaintainTaskService;
 import com.dt.platform.eam.service.IMappingOwnerService;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -50,6 +54,11 @@ import java.util.Map;
 
 public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskProject> implements IMaintainTaskProjectService {
 
+
+
+	@Autowired
+	private IMaintainTaskService maintainTaskService;
+
 	/**
 	 * 注入DAO对象
 	 * */
@@ -85,6 +94,51 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 	}
 
 	@Override
+	public Result execute(String id, String status, String content) {
+
+		MaintainTaskProject sourceTaskProject=this.getById(id);
+		MaintainTask task= maintainTaskService.getById(sourceTaskProject.getTaskId());
+
+		if(MaintainTaskStatusEnum.WAIT.code().equals(task.getStatus())){
+			//修改
+			task.setStatus(MaintainTaskStatusEnum.ACTING.code());
+			task.setExecutorId(SessionUser.getCurrent().getActivatedEmployeeId());
+			task.setActStartTime(new Date());
+
+
+			maintainTaskService.update(task,SaveMode.NOT_NULL_FIELDS,true);
+		}else if(MaintainTaskStatusEnum.FINISH.code().equals(task.getStatus())
+		||MaintainTaskStatusEnum.CANCEL.code().equals(task.getStatus())){
+			return ErrorDesc.failureMessage("当前任务状态无法进行该操作");
+		}
+
+		sourceTaskProject.setId(id);
+		sourceTaskProject.setContent(content);
+		sourceTaskProject.setStatus(status);
+		sourceTaskProject.setOperTime(new Date());
+		sourceTaskProject.setOperUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+		super.update(sourceTaskProject,SaveMode.NOT_NULL_FIELDS,true);
+
+
+		//继续更新,
+		MaintainTaskProjectVO taskProjectVO=new MaintainTaskProjectVO();
+		taskProjectVO.setSelectedCode("def");
+		taskProjectVO.setProjectId(sourceTaskProject.getProjectId());
+		taskProjectVO.setTaskId(sourceTaskProject.getTaskId());
+		List<MaintainTaskProject> list=this.queryList(taskProjectVO);
+		if(list!=null&&list.size()>0){
+			MaintainTaskProject taskProject2=list.get(0);
+			taskProject2.setContent(content);
+			taskProject2.setStatus(status);
+			taskProject2.setOperTime(new Date());
+			taskProject2.setOperUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+			super.update(taskProject2,SaveMode.NOT_NULL_FIELDS,true);
+		}
+
+		return ErrorDesc.success();
+	}
+
+	@Override
 	public Result selectDeleteByIds(String ownerId, String ids, String selectedCode) {
 
 		JSONArray idsArr=JSONArray.parseArray(ids);
@@ -97,7 +151,7 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 
 	@Override
 	public Result selectSaveIds(String ownerId, String ids, String selectedCode) {
-		return ErrorDesc.failure("未实现");
+		return ErrorDesc.failureMessage("未实现");
 	}
 
 	@Override
