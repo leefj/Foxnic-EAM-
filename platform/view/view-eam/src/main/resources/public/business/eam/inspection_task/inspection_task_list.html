@@ -2,7 +2,7 @@
 /**
  * 巡检任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 18:22:44
+ * @since 2023-07-12 14:12:31
  */
  -->
  <!DOCTYPE html>
@@ -48,12 +48,14 @@
                     </div>
                     <!-- 任务单据 , taskCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 巡检顺序 , planInspectionMethod ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 时间要求 , planCompletionTime ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 预计用时(时) , planCompletionTime ,typeName=number_input, isHideInSearch=true -->
                     <!-- 巡检备注 , planNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 执行人 , executorId ,typeName=button, isHideInSearch=true -->
                     <!-- 应开始时间 , planStartTime ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 实际完成时间 , actFinishTime ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 实际工时 , actTotalCost ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 实际完成 , actFinishTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 完成用时(时) , actTotalCost ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 提醒时间(时) , remindTime ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 超时处理 , overtimeMethod ,typeName=select_box, isHideInSearch=true -->
                     <!-- 任务反馈 , content ,typeName=text_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 制单人 , originatorId ,typeName=text_input, isHideInSearch=true -->
@@ -82,9 +84,9 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 实际开始时间 , actStartTime ,typeName=date_input, isHideInSearch=false -->
+                    <!-- 实际开始 , actStartTime ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('实际开始时间')}" class="search-label actStartTime-label">实际开始时间</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('实际开始')}" class="search-label actStartTime-label">实际开始</span><span class="search-colon">:</span></div>
                             <input type="text" id="actStartTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
                             <input type="text" id="actStartTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
@@ -139,6 +141,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var SELECT_TASKSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum')}]];
     var SELECT_PLANINSPECTIONMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.InspectionMethodEnum')}]];
+    var SELECT_OVERTIMEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTimeoutHandleEnum')}]];
     var AUTH_PREFIX="eam_inspection_task";
 
 

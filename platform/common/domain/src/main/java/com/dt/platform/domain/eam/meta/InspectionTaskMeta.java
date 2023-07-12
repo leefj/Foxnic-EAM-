@@ -17,8 +17,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 18:22:43
- * @sign 782ECC78445E35D7DB3C65B910E32FE6
+ * @since 2023-07-12 14:12:30
+ * @sign B636F58A5405B4C7C42A0A256254A934
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -145,34 +145,54 @@ public class InspectionTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTask,java.util.Date> PLAN_START_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTask.class ,PLAN_START_TIME, java.util.Date.class, "应开始时间", "应开始时间", java.util.Date.class, null);
 	
 	/**
-	 * 实际开始时间 , 类型: java.util.Date
+	 * 实际开始 , 类型: java.util.Date
 	*/
 	public static final String ACT_START_TIME="actStartTime";
 	
 	/**
-	 * 实际开始时间 , 类型: java.util.Date
+	 * 实际开始 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTask,java.util.Date> ACT_START_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTask.class ,ACT_START_TIME, java.util.Date.class, "实际开始时间", "实际开始时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTask,java.util.Date> ACT_START_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTask.class ,ACT_START_TIME, java.util.Date.class, "实际开始", "实际开始", java.util.Date.class, null);
 	
 	/**
-	 * 实际完成时间 , 类型: java.util.Date
+	 * 实际完成 , 类型: java.util.Date
 	*/
 	public static final String ACT_FINISH_TIME="actFinishTime";
 	
 	/**
-	 * 实际完成时间 , 类型: java.util.Date
+	 * 实际完成 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTask,java.util.Date> ACT_FINISH_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTask.class ,ACT_FINISH_TIME, java.util.Date.class, "实际完成时间", "实际完成时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTask,java.util.Date> ACT_FINISH_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTask.class ,ACT_FINISH_TIME, java.util.Date.class, "实际完成", "实际完成", java.util.Date.class, null);
 	
 	/**
-	 * 实际工时 , 类型: java.math.BigDecimal
+	 * 实际用时 , 类型: java.math.BigDecimal
 	*/
 	public static final String ACT_TOTAL_COST="actTotalCost";
 	
 	/**
-	 * 实际工时 , 类型: java.math.BigDecimal
+	 * 实际用时 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTask,java.math.BigDecimal> ACT_TOTAL_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTask.class ,ACT_TOTAL_COST, java.math.BigDecimal.class, "实际工时", "实际工时", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTask,java.math.BigDecimal> ACT_TOTAL_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTask.class ,ACT_TOTAL_COST, java.math.BigDecimal.class, "实际用时", "实际用时", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 提醒时间 , 类型: java.math.BigDecimal
+	*/
+	public static final String REMIND_TIME="remindTime";
+	
+	/**
+	 * 提醒时间 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTask,java.math.BigDecimal> REMIND_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTask.class ,REMIND_TIME, java.math.BigDecimal.class, "提醒时间", "提醒时间", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 超时处理 , 类型: java.lang.String
+	*/
+	public static final String OVERTIME_METHOD="overtimeMethod";
+	
+	/**
+	 * 超时处理 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTask,java.lang.String> OVERTIME_METHOD_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTask.class ,OVERTIME_METHOD, java.lang.String.class, "超时处理", "超时处理", java.lang.String.class, null);
 	
 	/**
 	 * 任务反馈 , 类型: java.lang.String
@@ -457,7 +477,7 @@ public class InspectionTaskMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PLAN_ID , TASK_STATUS , TASK_CODE , PLAN_CODE , PLAN_NAME , PLAN_INSPECTION_METHOD , PLAN_COMPLETION_TIME , PLAN_NOTES , GROUP_ID , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , ACT_TOTAL_COST , CONTENT , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , SELECTED_CODE , INSPECTION_PLAN , INSPECTION_POINT_LIST , INSPECTION_POINT_IDS , INSPECTION_TASK_POINT_LIST , INSPECTION_TASK_POINT_IDS , TIME_DICT , INSPECTION_TYPE_DICT , INSPECTION_GROUP , INSPECT_USER_LIST , POINT_COUNT , POINT_NORMAL_COUNT , POINT_ABORMAL_COUNT , POINT_WAIT_COUNT , ORIGINATOR , EXECUTOR };
+	public static final String[] $PROPS={ ID , PLAN_ID , TASK_STATUS , TASK_CODE , PLAN_CODE , PLAN_NAME , PLAN_INSPECTION_METHOD , PLAN_COMPLETION_TIME , PLAN_NOTES , GROUP_ID , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , ACT_TOTAL_COST , REMIND_TIME , OVERTIME_METHOD , CONTENT , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , SELECTED_CODE , INSPECTION_PLAN , INSPECTION_POINT_LIST , INSPECTION_POINT_IDS , INSPECTION_TASK_POINT_LIST , INSPECTION_TASK_POINT_IDS , TIME_DICT , INSPECTION_TYPE_DICT , INSPECTION_GROUP , INSPECT_USER_LIST , POINT_COUNT , POINT_NORMAL_COUNT , POINT_ABORMAL_COUNT , POINT_WAIT_COUNT , ORIGINATOR , EXECUTOR };
 	
 	/**
 	 * 代理类
@@ -600,8 +620,8 @@ public class InspectionTaskMeta {
 		}
 		
 		/**
-		 * 设置 实际开始时间
-		 * @param actStartTime 实际开始时间
+		 * 设置 实际开始
+		 * @param actStartTime 实际开始
 		 * @return 当前对象
 		*/
 		public InspectionTask setActStartTime(Date actStartTime) {
@@ -611,8 +631,8 @@ public class InspectionTaskMeta {
 		}
 		
 		/**
-		 * 设置 实际完成时间
-		 * @param actFinishTime 实际完成时间
+		 * 设置 实际完成
+		 * @param actFinishTime 实际完成
 		 * @return 当前对象
 		*/
 		public InspectionTask setActFinishTime(Date actFinishTime) {
@@ -622,13 +642,35 @@ public class InspectionTaskMeta {
 		}
 		
 		/**
-		 * 设置 实际工时
-		 * @param actTotalCost 实际工时
+		 * 设置 实际用时
+		 * @param actTotalCost 实际用时
 		 * @return 当前对象
 		*/
 		public InspectionTask setActTotalCost(BigDecimal actTotalCost) {
 			super.change(ACT_TOTAL_COST,super.getActTotalCost(),actTotalCost);
 			super.setActTotalCost(actTotalCost);
+			return this;
+		}
+		
+		/**
+		 * 设置 提醒时间
+		 * @param remindTime 提醒时间
+		 * @return 当前对象
+		*/
+		public InspectionTask setRemindTime(BigDecimal remindTime) {
+			super.change(REMIND_TIME,super.getRemindTime(),remindTime);
+			super.setRemindTime(remindTime);
+			return this;
+		}
+		
+		/**
+		 * 设置 超时处理
+		 * @param overtimeMethod 超时处理
+		 * @return 当前对象
+		*/
+		public InspectionTask setOvertimeMethod(String overtimeMethod) {
+			super.change(OVERTIME_METHOD,super.getOvertimeMethod(),overtimeMethod);
+			super.setOvertimeMethod(overtimeMethod);
 			return this;
 		}
 		
@@ -961,7 +1003,9 @@ public class InspectionTaskMeta {
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setContent(this.getContent());
 			inst.setActStartTime(this.getActStartTime());
+			inst.setRemindTime(this.getRemindTime());
 			inst.setTaskCode(this.getTaskCode());
+			inst.setOvertimeMethod(this.getOvertimeMethod());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setPlanId(this.getPlanId());
 			inst.setId(this.getId());

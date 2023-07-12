@@ -19,8 +19,8 @@ public class InspRouteGtr extends BaseCodeGenerator {
         System.out.println(this.getClass().getName());
         cfg.view().field(EAMTables.EAM_INSPECTION_ROUTE.ID).basic().hidden(true);
 
-        
-        
+
+        cfg.view().field(EAMTables.EAM_INSPECTION_ROUTE.NAME).search().fuzzySearch();
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_INSPECTION_ROUTE.NAME,
@@ -28,6 +28,7 @@ public class InspRouteGtr extends BaseCodeGenerator {
         );
 
 
+        cfg.view().field(EAMTables.EAM_INSPECTION_ROUTE.SORT).table().hidden(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_ROUTE.NAME)
                 .form().validate().required();
 

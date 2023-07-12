@@ -58,7 +58,7 @@ public class MaintainProjectGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.NAME).form().validate().required();
 
 
-
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.BASE_COST).basic().label("工时(时)");
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.MAINTAIN_TYPE)
                 .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_maintain_type")

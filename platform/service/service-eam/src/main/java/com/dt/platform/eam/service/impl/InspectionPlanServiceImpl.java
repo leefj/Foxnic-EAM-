@@ -118,7 +118,7 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 		ActionCrontab cron=plan.getActionCrontab();
 		if(StringUtil.isBlank(cron)){
 			Logger.info("当前crontab为空，plan:"+plan.getId());
-			return ErrorDesc.failure("当前crontab为空");
+			return ErrorDesc.failureMessage("当前crontab为空");
 		}
 
 		// 理论上只有一个待执行的日志
@@ -126,7 +126,7 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 		// 如果 long 是 null 大概率是 cron 表达式错误
 		if(log==null){
 			Logger.info("log is null，plan:"+plan.getId());
-			return ErrorDesc.failure("log is null");
+			return ErrorDesc.failureMessage("log is null");
 		}
 		// 如果预期的执行时间已经超过当前，就执行
 		if(log.getExecuteTime().getTime()<=(new Date()).getTime()) {
@@ -234,10 +234,16 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 			task.setPlanCompletionTime(plan.getCompletionTime());
 			task.setGroupId(plan.getGroupId());
 			task.setTaskStatus(InspectionTaskStatusEnum.WAIT.code());
-			inspectionTaskService.insert(task,false);
+			task.setOvertimeMethod(plan.getOvertimeMethod());
+			task.setRemindTime(plan.getRemindTime());
 
 			this.dao().fill(pointOwnerList).with(InspectionPointOwnerMeta.CHECK_ITEM_LIST).
 					with(InspectionPointOwnerMeta.INSPECTION_POINT).execute();
+
+			if(pointList==null||pointList.size()==0){
+				return ErrorDesc.failureMessage("当前计划没有配置巡检点，巡检任务单生成失败");
+			}
+			inspectionTaskService.insert(task,false);
 
 			//生成巡检点
 			for(int i=0;i<pointList.size();i++){
@@ -335,9 +341,14 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 				inspectionPlan.setPlanCode(codeResult.getData().toString());
 			}
 		}
+
+
+
 		Result r=super.insert(inspectionPlan,throwsException);
 		if(r.isSuccess()){
-			dao.execute("update eam_inspection_point_owner set selected_code=?,owner_id=? where owner_id=? and selected_code=?","def",inspectionPlan.getId(),selectedCode,selectedCode);
+			if(!StringUtil.isBlank(selectedCode)){
+				dao.execute("update eam_inspection_point_owner set selected_code=?,owner_id=? where owner_id=? and selected_code=?","def",inspectionPlan.getId(),selectedCode,selectedCode);
+			}
 		}
 		return r;
 	}
@@ -431,8 +442,10 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 		String selectedCode=inspectionPlan.getSelectedCode();
 		Result r=super.update(inspectionPlan , mode , throwsException);
 		if(r.isSuccess()){
-			dao.execute("delete from eam_inspection_point_owner where owner_id=? and selected_code='def'",inspectionPlan.getId(),selectedCode);
-			dao.execute("update eam_inspection_point_owner set selected_code='def' where owner_id=? and selected_code=?",inspectionPlan.getId(),selectedCode);
+			if(!StringUtil.isBlank(selectedCode)){
+				dao.execute("delete from eam_inspection_point_owner where owner_id=? and selected_code='def'",inspectionPlan.getId(),selectedCode);
+				dao.execute("update eam_inspection_point_owner set selected_code='def' where owner_id=? and selected_code=?",inspectionPlan.getId(),selectedCode);
+			}
 		}
 		return r;
 	}

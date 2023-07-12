@@ -98,7 +98,7 @@ public class InspectionPointServiceImpl extends SuperService<InspectionPoint> im
 
 		String selectedCode=inspectionPoint.getSelectedCode();
 		if(StringUtil.isBlank(selectedCode)){
-			return ErrorDesc.failure("selectCode参数为空");
+			return ErrorDesc.failureMessage("selectCode参数为空");
 		}
 		Result r=super.insert(inspectionPoint,throwsException);
 		if(r.isSuccess()){

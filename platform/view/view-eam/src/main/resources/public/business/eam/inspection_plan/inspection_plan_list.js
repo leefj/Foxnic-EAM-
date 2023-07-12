@@ -1,7 +1,7 @@
 /**
  * 巡检计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 18:20:44
+ * @since 2023-07-12 13:51:26
  */
 
 
@@ -86,13 +86,13 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'planCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划编号') , templet: function (d) { return templet('planCode',d.planCode,d);}  }
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'planStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('planStatus',fox.getEnumText(SELECT_PLANSTATUS_DATA,d.planStatus,'','planStatus'),d);}}
-					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('班组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.inspectionGroup,"name",',','','groupId'),d);}}
+					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'planStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划状态'), templet:function (d){ return templet('planStatus',fox.getEnumText(SELECT_PLANSTATUS_DATA,d.planStatus,'','planStatus'),d);}}
+					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检班组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.inspectionGroup,"name",',','','groupId'),d);}}
 					,{ field: 'posDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置范围') , templet: function (d) { return templet('posDetail',d.posDetail,d);}  }
 					,{ field: 'startDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始日期') ,templet: function (d) { return templet('startDate',fox.dateFormat(d.startDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'endDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('截止日期') ,templet: function (d) { return templet('endDate',fox.dateFormat(d.endDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'completionTime', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('时间要求') , templet: function (d) { return templet('completionTime',d.completionTime,d);}  }
+					,{ field: 'completionTime', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('预计用时(时)') , templet: function (d) { return templet('completionTime',d.completionTime,d);}  }
 					,{ field: 'lastTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('上次执行') ,templet: function (d) { return templet('lastTime',fox.dateFormat(d.lastTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'nextTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('下次执行') ,templet: function (d) { return templet('nextTime',fox.dateFormat(d.nextTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'itemCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('巡检点数') , templet: function (d) { return templet('itemCount',d.itemCount,d);}  }

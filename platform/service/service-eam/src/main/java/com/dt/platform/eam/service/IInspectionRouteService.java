@@ -1,5 +1,7 @@
 package com.dt.platform.eam.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -19,13 +21,14 @@ import java.util.Map;
 
 /**
  * <p>
- * 巡检路径 服务接口
+ * 巡检路径服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 14:02:52
+ * @since 2023-07-11 07:43:03
 */
 
-public interface IInspectionRouteService extends ISuperService<InspectionRoute> {
+public interface IInspectionRouteService extends  ISimpleIdService<InspectionRoute,String> {
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -53,7 +56,7 @@ public interface IInspectionRouteService extends ISuperService<InspectionRoute> 
 
 		
 	/**
-	 * 按主键删除 巡检路径
+	 * 按主键删除巡检路径
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -61,7 +64,7 @@ public interface IInspectionRouteService extends ISuperService<InspectionRoute> 
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 巡检路径
+	 * 按主键删除巡检路径
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -84,7 +87,7 @@ public interface IInspectionRouteService extends ISuperService<InspectionRoute> 
 
 		
 	/**
-	 * 按主键更新字段 巡检路径
+	 * 按主键更新巡检路径
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -154,7 +157,7 @@ public interface IInspectionRouteService extends ISuperService<InspectionRoute> 
 
 		
 	/**
-	 * 按主键获取 巡检路径
+	 * 按主键获取巡检路径
 	 *
 	 * @param id 主键
 	 * @return InspectionRoute 数据对象
@@ -204,7 +207,7 @@ public interface IInspectionRouteService extends ISuperService<InspectionRoute> 
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<InspectionRoute> queryList(InspectionRoute sample);
+	List<InspectionRoute> queryList(InspectionRouteVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -245,7 +248,7 @@ public interface IInspectionRouteService extends ISuperService<InspectionRoute> 
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<InspectionRoute> queryPagedList(InspectionRoute sample,int pageSize,int pageIndex);
+	PagedList<InspectionRoute> queryPagedList(InspectionRouteVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -299,28 +302,8 @@ public interface IInspectionRouteService extends ISuperService<InspectionRoute> 
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
-	/**
-	 * 导出 Excel
-	 * */
-	ExcelWriter exportExcel(InspectionRoute sample);
 
-	/**
-	 * 导出用于数据导入的 Excel 模版
-	 * */
-	ExcelWriter  exportExcelTemplate();
 
-	/**
-	 * 构建 Excel 结构
-	 * @param  isForExport 是否用于数据导出
-	 * @return   ExcelStructure
-	 * */
-	ExcelStructure buildExcelStructure(boolean isForExport);
-
-	/**
-	 * 导入 Excel 数据
-	 * @return  错误信息，成功时返回 null
-	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
 }

@@ -103,7 +103,7 @@ public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskP
 		if(dao.queryRecord(sql,id,cUserId).getInteger("cnt")>0){
 			Logger.info("巡检操作权限匹配正确");
 		}else{
-			return ErrorDesc.failure("本巡检任务的巡检组中未找到当前用户，无法进行巡检的操作");
+			return ErrorDesc.failureMessage("本巡检任务的巡检组中未找到当前用户，无法进行巡检的操作");
 		}
 
 		InspectionTaskPoint sourceTaskPoint=this.getById(id);

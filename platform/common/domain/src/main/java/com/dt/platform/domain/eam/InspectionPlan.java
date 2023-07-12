@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检计划
  * <p>巡检计划 , 数据表 eam_inspection_plan 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 18:20:42
- * @sign 46CFD843A611B73D1E30D45D0F4F9536
+ * @since 2023-07-12 13:51:25
+ * @sign 31ECC9E9A2BB3D2FFBF39A1DB0D2446F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -55,9 +55,9 @@ public class InspectionPlan extends Entity {
 	private String planCode;
 	
 	/**
-	 * 名称：名称
+	 * 计划名称：计划名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "模版")
+	@ApiModelProperty(required = false,value="计划名称" , notes = "计划名称" , example = "模版")
 	private String name;
 	
 	/**
@@ -67,9 +67,9 @@ public class InspectionPlan extends Entity {
 	private String status;
 	
 	/**
-	 * 状态：状态
+	 * 计划状态：计划状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "stop")
+	@ApiModelProperty(required = false,value="计划状态" , notes = "计划状态" , example = "stop")
 	private String planStatus;
 	
 	/**
@@ -85,9 +85,9 @@ public class InspectionPlan extends Entity {
 	private String leaderId;
 	
 	/**
-	 * 班组：班组
+	 * 巡检班组：巡检班组
 	*/
-	@ApiModelProperty(required = false,value="班组" , notes = "班组" , example = "571667627504570368")
+	@ApiModelProperty(required = false,value="巡检班组" , notes = "巡检班组" , example = "571667627504570368")
 	private String groupId;
 	
 	/**
@@ -109,9 +109,9 @@ public class InspectionPlan extends Entity {
 	private Date endDate;
 	
 	/**
-	 * 周期：周期
+	 * 计划周期：计划周期
 	*/
-	@ApiModelProperty(required = false,value="周期" , notes = "周期")
+	@ApiModelProperty(required = false,value="计划周期" , notes = "计划周期")
 	private String actionCycleId;
 	
 	/**
@@ -177,13 +177,13 @@ public class InspectionPlan extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-09 10:15:20")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-12 07:47:27")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -192,13 +192,13 @@ public class InspectionPlan extends Entity {
 	/**
 	 * 删除人ID：删除人ID
 	*/
-	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID")
+	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID" , example = "110588348101165911")
 	private String deleteBy;
 	
 	/**
 	 * 删除时间：删除时间
 	*/
-	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间")
+	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2023-07-12 07:47:27")
 	private Date deleteTime;
 	
 	/**
@@ -210,7 +210,7 @@ public class InspectionPlan extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
 	private Integer version;
 	
 	/**
@@ -312,17 +312,17 @@ public class InspectionPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 名称<br>
-	 * 名称
-	 * @return 名称
+	 * 获得 计划名称<br>
+	 * 计划名称
+	 * @return 计划名称
 	*/
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * 设置 名称
-	 * @param name 名称
+	 * 设置 计划名称
+	 * @param name 计划名称
 	 * @return 当前对象
 	*/
 	public InspectionPlan setName(String name) {
@@ -350,17 +350,17 @@ public class InspectionPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 状态<br>
-	 * 状态
-	 * @return 状态
+	 * 获得 计划状态<br>
+	 * 计划状态
+	 * @return 计划状态
 	*/
 	public String getPlanStatus() {
 		return planStatus;
 	}
 	
 	/**
-	 * 设置 状态
-	 * @param planStatus 状态
+	 * 设置 计划状态
+	 * @param planStatus 计划状态
 	 * @return 当前对象
 	*/
 	public InspectionPlan setPlanStatus(String planStatus) {
@@ -407,17 +407,17 @@ public class InspectionPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 班组<br>
-	 * 班组
-	 * @return 班组
+	 * 获得 巡检班组<br>
+	 * 巡检班组
+	 * @return 巡检班组
 	*/
 	public String getGroupId() {
 		return groupId;
 	}
 	
 	/**
-	 * 设置 班组
-	 * @param groupId 班组
+	 * 设置 巡检班组
+	 * @param groupId 巡检班组
 	 * @return 当前对象
 	*/
 	public InspectionPlan setGroupId(String groupId) {
@@ -483,17 +483,17 @@ public class InspectionPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 周期<br>
-	 * 周期
-	 * @return 周期
+	 * 获得 计划周期<br>
+	 * 计划周期
+	 * @return 计划周期
 	*/
 	public String getActionCycleId() {
 		return actionCycleId;
 	}
 	
 	/**
-	 * 设置 周期
-	 * @param actionCycleId 周期
+	 * 设置 计划周期
+	 * @param actionCycleId 计划周期
 	 * @return 当前对象
 	*/
 	public InspectionPlan setActionCycleId(String actionCycleId) {

@@ -1,7 +1,7 @@
 /**
  * 巡检任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 18:22:45
+ * @since 2023-07-12 14:12:32
  */
 
 function FormPage() {
@@ -220,7 +220,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#planStartTime',
-			type:"date",
+			type:"datetime",
 			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
@@ -243,6 +243,39 @@ function FormPage() {
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("actFinishTime",value, date, endDate);
+			}
+		});
+		//渲染 overtimeMethod 下拉字段
+		fox.renderSelectBox({
+			el: "overtimeMethod",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("超时处理",'','cmp:form'),
+			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("overtimeMethod",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "0".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("overtimeMethod",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
 			}
 		});
 	}
@@ -300,11 +333,11 @@ function FormPage() {
 			if(formData["planStartTime"]) {
 				$("#planStartTime").val(fox.dateFormat(formData["planStartTime"],"yyyy-MM-dd HH:mm:ss"));
 			}
-			//设置 实际开始时间 显示复选框勾选
+			//设置 实际开始 显示复选框勾选
 			if(formData["actStartTime"]) {
 				$("#actStartTime").val(fox.dateFormat(formData["actStartTime"],"yyyy-MM-dd HH:mm:ss"));
 			}
-			//设置 实际完成时间 显示复选框勾选
+			//设置 实际完成 显示复选框勾选
 			if(formData["actFinishTime"]) {
 				$("#actFinishTime").val(fox.dateFormat(formData["actFinishTime"],"yyyy-MM-dd HH:mm:ss"));
 			}
@@ -314,6 +347,8 @@ function FormPage() {
 			fox.setSelectValue4Enum("#planInspectionMethod",formData.planInspectionMethod,SELECT_PLANINSPECTIONMETHOD_DATA);
 			//设置  巡检班组 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#groupId",formData.inspectionGroup);
+			//设置  超时处理 设置下拉框勾选
+			fox.setSelectValue4Enum("#overtimeMethod",formData.overtimeMethod,SELECT_OVERTIMEMETHOD_DATA);
 
 			//处理fillBy
 
@@ -380,6 +415,8 @@ function FormPage() {
 		data["planInspectionMethod"]=fox.getSelectedValue("planInspectionMethod",false);
 		//获取 巡检班组 下拉框的值
 		data["groupId"]=fox.getSelectedValue("groupId",false);
+		//获取 超时处理 下拉框的值
+		data["overtimeMethod"]=fox.getSelectedValue("overtimeMethod",false);
 
 		return data;
 	}

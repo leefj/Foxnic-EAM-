@@ -100,6 +100,10 @@ public class InspPlanGtr extends BaseCodeGenerator {
         .selectBox().enumType(AssetHandleStatusEnum.class).defaultIndex(0);
 
 
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.COMPLETION_TIME).basic().label("预计用时(时)");
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.REMIND_TIME).basic().label("提醒时间(时)");
+
+
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.PLAN_STATUS).form().validate().required().form().selectBox().enumType(EamPlanStatusEnum.class).defaultIndex(0);
 
 //        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.OVERTIME_METHOD).form().validate().required().form().numberInput().defaultValue(2.0);
@@ -150,13 +154,13 @@ public class InspPlanGtr extends BaseCodeGenerator {
                  //       EAMTables.EAM_INSPECTION_PLAN.ACTION_CYCLE_ID,
                         EAMTables.EAM_INSPECTION_PLAN.START_DATE,
                         EAMTables.EAM_INSPECTION_PLAN.END_DATE,
-                        EAMTables.EAM_INSPECTION_PLAN.COMPLETION_TIME,
+                        EAMTables.EAM_INSPECTION_PLAN.INSPECTION_METHOD,
                         EAMTables.EAM_INSPECTION_PLAN.POS_DETAIL,
                 },
                 new Object[] {
                         EAMTables.EAM_INSPECTION_PLAN.ACTION_CYCLE_ID,
                         EAMTables.EAM_INSPECTION_PLAN.REMIND_TIME,
-                        EAMTables.EAM_INSPECTION_PLAN.INSPECTION_METHOD,
+                        EAMTables.EAM_INSPECTION_PLAN.COMPLETION_TIME,
                         EAMTables.EAM_INSPECTION_PLAN.OVERTIME_METHOD,
                 }
         );

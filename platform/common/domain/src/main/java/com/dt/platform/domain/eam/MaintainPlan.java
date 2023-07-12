@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养方案
  * <p>保养方案 , 数据表 eam_maintain_plan 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:48:39
- * @sign A8B9C927FE43E7BC8B71E3D5C0C3B0A9
+ * @since 2023-07-12 13:19:07
+ * @sign DE4EA044490B5DEE9518644B7F00FE94
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -50,33 +50,57 @@ public class MaintainPlan extends Entity {
 	private String id;
 	
 	/**
-	 * 编号：编号
+	 * 计划编号：计划编号
 	*/
-	@ApiModelProperty(required = false,value="编号" , notes = "编号" , example = "MP202304111604601")
+	@ApiModelProperty(required = false,value="计划编号" , notes = "计划编号" , example = "MP202304111604601")
 	private String code;
 	
 	/**
-	 * 方案名称：方案名称
+	 * 计划名称：计划名称
 	*/
-	@ApiModelProperty(required = false,value="方案名称" , notes = "方案名称" , example = "12")
+	@ApiModelProperty(required = false,value="计划名称" , notes = "计划名称" , example = "12")
 	private String name;
 	
 	/**
-	 * 状态：状态
+	 * 计划状态：计划状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "stop")
+	@ApiModelProperty(required = false,value="计划状态" , notes = "计划状态" , example = "stop")
 	private String status;
 	
 	/**
-	 * 设备：设备
+	 * 保养设备：保养设备
 	*/
-	@ApiModelProperty(required = false,value="设备" , notes = "设备" , example = "681881153086423040")
+	@ApiModelProperty(required = false,value="保养设备" , notes = "保养设备" , example = "681881153086423040")
 	private String assetId;
 	
 	/**
-	 * 执行班组：执行班组
+	 * 保养设备：保养设备
 	*/
-	@ApiModelProperty(required = false,value="执行班组" , notes = "执行班组" , example = "698150545436704768")
+	@ApiModelProperty(required = false,value="保养设备" , notes = "保养设备")
+	private String assetCode;
+	
+	/**
+	 * 设备名称：设备名称
+	*/
+	@ApiModelProperty(required = false,value="设备名称" , notes = "设备名称")
+	private String assetName;
+	
+	/**
+	 * 设备型号：设备型号
+	*/
+	@ApiModelProperty(required = false,value="设备型号" , notes = "设备型号")
+	private String assetModel;
+	
+	/**
+	 * 设备序列：设备序列
+	*/
+	@ApiModelProperty(required = false,value="设备序列" , notes = "设备序列")
+	private String assetSn;
+	
+	/**
+	 * 保养班组：保养班组
+	*/
+	@ApiModelProperty(required = false,value="保养班组" , notes = "保养班组" , example = "698150545436704768")
 	private String groupId;
 	
 	/**
@@ -116,9 +140,9 @@ public class MaintainPlan extends Entity {
 	private BigDecimal totalCost;
 	
 	/**
-	 * 超时时间：小时)
+	 * 超时时间：分)
 	*/
-	@ApiModelProperty(required = false,value="超时时间" , notes = "小时)" , example = "2.00")
+	@ApiModelProperty(required = false,value="超时时间" , notes = "分)" , example = "2.00")
 	private BigDecimal timeout;
 	
 	/**
@@ -269,6 +293,12 @@ public class MaintainPlan extends Entity {
 	private String selectedCode;
 	
 	/**
+	 * itemCount：itemCount
+	*/
+	@ApiModelProperty(required = false,value="itemCount" , notes = "itemCount")
+	private String itemCount;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -288,17 +318,17 @@ public class MaintainPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 编号<br>
-	 * 编号
-	 * @return 编号
+	 * 获得 计划编号<br>
+	 * 计划编号
+	 * @return 计划编号
 	*/
 	public String getCode() {
 		return code;
 	}
 	
 	/**
-	 * 设置 编号
-	 * @param code 编号
+	 * 设置 计划编号
+	 * @param code 计划编号
 	 * @return 当前对象
 	*/
 	public MaintainPlan setCode(String code) {
@@ -307,17 +337,17 @@ public class MaintainPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 方案名称<br>
-	 * 方案名称
-	 * @return 方案名称
+	 * 获得 计划名称<br>
+	 * 计划名称
+	 * @return 计划名称
 	*/
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * 设置 方案名称
-	 * @param name 方案名称
+	 * 设置 计划名称
+	 * @param name 计划名称
 	 * @return 当前对象
 	*/
 	public MaintainPlan setName(String name) {
@@ -326,17 +356,17 @@ public class MaintainPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 状态<br>
-	 * 状态
-	 * @return 状态
+	 * 获得 计划状态<br>
+	 * 计划状态
+	 * @return 计划状态
 	*/
 	public String getStatus() {
 		return status;
 	}
 	
 	/**
-	 * 设置 状态
-	 * @param status 状态
+	 * 设置 计划状态
+	 * @param status 计划状态
 	 * @return 当前对象
 	*/
 	public MaintainPlan setStatus(String status) {
@@ -345,17 +375,17 @@ public class MaintainPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 设备<br>
-	 * 设备
-	 * @return 设备
+	 * 获得 保养设备<br>
+	 * 保养设备
+	 * @return 保养设备
 	*/
 	public String getAssetId() {
 		return assetId;
 	}
 	
 	/**
-	 * 设置 设备
-	 * @param assetId 设备
+	 * 设置 保养设备
+	 * @param assetId 保养设备
 	 * @return 当前对象
 	*/
 	public MaintainPlan setAssetId(String assetId) {
@@ -364,17 +394,93 @@ public class MaintainPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 执行班组<br>
-	 * 执行班组
-	 * @return 执行班组
+	 * 获得 保养设备<br>
+	 * 保养设备
+	 * @return 保养设备
+	*/
+	public String getAssetCode() {
+		return assetCode;
+	}
+	
+	/**
+	 * 设置 保养设备
+	 * @param assetCode 保养设备
+	 * @return 当前对象
+	*/
+	public MaintainPlan setAssetCode(String assetCode) {
+		this.assetCode=assetCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 设备名称<br>
+	 * 设备名称
+	 * @return 设备名称
+	*/
+	public String getAssetName() {
+		return assetName;
+	}
+	
+	/**
+	 * 设置 设备名称
+	 * @param assetName 设备名称
+	 * @return 当前对象
+	*/
+	public MaintainPlan setAssetName(String assetName) {
+		this.assetName=assetName;
+		return this;
+	}
+	
+	/**
+	 * 获得 设备型号<br>
+	 * 设备型号
+	 * @return 设备型号
+	*/
+	public String getAssetModel() {
+		return assetModel;
+	}
+	
+	/**
+	 * 设置 设备型号
+	 * @param assetModel 设备型号
+	 * @return 当前对象
+	*/
+	public MaintainPlan setAssetModel(String assetModel) {
+		this.assetModel=assetModel;
+		return this;
+	}
+	
+	/**
+	 * 获得 设备序列<br>
+	 * 设备序列
+	 * @return 设备序列
+	*/
+	public String getAssetSn() {
+		return assetSn;
+	}
+	
+	/**
+	 * 设置 设备序列
+	 * @param assetSn 设备序列
+	 * @return 当前对象
+	*/
+	public MaintainPlan setAssetSn(String assetSn) {
+		this.assetSn=assetSn;
+		return this;
+	}
+	
+	/**
+	 * 获得 保养班组<br>
+	 * 保养班组
+	 * @return 保养班组
 	*/
 	public String getGroupId() {
 		return groupId;
 	}
 	
 	/**
-	 * 设置 执行班组
-	 * @param groupId 执行班组
+	 * 设置 保养班组
+	 * @param groupId 保养班组
 	 * @return 当前对象
 	*/
 	public MaintainPlan setGroupId(String groupId) {
@@ -498,7 +604,7 @@ public class MaintainPlan extends Entity {
 	
 	/**
 	 * 获得 超时时间<br>
-	 * 小时)
+	 * 分)
 	 * @return 超时时间
 	*/
 	public BigDecimal getTimeout() {
@@ -1045,6 +1151,25 @@ public class MaintainPlan extends Entity {
 		this.selectedCode=selectedCode;
 		return this;
 	}
+	
+	/**
+	 * 获得 itemCount<br>
+	 * itemCount
+	 * @return itemCount
+	*/
+	public String getItemCount() {
+		return itemCount;
+	}
+	
+	/**
+	 * 设置 itemCount
+	 * @param itemCount itemCount
+	 * @return 当前对象
+	*/
+	public MaintainPlan setItemCount(String itemCount) {
+		this.itemCount=itemCount;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1098,11 +1223,14 @@ public class MaintainPlan extends Entity {
 		inst.setTimeout(this.getTimeout());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setAssetId(this.getAssetId());
+		inst.setAssetSn(this.getAssetSn());
 		inst.setStartTime(this.getStartTime());
 		inst.setId(this.getId());
 		inst.setOriginatorId(this.getOriginatorId());
 		inst.setMaintainType(this.getMaintainType());
 		inst.setInfo(this.getInfo());
+		inst.setAssetCode(this.getAssetCode());
+		inst.setAssetModel(this.getAssetModel());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setActionCycleId(this.getActionCycleId());
 		inst.setVersion(this.getVersion());
@@ -1112,6 +1240,7 @@ public class MaintainPlan extends Entity {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
+		inst.setAssetName(this.getAssetName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setCycleMethod(this.getCycleMethod());
 		inst.setEndTime(this.getEndTime());
@@ -1128,6 +1257,7 @@ public class MaintainPlan extends Entity {
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setMaintainTypeDict(this.getMaintainTypeDict());
 			inst.setMaintainGroup(this.getMaintainGroup());
+			inst.setItemCount(this.getItemCount());
 		}
 		inst.clearModifies();
 		return inst;
@@ -1195,11 +1325,14 @@ public class MaintainPlan extends Entity {
 			this.setTimeout(DataParser.parse(BigDecimal.class, map.get(MaintainPlanMeta.TIMEOUT)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(MaintainPlanMeta.UPDATE_BY)));
 			this.setAssetId(DataParser.parse(String.class, map.get(MaintainPlanMeta.ASSET_ID)));
+			this.setAssetSn(DataParser.parse(String.class, map.get(MaintainPlanMeta.ASSET_SN)));
 			this.setStartTime(DataParser.parse(Date.class, map.get(MaintainPlanMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(MaintainPlanMeta.ID)));
 			this.setOriginatorId(DataParser.parse(String.class, map.get(MaintainPlanMeta.ORIGINATOR_ID)));
 			this.setMaintainType(DataParser.parse(String.class, map.get(MaintainPlanMeta.MAINTAIN_TYPE)));
 			this.setInfo(DataParser.parse(String.class, map.get(MaintainPlanMeta.INFO)));
+			this.setAssetCode(DataParser.parse(String.class, map.get(MaintainPlanMeta.ASSET_CODE)));
+			this.setAssetModel(DataParser.parse(String.class, map.get(MaintainPlanMeta.ASSET_MODEL)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(MaintainPlanMeta.UPDATE_TIME)));
 			this.setActionCycleId(DataParser.parse(String.class, map.get(MaintainPlanMeta.ACTION_CYCLE_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(MaintainPlanMeta.VERSION)));
@@ -1209,6 +1342,7 @@ public class MaintainPlan extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(MaintainPlanMeta.DELETE_TIME)));
 			this.setName(DataParser.parse(String.class, map.get(MaintainPlanMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(MaintainPlanMeta.TENANT_ID)));
+			this.setAssetName(DataParser.parse(String.class, map.get(MaintainPlanMeta.ASSET_NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(MaintainPlanMeta.DELETE_BY)));
 			this.setCycleMethod(DataParser.parse(String.class, map.get(MaintainPlanMeta.CYCLE_METHOD)));
 			this.setEndTime(DataParser.parse(Date.class, map.get(MaintainPlanMeta.END_TIME)));
@@ -1221,6 +1355,7 @@ public class MaintainPlan extends Entity {
 			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainPlanMeta.SELECTED_CODE)));
 			this.setMaintainTypeDict(DataParser.parse(DictItem.class, map.get(MaintainPlanMeta.MAINTAIN_TYPE_DICT)));
 			this.setMaintainGroup(DataParser.parse(MaintainGroup.class, map.get(MaintainPlanMeta.MAINTAIN_GROUP)));
+			this.setItemCount(DataParser.parse(String.class, map.get(MaintainPlanMeta.ITEM_COUNT)));
 			return true;
 		} else {
 			try {
@@ -1232,11 +1367,14 @@ public class MaintainPlan extends Entity {
 				this.setTimeout( (BigDecimal)map.get(MaintainPlanMeta.TIMEOUT));
 				this.setUpdateBy( (String)map.get(MaintainPlanMeta.UPDATE_BY));
 				this.setAssetId( (String)map.get(MaintainPlanMeta.ASSET_ID));
+				this.setAssetSn( (String)map.get(MaintainPlanMeta.ASSET_SN));
 				this.setStartTime( (Date)map.get(MaintainPlanMeta.START_TIME));
 				this.setId( (String)map.get(MaintainPlanMeta.ID));
 				this.setOriginatorId( (String)map.get(MaintainPlanMeta.ORIGINATOR_ID));
 				this.setMaintainType( (String)map.get(MaintainPlanMeta.MAINTAIN_TYPE));
 				this.setInfo( (String)map.get(MaintainPlanMeta.INFO));
+				this.setAssetCode( (String)map.get(MaintainPlanMeta.ASSET_CODE));
+				this.setAssetModel( (String)map.get(MaintainPlanMeta.ASSET_MODEL));
 				this.setUpdateTime( (Date)map.get(MaintainPlanMeta.UPDATE_TIME));
 				this.setActionCycleId( (String)map.get(MaintainPlanMeta.ACTION_CYCLE_ID));
 				this.setVersion( (Integer)map.get(MaintainPlanMeta.VERSION));
@@ -1246,6 +1384,7 @@ public class MaintainPlan extends Entity {
 				this.setDeleteTime( (Date)map.get(MaintainPlanMeta.DELETE_TIME));
 				this.setName( (String)map.get(MaintainPlanMeta.NAME));
 				this.setTenantId( (String)map.get(MaintainPlanMeta.TENANT_ID));
+				this.setAssetName( (String)map.get(MaintainPlanMeta.ASSET_NAME));
 				this.setDeleteBy( (String)map.get(MaintainPlanMeta.DELETE_BY));
 				this.setCycleMethod( (String)map.get(MaintainPlanMeta.CYCLE_METHOD));
 				this.setEndTime( (Date)map.get(MaintainPlanMeta.END_TIME));
@@ -1258,6 +1397,7 @@ public class MaintainPlan extends Entity {
 				this.setSelectedCode( (String)map.get(MaintainPlanMeta.SELECTED_CODE));
 				this.setMaintainTypeDict( (DictItem)map.get(MaintainPlanMeta.MAINTAIN_TYPE_DICT));
 				this.setMaintainGroup( (MaintainGroup)map.get(MaintainPlanMeta.MAINTAIN_GROUP));
+				this.setItemCount( (String)map.get(MaintainPlanMeta.ITEM_COUNT));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -1282,11 +1422,14 @@ public class MaintainPlan extends Entity {
 			this.setTimeout(DataParser.parse(BigDecimal.class, r.getValue(MaintainPlanMeta.TIMEOUT)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.UPDATE_BY)));
 			this.setAssetId(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.ASSET_ID)));
+			this.setAssetSn(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.ASSET_SN)));
 			this.setStartTime(DataParser.parse(Date.class, r.getValue(MaintainPlanMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.ID)));
 			this.setOriginatorId(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.ORIGINATOR_ID)));
 			this.setMaintainType(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.MAINTAIN_TYPE)));
 			this.setInfo(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.INFO)));
+			this.setAssetCode(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.ASSET_CODE)));
+			this.setAssetModel(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.ASSET_MODEL)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MaintainPlanMeta.UPDATE_TIME)));
 			this.setActionCycleId(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.ACTION_CYCLE_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(MaintainPlanMeta.VERSION)));
@@ -1296,6 +1439,7 @@ public class MaintainPlan extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MaintainPlanMeta.DELETE_TIME)));
 			this.setName(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.TENANT_ID)));
+			this.setAssetName(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.ASSET_NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.DELETE_BY)));
 			this.setCycleMethod(DataParser.parse(String.class, r.getValue(MaintainPlanMeta.CYCLE_METHOD)));
 			this.setEndTime(DataParser.parse(Date.class, r.getValue(MaintainPlanMeta.END_TIME)));
@@ -1312,11 +1456,14 @@ public class MaintainPlan extends Entity {
 				this.setTimeout( (BigDecimal)r.getValue(MaintainPlanMeta.TIMEOUT));
 				this.setUpdateBy( (String)r.getValue(MaintainPlanMeta.UPDATE_BY));
 				this.setAssetId( (String)r.getValue(MaintainPlanMeta.ASSET_ID));
+				this.setAssetSn( (String)r.getValue(MaintainPlanMeta.ASSET_SN));
 				this.setStartTime( (Date)r.getValue(MaintainPlanMeta.START_TIME));
 				this.setId( (String)r.getValue(MaintainPlanMeta.ID));
 				this.setOriginatorId( (String)r.getValue(MaintainPlanMeta.ORIGINATOR_ID));
 				this.setMaintainType( (String)r.getValue(MaintainPlanMeta.MAINTAIN_TYPE));
 				this.setInfo( (String)r.getValue(MaintainPlanMeta.INFO));
+				this.setAssetCode( (String)r.getValue(MaintainPlanMeta.ASSET_CODE));
+				this.setAssetModel( (String)r.getValue(MaintainPlanMeta.ASSET_MODEL));
 				this.setUpdateTime( (Date)r.getValue(MaintainPlanMeta.UPDATE_TIME));
 				this.setActionCycleId( (String)r.getValue(MaintainPlanMeta.ACTION_CYCLE_ID));
 				this.setVersion( (Integer)r.getValue(MaintainPlanMeta.VERSION));
@@ -1326,6 +1473,7 @@ public class MaintainPlan extends Entity {
 				this.setDeleteTime( (Date)r.getValue(MaintainPlanMeta.DELETE_TIME));
 				this.setName( (String)r.getValue(MaintainPlanMeta.NAME));
 				this.setTenantId( (String)r.getValue(MaintainPlanMeta.TENANT_ID));
+				this.setAssetName( (String)r.getValue(MaintainPlanMeta.ASSET_NAME));
 				this.setDeleteBy( (String)r.getValue(MaintainPlanMeta.DELETE_BY));
 				this.setCycleMethod( (String)r.getValue(MaintainPlanMeta.CYCLE_METHOD));
 				this.setEndTime( (Date)r.getValue(MaintainPlanMeta.END_TIME));

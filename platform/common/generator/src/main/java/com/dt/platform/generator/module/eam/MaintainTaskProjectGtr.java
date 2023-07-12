@@ -63,7 +63,7 @@ public class MaintainTaskProjectGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
 
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.STATUS).form().selectBox().enumType(MaintainTaskProjectStatusEnum.class);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.STATUS).form().radioBox().enumType(MaintainTaskProjectStatusEnum.class);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.PROJECT_MAINTAIN_TYPE)
                 .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_maintain_type")
                 .paging(false).filter(true).toolbar(false)
@@ -93,6 +93,8 @@ public class MaintainTaskProjectGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.TASK_ID).table().disable(true);
 
 
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.END_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.START_TIME).table().disable(true);
 
 
         cfg.view().list().disableBatchDelete();
@@ -111,23 +113,23 @@ public class MaintainTaskProjectGtr extends BaseCodeGenerator {
                 }
         );
 
-        cfg.view().form().addGroup(null,
+        cfg.view().form().addGroup("保养信息",
                 new Object[] {
-                        EAMTables.EAM_MAINTAIN_TASK_PROJECT.PROJECT_ATTACH_ID,
-                        EAMTables.EAM_MAINTAIN_TASK_PROJECT.PROJECT_NOTES,
+                        EAMTables.EAM_MAINTAIN_TASK_PROJECT.STATUS,
+                        EAMTables.EAM_MAINTAIN_TASK_PROJECT.CONTENT,
                 }
         );
 
 
-        cfg.view().form().addGroup("项目信息",
-                new Object[] {
-                        EAMTables.EAM_MAINTAIN_TASK_PROJECT.START_TIME,
-                        EAMTables.EAM_MAINTAIN_TASK_PROJECT.END_TIME,
-                },
-                new Object[] {
-                        EAMTables.EAM_MAINTAIN_TASK_PROJECT.BASE_COST,
-                }
-        );
+//        cfg.view().form().addGroup("项目信息",
+//                new Object[] {
+//                        EAMTables.EAM_MAINTAIN_TASK_PROJECT.START_TIME,
+//                        EAMTables.EAM_MAINTAIN_TASK_PROJECT.END_TIME,
+//                },
+//                new Object[] {
+//                        EAMTables.EAM_MAINTAIN_TASK_PROJECT.BASE_COST,
+//                }
+//        );
 
 
     //    cfg.view().form().addPage("消耗材料","assetSelectList");

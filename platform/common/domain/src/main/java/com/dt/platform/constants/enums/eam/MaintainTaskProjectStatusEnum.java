@@ -14,8 +14,8 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum MaintainTaskProjectStatusEnum implements CodeTextEnum {
 
 	UNEXECUTED("unexecuted" , "未保养"),
-	NONE("none" , "不保养"),
-	EXECUTED("executed" , "已保养");
+	EXECUTED("executed" , "已保养"),
+	NONE("none" , "不保养");
 
 	private String code;
 	private String text;

@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务VO类型
  * <p>巡检任务 , 数据表 eam_inspection_task 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 18:22:43
+ * @since 2023-07-12 14:12:30
  * @sign FC0E307EB7CDFD362C699424737E2FFB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -410,7 +410,9 @@ public class InspectionTaskVO extends InspectionTask {
 		inst.setSelectedCode(this.getSelectedCode());
 		inst.setContent(this.getContent());
 		inst.setActStartTime(this.getActStartTime());
+		inst.setRemindTime(this.getRemindTime());
 		inst.setTaskCode(this.getTaskCode());
+		inst.setOvertimeMethod(this.getOvertimeMethod());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setPlanId(this.getPlanId());
 		inst.setId(this.getId());
@@ -525,7 +527,9 @@ public class InspectionTaskVO extends InspectionTask {
 			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.CONTENT)));
 			this.setActStartTime(DataParser.parse(Date.class, map.get(InspectionTaskVOMeta.ACT_START_TIME)));
+			this.setRemindTime(DataParser.parse(BigDecimal.class, map.get(InspectionTaskVOMeta.REMIND_TIME)));
 			this.setTaskCode(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.TASK_CODE)));
+			this.setOvertimeMethod(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.OVERTIME_METHOD)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.UPDATE_BY)));
 			this.setPlanId(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.PLAN_ID)));
 			this.setId(DataParser.parse(String.class, map.get(InspectionTaskVOMeta.ID)));
@@ -577,7 +581,9 @@ public class InspectionTaskVO extends InspectionTask {
 				this.setSelectedCode( (String)map.get(InspectionTaskVOMeta.SELECTED_CODE));
 				this.setContent( (String)map.get(InspectionTaskVOMeta.CONTENT));
 				this.setActStartTime( (Date)map.get(InspectionTaskVOMeta.ACT_START_TIME));
+				this.setRemindTime( (BigDecimal)map.get(InspectionTaskVOMeta.REMIND_TIME));
 				this.setTaskCode( (String)map.get(InspectionTaskVOMeta.TASK_CODE));
+				this.setOvertimeMethod( (String)map.get(InspectionTaskVOMeta.OVERTIME_METHOD));
 				this.setUpdateBy( (String)map.get(InspectionTaskVOMeta.UPDATE_BY));
 				this.setPlanId( (String)map.get(InspectionTaskVOMeta.PLAN_ID));
 				this.setId( (String)map.get(InspectionTaskVOMeta.ID));
@@ -642,7 +648,9 @@ public class InspectionTaskVO extends InspectionTask {
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionTaskVOMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, r.getValue(InspectionTaskVOMeta.CONTENT)));
 			this.setActStartTime(DataParser.parse(Date.class, r.getValue(InspectionTaskVOMeta.ACT_START_TIME)));
+			this.setRemindTime(DataParser.parse(BigDecimal.class, r.getValue(InspectionTaskVOMeta.REMIND_TIME)));
 			this.setTaskCode(DataParser.parse(String.class, r.getValue(InspectionTaskVOMeta.TASK_CODE)));
+			this.setOvertimeMethod(DataParser.parse(String.class, r.getValue(InspectionTaskVOMeta.OVERTIME_METHOD)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InspectionTaskVOMeta.UPDATE_BY)));
 			this.setPlanId(DataParser.parse(String.class, r.getValue(InspectionTaskVOMeta.PLAN_ID)));
 			this.setId(DataParser.parse(String.class, r.getValue(InspectionTaskVOMeta.ID)));
@@ -673,7 +681,9 @@ public class InspectionTaskVO extends InspectionTask {
 				this.setSelectedCode( (String)r.getValue(InspectionTaskVOMeta.SELECTED_CODE));
 				this.setContent( (String)r.getValue(InspectionTaskVOMeta.CONTENT));
 				this.setActStartTime( (Date)r.getValue(InspectionTaskVOMeta.ACT_START_TIME));
+				this.setRemindTime( (BigDecimal)r.getValue(InspectionTaskVOMeta.REMIND_TIME));
 				this.setTaskCode( (String)r.getValue(InspectionTaskVOMeta.TASK_CODE));
+				this.setOvertimeMethod( (String)r.getValue(InspectionTaskVOMeta.OVERTIME_METHOD));
 				this.setUpdateBy( (String)r.getValue(InspectionTaskVOMeta.UPDATE_BY));
 				this.setPlanId( (String)r.getValue(InspectionTaskVOMeta.PLAN_ID));
 				this.setId( (String)r.getValue(InspectionTaskVOMeta.ID));

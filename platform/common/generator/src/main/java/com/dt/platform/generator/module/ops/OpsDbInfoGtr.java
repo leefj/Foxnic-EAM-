@@ -117,6 +117,19 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_INFO.DB_SIZE).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.DB_PORT).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.LOG_METHOD).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.UID).table().disable(true);
+
+        cfg.view().field(OpsTables.OPS_DB_INFO.APP_USER_LIST).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.OPS_USER_LIST).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.OTHER_USER_LIST).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.USER_INFO).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.ADMIN_USER_LIST).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.DISASTER_RECOVERY_STRATEGY).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.CLEAR_STRATEGY).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_INFO).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.DEPLOY_MODE).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.TOOL_STRATEGY).table().hidden(true);
+
 
         cfg.view().field(OpsTables.OPS_DB_INFO.VOUCHER_STR).form().textArea().height(100);
         cfg.view().field(OpsTables.OPS_DB_INFO.USER_INFO).form().textArea().height(100);
@@ -150,7 +163,7 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 fillWith(DbInfoMeta.LABEL_LIST).muliti(true);
 
         cfg.view().field(DbInfoMeta.DB_TYPE_IDS)
-                .basic().label("数据库类型")
+                .basic().label("库类型")
                 .table().sort(false)
                 .form().selectBox().queryApi(ServiceCategoryServiceProxy.QUERY_LIST+"?groupId=db")
                 .paging(false).filter(false).toolbar(false)

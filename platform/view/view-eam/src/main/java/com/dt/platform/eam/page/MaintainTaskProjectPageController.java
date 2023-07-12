@@ -40,8 +40,20 @@ public class MaintainTaskProjectPageController extends ViewController {
 	/**
 	 * 保养项目 功能主页面
 	 */
-	@RequestMapping("/maintain_task_project_selected_list.html")
+	@RequestMapping("/maintain_task_project_exec_list.html")
 	public String selectedList(Model model,HttpServletRequest request,String selectedCode,String ownerId,String ownerType,String pageType) {
+		model.addAttribute("ownerId",ownerId);
+		model.addAttribute("ownerType",ownerType);
+		model.addAttribute("selectedCode",selectedCode);
+		model.addAttribute("pageType",pageType);
+		return prefix+"/maintain_task_project_exec_list";
+	}
+
+	/**
+	 * 保养项目 功能主页面
+	 */
+	@RequestMapping("/maintain_task_project_selected_list.html")
+	public String selectedList2(Model model,HttpServletRequest request,String selectedCode,String ownerId,String ownerType,String pageType) {
 		model.addAttribute("ownerId",ownerId);
 		model.addAttribute("ownerType",ownerType);
 		model.addAttribute("selectedCode",selectedCode);
@@ -64,4 +76,15 @@ public class MaintainTaskProjectPageController extends ViewController {
 	public String form(Model model,HttpServletRequest request , String id) {
 		return prefix+"/maintain_task_project_form";
 	}
+
+
+	/**
+	 * 保养项目 表单页面
+	 */
+	@RequestMapping("/maintain_task_project_exec_form.html")
+	public String form2(Model model,HttpServletRequest request , String id) {
+		return prefix+"/maintain_task_project_exec_form";
+	}
+
+
 }

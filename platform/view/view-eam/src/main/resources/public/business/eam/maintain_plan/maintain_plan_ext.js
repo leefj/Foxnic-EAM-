@@ -199,6 +199,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="itemCount"){
+                if(value){
+                    return value
+                }else{
+                    return 0;
+                }
+            }
+
+
             if(value==null) return "";
             return value;
         },
@@ -313,6 +323,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //获取参数，并调整下拉框查询用的URL
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
+            if(formAction=="create"){
+                console.log("none")
+            }else{
+               //
+
+
+            }
 
             console.log("form:beforeInit")
         },
@@ -348,6 +365,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             }else{
                 var cycleSelect=xmSelect.get("#cycleMethod",true);
                 cycleSelect.update({disabled: true})
+
+                $("#cycleMethod").find("xm-select").css("background-color","#e6e6e6");
             }
 
         },

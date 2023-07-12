@@ -1,7 +1,7 @@
 /**
  * 保养项目 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 16:07:48
+ * @since 2023-07-11 16:57:03
  */
 
 
@@ -85,8 +85,10 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保养结果') , templet: function (d) { return templet('content',d.content,d);}  }
+					,{ field: 'operUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('操作人') , templet: function (d) { return templet('operUserId',d.operUserId,d);}  }
+					,{ field: 'operTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('操作时间') ,templet: function (d) { return templet('operTime',fox.dateFormat(d.operTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'projectCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('项目编号') , templet: function (d) { return templet('projectCode',d.projectCode,d);}  }
 					,{ field: 'projectName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('项目名称') , templet: function (d) { return templet('projectName',d.projectName,d);}  }
 					,{ field: 'projectNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('项目备注') , templet: function (d) { return templet('projectNotes',d.projectNotes,d);}  }
@@ -161,7 +163,7 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
+		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.projectCode={ inputType:"button",value: $("#projectCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.projectName={ inputType:"button",value: $("#projectName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
@@ -210,18 +212,17 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
-		//渲染 status 下拉字段
+		//渲染 status 搜索框
 		fox.renderSelectBox({
 			el: "status",
-			radio: true,
 			size: "small",
-			filterable: false,
+			radio: true,
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
 				},1);
 			},
-			//转换数据
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
 			transform:function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var opts=[];

@@ -1,7 +1,7 @@
 /**
  * 保养项目 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 16:07:48
+ * @since 2023-07-11 16:57:05
  */
 
 function FormPage() {
@@ -116,35 +116,38 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
-		//渲染 status 下拉字段
-		fox.renderSelectBox({
-			el: "status",
-			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("状态",'','cmp:form'),
-			filterable: false,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
+		form.on('radio(status)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=status]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
+		laydate.render({
+			elem: '#startTime',
+			type:"date",
+			format:"yyyy-MM-dd HH:mm:ss",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("startTime",value, date, endDate);
+			}
+		});
+		laydate.render({
+			elem: '#endTime',
+			type:"date",
+			format:"yyyy-MM-dd HH:mm:ss",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("endTime",value, date, endDate);
+			}
+		});
+		laydate.render({
+			elem: '#operTime',
+			type:"date",
+			format:"yyyy-MM-dd HH:mm:ss",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("operTime",value, date, endDate);
 			}
 		});
 		//渲染 projectMaintainType 下拉字段
@@ -207,24 +210,6 @@ function FormPage() {
 				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterRemove",elId:elId,index:index,upload:upload});
 			}
 	    });
-		laydate.render({
-			elem: '#startTime',
-			type:"date",
-			format:"yyyy-MM-dd HH:mm:ss",
-			trigger:"click",
-			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("startTime",value, date, endDate);
-			}
-		});
-		laydate.render({
-			elem: '#endTime',
-			type:"date",
-			format:"yyyy-MM-dd HH:mm:ss",
-			trigger:"click",
-			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("endTime",value, date, endDate);
-			}
-		});
 	}
 
 	/**
@@ -273,23 +258,9 @@ function FormPage() {
 			fm[0].reset();
 			form.val('data-form', formData);
 
-			//设置 保养手册 显示附件
-		    if($("#projectAttachId").val()) {
-				foxup.fill("projectAttachId",$("#projectAttachId").val());
-		    } else {
-				adjustPopup();
-			}
 
 
 
-			//设置 开始时间 显示复选框勾选
-			if(formData["startTime"]) {
-				$("#startTime").val(fox.dateFormat(formData["startTime"],"yyyy-MM-dd HH:mm:ss"));
-			}
-			//设置 结束时间 显示复选框勾选
-			if(formData["endTime"]) {
-				$("#endTime").val(fox.dateFormat(formData["endTime"],"yyyy-MM-dd HH:mm:ss"));
-			}
 
 
 			//设置  保养类型 设置下拉框勾选

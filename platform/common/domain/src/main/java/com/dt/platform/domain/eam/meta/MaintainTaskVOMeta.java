@@ -19,7 +19,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 19:53:48
+ * @since 2023-07-12 13:20:59
  * @sign 8B3D8B895A93C4002249F053A1457FB2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -157,24 +157,24 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
-	 * 名称 , 类型: java.lang.String
+	 * 任务名称 , 类型: java.lang.String
 	*/
 	public static final String NAME="name";
 	
 	/**
-	 * 名称 , 类型: java.lang.String
+	 * 任务名称 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,NAME, java.lang.String.class, "任务名称", "任务名称", java.lang.String.class, null);
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 任务状态 , 类型: java.lang.String
 	*/
 	public static final String STATUS="status";
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 任务状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,STATUS, java.lang.String.class, "任务状态", "任务状态", java.lang.String.class, null);
 	
 	/**
 	 * 任务单据 , 类型: java.lang.String
@@ -207,24 +207,24 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> MAINTAIN_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,MAINTAIN_TYPE, java.lang.String.class, "保养类型", "保养类型", java.lang.String.class, null);
 	
 	/**
-	 * 执行班组 , 类型: java.lang.String
+	 * 保养班组 , 类型: java.lang.String
 	*/
 	public static final String GROUP_ID="groupId";
 	
 	/**
-	 * 执行班组 , 类型: java.lang.String
+	 * 保养班组 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> GROUP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,GROUP_ID, java.lang.String.class, "执行班组", "执行班组", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> GROUP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,GROUP_ID, java.lang.String.class, "保养班组", "保养班组", java.lang.String.class, null);
 	
 	/**
-	 * 设备 , 类型: java.lang.String
+	 * 保养设备 , 类型: java.lang.String
 	*/
 	public static final String ASSET_ID="assetId";
 	
 	/**
-	 * 设备 , 类型: java.lang.String
+	 * 保养设备 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ASSET_ID, java.lang.String.class, "设备", "设备", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ASSET_ID, java.lang.String.class, "保养设备", "保养设备", java.lang.String.class, null);
 	
 	/**
 	 * 设备名称 , 类型: java.lang.String
@@ -267,24 +267,24 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> ASSET_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ASSET_STATUS, java.lang.String.class, "设备状态", "设备状态", java.lang.String.class, null);
 	
 	/**
-	 * 设备序列号 , 类型: java.lang.String
+	 * 设备序列 , 类型: java.lang.String
 	*/
 	public static final String ASSET_SN="assetSn";
 	
 	/**
-	 * 设备序列号 , 类型: java.lang.String
+	 * 设备序列 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> ASSET_SN_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ASSET_SN, java.lang.String.class, "设备序列号", "设备序列号", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> ASSET_SN_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ASSET_SN, java.lang.String.class, "设备序列", "设备序列", java.lang.String.class, null);
 	
 	/**
-	 * 位置 , 类型: java.lang.String
+	 * 设备位置 , 类型: java.lang.String
 	*/
 	public static final String ASSET_POS="assetPos";
 	
 	/**
-	 * 位置 , 类型: java.lang.String
+	 * 设备位置 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> ASSET_POS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ASSET_POS, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> ASSET_POS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ASSET_POS, java.lang.String.class, "设备位置", "设备位置", java.lang.String.class, null);
 	
 	/**
 	 * 保养结果 , 类型: java.lang.String
@@ -317,24 +317,24 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.util.Date> PLAN_START_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,PLAN_START_TIME, java.util.Date.class, "应开始时间", "应开始时间", java.util.Date.class, null);
 	
 	/**
-	 * 实际开始时间 , 类型: java.util.Date
+	 * 实际开始 , 类型: java.util.Date
 	*/
 	public static final String ACT_START_TIME="actStartTime";
 	
 	/**
-	 * 实际开始时间 , 类型: java.util.Date
+	 * 实际开始 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.util.Date> ACT_START_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ACT_START_TIME, java.util.Date.class, "实际开始时间", "实际开始时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.util.Date> ACT_START_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ACT_START_TIME, java.util.Date.class, "实际开始", "实际开始", java.util.Date.class, null);
 	
 	/**
-	 * 实际完成时间 , 类型: java.util.Date
+	 * 实际完成 , 类型: java.util.Date
 	*/
 	public static final String ACT_FINISH_TIME="actFinishTime";
 	
 	/**
-	 * 实际完成时间 , 类型: java.util.Date
+	 * 实际完成 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.util.Date> ACT_FINISH_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ACT_FINISH_TIME, java.util.Date.class, "实际完成时间", "实际完成时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.util.Date> ACT_FINISH_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ACT_FINISH_TIME, java.util.Date.class, "实际完成", "实际完成", java.util.Date.class, null);
 	
 	/**
 	 * 超时时间 , 类型: java.math.BigDecimal
@@ -385,6 +385,16 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 	 * 逾期 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> OVERDUE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,OVERDUE, java.lang.String.class, "逾期", "逾期", java.lang.String.class, null);
+	
+	/**
+	 * 结果 , 类型: java.lang.String
+	*/
+	public static final String RESULT="result";
+	
+	/**
+	 * 结果 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> RESULT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,RESULT, java.lang.String.class, "结果", "结果", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -607,9 +617,29 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,SELECTED_CODE, java.lang.String.class, "selectedCode", "selectedCode", java.lang.String.class, null);
 	
 	/**
+	 * itemCount , 类型: java.lang.String
+	*/
+	public static final String ITEM_COUNT="itemCount";
+	
+	/**
+	 * itemCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> ITEM_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,ITEM_COUNT, java.lang.String.class, "itemCount", "itemCount", java.lang.String.class, null);
+	
+	/**
+	 * waitCount , 类型: java.lang.String
+	*/
+	public static final String WAIT_COUNT="waitCount";
+	
+	/**
+	 * waitCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskVO,java.lang.String> WAIT_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskVO.class ,WAIT_COUNT, java.lang.String.class, "waitCount", "waitCount", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , STATUS , BUSINESS_CODE , PLAN_ID , MAINTAIN_TYPE , GROUP_ID , ASSET_ID , ASSET_NAME , ASSET_CODE , ASSET_MODEL , ASSET_STATUS , ASSET_SN , ASSET_POS , CONTENT , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , TIMEOUT , TOTAL_COST , ACT_TOTAL_COST , COST , OVERDUE , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , PROJECT_LIST , PROJECT_IDS , TASK_PROJECT_LIST , TASK_PROJECT_IDS , ASSET , MAINTAIN_PLAN , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ORIGINATOR , EXECUTOR , SELECTED_CODE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , STATUS , BUSINESS_CODE , PLAN_ID , MAINTAIN_TYPE , GROUP_ID , ASSET_ID , ASSET_NAME , ASSET_CODE , ASSET_MODEL , ASSET_STATUS , ASSET_SN , ASSET_POS , CONTENT , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , TIMEOUT , TOTAL_COST , ACT_TOTAL_COST , COST , OVERDUE , RESULT , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , PROJECT_LIST , PROJECT_IDS , TASK_PROJECT_LIST , TASK_PROJECT_IDS , ASSET , MAINTAIN_PLAN , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ORIGINATOR , EXECUTOR , SELECTED_CODE , ITEM_COUNT , WAIT_COUNT };
 	
 	/**
 	 * 代理类
@@ -763,8 +793,8 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 		}
 		
 		/**
-		 * 设置 名称
-		 * @param name 名称
+		 * 设置 任务名称
+		 * @param name 任务名称
 		 * @return 当前对象
 		*/
 		public MaintainTask setName(String name) {
@@ -774,8 +804,8 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 		}
 		
 		/**
-		 * 设置 状态
-		 * @param status 状态
+		 * 设置 任务状态
+		 * @param status 任务状态
 		 * @return 当前对象
 		*/
 		public MaintainTask setStatus(String status) {
@@ -818,8 +848,8 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 		}
 		
 		/**
-		 * 设置 执行班组
-		 * @param groupId 执行班组
+		 * 设置 保养班组
+		 * @param groupId 保养班组
 		 * @return 当前对象
 		*/
 		public MaintainTask setGroupId(String groupId) {
@@ -829,8 +859,8 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 		}
 		
 		/**
-		 * 设置 设备
-		 * @param assetId 设备
+		 * 设置 保养设备
+		 * @param assetId 保养设备
 		 * @return 当前对象
 		*/
 		public MaintainTask setAssetId(String assetId) {
@@ -884,8 +914,8 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 		}
 		
 		/**
-		 * 设置 设备序列号
-		 * @param assetSn 设备序列号
+		 * 设置 设备序列
+		 * @param assetSn 设备序列
 		 * @return 当前对象
 		*/
 		public MaintainTask setAssetSn(String assetSn) {
@@ -895,8 +925,8 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 		}
 		
 		/**
-		 * 设置 位置
-		 * @param assetPos 位置
+		 * 设置 设备位置
+		 * @param assetPos 设备位置
 		 * @return 当前对象
 		*/
 		public MaintainTask setAssetPos(String assetPos) {
@@ -939,8 +969,8 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 		}
 		
 		/**
-		 * 设置 实际开始时间
-		 * @param actStartTime 实际开始时间
+		 * 设置 实际开始
+		 * @param actStartTime 实际开始
 		 * @return 当前对象
 		*/
 		public MaintainTask setActStartTime(Date actStartTime) {
@@ -950,8 +980,8 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 		}
 		
 		/**
-		 * 设置 实际完成时间
-		 * @param actFinishTime 实际完成时间
+		 * 设置 实际完成
+		 * @param actFinishTime 实际完成
 		 * @return 当前对象
 		*/
 		public MaintainTask setActFinishTime(Date actFinishTime) {
@@ -1012,6 +1042,17 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 		public MaintainTask setOverdue(String overdue) {
 			super.change(OVERDUE,super.getOverdue(),overdue);
 			super.setOverdue(overdue);
+			return this;
+		}
+		
+		/**
+		 * 设置 结果
+		 * @param result 结果
+		 * @return 当前对象
+		*/
+		public MaintainTask setResult(String result) {
+			super.change(RESULT,super.getResult(),result);
+			super.setResult(result);
 			return this;
 		}
 		
@@ -1256,6 +1297,28 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 			super.setSelectedCode(selectedCode);
 			return this;
 		}
+		
+		/**
+		 * 设置 itemCount
+		 * @param itemCount itemCount
+		 * @return 当前对象
+		*/
+		public MaintainTask setItemCount(String itemCount) {
+			super.change(ITEM_COUNT,super.getItemCount(),itemCount);
+			super.setItemCount(itemCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 waitCount
+		 * @param waitCount waitCount
+		 * @return 当前对象
+		*/
+		public MaintainTask setWaitCount(String waitCount) {
+			super.change(WAIT_COUNT,super.getWaitCount(),waitCount);
+			super.setWaitCount(waitCount);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1277,6 +1340,7 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 			inst.setGroupId(this.getGroupId());
 			inst.setContent(this.getContent());
 			inst.setTimeout(this.getTimeout());
+			inst.setResult(this.getResult());
 			inst.setBusinessCode(this.getBusinessCode());
 			inst.setActStartTime(this.getActStartTime());
 			inst.setOverdue(this.getOverdue());
@@ -1308,27 +1372,29 @@ public class MaintainTaskVOMeta extends MaintainTaskMeta {
 			inst.setTotalCost(this.getTotalCost());
 			inst.setStatus(this.getStatus());
 			if(all) {
-				inst.setProjectList(this.getProjectList());
-				inst.setTaskProjectList(this.getTaskProjectList());
-				inst.setMaintainPlan(this.getMaintainPlan());
 				inst.setSearchField(this.getSearchField());
-				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
 				inst.setProjectIds(this.getProjectIds());
-				inst.setTaskProjectIds(this.getTaskProjectIds());
 				inst.setOriginator(this.getOriginator());
 				inst.setSelectedCode(this.getSelectedCode());
 				inst.setMaintainTypeDict(this.getMaintainTypeDict());
-				inst.setPageIndex(this.getPageIndex());
-				inst.setSortType(this.getSortType());
 				inst.setExecutor(this.getExecutor());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setDataOrigin(this.getDataOrigin());
-				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
+				inst.setProjectList(this.getProjectList());
+				inst.setTaskProjectList(this.getTaskProjectList());
+				inst.setMaintainPlan(this.getMaintainPlan());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setTaskProjectIds(this.getTaskProjectIds());
+				inst.setItemCount(this.getItemCount());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setIds(this.getIds());
 				inst.setAsset(this.getAsset());
+				inst.setWaitCount(this.getWaitCount());
 				inst.setSearchValue(this.getSearchValue());
 				inst.setMaintainGroup(this.getMaintainGroup());
 			}

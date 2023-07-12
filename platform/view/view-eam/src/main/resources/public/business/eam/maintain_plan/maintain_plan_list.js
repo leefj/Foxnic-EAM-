@@ -1,7 +1,7 @@
 /**
  * 保养方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:48:40
+ * @since 2023-07-12 13:19:08
  */
 
 
@@ -85,17 +85,21 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编号') , templet: function (d) { return templet('code',d.code,d);}  }
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('方案名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'assetId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备'), templet: function (d) { return templet('assetId' ,fox.joinLabel(d.asset,"assetCode",',','','assetId'),d);}}
-					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('执行班组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.maintainGroup,"name",',','','groupId'),d);}}
+					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划编号') , templet: function (d) { return templet('code',d.code,d);}  }
+					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'assetCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保养设备') , templet: function (d) { return templet('assetCode',d.assetCode,d);}  }
+					,{ field: 'assetName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备名称') , templet: function (d) { return templet('assetName',d.assetName,d);}  }
+					,{ field: 'assetModel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备型号') , templet: function (d) { return templet('assetModel',d.assetModel,d);}  }
+					,{ field: 'assetSn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备序列') , templet: function (d) { return templet('assetSn',d.assetSn,d);}  }
+					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保养班组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.maintainGroup,"name",',','','groupId'),d);}}
 					,{ field: 'startTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('startTime',fox.dateFormat(d.startTime,"yyyy-MM-dd"),d); }  }
 					,{ field: 'endTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('endTime',fox.dateFormat(d.endTime,"yyyy-MM-dd"),d); }  }
-					,{ field: 'totalCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('预计工时') , templet: function (d) { return templet('totalCost',d.totalCost,d);}  }
-					,{ field: 'timeout', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('超时时间') , templet: function (d) { return templet('timeout',d.timeout,d);}  }
+					,{ field: 'totalCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('预计工时(时)') , templet: function (d) { return templet('totalCost',d.totalCost,d);}  }
+					,{ field: 'timeout', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('超时工时(分)') , templet: function (d) { return templet('timeout',d.timeout,d);}  }
 					,{ field: 'lastTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('上次执行') ,templet: function (d) { return templet('lastTime',fox.dateFormat(d.lastTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'nextTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('下次执行') ,templet: function (d) { return templet('nextTime',fox.dateFormat(d.nextTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'itemCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('保养项目数') , templet: function (d) { return templet('itemCount',d.itemCount,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 250 }
 				]],
@@ -169,6 +173,10 @@ function ListPage() {
 		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
+		value.assetCode={ inputType:"button",value: $("#assetCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.assetName={ inputType:"button",value: $("#assetName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.assetModel={ inputType:"button",value: $("#assetModel").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.assetSn={ inputType:"button",value: $("#assetSn").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.groupId={ inputType:"select_box", value: getSelectedValue("#groupId","value") ,fillBy:["maintainGroup"]  , label:getSelectedValue("#groupId","nameStr") };
 		value.maintainType={ inputType:"select_box", value: getSelectedValue("#maintainType","value") ,fillBy:["maintainTypeDict"]  , label:getSelectedValue("#maintainType","nameStr") };
 		value.cycleMethod={ inputType:"select_box", value: getSelectedValue("#cycleMethod","value"), label:getSelectedValue("#cycleMethod","nameStr") };

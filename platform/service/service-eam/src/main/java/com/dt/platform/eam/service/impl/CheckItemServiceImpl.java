@@ -94,23 +94,23 @@ public class CheckItemServiceImpl extends SuperService<CheckItem> implements ICh
 			checkItem.setConfig("");
 		}else if(CheckItemTypeEnum.NUMBER_RANGE.code().equals(checkItem.getType())){
 			if(StringUtil.isBlank(checkItem.getConfig())|| JSONObject.parseObject(checkItem.getConfig())==null ){
-				return ErrorDesc.failure("当前配置为空");
+				return ErrorDesc.failureMessage("当前配置为空");
 			}
 			JSONObject obj= JSONObject.parseObject(checkItem.getConfig());
 			if(obj.size()==0){
-				return ErrorDesc.failure("当前配置为空");
+				return ErrorDesc.failureMessage("当前配置为空");
 			}
 
 		}else if(CheckItemTypeEnum.RADIOBOX.code().equals(checkItem.getType()) ||JSONArray.parseArray(checkItem.getConfig())==null ){
 			if(StringUtil.isBlank(checkItem.getConfig())){
-				return ErrorDesc.failure("当前配置为空");
+				return ErrorDesc.failureMessage("当前配置为空");
 			}
 			JSONArray arr= JSONArray.parseArray(checkItem.getConfig());
 			if(arr.size()==0){
-				return ErrorDesc.failure("当前配置为空");
+				return ErrorDesc.failureMessage("当前配置为空");
 			}
 		}else{
-			return ErrorDesc.failure("保存错误,当前类型不支持");
+			return ErrorDesc.failureMessage("保存错误,当前类型不支持");
 		}
 
 
@@ -254,23 +254,23 @@ public class CheckItemServiceImpl extends SuperService<CheckItem> implements ICh
 			checkItem.setConfig("");
 		}else if(CheckItemTypeEnum.NUMBER_RANGE.code().equals(checkItem.getType())){
 			if(StringUtil.isBlank(checkItem.getConfig())|| JSONObject.parseObject(checkItem.getConfig())==null ){
-				return ErrorDesc.failure("当前配置为空");
+				return ErrorDesc.failureMessage("当前配置为空");
 			}
 			JSONObject obj= JSONObject.parseObject(checkItem.getConfig());
 			if(obj.size()==0){
-				return ErrorDesc.failure("当前配置为空");
+				return ErrorDesc.failureMessage("当前配置为空");
 			}
 
 		}else if(CheckItemTypeEnum.RADIOBOX.code().equals(checkItem.getType()) ||JSONArray.parseArray(checkItem.getConfig())==null ){
 			if(StringUtil.isBlank(checkItem.getConfig())){
-				return ErrorDesc.failure("当前配置为空");
+				return ErrorDesc.failureMessage("当前配置为空");
 			}
 			JSONArray arr= JSONArray.parseArray(checkItem.getConfig());
 			if(arr.size()==0){
-				return ErrorDesc.failure("当前配置为空");
+				return ErrorDesc.failureMessage("当前配置为空");
 			}
 		}else{
-			return ErrorDesc.failure("保存错误,当前类型不支持");
+			return ErrorDesc.failureMessage("保存错误,当前类型不支持");
 		}
 
 

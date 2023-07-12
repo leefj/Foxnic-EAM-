@@ -2,7 +2,7 @@
 /**
  * 数据库环境 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 09:17:25
+ * @since 2023-07-12 17:13:26
  */
  -->
  <!DOCTYPE html>
@@ -95,6 +95,7 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
+        <button th:if="${perm.checkAuth('ops_db_env_info:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
     </div>
 </script>
 

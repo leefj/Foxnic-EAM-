@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务
  * <p>巡检任务 , 数据表 eam_inspection_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 18:22:43
- * @sign 782ECC78445E35D7DB3C65B910E32FE6
+ * @since 2023-07-12 14:12:30
+ * @sign B636F58A5405B4C7C42A0A256254A934
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -46,37 +46,37 @@ public class InspectionTask extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "697562178361753600")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "731413054931075072")
 	private String id;
 	
 	/**
 	 * 巡检计划：巡检计划
 	*/
-	@ApiModelProperty(required = false,value="巡检计划" , notes = "巡检计划" , example = "697561212996550656")
+	@ApiModelProperty(required = false,value="巡检计划" , notes = "巡检计划" , example = "729705521644306432")
 	private String planId;
 	
 	/**
 	 * 任务状态：任务状态
 	*/
-	@ApiModelProperty(required = false,value="任务状态" , notes = "任务状态" , example = "not_start")
+	@ApiModelProperty(required = false,value="任务状态" , notes = "任务状态" , example = "cancel")
 	private String taskStatus;
 	
 	/**
 	 * 任务单据：任务单据
 	*/
-	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "INSPT202304092104809")
+	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "INSPT202334120734365")
 	private String taskCode;
 	
 	/**
 	 * 巡检编码：巡检编码
 	*/
-	@ApiModelProperty(required = false,value="巡检编码" , notes = "巡检编码" , example = "INSP202304092104919")
+	@ApiModelProperty(required = false,value="巡检编码" , notes = "巡检编码" , example = "INSP202329071429562")
 	private String planCode;
 	
 	/**
 	 * 巡检名称：巡检名称
 	*/
-	@ApiModelProperty(required = false,value="巡检名称" , notes = "巡检名称" , example = "模版")
+	@ApiModelProperty(required = false,value="巡检名称" , notes = "巡检名称" , example = "1212-2023-07-12")
 	private String planName;
 	
 	/**
@@ -94,13 +94,13 @@ public class InspectionTask extends Entity {
 	/**
 	 * 巡检备注：巡检备注
 	*/
-	@ApiModelProperty(required = false,value="巡检备注" , notes = "巡检备注" , example = "yujk")
+	@ApiModelProperty(required = false,value="巡检备注" , notes = "巡检备注")
 	private String planNotes;
 	
 	/**
 	 * 巡检班组：巡检班组
 	*/
-	@ApiModelProperty(required = true,value="巡检班组" , notes = "巡检班组" , example = "571667627504570368")
+	@ApiModelProperty(required = true,value="巡检班组" , notes = "巡检班组" , example = "729335289008357376")
 	private String groupId;
 	
 	/**
@@ -112,26 +112,38 @@ public class InspectionTask extends Entity {
 	/**
 	 * 应开始时间：应开始时间
 	*/
-	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2023-04-09 09:43:03")
+	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2023-07-12 07:34:21")
 	private Date planStartTime;
 	
 	/**
-	 * 实际开始时间：实际开始时间
+	 * 实际开始：实际开始
 	*/
-	@ApiModelProperty(required = false,value="实际开始时间" , notes = "实际开始时间")
+	@ApiModelProperty(required = false,value="实际开始" , notes = "实际开始")
 	private Date actStartTime;
 	
 	/**
-	 * 实际完成时间：实际完成时间
+	 * 实际完成：实际完成
 	*/
-	@ApiModelProperty(required = false,value="实际完成时间" , notes = "实际完成时间")
+	@ApiModelProperty(required = false,value="实际完成" , notes = "实际完成")
 	private Date actFinishTime;
 	
 	/**
-	 * 实际工时：实际工时
+	 * 实际用时：实际用时
 	*/
-	@ApiModelProperty(required = false,value="实际工时" , notes = "实际工时" , example = "0.00")
+	@ApiModelProperty(required = false,value="实际用时" , notes = "实际用时" , example = "0.00")
 	private BigDecimal actTotalCost;
+	
+	/**
+	 * 提醒时间：提醒时间
+	*/
+	@ApiModelProperty(required = false,value="提醒时间" , notes = "提醒时间")
+	private BigDecimal remindTime;
+	
+	/**
+	 * 超时处理：超时处理
+	*/
+	@ApiModelProperty(required = false,value="超时处理" , notes = "超时处理")
+	private String overtimeMethod;
 	
 	/**
 	 * 任务反馈：任务反馈
@@ -160,7 +172,7 @@ public class InspectionTask extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-09 09:43:03")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-12 07:34:21")
 	private Date createTime;
 	
 	/**
@@ -172,7 +184,7 @@ public class InspectionTask extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-10 07:27:14")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-12 07:47:15")
 	private Date updateTime;
 	
 	/**
@@ -193,7 +205,7 @@ public class InspectionTask extends Entity {
 	/**
 	 * 删除时间：删除时间
 	*/
-	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2023-04-10 07:27:14")
+	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2023-07-12 07:47:15")
 	private Date deleteTime;
 	
 	/**
@@ -533,17 +545,17 @@ public class InspectionTask extends Entity {
 	}
 	
 	/**
-	 * 获得 实际开始时间<br>
-	 * 实际开始时间
-	 * @return 实际开始时间
+	 * 获得 实际开始<br>
+	 * 实际开始
+	 * @return 实际开始
 	*/
 	public Date getActStartTime() {
 		return actStartTime;
 	}
 	
 	/**
-	 * 设置 实际开始时间
-	 * @param actStartTime 实际开始时间
+	 * 设置 实际开始
+	 * @param actStartTime 实际开始
 	 * @return 当前对象
 	*/
 	public InspectionTask setActStartTime(Date actStartTime) {
@@ -552,17 +564,17 @@ public class InspectionTask extends Entity {
 	}
 	
 	/**
-	 * 获得 实际完成时间<br>
-	 * 实际完成时间
-	 * @return 实际完成时间
+	 * 获得 实际完成<br>
+	 * 实际完成
+	 * @return 实际完成
 	*/
 	public Date getActFinishTime() {
 		return actFinishTime;
 	}
 	
 	/**
-	 * 设置 实际完成时间
-	 * @param actFinishTime 实际完成时间
+	 * 设置 实际完成
+	 * @param actFinishTime 实际完成
 	 * @return 当前对象
 	*/
 	public InspectionTask setActFinishTime(Date actFinishTime) {
@@ -571,21 +583,59 @@ public class InspectionTask extends Entity {
 	}
 	
 	/**
-	 * 获得 实际工时<br>
-	 * 实际工时
-	 * @return 实际工时
+	 * 获得 实际用时<br>
+	 * 实际用时
+	 * @return 实际用时
 	*/
 	public BigDecimal getActTotalCost() {
 		return actTotalCost;
 	}
 	
 	/**
-	 * 设置 实际工时
-	 * @param actTotalCost 实际工时
+	 * 设置 实际用时
+	 * @param actTotalCost 实际用时
 	 * @return 当前对象
 	*/
 	public InspectionTask setActTotalCost(BigDecimal actTotalCost) {
 		this.actTotalCost=actTotalCost;
+		return this;
+	}
+	
+	/**
+	 * 获得 提醒时间<br>
+	 * 提醒时间
+	 * @return 提醒时间
+	*/
+	public BigDecimal getRemindTime() {
+		return remindTime;
+	}
+	
+	/**
+	 * 设置 提醒时间
+	 * @param remindTime 提醒时间
+	 * @return 当前对象
+	*/
+	public InspectionTask setRemindTime(BigDecimal remindTime) {
+		this.remindTime=remindTime;
+		return this;
+	}
+	
+	/**
+	 * 获得 超时处理<br>
+	 * 超时处理
+	 * @return 超时处理
+	*/
+	public String getOvertimeMethod() {
+		return overtimeMethod;
+	}
+	
+	/**
+	 * 设置 超时处理
+	 * @param overtimeMethod 超时处理
+	 * @return 当前对象
+	*/
+	public InspectionTask setOvertimeMethod(String overtimeMethod) {
+		this.overtimeMethod=overtimeMethod;
 		return this;
 	}
 	
@@ -1257,7 +1307,9 @@ public class InspectionTask extends Entity {
 		inst.setSelectedCode(this.getSelectedCode());
 		inst.setContent(this.getContent());
 		inst.setActStartTime(this.getActStartTime());
+		inst.setRemindTime(this.getRemindTime());
 		inst.setTaskCode(this.getTaskCode());
+		inst.setOvertimeMethod(this.getOvertimeMethod());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setPlanId(this.getPlanId());
 		inst.setId(this.getId());
@@ -1360,7 +1412,9 @@ public class InspectionTask extends Entity {
 			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionTaskMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, map.get(InspectionTaskMeta.CONTENT)));
 			this.setActStartTime(DataParser.parse(Date.class, map.get(InspectionTaskMeta.ACT_START_TIME)));
+			this.setRemindTime(DataParser.parse(BigDecimal.class, map.get(InspectionTaskMeta.REMIND_TIME)));
 			this.setTaskCode(DataParser.parse(String.class, map.get(InspectionTaskMeta.TASK_CODE)));
+			this.setOvertimeMethod(DataParser.parse(String.class, map.get(InspectionTaskMeta.OVERTIME_METHOD)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InspectionTaskMeta.UPDATE_BY)));
 			this.setPlanId(DataParser.parse(String.class, map.get(InspectionTaskMeta.PLAN_ID)));
 			this.setId(DataParser.parse(String.class, map.get(InspectionTaskMeta.ID)));
@@ -1402,7 +1456,9 @@ public class InspectionTask extends Entity {
 				this.setSelectedCode( (String)map.get(InspectionTaskMeta.SELECTED_CODE));
 				this.setContent( (String)map.get(InspectionTaskMeta.CONTENT));
 				this.setActStartTime( (Date)map.get(InspectionTaskMeta.ACT_START_TIME));
+				this.setRemindTime( (BigDecimal)map.get(InspectionTaskMeta.REMIND_TIME));
 				this.setTaskCode( (String)map.get(InspectionTaskMeta.TASK_CODE));
+				this.setOvertimeMethod( (String)map.get(InspectionTaskMeta.OVERTIME_METHOD));
 				this.setUpdateBy( (String)map.get(InspectionTaskMeta.UPDATE_BY));
 				this.setPlanId( (String)map.get(InspectionTaskMeta.PLAN_ID));
 				this.setId( (String)map.get(InspectionTaskMeta.ID));
@@ -1457,7 +1513,9 @@ public class InspectionTask extends Entity {
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.CONTENT)));
 			this.setActStartTime(DataParser.parse(Date.class, r.getValue(InspectionTaskMeta.ACT_START_TIME)));
+			this.setRemindTime(DataParser.parse(BigDecimal.class, r.getValue(InspectionTaskMeta.REMIND_TIME)));
 			this.setTaskCode(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.TASK_CODE)));
+			this.setOvertimeMethod(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.OVERTIME_METHOD)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.UPDATE_BY)));
 			this.setPlanId(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.PLAN_ID)));
 			this.setId(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.ID)));
@@ -1488,7 +1546,9 @@ public class InspectionTask extends Entity {
 				this.setSelectedCode( (String)r.getValue(InspectionTaskMeta.SELECTED_CODE));
 				this.setContent( (String)r.getValue(InspectionTaskMeta.CONTENT));
 				this.setActStartTime( (Date)r.getValue(InspectionTaskMeta.ACT_START_TIME));
+				this.setRemindTime( (BigDecimal)r.getValue(InspectionTaskMeta.REMIND_TIME));
 				this.setTaskCode( (String)r.getValue(InspectionTaskMeta.TASK_CODE));
+				this.setOvertimeMethod( (String)r.getValue(InspectionTaskMeta.OVERTIME_METHOD));
 				this.setUpdateBy( (String)r.getValue(InspectionTaskMeta.UPDATE_BY));
 				this.setPlanId( (String)r.getValue(InspectionTaskMeta.PLAN_ID));
 				this.setId( (String)r.getValue(InspectionTaskMeta.ID));

@@ -1,7 +1,7 @@
 /**
  * 巡检计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-07 18:20:44
+ * @since 2023-07-12 13:51:27
  */
 
 function FormPage() {
@@ -153,7 +153,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "planStatus",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("状态",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("计划状态",'','cmp:form'),
 			filterable: false,
 			layVerify: 'required',
 			layVerType: 'msg',
@@ -219,7 +219,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "groupId",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("班组",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("巡检班组",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -418,11 +418,11 @@ function FormPage() {
 			}
 
 
-			//设置  状态 设置下拉框勾选
+			//设置  计划状态 设置下拉框勾选
 			fox.setSelectValue4Enum("#planStatus",formData.planStatus,SELECT_PLANSTATUS_DATA);
 			//设置  计划类型 设置下拉框勾选
 			fox.setSelectValue4Enum("#planType",formData.planType,SELECT_PLANTYPE_DATA);
-			//设置  班组 设置下拉框勾选
+			//设置  巡检班组 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#groupId",formData.inspectionGroup);
 			//设置  巡检顺序 设置下拉框勾选
 			fox.setSelectValue4Enum("#inspectionMethod",formData.inspectionMethod,SELECT_INSPECTIONMETHOD_DATA);
@@ -490,11 +490,11 @@ function FormPage() {
 
 
 
-		//获取 状态 下拉框的值
+		//获取 计划状态 下拉框的值
 		data["planStatus"]=fox.getSelectedValue("planStatus",false);
 		//获取 计划类型 下拉框的值
 		data["planType"]=fox.getSelectedValue("planType",false);
-		//获取 班组 下拉框的值
+		//获取 巡检班组 下拉框的值
 		data["groupId"]=fox.getSelectedValue("groupId",false);
 		//获取 巡检顺序 下拉框的值
 		data["inspectionMethod"]=fox.getSelectedValue("inspectionMethod",false);

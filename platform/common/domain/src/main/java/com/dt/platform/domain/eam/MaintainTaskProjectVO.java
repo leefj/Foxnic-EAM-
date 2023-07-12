@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养项目VO类型
  * <p>保养项目 , 数据表 eam_maintain_task_project 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 16:07:46
+ * @since 2023-07-11 16:57:01
  * @sign 405854482C050162614726994D692BB5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -403,24 +403,26 @@ public class MaintainTaskProjectVO extends MaintainTaskProject {
 	@Transient
 	public MaintainTaskProjectVO duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.MaintainTaskProjectVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.MaintainTaskProjectVOMeta.$$proxy$$();
+		inst.setOperUserId(this.getOperUserId());
 		inst.setProjectAttachId(this.getProjectAttachId());
+		inst.setProjectBaseCost(this.getProjectBaseCost());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setProjectCode(this.getProjectCode());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setProjectMaintainType(this.getProjectMaintainType());
+		inst.setStartTime(this.getStartTime());
+		inst.setId(this.getId());
+		inst.setOperTime(this.getOperTime());
 		inst.setBaseCost(this.getBaseCost());
 		inst.setProjectNotes(this.getProjectNotes());
 		inst.setUpdateTime(this.getUpdateTime());
-		inst.setProjectBaseCost(this.getProjectBaseCost());
-		inst.setSelectedCode(this.getSelectedCode());
 		inst.setVersion(this.getVersion());
-		inst.setContent(this.getContent());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
-		inst.setProjectCode(this.getProjectCode());
 		inst.setCreateTime(this.getCreateTime());
-		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
-		inst.setProjectMaintainType(this.getProjectMaintainType());
 		inst.setDeleteBy(this.getDeleteBy());
-		inst.setStartTime(this.getStartTime());
-		inst.setId(this.getId());
 		inst.setEndTime(this.getEndTime());
 		inst.setProjectName(this.getProjectName());
 		inst.setProjectId(this.getProjectId());
@@ -499,24 +501,26 @@ public class MaintainTaskProjectVO extends MaintainTaskProject {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setOperUserId(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.OPER_USER_ID)));
 			this.setProjectAttachId(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.PROJECT_ATTACH_ID)));
+			this.setProjectBaseCost(DataParser.parse(BigDecimal.class, map.get(MaintainTaskProjectVOMeta.PROJECT_BASE_COST)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.CONTENT)));
+			this.setProjectCode(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.PROJECT_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.UPDATE_BY)));
+			this.setProjectMaintainType(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.PROJECT_MAINTAIN_TYPE)));
+			this.setStartTime(DataParser.parse(Date.class, map.get(MaintainTaskProjectVOMeta.START_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.ID)));
+			this.setOperTime(DataParser.parse(Date.class, map.get(MaintainTaskProjectVOMeta.OPER_TIME)));
 			this.setBaseCost(DataParser.parse(BigDecimal.class, map.get(MaintainTaskProjectVOMeta.BASE_COST)));
 			this.setProjectNotes(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.PROJECT_NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(MaintainTaskProjectVOMeta.UPDATE_TIME)));
-			this.setProjectBaseCost(DataParser.parse(BigDecimal.class, map.get(MaintainTaskProjectVOMeta.PROJECT_BASE_COST)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(MaintainTaskProjectVOMeta.VERSION)));
-			this.setContent(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.CONTENT)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(MaintainTaskProjectVOMeta.DELETED)));
-			this.setProjectCode(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.PROJECT_CODE)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(MaintainTaskProjectVOMeta.CREATE_TIME)));
-			this.setUpdateBy(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(MaintainTaskProjectVOMeta.DELETE_TIME)));
-			this.setProjectMaintainType(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.PROJECT_MAINTAIN_TYPE)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.DELETE_BY)));
-			this.setStartTime(DataParser.parse(Date.class, map.get(MaintainTaskProjectVOMeta.START_TIME)));
-			this.setId(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.ID)));
 			this.setEndTime(DataParser.parse(Date.class, map.get(MaintainTaskProjectVOMeta.END_TIME)));
 			this.setProjectName(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.PROJECT_NAME)));
 			this.setProjectId(DataParser.parse(String.class, map.get(MaintainTaskProjectVOMeta.PROJECT_ID)));
@@ -537,24 +541,26 @@ public class MaintainTaskProjectVO extends MaintainTaskProject {
 			return true;
 		} else {
 			try {
+				this.setOperUserId( (String)map.get(MaintainTaskProjectVOMeta.OPER_USER_ID));
 				this.setProjectAttachId( (String)map.get(MaintainTaskProjectVOMeta.PROJECT_ATTACH_ID));
+				this.setProjectBaseCost( (BigDecimal)map.get(MaintainTaskProjectVOMeta.PROJECT_BASE_COST));
+				this.setSelectedCode( (String)map.get(MaintainTaskProjectVOMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(MaintainTaskProjectVOMeta.CONTENT));
+				this.setProjectCode( (String)map.get(MaintainTaskProjectVOMeta.PROJECT_CODE));
+				this.setUpdateBy( (String)map.get(MaintainTaskProjectVOMeta.UPDATE_BY));
+				this.setProjectMaintainType( (String)map.get(MaintainTaskProjectVOMeta.PROJECT_MAINTAIN_TYPE));
+				this.setStartTime( (Date)map.get(MaintainTaskProjectVOMeta.START_TIME));
+				this.setId( (String)map.get(MaintainTaskProjectVOMeta.ID));
+				this.setOperTime( (Date)map.get(MaintainTaskProjectVOMeta.OPER_TIME));
 				this.setBaseCost( (BigDecimal)map.get(MaintainTaskProjectVOMeta.BASE_COST));
 				this.setProjectNotes( (String)map.get(MaintainTaskProjectVOMeta.PROJECT_NOTES));
 				this.setUpdateTime( (Date)map.get(MaintainTaskProjectVOMeta.UPDATE_TIME));
-				this.setProjectBaseCost( (BigDecimal)map.get(MaintainTaskProjectVOMeta.PROJECT_BASE_COST));
-				this.setSelectedCode( (String)map.get(MaintainTaskProjectVOMeta.SELECTED_CODE));
 				this.setVersion( (Integer)map.get(MaintainTaskProjectVOMeta.VERSION));
-				this.setContent( (String)map.get(MaintainTaskProjectVOMeta.CONTENT));
 				this.setCreateBy( (String)map.get(MaintainTaskProjectVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(MaintainTaskProjectVOMeta.DELETED));
-				this.setProjectCode( (String)map.get(MaintainTaskProjectVOMeta.PROJECT_CODE));
 				this.setCreateTime( (Date)map.get(MaintainTaskProjectVOMeta.CREATE_TIME));
-				this.setUpdateBy( (String)map.get(MaintainTaskProjectVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(MaintainTaskProjectVOMeta.DELETE_TIME));
-				this.setProjectMaintainType( (String)map.get(MaintainTaskProjectVOMeta.PROJECT_MAINTAIN_TYPE));
 				this.setDeleteBy( (String)map.get(MaintainTaskProjectVOMeta.DELETE_BY));
-				this.setStartTime( (Date)map.get(MaintainTaskProjectVOMeta.START_TIME));
-				this.setId( (String)map.get(MaintainTaskProjectVOMeta.ID));
 				this.setEndTime( (Date)map.get(MaintainTaskProjectVOMeta.END_TIME));
 				this.setProjectName( (String)map.get(MaintainTaskProjectVOMeta.PROJECT_NAME));
 				this.setProjectId( (String)map.get(MaintainTaskProjectVOMeta.PROJECT_ID));
@@ -588,24 +594,26 @@ public class MaintainTaskProjectVO extends MaintainTaskProject {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setOperUserId(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.OPER_USER_ID)));
 			this.setProjectAttachId(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.PROJECT_ATTACH_ID)));
+			this.setProjectBaseCost(DataParser.parse(BigDecimal.class, r.getValue(MaintainTaskProjectVOMeta.PROJECT_BASE_COST)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.CONTENT)));
+			this.setProjectCode(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.PROJECT_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.UPDATE_BY)));
+			this.setProjectMaintainType(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.PROJECT_MAINTAIN_TYPE)));
+			this.setStartTime(DataParser.parse(Date.class, r.getValue(MaintainTaskProjectVOMeta.START_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.ID)));
+			this.setOperTime(DataParser.parse(Date.class, r.getValue(MaintainTaskProjectVOMeta.OPER_TIME)));
 			this.setBaseCost(DataParser.parse(BigDecimal.class, r.getValue(MaintainTaskProjectVOMeta.BASE_COST)));
 			this.setProjectNotes(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.PROJECT_NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MaintainTaskProjectVOMeta.UPDATE_TIME)));
-			this.setProjectBaseCost(DataParser.parse(BigDecimal.class, r.getValue(MaintainTaskProjectVOMeta.PROJECT_BASE_COST)));
-			this.setSelectedCode(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(MaintainTaskProjectVOMeta.VERSION)));
-			this.setContent(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.CONTENT)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MaintainTaskProjectVOMeta.DELETED)));
-			this.setProjectCode(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.PROJECT_CODE)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MaintainTaskProjectVOMeta.CREATE_TIME)));
-			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MaintainTaskProjectVOMeta.DELETE_TIME)));
-			this.setProjectMaintainType(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.PROJECT_MAINTAIN_TYPE)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.DELETE_BY)));
-			this.setStartTime(DataParser.parse(Date.class, r.getValue(MaintainTaskProjectVOMeta.START_TIME)));
-			this.setId(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.ID)));
 			this.setEndTime(DataParser.parse(Date.class, r.getValue(MaintainTaskProjectVOMeta.END_TIME)));
 			this.setProjectName(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.PROJECT_NAME)));
 			this.setProjectId(DataParser.parse(String.class, r.getValue(MaintainTaskProjectVOMeta.PROJECT_ID)));
@@ -614,24 +622,26 @@ public class MaintainTaskProjectVO extends MaintainTaskProject {
 			return true;
 		} else {
 			try {
+				this.setOperUserId( (String)r.getValue(MaintainTaskProjectVOMeta.OPER_USER_ID));
 				this.setProjectAttachId( (String)r.getValue(MaintainTaskProjectVOMeta.PROJECT_ATTACH_ID));
+				this.setProjectBaseCost( (BigDecimal)r.getValue(MaintainTaskProjectVOMeta.PROJECT_BASE_COST));
+				this.setSelectedCode( (String)r.getValue(MaintainTaskProjectVOMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(MaintainTaskProjectVOMeta.CONTENT));
+				this.setProjectCode( (String)r.getValue(MaintainTaskProjectVOMeta.PROJECT_CODE));
+				this.setUpdateBy( (String)r.getValue(MaintainTaskProjectVOMeta.UPDATE_BY));
+				this.setProjectMaintainType( (String)r.getValue(MaintainTaskProjectVOMeta.PROJECT_MAINTAIN_TYPE));
+				this.setStartTime( (Date)r.getValue(MaintainTaskProjectVOMeta.START_TIME));
+				this.setId( (String)r.getValue(MaintainTaskProjectVOMeta.ID));
+				this.setOperTime( (Date)r.getValue(MaintainTaskProjectVOMeta.OPER_TIME));
 				this.setBaseCost( (BigDecimal)r.getValue(MaintainTaskProjectVOMeta.BASE_COST));
 				this.setProjectNotes( (String)r.getValue(MaintainTaskProjectVOMeta.PROJECT_NOTES));
 				this.setUpdateTime( (Date)r.getValue(MaintainTaskProjectVOMeta.UPDATE_TIME));
-				this.setProjectBaseCost( (BigDecimal)r.getValue(MaintainTaskProjectVOMeta.PROJECT_BASE_COST));
-				this.setSelectedCode( (String)r.getValue(MaintainTaskProjectVOMeta.SELECTED_CODE));
 				this.setVersion( (Integer)r.getValue(MaintainTaskProjectVOMeta.VERSION));
-				this.setContent( (String)r.getValue(MaintainTaskProjectVOMeta.CONTENT));
 				this.setCreateBy( (String)r.getValue(MaintainTaskProjectVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(MaintainTaskProjectVOMeta.DELETED));
-				this.setProjectCode( (String)r.getValue(MaintainTaskProjectVOMeta.PROJECT_CODE));
 				this.setCreateTime( (Date)r.getValue(MaintainTaskProjectVOMeta.CREATE_TIME));
-				this.setUpdateBy( (String)r.getValue(MaintainTaskProjectVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(MaintainTaskProjectVOMeta.DELETE_TIME));
-				this.setProjectMaintainType( (String)r.getValue(MaintainTaskProjectVOMeta.PROJECT_MAINTAIN_TYPE));
 				this.setDeleteBy( (String)r.getValue(MaintainTaskProjectVOMeta.DELETE_BY));
-				this.setStartTime( (Date)r.getValue(MaintainTaskProjectVOMeta.START_TIME));
-				this.setId( (String)r.getValue(MaintainTaskProjectVOMeta.ID));
 				this.setEndTime( (Date)r.getValue(MaintainTaskProjectVOMeta.END_TIME));
 				this.setProjectName( (String)r.getValue(MaintainTaskProjectVOMeta.PROJECT_NAME));
 				this.setProjectId( (String)r.getValue(MaintainTaskProjectVOMeta.PROJECT_ID));

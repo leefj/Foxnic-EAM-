@@ -18,7 +18,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:48:39
+ * @since 2023-07-12 13:19:07
  * @sign C8E16B1999220CF1B368CB50BBEA512E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -156,54 +156,94 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
-	 * 编号 , 类型: java.lang.String
+	 * 计划编号 , 类型: java.lang.String
 	*/
 	public static final String CODE="code";
 	
 	/**
-	 * 编号 , 类型: java.lang.String
+	 * 计划编号 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,CODE, java.lang.String.class, "编号", "编号", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,CODE, java.lang.String.class, "计划编号", "计划编号", java.lang.String.class, null);
 	
 	/**
-	 * 方案名称 , 类型: java.lang.String
+	 * 计划名称 , 类型: java.lang.String
 	*/
 	public static final String NAME="name";
 	
 	/**
-	 * 方案名称 , 类型: java.lang.String
+	 * 计划名称 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,NAME, java.lang.String.class, "方案名称", "方案名称", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,NAME, java.lang.String.class, "计划名称", "计划名称", java.lang.String.class, null);
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 计划状态 , 类型: java.lang.String
 	*/
 	public static final String STATUS="status";
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 计划状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,STATUS, java.lang.String.class, "计划状态", "计划状态", java.lang.String.class, null);
 	
 	/**
-	 * 设备 , 类型: java.lang.String
+	 * 保养设备 , 类型: java.lang.String
 	*/
 	public static final String ASSET_ID="assetId";
 	
 	/**
-	 * 设备 , 类型: java.lang.String
+	 * 保养设备 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,ASSET_ID, java.lang.String.class, "设备", "设备", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,ASSET_ID, java.lang.String.class, "保养设备", "保养设备", java.lang.String.class, null);
 	
 	/**
-	 * 执行班组 , 类型: java.lang.String
+	 * 保养设备 , 类型: java.lang.String
+	*/
+	public static final String ASSET_CODE="assetCode";
+	
+	/**
+	 * 保养设备 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> ASSET_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,ASSET_CODE, java.lang.String.class, "保养设备", "保养设备", java.lang.String.class, null);
+	
+	/**
+	 * 设备名称 , 类型: java.lang.String
+	*/
+	public static final String ASSET_NAME="assetName";
+	
+	/**
+	 * 设备名称 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> ASSET_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,ASSET_NAME, java.lang.String.class, "设备名称", "设备名称", java.lang.String.class, null);
+	
+	/**
+	 * 设备型号 , 类型: java.lang.String
+	*/
+	public static final String ASSET_MODEL="assetModel";
+	
+	/**
+	 * 设备型号 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> ASSET_MODEL_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,ASSET_MODEL, java.lang.String.class, "设备型号", "设备型号", java.lang.String.class, null);
+	
+	/**
+	 * 设备序列 , 类型: java.lang.String
+	*/
+	public static final String ASSET_SN="assetSn";
+	
+	/**
+	 * 设备序列 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> ASSET_SN_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,ASSET_SN, java.lang.String.class, "设备序列", "设备序列", java.lang.String.class, null);
+	
+	/**
+	 * 保养班组 , 类型: java.lang.String
 	*/
 	public static final String GROUP_ID="groupId";
 	
 	/**
-	 * 执行班组 , 类型: java.lang.String
+	 * 保养班组 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> GROUP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,GROUP_ID, java.lang.String.class, "执行班组", "执行班组", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> GROUP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,GROUP_ID, java.lang.String.class, "保养班组", "保养班组", java.lang.String.class, null);
 	
 	/**
 	 * 保养类型 , 类型: java.lang.String
@@ -266,14 +306,14 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.math.BigDecimal> TOTAL_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,TOTAL_COST, java.math.BigDecimal.class, "预计工时", "小时)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 超时时间 , 小时) , 类型: java.math.BigDecimal
+	 * 超时时间 , 分) , 类型: java.math.BigDecimal
 	*/
 	public static final String TIMEOUT="timeout";
 	
 	/**
-	 * 超时时间 , 小时) , 类型: java.math.BigDecimal
+	 * 超时时间 , 分) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.math.BigDecimal> TIMEOUT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,TIMEOUT, java.math.BigDecimal.class, "超时时间", "小时)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.math.BigDecimal> TIMEOUT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,TIMEOUT, java.math.BigDecimal.class, "超时时间", "分)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 方案说明 , 类型: java.lang.String
@@ -516,9 +556,19 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,SELECTED_CODE, java.lang.String.class, "selectedCode", "selectedCode", java.lang.String.class, null);
 	
 	/**
+	 * itemCount , 类型: java.lang.String
+	*/
+	public static final String ITEM_COUNT="itemCount";
+	
+	/**
+	 * itemCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> ITEM_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,ITEM_COUNT, java.lang.String.class, "itemCount", "itemCount", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , STATUS , ASSET_ID , GROUP_ID , MAINTAIN_TYPE , CYCLE_METHOD , ACTION_CYCLE_ID , START_TIME , END_TIME , TOTAL_COST , TIMEOUT , INFO , NOTES , ORIGINATOR_ID , LAST_TIME , NEXT_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , ASSET_LIST , ASSET_IDS , PROJECT_LIST , PROJECT_IDS , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ACTION_CRONTAB , ORIGINATOR , ASSET , SELECTED_CODE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , STATUS , ASSET_ID , ASSET_CODE , ASSET_NAME , ASSET_MODEL , ASSET_SN , GROUP_ID , MAINTAIN_TYPE , CYCLE_METHOD , ACTION_CYCLE_ID , START_TIME , END_TIME , TOTAL_COST , TIMEOUT , INFO , NOTES , ORIGINATOR_ID , LAST_TIME , NEXT_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , ASSET_LIST , ASSET_IDS , PROJECT_LIST , PROJECT_IDS , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ACTION_CRONTAB , ORIGINATOR , ASSET , SELECTED_CODE , ITEM_COUNT };
 	
 	/**
 	 * 代理类
@@ -672,8 +722,8 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 		}
 		
 		/**
-		 * 设置 编号
-		 * @param code 编号
+		 * 设置 计划编号
+		 * @param code 计划编号
 		 * @return 当前对象
 		*/
 		public MaintainPlan setCode(String code) {
@@ -683,8 +733,8 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 		}
 		
 		/**
-		 * 设置 方案名称
-		 * @param name 方案名称
+		 * 设置 计划名称
+		 * @param name 计划名称
 		 * @return 当前对象
 		*/
 		public MaintainPlan setName(String name) {
@@ -694,8 +744,8 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 		}
 		
 		/**
-		 * 设置 状态
-		 * @param status 状态
+		 * 设置 计划状态
+		 * @param status 计划状态
 		 * @return 当前对象
 		*/
 		public MaintainPlan setStatus(String status) {
@@ -705,8 +755,8 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 		}
 		
 		/**
-		 * 设置 设备
-		 * @param assetId 设备
+		 * 设置 保养设备
+		 * @param assetId 保养设备
 		 * @return 当前对象
 		*/
 		public MaintainPlan setAssetId(String assetId) {
@@ -716,8 +766,52 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 		}
 		
 		/**
-		 * 设置 执行班组
-		 * @param groupId 执行班组
+		 * 设置 保养设备
+		 * @param assetCode 保养设备
+		 * @return 当前对象
+		*/
+		public MaintainPlan setAssetCode(String assetCode) {
+			super.change(ASSET_CODE,super.getAssetCode(),assetCode);
+			super.setAssetCode(assetCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 设备名称
+		 * @param assetName 设备名称
+		 * @return 当前对象
+		*/
+		public MaintainPlan setAssetName(String assetName) {
+			super.change(ASSET_NAME,super.getAssetName(),assetName);
+			super.setAssetName(assetName);
+			return this;
+		}
+		
+		/**
+		 * 设置 设备型号
+		 * @param assetModel 设备型号
+		 * @return 当前对象
+		*/
+		public MaintainPlan setAssetModel(String assetModel) {
+			super.change(ASSET_MODEL,super.getAssetModel(),assetModel);
+			super.setAssetModel(assetModel);
+			return this;
+		}
+		
+		/**
+		 * 设置 设备序列
+		 * @param assetSn 设备序列
+		 * @return 当前对象
+		*/
+		public MaintainPlan setAssetSn(String assetSn) {
+			super.change(ASSET_SN,super.getAssetSn(),assetSn);
+			super.setAssetSn(assetSn);
+			return this;
+		}
+		
+		/**
+		 * 设置 保养班组
+		 * @param groupId 保养班组
 		 * @return 当前对象
 		*/
 		public MaintainPlan setGroupId(String groupId) {
@@ -1066,6 +1160,17 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 			super.setSelectedCode(selectedCode);
 			return this;
 		}
+		
+		/**
+		 * 设置 itemCount
+		 * @param itemCount itemCount
+		 * @return 当前对象
+		*/
+		public MaintainPlan setItemCount(String itemCount) {
+			super.change(ITEM_COUNT,super.getItemCount(),itemCount);
+			super.setItemCount(itemCount);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1090,11 +1195,14 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 			inst.setTimeout(this.getTimeout());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setAssetId(this.getAssetId());
+			inst.setAssetSn(this.getAssetSn());
 			inst.setStartTime(this.getStartTime());
 			inst.setId(this.getId());
 			inst.setOriginatorId(this.getOriginatorId());
 			inst.setMaintainType(this.getMaintainType());
 			inst.setInfo(this.getInfo());
+			inst.setAssetCode(this.getAssetCode());
+			inst.setAssetModel(this.getAssetModel());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setActionCycleId(this.getActionCycleId());
 			inst.setVersion(this.getVersion());
@@ -1104,6 +1212,7 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setName(this.getName());
 			inst.setTenantId(this.getTenantId());
+			inst.setAssetName(this.getAssetName());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setCycleMethod(this.getCycleMethod());
 			inst.setEndTime(this.getEndTime());
@@ -1121,6 +1230,7 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 				inst.setAssetList(this.getAssetList());
 				inst.setSelectedCode(this.getSelectedCode());
 				inst.setMaintainTypeDict(this.getMaintainTypeDict());
+				inst.setItemCount(this.getItemCount());
 				inst.setActionCrontab(this.getActionCrontab());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());

@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养方案VO类型
  * <p>保养方案 , 数据表 eam_maintain_plan 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:48:39
+ * @since 2023-07-12 13:19:07
  * @sign C8E16B1999220CF1B368CB50BBEA512E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -412,11 +412,14 @@ public class MaintainPlanVO extends MaintainPlan {
 		inst.setTimeout(this.getTimeout());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setAssetId(this.getAssetId());
+		inst.setAssetSn(this.getAssetSn());
 		inst.setStartTime(this.getStartTime());
 		inst.setId(this.getId());
 		inst.setOriginatorId(this.getOriginatorId());
 		inst.setMaintainType(this.getMaintainType());
 		inst.setInfo(this.getInfo());
+		inst.setAssetCode(this.getAssetCode());
+		inst.setAssetModel(this.getAssetModel());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setActionCycleId(this.getActionCycleId());
 		inst.setVersion(this.getVersion());
@@ -426,6 +429,7 @@ public class MaintainPlanVO extends MaintainPlan {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
+		inst.setAssetName(this.getAssetName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setCycleMethod(this.getCycleMethod());
 		inst.setEndTime(this.getEndTime());
@@ -443,6 +447,7 @@ public class MaintainPlanVO extends MaintainPlan {
 			inst.setAssetList(this.getAssetList());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setMaintainTypeDict(this.getMaintainTypeDict());
+			inst.setItemCount(this.getItemCount());
 			inst.setActionCrontab(this.getActionCrontab());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
@@ -521,11 +526,14 @@ public class MaintainPlanVO extends MaintainPlan {
 			this.setTimeout(DataParser.parse(BigDecimal.class, map.get(MaintainPlanVOMeta.TIMEOUT)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.UPDATE_BY)));
 			this.setAssetId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ASSET_ID)));
+			this.setAssetSn(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ASSET_SN)));
 			this.setStartTime(DataParser.parse(Date.class, map.get(MaintainPlanVOMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ID)));
 			this.setOriginatorId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ORIGINATOR_ID)));
 			this.setMaintainType(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.MAINTAIN_TYPE)));
 			this.setInfo(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.INFO)));
+			this.setAssetCode(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ASSET_CODE)));
+			this.setAssetModel(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ASSET_MODEL)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(MaintainPlanVOMeta.UPDATE_TIME)));
 			this.setActionCycleId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ACTION_CYCLE_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(MaintainPlanVOMeta.VERSION)));
@@ -535,6 +543,7 @@ public class MaintainPlanVO extends MaintainPlan {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(MaintainPlanVOMeta.DELETE_TIME)));
 			this.setName(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.TENANT_ID)));
+			this.setAssetName(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ASSET_NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.DELETE_BY)));
 			this.setCycleMethod(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.CYCLE_METHOD)));
 			this.setEndTime(DataParser.parse(Date.class, map.get(MaintainPlanVOMeta.END_TIME)));
@@ -548,6 +557,7 @@ public class MaintainPlanVO extends MaintainPlan {
 			this.setOriginator(DataParser.parse(Employee.class, map.get(MaintainPlanVOMeta.ORIGINATOR)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.SELECTED_CODE)));
 			this.setMaintainTypeDict(DataParser.parse(DictItem.class, map.get(MaintainPlanVOMeta.MAINTAIN_TYPE_DICT)));
+			this.setItemCount(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ITEM_COUNT)));
 			this.setActionCrontab(DataParser.parse(ActionCrontab.class, map.get(MaintainPlanVOMeta.ACTION_CRONTAB)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(MaintainPlanVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.SORT_TYPE)));
@@ -568,11 +578,14 @@ public class MaintainPlanVO extends MaintainPlan {
 				this.setTimeout( (BigDecimal)map.get(MaintainPlanVOMeta.TIMEOUT));
 				this.setUpdateBy( (String)map.get(MaintainPlanVOMeta.UPDATE_BY));
 				this.setAssetId( (String)map.get(MaintainPlanVOMeta.ASSET_ID));
+				this.setAssetSn( (String)map.get(MaintainPlanVOMeta.ASSET_SN));
 				this.setStartTime( (Date)map.get(MaintainPlanVOMeta.START_TIME));
 				this.setId( (String)map.get(MaintainPlanVOMeta.ID));
 				this.setOriginatorId( (String)map.get(MaintainPlanVOMeta.ORIGINATOR_ID));
 				this.setMaintainType( (String)map.get(MaintainPlanVOMeta.MAINTAIN_TYPE));
 				this.setInfo( (String)map.get(MaintainPlanVOMeta.INFO));
+				this.setAssetCode( (String)map.get(MaintainPlanVOMeta.ASSET_CODE));
+				this.setAssetModel( (String)map.get(MaintainPlanVOMeta.ASSET_MODEL));
 				this.setUpdateTime( (Date)map.get(MaintainPlanVOMeta.UPDATE_TIME));
 				this.setActionCycleId( (String)map.get(MaintainPlanVOMeta.ACTION_CYCLE_ID));
 				this.setVersion( (Integer)map.get(MaintainPlanVOMeta.VERSION));
@@ -582,6 +595,7 @@ public class MaintainPlanVO extends MaintainPlan {
 				this.setDeleteTime( (Date)map.get(MaintainPlanVOMeta.DELETE_TIME));
 				this.setName( (String)map.get(MaintainPlanVOMeta.NAME));
 				this.setTenantId( (String)map.get(MaintainPlanVOMeta.TENANT_ID));
+				this.setAssetName( (String)map.get(MaintainPlanVOMeta.ASSET_NAME));
 				this.setDeleteBy( (String)map.get(MaintainPlanVOMeta.DELETE_BY));
 				this.setCycleMethod( (String)map.get(MaintainPlanVOMeta.CYCLE_METHOD));
 				this.setEndTime( (Date)map.get(MaintainPlanVOMeta.END_TIME));
@@ -595,6 +609,7 @@ public class MaintainPlanVO extends MaintainPlan {
 				this.setOriginator( (Employee)map.get(MaintainPlanVOMeta.ORIGINATOR));
 				this.setSelectedCode( (String)map.get(MaintainPlanVOMeta.SELECTED_CODE));
 				this.setMaintainTypeDict( (DictItem)map.get(MaintainPlanVOMeta.MAINTAIN_TYPE_DICT));
+				this.setItemCount( (String)map.get(MaintainPlanVOMeta.ITEM_COUNT));
 				this.setActionCrontab( (ActionCrontab)map.get(MaintainPlanVOMeta.ACTION_CRONTAB));
 				this.setPageIndex( (Integer)map.get(MaintainPlanVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(MaintainPlanVOMeta.SORT_TYPE));
@@ -628,11 +643,14 @@ public class MaintainPlanVO extends MaintainPlan {
 			this.setTimeout(DataParser.parse(BigDecimal.class, r.getValue(MaintainPlanVOMeta.TIMEOUT)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.UPDATE_BY)));
 			this.setAssetId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ASSET_ID)));
+			this.setAssetSn(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ASSET_SN)));
 			this.setStartTime(DataParser.parse(Date.class, r.getValue(MaintainPlanVOMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ID)));
 			this.setOriginatorId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ORIGINATOR_ID)));
 			this.setMaintainType(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.MAINTAIN_TYPE)));
 			this.setInfo(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.INFO)));
+			this.setAssetCode(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ASSET_CODE)));
+			this.setAssetModel(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ASSET_MODEL)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MaintainPlanVOMeta.UPDATE_TIME)));
 			this.setActionCycleId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ACTION_CYCLE_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(MaintainPlanVOMeta.VERSION)));
@@ -642,6 +660,7 @@ public class MaintainPlanVO extends MaintainPlan {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MaintainPlanVOMeta.DELETE_TIME)));
 			this.setName(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.TENANT_ID)));
+			this.setAssetName(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ASSET_NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.DELETE_BY)));
 			this.setCycleMethod(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.CYCLE_METHOD)));
 			this.setEndTime(DataParser.parse(Date.class, r.getValue(MaintainPlanVOMeta.END_TIME)));
@@ -658,11 +677,14 @@ public class MaintainPlanVO extends MaintainPlan {
 				this.setTimeout( (BigDecimal)r.getValue(MaintainPlanVOMeta.TIMEOUT));
 				this.setUpdateBy( (String)r.getValue(MaintainPlanVOMeta.UPDATE_BY));
 				this.setAssetId( (String)r.getValue(MaintainPlanVOMeta.ASSET_ID));
+				this.setAssetSn( (String)r.getValue(MaintainPlanVOMeta.ASSET_SN));
 				this.setStartTime( (Date)r.getValue(MaintainPlanVOMeta.START_TIME));
 				this.setId( (String)r.getValue(MaintainPlanVOMeta.ID));
 				this.setOriginatorId( (String)r.getValue(MaintainPlanVOMeta.ORIGINATOR_ID));
 				this.setMaintainType( (String)r.getValue(MaintainPlanVOMeta.MAINTAIN_TYPE));
 				this.setInfo( (String)r.getValue(MaintainPlanVOMeta.INFO));
+				this.setAssetCode( (String)r.getValue(MaintainPlanVOMeta.ASSET_CODE));
+				this.setAssetModel( (String)r.getValue(MaintainPlanVOMeta.ASSET_MODEL));
 				this.setUpdateTime( (Date)r.getValue(MaintainPlanVOMeta.UPDATE_TIME));
 				this.setActionCycleId( (String)r.getValue(MaintainPlanVOMeta.ACTION_CYCLE_ID));
 				this.setVersion( (Integer)r.getValue(MaintainPlanVOMeta.VERSION));
@@ -672,6 +694,7 @@ public class MaintainPlanVO extends MaintainPlan {
 				this.setDeleteTime( (Date)r.getValue(MaintainPlanVOMeta.DELETE_TIME));
 				this.setName( (String)r.getValue(MaintainPlanVOMeta.NAME));
 				this.setTenantId( (String)r.getValue(MaintainPlanVOMeta.TENANT_ID));
+				this.setAssetName( (String)r.getValue(MaintainPlanVOMeta.ASSET_NAME));
 				this.setDeleteBy( (String)r.getValue(MaintainPlanVOMeta.DELETE_BY));
 				this.setCycleMethod( (String)r.getValue(MaintainPlanVOMeta.CYCLE_METHOD));
 				this.setEndTime( (Date)r.getValue(MaintainPlanVOMeta.END_TIME));

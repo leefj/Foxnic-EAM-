@@ -28,6 +28,9 @@ import java.util.Map;
 
 public interface IMaintainTaskService extends ISuperService<MaintainTask> {
 
+
+
+
 	Result<JSONObject> queryData(String labels);
 
 	/**
@@ -50,7 +53,7 @@ public interface IMaintainTaskService extends ISuperService<MaintainTask> {
 
 	Result cancel(String id);
 
-	Result finish(String id);
+	Result finish(String id,String status,String result);
 
 
 	/**

@@ -2,7 +2,7 @@
 /**
  * 保养任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 19:53:49
+ * @since 2023-07-12 13:21:00
  */
  -->
  <!DOCTYPE html>
@@ -40,30 +40,33 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 名称 , name ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 状态 , status ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 任务名称 , name ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 任务状态 , status ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('任务状态')}" class="search-label status-label">任务状态</span><span class="search-colon">:</span></div>
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.MaintainTaskStatusEnum')}" style="width:150px" extraParam="{}"></div>
                     </div>
                     <!-- 方案 , planId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 设备 , assetId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 保养设备 , assetId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 设备状态 , assetStatus ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 位置 , assetPos ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 设备位置 , assetPos ,typeName=text_input, isHideInSearch=true -->
                     <!-- 保养结果 , content ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 执行人 , executorId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 执行人 , executorId ,typeName=button, isHideInSearch=true -->
                     <!-- 应开始时间 , planStartTime ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 实际完成时间 , actFinishTime ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 超时时间 , timeout ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 预计工时 , totalCost ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 实际工时 , actTotalCost ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 实际完成 , actFinishTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 超时工时(分) , timeout ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 预计工时(时) , totalCost ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 实际工时(时) , actTotalCost ,typeName=number_input, isHideInSearch=true -->
                     <!-- 费用 , cost ,typeName=number_input, isHideInSearch=true -->
                     <!-- 逾期 , overdue ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 结果 , result ,typeName=text_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 制单人 , originatorId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 执行班组 , groupId ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 保养项目数 , itemCount ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 待保养项目数 , waitCount ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 保养班组 , groupId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('执行班组')}" class="search-label groupId-label">执行班组</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('保养班组')}" class="search-label groupId-label">保养班组</span><span class="search-colon">:</span></div>
                         <div id="groupId" th:data="${'/service-eam/eam-maintain-group/query-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
                     <!-- 保养类型 , maintainType ,typeName=select_box, isHideInSearch=false -->
@@ -96,9 +99,9 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('设备型号')}" class="search-label assetModel-label">设备型号</span><span class="search-colon">:</span></div>
                         <input id="assetModel" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
-                    <!-- 设备序列号 , assetSn ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 设备序列 , assetSn ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('设备序列号')}" class="search-label assetSn-label">设备序列号</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('设备序列')}" class="search-label assetSn-label">设备序列</span><span class="search-colon">:</span></div>
                         <input id="assetSn" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
@@ -106,9 +109,9 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 实际开始时间 , actStartTime ,typeName=date_input, isHideInSearch=false -->
+                    <!-- 实际开始 , actStartTime ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('实际开始时间')}" class="search-label actStartTime-label">实际开始时间</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('实际开始')}" class="search-label actStartTime-label">实际开始</span><span class="search-colon">:</span></div>
                             <input type="text" id="actStartTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
                             <input type="text" id="actStartTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
