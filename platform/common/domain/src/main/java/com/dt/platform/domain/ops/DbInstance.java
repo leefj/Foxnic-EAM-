@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_DB_INSTANCE;
@@ -9,21 +10,27 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import java.math.BigDecimal;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.DbInstanceMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 数据库实例
+ * <p>数据库实例 , 数据表 ops_db_instance 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 06:17:08
- * @sign 57EEAD0D78F5BEFF343C544A4342F5A6
+ * @since 2023-07-14 20:45:51
+ * @sign E71AA9FA09EB3A39910E9918848CD5E3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_db_instance")
+@ApiModel(description = "数据库实例 ; 数据库实例 , 数据表 ops_db_instance 的PO类型")
 public class DbInstance extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -145,6 +152,7 @@ public class DbInstance extends Entity {
 	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -552,6 +560,7 @@ public class DbInstance extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public DbInstance setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -718,6 +727,60 @@ public class DbInstance extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public DbInstance clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public DbInstance duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.DbInstanceMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.DbInstanceMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setLogMethod(this.getLogMethod());
+		inst.setHostId(this.getHostId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setBackupDatakeep(this.getBackupDatakeep());
+		inst.setBackupType(this.getBackupType());
+		inst.setLabels(this.getLabels());
+		inst.setBackupSize(this.getBackupSize());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setBackupStrategy(this.getBackupStrategy());
+		inst.setBackupStatus(this.getBackupStatus());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setBackupMethod(this.getBackupMethod());
+		inst.setDatabaseId(this.getDatabaseId());
+		inst.setBackupTime(this.getBackupTime());
+		if(all) {
+			inst.setDatabase(this.getDatabase());
+			inst.setHost(this.getHost());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public DbInstance clone(boolean deep) {
+		return EntityContext.clone(DbInstance.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 DbInstance
 	 * @param dbInstanceMap 包含实体信息的 Map 对象
 	 * @return DbInstance , 转换好的的 DbInstance 对象
@@ -725,7 +788,9 @@ public class DbInstance extends Entity {
 	@Transient
 	public static DbInstance createFrom(Map<String,Object> dbInstanceMap) {
 		if(dbInstanceMap==null) return null;
-		DbInstance po = EntityContext.create(DbInstance.class, dbInstanceMap);
+		DbInstance po = create();
+		EntityContext.copyProperties(po,dbInstanceMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -737,7 +802,9 @@ public class DbInstance extends Entity {
 	@Transient
 	public static DbInstance createFrom(Object pojo) {
 		if(pojo==null) return null;
-		DbInstance po = EntityContext.create(DbInstance.class,pojo);
+		DbInstance po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -747,6 +814,142 @@ public class DbInstance extends Entity {
 	*/
 	@Transient
 	public static DbInstance create() {
-		return EntityContext.create(DbInstance.class);
+		return new com.dt.platform.domain.ops.meta.DbInstanceMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(DbInstanceMeta.NOTES)));
+			this.setLogMethod(DataParser.parse(String.class, map.get(DbInstanceMeta.LOG_METHOD)));
+			this.setHostId(DataParser.parse(String.class, map.get(DbInstanceMeta.HOST_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbInstanceMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(DbInstanceMeta.VERSION)));
+			this.setBackupDatakeep(DataParser.parse(String.class, map.get(DbInstanceMeta.BACKUP_DATAKEEP)));
+			this.setBackupType(DataParser.parse(String.class, map.get(DbInstanceMeta.BACKUP_TYPE)));
+			this.setLabels(DataParser.parse(String.class, map.get(DbInstanceMeta.LABELS)));
+			this.setBackupSize(DataParser.parse(BigDecimal.class, map.get(DbInstanceMeta.BACKUP_SIZE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(DbInstanceMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(DbInstanceMeta.DELETED)));
+			this.setBackupStrategy(DataParser.parse(String.class, map.get(DbInstanceMeta.BACKUP_STRATEGY)));
+			this.setBackupStatus(DataParser.parse(String.class, map.get(DbInstanceMeta.BACKUP_STATUS)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(DbInstanceMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(DbInstanceMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(DbInstanceMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(DbInstanceMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(DbInstanceMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(DbInstanceMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(DbInstanceMeta.ID)));
+			this.setBackupMethod(DataParser.parse(String.class, map.get(DbInstanceMeta.BACKUP_METHOD)));
+			this.setDatabaseId(DataParser.parse(String.class, map.get(DbInstanceMeta.DATABASE_ID)));
+			this.setBackupTime(DataParser.parse(Date.class, map.get(DbInstanceMeta.BACKUP_TIME)));
+			// others
+			this.setDatabase(DataParser.parse(ServiceInfo.class, map.get(DbInstanceMeta.DATABASE)));
+			this.setHost(DataParser.parse(Host.class, map.get(DbInstanceMeta.HOST)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(DbInstanceMeta.NOTES));
+				this.setLogMethod( (String)map.get(DbInstanceMeta.LOG_METHOD));
+				this.setHostId( (String)map.get(DbInstanceMeta.HOST_ID));
+				this.setUpdateTime( (Date)map.get(DbInstanceMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(DbInstanceMeta.VERSION));
+				this.setBackupDatakeep( (String)map.get(DbInstanceMeta.BACKUP_DATAKEEP));
+				this.setBackupType( (String)map.get(DbInstanceMeta.BACKUP_TYPE));
+				this.setLabels( (String)map.get(DbInstanceMeta.LABELS));
+				this.setBackupSize( (BigDecimal)map.get(DbInstanceMeta.BACKUP_SIZE));
+				this.setCreateBy( (String)map.get(DbInstanceMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(DbInstanceMeta.DELETED));
+				this.setBackupStrategy( (String)map.get(DbInstanceMeta.BACKUP_STRATEGY));
+				this.setBackupStatus( (String)map.get(DbInstanceMeta.BACKUP_STATUS));
+				this.setCreateTime( (Date)map.get(DbInstanceMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(DbInstanceMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(DbInstanceMeta.DELETE_TIME));
+				this.setName( (String)map.get(DbInstanceMeta.NAME));
+				this.setTenantId( (String)map.get(DbInstanceMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(DbInstanceMeta.DELETE_BY));
+				this.setId( (String)map.get(DbInstanceMeta.ID));
+				this.setBackupMethod( (String)map.get(DbInstanceMeta.BACKUP_METHOD));
+				this.setDatabaseId( (String)map.get(DbInstanceMeta.DATABASE_ID));
+				this.setBackupTime( (Date)map.get(DbInstanceMeta.BACKUP_TIME));
+				// others
+				this.setDatabase( (ServiceInfo)map.get(DbInstanceMeta.DATABASE));
+				this.setHost( (Host)map.get(DbInstanceMeta.HOST));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(DbInstanceMeta.NOTES)));
+			this.setLogMethod(DataParser.parse(String.class, r.getValue(DbInstanceMeta.LOG_METHOD)));
+			this.setHostId(DataParser.parse(String.class, r.getValue(DbInstanceMeta.HOST_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbInstanceMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(DbInstanceMeta.VERSION)));
+			this.setBackupDatakeep(DataParser.parse(String.class, r.getValue(DbInstanceMeta.BACKUP_DATAKEEP)));
+			this.setBackupType(DataParser.parse(String.class, r.getValue(DbInstanceMeta.BACKUP_TYPE)));
+			this.setLabels(DataParser.parse(String.class, r.getValue(DbInstanceMeta.LABELS)));
+			this.setBackupSize(DataParser.parse(BigDecimal.class, r.getValue(DbInstanceMeta.BACKUP_SIZE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(DbInstanceMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(DbInstanceMeta.DELETED)));
+			this.setBackupStrategy(DataParser.parse(String.class, r.getValue(DbInstanceMeta.BACKUP_STRATEGY)));
+			this.setBackupStatus(DataParser.parse(String.class, r.getValue(DbInstanceMeta.BACKUP_STATUS)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(DbInstanceMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DbInstanceMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(DbInstanceMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(DbInstanceMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(DbInstanceMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(DbInstanceMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(DbInstanceMeta.ID)));
+			this.setBackupMethod(DataParser.parse(String.class, r.getValue(DbInstanceMeta.BACKUP_METHOD)));
+			this.setDatabaseId(DataParser.parse(String.class, r.getValue(DbInstanceMeta.DATABASE_ID)));
+			this.setBackupTime(DataParser.parse(Date.class, r.getValue(DbInstanceMeta.BACKUP_TIME)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(DbInstanceMeta.NOTES));
+				this.setLogMethod( (String)r.getValue(DbInstanceMeta.LOG_METHOD));
+				this.setHostId( (String)r.getValue(DbInstanceMeta.HOST_ID));
+				this.setUpdateTime( (Date)r.getValue(DbInstanceMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(DbInstanceMeta.VERSION));
+				this.setBackupDatakeep( (String)r.getValue(DbInstanceMeta.BACKUP_DATAKEEP));
+				this.setBackupType( (String)r.getValue(DbInstanceMeta.BACKUP_TYPE));
+				this.setLabels( (String)r.getValue(DbInstanceMeta.LABELS));
+				this.setBackupSize( (BigDecimal)r.getValue(DbInstanceMeta.BACKUP_SIZE));
+				this.setCreateBy( (String)r.getValue(DbInstanceMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(DbInstanceMeta.DELETED));
+				this.setBackupStrategy( (String)r.getValue(DbInstanceMeta.BACKUP_STRATEGY));
+				this.setBackupStatus( (String)r.getValue(DbInstanceMeta.BACKUP_STATUS));
+				this.setCreateTime( (Date)r.getValue(DbInstanceMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(DbInstanceMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(DbInstanceMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(DbInstanceMeta.NAME));
+				this.setTenantId( (String)r.getValue(DbInstanceMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(DbInstanceMeta.DELETE_BY));
+				this.setId( (String)r.getValue(DbInstanceMeta.ID));
+				this.setBackupMethod( (String)r.getValue(DbInstanceMeta.BACKUP_METHOD));
+				this.setDatabaseId( (String)r.getValue(DbInstanceMeta.DATABASE_ID));
+				this.setBackupTime( (Date)r.getValue(DbInstanceMeta.BACKUP_TIME));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -35,6 +35,8 @@ public class OpsDbLocGtr extends BaseCodeGenerator{
 
 
 
+        cfg.view().field(OpsTables.OPS_DB_DATA_LOC.ID).table().hidden(true);
+
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {

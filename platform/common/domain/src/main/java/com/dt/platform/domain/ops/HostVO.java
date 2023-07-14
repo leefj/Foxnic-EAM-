@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 主机VO类型
  * <p>主机 , 数据表 ops_host 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 06:52:16
+ * @since 2023-07-14 16:27:51
  * @sign 9DD9C5BFE09115650ADABC8354C3529E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

@@ -457,13 +457,18 @@ public class GoodsStockController extends SuperController {
         for (String id : ids) {
             GoodsStockVO e = new GoodsStockVO();
             // e.setOwnerCode(ownerType);
+            GoodsStock goods = goodsStockService.getById(id);
             e.setOwnerType(ownerType);
-            if (AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_IN.code().equals(operType) || AssetOperateEnum.EAM_ASSET_STOCK_GOODS_IN.code().equals(operType) || AssetOperateEnum.EAM_ASSET_PART_GOODS_IN.code().equals(operType)) {
+            if (goods != null) {
+                e.setWarehouseId(goods.getWarehouseId());
+            }
+            if (AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_IN.code().equals(operType)
+                    || AssetOperateEnum.EAM_ASSET_STOCK_GOODS_IN.code().equals(operType)
+                    || AssetOperateEnum.EAM_ASSET_PART_GOODS_IN.code().equals(operType)) {
                 // 直接物品
                 e.setGoodsId(id);
             } else {
                 // 获取的是库存数据,再次查询获取物品
-                GoodsStock goods = goodsStockService.getById(id);
                 if (goods != null) {
                     e.setGoodsId(goods.getGoodsId());
                 }
@@ -474,6 +479,7 @@ public class GoodsStockController extends SuperController {
             }
             e.setSelectedCode(selectedCode);
             e.setNotes("");
+       //     e.setWarehouseId("abcd");
             goodsStockService.insert(e, false);
         }
         return ErrorDesc.success();

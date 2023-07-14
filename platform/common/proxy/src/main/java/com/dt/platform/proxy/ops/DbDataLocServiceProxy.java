@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 数据库存放位置 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-11 11:21:30
+ * @since 2023-07-14 20:46:04
  */
 @FeignClient(value = ServiceNames.OPS, contextId = DbDataLocServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface DbDataLocServiceProxy {

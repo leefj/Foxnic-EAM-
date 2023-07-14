@@ -1,7 +1,7 @@
 /**
  * 盘点计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-01-03 10:30:41
+ * @since 2023-07-14 21:08:34
  */
 
 layui.config({
@@ -20,6 +20,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-eam/eam-inventory-plan";
 
+
     //列表页的扩展
     var list={
         /**
@@ -27,6 +28,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+        },
+        /**
+         * 按事件名称移除表格按钮栏的按钮
+         * */
+        removeOperationButtonByEvent(event) {
+            var template=$("#tableOperationTemplate");
+            var content=template.text();
+            content=content.split("\n");
+            var buttons=[]
+            for (let i = 0; i < content.length ; i++) {
+                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
+                    buttons.push(content[i]);
+                }
+            }
+            template.text(buttons.join("\n"))
         },
         /**
          * 表格渲染前调用
@@ -48,7 +64,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 对话框打开之前调用，如果返回 null 则不打开对话框
          * */
         beforeDialog:function (param){
-            param.title="覆盖对话框标题";
+            //param.title="覆盖对话框标题";
             return param;
         },
         /**
@@ -84,15 +100,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterQuery : function (data) {
 
-            console.log('afterDataFill',data);
-            for (var i = 0; i < data.length; i++) {
-                //如果审批中或审批通过的不允许编辑
-                if(data[i].tplId) {
-                   console.log(1)
-                }else{
-                  //  fox.disableButton($('.ops-viewTpl-button').filter("[data-id='" + data[i].id + "']"), true);
-                }
-            }
+        },
+        /**
+         * 单行数据刷新后调用
+         * */
+        afterRefreshRowData: function (data,remote,context) {
 
         },
         /**
@@ -106,7 +118,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单页面打开时，追加更多的参数信息
          * */
         makeFormQueryString:function(data,queryString,action) {
-            console.log("queryString"+queryString);
             return queryString;
         },
         /**
@@ -164,6 +175,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         viewTpl:function (data){
             console.log('viewTpl',data);
         },
+        modifyTpl:function (data){
+            console.log('modifyTpl',data);
+        },
         /**
          * 末尾执行
          */
@@ -186,7 +200,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 窗口调节前
          * */
-        beforeAdjustPopup:function () {
+        beforeAdjustPopup:function (arg) {
             console.log('beforeAdjustPopup');
             return true;
         },
@@ -194,7 +208,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充前
          * */
         beforeDataFill:function (data) {
-
             console.log('beforeDataFill',data);
         },
         /**
@@ -228,15 +241,28 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         onDatePickerChanged:function(id,value, date, endDate) {
             console.log('onDatePickerChanged',id,value, date, endDate);
         },
+        onRadioBoxChanged:function(id,data,checked) {
+            console.log('onRadioChanged',id,data,checked);
+        },
+        onCheckBoxChanged:function(id,data,checked) {
+            console.log('onCheckBoxChanged',id,data,checked);
+        },
+
+        /**
+         * 在流程提交前处理表单数据
+         * */
+        processFormData4Bpm:function(processInstanceId,param,callback) {
+            // 设置流程变量，并通过回调返回
+            var variables={};
+            // 此回调是必须的，否则流程提交会被中断
+            callback(variables);
+        },
         /**
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
         beforeSubmit:function (data) {
-            if(!data.id){
-                data.ownerCode=OWNER_CODE;
-            }
-
             console.log("beforeSubmit",data);
+            data.ownerCode="asset";
             return true;
         },
         /**

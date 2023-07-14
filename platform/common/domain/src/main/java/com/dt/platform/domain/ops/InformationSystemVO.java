@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 信息系统VO类型
  * <p>信息系统 , 数据表 ops_information_system 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 06:52:21
+ * @since 2023-07-14 11:02:35
  * @sign E44ACF06B21D6A6C363C391795B04E9C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -414,6 +414,7 @@ public class InformationSystemVO extends InformationSystem {
 		inst.setHardwareInfo(this.getHardwareInfo());
 		inst.setFileIds(this.getFileIds());
 		inst.setUpdateBy(this.getUpdateBy());
+		inst.setSystemType(this.getSystemType());
 		inst.setId(this.getId());
 		inst.setBackupInfo(this.getBackupInfo());
 		inst.setDbInfo(this.getDbInfo());
@@ -425,6 +426,7 @@ public class InformationSystemVO extends InformationSystem {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setRto(this.getRto());
 		inst.setVersion(this.getVersion());
+		inst.setParentId(this.getParentId());
 		inst.setLabels(this.getLabels());
 		inst.setOnlineDate(this.getOnlineDate());
 		inst.setRpo(this.getRpo());
@@ -454,6 +456,7 @@ public class InformationSystemVO extends InformationSystem {
 			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
+			inst.setParentInformationSystem(this.getParentInformationSystem());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
@@ -530,6 +533,7 @@ public class InformationSystemVO extends InformationSystem {
 			this.setHardwareInfo(DataParser.parse(String.class, map.get(InformationSystemVOMeta.HARDWARE_INFO)));
 			this.setFileIds(DataParser.parse(String.class, map.get(InformationSystemVOMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InformationSystemVOMeta.UPDATE_BY)));
+			this.setSystemType(DataParser.parse(String.class, map.get(InformationSystemVOMeta.SYSTEM_TYPE)));
 			this.setId(DataParser.parse(String.class, map.get(InformationSystemVOMeta.ID)));
 			this.setBackupInfo(DataParser.parse(String.class, map.get(InformationSystemVOMeta.BACKUP_INFO)));
 			this.setDbInfo(DataParser.parse(String.class, map.get(InformationSystemVOMeta.DB_INFO)));
@@ -541,6 +545,7 @@ public class InformationSystemVO extends InformationSystem {
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(InformationSystemVOMeta.UPDATE_TIME)));
 			this.setRto(DataParser.parse(String.class, map.get(InformationSystemVOMeta.RTO)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(InformationSystemVOMeta.VERSION)));
+			this.setParentId(DataParser.parse(String.class, map.get(InformationSystemVOMeta.PARENT_ID)));
 			this.setLabels(DataParser.parse(String.class, map.get(InformationSystemVOMeta.LABELS)));
 			this.setOnlineDate(DataParser.parse(Date.class, map.get(InformationSystemVOMeta.ONLINE_DATE)));
 			this.setRpo(DataParser.parse(String.class, map.get(InformationSystemVOMeta.RPO)));
@@ -568,6 +573,7 @@ public class InformationSystemVO extends InformationSystem {
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(InformationSystemVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(InformationSystemVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(InformationSystemVOMeta.SORT_FIELD)));
+			this.setParentInformationSystem(DataParser.parse(InformationSystem.class, map.get(InformationSystemVOMeta.PARENT_INFORMATION_SYSTEM)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(InformationSystemVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(InformationSystemVOMeta.QUERY_LOGIC)));
 			this.setInfoSystemOpsMethod(DataParser.parse(DictItem.class, map.get(InformationSystemVOMeta.INFO_SYSTEM_OPS_METHOD)));
@@ -586,6 +592,7 @@ public class InformationSystemVO extends InformationSystem {
 				this.setHardwareInfo( (String)map.get(InformationSystemVOMeta.HARDWARE_INFO));
 				this.setFileIds( (String)map.get(InformationSystemVOMeta.FILE_IDS));
 				this.setUpdateBy( (String)map.get(InformationSystemVOMeta.UPDATE_BY));
+				this.setSystemType( (String)map.get(InformationSystemVOMeta.SYSTEM_TYPE));
 				this.setId( (String)map.get(InformationSystemVOMeta.ID));
 				this.setBackupInfo( (String)map.get(InformationSystemVOMeta.BACKUP_INFO));
 				this.setDbInfo( (String)map.get(InformationSystemVOMeta.DB_INFO));
@@ -597,6 +604,7 @@ public class InformationSystemVO extends InformationSystem {
 				this.setUpdateTime( (Date)map.get(InformationSystemVOMeta.UPDATE_TIME));
 				this.setRto( (String)map.get(InformationSystemVOMeta.RTO));
 				this.setVersion( (Integer)map.get(InformationSystemVOMeta.VERSION));
+				this.setParentId( (String)map.get(InformationSystemVOMeta.PARENT_ID));
 				this.setLabels( (String)map.get(InformationSystemVOMeta.LABELS));
 				this.setOnlineDate( (Date)map.get(InformationSystemVOMeta.ONLINE_DATE));
 				this.setRpo( (String)map.get(InformationSystemVOMeta.RPO));
@@ -624,6 +632,7 @@ public class InformationSystemVO extends InformationSystem {
 				this.setPageIndex( (Integer)map.get(InformationSystemVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(InformationSystemVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(InformationSystemVOMeta.SORT_FIELD));
+				this.setParentInformationSystem( (InformationSystem)map.get(InformationSystemVOMeta.PARENT_INFORMATION_SYSTEM));
 				this.setDataOrigin( (String)map.get(InformationSystemVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(InformationSystemVOMeta.QUERY_LOGIC));
 				this.setInfoSystemOpsMethod( (DictItem)map.get(InformationSystemVOMeta.INFO_SYSTEM_OPS_METHOD));
@@ -655,6 +664,7 @@ public class InformationSystemVO extends InformationSystem {
 			this.setHardwareInfo(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.HARDWARE_INFO)));
 			this.setFileIds(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.UPDATE_BY)));
+			this.setSystemType(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.SYSTEM_TYPE)));
 			this.setId(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.ID)));
 			this.setBackupInfo(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.BACKUP_INFO)));
 			this.setDbInfo(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.DB_INFO)));
@@ -666,6 +676,7 @@ public class InformationSystemVO extends InformationSystem {
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InformationSystemVOMeta.UPDATE_TIME)));
 			this.setRto(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.RTO)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(InformationSystemVOMeta.VERSION)));
+			this.setParentId(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.PARENT_ID)));
 			this.setLabels(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.LABELS)));
 			this.setOnlineDate(DataParser.parse(Date.class, r.getValue(InformationSystemVOMeta.ONLINE_DATE)));
 			this.setRpo(DataParser.parse(String.class, r.getValue(InformationSystemVOMeta.RPO)));
@@ -695,6 +706,7 @@ public class InformationSystemVO extends InformationSystem {
 				this.setHardwareInfo( (String)r.getValue(InformationSystemVOMeta.HARDWARE_INFO));
 				this.setFileIds( (String)r.getValue(InformationSystemVOMeta.FILE_IDS));
 				this.setUpdateBy( (String)r.getValue(InformationSystemVOMeta.UPDATE_BY));
+				this.setSystemType( (String)r.getValue(InformationSystemVOMeta.SYSTEM_TYPE));
 				this.setId( (String)r.getValue(InformationSystemVOMeta.ID));
 				this.setBackupInfo( (String)r.getValue(InformationSystemVOMeta.BACKUP_INFO));
 				this.setDbInfo( (String)r.getValue(InformationSystemVOMeta.DB_INFO));
@@ -706,6 +718,7 @@ public class InformationSystemVO extends InformationSystem {
 				this.setUpdateTime( (Date)r.getValue(InformationSystemVOMeta.UPDATE_TIME));
 				this.setRto( (String)r.getValue(InformationSystemVOMeta.RTO));
 				this.setVersion( (Integer)r.getValue(InformationSystemVOMeta.VERSION));
+				this.setParentId( (String)r.getValue(InformationSystemVOMeta.PARENT_ID));
 				this.setLabels( (String)r.getValue(InformationSystemVOMeta.LABELS));
 				this.setOnlineDate( (Date)r.getValue(InformationSystemVOMeta.ONLINE_DATE));
 				this.setRpo( (String)r.getValue(InformationSystemVOMeta.RPO));

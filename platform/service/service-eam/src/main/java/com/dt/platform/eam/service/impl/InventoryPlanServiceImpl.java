@@ -1,67 +1,55 @@
 package com.dt.platform.eam.service.impl;
 
-
-import com.dt.platform.constants.enums.common.StatusEnableEnum;
-import com.dt.platform.constants.enums.eam.AssetInventoryActionStatusEnum;
-import com.dt.platform.constants.enums.eam.AssetInventoryOwnerEnum;
-import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.domain.eam.Inventory;
-import com.dt.platform.domain.eam.InventoryPlan;
-import com.dt.platform.domain.eam.Position;
-import com.dt.platform.domain.eam.Warehouse;
-import com.dt.platform.domain.eam.meta.InventoryMeta;
-import com.dt.platform.domain.eam.meta.InventoryPlanMeta;
-import com.dt.platform.eam.service.IInventoryPlanService;
-import com.dt.platform.proxy.common.CodeModuleServiceProxy;
-import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.commons.collection.MapUtil;
-import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.entity.ReferCause;
-import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.excel.ExcelStructure;
-import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.dao.excel.ValidateResult;
-import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.sql.meta.DBField;
-import org.github.foxnic.web.domain.hrm.Employee;
-import org.github.foxnic.web.domain.pcm.Catalog;
-import org.github.foxnic.web.framework.dao.DBConfigs;
+import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
-import javax.annotation.Resource;
-import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Date;
+
+import com.dt.platform.domain.eam.InventoryPlan;
+import com.dt.platform.domain.eam.InventoryPlanVO;
 import java.util.List;
+import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.dao.data.PagedList;
+import com.github.foxnic.dao.entity.SuperService;
+import com.github.foxnic.dao.spec.DAO;
+import java.lang.reflect.Field;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.api.error.ErrorDesc;
+import com.github.foxnic.dao.excel.ExcelWriter;
+import com.github.foxnic.dao.excel.ValidateResult;
+import com.github.foxnic.dao.excel.ExcelStructure;
+import java.io.InputStream;
+import com.github.foxnic.sql.meta.DBField;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.meta.DBColumnMeta;
+import com.github.foxnic.sql.expr.Select;
+import java.util.ArrayList;
+import com.dt.platform.eam.service.IInventoryPlanService;
+import org.github.foxnic.web.framework.dao.DBConfigs;
+import java.util.Date;
 import java.util.Map;
 
 /**
  * <p>
- * 盘点计划 服务实现
+ * 盘点计划服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-01-03 10:30:36
+ * @since 2023-07-14 21:19:28
 */
 
 
 @Service("EamInventoryPlanService")
+
 public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implements IInventoryPlanService {
-
-
-	@Autowired
-	private InventoryServiceImpl inventoryServiceImpl;
-
 
 	/**
 	 * 注入DAO对象
 	 * */
-	@Resource(name=DBConfigs.PRIMARY_DAO)
+	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
 	/**
@@ -89,7 +77,6 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 		return r;
 	}
 
-
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param inventoryPlan 数据对象
@@ -110,9 +97,9 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 		return super.insertList(inventoryPlanList);
 	}
 
-
+	
 	/**
-	 * 按主键删除 盘点计划
+	 * 按主键删除盘点计划
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -131,9 +118,9 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 			return r;
 		}
 	}
-
+	
 	/**
-	 * 按主键删除 盘点计划
+	 * 按主键删除盘点计划
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -142,7 +129,7 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 		InventoryPlan inventoryPlan = new InventoryPlan();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		inventoryPlan.setId(id);
-		inventoryPlan.setDeleted(dao.getDBTreaty().getTrueValue());
+		inventoryPlan.setDeleted(true);
 		inventoryPlan.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		inventoryPlan.setDeleteTime(new Date());
 		try {
@@ -191,9 +178,9 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 		return super.updateList(inventoryPlanList , mode);
 	}
 
-
+	
 	/**
-	 * 按主键更新字段 盘点计划
+	 * 按主键更新盘点计划
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -205,115 +192,9 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 		return suc>0;
 	}
 
-
-
-	@Override
-	public Result applyTpl(String id) {
-		InventoryPlan sample = new InventoryPlan();
-		if(id==null) throw new IllegalArgumentException("id 不允许为 null ");
-		sample.setId(id);
-		InventoryPlan plan=dao.queryEntity(sample);
-		dao().fill(plan)
-				.with(InventoryPlanMeta.INVENTORY_PLAN_TYPE)
-				.with(InventoryPlanMeta.INVENTORY)
-				.execute();
-		if(!StatusEnableEnum.ENABLE.code().equals(plan.getStatus())){
-			return ErrorDesc.failureMessage("当前状态无法应用模板!");
-		}
-
-
-
-		if(plan.getInventory()!=null&&plan.getInventory().getId()!=null){
-
-		}else{
-			return ErrorDesc.failureMessage("未找到模板，无法应用!");
-		}
-
-		Result codeResult= CodeModuleServiceProxy.api().generateCode(AssetOperateEnum.EAM_ASSET_INVENTORY.code());
-		if(!codeResult.isSuccess()){
-			return codeResult;
-		}
-
-		Inventory inventoryTpl=plan.getInventory();
-		inventoryTpl.setBusinessCode(codeResult.getData().toString());
-		inventoryServiceImpl.dao().fill(inventoryTpl)
-				.with(InventoryMeta.MANAGER)
-				.with(InventoryMeta.DIRECTOR)
-				.with(InventoryMeta.INVENTORY_USER)
-				.with(InventoryMeta.CATEGORY)
-				.with(InventoryMeta.WAREHOUSE)
-				.with(InventoryMeta.POSITION)
-				.execute();
-		inventoryTpl.setId(null);
-		//处理分类
-		List<Catalog> catalogList=inventoryTpl.getCategory();
-		if(catalogList!=null&&catalogList.size()>0){
-			List<String> catalogIdList =new ArrayList<>();
-			for(Catalog c : catalogList){
-				catalogIdList.add(c.getId());
-			}
-			inventoryTpl.setCategoryIds(catalogIdList);
-		}
-		//处理位置
-		List<Position> positionList=inventoryTpl.getPosition();
-		if(positionList!=null&&positionList.size()>0){
-			List<String> positionIdList =new ArrayList<>();
-			for(Position c : positionList){
-				positionIdList.add(c.getId());
-			}
-			inventoryTpl.setPositionIds(positionIdList);
-		}
-
-		//处理仓库
-		List<Warehouse> warehouseList=inventoryTpl.getWarehouse();
-		if(warehouseList!=null&&warehouseList.size()>0){
-			List<String> warehouseIdList =new ArrayList<>();
-			for(Warehouse c : warehouseList){
-				warehouseIdList.add(c.getId());
-			}
-			inventoryTpl.setWarehouseIds(warehouseIdList);
-		}
-
-		//处理盘点人
-		List<Employee> inventoryList=inventoryTpl.getInventoryUser();
-		if(inventoryList!=null&&inventoryList.size()>0){
-			List<String> inventoryIdList =new ArrayList<>();
-			for(Employee c : inventoryList){
-				inventoryIdList.add(c.getId());
-			}
-			inventoryTpl.setInventoryUserIds(inventoryIdList);
-		}
-
-		//处理管理人
-		List<Employee> managerList=inventoryTpl.getManager();
-		if(managerList!=null&&managerList.size()>0){
-			List<String> managerIdList =new ArrayList<>();
-			for(Employee c : managerList){
-				managerIdList.add(c.getId());
-			}
-			inventoryTpl.setInventoryManagerIds(managerIdList);
-		}
-
-		//处理责任人
-		List<Employee> directorList=inventoryTpl.getDirector();
-		if(directorList!=null&&directorList.size()>0){
-			List<String> directorIdList =new ArrayList<>();
-			for(Employee c : directorList){
-				directorIdList.add(c.getId());
-			}
-			inventoryTpl.setInventoryDirectorIds(directorIdList);
-		}
-		inventoryTpl.setOwnerCode(AssetInventoryOwnerEnum.ASSET_INVENTORY.code());
-
-		inventoryTpl.setCreateTime(new Date());
-		inventoryTpl.setInventoryStatus(AssetInventoryActionStatusEnum.NOT_START.code());
-		return inventoryServiceImpl.insert(inventoryTpl,false);
-
-	}
-
-
+	
 	/**
-	 * 按主键获取 盘点计划
+	 * 按主键获取盘点计划
 	 *
 	 * @param id 主键
 	 * @return InventoryPlan 数据对象
@@ -325,9 +206,22 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
 	@Override
 	public List<InventoryPlan> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
+	@Override
+	public List<InventoryPlan> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
+	}
+
+	@Override
+	public Map<String, InventoryPlan> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, InventoryPlan::getId);
 	}
 
 
@@ -339,7 +233,7 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<InventoryPlan> queryList(InventoryPlan sample) {
+	public List<InventoryPlan> queryList(InventoryPlanVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -353,7 +247,7 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<InventoryPlan> queryPagedList(InventoryPlan sample, int pageSize, int pageIndex) {
+	public PagedList<InventoryPlan> queryPagedList(InventoryPlanVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -384,22 +278,7 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 		return false;
 	}
 
-	@Override
-	public ExcelWriter exportExcel(InventoryPlan sample) {
-		return super.exportExcel(sample);
-	}
-
-	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
-	}
-
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
-
-/**
+	/**
 	 * 批量检查引用
 	 * @param ids  检查这些ID是否又被外部表引用
 	 * */
@@ -410,10 +289,8 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }

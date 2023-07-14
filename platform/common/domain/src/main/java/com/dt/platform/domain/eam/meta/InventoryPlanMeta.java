@@ -5,13 +5,14 @@ import com.dt.platform.domain.eam.InventoryPlan;
 import java.util.Date;
 import com.dt.platform.domain.eam.Inventory;
 import org.github.foxnic.web.domain.system.DictItem;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-01-03 10:30:33
- * @sign C2074623F356DD7F649836872F7B6AA2
+ * @since 2023-07-14 21:19:28
+ * @sign 8EAE16A44ADCB18CDF5CEE05C98B8994
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -407,5 +408,45 @@ public class InventoryPlanMeta {
 			super.setInventoryPlanType(inventoryPlanType);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public InventoryPlan clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public InventoryPlan duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setPlanType(this.getPlanType());
+			inst.setNotes(this.getNotes());
+			inst.setOwnerCode(this.getOwnerCode());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setTplId(this.getTplId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setInventoryPlanType(this.getInventoryPlanType());
+				inst.setInventory(this.getInventory());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

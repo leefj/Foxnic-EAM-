@@ -12,7 +12,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 
 public enum OpsDbEnvEnum implements CodeTextEnum {
-    PROD("prod" , "生产"),
+//    PROD("prod" , "生产"),
     DEV("dev" , "开发"),
     TEST("test" , "测试"),
     UAT("uat" , "准生产"),

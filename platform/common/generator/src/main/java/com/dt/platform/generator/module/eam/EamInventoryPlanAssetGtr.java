@@ -33,6 +33,8 @@ public class EamInventoryPlanAssetGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.OWNER_CODE).basic().hidden(true);
 
         //eam_asset_change_data
+        cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.NAME).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.NAME).search().fuzzySearch();
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_INVENTORY_PLAN.STATUS,
@@ -41,6 +43,8 @@ public class EamInventoryPlanAssetGtr extends BaseCodeGenerator{
                 }
         );
 
+        cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.CREATE_TIME).table().hidden(true);
+        cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.STATUS).form().validate().required().form()
                 .label("状态").radioBox().enumType(StatusEnableEnum.class);
 
@@ -57,14 +61,21 @@ public class EamInventoryPlanAssetGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_INVENTORY_PLAN.NAME,
-                        EAMTables.EAM_INVENTORY_PLAN.NOTES,
-                }, new Object[] {
                         EAMTables.EAM_INVENTORY_PLAN.STATUS,
+
+                }, new Object[] {
                         EAMTables.EAM_INVENTORY_PLAN.PLAN_TYPE,
+                }
+        );
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        EAMTables.EAM_INVENTORY_PLAN.NOTES,
+
                 }
         );
 
 
+        cfg.view().list().disableCreateNew();
         cfg.view().list().operationColumn().addActionButton("查看模板","viewTpl","viewTpl","viewTpl");
         cfg.view().list().operationColumn().addActionButton("修改模板","modifyTpl","modifyTpl","modifyTpl");
 
@@ -78,9 +89,9 @@ public class EamInventoryPlanAssetGtr extends BaseCodeGenerator{
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
                 .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
-                .setFormPage(WriteMode.IGNORE) //表单HTML页
-                .setListPage(WriteMode.IGNORE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
+                .setListPage(WriteMode.WRITE_TEMP_FILE)//列表HTML页
+                .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         cfg.buildAll();
     }
 

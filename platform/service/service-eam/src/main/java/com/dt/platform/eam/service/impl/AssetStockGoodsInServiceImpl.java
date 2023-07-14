@@ -43,6 +43,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -103,6 +104,13 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 			return ErrorDesc.failureMessage("请选择数据");
 		}
 
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getStockInNumber().compareTo(new BigDecimal("0"))==1){
+				Logger.info("check ok");
+			}else{
+				return ErrorDesc.failureMessage("编号:"+list.get(i).getId()+",当前数量必须大于0");
+			}
+		}
 
 		//制单人
 		if(StringUtil.isBlank(assetStockGoodsIn.getOriginatorId())){
@@ -398,6 +406,14 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 		List<GoodsStock> list =goodsStockService.queryList(qE);
 		if(list.size()==0){
 			return ErrorDesc.failureMessage("请选择数据");
+		}
+
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getStockInNumber().compareTo(new BigDecimal("0"))==1){
+				Logger.info("check ok");
+			}else{
+				return ErrorDesc.failureMessage("编号:"+list.get(i).getId()+",当前数量必须大于0");
+			}
 		}
 
 		Result r=super.update(assetStockGoodsIn , mode , throwsException);

@@ -58,6 +58,8 @@ public class OpsDbDocGtr extends BaseCodeGenerator{
 
         cfg.view().list().disableBatchDelete();
 
+        cfg.view().field(OpsTables.OPS_DB_DOC.ID).table().hidden(true);
+
         cfg.view().formWindow().bottomSpace(60);
         cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,

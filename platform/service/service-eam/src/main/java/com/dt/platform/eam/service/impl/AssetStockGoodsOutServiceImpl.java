@@ -24,6 +24,7 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
@@ -44,6 +45,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -99,6 +101,20 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 		if(list.size()==0){
 			return ErrorDesc.failureMessage("请选择数据");
 		}
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getStockInNumber().compareTo(new BigDecimal("0"))==1){
+				Logger.info("check ok");
+			}else{
+				return ErrorDesc.failureMessage("编号:"+list.get(i).getId()+",当前数量必须大于0");
+			}
+			if(list.get(i).getWarehouseId().equals(assetStockGoodsOut.getWarehouseId())){
+				Logger.info("check ok");
+			}else{
+				return ErrorDesc.failureMessage("出库物品所在仓库需和本次出库仓库保持一致");
+			}
+		}
+
+
 
 
 		//制单人、
@@ -356,6 +372,20 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 		if(list.size()==0){
 			return ErrorDesc.failureMessage("请选择数据");
 		}
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getStockInNumber().compareTo(new BigDecimal("0"))==1){
+				Logger.info("check ok");
+			}else{
+				return ErrorDesc.failureMessage("编号:"+list.get(i).getId()+",当前数量必须大于0");
+			}
+			if(list.get(i).getWarehouseId().equals(assetStockGoodsOut.getWarehouseId())){
+				Logger.info("check ok");
+			}else{
+				return ErrorDesc.failureMessage("出库物品所在仓库需和本次出库仓库保持一致");
+			}
+		}
+
+
 		Result r=super.update(assetStockGoodsOut , mode , throwsException);
 		for(int i=0;i<list.size();i++){
 			list.get(i).setWarehouseId(assetStockGoodsOut.getWarehouseId());

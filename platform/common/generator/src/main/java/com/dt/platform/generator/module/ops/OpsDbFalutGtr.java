@@ -68,6 +68,8 @@ public class OpsDbFalutGtr extends BaseCodeGenerator{
                 .toolbar(false).paging(true)
                 .fillWith(DbFaultRcdMeta.DB_INSTANCE).muliti(false);
 
+        cfg.view().field(OpsTables.OPS_DB_FAULT_RCD.ID).table().hidden(true);
+
 
         cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().bottomSpace(60);

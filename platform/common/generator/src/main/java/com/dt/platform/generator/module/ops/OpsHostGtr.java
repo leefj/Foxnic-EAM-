@@ -55,19 +55,19 @@ public class OpsHostGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_HOST.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_HOST.ARCH).table().disable(true);
         cfg.view().field(OpsTables.OPS_HOST.HOST_NAME).search().fuzzySearch();
-        cfg.view().field(OpsTables.OPS_HOST.HOST_MEMORY).search().hidden(true);
-        cfg.view().field(OpsTables.OPS_HOST.HOST_CPU).search().hidden(true);
 
-        cfg.view().field(OpsTables.OPS_HOST.DIRECTOR_USERNAME).search().fuzzySearch().hidden(true);
-        cfg.view().field(OpsTables.OPS_HOST.USER_APP_USED).search().fuzzySearch().hidden(true);
-        cfg.view().field(OpsTables.OPS_HOST.USER_DB_ADMIN).search().fuzzySearch().hidden(true);
-        cfg.view().field(OpsTables.OPS_HOST.USER_DB_USED).search().fuzzySearch().hidden(true);
-        cfg.view().field(OpsTables.OPS_HOST.USER_OS_ADMIN).search().fuzzySearch().hidden(true);
-        cfg.view().field(OpsTables.OPS_HOST.USER_OPS_OPER).search().fuzzySearch().hidden(true);
-        cfg.view().field(OpsTables.OPS_HOST.USER_OTHER).search().fuzzySearch().hidden(true);
 
-        cfg.view().field(OpsTables.OPS_HOST.OFFLINE_TIME).search().hidden(true);
-        cfg.view().field(OpsTables.OPS_HOST.ONLINE_TIME).search().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.DIRECTOR_USERNAME).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_HOST.USER_APP_USED).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_HOST.USER_DB_ADMIN).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_HOST.USER_DB_USED).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_HOST.USER_OS_ADMIN).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_HOST.USER_OPS_OPER).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_HOST.USER_OTHER).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_HOST.HOST_IPV6).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_HOST.HOST_VIP).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_HOST.USER_OTHER).search().fuzzySearch();
+
 
         cfg.view().field(OpsTables.OPS_HOST.HOST_NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_HOST.HOST_IP).search().fuzzySearch();
@@ -88,7 +88,29 @@ public class OpsHostGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_HOST.HOST_NOTES).table().hidden(true);
         cfg.view().field(OpsTables.OPS_HOST.PASSWORD_STRATEGY_ID).table().hidden(true);
 
+        cfg.view().field(OpsTables.OPS_HOST.OFFLINE_TIME).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.ONLINE_TIME).table().hidden(true);
 
+        cfg.view().field(OpsTables.OPS_HOST.PORT_LIST).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.ONLINE_TIME).table().hidden(true);
+
+        cfg.view().field(OpsTables.OPS_HOST.HOST_MEMORY).search();
+        cfg.view().field(OpsTables.OPS_HOST.HOST_CPU).search();
+
+        cfg.view().field(OpsTables.OPS_HOST.HOST_MEMORY).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.HOST_CPU).table().hidden(true);
+
+        cfg.view().field(OpsTables.OPS_HOST.DIRECTOR_USERNAME).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.USER_APP_USED).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.USER_DB_ADMIN).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.USER_DB_USED).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.USER_OS_ADMIN).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.USER_OPS_OPER).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.USER_OTHER).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.HOST_IPV6).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.HOST_VIP).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.USER_OTHER).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_HOST.FILE_IDS).table().disable(true);
 
 //        //保存关系
         cfg.service().addRelationSaveAction(HostMidServiceImpl.class,HostVOMeta.HOST_MIDDLEWARE_IDS);

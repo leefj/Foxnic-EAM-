@@ -1,28 +1,36 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_INVENTORY_PLAN;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
-import org.github.foxnic.web.domain.system.DictItem;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import org.github.foxnic.web.domain.system.DictItem;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.InventoryPlanMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 盘点计划
+ * <p>盘点计划 , 数据表 eam_inventory_plan 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-01-03 10:30:33
- * @sign C2074623F356DD7F649836872F7B6AA2
+ * @since 2023-07-14 21:19:28
+ * @sign 8EAE16A44ADCB18CDF5CEE05C98B8994
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_inventory_plan")
+@ApiModel(description = "盘点计划 ; 盘点计划 , 数据表 eam_inventory_plan 的PO类型")
 public class InventoryPlan extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -33,31 +41,31 @@ public class InventoryPlan extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "732341628848570368")
 	private String id;
 	
 	/**
 	 * 计划名称：计划名称
 	*/
-	@ApiModelProperty(required = false,value="计划名称" , notes = "计划名称")
+	@ApiModelProperty(required = false,value="计划名称" , notes = "计划名称" , example = "12")
 	private String name;
 	
 	/**
 	 * 归属：归属
 	*/
-	@ApiModelProperty(required = false,value="归属" , notes = "归属")
+	@ApiModelProperty(required = false,value="归属" , notes = "归属" , example = "asset")
 	private String ownerCode;
 	
 	/**
 	 * 启用状态：启用状态
 	*/
-	@ApiModelProperty(required = false,value="启用状态" , notes = "启用状态")
+	@ApiModelProperty(required = false,value="启用状态" , notes = "启用状态" , example = "disable")
 	private String status;
 	
 	/**
 	 * 计划类型：计划类型
 	*/
-	@ApiModelProperty(required = false,value="计划类型" , notes = "计划类型")
+	@ApiModelProperty(required = false,value="计划类型" , notes = "计划类型" , example = "plan")
 	private String planType;
 	
 	/**
@@ -69,38 +77,41 @@ public class InventoryPlan extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "1212")
 	private String notes;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-14 09:04:11")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-14 09:15:19")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -117,13 +128,13 @@ public class InventoryPlan extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "4")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -357,12 +368,43 @@ public class InventoryPlan extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public InventoryPlan setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public InventoryPlan setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -510,6 +552,53 @@ public class InventoryPlan extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public InventoryPlan clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public InventoryPlan duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.InventoryPlanMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.InventoryPlanMeta.$$proxy$$();
+		inst.setPlanType(this.getPlanType());
+		inst.setNotes(this.getNotes());
+		inst.setOwnerCode(this.getOwnerCode());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setTplId(this.getTplId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setInventoryPlanType(this.getInventoryPlanType());
+			inst.setInventory(this.getInventory());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public InventoryPlan clone(boolean deep) {
+		return EntityContext.clone(InventoryPlan.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 InventoryPlan
 	 * @param inventoryPlanMap 包含实体信息的 Map 对象
 	 * @return InventoryPlan , 转换好的的 InventoryPlan 对象
@@ -517,7 +606,9 @@ public class InventoryPlan extends Entity {
 	@Transient
 	public static InventoryPlan createFrom(Map<String,Object> inventoryPlanMap) {
 		if(inventoryPlanMap==null) return null;
-		InventoryPlan po = EntityContext.create(InventoryPlan.class, inventoryPlanMap);
+		InventoryPlan po = create();
+		EntityContext.copyProperties(po,inventoryPlanMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -529,7 +620,9 @@ public class InventoryPlan extends Entity {
 	@Transient
 	public static InventoryPlan createFrom(Object pojo) {
 		if(pojo==null) return null;
-		InventoryPlan po = EntityContext.create(InventoryPlan.class,pojo);
+		InventoryPlan po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -539,6 +632,114 @@ public class InventoryPlan extends Entity {
 	*/
 	@Transient
 	public static InventoryPlan create() {
-		return EntityContext.create(InventoryPlan.class);
+		return new com.dt.platform.domain.eam.meta.InventoryPlanMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setPlanType(DataParser.parse(String.class, map.get(InventoryPlanMeta.PLAN_TYPE)));
+			this.setNotes(DataParser.parse(String.class, map.get(InventoryPlanMeta.NOTES)));
+			this.setOwnerCode(DataParser.parse(String.class, map.get(InventoryPlanMeta.OWNER_CODE)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(InventoryPlanMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(InventoryPlanMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(InventoryPlanMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(InventoryPlanMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(InventoryPlanMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(InventoryPlanMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(InventoryPlanMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(InventoryPlanMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(InventoryPlanMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(InventoryPlanMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(InventoryPlanMeta.ID)));
+			this.setTplId(DataParser.parse(String.class, map.get(InventoryPlanMeta.TPL_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(InventoryPlanMeta.STATUS)));
+			// others
+			this.setInventoryPlanType(DataParser.parse(DictItem.class, map.get(InventoryPlanMeta.INVENTORY_PLAN_TYPE)));
+			this.setInventory(DataParser.parse(Inventory.class, map.get(InventoryPlanMeta.INVENTORY)));
+			return true;
+		} else {
+			try {
+				this.setPlanType( (String)map.get(InventoryPlanMeta.PLAN_TYPE));
+				this.setNotes( (String)map.get(InventoryPlanMeta.NOTES));
+				this.setOwnerCode( (String)map.get(InventoryPlanMeta.OWNER_CODE));
+				this.setUpdateTime( (Date)map.get(InventoryPlanMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(InventoryPlanMeta.VERSION));
+				this.setCreateBy( (String)map.get(InventoryPlanMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(InventoryPlanMeta.DELETED));
+				this.setCreateTime( (Date)map.get(InventoryPlanMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(InventoryPlanMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(InventoryPlanMeta.DELETE_TIME));
+				this.setName( (String)map.get(InventoryPlanMeta.NAME));
+				this.setTenantId( (String)map.get(InventoryPlanMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(InventoryPlanMeta.DELETE_BY));
+				this.setId( (String)map.get(InventoryPlanMeta.ID));
+				this.setTplId( (String)map.get(InventoryPlanMeta.TPL_ID));
+				this.setStatus( (String)map.get(InventoryPlanMeta.STATUS));
+				// others
+				this.setInventoryPlanType( (DictItem)map.get(InventoryPlanMeta.INVENTORY_PLAN_TYPE));
+				this.setInventory( (Inventory)map.get(InventoryPlanMeta.INVENTORY));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setPlanType(DataParser.parse(String.class, r.getValue(InventoryPlanMeta.PLAN_TYPE)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(InventoryPlanMeta.NOTES)));
+			this.setOwnerCode(DataParser.parse(String.class, r.getValue(InventoryPlanMeta.OWNER_CODE)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InventoryPlanMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(InventoryPlanMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(InventoryPlanMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(InventoryPlanMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(InventoryPlanMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InventoryPlanMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(InventoryPlanMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(InventoryPlanMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(InventoryPlanMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InventoryPlanMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(InventoryPlanMeta.ID)));
+			this.setTplId(DataParser.parse(String.class, r.getValue(InventoryPlanMeta.TPL_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(InventoryPlanMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setPlanType( (String)r.getValue(InventoryPlanMeta.PLAN_TYPE));
+				this.setNotes( (String)r.getValue(InventoryPlanMeta.NOTES));
+				this.setOwnerCode( (String)r.getValue(InventoryPlanMeta.OWNER_CODE));
+				this.setUpdateTime( (Date)r.getValue(InventoryPlanMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(InventoryPlanMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(InventoryPlanMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(InventoryPlanMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(InventoryPlanMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(InventoryPlanMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(InventoryPlanMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(InventoryPlanMeta.NAME));
+				this.setTenantId( (String)r.getValue(InventoryPlanMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(InventoryPlanMeta.DELETE_BY));
+				this.setId( (String)r.getValue(InventoryPlanMeta.ID));
+				this.setTplId( (String)r.getValue(InventoryPlanMeta.TPL_ID));
+				this.setStatus( (String)r.getValue(InventoryPlanMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -2,7 +2,7 @@
 /**
  * 主机 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 06:52:19
+ * @since 2023-07-14 16:27:53
  */
  -->
  <!DOCTYPE html>
@@ -137,8 +137,20 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 上线时间 , onlineTime ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 下线时间 , offlineTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 上线时间 , onlineTime ,typeName=date_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('上线时间')}" class="search-label onlineTime-label">上线时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="onlineTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                            <span class="search-dash">-</span>
+                            <input type="text" id="onlineTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                    </div>
+                    <!-- 下线时间 , offlineTime ,typeName=date_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('下线时间')}" class="search-label offlineTime-label">下线时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="offlineTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                            <span class="search-dash">-</span>
+                            <input type="text" id="offlineTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                    </div>
 
 
                 </div>

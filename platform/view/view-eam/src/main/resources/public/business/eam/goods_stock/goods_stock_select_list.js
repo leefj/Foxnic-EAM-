@@ -140,19 +140,7 @@ function ListPage() {
                 cols: [COLS],
                 done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
                 footer : {
-                    exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-                    importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-                        params : {} ,
-                        callback : function(r) {
-                            if(r.success) {
-                                layer.msg(fox.translate('数据导入成功')+"!");
-                            } else {
-                                layer.msg(fox.translate('数据导入失败')+"!");
-                            }
-                            // 是否执行后续逻辑：错误提示
-                            return false;
-                        }
-                    }:false
+
                 }
             };
             window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);

@@ -42,7 +42,7 @@ public class OpsDbRecoverRecGtr extends BaseCodeGenerator{
                 }
 
         );
-
+        cfg.view().field(OpsTables.OPS_DB_RECOVERY_REC.ID).table().hidden(true);
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);

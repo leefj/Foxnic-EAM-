@@ -24,7 +24,7 @@ import java.util.Map;
  * 数据库存放位置服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-11 11:21:30
+ * @since 2023-07-14 20:46:04
 */
 
 public interface IDbDataLocService extends  ISimpleIdService<DbDataLoc,String> {

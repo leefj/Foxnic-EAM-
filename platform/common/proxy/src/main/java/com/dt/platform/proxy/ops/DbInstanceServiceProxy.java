@@ -16,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * 数据库实例  控制器服务代理
+ * 数据库实例 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 06:17:08
+ * @since 2023-07-14 20:45:51
  */
 @FeignClient(value = ServiceNames.OPS, contextId = DbInstanceServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface DbInstanceServiceProxy {

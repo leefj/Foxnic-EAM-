@@ -12,13 +12,14 @@ import com.dt.platform.domain.ops.ServiceInfo;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.ops.CiphertextBoxData;
 import com.dt.platform.domain.ops.ServiceCategory;
+import com.dt.platform.domain.ops.DbEnvInfo;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 17:55:37
+ * @since 2023-07-14 20:45:34
  * @sign 072C5A86F75E9E21D5871FA491A60284
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -616,9 +617,29 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> DB_TYPE_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DB_TYPE_IDS, java.util.List.class, "dbTypeIds", "dbTypeIds", java.lang.String.class, null);
 	
 	/**
+	 * otherEnvInfoList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.DbEnvInfo
+	*/
+	public static final String OTHER_ENV_INFO_LIST="otherEnvInfoList";
+	
+	/**
+	 * otherEnvInfoList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.DbEnvInfo
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,com.dt.platform.domain.ops.DbEnvInfo> OTHER_ENV_INFO_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,OTHER_ENV_INFO_LIST, java.util.List.class, "otherEnvInfoList", "otherEnvInfoList", com.dt.platform.domain.ops.DbEnvInfo.class, null);
+	
+	/**
+	 * otherEnvInfoCount , 类型: java.lang.String
+	*/
+	public static final String OTHER_ENV_INFO_COUNT="otherEnvInfoCount";
+	
+	/**
+	 * otherEnvInfoCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> OTHER_ENV_INFO_COUNT_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,OTHER_ENV_INFO_COUNT, java.lang.String.class, "otherEnvInfoCount", "otherEnvInfoCount", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , UID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS , DATA_LOC_DATA , DATA_LOC_IDS , CIPHERTEXT_BOX_DATA , DB_TYPE_LIST , DB_TYPE_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , UID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS , DATA_LOC_DATA , DATA_LOC_IDS , CIPHERTEXT_BOX_DATA , DB_TYPE_LIST , DB_TYPE_IDS , OTHER_ENV_INFO_LIST , OTHER_ENV_INFO_COUNT };
 	
 	/**
 	 * 代理类
@@ -1276,6 +1297,28 @@ public class DbInfoVOMeta extends DbInfoMeta {
 			super.setDbTypeIds(dbTypeIds);
 			return this;
 		}
+		
+		/**
+		 * 设置 otherEnvInfoList
+		 * @param otherEnvInfoList otherEnvInfoList
+		 * @return 当前对象
+		*/
+		public DbInfo setOtherEnvInfoList(List<DbEnvInfo> otherEnvInfoList) {
+			super.change(OTHER_ENV_INFO_LIST,super.getOtherEnvInfoList(),otherEnvInfoList);
+			super.setOtherEnvInfoList(otherEnvInfoList);
+			return this;
+		}
+		
+		/**
+		 * 设置 otherEnvInfoCount
+		 * @param otherEnvInfoCount otherEnvInfoCount
+		 * @return 当前对象
+		*/
+		public DbInfo setOtherEnvInfoCount(String otherEnvInfoCount) {
+			super.change(OTHER_ENV_INFO_COUNT,super.getOtherEnvInfoCount(),otherEnvInfoCount);
+			super.setOtherEnvInfoCount(otherEnvInfoCount);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1329,28 +1372,30 @@ public class DbInfoVOMeta extends DbInfoMeta {
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
-				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setBackupInfoList(this.getBackupInfoList());
 				inst.setPageSize(this.getPageSize());
+				inst.setOtherEnvInfoList(this.getOtherEnvInfoList());
 				inst.setType(this.getType());
 				inst.setDbTypeIds(this.getDbTypeIds());
-				inst.setLabelList(this.getLabelList());
+				inst.setOtherEnvInfoCount(this.getOtherEnvInfoCount());
 				inst.setLabelIds(this.getLabelIds());
 				inst.setDataLocData(this.getDataLocData());
-				inst.setPageIndex(this.getPageIndex());
-				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setHost(this.getHost());
 				inst.setDataOrigin(this.getDataOrigin());
-				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setBackupInfoIds(this.getBackupInfoIds());
 				inst.setDeployModeDict(this.getDeployModeDict());
+				inst.setCiphertextBoxData(this.getCiphertextBoxData());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setLabelList(this.getLabelList());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setIds(this.getIds());
 				inst.setSearchValue(this.getSearchValue());
 				inst.setDataLocIds(this.getDataLocIds());
-				inst.setCiphertextBoxData(this.getCiphertextBoxData());
 				inst.setDbTypeList(this.getDbTypeList());
 			}
 			inst.clearModifies();

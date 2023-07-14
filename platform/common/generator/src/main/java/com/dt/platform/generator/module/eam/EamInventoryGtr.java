@@ -242,11 +242,14 @@ public class EamInventoryGtr extends BaseCodeGenerator{
         cfg.service().addRelationSaveAction(InventoryWarehouseServiceImpl.class,InventoryVOMeta.WAREHOUSE_IDS);
         cfg.service().addRelationSaveAction(InventoryCatalogServiceImpl.class,InventoryVOMeta.CATEGORY_IDS);
 
+
+
         cfg.view().form().addJsVariable("BILL_ID","[[${billId}]]","单据ID");
 
 
 
         //文件生成覆盖模式
+
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest

@@ -47,6 +47,11 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addListProperty(ServiceCategory.class,"dbTypeList","dbTypeList","dbTypeList");
         cfg.getPoClassFile().addListProperty(String.class,"dbTypeIds","dbTypeIds","dbTypeIds");
 
+        cfg.getPoClassFile().addListProperty(DbEnvInfo.class,"otherEnvInfoList","otherEnvInfoList","otherEnvInfoList");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"otherEnvInfoCount","otherEnvInfoCount","otherEnvInfoCount");
+
+
+
         cfg.view().field(OpsTables.OPS_DB_INFO.NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_INFO.CREATE_TIME).search().range();
@@ -112,6 +117,8 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).form().textInput();
 
+        cfg.view().field(DbInfoMeta.OTHER_ENV_INFO_COUNT).basic().label("其他环境数量").table().disable(false);
+
         cfg.view().field(OpsTables.OPS_DB_INFO.DATA_LOC).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.FILE_IDS).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.DB_SIZE).table().disable(true);
@@ -125,16 +132,20 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_INFO.USER_INFO).table().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.ADMIN_USER_LIST).table().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.DISASTER_RECOVERY_STRATEGY).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.USER_USE_INFO).table().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.CLEAR_STRATEGY).table().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_INFO).table().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.DEPLOY_MODE).table().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.TOOL_STRATEGY).table().hidden(true);
-
-
+        cfg.view().field(OpsTables.OPS_DB_INFO.CREATE_TIME).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_STRATEGY).table().hidden(true);
+        cfg.view().field(OpsTables.OPS_DB_INFO.DATA_LOC).table().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.VOUCHER_STR).form().textArea().height(100);
         cfg.view().field(OpsTables.OPS_DB_INFO.USER_INFO).form().textArea().height(100);
         cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_INFO).form().textArea().height(100);
 
+
+        cfg.view().field(OpsTables.OPS_DB_INFO.ID).table().hidden(true);
 
         cfg.view().field(OpsTables.OPS_DB_INFO.NAME).form().validate().required();
         cfg.view().field(OpsTables.OPS_DB_INFO.DB_SIZE).form().numberInput().defaultValue(0.0).integer();

@@ -144,7 +144,6 @@ public class AssetStockGoodsAdjustServiceImpl extends SuperService<AssetStockGoo
 
 		Result r=super.insert(assetStockGoodsAdjust,throwsException);
 		for(int i=0;i<list.size();i++){
-			list.get(i).setWarehouseId(assetStockGoodsAdjust.getWarehouseId());
 			list.get(i).setBusinessCode(assetStockGoodsAdjust.getBusinessCode());
 			list.get(i).setOwnerCode(assetStockGoodsAdjust.getOwnerType());
 		}
@@ -351,7 +350,6 @@ public class AssetStockGoodsAdjustServiceImpl extends SuperService<AssetStockGoo
 
 		Result r=super.update(assetStockGoodsAdjust , mode , throwsException);
 		for(int i=0;i<list.size();i++){
-			list.get(i).setWarehouseId(assetStockGoodsAdjust.getWarehouseId());
 			list.get(i).setBusinessCode(assetStockGoodsAdjust.getBusinessCode());
 			list.get(i).setOwnerCode(assetStockGoodsAdjust.getOwnerType());
 		}

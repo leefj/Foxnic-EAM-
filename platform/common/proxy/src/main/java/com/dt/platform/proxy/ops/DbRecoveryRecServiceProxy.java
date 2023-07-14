@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 数据库恢复 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 23:00:02
+ * @since 2023-07-14 20:47:35
  */
 @FeignClient(value = ServiceNames.OPS, contextId = DbRecoveryRecServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface DbRecoveryRecServiceProxy {

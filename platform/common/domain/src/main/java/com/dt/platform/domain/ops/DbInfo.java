@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 17:55:37
- * @sign FBC1E56604C5160DE1F5C9AEF1708902
+ * @since 2023-07-14 20:45:34
+ * @sign CEF8A3CEDE2F11EE6CAC540E8DEC1EE1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -326,6 +326,18 @@ public class DbInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="dbTypeIds" , notes = "dbTypeIds")
 	private List<String> dbTypeIds;
+	
+	/**
+	 * otherEnvInfoList：otherEnvInfoList
+	*/
+	@ApiModelProperty(required = false,value="otherEnvInfoList" , notes = "otherEnvInfoList")
+	private List<DbEnvInfo> otherEnvInfoList;
+	
+	/**
+	 * otherEnvInfoCount：otherEnvInfoCount
+	*/
+	@ApiModelProperty(required = false,value="otherEnvInfoCount" , notes = "otherEnvInfoCount")
+	private String otherEnvInfoCount;
 	
 	/**
 	 * 获得 主键<br>
@@ -1338,6 +1350,55 @@ public class DbInfo extends Entity {
 		this.dbTypeIds.addAll(Arrays.asList(dbTypeId));
 		return this;
 	}
+	
+	/**
+	 * 获得 otherEnvInfoList<br>
+	 * otherEnvInfoList
+	 * @return otherEnvInfoList
+	*/
+	public List<DbEnvInfo> getOtherEnvInfoList() {
+		return otherEnvInfoList;
+	}
+	
+	/**
+	 * 设置 otherEnvInfoList
+	 * @param otherEnvInfoList otherEnvInfoList
+	 * @return 当前对象
+	*/
+	public DbInfo setOtherEnvInfoList(List<DbEnvInfo> otherEnvInfoList) {
+		this.otherEnvInfoList=otherEnvInfoList;
+		return this;
+	}
+	
+	/**
+	 * 添加 otherEnvInfoList
+	 * @param otherEnvInfo otherEnvInfoList
+	 * @return 当前对象
+	*/
+	public DbInfo addOtherEnvInfo(DbEnvInfo... otherEnvInfo) {
+		if(this.otherEnvInfoList==null) otherEnvInfoList=new ArrayList<>();
+		this.otherEnvInfoList.addAll(Arrays.asList(otherEnvInfo));
+		return this;
+	}
+	
+	/**
+	 * 获得 otherEnvInfoCount<br>
+	 * otherEnvInfoCount
+	 * @return otherEnvInfoCount
+	*/
+	public String getOtherEnvInfoCount() {
+		return otherEnvInfoCount;
+	}
+	
+	/**
+	 * 设置 otherEnvInfoCount
+	 * @param otherEnvInfoCount otherEnvInfoCount
+	 * @return 当前对象
+	*/
+	public DbInfo setOtherEnvInfoCount(String otherEnvInfoCount) {
+		this.otherEnvInfoCount=otherEnvInfoCount;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1419,15 +1480,17 @@ public class DbInfo extends Entity {
 		inst.setTypeId(this.getTypeId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setBackupInfoList(this.getBackupInfoList());
+			inst.setOtherEnvInfoList(this.getOtherEnvInfoList());
+			inst.setType(this.getType());
+			inst.setDbTypeIds(this.getDbTypeIds());
+			inst.setOtherEnvInfoCount(this.getOtherEnvInfoCount());
 			inst.setLabelList(this.getLabelList());
 			inst.setLabelIds(this.getLabelIds());
 			inst.setDataLocData(this.getDataLocData());
-			inst.setBackupInfoList(this.getBackupInfoList());
 			inst.setHost(this.getHost());
 			inst.setBackupInfoIds(this.getBackupInfoIds());
 			inst.setDeployModeDict(this.getDeployModeDict());
-			inst.setType(this.getType());
-			inst.setDbTypeIds(this.getDbTypeIds());
 			inst.setDataLocIds(this.getDataLocIds());
 			inst.setCiphertextBoxData(this.getCiphertextBoxData());
 			inst.setDbTypeList(this.getDbTypeList());
@@ -1526,9 +1589,10 @@ public class DbInfo extends Entity {
 			this.setTypeId(DataParser.parse(String.class, map.get(DbInfoMeta.TYPE_ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(DbInfoMeta.STATUS)));
 			// others
+			this.setType(DataParser.parse(ServiceInfo.class, map.get(DbInfoMeta.TYPE)));
+			this.setOtherEnvInfoCount(DataParser.parse(String.class, map.get(DbInfoMeta.OTHER_ENV_INFO_COUNT)));
 			this.setHost(DataParser.parse(Host.class, map.get(DbInfoMeta.HOST)));
 			this.setDeployModeDict(DataParser.parse(DictItem.class, map.get(DbInfoMeta.DEPLOY_MODE_DICT)));
-			this.setType(DataParser.parse(ServiceInfo.class, map.get(DbInfoMeta.TYPE)));
 			this.setCiphertextBoxData(DataParser.parse(CiphertextBoxData.class, map.get(DbInfoMeta.CIPHERTEXT_BOX_DATA)));
 			return true;
 		} else {
@@ -1569,9 +1633,10 @@ public class DbInfo extends Entity {
 				this.setTypeId( (String)map.get(DbInfoMeta.TYPE_ID));
 				this.setStatus( (String)map.get(DbInfoMeta.STATUS));
 				// others
+				this.setType( (ServiceInfo)map.get(DbInfoMeta.TYPE));
+				this.setOtherEnvInfoCount( (String)map.get(DbInfoMeta.OTHER_ENV_INFO_COUNT));
 				this.setHost( (Host)map.get(DbInfoMeta.HOST));
 				this.setDeployModeDict( (DictItem)map.get(DbInfoMeta.DEPLOY_MODE_DICT));
-				this.setType( (ServiceInfo)map.get(DbInfoMeta.TYPE));
 				this.setCiphertextBoxData( (CiphertextBoxData)map.get(DbInfoMeta.CIPHERTEXT_BOX_DATA));
 				return true;
 			} catch (Exception e) {

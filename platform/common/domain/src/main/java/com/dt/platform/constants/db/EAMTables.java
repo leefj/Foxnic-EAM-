@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-07-12 13:48:29
+ * @since 2023-07-14 23:46:09
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -12961,6 +12961,351 @@ public class EAMTables {
 	}
 	
 	/**
+	 * 备件关联
+	*/
+	public static class EAM_DEVICE_ASSOCIATE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_device_associate";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField ASSOCIATE_NAME = new DBField(DBDataType.STRING , "associate_name","associateName","名称","名称",false,false,true);
+		
+		/**
+		 * 父节点
+		*/
+		public static final DBField PARENT_ID = new DBField(DBDataType.STRING , "parent_id","parentId","父节点","父节点",false,false,true);
+		
+		/**
+		 * 排序
+		*/
+		public static final DBField SORT = new DBField(DBDataType.INTEGER , "sort","sort","排序","排序",false,false,true);
+		
+		/**
+		 * 节点路径
+		*/
+		public static final DBField HIERARCHY = new DBField(DBDataType.STRING , "hierarchy","hierarchy","节点路径","节点路径",false,false,true);
+		
+		/**
+		 * 节点路径名称
+		*/
+		public static final DBField HIERARCHY_NAME = new DBField(DBDataType.STRING , "hierarchy_name","hierarchyName","节点路径名称","节点路径名称",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public EAM_DEVICE_ASSOCIATE() {
+			this.init($NAME,"备件关联" , ID , ASSOCIATE_NAME , PARENT_ID , SORT , HIERARCHY , HIERARCHY_NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final EAM_DEVICE_ASSOCIATE $TABLE=new EAM_DEVICE_ASSOCIATE();
+	}
+	
+	/**
+	 * 备件关联
+	*/
+	public static class EAM_DEVICE_ASSOCIATE_ITEM extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_device_associate_item";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 关联
+		*/
+		public static final DBField ASSOCIATE_ID = new DBField(DBDataType.STRING , "associate_id","associateId","关联","关联",false,false,true);
+		
+		/**
+		 * 设备备件
+		*/
+		public static final DBField OWNER_ID = new DBField(DBDataType.STRING , "owner_id","ownerId","设备备件","设备备件",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public EAM_DEVICE_ASSOCIATE_ITEM() {
+			this.init($NAME,"备件关联" , ID , ASSOCIATE_ID , OWNER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final EAM_DEVICE_ASSOCIATE_ITEM $TABLE=new EAM_DEVICE_ASSOCIATE_ITEM();
+	}
+	
+	/**
+	 * 备件清单
+	*/
+	public static class EAM_DEVICE_SP extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_device_sp";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 编号
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编号","编号",false,false,true);
+		
+		/**
+		 * 备件状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","备件状态","备件状态",false,false,true);
+		
+		/**
+		 * 备件名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","备件名称","备件名称",false,false,true);
+		
+		/**
+		 * 序列号
+		*/
+		public static final DBField SN = new DBField(DBDataType.STRING , "sn","sn","序列号","序列号",false,false,true);
+		
+		/**
+		 * 来源描述
+		*/
+		public static final DBField SOURCE_DESC = new DBField(DBDataType.STRING , "source_desc","sourceDesc","来源描述","来源描述",false,false,true);
+		
+		/**
+		 * 存放位置
+		*/
+		public static final DBField LOC_ID = new DBField(DBDataType.STRING , "loc_id","locId","存放位置","存放位置",false,false,true);
+		
+		/**
+		 * 关联使用
+		*/
+		public static final DBField ASSOCIATE_OWNER = new DBField(DBDataType.STRING , "associate_owner","associateOwner","关联使用","关联使用",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public EAM_DEVICE_SP() {
+			this.init($NAME,"备件清单" , ID , CODE , STATUS , NAME , SN , SOURCE_DESC , LOC_ID , ASSOCIATE_OWNER , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final EAM_DEVICE_SP $TABLE=new EAM_DEVICE_SP();
+	}
+	
+	/**
+	 * 备件记录
+	*/
+	public static class EAM_DEVICE_SP_RCD extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_device_sp_rcd";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 备件
+		*/
+		public static final DBField SP_ID = new DBField(DBDataType.STRING , "sp_id","spId","备件","备件",false,false,true);
+		
+		/**
+		 * 使用人
+		*/
+		public static final DBField OPER_ID = new DBField(DBDataType.STRING , "oper_id","operId","使用人","使用人",false,false,true);
+		
+		/**
+		 * 操作时间
+		*/
+		public static final DBField OPER_TIME = new DBField(DBDataType.DATE , "oper_time","operTime","操作时间","操作时间",false,false,true);
+		
+		/**
+		 * 操作内容
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","操作内容","操作内容",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public EAM_DEVICE_SP_RCD() {
+			this.init($NAME,"备件记录" , ID , SP_ID , OPER_ID , OPER_TIME , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final EAM_DEVICE_SP_RCD $TABLE=new EAM_DEVICE_SP_RCD();
+	}
+	
+	/**
 	 * 故障登记
 	*/
 	public static class EAM_FAILURE_REGISTRATION extends DBTable {
@@ -14702,9 +15047,9 @@ public class EAMTables {
 		public static final DBField ACT_FINISH_TIME = new DBField(DBDataType.DATE , "act_finish_time","actFinishTime","实际完成","实际完成",false,false,true);
 		
 		/**
-		 * 实际工时
+		 * 实际用时
 		*/
-		public static final DBField ACT_TOTAL_COST = new DBField(DBDataType.DECIMAL , "act_total_cost","actTotalCost","实际工时","实际工时",false,false,true);
+		public static final DBField ACT_TOTAL_COST = new DBField(DBDataType.DECIMAL , "act_total_cost","actTotalCost","实际用时","实际用时",false,false,true);
 		
 		/**
 		 * 提醒时间
