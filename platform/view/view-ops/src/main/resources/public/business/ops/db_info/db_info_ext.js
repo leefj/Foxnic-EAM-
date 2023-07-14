@@ -94,6 +94,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="otherEnvInfoCount" ){
+                if(value){
+                    return value
+                }else{
+                    return 0;
+                }
+            }
             if(value==null) return "";
             return value;
         },

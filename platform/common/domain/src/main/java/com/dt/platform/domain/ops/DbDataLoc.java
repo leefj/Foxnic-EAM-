@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库存放位置
  * <p>数据库存放位置 , 数据表 ops_db_data_loc 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-11 11:21:30
+ * @since 2023-07-14 20:46:04
  * @sign 7F5CB60FB41967618BBCA280352A586A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -40,19 +40,19 @@ public class DbDataLoc extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "665541433180028928")
 	private String id;
 	
 	/**
 	 * 存放位置：存放位置
 	*/
-	@ApiModelProperty(required = false,value="存放位置" , notes = "存放位置")
+	@ApiModelProperty(required = false,value="存放位置" , notes = "存放位置" , example = "nbu")
 	private String locId;
 	
 	/**
 	 * 数据库：数据库
 	*/
-	@ApiModelProperty(required = false,value="数据库" , notes = "数据库")
+	@ApiModelProperty(required = false,value="数据库" , notes = "数据库" , example = "665523406220820480")
 	private String dbInfoId;
 	
 	/**
@@ -82,7 +82,7 @@ public class DbDataLoc extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -103,7 +103,7 @@ public class DbDataLoc extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**

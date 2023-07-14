@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-07-12 17:25:41
+ * @since 2023-07-14 10:59:13
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -5341,6 +5341,111 @@ public class OpsTables {
 	}
 	
 	/**
+	 * 主机环境
+	*/
+	public static class OPS_HOST_ENV_INFO extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_host_env_info";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 标签
+		*/
+		public static final DBField LABEL = new DBField(DBDataType.STRING , "label","label","标签","标签",false,false,true);
+		
+		/**
+		 * 信息系统
+		*/
+		public static final DBField SYSTEM_ID = new DBField(DBDataType.STRING , "system_id","systemId","信息系统","信息系统",false,false,true);
+		
+		/**
+		 * 主机名称
+		*/
+		public static final DBField HOSTNAME = new DBField(DBDataType.STRING , "hostname","hostname","主机名称","主机名称",false,false,true);
+		
+		/**
+		 * 物理IP
+		*/
+		public static final DBField IP = new DBField(DBDataType.STRING , "ip","ip","物理IP","物理IP",false,false,true);
+		
+		/**
+		 * IPv6
+		*/
+		public static final DBField IPV6 = new DBField(DBDataType.STRING , "ipv6","ipv6","IPv6","IPv6",false,false,true);
+		
+		/**
+		 * VIP
+		*/
+		public static final DBField VIP = new DBField(DBDataType.STRING , "vip","vip","VIP","VIP",false,false,true);
+		
+		/**
+		 * 描述
+		*/
+		public static final DBField HOST_DESC = new DBField(DBDataType.STRING , "host_desc","hostDesc","描述","描述",false,false,true);
+		
+		/**
+		 * 凭证
+		*/
+		public static final DBField VOUCHER = new DBField(DBDataType.STRING , "voucher","voucher","凭证","凭证",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,true);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public OPS_HOST_ENV_INFO() {
+			this.init($NAME,"主机环境" , ID , LABEL , SYSTEM_ID , HOSTNAME , IP , IPV6 , VIP , HOST_DESC , VOUCHER , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final OPS_HOST_ENV_INFO $TABLE=new OPS_HOST_ENV_INFO();
+	}
+	
+	/**
 	 * 数据库排除
 	*/
 	public static class OPS_HOST_EX_BY_DB extends DBTable {
@@ -5846,9 +5951,9 @@ public class OpsTables {
 		public static final DBField BUSINESS_CONTACT = new DBField(DBDataType.STRING , "business_contact","businessContact","业务联系人","业务联系人",false,false,true);
 		
 		/**
-		 * 所属公司/部门
+		 * 归属部门
 		*/
-		public static final DBField BELONG_ORG_ID = new DBField(DBDataType.STRING , "belong_org_id","belongOrgId","所属公司/部门","所属公司/部门",false,false,true);
+		public static final DBField BELONG_ORG_ID = new DBField(DBDataType.STRING , "belong_org_id","belongOrgId","归属部门","归属部门",false,false,true);
 		
 		/**
 		 * 最后一次演练
@@ -5931,6 +6036,16 @@ public class OpsTables {
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
 		
 		/**
+		 * 上级系统
+		*/
+		public static final DBField PARENT_ID = new DBField(DBDataType.STRING , "parent_id","parentId","上级系统","上级系统",false,false,true);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField SYSTEM_TYPE = new DBField(DBDataType.STRING , "system_type","systemType","类型","类型",false,false,true);
+		
+		/**
 		 * 附件
 		*/
 		public static final DBField FILE_IDS = new DBField(DBDataType.STRING , "file_ids","fileIds","附件","附件",false,false,true);
@@ -5980,7 +6095,7 @@ public class OpsTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OPS_INFORMATION_SYSTEM() {
-			this.init($NAME,"信息系统" , ID , PID , NAME , PROFILE , STATUS , ADDRESS , OPS_METHOD , DEV_METHOD , TECHNICAL_CONTACT , BUSINESS_CONTACT , BELONG_ORG_ID , LASTDRILL_DATE , ONLINE_DATE , OFFLINE_DATE , OS_INFO , DB_INFO , APP_INFO , GRADE , RTO , RPO , HARDWARE_INFO , BACKUP_INFO , SAMEPLACE_BACUP_INFO , DIFFPLACE_BACKUP_INFO , ARCH_METHOD , LABELS , NOTES , FILE_IDS , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"信息系统" , ID , PID , NAME , PROFILE , STATUS , ADDRESS , OPS_METHOD , DEV_METHOD , TECHNICAL_CONTACT , BUSINESS_CONTACT , BELONG_ORG_ID , LASTDRILL_DATE , ONLINE_DATE , OFFLINE_DATE , OS_INFO , DB_INFO , APP_INFO , GRADE , RTO , RPO , HARDWARE_INFO , BACKUP_INFO , SAMEPLACE_BACUP_INFO , DIFFPLACE_BACKUP_INFO , ARCH_METHOD , LABELS , NOTES , PARENT_ID , SYSTEM_TYPE , FILE_IDS , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_INFORMATION_SYSTEM $TABLE=new OPS_INFORMATION_SYSTEM();
 	}

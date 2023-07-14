@@ -1,4 +1,4 @@
-package com.dt.platform.eam.service.impl;
+package com.dt.platform.ops.service.impl;
 
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +8,8 @@ import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
 
-import com.dt.platform.domain.eam.RfidLabel;
-import com.dt.platform.domain.eam.RfidLabelVO;
+import com.dt.platform.domain.ops.HostEnvInfo;
+import com.dt.platform.domain.ops.HostEnvInfoVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -28,23 +28,23 @@ import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
 import java.util.ArrayList;
-import com.dt.platform.eam.service.IRfidLabelService;
+import com.dt.platform.ops.service.IHostEnvInfoService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
 import java.util.Map;
 
 /**
  * <p>
- * RFID标签服务实现
+ * 主机环境服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-27 20:49:10
+ * @since 2023-07-14 20:34:43
 */
 
 
-@Service("EamRfidLabelService")
+@Service("OpsHostEnvInfoService")
 
-public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRfidLabelService {
+public class HostEnvInfoServiceImpl extends SuperService<HostEnvInfo> implements IHostEnvInfoService {
 
 	/**
 	 * 注入DAO对象
@@ -67,49 +67,49 @@ public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRf
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param rfidLabel  数据对象
+	 * @param hostEnvInfo  数据对象
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
 	@Override
-	public Result insert(RfidLabel rfidLabel,boolean throwsException) {
-		Result r=super.insert(rfidLabel,throwsException);
+	public Result insert(HostEnvInfo hostEnvInfo,boolean throwsException) {
+		Result r=super.insert(hostEnvInfo,throwsException);
 		return r;
 	}
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
-	 * @param rfidLabel 数据对象
+	 * @param hostEnvInfo 数据对象
 	 * @return 插入是否成功
 	 * */
 	@Override
-	public Result insert(RfidLabel rfidLabel) {
-		return this.insert(rfidLabel,true);
+	public Result insert(HostEnvInfo hostEnvInfo) {
+		return this.insert(hostEnvInfo,true);
 	}
 
 	/**
 	 * 批量插入实体，事务内
-	 * @param rfidLabelList 实体数据清单
+	 * @param hostEnvInfoList 实体数据清单
 	 * @return 插入是否成功
 	 * */
 	@Override
-	public Result insertList(List<RfidLabel> rfidLabelList) {
-		return super.insertList(rfidLabelList);
+	public Result insertList(List<HostEnvInfo> hostEnvInfoList) {
+		return super.insertList(hostEnvInfoList);
 	}
 
 	
 	/**
-	 * 按主键删除RFID标签
+	 * 按主键删除主机环境
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
 	 */
 	public Result deleteByIdPhysical(String id) {
-		RfidLabel rfidLabel = new RfidLabel();
+		HostEnvInfo hostEnvInfo = new HostEnvInfo();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
-		rfidLabel.setId(id);
+		hostEnvInfo.setId(id);
 		try {
-			boolean suc = dao.deleteEntity(rfidLabel);
+			boolean suc = dao.deleteEntity(hostEnvInfo);
 			return suc?ErrorDesc.success():ErrorDesc.failure();
 		}
 		catch(Exception e) {
@@ -120,20 +120,20 @@ public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRf
 	}
 	
 	/**
-	 * 按主键删除RFID标签
+	 * 按主键删除主机环境
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
 	 */
 	public Result deleteByIdLogical(String id) {
-		RfidLabel rfidLabel = new RfidLabel();
+		HostEnvInfo hostEnvInfo = new HostEnvInfo();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
-		rfidLabel.setId(id);
-		rfidLabel.setDeleted(true);
-		rfidLabel.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
-		rfidLabel.setDeleteTime(new Date());
+		hostEnvInfo.setId(id);
+		hostEnvInfo.setDeleted(true);
+		hostEnvInfo.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
+		hostEnvInfo.setDeleteTime(new Date());
 		try {
-			boolean suc = dao.updateEntity(rfidLabel,SaveMode.NOT_NULL_FIELDS);
+			boolean suc = dao.updateEntity(hostEnvInfo,SaveMode.NOT_NULL_FIELDS);
 			return suc?ErrorDesc.success():ErrorDesc.failure();
 		}
 		catch(Exception e) {
@@ -145,42 +145,42 @@ public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRf
 
 	/**
 	 * 更新，如果执行错误，则抛出异常
-	 * @param rfidLabel 数据对象
+	 * @param hostEnvInfo 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result update(RfidLabel rfidLabel , SaveMode mode) {
-		return this.update(rfidLabel,mode,true);
+	public Result update(HostEnvInfo hostEnvInfo , SaveMode mode) {
+		return this.update(hostEnvInfo,mode,true);
 	}
 
 	/**
 	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
-	 * @param rfidLabel 数据对象
+	 * @param hostEnvInfo 数据对象
 	 * @param mode 保存模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result update(RfidLabel rfidLabel , SaveMode mode,boolean throwsException) {
-		Result r=super.update(rfidLabel , mode , throwsException);
+	public Result update(HostEnvInfo hostEnvInfo , SaveMode mode,boolean throwsException) {
+		Result r=super.update(hostEnvInfo , mode , throwsException);
 		return r;
 	}
 
 	/**
 	 * 更新实体集，事务内
-	 * @param rfidLabelList 数据对象列表
+	 * @param hostEnvInfoList 数据对象列表
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result updateList(List<RfidLabel> rfidLabelList , SaveMode mode) {
-		return super.updateList(rfidLabelList , mode);
+	public Result updateList(List<HostEnvInfo> hostEnvInfoList , SaveMode mode) {
+		return super.updateList(hostEnvInfoList , mode);
 	}
 
 	
 	/**
-	 * 按主键更新RFID标签
+	 * 按主键更新主机环境
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -194,13 +194,13 @@ public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRf
 
 	
 	/**
-	 * 按主键获取RFID标签
+	 * 按主键获取主机环境
 	 *
 	 * @param id 主键
-	 * @return RfidLabel 数据对象
+	 * @return HostEnvInfo 数据对象
 	 */
-	public RfidLabel getById(String id) {
-		RfidLabel sample = new RfidLabel();
+	public HostEnvInfo getById(String id) {
+		HostEnvInfo sample = new HostEnvInfo();
 		if(id==null) throw new IllegalArgumentException("id 不允许为 null ");
 		sample.setId(id);
 		return dao.queryEntity(sample);
@@ -210,18 +210,18 @@ public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRf
 	 * 等价于 queryListByIds
 	 * */
 	@Override
-	public List<RfidLabel> getByIds(List<String> ids) {
+	public List<HostEnvInfo> getByIds(List<String> ids) {
 		return this.queryListByIds(ids);
 	}
 
 	@Override
-	public List<RfidLabel> queryListByIds(List<String> ids) {
+	public List<HostEnvInfo> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
 	}
 
 	@Override
-	public Map<String, RfidLabel> queryMapByIds(List<String> ids) {
-		return super.queryMapByUKeys("id",ids, RfidLabel::getId);
+	public Map<String, HostEnvInfo> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, HostEnvInfo::getId);
 	}
 
 
@@ -233,7 +233,7 @@ public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRf
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<RfidLabel> queryList(RfidLabelVO sample) {
+	public List<HostEnvInfo> queryList(HostEnvInfoVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -247,7 +247,7 @@ public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRf
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<RfidLabel> queryPagedList(RfidLabelVO sample, int pageSize, int pageIndex) {
+	public PagedList<HostEnvInfo> queryPagedList(HostEnvInfoVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -261,19 +261,19 @@ public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRf
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<RfidLabel> queryPagedList(RfidLabel sample, ConditionExpr condition, int pageSize, int pageIndex) {
+	public PagedList<HostEnvInfo> queryPagedList(HostEnvInfo sample, ConditionExpr condition, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, condition, pageSize, pageIndex);
 	}
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
-	 * @param rfidLabel 数据对象
+	 * @param hostEnvInfo 数据对象
 	 * @return 判断结果
 	 */
-	public Boolean checkExists(RfidLabel rfidLabel) {
+	public Boolean checkExists(HostEnvInfo hostEnvInfo) {
 		//TDOD 此处添加判断段的代码
-		//boolean exists=super.checkExists(rfidLabel, SYS_ROLE.NAME);
+		//boolean exists=super.checkExists(hostEnvInfo, SYS_ROLE.NAME);
 		//return exists;
 		return false;
 	}
@@ -290,23 +290,6 @@ public class RfidLabelServiceImpl extends SuperService<RfidLabel> implements IRf
 	}
 
 
-	@Override
-	public ExcelWriter exportExcel(RfidLabel sample) {
-		return super.exportExcel(sample);
-	}
-	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
-	}
-
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
 
 
 

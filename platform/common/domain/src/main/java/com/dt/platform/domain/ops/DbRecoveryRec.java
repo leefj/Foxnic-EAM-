@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库恢复
  * <p>数据库恢复 , 数据表 ops_db_recovery_rec 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 23:00:01
+ * @since 2023-07-14 20:47:35
  * @sign E5EC68DB8E97082DEAAB3F5999510C0E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

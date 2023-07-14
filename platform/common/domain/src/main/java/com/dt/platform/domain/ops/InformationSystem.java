@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 信息系统
  * <p>信息系统 , 数据表 ops_information_system 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 06:52:21
- * @sign 13E102B04D0F716B32E0A5757A1E6D59
+ * @since 2023-07-14 11:02:35
+ * @sign EB4035DF7816F52556BEC8811D787AEA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,7 +45,7 @@ public class InformationSystem extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "732137971578306560")
 	private String id;
 	
 	/**
@@ -57,7 +57,7 @@ public class InformationSystem extends Entity {
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "1212")
 	private String name;
 	
 	/**
@@ -69,7 +69,7 @@ public class InformationSystem extends Entity {
 	/**
 	 * 当前状态：当前状态
 	*/
-	@ApiModelProperty(required = false,value="当前状态" , notes = "当前状态")
+	@ApiModelProperty(required = false,value="当前状态" , notes = "当前状态" , example = "offline")
 	private String status;
 	
 	/**
@@ -103,9 +103,9 @@ public class InformationSystem extends Entity {
 	private String businessContact;
 	
 	/**
-	 * 所属公司/部门：所属公司/部门
+	 * 归属部门：归属部门
 	*/
-	@ApiModelProperty(required = false,value="所属公司/部门" , notes = "所属公司/部门")
+	@ApiModelProperty(required = false,value="归属部门" , notes = "归属部门")
 	private String belongOrgId;
 	
 	/**
@@ -117,7 +117,7 @@ public class InformationSystem extends Entity {
 	/**
 	 * 上线时间：上线时间
 	*/
-	@ApiModelProperty(required = false,value="上线时间" , notes = "上线时间")
+	@ApiModelProperty(required = false,value="上线时间" , notes = "上线时间" , example = "2023-07-14 12:00:00")
 	private Date onlineDate;
 	
 	/**
@@ -205,6 +205,18 @@ public class InformationSystem extends Entity {
 	private String notes;
 	
 	/**
+	 * 上级系统：上级系统
+	*/
+	@ApiModelProperty(required = false,value="上级系统" , notes = "上级系统")
+	private String parentId;
+	
+	/**
+	 * 类型：类型
+	*/
+	@ApiModelProperty(required = false,value="类型" , notes = "类型")
+	private String systemType;
+	
+	/**
 	 * 附件：附件
 	*/
 	@ApiModelProperty(required = false,value="附件" , notes = "附件")
@@ -213,13 +225,13 @@ public class InformationSystem extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-14 07:34:55")
 	private Date createTime;
 	
 	/**
@@ -237,7 +249,7 @@ public class InformationSystem extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -258,13 +270,13 @@ public class InformationSystem extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -308,6 +320,12 @@ public class InformationSystem extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="系统分级" , notes = "系统分级")
 	private DictItem infoSystemGrade;
+	
+	/**
+	 * parentInformationSystem：parentInformationSystem
+	*/
+	@ApiModelProperty(required = false,value="parentInformationSystem" , notes = "parentInformationSystem")
+	private InformationSystem parentInformationSystem;
 	
 	/**
 	 * 获得 主键<br>
@@ -500,17 +518,17 @@ public class InformationSystem extends Entity {
 	}
 	
 	/**
-	 * 获得 所属公司/部门<br>
-	 * 所属公司/部门
-	 * @return 所属公司/部门
+	 * 获得 归属部门<br>
+	 * 归属部门
+	 * @return 归属部门
 	*/
 	public String getBelongOrgId() {
 		return belongOrgId;
 	}
 	
 	/**
-	 * 设置 所属公司/部门
-	 * @param belongOrgId 所属公司/部门
+	 * 设置 归属部门
+	 * @param belongOrgId 归属部门
 	 * @return 当前对象
 	*/
 	public InformationSystem setBelongOrgId(String belongOrgId) {
@@ -819,6 +837,44 @@ public class InformationSystem extends Entity {
 	*/
 	public InformationSystem setNotes(String notes) {
 		this.notes=notes;
+		return this;
+	}
+	
+	/**
+	 * 获得 上级系统<br>
+	 * 上级系统
+	 * @return 上级系统
+	*/
+	public String getParentId() {
+		return parentId;
+	}
+	
+	/**
+	 * 设置 上级系统
+	 * @param parentId 上级系统
+	 * @return 当前对象
+	*/
+	public InformationSystem setParentId(String parentId) {
+		this.parentId=parentId;
+		return this;
+	}
+	
+	/**
+	 * 获得 类型<br>
+	 * 类型
+	 * @return 类型
+	*/
+	public String getSystemType() {
+		return systemType;
+	}
+	
+	/**
+	 * 设置 类型
+	 * @param systemType 类型
+	 * @return 当前对象
+	*/
+	public InformationSystem setSystemType(String systemType) {
+		this.systemType=systemType;
 		return this;
 	}
 	
@@ -1197,6 +1253,25 @@ public class InformationSystem extends Entity {
 		this.infoSystemGrade=infoSystemGrade;
 		return this;
 	}
+	
+	/**
+	 * 获得 parentInformationSystem<br>
+	 * parentInformationSystem
+	 * @return parentInformationSystem
+	*/
+	public InformationSystem getParentInformationSystem() {
+		return parentInformationSystem;
+	}
+	
+	/**
+	 * 设置 parentInformationSystem
+	 * @param parentInformationSystem parentInformationSystem
+	 * @return 当前对象
+	*/
+	public InformationSystem setParentInformationSystem(InformationSystem parentInformationSystem) {
+		this.parentInformationSystem=parentInformationSystem;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1253,6 +1328,7 @@ public class InformationSystem extends Entity {
 		inst.setHardwareInfo(this.getHardwareInfo());
 		inst.setFileIds(this.getFileIds());
 		inst.setUpdateBy(this.getUpdateBy());
+		inst.setSystemType(this.getSystemType());
 		inst.setId(this.getId());
 		inst.setBackupInfo(this.getBackupInfo());
 		inst.setDbInfo(this.getDbInfo());
@@ -1264,6 +1340,7 @@ public class InformationSystem extends Entity {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setRto(this.getRto());
 		inst.setVersion(this.getVersion());
+		inst.setParentId(this.getParentId());
 		inst.setLabels(this.getLabels());
 		inst.setOnlineDate(this.getOnlineDate());
 		inst.setRpo(this.getRpo());
@@ -1284,6 +1361,7 @@ public class InformationSystem extends Entity {
 			inst.setVoucherList(this.getVoucherList());
 			inst.setInfoSystemDevMethod(this.getInfoSystemDevMethod());
 			inst.setInfoSystemGrade(this.getInfoSystemGrade());
+			inst.setParentInformationSystem(this.getParentInformationSystem());
 			inst.setBelongOrganization(this.getBelongOrganization());
 			inst.setInfoSystemOpsMethod(this.getInfoSystemOpsMethod());
 			inst.setVoucherIds(this.getVoucherIds());
@@ -1357,6 +1435,7 @@ public class InformationSystem extends Entity {
 			this.setHardwareInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.HARDWARE_INFO)));
 			this.setFileIds(DataParser.parse(String.class, map.get(InformationSystemMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InformationSystemMeta.UPDATE_BY)));
+			this.setSystemType(DataParser.parse(String.class, map.get(InformationSystemMeta.SYSTEM_TYPE)));
 			this.setId(DataParser.parse(String.class, map.get(InformationSystemMeta.ID)));
 			this.setBackupInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.BACKUP_INFO)));
 			this.setDbInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.DB_INFO)));
@@ -1368,6 +1447,7 @@ public class InformationSystem extends Entity {
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(InformationSystemMeta.UPDATE_TIME)));
 			this.setRto(DataParser.parse(String.class, map.get(InformationSystemMeta.RTO)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(InformationSystemMeta.VERSION)));
+			this.setParentId(DataParser.parse(String.class, map.get(InformationSystemMeta.PARENT_ID)));
 			this.setLabels(DataParser.parse(String.class, map.get(InformationSystemMeta.LABELS)));
 			this.setOnlineDate(DataParser.parse(Date.class, map.get(InformationSystemMeta.ONLINE_DATE)));
 			this.setRpo(DataParser.parse(String.class, map.get(InformationSystemMeta.RPO)));
@@ -1387,6 +1467,7 @@ public class InformationSystem extends Entity {
 			this.setInfoSystemStatus(DataParser.parse(DictItem.class, map.get(InformationSystemMeta.INFO_SYSTEM_STATUS)));
 			this.setInfoSystemDevMethod(DataParser.parse(DictItem.class, map.get(InformationSystemMeta.INFO_SYSTEM_DEV_METHOD)));
 			this.setInfoSystemGrade(DataParser.parse(DictItem.class, map.get(InformationSystemMeta.INFO_SYSTEM_GRADE)));
+			this.setParentInformationSystem(DataParser.parse(InformationSystem.class, map.get(InformationSystemMeta.PARENT_INFORMATION_SYSTEM)));
 			this.setBelongOrganization(DataParser.parse(Organization.class, map.get(InformationSystemMeta.BELONG_ORGANIZATION)));
 			this.setInfoSystemOpsMethod(DataParser.parse(DictItem.class, map.get(InformationSystemMeta.INFO_SYSTEM_OPS_METHOD)));
 			return true;
@@ -1403,6 +1484,7 @@ public class InformationSystem extends Entity {
 				this.setHardwareInfo( (String)map.get(InformationSystemMeta.HARDWARE_INFO));
 				this.setFileIds( (String)map.get(InformationSystemMeta.FILE_IDS));
 				this.setUpdateBy( (String)map.get(InformationSystemMeta.UPDATE_BY));
+				this.setSystemType( (String)map.get(InformationSystemMeta.SYSTEM_TYPE));
 				this.setId( (String)map.get(InformationSystemMeta.ID));
 				this.setBackupInfo( (String)map.get(InformationSystemMeta.BACKUP_INFO));
 				this.setDbInfo( (String)map.get(InformationSystemMeta.DB_INFO));
@@ -1414,6 +1496,7 @@ public class InformationSystem extends Entity {
 				this.setUpdateTime( (Date)map.get(InformationSystemMeta.UPDATE_TIME));
 				this.setRto( (String)map.get(InformationSystemMeta.RTO));
 				this.setVersion( (Integer)map.get(InformationSystemMeta.VERSION));
+				this.setParentId( (String)map.get(InformationSystemMeta.PARENT_ID));
 				this.setLabels( (String)map.get(InformationSystemMeta.LABELS));
 				this.setOnlineDate( (Date)map.get(InformationSystemMeta.ONLINE_DATE));
 				this.setRpo( (String)map.get(InformationSystemMeta.RPO));
@@ -1433,6 +1516,7 @@ public class InformationSystem extends Entity {
 				this.setInfoSystemStatus( (DictItem)map.get(InformationSystemMeta.INFO_SYSTEM_STATUS));
 				this.setInfoSystemDevMethod( (DictItem)map.get(InformationSystemMeta.INFO_SYSTEM_DEV_METHOD));
 				this.setInfoSystemGrade( (DictItem)map.get(InformationSystemMeta.INFO_SYSTEM_GRADE));
+				this.setParentInformationSystem( (InformationSystem)map.get(InformationSystemMeta.PARENT_INFORMATION_SYSTEM));
 				this.setBelongOrganization( (Organization)map.get(InformationSystemMeta.BELONG_ORGANIZATION));
 				this.setInfoSystemOpsMethod( (DictItem)map.get(InformationSystemMeta.INFO_SYSTEM_OPS_METHOD));
 				return true;
@@ -1462,6 +1546,7 @@ public class InformationSystem extends Entity {
 			this.setHardwareInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.HARDWARE_INFO)));
 			this.setFileIds(DataParser.parse(String.class, r.getValue(InformationSystemMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InformationSystemMeta.UPDATE_BY)));
+			this.setSystemType(DataParser.parse(String.class, r.getValue(InformationSystemMeta.SYSTEM_TYPE)));
 			this.setId(DataParser.parse(String.class, r.getValue(InformationSystemMeta.ID)));
 			this.setBackupInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.BACKUP_INFO)));
 			this.setDbInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.DB_INFO)));
@@ -1473,6 +1558,7 @@ public class InformationSystem extends Entity {
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InformationSystemMeta.UPDATE_TIME)));
 			this.setRto(DataParser.parse(String.class, r.getValue(InformationSystemMeta.RTO)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(InformationSystemMeta.VERSION)));
+			this.setParentId(DataParser.parse(String.class, r.getValue(InformationSystemMeta.PARENT_ID)));
 			this.setLabels(DataParser.parse(String.class, r.getValue(InformationSystemMeta.LABELS)));
 			this.setOnlineDate(DataParser.parse(Date.class, r.getValue(InformationSystemMeta.ONLINE_DATE)));
 			this.setRpo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.RPO)));
@@ -1502,6 +1588,7 @@ public class InformationSystem extends Entity {
 				this.setHardwareInfo( (String)r.getValue(InformationSystemMeta.HARDWARE_INFO));
 				this.setFileIds( (String)r.getValue(InformationSystemMeta.FILE_IDS));
 				this.setUpdateBy( (String)r.getValue(InformationSystemMeta.UPDATE_BY));
+				this.setSystemType( (String)r.getValue(InformationSystemMeta.SYSTEM_TYPE));
 				this.setId( (String)r.getValue(InformationSystemMeta.ID));
 				this.setBackupInfo( (String)r.getValue(InformationSystemMeta.BACKUP_INFO));
 				this.setDbInfo( (String)r.getValue(InformationSystemMeta.DB_INFO));
@@ -1513,6 +1600,7 @@ public class InformationSystem extends Entity {
 				this.setUpdateTime( (Date)r.getValue(InformationSystemMeta.UPDATE_TIME));
 				this.setRto( (String)r.getValue(InformationSystemMeta.RTO));
 				this.setVersion( (Integer)r.getValue(InformationSystemMeta.VERSION));
+				this.setParentId( (String)r.getValue(InformationSystemMeta.PARENT_ID));
 				this.setLabels( (String)r.getValue(InformationSystemMeta.LABELS));
 				this.setOnlineDate( (Date)r.getValue(InformationSystemMeta.ONLINE_DATE));
 				this.setRpo( (String)r.getValue(InformationSystemMeta.RPO));

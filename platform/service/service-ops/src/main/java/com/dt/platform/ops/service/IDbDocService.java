@@ -24,7 +24,7 @@ import java.util.Map;
  * 数据库文档服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-11 09:34:12
+ * @since 2023-07-14 20:44:37
 */
 
 public interface IDbDocService extends  ISimpleIdService<DbDoc,String> {

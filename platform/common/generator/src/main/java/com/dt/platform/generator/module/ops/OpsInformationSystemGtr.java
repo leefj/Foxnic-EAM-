@@ -2,12 +2,15 @@ package com.dt.platform.generator.module.ops;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.DictEnum;
+import com.dt.platform.constants.enums.ops.SystemTypeEnum;
 import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.ops.*;
 import com.dt.platform.domain.ops.meta.InformationSystemMeta;
 import com.dt.platform.domain.ops.meta.InformationSystemVOMeta;
 import com.dt.platform.domain.ops.meta.VoucherOwnerMeta;
+import com.dt.platform.domain.vehicle.Info;
 import com.dt.platform.generator.config.Config;
+import com.dt.platform.proxy.ops.InformationSystemServiceProxy;
 import com.dt.platform.proxy.ops.ServiceInfoServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Organization;
@@ -39,6 +42,7 @@ public class OpsInformationSystemGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"infoSystemDevMethod","开发模式","开发模式");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"infoSystemGrade","系统分级","系统分级");
 
+        cfg.getPoClassFile().addSimpleProperty(InformationSystem.class,"parentInformationSystem","parentInformationSystem","parentInformationSystem");
 
         cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.PID).basic().hidden(true);
@@ -71,6 +75,13 @@ public class OpsInformationSystemGtr extends BaseCodeGenerator{
                 .form().button().chooseOrganization(true);
         cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.BELONG_ORG_ID).table().fillBy("belongOrganization","fullName");
 
+
+        cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.PARENT_ID)
+               .form().selectBox().queryApi(InformationSystemServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(false).toolbar(false)
+                .valueField(InformationSystemMeta.ID).
+                textField(InformationSystemMeta.NAME).
+                fillWith(InformationSystemMeta.PARENT_INFORMATION_SYSTEM).muliti(false);
 
         cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.STATUS)
                 .basic().label("状态")
@@ -113,6 +124,8 @@ public class OpsInformationSystemGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.OFFLINE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
+        cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.SYSTEM_TYPE).form().validate().required().form().radioBox().enumType(SystemTypeEnum.class).defaultIndex(0);
+
         cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.LASTDRILL_DATE).basic().label("演练时间").form().
                 dateInput().format("yyyy-MM-dd").search().range();
 
@@ -131,17 +144,17 @@ public class OpsInformationSystemGtr extends BaseCodeGenerator{
         //此设置用于覆盖字段的独立配置；清单中没有出现的，设置为隐藏；重复出现或不存在的字段将抛出异常；只接受 DBField 或 String 类型的元素
         cfg.view().search().inputLayout(
                 new Object[]{
-                        OpsTables.OPS_INFORMATION_SYSTEM.BELONG_ORG_ID,
+                        OpsTables.OPS_INFORMATION_SYSTEM.SYSTEM_TYPE,
                         OpsTables.OPS_INFORMATION_SYSTEM.STATUS,
                         OpsTables.OPS_INFORMATION_SYSTEM.GRADE,
                         OpsTables.OPS_INFORMATION_SYSTEM.NAME,
 
                 },
                 new Object[]{
+                        OpsTables.OPS_INFORMATION_SYSTEM.BELONG_ORG_ID,
                         OpsTables.OPS_INFORMATION_SYSTEM.BUSINESS_CONTACT,
                         OpsTables.OPS_INFORMATION_SYSTEM.TECHNICAL_CONTACT,
                         OpsTables.OPS_INFORMATION_SYSTEM.LABELS,
-                        OpsTables.OPS_INFORMATION_SYSTEM.NOTES
                 }
 
         );
@@ -157,11 +170,13 @@ public class OpsInformationSystemGtr extends BaseCodeGenerator{
         cfg.view().formWindow().bottomSpace(80);
         cfg.view().form().addGroup("基本信息",
                 new Object[] {
+                        OpsTables.OPS_INFORMATION_SYSTEM.PARENT_ID,
                         OpsTables.OPS_INFORMATION_SYSTEM.STATUS,
                         OpsTables.OPS_INFORMATION_SYSTEM.NAME,
+                        OpsTables.OPS_INFORMATION_SYSTEM.SYSTEM_TYPE,
                         OpsTables.OPS_INFORMATION_SYSTEM.GRADE,
-                        OpsTables.OPS_INFORMATION_SYSTEM.ADDRESS,
-                        OpsTables.OPS_INFORMATION_SYSTEM.PROFILE,
+
+
 
                 }, new Object[] {
                         OpsTables.OPS_INFORMATION_SYSTEM.BELONG_ORG_ID,
@@ -175,6 +190,16 @@ public class OpsInformationSystemGtr extends BaseCodeGenerator{
                         OpsTables.OPS_INFORMATION_SYSTEM.LABELS,
                 }
         );
+        cfg.view().form().addGroup(null,
+                new Object[]{
+                        OpsTables.OPS_INFORMATION_SYSTEM.ADDRESS,
+                        OpsTables.OPS_INFORMATION_SYSTEM.PROFILE,
+                }
+
+
+        );
+
+
         cfg.view().form().addGroup("运维信息",
                 new Object[] {
                         OpsTables.OPS_INFORMATION_SYSTEM.OPS_METHOD,

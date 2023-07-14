@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库VO类型
  * <p>数据库 , 数据表 ops_db_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 17:55:37
+ * @since 2023-07-14 20:45:34
  * @sign 072C5A86F75E9E21D5871FA491A60284
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -440,28 +440,30 @@ public class DbInfoVO extends DbInfo {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
-			inst.setRequestAction(this.getRequestAction());
 			inst.setBackupInfoList(this.getBackupInfoList());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
+			inst.setOtherEnvInfoList(this.getOtherEnvInfoList());
 			inst.setType(this.getType());
 			inst.setDbTypeIds(this.getDbTypeIds());
-			inst.setLabelList(this.getLabelList());
+			inst.setOtherEnvInfoCount(this.getOtherEnvInfoCount());
 			inst.setLabelIds(this.getLabelIds());
 			inst.setDataLocData(this.getDataLocData());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setHost(this.getHost());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setDataOrigin(this.getDataOrigin());
-			inst.setIds(this.getIds());
 			inst.setBackupInfoIds(this.getBackupInfoIds());
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setDeployModeDict(this.getDeployModeDict());
+			inst.setCiphertextBoxData(this.getCiphertextBoxData());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setLabelList(this.getLabelList());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setIds(this.getIds());
 			inst.setSearchValue(this.getSearchValue());
 			inst.setDataLocIds(this.getDataLocIds());
-			inst.setCiphertextBoxData(this.getCiphertextBoxData());
 			inst.setDbTypeList(this.getDbTypeList());
 		}
 		inst.clearModifies();
@@ -559,19 +561,20 @@ public class DbInfoVO extends DbInfo {
 			this.setStatus(DataParser.parse(String.class, map.get(DbInfoVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(DbInfoVOMeta.SEARCH_FIELD)));
-			this.setRequestAction(DataParser.parse(String.class, map.get(DbInfoVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(DbInfoVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(DbInfoVOMeta.PAGE_SIZE)));
 			this.setType(DataParser.parse(ServiceInfo.class, map.get(DbInfoVOMeta.TYPE)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(DbInfoVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(DbInfoVOMeta.SORT_TYPE)));
+			this.setOtherEnvInfoCount(DataParser.parse(String.class, map.get(DbInfoVOMeta.OTHER_ENV_INFO_COUNT)));
 			this.setHost(DataParser.parse(Host.class, map.get(DbInfoVOMeta.HOST)));
 			this.setSortField(DataParser.parse(String.class, map.get(DbInfoVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(DbInfoVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(DbInfoVOMeta.QUERY_LOGIC)));
 			this.setDeployModeDict(DataParser.parse(DictItem.class, map.get(DbInfoVOMeta.DEPLOY_MODE_DICT)));
-			this.setSearchValue(DataParser.parse(String.class, map.get(DbInfoVOMeta.SEARCH_VALUE)));
 			this.setCiphertextBoxData(DataParser.parse(CiphertextBoxData.class, map.get(DbInfoVOMeta.CIPHERTEXT_BOX_DATA)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(DbInfoVOMeta.REQUEST_ACTION)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(DbInfoVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(DbInfoVOMeta.SORT_TYPE)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(DbInfoVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
 			try {
@@ -612,19 +615,20 @@ public class DbInfoVO extends DbInfo {
 				this.setStatus( (String)map.get(DbInfoVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(DbInfoVOMeta.SEARCH_FIELD));
-				this.setRequestAction( (String)map.get(DbInfoVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(DbInfoVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(DbInfoVOMeta.PAGE_SIZE));
 				this.setType( (ServiceInfo)map.get(DbInfoVOMeta.TYPE));
-				this.setPageIndex( (Integer)map.get(DbInfoVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(DbInfoVOMeta.SORT_TYPE));
+				this.setOtherEnvInfoCount( (String)map.get(DbInfoVOMeta.OTHER_ENV_INFO_COUNT));
 				this.setHost( (Host)map.get(DbInfoVOMeta.HOST));
 				this.setSortField( (String)map.get(DbInfoVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(DbInfoVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(DbInfoVOMeta.QUERY_LOGIC));
 				this.setDeployModeDict( (DictItem)map.get(DbInfoVOMeta.DEPLOY_MODE_DICT));
-				this.setSearchValue( (String)map.get(DbInfoVOMeta.SEARCH_VALUE));
 				this.setCiphertextBoxData( (CiphertextBoxData)map.get(DbInfoVOMeta.CIPHERTEXT_BOX_DATA));
+				this.setRequestAction( (String)map.get(DbInfoVOMeta.REQUEST_ACTION));
+				this.setPageIndex( (Integer)map.get(DbInfoVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(DbInfoVOMeta.SORT_TYPE));
+				this.setSearchValue( (String)map.get(DbInfoVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {
 				return false;

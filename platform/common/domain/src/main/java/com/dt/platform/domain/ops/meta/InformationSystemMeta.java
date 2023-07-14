@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 06:52:21
- * @sign 13E102B04D0F716B32E0A5757A1E6D59
+ * @since 2023-07-14 11:02:35
+ * @sign EB4035DF7816F52556BEC8811D787AEA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -121,14 +121,14 @@ public class InformationSystemMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystem,java.lang.String> BUSINESS_CONTACT_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystem.class ,BUSINESS_CONTACT, java.lang.String.class, "业务联系人", "业务联系人", java.lang.String.class, null);
 	
 	/**
-	 * 所属公司/部门 , 类型: java.lang.String
+	 * 归属部门 , 类型: java.lang.String
 	*/
 	public static final String BELONG_ORG_ID="belongOrgId";
 	
 	/**
-	 * 所属公司/部门 , 类型: java.lang.String
+	 * 归属部门 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystem,java.lang.String> BELONG_ORG_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystem.class ,BELONG_ORG_ID, java.lang.String.class, "所属公司/部门", "所属公司/部门", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystem,java.lang.String> BELONG_ORG_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystem.class ,BELONG_ORG_ID, java.lang.String.class, "归属部门", "归属部门", java.lang.String.class, null);
 	
 	/**
 	 * 最后一次演练 , 类型: java.util.Date
@@ -289,6 +289,26 @@ public class InformationSystemMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystem,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystem.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 上级系统 , 类型: java.lang.String
+	*/
+	public static final String PARENT_ID="parentId";
+	
+	/**
+	 * 上级系统 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystem,java.lang.String> PARENT_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystem.class ,PARENT_ID, java.lang.String.class, "上级系统", "上级系统", java.lang.String.class, null);
+	
+	/**
+	 * 类型 , 类型: java.lang.String
+	*/
+	public static final String SYSTEM_TYPE="systemType";
+	
+	/**
+	 * 类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystem,java.lang.String> SYSTEM_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystem.class ,SYSTEM_TYPE, java.lang.String.class, "类型", "类型", java.lang.String.class, null);
 	
 	/**
 	 * 附件 , 类型: java.lang.String
@@ -461,9 +481,19 @@ public class InformationSystemMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystem,org.github.foxnic.web.domain.system.DictItem> INFO_SYSTEM_GRADE_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystem.class ,INFO_SYSTEM_GRADE, org.github.foxnic.web.domain.system.DictItem.class, "系统分级", "系统分级", org.github.foxnic.web.domain.system.DictItem.class, null);
 	
 	/**
+	 * parentInformationSystem , 类型: com.dt.platform.domain.ops.InformationSystem
+	*/
+	public static final String PARENT_INFORMATION_SYSTEM="parentInformationSystem";
+	
+	/**
+	 * parentInformationSystem , 类型: com.dt.platform.domain.ops.InformationSystem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystem,com.dt.platform.domain.ops.InformationSystem> PARENT_INFORMATION_SYSTEM_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystem.class ,PARENT_INFORMATION_SYSTEM, com.dt.platform.domain.ops.InformationSystem.class, "parentInformationSystem", "parentInformationSystem", com.dt.platform.domain.ops.InformationSystem.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PID , NAME , PROFILE , STATUS , ADDRESS , OPS_METHOD , DEV_METHOD , TECHNICAL_CONTACT , BUSINESS_CONTACT , BELONG_ORG_ID , LASTDRILL_DATE , ONLINE_DATE , OFFLINE_DATE , OS_INFO , DB_INFO , APP_INFO , GRADE , RTO , RPO , HARDWARE_INFO , BACKUP_INFO , SAMEPLACE_BACUP_INFO , DIFFPLACE_BACKUP_INFO , ARCH_METHOD , LABELS , NOTES , FILE_IDS , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , BELONG_ORGANIZATION , INFO_SYSTEM_STATUS , INFO_SYSTEM_OPS_METHOD , INFO_SYSTEM_DEV_METHOD , INFO_SYSTEM_GRADE };
+	public static final String[] $PROPS={ ID , PID , NAME , PROFILE , STATUS , ADDRESS , OPS_METHOD , DEV_METHOD , TECHNICAL_CONTACT , BUSINESS_CONTACT , BELONG_ORG_ID , LASTDRILL_DATE , ONLINE_DATE , OFFLINE_DATE , OS_INFO , DB_INFO , APP_INFO , GRADE , RTO , RPO , HARDWARE_INFO , BACKUP_INFO , SAMEPLACE_BACUP_INFO , DIFFPLACE_BACKUP_INFO , ARCH_METHOD , LABELS , NOTES , PARENT_ID , SYSTEM_TYPE , FILE_IDS , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , BELONG_ORGANIZATION , INFO_SYSTEM_STATUS , INFO_SYSTEM_OPS_METHOD , INFO_SYSTEM_DEV_METHOD , INFO_SYSTEM_GRADE , PARENT_INFORMATION_SYSTEM };
 	
 	/**
 	 * 代理类
@@ -584,8 +614,8 @@ public class InformationSystemMeta {
 		}
 		
 		/**
-		 * 设置 所属公司/部门
-		 * @param belongOrgId 所属公司/部门
+		 * 设置 归属部门
+		 * @param belongOrgId 归属部门
 		 * @return 当前对象
 		*/
 		public InformationSystem setBelongOrgId(String belongOrgId) {
@@ -767,6 +797,28 @@ public class InformationSystemMeta {
 		public InformationSystem setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 上级系统
+		 * @param parentId 上级系统
+		 * @return 当前对象
+		*/
+		public InformationSystem setParentId(String parentId) {
+			super.change(PARENT_ID,super.getParentId(),parentId);
+			super.setParentId(parentId);
+			return this;
+		}
+		
+		/**
+		 * 设置 类型
+		 * @param systemType 类型
+		 * @return 当前对象
+		*/
+		public InformationSystem setSystemType(String systemType) {
+			super.change(SYSTEM_TYPE,super.getSystemType(),systemType);
+			super.setSystemType(systemType);
 			return this;
 		}
 		
@@ -956,6 +1008,17 @@ public class InformationSystemMeta {
 			super.setInfoSystemGrade(infoSystemGrade);
 			return this;
 		}
+		
+		/**
+		 * 设置 parentInformationSystem
+		 * @param parentInformationSystem parentInformationSystem
+		 * @return 当前对象
+		*/
+		public InformationSystem setParentInformationSystem(InformationSystem parentInformationSystem) {
+			super.change(PARENT_INFORMATION_SYSTEM,super.getParentInformationSystem(),parentInformationSystem);
+			super.setParentInformationSystem(parentInformationSystem);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -983,6 +1046,7 @@ public class InformationSystemMeta {
 			inst.setHardwareInfo(this.getHardwareInfo());
 			inst.setFileIds(this.getFileIds());
 			inst.setUpdateBy(this.getUpdateBy());
+			inst.setSystemType(this.getSystemType());
 			inst.setId(this.getId());
 			inst.setBackupInfo(this.getBackupInfo());
 			inst.setDbInfo(this.getDbInfo());
@@ -994,6 +1058,7 @@ public class InformationSystemMeta {
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setRto(this.getRto());
 			inst.setVersion(this.getVersion());
+			inst.setParentId(this.getParentId());
 			inst.setLabels(this.getLabels());
 			inst.setOnlineDate(this.getOnlineDate());
 			inst.setRpo(this.getRpo());
@@ -1014,6 +1079,7 @@ public class InformationSystemMeta {
 				inst.setVoucherList(this.getVoucherList());
 				inst.setInfoSystemDevMethod(this.getInfoSystemDevMethod());
 				inst.setInfoSystemGrade(this.getInfoSystemGrade());
+				inst.setParentInformationSystem(this.getParentInformationSystem());
 				inst.setBelongOrganization(this.getBelongOrganization());
 				inst.setInfoSystemOpsMethod(this.getInfoSystemOpsMethod());
 				inst.setVoucherIds(this.getVoucherIds());

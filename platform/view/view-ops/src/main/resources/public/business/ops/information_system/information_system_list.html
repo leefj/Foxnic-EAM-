@@ -2,7 +2,7 @@
 /**
  * 信息系统 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 06:52:23
+ * @since 2023-07-14 11:02:36
  */
  -->
  <!DOCTYPE html>
@@ -45,12 +45,6 @@
                     <!-- 访问地址 , address ,typeName=text_input, isHideInSearch=true -->
                     <!-- 运维模式 , opsMethod ,typeName=select_box, isHideInSearch=true -->
                     <!-- 开发模式 , devMethod ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 所属公司/部门 , belongOrgId ,typeName=button, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('所属公司/部门')}" class="search-label belongOrgId-label">所属公司/部门</span><span class="search-colon">:</span></div>
-                            <input lay-filter="belongOrgId" id="belongOrgId" name="belongOrgId"  type="hidden" class="layui-input"   />
-                            <button id="belongOrgId-button" type="button" action-type="org-dialog" class="layui-btn layui-btn-primary   " style="width: 150px"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择组织节点')}" th:default-label="${lang.translate('请选择组织节点')}">按钮文本</span></button>
-                    </div>
                     <!-- 演练时间 , lastdrillDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 上线时间 , onlineDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 下线时间 , offlineDate ,typeName=date_input, isHideInSearch=true -->
@@ -64,6 +58,15 @@
                     <!-- 本地备份 , sameplaceBacupInfo ,typeName=text_input, isHideInSearch=true -->
                     <!-- 异地备份 , diffplaceBackupInfo ,typeName=text_input, isHideInSearch=true -->
                     <!-- 归档模式 , archMethod ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 上级系统 , parentId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 类型 , systemType ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('类型')}" class="search-label systemType-label">类型</span><span class="search-colon">:</span></div>
+
+
+                        <div id="systemType" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.SystemTypeEnum')}" style="width:150px"></div>
+                    </div>
                     <!-- 附件 , fileIds ,typeName=upload, isHideInSearch=true -->
                     <!-- 用户凭证 , voucherIds ,typeName=select_box, isHideInSearch=true -->
                     <!-- 状态 , status ,typeName=select_box, isHideInSearch=false -->
@@ -86,6 +89,12 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
+                    <!-- 归属部门 , belongOrgId ,typeName=button, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('归属部门')}" class="search-label belongOrgId-label">归属部门</span><span class="search-colon">:</span></div>
+                            <input lay-filter="belongOrgId" id="belongOrgId" name="belongOrgId"  type="hidden" class="layui-input"   />
+                            <button id="belongOrgId-button" type="button" action-type="org-dialog" class="layui-btn layui-btn-primary   " style="width: 150px"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择组织节点')}" th:default-label="${lang.translate('请选择组织节点')}">按钮文本</span></button>
+                    </div>
                     <!-- 业务联系人 , businessContact ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('业务联系人')}" class="search-label businessContact-label">业务联系人</span><span class="search-colon">:</span></div>
@@ -100,11 +109,6 @@
                     <div class="search-unit">
                         <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('标签')}" class="search-label labels-label">标签</span><span class="search-colon">:</span></div>
                         <input id="labels" class="layui-input search-input" style="width: 150px" type="text" />
-                    </div>
-                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
-                        <input id="notes" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
 
@@ -155,6 +159,7 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var RADIO_SYSTEMTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.SystemTypeEnum')}]];
     var AUTH_PREFIX="ops_information_system";
 
 

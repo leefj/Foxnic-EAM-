@@ -2,7 +2,7 @@
 /**
  * 数据库实例 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 06:17:09
+ * @since 2023-07-14 20:45:53
  */
  -->
  <!DOCTYPE html>
@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
 	<title th:text="${lang.translate('数据库实例')}">数据库实例</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
@@ -30,148 +31,137 @@
 <body style="overflow-y: hidden;">
 <div class="form-container" >
 
-    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="display:none">
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="opacity:0">
 
         <input name="id" id="id"  type="hidden"/>
 
          <!--开始：group 循环-->
 
 
-
-        <div class="layui-row form-row" id="random-1941-content">
+        <div class="layui-row form-row" id="random-2696-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs4 form-column" >
 
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('主机')}">主机</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <div id="hostId" input-type="select" th:data="${'/service-ops/ops-host/query-paged-list'}" extraParam="{}"></div>
-                        </div>
+                <!-- select_box : 主机 ,  hostId  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('主机')}">主机</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="hostId" input-type="select" th:data="${'/service-ops/ops-host/query-paged-list'}" extraParam="{}"></div>
                     </div>
-
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('备份状态')}">备份状态</div></div>
-                        <div class="layui-input-block ">
-                            <div id="backupStatus" input-type="select" th:data="${dict.toArray('ops_db_backup_status')}" extraParam="{}"></div>
-                        </div>
+                </div>
+            
+                <!-- select_box : 备份状态 ,  backupStatus  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('备份状态')}">备份状态</div></div>
+                    <div class="layui-input-block ">
+                        <div id="backupStatus" input-type="select" th:data="${dict.toArray('ops_db_backup_status')}" extraParam="{}"></div>
                     </div>
-
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('日志模式')}">日志模式</div></div>
-                        <div class="layui-input-block ">
-                            <div id="logMethod" input-type="select" th:data="${dict.toArray('ops_db_log_method')}" extraParam="{}"></div>
-                        </div>
+                </div>
+            
+                <!-- select_box : 日志模式 ,  logMethod  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('日志模式')}">日志模式</div></div>
+                    <div class="layui-input-block ">
+                        <div id="logMethod" input-type="select" th:data="${dict.toArray('ops_db_log_method')}" extraParam="{}"></div>
                     </div>
-
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('备份状态')}">备份状态</div></div>
-                        <div class="layui-input-block ">
-                            <div id="backupType" input-type="select" th:data="${dict.toArray('ops_db_backup_type')}" extraParam="{}"></div>
-                        </div>
+                </div>
+            
+                <!-- select_box : 备份类型 ,  backupType  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('备份类型')}">备份类型</div></div>
+                    <div class="layui-input-block ">
+                        <div id="backupType" input-type="select" th:data="${dict.toArray('ops_db_backup_type')}" extraParam="{}"></div>
                     </div>
-
-
-                <!--结束：栏次内字段循环-->
+                </div>
+            <!--结束：栏次内字段循环-->
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs4 form-column" >
 
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('数据库')}">数据库</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <div id="databaseId" input-type="select" th:data="${'/service-ops/ops-service-info/query-list'}" extraParam="{}"></div>
-                        </div>
+                <!-- select_box : 数据库 ,  databaseId  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('数据库')}">数据库</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="databaseId" input-type="select" th:data="${'/service-ops/ops-service-info/query-list'}" extraParam="{}"></div>
                     </div>
-
-
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('实例名称')}">实例名称</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('实例名称') }" type="text" class="layui-input"    lay-verify="|required"  />
-                        </div>
+                </div>
+            
+                <!-- text_input : 实例名称 ,  name -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('实例名称')}">实例名称</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'实例名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('备份时间')}">备份时间</div></div>
-                        <div class="layui-input-block ">
-                            <input input-type="date" lay-filter="backupTime" id="backupTime" name="backupTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择') +''+ lang.translate('备份时间') }" type="text" class="layui-input"    lay-verify=""   />
-                        </div>
+                </div>
+            
+                <!-- date_input : 备份时间 ,  backupTime  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('备份时间')}">备份时间</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="date" lay-filter="backupTime" id="backupTime" name="backupTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'备份时间') }" type="text" class="layui-input"    lay-verify=""   />
                     </div>
-
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('备份策略')}">备份策略</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="backupStrategy" id="backupStrategy" name="backupStrategy" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备份策略') }" type="text" class="layui-input"  />
-                        </div>
+                </div>
+            
+                <!-- text_input : 备份策略 ,  backupStrategy -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('备份策略')}">备份策略</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="backupStrategy" id="backupStrategy" name="backupStrategy" th:placeholder="${ lang.translate('请输入'+'备份策略') }" type="text" class="layui-input"  />
                     </div>
-
-                <!--结束：栏次内字段循环-->
+                </div>
+            <!--结束：栏次内字段循环-->
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs4 form-column" >
 
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('备份方式')}">备份方式</div></div>
-                        <div class="layui-input-block ">
-                            <div id="backupMethod" input-type="select" th:data="${dict.toArray('ops_db_backup_method')}" extraParam="{}"></div>
-                        </div>
+                <!-- select_box : 备份方式 ,  backupMethod  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('备份方式')}">备份方式</div></div>
+                    <div class="layui-input-block ">
+                        <div id="backupMethod" input-type="select" th:data="${dict.toArray('ops_db_backup_method')}" extraParam="{}"></div>
                     </div>
-
-
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('备份保留时长')}">备份保留时长</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="backupDatakeep" id="backupDatakeep" name="backupDatakeep" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备份保留时长') }" type="text" class="layui-input"  />
-                        </div>
+                </div>
+            
+                <!-- text_input : 备份保留时长 ,  backupDatakeep -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('备份保留时长')}">备份保留时长</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="backupDatakeep" id="backupDatakeep" name="backupDatakeep" th:placeholder="${ lang.translate('请输入'+'备份保留时长') }" type="text" class="layui-input"  />
                     </div>
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('备份大小')}">备份大小</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="backupSize" id="backupSize" name="backupSize" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备份大小') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="2" />
-                        </div>
+                </div>
+            
+                <!-- number_input : 备份大小 ,  backupSize  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('备份大小')}">备份大小</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="backupSize" id="backupSize" name="backupSize" th:placeholder="${ lang.translate('请输入'+'备份大小') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
                     </div>
-
-
-                <!--结束：栏次内字段循环-->
+                </div>
+            <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
 
 
-
-        <div class="layui-row form-row" id="random-6013-content">
+        <div class="layui-row form-row" id="random-4659-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
 
-
-                    <div class="layui-form-item" >
+                <!-- text_area : 备注 ,  notes  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 30px" ></textarea>
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 30px" ></textarea>
                     </div>
                 </div>
-
-
-                <!--结束：栏次内字段循环-->
+            <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
@@ -185,8 +175,8 @@
 
 </div>
 <div class="model-form-footer">
-    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('ops_db_instance:create','ops_db_instance:update','ops_db_instance:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('ops_db_instance:create','ops_db_instance:update','ops_db_instance:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>

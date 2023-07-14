@@ -1,5 +1,7 @@
 package com.dt.platform.eam.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -15,23 +17,18 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import java.util.Map;
 
 /**
  * <p>
- * 盘点计划 服务接口
+ * 盘点计划服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-01-03 10:30:35
+ * @since 2023-07-14 21:19:28
 */
 
-public interface IInventoryPlanService extends ISuperService<InventoryPlan> {
+public interface IInventoryPlanService extends  ISimpleIdService<InventoryPlan,String> {
 
-	/**
-	 * 应用模板
-	 * @param id 参数ID
-	 * @return 成功
-	 * */
-	Result applyTpl(String id);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -59,7 +56,7 @@ public interface IInventoryPlanService extends ISuperService<InventoryPlan> {
 
 		
 	/**
-	 * 按主键删除 盘点计划
+	 * 按主键删除盘点计划
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -67,7 +64,7 @@ public interface IInventoryPlanService extends ISuperService<InventoryPlan> {
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 盘点计划
+	 * 按主键删除盘点计划
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -90,7 +87,7 @@ public interface IInventoryPlanService extends ISuperService<InventoryPlan> {
 
 		
 	/**
-	 * 按主键更新字段 盘点计划
+	 * 按主键更新盘点计划
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -160,7 +157,7 @@ public interface IInventoryPlanService extends ISuperService<InventoryPlan> {
 
 		
 	/**
-	 * 按主键获取 盘点计划
+	 * 按主键获取盘点计划
 	 *
 	 * @param id 主键
 	 * @return InventoryPlan 数据对象
@@ -172,7 +169,15 @@ public interface IInventoryPlanService extends ISuperService<InventoryPlan> {
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<InventoryPlan> getByIds(List<String> ids);
+	List<InventoryPlan> queryListByIds(List<String> ids);
+
+	/**
+	 * 按 id 列表查询 Map
+	 * @param ids  主键清单
+	 * */
+	Map<String, InventoryPlan> queryMapByIds(List<String> ids);
+
+
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
@@ -202,7 +207,7 @@ public interface IInventoryPlanService extends ISuperService<InventoryPlan> {
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<InventoryPlan> queryList(InventoryPlan sample);
+	List<InventoryPlan> queryList(InventoryPlanVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -243,7 +248,7 @@ public interface IInventoryPlanService extends ISuperService<InventoryPlan> {
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<InventoryPlan> queryPagedList(InventoryPlan sample,int pageSize,int pageIndex);
+	PagedList<InventoryPlan> queryPagedList(InventoryPlanVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -297,28 +302,8 @@ public interface IInventoryPlanService extends ISuperService<InventoryPlan> {
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
-	/**
-	 * 导出 Excel
-	 * */
-	ExcelWriter exportExcel(InventoryPlan sample);
 
-	/**
-	 * 导出用于数据导入的 Excel 模版
-	 * */
-	ExcelWriter  exportExcelTemplate();
 
-	/**
-	 * 构建 Excel 结构
-	 * @param  isForExport 是否用于数据导出
-	 * @return   ExcelStructure
-	 * */
-	ExcelStructure buildExcelStructure(boolean isForExport);
-
-	/**
-	 * 导入 Excel 数据
-	 * @return  错误信息，成功时返回 null
-	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
 }

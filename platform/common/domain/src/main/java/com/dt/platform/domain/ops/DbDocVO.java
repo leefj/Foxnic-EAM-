@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库文档VO类型
  * <p>数据库文档 , 数据表 ops_db_doc 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-11 09:34:12
+ * @since 2023-07-14 20:44:37
  * @sign 011E69C6C39A4D0C37ED091565ECE609
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

@@ -1,22 +1,15 @@
 package com.dt.platform.relation.modules;
 
-
-import com.dt.platform.constants.db.EAMTables;
-
-
 import com.dt.platform.constants.db.OpsTables;
-import com.dt.platform.domain.eam.meta.AssetCollectionReturnMeta;
-import com.dt.platform.domain.eam.meta.AssetMeta;
-import com.dt.platform.domain.eam.meta.MaintainTaskMeta;
-import com.dt.platform.domain.eam.meta.TplFileMeta;
 import com.dt.platform.domain.ops.*;
 import com.dt.platform.domain.ops.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
-import org.checkerframework.checker.guieffect.qual.SafeType;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
-import org.github.foxnic.web.domain.system.UserTenant;
 
+
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 public class OpsRelationManager extends RelationManager {
     @Override
@@ -25,6 +18,7 @@ public class OpsRelationManager extends RelationManager {
         this.setupRelations();
         this.setupProperties();
         this.setupOpsHost();
+        this.setupOpsHostEnvInfo();
         this.setupOpsDbInstance();
         this.setupOpsServiceCategory();
         this.setupOpsServiceInfo();
@@ -226,6 +220,22 @@ public class OpsRelationManager extends RelationManager {
                 .using(OpsTables.OPS_HOST_EX_BY_DB.HOST_ID).join(OpsTables.OPS_HOST.ID);
     }
 
+
+
+    private HashMap<String,Integer> calculateDbInfoCountStatistics( List<DbEnvInfo> assets){
+
+        HashMap<String,Integer> map=new HashMap<>();
+        int allCount=0;
+        if (assets!=null){
+            map.put("itemCount",assets.size());
+        }else{
+            map.put("itemCount",0);
+        }
+
+        return map;
+    }
+
+
     public void setupDbInfo() {
         this.property(DbInfoMeta.LABEL_LIST_PROP)
                 .using(OpsTables.OPS_DB_INFO.ID).join(OpsTables.OPS_DB_INFO_LABEL.DB_ID)
@@ -240,6 +250,13 @@ public class OpsRelationManager extends RelationManager {
                 .using(OpsTables.OPS_DB_INFO.ID).join(OpsTables.OPS_DB_DATA_LOC.DB_INFO_ID)
                 .using(OpsTables.OPS_DB_DATA_LOC.LOC_ID).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
                 .condition("dict_code='ops_db_data_loc'");
+
+        this.property(DbInfoMeta.OTHER_ENV_INFO_LIST_PROP)
+                .using(OpsTables.OPS_DB_INFO.ID).join(OpsTables.OPS_DB_ENV_INFO.DB_INST_ID).after((tag,point,checkItems,map)->{
+            HashMap<String,Integer> data= calculateDbInfoCountStatistics(checkItems);
+            point.setOtherEnvInfoCount(data.getOrDefault("itemCount",0)+"");
+            return checkItems;
+        });
 
 
 
@@ -256,6 +273,7 @@ public class OpsRelationManager extends RelationManager {
                 .using(OpsTables.OPS_DB_INFO.ID).join(OpsTables.OPS_CIPHERTEXT_BOX_DATA.SOURCE_ID);
 
     }
+
 
     public void setupDbBackupInfo() {
 
@@ -484,6 +502,9 @@ public class OpsRelationManager extends RelationManager {
 
     private void setupInfoSystem() {
 
+        this.property(InformationSystemMeta.PARENT_INFORMATION_SYSTEM_PROP)
+                .using(OpsTables.OPS_INFORMATION_SYSTEM.PARENT_ID).join(OpsTables.OPS_INFORMATION_SYSTEM.ID);
+
         this.property(InformationSystemMeta.BELONG_ORGANIZATION_PROP)
                 .using(OpsTables.OPS_INFORMATION_SYSTEM.BELONG_ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
 
@@ -572,7 +593,10 @@ public class OpsRelationManager extends RelationManager {
 
     }
 
-
+    private void setupOpsHostEnvInfo() {
+        this.property(HostEnvInfoMeta.INFO_SYSTEM_PROP)
+                .using(OpsTables.OPS_HOST_ENV_INFO.SYSTEM_ID).join(OpsTables.OPS_INFORMATION_SYSTEM.ID);
+    }
 
 
     private void setupOpsHost() {

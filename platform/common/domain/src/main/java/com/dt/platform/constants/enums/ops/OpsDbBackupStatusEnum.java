@@ -13,11 +13,11 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum OpsDbBackupStatusEnum implements CodeTextEnum {
 
-
+    UNKNOW("unknow" , "未知"),
     BACKUP("backup" , " 备份"),
     NO_BACKUP("no_need_backup" , "不需备份"),
-    STOP_BACKUP("backup_stopped" , "备份停用"),
-    UNKNOW("unknow" , "未知");
+    STOP_BACKUP("backup_stopped" , "备份停用");
+
 
     private String code;
     private String text;

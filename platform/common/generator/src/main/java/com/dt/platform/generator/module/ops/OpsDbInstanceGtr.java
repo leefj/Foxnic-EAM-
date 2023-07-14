@@ -113,6 +113,8 @@ public class OpsDbInstanceGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().field(OpsTables.OPS_DB_INSTANCE.ID).table().hidden(true);
+
        //  cfg.view().field(OpsTables.OPS_DB_INSTANCE.BACKUP_SIZE).table().hidden(true);
 
         cfg.view().list().columnLayout(

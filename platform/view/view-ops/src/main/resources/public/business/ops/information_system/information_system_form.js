@@ -1,7 +1,7 @@
 /**
  * 信息系统 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 06:52:24
+ * @since 2023-07-14 11:02:37
  */
 
 function FormPage() {
@@ -273,6 +273,47 @@ function FormPage() {
 				return opts;
 			}
 		});
+		//渲染 parentId 下拉字段
+		fox.renderSelectBox({
+			el: "parentId",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("上级系统",'','cmp:form'),
+			filterable: false,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("parentId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("parentId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+		form.on('radio(systemType)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=systemType]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("systemType",data,checked);
+		});
 	    //渲染图片字段
 		foxup.render({
 			el:"fileIds",
@@ -412,6 +453,8 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#devMethod",formData.infoSystemDevMethod);
 			//设置  系统分级 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#grade",formData.infoSystemGrade);
+			//设置  上级系统 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#parentId",formData.parentInformationSystem);
 
 			//处理fillBy
 
@@ -482,6 +525,8 @@ function FormPage() {
 		data["devMethod"]=fox.getSelectedValue("devMethod",false);
 		//获取 系统分级 下拉框的值
 		data["grade"]=fox.getSelectedValue("grade",false);
+		//获取 上级系统 下拉框的值
+		data["parentId"]=fox.getSelectedValue("parentId",false);
 
 		return data;
 	}

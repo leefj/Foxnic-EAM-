@@ -1,7 +1,7 @@
 /**
  * 数据库容量 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-11 09:34:22
+ * @since 2023-07-14 20:44:49
  */
 
 
@@ -328,7 +328,10 @@ function ListPage() {
 
 			admin.putTempData('ops-db-capacity-rpt-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('ops-db-capacity-rpt-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -337,7 +340,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('ops-db-capacity-rpt-form-data-form-action', "view",true);
 						showEditForm(data.data);

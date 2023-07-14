@@ -88,7 +88,7 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.DEV_METHOD, value = "开发模式", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.TECHNICAL_CONTACT, value = "技术联系人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.BUSINESS_CONTACT, value = "业务联系人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.BELONG_ORG_ID, value = "所属公司/部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.BELONG_ORG_ID, value = "归属部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LASTDRILL_DATE, value = "最后一次演练", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.ONLINE_DATE, value = "上线时间", required = false, dataTypeClass = Date.class, example = "2021-09-17 12:00:00"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.OFFLINE_DATE, value = "下线时间", required = false, dataTypeClass = Date.class),
@@ -105,7 +105,9 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.ARCH_METHOD, value = "归档模式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.PARENT_ID, value = "上级系统", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.SYSTEM_TYPE, value = "类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InformationSystemServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -162,7 +164,7 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.DEV_METHOD, value = "开发模式", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.TECHNICAL_CONTACT, value = "技术联系人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.BUSINESS_CONTACT, value = "业务联系人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.BELONG_ORG_ID, value = "所属公司/部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.BELONG_ORG_ID, value = "归属部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LASTDRILL_DATE, value = "最后一次演练", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.ONLINE_DATE, value = "上线时间", required = false, dataTypeClass = Date.class, example = "2021-09-17 12:00:00"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.OFFLINE_DATE, value = "下线时间", required = false, dataTypeClass = Date.class),
@@ -179,7 +181,9 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.ARCH_METHOD, value = "归档模式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.PARENT_ID, value = "上级系统", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.SYSTEM_TYPE, value = "类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InformationSystemVOMeta.PAGE_INDEX, InformationSystemVOMeta.PAGE_SIZE, InformationSystemVOMeta.SEARCH_FIELD, InformationSystemVOMeta.FUZZY_FIELD, InformationSystemVOMeta.SEARCH_VALUE, InformationSystemVOMeta.SORT_FIELD, InformationSystemVOMeta.SORT_TYPE, InformationSystemVOMeta.IDS })
     @SentinelResource(value = InformationSystemServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -205,7 +209,7 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.DEV_METHOD, value = "开发模式", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.TECHNICAL_CONTACT, value = "技术联系人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.BUSINESS_CONTACT, value = "业务联系人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.BELONG_ORG_ID, value = "所属公司/部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.BELONG_ORG_ID, value = "归属部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LASTDRILL_DATE, value = "最后一次演练", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.ONLINE_DATE, value = "上线时间", required = false, dataTypeClass = Date.class, example = "2021-09-17 12:00:00"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.OFFLINE_DATE, value = "下线时间", required = false, dataTypeClass = Date.class),
@@ -222,7 +226,9 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.ARCH_METHOD, value = "归档模式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.PARENT_ID, value = "上级系统", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.SYSTEM_TYPE, value = "类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InformationSystemVOMeta.PAGE_INDEX, InformationSystemVOMeta.PAGE_SIZE, InformationSystemVOMeta.SEARCH_FIELD, InformationSystemVOMeta.FUZZY_FIELD, InformationSystemVOMeta.SEARCH_VALUE, InformationSystemVOMeta.SORT_FIELD, InformationSystemVOMeta.SORT_TYPE, InformationSystemVOMeta.IDS })
     @SentinelResource(value = InformationSystemServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -254,6 +260,7 @@ public class InformationSystemController extends SuperController {
         informationSystemService.join(informationSystem, InformationSystemMeta.INFO_SYSTEM_STATUS);
         informationSystemService.join(informationSystem, InformationSystemMeta.INFO_SYSTEM_DEV_METHOD);
         informationSystemService.join(informationSystem, InformationSystemMeta.INFO_SYSTEM_OPS_METHOD);
+        informationSystemService.join(informationSystem, InformationSystemMeta.PARENT_INFORMATION_SYSTEM);
         result.success(true).data(informationSystem);
         return result;
     }
@@ -291,7 +298,7 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.DEV_METHOD, value = "开发模式", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.TECHNICAL_CONTACT, value = "技术联系人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.BUSINESS_CONTACT, value = "业务联系人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.BELONG_ORG_ID, value = "所属公司/部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.BELONG_ORG_ID, value = "归属部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LASTDRILL_DATE, value = "最后一次演练", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.ONLINE_DATE, value = "上线时间", required = false, dataTypeClass = Date.class, example = "2021-09-17 12:00:00"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.OFFLINE_DATE, value = "下线时间", required = false, dataTypeClass = Date.class),
@@ -308,7 +315,9 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.ARCH_METHOD, value = "归档模式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.PARENT_ID, value = "上级系统", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.SYSTEM_TYPE, value = "类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InformationSystemVOMeta.PAGE_INDEX, InformationSystemVOMeta.PAGE_SIZE })
     @SentinelResource(value = InformationSystemServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -335,7 +344,7 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.DEV_METHOD, value = "开发模式", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.TECHNICAL_CONTACT, value = "技术联系人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.BUSINESS_CONTACT, value = "业务联系人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.BELONG_ORG_ID, value = "所属公司/部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.BELONG_ORG_ID, value = "归属部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LASTDRILL_DATE, value = "最后一次演练", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.ONLINE_DATE, value = "上线时间", required = false, dataTypeClass = Date.class, example = "2021-09-17 12:00:00"),
 		@ApiImplicitParam(name = InformationSystemVOMeta.OFFLINE_DATE, value = "下线时间", required = false, dataTypeClass = Date.class),
@@ -352,7 +361,9 @@ public class InformationSystemController extends SuperController {
 		@ApiImplicitParam(name = InformationSystemVOMeta.ARCH_METHOD, value = "归档模式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.LABELS, value = "标签", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InformationSystemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InformationSystemVOMeta.FILE_IDS, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.PARENT_ID, value = "上级系统", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InformationSystemVOMeta.SYSTEM_TYPE, value = "类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InformationSystemServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -368,6 +379,7 @@ public class InformationSystemController extends SuperController {
         informationSystemService.join(list, InformationSystemMeta.INFO_SYSTEM_STATUS);
         informationSystemService.join(list, InformationSystemMeta.INFO_SYSTEM_DEV_METHOD);
         informationSystemService.join(list, InformationSystemMeta.INFO_SYSTEM_OPS_METHOD);
+        informationSystemService.join(list, InformationSystemMeta.PARENT_INFORMATION_SYSTEM);
         result.success(true).data(list);
         return result;
     }

@@ -24,7 +24,7 @@ import java.util.Map;
  * 数据库恢复服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 23:00:02
+ * @since 2023-07-14 20:47:35
 */
 
 public interface IDbRecoveryRecService extends  ISimpleIdService<DbRecoveryRec,String> {

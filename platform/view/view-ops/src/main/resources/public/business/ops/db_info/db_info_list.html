@@ -2,7 +2,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 17:55:38
+ * @since 2023-07-14 20:45:36
  */
  -->
  <!DOCTYPE html>
@@ -65,6 +65,7 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('库类型')}" class="search-label dbTypeIds-label">库类型</span><span class="search-colon">:</span></div>
                         <div id="dbTypeIds" th:data="${'/service-ops/ops-service-category/query-list?groupId=db'}" style="width:150px" extraParam="{}"></div>
                     </div>
+                    <!-- 其他环境数量 , otherEnvInfoCount ,typeName=text_input, isHideInSearch=true -->
                     <!-- IP , resHostIp ,typeName=text_input, isHideInSearch=true -->
                     <!-- 数据存放 , dataLocIds ,typeName=select_box, isHideInSearch=true -->
                     <!-- 库状态 , status ,typeName=radio_box, isHideInSearch=false -->

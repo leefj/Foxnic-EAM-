@@ -86,15 +86,17 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
                 .radioBox().enumType(OpsDbEnvEnum.class).defaultIndex(0);
 
 
-
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.DB).form().validate().required();
-
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.NOTES).form().textArea().height(120);
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.VOUCHER).form().textArea().height(150);
 
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.FILE_IDS).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_ENV_INFO.VOUCHER).table().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.FILE_IDS).form().upload().maxFileCount(6).acceptAllType();
 
+        cfg.view().field(OpsTables.OPS_DB_ENV_INFO.CREATE_TIME).table().hidden(true);
+
+        cfg.view().field(OpsTables.OPS_DB_ENV_INFO.ID).table().hidden(true);
         cfg.view().formWindow().bottomSpace(200);
         cfg.view().formWindow().width(Config.baseFormWidth_95);;
         cfg.view().form().addGroup(null,

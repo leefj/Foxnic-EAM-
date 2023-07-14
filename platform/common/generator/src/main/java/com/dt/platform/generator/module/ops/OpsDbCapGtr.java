@@ -49,6 +49,7 @@ public class OpsDbCapGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_DB_CAPACITY_RPT.NAME).form().validate().required();
 
+        cfg.view().field(OpsTables.OPS_DB_CAPACITY_RPT.ID).table().hidden(true);
 
 
         cfg.view().list().disableBatchDelete();

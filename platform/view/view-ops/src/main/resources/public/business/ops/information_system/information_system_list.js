@@ -1,7 +1,7 @@
 /**
  * 信息系统 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 06:52:23
+ * @since 2023-07-14 11:02:37
  */
 
 
@@ -94,7 +94,7 @@ function ListPage() {
 					,{ field: 'devMethod', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('开发模式'), templet: function (d) { return templet('devMethod' ,fox.joinLabel(d.infoSystemDevMethod,"label",',','','devMethod'),d);}}
 					,{ field: 'technicalContact', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('技术联系人') , templet: function (d) { return templet('technicalContact',d.technicalContact,d);}  }
 					,{ field: 'businessContact', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务联系人') , templet: function (d) { return templet('businessContact',d.businessContact,d);}  }
-					,{ field: 'belongOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属公司/部门') , templet: function (d) { return templet('belongOrgId',fox.getProperty(d,["belongOrganization","fullName"],0,'','belongOrgId'),d);} }
+					,{ field: 'belongOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('归属部门') , templet: function (d) { return templet('belongOrgId',fox.getProperty(d,["belongOrganization","fullName"],0,'','belongOrgId'),d);} }
 					,{ field: 'lastdrillDate', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('演练时间') ,templet: function (d) { return templet('lastdrillDate',fox.dateFormat(d.lastdrillDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'onlineDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('上线时间') ,templet: function (d) { return templet('onlineDate',fox.dateFormat(d.onlineDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'offlineDate', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('下线时间') ,templet: function (d) { return templet('offlineDate',fox.dateFormat(d.offlineDate,"yyyy-MM-dd"),d); }  }
@@ -111,6 +111,8 @@ function ListPage() {
 					,{ field: 'archMethod', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('归档模式') , templet: function (d) { return templet('archMethod',d.archMethod,d);}  }
 					,{ field: 'labels', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签') , templet: function (d) { return templet('labels',d.labels,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'parentId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('上级系统'), templet: function (d) { return templet('parentId' ,fox.joinLabel(d.parentInformationSystem,"name",',','','parentId'),d);}}
+					,{ field: 'systemType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('类型'), templet:function (d){ return templet('systemType',fox.getEnumText(RADIO_SYSTEMTYPE_DATA,d.systemType,'','systemType'),d);}}
 					,{ field: 'fileIds', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('附件') , templet: function (d) { return templet('fileIds',d.fileIds,d);}  }
 					,{ field: 'voucherIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('用户凭证'), templet: function (d) { return templet('voucherIds' ,fox.joinLabel(d.voucherList,"voucher",',','','voucherIds'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
@@ -190,7 +192,7 @@ function ListPage() {
 		value.belongOrgId={ inputType:"button",value: $("#belongOrgId").val(),fillBy:["belongOrganization","fullName"] ,label:$("#belongOrgId-button").text() };
 		value.grade={ inputType:"select_box", value: getSelectedValue("#grade","value") ,fillBy:["infoSystemGrade"]  , label:getSelectedValue("#grade","nameStr") };
 		value.labels={ inputType:"button",value: $("#labels").val()};
-		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.systemType={ inputType:"radio_box", value: getSelectedValue("#systemType","value"), label:getSelectedValue("#systemType","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -286,6 +288,31 @@ function ListPage() {
 						opts.push(window.pageExt.list.selectBoxDataTransform("grade",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 systemType 搜索框
+		fox.renderSelectBox({
+			el: "systemType",
+			size: "small",
+			radio: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("systemType",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("systemType",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
 					}
 				}
 				return opts;
@@ -427,7 +454,10 @@ function ListPage() {
 
 			admin.putTempData('ops-information-system-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('ops-information-system-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -436,7 +466,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('ops-information-system-form-data-form-action', "view",true);
 						showEditForm(data.data);

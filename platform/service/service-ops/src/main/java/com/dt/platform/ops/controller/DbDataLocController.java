@@ -44,7 +44,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 数据库存放位置接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-11 11:21:31
+ * @since 2023-07-14 20:46:04
 */
 
 @InDoc
@@ -55,21 +55,21 @@ public class DbDataLocController extends SuperController {
 	@Autowired
 	private IDbDataLocService dbDataLocService;
 
-
 	/**
 	 * 添加数据库存放位置
 	*/
 	@ApiOperation(value = "添加数据库存放位置")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbDataLocVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbDataLocVOMeta.LOC_ID , value = "存放位置" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbDataLocVOMeta.DB_INFO_ID , value = "数据库" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbDataLocVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "665541433180028928"),
+		@ApiImplicitParam(name = DbDataLocVOMeta.LOC_ID , value = "存放位置" , required = false , dataTypeClass=String.class , example = "nbu"),
+		@ApiImplicitParam(name = DbDataLocVOMeta.DB_INFO_ID , value = "数据库" , required = false , dataTypeClass=String.class , example = "665523406220820480"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = DbDataLocServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbDataLocServiceProxy.INSERT)
 	public Result insert(DbDataLocVO dbDataLocVO) {
+		
 		Result result=dbDataLocService.insert(dbDataLocVO,false);
 		return result;
 	}
@@ -81,12 +81,13 @@ public class DbDataLocController extends SuperController {
 	*/
 	@ApiOperation(value = "删除数据库存放位置")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbDataLocVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = DbDataLocVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "665541433180028928")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = DbDataLocServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbDataLocServiceProxy.DELETE)
 	public Result deleteById(String id) {
+		
 		this.validator().asserts(id).require("缺少id值");
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
@@ -115,7 +116,7 @@ public class DbDataLocController extends SuperController {
 	@SentinelResource(value = DbDataLocServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbDataLocServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
-
+		
 		// 参数校验
 		this.validator().asserts(ids).require("缺少ids参数");
 		if(this.validator().failure()) {
@@ -163,15 +164,16 @@ public class DbDataLocController extends SuperController {
 	*/
 	@ApiOperation(value = "更新数据库存放位置")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbDataLocVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbDataLocVOMeta.LOC_ID , value = "存放位置" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbDataLocVOMeta.DB_INFO_ID , value = "数据库" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbDataLocVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "665541433180028928"),
+		@ApiImplicitParam(name = DbDataLocVOMeta.LOC_ID , value = "存放位置" , required = false , dataTypeClass=String.class , example = "nbu"),
+		@ApiImplicitParam(name = DbDataLocVOMeta.DB_INFO_ID , value = "数据库" , required = false , dataTypeClass=String.class , example = "665523406220820480"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbDataLocVOMeta.PAGE_INDEX , DbDataLocVOMeta.PAGE_SIZE , DbDataLocVOMeta.SEARCH_FIELD , DbDataLocVOMeta.FUZZY_FIELD , DbDataLocVOMeta.SEARCH_VALUE , DbDataLocVOMeta.DIRTY_FIELDS , DbDataLocVOMeta.SORT_FIELD , DbDataLocVOMeta.SORT_TYPE , DbDataLocVOMeta.DATA_ORIGIN , DbDataLocVOMeta.QUERY_LOGIC , DbDataLocVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbDataLocVOMeta.PAGE_INDEX , DbDataLocVOMeta.PAGE_SIZE , DbDataLocVOMeta.SEARCH_FIELD , DbDataLocVOMeta.FUZZY_FIELD , DbDataLocVOMeta.SEARCH_VALUE , DbDataLocVOMeta.DIRTY_FIELDS , DbDataLocVOMeta.SORT_FIELD , DbDataLocVOMeta.SORT_TYPE , DbDataLocVOMeta.DATA_ORIGIN , DbDataLocVOMeta.QUERY_LOGIC , DbDataLocVOMeta.REQUEST_ACTION , DbDataLocVOMeta.IDS } )
 	@SentinelResource(value = DbDataLocServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbDataLocServiceProxy.UPDATE)
 	public Result update(DbDataLocVO dbDataLocVO) {
+		
 		Result result=dbDataLocService.update(dbDataLocVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -182,15 +184,16 @@ public class DbDataLocController extends SuperController {
 	*/
 	@ApiOperation(value = "保存数据库存放位置")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbDataLocVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbDataLocVOMeta.LOC_ID , value = "存放位置" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbDataLocVOMeta.DB_INFO_ID , value = "数据库" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbDataLocVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "665541433180028928"),
+		@ApiImplicitParam(name = DbDataLocVOMeta.LOC_ID , value = "存放位置" , required = false , dataTypeClass=String.class , example = "nbu"),
+		@ApiImplicitParam(name = DbDataLocVOMeta.DB_INFO_ID , value = "数据库" , required = false , dataTypeClass=String.class , example = "665523406220820480"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { DbDataLocVOMeta.PAGE_INDEX , DbDataLocVOMeta.PAGE_SIZE , DbDataLocVOMeta.SEARCH_FIELD , DbDataLocVOMeta.FUZZY_FIELD , DbDataLocVOMeta.SEARCH_VALUE , DbDataLocVOMeta.DIRTY_FIELDS , DbDataLocVOMeta.SORT_FIELD , DbDataLocVOMeta.SORT_TYPE , DbDataLocVOMeta.DATA_ORIGIN , DbDataLocVOMeta.QUERY_LOGIC , DbDataLocVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { DbDataLocVOMeta.PAGE_INDEX , DbDataLocVOMeta.PAGE_SIZE , DbDataLocVOMeta.SEARCH_FIELD , DbDataLocVOMeta.FUZZY_FIELD , DbDataLocVOMeta.SEARCH_VALUE , DbDataLocVOMeta.DIRTY_FIELDS , DbDataLocVOMeta.SORT_FIELD , DbDataLocVOMeta.SORT_TYPE , DbDataLocVOMeta.DATA_ORIGIN , DbDataLocVOMeta.QUERY_LOGIC , DbDataLocVOMeta.REQUEST_ACTION , DbDataLocVOMeta.IDS } )
 	@SentinelResource(value = DbDataLocServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbDataLocServiceProxy.SAVE)
 	public Result save(DbDataLocVO dbDataLocVO) {
+		
 		Result result=dbDataLocService.save(dbDataLocVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -207,6 +210,7 @@ public class DbDataLocController extends SuperController {
 	@SentinelResource(value = DbDataLocServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbDataLocServiceProxy.GET_BY_ID)
 	public Result<DbDataLoc> getById(String id) {
+		
 		Result<DbDataLoc> result=new Result<>();
 		DbDataLoc dbDataLoc=dbDataLocService.getById(id);
 		result.success(true).data(dbDataLoc);
@@ -226,6 +230,7 @@ public class DbDataLocController extends SuperController {
 		@SentinelResource(value = DbDataLocServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbDataLocServiceProxy.GET_BY_IDS)
 	public Result<List<DbDataLoc>> getByIds(List<String> ids) {
+		
 		Result<List<DbDataLoc>> result=new Result<>();
 		List<DbDataLoc> list=dbDataLocService.queryListByIds(ids);
 		result.success(true).data(list);
@@ -238,14 +243,15 @@ public class DbDataLocController extends SuperController {
 	*/
 	@ApiOperation(value = "查询数据库存放位置")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbDataLocVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbDataLocVOMeta.LOC_ID , value = "存放位置" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbDataLocVOMeta.DB_INFO_ID , value = "数据库" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbDataLocVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "665541433180028928"),
+		@ApiImplicitParam(name = DbDataLocVOMeta.LOC_ID , value = "存放位置" , required = false , dataTypeClass=String.class , example = "nbu"),
+		@ApiImplicitParam(name = DbDataLocVOMeta.DB_INFO_ID , value = "数据库" , required = false , dataTypeClass=String.class , example = "665523406220820480"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbDataLocVOMeta.PAGE_INDEX , DbDataLocVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = DbDataLocServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbDataLocServiceProxy.QUERY_LIST)
 	public Result<List<DbDataLoc>> queryList(DbDataLocVO sample) {
+		
 		Result<List<DbDataLoc>> result=new Result<>();
 		List<DbDataLoc> list=dbDataLocService.queryList(sample);
 		result.success(true).data(list);
@@ -258,19 +264,22 @@ public class DbDataLocController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询数据库存放位置")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbDataLocVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbDataLocVOMeta.LOC_ID , value = "存放位置" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbDataLocVOMeta.DB_INFO_ID , value = "数据库" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbDataLocVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "665541433180028928"),
+		@ApiImplicitParam(name = DbDataLocVOMeta.LOC_ID , value = "存放位置" , required = false , dataTypeClass=String.class , example = "nbu"),
+		@ApiImplicitParam(name = DbDataLocVOMeta.DB_INFO_ID , value = "数据库" , required = false , dataTypeClass=String.class , example = "665523406220820480"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = DbDataLocServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbDataLocServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<DbDataLoc>> queryPagedList(DbDataLocVO sample) {
+		
 		Result<PagedList<DbDataLoc>> result=new Result<>();
 		PagedList<DbDataLoc> list=dbDataLocService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
 		result.success(true).data(list);
 		return result;
 	}
+
+
 
 
 

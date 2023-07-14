@@ -6,13 +6,14 @@ import java.util.Date;
 import java.math.BigDecimal;
 import com.dt.platform.domain.ops.Host;
 import com.dt.platform.domain.ops.ServiceInfo;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 06:17:08
- * @sign 57EEAD0D78F5BEFF343C544A4342F5A6
+ * @since 2023-07-14 20:45:51
+ * @sign E71AA9FA09EB3A39910E9918848CD5E3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -555,5 +556,52 @@ public class DbInstanceMeta {
 			super.setDatabase(database);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public DbInstance clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public DbInstance duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setLogMethod(this.getLogMethod());
+			inst.setHostId(this.getHostId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setBackupDatakeep(this.getBackupDatakeep());
+			inst.setBackupType(this.getBackupType());
+			inst.setLabels(this.getLabels());
+			inst.setBackupSize(this.getBackupSize());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setBackupStrategy(this.getBackupStrategy());
+			inst.setBackupStatus(this.getBackupStatus());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setBackupMethod(this.getBackupMethod());
+			inst.setDatabaseId(this.getDatabaseId());
+			inst.setBackupTime(this.getBackupTime());
+			if(all) {
+				inst.setDatabase(this.getDatabase());
+				inst.setHost(this.getHost());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

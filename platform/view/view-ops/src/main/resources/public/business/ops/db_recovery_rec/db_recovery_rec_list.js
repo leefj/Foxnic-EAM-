@@ -1,7 +1,7 @@
 /**
  * 数据库恢复 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-07 23:00:04
+ * @since 2023-07-14 20:47:37
  */
 
 
@@ -84,7 +84,7 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'dbInstanceId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库'), templet: function (d) { return templet('dbInstanceId' ,fox.joinLabel(d.dbInstance,"name",',','','dbInstanceId'),d);}}
 					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('类型'), templet:function (d){ return templet('type',fox.getEnumText(RADIO_TYPE_DATA,d.type,'','type'),d);}}
@@ -408,7 +408,10 @@ function ListPage() {
 
 			admin.putTempData('ops-db-recovery-rec-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('ops-db-recovery-rec-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -417,7 +420,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('ops-db-recovery-rec-form-data-form-action', "view",true);
 						showEditForm(data.data);

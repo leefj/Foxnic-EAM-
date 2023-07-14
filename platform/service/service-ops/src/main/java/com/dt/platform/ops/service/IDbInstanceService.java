@@ -1,5 +1,6 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 数据库实例 服务接口
+ * 数据库实例服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 06:17:08
+ * @since 2023-07-14 20:45:51
 */
 
 public interface IDbInstanceService extends  ISimpleIdService<DbInstance,String> {
@@ -55,7 +56,7 @@ public interface IDbInstanceService extends  ISimpleIdService<DbInstance,String>
 
 		
 	/**
-	 * 按主键删除 数据库实例
+	 * 按主键删除数据库实例
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IDbInstanceService extends  ISimpleIdService<DbInstance,String>
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 数据库实例
+	 * 按主键删除数据库实例
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IDbInstanceService extends  ISimpleIdService<DbInstance,String>
 
 		
 	/**
-	 * 按主键更新字段 数据库实例
+	 * 按主键更新数据库实例
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IDbInstanceService extends  ISimpleIdService<DbInstance,String>
 
 		
 	/**
-	 * 按主键获取 数据库实例
+	 * 按主键获取数据库实例
 	 *
 	 * @param id 主键
 	 * @return DbInstance 数据对象
