@@ -2,8 +2,8 @@ package com.dt.platform.domain.eam.meta;
 
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.RepairOrder;
-import java.math.BigDecimal;
 import java.util.Date;
+import java.math.BigDecimal;
 import com.dt.platform.domain.eam.Asset;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -12,13 +12,14 @@ import com.dt.platform.domain.eam.RepairOrderAcceptance;
 import com.dt.platform.domain.eam.RepairCategoryTpl;
 import com.dt.platform.domain.eam.RepairUrgency;
 import org.github.foxnic.web.domain.hrm.Organization;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 05:30:41
- * @sign 6936FEF4BE90E7B4FB6F2E8CF68B66B1
+ * @since 2023-07-17 15:23:47
+ * @sign 9988575ED5A2CBA72AAFBE6C761F5398
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -55,14 +56,14 @@ public class RepairOrderMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrder,java.lang.String> PROC_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrder.class ,PROC_ID, java.lang.String.class, "流程", "流程", java.lang.String.class, null);
 	
 	/**
-	 * 办理状态 , 类型: java.lang.String
+	 * 审批状态 , 类型: java.lang.String
 	*/
 	public static final String STATUS="status";
 	
 	/**
-	 * 办理状态 , 类型: java.lang.String
+	 * 审批状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrder,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrder.class ,STATUS, java.lang.String.class, "办理状态", "办理状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrder,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrder.class ,STATUS, java.lang.String.class, "审批状态", "审批状态", java.lang.String.class, null);
 	
 	/**
 	 * 业务名称 , 类型: java.lang.String
@@ -125,14 +126,24 @@ public class RepairOrderMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrder,java.lang.String> REPORT_ORG_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrder.class ,REPORT_ORG_ID, java.lang.String.class, "报修部门", "报修部门", java.lang.String.class, null);
 	
 	/**
-	 * 报修人 , 类型: java.lang.String
+	 * 计划完成日期 , 类型: java.util.Date
+	*/
+	public static final String PLAN_FINISH_DATE="planFinishDate";
+	
+	/**
+	 * 计划完成日期 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrder,java.util.Date> PLAN_FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrder.class ,PLAN_FINISH_DATE, java.util.Date.class, "计划完成日期", "计划完成日期", java.util.Date.class, null);
+	
+	/**
+	 * 报修人员 , 类型: java.lang.String
 	*/
 	public static final String REPORT_USER_ID="reportUserId";
 	
 	/**
-	 * 报修人 , 类型: java.lang.String
+	 * 报修人员 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrder,java.lang.String> REPORT_USER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrder.class ,REPORT_USER_ID, java.lang.String.class, "报修人", "报修人", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrder,java.lang.String> REPORT_USER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrder.class ,REPORT_USER_ID, java.lang.String.class, "报修人员", "报修人员", java.lang.String.class, null);
 	
 	/**
 	 * 维修费用 , 类型: java.math.BigDecimal
@@ -143,16 +154,6 @@ public class RepairOrderMeta {
 	 * 维修费用 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrder,java.math.BigDecimal> REPAIR_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrder.class ,REPAIR_COST, java.math.BigDecimal.class, "维修费用", "维修费用", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 计划完成日期 , 类型: java.util.Date
-	*/
-	public static final String PLAN_FINISH_DATE="planFinishDate";
-	
-	/**
-	 * 计划完成日期 , 类型: java.util.Date
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrder,java.util.Date> PLAN_FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrder.class ,PLAN_FINISH_DATE, java.util.Date.class, "计划完成日期", "计划完成日期", java.util.Date.class, null);
 	
 	/**
 	 * 报修内容 , 类型: java.lang.String
@@ -175,14 +176,14 @@ public class RepairOrderMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrder,java.lang.String> PICTURE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrder.class ,PICTURE_ID, java.lang.String.class, "图片", "图片", java.lang.String.class, null);
 	
 	/**
-	 * 制单人 , 类型: java.lang.String
+	 * 制单人员 , 类型: java.lang.String
 	*/
 	public static final String ORIGINATOR_ID="originatorId";
 	
 	/**
-	 * 制单人 , 类型: java.lang.String
+	 * 制单人员 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrder,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrder.class ,ORIGINATOR_ID, java.lang.String.class, "制单人", "制单人", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrder,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrder.class ,ORIGINATOR_ID, java.lang.String.class, "制单人员", "制单人员", java.lang.String.class, null);
 	
 	/**
 	 * 业务日期 , 类型: java.util.Date
@@ -407,7 +408,7 @@ public class RepairOrderMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , STATUS , NAME , REPAIR_STATUS , CATEGORY_TPL_ID , REPAIR_TYPE , URGENCY_ID , REPORT_ORG_ID , REPORT_USER_ID , REPAIR_COST , PLAN_FINISH_DATE , CONTENT , PICTURE_ID , ORIGINATOR_ID , BUSINESS_DATE , AUTO_ACT , AUTO_ACT_RULE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ASSET_LIST , ASSET_IDS , ORIGINATOR , REPORT_USER , ORDER_ACT , ORDER_ACCEPTANCE , CATEGORY_TPL , REPAIR_URGENCY , ORGANIZATION };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , STATUS , NAME , REPAIR_STATUS , CATEGORY_TPL_ID , REPAIR_TYPE , URGENCY_ID , REPORT_ORG_ID , PLAN_FINISH_DATE , REPORT_USER_ID , REPAIR_COST , CONTENT , PICTURE_ID , ORIGINATOR_ID , BUSINESS_DATE , AUTO_ACT , AUTO_ACT_RULE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ASSET_LIST , ASSET_IDS , ORIGINATOR , REPORT_USER , ORDER_ACT , ORDER_ACCEPTANCE , CATEGORY_TPL , REPAIR_URGENCY , ORGANIZATION };
 	
 	/**
 	 * 代理类
@@ -451,8 +452,8 @@ public class RepairOrderMeta {
 		}
 		
 		/**
-		 * 设置 办理状态
-		 * @param status 办理状态
+		 * 设置 审批状态
+		 * @param status 审批状态
 		 * @return 当前对象
 		*/
 		public RepairOrder setStatus(String status) {
@@ -528,8 +529,19 @@ public class RepairOrderMeta {
 		}
 		
 		/**
-		 * 设置 报修人
-		 * @param reportUserId 报修人
+		 * 设置 计划完成日期
+		 * @param planFinishDate 计划完成日期
+		 * @return 当前对象
+		*/
+		public RepairOrder setPlanFinishDate(Date planFinishDate) {
+			super.change(PLAN_FINISH_DATE,super.getPlanFinishDate(),planFinishDate);
+			super.setPlanFinishDate(planFinishDate);
+			return this;
+		}
+		
+		/**
+		 * 设置 报修人员
+		 * @param reportUserId 报修人员
 		 * @return 当前对象
 		*/
 		public RepairOrder setReportUserId(String reportUserId) {
@@ -546,17 +558,6 @@ public class RepairOrderMeta {
 		public RepairOrder setRepairCost(BigDecimal repairCost) {
 			super.change(REPAIR_COST,super.getRepairCost(),repairCost);
 			super.setRepairCost(repairCost);
-			return this;
-		}
-		
-		/**
-		 * 设置 计划完成日期
-		 * @param planFinishDate 计划完成日期
-		 * @return 当前对象
-		*/
-		public RepairOrder setPlanFinishDate(Date planFinishDate) {
-			super.change(PLAN_FINISH_DATE,super.getPlanFinishDate(),planFinishDate);
-			super.setPlanFinishDate(planFinishDate);
 			return this;
 		}
 		
@@ -583,8 +584,8 @@ public class RepairOrderMeta {
 		}
 		
 		/**
-		 * 设置 制单人
-		 * @param originatorId 制单人
+		 * 设置 制单人员
+		 * @param originatorId 制单人员
 		 * @return 当前对象
 		*/
 		public RepairOrder setOriginatorId(String originatorId) {
@@ -834,5 +835,65 @@ public class RepairOrderMeta {
 			super.setOrganization(organization);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public RepairOrder clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public RepairOrder duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setUrgencyId(this.getUrgencyId());
+			inst.setProcId(this.getProcId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setContent(this.getContent());
+			inst.setBusinessDate(this.getBusinessDate());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setPictureId(this.getPictureId());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setReportUserId(this.getReportUserId());
+			inst.setCategoryTplId(this.getCategoryTplId());
+			inst.setAutoAct(this.getAutoAct());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setReportOrgId(this.getReportOrgId());
+			inst.setRepairStatus(this.getRepairStatus());
+			inst.setRepairType(this.getRepairType());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setAutoActRule(this.getAutoActRule());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setPlanFinishDate(this.getPlanFinishDate());
+			inst.setRepairCost(this.getRepairCost());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setReportUser(this.getReportUser());
+				inst.setRepairUrgency(this.getRepairUrgency());
+				inst.setOrderAct(this.getOrderAct());
+				inst.setOrganization(this.getOrganization());
+				inst.setAssetIds(this.getAssetIds());
+				inst.setCategoryTpl(this.getCategoryTpl());
+				inst.setOriginator(this.getOriginator());
+				inst.setAssetList(this.getAssetList());
+				inst.setOrderAcceptance(this.getOrderAcceptance());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

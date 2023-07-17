@@ -103,6 +103,7 @@ public class EamRelationManager extends RelationManager {
         this.setupRepairCategoryTpl();
         this.setupRepairOrder();
         this.setupRepairOrderAct();
+        this.setupRepairOrderTransfer();
         this.setupRepairOrderAccept();
         this.setupRepairRule();
 
@@ -133,6 +134,33 @@ public class EamRelationManager extends RelationManager {
         this.setupCheckGroup();
         this.setupCheckSelect();
 
+        this.setupDeviceSp();
+        this.setupDeviceSpRcd();
+
+    }
+    public void setupDeviceSp() {
+
+        this.property(DeviceSpMeta.DEVICE_SP_TYPE_PROP)
+                .using(EAMTables.EAM_DEVICE_SP.TYPE).join(EAMTables.EAM_DEVICE_SP_TYPE.ID);
+
+        this.property(DeviceSpMeta.POSITION_PROP)
+                .using(EAMTables.EAM_DEVICE_SP.LOC_ID).join(EAMTables.EAM_POSITION.ID);
+
+        this.property(DeviceSpMeta.MANAGER_PROP)
+                .using(EAMTables.EAM_DEVICE_SP.MANAGER_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(DeviceSpMeta.USAGE_PROP)
+                .using(EAMTables.EAM_DEVICE_SP.USAGE_RANGE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_sp_usage_range'");
+
+
+    }
+    public void setupDeviceSpRcd() {
+        this.property(DeviceSpRcdMeta.DEVICE_SP_PROP)
+                .using(EAMTables.EAM_DEVICE_SP_RCD.SP_ID).join(EAMTables.EAM_DEVICE_SP.ID);
+
+        this.property(DeviceSpRcdMeta.OPER_USER_PROP)
+                .using(EAMTables.EAM_DEVICE_SP_RCD.OPER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
     }
     public void setupCheckSelect() {
         this.property(CheckSelectMeta.CHECK_ITEM_PROP)
@@ -579,6 +607,20 @@ public class EamRelationManager extends RelationManager {
     }
 
 
+    public void setupRepairOrderTransfer() {
+        //维修组
+        this.property(RepairOrderTransferMeta.REPAIR_GROUP_PROP)
+                .using(EAMTables.EAM_REPAIR_ORDER_TRANSFER.GROUP_ID).join(EAMTables.EAM_REPAIR_GROUP.ID);
+
+        //执行人
+        this.property(RepairOrderTransferMeta.EXECUTOR_PROP)
+                .using(EAMTables.EAM_REPAIR_ORDER_TRANSFER.EXECUTOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        //订单
+        this.property(RepairOrderTransferMeta.ORDER_PROP)
+                .using(EAMTables.EAM_REPAIR_ORDER_TRANSFER.ORDER_ID).join(EAMTables.EAM_REPAIR_ORDER.ID);
+
+    }
     public void setupRepairOrderAct() {
 
         this.property(RepairOrderActMeta.REPAIR_GROUP_PROP)

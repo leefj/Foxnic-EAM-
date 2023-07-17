@@ -63,6 +63,9 @@ public class RepairOrderActServiceImpl extends SuperService<RepairOrderAct> impl
 	@Autowired
 	private IAssetProcessRecordService assetProcessRecordService;
 
+
+
+
 	/**
 	 * 注入DAO对象
 	 * */

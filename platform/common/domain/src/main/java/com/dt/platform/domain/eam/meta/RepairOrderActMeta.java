@@ -7,13 +7,14 @@ import java.util.Date;
 import com.dt.platform.domain.eam.RepairOrder;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.RepairGroup;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 09:48:11
- * @sign 5502269C139752A1A1931008A4D3DDF1
+ * @since 2023-07-17 16:02:02
+ * @sign B566B74E5A61CC057A2077E13FD15E9E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -60,14 +61,14 @@ public class RepairOrderActMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> GROUP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,GROUP_ID, java.lang.String.class, "维修班组", "维修班组", java.lang.String.class, null);
 	
 	/**
-	 * 执行人 , 类型: java.lang.String
+	 * 维修人员 , 类型: java.lang.String
 	*/
 	public static final String EXECUTOR_ID="executorId";
 	
 	/**
-	 * 执行人 , 类型: java.lang.String
+	 * 维修人员 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> EXECUTOR_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,EXECUTOR_ID, java.lang.String.class, "执行人", "执行人", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> EXECUTOR_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,EXECUTOR_ID, java.lang.String.class, "维修人员", "维修人员", java.lang.String.class, null);
 	
 	/**
 	 * 维修费用 , 类型: java.math.BigDecimal
@@ -120,14 +121,14 @@ public class RepairOrderActMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> PICTURE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,PICTURE_ID, java.lang.String.class, "图片", "图片", java.lang.String.class, null);
 	
 	/**
-	 * 制单人 , 类型: java.lang.String
+	 * 制单人员 , 类型: java.lang.String
 	*/
 	public static final String ORIGINATOR_ID="originatorId";
 	
 	/**
-	 * 制单人 , 类型: java.lang.String
+	 * 制单人员 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,ORIGINATOR_ID, java.lang.String.class, "制单人", "制单人", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,ORIGINATOR_ID, java.lang.String.class, "制单人员", "制单人员", java.lang.String.class, null);
 	
 	/**
 	 * 跟随验证 , 类型: java.lang.String
@@ -367,8 +368,8 @@ public class RepairOrderActMeta {
 		}
 		
 		/**
-		 * 设置 执行人
-		 * @param executorId 执行人
+		 * 设置 维修人员
+		 * @param executorId 维修人员
 		 * @return 当前对象
 		*/
 		public RepairOrderAct setExecutorId(String executorId) {
@@ -433,8 +434,8 @@ public class RepairOrderActMeta {
 		}
 		
 		/**
-		 * 设置 制单人
-		 * @param originatorId 制单人
+		 * 设置 制单人员
+		 * @param originatorId 制单人员
 		 * @return 当前对象
 		*/
 		public RepairOrderAct setOriginatorId(String originatorId) {
@@ -640,5 +641,56 @@ public class RepairOrderActMeta {
 			super.setOrderRepairStatus(orderRepairStatus);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public RepairOrderAct clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public RepairOrderAct duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setFinishTime(this.getFinishTime());
+			inst.setNotes(this.getNotes());
+			inst.setOrderId(this.getOrderId());
+			inst.setExecutorId(this.getExecutorId());
+			inst.setGroupId(this.getGroupId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setWithAcceptance(this.getWithAcceptance());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setPictureId(this.getPictureId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setStartTime(this.getStartTime());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setRepairCost(this.getRepairCost());
+			if(all) {
+				inst.setExecutor(this.getExecutor());
+				inst.setRepairGroup(this.getRepairGroup());
+				inst.setOriginator(this.getOriginator());
+				inst.setOrderRepairStatus(this.getOrderRepairStatus());
+				inst.setOrderBusinessCode(this.getOrderBusinessCode());
+				inst.setOrder(this.getOrder());
+				inst.setOrderName(this.getOrderName());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

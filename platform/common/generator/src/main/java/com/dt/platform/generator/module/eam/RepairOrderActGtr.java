@@ -128,7 +128,8 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
 
 
         cfg.view().form().addJsVariable("ORDER_ID","[[${orderId}]]","工单");
-        cfg.view().list().operationColumn().addActionButton("开始维修","start","start-button","eam_repair_order_act:start");
+      //  cfg.view().list().operationColumn().addActionButton("开始维修","start","start-button","eam_repair_order_act:start");
+        cfg.view().list().operationColumn().addActionButton("维修","maintenance","maintenance-button","eam_repair_order_act:maintenance");
         cfg.view().list().operationColumn().addActionButton("结束维修","finish","finish-button","eam_repair_order_act:finish");
         cfg.view().list().operationColumn().addActionButton("验收单","cancel","cancel-button","eam_repair_order_act:cancel");
         cfg.view().list().operationColumn().addActionButton("取消","acceptance","acceptance-button","eam_repair_order_act:acceptance");
@@ -142,7 +143,7 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
-                .setListPage(WriteMode.IGNORE)
+                .setListPage(WriteMode.COVER_EXISTS_FILE)
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         ; //列表HTML页
         //生成代码
