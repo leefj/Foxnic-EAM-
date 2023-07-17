@@ -1,34 +1,41 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_REPAIR_ORDER;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
 import java.util.Date;
+import java.math.BigDecimal;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.RepairOrderMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 故障申请单
+ * <p>故障申请单 , 数据表 eam_repair_order 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 05:30:41
- * @sign 6936FEF4BE90E7B4FB6F2E8CF68B66B1
+ * @since 2023-07-17 15:23:47
+ * @sign 9988575ED5A2CBA72AAFBE6C761F5398
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_repair_order")
+@ApiModel(description = "故障申请单 ; 故障申请单 , 数据表 eam_repair_order 的PO类型")
 public class RepairOrder extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -39,13 +46,13 @@ public class RepairOrder extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "698166043993964544")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "ROD202304111304442")
 	private String businessCode;
 	
 	/**
@@ -55,39 +62,39 @@ public class RepairOrder extends Entity {
 	private String procId;
 	
 	/**
-	 * 办理状态：办理状态
+	 * 审批状态：审批状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="审批状态" , notes = "审批状态" , example = "complete")
 	private String status;
 	
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "121212")
 	private String name;
 	
 	/**
 	 * 维修状态：维修状态
 	*/
-	@ApiModelProperty(required = false,value="维修状态" , notes = "维修状态")
+	@ApiModelProperty(required = false,value="维修状态" , notes = "维修状态" , example = "finish")
 	private String repairStatus;
 	
 	/**
 	 * 故障类型：故障类型
 	*/
-	@ApiModelProperty(required = false,value="故障类型" , notes = "故障类型")
+	@ApiModelProperty(required = false,value="故障类型" , notes = "故障类型" , example = "586544057816190976")
 	private String categoryTplId;
 	
 	/**
 	 * 维修类型：维修类型
 	*/
-	@ApiModelProperty(required = false,value="维修类型" , notes = "维修类型")
+	@ApiModelProperty(required = false,value="维修类型" , notes = "维修类型" , example = "external_repair")
 	private String repairType;
 	
 	/**
 	 * 紧急程度：紧急程度
 	*/
-	@ApiModelProperty(required = false,value="紧急程度" , notes = "紧急程度")
+	@ApiModelProperty(required = false,value="紧急程度" , notes = "紧急程度" , example = "583563053275021312")
 	private String urgencyId;
 	
 	/**
@@ -97,27 +104,27 @@ public class RepairOrder extends Entity {
 	private String reportOrgId;
 	
 	/**
-	 * 报修人：报修人
+	 * 计划完成日期：计划完成日期
 	*/
-	@ApiModelProperty(required = false,value="报修人" , notes = "报修人")
+	@ApiModelProperty(required = false,value="计划完成日期" , notes = "计划完成日期" , example = "2023-04-11 12:00:00")
+	private Date planFinishDate;
+	
+	/**
+	 * 报修人员：报修人员
+	*/
+	@ApiModelProperty(required = false,value="报修人员" , notes = "报修人员" , example = "586965217661943808")
 	private String reportUserId;
 	
 	/**
 	 * 维修费用：维修费用
 	*/
-	@ApiModelProperty(required = false,value="维修费用" , notes = "维修费用")
+	@ApiModelProperty(required = false,value="维修费用" , notes = "维修费用" , example = "0.00")
 	private BigDecimal repairCost;
-	
-	/**
-	 * 计划完成日期：计划完成日期
-	*/
-	@ApiModelProperty(required = false,value="计划完成日期" , notes = "计划完成日期")
-	private Date planFinishDate;
 	
 	/**
 	 * 报修内容：报修内容
 	*/
-	@ApiModelProperty(required = false,value="报修内容" , notes = "报修内容")
+	@ApiModelProperty(required = false,value="报修内容" , notes = "报修内容" , example = "121212")
 	private String content;
 	
 	/**
@@ -127,21 +134,21 @@ public class RepairOrder extends Entity {
 	private String pictureId;
 	
 	/**
-	 * 制单人：制单人
+	 * 制单人员：制单人员
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人员" , notes = "制单人员" , example = "E001")
 	private String originatorId;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-04-11 12:00:00")
 	private Date businessDate;
 	
 	/**
 	 * 维修单：维修单
 	*/
-	@ApiModelProperty(required = false,value="维修单" , notes = "维修单")
+	@ApiModelProperty(required = false,value="维修单" , notes = "维修单" , example = "0")
 	private String autoAct;
 	
 	/**
@@ -153,33 +160,34 @@ public class RepairOrder extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-11 01:42:36")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-11 03:24:50")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -197,19 +205,19 @@ public class RepairOrder extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "6")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1681191731000")
 	private String selectedCode;
 	
 	/**
@@ -324,17 +332,17 @@ public class RepairOrder extends Entity {
 	}
 	
 	/**
-	 * 获得 办理状态<br>
-	 * 办理状态
-	 * @return 办理状态
+	 * 获得 审批状态<br>
+	 * 审批状态
+	 * @return 审批状态
 	*/
 	public String getStatus() {
 		return status;
 	}
 	
 	/**
-	 * 设置 办理状态
-	 * @param status 办理状态
+	 * 设置 审批状态
+	 * @param status 审批状态
 	 * @return 当前对象
 	*/
 	public RepairOrder setStatus(String status) {
@@ -457,17 +465,36 @@ public class RepairOrder extends Entity {
 	}
 	
 	/**
-	 * 获得 报修人<br>
-	 * 报修人
-	 * @return 报修人
+	 * 获得 计划完成日期<br>
+	 * 计划完成日期
+	 * @return 计划完成日期
+	*/
+	public Date getPlanFinishDate() {
+		return planFinishDate;
+	}
+	
+	/**
+	 * 设置 计划完成日期
+	 * @param planFinishDate 计划完成日期
+	 * @return 当前对象
+	*/
+	public RepairOrder setPlanFinishDate(Date planFinishDate) {
+		this.planFinishDate=planFinishDate;
+		return this;
+	}
+	
+	/**
+	 * 获得 报修人员<br>
+	 * 报修人员
+	 * @return 报修人员
 	*/
 	public String getReportUserId() {
 		return reportUserId;
 	}
 	
 	/**
-	 * 设置 报修人
-	 * @param reportUserId 报修人
+	 * 设置 报修人员
+	 * @param reportUserId 报修人员
 	 * @return 当前对象
 	*/
 	public RepairOrder setReportUserId(String reportUserId) {
@@ -491,25 +518,6 @@ public class RepairOrder extends Entity {
 	*/
 	public RepairOrder setRepairCost(BigDecimal repairCost) {
 		this.repairCost=repairCost;
-		return this;
-	}
-	
-	/**
-	 * 获得 计划完成日期<br>
-	 * 计划完成日期
-	 * @return 计划完成日期
-	*/
-	public Date getPlanFinishDate() {
-		return planFinishDate;
-	}
-	
-	/**
-	 * 设置 计划完成日期
-	 * @param planFinishDate 计划完成日期
-	 * @return 当前对象
-	*/
-	public RepairOrder setPlanFinishDate(Date planFinishDate) {
-		this.planFinishDate=planFinishDate;
 		return this;
 	}
 	
@@ -552,17 +560,17 @@ public class RepairOrder extends Entity {
 	}
 	
 	/**
-	 * 获得 制单人<br>
-	 * 制单人
-	 * @return 制单人
+	 * 获得 制单人员<br>
+	 * 制单人员
+	 * @return 制单人员
 	*/
 	public String getOriginatorId() {
 		return originatorId;
 	}
 	
 	/**
-	 * 设置 制单人
-	 * @param originatorId 制单人
+	 * 设置 制单人员
+	 * @param originatorId 制单人员
 	 * @return 当前对象
 	*/
 	public RepairOrder setOriginatorId(String originatorId) {
@@ -730,6 +738,7 @@ public class RepairOrder extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public RepairOrder setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -1070,6 +1079,73 @@ public class RepairOrder extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public RepairOrder clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public RepairOrder duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.RepairOrderMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.RepairOrderMeta.$$proxy$$();
+		inst.setUrgencyId(this.getUrgencyId());
+		inst.setProcId(this.getProcId());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setBusinessDate(this.getBusinessDate());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setPictureId(this.getPictureId());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setReportUserId(this.getReportUserId());
+		inst.setCategoryTplId(this.getCategoryTplId());
+		inst.setAutoAct(this.getAutoAct());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setReportOrgId(this.getReportOrgId());
+		inst.setRepairStatus(this.getRepairStatus());
+		inst.setRepairType(this.getRepairType());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setAutoActRule(this.getAutoActRule());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setPlanFinishDate(this.getPlanFinishDate());
+		inst.setRepairCost(this.getRepairCost());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setReportUser(this.getReportUser());
+			inst.setRepairUrgency(this.getRepairUrgency());
+			inst.setOrderAct(this.getOrderAct());
+			inst.setOrganization(this.getOrganization());
+			inst.setAssetIds(this.getAssetIds());
+			inst.setCategoryTpl(this.getCategoryTpl());
+			inst.setOriginator(this.getOriginator());
+			inst.setAssetList(this.getAssetList());
+			inst.setOrderAcceptance(this.getOrderAcceptance());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public RepairOrder clone(boolean deep) {
+		return EntityContext.clone(RepairOrder.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 RepairOrder
 	 * @param repairOrderMap 包含实体信息的 Map 对象
 	 * @return RepairOrder , 转换好的的 RepairOrder 对象
@@ -1077,7 +1153,9 @@ public class RepairOrder extends Entity {
 	@Transient
 	public static RepairOrder createFrom(Map<String,Object> repairOrderMap) {
 		if(repairOrderMap==null) return null;
-		RepairOrder po = EntityContext.create(RepairOrder.class, repairOrderMap);
+		RepairOrder po = create();
+		EntityContext.copyProperties(po,repairOrderMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1089,7 +1167,9 @@ public class RepairOrder extends Entity {
 	@Transient
 	public static RepairOrder createFrom(Object pojo) {
 		if(pojo==null) return null;
-		RepairOrder po = EntityContext.create(RepairOrder.class,pojo);
+		RepairOrder po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1099,6 +1179,176 @@ public class RepairOrder extends Entity {
 	*/
 	@Transient
 	public static RepairOrder create() {
-		return EntityContext.create(RepairOrder.class);
+		return new com.dt.platform.domain.eam.meta.RepairOrderMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setUrgencyId(DataParser.parse(String.class, map.get(RepairOrderMeta.URGENCY_ID)));
+			this.setProcId(DataParser.parse(String.class, map.get(RepairOrderMeta.PROC_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(RepairOrderMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(RepairOrderMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(RepairOrderMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(RepairOrderMeta.BUSINESS_CODE)));
+			this.setPictureId(DataParser.parse(String.class, map.get(RepairOrderMeta.PICTURE_ID)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(RepairOrderMeta.UPDATE_BY)));
+			this.setReportUserId(DataParser.parse(String.class, map.get(RepairOrderMeta.REPORT_USER_ID)));
+			this.setCategoryTplId(DataParser.parse(String.class, map.get(RepairOrderMeta.CATEGORY_TPL_ID)));
+			this.setAutoAct(DataParser.parse(String.class, map.get(RepairOrderMeta.AUTO_ACT)));
+			this.setId(DataParser.parse(String.class, map.get(RepairOrderMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(RepairOrderMeta.ORIGINATOR_ID)));
+			this.setReportOrgId(DataParser.parse(String.class, map.get(RepairOrderMeta.REPORT_ORG_ID)));
+			this.setRepairStatus(DataParser.parse(String.class, map.get(RepairOrderMeta.REPAIR_STATUS)));
+			this.setRepairType(DataParser.parse(String.class, map.get(RepairOrderMeta.REPAIR_TYPE)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(RepairOrderMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(RepairOrderMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(RepairOrderMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(RepairOrderMeta.DELETED)));
+			this.setAutoActRule(DataParser.parse(String.class, map.get(RepairOrderMeta.AUTO_ACT_RULE)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(RepairOrderMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(RepairOrderMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(RepairOrderMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(RepairOrderMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(RepairOrderMeta.DELETE_BY)));
+			this.setPlanFinishDate(DataParser.parse(Date.class, map.get(RepairOrderMeta.PLAN_FINISH_DATE)));
+			this.setRepairCost(DataParser.parse(BigDecimal.class, map.get(RepairOrderMeta.REPAIR_COST)));
+			this.setStatus(DataParser.parse(String.class, map.get(RepairOrderMeta.STATUS)));
+			// others
+			this.setReportUser(DataParser.parse(Employee.class, map.get(RepairOrderMeta.REPORT_USER)));
+			this.setRepairUrgency(DataParser.parse(RepairUrgency.class, map.get(RepairOrderMeta.REPAIR_URGENCY)));
+			this.setOrderAct(DataParser.parse(RepairOrderAct.class, map.get(RepairOrderMeta.ORDER_ACT)));
+			this.setOrganization(DataParser.parse(Organization.class, map.get(RepairOrderMeta.ORGANIZATION)));
+			this.setCategoryTpl(DataParser.parse(RepairCategoryTpl.class, map.get(RepairOrderMeta.CATEGORY_TPL)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(RepairOrderMeta.ORIGINATOR)));
+			this.setOrderAcceptance(DataParser.parse(RepairOrderAcceptance.class, map.get(RepairOrderMeta.ORDER_ACCEPTANCE)));
+			return true;
+		} else {
+			try {
+				this.setUrgencyId( (String)map.get(RepairOrderMeta.URGENCY_ID));
+				this.setProcId( (String)map.get(RepairOrderMeta.PROC_ID));
+				this.setSelectedCode( (String)map.get(RepairOrderMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(RepairOrderMeta.CONTENT));
+				this.setBusinessDate( (Date)map.get(RepairOrderMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(RepairOrderMeta.BUSINESS_CODE));
+				this.setPictureId( (String)map.get(RepairOrderMeta.PICTURE_ID));
+				this.setUpdateBy( (String)map.get(RepairOrderMeta.UPDATE_BY));
+				this.setReportUserId( (String)map.get(RepairOrderMeta.REPORT_USER_ID));
+				this.setCategoryTplId( (String)map.get(RepairOrderMeta.CATEGORY_TPL_ID));
+				this.setAutoAct( (String)map.get(RepairOrderMeta.AUTO_ACT));
+				this.setId( (String)map.get(RepairOrderMeta.ID));
+				this.setOriginatorId( (String)map.get(RepairOrderMeta.ORIGINATOR_ID));
+				this.setReportOrgId( (String)map.get(RepairOrderMeta.REPORT_ORG_ID));
+				this.setRepairStatus( (String)map.get(RepairOrderMeta.REPAIR_STATUS));
+				this.setRepairType( (String)map.get(RepairOrderMeta.REPAIR_TYPE));
+				this.setUpdateTime( (Date)map.get(RepairOrderMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(RepairOrderMeta.VERSION));
+				this.setCreateBy( (String)map.get(RepairOrderMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(RepairOrderMeta.DELETED));
+				this.setAutoActRule( (String)map.get(RepairOrderMeta.AUTO_ACT_RULE));
+				this.setCreateTime( (Date)map.get(RepairOrderMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(RepairOrderMeta.DELETE_TIME));
+				this.setName( (String)map.get(RepairOrderMeta.NAME));
+				this.setTenantId( (String)map.get(RepairOrderMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(RepairOrderMeta.DELETE_BY));
+				this.setPlanFinishDate( (Date)map.get(RepairOrderMeta.PLAN_FINISH_DATE));
+				this.setRepairCost( (BigDecimal)map.get(RepairOrderMeta.REPAIR_COST));
+				this.setStatus( (String)map.get(RepairOrderMeta.STATUS));
+				// others
+				this.setReportUser( (Employee)map.get(RepairOrderMeta.REPORT_USER));
+				this.setRepairUrgency( (RepairUrgency)map.get(RepairOrderMeta.REPAIR_URGENCY));
+				this.setOrderAct( (RepairOrderAct)map.get(RepairOrderMeta.ORDER_ACT));
+				this.setOrganization( (Organization)map.get(RepairOrderMeta.ORGANIZATION));
+				this.setCategoryTpl( (RepairCategoryTpl)map.get(RepairOrderMeta.CATEGORY_TPL));
+				this.setOriginator( (Employee)map.get(RepairOrderMeta.ORIGINATOR));
+				this.setOrderAcceptance( (RepairOrderAcceptance)map.get(RepairOrderMeta.ORDER_ACCEPTANCE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setUrgencyId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.URGENCY_ID)));
+			this.setProcId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.PROC_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(RepairOrderMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(RepairOrderMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(RepairOrderMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(RepairOrderMeta.BUSINESS_CODE)));
+			this.setPictureId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.PICTURE_ID)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(RepairOrderMeta.UPDATE_BY)));
+			this.setReportUserId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.REPORT_USER_ID)));
+			this.setCategoryTplId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.CATEGORY_TPL_ID)));
+			this.setAutoAct(DataParser.parse(String.class, r.getValue(RepairOrderMeta.AUTO_ACT)));
+			this.setId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.ORIGINATOR_ID)));
+			this.setReportOrgId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.REPORT_ORG_ID)));
+			this.setRepairStatus(DataParser.parse(String.class, r.getValue(RepairOrderMeta.REPAIR_STATUS)));
+			this.setRepairType(DataParser.parse(String.class, r.getValue(RepairOrderMeta.REPAIR_TYPE)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(RepairOrderMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(RepairOrderMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(RepairOrderMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(RepairOrderMeta.DELETED)));
+			this.setAutoActRule(DataParser.parse(String.class, r.getValue(RepairOrderMeta.AUTO_ACT_RULE)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(RepairOrderMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(RepairOrderMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(RepairOrderMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(RepairOrderMeta.DELETE_BY)));
+			this.setPlanFinishDate(DataParser.parse(Date.class, r.getValue(RepairOrderMeta.PLAN_FINISH_DATE)));
+			this.setRepairCost(DataParser.parse(BigDecimal.class, r.getValue(RepairOrderMeta.REPAIR_COST)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(RepairOrderMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setUrgencyId( (String)r.getValue(RepairOrderMeta.URGENCY_ID));
+				this.setProcId( (String)r.getValue(RepairOrderMeta.PROC_ID));
+				this.setSelectedCode( (String)r.getValue(RepairOrderMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(RepairOrderMeta.CONTENT));
+				this.setBusinessDate( (Date)r.getValue(RepairOrderMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(RepairOrderMeta.BUSINESS_CODE));
+				this.setPictureId( (String)r.getValue(RepairOrderMeta.PICTURE_ID));
+				this.setUpdateBy( (String)r.getValue(RepairOrderMeta.UPDATE_BY));
+				this.setReportUserId( (String)r.getValue(RepairOrderMeta.REPORT_USER_ID));
+				this.setCategoryTplId( (String)r.getValue(RepairOrderMeta.CATEGORY_TPL_ID));
+				this.setAutoAct( (String)r.getValue(RepairOrderMeta.AUTO_ACT));
+				this.setId( (String)r.getValue(RepairOrderMeta.ID));
+				this.setOriginatorId( (String)r.getValue(RepairOrderMeta.ORIGINATOR_ID));
+				this.setReportOrgId( (String)r.getValue(RepairOrderMeta.REPORT_ORG_ID));
+				this.setRepairStatus( (String)r.getValue(RepairOrderMeta.REPAIR_STATUS));
+				this.setRepairType( (String)r.getValue(RepairOrderMeta.REPAIR_TYPE));
+				this.setUpdateTime( (Date)r.getValue(RepairOrderMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(RepairOrderMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(RepairOrderMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(RepairOrderMeta.DELETED));
+				this.setAutoActRule( (String)r.getValue(RepairOrderMeta.AUTO_ACT_RULE));
+				this.setCreateTime( (Date)r.getValue(RepairOrderMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(RepairOrderMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(RepairOrderMeta.NAME));
+				this.setTenantId( (String)r.getValue(RepairOrderMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(RepairOrderMeta.DELETE_BY));
+				this.setPlanFinishDate( (Date)r.getValue(RepairOrderMeta.PLAN_FINISH_DATE));
+				this.setRepairCost( (BigDecimal)r.getValue(RepairOrderMeta.REPAIR_COST));
+				this.setStatus( (String)r.getValue(RepairOrderMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

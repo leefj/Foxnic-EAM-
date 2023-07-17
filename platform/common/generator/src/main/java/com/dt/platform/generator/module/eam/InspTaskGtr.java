@@ -42,8 +42,6 @@ public class InspTaskGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addListProperty(InspectionTaskPoint.class,"inspectionTaskPointList","任务巡检点","任务巡检点");
 
-
-
         cfg.getPoClassFile().addListProperty(String.class,"inspectionTaskPointIds","任务巡检点","任务巡检点");
 
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"timeDict","时间","时间");

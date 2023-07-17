@@ -65,19 +65,20 @@ public class RepairOrderActController extends SuperController {
      * 添加维修工单
      */
     @ApiOperation(value = "添加维修工单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_ID, value = "申请单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.GROUP_ID, value = "维修班组", required = false, dataTypeClass = String.class, example = "583634707950862336"),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class, example = "576130520052662272"),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "维修人员", required = false, dataTypeClass = String.class, example = "576130520052662272"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.REPAIR_COST, value = "维修费用", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.FINISH_TIME, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.NOTES, value = "维修备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = RepairOrderActServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -92,7 +93,7 @@ public class RepairOrderActController extends SuperController {
      * 删除维修工单
      */
     @ApiOperation(value = "删除维修工单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864")
 	})
     @ApiOperationSupport(order = 2)
@@ -108,7 +109,7 @@ public class RepairOrderActController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除维修工单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -123,19 +124,20 @@ public class RepairOrderActController extends SuperController {
      * 更新维修工单
      */
     @ApiOperation(value = "更新维修工单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_ID, value = "申请单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.GROUP_ID, value = "维修班组", required = false, dataTypeClass = String.class, example = "583634707950862336"),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class, example = "576130520052662272"),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "维修人员", required = false, dataTypeClass = String.class, example = "576130520052662272"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.REPAIR_COST, value = "维修费用", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.FINISH_TIME, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.NOTES, value = "维修备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { RepairOrderActVOMeta.PAGE_INDEX, RepairOrderActVOMeta.PAGE_SIZE, RepairOrderActVOMeta.SEARCH_FIELD, RepairOrderActVOMeta.FUZZY_FIELD, RepairOrderActVOMeta.SEARCH_VALUE, RepairOrderActVOMeta.DIRTY_FIELDS, RepairOrderActVOMeta.SORT_FIELD, RepairOrderActVOMeta.SORT_TYPE, RepairOrderActVOMeta.IDS })
     @SentinelResource(value = RepairOrderActServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -150,19 +152,20 @@ public class RepairOrderActController extends SuperController {
      * 保存维修工单
      */
     @ApiOperation(value = "保存维修工单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_ID, value = "申请单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.GROUP_ID, value = "维修班组", required = false, dataTypeClass = String.class, example = "583634707950862336"),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class, example = "576130520052662272"),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "维修人员", required = false, dataTypeClass = String.class, example = "576130520052662272"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.REPAIR_COST, value = "维修费用", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.FINISH_TIME, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.NOTES, value = "维修备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairOrderActVOMeta.PAGE_INDEX, RepairOrderActVOMeta.PAGE_SIZE, RepairOrderActVOMeta.SEARCH_FIELD, RepairOrderActVOMeta.FUZZY_FIELD, RepairOrderActVOMeta.SEARCH_VALUE, RepairOrderActVOMeta.DIRTY_FIELDS, RepairOrderActVOMeta.SORT_FIELD, RepairOrderActVOMeta.SORT_TYPE, RepairOrderActVOMeta.IDS })
     @SentinelResource(value = RepairOrderActServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -177,7 +180,7 @@ public class RepairOrderActController extends SuperController {
      * 获取维修工单
      */
     @ApiOperation(value = "获取维修工单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -199,7 +202,7 @@ public class RepairOrderActController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取维修工单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -216,19 +219,20 @@ public class RepairOrderActController extends SuperController {
      * 查询维修工单
      */
     @ApiOperation(value = "查询维修工单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_ID, value = "申请单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.GROUP_ID, value = "维修班组", required = false, dataTypeClass = String.class, example = "583634707950862336"),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class, example = "576130520052662272"),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "维修人员", required = false, dataTypeClass = String.class, example = "576130520052662272"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.REPAIR_COST, value = "维修费用", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.FINISH_TIME, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.NOTES, value = "维修备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairOrderActVOMeta.PAGE_INDEX, RepairOrderActVOMeta.PAGE_SIZE })
     @SentinelResource(value = RepairOrderActServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -244,19 +248,20 @@ public class RepairOrderActController extends SuperController {
      * 分页查询维修工单
      */
     @ApiOperation(value = "分页查询维修工单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_ID, value = "申请单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.GROUP_ID, value = "维修班组", required = false, dataTypeClass = String.class, example = "583634707950862336"),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class, example = "576130520052662272"),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "维修人员", required = false, dataTypeClass = String.class, example = "576130520052662272"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.REPAIR_COST, value = "维修费用", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.FINISH_TIME, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.NOTES, value = "维修备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = RepairOrderActServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -277,7 +282,7 @@ public class RepairOrderActController extends SuperController {
     /**
      */
     @ApiOperation(value = "")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864")
 	})
     @ApiOperationSupport(order = 9)
@@ -289,7 +294,7 @@ public class RepairOrderActController extends SuperController {
     }
 
     @ApiOperation(value = "")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864")
 	})
     @ApiOperationSupport(order = 10)
@@ -301,7 +306,7 @@ public class RepairOrderActController extends SuperController {
     }
 
     @ApiOperation(value = "")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864")
 	})
     @ApiOperationSupport(order = 11)

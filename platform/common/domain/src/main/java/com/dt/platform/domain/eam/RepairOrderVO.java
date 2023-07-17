@@ -1,5 +1,6 @@
 package com.dt.platform.domain.eam;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -7,17 +8,29 @@ import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
+import com.dt.platform.domain.eam.meta.RepairOrderVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import java.math.BigDecimal;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.Organization;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 故障申请单
+ * 故障申请单VO类型
+ * <p>故障申请单 , 数据表 eam_repair_order 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 05:30:41
- * @sign 0C15AB85B40C4A51A86235D608C2150D
+ * @since 2023-07-17 15:23:47
+ * @sign B246C9A6519ACCA6F8C9E09407F19A01
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "故障申请单VO类型 ; 故障申请单 , 数据表 eam_repair_order 的通用VO类型" , parent = RepairOrder.class)
 public class RepairOrderVO extends RepairOrder {
 
 	private static final long serialVersionUID = 1L;
@@ -69,6 +82,24 @@ public class RepairOrderVO extends RepairOrder {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -232,6 +263,63 @@ public class RepairOrderVO extends RepairOrder {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public RepairOrderVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public RepairOrderVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public RepairOrderVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -261,7 +349,7 @@ public class RepairOrderVO extends RepairOrder {
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */
@@ -270,5 +358,340 @@ public class RepairOrderVO extends RepairOrder {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return RepairOrderVO , 转换好的 RepairOrderVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return RepairOrderVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public RepairOrderVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public RepairOrderVO duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.RepairOrderVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.RepairOrderVOMeta.$$proxy$$();
+		inst.setUrgencyId(this.getUrgencyId());
+		inst.setProcId(this.getProcId());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setBusinessDate(this.getBusinessDate());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setPictureId(this.getPictureId());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setReportUserId(this.getReportUserId());
+		inst.setCategoryTplId(this.getCategoryTplId());
+		inst.setAutoAct(this.getAutoAct());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setReportOrgId(this.getReportOrgId());
+		inst.setRepairStatus(this.getRepairStatus());
+		inst.setRepairType(this.getRepairType());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setAutoActRule(this.getAutoActRule());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setPlanFinishDate(this.getPlanFinishDate());
+		inst.setRepairCost(this.getRepairCost());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setReportUser(this.getReportUser());
+			inst.setRepairUrgency(this.getRepairUrgency());
+			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setAssetIds(this.getAssetIds());
+			inst.setPageSize(this.getPageSize());
+			inst.setOriginator(this.getOriginator());
+			inst.setAssetList(this.getAssetList());
+			inst.setOrderAct(this.getOrderAct());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setOrganization(this.getOrganization());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setDataOrigin(this.getDataOrigin());
+			inst.setIds(this.getIds());
+			inst.setCategoryTpl(this.getCategoryTpl());
+			inst.setQueryLogic(this.getQueryLogic());
+			inst.setOrderAcceptance(this.getOrderAcceptance());
+			inst.setSearchValue(this.getSearchValue());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public RepairOrderVO clone(boolean deep) {
+		return EntityContext.clone(RepairOrderVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 RepairOrderVO
+	 * @param repairOrderMap 包含实体信息的 Map 对象
+	 * @return RepairOrderVO , 转换好的的 RepairOrder 对象
+	*/
+	@Transient
+	public static RepairOrderVO createFrom(Map<String,Object> repairOrderMap) {
+		if(repairOrderMap==null) return null;
+		RepairOrderVO vo = create();
+		EntityContext.copyProperties(vo,repairOrderMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 RepairOrderVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return RepairOrderVO , 转换好的的 RepairOrder 对象
+	*/
+	@Transient
+	public static RepairOrderVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		RepairOrderVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 RepairOrderVO，等同于 new
+	 * @return RepairOrderVO 对象
+	*/
+	@Transient
+	public static RepairOrderVO create() {
+		return new com.dt.platform.domain.eam.meta.RepairOrderVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setUrgencyId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.URGENCY_ID)));
+			this.setProcId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.PROC_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(RepairOrderVOMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(RepairOrderVOMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(RepairOrderVOMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(RepairOrderVOMeta.BUSINESS_CODE)));
+			this.setPictureId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.PICTURE_ID)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(RepairOrderVOMeta.UPDATE_BY)));
+			this.setReportUserId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.REPORT_USER_ID)));
+			this.setCategoryTplId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.CATEGORY_TPL_ID)));
+			this.setAutoAct(DataParser.parse(String.class, map.get(RepairOrderVOMeta.AUTO_ACT)));
+			this.setId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.ORIGINATOR_ID)));
+			this.setReportOrgId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.REPORT_ORG_ID)));
+			this.setRepairStatus(DataParser.parse(String.class, map.get(RepairOrderVOMeta.REPAIR_STATUS)));
+			this.setRepairType(DataParser.parse(String.class, map.get(RepairOrderVOMeta.REPAIR_TYPE)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(RepairOrderVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(RepairOrderVOMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(RepairOrderVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(RepairOrderVOMeta.DELETED)));
+			this.setAutoActRule(DataParser.parse(String.class, map.get(RepairOrderVOMeta.AUTO_ACT_RULE)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(RepairOrderVOMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(RepairOrderVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(RepairOrderVOMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(RepairOrderVOMeta.DELETE_BY)));
+			this.setPlanFinishDate(DataParser.parse(Date.class, map.get(RepairOrderVOMeta.PLAN_FINISH_DATE)));
+			this.setRepairCost(DataParser.parse(BigDecimal.class, map.get(RepairOrderVOMeta.REPAIR_COST)));
+			this.setStatus(DataParser.parse(String.class, map.get(RepairOrderVOMeta.STATUS)));
+			// others
+			this.setReportUser(DataParser.parse(Employee.class, map.get(RepairOrderVOMeta.REPORT_USER)));
+			this.setRepairUrgency(DataParser.parse(RepairUrgency.class, map.get(RepairOrderVOMeta.REPAIR_URGENCY)));
+			this.setSearchField(DataParser.parse(String.class, map.get(RepairOrderVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(RepairOrderVOMeta.REQUEST_ACTION)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(RepairOrderVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(RepairOrderVOMeta.PAGE_SIZE)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(RepairOrderVOMeta.ORIGINATOR)));
+			this.setOrderAct(DataParser.parse(RepairOrderAct.class, map.get(RepairOrderVOMeta.ORDER_ACT)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(RepairOrderVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(RepairOrderVOMeta.SORT_TYPE)));
+			this.setOrganization(DataParser.parse(Organization.class, map.get(RepairOrderVOMeta.ORGANIZATION)));
+			this.setSortField(DataParser.parse(String.class, map.get(RepairOrderVOMeta.SORT_FIELD)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(RepairOrderVOMeta.DATA_ORIGIN)));
+			this.setCategoryTpl(DataParser.parse(RepairCategoryTpl.class, map.get(RepairOrderVOMeta.CATEGORY_TPL)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(RepairOrderVOMeta.QUERY_LOGIC)));
+			this.setOrderAcceptance(DataParser.parse(RepairOrderAcceptance.class, map.get(RepairOrderVOMeta.ORDER_ACCEPTANCE)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(RepairOrderVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setUrgencyId( (String)map.get(RepairOrderVOMeta.URGENCY_ID));
+				this.setProcId( (String)map.get(RepairOrderVOMeta.PROC_ID));
+				this.setSelectedCode( (String)map.get(RepairOrderVOMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(RepairOrderVOMeta.CONTENT));
+				this.setBusinessDate( (Date)map.get(RepairOrderVOMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(RepairOrderVOMeta.BUSINESS_CODE));
+				this.setPictureId( (String)map.get(RepairOrderVOMeta.PICTURE_ID));
+				this.setUpdateBy( (String)map.get(RepairOrderVOMeta.UPDATE_BY));
+				this.setReportUserId( (String)map.get(RepairOrderVOMeta.REPORT_USER_ID));
+				this.setCategoryTplId( (String)map.get(RepairOrderVOMeta.CATEGORY_TPL_ID));
+				this.setAutoAct( (String)map.get(RepairOrderVOMeta.AUTO_ACT));
+				this.setId( (String)map.get(RepairOrderVOMeta.ID));
+				this.setOriginatorId( (String)map.get(RepairOrderVOMeta.ORIGINATOR_ID));
+				this.setReportOrgId( (String)map.get(RepairOrderVOMeta.REPORT_ORG_ID));
+				this.setRepairStatus( (String)map.get(RepairOrderVOMeta.REPAIR_STATUS));
+				this.setRepairType( (String)map.get(RepairOrderVOMeta.REPAIR_TYPE));
+				this.setUpdateTime( (Date)map.get(RepairOrderVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(RepairOrderVOMeta.VERSION));
+				this.setCreateBy( (String)map.get(RepairOrderVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(RepairOrderVOMeta.DELETED));
+				this.setAutoActRule( (String)map.get(RepairOrderVOMeta.AUTO_ACT_RULE));
+				this.setCreateTime( (Date)map.get(RepairOrderVOMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(RepairOrderVOMeta.DELETE_TIME));
+				this.setName( (String)map.get(RepairOrderVOMeta.NAME));
+				this.setTenantId( (String)map.get(RepairOrderVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(RepairOrderVOMeta.DELETE_BY));
+				this.setPlanFinishDate( (Date)map.get(RepairOrderVOMeta.PLAN_FINISH_DATE));
+				this.setRepairCost( (BigDecimal)map.get(RepairOrderVOMeta.REPAIR_COST));
+				this.setStatus( (String)map.get(RepairOrderVOMeta.STATUS));
+				// others
+				this.setReportUser( (Employee)map.get(RepairOrderVOMeta.REPORT_USER));
+				this.setRepairUrgency( (RepairUrgency)map.get(RepairOrderVOMeta.REPAIR_URGENCY));
+				this.setSearchField( (String)map.get(RepairOrderVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(RepairOrderVOMeta.REQUEST_ACTION));
+				this.setFuzzyField( (String)map.get(RepairOrderVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(RepairOrderVOMeta.PAGE_SIZE));
+				this.setOriginator( (Employee)map.get(RepairOrderVOMeta.ORIGINATOR));
+				this.setOrderAct( (RepairOrderAct)map.get(RepairOrderVOMeta.ORDER_ACT));
+				this.setPageIndex( (Integer)map.get(RepairOrderVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(RepairOrderVOMeta.SORT_TYPE));
+				this.setOrganization( (Organization)map.get(RepairOrderVOMeta.ORGANIZATION));
+				this.setSortField( (String)map.get(RepairOrderVOMeta.SORT_FIELD));
+				this.setDataOrigin( (String)map.get(RepairOrderVOMeta.DATA_ORIGIN));
+				this.setCategoryTpl( (RepairCategoryTpl)map.get(RepairOrderVOMeta.CATEGORY_TPL));
+				this.setQueryLogic( (String)map.get(RepairOrderVOMeta.QUERY_LOGIC));
+				this.setOrderAcceptance( (RepairOrderAcceptance)map.get(RepairOrderVOMeta.ORDER_ACCEPTANCE));
+				this.setSearchValue( (String)map.get(RepairOrderVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setUrgencyId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.URGENCY_ID)));
+			this.setProcId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.PROC_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(RepairOrderVOMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.BUSINESS_CODE)));
+			this.setPictureId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.PICTURE_ID)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.UPDATE_BY)));
+			this.setReportUserId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.REPORT_USER_ID)));
+			this.setCategoryTplId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.CATEGORY_TPL_ID)));
+			this.setAutoAct(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.AUTO_ACT)));
+			this.setId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.ORIGINATOR_ID)));
+			this.setReportOrgId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.REPORT_ORG_ID)));
+			this.setRepairStatus(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.REPAIR_STATUS)));
+			this.setRepairType(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.REPAIR_TYPE)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(RepairOrderVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(RepairOrderVOMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(RepairOrderVOMeta.DELETED)));
+			this.setAutoActRule(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.AUTO_ACT_RULE)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(RepairOrderVOMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(RepairOrderVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.DELETE_BY)));
+			this.setPlanFinishDate(DataParser.parse(Date.class, r.getValue(RepairOrderVOMeta.PLAN_FINISH_DATE)));
+			this.setRepairCost(DataParser.parse(BigDecimal.class, r.getValue(RepairOrderVOMeta.REPAIR_COST)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setUrgencyId( (String)r.getValue(RepairOrderVOMeta.URGENCY_ID));
+				this.setProcId( (String)r.getValue(RepairOrderVOMeta.PROC_ID));
+				this.setSelectedCode( (String)r.getValue(RepairOrderVOMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(RepairOrderVOMeta.CONTENT));
+				this.setBusinessDate( (Date)r.getValue(RepairOrderVOMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(RepairOrderVOMeta.BUSINESS_CODE));
+				this.setPictureId( (String)r.getValue(RepairOrderVOMeta.PICTURE_ID));
+				this.setUpdateBy( (String)r.getValue(RepairOrderVOMeta.UPDATE_BY));
+				this.setReportUserId( (String)r.getValue(RepairOrderVOMeta.REPORT_USER_ID));
+				this.setCategoryTplId( (String)r.getValue(RepairOrderVOMeta.CATEGORY_TPL_ID));
+				this.setAutoAct( (String)r.getValue(RepairOrderVOMeta.AUTO_ACT));
+				this.setId( (String)r.getValue(RepairOrderVOMeta.ID));
+				this.setOriginatorId( (String)r.getValue(RepairOrderVOMeta.ORIGINATOR_ID));
+				this.setReportOrgId( (String)r.getValue(RepairOrderVOMeta.REPORT_ORG_ID));
+				this.setRepairStatus( (String)r.getValue(RepairOrderVOMeta.REPAIR_STATUS));
+				this.setRepairType( (String)r.getValue(RepairOrderVOMeta.REPAIR_TYPE));
+				this.setUpdateTime( (Date)r.getValue(RepairOrderVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(RepairOrderVOMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(RepairOrderVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(RepairOrderVOMeta.DELETED));
+				this.setAutoActRule( (String)r.getValue(RepairOrderVOMeta.AUTO_ACT_RULE));
+				this.setCreateTime( (Date)r.getValue(RepairOrderVOMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(RepairOrderVOMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(RepairOrderVOMeta.NAME));
+				this.setTenantId( (String)r.getValue(RepairOrderVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(RepairOrderVOMeta.DELETE_BY));
+				this.setPlanFinishDate( (Date)r.getValue(RepairOrderVOMeta.PLAN_FINISH_DATE));
+				this.setRepairCost( (BigDecimal)r.getValue(RepairOrderVOMeta.REPAIR_COST));
+				this.setStatus( (String)r.getValue(RepairOrderVOMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -1,24 +1,31 @@
 /**
  * 故障申请单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 05:30:42
+ * @since 2023-07-17 15:23:49
  */
 
 
 function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
+	
 	//模块基础路径
 	const moduleURL="/service-eam/eam-repair-order";
+	const queryURL=moduleURL+'/query-paged-list';
+	const deleteURL=moduleURL+'/delete';
+	const batchDeleteURL=moduleURL+'/delete-by-ids';
+	const getByIdURL=moduleURL+'/get-by-id';
+	//
 	var dataTable=null;
 	var sort=null;
+
 	/**
       * 入口函数，初始化
       */
 	this.init=function(layui) {
 
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
-		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
+		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;
 
 		if(window.pageExt.list.beforeInit) {
 			window.pageExt.list.beforeInit();
@@ -69,8 +76,8 @@ function ListPage() {
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
-				defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-paged-list',
+				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
+				url: queryURL,
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
@@ -79,36 +86,27 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('办理状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}}
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('审批状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'repairStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修状态'), templet:function (d){ return templet('repairStatus',fox.getEnumText(SELECT_REPAIRSTATUS_DATA,d.repairStatus),d);}}
-					,{ field: 'categoryTplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('故障类型'), templet: function (d) { return templet('categoryTplId' ,fox.joinLabel(d.categoryTpl,"name"),d);}}
-					,{ field: 'repairType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修类型'), templet:function (d){ return templet('repairType',fox.getEnumText(SELECT_REPAIRTYPE_DATA,d.repairType),d);}}
-					,{ field: 'urgencyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('紧急程度'), templet: function (d) { return templet('urgencyId' ,fox.joinLabel(d.repairUrgency,"name"),d);}}
-					,{ field: 'reportOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报修部门') , templet: function (d) { return templet('reportOrgId',fox.getProperty(d,["organization","fullName"]),d);} }
-					,{ field: 'repairCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('维修费用') , templet: function (d) { return templet('repairCost',d.repairCost,d);}  }
+					,{ field: 'repairStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修状态'), templet:function (d){ return templet('repairStatus',fox.getEnumText(SELECT_REPAIRSTATUS_DATA,d.repairStatus,'','repairStatus'),d);}}
+					,{ field: 'categoryTplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('故障类型'), templet: function (d) { return templet('categoryTplId' ,fox.joinLabel(d.categoryTpl,"name",',','','categoryTplId'),d);}}
+					,{ field: 'repairType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修类型'), templet:function (d){ return templet('repairType',fox.getEnumText(SELECT_REPAIRTYPE_DATA,d.repairType,'','repairType'),d);}}
+					,{ field: 'urgencyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('紧急程度'), templet: function (d) { return templet('urgencyId' ,fox.joinLabel(d.repairUrgency,"name",',','','urgencyId'),d);}}
+					,{ field: 'reportOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报修部门') , templet: function (d) { return templet('reportOrgId',fox.getProperty(d,["organization","fullName"],0,'','reportOrgId'),d);} }
 					,{ field: 'planFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('计划完成日期') ,templet: function (d) { return templet('planFinishDate',fox.dateFormat(d.planFinishDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);} }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人员') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'selectedCode', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('选择数据') , templet: function (d) { return templet('selectedCode',d.selectedCode,d);}  }
-					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
-					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 300 }
+					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
+					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 300 }
 				]],
-				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
+				done: function (data) {
+					lockSwitchInputs();
+					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
+				},
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -129,11 +127,13 @@ function ListPage() {
 		var context=dataTable.getDataRowContext( { id : data.id } );
 		if(context==null) return;
 		if(remote) {
-			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+			admin.post(getByIdURL, { id : data.id }, function (r) {
 				if (r.success) {
 					data = r.data;
 					context.update(data);
 					fox.renderFormInputs(form);
+					lockSwitchInputs();
+					window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 				} else {
 					fox.showMessage(data);
 				}
@@ -141,7 +141,24 @@ function ListPage() {
 		} else {
 			context.update(data);
 			fox.renderFormInputs(form);
+			lockSwitchInputs();
+			window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 		}
+	}
+
+
+
+	function lockSwitchInputs() {
+	}
+
+	function lockSwitchInput(field) {
+		var inputs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find("input");
+		var switchs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find(".layui-form-switch");
+		inputs.attr("readonly", "yes");
+		inputs.attr("disabled", "yes");
+		switchs.addClass("layui-disabled");
+		switchs.addClass("layui-checkbox-disabled");
+		switchs.addClass("layui-form-switch-disabled");
 	}
 
 	/**
@@ -168,8 +185,7 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			}
-		}
+			} 		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -219,7 +235,11 @@ function ListPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -241,7 +261,11 @@ function ListPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("repairStatus",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -266,7 +290,11 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("urgencyId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					}
 				}
 				return opts;
 			}
@@ -336,6 +364,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('eam-repair-order-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -371,12 +400,13 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('故障申请单')+"!");
+				top.layer.msg(fox.translate('请选择需要删除的'+'故障申请单'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('故障申请单')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'故障申请单'+'吗？'), function (i) {
+                top.layer.close(i);
+				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -385,9 +415,12 @@ function ListPage() {
 						fox.showMessage(data);
                         refreshTableData();
                     } else {
+						if(data.data>0) {
+							refreshTableData();
+						}
 						fox.showMessage(data);
                     }
-                });
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -408,7 +441,10 @@ function ListPage() {
 
 			admin.putTempData('eam-repair-order-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				top.layer.load(2);
+				top.layer.load(2);
+				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('eam-repair-order-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -417,7 +453,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				top.layer.load(2);
+				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('eam-repair-order-form-data-form-action', "view",true);
 						showEditForm(data.data);
@@ -432,11 +470,10 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
-				top.layer.confirm(fox.translate('确定删除此')+fox.translate('故障申请单')+fox.translate('吗？'), function (i) {
-					top.layer.close(i);
 
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+				top.layer.confirm(fox.translate('确定删除此'+'故障申请单'+'吗？'), function (i) {
+					top.layer.close(i);
+					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -448,14 +485,8 @@ function ListPage() {
 						} else {
 							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
-			}
-			else if (layEvent === 'for-approval') { // 送审
-				window.pageExt.list.forApproval(data,this);
-			}
-			else if (layEvent === 'revoke-data') { // 撤销
-				window.pageExt.list.revokeData(data,this);
 			}
 			else if (layEvent === 'finish-data') { // 结束维修
 				window.pageExt.list.finishData(data,this);
@@ -490,9 +521,9 @@ function ListPage() {
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
 		var title = fox.translate('故障申请单');
-		if(action=="create") title=fox.translate('添加')+title;
-		else if(action=="edit") title=fox.translate('修改')+title;
-		else if(action=="view") title=fox.translate('查看')+title;
+		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
+		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
+		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
 
 		admin.popupCenter({
 			title: title,

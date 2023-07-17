@@ -43,7 +43,6 @@ public class RepairOrderGtr extends BaseCodeGenerator{
 
 
 
-
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.SELECTED_CODE).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.NAME).search().fuzzySearch();
@@ -58,6 +57,8 @@ public class RepairOrderGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPORT_USER_ID).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.AUTO_ACT).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.AUTO_ACT_RULE).table().disable();
+
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPAIR_COST).table().disable();
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.CONTENT).search()
                 .form().validate().required().

@@ -133,7 +133,19 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 进一步转换 list 数据
          * */
+
         templet:function (field,value,r) {
+            if(field=="orderRepairStatus"){
+                if(value){
+                    if(value=="repairing"){
+                        return "维修中"
+                    }else if (value=="wait_acceptance"){
+                        return "待验收"
+                    }else if (value=="finish"){
+                        return "维修结束"
+                    }
+                }
+            }
             if(value==null) return "";
             return value;
         },
