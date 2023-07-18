@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 15:16:56
+ * @since 2023-07-18 12:04:26
  * @sign 37453FD06C395D70EF007DAB79F2228E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -209,6 +209,16 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> SP_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,SP_NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
+	 * 选择 , 类型: java.lang.String
+	*/
+	public static final String SELECTED_CODE="selectedCode";
+	
+	/**
+	 * 选择 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -289,19 +299,29 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
-	 * 选择数据 , 类型: java.lang.String
+	 * ownerId , 类型: java.lang.String
 	*/
-	public static final String SELECTED_CODE="selectedCode";
+	public static final String OWNER_ID="ownerId";
 	
 	/**
-	 * 选择数据 , 类型: java.lang.String
+	 * ownerId , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,SELECTED_CODE, java.lang.String.class, "选择数据", "选择数据", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> OWNER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,OWNER_ID, java.lang.String.class, "ownerId", "ownerId", java.lang.String.class, null);
+	
+	/**
+	 * ownerType , 类型: java.lang.String
+	*/
+	public static final String OWNER_TYPE="ownerType";
+	
+	/**
+	 * ownerType , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> OWNER_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,OWNER_TYPE, java.lang.String.class, "ownerType", "ownerType", java.lang.String.class, null);
 	
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ACT_ID , SP_ID , SP_NAME , SP_CODE , SP_SN , SP_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SELECTED_CODE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ACT_ID , SP_ID , SP_NAME , SP_CODE , SP_SN , SP_NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , OWNER_ID , OWNER_TYPE };
 	
 	/**
 	 * 代理类
@@ -521,6 +541,17 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 		}
 		
 		/**
+		 * 设置 选择
+		 * @param selectedCode 选择
+		 * @return 当前对象
+		*/
+		public RepairOrderActSp setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
+			return this;
+		}
+		
+		/**
 		 * 设置 创建人ID
 		 * @param createBy 创建人ID
 		 * @return 当前对象
@@ -609,13 +640,24 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 		}
 		
 		/**
-		 * 设置 选择数据
-		 * @param selectedCode 选择数据
+		 * 设置 ownerId
+		 * @param ownerId ownerId
 		 * @return 当前对象
 		*/
-		public RepairOrderActSp setSelectedCode(String selectedCode) {
-			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
-			super.setSelectedCode(selectedCode);
+		public RepairOrderActSp setOwnerId(String ownerId) {
+			super.change(OWNER_ID,super.getOwnerId(),ownerId);
+			super.setOwnerId(ownerId);
+			return this;
+		}
+		
+		/**
+		 * 设置 ownerType
+		 * @param ownerType ownerType
+		 * @return 当前对象
+		*/
+		public RepairOrderActSp setOwnerType(String ownerType) {
+			super.change(OWNER_TYPE,super.getOwnerType(),ownerType);
+			super.setOwnerType(ownerType);
 			return this;
 		}
 
@@ -640,8 +682,8 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 			inst.setSpId(this.getSpId());
 			inst.setSpCode(this.getSpCode());
 			inst.setSpSn(this.getSpSn());
-			inst.setVersion(this.getVersion());
 			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
 			inst.setSpNotes(this.getSpNotes());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
@@ -651,14 +693,16 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
 			if(all) {
+				inst.setOwnerType(this.getOwnerType());
 				inst.setSearchField(this.getSearchField());
-				inst.setPageIndex(this.getPageIndex());
-				inst.setSortType(this.getSortType());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setOwnerId(this.getOwnerId());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());

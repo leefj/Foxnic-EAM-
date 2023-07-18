@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 工单转派
  * <p>工单转派 , 数据表 eam_repair_order_transfer 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 21:04:59
- * @sign D0C5B395FF980772BE2FA371328455C8
+ * @since 2023-07-18 09:29:35
+ * @sign 51AB7062A27618BCD8AF9780F10CFB07
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,9 +45,15 @@ public class RepairOrderTransfer extends Entity {
 	private String id;
 	
 	/**
-	 * 申请单：申请单
+	 * 维修工单：维修工单
 	*/
-	@ApiModelProperty(required = false,value="申请单" , notes = "申请单")
+	@ApiModelProperty(required = false,value="维修工单" , notes = "维修工单")
+	private String orderActId;
+	
+	/**
+	 * 申请工单：申请工单
+	*/
+	@ApiModelProperty(required = false,value="申请工单" , notes = "申请工单")
 	private String orderId;
 	
 	/**
@@ -132,6 +138,12 @@ public class RepairOrderTransfer extends Entity {
 	private String tenantId;
 	
 	/**
+	 * 维修工单：维修工单
+	*/
+	@ApiModelProperty(required = false,value="维修工单" , notes = "维修工单")
+	private RepairOrderAct orderAct;
+	
+	/**
 	 * 维修申请：维修申请
 	*/
 	@ApiModelProperty(required = false,value="维修申请" , notes = "维修申请")
@@ -175,17 +187,36 @@ public class RepairOrderTransfer extends Entity {
 	}
 	
 	/**
-	 * 获得 申请单<br>
-	 * 申请单
-	 * @return 申请单
+	 * 获得 维修工单<br>
+	 * 维修工单
+	 * @return 维修工单
+	*/
+	public String getOrderActId() {
+		return orderActId;
+	}
+	
+	/**
+	 * 设置 维修工单
+	 * @param orderActId 维修工单
+	 * @return 当前对象
+	*/
+	public RepairOrderTransfer setOrderActId(String orderActId) {
+		this.orderActId=orderActId;
+		return this;
+	}
+	
+	/**
+	 * 获得 申请工单<br>
+	 * 申请工单
+	 * @return 申请工单
 	*/
 	public String getOrderId() {
 		return orderId;
 	}
 	
 	/**
-	 * 设置 申请单
-	 * @param orderId 申请单
+	 * 设置 申请工单
+	 * @param orderId 申请工单
 	 * @return 当前对象
 	*/
 	public RepairOrderTransfer setOrderId(String orderId) {
@@ -472,6 +503,25 @@ public class RepairOrderTransfer extends Entity {
 	}
 	
 	/**
+	 * 获得 维修工单<br>
+	 * 维修工单
+	 * @return 维修工单
+	*/
+	public RepairOrderAct getOrderAct() {
+		return orderAct;
+	}
+	
+	/**
+	 * 设置 维修工单
+	 * @param orderAct 维修工单
+	 * @return 当前对象
+	*/
+	public RepairOrderTransfer setOrderAct(RepairOrderAct orderAct) {
+		this.orderAct=orderAct;
+		return this;
+	}
+	
+	/**
 	 * 获得 维修申请<br>
 	 * 维修申请
 	 * @return 维修申请
@@ -603,10 +653,12 @@ public class RepairOrderTransfer extends Entity {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setOrderActId(this.getOrderActId());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
+			inst.setOrderAct(this.getOrderAct());
 			inst.setExecutor(this.getExecutor());
 			inst.setRepairGroup(this.getRepairGroup());
 			inst.setOriginator(this.getOriginator());
@@ -682,10 +734,12 @@ public class RepairOrderTransfer extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(RepairOrderTransferMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(RepairOrderTransferMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(RepairOrderTransferMeta.DELETE_TIME)));
+			this.setOrderActId(DataParser.parse(String.class, map.get(RepairOrderTransferMeta.ORDER_ACT_ID)));
 			this.setTenantId(DataParser.parse(String.class, map.get(RepairOrderTransferMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(RepairOrderTransferMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(RepairOrderTransferMeta.ID)));
 			// others
+			this.setOrderAct(DataParser.parse(RepairOrderAct.class, map.get(RepairOrderTransferMeta.ORDER_ACT)));
 			this.setExecutor(DataParser.parse(Employee.class, map.get(RepairOrderTransferMeta.EXECUTOR)));
 			this.setRepairGroup(DataParser.parse(RepairGroup.class, map.get(RepairOrderTransferMeta.REPAIR_GROUP)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(RepairOrderTransferMeta.ORIGINATOR)));
@@ -705,10 +759,12 @@ public class RepairOrderTransfer extends Entity {
 				this.setCreateTime( (Date)map.get(RepairOrderTransferMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(RepairOrderTransferMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(RepairOrderTransferMeta.DELETE_TIME));
+				this.setOrderActId( (String)map.get(RepairOrderTransferMeta.ORDER_ACT_ID));
 				this.setTenantId( (String)map.get(RepairOrderTransferMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(RepairOrderTransferMeta.DELETE_BY));
 				this.setId( (String)map.get(RepairOrderTransferMeta.ID));
 				// others
+				this.setOrderAct( (RepairOrderAct)map.get(RepairOrderTransferMeta.ORDER_ACT));
 				this.setExecutor( (Employee)map.get(RepairOrderTransferMeta.EXECUTOR));
 				this.setRepairGroup( (RepairGroup)map.get(RepairOrderTransferMeta.REPAIR_GROUP));
 				this.setOriginator( (Employee)map.get(RepairOrderTransferMeta.ORIGINATOR));
@@ -741,6 +797,7 @@ public class RepairOrderTransfer extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(RepairOrderTransferMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(RepairOrderTransferMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(RepairOrderTransferMeta.DELETE_TIME)));
+			this.setOrderActId(DataParser.parse(String.class, r.getValue(RepairOrderTransferMeta.ORDER_ACT_ID)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(RepairOrderTransferMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(RepairOrderTransferMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(RepairOrderTransferMeta.ID)));
@@ -759,6 +816,7 @@ public class RepairOrderTransfer extends Entity {
 				this.setCreateTime( (Date)r.getValue(RepairOrderTransferMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(RepairOrderTransferMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(RepairOrderTransferMeta.DELETE_TIME));
+				this.setOrderActId( (String)r.getValue(RepairOrderTransferMeta.ORDER_ACT_ID));
 				this.setTenantId( (String)r.getValue(RepairOrderTransferMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(RepairOrderTransferMeta.DELETE_BY));
 				this.setId( (String)r.getValue(RepairOrderTransferMeta.ID));

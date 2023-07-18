@@ -2,13 +2,18 @@ package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
 
+import com.dt.platform.constants.enums.eam.RepairOrderActStatusEnum;
+import com.dt.platform.domain.eam.RepairOrder;
 import com.dt.platform.domain.eam.RepairOrderAct;
 import com.dt.platform.eam.service.IRepairOrderActService;
+import com.dt.platform.eam.service.IRepairOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.commons.collection.MapUtil;
-import java.util.Arrays;
+
+
+
 
 
 import com.dt.platform.domain.eam.RepairOrderTransfer;
@@ -41,7 +46,7 @@ import java.util.Map;
  * 工单转派服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 21:04:59
+ * @since 2023-07-18 06:39:30
 */
 
 
@@ -60,9 +65,11 @@ public class RepairOrderTransferServiceImpl extends SuperService<RepairOrderTran
 	 * */
 	public DAO dao() { return dao; }
 
-
 	@Autowired
 	private IRepairOrderActService repairOrderActService;
+
+	@Autowired
+	private IRepairOrderService repairOrderService;
 
 	@Override
 	public Object generateId(Field field) {
@@ -78,17 +85,25 @@ public class RepairOrderTransferServiceImpl extends SuperService<RepairOrderTran
 	 */
 	@Override
 	public Result insert(RepairOrderTransfer repairOrderTransfer,boolean throwsException) {
+		RepairOrder order=repairOrderService.getById(repairOrderTransfer.getOrderId());
+
 		RepairOrderAct act=new RepairOrderAct();
 		act.setNotes(repairOrderTransfer.getNotes());
 		act.setExecutorId(repairOrderTransfer.getExecutorId());
 		act.setGroupId(repairOrderTransfer.getGroupId());
 		act.setOrderId(repairOrderTransfer.getOrderId());
+		act.setStatus(RepairOrderActStatusEnum.WAIT_REPAIR.code());
+		act.setOrderName(order.getName());
+		act.setOrderBusinessCode(order.getBusinessCode());
+
 		Result rr=repairOrderActService.insert(act,false);
 		if(rr.isSuccess()){
+			repairOrderTransfer.setOrderActId(act.getId());
 			Result r=super.insert(repairOrderTransfer,throwsException);
 		}else{
 			return rr;
 		}
+
 		return ErrorDesc.success();
 	}
 

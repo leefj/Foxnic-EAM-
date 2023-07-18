@@ -3,10 +3,7 @@ package com.dt.platform.eam.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.dt.platform.constants.enums.eam.AssetOwnerCodeEnum;
-import com.dt.platform.constants.enums.eam.AssetPcmCodeEnum;
-import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
-import com.dt.platform.constants.enums.eam.RepairOrderStatusEnum;
+import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.eam.service.IAssetDataService;
 import com.dt.platform.eam.service.IAssetReportService;
@@ -280,7 +277,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         Rcd rs=dao.queryRecord(sql4);
         JSONArray repairData=new JSONArray();
         JSONObject a1=new JSONObject();
-        a1.put("name", RepairOrderStatusEnum.FINISH.text());
+        a1.put("name", RepairOrderActStatusEnum.FINISH.text());
         a1.put("value",rs.getInteger("finish_cnt"));
         repairData.add(a1);
 
@@ -291,7 +288,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
 
 
         JSONObject a3=new JSONObject();
-        a3.put("name", RepairOrderStatusEnum.WAIT_ACCEPTANCE.text());
+        a3.put("name", RepairOrderActStatusEnum.WAIT_ACCEPTANCE.text());
         a3.put("value",rs.getInteger("wait_acceptance_cnt"));
         repairData.add(a3);
 
@@ -301,7 +298,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         repairData.add(a4);
 
         JSONObject a5=new JSONObject();
-        a5.put("name", RepairOrderStatusEnum.REPAIRING.text());
+        a5.put("name", RepairOrderActStatusEnum.REPAIRING.text());
         a5.put("value",rs.getInteger("repairing_cnt"));
         repairData.add(a5);
 

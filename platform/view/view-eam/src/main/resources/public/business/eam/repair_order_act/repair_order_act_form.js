@@ -1,7 +1,7 @@
 /**
  * 维修工单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 16:02:04
+ * @since 2023-07-18 14:37:24
  */
 
 function FormPage() {
@@ -56,8 +56,6 @@ function FormPage() {
 		//绑定提交事件
 		bindButtonEvent();
 
-		//调整窗口的高度与位置
-		adjustPopup();
 
 
 	}
@@ -118,6 +116,37 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 status 下拉字段
+		fox.renderSelectBox({
+			el: "status",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("维修状态",'','cmp:form'),
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 		//渲染 groupId 下拉字段
 		fox.renderSelectBox({
 			el: "groupId",
@@ -188,8 +217,8 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#startTime',
-			type:"date",
-			format:"yyyy-MM-dd",
+			type:"datetime",
+			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("startTime",value, date, endDate);
@@ -197,13 +226,39 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#finishTime',
-			type:"date",
-			format:"yyyy-MM-dd",
+			type:"datetime",
+			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("finishTime",value, date, endDate);
 			}
 		});
+	    //渲染图片字段
+		foxup.render({
+			el:"pictureId",
+			maxFileCount: 6,
+			displayFileName: true,
+			accept: "image",
+			afterPreview:function(elId,index,fileId,upload,fileName,fileType){
+				adjustPopup();
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterPreview",elId:elId,index:index,fileId:fileId,upload:upload,fileName:fileName,fileType:fileType});
+			},
+			afterUpload:function (elId,result,index,upload) {
+				console.log("文件上传后回调");
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterUpload",elId:elId,index:index,upload:upload});
+			},
+			beforeRemove:function (elId,fileId,index,upload) {
+				console.log("文件删除前回调");
+				if(window.pageExt.form.onUploadEvent) {
+					return window.pageExt.form.onUploadEvent({event:"beforeRemove",elId:elId,index:index,fileId:fileId,upload:upload});
+				}
+				return true;
+			},
+			afterRemove:function (elId,fileId,index,upload) {
+				adjustPopup();
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterRemove",elId:elId,index:index,upload:upload});
+			}
+	    });
 	}
 
 	/**
@@ -252,9 +307,23 @@ function FormPage() {
 			fm[0].reset();
 			form.val('data-form', formData);
 
+			//设置 图片 显示附件
+		    if($("#pictureId").val()) {
+				foxup.fill("pictureId",$("#pictureId").val());
+		    } else {
+				adjustPopup();
+			}
 
 
 
+			//设置 开始时间 显示复选框勾选
+			if(formData["startTime"]) {
+				$("#startTime").val(fox.dateFormat(formData["startTime"],"yyyy-MM-dd HH:mm:ss"));
+			}
+			//设置 完成时间 显示复选框勾选
+			if(formData["finishTime"]) {
+				$("#finishTime").val(fox.dateFormat(formData["finishTime"],"yyyy-MM-dd HH:mm:ss"));
+			}
 
 
 			//设置  维修班组 设置下拉框勾选

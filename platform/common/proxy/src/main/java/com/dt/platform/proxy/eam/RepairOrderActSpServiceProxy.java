@@ -85,6 +85,11 @@ public interface RepairOrderActSpServiceProxy {
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
+     * 分页查询维修备件
+     */
+    public static final String QUERY_SELECTED_PAGED_LIST = API_PREFIX + "query-selected-paged-list";
+
+    /**
      * 添加维修备件
      */
     @RequestMapping(RepairOrderActSpServiceProxy.INSERT)

@@ -247,18 +247,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('downloadBill',data);
         },
          dispatchForm:function(data) {
-                admin.putTempData('eam-repair-order-transer-form-data-form-action', "create",true);
-                var action="create";
+                admin.putTempData('eam-repair-order-transfer-form-data-form-action', "create",true);
                 var queryString="?orderId="+data.orderId;
-              //  var queryString=""
-                admin.putTempData('eam-repair-order-transfer-form-data', data);
+                admin.putTempData('eam-repair-order-transfer-form-data', {});
                 var area=admin.getTempData('eam-repair-order-transfer-form-area');
                 var height= (area && area.height) ? area.height : ($(window).height()*0.6);
                 var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-                var title = fox.translate('维修工单');
-                if(action=="create") title=fox.translate('添加')+title;
-                else if(action=="edit") title=fox.translate('修改')+title;
-                else if(action=="view") title=fox.translate('查看')+title;
+                var title = fox.translate('维修派单');
                 admin.popupCenter({
                     title: title,
                     resize: false,
@@ -266,7 +261,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     area: ["80%",height+"px"],
                     type: 2,
                     id:"eam-repair-order-transfer-form-data-win",
-                    content: '/business/eam/repair_order_tranfer/repair_order_transer_form.html' + queryString,
+                    content: '/business/eam/repair_order_transfer/repair_order_transfer_form.html' + queryString,
                     finish: function () {
                         window.module.refreshTableData();
                     }

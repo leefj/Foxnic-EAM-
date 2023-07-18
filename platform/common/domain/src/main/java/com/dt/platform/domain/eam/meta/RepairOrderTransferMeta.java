@@ -3,6 +3,7 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.RepairOrderTransfer;
 import java.util.Date;
+import com.dt.platform.domain.eam.RepairOrderAct;
 import com.dt.platform.domain.eam.RepairOrder;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.RepairGroup;
@@ -12,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 21:04:59
- * @sign D0C5B395FF980772BE2FA371328455C8
+ * @since 2023-07-18 09:29:35
+ * @sign 51AB7062A27618BCD8AF9780F10CFB07
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -30,14 +31,24 @@ public class RepairOrderTransferMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderTransfer,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderTransfer.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
-	 * 申请单 , 类型: java.lang.String
+	 * 维修工单 , 类型: java.lang.String
+	*/
+	public static final String ORDER_ACT_ID="orderActId";
+	
+	/**
+	 * 维修工单 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderTransfer,java.lang.String> ORDER_ACT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderTransfer.class ,ORDER_ACT_ID, java.lang.String.class, "维修工单", "维修工单", java.lang.String.class, null);
+	
+	/**
+	 * 申请工单 , 类型: java.lang.String
 	*/
 	public static final String ORDER_ID="orderId";
 	
 	/**
-	 * 申请单 , 类型: java.lang.String
+	 * 申请工单 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderTransfer,java.lang.String> ORDER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderTransfer.class ,ORDER_ID, java.lang.String.class, "申请单", "申请单", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderTransfer,java.lang.String> ORDER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderTransfer.class ,ORDER_ID, java.lang.String.class, "申请工单", "申请工单", java.lang.String.class, null);
 	
 	/**
 	 * 维修班组 , 类型: java.lang.String
@@ -170,6 +181,16 @@ public class RepairOrderTransferMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderTransfer,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderTransfer.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * 维修工单 , 类型: com.dt.platform.domain.eam.RepairOrderAct
+	*/
+	public static final String ORDER_ACT="orderAct";
+	
+	/**
+	 * 维修工单 , 类型: com.dt.platform.domain.eam.RepairOrderAct
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderTransfer,com.dt.platform.domain.eam.RepairOrderAct> ORDER_ACT_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderTransfer.class ,ORDER_ACT, com.dt.platform.domain.eam.RepairOrderAct.class, "维修工单", "维修工单", com.dt.platform.domain.eam.RepairOrderAct.class, null);
+	
+	/**
 	 * 维修申请 , 类型: com.dt.platform.domain.eam.RepairOrder
 	*/
 	public static final String ORDER="order";
@@ -212,7 +233,7 @@ public class RepairOrderTransferMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , ORDER_ID , GROUP_ID , EXECUTOR_ID , RULE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORDER , ORIGINATOR , EXECUTOR , REPAIR_GROUP };
+	public static final String[] $PROPS={ ID , ORDER_ACT_ID , ORDER_ID , GROUP_ID , EXECUTOR_ID , RULE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORDER_ACT , ORDER , ORIGINATOR , EXECUTOR , REPAIR_GROUP };
 	
 	/**
 	 * 代理类
@@ -234,8 +255,19 @@ public class RepairOrderTransferMeta {
 		}
 		
 		/**
-		 * 设置 申请单
-		 * @param orderId 申请单
+		 * 设置 维修工单
+		 * @param orderActId 维修工单
+		 * @return 当前对象
+		*/
+		public RepairOrderTransfer setOrderActId(String orderActId) {
+			super.change(ORDER_ACT_ID,super.getOrderActId(),orderActId);
+			super.setOrderActId(orderActId);
+			return this;
+		}
+		
+		/**
+		 * 设置 申请工单
+		 * @param orderId 申请工单
 		 * @return 当前对象
 		*/
 		public RepairOrderTransfer setOrderId(String orderId) {
@@ -388,6 +420,17 @@ public class RepairOrderTransferMeta {
 		}
 		
 		/**
+		 * 设置 维修工单
+		 * @param orderAct 维修工单
+		 * @return 当前对象
+		*/
+		public RepairOrderTransfer setOrderAct(RepairOrderAct orderAct) {
+			super.change(ORDER_ACT,super.getOrderAct(),orderAct);
+			super.setOrderAct(orderAct);
+			return this;
+		}
+		
+		/**
 		 * 设置 维修申请
 		 * @param order 维修申请
 		 * @return 当前对象
@@ -458,10 +501,12 @@ public class RepairOrderTransferMeta {
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
+			inst.setOrderActId(this.getOrderActId());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
 			if(all) {
+				inst.setOrderAct(this.getOrderAct());
 				inst.setExecutor(this.getExecutor());
 				inst.setRepairGroup(this.getRepairGroup());
 				inst.setOriginator(this.getOriginator());

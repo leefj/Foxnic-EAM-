@@ -620,8 +620,17 @@ public class EamRelationManager extends RelationManager {
         this.property(RepairOrderTransferMeta.ORDER_PROP)
                 .using(EAMTables.EAM_REPAIR_ORDER_TRANSFER.ORDER_ID).join(EAMTables.EAM_REPAIR_ORDER.ID);
 
+        //维修
+        this.property(RepairOrderTransferMeta.ORDER_ACT_PROP)
+                .using(EAMTables.EAM_REPAIR_ORDER_TRANSFER.ORDER_ACT_ID).join(EAMTables.EAM_REPAIR_ORDER_ACT.ID);
+
     }
     public void setupRepairOrderAct() {
+
+
+        this.property(RepairOrderActMeta.REPAIR_ORDER_ACT_SP_LIST_PROP)
+                .using(EAMTables.EAM_REPAIR_ORDER_ACT.ID).join(EAMTables.EAM_REPAIR_ORDER_ACT_SP.ACT_ID).condition("selected_code='def'");
+
 
         this.property(RepairOrderActMeta.REPAIR_GROUP_PROP)
                 .using(EAMTables.EAM_REPAIR_ORDER_ACT.GROUP_ID).join(EAMTables.EAM_REPAIR_GROUP.ID);
@@ -637,6 +646,8 @@ public class EamRelationManager extends RelationManager {
         //订单
         this.property(RepairOrderActMeta.ORDER_PROP)
                 .using(EAMTables.EAM_REPAIR_ORDER_ACT.ORDER_ID).join(EAMTables.EAM_REPAIR_ORDER.ID);
+
+
 
     }
 

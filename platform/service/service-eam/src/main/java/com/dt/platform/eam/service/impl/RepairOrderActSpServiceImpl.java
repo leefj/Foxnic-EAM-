@@ -1,6 +1,9 @@
 package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.domain.eam.MappingOwner;
+import com.dt.platform.eam.service.IMappingOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -46,6 +49,10 @@ import java.util.Map;
 
 public class RepairOrderActSpServiceImpl extends SuperService<RepairOrderActSp> implements IRepairOrderActSpService {
 
+
+	@Autowired
+	private IMappingOwnerService mappingOwnerService;
+
 	/**
 	 * 注入DAO对象
 	 * */
@@ -75,6 +82,36 @@ public class RepairOrderActSpServiceImpl extends SuperService<RepairOrderActSp> 
 	public Result insert(RepairOrderActSp repairOrderActSp,boolean throwsException) {
 		Result r=super.insert(repairOrderActSp,throwsException);
 		return r;
+	}
+
+	@Override
+	public PagedList<RepairOrderActSp> querySelectedPagedList(RepairOrderActSpVO sample) {
+
+		String ownerId=sample.getOwnerId();
+		String selectCode=sample.getSelectedCode();
+		sample.setOwnerId(null);
+		sample.setSelectedCode(null);
+
+		if(dao().queryRecord("select count(1) cnt from eam_mapping_owner where deleted=0 and owner_id=? and selected_code=?",ownerId,selectCode).getInteger("cnt")==0){
+			//做一份转
+			ConditionExpr expr2=new ConditionExpr();
+			expr2.and("act_id=? and selected_code='def'",ownerId);
+			List<RepairOrderActSp> list=super.queryList(expr2);
+			if(list.size()>0){
+				for(RepairOrderActSp sp:list){
+					sp.setSelectedCode(selectCode);
+					sp.setId(IDGenerator.getSnowflakeIdString());
+					this.insert(sp,true);
+				}
+			}
+			MappingOwner mappingOwner=new MappingOwner();
+			mappingOwner.setOwnerId(ownerId);
+			mappingOwner.setSelectedCode(selectCode);
+			mappingOwnerService.insert(mappingOwner,true);
+		}
+		ConditionExpr expr=new ConditionExpr();
+		expr.and("act_id=? and selected_code=?",ownerId,selectCode);
+		return super.queryPagedList(sample,expr,sample.getPageSize(),sample.getPageIndex());
 	}
 
 	/**

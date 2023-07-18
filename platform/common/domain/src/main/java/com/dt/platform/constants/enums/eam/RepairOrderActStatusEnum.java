@@ -11,11 +11,8 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 */
 
 
-public enum RepairOrderStatusEnum implements CodeTextEnum {
+public enum RepairOrderActStatusEnum implements CodeTextEnum {
 
-	NOT_DISPATCH("not_dispatch" , "未派单"),
-	//已派单,包含派单到组内或者具体执行人，都归纳为已派单
-	DISPATCHED("dispatched" , "已派单"),
 	WAIT_REPAIR("wait_repair" , "待维修"),
 	REPAIRING("repairing" , "维修中"),
 	WAIT_ACCEPTANCE("wait_acceptance" , "待验收"),
@@ -24,7 +21,7 @@ public enum RepairOrderStatusEnum implements CodeTextEnum {
 
 	private String code;
 	private String text;
-	private RepairOrderStatusEnum(String code, String text)  {
+	private RepairOrderActStatusEnum(String code, String text)  {
 		this.code=code;
 		this.text=text;
 	}

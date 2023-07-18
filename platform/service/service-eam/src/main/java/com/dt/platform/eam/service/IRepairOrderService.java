@@ -1,11 +1,10 @@
 package com.dt.platform.eam.service;
 
 
-import com.dt.platform.domain.eam.AssetRepair;
+import com.dt.platform.domain.eam.*;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.eam.RepairOrder;
-import com.dt.platform.domain.eam.RepairOrderVO;
+
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -31,13 +30,13 @@ import java.util.Map;
 
 public interface IRepairOrderService extends ISuperService<RepairOrder> {
 
+
+
 	Result changeRepairOrderStatus(String id,String repairStatus);
 
 	Result validateDispatchOrder(List<String> ids);
 
 	Result dispatchOrder(List<String> ids,String actId);
-
-
 
 
 	/**
