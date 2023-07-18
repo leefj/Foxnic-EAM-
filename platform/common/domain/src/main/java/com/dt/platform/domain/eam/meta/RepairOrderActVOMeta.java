@@ -6,6 +6,7 @@ import java.util.List;
 import com.dt.platform.domain.eam.RepairOrderAct;
 import java.math.BigDecimal;
 import java.util.Date;
+import com.dt.platform.domain.eam.RepairOrderActSp;
 import com.dt.platform.domain.eam.RepairOrder;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.RepairGroup;
@@ -15,7 +16,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 16:02:02
+ * @since 2023-07-18 14:37:22
  * @sign 043A5ADD17EDB7D84197AA89DA40989D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -161,6 +162,36 @@ public class RepairOrderActVOMeta extends RepairOrderActMeta {
 	 * 申请单 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,java.lang.String> ORDER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,ORDER_ID, java.lang.String.class, "申请单", "申请单", java.lang.String.class, null);
+	
+	/**
+	 * 订单编号 , 类型: java.lang.String
+	*/
+	public static final String ORDER_BUSINESS_CODE="orderBusinessCode";
+	
+	/**
+	 * 订单编号 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,java.lang.String> ORDER_BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,ORDER_BUSINESS_CODE, java.lang.String.class, "订单编号", "订单编号", java.lang.String.class, null);
+	
+	/**
+	 * 订单名称 , 类型: java.lang.String
+	*/
+	public static final String ORDER_NAME="orderName";
+	
+	/**
+	 * 订单名称 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,java.lang.String> ORDER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,ORDER_NAME, java.lang.String.class, "订单名称", "订单名称", java.lang.String.class, null);
+	
+	/**
+	 * 维修状态 , 类型: java.lang.String
+	*/
+	public static final String STATUS="status";
+	
+	/**
+	 * 维修状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,STATUS, java.lang.String.class, "维修状态", "维修状态", java.lang.String.class, null);
 	
 	/**
 	 * 业务编号 , 类型: java.lang.String
@@ -363,6 +394,26 @@ public class RepairOrderActVOMeta extends RepairOrderActMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,SELECTED_CODE, java.lang.String.class, "选择数据", "选择数据", java.lang.String.class, null);
 	
 	/**
+	 * RepairOrderActSpList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.RepairOrderActSp
+	*/
+	public static final String REPAIR_ORDER_ACT_SP_LIST="RepairOrderActSpList";
+	
+	/**
+	 * RepairOrderActSpList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.RepairOrderActSp
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,com.dt.platform.domain.eam.RepairOrderActSp> REPAIR_ORDER_ACT_SP_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,REPAIR_ORDER_ACT_SP_LIST, java.util.List.class, "RepairOrderActSpList", "RepairOrderActSpList", com.dt.platform.domain.eam.RepairOrderActSp.class, null);
+	
+	/**
+	 * idsList , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String IDS_LIST="idsList";
+	
+	/**
+	 * idsList , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,java.lang.String> IDS_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,IDS_LIST, java.util.List.class, "idsList", "idsList", java.lang.String.class, null);
+	
+	/**
 	 * 维修申请 , 类型: com.dt.platform.domain.eam.RepairOrder
 	*/
 	public static final String ORDER="order";
@@ -403,39 +454,9 @@ public class RepairOrderActVOMeta extends RepairOrderActMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,com.dt.platform.domain.eam.RepairGroup> REPAIR_GROUP_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,REPAIR_GROUP, com.dt.platform.domain.eam.RepairGroup.class, "维修班组", "维修班组", com.dt.platform.domain.eam.RepairGroup.class, null);
 	
 	/**
-	 * 订单名称 , 类型: java.lang.String
-	*/
-	public static final String ORDER_NAME="orderName";
-	
-	/**
-	 * 订单名称 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,java.lang.String> ORDER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,ORDER_NAME, java.lang.String.class, "订单名称", "订单名称", java.lang.String.class, null);
-	
-	/**
-	 * 订单编号 , 类型: java.lang.String
-	*/
-	public static final String ORDER_BUSINESS_CODE="orderBusinessCode";
-	
-	/**
-	 * 订单编号 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,java.lang.String> ORDER_BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,ORDER_BUSINESS_CODE, java.lang.String.class, "订单编号", "订单编号", java.lang.String.class, null);
-	
-	/**
-	 * 维修状态 , 类型: java.lang.String
-	*/
-	public static final String ORDER_REPAIR_STATUS="orderRepairStatus";
-	
-	/**
-	 * 维修状态 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,java.lang.String> ORDER_REPAIR_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,ORDER_REPAIR_STATUS, java.lang.String.class, "维修状态", "维修状态", java.lang.String.class, null);
-	
-	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ORDER_ID , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ORDER , ORIGINATOR , EXECUTOR , REPAIR_GROUP , ORDER_NAME , ORDER_BUSINESS_CODE , ORDER_REPAIR_STATUS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , STATUS , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , REPAIR_ORDER_ACT_SP_LIST , IDS_LIST , ORDER , ORIGINATOR , EXECUTOR , REPAIR_GROUP };
 	
 	/**
 	 * 代理类
@@ -596,6 +617,39 @@ public class RepairOrderActVOMeta extends RepairOrderActMeta {
 		public RepairOrderAct setOrderId(String orderId) {
 			super.change(ORDER_ID,super.getOrderId(),orderId);
 			super.setOrderId(orderId);
+			return this;
+		}
+		
+		/**
+		 * 设置 订单编号
+		 * @param orderBusinessCode 订单编号
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setOrderBusinessCode(String orderBusinessCode) {
+			super.change(ORDER_BUSINESS_CODE,super.getOrderBusinessCode(),orderBusinessCode);
+			super.setOrderBusinessCode(orderBusinessCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 订单名称
+		 * @param orderName 订单名称
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setOrderName(String orderName) {
+			super.change(ORDER_NAME,super.getOrderName(),orderName);
+			super.setOrderName(orderName);
+			return this;
+		}
+		
+		/**
+		 * 设置 维修状态
+		 * @param status 维修状态
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setStatus(String status) {
+			super.change(STATUS,super.getStatus(),status);
+			super.setStatus(status);
 			return this;
 		}
 		
@@ -820,6 +874,28 @@ public class RepairOrderActVOMeta extends RepairOrderActMeta {
 		}
 		
 		/**
+		 * 设置 RepairOrderActSpList
+		 * @param RepairOrderActSpList RepairOrderActSpList
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setRepairOrderActSpList(List<RepairOrderActSp> RepairOrderActSpList) {
+			super.change(REPAIR_ORDER_ACT_SP_LIST,super.getRepairOrderActSpList(),RepairOrderActSpList);
+			super.setRepairOrderActSpList(RepairOrderActSpList);
+			return this;
+		}
+		
+		/**
+		 * 设置 idsList
+		 * @param idsList idsList
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setIdsList(List<String> idsList) {
+			super.change(IDS_LIST,super.getIdsList(),idsList);
+			super.setIdsList(idsList);
+			return this;
+		}
+		
+		/**
 		 * 设置 维修申请
 		 * @param order 维修申请
 		 * @return 当前对象
@@ -862,39 +938,6 @@ public class RepairOrderActVOMeta extends RepairOrderActMeta {
 			super.setRepairGroup(repairGroup);
 			return this;
 		}
-		
-		/**
-		 * 设置 订单名称
-		 * @param orderName 订单名称
-		 * @return 当前对象
-		*/
-		public RepairOrderAct setOrderName(String orderName) {
-			super.change(ORDER_NAME,super.getOrderName(),orderName);
-			super.setOrderName(orderName);
-			return this;
-		}
-		
-		/**
-		 * 设置 订单编号
-		 * @param orderBusinessCode 订单编号
-		 * @return 当前对象
-		*/
-		public RepairOrderAct setOrderBusinessCode(String orderBusinessCode) {
-			super.change(ORDER_BUSINESS_CODE,super.getOrderBusinessCode(),orderBusinessCode);
-			super.setOrderBusinessCode(orderBusinessCode);
-			return this;
-		}
-		
-		/**
-		 * 设置 维修状态
-		 * @param orderRepairStatus 维修状态
-		 * @return 当前对象
-		*/
-		public RepairOrderAct setOrderRepairStatus(String orderRepairStatus) {
-			super.change(ORDER_REPAIR_STATUS,super.getOrderRepairStatus(),orderRepairStatus);
-			super.setOrderRepairStatus(orderRepairStatus);
-			return this;
-		}
 
 		/**
 		 * 克隆当前对象
@@ -911,35 +954,38 @@ public class RepairOrderActVOMeta extends RepairOrderActMeta {
 		@Transient
 		public RepairOrderActVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setFinishTime(this.getFinishTime());
 			inst.setNotes(this.getNotes());
 			inst.setOrderId(this.getOrderId());
-			inst.setExecutorId(this.getExecutorId());
 			inst.setGroupId(this.getGroupId());
-			inst.setUpdateTime(this.getUpdateTime());
-			inst.setVersion(this.getVersion());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setWithAcceptance(this.getWithAcceptance());
 			inst.setBusinessCode(this.getBusinessCode());
-			inst.setCreateBy(this.getCreateBy());
-			inst.setDeleted(this.getDeleted());
 			inst.setPictureId(this.getPictureId());
-			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
-			inst.setDeleteTime(this.getDeleteTime());
-			inst.setTenantId(this.getTenantId());
-			inst.setDeleteBy(this.getDeleteBy());
 			inst.setStartTime(this.getStartTime());
 			inst.setId(this.getId());
 			inst.setOriginatorId(this.getOriginatorId());
+			inst.setOrderName(this.getOrderName());
+			inst.setFinishTime(this.getFinishTime());
+			inst.setExecutorId(this.getExecutorId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setOrderBusinessCode(this.getOrderBusinessCode());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
 			inst.setRepairCost(this.getRepairCost());
+			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
 				inst.setOriginator(this.getOriginator());
-				inst.setOrderBusinessCode(this.getOrderBusinessCode());
+				inst.setRepairOrderActSpList(this.getRepairOrderActSpList());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
 				inst.setExecutor(this.getExecutor());
@@ -950,9 +996,8 @@ public class RepairOrderActVOMeta extends RepairOrderActMeta {
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setRepairGroup(this.getRepairGroup());
 				inst.setSearchValue(this.getSearchValue());
-				inst.setOrderRepairStatus(this.getOrderRepairStatus());
+				inst.setIdsList(this.getIdsList());
 				inst.setOrder(this.getOrder());
-				inst.setOrderName(this.getOrderName());
 			}
 			inst.clearModifies();
 			return inst;

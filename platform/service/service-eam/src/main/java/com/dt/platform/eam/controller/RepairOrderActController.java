@@ -78,7 +78,10 @@ public class RepairOrderActController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderActVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.STATUS, value = "维修状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = RepairOrderActServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -137,7 +140,10 @@ public class RepairOrderActController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderActVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.STATUS, value = "维修状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { RepairOrderActVOMeta.PAGE_INDEX, RepairOrderActVOMeta.PAGE_SIZE, RepairOrderActVOMeta.SEARCH_FIELD, RepairOrderActVOMeta.FUZZY_FIELD, RepairOrderActVOMeta.SEARCH_VALUE, RepairOrderActVOMeta.DIRTY_FIELDS, RepairOrderActVOMeta.SORT_FIELD, RepairOrderActVOMeta.SORT_TYPE, RepairOrderActVOMeta.IDS })
     @SentinelResource(value = RepairOrderActServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -165,7 +171,10 @@ public class RepairOrderActController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderActVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.STATUS, value = "维修状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairOrderActVOMeta.PAGE_INDEX, RepairOrderActVOMeta.PAGE_SIZE, RepairOrderActVOMeta.SEARCH_FIELD, RepairOrderActVOMeta.FUZZY_FIELD, RepairOrderActVOMeta.SEARCH_VALUE, RepairOrderActVOMeta.DIRTY_FIELDS, RepairOrderActVOMeta.SORT_FIELD, RepairOrderActVOMeta.SORT_TYPE, RepairOrderActVOMeta.IDS })
     @SentinelResource(value = RepairOrderActServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -232,7 +241,10 @@ public class RepairOrderActController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderActVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.STATUS, value = "维修状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairOrderActVOMeta.PAGE_INDEX, RepairOrderActVOMeta.PAGE_SIZE })
     @SentinelResource(value = RepairOrderActServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -261,7 +273,10 @@ public class RepairOrderActController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderActVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.STATUS, value = "维修状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = RepairOrderActServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

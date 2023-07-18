@@ -1,7 +1,7 @@
 /**
- * 工单转派 列表页 JS 脚本
+ * 备件清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-18 06:39:31
+ * @since 2023-07-15 10:59:14
  */
 
 layui.config({
@@ -18,8 +18,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     //模块基础路径
-    const moduleURL="/service-eam/eam-repair-order-transfer";
-    var formAction=admin.getTempData('eam-repair-order-transfer-form-data-form-action');
+    const moduleURL="/service-eam/eam-device-sp";
+
 
     //列表页的扩展
     var list={
@@ -93,6 +93,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            param.ownerId=OWNER_ID;
+            param.ownerType=OWNER_TYPE;
+            param.selectedCode=SELECTED_CODE;
             return true;
         },
         /**
@@ -172,6 +175,61 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        bathSure:function (selected,it){
+            console.log('bathSure',selected,it);
+            if(selected.length==0){
+                top.layer.msg("请选择备件", {time: 2000});
+                return
+            }
+            var btn=$('#bath-sure');
+            var ps={ids:JSON.stringify(selected)}
+            var url="batch-sure"
+            var api=moduleURL+"/"+url;
+            top.layer.confirm(fox.translate('确定进行批量确认操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        top.layer.msg("操作成功", {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        top.layer.msg(r.message, {time: 2000});
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+        },
+        modifyStatus:function (data){
+            console.log('modifyStatus',data);
+            admin.putTempData('eam-device-sp-status-form-data', {});
+            admin.putTempData('eam-device-sp-status-form-data-form-action', "create",true);
+            admin.popupCenter({
+                title: "修改状态",
+                resize: false,
+                offset: [10,null],
+                area: ["80%","85%"],
+                type: 2,
+                id:"eam-device-sp-status-form-data-win",
+                content: '/business/eam/device_sp_status/device_sp_status_form.html?spId='+data.id,
+                finish: function () {
+                    window.module.refreshTableData();
+                }
+            });
+        },
+
+        usedDetail:function (data){
+            console.log('usedDetail',data);
+            admin.popupCenter({
+                title: "使用记录",
+                resize: false,
+                offset: [10,null],
+                area: ["80%","85%"],
+                type: 2,
+                id:"eam-device-sp-rcd-list-data-win",
+                content: '/business/eam/device_sp_rcd/device_sp_rcd_s_list.html?spId='+data.id,
+                finish: function () {
+                }
+            });
+
+        },
         /**
          * 末尾执行
          */
@@ -190,7 +248,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
-            console.log("formAction",formAction);
+            $("#code").attr('placeholder',"自动填充");
+            $("#code").attr("disabled","disabled").css("background-color","#e6e6e6");
         },
         /**
          * 窗口调节前
@@ -229,25 +288,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         onSelectBoxChanged:function(id,selected,changes,isAdd) {
             console.log('onSelectBoxChanged',id,selected,changes,isAdd);
-            //isAdd, 此次操作是新增还是删除
-            if(id=="groupId"){
-                if(isAdd&&changes.length>0){
-                    var userSelect= xmSelect.get('#executorId',true);
-                    console.log("userSelect",userSelect);
-                    var item=changes[0];
-                    admin.post("/service-eam/eam-group-user/query-employee-person", { groupId : item.data.id }, function (r) {
-                        if (r.success) {
-                            var d=[];
-                            for (var i = 0; i < r.data.length; i++) {
-                                d.push({name:r.data[i].name,value:r.data[i].employeeId});
-                            }
-                            userSelect.update({data:d})
-                        } else {
-                            fox.showMessage(r);
-                        }
-                    });
-                }
-            }
         },
         /**
          * 当日期选择组件选择后触发
@@ -276,7 +316,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
-            data.orderId=ORDER_ID
             return true;
         },
         /**

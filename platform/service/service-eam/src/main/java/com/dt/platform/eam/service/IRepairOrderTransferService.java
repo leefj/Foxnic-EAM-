@@ -1,21 +1,15 @@
 package com.dt.platform.eam.service;
 
-import com.github.foxnic.dao.entity.ReferCause;
-import com.github.foxnic.dao.entity.ISimpleIdService;
 
+import com.github.foxnic.dao.entity.ISimpleIdService;
 import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.dao.entity.ISuperService;
 import com.dt.platform.domain.eam.RepairOrderTransfer;
 import com.dt.platform.domain.eam.RepairOrderTransferVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
-import java.io.InputStream;
 import com.github.foxnic.sql.expr.OrderBy;
 import com.github.foxnic.sql.meta.DBField;
-import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.dao.excel.ExcelStructure;
-import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
 import java.util.Map;
 
@@ -24,7 +18,7 @@ import java.util.Map;
  * 工单转派服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 21:04:59
+ * @since 2023-07-18 06:39:30
 */
 
 public interface IRepairOrderTransferService extends  ISimpleIdService<RepairOrderTransfer,String> {

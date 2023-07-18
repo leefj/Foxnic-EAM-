@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 维修备件VO类型
  * <p>维修备件 , 数据表 eam_repair_order_act_sp 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 15:16:56
+ * @since 2023-07-18 12:04:26
  * @sign 37453FD06C395D70EF007DAB79F2228E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -407,8 +407,8 @@ public class RepairOrderActSpVO extends RepairOrderActSp {
 		inst.setSpId(this.getSpId());
 		inst.setSpCode(this.getSpCode());
 		inst.setSpSn(this.getSpSn());
-		inst.setVersion(this.getVersion());
 		inst.setSelectedCode(this.getSelectedCode());
+		inst.setVersion(this.getVersion());
 		inst.setSpNotes(this.getSpNotes());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -418,14 +418,16 @@ public class RepairOrderActSpVO extends RepairOrderActSp {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
+			inst.setOwnerType(this.getOwnerType());
 			inst.setSearchField(this.getSearchField());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setOwnerId(this.getOwnerId());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
@@ -495,8 +497,8 @@ public class RepairOrderActSpVO extends RepairOrderActSp {
 			this.setSpId(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.SP_ID)));
 			this.setSpCode(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.SP_CODE)));
 			this.setSpSn(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.SP_SN)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(RepairOrderActSpVOMeta.VERSION)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.SELECTED_CODE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(RepairOrderActSpVOMeta.VERSION)));
 			this.setSpNotes(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.SP_NOTES)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(RepairOrderActSpVOMeta.DELETED)));
@@ -506,13 +508,15 @@ public class RepairOrderActSpVO extends RepairOrderActSp {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.ID)));
 			// others
+			this.setOwnerType(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.OWNER_TYPE)));
 			this.setSearchField(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.SEARCH_FIELD)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(RepairOrderActSpVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.SORT_TYPE)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.FUZZY_FIELD)));
-			this.setSortField(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(RepairOrderActSpVOMeta.PAGE_SIZE)));
+			this.setOwnerId(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.OWNER_ID)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(RepairOrderActSpVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.SORT_TYPE)));
+			this.setSortField(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(RepairOrderActSpVOMeta.SEARCH_VALUE)));
@@ -525,8 +529,8 @@ public class RepairOrderActSpVO extends RepairOrderActSp {
 				this.setSpId( (String)map.get(RepairOrderActSpVOMeta.SP_ID));
 				this.setSpCode( (String)map.get(RepairOrderActSpVOMeta.SP_CODE));
 				this.setSpSn( (String)map.get(RepairOrderActSpVOMeta.SP_SN));
-				this.setVersion( (Integer)map.get(RepairOrderActSpVOMeta.VERSION));
 				this.setSelectedCode( (String)map.get(RepairOrderActSpVOMeta.SELECTED_CODE));
+				this.setVersion( (Integer)map.get(RepairOrderActSpVOMeta.VERSION));
 				this.setSpNotes( (String)map.get(RepairOrderActSpVOMeta.SP_NOTES));
 				this.setCreateBy( (String)map.get(RepairOrderActSpVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(RepairOrderActSpVOMeta.DELETED));
@@ -536,13 +540,15 @@ public class RepairOrderActSpVO extends RepairOrderActSp {
 				this.setDeleteBy( (String)map.get(RepairOrderActSpVOMeta.DELETE_BY));
 				this.setId( (String)map.get(RepairOrderActSpVOMeta.ID));
 				// others
+				this.setOwnerType( (String)map.get(RepairOrderActSpVOMeta.OWNER_TYPE));
 				this.setSearchField( (String)map.get(RepairOrderActSpVOMeta.SEARCH_FIELD));
-				this.setPageIndex( (Integer)map.get(RepairOrderActSpVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(RepairOrderActSpVOMeta.SORT_TYPE));
 				this.setRequestAction( (String)map.get(RepairOrderActSpVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(RepairOrderActSpVOMeta.FUZZY_FIELD));
-				this.setSortField( (String)map.get(RepairOrderActSpVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(RepairOrderActSpVOMeta.PAGE_SIZE));
+				this.setOwnerId( (String)map.get(RepairOrderActSpVOMeta.OWNER_ID));
+				this.setPageIndex( (Integer)map.get(RepairOrderActSpVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(RepairOrderActSpVOMeta.SORT_TYPE));
+				this.setSortField( (String)map.get(RepairOrderActSpVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(RepairOrderActSpVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(RepairOrderActSpVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(RepairOrderActSpVOMeta.SEARCH_VALUE));
@@ -568,8 +574,8 @@ public class RepairOrderActSpVO extends RepairOrderActSp {
 			this.setSpId(DataParser.parse(String.class, r.getValue(RepairOrderActSpVOMeta.SP_ID)));
 			this.setSpCode(DataParser.parse(String.class, r.getValue(RepairOrderActSpVOMeta.SP_CODE)));
 			this.setSpSn(DataParser.parse(String.class, r.getValue(RepairOrderActSpVOMeta.SP_SN)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(RepairOrderActSpVOMeta.VERSION)));
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(RepairOrderActSpVOMeta.SELECTED_CODE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(RepairOrderActSpVOMeta.VERSION)));
 			this.setSpNotes(DataParser.parse(String.class, r.getValue(RepairOrderActSpVOMeta.SP_NOTES)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(RepairOrderActSpVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(RepairOrderActSpVOMeta.DELETED)));
@@ -587,8 +593,8 @@ public class RepairOrderActSpVO extends RepairOrderActSp {
 				this.setSpId( (String)r.getValue(RepairOrderActSpVOMeta.SP_ID));
 				this.setSpCode( (String)r.getValue(RepairOrderActSpVOMeta.SP_CODE));
 				this.setSpSn( (String)r.getValue(RepairOrderActSpVOMeta.SP_SN));
-				this.setVersion( (Integer)r.getValue(RepairOrderActSpVOMeta.VERSION));
 				this.setSelectedCode( (String)r.getValue(RepairOrderActSpVOMeta.SELECTED_CODE));
+				this.setVersion( (Integer)r.getValue(RepairOrderActSpVOMeta.VERSION));
 				this.setSpNotes( (String)r.getValue(RepairOrderActSpVOMeta.SP_NOTES));
 				this.setCreateBy( (String)r.getValue(RepairOrderActSpVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(RepairOrderActSpVOMeta.DELETED));

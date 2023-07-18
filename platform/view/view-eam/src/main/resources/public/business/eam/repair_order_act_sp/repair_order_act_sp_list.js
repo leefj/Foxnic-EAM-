@@ -1,7 +1,7 @@
 /**
  * 维修备件 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 15:16:57
+ * @since 2023-07-18 12:04:28
  */
 
 
@@ -91,8 +91,8 @@ function ListPage() {
 					,{ field: 'spCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件编码') , templet: function (d) { return templet('spCode',d.spCode,d);}  }
 					,{ field: 'spSn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件序列') , templet: function (d) { return templet('spSn',d.spSn,d);}  }
 					,{ field: 'spNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('spNotes',d.spNotes,d);}  }
+					,{ field: 'selectedCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('选择') , templet: function (d) { return templet('selectedCode',d.selectedCode,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'selectedCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('选择数据') , templet: function (d) { return templet('selectedCode',d.selectedCode,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

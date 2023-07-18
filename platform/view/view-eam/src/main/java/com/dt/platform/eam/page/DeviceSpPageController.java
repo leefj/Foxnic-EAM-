@@ -45,6 +45,23 @@ public class DeviceSpPageController extends ViewController {
 		return getTemplatePath(prefix,"device_sp_list");
 	}
 
+	@RequestMapping("/device_sp_select_list.html")
+	public String selectList(Model model,HttpServletRequest request, String ownerId,String ownerType,String selectedCode) {
+		model.addAttribute("ownerId",ownerId);
+		model.addAttribute("ownerType",ownerType);
+		model.addAttribute("selectedCode",selectedCode);
+		return getTemplatePath(prefix,"device_sp_select_list");
+	}
+
+	@RequestMapping("/device_sp_selected_list.html")
+	public String selectedList(Model model,HttpServletRequest request, String ownerId,String ownerType,String selectedCode) {
+		model.addAttribute("ownerId",ownerId);
+		model.addAttribute("ownerType",ownerType);
+		model.addAttribute("selectedCode",selectedCode);
+		return getTemplatePath(prefix,"device_sp_selected_list");
+	}
+
+
 	/**
 	 * 备件清单 表单页面
 	 */

@@ -2,6 +2,7 @@ package com.dt.platform.eam.service.impl;
 
 
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.constants.enums.eam.RepairOrderActStatusEnum;
 import com.dt.platform.constants.enums.eam.RepairOrderStatusEnum;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.RepairOrderMeta;
@@ -21,6 +22,7 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.sql.expr.Update;
 import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.session.SessionUser;
@@ -76,26 +78,29 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 	public Result acceptance(String id) {
 		RepairOrderAcceptance accept=this.getById(id);
 		RepairOrder order=repairOrderService.getById(accept.getOrderId());
-		if(RepairOrderStatusEnum.WAIT_ACCEPTANCE.code().equals(order.getRepairStatus())){
-			Result r=repairOrderService.changeRepairOrderStatus(order.getId(),RepairOrderStatusEnum.FINISH.code());
-			if(r.isSuccess()){
-				//维修操作完成，登记记录
-				repairOrderService.join(order, RepairOrderMeta.ASSET_LIST);
-				List<Asset> assetList=order.getAssetList();
-				if(assetList!=null&&assetList.size()>0){
-					for(Asset asset:assetList){
-						AssetProcessRecord assetProcessRecord=new AssetProcessRecord();
-						assetProcessRecord.setContent("资产维修验证完成");
-						assetProcessRecord.setAssetId(asset.getId());
-						assetProcessRecord.setBusinessCode(accept.getBusinessCode());
-						assetProcessRecord.setProcessType(AssetOperateEnum.EAM_ASSET_REPAIR_ORDER_ACCEPTANCE.code());
-						assetProcessRecord.setProcessdTime(new Date());
-						assetProcessRecordService.insert(assetProcessRecord);
-					}
+		RepairOrderAct orderAct=repairOrderActService.getById(accept.getOrderActId());
+		if(RepairOrderActStatusEnum.WAIT_ACCEPTANCE.code().equals(orderAct.getStatus())){
+			Update ups=new Update("eam_repair_order_act");
+			ups.set("status",RepairOrderStatusEnum.CANCEL.code());
+			ups.where().and("id=?",accept.getOrderId());
+			dao.execute(ups);
+
+
+			//维修操作完成，登记记录
+			repairOrderService.join(order, RepairOrderMeta.ASSET_LIST);
+			List<Asset> assetList=order.getAssetList();
+			if(assetList!=null&&assetList.size()>0){
+				for(Asset asset:assetList){
+					AssetProcessRecord assetProcessRecord=new AssetProcessRecord();
+					assetProcessRecord.setContent("资产维修验证完成");
+					assetProcessRecord.setAssetId(asset.getId());
+					assetProcessRecord.setBusinessCode(accept.getBusinessCode());
+					assetProcessRecord.setProcessType(AssetOperateEnum.EAM_ASSET_REPAIR_ORDER_ACCEPTANCE.code());
+					assetProcessRecord.setProcessdTime(new Date());
+					assetProcessRecordService.insert(assetProcessRecord);
 				}
-			}else{
-				return r;
 			}
+
 		}else{
 			return ErrorDesc.failureMessage("当前维修状态异常，不能进行验收工作");
 		}
@@ -139,6 +144,12 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 				repairOrderAcceptance.setBusinessCode(codeResult.getData().toString());
 			}
 		}
+
+		Update ups=new Update("eam_repair_order_act");
+		ups.set("status",RepairOrderStatusEnum.FINISH.code());
+		ups.where().and("id=?",repairOrderAcceptance.getOrderActId());
+		dao.execute(ups);
+
 
 		Result r=super.insert(repairOrderAcceptance,throwsException);
 		return r;
@@ -231,6 +242,12 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 	@Override
 	public Result update(RepairOrderAcceptance repairOrderAcceptance , SaveMode mode,boolean throwsException) {
 		Result r=super.update(repairOrderAcceptance , mode , throwsException);
+		if(r.isSuccess()){
+			Update ups=new Update("eam_repair_order_act");
+			ups.set("status",RepairOrderStatusEnum.FINISH.code());
+			ups.where().and("id=?",repairOrderAcceptance.getOrderActId());
+			dao.execute(ups);
+		}
 		return r;
 	}
 

@@ -45,6 +45,16 @@ public class RepairOrderActSpPageController extends ViewController {
 		return getTemplatePath(prefix,"repair_order_act_sp_list");
 	}
 
+	@RequestMapping("/repair_sp_selected_list.html")
+	public String selectedList(Model model,HttpServletRequest request,
+					   String ownerId,String ownerType,String selectedCode,String pageType) {
+		model.addAttribute("ownerId",ownerId);
+		model.addAttribute("ownerType",ownerType);
+		model.addAttribute("selectedCode",selectedCode);
+		model.addAttribute("pageType",pageType);
+		return getTemplatePath(prefix,"repair_sp_selected_list");
+	}
+
 	/**
 	 * 维修备件 表单页面
 	 */

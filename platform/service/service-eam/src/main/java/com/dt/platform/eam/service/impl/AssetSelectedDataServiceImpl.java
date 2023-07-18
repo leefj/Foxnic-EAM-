@@ -36,7 +36,7 @@ import java.util.Map;
 */
 
 
-@Service("EamAssetSelectedDataService")
+@Service("EamAssetSelectedDataService2")
 public class AssetSelectedDataServiceImpl extends SuperService<AssetSelectedData> implements IAssetSelectedDataService {
 	
 	/**

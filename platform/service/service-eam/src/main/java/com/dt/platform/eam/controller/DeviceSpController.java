@@ -278,8 +278,9 @@ public class DeviceSpController extends SuperController {
     @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = DeviceSpServiceProxy.SAVE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DeviceSpServiceProxy.SAVE_BY_IDS)
-    public Result  saveByIds(String ownerId,String ids,String selectedCode) {
-       return deviceSpService.saveByIds(ownerId,ids,selectedCode);
+    public Result  saveByIds(String ownerId,String ownerType,String ids,String selectedCode) {
+
+       return deviceSpService.saveByIds(ownerId,ownerType,ids,selectedCode);
     }
 
     /**
@@ -380,10 +381,8 @@ public class DeviceSpController extends SuperController {
         Result<PagedList<DeviceSp>> result = new Result<>();
         PagedList<DeviceSp> list = deviceSpService.querySelectPagedList(sample);
         // join 关联的对象
-        deviceSpService.dao().fill(list).with("manager").with(DeviceSpMeta.USAGE).with(DeviceSpMeta.DEVICE_SP_TYPE).with(DeviceSpMeta.POSITION).execute();
-        deviceSpService.join(list, DeviceSpMeta.MANAGER);
-        List<Employee> managerList = CollectorUtil.collectList(list, DeviceSp::getManager);
-        deviceSpService.dao().join(managerList, Person.class);
+        deviceSpService.dao().fill(list).with(DeviceSpMeta.USAGE).with(DeviceSpMeta.DEVICE_SP_TYPE).with(DeviceSpMeta.POSITION).execute();
+
         result.success(true).data(list);
         return result;
     }

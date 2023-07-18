@@ -11,9 +11,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.eam.meta.RepairOrderActMeta;
@@ -25,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 维修工单
  * <p>维修工单 , 数据表 eam_repair_order_act 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 16:02:02
- * @sign B566B74E5A61CC057A2077E13FD15E9E
+ * @since 2023-07-18 14:37:22
+ * @sign 1A225460D9387B65217312E83267845F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -50,6 +53,24 @@ public class RepairOrderAct extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="申请单" , notes = "申请单" , example = "698166043993964544")
 	private String orderId;
+	
+	/**
+	 * 订单编号：订单编号
+	*/
+	@ApiModelProperty(required = false,value="订单编号" , notes = "订单编号")
+	private String orderBusinessCode;
+	
+	/**
+	 * 订单名称：订单名称
+	*/
+	@ApiModelProperty(required = false,value="订单名称" , notes = "订单名称")
+	private String orderName;
+	
+	/**
+	 * 维修状态：维修状态
+	*/
+	@ApiModelProperty(required = false,value="维修状态" , notes = "维修状态" , example = "wait_repair")
+	private String status;
 	
 	/**
 	 * 业务编号：业务编号
@@ -175,6 +196,18 @@ public class RepairOrderAct extends Entity {
 	private String selectedCode;
 	
 	/**
+	 * RepairOrderActSpList：RepairOrderActSpList
+	*/
+	@ApiModelProperty(required = false,value="RepairOrderActSpList" , notes = "RepairOrderActSpList")
+	private List<RepairOrderActSp> RepairOrderActSpList;
+	
+	/**
+	 * idsList：idsList
+	*/
+	@ApiModelProperty(required = false,value="idsList" , notes = "idsList")
+	private List<String> idsList;
+	
+	/**
 	 * 维修申请：维修申请
 	*/
 	@ApiModelProperty(required = false,value="维修申请" , notes = "维修申请")
@@ -197,24 +230,6 @@ public class RepairOrderAct extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="维修班组" , notes = "维修班组")
 	private RepairGroup repairGroup;
-	
-	/**
-	 * 订单名称：订单名称
-	*/
-	@ApiModelProperty(required = false,value="订单名称" , notes = "订单名称")
-	private String orderName;
-	
-	/**
-	 * 订单编号：订单编号
-	*/
-	@ApiModelProperty(required = false,value="订单编号" , notes = "订单编号")
-	private String orderBusinessCode;
-	
-	/**
-	 * 维修状态：维修状态
-	*/
-	@ApiModelProperty(required = false,value="维修状态" , notes = "维修状态")
-	private String orderRepairStatus;
 	
 	/**
 	 * 获得 主键<br>
@@ -251,6 +266,63 @@ public class RepairOrderAct extends Entity {
 	*/
 	public RepairOrderAct setOrderId(String orderId) {
 		this.orderId=orderId;
+		return this;
+	}
+	
+	/**
+	 * 获得 订单编号<br>
+	 * 订单编号
+	 * @return 订单编号
+	*/
+	public String getOrderBusinessCode() {
+		return orderBusinessCode;
+	}
+	
+	/**
+	 * 设置 订单编号
+	 * @param orderBusinessCode 订单编号
+	 * @return 当前对象
+	*/
+	public RepairOrderAct setOrderBusinessCode(String orderBusinessCode) {
+		this.orderBusinessCode=orderBusinessCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 订单名称<br>
+	 * 订单名称
+	 * @return 订单名称
+	*/
+	public String getOrderName() {
+		return orderName;
+	}
+	
+	/**
+	 * 设置 订单名称
+	 * @param orderName 订单名称
+	 * @return 当前对象
+	*/
+	public RepairOrderAct setOrderName(String orderName) {
+		this.orderName=orderName;
+		return this;
+	}
+	
+	/**
+	 * 获得 维修状态<br>
+	 * 维修状态
+	 * @return 维修状态
+	*/
+	public String getStatus() {
+		return status;
+	}
+	
+	/**
+	 * 设置 维修状态
+	 * @param status 维修状态
+	 * @return 当前对象
+	*/
+	public RepairOrderAct setStatus(String status) {
+		this.status=status;
 		return this;
 	}
 	
@@ -666,6 +738,66 @@ public class RepairOrderAct extends Entity {
 	}
 	
 	/**
+	 * 获得 RepairOrderActSpList<br>
+	 * RepairOrderActSpList
+	 * @return RepairOrderActSpList
+	*/
+	public List<RepairOrderActSp> getRepairOrderActSpList() {
+		return RepairOrderActSpList;
+	}
+	
+	/**
+	 * 设置 RepairOrderActSpList
+	 * @param RepairOrderActSpList RepairOrderActSpList
+	 * @return 当前对象
+	*/
+	public RepairOrderAct setRepairOrderActSpList(List<RepairOrderActSp> RepairOrderActSpList) {
+		this.RepairOrderActSpList=RepairOrderActSpList;
+		return this;
+	}
+	
+	/**
+	 * 添加 RepairOrderActSpList
+	 * @param RepairOrderActSp RepairOrderActSpList
+	 * @return 当前对象
+	*/
+	public RepairOrderAct addRepairOrderActSp(RepairOrderActSp... RepairOrderActSp) {
+		if(this.RepairOrderActSpList==null) RepairOrderActSpList=new ArrayList<>();
+		this.RepairOrderActSpList.addAll(Arrays.asList(RepairOrderActSp));
+		return this;
+	}
+	
+	/**
+	 * 获得 idsList<br>
+	 * idsList
+	 * @return idsList
+	*/
+	public List<String> getIdsList() {
+		return idsList;
+	}
+	
+	/**
+	 * 设置 idsList
+	 * @param idsList idsList
+	 * @return 当前对象
+	*/
+	public RepairOrderAct setIdsList(List<String> idsList) {
+		this.idsList=idsList;
+		return this;
+	}
+	
+	/**
+	 * 添加 idsList
+	 * @param ids idsList
+	 * @return 当前对象
+	*/
+	public RepairOrderAct addIds(String... ids) {
+		if(this.idsList==null) idsList=new ArrayList<>();
+		this.idsList.addAll(Arrays.asList(ids));
+		return this;
+	}
+	
+	/**
 	 * 获得 维修申请<br>
 	 * 维修申请
 	 * @return 维修申请
@@ -740,63 +872,6 @@ public class RepairOrderAct extends Entity {
 		this.repairGroup=repairGroup;
 		return this;
 	}
-	
-	/**
-	 * 获得 订单名称<br>
-	 * 订单名称
-	 * @return 订单名称
-	*/
-	public String getOrderName() {
-		return orderName;
-	}
-	
-	/**
-	 * 设置 订单名称
-	 * @param orderName 订单名称
-	 * @return 当前对象
-	*/
-	public RepairOrderAct setOrderName(String orderName) {
-		this.orderName=orderName;
-		return this;
-	}
-	
-	/**
-	 * 获得 订单编号<br>
-	 * 订单编号
-	 * @return 订单编号
-	*/
-	public String getOrderBusinessCode() {
-		return orderBusinessCode;
-	}
-	
-	/**
-	 * 设置 订单编号
-	 * @param orderBusinessCode 订单编号
-	 * @return 当前对象
-	*/
-	public RepairOrderAct setOrderBusinessCode(String orderBusinessCode) {
-		this.orderBusinessCode=orderBusinessCode;
-		return this;
-	}
-	
-	/**
-	 * 获得 维修状态<br>
-	 * 维修状态
-	 * @return 维修状态
-	*/
-	public String getOrderRepairStatus() {
-		return orderRepairStatus;
-	}
-	
-	/**
-	 * 设置 维修状态
-	 * @param orderRepairStatus 维修状态
-	 * @return 当前对象
-	*/
-	public RepairOrderAct setOrderRepairStatus(String orderRepairStatus) {
-		this.orderRepairStatus=orderRepairStatus;
-		return this;
-	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -842,36 +917,38 @@ public class RepairOrderAct extends Entity {
 	@Transient
 	public RepairOrderAct duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.RepairOrderActMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.RepairOrderActMeta.$$proxy$$();
-		inst.setFinishTime(this.getFinishTime());
 		inst.setNotes(this.getNotes());
 		inst.setOrderId(this.getOrderId());
-		inst.setExecutorId(this.getExecutorId());
 		inst.setGroupId(this.getGroupId());
-		inst.setUpdateTime(this.getUpdateTime());
-		inst.setVersion(this.getVersion());
 		inst.setSelectedCode(this.getSelectedCode());
 		inst.setWithAcceptance(this.getWithAcceptance());
 		inst.setBusinessCode(this.getBusinessCode());
-		inst.setCreateBy(this.getCreateBy());
-		inst.setDeleted(this.getDeleted());
 		inst.setPictureId(this.getPictureId());
-		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
-		inst.setDeleteTime(this.getDeleteTime());
-		inst.setTenantId(this.getTenantId());
-		inst.setDeleteBy(this.getDeleteBy());
 		inst.setStartTime(this.getStartTime());
 		inst.setId(this.getId());
 		inst.setOriginatorId(this.getOriginatorId());
+		inst.setOrderName(this.getOrderName());
+		inst.setFinishTime(this.getFinishTime());
+		inst.setExecutorId(this.getExecutorId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setOrderBusinessCode(this.getOrderBusinessCode());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
 		inst.setRepairCost(this.getRepairCost());
+		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setRepairOrderActSpList(this.getRepairOrderActSpList());
 			inst.setExecutor(this.getExecutor());
 			inst.setRepairGroup(this.getRepairGroup());
 			inst.setOriginator(this.getOriginator());
-			inst.setOrderRepairStatus(this.getOrderRepairStatus());
-			inst.setOrderBusinessCode(this.getOrderBusinessCode());
+			inst.setIdsList(this.getIdsList());
 			inst.setOrder(this.getOrder());
-			inst.setOrderName(this.getOrderName());
 		}
 		inst.clearModifies();
 		return inst;
@@ -931,69 +1008,69 @@ public class RepairOrderAct extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setFinishTime(DataParser.parse(Date.class, map.get(RepairOrderActMeta.FINISH_TIME)));
 			this.setNotes(DataParser.parse(String.class, map.get(RepairOrderActMeta.NOTES)));
 			this.setOrderId(DataParser.parse(String.class, map.get(RepairOrderActMeta.ORDER_ID)));
-			this.setExecutorId(DataParser.parse(String.class, map.get(RepairOrderActMeta.EXECUTOR_ID)));
 			this.setGroupId(DataParser.parse(String.class, map.get(RepairOrderActMeta.GROUP_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(RepairOrderActMeta.UPDATE_TIME)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(RepairOrderActMeta.VERSION)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(RepairOrderActMeta.SELECTED_CODE)));
 			this.setWithAcceptance(DataParser.parse(String.class, map.get(RepairOrderActMeta.WITH_ACCEPTANCE)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(RepairOrderActMeta.BUSINESS_CODE)));
-			this.setCreateBy(DataParser.parse(String.class, map.get(RepairOrderActMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, map.get(RepairOrderActMeta.DELETED)));
 			this.setPictureId(DataParser.parse(String.class, map.get(RepairOrderActMeta.PICTURE_ID)));
-			this.setCreateTime(DataParser.parse(Date.class, map.get(RepairOrderActMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(RepairOrderActMeta.UPDATE_BY)));
-			this.setDeleteTime(DataParser.parse(Date.class, map.get(RepairOrderActMeta.DELETE_TIME)));
-			this.setTenantId(DataParser.parse(String.class, map.get(RepairOrderActMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, map.get(RepairOrderActMeta.DELETE_BY)));
 			this.setStartTime(DataParser.parse(Date.class, map.get(RepairOrderActMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(RepairOrderActMeta.ID)));
 			this.setOriginatorId(DataParser.parse(String.class, map.get(RepairOrderActMeta.ORIGINATOR_ID)));
+			this.setOrderName(DataParser.parse(String.class, map.get(RepairOrderActMeta.ORDER_NAME)));
+			this.setFinishTime(DataParser.parse(Date.class, map.get(RepairOrderActMeta.FINISH_TIME)));
+			this.setExecutorId(DataParser.parse(String.class, map.get(RepairOrderActMeta.EXECUTOR_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(RepairOrderActMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(RepairOrderActMeta.VERSION)));
+			this.setOrderBusinessCode(DataParser.parse(String.class, map.get(RepairOrderActMeta.ORDER_BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(RepairOrderActMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(RepairOrderActMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(RepairOrderActMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(RepairOrderActMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(RepairOrderActMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(RepairOrderActMeta.DELETE_BY)));
 			this.setRepairCost(DataParser.parse(BigDecimal.class, map.get(RepairOrderActMeta.REPAIR_COST)));
+			this.setStatus(DataParser.parse(String.class, map.get(RepairOrderActMeta.STATUS)));
 			// others
 			this.setExecutor(DataParser.parse(Employee.class, map.get(RepairOrderActMeta.EXECUTOR)));
 			this.setRepairGroup(DataParser.parse(RepairGroup.class, map.get(RepairOrderActMeta.REPAIR_GROUP)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(RepairOrderActMeta.ORIGINATOR)));
-			this.setOrderRepairStatus(DataParser.parse(String.class, map.get(RepairOrderActMeta.ORDER_REPAIR_STATUS)));
-			this.setOrderBusinessCode(DataParser.parse(String.class, map.get(RepairOrderActMeta.ORDER_BUSINESS_CODE)));
 			this.setOrder(DataParser.parse(RepairOrder.class, map.get(RepairOrderActMeta.ORDER)));
-			this.setOrderName(DataParser.parse(String.class, map.get(RepairOrderActMeta.ORDER_NAME)));
 			return true;
 		} else {
 			try {
-				this.setFinishTime( (Date)map.get(RepairOrderActMeta.FINISH_TIME));
 				this.setNotes( (String)map.get(RepairOrderActMeta.NOTES));
 				this.setOrderId( (String)map.get(RepairOrderActMeta.ORDER_ID));
-				this.setExecutorId( (String)map.get(RepairOrderActMeta.EXECUTOR_ID));
 				this.setGroupId( (String)map.get(RepairOrderActMeta.GROUP_ID));
-				this.setUpdateTime( (Date)map.get(RepairOrderActMeta.UPDATE_TIME));
-				this.setVersion( (Integer)map.get(RepairOrderActMeta.VERSION));
 				this.setSelectedCode( (String)map.get(RepairOrderActMeta.SELECTED_CODE));
 				this.setWithAcceptance( (String)map.get(RepairOrderActMeta.WITH_ACCEPTANCE));
 				this.setBusinessCode( (String)map.get(RepairOrderActMeta.BUSINESS_CODE));
-				this.setCreateBy( (String)map.get(RepairOrderActMeta.CREATE_BY));
-				this.setDeleted( (Integer)map.get(RepairOrderActMeta.DELETED));
 				this.setPictureId( (String)map.get(RepairOrderActMeta.PICTURE_ID));
-				this.setCreateTime( (Date)map.get(RepairOrderActMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(RepairOrderActMeta.UPDATE_BY));
-				this.setDeleteTime( (Date)map.get(RepairOrderActMeta.DELETE_TIME));
-				this.setTenantId( (String)map.get(RepairOrderActMeta.TENANT_ID));
-				this.setDeleteBy( (String)map.get(RepairOrderActMeta.DELETE_BY));
 				this.setStartTime( (Date)map.get(RepairOrderActMeta.START_TIME));
 				this.setId( (String)map.get(RepairOrderActMeta.ID));
 				this.setOriginatorId( (String)map.get(RepairOrderActMeta.ORIGINATOR_ID));
+				this.setOrderName( (String)map.get(RepairOrderActMeta.ORDER_NAME));
+				this.setFinishTime( (Date)map.get(RepairOrderActMeta.FINISH_TIME));
+				this.setExecutorId( (String)map.get(RepairOrderActMeta.EXECUTOR_ID));
+				this.setUpdateTime( (Date)map.get(RepairOrderActMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(RepairOrderActMeta.VERSION));
+				this.setOrderBusinessCode( (String)map.get(RepairOrderActMeta.ORDER_BUSINESS_CODE));
+				this.setCreateBy( (String)map.get(RepairOrderActMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(RepairOrderActMeta.DELETED));
+				this.setCreateTime( (Date)map.get(RepairOrderActMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(RepairOrderActMeta.DELETE_TIME));
+				this.setTenantId( (String)map.get(RepairOrderActMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(RepairOrderActMeta.DELETE_BY));
 				this.setRepairCost( (BigDecimal)map.get(RepairOrderActMeta.REPAIR_COST));
+				this.setStatus( (String)map.get(RepairOrderActMeta.STATUS));
 				// others
 				this.setExecutor( (Employee)map.get(RepairOrderActMeta.EXECUTOR));
 				this.setRepairGroup( (RepairGroup)map.get(RepairOrderActMeta.REPAIR_GROUP));
 				this.setOriginator( (Employee)map.get(RepairOrderActMeta.ORIGINATOR));
-				this.setOrderRepairStatus( (String)map.get(RepairOrderActMeta.ORDER_REPAIR_STATUS));
-				this.setOrderBusinessCode( (String)map.get(RepairOrderActMeta.ORDER_BUSINESS_CODE));
 				this.setOrder( (RepairOrder)map.get(RepairOrderActMeta.ORDER));
-				this.setOrderName( (String)map.get(RepairOrderActMeta.ORDER_NAME));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -1010,53 +1087,59 @@ public class RepairOrderAct extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setFinishTime(DataParser.parse(Date.class, r.getValue(RepairOrderActMeta.FINISH_TIME)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.NOTES)));
 			this.setOrderId(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.ORDER_ID)));
-			this.setExecutorId(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.EXECUTOR_ID)));
 			this.setGroupId(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.GROUP_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(RepairOrderActMeta.UPDATE_TIME)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(RepairOrderActMeta.VERSION)));
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.SELECTED_CODE)));
 			this.setWithAcceptance(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.WITH_ACCEPTANCE)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.BUSINESS_CODE)));
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, r.getValue(RepairOrderActMeta.DELETED)));
 			this.setPictureId(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.PICTURE_ID)));
-			this.setCreateTime(DataParser.parse(Date.class, r.getValue(RepairOrderActMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.UPDATE_BY)));
-			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(RepairOrderActMeta.DELETE_TIME)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.DELETE_BY)));
 			this.setStartTime(DataParser.parse(Date.class, r.getValue(RepairOrderActMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.ID)));
 			this.setOriginatorId(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.ORIGINATOR_ID)));
+			this.setOrderName(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.ORDER_NAME)));
+			this.setFinishTime(DataParser.parse(Date.class, r.getValue(RepairOrderActMeta.FINISH_TIME)));
+			this.setExecutorId(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.EXECUTOR_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(RepairOrderActMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(RepairOrderActMeta.VERSION)));
+			this.setOrderBusinessCode(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.ORDER_BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(RepairOrderActMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(RepairOrderActMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(RepairOrderActMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.DELETE_BY)));
 			this.setRepairCost(DataParser.parse(BigDecimal.class, r.getValue(RepairOrderActMeta.REPAIR_COST)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(RepairOrderActMeta.STATUS)));
 			return true;
 		} else {
 			try {
-				this.setFinishTime( (Date)r.getValue(RepairOrderActMeta.FINISH_TIME));
 				this.setNotes( (String)r.getValue(RepairOrderActMeta.NOTES));
 				this.setOrderId( (String)r.getValue(RepairOrderActMeta.ORDER_ID));
-				this.setExecutorId( (String)r.getValue(RepairOrderActMeta.EXECUTOR_ID));
 				this.setGroupId( (String)r.getValue(RepairOrderActMeta.GROUP_ID));
-				this.setUpdateTime( (Date)r.getValue(RepairOrderActMeta.UPDATE_TIME));
-				this.setVersion( (Integer)r.getValue(RepairOrderActMeta.VERSION));
 				this.setSelectedCode( (String)r.getValue(RepairOrderActMeta.SELECTED_CODE));
 				this.setWithAcceptance( (String)r.getValue(RepairOrderActMeta.WITH_ACCEPTANCE));
 				this.setBusinessCode( (String)r.getValue(RepairOrderActMeta.BUSINESS_CODE));
-				this.setCreateBy( (String)r.getValue(RepairOrderActMeta.CREATE_BY));
-				this.setDeleted( (Integer)r.getValue(RepairOrderActMeta.DELETED));
 				this.setPictureId( (String)r.getValue(RepairOrderActMeta.PICTURE_ID));
-				this.setCreateTime( (Date)r.getValue(RepairOrderActMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(RepairOrderActMeta.UPDATE_BY));
-				this.setDeleteTime( (Date)r.getValue(RepairOrderActMeta.DELETE_TIME));
-				this.setTenantId( (String)r.getValue(RepairOrderActMeta.TENANT_ID));
-				this.setDeleteBy( (String)r.getValue(RepairOrderActMeta.DELETE_BY));
 				this.setStartTime( (Date)r.getValue(RepairOrderActMeta.START_TIME));
 				this.setId( (String)r.getValue(RepairOrderActMeta.ID));
 				this.setOriginatorId( (String)r.getValue(RepairOrderActMeta.ORIGINATOR_ID));
+				this.setOrderName( (String)r.getValue(RepairOrderActMeta.ORDER_NAME));
+				this.setFinishTime( (Date)r.getValue(RepairOrderActMeta.FINISH_TIME));
+				this.setExecutorId( (String)r.getValue(RepairOrderActMeta.EXECUTOR_ID));
+				this.setUpdateTime( (Date)r.getValue(RepairOrderActMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(RepairOrderActMeta.VERSION));
+				this.setOrderBusinessCode( (String)r.getValue(RepairOrderActMeta.ORDER_BUSINESS_CODE));
+				this.setCreateBy( (String)r.getValue(RepairOrderActMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(RepairOrderActMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(RepairOrderActMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(RepairOrderActMeta.DELETE_TIME));
+				this.setTenantId( (String)r.getValue(RepairOrderActMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(RepairOrderActMeta.DELETE_BY));
 				this.setRepairCost( (BigDecimal)r.getValue(RepairOrderActMeta.REPAIR_COST));
+				this.setStatus( (String)r.getValue(RepairOrderActMeta.STATUS));
 				return true;
 			} catch (Exception e) {
 				return false;

@@ -7,7 +7,9 @@ import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.eam.DeviceSpStatusEnum;
 import com.dt.platform.domain.eam.DeviceSpRcd;
+import com.dt.platform.domain.eam.RepairOrderActSp;
 import com.dt.platform.eam.service.IDeviceSpRcdService;
+import com.dt.platform.eam.service.IRepairOrderActSpService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.dao.data.Rcd;
@@ -59,6 +61,12 @@ import java.util.Map;
 
 public class DeviceSpServiceImpl extends SuperService<DeviceSp> implements IDeviceSpService {
 
+	@Autowired
+	private IRepairOrderActSpService repairOrderActSpService;
+
+	@Autowired
+	private IDeviceSpService deviceSpService;
+
 	/**
 	 * 注入DAO对象
 	 * */
@@ -109,7 +117,33 @@ public class DeviceSpServiceImpl extends SuperService<DeviceSp> implements IDevi
 
 
 	@Override
-	public Result saveByIds(String ownerId, String ids, String selectedCode) {
+	public Result saveByIds(String ownerId,String ownerType, String ids, String selectedCode) {
+
+
+		if(StringUtil.isBlank(ids)){
+			return ErrorDesc.failureMessage("ids 参数为空");
+		}
+		JSONArray idsArr=JSONArray.parseArray(ids);
+		if(idsArr==null||idsArr.size()==0){
+			return ErrorDesc.failureMessage("ids 参数为空");
+		}
+		if("eam_repair_act_sp".equals(ownerType)){
+			for(int i=0;i<idsArr.size();i++){
+				String id=idsArr.getString(i);
+				DeviceSp sp=deviceSpService.getById(id);
+				RepairOrderActSp actSp=new RepairOrderActSp();
+				actSp.setSelectedCode(selectedCode);
+				actSp.setActId(ownerId);
+				actSp.setSpId(id);
+				actSp.setSpSn(sp.getSn());
+				actSp.setSpCode(sp.getCode());
+				actSp.setSpName(sp.getName());
+				actSp.setSpNotes(sp.getNotes());
+				repairOrderActSpService.insert(actSp,true);
+			}
+		}else{
+			return ErrorDesc.failureMessage("ownerType参数为空");
+		}
 
 		return ErrorDesc.success();
 	}
@@ -121,7 +155,22 @@ public class DeviceSpServiceImpl extends SuperService<DeviceSp> implements IDevi
 
 	@Override
 	public PagedList<DeviceSp> querySelectPagedList(DeviceSpVO sample) {
-		return null;
+
+		String ownerId=sample.getOwnerId();
+		String selectedCode=sample.getSelectedCode();
+		String ownerType= sample.getOwnerType();
+		sample.setOwnerId(null);
+		sample.setOwnerType(null);
+		sample.setSelectedCode(null);
+		ConditionExpr expr=new ConditionExpr();
+
+		if("eam_repair_act_sp".equals(ownerType)){
+			expr.and("id not in (select sp_id from eam_repair_order_act_sp where deleted=0 and act_id=? and selected_code=?)",ownerId,selectedCode);
+			expr.and("status in ('not_use') ");
+		}else{
+			expr.and( "1=1");
+		}
+		return super.queryPagedList(sample,expr,sample.getPageSize(),sample.getPageIndex());
 	}
 
 	@Override

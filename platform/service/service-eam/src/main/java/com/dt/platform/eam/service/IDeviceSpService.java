@@ -32,7 +32,7 @@ import java.util.Map;
 public interface IDeviceSpService extends  ISimpleIdService<DeviceSp,String> {
 
 
-	Result saveByIds(String ownerId,String ids,String selectedCode);
+	Result saveByIds(String ownerId,String ownerType,String ids,String selectedCode);
 
 	PagedList<DeviceSp> querySelectedPagedList(DeviceSpVO sample);
 

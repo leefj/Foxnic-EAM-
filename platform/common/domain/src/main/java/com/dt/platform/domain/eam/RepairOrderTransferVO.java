@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 工单转派VO类型
  * <p>工单转派 , 数据表 eam_repair_order_transfer 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 21:04:59
+ * @since 2023-07-18 09:29:35
  * @sign 4C901FF0F490037A487AD2C42A212F15
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -414,6 +414,7 @@ public class RepairOrderTransferVO extends RepairOrderTransfer {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setOrderActId(this.getOrderActId());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
@@ -423,6 +424,7 @@ public class RepairOrderTransferVO extends RepairOrderTransfer {
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setOriginator(this.getOriginator());
+			inst.setOrderAct(this.getOrderAct());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setExecutor(this.getExecutor());
@@ -505,6 +507,7 @@ public class RepairOrderTransferVO extends RepairOrderTransfer {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(RepairOrderTransferVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(RepairOrderTransferVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(RepairOrderTransferVOMeta.DELETE_TIME)));
+			this.setOrderActId(DataParser.parse(String.class, map.get(RepairOrderTransferVOMeta.ORDER_ACT_ID)));
 			this.setTenantId(DataParser.parse(String.class, map.get(RepairOrderTransferVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(RepairOrderTransferVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(RepairOrderTransferVOMeta.ID)));
@@ -514,6 +517,7 @@ public class RepairOrderTransferVO extends RepairOrderTransfer {
 			this.setFuzzyField(DataParser.parse(String.class, map.get(RepairOrderTransferVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(RepairOrderTransferVOMeta.PAGE_SIZE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(RepairOrderTransferVOMeta.ORIGINATOR)));
+			this.setOrderAct(DataParser.parse(RepairOrderAct.class, map.get(RepairOrderTransferVOMeta.ORDER_ACT)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(RepairOrderTransferVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(RepairOrderTransferVOMeta.SORT_TYPE)));
 			this.setExecutor(DataParser.parse(Employee.class, map.get(RepairOrderTransferVOMeta.EXECUTOR)));
@@ -538,6 +542,7 @@ public class RepairOrderTransferVO extends RepairOrderTransfer {
 				this.setCreateTime( (Date)map.get(RepairOrderTransferVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(RepairOrderTransferVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(RepairOrderTransferVOMeta.DELETE_TIME));
+				this.setOrderActId( (String)map.get(RepairOrderTransferVOMeta.ORDER_ACT_ID));
 				this.setTenantId( (String)map.get(RepairOrderTransferVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(RepairOrderTransferVOMeta.DELETE_BY));
 				this.setId( (String)map.get(RepairOrderTransferVOMeta.ID));
@@ -547,6 +552,7 @@ public class RepairOrderTransferVO extends RepairOrderTransfer {
 				this.setFuzzyField( (String)map.get(RepairOrderTransferVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(RepairOrderTransferVOMeta.PAGE_SIZE));
 				this.setOriginator( (Employee)map.get(RepairOrderTransferVOMeta.ORIGINATOR));
+				this.setOrderAct( (RepairOrderAct)map.get(RepairOrderTransferVOMeta.ORDER_ACT));
 				this.setPageIndex( (Integer)map.get(RepairOrderTransferVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(RepairOrderTransferVOMeta.SORT_TYPE));
 				this.setExecutor( (Employee)map.get(RepairOrderTransferVOMeta.EXECUTOR));
@@ -584,6 +590,7 @@ public class RepairOrderTransferVO extends RepairOrderTransfer {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(RepairOrderTransferVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(RepairOrderTransferVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(RepairOrderTransferVOMeta.DELETE_TIME)));
+			this.setOrderActId(DataParser.parse(String.class, r.getValue(RepairOrderTransferVOMeta.ORDER_ACT_ID)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(RepairOrderTransferVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(RepairOrderTransferVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(RepairOrderTransferVOMeta.ID)));
@@ -602,6 +609,7 @@ public class RepairOrderTransferVO extends RepairOrderTransfer {
 				this.setCreateTime( (Date)r.getValue(RepairOrderTransferVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(RepairOrderTransferVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(RepairOrderTransferVOMeta.DELETE_TIME));
+				this.setOrderActId( (String)r.getValue(RepairOrderTransferVOMeta.ORDER_ACT_ID));
 				this.setTenantId( (String)r.getValue(RepairOrderTransferVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(RepairOrderTransferVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(RepairOrderTransferVOMeta.ID));

@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-07-17 21:02:02
+ * @since 2023-07-18 09:54:52
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -19161,6 +19161,21 @@ public class EAMTables {
 		public static final DBField ORDER_ID = new DBField(DBDataType.STRING , "order_id","orderId","申请单","申请单",false,false,true);
 		
 		/**
+		 * 订单编号
+		*/
+		public static final DBField ORDER_BUSINESS_CODE = new DBField(DBDataType.STRING , "order_business_code","orderBusinessCode","订单编号","订单编号",false,false,true);
+		
+		/**
+		 * 订单名称
+		*/
+		public static final DBField ORDER_NAME = new DBField(DBDataType.STRING , "order_name","orderName","订单名称","订单名称",false,false,true);
+		
+		/**
+		 * 维修状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","维修状态","维修状态",false,false,true);
+		
+		/**
 		 * 业务编号
 		*/
 		public static final DBField BUSINESS_CODE = new DBField(DBDataType.STRING , "business_code","businessCode","业务编号","业务编号",false,false,true);
@@ -19260,7 +19275,7 @@ public class EAMTables {
 		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择数据","选择数据",false,false,true);
 		
 		public EAM_REPAIR_ORDER_ACT() {
-			this.init($NAME,"维修工单" , ID , ORDER_ID , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
+			this.init($NAME,"维修工单" , ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , STATUS , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
 		}
 		public static final EAM_REPAIR_ORDER_ACT $TABLE=new EAM_REPAIR_ORDER_ACT();
 	}
@@ -19371,6 +19386,11 @@ public class EAMTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
+		 * 维修工单
+		*/
+		public static final DBField ORDER_ACT_ID = new DBField(DBDataType.STRING , "order_act_id","orderActId","维修工单","维修工单",false,false,true);
+		
+		/**
 		 * 申请单
 		*/
 		public static final DBField ORDER_ID = new DBField(DBDataType.STRING , "order_id","orderId","申请单","申请单",false,false,true);
@@ -19440,7 +19460,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_REPAIR_ORDER_TRANSER() {
-			this.init($NAME,"工单转派" , ID , ORDER_ID , GROUP_ID , EXECUTOR_ID , RULE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"工单转派" , ID , ORDER_ACT_ID , ORDER_ID , GROUP_ID , EXECUTOR_ID , RULE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_REPAIR_ORDER_TRANSER $TABLE=new EAM_REPAIR_ORDER_TRANSER();
 	}
@@ -19461,9 +19481,14 @@ public class EAMTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 申请单
+		 * 维修工单
 		*/
-		public static final DBField ORDER_ID = new DBField(DBDataType.STRING , "order_id","orderId","申请单","申请单",false,false,true);
+		public static final DBField ORDER_ACT_ID = new DBField(DBDataType.STRING , "order_act_id","orderActId","维修工单","维修工单",false,false,true);
+		
+		/**
+		 * 申请工单
+		*/
+		public static final DBField ORDER_ID = new DBField(DBDataType.STRING , "order_id","orderId","申请工单","申请工单",false,false,true);
 		
 		/**
 		 * 维修班组
@@ -19530,7 +19555,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_REPAIR_ORDER_TRANSFER() {
-			this.init($NAME,"工单转派" , ID , ORDER_ID , GROUP_ID , EXECUTOR_ID , RULE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"工单转派" , ID , ORDER_ACT_ID , ORDER_ID , GROUP_ID , EXECUTOR_ID , RULE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_REPAIR_ORDER_TRANSFER $TABLE=new EAM_REPAIR_ORDER_TRANSFER();
 	}
