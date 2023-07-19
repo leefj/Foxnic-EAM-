@@ -26,8 +26,9 @@ if [[ -f "$prod_app_dir/app/app.jar" ]];then
   cp $app_dir/app/app.jar $prod_app_dir/app/
   ls -rtl $prod_app_dir/app/
 else
-  echo "app.jar error"
-  exit 1
+  echo "app.jar not exist"
+  echo "cp $app_dir/app/app.jar $prod_app_dir/app/"
+  cp $app_dir/app/app.jar $prod_app_dir/app/
 fi
 echo ""
 echo ""

@@ -10,7 +10,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
-    <title th:text="${lang.translate('资产面板')}">资产面板</title>
+    <title th:text="${lang.translate('设备面板')}">设备面板</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -119,24 +119,40 @@
 
 
 <div class="layui-fluid">
-    <div class="layui-row layui-col-space10">
-
         <div class="layui-row layui-col-space10">
+
             <div class="layui-col-md2">
 
                 <div class="panel layui-bg-number banner hh" >
                     <div class="panel-body">
                         <div class="panel-title ht">
                             <span class="label pull-right layui-bg-blue">实时</span>
-                            <h5>维修资产数</h5>
+                            <h5>维修设备数</h5>
                         </div>
                         <div class="panel-content">
                             <h1 id="repairingAssetCnt" class="no-margins hm">0</h1>
-                            <small>当前维修资产总数</small>
+                            <small>当前正在维修设备总数</small>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="layui-col-md2">
+
+                <div class="panel layui-bg-number banner hh" >
+                    <div class="panel-body">
+                        <div class="panel-title ht">
+                            <span class="label pull-right layui-bg-blue">实时</span>
+                            <h5>待维修设备数</h5>
+                        </div>
+                        <div class="panel-content">
+                            <h1 id="waitRepairAssetCnt" class="no-margins hm">0</h1>
+                            <small>等待维修的设备数量</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="layui-col-md2">
                 <div class="panel layui-bg-number hh">
@@ -158,11 +174,27 @@
                     <div class="panel-body">
                         <div class="panel-title ht">
                             <span class="label pull-right layui-bg-blue">实时</span>
-                            <h5>已维修资产总数</h5>
+                            <h5>已维修设备总数</h5>
                         </div>
                         <div class="panel-content">
                             <h1 id="repairAssetCnt" class="no-margins hm">0</h1>
-                            <small>当前已维修资产总数</small>
+                            <small>当前已维修设备总数</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-col-md2">
+                <div class="panel layui-bg-number hh">
+                    <div class="panel-body">
+                        <div class="panel-title ht">
+                            <span class="label pull-right layui-bg-blue">实时</span>
+                            <h5>维修中的维修工单数</h5>
+                        </div>
+                        <div class="panel-content">
+                            <h1 id="repairingtCnt" class="no-margins hm">0</h1>
+                            <small>维修中的维修工单数</small>
                         </div>
                     </div>
                 </div>
@@ -173,54 +205,118 @@
                     <div class="panel-body">
                         <div class="panel-title ht">
                             <span class="label pull-right layui-bg-blue">实时</span>
-                            <h5>保养项目总数</h5>
+                            <h5>待验收维修工单数</h5>
                         </div>
                         <div class="panel-content">
-                            <h1 id="maintainProjectCnt" class="no-margins hm">0</h1>
-                            <small>当前保养项目总数</small>
+                            <h1 id="waitAcceptCnt" class="no-margins hm">0</h1>
+                            <small>待验收维修工单数</small>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="layui-col-md2">
-                <div class="panel layui-bg-number hh">
-                    <div class="panel-body">
-                        <div class="panel-title ht">
-                            <span class="label pull-right layui-bg-blue">实时</span>
-                            <h5>巡检任务数</h5>
-                        </div>
-                        <div class="panel-content">
-                            <h1 id="inspectionTaskCnt" class="no-margins hm">0</h1>
-                            <small>当前巡检任务数</small>
-                        </div>
+        </div>
+</div>
+
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space10">
+
+        <div class="layui-col-md2">
+            <div class="panel layui-bg-number hh">
+                <div class="panel-body">
+                    <div class="panel-title ht">
+                        <span class="label pull-right layui-bg-blue">实时</span>
+                        <h5>保养项目总数</h5>
+                    </div>
+                    <div class="panel-content">
+                        <h1 id="maintainProjectCnt" class="no-margins hm">0</h1>
+                        <small>当前保养项目总数</small>
                     </div>
                 </div>
             </div>
-
-            <div class="layui-col-md2">
-                <div class="panel layui-bg-number hh">
-                    <div class="panel-body">
-                        <div class="panel-title ht">
-                            <span class="label pull-right layui-bg-blue">实时</span>
-                            <h5>巡检点总数</h5>
-                        </div>
-                        <div class="panel-content">
-                            <h1 id="inspectionTaskPointCnt"   class="no-margins hm">0</h1>
-                            <small>当前巡检点总数</small>
-                        </div>
+        </div>
+        <div class="layui-col-md2">
+            <div class="panel layui-bg-number hh">
+                <div class="panel-body">
+                    <div class="panel-title ht">
+                        <span class="label pull-right layui-bg-blue">实时</span>
+                        <h5>待保养任务数</h5>
+                    </div>
+                    <div class="panel-content">
+                        <h1 id="waitMaintainTaskCnt" class="no-margins hm">0</h1>
+                        <small>当前待保养任务数</small>
                     </div>
                 </div>
+            </div>
+        </div>
 
 
+
+
+        <div class="layui-col-md2">
+            <div class="panel layui-bg-number hh">
+                <div class="panel-body">
+                    <div class="panel-title ht">
+                        <span class="label pull-right layui-bg-blue">实时</span>
+                        <h5>待巡检任务数</h5>
+                    </div>
+                    <div class="panel-content">
+                        <h1 id="waitInspectionTaskCnt" class="no-margins hm">0</h1>
+                        <small>待巡检任务数</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-md2">
+            <div class="panel layui-bg-number hh">
+                <div class="panel-body">
+                    <div class="panel-title ht">
+                        <span class="label pull-right layui-bg-blue">实时</span>
+                        <h5>完成巡检任务数</h5>
+                    </div>
+                    <div class="panel-content">
+                        <h1 id="finishInspectionTaskCnt" class="no-margins hm">0</h1>
+                        <small>完成巡检任务数</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-md2">
+            <div class="panel layui-bg-number hh">
+                <div class="panel-body">
+                    <div class="panel-title ht">
+                        <span class="label pull-right layui-bg-blue">实时</span>
+                        <h5>正在巡检任务数</h5>
+                    </div>
+                    <div class="panel-content">
+                        <h1 id="inspectionTaskCnt" class="no-margins hm">0</h1>
+                        <small>正在巡检任务数</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-md2">
+            <div class="panel layui-bg-number hh">
+                <div class="panel-body">
+                    <div class="panel-title ht">
+                        <span class="label pull-right layui-bg-blue">实时</span>
+                        <h5>巡检点总数</h5>
+                    </div>
+                    <div class="panel-content">
+                        <h1 id="inspectionPointCnt"   class="no-margins hm">0</h1>
+                        <small>当前有效的巡检点总数</small>
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
 </div>
+
 
 <style>
     table{
@@ -253,7 +349,7 @@
         <div class="layui-col-md6">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    设备维修状态表
+                    维修工单状态表
                 </div>
                 <div class="layui-card-body">
                     <div class="layui-row layui-col-space10">
@@ -266,7 +362,7 @@
         <div class="layui-col-md6">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    资产巡检状态表
+                    设备巡检状态表
                 </div>
                 <div class="layui-card-body">
                     <div class="layui-row layui-col-space10">
@@ -285,7 +381,8 @@
 <!--        <div class="layui-col-md6">-->
 <!--            <div class="layui-card">-->
 <!--                <div class="layui-card-header">-->
-<!--                    资产所属分布-->
+<!--
+所属分布-->
 <!--                </div>-->
 <!--                <div class="layui-card-body">-->
 <!--                    <div class="layui-row layui-col-space10">-->

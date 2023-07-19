@@ -500,6 +500,25 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
 
         },
+        assetSelectList:function(ifr,win,item){
+            console.log("assetSelectList",ifr,item);
+            //设置 iframe 高度
+            ifr.height("150px");
+
+            //设置地址
+            var data={};
+            data.searchContent={};
+            data.assetSelectedCode=timestamp;
+            data.assetBusinessType="eam_asset_repair_order";
+            data.action="view";
+            data.ownerCode="asset";
+            data.assetOwnerId=item.orderId
+            admin.putTempData('eam-asset-selected-data'+timestamp,data,true);
+            admin.putTempData('eam-asset-selected-action'+timestamp,"view",true);
+            win.location="/business/eam/asset/asset_selected_list.html?pageType=view&assetSelectedCode="+timestamp
+
+
+        },
         repairOrderApply:function (ifr,win,data) {
             console.log("repairOrderApply",ifr,data);
             //设置 iframe 高度

@@ -1,7 +1,7 @@
 /**
  * 维修工单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-18 14:37:23
+ * @since 2023-07-19 13:05:35
  */
 
 
@@ -88,7 +88,7 @@ function ListPage() {
 					,{ field: 'orderBusinessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('订单编号') , templet: function (d) { return templet('orderBusinessCode',d.orderBusinessCode,d);}  }
 					,{ field: 'orderName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('订单名称') , templet: function (d) { return templet('orderName',d.orderName,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
+					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修班组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.repairGroup,"name",',','','groupId'),d);}}
 					,{ field: 'executorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修人员'), templet: function (d) { return templet('executorId' ,fox.joinLabel(d.executor,"name",',','','executorId'),d);}}
 					,{ field: 'startTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('startTime',fox.dateFormat(d.startTime,"yyyy-MM-dd HH:mm:ss"),d); }  }

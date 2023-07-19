@@ -68,7 +68,7 @@ public class RepairOrderActController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_ID, value = "申请单", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "维修编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.GROUP_ID, value = "维修班组", required = false, dataTypeClass = String.class, example = "583634707950862336"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "维修人员", required = false, dataTypeClass = String.class, example = "576130520052662272"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.REPAIR_COST, value = "维修费用", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
@@ -130,7 +130,7 @@ public class RepairOrderActController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_ID, value = "申请单", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "维修编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.GROUP_ID, value = "维修班组", required = false, dataTypeClass = String.class, example = "583634707950862336"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "维修人员", required = false, dataTypeClass = String.class, example = "576130520052662272"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.REPAIR_COST, value = "维修费用", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
@@ -161,7 +161,7 @@ public class RepairOrderActController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_ID, value = "申请单", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "维修编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.GROUP_ID, value = "维修班组", required = false, dataTypeClass = String.class, example = "583634707950862336"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "维修人员", required = false, dataTypeClass = String.class, example = "576130520052662272"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.REPAIR_COST, value = "维修费用", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
@@ -231,7 +231,7 @@ public class RepairOrderActController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_ID, value = "申请单", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "维修编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.GROUP_ID, value = "维修班组", required = false, dataTypeClass = String.class, example = "583634707950862336"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "维修人员", required = false, dataTypeClass = String.class, example = "576130520052662272"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.REPAIR_COST, value = "维修费用", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
@@ -263,7 +263,7 @@ public class RepairOrderActController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584022872884772864"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_ID, value = "申请单", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.BUSINESS_CODE, value = "维修编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.GROUP_ID, value = "维修班组", required = false, dataTypeClass = String.class, example = "583634707950862336"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.EXECUTOR_ID, value = "维修人员", required = false, dataTypeClass = String.class, example = "576130520052662272"),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.REPAIR_COST, value = "维修费用", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),

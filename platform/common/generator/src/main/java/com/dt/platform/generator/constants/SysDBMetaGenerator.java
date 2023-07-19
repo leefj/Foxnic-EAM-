@@ -59,7 +59,6 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_key_code")
 					||table.startsWith("sys_user_import")
 					||table.startsWith("sys_auto_role")
-
 					||table.startsWith("sys_pay_app")
 					||table.startsWith("sys_pay_channel")
 					||table.startsWith("sys_pay_merchant")

@@ -68,7 +68,7 @@ public class RepairOrderController extends SuperController {
     @ApiOperation(value = "添加维修工单")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderVOMeta.BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.STATUS, value = "审批状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
@@ -134,7 +134,7 @@ public class RepairOrderController extends SuperController {
     @ApiOperation(value = "更新维修工单")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderVOMeta.BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.STATUS, value = "审批状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
@@ -169,7 +169,7 @@ public class RepairOrderController extends SuperController {
     @ApiOperation(value = "保存维修工单")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderVOMeta.BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.STATUS, value = "审批状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
@@ -243,7 +243,7 @@ public class RepairOrderController extends SuperController {
     @ApiOperation(value = "查询维修工单")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderVOMeta.BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.STATUS, value = "审批状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
@@ -279,7 +279,7 @@ public class RepairOrderController extends SuperController {
     @ApiOperation(value = "分页查询维修工单")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = RepairOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderVOMeta.BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.STATUS, value = "审批状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),

@@ -2,7 +2,7 @@
 /**
  * 维修工单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-18 14:37:23
+ * @since 2023-07-19 13:05:35
  */
  -->
  <!DOCTYPE html>
@@ -59,9 +59,9 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('维修班组')}" class="search-label groupId-label">维修班组</span><span class="search-colon">:</span></div>
                         <div id="groupId" th:data="${'/service-eam/eam-repair-group/query-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
-                    <!-- 业务编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 维修编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('业务编号')}" class="search-label businessCode-label">业务编号</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('维修编号')}" class="search-label businessCode-label">维修编号</span><span class="search-colon">:</span></div>
                         <input id="businessCode" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
                     <!-- 订单名称 , orderName ,typeName=text_input, isHideInSearch=false -->

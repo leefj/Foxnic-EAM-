@@ -126,6 +126,8 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
        // cfg.view().list().disableCreateNew();
         cfg.view().list().disableSingleDelete();
+
+
 //        cfg.view().form().addPage("维修申请","repairOrderApply");
 
         cfg.view().form().addGroup("订单信息",
@@ -162,6 +164,7 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
 
 
 
+
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_REPAIR_ORDER_ACT.PICTURE_ID,
@@ -169,6 +172,7 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().form().addPage("设备列表","assetSelectList");
         cfg.view().form().addPage("备件列表","deviceSpList");
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.STATUS).form()
