@@ -4,3 +4,16 @@ INSERT INTO `oa_banner` (`id`, `name`, `status`, `picture_id`, `url`, `sort`, `c
 update oa_system_information set picture_id='T001_image_project';
 
 
+delete from oa_download_file where 1=1;
+INSERT INTO `oa_download_file` (`id`, `name`, `status`, `file_id`, `notes`, `download_count`, `sort`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`, `tenant_id`)
+VALUES
+('710475189862793216', '系统使用手册V5.2', 'enable', 'T001_docs_2', '系统使用手册', 0, 999, '110588348101165911', '2023-05-15 12:54:45', '110588348101165911', '2023-05-18 10:34:11', 0, NULL, NULL, 6, 'T001'),
+('711526949339529216', '系统授权说明', 'enable', 'T001_docs_3', '系统授权说明', 0, 1000, '110588348101165911', '2023-05-18 10:34:04', NULL, NULL, 0, NULL, NULL, 1, 'T001'),
+('711526949339529217', '系统更新手册V5.2', 'enable', 'T001_docs_1', '系统更新手册', 0, 999, '110588348101165911', '2023-05-18 10:34:04', NULL, NULL, 0, NULL, NULL, 1, 'T001');
+
+delete from sys_file where id in ('T001_docs_1','T001_docs_2','T001_docs_3');
+INSERT INTO `sys_file` (`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`)
+VALUES
+('T001_docs_1', 'system_update_last.doc', '/docs/T001/system_update_last.doc', 28160, 'application/msword', 'doc', NULL, '2023-07-19 06:52:59', 4, '110588348101165911', '2023-05-18 10:33:57', NULL, NULL, 0, NULL, NULL, 1),
+('T001_docs_2', 'user_manual_last.pdf', '/docs/T001/user_manual_last.pdf', 14885075, 'application/pdf', 'pdf', NULL, '2023-05-28 23:03:40', 3, '110588348101165911', '2023-05-18 10:20:06', NULL, NULL, 0, NULL, NULL, 1),
+('T001_docs_3', 'system_license_last.doc', '/docs/T001/system_license_last.doc', 15160, 'application/msword', 'doc', NULL, '2023-07-19 06:52:59', 4, '110588348101165911', '2023-05-18 10:33:57', NULL, NULL, 0, NULL, NULL, 1);

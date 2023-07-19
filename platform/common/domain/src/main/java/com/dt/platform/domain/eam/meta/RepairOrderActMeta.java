@@ -15,8 +15,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-18 14:37:22
- * @sign 1A225460D9387B65217312E83267845F
+ * @since 2023-07-19 13:05:33
+ * @sign D696F098B7820012812D2106E3D45BEC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -73,14 +73,14 @@ public class RepairOrderActMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,STATUS, java.lang.String.class, "维修状态", "维修状态", java.lang.String.class, null);
 	
 	/**
-	 * 业务编号 , 类型: java.lang.String
+	 * 维修编号 , 类型: java.lang.String
 	*/
 	public static final String BUSINESS_CODE="businessCode";
 	
 	/**
-	 * 业务编号 , 类型: java.lang.String
+	 * 维修编号 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,BUSINESS_CODE, java.lang.String.class, "业务编号", "业务编号", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,BUSINESS_CODE, java.lang.String.class, "维修编号", "维修编号", java.lang.String.class, null);
 	
 	/**
 	 * 维修班组 , 类型: java.lang.String
@@ -401,8 +401,8 @@ public class RepairOrderActMeta {
 		}
 		
 		/**
-		 * 设置 业务编号
-		 * @param businessCode 业务编号
+		 * 设置 维修编号
+		 * @param businessCode 维修编号
 		 * @return 当前对象
 		*/
 		public RepairOrderAct setBusinessCode(String businessCode) {

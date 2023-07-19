@@ -255,36 +255,72 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         String sql11="select count(1) repairing_asset_cnt from eam_asset_item where handle_id in ( select id from eam_repair_order where repair_status in ('dispatched','repairing') and deleted=0 ) and deleted=0 ";
         result.put("repairingAssetCnt",dao.queryRecord(sql11).getInteger("repairing_asset_cnt"));
 
+        String sql1111="select count(1) wait_repair_asset_cnt from eam_asset_item where handle_id in ( select id from eam_repair_order where id in (select order_id from eam_repair_order_act where deleted=0 and status='wait_repair') )";
+        result.put("waitRepairAssetCnt",dao.queryRecord(sql1111).getInteger("wait_repair_asset_cnt"));
+
+        String sql11111="select count(1) wait_accept_cnt from eam_repair_order_act where status ='wait_acceptance' and deleted=0";
+        result.put("waitAcceptCnt",dao.queryRecord(sql11111).getInteger("wait_accept_cnt"));
+
+        String sqlRepiaring="select count(1) wait_accept_cnt from eam_repair_order_act where status ='repairing' and deleted=0";
+        result.put("repairingtCnt",dao.queryRecord(sqlRepiaring).getInteger("wait_accept_cnt"));
+
+
         String sql111=" select count(1) repair_order_not_dispatch_cnt from eam_repair_order where repair_status in ('not_dispatch') and deleted=0   ";
         result.put("repairOrderNotDispatchCnt",dao.queryRecord(sql111).getInteger("repair_order_not_dispatch_cnt"));
 
+
+        //保养项目
         String sql2="select count(1) maintain_project_cnt from eam_maintain_task_project where task_id in (\n" +
                 "select id from eam_maintain_task where status='finish' and deleted='0')\n" +
                 "and deleted='0'";
         result.put("maintainProjectCnt",dao.queryRecord(sql2).getInteger("maintain_project_cnt"));
 
-        String sql3="select count(1) inspection_task_cnt from eam_inspection_task where task_status='finish' and deleted=0";
-        result.put("inspectionTaskCnt",dao.queryRecord(sql3).getInteger("inspection_task_cnt"));
+        //保养任务数
+        String sqlWaitMaintainTask="select count(1) wait_maintain_task_cnt from eam_maintain_task where status ='wait' and deleted=0";
+        result.put("waitMaintainTaskCnt",dao.queryRecord(sqlWaitMaintainTask).getInteger("wait_maintain_task_cnt"));
 
-        String sql31="select count(1) inspection_task_point_cnt from eam_inspection_task_point where task_id in (select id inspection_task_cnt from eam_inspection_task where task_status='finish' and deleted=0) and deleted=0";
-        result.put("inspectionTaskPointCnt",dao.queryRecord(sql31).getInteger("inspection_task_point_cnt"));
 
-        String sql4="select (select count(1) finish_cnt from eam_repair_order where status='complete' and deleted=0 and repair_status='finish') finish_cnt,\n" +
-                "(select count(1) not_dispatch_cnt from eam_repair_order where status='complete' and deleted=0 and repair_status='not_dispatch')not_dispatch_cnt,\n" +
-                "(select count(1) wait_acceptance_cnt from eam_repair_order where status='complete' and deleted=0 and repair_status='wait_acceptance')wait_acceptance_cnt,\n" +
-                "(select count(1) dispatched_cnt from eam_repair_order where status='complete' and deleted=0 and repair_status='dispatched')dispatched_cnt,\n" +
-                "(select count(1) repairing_cnt from eam_repair_order where status='complete' and deleted=0 and repair_status='repairing')repairing_cnt";
+        //巡检任务数
+        String sql3="select count(1) finish_inspection_task_cnt from eam_inspection_task where task_status='finish' and deleted=0 and tenant_id is not null\n";
+        result.put("finishInspectionTaskCnt",dao.queryRecord(sql3).getInteger("finish_inspection_task_cnt"));
+
+        String sql33="select count(1) wait_inspection_task_cnt from eam_inspection_task where task_status='wait' and deleted=0 and tenant_id is not null\n";
+        result.put("waitInspectionTaskCnt",dao.queryRecord(sql33).getInteger("wait_inspection_task_cnt"));
+
+
+        String sql333="select count(1) inspection_task_cnt from eam_inspection_task where task_status='acting' and deleted=0 and tenant_id is not null\n";
+        result.put("inspectionTaskCnt",dao.queryRecord(sql333).getInteger("inspection_task_cnt"));
+
+
+        String sql55="select count(1) inspection_point_cnt from eam_inspection_point where status='enable' and deleted=0";
+        result.put("inspectionPointCnt",dao.queryRecord(sql55).getInteger("inspection_point_cnt"));
+
+
+
+
+        String sql4="select (select count(1) wait_repair_cnt from eam_repair_order_act where deleted=0 and status='wait_repair') wait_repair_cnt,\n" +
+                "(select count(1) not_dispatch_cnt from eam_repair_order_act where deleted=0 and status='not_dispatch')not_dispatch_cnt,\n" +
+                "(select count(1) finish_cnt from eam_repair_order_act where deleted=0 and status='finish')finish_cnt,\n" +
+                "(select count(1) wait_acceptance_cnt from eam_repair_order_act where  deleted=0 and status='wait_acceptance')wait_acceptance_cnt,\n" +
+                "(select count(1) dispatched_cnt from eam_repair_order_act where  deleted=0 and status='dispatched')dispatched_cnt,\n" +
+                "(select count(1) repairing_cnt from eam_repair_order_act where  deleted=0 and status='repairing')repairing_cnt";
         Rcd rs=dao.queryRecord(sql4);
         JSONArray repairData=new JSONArray();
+
         JSONObject a1=new JSONObject();
-        a1.put("name", RepairOrderActStatusEnum.FINISH.text());
-        a1.put("value",rs.getInteger("finish_cnt"));
+        a1.put("name", RepairOrderActStatusEnum.WAIT_REPAIR.text());
+        a1.put("value",rs.getInteger("wait_repair_cnt"));
         repairData.add(a1);
 
-        JSONObject a2=new JSONObject();
-        a2.put("name", RepairOrderStatusEnum.NOT_DISPATCH.text());
-        a2.put("value",rs.getInteger("not_dispatch_cnt"));
-        repairData.add(a2);
+        JSONObject a11=new JSONObject();
+        a11.put("name", RepairOrderActStatusEnum.FINISH.text());
+        a11.put("value",rs.getInteger("finish_cnt"));
+        repairData.add(a11);
+//
+//        JSONObject a2=new JSONObject();
+//        a2.put("name", RepairOrderStatusEnum.NOT_DISPATCH.text());
+//        a2.put("value",rs.getInteger("not_dispatch_cnt"));
+//        repairData.add(a2);
 
 
         JSONObject a3=new JSONObject();
@@ -292,38 +328,37 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         a3.put("value",rs.getInteger("wait_acceptance_cnt"));
         repairData.add(a3);
 
-        JSONObject a4=new JSONObject();
-        a4.put("name", RepairOrderStatusEnum.DISPATCHED.text());
-        a4.put("value",rs.getInteger("dispatched_cnt"));
-        repairData.add(a4);
+//        JSONObject a4=new JSONObject();
+//        a4.put("name", RepairOrderStatusEnum.DISPATCHED.text());
+//        a4.put("value",rs.getInteger("dispatched_cnt"));
+//        repairData.add(a4);
 
         JSONObject a5=new JSONObject();
         a5.put("name", RepairOrderActStatusEnum.REPAIRING.text());
         a5.put("value",rs.getInteger("repairing_cnt"));
         repairData.add(a5);
-
         result.put("repairData",repairData);
 
         String sql5="\n" +
                 "select \n" +
-                "(select count(1) not_start_cnt from eam_inspection_task where task_status='not_start' and deleted=0) not_start_cnt,\n" +
-                "(select count(1) acting_cnt from eam_inspection_task where task_status='acting' and deleted=0) acting_cnt,\n" +
-                "(select count(1) finish_cnt from eam_inspection_task where task_status='finish' and deleted=0) finish_cnt\n" +
+                "(select count(1) wait_cnt from eam_inspection_task where task_status='wait' and deleted=0 and tenant_id is not null) not_start_cnt,\n" +
+                "(select count(1) acting_cnt from eam_inspection_task where task_status='acting' and deleted=0 and tenant_id is not null) acting_cnt,\n" +
+                "(select count(1) finish_cnt from eam_inspection_task where task_status='finish' and deleted=0 and tenant_id is not null) finish_cnt\n" +
                 "\n";
         Rcd rs2=dao.queryRecord(sql5);
         JSONArray inspectionData=new JSONArray();
         JSONObject b1=new JSONObject();
-      //  b1.put("name", InspectionTaskStatusEnum.NOT_START.text());
-        b1.put("value",rs2.getInteger("not_start_cnt"));
+        b1.put("name", InspectionTaskStatusEnum.WAIT.text());
+        b1.put("value",rs2.getInteger("wait_cnt"));
         inspectionData.add(b1);
 
         JSONObject b2=new JSONObject();
-    //    b2.put("name", InspectionTaskStatusEnum.ACTING.text());
+        b2.put("name", InspectionTaskStatusEnum.ACTING.text());
         b2.put("value",rs2.getInteger("acting_cnt"));
         inspectionData.add(b2);
 
         JSONObject b3=new JSONObject();
-    //    b3.put("name", InspectionTaskStatusEnum.FINISH.text());
+        b3.put("name", InspectionTaskStatusEnum.FINISH.text());
         b3.put("value",rs2.getInteger("finish_cnt"));
         inspectionData.add(b3);
         result.put("inspectionData",inspectionData);

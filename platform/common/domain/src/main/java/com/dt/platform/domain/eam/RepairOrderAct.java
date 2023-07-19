@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 维修工单
  * <p>维修工单 , 数据表 eam_repair_order_act 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-18 14:37:22
- * @sign 1A225460D9387B65217312E83267845F
+ * @since 2023-07-19 13:05:33
+ * @sign D696F098B7820012812D2106E3D45BEC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -73,9 +73,9 @@ public class RepairOrderAct extends Entity {
 	private String status;
 	
 	/**
-	 * 业务编号：业务编号
+	 * 维修编号：维修编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "MOD202304111304434")
+	@ApiModelProperty(required = false,value="维修编号" , notes = "维修编号" , example = "MOD202304111304434")
 	private String businessCode;
 	
 	/**
@@ -327,17 +327,17 @@ public class RepairOrderAct extends Entity {
 	}
 	
 	/**
-	 * 获得 业务编号<br>
-	 * 业务编号
-	 * @return 业务编号
+	 * 获得 维修编号<br>
+	 * 维修编号
+	 * @return 维修编号
 	*/
 	public String getBusinessCode() {
 		return businessCode;
 	}
 	
 	/**
-	 * 设置 业务编号
-	 * @param businessCode 业务编号
+	 * 设置 维修编号
+	 * @param businessCode 维修编号
 	 * @return 当前对象
 	*/
 	public RepairOrderAct setBusinessCode(String businessCode) {

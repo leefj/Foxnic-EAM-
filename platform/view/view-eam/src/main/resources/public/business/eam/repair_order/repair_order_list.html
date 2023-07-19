@@ -2,7 +2,7 @@
 /**
  * 故障申请单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 15:23:48
+ * @since 2023-07-19 13:31:46
  */
  -->
  <!DOCTYPE html>
@@ -64,9 +64,9 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('维修状态')}" class="search-label repairStatus-label">维修状态</span><span class="search-colon">:</span></div>
                         <div id="repairStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.RepairOrderStatusEnum')}" style="width:150px" extraParam="{}"></div>
                     </div>
-                    <!-- 业务编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 订单编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('业务编号')}" class="search-label businessCode-label">业务编号</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('订单编号')}" class="search-label businessCode-label">订单编号</span><span class="search-colon">:</span></div>
                         <input id="businessCode" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 

@@ -31,11 +31,16 @@ function ListPage() {
                 var assetData=data.data;
                 $("#repairOrderNotDispatchCnt").html(assetData.repairOrderNotDispatchCnt);
                 $("#maintainProjectCnt").html(assetData.maintainProjectCnt);
-                $("#inspectionTaskPointCnt").html(assetData.inspectionTaskPointCnt);
                 $("#repairingAssetCnt").html(assetData.repairingAssetCnt);
-                $("#inspectionTaskCnt").html(assetData.inspectionTaskCnt);
                 $("#repairAssetCnt").html(assetData.repairAssetCnt);
-
+                $("#waitRepairAssetCnt").html(assetData.waitRepairAssetCnt);
+                $("#waitAcceptCnt").html(assetData.waitAcceptCnt);
+                $("#repairingtCnt").html(assetData.repairingtCnt);
+                $("#waitMaintainTaskCnt").html(assetData.waitMaintainTaskCnt);
+                $("#waitInspectionTaskCnt").html(assetData.waitInspectionTaskCnt);
+                $("#finishInspectionTaskCnt").html(assetData.finishInspectionTaskCnt);
+                $("#inspectionTaskCnt").html(assetData.inspectionTaskCnt);
+                $("#inspectionPointCnt").html(assetData.inspectionPointCnt);
                 // var html="<tr>\n" +
                 //     "<th>资产状态</th>\n" +
                 //     "<th>数量</th>\n" +
