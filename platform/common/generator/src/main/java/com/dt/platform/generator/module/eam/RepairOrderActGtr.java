@@ -80,6 +80,9 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
 
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.ORIGINATOR_ID).table().fillBy("originator","name");
+//        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.ORIGINATOR_ID).form()
+//                .button().chooseEmployee(true);
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.PICTURE_ID).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.NOTES).table().disable();

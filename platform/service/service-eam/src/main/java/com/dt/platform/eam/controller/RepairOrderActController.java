@@ -285,9 +285,12 @@ public class RepairOrderActController extends SuperController {
         Result<PagedList<RepairOrderAct>> result = new Result<>();
         PagedList<RepairOrderAct> list = repairOrderActService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        repairOrderActService.dao().fill(list).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.EXECUTOR).with(RepairOrderActMeta.ORDER).execute();
+        repairOrderActService.dao().fill(list).with(RepairOrderActMeta.ORIGINATOR).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.EXECUTOR).with(RepairOrderActMeta.ORDER).execute();
+
         List<Employee> originator = CollectorUtil.collectList(list.getList(), RepairOrderAct::getOriginator);
         repairOrderActService.dao().join(originator, Person.class);
+
+
         List<Employee> executor = CollectorUtil.collectList(list.getList(), RepairOrderAct::getExecutor);
         repairOrderActService.dao().join(executor, Person.class);
         result.success(true).data(list);

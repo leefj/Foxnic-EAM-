@@ -15,7 +15,8 @@ public enum InspectionTaskPointStatusEnum implements CodeTextEnum {
 
 	WAIT("wait" , "待检"),
 	NORMAL("normal" , "正常"),
-	ABNORMAL("abnormal" , "异常");
+	ABNORMAL("abnormal" , "异常"),
+	NONE("none" , "不巡检");
 
 	private String code;
 	private String text;
