@@ -2,6 +2,7 @@ package com.dt.platform.eam.service.impl;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.*;
@@ -292,8 +293,30 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 							checkSelect.setItemDesc(item.getCheckDesc());
 							checkSelect.setType(item.getType());
 							checkSelect.setConfig(item.getConfig());
-							checkSelect.setConfigDefValue(item.getDefValue());
-							checkSelect.setResultMetaData(item.getDefValue());
+							if(CheckItemTypeEnum.NUMBER_RANGE.code().equals(item.getType())){
+								checkSelect.setConfigDefValue(item.getDefValue());
+								checkSelect.setResultMetaData(item.getDefValue());
+								checkSelect.setResult(item.getDefValue());
+							}else if(CheckItemTypeEnum.INPUT.code().equals(item.getType())){
+								checkSelect.setConfigDefValue(item.getDefValue());
+								checkSelect.setResultMetaData(item.getDefValue());
+								checkSelect.setResult(item.getDefValue());
+							}else if(CheckItemTypeEnum.RADIOBOX.code().equals(item.getType())){
+								checkSelect.setConfigDefValue("");
+								checkSelect.setResultMetaData("");
+								checkSelect.setResult("");
+								JSONArray itemArr=JSONArray.parseArray(item.getConfig());
+								if(itemArr!=null&&itemArr.size()>0&&item.getDefValue()!=null&&item.getDefValue().length()>0){
+									for(int k=0;k<itemArr.size();k++){
+										if(item.getDefValue().trim().equals(itemArr.getJSONObject(k).getString("code"))){
+											checkSelect.setConfigDefValue(item.getDefValue().trim());
+											checkSelect.setResultMetaData(item.getDefValue().trim());
+											checkSelect.setResult(itemArr.getJSONObject(k).getString("label"));
+											break;
+										}
+									}
+								}
+							}
 							checkSelect.setSort(j);
 							checkSelectService.insert(checkSelect,true);
 						}else{

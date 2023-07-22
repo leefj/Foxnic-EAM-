@@ -210,7 +210,7 @@ public class InspectionTaskPointController extends SuperController {
         Result<InspectionTaskPoint> result = new Result<>();
         InspectionTaskPoint inspectionTaskPoint = inspectionTaskPointService.getById(id);
         // join 关联的对象
-        inspectionTaskPointService.dao().fill(inspectionTaskPoint).with(InspectionTaskPointMeta.CHECK_SELECT_LIST).with(InspectionTaskPointMeta.ROUTE).with(InspectionTaskPointMeta.INSPECTION_POINT_POS).execute();
+        inspectionTaskPointService.dao().fill(inspectionTaskPoint).with(InspectionTaskPointMeta.TASK).with(InspectionTaskPointMeta.CHECK_SELECT_LIST).with(InspectionTaskPointMeta.ROUTE).with(InspectionTaskPointMeta.INSPECTION_POINT_POS).execute();
         result.success(true).data(inspectionTaskPoint);
         return result;
     }
@@ -304,7 +304,7 @@ public class InspectionTaskPointController extends SuperController {
         Result<PagedList<InspectionTaskPoint>> result = new Result<>();
         PagedList<InspectionTaskPoint> list = inspectionTaskPointService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        inspectionTaskPointService.dao().fill(list).with(InspectionTaskPointMeta.CHECK_SELECT_LIST).with(InspectionTaskPointMeta.ROUTE).with(InspectionTaskPointMeta.OPER_USER).with(InspectionTaskPointMeta.INSPECTION_POINT_POS).execute();
+        inspectionTaskPointService.dao().fill(list).with(InspectionTaskPointMeta.TASK).with(InspectionTaskPointMeta.CHECK_SELECT_LIST).with(InspectionTaskPointMeta.ROUTE).with(InspectionTaskPointMeta.OPER_USER).with(InspectionTaskPointMeta.INSPECTION_POINT_POS).execute();
         List<Employee> user2 = CollectorUtil.collectList(list, InspectionTaskPoint::getOperUser);
         inspectionTaskPointService.dao().join(user2, Person.class);
         result.success(true).data(list);
