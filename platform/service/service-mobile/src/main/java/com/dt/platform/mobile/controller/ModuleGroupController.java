@@ -1,7 +1,6 @@
 package com.dt.platform.mobile.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.domain.mobile.meta.ModuleInfoMeta;
@@ -27,13 +26,14 @@ import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.springboot.web.DownloadUtil;
 import com.github.foxnic.dao.data.PagedList;
-import java.util.Date;
+
 import java.sql.Timestamp;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.commons.io.StreamUtil;
-import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
+import java.util.stream.Collectors;
+
 import com.dt.platform.domain.mobile.meta.ModuleGroupMeta;
 import com.dt.platform.domain.mobile.ModuleInfo;
 import io.swagger.annotations.Api;
@@ -262,15 +262,17 @@ public class ModuleGroupController extends SuperController {
     public Result<List<ModuleGroup>> queryForMobile(ModuleGroupVO sample) {
         sample.setStatus(StatusEnableEnum.ENABLE.code());
         Result<List<ModuleGroup>> result = new Result<>();
+
         List<ModuleGroup> list = moduleGroupService.queryList(sample);
         // join 关联的对象
         if(list!=null&&list.size()>0){
             moduleGroupService.dao().fill(list).with(ModuleGroupMeta.MODULE_INFO_LIST).execute();
             for(int i=0;i<list.size();i++){
                 List<ModuleInfo> infoList=list.get(i).getModuleInfoList();
-                if(infoList!=null&&infoList.size()>0){
+                List<ModuleInfo> infoList3= infoList.stream().sorted((s1,s2)->s1.getSort().compareTo(s2.getSort())).collect(Collectors.toList());
+                if(infoList3!=null&&infoList3.size()>0){
                     List<ModuleInfo> infoList2=new ArrayList<>();
-                    for(ModuleInfo info:infoList){
+                    for(ModuleInfo info:infoList3){
                         if(SessionUser.getCurrent().permission().checkAuth(info.getCode())){
                             if(StatusEnableEnum.ENABLE.code().equals(info.getStatus())) {
                                 infoList2.add(info);
