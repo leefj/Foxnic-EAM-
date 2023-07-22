@@ -17,7 +17,7 @@
   ![微信群](platform/view/view-console/src/main/resources/static/assets/images/wx.png)
   
 # 二次开发 特别注意
-#### 1、Foxnic-EAM源代码已包含所有的涉及EAM的源代码，数据库表结果也已发布，整个项目构建需要一定的开发经验
+#### 1、Foxnic-EAM源代码已包含所有的涉及EAM的源代码，数据库表结构也已发布，整个项目构建需要一定的开发经验
 #### 2、二次开发原则上必须有3年Java开发经验或者自认为能力可以
 #### 3、不推荐新手用IDEA打开本项目,本项目非标准项目，没有学习意义
 #### 4、二开前先看文档、文档很重要、文档很重要
@@ -90,38 +90,42 @@ curl -s 'http://resource.rainbooow.com/deploy.sh'|bash
 或者
 curl -s 'https://gitee.com/lank/eam/raw/2.6.0/platform/deploy/bin/deployApp.sh'|bash
 ```
+### 安装包
+- https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.37-linux-glibc2.12-x86_64.tar.gz
+- http://resource.rainbooow.com/upload/app_release_last.tar.gz
+
 ### 系统DEMO
 - [Demo] 每天定时由阿里云效自动编译发布部署
 - [Demo] PC端:http://eam-demo.rainbooow.com:8089/index.html
 - [Demo] PC端:https://eam-demo.rainbooow.com:8090/index.html
 - [Demo] 移动端H5版:https://eam-demo.rainbooow.com:8091
 - [Demo] 移动端APP内置自行下载
-- [Demo] 超级管理员账户:admin 密码:123456  其它账户密码 为 fx9090
-- [Demo] 固定资产管理员(账户):eamadmin 密码:fx9090
-- [Demo] 固定资产普通员工(账户):eamuser 密码:fx9090
-- [Demo] 流程测试账号,统一密码 fx9090
+- [Demo] 超级管理员账户:admin 密码:123456  其它账户密码 为 123456
+- [Demo] 固定资产管理员(账户):eamadmin 密码:123456
+- [Demo] 固定资产普通员工(账户):eamuser 密码:123456
+- [Demo] 流程测试账号,统一密码 123456
 - ----------------------------------------------------------------- 
 - [Demo]-------------Foxnic-EAM 资产管理账户-------------
-- [Demo]管理员:eamadmin fx9090
-- [Demo]员工1:eamuser1 fx9090
-- [Demo]员工2:eamuser2 fx9090
-- [Demo]查询:eamquery fx9090
+- [Demo]管理员:eamadmin 123456
+- [Demo]员工1:eamuser1 123456
+- [Demo]员工2:eamuser2 123456
+- [Demo]查询:eamquery 123456
 
 - [Demo]-------------Foxnic-KN 知识库账户-------------
-- [Demo]管理员:knadmin fx9090
-- [Demo]查询:knquery fx9090
+- [Demo]管理员:knadmin 123456
+- [Demo]查询:knquery 123456
 
 - [Demo]-------------Foxnic-OPS 运维账户-------------
-- [Demo]管理员:opsadmin fx9090
-- [Demo]查询:opsquery fx9090
+- [Demo]管理员:opsadmin 123456
+- [Demo]查询:opsquery 123456
 
 - [Demo]-------------Foxnic-OPS-MONITOR 监控-------------
-- [Demo]管理员:opsmonitoradmin fx9090
-- [Demo]查询:opsmonitorquery fx9090
+- [Demo]管理员:opsmonitoradmin 123456
+- [Demo]查询:opsmonitorquery 123456
 
 - [Demo]-------------Foxnic-Contract合同(开发中)-------------
-- [Demo]管理员:contractadmin fx9090
-- [Demo]查询:contractquery fx9090
+- [Demo]管理员:contractadmin 123456
+- [Demo]查询:contractquery 123456
 
 | 类型 | 账户  | 姓名  |
 |---|---|---|

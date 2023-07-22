@@ -1,3 +1,23 @@
+
+--内部引用权限
+
+--内部引用
+select a.id,a.hierarchy,t.res from sys_menu a join
+(select concat('%',id,'%') res,id from sys_menu where label like '%内部%' ) t
+on a.hierarchy like t.res
+
+--内部引用修改为LOGIN
+update sys_resourze set access_type='LOGIN'  where id in
+                                                   (
+                                                       select resource_id from sys_menu_resource where menu_id in (
+                                                           select a.id from sys_menu a join
+                                                                            (select concat('%',id,'%') res,id from sys_menu where label like '%内部%' ) t
+                                                                            on a.hierarchy like t.res
+                                                       )
+                                                   )
+
+
+
 -- 员工覆盖账户
 drop table sys_user_bak_1;
 create table sys_user_bak_1 as select * from sys_user;
