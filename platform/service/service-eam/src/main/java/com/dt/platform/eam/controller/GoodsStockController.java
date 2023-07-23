@@ -10,6 +10,7 @@ import com.dt.platform.constants.enums.eam.AssetStockTypeEnum;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.proxy.eam.AssetReportServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.domain.hrm.Person;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -383,7 +384,19 @@ public class GoodsStockController extends SuperController {
     @PostMapping(GoodsStockServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<GoodsStock>> queryPagedList(GoodsStockVO sample) {
         Result<PagedList<GoodsStock>> result = new Result<>();
-        PagedList<GoodsStock> list = goodsStockService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+
+
+        String categoryId=sample.getCategoryId();
+        sample.setCategoryId(null);
+        PagedList<GoodsStock> list=null;
+        ConditionExpr expr=new ConditionExpr();
+        expr.and("1=1");
+        if(!StringUtil.isBlank(categoryId)){
+            expr.and("category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%"+categoryId+"%' or id=?))",categoryId);
+
+        }
+
+        list = goodsStockService.queryPagedList(sample,expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
         result.success(true).data(list);

@@ -356,8 +356,10 @@ public class DeviceSpController extends SuperController {
         PagedList<DeviceSp> list=null;
         ConditionExpr expr=new ConditionExpr();
         expr.and("1=1");
-        if(!StringUtil.isBlank(sample.getPsCategoryId())){
-            expr.and("good_id in (select id from eam_goods_stock where category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%"+sample.getPsCategoryId()+"%' or id=?)) )",sample.getPsCategoryId());
+        String categoryId=sample.getPsCategoryId();
+        sample.setPsCategoryId(null);
+        if(!StringUtil.isBlank(categoryId)){
+            expr.and("good_id in (select id from eam_goods_stock where category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%"+categoryId+"%' or id=?)) )",categoryId);
         }
 
         list= deviceSpService.queryPagedList(sample,expr, sample.getPageSize(), sample.getPageIndex());
