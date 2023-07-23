@@ -37,6 +37,14 @@ public class InspectionTaskPointPageController extends ViewController {
 		return proxy;
 	}
 
+
+
+	@RequestMapping("/inspection_tp_none_list.html")
+	public String tpNoneList(Model model,HttpServletRequest request) {
+		return prefix+"/inspection_tp_none_list";
+	}
+
+
 	@RequestMapping("/inspection_point_exec.html")
 	public String exec(Model model,HttpServletRequest request,String id) {
 		model.addAttribute("id",id);

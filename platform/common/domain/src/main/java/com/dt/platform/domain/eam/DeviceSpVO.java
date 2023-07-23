@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 备件清单VO类型
  * <p>备件清单 , 数据表 eam_device_sp 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 15:25:52
+ * @since 2023-07-24 06:47:50
  * @sign 0E46684EB74B7A7BF47F509EDF3C83AE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -411,11 +411,13 @@ public class DeviceSpVO extends DeviceSp {
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setAdaptingDevice(this.getAdaptingDevice());
 		inst.setSupplier(this.getSupplier());
+		inst.setModel(this.getModel());
 		inst.setId(this.getId());
 		inst.setSn(this.getSn());
 		inst.setLocked(this.getLocked());
 		inst.setLocId(this.getLocId());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setGoodId(this.getGoodId());
 		inst.setVersion(this.getVersion());
 		inst.setInsertTime(this.getInsertTime());
 		inst.setCreateBy(this.getCreateBy());
@@ -436,11 +438,13 @@ public class DeviceSpVO extends DeviceSp {
 			inst.setRequestAction(this.getRequestAction());
 			inst.setUsage(this.getUsage());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setGoods(this.getGoods());
 			inst.setPageSize(this.getPageSize());
 			inst.setAssetList(this.getAssetList());
 			inst.setDeviceAssociate(this.getDeviceAssociate());
 			inst.setOwnerId(this.getOwnerId());
 			inst.setSelectedCode(this.getSelectedCode());
+			inst.setPsCategoryId(this.getPsCategoryId());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
@@ -517,11 +521,13 @@ public class DeviceSpVO extends DeviceSp {
 			this.setUpdateBy(DataParser.parse(String.class, map.get(DeviceSpVOMeta.UPDATE_BY)));
 			this.setAdaptingDevice(DataParser.parse(String.class, map.get(DeviceSpVOMeta.ADAPTING_DEVICE)));
 			this.setSupplier(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SUPPLIER)));
+			this.setModel(DataParser.parse(String.class, map.get(DeviceSpVOMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, map.get(DeviceSpVOMeta.ID)));
 			this.setSn(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SN)));
 			this.setLocked(DataParser.parse(String.class, map.get(DeviceSpVOMeta.LOCKED)));
 			this.setLocId(DataParser.parse(String.class, map.get(DeviceSpVOMeta.LOC_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(DeviceSpVOMeta.UPDATE_TIME)));
+			this.setGoodId(DataParser.parse(String.class, map.get(DeviceSpVOMeta.GOOD_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(DeviceSpVOMeta.VERSION)));
 			this.setInsertTime(DataParser.parse(Date.class, map.get(DeviceSpVOMeta.INSERT_TIME)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(DeviceSpVOMeta.CREATE_BY)));
@@ -542,9 +548,11 @@ public class DeviceSpVO extends DeviceSp {
 			this.setRequestAction(DataParser.parse(String.class, map.get(DeviceSpVOMeta.REQUEST_ACTION)));
 			this.setUsage(DataParser.parse(DictItem.class, map.get(DeviceSpVOMeta.USAGE)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(DeviceSpVOMeta.FUZZY_FIELD)));
+			this.setGoods(DataParser.parse(Goods.class, map.get(DeviceSpVOMeta.GOODS)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(DeviceSpVOMeta.PAGE_SIZE)));
 			this.setOwnerId(DataParser.parse(String.class, map.get(DeviceSpVOMeta.OWNER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SELECTED_CODE)));
+			this.setPsCategoryId(DataParser.parse(String.class, map.get(DeviceSpVOMeta.PS_CATEGORY_ID)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(DeviceSpVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SORT_FIELD)));
@@ -563,11 +571,13 @@ public class DeviceSpVO extends DeviceSp {
 				this.setUpdateBy( (String)map.get(DeviceSpVOMeta.UPDATE_BY));
 				this.setAdaptingDevice( (String)map.get(DeviceSpVOMeta.ADAPTING_DEVICE));
 				this.setSupplier( (String)map.get(DeviceSpVOMeta.SUPPLIER));
+				this.setModel( (String)map.get(DeviceSpVOMeta.MODEL));
 				this.setId( (String)map.get(DeviceSpVOMeta.ID));
 				this.setSn( (String)map.get(DeviceSpVOMeta.SN));
 				this.setLocked( (String)map.get(DeviceSpVOMeta.LOCKED));
 				this.setLocId( (String)map.get(DeviceSpVOMeta.LOC_ID));
 				this.setUpdateTime( (Date)map.get(DeviceSpVOMeta.UPDATE_TIME));
+				this.setGoodId( (String)map.get(DeviceSpVOMeta.GOOD_ID));
 				this.setVersion( (Integer)map.get(DeviceSpVOMeta.VERSION));
 				this.setInsertTime( (Date)map.get(DeviceSpVOMeta.INSERT_TIME));
 				this.setCreateBy( (String)map.get(DeviceSpVOMeta.CREATE_BY));
@@ -588,9 +598,11 @@ public class DeviceSpVO extends DeviceSp {
 				this.setRequestAction( (String)map.get(DeviceSpVOMeta.REQUEST_ACTION));
 				this.setUsage( (DictItem)map.get(DeviceSpVOMeta.USAGE));
 				this.setFuzzyField( (String)map.get(DeviceSpVOMeta.FUZZY_FIELD));
+				this.setGoods( (Goods)map.get(DeviceSpVOMeta.GOODS));
 				this.setPageSize( (Integer)map.get(DeviceSpVOMeta.PAGE_SIZE));
 				this.setOwnerId( (String)map.get(DeviceSpVOMeta.OWNER_ID));
 				this.setSelectedCode( (String)map.get(DeviceSpVOMeta.SELECTED_CODE));
+				this.setPsCategoryId( (String)map.get(DeviceSpVOMeta.PS_CATEGORY_ID));
 				this.setPageIndex( (Integer)map.get(DeviceSpVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(DeviceSpVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(DeviceSpVOMeta.SORT_FIELD));
@@ -622,11 +634,13 @@ public class DeviceSpVO extends DeviceSp {
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.UPDATE_BY)));
 			this.setAdaptingDevice(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.ADAPTING_DEVICE)));
 			this.setSupplier(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.SUPPLIER)));
+			this.setModel(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.ID)));
 			this.setSn(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.SN)));
 			this.setLocked(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.LOCKED)));
 			this.setLocId(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.LOC_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DeviceSpVOMeta.UPDATE_TIME)));
+			this.setGoodId(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.GOOD_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(DeviceSpVOMeta.VERSION)));
 			this.setInsertTime(DataParser.parse(Date.class, r.getValue(DeviceSpVOMeta.INSERT_TIME)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.CREATE_BY)));
@@ -650,11 +664,13 @@ public class DeviceSpVO extends DeviceSp {
 				this.setUpdateBy( (String)r.getValue(DeviceSpVOMeta.UPDATE_BY));
 				this.setAdaptingDevice( (String)r.getValue(DeviceSpVOMeta.ADAPTING_DEVICE));
 				this.setSupplier( (String)r.getValue(DeviceSpVOMeta.SUPPLIER));
+				this.setModel( (String)r.getValue(DeviceSpVOMeta.MODEL));
 				this.setId( (String)r.getValue(DeviceSpVOMeta.ID));
 				this.setSn( (String)r.getValue(DeviceSpVOMeta.SN));
 				this.setLocked( (String)r.getValue(DeviceSpVOMeta.LOCKED));
 				this.setLocId( (String)r.getValue(DeviceSpVOMeta.LOC_ID));
 				this.setUpdateTime( (Date)r.getValue(DeviceSpVOMeta.UPDATE_TIME));
+				this.setGoodId( (String)r.getValue(DeviceSpVOMeta.GOOD_ID));
 				this.setVersion( (Integer)r.getValue(DeviceSpVOMeta.VERSION));
 				this.setInsertTime( (Date)r.getValue(DeviceSpVOMeta.INSERT_TIME));
 				this.setCreateBy( (String)r.getValue(DeviceSpVOMeta.CREATE_BY));

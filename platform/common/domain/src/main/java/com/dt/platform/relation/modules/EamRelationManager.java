@@ -77,6 +77,7 @@ public class EamRelationManager extends RelationManager {
         this.setupInspectionPlan();
         this.setupInspectionPoint();
         this.setupInspectionTask();
+        this.setupInspectionTaskAbnormal();
         this.setupInspectionTaskPoint();
         this.setupInspectionOwner();
 
@@ -139,6 +140,9 @@ public class EamRelationManager extends RelationManager {
 
     }
     public void setupDeviceSp() {
+
+        this.property(DeviceSpMeta.GOODS_PROP)
+                .using(EAMTables.EAM_DEVICE_SP.GOOD_ID).join(EAMTables.EAM_GOODS_STOCK.ID);
 
         this.property(DeviceSpMeta.DEVICE_SP_TYPE_PROP)
                 .using(EAMTables.EAM_DEVICE_SP.TYPE).join(EAMTables.EAM_DEVICE_SP_TYPE.ID);
@@ -1185,6 +1189,16 @@ public class EamRelationManager extends RelationManager {
         }
         return map;
     }
+
+    public void setupInspectionTaskAbnormal() {
+        this.property(InspectionTaskAbnormalMeta.OPER_USER_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK_ABNORMAL.OPER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(InspectionTaskAbnormalMeta.TASK_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK_ABNORMAL.TASK_ID).join(EAMTables.EAM_INSPECTION_TASK.ID);
+
+    }
+
 
     public void setupInspectionTask() {
 

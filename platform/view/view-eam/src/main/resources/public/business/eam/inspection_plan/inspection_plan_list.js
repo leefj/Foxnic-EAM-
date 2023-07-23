@@ -1,7 +1,7 @@
 /**
  * 巡检计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 13:51:26
+ * @since 2023-07-23 08:51:34
  */
 
 
@@ -85,7 +85,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'planCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划编号') , templet: function (d) { return templet('planCode',d.planCode,d);}  }
+					,{ field: 'planCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划单据') , templet: function (d) { return templet('planCode',d.planCode,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'planStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划状态'), templet:function (d){ return templet('planStatus',fox.getEnumText(SELECT_PLANSTATUS_DATA,d.planStatus,'','planStatus'),d);}}
 					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检班组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.inspectionGroup,"name",',','','groupId'),d);}}

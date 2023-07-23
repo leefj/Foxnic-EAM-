@@ -1,5 +1,11 @@
 package com.dt.platform.eam.page;
 
+import com.dt.platform.constants.enums.eam.AssetAttributeItemOwnerEnum;
+import com.dt.platform.constants.enums.eam.AssetPcmCodeEnum;
+import com.dt.platform.domain.eam.AssetAttributeItem;
+import com.dt.platform.proxy.eam.AssetAttributeItemServiceProxy;
+import com.dt.platform.proxy.eam.AssetCategoryServiceProxy;
+import com.github.foxnic.api.transter.Result;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.eam.DeviceSpServiceProxy;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * <p>
  * 备件清单模版页面控制器
@@ -37,6 +46,23 @@ public class DeviceSpPageController extends ViewController {
 		return proxy;
 	}
 
+	@RequestMapping("/device_sp_book_tree.html")
+	public String bookTree(Model model,HttpServletRequest request) {
+		Result<HashMap<String, List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(AssetAttributeItemOwnerEnum.ASSET_STOCK_GOODS.code(),null);
+		if(result.isSuccess()){
+			HashMap<String,List<AssetAttributeItem>> data = result.getData();
+			List<AssetAttributeItem> list=data.get("attributeListData");
+			model.addAttribute("attributeListData",list);
+		}
+		Result idResult= AssetCategoryServiceProxy.api().queryNodesByCode(AssetPcmCodeEnum.ASSET_STOCK_GOODS.code());
+		model.addAttribute("categoryParentId",idResult.getData());
+		return getTemplatePath(prefix,"device_sp_book_tree");
+	}
+
+	@RequestMapping("/device_sp_book_list.html")
+	public String bookList(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"device_sp_book_list");
+	}
 	/**
 	 * 备件清单 功能主页面
 	 */

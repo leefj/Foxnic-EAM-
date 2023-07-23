@@ -88,6 +88,12 @@ public interface InspectionTaskPointServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+
+    /**
+     * 漏检巡检点
+     */
+    public static final String QUERY_NONE_POINT_PAGED_LIST = API_PREFIX + "query-none-point-paged-list";
+
     /**
      * 导出巡检点数据(Excel)
      */

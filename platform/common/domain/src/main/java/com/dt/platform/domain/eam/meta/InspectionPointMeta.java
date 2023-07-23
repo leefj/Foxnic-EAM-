@@ -15,8 +15,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:48:29
- * @sign 24DD05B5189BC8264146C960BA1DD4AF
+ * @since 2023-07-23 09:10:13
+ * @sign 104BD51E49E055154B0330073E6A5754
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -33,34 +33,34 @@ public class InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
-	 * 编码 , 类型: java.lang.String
+	 * 点位编码 , 类型: java.lang.String
 	*/
 	public static final String CODE="code";
 	
 	/**
-	 * 编码 , 类型: java.lang.String
+	 * 点位编码 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,CODE, java.lang.String.class, "点位编码", "点位编码", java.lang.String.class, null);
 	
 	/**
-	 * 名称 , 类型: java.lang.String
+	 * 点位名称 , 类型: java.lang.String
 	*/
 	public static final String NAME="name";
 	
 	/**
-	 * 名称 , 类型: java.lang.String
+	 * 点位名称 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,NAME, java.lang.String.class, "点位名称", "点位名称", java.lang.String.class, null);
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 启用状态 , 类型: java.lang.String
 	*/
 	public static final String STATUS="status";
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 启用状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,STATUS, java.lang.String.class, "启用状态", "启用状态", java.lang.String.class, null);
 	
 	/**
 	 * 巡检内容 , 类型: java.lang.String
@@ -93,14 +93,14 @@ public class InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> RFID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,RFID, java.lang.String.class, "RFID", "RFID", java.lang.String.class, null);
 	
 	/**
-	 * 位置 , 类型: java.lang.String
+	 * 点位位置 , 类型: java.lang.String
 	*/
 	public static final String POS_ID="posId";
 	
 	/**
-	 * 位置 , 类型: java.lang.String
+	 * 点位位置 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> POS_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,POS_ID, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> POS_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,POS_ID, java.lang.String.class, "点位位置", "点位位置", java.lang.String.class, null);
 	
 	/**
 	 * 位置详情 , 类型: java.lang.String
@@ -357,8 +357,8 @@ public class InspectionPointMeta {
 		}
 		
 		/**
-		 * 设置 编码
-		 * @param code 编码
+		 * 设置 点位编码
+		 * @param code 点位编码
 		 * @return 当前对象
 		*/
 		public InspectionPoint setCode(String code) {
@@ -368,8 +368,8 @@ public class InspectionPointMeta {
 		}
 		
 		/**
-		 * 设置 名称
-		 * @param name 名称
+		 * 设置 点位名称
+		 * @param name 点位名称
 		 * @return 当前对象
 		*/
 		public InspectionPoint setName(String name) {
@@ -379,8 +379,8 @@ public class InspectionPointMeta {
 		}
 		
 		/**
-		 * 设置 状态
-		 * @param status 状态
+		 * 设置 启用状态
+		 * @param status 启用状态
 		 * @return 当前对象
 		*/
 		public InspectionPoint setStatus(String status) {
@@ -423,8 +423,8 @@ public class InspectionPointMeta {
 		}
 		
 		/**
-		 * 设置 位置
-		 * @param posId 位置
+		 * 设置 点位位置
+		 * @param posId 点位位置
 		 * @return 当前对象
 		*/
 		public InspectionPoint setPosId(String posId) {

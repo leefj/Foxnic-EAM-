@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务
  * <p>巡检任务 , 数据表 eam_inspection_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 14:12:30
- * @sign B636F58A5405B4C7C42A0A256254A934
+ * @since 2023-07-23 08:56:00
+ * @sign A7D8F14B8D3723F828DAABDF71F0E505
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -68,9 +68,9 @@ public class InspectionTask extends Entity {
 	private String taskCode;
 	
 	/**
-	 * 巡检编码：巡检编码
+	 * 计划单据：计划单据
 	*/
-	@ApiModelProperty(required = false,value="巡检编码" , notes = "巡检编码" , example = "INSP202329071429562")
+	@ApiModelProperty(required = false,value="计划单据" , notes = "计划单据" , example = "INSP202329071429562")
 	private String planCode;
 	
 	/**
@@ -393,17 +393,17 @@ public class InspectionTask extends Entity {
 	}
 	
 	/**
-	 * 获得 巡检编码<br>
-	 * 巡检编码
-	 * @return 巡检编码
+	 * 获得 计划单据<br>
+	 * 计划单据
+	 * @return 计划单据
 	*/
 	public String getPlanCode() {
 		return planCode;
 	}
 	
 	/**
-	 * 设置 巡检编码
-	 * @param planCode 巡检编码
+	 * 设置 计划单据
+	 * @param planCode 计划单据
 	 * @return 当前对象
 	*/
 	public InspectionTask setPlanCode(String planCode) {

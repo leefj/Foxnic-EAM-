@@ -311,6 +311,52 @@ public class InspectionTaskPointController extends SuperController {
         return result;
     }
 
+
+    /**
+     * 分页查询巡检点
+     */
+    @ApiOperation(value = "分页查询巡检点")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.TASK_ID, value = "任务", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_STATUS, value = "巡检状态", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_TIME, value = "操作时间", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.CONTENT, value = "巡检结果", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CODE, value = "编码", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NAME, value = "巡检点", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CONTENT, value = "巡检内容", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ROUTE_ID, value = "巡检路线", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_RFID, value = "RFID", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS, value = "位置详情", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LONGITUDE, value = "位置经度", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LATITUDE, value = "位置纬度", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NOTES, value = "备注", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_ID, value = "位置", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_ID, value = "操作人", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = InspectionTaskPointVOMeta.IMAGE_ID, value = "图片", required = false, dataTypeClass = String.class)
+    })
+    @ApiOperationSupport(order = 8)
+    @SentinelResource(value = InspectionTaskPointServiceProxy.QUERY_NONE_POINT_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(InspectionTaskPointServiceProxy.QUERY_NONE_POINT_PAGED_LIST)
+    public Result<PagedList<InspectionTaskPoint>> queryNonePointPagedList(InspectionTaskPointVO sample) {
+        Result<PagedList<InspectionTaskPoint>> result = new Result<>();
+        PagedList<InspectionTaskPoint> list = inspectionTaskPointService.queryNonePointPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        inspectionTaskPointService.dao().fill(list).with(InspectionTaskPointMeta.TASK).
+                with(InspectionTaskPointMeta.CHECK_SELECT_LIST).
+                with(InspectionTaskPointMeta.ROUTE).
+                with(InspectionTaskPointMeta.OPER_USER).
+                with(InspectionTaskPointMeta.INSPECTION_POINT_POS).execute();
+        List<Employee> user2 = CollectorUtil.collectList(list, InspectionTaskPoint::getOperUser);
+        inspectionTaskPointService.dao().join(user2, Person.class);
+        result.success(true).data(list);
+        return result;
+    }
+
     @SentinelResource(value = InspectionTaskPointServiceProxy.FINISH, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(InspectionTaskPointServiceProxy.FINISH)
     public Result finish(String id, String pointStatus, String content, String imageId, String itemData) {

@@ -66,7 +66,7 @@ public class MaintainPlanController extends SuperController {
     @ApiOperation(value = "添加保养方案")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585374391123054592"),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.CODE, value = "计划编号", required = false, dataTypeClass = String.class, example = "121"),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.CODE, value = "计划单据", required = false, dataTypeClass = String.class, example = "121"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.STATUS, value = "计划状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.GROUP_ID, value = "保养班组", required = false, dataTypeClass = String.class, example = "584133248423034880"),
@@ -135,7 +135,7 @@ public class MaintainPlanController extends SuperController {
     @ApiOperation(value = "更新保养方案")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585374391123054592"),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.CODE, value = "计划编号", required = false, dataTypeClass = String.class, example = "121"),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.CODE, value = "计划单据", required = false, dataTypeClass = String.class, example = "121"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.STATUS, value = "计划状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.GROUP_ID, value = "保养班组", required = false, dataTypeClass = String.class, example = "584133248423034880"),
@@ -173,7 +173,7 @@ public class MaintainPlanController extends SuperController {
     @ApiOperation(value = "保存保养方案")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585374391123054592"),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.CODE, value = "计划编号", required = false, dataTypeClass = String.class, example = "121"),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.CODE, value = "计划单据", required = false, dataTypeClass = String.class, example = "121"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.STATUS, value = "计划状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.GROUP_ID, value = "保养班组", required = false, dataTypeClass = String.class, example = "584133248423034880"),
@@ -248,7 +248,7 @@ public class MaintainPlanController extends SuperController {
     @ApiOperation(value = "查询保养方案")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585374391123054592"),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.CODE, value = "计划编号", required = false, dataTypeClass = String.class, example = "121"),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.CODE, value = "计划单据", required = false, dataTypeClass = String.class, example = "121"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.STATUS, value = "计划状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.GROUP_ID, value = "保养班组", required = false, dataTypeClass = String.class, example = "584133248423034880"),
@@ -287,7 +287,7 @@ public class MaintainPlanController extends SuperController {
     @ApiOperation(value = "分页查询保养方案")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585374391123054592"),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.CODE, value = "计划编号", required = false, dataTypeClass = String.class, example = "121"),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.CODE, value = "计划单据", required = false, dataTypeClass = String.class, example = "121"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.STATUS, value = "计划状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.GROUP_ID, value = "保养班组", required = false, dataTypeClass = String.class, example = "584133248423034880"),

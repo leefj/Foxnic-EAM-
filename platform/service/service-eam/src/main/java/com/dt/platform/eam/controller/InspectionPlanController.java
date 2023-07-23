@@ -68,7 +68,7 @@ public class InspectionPlanController extends SuperController {
     @ApiOperation(value = "添加巡检计划")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_CODE, value = "计划编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_CODE, value = "计划单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_STATUS, value = "计划状态", required = false, dataTypeClass = String.class),
@@ -134,7 +134,7 @@ public class InspectionPlanController extends SuperController {
     @ApiOperation(value = "更新巡检计划")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_CODE, value = "计划编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_CODE, value = "计划单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_STATUS, value = "计划状态", required = false, dataTypeClass = String.class),
@@ -169,7 +169,7 @@ public class InspectionPlanController extends SuperController {
     @ApiOperation(value = "保存巡检计划")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_CODE, value = "计划编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_CODE, value = "计划单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_STATUS, value = "计划状态", required = false, dataTypeClass = String.class),
@@ -241,7 +241,7 @@ public class InspectionPlanController extends SuperController {
     @ApiOperation(value = "查询巡检计划")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_CODE, value = "计划编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_CODE, value = "计划单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_STATUS, value = "计划状态", required = false, dataTypeClass = String.class),
@@ -277,7 +277,7 @@ public class InspectionPlanController extends SuperController {
     @ApiOperation(value = "分页查询巡检计划")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_CODE, value = "计划编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_CODE, value = "计划单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPlanVOMeta.PLAN_STATUS, value = "计划状态", required = false, dataTypeClass = String.class),

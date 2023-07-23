@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养方案
  * <p>保养方案 , 数据表 eam_maintain_plan 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 13:19:07
- * @sign DE4EA044490B5DEE9518644B7F00FE94
+ * @since 2023-07-23 09:00:11
+ * @sign 628BFA930A24FFD6D41480135F0FFC41
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -50,9 +50,9 @@ public class MaintainPlan extends Entity {
 	private String id;
 	
 	/**
-	 * 计划编号：计划编号
+	 * 计划单据：计划单据
 	*/
-	@ApiModelProperty(required = false,value="计划编号" , notes = "计划编号" , example = "MP202304111604601")
+	@ApiModelProperty(required = false,value="计划单据" , notes = "计划单据" , example = "MP202304111604601")
 	private String code;
 	
 	/**
@@ -318,17 +318,17 @@ public class MaintainPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 计划编号<br>
-	 * 计划编号
-	 * @return 计划编号
+	 * 获得 计划单据<br>
+	 * 计划单据
+	 * @return 计划单据
 	*/
 	public String getCode() {
 		return code;
 	}
 	
 	/**
-	 * 设置 计划编号
-	 * @param code 计划编号
+	 * 设置 计划单据
+	 * @param code 计划单据
 	 * @return 当前对象
 	*/
 	public MaintainPlan setCode(String code) {
