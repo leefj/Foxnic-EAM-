@@ -27,6 +27,10 @@ import java.util.Map;
 
 public interface IInspectionTaskPointService extends ISuperService<InspectionTaskPoint> {
 
+	PagedList<InspectionTaskPoint> queryNonePointPagedList(InspectionTaskPoint sample,int pageSize,int pageIndex);
+
+
+
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 *  @param posData 数据对象

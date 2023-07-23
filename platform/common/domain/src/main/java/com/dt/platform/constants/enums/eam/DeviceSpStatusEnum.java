@@ -15,7 +15,9 @@ public enum DeviceSpStatusEnum implements CodeTextEnum {
 	DRAFT("draft" , "草稿"),
 	NOT_USE("not_use" , "未使用"),
 	USED("used" , "已使用"),
-	DAMAGE("damage" , "已损坏");
+	DAMAGE("damage" , "损坏"),
+	LOSS("loss" , "丢失"),
+	SCRAPED(" scraped" , "已报废");
 	private String code;
 	private String text;
 	private DeviceSpStatusEnum(String code, String text)  {

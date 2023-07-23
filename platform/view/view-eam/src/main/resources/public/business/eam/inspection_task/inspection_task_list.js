@@ -1,7 +1,7 @@
 /**
  * 巡检任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 14:12:31
+ * @since 2023-07-23 08:56:02
  */
 
 
@@ -165,7 +165,7 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.taskStatus={ inputType:"select_box", value: getSelectedValue("#taskStatus","value"), label:getSelectedValue("#taskStatus","nameStr") };
-		value.planCode={ inputType:"button",value: $("#planCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.taskCode={ inputType:"button",value: $("#taskCode").val()};
 		value.planName={ inputType:"button",value: $("#planName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.groupId={ inputType:"select_box", value: getSelectedValue("#groupId","value") ,fillBy:["inspectionGroup"]  , label:getSelectedValue("#groupId","nameStr") };
 		value.actStartTime={ inputType:"date_input", begin: $("#actStartTime-begin").val(), end: $("#actStartTime-end").val() ,matchType:"auto" };

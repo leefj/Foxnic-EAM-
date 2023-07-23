@@ -2,7 +2,7 @@
 /**
  * 巡检任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 14:12:31
+ * @since 2023-07-23 08:56:02
  */
  -->
  <!DOCTYPE html>
@@ -43,10 +43,10 @@
                     <!-- 巡检计划 , planId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 任务状态 , taskStatus ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('任务状态')}" class="search-label taskStatus-label">任务状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('任务状态')}" class="search-label taskStatus-label">任务状态</span><span class="search-colon">:</span></div>
                         <div id="taskStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum')}" style="width:150px" extraParam="{}"></div>
                     </div>
-                    <!-- 任务单据 , taskCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 计划单据 , planCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 巡检顺序 , planInspectionMethod ,typeName=select_box, isHideInSearch=true -->
                     <!-- 预计用时(时) , planCompletionTime ,typeName=number_input, isHideInSearch=true -->
                     <!-- 巡检备注 , planNotes ,typeName=text_input, isHideInSearch=true -->
@@ -66,17 +66,17 @@
                     <!-- 巡检点数(异常) , pointAbormalCount ,typeName=text_input, isHideInSearch=true -->
                     <!-- 巡检班组 , groupId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('巡检班组')}" class="search-label groupId-label">巡检班组</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('巡检班组')}" class="search-label groupId-label">巡检班组</span><span class="search-colon">:</span></div>
                         <div id="groupId" th:data="${'/service-eam/eam-inspection-group/query-paged-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
-                    <!-- 巡检编码 , planCode ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 任务单据 , taskCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('巡检编码')}" class="search-label planCode-label">巡检编码</span><span class="search-colon">:</span></div>
-                        <input id="planCode" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('任务单据')}" class="search-label taskCode-label">任务单据</span><span class="search-colon">:</span></div>
+                        <input id="taskCode" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
                     <!-- 巡检名称 , planName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('巡检名称')}" class="search-label planName-label">巡检名称</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('巡检名称')}" class="search-label planName-label">巡检名称</span><span class="search-colon">:</span></div>
                         <input id="planName" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
@@ -86,7 +86,7 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 实际开始 , actStartTime ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('实际开始')}" class="search-label actStartTime-label">实际开始</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('实际开始')}" class="search-label actStartTime-label">实际开始</span><span class="search-colon">:</span></div>
                             <input type="text" id="actStartTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
                             <input type="text" id="actStartTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>

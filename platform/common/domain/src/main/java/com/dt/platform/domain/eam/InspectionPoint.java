@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:48:29
- * @sign 24DD05B5189BC8264146C960BA1DD4AF
+ * @since 2023-07-23 09:10:13
+ * @sign 104BD51E49E055154B0330073E6A5754
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -48,21 +48,21 @@ public class InspectionPoint extends Entity {
 	private String id;
 	
 	/**
-	 * 编码：编码
+	 * 点位编码：点位编码
 	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "point1")
+	@ApiModelProperty(required = false,value="点位编码" , notes = "点位编码" , example = "point1")
 	private String code;
 	
 	/**
-	 * 名称：名称
+	 * 点位名称：点位名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "point1")
+	@ApiModelProperty(required = false,value="点位名称" , notes = "点位名称" , example = "point1")
 	private String name;
 	
 	/**
-	 * 状态：状态
+	 * 启用状态：启用状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
+	@ApiModelProperty(required = false,value="启用状态" , notes = "启用状态" , example = "enable")
 	private String status;
 	
 	/**
@@ -84,9 +84,9 @@ public class InspectionPoint extends Entity {
 	private String rfid;
 	
 	/**
-	 * 位置：位置
+	 * 点位位置：点位位置
 	*/
-	@ApiModelProperty(required = false,value="位置" , notes = "位置" , example = "698104347535343616")
+	@ApiModelProperty(required = false,value="点位位置" , notes = "点位位置" , example = "698104347535343616")
 	private String posId;
 	
 	/**
@@ -250,17 +250,17 @@ public class InspectionPoint extends Entity {
 	}
 	
 	/**
-	 * 获得 编码<br>
-	 * 编码
-	 * @return 编码
+	 * 获得 点位编码<br>
+	 * 点位编码
+	 * @return 点位编码
 	*/
 	public String getCode() {
 		return code;
 	}
 	
 	/**
-	 * 设置 编码
-	 * @param code 编码
+	 * 设置 点位编码
+	 * @param code 点位编码
 	 * @return 当前对象
 	*/
 	public InspectionPoint setCode(String code) {
@@ -269,17 +269,17 @@ public class InspectionPoint extends Entity {
 	}
 	
 	/**
-	 * 获得 名称<br>
-	 * 名称
-	 * @return 名称
+	 * 获得 点位名称<br>
+	 * 点位名称
+	 * @return 点位名称
 	*/
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * 设置 名称
-	 * @param name 名称
+	 * 设置 点位名称
+	 * @param name 点位名称
 	 * @return 当前对象
 	*/
 	public InspectionPoint setName(String name) {
@@ -288,17 +288,17 @@ public class InspectionPoint extends Entity {
 	}
 	
 	/**
-	 * 获得 状态<br>
-	 * 状态
-	 * @return 状态
+	 * 获得 启用状态<br>
+	 * 启用状态
+	 * @return 启用状态
 	*/
 	public String getStatus() {
 		return status;
 	}
 	
 	/**
-	 * 设置 状态
-	 * @param status 状态
+	 * 设置 启用状态
+	 * @param status 启用状态
 	 * @return 当前对象
 	*/
 	public InspectionPoint setStatus(String status) {
@@ -364,17 +364,17 @@ public class InspectionPoint extends Entity {
 	}
 	
 	/**
-	 * 获得 位置<br>
-	 * 位置
-	 * @return 位置
+	 * 获得 点位位置<br>
+	 * 点位位置
+	 * @return 点位位置
 	*/
 	public String getPosId() {
 		return posId;
 	}
 	
 	/**
-	 * 设置 位置
-	 * @param posId 位置
+	 * 设置 点位位置
+	 * @param posId 点位位置
 	 * @return 当前对象
 	*/
 	public InspectionPoint setPosId(String posId) {

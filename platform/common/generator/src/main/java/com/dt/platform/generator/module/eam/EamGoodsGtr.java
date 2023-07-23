@@ -19,6 +19,7 @@ import com.github.foxnic.generator.config.WriteMode;
 
 public class EamGoodsGtr extends BaseCodeGenerator {
 
+
     public EamGoodsGtr() {
         super(EAMTables.EAM_GOODS.$TABLE,BASIC_SETTING_MENU_ID);
     }

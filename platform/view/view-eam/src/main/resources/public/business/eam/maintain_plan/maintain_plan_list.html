@@ -2,7 +2,7 @@
 /**
  * 保养方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 13:19:08
+ * @since 2023-07-23 09:00:12
  */
  -->
  <!DOCTYPE html>
@@ -62,9 +62,9 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('保养类型')}" class="search-label maintainType-label">保养类型</span><span class="search-colon">:</span></div>
                         <div id="maintainType" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_maintain_type'}" style="width:150px" extraParam="{}"></div>
                     </div>
-                    <!-- 计划编号 , code ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 计划单据 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('计划编号')}" class="search-label code-label">计划编号</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('计划单据')}" class="search-label code-label">计划单据</span><span class="search-colon">:</span></div>
                         <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
                     <!-- 计划名称 , name ,typeName=text_input, isHideInSearch=false -->

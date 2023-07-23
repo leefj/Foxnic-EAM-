@@ -1,7 +1,7 @@
 /**
  * 备件清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 15:25:54
+ * @since 2023-07-24 06:47:53
  */
 
 function FormPage() {
@@ -116,6 +116,44 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 goodId 下拉字段
+		fox.renderSelectBox({
+			el: "goodId",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("物品",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("goodId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("goodId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 		//渲染 type 下拉字段
 		fox.renderSelectBox({
 			el: "type",
@@ -124,8 +162,6 @@ function FormPage() {
 			filterable: true,
 			paging: true,
 			pageRemote: true,
-			layVerify: 'required',
-			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
@@ -329,8 +365,8 @@ function FormPage() {
 			}
 
 
-			//设置  备件分类 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#type",formData.deviceSpType);
+			//设置  物品 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#goodId",formData.goods);
 			//设置  使用场景 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#usageRange",formData.usage);
 			//设置  存放位置 设置下拉框勾选
@@ -397,8 +433,8 @@ function FormPage() {
 
 
 
-		//获取 备件分类 下拉框的值
-		data["type"]=fox.getSelectedValue("type",false);
+		//获取 物品 下拉框的值
+		data["goodId"]=fox.getSelectedValue("goodId",false);
 		//获取 使用场景 下拉框的值
 		data["usageRange"]=fox.getSelectedValue("usageRange",false);
 		//获取 存放位置 下拉框的值

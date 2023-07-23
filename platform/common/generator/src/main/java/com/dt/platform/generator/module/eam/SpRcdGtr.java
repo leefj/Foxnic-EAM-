@@ -55,6 +55,11 @@ public class SpRcdGtr extends BaseCodeGenerator {
                 .valueField(DeviceSpMeta.ID).textField( DeviceSpMeta.NAME).fillWith(DeviceSpRcdMeta.DEVICE_SP).muliti(false);
 
 
+        cfg.view().search().inputWidth(Config.searchInputWidth);
+        cfg.view().search().labelWidth(1,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(2,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(3,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().list().disableBatchDelete();
         cfg.view().list().disableCreateNew();
         cfg.view().formWindow().width(Config.baseFormWidth);

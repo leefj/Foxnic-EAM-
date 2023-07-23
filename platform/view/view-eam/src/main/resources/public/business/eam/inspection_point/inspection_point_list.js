@@ -1,7 +1,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:48:30
+ * @since 2023-07-23 09:10:15
  */
 
 
@@ -85,12 +85,12 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('点位编码') , templet: function (d) { return templet('code',d.code,d);}  }
+					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('点位名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('启用状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检内容') , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'rfid', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('RFID') , templet: function (d) { return templet('rfid',d.rfid,d);}  }
-					,{ field: 'posId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置'), templet: function (d) { return templet('posId' ,fox.joinLabel(d.inspectionPointPos,"hierarchyName",',','','posId'),d);}}
+					,{ field: 'posId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('点位位置'), templet: function (d) { return templet('posId' ,fox.joinLabel(d.inspectionPointPos,"hierarchyName",',','','posId'),d);}}
 					,{ field: 'assetId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('关联设备'), templet: function (d) { return templet('assetId' ,fox.joinLabel(d.asset,"assetCode",',','','assetId'),d);}}
 					,{ field: 'itemCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('检查项数') , templet: function (d) { return templet('itemCount',d.itemCount,d);}  }
 					,{ field: 'itemDisableCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('检查项数(未启用)') , templet: function (d) { return templet('itemDisableCount',d.itemDisableCount,d);}  }

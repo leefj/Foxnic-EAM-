@@ -85,13 +85,18 @@ public class InspTaskGtr extends BaseCodeGenerator {
                 new Object[]{
                         EAMTables.EAM_INSPECTION_TASK.TASK_STATUS,
                         EAMTables.EAM_INSPECTION_TASK.GROUP_ID,
-                        EAMTables.EAM_INSPECTION_TASK.PLAN_CODE,
+                        EAMTables.EAM_INSPECTION_TASK.TASK_CODE,
                         EAMTables.EAM_INSPECTION_TASK.PLAN_NAME,
                 },
                 new Object[]{
                         EAMTables.EAM_INSPECTION_TASK.ACT_START_TIME,
                 }
         );
+        cfg.view().search().labelWidth(1,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(2,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(3,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(4,Config.searchLabelWidth);
+        cfg.view().search().inputWidth(Config.searchInputWidth);
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.SELECTED_CODE).table().disable(true);
@@ -173,15 +178,10 @@ public class InspTaskGtr extends BaseCodeGenerator {
 //        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_NOTES).form().readOnly();
 //        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_TOTAL_COST).form().readOnly();
 
-        cfg.view().search().labelWidth(1,Config.searchLabelWidth+50);
-        cfg.view().search().labelWidth(2,Config.searchLabelWidth+50);
-        cfg.view().search().labelWidth(3,Config.searchLabelWidth+50);
-        cfg.view().search().labelWidth(4,Config.searchLabelWidth+50);
+
         cfg.view().search().inputWidth(Config.searchInputWidth);
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(85);
-
-
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.REMIND_TIME).form().validate().required();

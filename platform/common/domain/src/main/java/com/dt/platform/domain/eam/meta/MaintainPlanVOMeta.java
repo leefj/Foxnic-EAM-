@@ -18,7 +18,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 13:19:07
+ * @since 2023-07-23 09:00:11
  * @sign C8E16B1999220CF1B368CB50BBEA512E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -156,14 +156,14 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
-	 * 计划编号 , 类型: java.lang.String
+	 * 计划单据 , 类型: java.lang.String
 	*/
 	public static final String CODE="code";
 	
 	/**
-	 * 计划编号 , 类型: java.lang.String
+	 * 计划单据 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,CODE, java.lang.String.class, "计划编号", "计划编号", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,CODE, java.lang.String.class, "计划单据", "计划单据", java.lang.String.class, null);
 	
 	/**
 	 * 计划名称 , 类型: java.lang.String
@@ -722,8 +722,8 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 		}
 		
 		/**
-		 * 设置 计划编号
-		 * @param code 计划编号
+		 * 设置 计划单据
+		 * @param code 计划单据
 		 * @return 当前对象
 		*/
 		public MaintainPlan setCode(String code) {

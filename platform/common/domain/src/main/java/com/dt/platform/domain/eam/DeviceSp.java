@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 备件清单
  * <p>备件清单 , 数据表 eam_device_sp 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 15:25:52
- * @sign 25A92D00881FBE460D5939FD4CCA3669
+ * @since 2023-07-24 06:47:50
+ * @sign 4837F1F6DF7E7FA7B4AFF0404847C18A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -55,6 +55,12 @@ public class DeviceSp extends Entity {
 	private String code;
 	
 	/**
+	 * 物品：物品
+	*/
+	@ApiModelProperty(required = false,value="物品" , notes = "物品")
+	private String goodId;
+	
+	/**
 	 * 备件分类：备件分类
 	*/
 	@ApiModelProperty(required = false,value="备件分类" , notes = "备件分类" , example = "732552973493731329")
@@ -71,6 +77,12 @@ public class DeviceSp extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="备件名称" , notes = "备件名称" , example = "12")
 	private String name;
+	
+	/**
+	 * 规格型号：规格型号
+	*/
+	@ApiModelProperty(required = false,value="规格型号" , notes = "规格型号")
+	private String model;
 	
 	/**
 	 * 备件序列：备件序列
@@ -196,6 +208,12 @@ public class DeviceSp extends Entity {
 	private String tenantId;
 	
 	/**
+	 * goods：goods
+	*/
+	@ApiModelProperty(required = false,value="goods" , notes = "goods")
+	private Goods goods;
+	
+	/**
 	 * deviceSpType：deviceSpType
 	*/
 	@ApiModelProperty(required = false,value="deviceSpType" , notes = "deviceSpType")
@@ -250,6 +268,12 @@ public class DeviceSp extends Entity {
 	private String ownerId;
 	
 	/**
+	 * psCategoryId：psCategoryId
+	*/
+	@ApiModelProperty(required = false,value="psCategoryId" , notes = "psCategoryId")
+	private String psCategoryId;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -284,6 +308,25 @@ public class DeviceSp extends Entity {
 	*/
 	public DeviceSp setCode(String code) {
 		this.code=code;
+		return this;
+	}
+	
+	/**
+	 * 获得 物品<br>
+	 * 物品
+	 * @return 物品
+	*/
+	public String getGoodId() {
+		return goodId;
+	}
+	
+	/**
+	 * 设置 物品
+	 * @param goodId 物品
+	 * @return 当前对象
+	*/
+	public DeviceSp setGoodId(String goodId) {
+		this.goodId=goodId;
 		return this;
 	}
 	
@@ -341,6 +384,25 @@ public class DeviceSp extends Entity {
 	*/
 	public DeviceSp setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 规格型号<br>
+	 * 规格型号
+	 * @return 规格型号
+	*/
+	public String getModel() {
+		return model;
+	}
+	
+	/**
+	 * 设置 规格型号
+	 * @param model 规格型号
+	 * @return 当前对象
+	*/
+	public DeviceSp setModel(String model) {
+		this.model=model;
 		return this;
 	}
 	
@@ -756,6 +818,25 @@ public class DeviceSp extends Entity {
 	}
 	
 	/**
+	 * 获得 goods<br>
+	 * goods
+	 * @return goods
+	*/
+	public Goods getGoods() {
+		return goods;
+	}
+	
+	/**
+	 * 设置 goods
+	 * @param goods goods
+	 * @return 当前对象
+	*/
+	public DeviceSp setGoods(Goods goods) {
+		this.goods=goods;
+		return this;
+	}
+	
+	/**
 	 * 获得 deviceSpType<br>
 	 * deviceSpType
 	 * @return deviceSpType
@@ -947,6 +1028,25 @@ public class DeviceSp extends Entity {
 		this.ownerId=ownerId;
 		return this;
 	}
+	
+	/**
+	 * 获得 psCategoryId<br>
+	 * psCategoryId
+	 * @return psCategoryId
+	*/
+	public String getPsCategoryId() {
+		return psCategoryId;
+	}
+	
+	/**
+	 * 设置 psCategoryId
+	 * @param psCategoryId psCategoryId
+	 * @return 当前对象
+	*/
+	public DeviceSp setPsCategoryId(String psCategoryId) {
+		this.psCategoryId=psCategoryId;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1000,11 +1100,13 @@ public class DeviceSp extends Entity {
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setAdaptingDevice(this.getAdaptingDevice());
 		inst.setSupplier(this.getSupplier());
+		inst.setModel(this.getModel());
 		inst.setId(this.getId());
 		inst.setSn(this.getSn());
 		inst.setLocked(this.getLocked());
 		inst.setLocId(this.getLocId());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setGoodId(this.getGoodId());
 		inst.setVersion(this.getVersion());
 		inst.setInsertTime(this.getInsertTime());
 		inst.setCreateBy(this.getCreateBy());
@@ -1019,9 +1121,11 @@ public class DeviceSp extends Entity {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setOwnerType(this.getOwnerType());
+			inst.setPsCategoryId(this.getPsCategoryId());
 			inst.setDeviceSpType(this.getDeviceSpType());
 			inst.setManager(this.getManager());
 			inst.setUsage(this.getUsage());
+			inst.setGoods(this.getGoods());
 			inst.setPosition(this.getPosition());
 			inst.setAssetList(this.getAssetList());
 			inst.setDeviceAssociate(this.getDeviceAssociate());
@@ -1094,11 +1198,13 @@ public class DeviceSp extends Entity {
 			this.setUpdateBy(DataParser.parse(String.class, map.get(DeviceSpMeta.UPDATE_BY)));
 			this.setAdaptingDevice(DataParser.parse(String.class, map.get(DeviceSpMeta.ADAPTING_DEVICE)));
 			this.setSupplier(DataParser.parse(String.class, map.get(DeviceSpMeta.SUPPLIER)));
+			this.setModel(DataParser.parse(String.class, map.get(DeviceSpMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, map.get(DeviceSpMeta.ID)));
 			this.setSn(DataParser.parse(String.class, map.get(DeviceSpMeta.SN)));
 			this.setLocked(DataParser.parse(String.class, map.get(DeviceSpMeta.LOCKED)));
 			this.setLocId(DataParser.parse(String.class, map.get(DeviceSpMeta.LOC_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(DeviceSpMeta.UPDATE_TIME)));
+			this.setGoodId(DataParser.parse(String.class, map.get(DeviceSpMeta.GOOD_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(DeviceSpMeta.VERSION)));
 			this.setInsertTime(DataParser.parse(Date.class, map.get(DeviceSpMeta.INSERT_TIME)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(DeviceSpMeta.CREATE_BY)));
@@ -1113,9 +1219,11 @@ public class DeviceSp extends Entity {
 			this.setStatus(DataParser.parse(String.class, map.get(DeviceSpMeta.STATUS)));
 			// others
 			this.setOwnerType(DataParser.parse(String.class, map.get(DeviceSpMeta.OWNER_TYPE)));
+			this.setPsCategoryId(DataParser.parse(String.class, map.get(DeviceSpMeta.PS_CATEGORY_ID)));
 			this.setDeviceSpType(DataParser.parse(DeviceSpType.class, map.get(DeviceSpMeta.DEVICE_SP_TYPE)));
 			this.setManager(DataParser.parse(Employee.class, map.get(DeviceSpMeta.MANAGER)));
 			this.setUsage(DataParser.parse(DictItem.class, map.get(DeviceSpMeta.USAGE)));
+			this.setGoods(DataParser.parse(Goods.class, map.get(DeviceSpMeta.GOODS)));
 			this.setPosition(DataParser.parse(Position.class, map.get(DeviceSpMeta.POSITION)));
 			this.setOwnerId(DataParser.parse(String.class, map.get(DeviceSpMeta.OWNER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(DeviceSpMeta.SELECTED_CODE)));
@@ -1130,11 +1238,13 @@ public class DeviceSp extends Entity {
 				this.setUpdateBy( (String)map.get(DeviceSpMeta.UPDATE_BY));
 				this.setAdaptingDevice( (String)map.get(DeviceSpMeta.ADAPTING_DEVICE));
 				this.setSupplier( (String)map.get(DeviceSpMeta.SUPPLIER));
+				this.setModel( (String)map.get(DeviceSpMeta.MODEL));
 				this.setId( (String)map.get(DeviceSpMeta.ID));
 				this.setSn( (String)map.get(DeviceSpMeta.SN));
 				this.setLocked( (String)map.get(DeviceSpMeta.LOCKED));
 				this.setLocId( (String)map.get(DeviceSpMeta.LOC_ID));
 				this.setUpdateTime( (Date)map.get(DeviceSpMeta.UPDATE_TIME));
+				this.setGoodId( (String)map.get(DeviceSpMeta.GOOD_ID));
 				this.setVersion( (Integer)map.get(DeviceSpMeta.VERSION));
 				this.setInsertTime( (Date)map.get(DeviceSpMeta.INSERT_TIME));
 				this.setCreateBy( (String)map.get(DeviceSpMeta.CREATE_BY));
@@ -1149,9 +1259,11 @@ public class DeviceSp extends Entity {
 				this.setStatus( (String)map.get(DeviceSpMeta.STATUS));
 				// others
 				this.setOwnerType( (String)map.get(DeviceSpMeta.OWNER_TYPE));
+				this.setPsCategoryId( (String)map.get(DeviceSpMeta.PS_CATEGORY_ID));
 				this.setDeviceSpType( (DeviceSpType)map.get(DeviceSpMeta.DEVICE_SP_TYPE));
 				this.setManager( (Employee)map.get(DeviceSpMeta.MANAGER));
 				this.setUsage( (DictItem)map.get(DeviceSpMeta.USAGE));
+				this.setGoods( (Goods)map.get(DeviceSpMeta.GOODS));
 				this.setPosition( (Position)map.get(DeviceSpMeta.POSITION));
 				this.setOwnerId( (String)map.get(DeviceSpMeta.OWNER_ID));
 				this.setSelectedCode( (String)map.get(DeviceSpMeta.SELECTED_CODE));
@@ -1179,11 +1291,13 @@ public class DeviceSp extends Entity {
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DeviceSpMeta.UPDATE_BY)));
 			this.setAdaptingDevice(DataParser.parse(String.class, r.getValue(DeviceSpMeta.ADAPTING_DEVICE)));
 			this.setSupplier(DataParser.parse(String.class, r.getValue(DeviceSpMeta.SUPPLIER)));
+			this.setModel(DataParser.parse(String.class, r.getValue(DeviceSpMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, r.getValue(DeviceSpMeta.ID)));
 			this.setSn(DataParser.parse(String.class, r.getValue(DeviceSpMeta.SN)));
 			this.setLocked(DataParser.parse(String.class, r.getValue(DeviceSpMeta.LOCKED)));
 			this.setLocId(DataParser.parse(String.class, r.getValue(DeviceSpMeta.LOC_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DeviceSpMeta.UPDATE_TIME)));
+			this.setGoodId(DataParser.parse(String.class, r.getValue(DeviceSpMeta.GOOD_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(DeviceSpMeta.VERSION)));
 			this.setInsertTime(DataParser.parse(Date.class, r.getValue(DeviceSpMeta.INSERT_TIME)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(DeviceSpMeta.CREATE_BY)));
@@ -1207,11 +1321,13 @@ public class DeviceSp extends Entity {
 				this.setUpdateBy( (String)r.getValue(DeviceSpMeta.UPDATE_BY));
 				this.setAdaptingDevice( (String)r.getValue(DeviceSpMeta.ADAPTING_DEVICE));
 				this.setSupplier( (String)r.getValue(DeviceSpMeta.SUPPLIER));
+				this.setModel( (String)r.getValue(DeviceSpMeta.MODEL));
 				this.setId( (String)r.getValue(DeviceSpMeta.ID));
 				this.setSn( (String)r.getValue(DeviceSpMeta.SN));
 				this.setLocked( (String)r.getValue(DeviceSpMeta.LOCKED));
 				this.setLocId( (String)r.getValue(DeviceSpMeta.LOC_ID));
 				this.setUpdateTime( (Date)r.getValue(DeviceSpMeta.UPDATE_TIME));
+				this.setGoodId( (String)r.getValue(DeviceSpMeta.GOOD_ID));
 				this.setVersion( (Integer)r.getValue(DeviceSpMeta.VERSION));
 				this.setInsertTime( (Date)r.getValue(DeviceSpMeta.INSERT_TIME));
 				this.setCreateBy( (String)r.getValue(DeviceSpMeta.CREATE_BY));

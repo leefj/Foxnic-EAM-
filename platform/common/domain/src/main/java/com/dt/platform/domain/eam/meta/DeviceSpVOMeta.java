@@ -5,6 +5,7 @@ import com.dt.platform.domain.eam.DeviceSpVO;
 import java.util.List;
 import com.dt.platform.domain.eam.DeviceSp;
 import java.util.Date;
+import com.dt.platform.domain.eam.Goods;
 import com.dt.platform.domain.eam.DeviceSpType;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.Position;
@@ -17,7 +18,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 15:25:52
+ * @since 2023-07-24 06:47:50
  * @sign 0E46684EB74B7A7BF47F509EDF3C83AE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -165,6 +166,16 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,CODE, java.lang.String.class, "备件编号", "备件编号", java.lang.String.class, null);
 	
 	/**
+	 * 物品 , 类型: java.lang.String
+	*/
+	public static final String GOOD_ID="goodId";
+	
+	/**
+	 * 物品 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.lang.String> GOOD_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,GOOD_ID, java.lang.String.class, "物品", "物品", java.lang.String.class, null);
+	
+	/**
 	 * 备件分类 , 类型: java.lang.String
 	*/
 	public static final String TYPE="type";
@@ -193,6 +204,16 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 	 * 备件名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,NAME, java.lang.String.class, "备件名称", "备件名称", java.lang.String.class, null);
+	
+	/**
+	 * 规格型号 , 类型: java.lang.String
+	*/
+	public static final String MODEL="model";
+	
+	/**
+	 * 规格型号 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.lang.String> MODEL_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,MODEL, java.lang.String.class, "规格型号", "规格型号", java.lang.String.class, null);
 	
 	/**
 	 * 备件序列 , 类型: java.lang.String
@@ -395,6 +416,16 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * goods , 类型: com.dt.platform.domain.eam.Goods
+	*/
+	public static final String GOODS="goods";
+	
+	/**
+	 * goods , 类型: com.dt.platform.domain.eam.Goods
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,com.dt.platform.domain.eam.Goods> GOODS_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,GOODS, com.dt.platform.domain.eam.Goods.class, "goods", "goods", com.dt.platform.domain.eam.Goods.class, null);
+	
+	/**
 	 * deviceSpType , 类型: com.dt.platform.domain.eam.DeviceSpType
 	*/
 	public static final String DEVICE_SP_TYPE="deviceSpType";
@@ -485,9 +516,19 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.lang.String> OWNER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,OWNER_ID, java.lang.String.class, "ownerId", "ownerId", java.lang.String.class, null);
 	
 	/**
+	 * psCategoryId , 类型: java.lang.String
+	*/
+	public static final String PS_CATEGORY_ID="psCategoryId";
+	
+	/**
+	 * psCategoryId , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.lang.String> PS_CATEGORY_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,PS_CATEGORY_ID, java.lang.String.class, "psCategoryId", "psCategoryId", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , TYPE , STATUS , NAME , SN , USAGE_RANGE , LOC_ID , ADAPTING_DEVICE , SOURCE_DESC , SUPPLIER , MANAGER_USER_ID , INSERT_TIME , PICTURE_ID , NOTES , LOCKED , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , DEVICE_SP_TYPE , MANAGER , POSITION , USAGE , ASSET_LIST , DEVICE_ASSOCIATE , OWNER_TYPE , SELECTED_CODE , OWNER_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , GOOD_ID , TYPE , STATUS , NAME , MODEL , SN , USAGE_RANGE , LOC_ID , ADAPTING_DEVICE , SOURCE_DESC , SUPPLIER , MANAGER_USER_ID , INSERT_TIME , PICTURE_ID , NOTES , LOCKED , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GOODS , DEVICE_SP_TYPE , MANAGER , POSITION , USAGE , ASSET_LIST , DEVICE_ASSOCIATE , OWNER_TYPE , SELECTED_CODE , OWNER_ID , PS_CATEGORY_ID };
 	
 	/**
 	 * 代理类
@@ -652,6 +693,17 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 		}
 		
 		/**
+		 * 设置 物品
+		 * @param goodId 物品
+		 * @return 当前对象
+		*/
+		public DeviceSp setGoodId(String goodId) {
+			super.change(GOOD_ID,super.getGoodId(),goodId);
+			super.setGoodId(goodId);
+			return this;
+		}
+		
+		/**
 		 * 设置 备件分类
 		 * @param type 备件分类
 		 * @return 当前对象
@@ -681,6 +733,17 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 		public DeviceSp setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 规格型号
+		 * @param model 规格型号
+		 * @return 当前对象
+		*/
+		public DeviceSp setModel(String model) {
+			super.change(MODEL,super.getModel(),model);
+			super.setModel(model);
 			return this;
 		}
 		
@@ -905,6 +968,17 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 		}
 		
 		/**
+		 * 设置 goods
+		 * @param goods goods
+		 * @return 当前对象
+		*/
+		public DeviceSp setGoods(Goods goods) {
+			super.change(GOODS,super.getGoods(),goods);
+			super.setGoods(goods);
+			return this;
+		}
+		
+		/**
 		 * 设置 deviceSpType
 		 * @param deviceSpType deviceSpType
 		 * @return 当前对象
@@ -1002,6 +1076,17 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 			super.setOwnerId(ownerId);
 			return this;
 		}
+		
+		/**
+		 * 设置 psCategoryId
+		 * @param psCategoryId psCategoryId
+		 * @return 当前对象
+		*/
+		public DeviceSp setPsCategoryId(String psCategoryId) {
+			super.change(PS_CATEGORY_ID,super.getPsCategoryId(),psCategoryId);
+			super.setPsCategoryId(psCategoryId);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1026,11 +1111,13 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setAdaptingDevice(this.getAdaptingDevice());
 			inst.setSupplier(this.getSupplier());
+			inst.setModel(this.getModel());
 			inst.setId(this.getId());
 			inst.setSn(this.getSn());
 			inst.setLocked(this.getLocked());
 			inst.setLocId(this.getLocId());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setGoodId(this.getGoodId());
 			inst.setVersion(this.getVersion());
 			inst.setInsertTime(this.getInsertTime());
 			inst.setCreateBy(this.getCreateBy());
@@ -1052,10 +1139,12 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setUsage(this.getUsage());
 				inst.setPageSize(this.getPageSize());
+				inst.setGoods(this.getGoods());
 				inst.setAssetList(this.getAssetList());
 				inst.setDeviceAssociate(this.getDeviceAssociate());
 				inst.setOwnerId(this.getOwnerId());
 				inst.setSelectedCode(this.getSelectedCode());
+				inst.setPsCategoryId(this.getPsCategoryId());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());

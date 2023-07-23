@@ -1,7 +1,7 @@
 /**
  * 保养方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 13:19:08
+ * @since 2023-07-23 09:00:12
  */
 
 
@@ -85,7 +85,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划编号') , templet: function (d) { return templet('code',d.code,d);}  }
+					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划单据') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'assetCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保养设备') , templet: function (d) { return templet('assetCode',d.assetCode,d);}  }

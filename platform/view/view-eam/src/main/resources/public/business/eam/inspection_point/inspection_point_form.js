@@ -1,7 +1,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:48:31
+ * @since 2023-07-23 09:10:16
  */
 
 function FormPage() {
@@ -120,7 +120,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "status",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("状态",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("启用状态",'','cmp:form'),
 			filterable: false,
 			layVerify: 'required',
 			layVerType: 'msg',
@@ -189,7 +189,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "posId",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("位置",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("点位位置",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -344,11 +344,11 @@ function FormPage() {
 
 
 
-			//设置  状态 设置下拉框勾选
+			//设置  启用状态 设置下拉框勾选
 			fox.setSelectValue4Enum("#status",formData.status,SELECT_STATUS_DATA);
 			//设置  巡检路线 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#routeId",formData.route);
-			//设置  位置 设置下拉框勾选
+			//设置  点位位置 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#posId",formData.inspectionPointPos);
 			//设置  关联设备 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#assetId",formData.asset);
@@ -414,11 +414,11 @@ function FormPage() {
 
 
 
-		//获取 状态 下拉框的值
+		//获取 启用状态 下拉框的值
 		data["status"]=fox.getSelectedValue("status",false);
 		//获取 巡检路线 下拉框的值
 		data["routeId"]=fox.getSelectedValue("routeId",false);
-		//获取 位置 下拉框的值
+		//获取 点位位置 下拉框的值
 		data["posId"]=fox.getSelectedValue("posId",false);
 		//获取 关联设备 下拉框的值
 		data["assetId"]=fox.getSelectedValue("assetId",false);

@@ -1,7 +1,7 @@
 /**
  * 备件清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-17 15:25:54
+ * @since 2023-07-24 06:47:52
  */
 
 
@@ -86,9 +86,10 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件编号') , templet: function (d) { return templet('code',d.code,d);}  }
-					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件分类'), templet: function (d) { return templet('type' ,fox.joinLabel(d.deviceSpType,"hierarchyName",',','','type'),d);}}
+					,{ field: 'goodId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品'), templet: function (d) { return templet('goodId' ,fox.joinLabel(d.goods,"name",',','','goodId'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'model', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('规格型号') , templet: function (d) { return templet('model',d.model,d);}  }
 					,{ field: 'sn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件序列') , templet: function (d) { return templet('sn',d.sn,d);}  }
 					,{ field: 'usageRange', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用场景'), templet: function (d) { return templet('usageRange' ,fox.joinLabel(d.usage,"label",',','','usageRange'),d);}}
 					,{ field: 'locId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('存放位置'), templet: function (d) { return templet('locId' ,fox.joinLabel(d.position,"hierarchyName",',','','locId'),d);}}
@@ -169,7 +170,7 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.type={ inputType:"select_box", value: getSelectedValue("#type","value") ,fillBy:["deviceSpType"]  , label:getSelectedValue("#type","nameStr") };
+		value.goodId={ inputType:"select_box", value: getSelectedValue("#goodId","value") ,fillBy:["goods"]  , label:getSelectedValue("#goodId","nameStr") };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.usageRange={ inputType:"select_box", value: getSelectedValue("#usageRange","value") ,fillBy:["usage"]  , label:getSelectedValue("#usageRange","nameStr") };
@@ -224,21 +225,21 @@ function ListPage() {
 
 		fox.switchSearchRow(2);
 
-		//渲染 type 下拉字段
+		//渲染 goodId 下拉字段
 		fox.renderSelectBox({
-			el: "type",
+			el: "goodId",
 			radio: true,
 			size: "small",
 			filterable: true,
 			on: function(data){
 				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("goodId",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			paging: true,
 			pageRemote: true,
 			//转换数据
-			searchField: "hierarchyName", //请自行调整用于搜索的字段名称
+			searchField: "name", //请自行调整用于搜索的字段名称
 			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
@@ -247,9 +248,9 @@ function ListPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
 					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("type",{data:data[i],name:data[i].hierarchyName,value:data[i].id},data[i],data,i));
+						opts.push(window.pageExt.list.selectBoxDataTransform("goodId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
 					} else {
-						opts.push({data:data[i],name:data[i].hierarchyName,value:data[i].id});
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
 					}
 				}
 				return opts;

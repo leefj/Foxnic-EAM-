@@ -3,18 +3,17 @@ package com.dt.platform.generator.module.eam;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.DeviceSpStatusEnum;
 import com.dt.platform.domain.eam.*;
-import com.dt.platform.domain.eam.meta.AssetMeta;
-import com.dt.platform.domain.eam.meta.DeviceSpMeta;
-import com.dt.platform.domain.eam.meta.DeviceSpTypeMeta;
-import com.dt.platform.domain.eam.meta.PositionMeta;
+import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.page.DeviceSpPageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.DeviceSpServiceProxy;
 import com.dt.platform.proxy.eam.DeviceSpTypeServiceProxy;
+import com.dt.platform.proxy.eam.GoodsStockServiceProxy;
 import com.dt.platform.proxy.eam.PositionServiceProxy;
 import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.system.meta.DictItemMeta;
 import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
@@ -31,6 +30,8 @@ public class SpGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_DEVICE_SP.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.ID).table().hidden(true);
 
+
+        cfg.getPoClassFile().addSimpleProperty(Goods.class,"goods","goods","goods");
         cfg.getPoClassFile().addSimpleProperty(DeviceSpType.class,"deviceSpType","deviceSpType","deviceSpType");
 
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"manager","manager","manager");
@@ -41,10 +42,14 @@ public class SpGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(DeviceAssociate.class,"deviceAssociate","deviceAssociate","deviceAssociate");
 
 
+
         cfg.getPoClassFile().addSimpleProperty(String.class,"ownerType","ownerType","ownerType");
         cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
         cfg.getPoClassFile().addSimpleProperty(String.class,"ownerId","ownerId","ownerId");
 
+
+        cfg.getPoClassFile().addSimpleProperty(String.class,"psCategoryId","psCategoryId","psCategoryId");
+      //  cfg.getPoClassFile().addSimpleProperty(String.class,"listCategoryName","listCategoryName","listCategoryName");
 
         cfg.view().field(EAMTables.EAM_DEVICE_SP.SUPPLIER).search().fuzzySearch();
 
@@ -57,21 +62,20 @@ public class SpGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_DEVICE_SP.INSERT_TIME).form().dateInput().format("yyyy-MM-dd");
         cfg.view().field(EAMTables.EAM_DEVICE_SP.NAME).form().validate().required();
-
         cfg.view().field(EAMTables.EAM_DEVICE_SP.ADAPTING_DEVICE).search().fuzzySearch();
 
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_DEVICE_SP.STATUS,
                         EAMTables.EAM_DEVICE_SP.MANAGER_USER_ID,
-                        EAMTables.EAM_DEVICE_SP.TYPE,
                         EAMTables.EAM_DEVICE_SP.USAGE_RANGE,
+                        EAMTables.EAM_DEVICE_SP.SUPPLIER,
 
                 },
                 new Object[]{
                         EAMTables.EAM_DEVICE_SP.CODE,
+                        EAMTables.EAM_DEVICE_SP.GOOD_ID,
                         EAMTables.EAM_DEVICE_SP.NAME,
-                        EAMTables.EAM_DEVICE_SP.SUPPLIER,
                         EAMTables.EAM_DEVICE_SP.SOURCE_DESC,
                 },
                 new Object[]{
@@ -82,7 +86,7 @@ public class SpGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_DEVICE_SP.PICTURE_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.LOCKED).table().disable(true);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.CREATE_TIME).table().disable(true);
-
+        cfg.view().field(EAMTables.EAM_DEVICE_SP.TYPE).table().disable(true);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.NOTES).form().textArea().height(150);
 
         cfg.view().field(EAMTables.EAM_DEVICE_SP.PICTURE_ID).form().upload().acceptImageType().maxFileCount(1);
@@ -93,9 +97,14 @@ public class SpGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_DEVICE_SP.STATUS).form().radioBox().enumType(DeviceSpStatusEnum.class).defaultIndex(0);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.TYPE)
-                .form().validate().required()
+
                 .form().selectBox().queryApi(DeviceSpTypeServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(DeviceSpTypeMeta.ID).textField( DeviceSpTypeMeta.HIERARCHY_NAME).fillWith(DeviceSpMeta.DEVICE_SP_TYPE).muliti(false);
+
+        cfg.view().field(EAMTables.EAM_DEVICE_SP.GOOD_ID)
+                .form().validate().required().form().selectBox().queryApi(GoodsStockServiceProxy.QUERY_PAGED_LIST+"?ownerCode=goods").paging(true).filter(true).toolbar(false)
+                .valueField(GoodsStockMeta.ID).textField(GoodsStockMeta.NAME).fillWith(DeviceSpMeta.GOODS).muliti(false);
+
 
 
         cfg.view().field(EAMTables.EAM_DEVICE_SP.LOC_ID)
@@ -113,22 +122,30 @@ public class SpGtr extends BaseCodeGenerator {
 
 
         cfg.view().list().disableBatchDelete();
+
+        cfg.view().search().inputWidth(Config.searchInputWidth);
+        cfg.view().search().labelWidth(1,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(2,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(3,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(4,Config.searchLabelWidth);
+
         cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(100);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_DEVICE_SP.CODE,
                         EAMTables.EAM_DEVICE_SP.NAME,
-                        EAMTables.EAM_DEVICE_SP.TYPE,
+                        EAMTables.EAM_DEVICE_SP.GOOD_ID,
+                        EAMTables.EAM_DEVICE_SP.MODEL,
                         EAMTables.EAM_DEVICE_SP.SN,
-                        EAMTables.EAM_DEVICE_SP.SUPPLIER,
-
 
                 },
                 new Object[] {
-                        EAMTables.EAM_DEVICE_SP.USAGE_RANGE,
+                      //  EAMTables.EAM_DEVICE_SP.,
                         EAMTables.EAM_DEVICE_SP.MANAGER_USER_ID,
                         EAMTables.EAM_DEVICE_SP.LOC_ID,
+                        EAMTables.EAM_DEVICE_SP.SUPPLIER,
+                        EAMTables.EAM_DEVICE_SP.USAGE_RANGE,
                         EAMTables.EAM_DEVICE_SP.INSERT_TIME
                 }
         );

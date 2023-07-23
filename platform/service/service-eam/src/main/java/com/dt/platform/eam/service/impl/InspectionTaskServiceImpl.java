@@ -2,16 +2,15 @@ package com.dt.platform.eam.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
-import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
-import com.dt.platform.constants.enums.eam.MaintainTaskStatusEnum;
+import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.constants.enums.oa.MeetingRoomBookStatusEnum;
 import com.dt.platform.domain.eam.InspectionTask;
+import com.dt.platform.domain.eam.InspectionTaskAbnormal;
 import com.dt.platform.domain.eam.InspectionTaskPoint;
 import com.dt.platform.domain.eam.meta.InspectionTaskMeta;
 import com.dt.platform.domain.oa.MeetingRoomBookRcd;
 import com.dt.platform.domain.oa.meta.MeetingRoomBookRcdMeta;
+import com.dt.platform.eam.service.IInspectionTaskAbnormalService;
 import com.dt.platform.eam.service.IInspectionTaskPointService;
 import com.dt.platform.eam.service.IInspectionTaskService;
 import com.dt.platform.eam.service.IMaintainTaskService;
@@ -61,6 +60,9 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 
 	@Autowired
 	private IInspectionTaskPointService inspectionTaskPointService;
+
+	@Autowired
+	private IInspectionTaskAbnormalService inspectionTaskAbnormalService;
 
 	/**
 	 * 注入DAO对象
@@ -312,13 +314,16 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 		Date minDate=null;
 		Date maxDate=null;;
 
+		boolean insertAbnormal=false;
 		for(int i=0;i<list.size();i++){
 			InspectionTaskPoint inspectionTaskPoint=list.get(i);
 
 			if(InspectionTaskPointStatusEnum.WAIT.code().equals(inspectionTaskPoint.getPointStatus())){
 				return ErrorDesc.failureMessage("巡检点:"+inspectionTaskPoint.getPointName()+"未做巡检");
 			}
-
+			if(InspectionTaskPointStatusEnum.ABNORMAL.code().equals(inspectionTaskPoint.getPointStatus())){
+				insertAbnormal=true;
+			}
 			if(inspectionTaskPoint.getOperTime()==null){
 				return ErrorDesc.failureMessage("巡检点:"+inspectionTaskPoint.getPointName()+"未做巡检");
 			}else{
@@ -347,7 +352,17 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 		double diffTime = a.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 		inspectionTask.setActTotalCost(new BigDecimal(diffTime));
 
-		super.update(inspectionTask,SaveMode.NOT_NULL_FIELDS,false);
+		Result rr=super.update(inspectionTask,SaveMode.NOT_NULL_FIELDS,false);
+		if(rr.isSuccess()){
+			if(insertAbnormal){
+				InspectionTaskAbnormal inspectionTaskAbnormal=new InspectionTaskAbnormal();
+
+				inspectionTaskAbnormal.setTaskId(inspectionTask.getId());
+				inspectionTaskAbnormal.setTaskAbnormalInfo("存在巡检点异常,请确认");
+				inspectionTaskAbnormal.setStatus(InspectionTaskAbnormalStatusEnum.NOT_PROCESS.code());
+				inspectionTaskAbnormalService.insert(inspectionTaskAbnormal,true);
+			}
+		}
 		return ErrorDesc.success();
 	}
 

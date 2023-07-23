@@ -29,6 +29,7 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.sql.expr.OrderBy;
 import com.github.foxnic.sql.meta.DBField;
 import com.mysql.jdbc.log.Log;
 import org.github.foxnic.web.framework.dao.DBConfigs;
@@ -92,6 +93,17 @@ public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskP
 	public Result insert(InspectionTaskPoint inspectionTaskPoint,boolean throwsException) {
 		Result r=super.insert(inspectionTaskPoint,throwsException);
 		return r;
+	}
+
+	@Override
+	public PagedList<InspectionTaskPoint> queryNonePointPagedList(InspectionTaskPoint sample, int pageSize, int pageIndex) {
+
+		ConditionExpr expr=new ConditionExpr();
+		OrderBy orderBy=new OrderBy();
+		orderBy.desc("create_time");
+		sample.setPointStatus("none");
+		sample.setSelectedCode("def");
+		return super.queryPagedList(sample,orderBy,pageSize,pageIndex);
 	}
 
 	@Override
