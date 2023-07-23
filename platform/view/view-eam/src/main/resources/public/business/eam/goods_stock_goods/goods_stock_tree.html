@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
-    <title th:text="${lang.translate('备件查询')}">备件查询</title>
+    <title th:text="${lang.translate('物品档案')}">物品档案</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -54,12 +54,20 @@
     </div>
     <div class="right-tab" style="margin-left: 8px;margin-right: 8px">
         <div class="layui-tab-item layui-show" type="emp">
-            <iframe id="asset-list-ifr" src="/business/eam/device_sp/device_sp_book_list.html" frameborder=0 width="100%"  ></iframe>
+            <iframe id="asset-list-ifr" src="/business/eam/goods_stock_goods/goods_stock_t_list.html?categoryCode=asset_stock_goods" frameborder=0 width="100%"  ></iframe>
         </div>
     </div>
 </div>
 
 <script th:inline="javascript">
+
+    // OWNER_CODE
+    var OWNER_CODE = [[${ownerCode}]] ;
+    // OWNER_TYPE
+    var OWNER_TYPE = [[${ownerType}]] ;
+
+    var CATEGORY_CODE = [[${categoryCode}]] ;
+
 
     var CATEGORY_PARENT_ID =  [[${categoryParentId}]];
 

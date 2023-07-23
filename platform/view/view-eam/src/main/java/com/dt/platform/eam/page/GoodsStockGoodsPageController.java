@@ -1,6 +1,10 @@
 package com.dt.platform.eam.page;
 
+import com.dt.platform.constants.enums.eam.AssetAttributeItemOwnerEnum;
 import com.dt.platform.constants.enums.eam.AssetPcmCodeEnum;
+import com.dt.platform.domain.eam.AssetAttributeItem;
+import com.dt.platform.proxy.eam.AssetAttributeItemServiceProxy;
+import com.dt.platform.proxy.eam.AssetCategoryServiceProxy;
 import com.dt.platform.proxy.eam.GoodsStockServiceProxy;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.lang.StringUtil;
@@ -15,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -45,7 +50,42 @@ public class GoodsStockGoodsPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+
+
+	/**
+	 * 库存物品 功能主页面
+	 */
+	@RequestMapping("/goods_stock_tree.html")
+	public String tree(Model model,HttpServletRequest request,String ownerCode,String ownerType,String categoryCode) {
+		model.addAttribute("categoryCode",categoryCode);
+		model.addAttribute("ownerCode",ownerCode);
+		model.addAttribute("ownerType",ownerType);
+
+		Result<HashMap<String, List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(AssetAttributeItemOwnerEnum.ASSET_STOCK_GOODS.code(),null);
+		if(result.isSuccess()){
+			HashMap<String,List<AssetAttributeItem>> data = result.getData();
+			List<AssetAttributeItem> list=data.get("attributeListData");
+			model.addAttribute("attributeListData",list);
+		}
+		Result idResult= AssetCategoryServiceProxy.api().queryNodesByCode(AssetPcmCodeEnum.ASSET_STOCK_GOODS.code());
+		model.addAttribute("categoryParentId",idResult.getData());
+		return prefix+"/goods_stock_tree";
+	}
+
+	/**
+	 * 库存物品 功能主页面
+	 */
+	@RequestMapping("/goods_stock_t_list.html")
+	public String listTree(Model model,HttpServletRequest request,String ownerCode,String ownerType,String categoryCode) {
+
+		model.addAttribute("categoryCode",categoryCode);
+		model.addAttribute("ownerCode",ownerCode);
+		model.addAttribute("ownerType",ownerType);
+		return prefix+"/goods_stock_t_list";
+	}
+
+
 	/**
 	 * 库存物品 功能主页面
 	 */
