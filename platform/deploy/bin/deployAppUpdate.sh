@@ -51,7 +51,7 @@ echo ""
 #bpm.jar will overwrite
 echo "######## start to update bpm.jar ##############"
 if [[ -f "$prod_app_dir/bpm/bpm.jar" ]];then
-  cd $app_dir/app/bpm
+  cd $app_dir/bpm
   echo "cp bpm.jar $prod_app_dir/bpm/"
   cp bpm.jar $prod_app_dir/bpm/
   ls -rtl $prod_app_dir/bpm/
