@@ -164,6 +164,7 @@ foxnic:
     # 节点间用于通信的 key，各节点要保持一致
     key: FOXNIC-EAM-202200701-3386
     service:
+
       service-camunda:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
