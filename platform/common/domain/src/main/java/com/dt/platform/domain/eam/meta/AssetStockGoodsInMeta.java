@@ -10,13 +10,14 @@ import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Organization;
 import com.dt.platform.domain.eam.Warehouse;
 import org.github.foxnic.web.domain.hrm.Employee;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-29 20:21:40
- * @sign 3DDDC8BFB4C58030F676FF7A5D955C21
+ * @since 2023-07-28 15:04:03
+ * @sign 061D0D02BD941206BDE42612D2D28924
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -1063,5 +1064,76 @@ public class AssetStockGoodsInMeta {
 			super.setManager(manager);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetStockGoodsIn clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetStockGoodsIn duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setOwnerType(this.getOwnerType());
+			inst.setSourceId(this.getSourceId());
+			inst.setPurchaseDate(this.getPurchaseDate());
+			inst.setChsVersion(this.getChsVersion());
+			inst.setNotes(this.getNotes());
+			inst.setProcId(this.getProcId());
+			inst.setLatestApproverName(this.getLatestApproverName());
+			inst.setChangeInstanceId(this.getChangeInstanceId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setNextApproverIds(this.getNextApproverIds());
+			inst.setApprovalOpinion(this.getApprovalOpinion());
+			inst.setChsStatus(this.getChsStatus());
+			inst.setBusinessDate(this.getBusinessDate());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setAttachId(this.getAttachId());
+			inst.setSupplierName(this.getSupplierName());
+			inst.setSummary(this.getSummary());
+			inst.setNextApproverNames(this.getNextApproverNames());
+			inst.setAmount(this.getAmount());
+			inst.setLatestApproverId(this.getLatestApproverId());
+			inst.setStockType(this.getStockType());
+			inst.setBatchCode(this.getBatchCode());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setManagerId(this.getManagerId());
+			inst.setVersion(this.getVersion());
+			inst.setReceiverUserName(this.getReceiverUserName());
+			inst.setOwnCompanyId(this.getOwnCompanyId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setWarehouseId(this.getWarehouseId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setChsType(this.getChsType());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setOwnerCompany(this.getOwnerCompany());
+				inst.setUseOrganization(this.getUseOrganization());
+				inst.setManager(this.getManager());
+				inst.setGoodsList(this.getGoodsList());
+				inst.setSource(this.getSource());
+				inst.setOriginator(this.getOriginator());
+				inst.setWarehouse(this.getWarehouse());
+				inst.setStockTypeDict(this.getStockTypeDict());
+				inst.setGoodsIds(this.getGoodsIds());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

@@ -7,11 +7,13 @@
 
 function ListPage() {
 
+
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	//模块基础路径
 	const moduleURL="/service-eam/eam-goods-stock";
 	var dataTable=null;
 	var sort=null;
+	var searchContent_categoryId;
 	/**
 	 * 入口函数，初始化
 	 */
@@ -55,6 +57,15 @@ function ListPage() {
 			}
 			ps.searchValue=JSON.stringify(contitions);
 			ps.ownerCode=OWNER_CODE;
+
+			if(searchContent_categoryId){
+				if(value.categoryId){
+					delete value.categoryId ;
+				}
+				ps.categoryId=searchContent_categoryId;
+			}
+
+
 			var templet=window.pageExt.list.templet;
 			if(templet==null) {
 				templet=function(field,value,row) {
@@ -152,6 +163,15 @@ function ListPage() {
 		}
 		ps.ownerCode=OWNER_CODE;
 		ps.searchValue=JSON.stringify(value);
+
+		if(searchContent_categoryId){
+			if(value.categoryId){
+				delete value.categoryId ;
+			}
+			ps.categoryId=searchContent_categoryId;
+		}
+
+
 		if(sortField) {
 			ps.sortField=sortField;
 			ps.sortType=sortType;
@@ -452,7 +472,14 @@ function ListPage() {
 		});
 	};
 
+
+	function searchCategory(categoryId){
+		searchContent_categoryId=categoryId;
+		refreshTableData()
+	}
+
 	window.module={
+		searchCategory:searchCategory,
 		refreshTableData: refreshTableData,
 		refreshRowData: refreshRowData,
 		getCheckedList: getCheckedList

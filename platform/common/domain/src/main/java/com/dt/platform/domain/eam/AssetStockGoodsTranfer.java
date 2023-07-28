@@ -1,30 +1,39 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
+import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
-import javax.persistence.Transient;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetStockGoodsTranferMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 库存调拨
+ * <p>库存调拨 , 数据表 eam_asset_stock_goods_tranfer 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-24 15:20:51
- * @sign 1CC15CFEF390E01857781A67D584179F
+ * @since 2023-07-28 15:05:03
+ * @sign 225FC70A9901D6AB32A4183DD4EB22F1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_stock_goods_tranfer")
+@ApiModel(description = "库存调拨 ; 库存调拨 , 数据表 eam_asset_stock_goods_tranfer 的PO类型")
 public class AssetStockGoodsTranfer extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -35,13 +44,13 @@ public class AssetStockGoodsTranfer extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "732359992123850752")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "PTR202317142217828")
 	private String businessCode;
 	
 	/**
@@ -53,31 +62,31 @@ public class AssetStockGoodsTranfer extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
 	private String status;
 	
 	/**
 	 * 库存所属：库存所属
 	*/
-	@ApiModelProperty(required = false,value="库存所属" , notes = "库存所属")
+	@ApiModelProperty(required = false,value="库存所属" , notes = "库存所属" , example = "part")
 	private String ownerType;
 	
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "11111")
 	private String name;
 	
 	/**
 	 * 调出仓库：调出仓库
 	*/
-	@ApiModelProperty(required = false,value="调出仓库" , notes = "调出仓库")
+	@ApiModelProperty(required = false,value="调出仓库" , notes = "调出仓库" , example = "582427523481075712")
 	private String warehouseOutId;
 	
 	/**
 	 * 调入仓库：调入仓库
 	*/
-	@ApiModelProperty(required = false,value="调入仓库" , notes = "调入仓库")
+	@ApiModelProperty(required = false,value="调入仓库" , notes = "调入仓库" , example = "582427523481075712")
 	private String warehouseInId;
 	
 	/**
@@ -89,13 +98,13 @@ public class AssetStockGoodsTranfer extends Entity {
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-07-14 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -107,32 +116,35 @@ public class AssetStockGoodsTranfer extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-14 10:17:09")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-14 10:17:13")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -149,19 +161,19 @@ public class AssetStockGoodsTranfer extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1689344206000")
 	private String selectedCode;
 	
 	/**
@@ -568,12 +580,43 @@ public class AssetStockGoodsTranfer extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetStockGoodsTranfer setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetStockGoodsTranfer setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -886,9 +929,9 @@ public class AssetStockGoodsTranfer extends Entity {
 	 * @param goods 物品
 	 * @return 当前对象
 	*/
-	public AssetStockGoodsTranfer addGoods(GoodsStock goods) {
+	public AssetStockGoodsTranfer addGoods(GoodsStock... goods) {
 		if(this.goodsList==null) goodsList=new ArrayList<>();
-		this.goodsList.add(goods);
+		this.goodsList.addAll(Arrays.asList(goods));
 		return this;
 	}
 	
@@ -916,9 +959,9 @@ public class AssetStockGoodsTranfer extends Entity {
 	 * @param goodsId 物品
 	 * @return 当前对象
 	*/
-	public AssetStockGoodsTranfer addGoodsId(String goodsId) {
+	public AssetStockGoodsTranfer addGoodsId(String... goodsId) {
 		if(this.goodsIds==null) goodsIds=new ArrayList<>();
-		this.goodsIds.add(goodsId);
+		this.goodsIds.addAll(Arrays.asList(goodsId));
 		return this;
 	}
 	
@@ -1009,6 +1052,72 @@ public class AssetStockGoodsTranfer extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetStockGoodsTranfer clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetStockGoodsTranfer duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetStockGoodsTranferMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetStockGoodsTranferMeta.$$proxy$$();
+		inst.setOwnerType(this.getOwnerType());
+		inst.setChsVersion(this.getChsVersion());
+		inst.setProcId(this.getProcId());
+		inst.setLatestApproverName(this.getLatestApproverName());
+		inst.setChangeInstanceId(this.getChangeInstanceId());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setNextApproverIds(this.getNextApproverIds());
+		inst.setApprovalOpinion(this.getApprovalOpinion());
+		inst.setWarehouseOutId(this.getWarehouseOutId());
+		inst.setChsStatus(this.getChsStatus());
+		inst.setBusinessDate(this.getBusinessDate());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setAttachId(this.getAttachId());
+		inst.setSummary(this.getSummary());
+		inst.setNextApproverNames(this.getNextApproverNames());
+		inst.setWarehouseInId(this.getWarehouseInId());
+		inst.setLatestApproverId(this.getLatestApproverId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setChsType(this.getChsType());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setWarehouseOut(this.getWarehouseOut());
+			inst.setWarehouseIn(this.getWarehouseIn());
+			inst.setGoodsList(this.getGoodsList());
+			inst.setOriginator(this.getOriginator());
+			inst.setGoodsIds(this.getGoodsIds());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetStockGoodsTranfer clone(boolean deep) {
+		return EntityContext.clone(AssetStockGoodsTranfer.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetStockGoodsTranfer
 	 * @param assetStockGoodsTranferMap 包含实体信息的 Map 对象
 	 * @return AssetStockGoodsTranfer , 转换好的的 AssetStockGoodsTranfer 对象
@@ -1016,7 +1125,9 @@ public class AssetStockGoodsTranfer extends Entity {
 	@Transient
 	public static AssetStockGoodsTranfer createFrom(Map<String,Object> assetStockGoodsTranferMap) {
 		if(assetStockGoodsTranferMap==null) return null;
-		AssetStockGoodsTranfer po = EntityContext.create(AssetStockGoodsTranfer.class, assetStockGoodsTranferMap);
+		AssetStockGoodsTranfer po = create();
+		EntityContext.copyProperties(po,assetStockGoodsTranferMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1028,7 +1139,9 @@ public class AssetStockGoodsTranfer extends Entity {
 	@Transient
 	public static AssetStockGoodsTranfer createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetStockGoodsTranfer po = EntityContext.create(AssetStockGoodsTranfer.class,pojo);
+		AssetStockGoodsTranfer po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1038,6 +1151,180 @@ public class AssetStockGoodsTranfer extends Entity {
 	*/
 	@Transient
 	public static AssetStockGoodsTranfer create() {
-		return EntityContext.create(AssetStockGoodsTranfer.class);
+		return new com.dt.platform.domain.eam.meta.AssetStockGoodsTranferMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setOwnerType(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.OWNER_TYPE)));
+			this.setChsVersion(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.CHS_VERSION)));
+			this.setProcId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.PROC_ID)));
+			this.setLatestApproverName(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.LATEST_APPROVER_NAME)));
+			this.setChangeInstanceId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.CHANGE_INSTANCE_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.CONTENT)));
+			this.setNextApproverIds(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.NEXT_APPROVER_IDS)));
+			this.setApprovalOpinion(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.APPROVAL_OPINION)));
+			this.setWarehouseOutId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.WAREHOUSE_OUT_ID)));
+			this.setChsStatus(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.CHS_STATUS)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(AssetStockGoodsTranferMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.BUSINESS_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.UPDATE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.ORIGINATOR_ID)));
+			this.setAttachId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.ATTACH_ID)));
+			this.setSummary(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.SUMMARY)));
+			this.setNextApproverNames(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.NEXT_APPROVER_NAMES)));
+			this.setWarehouseInId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.WAREHOUSE_IN_ID)));
+			this.setLatestApproverId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.LATEST_APPROVER_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetStockGoodsTranferMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetStockGoodsTranferMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetStockGoodsTranferMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetStockGoodsTranferMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetStockGoodsTranferMeta.DELETE_TIME)));
+			this.setChsType(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.CHS_TYPE)));
+			this.setName(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.DELETE_BY)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.STATUS)));
+			// others
+			this.setWarehouseOut(DataParser.parse(Warehouse.class, map.get(AssetStockGoodsTranferMeta.WAREHOUSE_OUT)));
+			this.setWarehouseIn(DataParser.parse(Warehouse.class, map.get(AssetStockGoodsTranferMeta.WAREHOUSE_IN)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetStockGoodsTranferMeta.ORIGINATOR)));
+			return true;
+		} else {
+			try {
+				this.setOwnerType( (String)map.get(AssetStockGoodsTranferMeta.OWNER_TYPE));
+				this.setChsVersion( (String)map.get(AssetStockGoodsTranferMeta.CHS_VERSION));
+				this.setProcId( (String)map.get(AssetStockGoodsTranferMeta.PROC_ID));
+				this.setLatestApproverName( (String)map.get(AssetStockGoodsTranferMeta.LATEST_APPROVER_NAME));
+				this.setChangeInstanceId( (String)map.get(AssetStockGoodsTranferMeta.CHANGE_INSTANCE_ID));
+				this.setSelectedCode( (String)map.get(AssetStockGoodsTranferMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(AssetStockGoodsTranferMeta.CONTENT));
+				this.setNextApproverIds( (String)map.get(AssetStockGoodsTranferMeta.NEXT_APPROVER_IDS));
+				this.setApprovalOpinion( (String)map.get(AssetStockGoodsTranferMeta.APPROVAL_OPINION));
+				this.setWarehouseOutId( (String)map.get(AssetStockGoodsTranferMeta.WAREHOUSE_OUT_ID));
+				this.setChsStatus( (String)map.get(AssetStockGoodsTranferMeta.CHS_STATUS));
+				this.setBusinessDate( (Date)map.get(AssetStockGoodsTranferMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(AssetStockGoodsTranferMeta.BUSINESS_CODE));
+				this.setUpdateBy( (String)map.get(AssetStockGoodsTranferMeta.UPDATE_BY));
+				this.setId( (String)map.get(AssetStockGoodsTranferMeta.ID));
+				this.setOriginatorId( (String)map.get(AssetStockGoodsTranferMeta.ORIGINATOR_ID));
+				this.setAttachId( (String)map.get(AssetStockGoodsTranferMeta.ATTACH_ID));
+				this.setSummary( (String)map.get(AssetStockGoodsTranferMeta.SUMMARY));
+				this.setNextApproverNames( (String)map.get(AssetStockGoodsTranferMeta.NEXT_APPROVER_NAMES));
+				this.setWarehouseInId( (String)map.get(AssetStockGoodsTranferMeta.WAREHOUSE_IN_ID));
+				this.setLatestApproverId( (String)map.get(AssetStockGoodsTranferMeta.LATEST_APPROVER_ID));
+				this.setUpdateTime( (Date)map.get(AssetStockGoodsTranferMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssetStockGoodsTranferMeta.VERSION));
+				this.setCreateBy( (String)map.get(AssetStockGoodsTranferMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetStockGoodsTranferMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetStockGoodsTranferMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(AssetStockGoodsTranferMeta.DELETE_TIME));
+				this.setChsType( (String)map.get(AssetStockGoodsTranferMeta.CHS_TYPE));
+				this.setName( (String)map.get(AssetStockGoodsTranferMeta.NAME));
+				this.setTenantId( (String)map.get(AssetStockGoodsTranferMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetStockGoodsTranferMeta.DELETE_BY));
+				this.setStatus( (String)map.get(AssetStockGoodsTranferMeta.STATUS));
+				// others
+				this.setWarehouseOut( (Warehouse)map.get(AssetStockGoodsTranferMeta.WAREHOUSE_OUT));
+				this.setWarehouseIn( (Warehouse)map.get(AssetStockGoodsTranferMeta.WAREHOUSE_IN));
+				this.setOriginator( (Employee)map.get(AssetStockGoodsTranferMeta.ORIGINATOR));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setOwnerType(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.OWNER_TYPE)));
+			this.setChsVersion(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.CHS_VERSION)));
+			this.setProcId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.PROC_ID)));
+			this.setLatestApproverName(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.LATEST_APPROVER_NAME)));
+			this.setChangeInstanceId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.CHANGE_INSTANCE_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.CONTENT)));
+			this.setNextApproverIds(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.NEXT_APPROVER_IDS)));
+			this.setApprovalOpinion(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.APPROVAL_OPINION)));
+			this.setWarehouseOutId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.WAREHOUSE_OUT_ID)));
+			this.setChsStatus(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.CHS_STATUS)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(AssetStockGoodsTranferMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.BUSINESS_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.UPDATE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.ORIGINATOR_ID)));
+			this.setAttachId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.ATTACH_ID)));
+			this.setSummary(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.SUMMARY)));
+			this.setNextApproverNames(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.NEXT_APPROVER_NAMES)));
+			this.setWarehouseInId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.WAREHOUSE_IN_ID)));
+			this.setLatestApproverId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.LATEST_APPROVER_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetStockGoodsTranferMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetStockGoodsTranferMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetStockGoodsTranferMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetStockGoodsTranferMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetStockGoodsTranferMeta.DELETE_TIME)));
+			this.setChsType(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.CHS_TYPE)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.DELETE_BY)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setOwnerType( (String)r.getValue(AssetStockGoodsTranferMeta.OWNER_TYPE));
+				this.setChsVersion( (String)r.getValue(AssetStockGoodsTranferMeta.CHS_VERSION));
+				this.setProcId( (String)r.getValue(AssetStockGoodsTranferMeta.PROC_ID));
+				this.setLatestApproverName( (String)r.getValue(AssetStockGoodsTranferMeta.LATEST_APPROVER_NAME));
+				this.setChangeInstanceId( (String)r.getValue(AssetStockGoodsTranferMeta.CHANGE_INSTANCE_ID));
+				this.setSelectedCode( (String)r.getValue(AssetStockGoodsTranferMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(AssetStockGoodsTranferMeta.CONTENT));
+				this.setNextApproverIds( (String)r.getValue(AssetStockGoodsTranferMeta.NEXT_APPROVER_IDS));
+				this.setApprovalOpinion( (String)r.getValue(AssetStockGoodsTranferMeta.APPROVAL_OPINION));
+				this.setWarehouseOutId( (String)r.getValue(AssetStockGoodsTranferMeta.WAREHOUSE_OUT_ID));
+				this.setChsStatus( (String)r.getValue(AssetStockGoodsTranferMeta.CHS_STATUS));
+				this.setBusinessDate( (Date)r.getValue(AssetStockGoodsTranferMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(AssetStockGoodsTranferMeta.BUSINESS_CODE));
+				this.setUpdateBy( (String)r.getValue(AssetStockGoodsTranferMeta.UPDATE_BY));
+				this.setId( (String)r.getValue(AssetStockGoodsTranferMeta.ID));
+				this.setOriginatorId( (String)r.getValue(AssetStockGoodsTranferMeta.ORIGINATOR_ID));
+				this.setAttachId( (String)r.getValue(AssetStockGoodsTranferMeta.ATTACH_ID));
+				this.setSummary( (String)r.getValue(AssetStockGoodsTranferMeta.SUMMARY));
+				this.setNextApproverNames( (String)r.getValue(AssetStockGoodsTranferMeta.NEXT_APPROVER_NAMES));
+				this.setWarehouseInId( (String)r.getValue(AssetStockGoodsTranferMeta.WAREHOUSE_IN_ID));
+				this.setLatestApproverId( (String)r.getValue(AssetStockGoodsTranferMeta.LATEST_APPROVER_ID));
+				this.setUpdateTime( (Date)r.getValue(AssetStockGoodsTranferMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssetStockGoodsTranferMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(AssetStockGoodsTranferMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetStockGoodsTranferMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetStockGoodsTranferMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(AssetStockGoodsTranferMeta.DELETE_TIME));
+				this.setChsType( (String)r.getValue(AssetStockGoodsTranferMeta.CHS_TYPE));
+				this.setName( (String)r.getValue(AssetStockGoodsTranferMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetStockGoodsTranferMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetStockGoodsTranferMeta.DELETE_BY));
+				this.setStatus( (String)r.getValue(AssetStockGoodsTranferMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

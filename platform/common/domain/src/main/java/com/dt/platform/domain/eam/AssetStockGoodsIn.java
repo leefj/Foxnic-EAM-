@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_STOCK_GOODS_IN;
@@ -9,27 +10,33 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 库存物品单
+ * <p>库存物品单 , 数据表 eam_asset_stock_goods_in 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-29 20:21:40
- * @sign 3DDDC8BFB4C58030F676FF7A5D955C21
+ * @since 2023-07-28 15:04:03
+ * @sign 061D0D02BD941206BDE42612D2D28924
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_stock_goods_in")
+@ApiModel(description = "库存物品单 ; 库存物品单 , 数据表 eam_asset_stock_goods_in 的PO类型")
 public class AssetStockGoodsIn extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -40,19 +47,19 @@ public class AssetStockGoodsIn extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "732349571098738688")
 	private String id;
 	
 	/**
 	 * 库存所属：库存所属
 	*/
-	@ApiModelProperty(required = false,value="库存所属" , notes = "库存所属")
+	@ApiModelProperty(required = false,value="库存所属" , notes = "库存所属" , example = "part")
 	private String ownerType;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "PI202335142135708")
 	private String businessCode;
 	
 	/**
@@ -64,31 +71,31 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
 	private String status;
 	
 	/**
 	 * 单据名称：单据名称
 	*/
-	@ApiModelProperty(required = false,value="单据名称" , notes = "单据名称")
+	@ApiModelProperty(required = false,value="单据名称" , notes = "单据名称" , example = "新建北京")
 	private String name;
 	
 	/**
 	 * 批次号：批次号
 	*/
-	@ApiModelProperty(required = false,value="批次号" , notes = "批次号")
+	@ApiModelProperty(required = false,value="批次号" , notes = "批次号" , example = "12121")
 	private String batchCode;
 	
 	/**
 	 * 入库类型：入库类型
 	*/
-	@ApiModelProperty(required = false,value="入库类型" , notes = "入库类型")
+	@ApiModelProperty(required = false,value="入库类型" , notes = "入库类型" , example = "normal")
 	private String stockType;
 	
 	/**
 	 * 仓库：仓库
 	*/
-	@ApiModelProperty(required = false,value="仓库" , notes = "仓库")
+	@ApiModelProperty(required = false,value="仓库" , notes = "仓库" , example = "582427523481075712")
 	private String warehouseId;
 	
 	/**
@@ -100,7 +107,7 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * 接收人：接收人
 	*/
-	@ApiModelProperty(required = false,value="接收人" , notes = "接收人")
+	@ApiModelProperty(required = false,value="接收人" , notes = "接收人" , example = "12")
 	private String receiverUserName;
 	
 	/**
@@ -118,25 +125,25 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * 供应商：供应商
 	*/
-	@ApiModelProperty(required = false,value="供应商" , notes = "供应商")
+	@ApiModelProperty(required = false,value="供应商" , notes = "供应商" , example = "1212")
 	private String supplierName;
 	
 	/**
 	 * 来源：来源
 	*/
-	@ApiModelProperty(required = false,value="来源" , notes = "来源")
+	@ApiModelProperty(required = false,value="来源" , notes = "来源" , example = "donation")
 	private String sourceId;
 	
 	/**
 	 * 购置日期：购置日期
 	*/
-	@ApiModelProperty(required = false,value="购置日期" , notes = "购置日期")
+	@ApiModelProperty(required = false,value="购置日期" , notes = "购置日期" , example = "2023-07-18 12:00:00")
 	private Date purchaseDate;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-07-13 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -148,45 +155,46 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "1212")
 	private String notes;
 	
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-14 09:35:44")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-14 09:36:23")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -204,19 +212,19 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1689341698000")
 	private String selectedCode;
 	
 	/**
@@ -816,6 +824,7 @@ public class AssetStockGoodsIn extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetStockGoodsIn setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -1346,6 +1355,84 @@ public class AssetStockGoodsIn extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetStockGoodsIn clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetStockGoodsIn duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta.$$proxy$$();
+		inst.setOwnerType(this.getOwnerType());
+		inst.setSourceId(this.getSourceId());
+		inst.setPurchaseDate(this.getPurchaseDate());
+		inst.setChsVersion(this.getChsVersion());
+		inst.setNotes(this.getNotes());
+		inst.setProcId(this.getProcId());
+		inst.setLatestApproverName(this.getLatestApproverName());
+		inst.setChangeInstanceId(this.getChangeInstanceId());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setNextApproverIds(this.getNextApproverIds());
+		inst.setApprovalOpinion(this.getApprovalOpinion());
+		inst.setChsStatus(this.getChsStatus());
+		inst.setBusinessDate(this.getBusinessDate());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setAttachId(this.getAttachId());
+		inst.setSupplierName(this.getSupplierName());
+		inst.setSummary(this.getSummary());
+		inst.setNextApproverNames(this.getNextApproverNames());
+		inst.setAmount(this.getAmount());
+		inst.setLatestApproverId(this.getLatestApproverId());
+		inst.setStockType(this.getStockType());
+		inst.setBatchCode(this.getBatchCode());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setManagerId(this.getManagerId());
+		inst.setVersion(this.getVersion());
+		inst.setReceiverUserName(this.getReceiverUserName());
+		inst.setOwnCompanyId(this.getOwnCompanyId());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setWarehouseId(this.getWarehouseId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setChsType(this.getChsType());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setOwnerCompany(this.getOwnerCompany());
+			inst.setUseOrganization(this.getUseOrganization());
+			inst.setManager(this.getManager());
+			inst.setGoodsList(this.getGoodsList());
+			inst.setSource(this.getSource());
+			inst.setOriginator(this.getOriginator());
+			inst.setWarehouse(this.getWarehouse());
+			inst.setStockTypeDict(this.getStockTypeDict());
+			inst.setGoodsIds(this.getGoodsIds());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetStockGoodsIn clone(boolean deep) {
+		return EntityContext.clone(AssetStockGoodsIn.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetStockGoodsIn
 	 * @param assetStockGoodsInMap 包含实体信息的 Map 对象
 	 * @return AssetStockGoodsIn , 转换好的的 AssetStockGoodsIn 对象
@@ -1353,7 +1440,9 @@ public class AssetStockGoodsIn extends Entity {
 	@Transient
 	public static AssetStockGoodsIn createFrom(Map<String,Object> assetStockGoodsInMap) {
 		if(assetStockGoodsInMap==null) return null;
-		AssetStockGoodsIn po = EntityContext.create(AssetStockGoodsIn.class, assetStockGoodsInMap);
+		AssetStockGoodsIn po = create();
+		EntityContext.copyProperties(po,assetStockGoodsInMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1365,7 +1454,9 @@ public class AssetStockGoodsIn extends Entity {
 	@Transient
 	public static AssetStockGoodsIn createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetStockGoodsIn po = EntityContext.create(AssetStockGoodsIn.class,pojo);
+		AssetStockGoodsIn po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1375,6 +1466,220 @@ public class AssetStockGoodsIn extends Entity {
 	*/
 	@Transient
 	public static AssetStockGoodsIn create() {
-		return EntityContext.create(AssetStockGoodsIn.class);
+		return new com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setOwnerType(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.OWNER_TYPE)));
+			this.setSourceId(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.SOURCE_ID)));
+			this.setPurchaseDate(DataParser.parse(Date.class, map.get(AssetStockGoodsInMeta.PURCHASE_DATE)));
+			this.setChsVersion(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.CHS_VERSION)));
+			this.setNotes(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.NOTES)));
+			this.setProcId(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.PROC_ID)));
+			this.setLatestApproverName(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.LATEST_APPROVER_NAME)));
+			this.setChangeInstanceId(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.CHANGE_INSTANCE_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.SELECTED_CODE)));
+			this.setNextApproverIds(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.NEXT_APPROVER_IDS)));
+			this.setApprovalOpinion(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.APPROVAL_OPINION)));
+			this.setChsStatus(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.CHS_STATUS)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(AssetStockGoodsInMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.BUSINESS_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.UPDATE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.ORIGINATOR_ID)));
+			this.setAttachId(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.ATTACH_ID)));
+			this.setSupplierName(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.SUPPLIER_NAME)));
+			this.setSummary(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.SUMMARY)));
+			this.setNextApproverNames(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.NEXT_APPROVER_NAMES)));
+			this.setAmount(DataParser.parse(BigDecimal.class, map.get(AssetStockGoodsInMeta.AMOUNT)));
+			this.setLatestApproverId(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.LATEST_APPROVER_ID)));
+			this.setStockType(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.STOCK_TYPE)));
+			this.setBatchCode(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.BATCH_CODE)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetStockGoodsInMeta.UPDATE_TIME)));
+			this.setManagerId(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.MANAGER_ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetStockGoodsInMeta.VERSION)));
+			this.setReceiverUserName(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.RECEIVER_USER_NAME)));
+			this.setOwnCompanyId(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.OWN_COMPANY_ID)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetStockGoodsInMeta.DELETED)));
+			this.setWarehouseId(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.WAREHOUSE_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetStockGoodsInMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetStockGoodsInMeta.DELETE_TIME)));
+			this.setChsType(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.CHS_TYPE)));
+			this.setName(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.DELETE_BY)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetStockGoodsInMeta.STATUS)));
+			// others
+			this.setOwnerCompany(DataParser.parse(Organization.class, map.get(AssetStockGoodsInMeta.OWNER_COMPANY)));
+			this.setUseOrganization(DataParser.parse(Organization.class, map.get(AssetStockGoodsInMeta.USE_ORGANIZATION)));
+			this.setManager(DataParser.parse(Employee.class, map.get(AssetStockGoodsInMeta.MANAGER)));
+			this.setSource(DataParser.parse(DictItem.class, map.get(AssetStockGoodsInMeta.SOURCE)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetStockGoodsInMeta.ORIGINATOR)));
+			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(AssetStockGoodsInMeta.WAREHOUSE)));
+			this.setStockTypeDict(DataParser.parse(DictItem.class, map.get(AssetStockGoodsInMeta.STOCK_TYPE_DICT)));
+			return true;
+		} else {
+			try {
+				this.setOwnerType( (String)map.get(AssetStockGoodsInMeta.OWNER_TYPE));
+				this.setSourceId( (String)map.get(AssetStockGoodsInMeta.SOURCE_ID));
+				this.setPurchaseDate( (Date)map.get(AssetStockGoodsInMeta.PURCHASE_DATE));
+				this.setChsVersion( (String)map.get(AssetStockGoodsInMeta.CHS_VERSION));
+				this.setNotes( (String)map.get(AssetStockGoodsInMeta.NOTES));
+				this.setProcId( (String)map.get(AssetStockGoodsInMeta.PROC_ID));
+				this.setLatestApproverName( (String)map.get(AssetStockGoodsInMeta.LATEST_APPROVER_NAME));
+				this.setChangeInstanceId( (String)map.get(AssetStockGoodsInMeta.CHANGE_INSTANCE_ID));
+				this.setSelectedCode( (String)map.get(AssetStockGoodsInMeta.SELECTED_CODE));
+				this.setNextApproverIds( (String)map.get(AssetStockGoodsInMeta.NEXT_APPROVER_IDS));
+				this.setApprovalOpinion( (String)map.get(AssetStockGoodsInMeta.APPROVAL_OPINION));
+				this.setChsStatus( (String)map.get(AssetStockGoodsInMeta.CHS_STATUS));
+				this.setBusinessDate( (Date)map.get(AssetStockGoodsInMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(AssetStockGoodsInMeta.BUSINESS_CODE));
+				this.setUpdateBy( (String)map.get(AssetStockGoodsInMeta.UPDATE_BY));
+				this.setId( (String)map.get(AssetStockGoodsInMeta.ID));
+				this.setOriginatorId( (String)map.get(AssetStockGoodsInMeta.ORIGINATOR_ID));
+				this.setAttachId( (String)map.get(AssetStockGoodsInMeta.ATTACH_ID));
+				this.setSupplierName( (String)map.get(AssetStockGoodsInMeta.SUPPLIER_NAME));
+				this.setSummary( (String)map.get(AssetStockGoodsInMeta.SUMMARY));
+				this.setNextApproverNames( (String)map.get(AssetStockGoodsInMeta.NEXT_APPROVER_NAMES));
+				this.setAmount( (BigDecimal)map.get(AssetStockGoodsInMeta.AMOUNT));
+				this.setLatestApproverId( (String)map.get(AssetStockGoodsInMeta.LATEST_APPROVER_ID));
+				this.setStockType( (String)map.get(AssetStockGoodsInMeta.STOCK_TYPE));
+				this.setBatchCode( (String)map.get(AssetStockGoodsInMeta.BATCH_CODE));
+				this.setUpdateTime( (Date)map.get(AssetStockGoodsInMeta.UPDATE_TIME));
+				this.setManagerId( (String)map.get(AssetStockGoodsInMeta.MANAGER_ID));
+				this.setVersion( (Integer)map.get(AssetStockGoodsInMeta.VERSION));
+				this.setReceiverUserName( (String)map.get(AssetStockGoodsInMeta.RECEIVER_USER_NAME));
+				this.setOwnCompanyId( (String)map.get(AssetStockGoodsInMeta.OWN_COMPANY_ID));
+				this.setCreateBy( (String)map.get(AssetStockGoodsInMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetStockGoodsInMeta.DELETED));
+				this.setWarehouseId( (String)map.get(AssetStockGoodsInMeta.WAREHOUSE_ID));
+				this.setCreateTime( (Date)map.get(AssetStockGoodsInMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(AssetStockGoodsInMeta.DELETE_TIME));
+				this.setChsType( (String)map.get(AssetStockGoodsInMeta.CHS_TYPE));
+				this.setName( (String)map.get(AssetStockGoodsInMeta.NAME));
+				this.setTenantId( (String)map.get(AssetStockGoodsInMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetStockGoodsInMeta.DELETE_BY));
+				this.setStatus( (String)map.get(AssetStockGoodsInMeta.STATUS));
+				// others
+				this.setOwnerCompany( (Organization)map.get(AssetStockGoodsInMeta.OWNER_COMPANY));
+				this.setUseOrganization( (Organization)map.get(AssetStockGoodsInMeta.USE_ORGANIZATION));
+				this.setManager( (Employee)map.get(AssetStockGoodsInMeta.MANAGER));
+				this.setSource( (DictItem)map.get(AssetStockGoodsInMeta.SOURCE));
+				this.setOriginator( (Employee)map.get(AssetStockGoodsInMeta.ORIGINATOR));
+				this.setWarehouse( (Warehouse)map.get(AssetStockGoodsInMeta.WAREHOUSE));
+				this.setStockTypeDict( (DictItem)map.get(AssetStockGoodsInMeta.STOCK_TYPE_DICT));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setOwnerType(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.OWNER_TYPE)));
+			this.setSourceId(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.SOURCE_ID)));
+			this.setPurchaseDate(DataParser.parse(Date.class, r.getValue(AssetStockGoodsInMeta.PURCHASE_DATE)));
+			this.setChsVersion(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.CHS_VERSION)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.NOTES)));
+			this.setProcId(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.PROC_ID)));
+			this.setLatestApproverName(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.LATEST_APPROVER_NAME)));
+			this.setChangeInstanceId(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.CHANGE_INSTANCE_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.SELECTED_CODE)));
+			this.setNextApproverIds(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.NEXT_APPROVER_IDS)));
+			this.setApprovalOpinion(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.APPROVAL_OPINION)));
+			this.setChsStatus(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.CHS_STATUS)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(AssetStockGoodsInMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.BUSINESS_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.UPDATE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.ORIGINATOR_ID)));
+			this.setAttachId(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.ATTACH_ID)));
+			this.setSupplierName(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.SUPPLIER_NAME)));
+			this.setSummary(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.SUMMARY)));
+			this.setNextApproverNames(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.NEXT_APPROVER_NAMES)));
+			this.setAmount(DataParser.parse(BigDecimal.class, r.getValue(AssetStockGoodsInMeta.AMOUNT)));
+			this.setLatestApproverId(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.LATEST_APPROVER_ID)));
+			this.setStockType(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.STOCK_TYPE)));
+			this.setBatchCode(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.BATCH_CODE)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetStockGoodsInMeta.UPDATE_TIME)));
+			this.setManagerId(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.MANAGER_ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetStockGoodsInMeta.VERSION)));
+			this.setReceiverUserName(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.RECEIVER_USER_NAME)));
+			this.setOwnCompanyId(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.OWN_COMPANY_ID)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetStockGoodsInMeta.DELETED)));
+			this.setWarehouseId(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.WAREHOUSE_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetStockGoodsInMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetStockGoodsInMeta.DELETE_TIME)));
+			this.setChsType(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.CHS_TYPE)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.DELETE_BY)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetStockGoodsInMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setOwnerType( (String)r.getValue(AssetStockGoodsInMeta.OWNER_TYPE));
+				this.setSourceId( (String)r.getValue(AssetStockGoodsInMeta.SOURCE_ID));
+				this.setPurchaseDate( (Date)r.getValue(AssetStockGoodsInMeta.PURCHASE_DATE));
+				this.setChsVersion( (String)r.getValue(AssetStockGoodsInMeta.CHS_VERSION));
+				this.setNotes( (String)r.getValue(AssetStockGoodsInMeta.NOTES));
+				this.setProcId( (String)r.getValue(AssetStockGoodsInMeta.PROC_ID));
+				this.setLatestApproverName( (String)r.getValue(AssetStockGoodsInMeta.LATEST_APPROVER_NAME));
+				this.setChangeInstanceId( (String)r.getValue(AssetStockGoodsInMeta.CHANGE_INSTANCE_ID));
+				this.setSelectedCode( (String)r.getValue(AssetStockGoodsInMeta.SELECTED_CODE));
+				this.setNextApproverIds( (String)r.getValue(AssetStockGoodsInMeta.NEXT_APPROVER_IDS));
+				this.setApprovalOpinion( (String)r.getValue(AssetStockGoodsInMeta.APPROVAL_OPINION));
+				this.setChsStatus( (String)r.getValue(AssetStockGoodsInMeta.CHS_STATUS));
+				this.setBusinessDate( (Date)r.getValue(AssetStockGoodsInMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(AssetStockGoodsInMeta.BUSINESS_CODE));
+				this.setUpdateBy( (String)r.getValue(AssetStockGoodsInMeta.UPDATE_BY));
+				this.setId( (String)r.getValue(AssetStockGoodsInMeta.ID));
+				this.setOriginatorId( (String)r.getValue(AssetStockGoodsInMeta.ORIGINATOR_ID));
+				this.setAttachId( (String)r.getValue(AssetStockGoodsInMeta.ATTACH_ID));
+				this.setSupplierName( (String)r.getValue(AssetStockGoodsInMeta.SUPPLIER_NAME));
+				this.setSummary( (String)r.getValue(AssetStockGoodsInMeta.SUMMARY));
+				this.setNextApproverNames( (String)r.getValue(AssetStockGoodsInMeta.NEXT_APPROVER_NAMES));
+				this.setAmount( (BigDecimal)r.getValue(AssetStockGoodsInMeta.AMOUNT));
+				this.setLatestApproverId( (String)r.getValue(AssetStockGoodsInMeta.LATEST_APPROVER_ID));
+				this.setStockType( (String)r.getValue(AssetStockGoodsInMeta.STOCK_TYPE));
+				this.setBatchCode( (String)r.getValue(AssetStockGoodsInMeta.BATCH_CODE));
+				this.setUpdateTime( (Date)r.getValue(AssetStockGoodsInMeta.UPDATE_TIME));
+				this.setManagerId( (String)r.getValue(AssetStockGoodsInMeta.MANAGER_ID));
+				this.setVersion( (Integer)r.getValue(AssetStockGoodsInMeta.VERSION));
+				this.setReceiverUserName( (String)r.getValue(AssetStockGoodsInMeta.RECEIVER_USER_NAME));
+				this.setOwnCompanyId( (String)r.getValue(AssetStockGoodsInMeta.OWN_COMPANY_ID));
+				this.setCreateBy( (String)r.getValue(AssetStockGoodsInMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetStockGoodsInMeta.DELETED));
+				this.setWarehouseId( (String)r.getValue(AssetStockGoodsInMeta.WAREHOUSE_ID));
+				this.setCreateTime( (Date)r.getValue(AssetStockGoodsInMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(AssetStockGoodsInMeta.DELETE_TIME));
+				this.setChsType( (String)r.getValue(AssetStockGoodsInMeta.CHS_TYPE));
+				this.setName( (String)r.getValue(AssetStockGoodsInMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetStockGoodsInMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetStockGoodsInMeta.DELETE_BY));
+				this.setStatus( (String)r.getValue(AssetStockGoodsInMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

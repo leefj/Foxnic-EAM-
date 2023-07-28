@@ -1,6 +1,8 @@
 package com.dt.platform.eam.page;
 
 import com.dt.platform.constants.enums.eam.*;
+import com.dt.platform.domain.eam.AssetAttributeItem;
+import com.dt.platform.proxy.eam.AssetAttributeItemServiceProxy;
 import com.dt.platform.proxy.eam.AssetCategoryServiceProxy;
 import com.dt.platform.proxy.eam.AssetDataServiceProxy;
 import com.github.foxnic.api.transter.Result;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.eam.GoodsStockServiceProxy;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * <p>
@@ -43,7 +47,26 @@ public class GoodsStockPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+	@RequestMapping("/stock_book_tree.html")
+	public String treeList(Model model,HttpServletRequest request,String ownerCode) {
+		model.addAttribute("ownerCode",ownerCode);
+
+		Result<HashMap<String, List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(AssetAttributeItemOwnerEnum.ASSET_STOCK_GOODS.code(),null);
+		if(result.isSuccess()){
+			HashMap<String,List<AssetAttributeItem>> data = result.getData();
+			List<AssetAttributeItem> list=data.get("attributeListData");
+			model.addAttribute("attributeListData",list);
+		}
+		Result idResult= AssetCategoryServiceProxy.api().queryNodesByCode(AssetPcmCodeEnum.ASSET_STOCK_GOODS.code());
+		model.addAttribute("categoryParentId",idResult.getData());
+
+		return prefix+"/stock_book_tree";
+	}
+
+
+
+
 	/**
 	 * 库存物品 功能主页面
 	 */

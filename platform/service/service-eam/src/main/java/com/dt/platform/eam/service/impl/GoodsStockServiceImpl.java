@@ -238,6 +238,8 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 
 	@Override
 	public PagedList<GoodsStock> queryPagedListBySelect(GoodsStockVO sample, String assetSearchContent) {
+
+
 		ConditionExpr queryCondition=new ConditionExpr();
 		String ownerId=sample.getOwnerId();
 		if(StringUtil.isBlank(ownerId)){

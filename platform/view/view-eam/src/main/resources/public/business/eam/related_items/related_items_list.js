@@ -1,7 +1,7 @@
 /**
- * 备件清单 列表页 JS 脚本
+ * 关联项 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-27 12:58:20
+ * @since 2023-07-27 07:24:07
  */
 
 
@@ -10,7 +10,7 @@ function ListPage() {
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	
 	//模块基础路径
-	const moduleURL="/service-eam/eam-device-sp";
+	const moduleURL="/service-eam/eam-related-items";
 	const queryURL=moduleURL+'/query-paged-list';
 	const deleteURL=moduleURL+'/delete';
 	const batchDeleteURL=moduleURL+'/delete-by-ids';
@@ -85,21 +85,10 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件编号') , templet: function (d) { return templet('code',d.code,d);}  }
-					,{ field: 'goodId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品档案'), templet: function (d) { return templet('goodId' ,fox.joinLabel(d.goods,"name",',','','goodId'),d);}}
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所在仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName",',','','warehouseId'),d);}}
-					,{ field: 'model', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('规格型号') , templet: function (d) { return templet('model',d.model,d);}  }
-					,{ field: 'sn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件序列') , templet: function (d) { return templet('sn',d.sn,d);}  }
-					,{ field: 'usageRange', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用场景'), templet: function (d) { return templet('usageRange' ,fox.joinLabel(d.usage,"label",',','','usageRange'),d);}}
-					,{ field: 'locId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('存放位置'), templet: function (d) { return templet('locId' ,fox.joinLabel(d.position,"hierarchyName",',','','locId'),d);}}
-					,{ field: 'adaptingDevice', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('适配信息') , templet: function (d) { return templet('adaptingDevice',d.adaptingDevice,d);}  }
-					,{ field: 'sourceDesc', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源描述') , templet: function (d) { return templet('sourceDesc',d.sourceDesc,d);}  }
-					,{ field: 'supplier', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('供应厂商') , templet: function (d) { return templet('supplier',d.supplier,d);}  }
-					,{ field: 'managerUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保管人员') , templet: function (d) { return templet('managerUserId',fox.getProperty(d,["manager","name"],0,'','managerUserId'),d);} }
-					,{ field: 'insertTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('入库时间') ,templet: function (d) { return templet('insertTime',fox.dateFormat(d.insertTime,"yyyy-MM-dd"),d); }  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'ownerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('ownerId',d.ownerId,d);}  }
+					,{ field: 'itemId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('项目') , templet: function (d) { return templet('itemId',d.itemId,d);}  }
+					,{ field: 'selectedCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('选择') , templet: function (d) { return templet('selectedCode',d.selectedCode,d);}  }
+					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -170,17 +159,7 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.goodId={ inputType:"select_box", value: getSelectedValue("#goodId","value") ,fillBy:["goods"]  , label:getSelectedValue("#goodId","nameStr") };
-		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.warehouseId={ inputType:"select_box", value: getSelectedValue("#warehouseId","value") ,fillBy:["warehouse"]  , label:getSelectedValue("#warehouseId","nameStr") };
-		value.usageRange={ inputType:"select_box", value: getSelectedValue("#usageRange","value") ,fillBy:["usage"]  , label:getSelectedValue("#usageRange","nameStr") };
-		value.adaptingDevice={ inputType:"button",value: $("#adaptingDevice").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.sourceDesc={ inputType:"button",value: $("#sourceDesc").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.supplier={ inputType:"button",value: $("#supplier").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.managerUserId={ inputType:"button",value: $("#managerUserId").val(),fillBy:["manager","name"] ,label:$("#managerUserId-button").text() };
-		value.insertTime={ inputType:"date_input", begin: $("#insertTime-begin").val(), end: $("#insertTime-end").val() ,matchType:"auto" };
+		value.ownerId={ inputType:"button",value: $("#ownerId").val()};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -225,142 +204,8 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(2);
+		fox.switchSearchRow(1);
 
-		//渲染 goodId 下拉字段
-		fox.renderSelectBox({
-			el: "goodId",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("goodId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("goodId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].id});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 status 搜索框
-		fox.renderSelectBox({
-			el: "status",
-			size: "small",
-			radio: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 warehouseId 下拉字段
-		fox.renderSelectBox({
-			el: "warehouseId",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("warehouseId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			searchField: "warehouseName", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("warehouseId",{data:data[i],name:data[i].warehouseName,value:data[i].id},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].warehouseName,value:data[i].id});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 usageRange 下拉字段
-		fox.renderSelectBox({
-			el: "usageRange",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("usageRange",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			searchField: "label", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("usageRange",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].label,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
-		laydate.render({
-			elem: '#insertTime-begin',
-			trigger:"click",
-			done: function(value, date, endDate) {
-				setTimeout(function () {
-					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("insertTime",value, date, endDate);
-				},1);
-			}
-		});
-		laydate.render({
-			elem: '#insertTime-end',
-			trigger:"click",
-			done: function(value, date, endDate) {
-				setTimeout(function () {
-					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("insertTime",value, date, endDate);
-				},1);
-			}
-		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
@@ -382,7 +227,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(2,function (ex){
+			fox.switchSearchRow(1,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {
@@ -391,21 +236,6 @@ function ListPage() {
 			});
 		});
 
-		// 请选择人员对话框
-		$("#managerUserId-button").click(function(){
-				var managerUserIdDialogOptions={
-				field:"managerUserId",
-				inputEl:$("#managerUserId"),
-				buttonEl:$(this),
-				single:false,
-				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
-				root: "",
-				targetType:"emp",
-				prepose:function(param){ return window.pageExt.list.beforeDialog && window.pageExt.list.beforeDialog(param);},
-				callback:function(param,result){ window.pageExt.list.afterDialog && window.pageExt.list.afterDialog(param,result);}
-			};
-			fox.chooseEmployee(managerUserIdDialogOptions);
-		});
 	}
 
 	/**
@@ -423,14 +253,11 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
-					admin.putTempData('eam-device-sp-form-data', {});
+					admin.putTempData('eam-related-items-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
 					batchDelete(selected);
-					break;
-				case 'tool-bath-sure':
-					window.pageExt.list.bathSure && window.pageExt.list.bathSure(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();
@@ -445,7 +272,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('eam-device-sp-form-data-form-action', "create",true);
+			admin.putTempData('eam-related-items-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -459,11 +286,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'备件清单'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的'+'关联项'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'备件清单'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'关联项'+'吗？'), function (i) {
                 top.layer.close(i);
 				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
@@ -498,14 +325,14 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('eam-device-sp-form-data-form-action', "",true);
+			admin.putTempData('eam-related-items-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
 				top.layer.load(2);
 				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
 					top.layer.closeAll('loading');
 					if(data.success) {
-						admin.putTempData('eam-device-sp-form-data-form-action', "edit",true);
+						admin.putTempData('eam-related-items-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
 						 fox.showMessage(data);
@@ -516,7 +343,7 @@ function ListPage() {
 				admin.post(getByIdURL, { id : data.id }, function (data) {
 					top.layer.closeAll('loading');
 					if(data.success) {
-						admin.putTempData('eam-device-sp-form-data-form-action', "view",true);
+						admin.putTempData('eam-related-items-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -530,7 +357,7 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'备件清单'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此'+'关联项'+'吗？'), function (i) {
 					top.layer.close(i);
 					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
@@ -547,12 +374,6 @@ function ListPage() {
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			else if (layEvent === 'modify-status') { // 状态
-				window.pageExt.list.modifyStatus(data,this);
-			}
-			else if (layEvent === 'used-detail') { // 使用记录
-				window.pageExt.list.usedDetail(data,this);
-			}
 			
 		});
 
@@ -566,17 +387,17 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('eam-device-sp-form-data-form-action');
+		var action=admin.getTempData('eam-related-items-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('eam-device-sp-form-data', data);
-		var area=admin.getTempData('eam-device-sp-form-area');
+		admin.putTempData('eam-related-items-form-data', data);
+		var area=admin.getTempData('eam-related-items-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('备件清单');
+		var title = fox.translate('关联项');
 		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
 		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
 		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
@@ -587,8 +408,8 @@ function ListPage() {
 			offset: [top,null],
 			area: ["80%",height+"px"],
 			type: 2,
-			id:"eam-device-sp-form-data-win",
-			content: '/business/eam/device_sp/device_sp_form.html' + (queryString?("?"+queryString):""),
+			id:"eam-related-items-form-data-win",
+			content: '/business/eam/related_items/related_items_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();

@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 备件清单VO类型
  * <p>备件清单 , 数据表 eam_device_sp 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-24 06:47:50
+ * @since 2023-07-27 12:58:19
  * @sign 0E46684EB74B7A7BF47F509EDF3C83AE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -423,6 +423,7 @@ public class DeviceSpVO extends DeviceSp {
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setManagerUserId(this.getManagerUserId());
+		inst.setWarehouseId(this.getWarehouseId());
 		inst.setSourceDesc(this.getSourceDesc());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setDeleteTime(this.getDeleteTime());
@@ -442,6 +443,7 @@ public class DeviceSpVO extends DeviceSp {
 			inst.setPageSize(this.getPageSize());
 			inst.setAssetList(this.getAssetList());
 			inst.setDeviceAssociate(this.getDeviceAssociate());
+			inst.setWarehouse(this.getWarehouse());
 			inst.setOwnerId(this.getOwnerId());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setPsCategoryId(this.getPsCategoryId());
@@ -533,6 +535,7 @@ public class DeviceSpVO extends DeviceSp {
 			this.setCreateBy(DataParser.parse(String.class, map.get(DeviceSpVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(DeviceSpVOMeta.DELETED)));
 			this.setManagerUserId(DataParser.parse(String.class, map.get(DeviceSpVOMeta.MANAGER_USER_ID)));
+			this.setWarehouseId(DataParser.parse(String.class, map.get(DeviceSpVOMeta.WAREHOUSE_ID)));
 			this.setSourceDesc(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SOURCE_DESC)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(DeviceSpVOMeta.CREATE_TIME)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(DeviceSpVOMeta.DELETE_TIME)));
@@ -550,6 +553,7 @@ public class DeviceSpVO extends DeviceSp {
 			this.setFuzzyField(DataParser.parse(String.class, map.get(DeviceSpVOMeta.FUZZY_FIELD)));
 			this.setGoods(DataParser.parse(Goods.class, map.get(DeviceSpVOMeta.GOODS)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(DeviceSpVOMeta.PAGE_SIZE)));
+			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(DeviceSpVOMeta.WAREHOUSE)));
 			this.setOwnerId(DataParser.parse(String.class, map.get(DeviceSpVOMeta.OWNER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SELECTED_CODE)));
 			this.setPsCategoryId(DataParser.parse(String.class, map.get(DeviceSpVOMeta.PS_CATEGORY_ID)));
@@ -583,6 +587,7 @@ public class DeviceSpVO extends DeviceSp {
 				this.setCreateBy( (String)map.get(DeviceSpVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(DeviceSpVOMeta.DELETED));
 				this.setManagerUserId( (String)map.get(DeviceSpVOMeta.MANAGER_USER_ID));
+				this.setWarehouseId( (String)map.get(DeviceSpVOMeta.WAREHOUSE_ID));
 				this.setSourceDesc( (String)map.get(DeviceSpVOMeta.SOURCE_DESC));
 				this.setCreateTime( (Date)map.get(DeviceSpVOMeta.CREATE_TIME));
 				this.setDeleteTime( (Date)map.get(DeviceSpVOMeta.DELETE_TIME));
@@ -600,6 +605,7 @@ public class DeviceSpVO extends DeviceSp {
 				this.setFuzzyField( (String)map.get(DeviceSpVOMeta.FUZZY_FIELD));
 				this.setGoods( (Goods)map.get(DeviceSpVOMeta.GOODS));
 				this.setPageSize( (Integer)map.get(DeviceSpVOMeta.PAGE_SIZE));
+				this.setWarehouse( (Warehouse)map.get(DeviceSpVOMeta.WAREHOUSE));
 				this.setOwnerId( (String)map.get(DeviceSpVOMeta.OWNER_ID));
 				this.setSelectedCode( (String)map.get(DeviceSpVOMeta.SELECTED_CODE));
 				this.setPsCategoryId( (String)map.get(DeviceSpVOMeta.PS_CATEGORY_ID));
@@ -646,6 +652,7 @@ public class DeviceSpVO extends DeviceSp {
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(DeviceSpVOMeta.DELETED)));
 			this.setManagerUserId(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.MANAGER_USER_ID)));
+			this.setWarehouseId(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.WAREHOUSE_ID)));
 			this.setSourceDesc(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.SOURCE_DESC)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(DeviceSpVOMeta.CREATE_TIME)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(DeviceSpVOMeta.DELETE_TIME)));
@@ -676,6 +683,7 @@ public class DeviceSpVO extends DeviceSp {
 				this.setCreateBy( (String)r.getValue(DeviceSpVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(DeviceSpVOMeta.DELETED));
 				this.setManagerUserId( (String)r.getValue(DeviceSpVOMeta.MANAGER_USER_ID));
+				this.setWarehouseId( (String)r.getValue(DeviceSpVOMeta.WAREHOUSE_ID));
 				this.setSourceDesc( (String)r.getValue(DeviceSpVOMeta.SOURCE_DESC));
 				this.setCreateTime( (Date)r.getValue(DeviceSpVOMeta.CREATE_TIME));
 				this.setDeleteTime( (Date)r.getValue(DeviceSpVOMeta.DELETE_TIME));

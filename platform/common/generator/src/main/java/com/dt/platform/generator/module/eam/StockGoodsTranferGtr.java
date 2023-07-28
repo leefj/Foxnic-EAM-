@@ -74,7 +74,7 @@ public class StockGoodsTranferGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.ATTACH_ID).table().disable(true);
 //        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.ORIGINATOR_ID).table().disable(true);
 
-
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.ATTACH_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.CONTENT).table().disable(true);
 
         cfg.view().list().addJsVariable("OPER_TYPE","[[${operType}]]","OPER_TYPE");
