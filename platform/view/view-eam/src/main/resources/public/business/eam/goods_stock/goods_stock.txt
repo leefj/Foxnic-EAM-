@@ -1,0 +1,25 @@
+
+
+goods_stock 标准物品
+
+ownerCode=stock,part,stock
+goods 标准物品档案
+part 备件物品
+stock 库存物品
+
+
+
+
+
+
+
+
+
+ownerType=stock
+
+
+
+
+
+
+

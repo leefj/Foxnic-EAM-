@@ -6,10 +6,7 @@ import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.page.DeviceSpPageController;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.eam.DeviceSpServiceProxy;
-import com.dt.platform.proxy.eam.DeviceSpTypeServiceProxy;
-import com.dt.platform.proxy.eam.GoodsStockServiceProxy;
-import com.dt.platform.proxy.eam.PositionServiceProxy;
+import com.dt.platform.proxy.eam.*;
 import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -42,6 +39,7 @@ public class SpGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(DeviceAssociate.class,"deviceAssociate","deviceAssociate","deviceAssociate");
 
 
+        cfg.getPoClassFile().addSimpleProperty(Warehouse.class,"warehouse","仓库","仓库");
 
         cfg.getPoClassFile().addSimpleProperty(String.class,"ownerType","ownerType","ownerType");
         cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
@@ -79,6 +77,7 @@ public class SpGtr extends BaseCodeGenerator {
                         EAMTables.EAM_DEVICE_SP.SOURCE_DESC,
                 },
                 new Object[]{
+                        EAMTables.EAM_DEVICE_SP.WAREHOUSE_ID,
                         EAMTables.EAM_DEVICE_SP.ADAPTING_DEVICE,
                         EAMTables.EAM_DEVICE_SP.INSERT_TIME,
                 }
@@ -86,6 +85,7 @@ public class SpGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_DEVICE_SP.PICTURE_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.LOCKED).table().disable(true);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.CREATE_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_DEVICE_SP.SP_NUMBER).table().disable(true);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.TYPE).table().disable(true);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.NOTES).form().textArea().height(150);
 
@@ -97,9 +97,13 @@ public class SpGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_DEVICE_SP.STATUS).form().radioBox().enumType(DeviceSpStatusEnum.class).defaultIndex(0);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.TYPE)
-
                 .form().selectBox().queryApi(DeviceSpTypeServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(DeviceSpTypeMeta.ID).textField( DeviceSpTypeMeta.HIERARCHY_NAME).fillWith(DeviceSpMeta.DEVICE_SP_TYPE).muliti(false);
+
+        cfg.view().field(EAMTables.EAM_DEVICE_SP.WAREHOUSE_ID)
+                .form().validate().required().form().selectBox().queryApi(WarehouseServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
+                .valueField(WarehouseMeta.ID).textField( WarehouseMeta.WAREHOUSE_NAME).fillWith(DeviceSpMeta.WAREHOUSE).muliti(false);
+
 
         cfg.view().field(EAMTables.EAM_DEVICE_SP.GOOD_ID)
                 .form().validate().required().form().selectBox().queryApi(GoodsStockServiceProxy.QUERY_PAGED_LIST+"?ownerCode=goods").paging(true).filter(true).toolbar(false)
@@ -134,18 +138,17 @@ public class SpGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_DEVICE_SP.CODE,
-                        EAMTables.EAM_DEVICE_SP.NAME,
                         EAMTables.EAM_DEVICE_SP.GOOD_ID,
+                        EAMTables.EAM_DEVICE_SP.NAME,
                         EAMTables.EAM_DEVICE_SP.MODEL,
                         EAMTables.EAM_DEVICE_SP.SN,
-
+                        EAMTables.EAM_DEVICE_SP.USAGE_RANGE,
                 },
                 new Object[] {
-                      //  EAMTables.EAM_DEVICE_SP.,
                         EAMTables.EAM_DEVICE_SP.MANAGER_USER_ID,
+                        EAMTables.EAM_DEVICE_SP.WAREHOUSE_ID,
                         EAMTables.EAM_DEVICE_SP.LOC_ID,
                         EAMTables.EAM_DEVICE_SP.SUPPLIER,
-                        EAMTables.EAM_DEVICE_SP.USAGE_RANGE,
                         EAMTables.EAM_DEVICE_SP.INSERT_TIME
                 }
         );

@@ -140,6 +140,8 @@ public class EamRelationManager extends RelationManager {
 
     }
     public void setupDeviceSp() {
+        this.property(DeviceSpMeta.WAREHOUSE_PROP)
+                .using(EAMTables.EAM_DEVICE_SP.WAREHOUSE_ID).join(EAMTables.EAM_WAREHOUSE.ID);
 
         this.property(DeviceSpMeta.GOODS_PROP)
                 .using(EAMTables.EAM_DEVICE_SP.GOOD_ID).join(EAMTables.EAM_GOODS_STOCK.ID);

@@ -393,7 +393,6 @@ public class GoodsStockController extends SuperController {
         expr.and("1=1");
         if(!StringUtil.isBlank(categoryId)){
             expr.and("category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%"+categoryId+"%' or id=?))",categoryId);
-
         }
 
         list = goodsStockService.queryPagedList(sample,expr, sample.getPageSize(), sample.getPageIndex());
@@ -471,6 +470,8 @@ public class GoodsStockController extends SuperController {
             GoodsStockVO e = new GoodsStockVO();
             // e.setOwnerCode(ownerType);
             GoodsStock goods = goodsStockService.getById(id);
+            e.setStockCurNumber(new BigDecimal("1"));
+            e.setStockInNumber(new BigDecimal("1"));
             e.setOwnerType(ownerType);
             if (goods != null) {
                 e.setWarehouseId(goods.getWarehouseId());

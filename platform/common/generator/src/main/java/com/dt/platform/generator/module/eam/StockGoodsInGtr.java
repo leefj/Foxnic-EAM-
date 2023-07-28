@@ -101,7 +101,13 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.APPROVAL_OPINION).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.ATTACH_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.OWN_COMPANY_ID).table().disable(true);
+
+
 //        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.ORIGINATOR_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.AMOUNT).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.NOTES).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.ORIGINATOR_ID).table().hidden(true);
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.SOURCE_ID).table().disable(true);
 
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.BUSINESS_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();

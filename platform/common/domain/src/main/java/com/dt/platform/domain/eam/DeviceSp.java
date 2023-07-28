@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 备件清单
  * <p>备件清单 , 数据表 eam_device_sp 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-24 06:47:50
- * @sign 4837F1F6DF7E7FA7B4AFF0404847C18A
+ * @since 2023-07-27 12:58:19
+ * @sign C2151C8B748AF2990403685C3EB3FC18
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -55,9 +55,9 @@ public class DeviceSp extends Entity {
 	private String code;
 	
 	/**
-	 * 物品：物品
+	 * 物品档案：物品档案
 	*/
-	@ApiModelProperty(required = false,value="物品" , notes = "物品")
+	@ApiModelProperty(required = false,value="物品档案" , notes = "物品档案")
 	private String goodId;
 	
 	/**
@@ -77,6 +77,12 @@ public class DeviceSp extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="备件名称" , notes = "备件名称" , example = "12")
 	private String name;
+	
+	/**
+	 * 所在仓库：所在仓库
+	*/
+	@ApiModelProperty(required = false,value="所在仓库" , notes = "所在仓库")
+	private String warehouseId;
 	
 	/**
 	 * 规格型号：规格型号
@@ -103,9 +109,9 @@ public class DeviceSp extends Entity {
 	private String locId;
 	
 	/**
-	 * 适配设备：适配设备
+	 * 适配信息：适配信息
 	*/
-	@ApiModelProperty(required = false,value="适配设备" , notes = "适配设备")
+	@ApiModelProperty(required = false,value="适配信息" , notes = "适配信息")
 	private String adaptingDevice;
 	
 	/**
@@ -250,6 +256,12 @@ public class DeviceSp extends Entity {
 	private List<DeviceAssociate> deviceAssociate;
 	
 	/**
+	 * 仓库：仓库
+	*/
+	@ApiModelProperty(required = false,value="仓库" , notes = "仓库")
+	private Warehouse warehouse;
+	
+	/**
 	 * ownerType：ownerType
 	*/
 	@ApiModelProperty(required = false,value="ownerType" , notes = "ownerType")
@@ -312,17 +324,17 @@ public class DeviceSp extends Entity {
 	}
 	
 	/**
-	 * 获得 物品<br>
-	 * 物品
-	 * @return 物品
+	 * 获得 物品档案<br>
+	 * 物品档案
+	 * @return 物品档案
 	*/
 	public String getGoodId() {
 		return goodId;
 	}
 	
 	/**
-	 * 设置 物品
-	 * @param goodId 物品
+	 * 设置 物品档案
+	 * @param goodId 物品档案
 	 * @return 当前对象
 	*/
 	public DeviceSp setGoodId(String goodId) {
@@ -384,6 +396,25 @@ public class DeviceSp extends Entity {
 	*/
 	public DeviceSp setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 所在仓库<br>
+	 * 所在仓库
+	 * @return 所在仓库
+	*/
+	public String getWarehouseId() {
+		return warehouseId;
+	}
+	
+	/**
+	 * 设置 所在仓库
+	 * @param warehouseId 所在仓库
+	 * @return 当前对象
+	*/
+	public DeviceSp setWarehouseId(String warehouseId) {
+		this.warehouseId=warehouseId;
 		return this;
 	}
 	
@@ -464,17 +495,17 @@ public class DeviceSp extends Entity {
 	}
 	
 	/**
-	 * 获得 适配设备<br>
-	 * 适配设备
-	 * @return 适配设备
+	 * 获得 适配信息<br>
+	 * 适配信息
+	 * @return 适配信息
 	*/
 	public String getAdaptingDevice() {
 		return adaptingDevice;
 	}
 	
 	/**
-	 * 设置 适配设备
-	 * @param adaptingDevice 适配设备
+	 * 设置 适配信息
+	 * @param adaptingDevice 适配信息
 	 * @return 当前对象
 	*/
 	public DeviceSp setAdaptingDevice(String adaptingDevice) {
@@ -973,6 +1004,25 @@ public class DeviceSp extends Entity {
 	}
 	
 	/**
+	 * 获得 仓库<br>
+	 * 仓库
+	 * @return 仓库
+	*/
+	public Warehouse getWarehouse() {
+		return warehouse;
+	}
+	
+	/**
+	 * 设置 仓库
+	 * @param warehouse 仓库
+	 * @return 当前对象
+	*/
+	public DeviceSp setWarehouse(Warehouse warehouse) {
+		this.warehouse=warehouse;
+		return this;
+	}
+	
+	/**
 	 * 获得 ownerType<br>
 	 * ownerType
 	 * @return ownerType
@@ -1112,6 +1162,7 @@ public class DeviceSp extends Entity {
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setManagerUserId(this.getManagerUserId());
+		inst.setWarehouseId(this.getWarehouseId());
 		inst.setSourceDesc(this.getSourceDesc());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setDeleteTime(this.getDeleteTime());
@@ -1129,6 +1180,7 @@ public class DeviceSp extends Entity {
 			inst.setPosition(this.getPosition());
 			inst.setAssetList(this.getAssetList());
 			inst.setDeviceAssociate(this.getDeviceAssociate());
+			inst.setWarehouse(this.getWarehouse());
 			inst.setOwnerId(this.getOwnerId());
 			inst.setSelectedCode(this.getSelectedCode());
 		}
@@ -1210,6 +1262,7 @@ public class DeviceSp extends Entity {
 			this.setCreateBy(DataParser.parse(String.class, map.get(DeviceSpMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(DeviceSpMeta.DELETED)));
 			this.setManagerUserId(DataParser.parse(String.class, map.get(DeviceSpMeta.MANAGER_USER_ID)));
+			this.setWarehouseId(DataParser.parse(String.class, map.get(DeviceSpMeta.WAREHOUSE_ID)));
 			this.setSourceDesc(DataParser.parse(String.class, map.get(DeviceSpMeta.SOURCE_DESC)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(DeviceSpMeta.CREATE_TIME)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(DeviceSpMeta.DELETE_TIME)));
@@ -1225,6 +1278,7 @@ public class DeviceSp extends Entity {
 			this.setUsage(DataParser.parse(DictItem.class, map.get(DeviceSpMeta.USAGE)));
 			this.setGoods(DataParser.parse(Goods.class, map.get(DeviceSpMeta.GOODS)));
 			this.setPosition(DataParser.parse(Position.class, map.get(DeviceSpMeta.POSITION)));
+			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(DeviceSpMeta.WAREHOUSE)));
 			this.setOwnerId(DataParser.parse(String.class, map.get(DeviceSpMeta.OWNER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(DeviceSpMeta.SELECTED_CODE)));
 			return true;
@@ -1250,6 +1304,7 @@ public class DeviceSp extends Entity {
 				this.setCreateBy( (String)map.get(DeviceSpMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(DeviceSpMeta.DELETED));
 				this.setManagerUserId( (String)map.get(DeviceSpMeta.MANAGER_USER_ID));
+				this.setWarehouseId( (String)map.get(DeviceSpMeta.WAREHOUSE_ID));
 				this.setSourceDesc( (String)map.get(DeviceSpMeta.SOURCE_DESC));
 				this.setCreateTime( (Date)map.get(DeviceSpMeta.CREATE_TIME));
 				this.setDeleteTime( (Date)map.get(DeviceSpMeta.DELETE_TIME));
@@ -1265,6 +1320,7 @@ public class DeviceSp extends Entity {
 				this.setUsage( (DictItem)map.get(DeviceSpMeta.USAGE));
 				this.setGoods( (Goods)map.get(DeviceSpMeta.GOODS));
 				this.setPosition( (Position)map.get(DeviceSpMeta.POSITION));
+				this.setWarehouse( (Warehouse)map.get(DeviceSpMeta.WAREHOUSE));
 				this.setOwnerId( (String)map.get(DeviceSpMeta.OWNER_ID));
 				this.setSelectedCode( (String)map.get(DeviceSpMeta.SELECTED_CODE));
 				return true;
@@ -1303,6 +1359,7 @@ public class DeviceSp extends Entity {
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(DeviceSpMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(DeviceSpMeta.DELETED)));
 			this.setManagerUserId(DataParser.parse(String.class, r.getValue(DeviceSpMeta.MANAGER_USER_ID)));
+			this.setWarehouseId(DataParser.parse(String.class, r.getValue(DeviceSpMeta.WAREHOUSE_ID)));
 			this.setSourceDesc(DataParser.parse(String.class, r.getValue(DeviceSpMeta.SOURCE_DESC)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(DeviceSpMeta.CREATE_TIME)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(DeviceSpMeta.DELETE_TIME)));
@@ -1333,6 +1390,7 @@ public class DeviceSp extends Entity {
 				this.setCreateBy( (String)r.getValue(DeviceSpMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(DeviceSpMeta.DELETED));
 				this.setManagerUserId( (String)r.getValue(DeviceSpMeta.MANAGER_USER_ID));
+				this.setWarehouseId( (String)r.getValue(DeviceSpMeta.WAREHOUSE_ID));
 				this.setSourceDesc( (String)r.getValue(DeviceSpMeta.SOURCE_DESC));
 				this.setCreateTime( (Date)r.getValue(DeviceSpMeta.CREATE_TIME));
 				this.setDeleteTime( (Date)r.getValue(DeviceSpMeta.DELETE_TIME));

@@ -90,6 +90,9 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.CONTENT).table().disable(true);
 
 
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ORIGINATOR_ID).table().hidden(true);
+
+
         cfg.view().list().addJsVariable("OPER_TYPE","[[${operType}]]","OPER_TYPE");
         cfg.view().form().addJsVariable("OPER_TYPE","[[${operType}]]","OPER_TYPE");
         cfg.view().list().addJsVariable("OWNER_TYPE","[[${ownerType}]]","OWNER_TYPE");

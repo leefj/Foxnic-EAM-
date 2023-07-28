@@ -11,14 +11,15 @@ import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.Asset;
 import java.util.List;
 import com.dt.platform.domain.eam.DeviceAssociate;
+import com.dt.platform.domain.eam.Warehouse;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-24 06:47:50
- * @sign 4837F1F6DF7E7FA7B4AFF0404847C18A
+ * @since 2023-07-27 12:58:19
+ * @sign C2151C8B748AF2990403685C3EB3FC18
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,14 +46,14 @@ public class DeviceSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,CODE, java.lang.String.class, "备件编号", "备件编号", java.lang.String.class, null);
 	
 	/**
-	 * 物品 , 类型: java.lang.String
+	 * 物品档案 , 类型: java.lang.String
 	*/
 	public static final String GOOD_ID="goodId";
 	
 	/**
-	 * 物品 , 类型: java.lang.String
+	 * 物品档案 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.String> GOOD_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,GOOD_ID, java.lang.String.class, "物品", "物品", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.String> GOOD_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,GOOD_ID, java.lang.String.class, "物品档案", "物品档案", java.lang.String.class, null);
 	
 	/**
 	 * 备件分类 , 类型: java.lang.String
@@ -83,6 +84,16 @@ public class DeviceSpMeta {
 	 * 备件名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,NAME, java.lang.String.class, "备件名称", "备件名称", java.lang.String.class, null);
+	
+	/**
+	 * 所在仓库 , 类型: java.lang.String
+	*/
+	public static final String WAREHOUSE_ID="warehouseId";
+	
+	/**
+	 * 所在仓库 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.String> WAREHOUSE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,WAREHOUSE_ID, java.lang.String.class, "所在仓库", "所在仓库", java.lang.String.class, null);
 	
 	/**
 	 * 规格型号 , 类型: java.lang.String
@@ -125,14 +136,14 @@ public class DeviceSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.String> LOC_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,LOC_ID, java.lang.String.class, "存放位置", "存放位置", java.lang.String.class, null);
 	
 	/**
-	 * 适配设备 , 类型: java.lang.String
+	 * 适配信息 , 类型: java.lang.String
 	*/
 	public static final String ADAPTING_DEVICE="adaptingDevice";
 	
 	/**
-	 * 适配设备 , 类型: java.lang.String
+	 * 适配信息 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.String> ADAPTING_DEVICE_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,ADAPTING_DEVICE, java.lang.String.class, "适配设备", "适配设备", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.String> ADAPTING_DEVICE_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,ADAPTING_DEVICE, java.lang.String.class, "适配信息", "适配信息", java.lang.String.class, null);
 	
 	/**
 	 * 来源描述 , 类型: java.lang.String
@@ -365,6 +376,16 @@ public class DeviceSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,com.dt.platform.domain.eam.DeviceAssociate> DEVICE_ASSOCIATE_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,DEVICE_ASSOCIATE, java.util.List.class, "deviceAssociate", "deviceAssociate", com.dt.platform.domain.eam.DeviceAssociate.class, null);
 	
 	/**
+	 * 仓库 , 类型: com.dt.platform.domain.eam.Warehouse
+	*/
+	public static final String WAREHOUSE="warehouse";
+	
+	/**
+	 * 仓库 , 类型: com.dt.platform.domain.eam.Warehouse
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,com.dt.platform.domain.eam.Warehouse> WAREHOUSE_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,WAREHOUSE, com.dt.platform.domain.eam.Warehouse.class, "仓库", "仓库", com.dt.platform.domain.eam.Warehouse.class, null);
+	
+	/**
 	 * ownerType , 类型: java.lang.String
 	*/
 	public static final String OWNER_TYPE="ownerType";
@@ -407,7 +428,7 @@ public class DeviceSpMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , GOOD_ID , TYPE , STATUS , NAME , MODEL , SN , USAGE_RANGE , LOC_ID , ADAPTING_DEVICE , SOURCE_DESC , SUPPLIER , MANAGER_USER_ID , INSERT_TIME , PICTURE_ID , NOTES , LOCKED , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GOODS , DEVICE_SP_TYPE , MANAGER , POSITION , USAGE , ASSET_LIST , DEVICE_ASSOCIATE , OWNER_TYPE , SELECTED_CODE , OWNER_ID , PS_CATEGORY_ID };
+	public static final String[] $PROPS={ ID , CODE , GOOD_ID , TYPE , STATUS , NAME , WAREHOUSE_ID , MODEL , SN , USAGE_RANGE , LOC_ID , ADAPTING_DEVICE , SOURCE_DESC , SUPPLIER , MANAGER_USER_ID , INSERT_TIME , PICTURE_ID , NOTES , LOCKED , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GOODS , DEVICE_SP_TYPE , MANAGER , POSITION , USAGE , ASSET_LIST , DEVICE_ASSOCIATE , WAREHOUSE , OWNER_TYPE , SELECTED_CODE , OWNER_ID , PS_CATEGORY_ID };
 	
 	/**
 	 * 代理类
@@ -440,8 +461,8 @@ public class DeviceSpMeta {
 		}
 		
 		/**
-		 * 设置 物品
-		 * @param goodId 物品
+		 * 设置 物品档案
+		 * @param goodId 物品档案
 		 * @return 当前对象
 		*/
 		public DeviceSp setGoodId(String goodId) {
@@ -480,6 +501,17 @@ public class DeviceSpMeta {
 		public DeviceSp setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 所在仓库
+		 * @param warehouseId 所在仓库
+		 * @return 当前对象
+		*/
+		public DeviceSp setWarehouseId(String warehouseId) {
+			super.change(WAREHOUSE_ID,super.getWarehouseId(),warehouseId);
+			super.setWarehouseId(warehouseId);
 			return this;
 		}
 		
@@ -528,8 +560,8 @@ public class DeviceSpMeta {
 		}
 		
 		/**
-		 * 设置 适配设备
-		 * @param adaptingDevice 适配设备
+		 * 设置 适配信息
+		 * @param adaptingDevice 适配信息
 		 * @return 当前对象
 		*/
 		public DeviceSp setAdaptingDevice(String adaptingDevice) {
@@ -792,6 +824,17 @@ public class DeviceSpMeta {
 		}
 		
 		/**
+		 * 设置 仓库
+		 * @param warehouse 仓库
+		 * @return 当前对象
+		*/
+		public DeviceSp setWarehouse(Warehouse warehouse) {
+			super.change(WAREHOUSE,super.getWarehouse(),warehouse);
+			super.setWarehouse(warehouse);
+			return this;
+		}
+		
+		/**
 		 * 设置 ownerType
 		 * @param ownerType ownerType
 		 * @return 当前对象
@@ -870,6 +913,7 @@ public class DeviceSpMeta {
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setManagerUserId(this.getManagerUserId());
+			inst.setWarehouseId(this.getWarehouseId());
 			inst.setSourceDesc(this.getSourceDesc());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setDeleteTime(this.getDeleteTime());
@@ -887,6 +931,7 @@ public class DeviceSpMeta {
 				inst.setPosition(this.getPosition());
 				inst.setAssetList(this.getAssetList());
 				inst.setDeviceAssociate(this.getDeviceAssociate());
+				inst.setWarehouse(this.getWarehouse());
 				inst.setOwnerId(this.getOwnerId());
 				inst.setSelectedCode(this.getSelectedCode());
 			}

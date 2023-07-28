@@ -2,7 +2,7 @@
 /**
  * 备件清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-24 06:47:52
+ * @since 2023-07-27 12:58:20
  */
  -->
  <!DOCTYPE html>
@@ -80,9 +80,9 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('备件编号')}" class="search-label code-label">备件编号</span><span class="search-colon">:</span></div>
                         <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
-                    <!-- 物品 , goodId ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 物品档案 , goodId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('物品')}" class="search-label goodId-label">物品</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('物品档案')}" class="search-label goodId-label">物品档案</span><span class="search-colon">:</span></div>
                         <div id="goodId" th:data="${'/service-eam/eam-goods-stock/query-paged-list?ownerCode=goods'}" style="width:150px" extraParam="{}"></div>
                     </div>
                     <!-- 备件名称 , name ,typeName=text_input, isHideInSearch=false -->
@@ -100,9 +100,14 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 适配设备 , adaptingDevice ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 所在仓库 , warehouseId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('适配设备')}" class="search-label adaptingDevice-label">适配设备</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('所在仓库')}" class="search-label warehouseId-label">所在仓库</span><span class="search-colon">:</span></div>
+                        <div id="warehouseId" th:data="${'/service-eam/eam-warehouse/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 适配信息 , adaptingDevice ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('适配信息')}" class="search-label adaptingDevice-label">适配信息</span><span class="search-colon">:</span></div>
                         <input id="adaptingDevice" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
                     <!-- 入库时间 , insertTime ,typeName=date_input, isHideInSearch=false -->

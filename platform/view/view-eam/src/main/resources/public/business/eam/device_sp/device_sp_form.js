@@ -1,7 +1,7 @@
 /**
  * 备件清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-24 06:47:53
+ * @since 2023-07-27 12:58:21
  */
 
 function FormPage() {
@@ -120,7 +120,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "goodId",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("物品",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("物品档案",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -196,6 +196,44 @@ function FormPage() {
 				checked.push($(this).val());
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
+		//渲染 warehouseId 下拉字段
+		fox.renderSelectBox({
+			el: "warehouseId",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("所在仓库",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("warehouseId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "warehouseName", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("warehouseId",{data:data[i],name:data[i].warehouseName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].warehouseName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
 		});
 		//渲染 usageRange 下拉字段
 		fox.renderSelectBox({
@@ -365,8 +403,10 @@ function FormPage() {
 			}
 
 
-			//设置  物品 设置下拉框勾选
+			//设置  物品档案 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#goodId",formData.goods);
+			//设置  所在仓库 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#warehouseId",formData.warehouse);
 			//设置  使用场景 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#usageRange",formData.usage);
 			//设置  存放位置 设置下拉框勾选
@@ -433,8 +473,10 @@ function FormPage() {
 
 
 
-		//获取 物品 下拉框的值
+		//获取 物品档案 下拉框的值
 		data["goodId"]=fox.getSelectedValue("goodId",false);
+		//获取 所在仓库 下拉框的值
+		data["warehouseId"]=fox.getSelectedValue("warehouseId",false);
 		//获取 使用场景 下拉框的值
 		data["usageRange"]=fox.getSelectedValue("usageRange",false);
 		//获取 存放位置 下拉框的值
