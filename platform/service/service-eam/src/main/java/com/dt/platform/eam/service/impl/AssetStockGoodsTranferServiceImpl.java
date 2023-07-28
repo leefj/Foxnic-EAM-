@@ -370,7 +370,7 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 		AssetStockGoodsTranfer assetStockGoodsTranfer = new AssetStockGoodsTranfer();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetStockGoodsTranfer.setId(id);
-		assetStockGoodsTranfer.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetStockGoodsTranfer.setDeleted(1);
 		assetStockGoodsTranfer.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetStockGoodsTranfer.setDeleteTime(new Date());
 		try {
