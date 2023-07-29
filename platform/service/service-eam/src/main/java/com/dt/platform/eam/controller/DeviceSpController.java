@@ -63,7 +63,7 @@ public class DeviceSpController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DeviceSpVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.CODE, value = "备件编号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DeviceSpVOMeta.TYPE, value = "备件分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DeviceSpVOMeta.TYPE, value = "备件类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.STATUS, value = "备件状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.NAME, value = "备件名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.SN, value = "备件序列", required = false, dataTypeClass = String.class),
@@ -79,7 +79,8 @@ public class DeviceSpController extends SuperController {
 		@ApiImplicitParam(name = DeviceSpVOMeta.ADAPTING_DEVICE, value = "适配信息", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.GOOD_ID, value = "物品档案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DeviceSpVOMeta.WAREHOUSE_ID, value = "所在仓库", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DeviceSpVOMeta.WAREHOUSE_ID, value = "所在仓库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DeviceSpVOMeta.SP_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -175,7 +176,7 @@ public class DeviceSpController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DeviceSpVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.CODE, value = "备件编号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DeviceSpVOMeta.TYPE, value = "备件分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DeviceSpVOMeta.TYPE, value = "备件类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.STATUS, value = "备件状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.NAME, value = "备件名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.SN, value = "备件序列", required = false, dataTypeClass = String.class),
@@ -191,7 +192,8 @@ public class DeviceSpController extends SuperController {
 		@ApiImplicitParam(name = DeviceSpVOMeta.ADAPTING_DEVICE, value = "适配信息", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.GOOD_ID, value = "物品档案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DeviceSpVOMeta.WAREHOUSE_ID, value = "所在仓库", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DeviceSpVOMeta.WAREHOUSE_ID, value = "所在仓库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DeviceSpVOMeta.SP_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { DeviceSpVOMeta.PAGE_INDEX, DeviceSpVOMeta.PAGE_SIZE, DeviceSpVOMeta.SEARCH_FIELD, DeviceSpVOMeta.FUZZY_FIELD, DeviceSpVOMeta.SEARCH_VALUE, DeviceSpVOMeta.DIRTY_FIELDS, DeviceSpVOMeta.SORT_FIELD, DeviceSpVOMeta.SORT_TYPE, DeviceSpVOMeta.DATA_ORIGIN, DeviceSpVOMeta.QUERY_LOGIC, DeviceSpVOMeta.REQUEST_ACTION, DeviceSpVOMeta.IDS })
@@ -209,7 +211,7 @@ public class DeviceSpController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DeviceSpVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.CODE, value = "备件编号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DeviceSpVOMeta.TYPE, value = "备件分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DeviceSpVOMeta.TYPE, value = "备件类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.STATUS, value = "备件状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.NAME, value = "备件名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.SN, value = "备件序列", required = false, dataTypeClass = String.class),
@@ -225,7 +227,8 @@ public class DeviceSpController extends SuperController {
 		@ApiImplicitParam(name = DeviceSpVOMeta.ADAPTING_DEVICE, value = "适配信息", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.GOOD_ID, value = "物品档案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DeviceSpVOMeta.WAREHOUSE_ID, value = "所在仓库", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DeviceSpVOMeta.WAREHOUSE_ID, value = "所在仓库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DeviceSpVOMeta.SP_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { DeviceSpVOMeta.PAGE_INDEX, DeviceSpVOMeta.PAGE_SIZE, DeviceSpVOMeta.SEARCH_FIELD, DeviceSpVOMeta.FUZZY_FIELD, DeviceSpVOMeta.SEARCH_VALUE, DeviceSpVOMeta.DIRTY_FIELDS, DeviceSpVOMeta.SORT_FIELD, DeviceSpVOMeta.SORT_TYPE, DeviceSpVOMeta.DATA_ORIGIN, DeviceSpVOMeta.QUERY_LOGIC, DeviceSpVOMeta.REQUEST_ACTION, DeviceSpVOMeta.IDS })
@@ -299,7 +302,7 @@ public class DeviceSpController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DeviceSpVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.CODE, value = "备件编号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DeviceSpVOMeta.TYPE, value = "备件分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DeviceSpVOMeta.TYPE, value = "备件类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.STATUS, value = "备件状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.NAME, value = "备件名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.SN, value = "备件序列", required = false, dataTypeClass = String.class),
@@ -315,7 +318,8 @@ public class DeviceSpController extends SuperController {
 		@ApiImplicitParam(name = DeviceSpVOMeta.ADAPTING_DEVICE, value = "适配信息", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.GOOD_ID, value = "物品档案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DeviceSpVOMeta.WAREHOUSE_ID, value = "所在仓库", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DeviceSpVOMeta.WAREHOUSE_ID, value = "所在仓库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DeviceSpVOMeta.SP_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { DeviceSpVOMeta.PAGE_INDEX, DeviceSpVOMeta.PAGE_SIZE })
     @SentinelResource(value = DeviceSpServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -334,7 +338,7 @@ public class DeviceSpController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DeviceSpVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.CODE, value = "备件编号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DeviceSpVOMeta.TYPE, value = "备件分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DeviceSpVOMeta.TYPE, value = "备件类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.STATUS, value = "备件状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.NAME, value = "备件名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.SN, value = "备件序列", required = false, dataTypeClass = String.class),
@@ -350,7 +354,8 @@ public class DeviceSpController extends SuperController {
 		@ApiImplicitParam(name = DeviceSpVOMeta.ADAPTING_DEVICE, value = "适配信息", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.GOOD_ID, value = "物品档案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DeviceSpVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DeviceSpVOMeta.WAREHOUSE_ID, value = "所在仓库", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DeviceSpVOMeta.WAREHOUSE_ID, value = "所在仓库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DeviceSpVOMeta.SP_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = DeviceSpServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

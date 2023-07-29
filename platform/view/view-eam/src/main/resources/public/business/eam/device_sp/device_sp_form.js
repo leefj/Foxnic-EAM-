@@ -1,7 +1,7 @@
 /**
  * 备件清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-27 12:58:21
+ * @since 2023-07-28 19:33:28
  */
 
 function FormPage() {
@@ -158,7 +158,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "type",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("备件分类",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("备件类型",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,

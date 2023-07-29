@@ -104,6 +104,7 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 			return ErrorDesc.failureMessage("请选择数据");
 		}
 
+		//插入的数量必须大于0
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getStockInNumber().compareTo(new BigDecimal("0"))==1){
 				Logger.info("check ok");
@@ -130,16 +131,12 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 
 		//编码
 		String codeRule="";
-	//	String ownerCode="";
 		if(AssetStockGoodsTypeEnum.STOCK.code().equals(assetStockGoodsIn.getOwnerType())){
 			codeRule= CodeModuleEnum.EAM_ASSET_STOCK_GOODS_IN.code();
-		//	ownerCode=AssetStockGoodsOwnerEnum.STOCK.code();
 		}else if(AssetStockGoodsTypeEnum.CONSUMABLES.code().equals(assetStockGoodsIn.getOwnerType())) {
 			codeRule= CodeModuleEnum.EAM_ASSET_CONSUMABLES_GOODS_IN.code();
-	//		ownerCode=AssetStockGoodsOwnerEnum.CONSUMABLES.code();
 		}else if(AssetStockGoodsTypeEnum.PART.code().equals(assetStockGoodsIn.getOwnerType())) {
 			codeRule= CodeModuleEnum.EAM_ASSET_PART_GOODS_IN.code();
-	//		ownerCode=AssetStockGoodsOwnerEnum.PART.code();
 		}
 		if(StringUtil.isBlank(assetStockGoodsIn.getBusinessCode())){
 			if(!StringUtil.isBlank(codeRule)){
@@ -155,20 +152,23 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 		}
 
 		Result r=super.insert(assetStockGoodsIn,throwsException);
-		for(int i=0;i<list.size();i++){
-
-			list.get(i).setBatchCode(assetStockGoodsIn.getBatchCode());
-			list.get(i).setOwnCompanyId(assetStockGoodsIn.getOwnCompanyId());
-			list.get(i).setSupplierName(assetStockGoodsIn.getSupplierName());
-			list.get(i).setWarehouseId(assetStockGoodsIn.getWarehouseId());
-			list.get(i).setManagerId(assetStockGoodsIn.getManagerId());
-			list.get(i).setStatus(assetStockGoodsIn.getStatus());
-			list.get(i).setStorageDate(new Date());
-			list.get(i).setBusinessCode(assetStockGoodsIn.getBusinessCode());
-			list.get(i).setOwnerCode(assetStockGoodsIn.getOwnerType());
-
+		if(r.isSuccess()){
+			for(int i=0;i<list.size();i++){
+				list.get(i).setBatchCode(assetStockGoodsIn.getBatchCode());
+				list.get(i).setOwnCompanyId(assetStockGoodsIn.getOwnCompanyId());
+				list.get(i).setSupplierName(assetStockGoodsIn.getSupplierName());
+				list.get(i).setWarehouseId(assetStockGoodsIn.getWarehouseId());
+				list.get(i).setManagerId(assetStockGoodsIn.getManagerId());
+				list.get(i).setStatus(assetStockGoodsIn.getStatus());
+				list.get(i).setStorageDate(new Date());
+				list.get(i).setBusinessCode(assetStockGoodsIn.getBusinessCode());
+				list.get(i).setOwnerCode(assetStockGoodsIn.getOwnerType());
+			}
+			return goodsStockService.saveOwnerData(assetStockGoodsIn.getId(),assetStockGoodsIn.getOwnerType(),list);
+		}else{
+			return r;
 		}
-		return goodsStockService.saveOwnerData(assetStockGoodsIn.getId(),assetStockGoodsIn.getOwnerType(),list);
+
 	}
 
 
@@ -228,6 +228,7 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 			bill.setId(id);
 			bill.setStatus(status);
 			this.dao.execute("update eam_goods_stock set status=? where owner_id=?",status,bill.getId());
+
 			//后续需要加盘点
 			computeStockData(id);
 			return super.update(bill,SaveMode.NOT_NULL_FIELDS,false);
@@ -239,12 +240,9 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 	}
 
 	private Result computeStockData(String id){
-		AssetStockGoodsIn bill=this.getById(id);
-		String tenantId= SessionUser.getCurrent().getActivatedTenantId();
-		this.dao().fill(bill)
-				.with(AssetStockGoodsInMeta.GOODS_LIST)
-				.execute();
 		String ownerCode="";
+		AssetStockGoodsIn bill=this.getById(id);
+		//类型
 		if(AssetStockGoodsTypeEnum.STOCK.code().equals(bill.getOwnerType())){
 			ownerCode=AssetStockGoodsOwnerEnum.REAL_STOCK.code();
 		}else if(AssetStockGoodsTypeEnum.CONSUMABLES.code().equals(bill.getOwnerType())){
@@ -252,16 +250,16 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 		}else if(AssetStockGoodsTypeEnum.PART.code().equals(bill.getOwnerType())){
 			ownerCode=AssetStockGoodsOwnerEnum.REAL_PART.code();
 		}
+
+		String tenantId=SessionUser.getCurrent().getActivatedTenantId();
+		this.dao().fill(bill)
+				.with(AssetStockGoodsInMeta.GOODS_LIST)
+				.execute();
 		List<GoodsStock> goods=bill.getGoodsList();
 
 		if(goods!=null&&goods.size()>0){
 			for(int i=0;i<goods.size();i++){
 				String goodsId=goods.get(i).getGoodsId();
-//				String categoryId="";
-//				Rcd goodsRs=dao.queryRecord("select * from eam_goods_stock where id=?",goodsId);
-//				if(goodsRs!=null){
-//					categoryId=goodsRs.getString("category_id");
-//				}
 				String stockInNumber=goods.get(i).getStockInNumber()+"";
 				String warehouseId=goods.get(i).getWarehouseId();
 				if(StringUtil.isBlank(goodsId)||StringUtil.isBlank(warehouseId)){
@@ -270,7 +268,7 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 					String sql="select id,goods_id from eam_goods_stock where owner_code=? and deleted=0 and tenant_id=? and goods_id=? and warehouse_id=?";
 					Rcd rs=this.dao.queryRecord(sql,ownerCode,tenantId,goodsId,warehouseId);
 					if(rs==null){
-						//新增
+						//新增,真实物品
 						Insert ins=new Insert("eam_goods_stock");
 						ins.set("id",IDGenerator.getSnowflakeIdString());
 						ins.set("owner_code",ownerCode);
@@ -279,15 +277,18 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 						ins.set("tenant_id",tenantId);
 						ins.set("warehouse_id",warehouseId);
 						ins.set("goods_id",goodsId);
-					//	ins.set("category_id",categoryId);
+						ins.set("category_id",goods.get(i).getCategoryId());
 						this.dao.execute(ins);
 					}else{
+						//增量修改物品数据
 						String gid=rs.getString("id");
 						String updateSql="update eam_goods_stock set stock_cur_number=stock_cur_number+"+stockInNumber+" where id=?";
 						this.dao.execute(updateSql,gid);
 					}
 				}
 			}
+		}else{
+			return ErrorDesc.failureMessage("没有物品");
 		}
 		return ErrorDesc.success();
 	}

@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存出库VO类型
  * <p>库存出库 , 数据表 eam_asset_stock_goods_out 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 15:00:04
+ * @since 2023-07-28 20:51:34
  * @sign 0C0A781202DE6AE5613049D067FC053C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

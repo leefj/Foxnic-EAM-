@@ -1,10 +1,17 @@
 package com.dt.platform.eam.controller;
 
 import java.util.List;
-import com.dt.platform.domain.eam.*;
-import com.dt.platform.domain.eam.meta.*;
+import com.dt.platform.domain.eam.AssetStockGoodsIn;
+import com.dt.platform.domain.eam.AssetStockGoodsInVO;
+import com.dt.platform.domain.eam.GoodsStock;
+import com.dt.platform.domain.eam.GoodsStockVO;
+import com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta;
+import com.dt.platform.domain.eam.meta.AssetStockGoodsInVOMeta;
+import com.dt.platform.domain.eam.meta.GoodsMeta;
+import com.dt.platform.domain.eam.meta.GoodsStockMeta;
 import com.dt.platform.eam.service.IGoodsStockService;
 import com.dt.platform.proxy.eam.AssetCollectionServiceProxy;
+import com.github.foxnic.api.swagger.InDoc;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.hrm.Person;
@@ -55,7 +62,7 @@ import com.github.foxnic.api.swagger.ApiParamSupport;
  * @since 2022-04-21 13:05:36
  */
 @Api(tags = "库存物品单")
-@ApiSort(0)
+@InDoc
 @RestController("EamAssetStockGoodsInController")
 public class AssetStockGoodsInController extends SuperController {
 
@@ -69,7 +76,7 @@ public class AssetStockGoodsInController extends SuperController {
      * 添加库存物品单
      */
     @ApiOperation(value = "添加库存物品单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "569508271568715776"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.OWNER_TYPE, value = "库存所属", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
@@ -86,7 +93,7 @@ public class AssetStockGoodsInController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.SUPPLIER_NAME, value = "供应商", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.SOURCE_ID, value = "来源", required = false, dataTypeClass = String.class, example = "donation"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.PURCHASE_DATE, value = "购置日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_DATE, value = "业务时间", required = false, dataTypeClass = Date.class, example = "2022-04-12 12:00:00"),
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-04-12 12:00:00"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -115,7 +122,7 @@ public class AssetStockGoodsInController extends SuperController {
      * 删除库存物品单
      */
     @ApiOperation(value = "删除库存物品单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "569508271568715776")
 	})
     @ApiOperationSupport(order = 2)
@@ -131,7 +138,7 @@ public class AssetStockGoodsInController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除库存物品单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -146,7 +153,7 @@ public class AssetStockGoodsInController extends SuperController {
      * 更新库存物品单
      */
     @ApiOperation(value = "更新库存物品单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "569508271568715776"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.OWNER_TYPE, value = "库存所属", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
@@ -163,7 +170,7 @@ public class AssetStockGoodsInController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.SUPPLIER_NAME, value = "供应商", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.SOURCE_ID, value = "来源", required = false, dataTypeClass = String.class, example = "donation"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.PURCHASE_DATE, value = "购置日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_DATE, value = "业务时间", required = false, dataTypeClass = Date.class, example = "2022-04-12 12:00:00"),
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-04-12 12:00:00"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -192,7 +199,7 @@ public class AssetStockGoodsInController extends SuperController {
      * 保存库存物品单
      */
     @ApiOperation(value = "保存库存物品单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "569508271568715776"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.OWNER_TYPE, value = "库存所属", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
@@ -209,7 +216,7 @@ public class AssetStockGoodsInController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.SUPPLIER_NAME, value = "供应商", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.SOURCE_ID, value = "来源", required = false, dataTypeClass = String.class, example = "donation"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.PURCHASE_DATE, value = "购置日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_DATE, value = "业务时间", required = false, dataTypeClass = Date.class, example = "2022-04-12 12:00:00"),
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-04-12 12:00:00"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -238,7 +245,7 @@ public class AssetStockGoodsInController extends SuperController {
      * 获取库存物品单
      */
     @ApiOperation(value = "获取库存物品单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -267,7 +274,7 @@ public class AssetStockGoodsInController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取库存物品单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -284,7 +291,7 @@ public class AssetStockGoodsInController extends SuperController {
      * 查询库存物品单
      */
     @ApiOperation(value = "查询库存物品单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "569508271568715776"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.OWNER_TYPE, value = "库存所属", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
@@ -301,7 +308,7 @@ public class AssetStockGoodsInController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.SUPPLIER_NAME, value = "供应商", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.SOURCE_ID, value = "来源", required = false, dataTypeClass = String.class, example = "donation"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.PURCHASE_DATE, value = "购置日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_DATE, value = "业务时间", required = false, dataTypeClass = Date.class, example = "2022-04-12 12:00:00"),
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-04-12 12:00:00"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -331,7 +338,7 @@ public class AssetStockGoodsInController extends SuperController {
      * 分页查询库存物品单
      */
     @ApiOperation(value = "分页查询库存物品单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "569508271568715776"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.OWNER_TYPE, value = "库存所属", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
@@ -348,7 +355,7 @@ public class AssetStockGoodsInController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.SUPPLIER_NAME, value = "供应商", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.SOURCE_ID, value = "来源", required = false, dataTypeClass = String.class, example = "donation"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.PURCHASE_DATE, value = "购置日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_DATE, value = "业务时间", required = false, dataTypeClass = Date.class, example = "2022-04-12 12:00:00"),
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-04-12 12:00:00"),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -384,7 +391,7 @@ public class AssetStockGoodsInController extends SuperController {
      * 确认
      */
     @ApiOperation(value = "确认")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 13)

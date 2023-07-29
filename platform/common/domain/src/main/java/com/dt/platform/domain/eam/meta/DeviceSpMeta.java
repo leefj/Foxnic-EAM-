@@ -18,8 +18,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-27 12:58:19
- * @sign C2151C8B748AF2990403685C3EB3FC18
+ * @since 2023-07-28 19:35:23
+ * @sign BB787D04C60AD42747ADA65ABAE4D8CE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -56,14 +56,14 @@ public class DeviceSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.String> GOOD_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,GOOD_ID, java.lang.String.class, "物品档案", "物品档案", java.lang.String.class, null);
 	
 	/**
-	 * 备件分类 , 类型: java.lang.String
+	 * 备件类型 , 类型: java.lang.String
 	*/
 	public static final String TYPE="type";
 	
 	/**
-	 * 备件分类 , 类型: java.lang.String
+	 * 备件类型 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,TYPE, java.lang.String.class, "备件分类", "备件分类", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,TYPE, java.lang.String.class, "备件类型", "备件类型", java.lang.String.class, null);
 	
 	/**
 	 * 备件状态 , 类型: java.lang.String
@@ -194,6 +194,16 @@ public class DeviceSpMeta {
 	 * 图片 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.String> PICTURE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,PICTURE_ID, java.lang.String.class, "图片", "图片", java.lang.String.class, null);
+	
+	/**
+	 * 数量 , 类型: java.lang.Integer
+	*/
+	public static final String SP_NUMBER="spNumber";
+	
+	/**
+	 * 数量 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSp,java.lang.Integer> SP_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSp.class ,SP_NUMBER, java.lang.Integer.class, "数量", "数量", java.lang.Integer.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -428,7 +438,7 @@ public class DeviceSpMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , GOOD_ID , TYPE , STATUS , NAME , WAREHOUSE_ID , MODEL , SN , USAGE_RANGE , LOC_ID , ADAPTING_DEVICE , SOURCE_DESC , SUPPLIER , MANAGER_USER_ID , INSERT_TIME , PICTURE_ID , NOTES , LOCKED , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GOODS , DEVICE_SP_TYPE , MANAGER , POSITION , USAGE , ASSET_LIST , DEVICE_ASSOCIATE , WAREHOUSE , OWNER_TYPE , SELECTED_CODE , OWNER_ID , PS_CATEGORY_ID };
+	public static final String[] $PROPS={ ID , CODE , GOOD_ID , TYPE , STATUS , NAME , WAREHOUSE_ID , MODEL , SN , USAGE_RANGE , LOC_ID , ADAPTING_DEVICE , SOURCE_DESC , SUPPLIER , MANAGER_USER_ID , INSERT_TIME , PICTURE_ID , SP_NUMBER , NOTES , LOCKED , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GOODS , DEVICE_SP_TYPE , MANAGER , POSITION , USAGE , ASSET_LIST , DEVICE_ASSOCIATE , WAREHOUSE , OWNER_TYPE , SELECTED_CODE , OWNER_ID , PS_CATEGORY_ID };
 	
 	/**
 	 * 代理类
@@ -472,8 +482,8 @@ public class DeviceSpMeta {
 		}
 		
 		/**
-		 * 设置 备件分类
-		 * @param type 备件分类
+		 * 设置 备件类型
+		 * @param type 备件类型
 		 * @return 当前对象
 		*/
 		public DeviceSp setType(String type) {
@@ -622,6 +632,17 @@ public class DeviceSpMeta {
 		public DeviceSp setPictureId(String pictureId) {
 			super.change(PICTURE_ID,super.getPictureId(),pictureId);
 			super.setPictureId(pictureId);
+			return this;
+		}
+		
+		/**
+		 * 设置 数量
+		 * @param spNumber 数量
+		 * @return 当前对象
+		*/
+		public DeviceSp setSpNumber(Integer spNumber) {
+			super.change(SP_NUMBER,super.getSpNumber(),spNumber);
+			super.setSpNumber(spNumber);
 			return this;
 		}
 		
@@ -901,6 +922,7 @@ public class DeviceSpMeta {
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setAdaptingDevice(this.getAdaptingDevice());
 			inst.setSupplier(this.getSupplier());
+			inst.setSpNumber(this.getSpNumber());
 			inst.setModel(this.getModel());
 			inst.setId(this.getId());
 			inst.setSn(this.getSn());

@@ -100,7 +100,9 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","APPROVAL_REQUIRED");
 
 
-   //     cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_goods_out:for-approval");
+        cfg.view().list().addToolButton("出库明细","actionDetail","for-detail-button","eam_asset_stock_goods_out:detail");
+
+        //     cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_goods_out:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_stock_goods_out:confirm");
     //    cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_stock_goods_out:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_stock_goods_out:bill");

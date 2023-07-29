@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 备件清单VO类型
  * <p>备件清单 , 数据表 eam_device_sp 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-27 12:58:19
+ * @since 2023-07-28 19:35:23
  * @sign 0E46684EB74B7A7BF47F509EDF3C83AE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -411,6 +411,7 @@ public class DeviceSpVO extends DeviceSp {
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setAdaptingDevice(this.getAdaptingDevice());
 		inst.setSupplier(this.getSupplier());
+		inst.setSpNumber(this.getSpNumber());
 		inst.setModel(this.getModel());
 		inst.setId(this.getId());
 		inst.setSn(this.getSn());
@@ -523,6 +524,7 @@ public class DeviceSpVO extends DeviceSp {
 			this.setUpdateBy(DataParser.parse(String.class, map.get(DeviceSpVOMeta.UPDATE_BY)));
 			this.setAdaptingDevice(DataParser.parse(String.class, map.get(DeviceSpVOMeta.ADAPTING_DEVICE)));
 			this.setSupplier(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SUPPLIER)));
+			this.setSpNumber(DataParser.parse(Integer.class, map.get(DeviceSpVOMeta.SP_NUMBER)));
 			this.setModel(DataParser.parse(String.class, map.get(DeviceSpVOMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, map.get(DeviceSpVOMeta.ID)));
 			this.setSn(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SN)));
@@ -575,6 +577,7 @@ public class DeviceSpVO extends DeviceSp {
 				this.setUpdateBy( (String)map.get(DeviceSpVOMeta.UPDATE_BY));
 				this.setAdaptingDevice( (String)map.get(DeviceSpVOMeta.ADAPTING_DEVICE));
 				this.setSupplier( (String)map.get(DeviceSpVOMeta.SUPPLIER));
+				this.setSpNumber( (Integer)map.get(DeviceSpVOMeta.SP_NUMBER));
 				this.setModel( (String)map.get(DeviceSpVOMeta.MODEL));
 				this.setId( (String)map.get(DeviceSpVOMeta.ID));
 				this.setSn( (String)map.get(DeviceSpVOMeta.SN));
@@ -640,6 +643,7 @@ public class DeviceSpVO extends DeviceSp {
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.UPDATE_BY)));
 			this.setAdaptingDevice(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.ADAPTING_DEVICE)));
 			this.setSupplier(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.SUPPLIER)));
+			this.setSpNumber(DataParser.parse(Integer.class, r.getValue(DeviceSpVOMeta.SP_NUMBER)));
 			this.setModel(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.ID)));
 			this.setSn(DataParser.parse(String.class, r.getValue(DeviceSpVOMeta.SN)));
@@ -671,6 +675,7 @@ public class DeviceSpVO extends DeviceSp {
 				this.setUpdateBy( (String)r.getValue(DeviceSpVOMeta.UPDATE_BY));
 				this.setAdaptingDevice( (String)r.getValue(DeviceSpVOMeta.ADAPTING_DEVICE));
 				this.setSupplier( (String)r.getValue(DeviceSpVOMeta.SUPPLIER));
+				this.setSpNumber( (Integer)r.getValue(DeviceSpVOMeta.SP_NUMBER));
 				this.setModel( (String)r.getValue(DeviceSpVOMeta.MODEL));
 				this.setId( (String)r.getValue(DeviceSpVOMeta.ID));
 				this.setSn( (String)r.getValue(DeviceSpVOMeta.SN));

@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 备件清单
  * <p>备件清单 , 数据表 eam_device_sp 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-27 12:58:19
- * @sign C2151C8B748AF2990403685C3EB3FC18
+ * @since 2023-07-28 19:35:23
+ * @sign BB787D04C60AD42747ADA65ABAE4D8CE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -61,9 +61,9 @@ public class DeviceSp extends Entity {
 	private String goodId;
 	
 	/**
-	 * 备件分类：备件分类
+	 * 备件类型：备件类型
 	*/
-	@ApiModelProperty(required = false,value="备件分类" , notes = "备件分类" , example = "732552973493731329")
+	@ApiModelProperty(required = false,value="备件类型" , notes = "备件类型" , example = "732552973493731329")
 	private String type;
 	
 	/**
@@ -143,6 +143,12 @@ public class DeviceSp extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="图片" , notes = "图片")
 	private String pictureId;
+	
+	/**
+	 * 数量：数量
+	*/
+	@ApiModelProperty(required = false,value="数量" , notes = "数量")
+	private Integer spNumber;
 	
 	/**
 	 * 备注：备注
@@ -343,17 +349,17 @@ public class DeviceSp extends Entity {
 	}
 	
 	/**
-	 * 获得 备件分类<br>
-	 * 备件分类
-	 * @return 备件分类
+	 * 获得 备件类型<br>
+	 * 备件类型
+	 * @return 备件类型
 	*/
 	public String getType() {
 		return type;
 	}
 	
 	/**
-	 * 设置 备件分类
-	 * @param type 备件分类
+	 * 设置 备件类型
+	 * @param type 备件类型
 	 * @return 当前对象
 	*/
 	public DeviceSp setType(String type) {
@@ -605,6 +611,25 @@ public class DeviceSp extends Entity {
 	*/
 	public DeviceSp setPictureId(String pictureId) {
 		this.pictureId=pictureId;
+		return this;
+	}
+	
+	/**
+	 * 获得 数量<br>
+	 * 数量
+	 * @return 数量
+	*/
+	public Integer getSpNumber() {
+		return spNumber;
+	}
+	
+	/**
+	 * 设置 数量
+	 * @param spNumber 数量
+	 * @return 当前对象
+	*/
+	public DeviceSp setSpNumber(Integer spNumber) {
+		this.spNumber=spNumber;
 		return this;
 	}
 	
@@ -1150,6 +1175,7 @@ public class DeviceSp extends Entity {
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setAdaptingDevice(this.getAdaptingDevice());
 		inst.setSupplier(this.getSupplier());
+		inst.setSpNumber(this.getSpNumber());
 		inst.setModel(this.getModel());
 		inst.setId(this.getId());
 		inst.setSn(this.getSn());
@@ -1250,6 +1276,7 @@ public class DeviceSp extends Entity {
 			this.setUpdateBy(DataParser.parse(String.class, map.get(DeviceSpMeta.UPDATE_BY)));
 			this.setAdaptingDevice(DataParser.parse(String.class, map.get(DeviceSpMeta.ADAPTING_DEVICE)));
 			this.setSupplier(DataParser.parse(String.class, map.get(DeviceSpMeta.SUPPLIER)));
+			this.setSpNumber(DataParser.parse(Integer.class, map.get(DeviceSpMeta.SP_NUMBER)));
 			this.setModel(DataParser.parse(String.class, map.get(DeviceSpMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, map.get(DeviceSpMeta.ID)));
 			this.setSn(DataParser.parse(String.class, map.get(DeviceSpMeta.SN)));
@@ -1292,6 +1319,7 @@ public class DeviceSp extends Entity {
 				this.setUpdateBy( (String)map.get(DeviceSpMeta.UPDATE_BY));
 				this.setAdaptingDevice( (String)map.get(DeviceSpMeta.ADAPTING_DEVICE));
 				this.setSupplier( (String)map.get(DeviceSpMeta.SUPPLIER));
+				this.setSpNumber( (Integer)map.get(DeviceSpMeta.SP_NUMBER));
 				this.setModel( (String)map.get(DeviceSpMeta.MODEL));
 				this.setId( (String)map.get(DeviceSpMeta.ID));
 				this.setSn( (String)map.get(DeviceSpMeta.SN));
@@ -1347,6 +1375,7 @@ public class DeviceSp extends Entity {
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DeviceSpMeta.UPDATE_BY)));
 			this.setAdaptingDevice(DataParser.parse(String.class, r.getValue(DeviceSpMeta.ADAPTING_DEVICE)));
 			this.setSupplier(DataParser.parse(String.class, r.getValue(DeviceSpMeta.SUPPLIER)));
+			this.setSpNumber(DataParser.parse(Integer.class, r.getValue(DeviceSpMeta.SP_NUMBER)));
 			this.setModel(DataParser.parse(String.class, r.getValue(DeviceSpMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, r.getValue(DeviceSpMeta.ID)));
 			this.setSn(DataParser.parse(String.class, r.getValue(DeviceSpMeta.SN)));
@@ -1378,6 +1407,7 @@ public class DeviceSp extends Entity {
 				this.setUpdateBy( (String)r.getValue(DeviceSpMeta.UPDATE_BY));
 				this.setAdaptingDevice( (String)r.getValue(DeviceSpMeta.ADAPTING_DEVICE));
 				this.setSupplier( (String)r.getValue(DeviceSpMeta.SUPPLIER));
+				this.setSpNumber( (Integer)r.getValue(DeviceSpMeta.SP_NUMBER));
 				this.setModel( (String)r.getValue(DeviceSpMeta.MODEL));
 				this.setId( (String)r.getValue(DeviceSpMeta.ID));
 				this.setSn( (String)r.getValue(DeviceSpMeta.SN));
