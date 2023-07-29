@@ -5,7 +5,7 @@ MVN=/Users/lankl/.m2/wrapper/dists/apache-maven-3.5.3-bin/2c22a6s60afpuloj4v181q
 $MVN clean
 $MVN install
 
-version=2.6.0.1
+version=2.7.0.6
 
 # 本地打包
 release_dir="/tmp/app_deploy"

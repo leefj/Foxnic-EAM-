@@ -1,7 +1,7 @@
 update sys_config set name='参数' where id='673570483181977600';
 delete from sys_profile where id<>'default';
 delete from sys_config where profile_id<>'default';
-update sys_config set value='2.6.0' where code='system.version.code';
+update sys_config set value='2.7.0' where code='system.version.code';
 update sys_config set value='PROD' where code='system.version.name';
 update sys_config set value='PROD' where code='system.version.type';
 update sys_config set value='1' where code='system.index.portal.enable';
