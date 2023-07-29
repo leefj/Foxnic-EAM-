@@ -42,7 +42,23 @@ function ListPage() {
 			},
 			callback: {
 				beforeExpand: beforeExpand,
-				onClick: onNodeClick
+				onClick: onNodeClick,
+				onAsyncSuccess:function(event,treeId,treeNode,msg){
+					console.log("event",event);
+					console.log("treeId",treeId);
+					console.log("treeNode",treeNode);
+					var zt=$.fn.zTree.getZTreeObj(treeId);
+					if(treeNode){
+						if(treeNode.isParent==true &&treeNode.children && treeNode.children.length>0){
+							var children=treeNode.children;
+							var length=children.length
+							for(var i=0;i<length;i++){
+								zt.reAsyncChildNodes(children[i],"refresh",false);
+							}
+							zt.expandNode(treeNode,true);
+						}
+					}
+				}
 			},
 			view: {
 				addHoverDom: addHoverDom,
@@ -50,6 +66,18 @@ function ListPage() {
 			}
 		};
 		menuTree=$.fn.zTree.init($("#menu-tree"), cfgs);
+
+		//menuTree.expandAll(true);
+
+		// function expandNodes(nodes) {
+		// 	if (!nodes)
+		// 		return;
+		// 	for ( var i = 0, l = nodes.length; i < l; i++) {
+		// 		menuTree.expandNode(nodes[i], true, false);
+		// 		expandNodes(nodes[i].children);
+		// 	}
+		// }
+
 
 		function beforeExpand(treeId, treeNode){
 			menuTree.setting.async.url=moduleURL+"/query-nodes";
@@ -61,6 +89,7 @@ function ListPage() {
 			childNodes=childNodes.data;
 			if (!childNodes) return null;
 			for (var i=0, l=childNodes.length; i<l; i++) {
+				console.log(1111,childNodes[i]);
 			}
 			return childNodes;
 		}

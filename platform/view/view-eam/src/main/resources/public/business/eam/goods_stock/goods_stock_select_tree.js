@@ -43,7 +43,23 @@ function ListPage() {
             },
             callback: {
                 beforeExpand: beforeExpand,
-                onClick: onNodeClick
+                onClick: onNodeClick,
+                onAsyncSuccess:function(event,treeId,treeNode,msg){
+                    console.log("event",event);
+                    console.log("treeId",treeId);
+                    console.log("treeNode",treeNode);
+                    var zt=$.fn.zTree.getZTreeObj(treeId);
+                    if(treeNode){
+                        if(treeNode.isParent==true &&treeNode.children && treeNode.children.length>0){
+                            var children=treeNode.children;
+                            var length=children.length
+                            for(var i=0;i<length;i++){
+                                zt.reAsyncChildNodes(children[i],"refresh",false);
+                            }
+                            zt.expandNode(treeNode,true);
+                        }
+                    }
+                }
             },
             view: {
                 addHoverDom: addHoverDom,
