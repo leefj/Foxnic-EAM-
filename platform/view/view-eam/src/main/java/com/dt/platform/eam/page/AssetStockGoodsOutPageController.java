@@ -71,10 +71,19 @@ public class AssetStockGoodsOutPageController extends ViewController {
 	 * 库存出库 表单页面
 	 */
 	@RequestMapping("/asset_stock_goods_out_form.html")
-	public String form(Model model,HttpServletRequest request , String id,String ownerType,String operType) {
+	public String form(Model model,HttpServletRequest request , String id,String ownerType) {
 
+		String operCode="";
+		if(AssetStockGoodsTypeEnum.STOCK.code().equals(ownerType)){
+			operCode=AssetOperateEnum.EAM_ASSET_STOCK_GOODS_OUT.code();
+		}else if(AssetStockGoodsTypeEnum.CONSUMABLES.code().equals(ownerType)){
+			operCode=AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_OUT.code();
+		}else if(AssetStockGoodsTypeEnum.PART.code().equals(ownerType)){
+			operCode=AssetOperateEnum.EAM_ASSET_PART_GOODS_OUT.code();
+		}
 		model.addAttribute("ownerType",ownerType);
-		model.addAttribute("operType",operType);
+		model.addAttribute("operType",operCode);
+
 		return prefix+"/asset_stock_goods_out_form";
 	}
 }

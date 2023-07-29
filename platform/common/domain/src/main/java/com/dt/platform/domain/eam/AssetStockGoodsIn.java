@@ -30,7 +30,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品单
  * <p>库存物品单 , 数据表 eam_asset_stock_goods_in 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 15:07:26
+ * @since 2023-07-29 10:50:01
  * @sign 061D0D02BD941206BDE42612D2D28924
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -47,7 +47,7 @@ public class AssetStockGoodsIn extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "732349571098738688")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "737332915347652608")
 	private String id;
 	
 	/**
@@ -59,7 +59,7 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "PI202335142135708")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "PI202337281537245")
 	private String businessCode;
 	
 	/**
@@ -77,13 +77,13 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * 单据名称：单据名称
 	*/
-	@ApiModelProperty(required = false,value="单据名称" , notes = "单据名称" , example = "新建北京")
+	@ApiModelProperty(required = false,value="单据名称" , notes = "单据名称" , example = "1212")
 	private String name;
 	
 	/**
 	 * 批次号：批次号
 	*/
-	@ApiModelProperty(required = false,value="批次号" , notes = "批次号" , example = "12121")
+	@ApiModelProperty(required = false,value="批次号" , notes = "批次号")
 	private String batchCode;
 	
 	/**
@@ -107,7 +107,7 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * 接收人：接收人
 	*/
-	@ApiModelProperty(required = false,value="接收人" , notes = "接收人" , example = "12")
+	@ApiModelProperty(required = false,value="接收人" , notes = "接收人")
 	private String receiverUserName;
 	
 	/**
@@ -125,25 +125,25 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * 供应商：供应商
 	*/
-	@ApiModelProperty(required = false,value="供应商" , notes = "供应商" , example = "1212")
+	@ApiModelProperty(required = false,value="供应商" , notes = "供应商")
 	private String supplierName;
 	
 	/**
 	 * 来源：来源
 	*/
-	@ApiModelProperty(required = false,value="来源" , notes = "来源" , example = "donation")
+	@ApiModelProperty(required = false,value="来源" , notes = "来源")
 	private String sourceId;
 	
 	/**
 	 * 购置日期：购置日期
 	*/
-	@ApiModelProperty(required = false,value="购置日期" , notes = "购置日期" , example = "2023-07-18 12:00:00")
+	@ApiModelProperty(required = false,value="购置日期" , notes = "购置日期" , example = "2023-07-28 12:00:00")
 	private Date purchaseDate;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-07-13 12:00:00")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-07-28 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -155,7 +155,7 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "1212")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
 	
 	/**
@@ -173,7 +173,7 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-14 09:35:44")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-28 03:37:46")
 	private Date createTime;
 	
 	/**
@@ -185,7 +185,7 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-14 09:36:23")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-28 03:47:05")
 	private Date updateTime;
 	
 	/**
@@ -224,7 +224,7 @@ public class AssetStockGoodsIn extends Entity {
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1689341698000")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1690529857000")
 	private String selectedCode;
 	
 	/**

@@ -6,6 +6,7 @@ import com.dt.platform.proxy.eam.AssetAttributeItemServiceProxy;
 import com.dt.platform.proxy.eam.AssetCategoryServiceProxy;
 import com.dt.platform.proxy.eam.AssetDataServiceProxy;
 import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.busi.id.IDGenerator;
 import org.github.foxnic.web.framework.view.aspect.PageHelper;
 
 import org.github.foxnic.web.framework.view.controller.ViewController;
@@ -49,7 +50,7 @@ public class GoodsStockPageController extends ViewController {
 	}
 
 	@RequestMapping("/stock_book_tree.html")
-	public String treeList(Model model,HttpServletRequest request,String ownerCode) {
+	public String treeList(Model model,HttpServletRequest request,String ownerCode,String ownerType) {
 		model.addAttribute("ownerCode",ownerCode);
 
 		Result<HashMap<String, List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(AssetAttributeItemOwnerEnum.ASSET_STOCK_GOODS.code(),null);
@@ -60,7 +61,9 @@ public class GoodsStockPageController extends ViewController {
 		}
 		Result idResult= AssetCategoryServiceProxy.api().queryNodesByCode(AssetPcmCodeEnum.ASSET_STOCK_GOODS.code());
 		model.addAttribute("categoryParentId",idResult.getData());
-
+		String time= IDGenerator.getSnowflakeIdString();
+		String url="/business/eam/goods_stock_real/goods_stock_list.html?ownerCode="+ownerCode+"&ownerType="+ownerType+"&t="+time;
+		model.addAttribute("listUrl",url);
 		return prefix+"/stock_book_tree";
 	}
 

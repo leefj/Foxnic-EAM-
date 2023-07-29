@@ -29,7 +29,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存出库
  * <p>库存出库 , 数据表 eam_asset_stock_goods_out 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 15:00:04
+ * @since 2023-07-28 20:51:34
  * @sign 48AB9B83E0782FCF2E2B560E592669B5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -46,13 +46,13 @@ public class AssetStockGoodsOut extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "732359600694624256")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "PO202315142215516")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
 	private String businessCode;
 	
 	/**
@@ -64,37 +64,37 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
 	private String status;
 	
 	/**
 	 * 库存所属：库存所属
 	*/
-	@ApiModelProperty(required = false,value="库存所属" , notes = "库存所属" , example = "part")
+	@ApiModelProperty(required = false,value="库存所属" , notes = "库存所属")
 	private String ownerType;
 	
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "1221")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称")
 	private String name;
 	
 	/**
 	 * 出库所属：出库所属
 	*/
-	@ApiModelProperty(required = false,value="出库所属" , notes = "出库所属" , example = "normal")
+	@ApiModelProperty(required = false,value="出库所属" , notes = "出库所属")
 	private String stockType;
 	
 	/**
 	 * 领用公司：领用公司
 	*/
-	@ApiModelProperty(required = false,value="领用公司" , notes = "领用公司" , example = "2")
+	@ApiModelProperty(required = false,value="领用公司" , notes = "领用公司")
 	private String useOwnCompanyId;
 	
 	/**
 	 * 领用部门：领用部门
 	*/
-	@ApiModelProperty(required = false,value="领用部门" , notes = "领用部门" , example = "500994919175819264")
+	@ApiModelProperty(required = false,value="领用部门" , notes = "领用部门")
 	private String useOrganizationId;
 	
 	/**
@@ -106,37 +106,37 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 仓库：仓库
 	*/
-	@ApiModelProperty(required = false,value="仓库" , notes = "仓库" , example = "582427523481075712")
+	@ApiModelProperty(required = false,value="仓库" , notes = "仓库")
 	private String warehouseId;
 	
 	/**
 	 * 出库位置：出库位置
 	*/
-	@ApiModelProperty(required = false,value="出库位置" , notes = "出库位置" , example = "1212")
+	@ApiModelProperty(required = false,value="出库位置" , notes = "出库位置")
 	private String positionDetail;
 	
 	/**
 	 * 出库日期：出库日期
 	*/
-	@ApiModelProperty(required = false,value="出库日期" , notes = "出库日期" , example = "2023-07-14 12:00:00")
+	@ApiModelProperty(required = false,value="出库日期" , notes = "出库日期")
 	private Date collectionDate;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-07-14 12:00:00")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期")
 	private Date businessDate;
 	
 	/**
 	 * 出库说明：出库说明
 	*/
-	@ApiModelProperty(required = false,value="出库说明" , notes = "出库说明" , example = "12121212")
+	@ApiModelProperty(required = false,value="出库说明" , notes = "出库说明")
 	private String content;
 	
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
 	private String originatorId;
 	
 	/**
@@ -148,31 +148,31 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-14 10:15:35")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-14 10:15:44")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -193,19 +193,19 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户")
 	private String tenantId;
 	
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1689344057000")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
 	private String selectedCode;
 	
 	/**

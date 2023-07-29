@@ -11,13 +11,14 @@ import org.github.foxnic.web.domain.hrm.Organization;
 import com.dt.platform.domain.eam.Warehouse;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-30 08:42:44
- * @sign 5709F376BD5E816432E65368F9C3DCFF
+ * @since 2023-07-29 09:35:56
+ * @sign 073B337016A04956D6FC537816CFC3B8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -104,14 +105,24 @@ public class GoodsStockMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> GOODS_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,GOODS_STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
 	
 	/**
-	 * 资产分类 , 类型: java.lang.String
+	 * 档案分类 , 类型: java.lang.String
 	*/
 	public static final String CATEGORY_ID="categoryId";
 	
 	/**
+	 * 档案分类 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> CATEGORY_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,CATEGORY_ID, java.lang.String.class, "档案分类", "档案分类", java.lang.String.class, null);
+	
+	/**
 	 * 资产分类 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> CATEGORY_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,CATEGORY_ID, java.lang.String.class, "资产分类", "资产分类", java.lang.String.class, null);
+	public static final String ASSET_CATEGORY_ID="assetCategoryId";
+	
+	/**
+	 * 资产分类 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> ASSET_CATEGORY_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,ASSET_CATEGORY_ID, java.lang.String.class, "资产分类", "资产分类", java.lang.String.class, null);
 	
 	/**
 	 * 物品名称 , 类型: java.lang.String
@@ -392,6 +403,16 @@ public class GoodsStockMeta {
 	 * 选择 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
+	
+	/**
+	 * 操作类型 , 类型: java.lang.String
+	*/
+	public static final String INTER_OPER_TYPE="interOperType";
+	
+	/**
+	 * 操作类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> INTER_OPER_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,INTER_OPER_TYPE, java.lang.String.class, "操作类型", "操作类型", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -696,7 +717,7 @@ public class GoodsStockMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , MANUFACTURER , BRAND , GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , REAL_GOODS , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES };
+	public static final String[] $PROPS={ ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , MANUFACTURER , BRAND , GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , REAL_GOODS , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES };
 	
 	/**
 	 * 代理类
@@ -795,13 +816,24 @@ public class GoodsStockMeta {
 		}
 		
 		/**
-		 * 设置 资产分类
-		 * @param categoryId 资产分类
+		 * 设置 档案分类
+		 * @param categoryId 档案分类
 		 * @return 当前对象
 		*/
 		public GoodsStock setCategoryId(String categoryId) {
 			super.change(CATEGORY_ID,super.getCategoryId(),categoryId);
 			super.setCategoryId(categoryId);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产分类
+		 * @param assetCategoryId 资产分类
+		 * @return 当前对象
+		*/
+		public GoodsStock setAssetCategoryId(String assetCategoryId) {
+			super.change(ASSET_CATEGORY_ID,super.getAssetCategoryId(),assetCategoryId);
+			super.setAssetCategoryId(assetCategoryId);
 			return this;
 		}
 		
@@ -1110,6 +1142,17 @@ public class GoodsStockMeta {
 		public GoodsStock setSelectedCode(String selectedCode) {
 			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
 			super.setSelectedCode(selectedCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 操作类型
+		 * @param interOperType 操作类型
+		 * @return 当前对象
+		*/
+		public GoodsStock setInterOperType(String interOperType) {
+			super.change(INTER_OPER_TYPE,super.getInterOperType(),interOperType);
+			super.setInterOperType(interOperType);
 			return this;
 		}
 		
@@ -1442,5 +1485,96 @@ public class GoodsStockMeta {
 			super.setGoodsStockNotes(goodsStockNotes);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public GoodsStock clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public GoodsStock duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setOwnerType(this.getOwnerType());
+			inst.setSourceId(this.getSourceId());
+			inst.setInterOperType(this.getInterOperType());
+			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setStockSecurity(this.getStockSecurity());
+			inst.setOwnerCode(this.getOwnerCode());
+			inst.setOwnerTmpId(this.getOwnerTmpId());
+			inst.setGoodsId(this.getGoodsId());
+			inst.setOwnerId(this.getOwnerId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setStockMin(this.getStockMin());
+			inst.setPictureId(this.getPictureId());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setModel(this.getModel());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setUnitPrice(this.getUnitPrice());
+			inst.setSupplierName(this.getSupplierName());
+			inst.setStockInNumber(this.getStockInNumber());
+			inst.setAmount(this.getAmount());
+			inst.setStockMax(this.getStockMax());
+			inst.setUseOrgId(this.getUseOrgId());
+			inst.setBatchCode(this.getBatchCode());
+			inst.setManufacturerId(this.getManufacturerId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setManagerId(this.getManagerId());
+			inst.setStorageDate(this.getStorageDate());
+			inst.setVersion(this.getVersion());
+			inst.setBarCode(this.getBarCode());
+			inst.setUnit(this.getUnit());
+			inst.setOwnCompanyId(this.getOwnCompanyId());
+			inst.setStockCurNumber(this.getStockCurNumber());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setRealStockId(this.getRealStockId());
+			inst.setDeleted(this.getDeleted());
+			inst.setGoodsStatus(this.getGoodsStatus());
+			inst.setWarehouseId(this.getWarehouseId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setBrandId(this.getBrandId());
+			inst.setAssetCategoryId(this.getAssetCategoryId());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setCategoryId(this.getCategoryId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setOwnerCompany(this.getOwnerCompany());
+				inst.setGoodsStockSecurity(this.getGoodsStockSecurity());
+				inst.setManager(this.getManager());
+				inst.setGoods(this.getGoods());
+				inst.setSource(this.getSource());
+				inst.setOriginator(this.getOriginator());
+				inst.setGoodsModel(this.getGoodsModel());
+				inst.setGoodsStockMin(this.getGoodsStockMin());
+				inst.setWarehouse(this.getWarehouse());
+				inst.setRealGoods(this.getRealGoods());
+				inst.setManufacturer(this.getManufacturer());
+				inst.setGoodsBarCode(this.getGoodsBarCode());
+				inst.setUseOrganization(this.getUseOrganization());
+				inst.setGoodsCategoryName(this.getGoodsCategoryName());
+				inst.setGoodsStockNotes(this.getGoodsStockNotes());
+				inst.setGoodsUnit(this.getGoodsUnit());
+				inst.setGoodsCode(this.getGoodsCode());
+				inst.setCategory(this.getCategory());
+				inst.setBrand(this.getBrand());
+				inst.setGoodsName(this.getGoodsName());
+				inst.setGoodsStockMax(this.getGoodsStockMax());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

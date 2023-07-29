@@ -151,8 +151,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单页面打开时，追加更多的参数信息
          * */
         makeFormQueryString:function(data,queryString,action) {
-            admin.putTempData('eam-asset-stock-goods-in-form-ownerType', OWNER_TYPE);
-            admin.putTempData('eam-asset-stock-goods-in-form-operType', OPER_TYPE);
+            // admin.putTempData('eam-asset-stock-goods-in-form-ownerType',OWNER_TYPE);
+            // admin.putTempData('eam-asset-stock-goods-in-form-operType', OPER_TYPE);
+            // console.log(111);
+            // console.log(OWNER_TYPE,OPER_TYPE)
+            if(data.id){
+                queryString= "id="+data.id+"&ownerType="+OWNER_TYPE+"&operType="+OPER_TYPE;
+            }else{
+                queryString="ownerType="+OWNER_TYPE+"&operType="+OPER_TYPE;
+            }
             return queryString;
         },
         /**
@@ -246,6 +253,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         revokeData:function (item){
             list.billOper("revoke-operation","revoke-data-button",{id:item.id},"已撤销");
         },
+        actionDetail:function (selected,obj){
+            var q="";
+            q="?ownerCode=&ownerType="+OWNER_TYPE
+            admin.popupCenter({
+                title: "明细",
+                resize: false,
+                offset: [2,null],
+                area: ["90%","90%"],
+                type: 2,
+                id:"eam-asset-stock-goods-in-dtl-form-data-win",
+                content: '/business/eam/goods_stock_real/goods_in_dtl_list.html'+q,
+                finish: function () {
+                }
+            });
+        },
         /**
          * 末尾执行
          */
@@ -266,8 +288,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //获取参数，并调整下拉框查询用的URL
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
-            OWNER_TYPE=admin.getTempData('eam-asset-stock-goods-in-form-ownerType');
-            OPER_TYPE=admin.getTempData('eam-asset-stock-goods-in-form-operType');
+            // OWNER_TYPE=admin.getTempData('eam-asset-stock-goods-in-form-ownerType');
+            // OPER_TYPE=admin.getTempData('eam-asset-stock-goods-in-form-operType');
             console.log("form:beforeInit")
         },
         /**

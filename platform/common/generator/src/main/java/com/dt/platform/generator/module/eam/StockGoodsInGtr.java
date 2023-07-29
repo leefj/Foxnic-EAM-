@@ -34,17 +34,16 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(GoodsStock.class,"goodsList","物品","物品");
         cfg.getPoClassFile().addListProperty(String.class,"goodsIds","物品","物品");
 
-
-
-
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"stockTypeDict","入库类型","入库类型");
-
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"ownerCompany","所属公司","所属公司");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"useOrganization","使用公司/部门","使用公司/部门");
         cfg.getPoClassFile().addSimpleProperty(Warehouse.class,"warehouse","仓库","仓库");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"source","来源","来源");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"manager","管理人","管理人");
+
+
+
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.NOTES).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.BUSINESS_CODE).search().fuzzySearch();
@@ -121,7 +120,8 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.WAREHOUSE_ID)
                 .basic().label("仓库")
                 .form().validate().required().form().selectBox().queryApi(WarehouseServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
-                .valueField(WarehouseMeta.ID).textField(WarehouseMeta.WAREHOUSE_NAME).fillWith(AssetStockGoodsInMeta.WAREHOUSE).muliti(false).defaultIndex(0);
+                .valueField(WarehouseMeta.ID).textField(WarehouseMeta.WAREHOUSE_NAME).fillWith(AssetStockGoodsInMeta.WAREHOUSE)
+                .muliti(false).defaultIndex(0);
 
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.SOURCE_ID)
@@ -171,7 +171,11 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
 
 
 
-      //  cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_goods_in:for-approval");
+         cfg.view().list().addToolButton("入库明细","actionDetail","for-detail-button","eam_asset_stock_goods_in:detail");
+
+
+        //  cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_goods_in:for-approval");
+
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_stock_goods_in:confirm");
        // cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_stock_goods_in:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_stock_goods_in:bill");

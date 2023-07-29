@@ -61,7 +61,20 @@ public class GoodsStockRealPageController extends ViewController {
 		return prefix+"/goods_stock_list";
 	}
 
+	@RequestMapping("/goods_in_dtl_list.html")
+	public String inList(Model model,HttpServletRequest request,String ownerType,String ownerCode) {
+		model.addAttribute("ownerType",ownerType);
+		model.addAttribute("ownerCode",ownerCode);
+		return prefix+"/goods_in_dtl_list";
+	}
 
+
+	@RequestMapping("/goods_out_dtl_list.html")
+	public String outList(Model model,HttpServletRequest request,String ownerType,String ownerCode) {
+		model.addAttribute("ownerType",ownerType);
+		model.addAttribute("ownerCode",ownerCode);
+		return prefix+"/goods_out_dtl_list";
+	}
 
 
 }

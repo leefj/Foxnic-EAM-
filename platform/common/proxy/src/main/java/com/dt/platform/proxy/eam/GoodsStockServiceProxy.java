@@ -103,6 +103,9 @@ public interface GoodsStockServiceProxy {
      */
     public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
+    public static final String QUERY_IN_PAGED_LIST= API_PREFIX + "query-in-paged-list";
+
+    public static final String QUERY_OUT_PAGED_LIST = API_PREFIX + "query-out-paged-list";
 
     public static final String QUERY_PAGED_LIST_BY_SELECTED = API_PREFIX + "query-paged-list-by-selected";
 

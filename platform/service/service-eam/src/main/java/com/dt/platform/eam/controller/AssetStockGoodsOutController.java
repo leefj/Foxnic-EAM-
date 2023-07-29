@@ -1,15 +1,20 @@
 package com.dt.platform.eam.controller;
 
 import java.util.List;
-import com.dt.platform.domain.eam.*;
-import com.dt.platform.domain.eam.meta.*;
+
+
+import com.dt.platform.domain.eam.AssetStockGoodsOut;
+import com.dt.platform.domain.eam.AssetStockGoodsOutVO;
+import com.dt.platform.domain.eam.GoodsStock;
+import com.dt.platform.domain.eam.GoodsStockVO;
+import com.dt.platform.domain.eam.meta.AssetStockGoodsOutMeta;
+import com.dt.platform.domain.eam.meta.AssetStockGoodsOutVOMeta;
+import com.dt.platform.domain.eam.meta.GoodsMeta;
+import com.dt.platform.domain.eam.meta.GoodsStockMeta;
 import com.dt.platform.eam.service.IGoodsStockService;
 import com.dt.platform.proxy.eam.AssetStockGoodsInServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
-import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.hrm.Person;
-import com.github.foxnic.commons.collection.CollectorUtil;
-import com.github.foxnic.dao.entity.ReferCause;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

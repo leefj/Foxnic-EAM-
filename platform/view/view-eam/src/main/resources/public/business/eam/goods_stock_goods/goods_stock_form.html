@@ -46,7 +46,7 @@
 
 
                     <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('分类')}">分类</div><div class="layui-required">*</div></div>
+                        <div class="layui-form-label "><div th:text="${lang.translate('档案分类')}">档案分类</div><div class="layui-required">*</div></div>
                         <div class="layui-input-block ">
                             <div id="categoryId" input-type="select"  extraParam="{}"></div>
                         </div>
@@ -55,7 +55,7 @@
 
 
                     <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                        <div class="layui-form-label "><div th:text="${lang.translate('档案状态')}">档案状态</div><div class="layui-required">*</div></div>
                         <div class="layui-input-block ">
                             <div id="goodsStatus" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" extraParam="{}"></div>
                         </div>

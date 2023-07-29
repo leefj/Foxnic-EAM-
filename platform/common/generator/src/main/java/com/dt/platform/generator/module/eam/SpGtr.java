@@ -87,6 +87,10 @@ public class SpGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_DEVICE_SP.CREATE_TIME).table().disable(true);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.SP_NUMBER).table().disable(true);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.TYPE).table().disable(true);
+
+        cfg.view().field(EAMTables.EAM_DEVICE_SP.NOTES).table().disable(true);
+        cfg.view().field(EAMTables.EAM_DEVICE_SP.NOTES).table().disable(true);
+
         cfg.view().field(EAMTables.EAM_DEVICE_SP.NOTES).form().textArea().height(150);
 
         cfg.view().field(EAMTables.EAM_DEVICE_SP.PICTURE_ID).form().upload().acceptImageType().maxFileCount(1);

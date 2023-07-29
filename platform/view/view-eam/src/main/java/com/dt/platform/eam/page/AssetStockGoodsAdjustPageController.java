@@ -48,11 +48,11 @@ public class AssetStockGoodsAdjustPageController extends ViewController {
 	public String list(Model model,HttpServletRequest request,String ownerType) {
 		String operCode="";
 		if(AssetStockGoodsTypeEnum.STOCK.code().equals(ownerType)){
-			operCode= AssetOperateEnum.EAM_ASSET_STOCK_GOODS_OUT.code();
+			operCode= AssetOperateEnum.EAM_ASSET_STOCK_GOODS_ADJUST.code();
 		}else if(AssetStockGoodsTypeEnum.CONSUMABLES.code().equals(ownerType)){
-			operCode=AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_OUT.code();
+			operCode=AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_ADJUST.code();
 		}else if(AssetStockGoodsTypeEnum.PART.code().equals(ownerType)){
-			operCode=AssetOperateEnum.EAM_ASSET_PART_GOODS_OUT.code();
+			operCode=AssetOperateEnum.EAM_ASSET_PART_GOODS_ADJUST.code();
 		}
 
 		boolean approvalRequired=true;
@@ -70,11 +70,17 @@ public class AssetStockGoodsAdjustPageController extends ViewController {
 	 * 库存调整 表单页面
 	 */
 	@RequestMapping("/asset_stock_goods_adjust_form.html")
-	public String form(Model model,HttpServletRequest request , String id,String ownerType,String operType) {
-
-
+	public String form(Model model,HttpServletRequest request , String id,String ownerType) {
+		String operCode="";
+		if(AssetStockGoodsTypeEnum.STOCK.code().equals(ownerType)){
+			operCode= AssetOperateEnum.EAM_ASSET_STOCK_GOODS_ADJUST.code();
+		}else if(AssetStockGoodsTypeEnum.CONSUMABLES.code().equals(ownerType)){
+			operCode=AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_ADJUST.code();
+		}else if(AssetStockGoodsTypeEnum.PART.code().equals(ownerType)){
+			operCode=AssetOperateEnum.EAM_ASSET_PART_GOODS_ADJUST.code();
+		}
 		model.addAttribute("ownerType",ownerType);
-		model.addAttribute("operType",operType);
+		model.addAttribute("operType",operCode);
 
 		return prefix+"/asset_stock_goods_adjust_form";
 	}

@@ -56,8 +56,8 @@ function ListPage() {
 				window.pageExt.list.beforeQuery(contitions,ps,"tableInit");
 			}
 			ps.searchValue=JSON.stringify(contitions);
-			ps.ownerCode=OWNER_CODE;
 
+			ps.ownerType=OWNER_TYPE
 			if(searchContent_categoryId){
 				if(value.categoryId){
 					delete value.categoryId ;
@@ -78,22 +78,20 @@ function ListPage() {
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-paged-list',
+				url: moduleURL +'/query-out-paged-list',
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
 				cols: [[
-					{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName"),d);}}
+					{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('单据编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
+					,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName"),d);}}
 					,{ field: 'goodsId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品名称'), templet: function (d) { return templet('goodsId' ,fox.joinLabel(d.goods,"name"),d);}}
 					,{ field: 'goodsModel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品型号'), templet: function (d) { return templet('goodsModel' ,fox.joinLabel(d.goods,"model"),d);}}
-					,{ field: 'stockCurNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('当前库存数量') , templet: function (d) { return templet('stockCurNumber',d.stockCurNumber,d);}  }
-					,{ field: 'goodsStockMax', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('库存上限'), templet: function (d) { return templet('goodsStockMax' ,fox.joinLabel(d.goods,"stockMax"),d);}}
-					,{ field: 'goodsStockMin', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('库存下限'), templet: function (d) { return templet('goodsStockMin' ,fox.joinLabel(d.goods,"stockMin"),d);}}
-					,{ field: 'goodsStockSecurity', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('安全库存'), templet: function (d) { return templet('goodsStockSecurity' ,fox.joinLabel(d.goods,"stockSecurity"),d);}}
-					,{ field: 'goodsUnit', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('计量单位'), templet: function (d) { return templet('goodsUnit' ,fox.joinLabel(d.goods,"unit"),d);}}
-					,{ field: 'goodsCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品编码'), templet: function (d) { return templet('goodsCode' ,fox.joinLabel(d.goods,"code"),d);}}
+					 ,{ field: 'goodsCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品编码'), templet: function (d) { return templet('goodsCode' ,fox.joinLabel(d.goods,"code"),d);}}
 					,{ field: 'goodsBarCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品条码'), templet: function (d) { return templet('goodsBarCode' ,fox.joinLabel(d.goods,"barCode"),d);}}
+					,{ field: 'goodsUnit', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('计量单位'), templet: function (d) { return templet('goodsUnit' ,fox.joinLabel(d.goods,"unit"),d);}}
 					,{ field: 'goodsNotes', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('备注'), templet: function (d) { return templet('goodsNotes' ,fox.joinLabel(d.goods,"notes"),d);}}
+					,{ field: 'stockInNumber', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('数量') , templet: function (d) { return templet('stockInNumber',d.stockInNumber,d);}  }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
@@ -162,7 +160,7 @@ function ListPage() {
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
 		}
-		ps.ownerCode=OWNER_CODE;
+		ps.ownerType=OWNER_TYPE
 		ps.searchValue=JSON.stringify(value);
 
 		if(searchContent_categoryId){
@@ -341,12 +339,11 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'goods-in':
-					// admin.putTempData('eam-asset-stock-goods-in-form-ownerType', OWNER_TYPE);
-					// admin.putTempData('eam-asset-stock-goods-in-form-operType', OWNER_TYPE);
 
+					admin.putTempData('eam-asset-stock-goods-in-form-ownerType', OWNER_TYPE);
+					dmin.putTempData('eam-asset-stock-goods-in-form-operType', OPER_TYPE);
 					var action="create"
-					var queryString="ownerType="+OWNER_TYPE
-					console.log(queryString);
+					var queryString="";
 					admin.putTempData('eam-asset-stock-goods-in-form-data', {});
 					var area=admin.getTempData('eam-asset-stock-goods-in-form-area');
 					var height= (area && area.height) ? area.height : ($(window).height()*0.6);
@@ -371,10 +368,10 @@ function ListPage() {
 					});
 					break;
 				case 'goods-out':
-					// admin.putTempData('eam-asset-stock-goods-out-form-ownerType', OWNER_TYPE);
-					// admin.putTempData('eam-asset-stock-goods-out-form-operType', OWNER_TYPE);
+					admin.putTempData('eam-asset-stock-goods-out-form-ownerType', OWNER_TYPE);
+					admin.putTempData('eam-asset-stock-goods-out-form-operType', OPER_TYPE);
 					var action="create"
-					var queryString="ownerType="+OWNER_TYPE
+					var queryString="";
 					admin.putTempData('eam-asset-stock-goods-out-form-data', {});
 					var area=admin.getTempData('eam-asset-stock-goods-out-form-area');
 					var height= (area && area.height) ? area.height : ($(window).height()*0.6);
