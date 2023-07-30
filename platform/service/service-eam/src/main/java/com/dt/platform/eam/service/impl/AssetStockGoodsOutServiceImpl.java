@@ -1,12 +1,15 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.alibaba.fastjson.JSONArray;
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
+import com.dt.platform.constants.enums.common.YesNoEnum;
 import com.dt.platform.constants.enums.eam.AssetHandleConfirmOperationEnum;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.eam.AssetStockGoodsTypeEnum;
 import com.dt.platform.domain.eam.AssetStockGoodsOut;
+import com.dt.platform.domain.eam.DeviceSp;
 import com.dt.platform.domain.eam.GoodsStock;
 import com.dt.platform.domain.eam.GoodsStockVO;
 import com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta;
@@ -14,6 +17,7 @@ import com.dt.platform.domain.eam.meta.AssetStockGoodsOutMeta;
 import com.dt.platform.domain.eam.meta.GoodsMeta;
 import com.dt.platform.domain.eam.meta.GoodsStockMeta;
 import com.dt.platform.eam.service.IAssetStockGoodsOutService;
+import com.dt.platform.eam.service.IDeviceSpService;
 import com.dt.platform.eam.service.IGoodsStockService;
 import com.dt.platform.eam.service.IOperateService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
@@ -78,6 +82,9 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 
 	@Autowired
 	private IGoodsStockService goodsStockService;
+
+	@Autowired
+	private IDeviceSpService deviceSpService;
 
 
 	@Override
@@ -278,6 +285,50 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 		}
 
 	}
+
+
+	@Override
+	public Result fillToSpPperation(String id) {
+		//如果是备件，将出库数据到备件清单中
+		AssetStockGoodsOut billData=getById(id);
+		if(!"complete".equals(billData.getStatus())){
+			return ErrorDesc.failureMessage("当前单据状态未完成");
+		}
+
+		if(!"part".equals(billData.getOwnerType())){
+			return ErrorDesc.failureMessage("当前不是备件单据");
+		}
+
+		if("yes".equals(billData.getToBook())){
+			return ErrorDesc.failureMessage("当前单据数据已导入到备件清单,不需要重复操作");
+		}
+
+		if(AssetStockGoodsTypeEnum.PART.code().equals(billData.getOwnerType())){
+			goodsStockService.dao().fill(billData).with(AssetStockGoodsOutMeta.GOODS_LIST).execute();;
+			List<GoodsStock> goods=billData.getGoodsList();
+			JSONArray spIds=new JSONArray();
+			for(int i=0;i<goods.size();i++){
+				GoodsStock good=goods.get(i);
+				GoodsStock rGood=goodsStockService.getById(good.getGoodsId());
+				for(int j=0;j<good.getStockInNumber().intValue();j++){
+					DeviceSp sp=new DeviceSp();
+					sp.setWarehouseId(good.getWarehouseId());
+					sp.setName(rGood.getName());
+					sp.setGoodId(rGood.getId());
+					sp.setModel(rGood.getModel());
+					sp.setInsertTime(new Date());
+					sp.setSourceDesc("来源为库存备件出库,单据号:"+billData.getBusinessCode());
+					deviceSpService.insert(sp);
+					spIds.add(sp.getId());
+				}
+			}
+			deviceSpService.batchSure(spIds.toJSONString());
+		}
+		String updateSql="update eam_asset_stock_goods_out set to_book=? where id=?";
+		dao.execute(updateSql,"yes",id);
+		return ErrorDesc.success();
+	}
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

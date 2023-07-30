@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 备件清单
  * <p>备件清单 , 数据表 eam_device_sp 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 19:35:23
- * @sign BB787D04C60AD42747ADA65ABAE4D8CE
+ * @since 2023-07-30 12:48:36
+ * @sign FBADF241B8789F3166529FEC89DE2A07
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -133,12 +133,6 @@ public class DeviceSp extends Entity {
 	private String managerUserId;
 	
 	/**
-	 * 入库时间：入库时间
-	*/
-	@ApiModelProperty(required = false,value="入库时间" , notes = "入库时间" , example = "2023-07-14 12:00:00")
-	private Date insertTime;
-	
-	/**
 	 * 图片：图片
 	*/
 	@ApiModelProperty(required = false,value="图片" , notes = "图片")
@@ -149,6 +143,12 @@ public class DeviceSp extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="数量" , notes = "数量")
 	private Integer spNumber;
+	
+	/**
+	 * 入库时间：入库时间
+	*/
+	@ApiModelProperty(required = false,value="入库时间" , notes = "入库时间" , example = "2023-07-14 12:00:00")
+	private Date insertTime;
 	
 	/**
 	 * 备注：备注
@@ -223,7 +223,19 @@ public class DeviceSp extends Entity {
 	 * goods：goods
 	*/
 	@ApiModelProperty(required = false,value="goods" , notes = "goods")
-	private Goods goods;
+	private GoodsStock goods;
+	
+	/**
+	 * goodsFillCode：goodsFillCode
+	*/
+	@ApiModelProperty(required = false,value="goodsFillCode" , notes = "goodsFillCode")
+	private String goodsFillCode;
+	
+	/**
+	 * goodsFillModel：goodsFillModel
+	*/
+	@ApiModelProperty(required = false,value="goodsFillModel" , notes = "goodsFillModel")
+	private String goodsFillModel;
 	
 	/**
 	 * deviceSpType：deviceSpType
@@ -577,25 +589,6 @@ public class DeviceSp extends Entity {
 	}
 	
 	/**
-	 * 获得 入库时间<br>
-	 * 入库时间
-	 * @return 入库时间
-	*/
-	public Date getInsertTime() {
-		return insertTime;
-	}
-	
-	/**
-	 * 设置 入库时间
-	 * @param insertTime 入库时间
-	 * @return 当前对象
-	*/
-	public DeviceSp setInsertTime(Date insertTime) {
-		this.insertTime=insertTime;
-		return this;
-	}
-	
-	/**
 	 * 获得 图片<br>
 	 * 图片
 	 * @return 图片
@@ -630,6 +623,25 @@ public class DeviceSp extends Entity {
 	*/
 	public DeviceSp setSpNumber(Integer spNumber) {
 		this.spNumber=spNumber;
+		return this;
+	}
+	
+	/**
+	 * 获得 入库时间<br>
+	 * 入库时间
+	 * @return 入库时间
+	*/
+	public Date getInsertTime() {
+		return insertTime;
+	}
+	
+	/**
+	 * 设置 入库时间
+	 * @param insertTime 入库时间
+	 * @return 当前对象
+	*/
+	public DeviceSp setInsertTime(Date insertTime) {
+		this.insertTime=insertTime;
 		return this;
 	}
 	
@@ -878,7 +890,7 @@ public class DeviceSp extends Entity {
 	 * goods
 	 * @return goods
 	*/
-	public Goods getGoods() {
+	public GoodsStock getGoods() {
 		return goods;
 	}
 	
@@ -887,8 +899,46 @@ public class DeviceSp extends Entity {
 	 * @param goods goods
 	 * @return 当前对象
 	*/
-	public DeviceSp setGoods(Goods goods) {
+	public DeviceSp setGoods(GoodsStock goods) {
 		this.goods=goods;
+		return this;
+	}
+	
+	/**
+	 * 获得 goodsFillCode<br>
+	 * goodsFillCode
+	 * @return goodsFillCode
+	*/
+	public String getGoodsFillCode() {
+		return goodsFillCode;
+	}
+	
+	/**
+	 * 设置 goodsFillCode
+	 * @param goodsFillCode goodsFillCode
+	 * @return 当前对象
+	*/
+	public DeviceSp setGoodsFillCode(String goodsFillCode) {
+		this.goodsFillCode=goodsFillCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 goodsFillModel<br>
+	 * goodsFillModel
+	 * @return goodsFillModel
+	*/
+	public String getGoodsFillModel() {
+		return goodsFillModel;
+	}
+	
+	/**
+	 * 设置 goodsFillModel
+	 * @param goodsFillModel goodsFillModel
+	 * @return 当前对象
+	*/
+	public DeviceSp setGoodsFillModel(String goodsFillModel) {
+		this.goodsFillModel=goodsFillModel;
 		return this;
 	}
 	
@@ -1198,17 +1248,19 @@ public class DeviceSp extends Entity {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setOwnerType(this.getOwnerType());
-			inst.setPsCategoryId(this.getPsCategoryId());
 			inst.setDeviceSpType(this.getDeviceSpType());
 			inst.setManager(this.getManager());
+			inst.setGoodsFillModel(this.getGoodsFillModel());
 			inst.setUsage(this.getUsage());
 			inst.setGoods(this.getGoods());
-			inst.setPosition(this.getPosition());
 			inst.setAssetList(this.getAssetList());
 			inst.setDeviceAssociate(this.getDeviceAssociate());
 			inst.setWarehouse(this.getWarehouse());
 			inst.setOwnerId(this.getOwnerId());
 			inst.setSelectedCode(this.getSelectedCode());
+			inst.setPsCategoryId(this.getPsCategoryId());
+			inst.setGoodsFillCode(this.getGoodsFillCode());
+			inst.setPosition(this.getPosition());
 		}
 		inst.clearModifies();
 		return inst;
@@ -1299,15 +1351,17 @@ public class DeviceSp extends Entity {
 			this.setStatus(DataParser.parse(String.class, map.get(DeviceSpMeta.STATUS)));
 			// others
 			this.setOwnerType(DataParser.parse(String.class, map.get(DeviceSpMeta.OWNER_TYPE)));
-			this.setPsCategoryId(DataParser.parse(String.class, map.get(DeviceSpMeta.PS_CATEGORY_ID)));
 			this.setDeviceSpType(DataParser.parse(DeviceSpType.class, map.get(DeviceSpMeta.DEVICE_SP_TYPE)));
 			this.setManager(DataParser.parse(Employee.class, map.get(DeviceSpMeta.MANAGER)));
+			this.setGoodsFillModel(DataParser.parse(String.class, map.get(DeviceSpMeta.GOODS_FILL_MODEL)));
 			this.setUsage(DataParser.parse(DictItem.class, map.get(DeviceSpMeta.USAGE)));
-			this.setGoods(DataParser.parse(Goods.class, map.get(DeviceSpMeta.GOODS)));
-			this.setPosition(DataParser.parse(Position.class, map.get(DeviceSpMeta.POSITION)));
+			this.setGoods(DataParser.parse(GoodsStock.class, map.get(DeviceSpMeta.GOODS)));
 			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(DeviceSpMeta.WAREHOUSE)));
 			this.setOwnerId(DataParser.parse(String.class, map.get(DeviceSpMeta.OWNER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(DeviceSpMeta.SELECTED_CODE)));
+			this.setPsCategoryId(DataParser.parse(String.class, map.get(DeviceSpMeta.PS_CATEGORY_ID)));
+			this.setGoodsFillCode(DataParser.parse(String.class, map.get(DeviceSpMeta.GOODS_FILL_CODE)));
+			this.setPosition(DataParser.parse(Position.class, map.get(DeviceSpMeta.POSITION)));
 			return true;
 		} else {
 			try {
@@ -1342,15 +1396,17 @@ public class DeviceSp extends Entity {
 				this.setStatus( (String)map.get(DeviceSpMeta.STATUS));
 				// others
 				this.setOwnerType( (String)map.get(DeviceSpMeta.OWNER_TYPE));
-				this.setPsCategoryId( (String)map.get(DeviceSpMeta.PS_CATEGORY_ID));
 				this.setDeviceSpType( (DeviceSpType)map.get(DeviceSpMeta.DEVICE_SP_TYPE));
 				this.setManager( (Employee)map.get(DeviceSpMeta.MANAGER));
+				this.setGoodsFillModel( (String)map.get(DeviceSpMeta.GOODS_FILL_MODEL));
 				this.setUsage( (DictItem)map.get(DeviceSpMeta.USAGE));
-				this.setGoods( (Goods)map.get(DeviceSpMeta.GOODS));
-				this.setPosition( (Position)map.get(DeviceSpMeta.POSITION));
+				this.setGoods( (GoodsStock)map.get(DeviceSpMeta.GOODS));
 				this.setWarehouse( (Warehouse)map.get(DeviceSpMeta.WAREHOUSE));
 				this.setOwnerId( (String)map.get(DeviceSpMeta.OWNER_ID));
 				this.setSelectedCode( (String)map.get(DeviceSpMeta.SELECTED_CODE));
+				this.setPsCategoryId( (String)map.get(DeviceSpMeta.PS_CATEGORY_ID));
+				this.setGoodsFillCode( (String)map.get(DeviceSpMeta.GOODS_FILL_CODE));
+				this.setPosition( (Position)map.get(DeviceSpMeta.POSITION));
 				return true;
 			} catch (Exception e) {
 				return false;

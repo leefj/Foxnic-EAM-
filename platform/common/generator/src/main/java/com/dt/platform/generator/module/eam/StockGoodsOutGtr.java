@@ -1,6 +1,7 @@
 package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
+import com.dt.platform.constants.enums.common.YesNoEnum;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.GoodsStock;
 import com.dt.platform.domain.eam.Warehouse;
@@ -10,6 +11,7 @@ import com.dt.platform.domain.eam.meta.WarehouseMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.WarehouseServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
+import org.github.foxnic.web.constants.enums.system.YesNo;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
@@ -85,6 +87,7 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.NEXT_APPROVER_NAMES).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.APPROVAL_OPINION).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ATTACH_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.TO_BOOK).table().disable(true);
 //        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ORIGINATOR_ID).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.CONTENT).table().disable(true);
@@ -107,6 +110,7 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
     //    cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_stock_goods_out:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_stock_goods_out:bill");
 
+        cfg.view().list().operationColumn().addActionButton("转备件清单","toSpBook","sp-book-button","eam_asset_stock_goods_out:spBook");
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.CONTENT).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ATTACH_ID)
@@ -141,6 +145,9 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
                 .form().selectBox().enumType(AssetHandleStatusEnum.class);
 
 
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.TO_BOOK)
+                .form().validate().required().form().radioBox().enumType(YesNoEnum.class).defaultIndex(1);
+
 
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ORIGINATOR_ID).table().fillBy("originator","name");
@@ -159,16 +166,22 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.NAME,
-                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.STOCK_TYPE,
+                }
+        );
+
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_OWN_COMPANY_ID,
+                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_ORGANIZATION_ID,
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_USER_ID,
                 },
                 new Object[] {
+                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.STOCK_TYPE,
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.WAREHOUSE_ID,
-                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_OWN_COMPANY_ID,
-                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_ORGANIZATION_ID
+                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.POSITION_DETAIL,
                 },
                 new Object[] {
-                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.POSITION_DETAIL,
+//                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.TO_BOOK,
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.COLLECTION_DATE,
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.BUSINESS_DATE,
                 }

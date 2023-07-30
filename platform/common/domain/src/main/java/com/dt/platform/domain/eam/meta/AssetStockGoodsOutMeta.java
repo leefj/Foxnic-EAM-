@@ -15,8 +15,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 20:51:34
- * @sign 48AB9B83E0782FCF2E2B560E592669B5
+ * @since 2023-07-30 12:39:24
+ * @sign 9BF80F353E02E3127BA00D71226A22FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -181,6 +181,16 @@ public class AssetStockGoodsOutMeta {
 	 * 制单人 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsOut,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsOut.class ,ORIGINATOR_ID, java.lang.String.class, "制单人", "制单人", java.lang.String.class, null);
+	
+	/**
+	 * 清单台账 , 类型: java.lang.String
+	*/
+	public static final String TO_BOOK="toBook";
+	
+	/**
+	 * 清单台账 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsOut,java.lang.String> TO_BOOK_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsOut.class ,TO_BOOK, java.lang.String.class, "清单台账", "清单台账", java.lang.String.class, null);
 	
 	/**
 	 * 附件 , 类型: java.lang.String
@@ -475,7 +485,7 @@ public class AssetStockGoodsOutMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , STATUS , OWNER_TYPE , NAME , STOCK_TYPE , USE_OWN_COMPANY_ID , USE_ORGANIZATION_ID , USE_USER_ID , WAREHOUSE_ID , POSITION_DETAIL , COLLECTION_DATE , BUSINESS_DATE , CONTENT , ORIGINATOR_ID , ATTACH_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , GOODS_LIST , GOODS_IDS , STOCK_TYPE_DICT , USE_OWN_COMPANY , USE_ORGANIZATION , WAREHOUSE , ORIGINATOR , USE_USER };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , STATUS , OWNER_TYPE , NAME , STOCK_TYPE , USE_OWN_COMPANY_ID , USE_ORGANIZATION_ID , USE_USER_ID , WAREHOUSE_ID , POSITION_DETAIL , COLLECTION_DATE , BUSINESS_DATE , CONTENT , ORIGINATOR_ID , TO_BOOK , ATTACH_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , GOODS_LIST , GOODS_IDS , STOCK_TYPE_DICT , USE_OWN_COMPANY , USE_ORGANIZATION , WAREHOUSE , ORIGINATOR , USE_USER };
 	
 	/**
 	 * 代理类
@@ -658,6 +668,17 @@ public class AssetStockGoodsOutMeta {
 		public AssetStockGoodsOut setOriginatorId(String originatorId) {
 			super.change(ORIGINATOR_ID,super.getOriginatorId(),originatorId);
 			super.setOriginatorId(originatorId);
+			return this;
+		}
+		
+		/**
+		 * 设置 清单台账
+		 * @param toBook 清单台账
+		 * @return 当前对象
+		*/
+		public AssetStockGoodsOut setToBook(String toBook) {
+			super.change(TO_BOOK,super.getToBook(),toBook);
+			super.setToBook(toBook);
 			return this;
 		}
 		
@@ -1016,6 +1037,7 @@ public class AssetStockGoodsOutMeta {
 			inst.setLatestApproverId(this.getLatestApproverId());
 			inst.setStockType(this.getStockType());
 			inst.setUseOrganizationId(this.getUseOrganizationId());
+			inst.setToBook(this.getToBook());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setCollectionDate(this.getCollectionDate());
 			inst.setVersion(this.getVersion());

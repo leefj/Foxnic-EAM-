@@ -28,7 +28,12 @@ public class SpGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_DEVICE_SP.ID).table().hidden(true);
 
 
-        cfg.getPoClassFile().addSimpleProperty(Goods.class,"goods","goods","goods");
+        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goods","goods","goods");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"goodsFillCode","goodsFillCode","goodsFillCode");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"goodsFillModel","goodsFillModel","goodsFillModel");
+
+
+
         cfg.getPoClassFile().addSimpleProperty(DeviceSpType.class,"deviceSpType","deviceSpType","deviceSpType");
 
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"manager","manager","manager");
@@ -62,6 +67,10 @@ public class SpGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_DEVICE_SP.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_DEVICE_SP.ADAPTING_DEVICE).search().fuzzySearch();
 
+        cfg.view().field(EAMTables.EAM_DEVICE_SP.SN).search().fuzzySearch();
+        cfg.view().field( DeviceSpMeta.GOODS_FILL_CODE).search().fuzzySearch();
+        cfg.view().field( DeviceSpMeta.GOODS_FILL_MODEL).search().fuzzySearch();
+
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_DEVICE_SP.STATUS,
@@ -72,16 +81,31 @@ public class SpGtr extends BaseCodeGenerator {
                 },
                 new Object[]{
                         EAMTables.EAM_DEVICE_SP.CODE,
-                        EAMTables.EAM_DEVICE_SP.GOOD_ID,
                         EAMTables.EAM_DEVICE_SP.NAME,
+                        EAMTables.EAM_DEVICE_SP.SN,
                         EAMTables.EAM_DEVICE_SP.SOURCE_DESC,
                 },
                 new Object[]{
                         EAMTables.EAM_DEVICE_SP.WAREHOUSE_ID,
                         EAMTables.EAM_DEVICE_SP.ADAPTING_DEVICE,
                         EAMTables.EAM_DEVICE_SP.INSERT_TIME,
+                },
+                new Object[]{
+                        EAMTables.EAM_DEVICE_SP.GOOD_ID,
+                        DeviceSpMeta.GOODS_FILL_CODE,
+                        DeviceSpMeta.GOODS_FILL_MODEL
                 }
+
         );
+
+
+        cfg.view().field( DeviceSpMeta.GOODS_FILL_CODE).basic().label("物品档案编号").table().disable(false);
+        cfg.view().field( DeviceSpMeta.GOODS_FILL_MODEL).basic().label("物品档案型号").table().disable(false);
+
+        cfg.view().field( DeviceSpMeta.GOODS_FILL_CODE).table().fillBy("goods","code");
+        cfg.view().field( DeviceSpMeta.GOODS_FILL_MODEL).table().fillBy("goods","model");
+
+
         cfg.view().field(EAMTables.EAM_DEVICE_SP.PICTURE_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.LOCKED).table().disable(true);
         cfg.view().field(EAMTables.EAM_DEVICE_SP.CREATE_TIME).table().disable(true);

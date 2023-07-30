@@ -1,7 +1,7 @@
 /**
  * 备件清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 19:33:28
+ * @since 2023-07-30 12:48:38
  */
 
 function FormPage() {
@@ -305,15 +305,6 @@ function FormPage() {
 				return opts;
 			}
 		});
-		laydate.render({
-			elem: '#insertTime',
-			type:"date",
-			format:"yyyy-MM-dd",
-			trigger:"click",
-			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("insertTime",value, date, endDate);
-			}
-		});
 	    //渲染图片字段
 		foxup.render({
 			el:"pictureId",
@@ -340,6 +331,15 @@ function FormPage() {
 				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterRemove",elId:elId,index:index,upload:upload});
 			}
 	    });
+		laydate.render({
+			elem: '#insertTime',
+			type:"date",
+			format:"yyyy-MM-dd",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("insertTime",value, date, endDate);
+			}
+		});
 	}
 
 	/**

@@ -1,7 +1,7 @@
 /**
  * 库存出库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 20:51:36
+ * @since 2023-07-30 12:39:26
  */
 
 
@@ -500,6 +500,9 @@ function ListPage() {
 			}
 			else if (layEvent === 'download-bill') { // 单据
 				window.pageExt.list.downloadBill(data,this);
+			}
+			else if (layEvent === 'to-sp-book') { // 转备件清单
+				window.pageExt.list.toSpBook(data,this);
 			}
 			
 		});

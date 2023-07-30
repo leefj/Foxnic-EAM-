@@ -40,6 +40,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
               //  operHtml=operHtml.replace(/lay-event="download-bill"/i, "style=\"display:none\"")
                 document.getElementById("tableOperationTemplate").innerHTML=operHtml;
             }
+
+
+            //备件
+            if(OWNER_TYPE=="part"){
+                console.log("none")
+            }else{
+                var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                operHtml=operHtml.replace(/lay-event="to-sp-book"/i, "style=\"display:none\"")
+                document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+            }
         },
         /**
          * 表格渲染前调用
@@ -132,6 +142,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
                 }
+
+
+                if(data[i].toBook=="yes") {
+                    fox.disableButton($('.sp-book-button').filter("[data-id='" + data[i].id + "']"), true);
+                }
+
             }
         },
         /**
@@ -246,6 +262,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         revokeData:function (item){
             list.billOper("revoke-operation","revoke-data-button",{id:item.id},"已撤销");
+        },
+        toSpBook:function (data,it){
+            list.billOper("fill-to-sp-operation","sp-book-button",{id:data.id},"已完成");
         },
         actionDetail:function (selected,obj){
             var q="";

@@ -1,7 +1,7 @@
 /**
  * 备件清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-23 18:55:38
+ * @since 2023-07-30 12:28:44
  */
 
 
@@ -15,8 +15,9 @@ function ListPage() {
 	const deleteURL=moduleURL+'/delete';
 	const batchDeleteURL=moduleURL+'/delete-by-ids';
 	const getByIdURL=moduleURL+'/get-by-id';
-	var searchContent_categoryId;
 	//
+
+	var searchContent_categoryId;
 	var dataTable=null;
 	var sort=null;
 
@@ -61,17 +62,17 @@ function ListPage() {
 			var ps={searchField: "$composite"};
 			var contitions={};
 
+			if(window.pageExt.list.beforeQuery){
+				window.pageExt.list.beforeQuery(contitions,ps,"tableInit");
+			}
+			ps.searchValue=JSON.stringify(contitions);
+
 			if(searchContent_categoryId){
 				if(value.psCategoryId){
 					delete value.psCategoryId ;
 				}
 				ps.psCategoryId=searchContent_categoryId;
 			}
-			if(window.pageExt.list.beforeQuery){
-				window.pageExt.list.beforeQuery(contitions,ps,"tableInit");
-			}
-			ps.searchValue=JSON.stringify(contitions);
-
 			var templet=window.pageExt.list.templet;
 			if(templet==null) {
 				templet=function(field,value,row) {
@@ -93,20 +94,23 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件编号') , templet: function (d) { return templet('code',d.code,d);}  }
-					,{ field: 'goodId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品'), templet: function (d) { return templet('goodId' ,fox.joinLabel(d.goods,"name",',','','goodId'),d);}}
-		//			,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件分类'), templet: function (d) { return templet('type' ,fox.joinLabel(d.deviceSpType,"hierarchyName",',','','type'),d);}}
+					,{ field: 'goodId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品档案'), templet: function (d) { return templet('goodId' ,fox.joinLabel(d.goods,"name",',','','goodId'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所在仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName",',','','warehouseId'),d);}}
 					,{ field: 'model', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('规格型号') , templet: function (d) { return templet('model',d.model,d);}  }
 					,{ field: 'sn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件序列') , templet: function (d) { return templet('sn',d.sn,d);}  }
 					,{ field: 'usageRange', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用场景'), templet: function (d) { return templet('usageRange' ,fox.joinLabel(d.usage,"label",',','','usageRange'),d);}}
 					,{ field: 'locId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('存放位置'), templet: function (d) { return templet('locId' ,fox.joinLabel(d.position,"hierarchyName",',','','locId'),d);}}
-					,{ field: 'adaptingDevice', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('适配设备') , templet: function (d) { return templet('adaptingDevice',d.adaptingDevice,d);}  }
+					,{ field: 'adaptingDevice', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('适配信息') , templet: function (d) { return templet('adaptingDevice',d.adaptingDevice,d);}  }
 					,{ field: 'sourceDesc', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源描述') , templet: function (d) { return templet('sourceDesc',d.sourceDesc,d);}  }
 					,{ field: 'supplier', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('供应厂商') , templet: function (d) { return templet('supplier',d.supplier,d);}  }
 					,{ field: 'managerUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保管人员') , templet: function (d) { return templet('managerUserId',fox.getProperty(d,["manager","name"],0,'','managerUserId'),d);} }
 					,{ field: 'insertTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('入库时间') ,templet: function (d) { return templet('insertTime',fox.dateFormat(d.insertTime,"yyyy-MM-dd"),d); }  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+				 	,{ field: 'goodsFillCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品档案编号') , templet: function (d) { return templet('goodsFillCode',fox.getProperty(d,["goods","code"],0,'','goodsFillCode'),d);} }
+					,{ field: 'goodsFillModel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品档案型号') , templet: function (d) { return templet('goodsFillModel',fox.getProperty(d,["goods","model"],0,'','goodsFillModel'),d);} }
+
+
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -179,15 +183,18 @@ function ListPage() {
 		var value = {};
 		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.goodId={ inputType:"select_box", value: getSelectedValue("#goodId","value") ,fillBy:["goods"]  , label:getSelectedValue("#goodId","nameStr") };
-		value.type={ inputType:"select_box", value: getSelectedValue("#type","value") ,fillBy:["deviceSpType"]  , label:getSelectedValue("#type","nameStr") };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.warehouseId={ inputType:"select_box", value: getSelectedValue("#warehouseId","value") ,fillBy:["warehouse"]  , label:getSelectedValue("#warehouseId","nameStr") };
+		value.sn={ inputType:"button",value: $("#sn").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.usageRange={ inputType:"select_box", value: getSelectedValue("#usageRange","value") ,fillBy:["usage"]  , label:getSelectedValue("#usageRange","nameStr") };
 		value.adaptingDevice={ inputType:"button",value: $("#adaptingDevice").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.sourceDesc={ inputType:"button",value: $("#sourceDesc").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.supplier={ inputType:"button",value: $("#supplier").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.managerUserId={ inputType:"button",value: $("#managerUserId").val(),fillBy:["manager","name"] ,label:$("#managerUserId-button").text() };
 		value.insertTime={ inputType:"date_input", begin: $("#insertTime-begin").val(), end: $("#insertTime-end").val() ,matchType:"auto" };
+		value.goodsFillCode={ inputType:"button",value: $("#goodsFillCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" ,fillBy:["goods","goodsFillCode"] };
+		value.goodsFillModel={ inputType:"button",value: $("#goodsFillModel").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" ,fillBy:["goods","goodsFillModel"] };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -199,7 +206,6 @@ function ListPage() {
 			}
 			ps.psCategoryId=searchContent_categoryId;
 		}
-
 		ps.searchValue=JSON.stringify(value);
 		if(sortField) {
 			ps.sortField=sortField;
@@ -238,11 +244,6 @@ function ListPage() {
 		layui.form.render();
 	}
 
-	function searchCategory(categoryId){
-		searchContent_categoryId=categoryId;
-		refreshTableData()
-	}
-
 	function initSearchFields() {
 
 		fox.switchSearchRow(2);
@@ -278,37 +279,6 @@ function ListPage() {
 				return opts;
 			}
 		});
-		//渲染 type 下拉字段
-		fox.renderSelectBox({
-			el: "type",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			searchField: "hierarchyName", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("type",{data:data[i],name:data[i].hierarchyName,value:data[i].id},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].hierarchyName,value:data[i].id});
-					}
-				}
-				return opts;
-			}
-		});
 		//渲染 status 搜索框
 		fox.renderSelectBox({
 			el: "status",
@@ -329,6 +299,37 @@ function ListPage() {
 						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 warehouseId 下拉字段
+		fox.renderSelectBox({
+			el: "warehouseId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("warehouseId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "warehouseName", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("warehouseId",{data:data[i],name:data[i].warehouseName,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].warehouseName,value:data[i].id});
 					}
 				}
 				return opts;
@@ -619,6 +620,11 @@ function ListPage() {
 			}
 		});
 	};
+
+	function searchCategory(categoryId){
+		searchContent_categoryId=categoryId;
+		refreshTableData()
+	}
 
 	window.module={
 		searchCategory:searchCategory,

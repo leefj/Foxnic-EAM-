@@ -103,6 +103,11 @@ public interface AssetStockGoodsOutServiceProxy {
     public static final String CONFIRM_OPERATION = API_PREFIX + "confirm-operation";
 
 
+    /**
+     * 确认操作
+     */
+    public static final String  FILL_TO_SP_OPERATION = API_PREFIX + "fill-to-sp-operation";
+
 
     /**
      * 添加库存出库

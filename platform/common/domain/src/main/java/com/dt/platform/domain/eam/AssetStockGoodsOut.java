@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存出库
  * <p>库存出库 , 数据表 eam_asset_stock_goods_out 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 20:51:34
- * @sign 48AB9B83E0782FCF2E2B560E592669B5
+ * @since 2023-07-30 12:39:24
+ * @sign 9BF80F353E02E3127BA00D71226A22FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -46,13 +46,13 @@ public class AssetStockGoodsOut extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "737608197237374976")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "PO202351290951230")
 	private String businessCode;
 	
 	/**
@@ -64,37 +64,37 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
 	private String status;
 	
 	/**
 	 * 库存所属：库存所属
 	*/
-	@ApiModelProperty(required = false,value="库存所属" , notes = "库存所属")
+	@ApiModelProperty(required = false,value="库存所属" , notes = "库存所属" , example = "part")
 	private String ownerType;
 	
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "121212")
 	private String name;
 	
 	/**
 	 * 出库所属：出库所属
 	*/
-	@ApiModelProperty(required = false,value="出库所属" , notes = "出库所属")
+	@ApiModelProperty(required = false,value="出库所属" , notes = "出库所属" , example = "normal")
 	private String stockType;
 	
 	/**
 	 * 领用公司：领用公司
 	*/
-	@ApiModelProperty(required = false,value="领用公司" , notes = "领用公司")
+	@ApiModelProperty(required = false,value="领用公司" , notes = "领用公司" , example = "500994919175819264")
 	private String useOwnCompanyId;
 	
 	/**
 	 * 领用部门：领用部门
 	*/
-	@ApiModelProperty(required = false,value="领用部门" , notes = "领用部门")
+	@ApiModelProperty(required = false,value="领用部门" , notes = "领用部门" , example = "500994919175819264")
 	private String useOrganizationId;
 	
 	/**
@@ -106,7 +106,7 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 仓库：仓库
 	*/
-	@ApiModelProperty(required = false,value="仓库" , notes = "仓库")
+	@ApiModelProperty(required = false,value="仓库" , notes = "仓库" , example = "558599376914612224")
 	private String warehouseId;
 	
 	/**
@@ -118,13 +118,13 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 出库日期：出库日期
 	*/
-	@ApiModelProperty(required = false,value="出库日期" , notes = "出库日期")
+	@ApiModelProperty(required = false,value="出库日期" , notes = "出库日期" , example = "2023-07-29 12:00:00")
 	private Date collectionDate;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-07-29 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -136,8 +136,14 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
+	
+	/**
+	 * 清单台账：清单台账
+	*/
+	@ApiModelProperty(required = false,value="清单台账" , notes = "清单台账")
+	private String toBook;
 	
 	/**
 	 * 附件：附件
@@ -148,31 +154,31 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-29 09:51:38")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-29 09:51:44")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -193,19 +199,19 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1690595460000")
 	private String selectedCode;
 	
 	/**
@@ -617,6 +623,25 @@ public class AssetStockGoodsOut extends Entity {
 	*/
 	public AssetStockGoodsOut setOriginatorId(String originatorId) {
 		this.originatorId=originatorId;
+		return this;
+	}
+	
+	/**
+	 * 获得 清单台账<br>
+	 * 清单台账
+	 * @return 清单台账
+	*/
+	public String getToBook() {
+		return toBook;
+	}
+	
+	/**
+	 * 设置 清单台账
+	 * @param toBook 清单台账
+	 * @return 当前对象
+	*/
+	public AssetStockGoodsOut setToBook(String toBook) {
+		this.toBook=toBook;
 		return this;
 	}
 	
@@ -1289,6 +1314,7 @@ public class AssetStockGoodsOut extends Entity {
 		inst.setLatestApproverId(this.getLatestApproverId());
 		inst.setStockType(this.getStockType());
 		inst.setUseOrganizationId(this.getUseOrganizationId());
+		inst.setToBook(this.getToBook());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setCollectionDate(this.getCollectionDate());
 		inst.setVersion(this.getVersion());
@@ -1394,6 +1420,7 @@ public class AssetStockGoodsOut extends Entity {
 			this.setLatestApproverId(DataParser.parse(String.class, map.get(AssetStockGoodsOutMeta.LATEST_APPROVER_ID)));
 			this.setStockType(DataParser.parse(String.class, map.get(AssetStockGoodsOutMeta.STOCK_TYPE)));
 			this.setUseOrganizationId(DataParser.parse(String.class, map.get(AssetStockGoodsOutMeta.USE_ORGANIZATION_ID)));
+			this.setToBook(DataParser.parse(String.class, map.get(AssetStockGoodsOutMeta.TO_BOOK)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetStockGoodsOutMeta.UPDATE_TIME)));
 			this.setCollectionDate(DataParser.parse(Date.class, map.get(AssetStockGoodsOutMeta.COLLECTION_DATE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetStockGoodsOutMeta.VERSION)));
@@ -1441,6 +1468,7 @@ public class AssetStockGoodsOut extends Entity {
 				this.setLatestApproverId( (String)map.get(AssetStockGoodsOutMeta.LATEST_APPROVER_ID));
 				this.setStockType( (String)map.get(AssetStockGoodsOutMeta.STOCK_TYPE));
 				this.setUseOrganizationId( (String)map.get(AssetStockGoodsOutMeta.USE_ORGANIZATION_ID));
+				this.setToBook( (String)map.get(AssetStockGoodsOutMeta.TO_BOOK));
 				this.setUpdateTime( (Date)map.get(AssetStockGoodsOutMeta.UPDATE_TIME));
 				this.setCollectionDate( (Date)map.get(AssetStockGoodsOutMeta.COLLECTION_DATE));
 				this.setVersion( (Integer)map.get(AssetStockGoodsOutMeta.VERSION));
@@ -1501,6 +1529,7 @@ public class AssetStockGoodsOut extends Entity {
 			this.setLatestApproverId(DataParser.parse(String.class, r.getValue(AssetStockGoodsOutMeta.LATEST_APPROVER_ID)));
 			this.setStockType(DataParser.parse(String.class, r.getValue(AssetStockGoodsOutMeta.STOCK_TYPE)));
 			this.setUseOrganizationId(DataParser.parse(String.class, r.getValue(AssetStockGoodsOutMeta.USE_ORGANIZATION_ID)));
+			this.setToBook(DataParser.parse(String.class, r.getValue(AssetStockGoodsOutMeta.TO_BOOK)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetStockGoodsOutMeta.UPDATE_TIME)));
 			this.setCollectionDate(DataParser.parse(Date.class, r.getValue(AssetStockGoodsOutMeta.COLLECTION_DATE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetStockGoodsOutMeta.VERSION)));
@@ -1541,6 +1570,7 @@ public class AssetStockGoodsOut extends Entity {
 				this.setLatestApproverId( (String)r.getValue(AssetStockGoodsOutMeta.LATEST_APPROVER_ID));
 				this.setStockType( (String)r.getValue(AssetStockGoodsOutMeta.STOCK_TYPE));
 				this.setUseOrganizationId( (String)r.getValue(AssetStockGoodsOutMeta.USE_ORGANIZATION_ID));
+				this.setToBook( (String)r.getValue(AssetStockGoodsOutMeta.TO_BOOK));
 				this.setUpdateTime( (Date)r.getValue(AssetStockGoodsOutMeta.UPDATE_TIME));
 				this.setCollectionDate( (Date)r.getValue(AssetStockGoodsOutMeta.COLLECTION_DATE));
 				this.setVersion( (Integer)r.getValue(AssetStockGoodsOutMeta.VERSION));

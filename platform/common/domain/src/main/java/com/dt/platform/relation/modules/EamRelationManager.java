@@ -1264,6 +1264,7 @@ public class EamRelationManager extends RelationManager {
 
         this.property(AssetStockGoodsOutMeta.GOODS_LIST_PROP)
                 .using(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ID).join(EAMTables.EAM_GOODS_STOCK.OWNER_ID);
+//                .condition("status='eam_stock_out_type'");
 
     }
     public void setupAssetStockAdjust(){

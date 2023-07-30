@@ -32,6 +32,7 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
 public interface IAssetStockGoodsOutService extends ISuperService<AssetStockGoodsOut> {
 
 
+	Result fillToSpPperation(String id);
 
 	/**
 	 * 获取单据数据

@@ -1,7 +1,7 @@
 /**
  * 备件清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 19:33:28
+ * @since 2023-07-30 12:48:38
  */
 
 
@@ -99,7 +99,8 @@ function ListPage() {
 					,{ field: 'supplier', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('供应厂商') , templet: function (d) { return templet('supplier',d.supplier,d);}  }
 					,{ field: 'managerUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保管人员') , templet: function (d) { return templet('managerUserId',fox.getProperty(d,["manager","name"],0,'','managerUserId'),d);} }
 					,{ field: 'insertTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('入库时间') ,templet: function (d) { return templet('insertTime',fox.dateFormat(d.insertTime,"yyyy-MM-dd"),d); }  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'goodsFillCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品档案编号') , templet: function (d) { return templet('goodsFillCode',fox.getProperty(d,["goods","code"],0,'','goodsFillCode'),d);} }
+					,{ field: 'goodsFillModel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品档案型号') , templet: function (d) { return templet('goodsFillModel',fox.getProperty(d,["goods","model"],0,'','goodsFillModel'),d);} }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -175,12 +176,15 @@ function ListPage() {
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.warehouseId={ inputType:"select_box", value: getSelectedValue("#warehouseId","value") ,fillBy:["warehouse"]  , label:getSelectedValue("#warehouseId","nameStr") };
+		value.sn={ inputType:"button",value: $("#sn").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.usageRange={ inputType:"select_box", value: getSelectedValue("#usageRange","value") ,fillBy:["usage"]  , label:getSelectedValue("#usageRange","nameStr") };
 		value.adaptingDevice={ inputType:"button",value: $("#adaptingDevice").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.sourceDesc={ inputType:"button",value: $("#sourceDesc").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.supplier={ inputType:"button",value: $("#supplier").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.managerUserId={ inputType:"button",value: $("#managerUserId").val(),fillBy:["manager","name"] ,label:$("#managerUserId-button").text() };
 		value.insertTime={ inputType:"date_input", begin: $("#insertTime-begin").val(), end: $("#insertTime-end").val() ,matchType:"auto" };
+		value.goodsFillCode={ inputType:"button",value: $("#goodsFillCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" ,fillBy:["goods","code"] };
+		value.goodsFillModel={ inputType:"button",value: $("#goodsFillModel").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" ,fillBy:["goods","model"] };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;

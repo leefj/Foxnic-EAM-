@@ -1,7 +1,7 @@
 /**
  * 库存出库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 20:51:37
+ * @since 2023-07-30 12:39:27
  */
 
 function FormPage() {
@@ -242,6 +242,13 @@ function FormPage() {
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("businessDate",value, date, endDate);
 			}
+		});
+		form.on('radio(toBook)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=toBook]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("toBook",data,checked);
 		});
 	    //渲染图片字段
 		foxup.render({

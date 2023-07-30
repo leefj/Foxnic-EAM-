@@ -1,8 +1,6 @@
 package com.dt.platform.eam.controller;
 
 import java.util.List;
-
-
 import com.dt.platform.domain.eam.AssetStockGoodsOut;
 import com.dt.platform.domain.eam.AssetStockGoodsOutVO;
 import com.dt.platform.domain.eam.GoodsStock;
@@ -73,7 +71,7 @@ public class AssetStockGoodsOutController extends SuperController {
      * 添加库存出库
      */
     @ApiOperation(value = "添加库存出库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -101,7 +99,8 @@ public class AssetStockGoodsOutController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetStockGoodsOutServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -116,7 +115,7 @@ public class AssetStockGoodsOutController extends SuperController {
      * 删除库存出库
      */
     @ApiOperation(value = "删除库存出库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 2)
@@ -132,7 +131,7 @@ public class AssetStockGoodsOutController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除库存出库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -147,7 +146,7 @@ public class AssetStockGoodsOutController extends SuperController {
      * 更新库存出库
      */
     @ApiOperation(value = "更新库存出库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -175,7 +174,8 @@ public class AssetStockGoodsOutController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetStockGoodsOutVOMeta.PAGE_INDEX, AssetStockGoodsOutVOMeta.PAGE_SIZE, AssetStockGoodsOutVOMeta.SEARCH_FIELD, AssetStockGoodsOutVOMeta.FUZZY_FIELD, AssetStockGoodsOutVOMeta.SEARCH_VALUE, AssetStockGoodsOutVOMeta.DIRTY_FIELDS, AssetStockGoodsOutVOMeta.SORT_FIELD, AssetStockGoodsOutVOMeta.SORT_TYPE, AssetStockGoodsOutVOMeta.IDS })
     @SentinelResource(value = AssetStockGoodsOutServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -190,7 +190,7 @@ public class AssetStockGoodsOutController extends SuperController {
      * 保存库存出库
      */
     @ApiOperation(value = "保存库存出库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -218,7 +218,8 @@ public class AssetStockGoodsOutController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStockGoodsOutVOMeta.PAGE_INDEX, AssetStockGoodsOutVOMeta.PAGE_SIZE, AssetStockGoodsOutVOMeta.SEARCH_FIELD, AssetStockGoodsOutVOMeta.FUZZY_FIELD, AssetStockGoodsOutVOMeta.SEARCH_VALUE, AssetStockGoodsOutVOMeta.DIRTY_FIELDS, AssetStockGoodsOutVOMeta.SORT_FIELD, AssetStockGoodsOutVOMeta.SORT_TYPE, AssetStockGoodsOutVOMeta.IDS })
     @SentinelResource(value = AssetStockGoodsOutServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -233,7 +234,7 @@ public class AssetStockGoodsOutController extends SuperController {
      * 获取库存出库
      */
     @ApiOperation(value = "获取库存出库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -262,7 +263,7 @@ public class AssetStockGoodsOutController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取库存出库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -279,7 +280,7 @@ public class AssetStockGoodsOutController extends SuperController {
      * 查询库存出库
      */
     @ApiOperation(value = "查询库存出库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -307,7 +308,8 @@ public class AssetStockGoodsOutController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStockGoodsOutVOMeta.PAGE_INDEX, AssetStockGoodsOutVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetStockGoodsOutServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -323,7 +325,7 @@ public class AssetStockGoodsOutController extends SuperController {
      * 分页查询库存出库
      */
     @ApiOperation(value = "分页查询库存出库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -351,7 +353,8 @@ public class AssetStockGoodsOutController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetStockGoodsOutServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -373,7 +376,7 @@ public class AssetStockGoodsOutController extends SuperController {
      * 确认
      */
     @ApiOperation(value = "确认")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 13)
@@ -382,6 +385,22 @@ public class AssetStockGoodsOutController extends SuperController {
     public Result confirmOperation(String id) {
         return assetStockGoodsOutService.confirmOperation(id);
     }
+
+
+    /**
+     * 确认
+     */
+    @ApiOperation(value = "确认")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+    })
+    @ApiOperationSupport(order = 13)
+    @SentinelResource(value = AssetStockGoodsOutServiceProxy.FILL_TO_SP_OPERATION, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(AssetStockGoodsOutServiceProxy.FILL_TO_SP_OPERATION)
+    public Result fillToSpPperation(String id) {
+        return assetStockGoodsOutService.fillToSpPperation(id);
+    }
+
 
     /**
      * 导出 Excel

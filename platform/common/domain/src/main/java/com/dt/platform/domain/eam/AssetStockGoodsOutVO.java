@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存出库VO类型
  * <p>库存出库 , 数据表 eam_asset_stock_goods_out 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 20:51:34
+ * @since 2023-07-30 12:39:24
  * @sign 0C0A781202DE6AE5613049D067FC053C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -425,6 +425,7 @@ public class AssetStockGoodsOutVO extends AssetStockGoodsOut {
 		inst.setLatestApproverId(this.getLatestApproverId());
 		inst.setStockType(this.getStockType());
 		inst.setUseOrganizationId(this.getUseOrganizationId());
+		inst.setToBook(this.getToBook());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setCollectionDate(this.getCollectionDate());
 		inst.setVersion(this.getVersion());
@@ -542,6 +543,7 @@ public class AssetStockGoodsOutVO extends AssetStockGoodsOut {
 			this.setLatestApproverId(DataParser.parse(String.class, map.get(AssetStockGoodsOutVOMeta.LATEST_APPROVER_ID)));
 			this.setStockType(DataParser.parse(String.class, map.get(AssetStockGoodsOutVOMeta.STOCK_TYPE)));
 			this.setUseOrganizationId(DataParser.parse(String.class, map.get(AssetStockGoodsOutVOMeta.USE_ORGANIZATION_ID)));
+			this.setToBook(DataParser.parse(String.class, map.get(AssetStockGoodsOutVOMeta.TO_BOOK)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetStockGoodsOutVOMeta.UPDATE_TIME)));
 			this.setCollectionDate(DataParser.parse(Date.class, map.get(AssetStockGoodsOutVOMeta.COLLECTION_DATE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetStockGoodsOutVOMeta.VERSION)));
@@ -599,6 +601,7 @@ public class AssetStockGoodsOutVO extends AssetStockGoodsOut {
 				this.setLatestApproverId( (String)map.get(AssetStockGoodsOutVOMeta.LATEST_APPROVER_ID));
 				this.setStockType( (String)map.get(AssetStockGoodsOutVOMeta.STOCK_TYPE));
 				this.setUseOrganizationId( (String)map.get(AssetStockGoodsOutVOMeta.USE_ORGANIZATION_ID));
+				this.setToBook( (String)map.get(AssetStockGoodsOutVOMeta.TO_BOOK));
 				this.setUpdateTime( (Date)map.get(AssetStockGoodsOutVOMeta.UPDATE_TIME));
 				this.setCollectionDate( (Date)map.get(AssetStockGoodsOutVOMeta.COLLECTION_DATE));
 				this.setVersion( (Integer)map.get(AssetStockGoodsOutVOMeta.VERSION));
@@ -669,6 +672,7 @@ public class AssetStockGoodsOutVO extends AssetStockGoodsOut {
 			this.setLatestApproverId(DataParser.parse(String.class, r.getValue(AssetStockGoodsOutVOMeta.LATEST_APPROVER_ID)));
 			this.setStockType(DataParser.parse(String.class, r.getValue(AssetStockGoodsOutVOMeta.STOCK_TYPE)));
 			this.setUseOrganizationId(DataParser.parse(String.class, r.getValue(AssetStockGoodsOutVOMeta.USE_ORGANIZATION_ID)));
+			this.setToBook(DataParser.parse(String.class, r.getValue(AssetStockGoodsOutVOMeta.TO_BOOK)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetStockGoodsOutVOMeta.UPDATE_TIME)));
 			this.setCollectionDate(DataParser.parse(Date.class, r.getValue(AssetStockGoodsOutVOMeta.COLLECTION_DATE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetStockGoodsOutVOMeta.VERSION)));
@@ -709,6 +713,7 @@ public class AssetStockGoodsOutVO extends AssetStockGoodsOut {
 				this.setLatestApproverId( (String)r.getValue(AssetStockGoodsOutVOMeta.LATEST_APPROVER_ID));
 				this.setStockType( (String)r.getValue(AssetStockGoodsOutVOMeta.STOCK_TYPE));
 				this.setUseOrganizationId( (String)r.getValue(AssetStockGoodsOutVOMeta.USE_ORGANIZATION_ID));
+				this.setToBook( (String)r.getValue(AssetStockGoodsOutVOMeta.TO_BOOK));
 				this.setUpdateTime( (Date)r.getValue(AssetStockGoodsOutVOMeta.UPDATE_TIME));
 				this.setCollectionDate( (Date)r.getValue(AssetStockGoodsOutVOMeta.COLLECTION_DATE));
 				this.setVersion( (Integer)r.getValue(AssetStockGoodsOutVOMeta.VERSION));
