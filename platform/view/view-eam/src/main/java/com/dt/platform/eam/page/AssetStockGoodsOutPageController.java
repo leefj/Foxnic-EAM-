@@ -47,6 +47,10 @@ public class AssetStockGoodsOutPageController extends ViewController {
 	@RequestMapping("/asset_stock_goods_out_list.html")
 	public String list(Model model,HttpServletRequest request,String ownerType) {
 
+		//"eam_asset_stock_goods_out:toSpBook
+		//eam_asset_stock_goods_out:realToSpBook
+
+
 		String operCode="";
 		if(AssetStockGoodsTypeEnum.STOCK.code().equals(ownerType)){
 			operCode= AssetOperateEnum.EAM_ASSET_STOCK_GOODS_OUT.code();
@@ -72,6 +76,8 @@ public class AssetStockGoodsOutPageController extends ViewController {
 	 */
 	@RequestMapping("/asset_stock_goods_out_form.html")
 	public String form(Model model,HttpServletRequest request , String id,String ownerType) {
+
+
 
 		String operCode="";
 		if(AssetStockGoodsTypeEnum.STOCK.code().equals(ownerType)){

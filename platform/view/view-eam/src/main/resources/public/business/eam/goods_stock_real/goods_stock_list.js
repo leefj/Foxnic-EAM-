@@ -371,8 +371,7 @@ function ListPage() {
 					});
 					break;
 				case 'goods-out':
-					// admin.putTempData('eam-asset-stock-goods-out-form-ownerType', OWNER_TYPE);
-					// admin.putTempData('eam-asset-stock-goods-out-form-operType', OWNER_TYPE);
+
 					var action="create"
 					var queryString="ownerType="+OWNER_TYPE
 					admin.putTempData('eam-asset-stock-goods-out-form-data', {});

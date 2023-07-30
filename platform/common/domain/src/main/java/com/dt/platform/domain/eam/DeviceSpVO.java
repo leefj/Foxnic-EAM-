@@ -14,8 +14,8 @@ import java.util.Map;
 import com.dt.platform.domain.eam.meta.DeviceSpVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
-import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
+import org.github.foxnic.web.domain.hrm.Employee;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 备件清单VO类型
  * <p>备件清单 , 数据表 eam_device_sp 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 19:35:23
+ * @since 2023-07-30 12:48:36
  * @sign 0E46684EB74B7A7BF47F509EDF3C83AE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -435,26 +435,28 @@ public class DeviceSpVO extends DeviceSp {
 		if(all) {
 			inst.setOwnerType(this.getOwnerType());
 			inst.setDeviceSpType(this.getDeviceSpType());
-			inst.setManager(this.getManager());
 			inst.setSearchField(this.getSearchField());
-			inst.setRequestAction(this.getRequestAction());
 			inst.setUsage(this.getUsage());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setGoods(this.getGoods());
 			inst.setPageSize(this.getPageSize());
 			inst.setAssetList(this.getAssetList());
 			inst.setDeviceAssociate(this.getDeviceAssociate());
-			inst.setWarehouse(this.getWarehouse());
 			inst.setOwnerId(this.getOwnerId());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setPsCategoryId(this.getPsCategoryId());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setDataOrigin(this.getDataOrigin());
-			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setManager(this.getManager());
+			inst.setGoodsFillModel(this.getGoodsFillModel());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setWarehouse(this.getWarehouse());
+			inst.setGoodsFillCode(this.getGoodsFillCode());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setIds(this.getIds());
 			inst.setPosition(this.getPosition());
 			inst.setSearchValue(this.getSearchValue());
 		}
@@ -548,22 +550,24 @@ public class DeviceSpVO extends DeviceSp {
 			// others
 			this.setOwnerType(DataParser.parse(String.class, map.get(DeviceSpVOMeta.OWNER_TYPE)));
 			this.setDeviceSpType(DataParser.parse(DeviceSpType.class, map.get(DeviceSpVOMeta.DEVICE_SP_TYPE)));
-			this.setManager(DataParser.parse(Employee.class, map.get(DeviceSpVOMeta.MANAGER)));
 			this.setSearchField(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SEARCH_FIELD)));
-			this.setRequestAction(DataParser.parse(String.class, map.get(DeviceSpVOMeta.REQUEST_ACTION)));
 			this.setUsage(DataParser.parse(DictItem.class, map.get(DeviceSpVOMeta.USAGE)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(DeviceSpVOMeta.FUZZY_FIELD)));
-			this.setGoods(DataParser.parse(Goods.class, map.get(DeviceSpVOMeta.GOODS)));
+			this.setGoods(DataParser.parse(GoodsStock.class, map.get(DeviceSpVOMeta.GOODS)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(DeviceSpVOMeta.PAGE_SIZE)));
-			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(DeviceSpVOMeta.WAREHOUSE)));
 			this.setOwnerId(DataParser.parse(String.class, map.get(DeviceSpVOMeta.OWNER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SELECTED_CODE)));
 			this.setPsCategoryId(DataParser.parse(String.class, map.get(DeviceSpVOMeta.PS_CATEGORY_ID)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(DeviceSpVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(DeviceSpVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(DeviceSpVOMeta.QUERY_LOGIC)));
+			this.setManager(DataParser.parse(Employee.class, map.get(DeviceSpVOMeta.MANAGER)));
+			this.setGoodsFillModel(DataParser.parse(String.class, map.get(DeviceSpVOMeta.GOODS_FILL_MODEL)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(DeviceSpVOMeta.REQUEST_ACTION)));
+			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(DeviceSpVOMeta.WAREHOUSE)));
+			this.setGoodsFillCode(DataParser.parse(String.class, map.get(DeviceSpVOMeta.GOODS_FILL_CODE)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(DeviceSpVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SORT_TYPE)));
 			this.setPosition(DataParser.parse(Position.class, map.get(DeviceSpVOMeta.POSITION)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(DeviceSpVOMeta.SEARCH_VALUE)));
 			return true;
@@ -601,22 +605,24 @@ public class DeviceSpVO extends DeviceSp {
 				// others
 				this.setOwnerType( (String)map.get(DeviceSpVOMeta.OWNER_TYPE));
 				this.setDeviceSpType( (DeviceSpType)map.get(DeviceSpVOMeta.DEVICE_SP_TYPE));
-				this.setManager( (Employee)map.get(DeviceSpVOMeta.MANAGER));
 				this.setSearchField( (String)map.get(DeviceSpVOMeta.SEARCH_FIELD));
-				this.setRequestAction( (String)map.get(DeviceSpVOMeta.REQUEST_ACTION));
 				this.setUsage( (DictItem)map.get(DeviceSpVOMeta.USAGE));
 				this.setFuzzyField( (String)map.get(DeviceSpVOMeta.FUZZY_FIELD));
-				this.setGoods( (Goods)map.get(DeviceSpVOMeta.GOODS));
+				this.setGoods( (GoodsStock)map.get(DeviceSpVOMeta.GOODS));
 				this.setPageSize( (Integer)map.get(DeviceSpVOMeta.PAGE_SIZE));
-				this.setWarehouse( (Warehouse)map.get(DeviceSpVOMeta.WAREHOUSE));
 				this.setOwnerId( (String)map.get(DeviceSpVOMeta.OWNER_ID));
 				this.setSelectedCode( (String)map.get(DeviceSpVOMeta.SELECTED_CODE));
 				this.setPsCategoryId( (String)map.get(DeviceSpVOMeta.PS_CATEGORY_ID));
-				this.setPageIndex( (Integer)map.get(DeviceSpVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(DeviceSpVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(DeviceSpVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(DeviceSpVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(DeviceSpVOMeta.QUERY_LOGIC));
+				this.setManager( (Employee)map.get(DeviceSpVOMeta.MANAGER));
+				this.setGoodsFillModel( (String)map.get(DeviceSpVOMeta.GOODS_FILL_MODEL));
+				this.setRequestAction( (String)map.get(DeviceSpVOMeta.REQUEST_ACTION));
+				this.setWarehouse( (Warehouse)map.get(DeviceSpVOMeta.WAREHOUSE));
+				this.setGoodsFillCode( (String)map.get(DeviceSpVOMeta.GOODS_FILL_CODE));
+				this.setPageIndex( (Integer)map.get(DeviceSpVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(DeviceSpVOMeta.SORT_TYPE));
 				this.setPosition( (Position)map.get(DeviceSpVOMeta.POSITION));
 				this.setSearchValue( (String)map.get(DeviceSpVOMeta.SEARCH_VALUE));
 				return true;

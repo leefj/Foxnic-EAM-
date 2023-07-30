@@ -199,7 +199,7 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.AMOUNT,
                 },
                 new Object[] {
-                     //   EAMTables.EAM_ASSET_STOCK_GOODS_IN.OWN_COMPANY_ID,
+                     // EAMTables.EAM_ASSET_STOCK_GOODS_IN.OWN_COMPANY_ID,
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.SOURCE_ID,
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.BUSINESS_DATE,
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.PURCHASE_DATE,

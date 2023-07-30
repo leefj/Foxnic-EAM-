@@ -5,7 +5,7 @@ import com.dt.platform.domain.eam.DeviceSpVO;
 import java.util.List;
 import com.dt.platform.domain.eam.DeviceSp;
 import java.util.Date;
-import com.dt.platform.domain.eam.Goods;
+import com.dt.platform.domain.eam.GoodsStock;
 import com.dt.platform.domain.eam.DeviceSpType;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.Position;
@@ -19,7 +19,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 19:35:23
+ * @since 2023-07-30 12:48:36
  * @sign 0E46684EB74B7A7BF47F509EDF3C83AE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -297,16 +297,6 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.lang.String> MANAGER_USER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,MANAGER_USER_ID, java.lang.String.class, "保管人员", "保管人员", java.lang.String.class, null);
 	
 	/**
-	 * 入库时间 , 类型: java.util.Date
-	*/
-	public static final String INSERT_TIME="insertTime";
-	
-	/**
-	 * 入库时间 , 类型: java.util.Date
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.util.Date> INSERT_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,INSERT_TIME, java.util.Date.class, "入库时间", "入库时间", java.util.Date.class, null);
-	
-	/**
 	 * 图片 , 类型: java.lang.String
 	*/
 	public static final String PICTURE_ID="pictureId";
@@ -325,6 +315,16 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 	 * 数量 , 类型: java.lang.Integer
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.lang.Integer> SP_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,SP_NUMBER, java.lang.Integer.class, "数量", "数量", java.lang.Integer.class, null);
+	
+	/**
+	 * 入库时间 , 类型: java.util.Date
+	*/
+	public static final String INSERT_TIME="insertTime";
+	
+	/**
+	 * 入库时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.util.Date> INSERT_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,INSERT_TIME, java.util.Date.class, "入库时间", "入库时间", java.util.Date.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -437,14 +437,34 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
-	 * goods , 类型: com.dt.platform.domain.eam.Goods
+	 * goods , 类型: com.dt.platform.domain.eam.GoodsStock
 	*/
 	public static final String GOODS="goods";
 	
 	/**
-	 * goods , 类型: com.dt.platform.domain.eam.Goods
+	 * goods , 类型: com.dt.platform.domain.eam.GoodsStock
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,com.dt.platform.domain.eam.Goods> GOODS_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,GOODS, com.dt.platform.domain.eam.Goods.class, "goods", "goods", com.dt.platform.domain.eam.Goods.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,com.dt.platform.domain.eam.GoodsStock> GOODS_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,GOODS, com.dt.platform.domain.eam.GoodsStock.class, "goods", "goods", com.dt.platform.domain.eam.GoodsStock.class, null);
+	
+	/**
+	 * goodsFillCode , 类型: java.lang.String
+	*/
+	public static final String GOODS_FILL_CODE="goodsFillCode";
+	
+	/**
+	 * goodsFillCode , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.lang.String> GOODS_FILL_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,GOODS_FILL_CODE, java.lang.String.class, "goodsFillCode", "goodsFillCode", java.lang.String.class, null);
+	
+	/**
+	 * goodsFillModel , 类型: java.lang.String
+	*/
+	public static final String GOODS_FILL_MODEL="goodsFillModel";
+	
+	/**
+	 * goodsFillModel , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.DeviceSpVO,java.lang.String> GOODS_FILL_MODEL_PROP = new BeanProperty(com.dt.platform.domain.eam.DeviceSpVO.class ,GOODS_FILL_MODEL, java.lang.String.class, "goodsFillModel", "goodsFillModel", java.lang.String.class, null);
 	
 	/**
 	 * deviceSpType , 类型: com.dt.platform.domain.eam.DeviceSpType
@@ -559,7 +579,7 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , GOOD_ID , TYPE , STATUS , NAME , WAREHOUSE_ID , MODEL , SN , USAGE_RANGE , LOC_ID , ADAPTING_DEVICE , SOURCE_DESC , SUPPLIER , MANAGER_USER_ID , INSERT_TIME , PICTURE_ID , SP_NUMBER , NOTES , LOCKED , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GOODS , DEVICE_SP_TYPE , MANAGER , POSITION , USAGE , ASSET_LIST , DEVICE_ASSOCIATE , WAREHOUSE , OWNER_TYPE , SELECTED_CODE , OWNER_ID , PS_CATEGORY_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , GOOD_ID , TYPE , STATUS , NAME , WAREHOUSE_ID , MODEL , SN , USAGE_RANGE , LOC_ID , ADAPTING_DEVICE , SOURCE_DESC , SUPPLIER , MANAGER_USER_ID , PICTURE_ID , SP_NUMBER , INSERT_TIME , NOTES , LOCKED , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GOODS , GOODS_FILL_CODE , GOODS_FILL_MODEL , DEVICE_SP_TYPE , MANAGER , POSITION , USAGE , ASSET_LIST , DEVICE_ASSOCIATE , WAREHOUSE , OWNER_TYPE , SELECTED_CODE , OWNER_ID , PS_CATEGORY_ID };
 	
 	/**
 	 * 代理类
@@ -867,17 +887,6 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 		}
 		
 		/**
-		 * 设置 入库时间
-		 * @param insertTime 入库时间
-		 * @return 当前对象
-		*/
-		public DeviceSp setInsertTime(Date insertTime) {
-			super.change(INSERT_TIME,super.getInsertTime(),insertTime);
-			super.setInsertTime(insertTime);
-			return this;
-		}
-		
-		/**
 		 * 设置 图片
 		 * @param pictureId 图片
 		 * @return 当前对象
@@ -896,6 +905,17 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 		public DeviceSp setSpNumber(Integer spNumber) {
 			super.change(SP_NUMBER,super.getSpNumber(),spNumber);
 			super.setSpNumber(spNumber);
+			return this;
+		}
+		
+		/**
+		 * 设置 入库时间
+		 * @param insertTime 入库时间
+		 * @return 当前对象
+		*/
+		public DeviceSp setInsertTime(Date insertTime) {
+			super.change(INSERT_TIME,super.getInsertTime(),insertTime);
+			super.setInsertTime(insertTime);
 			return this;
 		}
 		
@@ -1025,9 +1045,31 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 		 * @param goods goods
 		 * @return 当前对象
 		*/
-		public DeviceSp setGoods(Goods goods) {
+		public DeviceSp setGoods(GoodsStock goods) {
 			super.change(GOODS,super.getGoods(),goods);
 			super.setGoods(goods);
+			return this;
+		}
+		
+		/**
+		 * 设置 goodsFillCode
+		 * @param goodsFillCode goodsFillCode
+		 * @return 当前对象
+		*/
+		public DeviceSp setGoodsFillCode(String goodsFillCode) {
+			super.change(GOODS_FILL_CODE,super.getGoodsFillCode(),goodsFillCode);
+			super.setGoodsFillCode(goodsFillCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 goodsFillModel
+		 * @param goodsFillModel goodsFillModel
+		 * @return 当前对象
+		*/
+		public DeviceSp setGoodsFillModel(String goodsFillModel) {
+			super.change(GOODS_FILL_MODEL,super.getGoodsFillModel(),goodsFillModel);
+			super.setGoodsFillModel(goodsFillModel);
 			return this;
 		}
 		
@@ -1200,25 +1242,27 @@ public class DeviceSpVOMeta extends DeviceSpMeta {
 				inst.setOwnerType(this.getOwnerType());
 				inst.setSearchField(this.getSearchField());
 				inst.setDeviceSpType(this.getDeviceSpType());
-				inst.setManager(this.getManager());
-				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setUsage(this.getUsage());
 				inst.setPageSize(this.getPageSize());
 				inst.setGoods(this.getGoods());
 				inst.setAssetList(this.getAssetList());
 				inst.setDeviceAssociate(this.getDeviceAssociate());
-				inst.setWarehouse(this.getWarehouse());
 				inst.setOwnerId(this.getOwnerId());
 				inst.setSelectedCode(this.getSelectedCode());
 				inst.setPsCategoryId(this.getPsCategoryId());
-				inst.setPageIndex(this.getPageIndex());
-				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setDataOrigin(this.getDataOrigin());
-				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
+				inst.setManager(this.getManager());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setGoodsFillModel(this.getGoodsFillModel());
+				inst.setWarehouse(this.getWarehouse());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setGoodsFillCode(this.getGoodsFillCode());
+				inst.setIds(this.getIds());
 				inst.setPosition(this.getPosition());
 				inst.setSearchValue(this.getSearchValue());
 			}
