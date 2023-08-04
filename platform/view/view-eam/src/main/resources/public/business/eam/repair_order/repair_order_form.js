@@ -1,7 +1,7 @@
 /**
  * 故障申请单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-19 13:31:47
+ * @since 2023-08-04 20:25:51
  */
 
 function FormPage() {
@@ -184,6 +184,8 @@ function FormPage() {
 			radio: true,
 			tips: fox.translate("请选择",'','cmp:form')+fox.translate("故障类型",'','cmp:form'),
 			filterable: true,
+			paging: true,
+			pageRemote: true,
 			layVerify: 'required',
 			layVerType: 'msg',
 			on: function(data){
@@ -253,6 +255,8 @@ function FormPage() {
 			radio: true,
 			tips: fox.translate("请选择",'','cmp:form')+fox.translate("紧急程度",'','cmp:form'),
 			filterable: true,
+			paging: true,
+			pageRemote: true,
 			layVerify: 'required',
 			layVerType: 'msg',
 			on: function(data){

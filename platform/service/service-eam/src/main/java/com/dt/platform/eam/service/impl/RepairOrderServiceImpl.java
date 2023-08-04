@@ -156,7 +156,7 @@ public class RepairOrderServiceImpl extends SuperService<RepairOrder> implements
 	private Result operateResult(String id,String result,String status,String message) {
 		RepairOrder repair=this.getById(id);
 		if(AssetHandleConfirmOperationEnum.SUCCESS.code().equals(result)){
-			Result verifyResult= verifyBillData(id);
+			Result verifyResult= verifyBillData(repair);
 			if(!verifyResult.isSuccess()) return verifyResult;
 		//	Result applayResult=applyChange(id);
 	//		if(!applayResult.isSuccess()) return applayResult;
@@ -228,9 +228,14 @@ public class RepairOrderServiceImpl extends SuperService<RepairOrder> implements
 
 		//校验数据资产
 		if(repairOrder.getAssetIds().size()==0){
-			return ErrorDesc.failure().message("请选择资产");
+			return ErrorDesc.failure().message("请选择要报修的设备");
 		}
 
+		if(repairOrder.getAssetIds().size()>1){
+			return ErrorDesc.failure().message("只能选择一台设备");
+		}
+
+		repairOrder.setAssetId(repairOrder.getAssetIds().get(0));
 		Result ckResult=assetService.checkAssetDataForBusinessAction(AssetOperateEnum.EAM_ASSET_REPAIR_ORDER.code(),repairOrder.getAssetIds());
 		if(!ckResult.isSuccess()){
 			return ckResult;
@@ -356,18 +361,31 @@ public class RepairOrderServiceImpl extends SuperService<RepairOrder> implements
 		}
 	}
 
-	private Result verifyBillData(String handleId){
+	private Result verifyBillData(RepairOrder order){
 		//c  新建,r  原纪录,d  删除,cd 新建删除
 		//验证数据
+		String handleId=order.getId();
 		ConditionExpr itemRecordcondition=new ConditionExpr();
 		itemRecordcondition.andIn("handle_id",handleId);
 		itemRecordcondition.andIn("crd","c","r");
 		List<String> ckDatalist=assetItemService.queryValues(EAMTables.EAM_ASSET_ITEM.ASSET_ID,String.class,itemRecordcondition);
 		if(ckDatalist.size()==0){
-			return ErrorDesc.failure().message("请选择资产");
+			return ErrorDesc.failure().message("请选择要报修的设备");
 		}
-		return assetService.checkAssetDataForBusinessAction(CodeModuleEnum.EAM_ASSET_REPAIR_ORDER.code(),ckDatalist);
+		if(ckDatalist.size()>1){
+			return ErrorDesc.failure().message("只能选择一台设备");
+		}
+		order.setAssetId(ckDatalist.get(0));
+		Result res=assetService.checkAssetDataForBusinessAction(CodeModuleEnum.EAM_ASSET_REPAIR_ORDER.code(),ckDatalist);
+		if(res.isSuccess()){
+
+		}else{
+			;
+		}
+		return res;
+
 	}
+
 
 	/**
 	 * 更新，如果执行错误，则抛出异常
@@ -390,7 +408,9 @@ public class RepairOrderServiceImpl extends SuperService<RepairOrder> implements
 	@Override
 	public Result update(RepairOrder repairOrder , SaveMode mode,boolean throwsException) {
 
-		Result verifyResult = verifyBillData(repairOrder.getId());
+		Result verifyResult = verifyBillData(repairOrder);
+
+
 		if(!verifyResult.isSuccess())return verifyResult;
 		Result r=super.update(repairOrder,mode,false);
 		if(r.success()){

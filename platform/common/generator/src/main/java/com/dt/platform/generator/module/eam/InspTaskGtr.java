@@ -232,7 +232,7 @@ public class InspTaskGtr extends BaseCodeGenerator {
                 }
         );
 
-
+        cfg.view().search().rowsDisplay(1);
         cfg.view().form().addPage("巡检点","pointSelectList");
      //   cfg.view().list().operationColumn().addActionButton("巡检","inspect","execute-button","eam_inspection_task:execute");
         cfg.view().list().operationColumn().addActionButton("完成","finish","finish-button","eam_inspection_task:finish");

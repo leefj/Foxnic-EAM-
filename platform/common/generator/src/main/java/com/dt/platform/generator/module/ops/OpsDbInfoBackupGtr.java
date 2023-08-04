@@ -71,8 +71,16 @@ public class OpsDbInfoBackupGtr extends BaseCodeGenerator{
                 .form().validate().required().form().radioBox().dict(DictEnum.OPS_DB_BACKUP_TYPE).defaultIndex(0);
 
         cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.SELECTED_CODE).table().disable(true);
 
-
+        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.BACKUP_SIZE).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.BACKUP_SOURCE).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.DATABASE_ID).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.NAME).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.BACKUP_RESULT).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.CREATE_TIME).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.NOTES).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.UID).table().disable(true);
         cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(50);
 

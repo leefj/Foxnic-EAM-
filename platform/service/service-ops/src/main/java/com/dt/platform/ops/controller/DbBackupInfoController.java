@@ -51,7 +51,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 数据库备份接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-31 22:15:26
+ * @since 2023-08-04 17:31:07
 */
 
 @InDoc
@@ -61,7 +61,6 @@ public class DbBackupInfoController extends SuperController {
 
 	@Autowired
 	private IDbBackupInfoService dbBackupInfoService;
-
 
 	/**
 	 * 添加数据库备份
@@ -91,6 +90,7 @@ public class DbBackupInfoController extends SuperController {
 	@SentinelResource(value = DbBackupInfoServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbBackupInfoServiceProxy.INSERT)
 	public Result insert(DbBackupInfoVO dbBackupInfoVO) {
+		
 		Result result=dbBackupInfoService.insert(dbBackupInfoVO,false);
 		return result;
 	}
@@ -108,6 +108,7 @@ public class DbBackupInfoController extends SuperController {
 	@SentinelResource(value = DbBackupInfoServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbBackupInfoServiceProxy.DELETE)
 	public Result deleteById(String id) {
+		
 		this.validator().asserts(id).require("缺少id值");
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
@@ -136,7 +137,7 @@ public class DbBackupInfoController extends SuperController {
 	@SentinelResource(value = DbBackupInfoServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbBackupInfoServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
-
+		
 		// 参数校验
 		this.validator().asserts(ids).require("缺少ids参数");
 		if(this.validator().failure()) {
@@ -203,10 +204,11 @@ public class DbBackupInfoController extends SuperController {
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbBackupInfoVOMeta.PAGE_INDEX , DbBackupInfoVOMeta.PAGE_SIZE , DbBackupInfoVOMeta.SEARCH_FIELD , DbBackupInfoVOMeta.FUZZY_FIELD , DbBackupInfoVOMeta.SEARCH_VALUE , DbBackupInfoVOMeta.DIRTY_FIELDS , DbBackupInfoVOMeta.SORT_FIELD , DbBackupInfoVOMeta.SORT_TYPE , DbBackupInfoVOMeta.DATA_ORIGIN , DbBackupInfoVOMeta.QUERY_LOGIC , DbBackupInfoVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbBackupInfoVOMeta.PAGE_INDEX , DbBackupInfoVOMeta.PAGE_SIZE , DbBackupInfoVOMeta.SEARCH_FIELD , DbBackupInfoVOMeta.FUZZY_FIELD , DbBackupInfoVOMeta.SEARCH_VALUE , DbBackupInfoVOMeta.DIRTY_FIELDS , DbBackupInfoVOMeta.SORT_FIELD , DbBackupInfoVOMeta.SORT_TYPE , DbBackupInfoVOMeta.DATA_ORIGIN , DbBackupInfoVOMeta.QUERY_LOGIC , DbBackupInfoVOMeta.REQUEST_ACTION , DbBackupInfoVOMeta.IDS } )
 	@SentinelResource(value = DbBackupInfoServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbBackupInfoServiceProxy.UPDATE)
 	public Result update(DbBackupInfoVO dbBackupInfoVO) {
+		
 		Result result=dbBackupInfoService.update(dbBackupInfoVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -236,10 +238,11 @@ public class DbBackupInfoController extends SuperController {
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { DbBackupInfoVOMeta.PAGE_INDEX , DbBackupInfoVOMeta.PAGE_SIZE , DbBackupInfoVOMeta.SEARCH_FIELD , DbBackupInfoVOMeta.FUZZY_FIELD , DbBackupInfoVOMeta.SEARCH_VALUE , DbBackupInfoVOMeta.DIRTY_FIELDS , DbBackupInfoVOMeta.SORT_FIELD , DbBackupInfoVOMeta.SORT_TYPE , DbBackupInfoVOMeta.DATA_ORIGIN , DbBackupInfoVOMeta.QUERY_LOGIC , DbBackupInfoVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { DbBackupInfoVOMeta.PAGE_INDEX , DbBackupInfoVOMeta.PAGE_SIZE , DbBackupInfoVOMeta.SEARCH_FIELD , DbBackupInfoVOMeta.FUZZY_FIELD , DbBackupInfoVOMeta.SEARCH_VALUE , DbBackupInfoVOMeta.DIRTY_FIELDS , DbBackupInfoVOMeta.SORT_FIELD , DbBackupInfoVOMeta.SORT_TYPE , DbBackupInfoVOMeta.DATA_ORIGIN , DbBackupInfoVOMeta.QUERY_LOGIC , DbBackupInfoVOMeta.REQUEST_ACTION , DbBackupInfoVOMeta.IDS } )
 	@SentinelResource(value = DbBackupInfoServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbBackupInfoServiceProxy.SAVE)
 	public Result save(DbBackupInfoVO dbBackupInfoVO) {
+		
 		Result result=dbBackupInfoService.save(dbBackupInfoVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -256,6 +259,7 @@ public class DbBackupInfoController extends SuperController {
 	@SentinelResource(value = DbBackupInfoServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbBackupInfoServiceProxy.GET_BY_ID)
 	public Result<DbBackupInfo> getById(String id) {
+		
 		Result<DbBackupInfo> result=new Result<>();
 		DbBackupInfo dbBackupInfo=dbBackupInfoService.getById(id);
 		// join 关联的对象
@@ -281,6 +285,7 @@ public class DbBackupInfoController extends SuperController {
 		@SentinelResource(value = DbBackupInfoServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbBackupInfoServiceProxy.GET_BY_IDS)
 	public Result<List<DbBackupInfo>> getByIds(List<String> ids) {
+		
 		Result<List<DbBackupInfo>> result=new Result<>();
 		List<DbBackupInfo> list=dbBackupInfoService.queryListByIds(ids);
 		result.success(true).data(list);
@@ -315,6 +320,7 @@ public class DbBackupInfoController extends SuperController {
 	@SentinelResource(value = DbBackupInfoServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbBackupInfoServiceProxy.QUERY_LIST)
 	public Result<List<DbBackupInfo>> queryList(DbBackupInfoVO sample) {
+		
 		Result<List<DbBackupInfo>> result=new Result<>();
 		List<DbBackupInfo> list=dbBackupInfoService.queryList(sample);
 		result.success(true).data(list);
@@ -349,6 +355,7 @@ public class DbBackupInfoController extends SuperController {
 	@SentinelResource(value = DbBackupInfoServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbBackupInfoServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<DbBackupInfo>> queryPagedList(DbBackupInfoVO sample) {
+		
 		Result<PagedList<DbBackupInfo>> result=new Result<>();
 		PagedList<DbBackupInfo> list=dbBackupInfoService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
 		// join 关联的对象
@@ -360,7 +367,6 @@ public class DbBackupInfoController extends SuperController {
 		result.success(true).data(list);
 		return result;
 	}
-
 
 
 

@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检计划
  * <p>巡检计划 , 数据表 eam_inspection_plan 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-23 08:51:33
+ * @since 2023-08-04 08:45:12
  * @sign B61FD2E8154AF3B4729D0EB5C2299972
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

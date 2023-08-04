@@ -27,7 +27,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-23 09:10:13
+ * @since 2023-08-04 08:43:02
  * @sign 104BD51E49E055154B0330073E6A5754
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

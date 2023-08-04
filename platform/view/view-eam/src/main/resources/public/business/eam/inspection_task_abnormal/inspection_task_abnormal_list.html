@@ -2,7 +2,7 @@
 /**
  * 异常巡检任务单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-23 12:43:18
+ * @since 2023-08-04 08:45:39
  */
  -->
  <!DOCTYPE html>
@@ -43,10 +43,10 @@
                     <!-- 任务名称 , taskId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 处理状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('处理状态')}" class="search-label status-label">处理状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('处理状态')}" class="search-label status-label">处理状态</span><span class="search-colon">:</span></div>
 
 
-                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskAbnormalStatusEnum')}" style="width:150px"></div>
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskAbnormalStatusEnum')}" style="width:180px"></div>
                     </div>
                     <!-- 处理人员 , operId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 处理时间 , operTime ,typeName=date_input, isHideInSearch=true -->
@@ -56,13 +56,13 @@
                     <!-- 任务创建时间 , taskCreateTime ,typeName=text_input, isHideInSearch=true -->
                     <!-- 异常信息 , taskAbnormalInfo ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('异常信息')}" class="search-label taskAbnormalInfo-label">异常信息</span><span class="search-colon">:</span></div>
-                        <input id="taskAbnormalInfo" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('异常信息')}" class="search-label taskAbnormalInfo-label">异常信息</span><span class="search-colon">:</span></div>
+                        <input id="taskAbnormalInfo" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 处理方式 , content ,typeName=text_area, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('处理方式')}" class="search-label content-label">处理方式</span><span class="search-colon">:</span></div>
-                        <input id="content" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('处理方式')}" class="search-label content-label">处理方式</span><span class="search-colon">:</span></div>
+                        <input id="content" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -71,10 +71,10 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 创建时间 , createTime ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('创建时间')}" class="search-label createTime-label">创建时间</span><span class="search-colon">:</span></div>
-                            <input type="text" id="createTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('创建时间')}" class="search-label createTime-label">创建时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="createTime-begin" style="width: 180px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
-                            <input type="text" id="createTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                            <input type="text" id="createTime-end"  style="width: 180px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
 
 
@@ -85,10 +85,11 @@
             <!-- 按钮区域 -->
             <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
                 <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多','','cmp:table.search')}">更多</span></button>
             </div>
         </div>
 
-        <div id="table-area" style="margin-top: 84px ">
+        <div id="table-area" style="margin-top: 42px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 

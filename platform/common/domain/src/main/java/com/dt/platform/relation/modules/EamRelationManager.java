@@ -633,6 +633,8 @@ public class EamRelationManager extends RelationManager {
     }
     public void setupRepairOrderAct() {
 
+        this.property(RepairOrderActMeta.REPAIR_ORDER_PROCESS_PROP)
+                .using(EAMTables.EAM_REPAIR_ORDER_ACT.ID).join(EAMTables.EAM_REPAIR_ORDER_PROCESS.ACT_ID);
 
         this.property(RepairOrderActMeta.REPAIR_ORDER_ACT_SP_LIST_PROP)
                 .using(EAMTables.EAM_REPAIR_ORDER_ACT.ID).join(EAMTables.EAM_REPAIR_ORDER_ACT_SP.ACT_ID).condition("selected_code='def'");
@@ -658,6 +660,12 @@ public class EamRelationManager extends RelationManager {
     }
 
     public void setupRepairOrder() {
+        this.property(RepairOrderMeta.REPAIR_ORDER_PROCESS_PROP)
+                .using(EAMTables.EAM_REPAIR_ORDER.ID).join(EAMTables.EAM_REPAIR_ORDER_PROCESS.ORDER_ID);
+
+        this.property(RepairOrderMeta.ASSET_PROP)
+                .using(EAMTables.EAM_REPAIR_ORDER.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+
 
         //制单人
         this.property(RepairOrderMeta.ORIGINATOR_PROP)

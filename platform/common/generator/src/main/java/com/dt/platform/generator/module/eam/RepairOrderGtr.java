@@ -28,6 +28,9 @@ public class RepairOrderGtr extends BaseCodeGenerator{
 
         System.out.println(this.getClass().getName());
 
+        cfg.getPoClassFile().addListProperty(RepairOrderProcess.class,"repairOrderProcess","repairOrderProcess","repairOrderProcess");
+
+        cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","故障设备","故障设备");
 
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
@@ -35,12 +38,14 @@ public class RepairOrderGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"reportUser","报修人","报修人");
 
         cfg.getPoClassFile().addSimpleProperty(RepairOrderAct.class,"orderAct","维修单","维修单");
+
         cfg.getPoClassFile().addSimpleProperty(RepairOrderAcceptance.class,"orderAcceptance","验收单","验收单");
 
         cfg.getPoClassFile().addSimpleProperty(RepairCategoryTpl.class,"categoryTpl","报修故障","报修故障");
         cfg.getPoClassFile().addSimpleProperty(RepairUrgency.class,"repairUrgency","紧急程度","紧急程度");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","报修部门","报修部门");
 
+       // cfg.getPoClassFile().addSimpleProperty(RepairOrderAct.class,"orderAct","维修单","维修单");
 
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.SELECTED_CODE).basic().hidden(true);
@@ -57,8 +62,10 @@ public class RepairOrderGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPORT_USER_ID).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.AUTO_ACT).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.AUTO_ACT_RULE).table().disable();
-
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.ASSET_ID).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPAIR_COST).table().disable();
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.ORIGINATOR_ID).table().disable();
+
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.CONTENT).search()
                 .form().validate().required().
@@ -71,21 +78,21 @@ public class RepairOrderGtr extends BaseCodeGenerator{
                 .form().selectBox().enumType(RepairOrderStatusEnum.class);
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.PLAN_FINISH_DATE).form().dateInput().format("yyyy-MM-dd").defaultNow().search().range();
-      //  cfg.view().field(EAMTables.EAM_REPAIR_ORDER.ACTUAL_FINISH_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+      //cfg.view().field(EAMTables.EAM_REPAIR_ORDER.ACTUAL_FINISH_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.BUSINESS_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
-
+        cfg.view().search().rowsDisplay(1);
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.CATEGORY_TPL_ID)
-                .form().validate().required().form().selectBox().queryApi(RepairCategoryTplServiceProxy.QUERY_LIST)
-                .paging(false).filter(true).toolbar(false)
+                .form().validate().required().form().selectBox().queryApi(RepairCategoryTplServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(true).toolbar(false)
                 .valueField(RepairCategoryTplMeta.ID).
                 textField(RepairCategoryTplMeta.NAME).
                 fillWith(RepairOrderMeta.CATEGORY_TPL).muliti(false).defaultIndex(0);
 
 //
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.URGENCY_ID)
-                .form().validate().required().form().selectBox().queryApi(RepairUrgencyServiceProxy.QUERY_LIST)
-                .paging(false).filter(true).toolbar(false)
+                .form().validate().required().form().selectBox().queryApi(RepairUrgencyServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(true).toolbar(false)
                 .valueField(RepairUrgencyMeta.ID).
                 textField(RepairUrgencyMeta.NAME).
                 fillWith(RepairOrderMeta.REPAIR_URGENCY).muliti(false).defaultIndex(0);
@@ -110,7 +117,7 @@ public class RepairOrderGtr extends BaseCodeGenerator{
 
       //  cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_repair_order:for-approval");
     //    cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_repair_order:revoke");
-        cfg.view().list().operationColumn().addActionButton("结束维修","finishData","finish-data-button","eam_repair_order:finish");
+   //     cfg.view().list().operationColumn().addActionButton("结束维修","finishData","finish-data-button","eam_repair_order:finish");
         cfg.view().list().operationColumn().addActionButton("确认工单","confirmData","confirm-data-button","eam_repair_order:confirm");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_repair_order:bill");
 
@@ -120,17 +127,15 @@ public class RepairOrderGtr extends BaseCodeGenerator{
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_REPAIR_ORDER.STATUS,
-                        EAMTables.EAM_REPAIR_ORDER.REPAIR_STATUS,
+                        EAMTables.EAM_REPAIR_ORDER.REPAIR_TYPE,
                         EAMTables.EAM_REPAIR_ORDER.BUSINESS_CODE,
+                        EAMTables.EAM_REPAIR_ORDER.NAME,
                 },
                 new Object[]{
                         EAMTables.EAM_REPAIR_ORDER.URGENCY_ID,
                         EAMTables.EAM_REPAIR_ORDER.BUSINESS_DATE
                 }
-
         );
-
-
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
@@ -140,9 +145,14 @@ public class RepairOrderGtr extends BaseCodeGenerator{
         cfg.view().list().disableBatchDelete();
 //
 //        cfg.view().form().addJsVariable("ASSET_DEFAULT_OWN_COMPANY","[[${assetDefaultOwnCompany}]]"," ");
+
+        cfg.view().list().addJsVariable("REPAIR_STATUS","[[${repairStatus}]]","单据ID");
         cfg.view().form().addJsVariable("BILL_ID","[[${billId}]]","单据ID");
         cfg.view().form().addJsVariable("BILL_TYPE","[[${billType}]]","单据类型");
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","是否需要审批");
+
+        cfg.view().form().addJsVariable("CUR_EMP_ID","[[${curEmpId}]]","curEmpId");
+        cfg.view().form().addJsVariable("CUR_USER_NAME","[[${curUserName}]]","curUserName");
 
 
         cfg.view().list().operationColumn().width(300);
@@ -172,7 +182,7 @@ public class RepairOrderGtr extends BaseCodeGenerator{
 
         );
 
-        cfg.view().form().addPage("资产列表","assetSelectList");
+        cfg.view().form().addPage("设备信息","assetSelectList");
 
 
         //文件生成覆盖模式

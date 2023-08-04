@@ -4,8 +4,9 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.RepairOrderAct;
 import java.math.BigDecimal;
 import java.util.Date;
-import com.dt.platform.domain.eam.RepairOrderActSp;
+import com.dt.platform.domain.eam.RepairOrderProcess;
 import java.util.List;
+import com.dt.platform.domain.eam.RepairOrderActSp;
 import com.dt.platform.domain.eam.RepairOrder;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.RepairGroup;
@@ -15,8 +16,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-21 14:32:28
- * @sign D696F098B7820012812D2106E3D45BEC
+ * @since 2023-08-04 22:51:10
+ * @sign DAA12D5846AE8990425608408282BF6C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -61,16 +62,6 @@ public class RepairOrderActMeta {
 	 * 订单名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> ORDER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,ORDER_NAME, java.lang.String.class, "订单名称", "订单名称", java.lang.String.class, null);
-	
-	/**
-	 * 维修状态 , 类型: java.lang.String
-	*/
-	public static final String STATUS="status";
-	
-	/**
-	 * 维修状态 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,STATUS, java.lang.String.class, "维修状态", "维修状态", java.lang.String.class, null);
 	
 	/**
 	 * 维修编号 , 类型: java.lang.String
@@ -273,6 +264,16 @@ public class RepairOrderActMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,SELECTED_CODE, java.lang.String.class, "选择数据", "选择数据", java.lang.String.class, null);
 	
 	/**
+	 * repairOrderProcess , 集合类型: LIST , 类型: com.dt.platform.domain.eam.RepairOrderProcess
+	*/
+	public static final String REPAIR_ORDER_PROCESS="repairOrderProcess";
+	
+	/**
+	 * repairOrderProcess , 集合类型: LIST , 类型: com.dt.platform.domain.eam.RepairOrderProcess
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,com.dt.platform.domain.eam.RepairOrderProcess> REPAIR_ORDER_PROCESS_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,REPAIR_ORDER_PROCESS, java.util.List.class, "repairOrderProcess", "repairOrderProcess", com.dt.platform.domain.eam.RepairOrderProcess.class, null);
+	
+	/**
 	 * RepairOrderActSpList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.RepairOrderActSp
 	*/
 	public static final String REPAIR_ORDER_ACT_SP_LIST="RepairOrderActSpList";
@@ -333,9 +334,19 @@ public class RepairOrderActMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,com.dt.platform.domain.eam.RepairGroup> REPAIR_GROUP_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,REPAIR_GROUP, com.dt.platform.domain.eam.RepairGroup.class, "维修班组", "维修班组", com.dt.platform.domain.eam.RepairGroup.class, null);
 	
 	/**
+	 * status , 类型: java.lang.String
+	*/
+	public static final String STATUS="status";
+	
+	/**
+	 * status , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,STATUS, java.lang.String.class, "status", "status", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , STATUS , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , REPAIR_ORDER_ACT_SP_LIST , IDS_LIST , ORDER , ORIGINATOR , EXECUTOR , REPAIR_GROUP };
+	public static final String[] $PROPS={ ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , REPAIR_ORDER_PROCESS , REPAIR_ORDER_ACT_SP_LIST , IDS_LIST , ORDER , ORIGINATOR , EXECUTOR , REPAIR_GROUP , STATUS };
 	
 	/**
 	 * 代理类
@@ -386,17 +397,6 @@ public class RepairOrderActMeta {
 		public RepairOrderAct setOrderName(String orderName) {
 			super.change(ORDER_NAME,super.getOrderName(),orderName);
 			super.setOrderName(orderName);
-			return this;
-		}
-		
-		/**
-		 * 设置 维修状态
-		 * @param status 维修状态
-		 * @return 当前对象
-		*/
-		public RepairOrderAct setStatus(String status) {
-			super.change(STATUS,super.getStatus(),status);
-			super.setStatus(status);
 			return this;
 		}
 		
@@ -621,6 +621,17 @@ public class RepairOrderActMeta {
 		}
 		
 		/**
+		 * 设置 repairOrderProcess
+		 * @param repairOrderProcess repairOrderProcess
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setRepairOrderProcess(List<RepairOrderProcess> repairOrderProcess) {
+			super.change(REPAIR_ORDER_PROCESS,super.getRepairOrderProcess(),repairOrderProcess);
+			super.setRepairOrderProcess(repairOrderProcess);
+			return this;
+		}
+		
+		/**
 		 * 设置 RepairOrderActSpList
 		 * @param RepairOrderActSpList RepairOrderActSpList
 		 * @return 当前对象
@@ -685,6 +696,17 @@ public class RepairOrderActMeta {
 			super.setRepairGroup(repairGroup);
 			return this;
 		}
+		
+		/**
+		 * 设置 status
+		 * @param status status
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setStatus(String status) {
+			super.change(STATUS,super.getStatus(),status);
+			super.setStatus(status);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -701,38 +723,39 @@ public class RepairOrderActMeta {
 		@Transient
 		public RepairOrderAct duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setFinishTime(this.getFinishTime());
 			inst.setNotes(this.getNotes());
 			inst.setOrderId(this.getOrderId());
-			inst.setGroupId(this.getGroupId());
-			inst.setSelectedCode(this.getSelectedCode());
-			inst.setWithAcceptance(this.getWithAcceptance());
-			inst.setBusinessCode(this.getBusinessCode());
-			inst.setPictureId(this.getPictureId());
-			inst.setUpdateBy(this.getUpdateBy());
-			inst.setStartTime(this.getStartTime());
-			inst.setId(this.getId());
-			inst.setOriginatorId(this.getOriginatorId());
-			inst.setOrderName(this.getOrderName());
-			inst.setFinishTime(this.getFinishTime());
 			inst.setExecutorId(this.getExecutorId());
+			inst.setGroupId(this.getGroupId());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
+			inst.setSelectedCode(this.getSelectedCode());
 			inst.setOrderBusinessCode(this.getOrderBusinessCode());
+			inst.setWithAcceptance(this.getWithAcceptance());
+			inst.setBusinessCode(this.getBusinessCode());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
+			inst.setPictureId(this.getPictureId());
 			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setStartTime(this.getStartTime());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
 			inst.setRepairCost(this.getRepairCost());
-			inst.setStatus(this.getStatus());
+			inst.setOrderName(this.getOrderName());
 			if(all) {
 				inst.setRepairOrderActSpList(this.getRepairOrderActSpList());
 				inst.setExecutor(this.getExecutor());
 				inst.setRepairGroup(this.getRepairGroup());
+				inst.setRepairOrderProcess(this.getRepairOrderProcess());
 				inst.setOriginator(this.getOriginator());
 				inst.setIdsList(this.getIdsList());
 				inst.setOrder(this.getOrder());
+				inst.setStatus(this.getStatus());
 			}
 			inst.clearModifies();
 			return inst;

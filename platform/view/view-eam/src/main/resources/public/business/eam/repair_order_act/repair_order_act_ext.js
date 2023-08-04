@@ -30,7 +30,60 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var operHtml=document.getElementById("toolbarTemplate").innerHTML;
             operHtml=operHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
             document.getElementById("toolbarTemplate").innerHTML=operHtml;
-        },
+
+
+
+            if(REPAIR_STATUS){
+                 if(REPAIR_STATUS=="dispatched"){
+
+                    var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                    operHtml=operHtml.replace(/lay-event="acceptance"/i, "style=\"display:none\"");
+                    operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                    document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+                }else if(REPAIR_STATUS=="wait_repair"){
+                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                     operHtml=operHtml.replace(/lay-event="acceptance"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+                }else if(REPAIR_STATUS=="repairing"){
+
+                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                     operHtml=operHtml.replace(/lay-event="acceptance"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+
+                }else if(REPAIR_STATUS=="wait_acceptance"){
+                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                     operHtml=operHtml.replace(/lay-event="maintenance"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+
+                }else if(REPAIR_STATUS=="finish"){
+
+                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                     operHtml=operHtml.replace(/lay-event="maintenance"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="acceptance"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"");
+                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+
+                 }else if(REPAIR_STATUS=="cancel"){
+                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                     operHtml=operHtml.replace(/lay-event="maintenance"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="acceptance"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+
+                }
+            }
+
+    },
         /**
          * 表格渲染前调用
          * @param cfg 表格配置参数
@@ -81,6 +134,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            if(REPAIR_STATUS){
+                param.status=REPAIR_STATUS;
+            }
             return true;
         },
         /**
@@ -99,7 +155,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     fox.disableButton($('.finish-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.cancel-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.acceptance-button').filter("[data-id='" + data[i].id + "']"), true);
-
                     fox.disableButton($('.maintenance-button').filter("[data-id='" + data[i].id + "']"), true);
                 }else if(status=="cancel"){
                     fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
@@ -164,6 +219,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     }
                 }
             }
+
             if(value==null) return "";
             return value;
         },
@@ -515,8 +571,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             data.assetOwnerId=item.orderId
             admin.putTempData('eam-asset-selected-data'+timestamp,data,true);
             admin.putTempData('eam-asset-selected-action'+timestamp,"view",true);
-            win.location="/business/eam/asset/asset_selected_list.html?pageType=view&assetSelectedCode="+timestamp
-
+            // win.location="/business/eam/asset/asset_selected_list.html?pageType=view&assetSelectedCode="+timestamp
+            win.location="/business/eam/repair_order_act/repair_asset_form.html?orderId="+item.orderId
 
         },
         repairOrderApply:function (ifr,win,data) {

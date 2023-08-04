@@ -39,6 +39,73 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 document.getElementById("tableOperationTemplate").innerHTML=operHtml;
             }
             console.log("list:beforeInit");
+
+
+            if(REPAIR_STATUS){
+                if(REPAIR_STATUS=="not_dispatch"){
+                    console.log(1)
+                }else if(REPAIR_STATUS=="dispatched"){
+                    var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                    toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
+                    toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+                    document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+                    var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                    operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+                }else if(REPAIR_STATUS=="wait_repair"){
+                    var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                    toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
+                    toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+                    document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+                    var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                    operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+                }else if(REPAIR_STATUS=="repairing"){
+                    var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                    toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
+                    toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+                    document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+                    var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                    operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+                }else if(REPAIR_STATUS=="wait_acceptance"){
+                    var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                    toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
+                    toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+                    document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+                    var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                    operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+                }else if(REPAIR_STATUS=="finish"){
+                    var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                    toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
+                    toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+                    document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+                    var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                    operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+                }else if(REPAIR_STATUS=="cancel"){
+                    var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                    toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
+                    toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+                    document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+                    var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                    operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+                }
+            }
         },
         /**
          * 表格渲染前调用
@@ -89,6 +156,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            if(REPAIR_STATUS){
+                param.repairStatus=REPAIR_STATUS;
+            }
             return true;
         },
         /**
@@ -144,6 +214,33 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="urgencyId"){
+                //criticalEmergency
+                //ImportantEmergency
+                //generallyImportant
+                var color="red";
+                var bgcolor="white";
+                if(value=="紧急"){
+                    color="white";
+                    bgcolor="red";
+                }else if(value=="一般"){
+                    color="white";
+                    bgcolor="#2d8cf0";
+                }else if(value=="严重"||value=="重要"){
+                    color="white";
+                    bgcolor="blue";
+                }else{
+                    bgcolor="white";
+                    color="black";
+                }
+                //font-weight:bold
+                var html="<span style=\"padding-left:10px;padding-right:10px;padding-bottom:5px;padding-top:5px;background-color:"+bgcolor+";color: "+color+"\">"+value+"</span>"
+                return html
+                console.log(value);
+            }
+
+
             if(value==null) return "";
             return value;
         },
@@ -297,6 +394,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
+
+            if(formAction=="create"){
+                //默认填充报修人员
+                if($("#reportUserId")){
+                    $("#reportUserId").val(CUR_EMP_ID);
+                }
+                if($("#reportUserId-button")){
+                    var html="<i class=\"layui-icon layui-icon-search\"></i><span default-label=\"请选择人员\">"+CUR_USER_NAME+"</span>"
+                    $("#reportUserId-button").html(html);
+                }
+            }
+
         },
         /**
          * 窗口调节前
@@ -316,6 +425,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterDataFill:function (data) {
             console.log('afterDataFill',data);
+
+
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框

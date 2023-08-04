@@ -2,7 +2,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-23 09:10:14
+ * @since 2023-08-04 08:43:03
  */
  -->
  <!DOCTYPE html>
@@ -42,8 +42,8 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 启用状态 , status ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('启用状态')}" class="search-label status-label">启用状态</span><span class="search-colon">:</span></div>
-                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('启用状态')}" class="search-label status-label">启用状态</span><span class="search-colon">:</span></div>
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 巡检内容 , content ,typeName=text_area, isHideInSearch=true -->
                     <!-- 巡检路线 , routeId ,typeName=select_box, isHideInSearch=true -->
@@ -58,18 +58,18 @@
                     <!-- 检查项数(未启用) , itemDisableCount ,typeName=text_input, isHideInSearch=true -->
                     <!-- 点位位置 , posId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('点位位置')}" class="search-label posId-label">点位位置</span><span class="search-colon">:</span></div>
-                        <div id="posId" th:data="${'/service-eam/eam-inspection-point-pos/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('点位位置')}" class="search-label posId-label">点位位置</span><span class="search-colon">:</span></div>
+                        <div id="posId" th:data="${'/service-eam/eam-inspection-point-pos/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 点位编码 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('点位编码')}" class="search-label code-label">点位编码</span><span class="search-colon">:</span></div>
-                        <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('点位编码')}" class="search-label code-label">点位编码</span><span class="search-colon">:</span></div>
+                        <input id="code" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 点位名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('点位名称')}" class="search-label name-label">点位名称</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('点位名称')}" class="search-label name-label">点位名称</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 

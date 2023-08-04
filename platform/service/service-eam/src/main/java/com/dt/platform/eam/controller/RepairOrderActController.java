@@ -1,7 +1,10 @@
 package com.dt.platform.eam.controller;
 
 import java.util.List;
+
+import com.alibaba.csp.sentinel.util.StringUtil;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.domain.hrm.Person;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -199,7 +202,7 @@ public class RepairOrderActController extends SuperController {
         Result<RepairOrderAct> result = new Result<>();
         RepairOrderAct repairOrderAct = repairOrderActService.getById(id);
         // join 关联的对象
-        repairOrderActService.dao().fill(repairOrderAct).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.EXECUTOR).with(RepairOrderActMeta.ORDER).execute();
+        repairOrderActService.dao().fill(repairOrderAct).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.EXECUTOR).with(RepairOrderActMeta.ORDER).execute();
         repairOrderActService.dao().join(repairOrderAct.getExecutor(), Person.class);
         repairOrderActService.dao().join(repairOrderAct.getOriginator(), Person.class);
         result.success(true).data(repairOrderAct);
@@ -283,7 +286,13 @@ public class RepairOrderActController extends SuperController {
     @PostMapping(RepairOrderActServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<RepairOrderAct>> queryPagedList(RepairOrderActVO sample) {
         Result<PagedList<RepairOrderAct>> result = new Result<>();
-        PagedList<RepairOrderAct> list = repairOrderActService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+
+        ConditionExpr expr=new ConditionExpr();
+        expr.and("1=1");
+        if(StringUtil.isNotBlank(sample.getStatus())){
+            expr.and("order_id in (select id from eam_repair_order where repair_status=?)",sample.getStatus());
+        }
+        PagedList<RepairOrderAct> list = repairOrderActService.queryPagedList(sample, expr,sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         repairOrderActService.dao().fill(list).with(RepairOrderActMeta.ORIGINATOR).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.EXECUTOR).with(RepairOrderActMeta.ORDER).execute();
 

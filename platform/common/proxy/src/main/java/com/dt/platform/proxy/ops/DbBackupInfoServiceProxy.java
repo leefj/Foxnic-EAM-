@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 数据库备份 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-31 22:15:26
+ * @since 2023-08-04 17:31:07
  */
 @FeignClient(value = ServiceNames.OPS, contextId = DbBackupInfoServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface DbBackupInfoServiceProxy {

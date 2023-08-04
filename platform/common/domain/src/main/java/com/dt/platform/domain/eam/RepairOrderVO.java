@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 故障申请单VO类型
  * <p>故障申请单 , 数据表 eam_repair_order 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-19 13:31:44
+ * @since 2023-08-04 20:25:48
  * @sign B246C9A6519ACCA6F8C9E09407F19A01
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -413,6 +413,7 @@ public class RepairOrderVO extends RepairOrder {
 		inst.setPictureId(this.getPictureId());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setReportUserId(this.getReportUserId());
+		inst.setAssetId(this.getAssetId());
 		inst.setCategoryTplId(this.getCategoryTplId());
 		inst.setAutoAct(this.getAutoAct());
 		inst.setId(this.getId());
@@ -441,6 +442,7 @@ public class RepairOrderVO extends RepairOrder {
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setAssetIds(this.getAssetIds());
 			inst.setPageSize(this.getPageSize());
+			inst.setRepairOrderProcess(this.getRepairOrderProcess());
 			inst.setOriginator(this.getOriginator());
 			inst.setAssetList(this.getAssetList());
 			inst.setOrderAct(this.getOrderAct());
@@ -453,6 +455,7 @@ public class RepairOrderVO extends RepairOrder {
 			inst.setIds(this.getIds());
 			inst.setCategoryTpl(this.getCategoryTpl());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setAsset(this.getAsset());
 			inst.setOrderAcceptance(this.getOrderAcceptance());
 			inst.setSearchValue(this.getSearchValue());
 		}
@@ -523,6 +526,7 @@ public class RepairOrderVO extends RepairOrder {
 			this.setPictureId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.PICTURE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(RepairOrderVOMeta.UPDATE_BY)));
 			this.setReportUserId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.REPORT_USER_ID)));
+			this.setAssetId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.ASSET_ID)));
 			this.setCategoryTplId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.CATEGORY_TPL_ID)));
 			this.setAutoAct(DataParser.parse(String.class, map.get(RepairOrderVOMeta.AUTO_ACT)));
 			this.setId(DataParser.parse(String.class, map.get(RepairOrderVOMeta.ID)));
@@ -559,6 +563,7 @@ public class RepairOrderVO extends RepairOrder {
 			this.setDataOrigin(DataParser.parse(String.class, map.get(RepairOrderVOMeta.DATA_ORIGIN)));
 			this.setCategoryTpl(DataParser.parse(RepairCategoryTpl.class, map.get(RepairOrderVOMeta.CATEGORY_TPL)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(RepairOrderVOMeta.QUERY_LOGIC)));
+			this.setAsset(DataParser.parse(Asset.class, map.get(RepairOrderVOMeta.ASSET)));
 			this.setOrderAcceptance(DataParser.parse(RepairOrderAcceptance.class, map.get(RepairOrderVOMeta.ORDER_ACCEPTANCE)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(RepairOrderVOMeta.SEARCH_VALUE)));
 			return true;
@@ -573,6 +578,7 @@ public class RepairOrderVO extends RepairOrder {
 				this.setPictureId( (String)map.get(RepairOrderVOMeta.PICTURE_ID));
 				this.setUpdateBy( (String)map.get(RepairOrderVOMeta.UPDATE_BY));
 				this.setReportUserId( (String)map.get(RepairOrderVOMeta.REPORT_USER_ID));
+				this.setAssetId( (String)map.get(RepairOrderVOMeta.ASSET_ID));
 				this.setCategoryTplId( (String)map.get(RepairOrderVOMeta.CATEGORY_TPL_ID));
 				this.setAutoAct( (String)map.get(RepairOrderVOMeta.AUTO_ACT));
 				this.setId( (String)map.get(RepairOrderVOMeta.ID));
@@ -609,6 +615,7 @@ public class RepairOrderVO extends RepairOrder {
 				this.setDataOrigin( (String)map.get(RepairOrderVOMeta.DATA_ORIGIN));
 				this.setCategoryTpl( (RepairCategoryTpl)map.get(RepairOrderVOMeta.CATEGORY_TPL));
 				this.setQueryLogic( (String)map.get(RepairOrderVOMeta.QUERY_LOGIC));
+				this.setAsset( (Asset)map.get(RepairOrderVOMeta.ASSET));
 				this.setOrderAcceptance( (RepairOrderAcceptance)map.get(RepairOrderVOMeta.ORDER_ACCEPTANCE));
 				this.setSearchValue( (String)map.get(RepairOrderVOMeta.SEARCH_VALUE));
 				return true;
@@ -636,6 +643,7 @@ public class RepairOrderVO extends RepairOrder {
 			this.setPictureId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.PICTURE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.UPDATE_BY)));
 			this.setReportUserId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.REPORT_USER_ID)));
+			this.setAssetId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.ASSET_ID)));
 			this.setCategoryTplId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.CATEGORY_TPL_ID)));
 			this.setAutoAct(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.AUTO_ACT)));
 			this.setId(DataParser.parse(String.class, r.getValue(RepairOrderVOMeta.ID)));
@@ -668,6 +676,7 @@ public class RepairOrderVO extends RepairOrder {
 				this.setPictureId( (String)r.getValue(RepairOrderVOMeta.PICTURE_ID));
 				this.setUpdateBy( (String)r.getValue(RepairOrderVOMeta.UPDATE_BY));
 				this.setReportUserId( (String)r.getValue(RepairOrderVOMeta.REPORT_USER_ID));
+				this.setAssetId( (String)r.getValue(RepairOrderVOMeta.ASSET_ID));
 				this.setCategoryTplId( (String)r.getValue(RepairOrderVOMeta.CATEGORY_TPL_ID));
 				this.setAutoAct( (String)r.getValue(RepairOrderVOMeta.AUTO_ACT));
 				this.setId( (String)r.getValue(RepairOrderVOMeta.ID));

@@ -1,5 +1,6 @@
 package com.dt.platform.common.sso;
 
+
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.common.AppLanguage;
 import com.github.foxnic.api.transter.Result;
@@ -95,8 +96,9 @@ public class ApplicationTokenReader extends TokenReader {
                 return null;
             }
             JSONObject result=JSONObject.parseObject(httpResponse);
+            System.out.println("sso result:"+result.toJSONString());
             String empNo=result.getJSONObject("data").getString("empNo");
-
+            System.out.println(empNo);
             EmployeeVO employee = new EmployeeVO();
             employee.setBadge(empNo);
             Result<List<Employee>> employeeListResult= EmployeeServiceProxy.api().queryList(employee);

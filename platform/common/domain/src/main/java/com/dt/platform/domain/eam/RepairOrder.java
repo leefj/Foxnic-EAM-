@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 故障申请单
  * <p>故障申请单 , 数据表 eam_repair_order 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-19 13:31:44
- * @sign 41003B7708D44052A81A951C73430AFD
+ * @since 2023-08-04 20:25:48
+ * @sign 5BD55CB2EFCA666F76BF5DFD3D6C2D5E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -158,6 +158,12 @@ public class RepairOrder extends Entity {
 	private String autoActRule;
 	
 	/**
+	 * 故障设备：故障设备
+	*/
+	@ApiModelProperty(required = false,value="故障设备" , notes = "故障设备")
+	private String assetId;
+	
+	/**
 	 * 创建人ID：创建人ID
 	*/
 	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
@@ -219,6 +225,18 @@ public class RepairOrder extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1681191731000")
 	private String selectedCode;
+	
+	/**
+	 * repairOrderProcess：repairOrderProcess
+	*/
+	@ApiModelProperty(required = false,value="repairOrderProcess" , notes = "repairOrderProcess")
+	private List<RepairOrderProcess> repairOrderProcess;
+	
+	/**
+	 * 故障设备：故障设备
+	*/
+	@ApiModelProperty(required = false,value="故障设备" , notes = "故障设备")
+	private Asset asset;
 	
 	/**
 	 * 资产：资产
@@ -636,6 +654,25 @@ public class RepairOrder extends Entity {
 	}
 	
 	/**
+	 * 获得 故障设备<br>
+	 * 故障设备
+	 * @return 故障设备
+	*/
+	public String getAssetId() {
+		return assetId;
+	}
+	
+	/**
+	 * 设置 故障设备
+	 * @param assetId 故障设备
+	 * @return 当前对象
+	*/
+	public RepairOrder setAssetId(String assetId) {
+		this.assetId=assetId;
+		return this;
+	}
+	
+	/**
 	 * 获得 创建人ID<br>
 	 * 创建人ID
 	 * @return 创建人ID
@@ -853,6 +890,55 @@ public class RepairOrder extends Entity {
 	*/
 	public RepairOrder setSelectedCode(String selectedCode) {
 		this.selectedCode=selectedCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 repairOrderProcess<br>
+	 * repairOrderProcess
+	 * @return repairOrderProcess
+	*/
+	public List<RepairOrderProcess> getRepairOrderProcess() {
+		return repairOrderProcess;
+	}
+	
+	/**
+	 * 设置 repairOrderProcess
+	 * @param repairOrderProcess repairOrderProcess
+	 * @return 当前对象
+	*/
+	public RepairOrder setRepairOrderProcess(List<RepairOrderProcess> repairOrderProcess) {
+		this.repairOrderProcess=repairOrderProcess;
+		return this;
+	}
+	
+	/**
+	 * 添加 repairOrderProcess
+	 * @param repairOrderProce repairOrderProcess
+	 * @return 当前对象
+	*/
+	public RepairOrder addRepairOrderProce(RepairOrderProcess... repairOrderProce) {
+		if(this.repairOrderProcess==null) repairOrderProcess=new ArrayList<>();
+		this.repairOrderProcess.addAll(Arrays.asList(repairOrderProce));
+		return this;
+	}
+	
+	/**
+	 * 获得 故障设备<br>
+	 * 故障设备
+	 * @return 故障设备
+	*/
+	public Asset getAsset() {
+		return asset;
+	}
+	
+	/**
+	 * 设置 故障设备
+	 * @param asset 故障设备
+	 * @return 当前对象
+	*/
+	public RepairOrder setAsset(Asset asset) {
+		this.asset=asset;
 		return this;
 	}
 	
@@ -1102,6 +1188,7 @@ public class RepairOrder extends Entity {
 		inst.setPictureId(this.getPictureId());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setReportUserId(this.getReportUserId());
+		inst.setAssetId(this.getAssetId());
 		inst.setCategoryTplId(this.getCategoryTplId());
 		inst.setAutoAct(this.getAutoAct());
 		inst.setId(this.getId());
@@ -1129,7 +1216,9 @@ public class RepairOrder extends Entity {
 			inst.setOrganization(this.getOrganization());
 			inst.setAssetIds(this.getAssetIds());
 			inst.setCategoryTpl(this.getCategoryTpl());
+			inst.setRepairOrderProcess(this.getRepairOrderProcess());
 			inst.setOriginator(this.getOriginator());
+			inst.setAsset(this.getAsset());
 			inst.setAssetList(this.getAssetList());
 			inst.setOrderAcceptance(this.getOrderAcceptance());
 		}
@@ -1200,6 +1289,7 @@ public class RepairOrder extends Entity {
 			this.setPictureId(DataParser.parse(String.class, map.get(RepairOrderMeta.PICTURE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(RepairOrderMeta.UPDATE_BY)));
 			this.setReportUserId(DataParser.parse(String.class, map.get(RepairOrderMeta.REPORT_USER_ID)));
+			this.setAssetId(DataParser.parse(String.class, map.get(RepairOrderMeta.ASSET_ID)));
 			this.setCategoryTplId(DataParser.parse(String.class, map.get(RepairOrderMeta.CATEGORY_TPL_ID)));
 			this.setAutoAct(DataParser.parse(String.class, map.get(RepairOrderMeta.AUTO_ACT)));
 			this.setId(DataParser.parse(String.class, map.get(RepairOrderMeta.ID)));
@@ -1227,6 +1317,7 @@ public class RepairOrder extends Entity {
 			this.setOrganization(DataParser.parse(Organization.class, map.get(RepairOrderMeta.ORGANIZATION)));
 			this.setCategoryTpl(DataParser.parse(RepairCategoryTpl.class, map.get(RepairOrderMeta.CATEGORY_TPL)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(RepairOrderMeta.ORIGINATOR)));
+			this.setAsset(DataParser.parse(Asset.class, map.get(RepairOrderMeta.ASSET)));
 			this.setOrderAcceptance(DataParser.parse(RepairOrderAcceptance.class, map.get(RepairOrderMeta.ORDER_ACCEPTANCE)));
 			return true;
 		} else {
@@ -1240,6 +1331,7 @@ public class RepairOrder extends Entity {
 				this.setPictureId( (String)map.get(RepairOrderMeta.PICTURE_ID));
 				this.setUpdateBy( (String)map.get(RepairOrderMeta.UPDATE_BY));
 				this.setReportUserId( (String)map.get(RepairOrderMeta.REPORT_USER_ID));
+				this.setAssetId( (String)map.get(RepairOrderMeta.ASSET_ID));
 				this.setCategoryTplId( (String)map.get(RepairOrderMeta.CATEGORY_TPL_ID));
 				this.setAutoAct( (String)map.get(RepairOrderMeta.AUTO_ACT));
 				this.setId( (String)map.get(RepairOrderMeta.ID));
@@ -1267,6 +1359,7 @@ public class RepairOrder extends Entity {
 				this.setOrganization( (Organization)map.get(RepairOrderMeta.ORGANIZATION));
 				this.setCategoryTpl( (RepairCategoryTpl)map.get(RepairOrderMeta.CATEGORY_TPL));
 				this.setOriginator( (Employee)map.get(RepairOrderMeta.ORIGINATOR));
+				this.setAsset( (Asset)map.get(RepairOrderMeta.ASSET));
 				this.setOrderAcceptance( (RepairOrderAcceptance)map.get(RepairOrderMeta.ORDER_ACCEPTANCE));
 				return true;
 			} catch (Exception e) {
@@ -1293,6 +1386,7 @@ public class RepairOrder extends Entity {
 			this.setPictureId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.PICTURE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(RepairOrderMeta.UPDATE_BY)));
 			this.setReportUserId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.REPORT_USER_ID)));
+			this.setAssetId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.ASSET_ID)));
 			this.setCategoryTplId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.CATEGORY_TPL_ID)));
 			this.setAutoAct(DataParser.parse(String.class, r.getValue(RepairOrderMeta.AUTO_ACT)));
 			this.setId(DataParser.parse(String.class, r.getValue(RepairOrderMeta.ID)));
@@ -1325,6 +1419,7 @@ public class RepairOrder extends Entity {
 				this.setPictureId( (String)r.getValue(RepairOrderMeta.PICTURE_ID));
 				this.setUpdateBy( (String)r.getValue(RepairOrderMeta.UPDATE_BY));
 				this.setReportUserId( (String)r.getValue(RepairOrderMeta.REPORT_USER_ID));
+				this.setAssetId( (String)r.getValue(RepairOrderMeta.ASSET_ID));
 				this.setCategoryTplId( (String)r.getValue(RepairOrderMeta.CATEGORY_TPL_ID));
 				this.setAutoAct( (String)r.getValue(RepairOrderMeta.AUTO_ACT));
 				this.setId( (String)r.getValue(RepairOrderMeta.ID));

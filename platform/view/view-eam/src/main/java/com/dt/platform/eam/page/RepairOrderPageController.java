@@ -5,6 +5,7 @@ import com.dt.platform.proxy.eam.OperateServiceProxy;
 import com.github.foxnic.api.transter.Result;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,21 +45,39 @@ public class RepairOrderPageController extends ViewController {
 	 * 维修工单 功能主页面
 	 */
 	@RequestMapping("/repair_order_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String repairStatus) {
 		boolean approvalRequired=true;
 		Result approvalResult= OperateServiceProxy.api().approvalRequired(AssetOperateEnum.EAM_ASSET_REPAIR_ORDER.code());
 		if(approvalResult.isSuccess()){
 			approvalRequired= (boolean) approvalResult.getData();
 		}
 		model.addAttribute("approvalRequired",approvalRequired);
+		model.addAttribute("repairStatus",repairStatus);
 		return prefix+"/repair_order_list";
 	}
+
+	/**
+	 * 维修工单 功能主页面
+	 */
+	@RequestMapping("/repair_order_tab_list.html")
+	public String tabList(Model model,HttpServletRequest request) {
+		return prefix+"/repair_order_tab_list";
+	}
+
+
 
 	/**
 	 * 维修工单 表单页面
 	 */
 	@RequestMapping("/repair_order_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
+
+		String empId=SessionUser.getCurrent().getActivatedEmployeeId();
+		SessionUser user=SessionUser.getCurrent();
+		String userName=user.getUser().getActivatedEmployeeName();
+		model.addAttribute("curEmpId",empId);
+		model.addAttribute("curUserName",userName);
+
 		model.addAttribute("billId",id);
 		model.addAttribute("billType", AssetOperateEnum.EAM_ASSET_REPAIR_ORDER.code());
 		return prefix+"/repair_order_form";

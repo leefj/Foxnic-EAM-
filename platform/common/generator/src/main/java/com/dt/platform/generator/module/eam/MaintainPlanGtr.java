@@ -60,6 +60,7 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NOTES).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ORIGINATOR_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.CREATE_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_NAME).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.INFO).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.LAST_TIME).table().hidden(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NEXT_TIME).table().hidden(true);
@@ -104,6 +105,10 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT).basic().label("超时工时(分)");
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ACTION_CYCLE_ID).table().disable();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT).table().disable();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NEXT_TIME).table().disable();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.GROUP_ID).table().disable();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_SN).table().disable();
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.START_TIME).form().validate().required().form().dateInput().format("yyyy-MM-dd HH:mm:ss").defaultNow().search().range();
 
@@ -217,6 +222,8 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
 
      //   cfg.view().form().addPage("设备范围","assetSelectList");
         cfg.view().form().addPage("保养项目","maintainSelectList");
+
+        cfg.view().search().rowsDisplay(1);
 
         //文件生成覆盖模式
         cfg.overrides()

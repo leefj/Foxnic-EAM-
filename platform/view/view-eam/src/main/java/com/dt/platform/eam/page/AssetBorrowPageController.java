@@ -6,6 +6,7 @@ import com.dt.platform.proxy.eam.OperateServiceProxy;
 import com.github.foxnic.api.transter.Result;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,12 @@ public class AssetBorrowPageController extends ViewController {
 	 */
 	@RequestMapping("/asset_borrow_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
+
+		String empId= SessionUser.getCurrent().getActivatedEmployeeId();
+		SessionUser user=SessionUser.getCurrent();
+		String userName=user.getUser().getActivatedEmployeeName();
+		model.addAttribute("curEmpId",empId);
+		model.addAttribute("curUserName",userName);
 
 		model.addAttribute("billId",id);
 		model.addAttribute("billType", AssetOperateEnum.EAM_ASSET_BORROW.code());

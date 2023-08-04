@@ -1,7 +1,7 @@
 /**
  * 故障申请单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-19 13:31:46
+ * @since 2023-08-04 20:25:50
  */
 
 
@@ -94,7 +94,6 @@ function ListPage() {
 					,{ field: 'urgencyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('紧急程度'), templet: function (d) { return templet('urgencyId' ,fox.joinLabel(d.repairUrgency,"name",',','','urgencyId'),d);}}
 					,{ field: 'reportOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报修部门') , templet: function (d) { return templet('reportOrgId',fox.getProperty(d,["organization","fullName"],0,'','reportOrgId'),d);} }
 					,{ field: 'planFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('计划完成日期') ,templet: function (d) { return templet('planFinishDate',fox.dateFormat(d.planFinishDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人员') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'selectedCode', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('选择数据') , templet: function (d) { return templet('selectedCode',d.selectedCode,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
@@ -169,7 +168,8 @@ function ListPage() {
 		var value = {};
 		value.businessCode={ inputType:"button",value: $("#businessCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.repairStatus={ inputType:"select_box", value: getSelectedValue("#repairStatus","value"), label:getSelectedValue("#repairStatus","nameStr") };
+		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.repairType={ inputType:"select_box", value: getSelectedValue("#repairType","value"), label:getSelectedValue("#repairType","nameStr") };
 		value.urgencyId={ inputType:"select_box", value: getSelectedValue("#urgencyId","value") ,fillBy:["repairUrgency"]  , label:getSelectedValue("#urgencyId","nameStr") };
 		value.businessDate={ inputType:"date_input", begin: $("#businessDate-begin").val(), end: $("#businessDate-end").val() ,matchType:"auto" };
 		var ps={searchField:"$composite"};
@@ -216,7 +216,7 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(2);
+		fox.switchSearchRow(1);
 
 		//渲染 status 下拉字段
 		fox.renderSelectBox({
@@ -244,15 +244,15 @@ function ListPage() {
 				return opts;
 			}
 		});
-		//渲染 repairStatus 下拉字段
+		//渲染 repairType 下拉字段
 		fox.renderSelectBox({
-			el: "repairStatus",
+			el: "repairType",
 			radio: true,
 			size: "small",
 			filterable: false,
 			on: function(data){
 				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("repairStatus",data.arr,data.change,data.isAdd);
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("repairType",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
@@ -262,7 +262,7 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("repairStatus",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+						opts.push(window.pageExt.list.selectBoxDataTransform("repairType",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].text,value:data[i].code});
 					}
@@ -281,6 +281,8 @@ function ListPage() {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("urgencyId",data.arr,data.change,data.isAdd);
 				},1);
 			},
+			paging: true,
+			pageRemote: true,
 			//转换数据
 			searchField: "name", //请自行调整用于搜索的字段名称
 			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
@@ -338,7 +340,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(2,function (ex){
+			fox.switchSearchRow(1,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {

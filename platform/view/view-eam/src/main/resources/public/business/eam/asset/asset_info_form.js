@@ -535,6 +535,7 @@ function FormPage() {
 			}
 		});
 
+
 		//渲染 financialOption 下拉字段
 		fox.renderSelectBox({
 			el: "financialOption",
@@ -611,19 +612,61 @@ function FormPage() {
 			}
 		});
 
+		function showMedia(id, type, src) {
+			var idBar = "#" + id;
+			$(idBar).bind('click', function () {
+				var width = $(idBar).width();
+				var height = $(idBar).height();
+				var scaleWH = width / height;
+				var bigH = 500;
+				var bigW = scaleWH * bigH;
+				if (bigW > 900) {
+					bigW = 900;
+					bigH = bigW / scaleWH;
+				} // 放大预览图片
+				if (type == "video") {
+					layer.open({
+						type: 1,
+						title: false,
+						closeBtn: 1,
+						shadeClose: true,
+						area: [bigW + 'px', bigH + 'px'], //宽高
+						content: "<video width='" + bigW + "' height='" + bigH + "'controls=\"controls\" src=" + src + " />"
+					});
+				} else {
+					layer.open({
+						type: 1,
+						title: false,
+						closeBtn: 1,
+						shadeClose: true,
+						area: [bigW + 'px', bigH + 'px'], //宽高
+						content: "<img width='" + bigW + "' height='" + bigH + "'controls=\"controls\" src=" + src + " />"
+					});
+				}
+
+			});
+		}
 		//渲染图片字段
-		foxup.render({
+		var ups=foxup.render({
 			el:"pictureId",
-			maxFileCount: 1,
-			displayFileName: false,
+			maxFileCount: 3,
+			displayFileName: true,
 			accept: "image",
-			acceptMime:'image/*',
-			exts:'png|jpg|bmp|gif|jpeg',
-			afterPreview:function(elId,index,fileId,upload){
+			fileType:"png",
+			afterPreview:function(elId,index,fileId,upload,fileName,fileType){
+				console.log(elId,"fileType",fileType);
 				adjustPopup();
+				if(elId=="pictureId"){
+					var els=$('.layui-upload-img')
+					for(var i=0;i<els.length;i++){
+						$("#pictureId-image-"+i).attr("can-preview","yes");
+					}
+				}
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterPreview",elId:elId,index:index,fileId:fileId,upload:upload,fileName:fileName,fileType:fileType});
 			},
+
 			afterUpload:function (result,index,upload) {
-				console.log("文件上传后回调")
+				console.log("文件上传后回调222222")
 			},
 			beforeRemove:function (elId,fileId,index,upload) {
 				console.log("文件删除前回调");
@@ -633,6 +676,9 @@ function FormPage() {
 				adjustPopup();
 			}
 		});
+
+
+
 		//渲染 maintainerId 下拉字段
 		fox.renderSelectBox({
 			el: "maintainerId",

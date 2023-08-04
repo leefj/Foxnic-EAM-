@@ -41,8 +41,28 @@ public class RepairOrderActPageController extends ViewController {
 	 * 维修工单 功能主页面
 	 */
 	@RequestMapping("/repair_order_act_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String repairStatus) {
+
+		model.addAttribute("repairStatus",repairStatus);
 		return prefix+"/repair_order_act_list";
+	}
+
+
+
+	/**
+	 * 维修工单 功能主页面
+	 */
+	@RequestMapping("/repair_act_tab_list.html")
+	public String tabList(Model model,HttpServletRequest request) {
+		return prefix+"/repair_act_tab_list";
+	}
+
+
+
+	@RequestMapping("/repair_asset_form.html")
+	public String assetForm(Model model,HttpServletRequest request , String id,String orderId) {
+		model.addAttribute("orderId",orderId);
+		return prefix+"/repair_asset_form";
 	}
 
 	/**
