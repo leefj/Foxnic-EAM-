@@ -5,10 +5,7 @@ import com.dt.platform.constants.db.OpsTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.RepairOrderActStatusEnum;
 import com.dt.platform.constants.enums.eam.RepairOrderStatusEnum;
-import com.dt.platform.domain.eam.RepairGroup;
-import com.dt.platform.domain.eam.RepairOrder;
-import com.dt.platform.domain.eam.RepairOrderAct;
-import com.dt.platform.domain.eam.RepairOrderActSp;
+import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.RepairCategoryTplMeta;
 import com.dt.platform.domain.eam.meta.RepairGroupMeta;
 import com.dt.platform.domain.eam.meta.RepairOrderActMeta;
@@ -36,6 +33,9 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
         System.out.println(this.getClass().getName());
 
 
+        cfg.getPoClassFile().addListProperty(RepairOrderProcess.class,"repairOrderProcess","repairOrderProcess","repairOrderProcess");
+
+
         cfg.getPoClassFile().addListProperty(RepairOrderActSp.class,"RepairOrderActSpList","RepairOrderActSpList","RepairOrderActSpList");
         cfg.getPoClassFile().addListProperty(String.class,"idsList","idsList","idsList");
 
@@ -45,7 +45,7 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"executor","执行人","执行人");
         cfg.getPoClassFile().addSimpleProperty(RepairGroup.class,"repairGroup","维修班组","维修班组");
 
-
+        cfg.getPoClassFile().addSimpleProperty(String.class,"status","status","status");
 //        cfg.getPoClassFile().addSimpleProperty(String.class,"orderName","订单名称","订单名称");
 //        cfg.getPoClassFile().addSimpleProperty(String.class,"orderBusinessCode","订单编号","订单编号");
 //        cfg.getPoClassFile().addSimpleProperty(String.class,"orderRepairStatus","维修状态","维修状态");
@@ -61,7 +61,7 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
 
         cfg.view().search().inputLayout(
                 new Object[]{
-                        EAMTables.EAM_REPAIR_ORDER_ACT.STATUS,
+
                         EAMTables.EAM_REPAIR_ORDER_ACT.GROUP_ID,
                         EAMTables.EAM_REPAIR_ORDER_ACT.BUSINESS_CODE,
                         EAMTables.EAM_REPAIR_ORDER_ACT.ORDER_NAME,
@@ -83,7 +83,7 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.ORIGINATOR_ID).table().fillBy("originator","name");
 //        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.ORIGINATOR_ID).form()
 //                .button().chooseEmployee(true);
-
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.ORIGINATOR_ID).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.PICTURE_ID).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.NOTES).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.ORDER_ID).table().disable();
@@ -132,7 +132,7 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
 
 
 //        cfg.view().form().addPage("维修申请","repairOrderApply");
-
+        cfg.view().search().rowsDisplay(1);
         cfg.view().form().addGroup("订单信息",
                 new Object[] {
                         EAMTables.EAM_REPAIR_ORDER_ACT.ORDER_NAME,
@@ -178,8 +178,8 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
         cfg.view().form().addPage("设备列表","assetSelectList");
         cfg.view().form().addPage("备件列表","deviceSpList");
 
-        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.STATUS).form()
-                .form().selectBox().enumType(RepairOrderActStatusEnum.class);
+
+        cfg.view().list().addJsVariable("REPAIR_STATUS","[[${repairStatus}]]","单据ID");
         cfg.view().form().addJsVariable("ORDER_ID","[[${orderId}]]","工单");
       //  cfg.view().list().operationColumn().addActionButton("开始维修","start","start-button","eam_repair_order_act:start");
         cfg.view().list().operationColumn().addActionButton("维修","maintenance","maintenance-button","eam_repair_order_act:maintenance");

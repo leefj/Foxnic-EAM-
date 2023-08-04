@@ -177,7 +177,7 @@ public class InspPlanGtr extends BaseCodeGenerator {
 
         cfg.view().form().addPage("巡检点","pointSelectList");
 
-
+        cfg.view().search().rowsDisplay(1);
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口

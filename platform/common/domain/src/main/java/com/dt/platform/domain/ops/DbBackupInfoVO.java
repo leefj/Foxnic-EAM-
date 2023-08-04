@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库备份VO类型
  * <p>数据库备份 , 数据表 ops_db_backup_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-31 22:15:26
- * @sign 55DC0293DB9696189044F24BB2EE2CFC
+ * @since 2023-08-04 17:31:07
+ * @sign 77E2442D9BD258A6CD43F1C7E451DCD8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -82,9 +82,9 @@ public class DbBackupInfoVO extends DbBackupInfo {
 	private String sortType;
 	
 	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
 	private String dataOrigin;
 	
 	/**
@@ -92,6 +92,12 @@ public class DbBackupInfoVO extends DbBackupInfo {
 	*/
 	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
 	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -256,7 +262,7 @@ public class DbBackupInfoVO extends DbBackupInfo {
 	
 	/**
 	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
 	 * @return 数据来源
 	*/
 	public String getDataOrigin() {
@@ -289,6 +295,25 @@ public class DbBackupInfoVO extends DbBackupInfo {
 	*/
 	public DbBackupInfoVO setQueryLogic(String queryLogic) {
 		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public DbBackupInfoVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
 		return this;
 	}
 	
@@ -404,6 +429,7 @@ public class DbBackupInfoVO extends DbBackupInfo {
 		inst.setBackupSource(this.getBackupSource());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setDbType(this.getDbType());
 			inst.setPageSize(this.getPageSize());
@@ -503,6 +529,7 @@ public class DbBackupInfoVO extends DbBackupInfo {
 			this.setBackupSource(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.BACKUP_SOURCE)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.FUZZY_FIELD)));
 			this.setDbType(DataParser.parse(ServiceInfo.class, map.get(DbBackupInfoVOMeta.DB_TYPE)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(DbBackupInfoVOMeta.PAGE_SIZE)));
@@ -544,6 +571,7 @@ public class DbBackupInfoVO extends DbBackupInfo {
 				this.setBackupSource( (String)map.get(DbBackupInfoVOMeta.BACKUP_SOURCE));
 				// others
 				this.setSearchField( (String)map.get(DbBackupInfoVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(DbBackupInfoVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(DbBackupInfoVOMeta.FUZZY_FIELD));
 				this.setDbType( (ServiceInfo)map.get(DbBackupInfoVOMeta.DB_TYPE));
 				this.setPageSize( (Integer)map.get(DbBackupInfoVOMeta.PAGE_SIZE));

@@ -2,7 +2,7 @@
 /**
  * 维修工单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-21 14:32:30
+ * @since 2023-08-04 22:51:11
  */
  -->
  <!DOCTYPE html>
@@ -41,10 +41,10 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 申请单 , orderId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 维修状态 , status ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 维修班组 , groupId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('维修状态')}" class="search-label status-label">维修状态</span><span class="search-colon">:</span></div>
-                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.RepairOrderActStatusEnum')}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('维修班组')}" class="search-label groupId-label">维修班组</span><span class="search-colon">:</span></div>
+                        <div id="groupId" th:data="${'/service-eam/eam-repair-group/query-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 维修人员 , executorId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 维修费用 , repairCost ,typeName=number_input, isHideInSearch=true -->
@@ -54,20 +54,15 @@
                     <!-- 制单人员 , originatorId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 跟随验证 , withAcceptance ,typeName=text_input, isHideInSearch=true -->
                     <!-- 选择数据 , selectedCode ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 维修班组 , groupId ,typeName=select_box, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('维修班组')}" class="search-label groupId-label">维修班组</span><span class="search-colon">:</span></div>
-                        <div id="groupId" th:data="${'/service-eam/eam-repair-group/query-list'}" style="width:150px" extraParam="{}"></div>
-                    </div>
                     <!-- 维修编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('维修编号')}" class="search-label businessCode-label">维修编号</span><span class="search-colon">:</span></div>
-                        <input id="businessCode" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('维修编号')}" class="search-label businessCode-label">维修编号</span><span class="search-colon">:</span></div>
+                        <input id="businessCode" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 订单名称 , orderName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('订单名称')}" class="search-label orderName-label">订单名称</span><span class="search-colon">:</span></div>
-                        <input id="orderName" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('订单名称')}" class="search-label orderName-label">订单名称</span><span class="search-colon">:</span></div>
+                        <input id="orderName" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -76,15 +71,15 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 订单编号 , orderBusinessCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('订单编号')}" class="search-label orderBusinessCode-label">订单编号</span><span class="search-colon">:</span></div>
-                        <input id="orderBusinessCode" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('订单编号')}" class="search-label orderBusinessCode-label">订单编号</span><span class="search-colon">:</span></div>
+                        <input id="orderBusinessCode" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 开始时间 , startTime ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('开始时间')}" class="search-label startTime-label">开始时间</span><span class="search-colon">:</span></div>
-                            <input type="text" id="startTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('开始时间')}" class="search-label startTime-label">开始时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="startTime-begin" style="width: 180px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
-                            <input type="text" id="startTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                            <input type="text" id="startTime-end"  style="width: 180px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
 
 
@@ -95,10 +90,11 @@
             <!-- 按钮区域 -->
             <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
                 <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多','','cmp:table.search')}">更多</span></button>
             </div>
         </div>
 
-        <div id="table-area" style="margin-top: 84px ">
+        <div id="table-area" style="margin-top: 42px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -135,9 +131,10 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
-    var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.RepairOrderActStatusEnum')}]];
     var AUTH_PREFIX="eam_repair_order_act";
 
+    // 单据ID
+    var REPAIR_STATUS = [[${repairStatus}]] ;
 
 </script>
 

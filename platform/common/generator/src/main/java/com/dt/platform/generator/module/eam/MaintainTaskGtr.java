@@ -205,7 +205,13 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.RESULT).table().disable(true);
-
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.COST).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.CONTENT).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.GROUP_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_POS).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_SN).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_START_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID).table().disable(true);
 //
 //        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID).form().readOnly();
 
@@ -264,6 +270,7 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
         cfg.view().list().operationColumn().addActionButton("取消","taskCancel","cancel-button","eam_maintain_task:cancel");
         cfg.view().form().addJsVariable("GROUP_EMPLOYEE","[[${groupEmployee}]]","groupEmployee");
 
+        cfg.view().search().rowsDisplay(1);
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口

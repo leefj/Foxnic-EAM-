@@ -105,6 +105,7 @@ public class InspTaskAbnomalGtr extends BaseCodeGenerator {
                         EAMTables.EAM_INSPECTION_TASK_ABNORMAL.NOTES,
                 }
         );
+        cfg.view().search().rowsDisplay(1);
 
         //文件生成覆盖模式
         cfg.overrides()

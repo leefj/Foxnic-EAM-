@@ -1,7 +1,7 @@
 /**
  * 维修工单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-21 14:32:30
+ * @since 2023-08-04 22:51:12
  */
 
 
@@ -87,13 +87,11 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'orderBusinessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('订单编号') , templet: function (d) { return templet('orderBusinessCode',d.orderBusinessCode,d);}  }
 					,{ field: 'orderName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('订单名称') , templet: function (d) { return templet('orderName',d.orderName,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修班组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.repairGroup,"name",',','','groupId'),d);}}
 					,{ field: 'executorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修人员'), templet: function (d) { return templet('executorId' ,fox.joinLabel(d.executor,"name",',','','executorId'),d);}}
 					,{ field: 'startTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('startTime',fox.dateFormat(d.startTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'finishTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('完成时间') ,templet: function (d) { return templet('finishTime',fox.dateFormat(d.finishTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人员') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 300 }
@@ -167,7 +165,6 @@ function ListPage() {
 		var value = {};
 		value.orderBusinessCode={ inputType:"button",value: $("#orderBusinessCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.orderName={ inputType:"button",value: $("#orderName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.businessCode={ inputType:"button",value: $("#businessCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.groupId={ inputType:"select_box", value: getSelectedValue("#groupId","value") ,fillBy:["repairGroup"]  , label:getSelectedValue("#groupId","nameStr") };
 		value.startTime={ inputType:"date_input", begin: $("#startTime-begin").val(), end: $("#startTime-end").val() ,matchType:"auto" };
@@ -215,34 +212,8 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(2);
+		fox.switchSearchRow(1);
 
-		//渲染 status 下拉字段
-		fox.renderSelectBox({
-			el: "status",
-			radio: true,
-			size: "small",
-			filterable: false,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
 		//渲染 groupId 下拉字段
 		fox.renderSelectBox({
 			el: "groupId",
@@ -311,7 +282,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(2,function (ex){
+			fox.switchSearchRow(1,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {

@@ -3,21 +3,17 @@ package com.dt.platform.eam.service.impl;
 import javax.annotation.Resource;
 
 import com.dt.platform.constants.enums.eam.RepairOrderActStatusEnum;
-import com.dt.platform.domain.eam.RepairOrder;
-import com.dt.platform.domain.eam.RepairOrderAct;
+import com.dt.platform.domain.eam.*;
 import com.dt.platform.eam.service.IRepairOrderActService;
+import com.dt.platform.eam.service.IRepairOrderProcessService;
 import com.dt.platform.eam.service.IRepairOrderService;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.commons.collection.MapUtil;
 
 
-
-
-
-import com.dt.platform.domain.eam.RepairOrderTransfer;
-import com.dt.platform.domain.eam.RepairOrderTransferVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -71,6 +67,11 @@ public class RepairOrderTransferServiceImpl extends SuperService<RepairOrderTran
 	@Autowired
 	private IRepairOrderService repairOrderService;
 
+
+	@Autowired
+	private IRepairOrderProcessService repairOrderProcessService;
+
+
 	@Override
 	public Object generateId(Field field) {
 		return IDGenerator.getSnowflakeIdString();
@@ -86,7 +87,6 @@ public class RepairOrderTransferServiceImpl extends SuperService<RepairOrderTran
 	@Override
 	public Result insert(RepairOrderTransfer repairOrderTransfer,boolean throwsException) {
 		RepairOrder order=repairOrderService.getById(repairOrderTransfer.getOrderId());
-
 		RepairOrderAct act=new RepairOrderAct();
 		act.setNotes(repairOrderTransfer.getNotes());
 		act.setExecutorId(repairOrderTransfer.getExecutorId());
@@ -95,14 +95,24 @@ public class RepairOrderTransferServiceImpl extends SuperService<RepairOrderTran
 		act.setStatus(RepairOrderActStatusEnum.WAIT_REPAIR.code());
 		act.setOrderName(order.getName());
 		act.setOrderBusinessCode(order.getBusinessCode());
-
 		Result rr=repairOrderActService.insert(act,false);
 		if(rr.isSuccess()){
 			repairOrderTransfer.setOrderActId(act.getId());
 			Result r=super.insert(repairOrderTransfer,throwsException);
+			//记录
+			RepairOrderProcess rcd=new RepairOrderProcess();
+			rcd.setRcdTime(new Date());
+			rcd.setOrderId(repairOrderTransfer.getOrderId());
+			rcd.setActId(act.getId());
+			rcd.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+			rcd.setUserName(SessionUser.getCurrent().getRealName());
+			rcd.setProcessContent("分派到班组,操作人员:"+SessionUser.getCurrent().getUser().getActivatedEmployeeName());
+			repairOrderProcessService.insert(rcd,throwsException);
+
 		}else{
 			return rr;
 		}
+
 
 		return ErrorDesc.success();
 	}

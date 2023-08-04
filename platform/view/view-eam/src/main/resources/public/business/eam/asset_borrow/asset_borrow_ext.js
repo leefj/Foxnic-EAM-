@@ -268,7 +268,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     }
 
     var timestamp = Date.parse(new Date());
-    var formAction=admin.getTempData('eam-asset-collection-form-data-form-action');
+    var formAction=admin.getTempData('eam-asset-borrow-form-data-form-action');
 
     //表单页的扩展
     var form={
@@ -276,6 +276,19 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单初始化前调用
          * */
         beforeInit:function () {
+
+            if(formAction=="create"){
+                //默认填充报修人员
+                if($("#borrowerId")){
+                    $("#borrowerId").val(CUR_EMP_ID);
+                }
+                if($("#borrowerId-button")){
+                    var html="<i class=\"layui-icon layui-icon-search\"></i><span default-label=\"借用人\">"+CUR_USER_NAME+"</span>"
+                    $("#borrowerId-button").html(html);
+                }
+            }
+
+
             $("#originatorUserName").attr("disabled","disabled").css("background-color","#e6e6e6");
             $("#originatorUserName").attr("placeholder","自动填充")
             $("#borrowerId-button").css({"border-color":"#eee","height": "38px","color": "rgba(0,0,0,.85)","border-style": "solid","background-color":"white","border-radius": "2px","border-width": "1px"});

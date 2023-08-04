@@ -6,6 +6,7 @@ import java.util.List;
 import com.dt.platform.domain.eam.RepairOrder;
 import java.util.Date;
 import java.math.BigDecimal;
+import com.dt.platform.domain.eam.RepairOrderProcess;
 import com.dt.platform.domain.eam.Asset;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.RepairOrderAct;
@@ -19,7 +20,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-19 13:31:44
+ * @since 2023-08-04 20:25:48
  * @sign B246C9A6519ACCA6F8C9E09407F19A01
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -337,6 +338,16 @@ public class RepairOrderVOMeta extends RepairOrderMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderVO,java.lang.String> AUTO_ACT_RULE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderVO.class ,AUTO_ACT_RULE, java.lang.String.class, "创建规则", "创建规则", java.lang.String.class, null);
 	
 	/**
+	 * 故障设备 , 类型: java.lang.String
+	*/
+	public static final String ASSET_ID="assetId";
+	
+	/**
+	 * 故障设备 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderVO,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderVO.class ,ASSET_ID, java.lang.String.class, "故障设备", "故障设备", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -437,6 +448,26 @@ public class RepairOrderVOMeta extends RepairOrderMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderVO.class ,SELECTED_CODE, java.lang.String.class, "选择数据", "选择数据", java.lang.String.class, null);
 	
 	/**
+	 * repairOrderProcess , 集合类型: LIST , 类型: com.dt.platform.domain.eam.RepairOrderProcess
+	*/
+	public static final String REPAIR_ORDER_PROCESS="repairOrderProcess";
+	
+	/**
+	 * repairOrderProcess , 集合类型: LIST , 类型: com.dt.platform.domain.eam.RepairOrderProcess
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderVO,com.dt.platform.domain.eam.RepairOrderProcess> REPAIR_ORDER_PROCESS_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderVO.class ,REPAIR_ORDER_PROCESS, java.util.List.class, "repairOrderProcess", "repairOrderProcess", com.dt.platform.domain.eam.RepairOrderProcess.class, null);
+	
+	/**
+	 * 故障设备 , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET="asset";
+	
+	/**
+	 * 故障设备 , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderVO,com.dt.platform.domain.eam.Asset> ASSET_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderVO.class ,ASSET, com.dt.platform.domain.eam.Asset.class, "故障设备", "故障设备", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
 	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
 	*/
 	public static final String ASSET_LIST="assetList";
@@ -529,7 +560,7 @@ public class RepairOrderVOMeta extends RepairOrderMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , BUSINESS_CODE , PROC_ID , STATUS , NAME , REPAIR_STATUS , CATEGORY_TPL_ID , REPAIR_TYPE , URGENCY_ID , REPORT_ORG_ID , PLAN_FINISH_DATE , REPORT_USER_ID , REPAIR_COST , CONTENT , PICTURE_ID , ORIGINATOR_ID , BUSINESS_DATE , AUTO_ACT , AUTO_ACT_RULE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ASSET_LIST , ASSET_IDS , ORIGINATOR , REPORT_USER , ORDER_ACT , ORDER_ACCEPTANCE , CATEGORY_TPL , REPAIR_URGENCY , ORGANIZATION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , BUSINESS_CODE , PROC_ID , STATUS , NAME , REPAIR_STATUS , CATEGORY_TPL_ID , REPAIR_TYPE , URGENCY_ID , REPORT_ORG_ID , PLAN_FINISH_DATE , REPORT_USER_ID , REPAIR_COST , CONTENT , PICTURE_ID , ORIGINATOR_ID , BUSINESS_DATE , AUTO_ACT , AUTO_ACT_RULE , ASSET_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , REPAIR_ORDER_PROCESS , ASSET , ASSET_LIST , ASSET_IDS , ORIGINATOR , REPORT_USER , ORDER_ACT , ORDER_ACCEPTANCE , CATEGORY_TPL , REPAIR_URGENCY , ORGANIZATION };
 	
 	/**
 	 * 代理类
@@ -881,6 +912,17 @@ public class RepairOrderVOMeta extends RepairOrderMeta {
 		}
 		
 		/**
+		 * 设置 故障设备
+		 * @param assetId 故障设备
+		 * @return 当前对象
+		*/
+		public RepairOrder setAssetId(String assetId) {
+			super.change(ASSET_ID,super.getAssetId(),assetId);
+			super.setAssetId(assetId);
+			return this;
+		}
+		
+		/**
 		 * 设置 创建人ID
 		 * @param createBy 创建人ID
 		 * @return 当前对象
@@ -987,6 +1029,28 @@ public class RepairOrderVOMeta extends RepairOrderMeta {
 		public RepairOrder setSelectedCode(String selectedCode) {
 			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
 			super.setSelectedCode(selectedCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 repairOrderProcess
+		 * @param repairOrderProcess repairOrderProcess
+		 * @return 当前对象
+		*/
+		public RepairOrder setRepairOrderProcess(List<RepairOrderProcess> repairOrderProcess) {
+			super.change(REPAIR_ORDER_PROCESS,super.getRepairOrderProcess(),repairOrderProcess);
+			super.setRepairOrderProcess(repairOrderProcess);
+			return this;
+		}
+		
+		/**
+		 * 设置 故障设备
+		 * @param asset 故障设备
+		 * @return 当前对象
+		*/
+		public RepairOrder setAsset(Asset asset) {
+			super.change(ASSET,super.getAsset(),asset);
+			super.setAsset(asset);
 			return this;
 		}
 		
@@ -1113,6 +1177,7 @@ public class RepairOrderVOMeta extends RepairOrderMeta {
 			inst.setPictureId(this.getPictureId());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setReportUserId(this.getReportUserId());
+			inst.setAssetId(this.getAssetId());
 			inst.setCategoryTplId(this.getCategoryTplId());
 			inst.setAutoAct(this.getAutoAct());
 			inst.setId(this.getId());
@@ -1141,6 +1206,7 @@ public class RepairOrderVOMeta extends RepairOrderMeta {
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
 				inst.setAssetIds(this.getAssetIds());
+				inst.setRepairOrderProcess(this.getRepairOrderProcess());
 				inst.setOriginator(this.getOriginator());
 				inst.setAssetList(this.getAssetList());
 				inst.setPageIndex(this.getPageIndex());
@@ -1153,6 +1219,7 @@ public class RepairOrderVOMeta extends RepairOrderMeta {
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setCategoryTpl(this.getCategoryTpl());
+				inst.setAsset(this.getAsset());
 				inst.setSearchValue(this.getSearchValue());
 				inst.setOrderAcceptance(this.getOrderAcceptance());
 			}

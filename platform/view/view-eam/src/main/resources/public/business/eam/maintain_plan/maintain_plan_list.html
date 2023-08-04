@@ -2,7 +2,7 @@
 /**
  * 保养方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-23 09:00:12
+ * @since 2023-08-04 15:06:01
  */
  -->
  <!DOCTYPE html>
@@ -42,8 +42,8 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 计划状态 , status ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('计划状态')}" class="search-label status-label">计划状态</span><span class="search-colon">:</span></div>
-                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.EamPlanStatusEnum')}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('计划状态')}" class="search-label status-label">计划状态</span><span class="search-colon">:</span></div>
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.EamPlanStatusEnum')}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 保养设备 , assetId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 保养周期 , actionCycleId ,typeName=text_input, isHideInSearch=true -->
@@ -59,18 +59,18 @@
                     <!-- 保养项目数 , itemCount ,typeName=text_input, isHideInSearch=true -->
                     <!-- 保养类型 , maintainType ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('保养类型')}" class="search-label maintainType-label">保养类型</span><span class="search-colon">:</span></div>
-                        <div id="maintainType" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_maintain_type'}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('保养类型')}" class="search-label maintainType-label">保养类型</span><span class="search-colon">:</span></div>
+                        <div id="maintainType" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_maintain_type'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 计划单据 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('计划单据')}" class="search-label code-label">计划单据</span><span class="search-colon">:</span></div>
-                        <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('计划单据')}" class="search-label code-label">计划单据</span><span class="search-colon">:</span></div>
+                        <input id="code" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 计划名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('计划名称')}" class="search-label name-label">计划名称</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('计划名称')}" class="search-label name-label">计划名称</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -79,23 +79,23 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 循环方式 , cycleMethod ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('循环方式')}" class="search-label cycleMethod-label">循环方式</span><span class="search-colon">:</span></div>
-                        <div id="cycleMethod" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.MaintainCycleMethodEnum')}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('循环方式')}" class="search-label cycleMethod-label">循环方式</span><span class="search-colon">:</span></div>
+                        <div id="cycleMethod" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.MaintainCycleMethodEnum')}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 保养班组 , groupId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('保养班组')}" class="search-label groupId-label">保养班组</span><span class="search-colon">:</span></div>
-                        <div id="groupId" th:data="${'/service-eam/eam-maintain-group/query-list'}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('保养班组')}" class="search-label groupId-label">保养班组</span><span class="search-colon">:</span></div>
+                        <div id="groupId" th:data="${'/service-eam/eam-maintain-group/query-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 保养设备 , assetCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('保养设备')}" class="search-label assetCode-label">保养设备</span><span class="search-colon">:</span></div>
-                        <input id="assetCode" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('保养设备')}" class="search-label assetCode-label">保养设备</span><span class="search-colon">:</span></div>
+                        <input id="assetCode" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 设备名称 , assetName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('设备名称')}" class="search-label assetName-label">设备名称</span><span class="search-colon">:</span></div>
-                        <input id="assetName" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('设备名称')}" class="search-label assetName-label">设备名称</span><span class="search-colon">:</span></div>
+                        <input id="assetName" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -104,13 +104,13 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 设备型号 , assetModel ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('设备型号')}" class="search-label assetModel-label">设备型号</span><span class="search-colon">:</span></div>
-                        <input id="assetModel" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('设备型号')}" class="search-label assetModel-label">设备型号</span><span class="search-colon">:</span></div>
+                        <input id="assetModel" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 设备序列 , assetSn ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('设备序列')}" class="search-label assetSn-label">设备序列</span><span class="search-colon">:</span></div>
-                        <input id="assetSn" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('设备序列')}" class="search-label assetSn-label">设备序列</span><span class="search-colon">:</span></div>
+                        <input id="assetSn" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -125,7 +125,7 @@
             </div>
         </div>
 
-        <div id="table-area" style="margin-top: 84px ">
+        <div id="table-area" style="margin-top: 42px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 

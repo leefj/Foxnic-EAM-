@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 异常巡检任务单
  * <p>异常巡检任务单 , 数据表 eam_inspection_task_abnormal 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-23 12:43:17
+ * @since 2023-08-04 08:45:39
  * @sign DCD6411B01262861B2848425288151C1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

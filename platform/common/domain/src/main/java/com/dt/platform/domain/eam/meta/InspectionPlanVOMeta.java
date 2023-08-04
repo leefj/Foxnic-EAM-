@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-23 08:51:33
+ * @since 2023-08-04 08:45:12
  * @sign EC46F8F634C939A1F754AC634AAD5555
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

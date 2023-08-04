@@ -34,7 +34,7 @@ function ListPage() {
                 var html="<tr>\n" +
                     "<th>资产状态</th>\n" +
                     "<th>数量</th>\n" +
-                    "<th>金额</th>\n" +
+                    "<th>价值(万)</th>\n" +
                     "</tr>";
                 for(var i=0;i<assetData.assetStatusData.length;i++){
                     html=html+" <tr>\n" +

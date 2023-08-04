@@ -1,7 +1,7 @@
 /**
  * 保养任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-12 13:21:01
+ * @since 2023-08-04 18:51:42
  */
 
 
@@ -89,15 +89,10 @@ function ListPage() {
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('任务状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('任务单据') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'maintainType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保养类型'), templet: function (d) { return templet('maintainType' ,fox.joinLabel(d.maintainTypeDict,"label",',','','maintainType'),d);}}
-					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保养班组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.maintainGroup,"name",',','','groupId'),d);}}
 					,{ field: 'assetName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备名称') , templet: function (d) { return templet('assetName',d.assetName,d);}  }
 					,{ field: 'assetCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备编码') , templet: function (d) { return templet('assetCode',d.assetCode,d);}  }
 					,{ field: 'assetModel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备型号') , templet: function (d) { return templet('assetModel',d.assetModel,d);}  }
 					,{ field: 'assetStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备状态'), templet:function (d){ return templet('assetStatus',fox.getEnumText(SELECT_ASSETSTATUS_DATA,d.assetStatus,'','assetStatus'),d);}}
-					,{ field: 'assetSn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备序列') , templet: function (d) { return templet('assetSn',d.assetSn,d);}  }
-					,{ field: 'executorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('执行人') , templet: function (d) { return templet('executorId',fox.getProperty(d,["executor","name"],0,'','executorId'),d);} }
-					,{ field: 'actStartTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('实际开始') ,templet: function (d) { return templet('actStartTime',fox.dateFormat(d.actStartTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'cost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('费用') , templet: function (d) { return templet('cost',d.cost,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'itemCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('保养项目数') , templet: function (d) { return templet('itemCount',d.itemCount,d);}  }
 					,{ field: 'waitCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('待保养项目数') , templet: function (d) { return templet('waitCount',d.waitCount,d);}  }
@@ -224,7 +219,7 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(2);
+		fox.switchSearchRow(1);
 
 		//渲染 status 下拉字段
 		fox.renderSelectBox({
@@ -349,7 +344,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(2,function (ex){
+			fox.switchSearchRow(1,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {
