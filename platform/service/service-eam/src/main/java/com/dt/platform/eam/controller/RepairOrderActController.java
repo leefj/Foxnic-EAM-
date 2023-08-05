@@ -210,6 +210,27 @@ public class RepairOrderActController extends SuperController {
     }
 
     /**
+     * 获取维修工单
+     */
+    @ApiOperation(value = "获取维修工单")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+    })
+    @ApiOperationSupport(order = 6)
+    @SentinelResource(value = RepairOrderActServiceProxy.GET_BY_ORDER_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(RepairOrderActServiceProxy.GET_BY_ORDER_ID)
+    public Result<RepairOrderAct> getByOrderId(String orderId) {
+        Result<RepairOrderAct> result = new Result<>();
+        RepairOrderAct repairOrderAct = repairOrderActService.getByOrderId(orderId);
+        // join 关联的对象
+        repairOrderActService.dao().fill(repairOrderAct).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.EXECUTOR).with(RepairOrderActMeta.ORDER).execute();
+        repairOrderActService.dao().join(repairOrderAct.getExecutor(), Person.class);
+        repairOrderActService.dao().join(repairOrderAct.getOriginator(), Person.class);
+        result.success(true).data(repairOrderAct);
+        return result;
+    }
+
+    /**
      * 批量获取维修工单 <br>
      * 联合主键时，请自行调整实现
      */

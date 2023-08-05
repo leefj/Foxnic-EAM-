@@ -1,7 +1,7 @@
 /**
  * 维修工单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 22:51:12
+ * @since 2023-08-05 09:40:48
  */
 
 
@@ -428,6 +428,9 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'start') { // 开始维修
+				window.pageExt.list.start(data,this);
 			}
 			else if (layEvent === 'maintenance') { // 维修
 				window.pageExt.list.maintenance(data,this);

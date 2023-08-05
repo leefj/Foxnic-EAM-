@@ -36,7 +36,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            console.log("list:beforeTableRender",cfg);
+            cfg.cellMinWidth=200;;
         },
         /**
          * 表格渲染后调用
@@ -221,6 +221,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
         }
     }
+    var formAction=admin.getTempData('eam-repair-order-acceptance-form-data-form-action');
 
     //表单页的扩展
     var form={
@@ -232,6 +233,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
+            if(formAction=="create"){
+                //默认填充报修人员
+                if($("#accepterId")){
+                    $("#accepterId").val(CUR_EMP_ID);
+                }
+                if($("#accepterId-button")){
+                    var html="<i class=\"layui-icon layui-icon-search\"></i><span default-label=\"请选择人员\">"+CUR_USER_NAME+"</span>"
+                    $("#accepterId-button").html(html);
+                }
+            }
+
         },
         /**
          * 窗口调节前

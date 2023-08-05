@@ -28,6 +28,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 列表页初始化前调用
          * */
         beforeInit:function () {
+            $("#data-table").css("width", "100%");
             if(APPROVAL_REQUIRED){
                 var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                 operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
@@ -43,7 +44,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
             if(REPAIR_STATUS){
                 if(REPAIR_STATUS=="not_dispatch"){
-                    console.log(1)
+                    var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                    operHtml=operHtml.replace(/lay-event="repair-order"/i, "style=\"display:none\"")
+                    document.getElementById("tableOperationTemplate").innerHTML=operHtml;
                 }else if(REPAIR_STATUS=="dispatched"){
                     var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
                     toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
@@ -52,6 +55,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="wait_repair"){
@@ -62,46 +66,72 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="repairing"){
                     var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
                     toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
                     toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+
                     document.getElementById("toolbarTemplate").innerHTML=toolHtml;
 
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="wait_acceptance"){
                     var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
                     toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
                     toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+
                     document.getElementById("toolbarTemplate").innerHTML=toolHtml;
 
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="finish"){
                     var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
                     toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
                     toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("toolbarTemplate").innerHTML=toolHtml;
 
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="cancel"){
                     var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
                     toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
                     toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("toolbarTemplate").innerHTML=toolHtml;
 
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                    document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+                }else if(REPAIR_STATUS=="all"){
+                    var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                    toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
+                    document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+                    var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                    operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }
@@ -112,13 +142,27 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            console.log("list:beforeTableRender",cfg);
+            cfg.cellMinWidth=200;
         },
         /**
          * 表格渲染后调用
          * */
         afterTableRender :function (){
 
+            // var cells=$("#data-table").parent().find(".layui-table-body table td[data-field=row-ops] div");
+            // var maxWidth=0;
+            // console.log(cells);
+            // for (var i = 0; i < cells.length; i++) {
+            //     var cw =0;
+            //     var cell=$(cells[i]);
+            //     for (let j = 0; j < cell.children().length; j++) {
+            //         var  e=cell.children()[j];
+            //         cw+=e.clientWidth+5*2;
+            //     }
+            //     if(cw>maxWidth) maxWidth=cw;
+            // }
+            // console.log("cw",cw)
+            // console.log("maxWidth",maxWidth)
         },
         afterSearchInputReady: function() {
             console.log("list:afterSearchInputReady");
@@ -157,7 +201,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
             if(REPAIR_STATUS){
-                param.repairStatus=REPAIR_STATUS;
+                if(REPAIR_STATUS=="all"){
+                    console.log("none")
+                }else{
+                    param.repairStatus=REPAIR_STATUS;
+                }
             }
             return true;
         },
@@ -342,6 +390,35 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         downloadBill:function (data){
             console.log('downloadBill',data);
+        },
+        repairOrder:function(item,it) {
+            admin.post("/service-eam/eam-repair-order-act/get-by-order-id", { orderId : item.id }, function (data) {
+                if(data.success) {
+                    admin.putTempData('eam-repair-order-act-form-data-form-action', "view",true);
+                    admin.putTempData('eam-repair-order-act-form-data', data.data);
+                    var area=admin.getTempData('eam-repair-order-act-form-area');
+                    var height= (area && area.height) ? area.height : ($(window).height()*0.6);
+                    var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
+                    var title = fox.translate('查看维修工单');
+                    admin.popupCenter({
+                        title: title,
+                        resize: false,
+                        offset: [top,null],
+                        area: ["80%",height+"px"],
+                        type: 2,
+                        id:"eam-repair-order-act-form-data-win",
+                        content: '/business/eam/repair_order_act/repair_order_act_form.html?id='+data.data.id,
+                        finish: function () {
+                        }
+                    });
+                } else {
+                    fox.showMessage(data);
+                }
+            });
+
+
+
+
         },
          dispatchForm:function(data) {
                 admin.putTempData('eam-repair-order-transfer-form-data-form-action', "create",true);

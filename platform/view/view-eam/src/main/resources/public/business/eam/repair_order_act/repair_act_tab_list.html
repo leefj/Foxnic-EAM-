@@ -30,48 +30,50 @@
 <body style="background-color:white;">
 <div class="layui-tab">
     <ul class="layui-tab-title">
-        <li id="tab2" class="layui-this">已派单</li>
-        <li id="tab3">待维修</li>
+        <li id="tab3" class="layui-this">待维修</li>
         <li id="tab4">维修中</li>
         <li id="tab5">待验收</li>
         <li id="tab6">维修结束</li>
+        <li id="tab7">全部</li>
     </ul>
     <div class="layui-tab-content">
-        <div class="layui-tab-item layui-show"  id="tab2-ct">
+
+        <div class="layui-tab-item layui-show"  id="tab3-ct">
             <div>
                 <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
-                    <iframe id="random-7250-iframe" js-fn="orderDispatched" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
-                </div>
-            </div>
-        </div>
-        <div class="layui-tab-item" id="tab3-ct">
-            <div>
-                <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
-                    <iframe id="random-7253-iframe" js-fn="orderWaitRepair" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
+                    <iframe id="orderWaitRepair" js-fn="orderWaitRepair" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
                 </div>
             </div>
         </div>
         <div class="layui-tab-item" id="tab4-ct">
             <div>
                 <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
-                    <iframe id="random-7254-iframe" js-fn="orderRepairing" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
+                    <iframe id="orderRepairing" js-fn="orderRepairing" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
                 </div>
             </div>
         </div>
         <div class="layui-tab-item" id="tab5-ct">
             <div>
                 <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
-                    <iframe id="random-7258-iframe" js-fn="orderWaitAcceptance" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
+                    <iframe id="orderWaitAcceptance" js-fn="orderWaitAcceptance" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
                 </div>
             </div>
         </div>
         <div class="layui-tab-item" id="tab6-ct">
             <div>
                 <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
-                    <iframe id="random-7259-iframe" js-fn="orderFinish" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
+                    <iframe id="orderFinish" js-fn="orderFinish" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
                 </div>
             </div>
         </div>
+        <div class="layui-tab-item" id="tab7-ct">
+            <div>
+                <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
+                    <iframe id="orderAll" js-fn="orderAll" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>

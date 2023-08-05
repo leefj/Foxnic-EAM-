@@ -52,4 +52,15 @@ public class RepairOrderProcessPageController extends ViewController {
 	public String form(Model model,HttpServletRequest request , String id) {
 		return getTemplatePath(prefix,"repair_order_process_form");
 	}
+
+
+	/**
+	 * 维修验收 表单页面
+	 */
+	@RequestMapping("/repair_time_line.html")
+	public String timeLine(Model model,HttpServletRequest request , String id,String orderId) {
+		model.addAttribute("orderId",orderId);
+		return prefix+"/repair_time_line";
+	}
+
 }

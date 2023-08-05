@@ -17,15 +17,27 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
+
+    var browserVersion = window.navigator.userAgent.toUpperCase();
+    var isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
+    var isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
+    var isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
+    var isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
+    var isIE = (!!window.ActiveXObject || "ActiveXObject" in window);
+    var isIE9More = (! -[1,] == false);
+
+
     //模块基础路径
     const moduleURL="/service-eam/eam-repair-order-act";
     var timestamp = Date.parse(new Date());
     //列表页的扩展
     var list={
+
         /**
          * 列表页初始化前调用
          * */
         beforeInit:function () {
+            $("#data-table").css("width", "100%");
             console.log("list:beforeInit");
             var operHtml=document.getElementById("toolbarTemplate").innerHTML;
             operHtml=operHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
@@ -44,21 +56,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 }else if(REPAIR_STATUS=="wait_repair"){
                      var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                      operHtml=operHtml.replace(/lay-event="acceptance"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="maintenance"/i, "style=\"display:none\"");
                      operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"");
                      document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="repairing"){
-
                      var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                      operHtml=operHtml.replace(/lay-event="acceptance"/i, "style=\"display:none\"");
-                     operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="start"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                     operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"");
                      document.getElementById("tableOperationTemplate").innerHTML=operHtml;
-
 
                 }else if(REPAIR_STATUS=="wait_acceptance"){
                      var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                      operHtml=operHtml.replace(/lay-event="maintenance"/i, "style=\"display:none\"");
                      operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="start"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                      document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
 
@@ -69,6 +86,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                      operHtml=operHtml.replace(/lay-event="acceptance"/i, "style=\"display:none\"");
                      operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
                      operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="start"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                      document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
 
@@ -77,10 +96,20 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                      operHtml=operHtml.replace(/lay-event="maintenance"/i, "style=\"display:none\"");
                      operHtml=operHtml.replace(/lay-event="acceptance"/i, "style=\"display:none\"");
                      operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="start"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                      document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+                }else if(REPAIR_STATUS=="all"){
+                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                     operHtml=operHtml.replace(/lay-event="maintenance"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="acceptance"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="start"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"");
+                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+                 }
 
-
-                }
             }
 
     },
@@ -89,7 +118,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            console.log("list:beforeTableRender",cfg);
+            cfg.cellMinWidth=200;;
         },
         /**
          * 表格渲染后调用
@@ -135,7 +164,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
             if(REPAIR_STATUS){
-                param.status=REPAIR_STATUS;
+                if(REPAIR_STATUS=="all"){
+                    console.log("none")
+                }else{
+                    param.status=REPAIR_STATUS;
+                }
             }
             return true;
         },
@@ -575,12 +608,59 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             win.location="/business/eam/repair_order_act/repair_asset_form.html?orderId="+item.orderId
 
         },
+        reinitIframe:function(iframeId, minHeight) {
+        try {
+            var iframe = document.getElementById(iframeId);
+            var bHeight = 0;
+            if (isChrome == false && isSafari == false) {
+                try {
+                    bHeight = iframe.contentWindow.document.body.scrollHeight;
+                } catch (ex) {
+                }
+            }
+            var dHeight = 0;
+            if (isFireFox == true)
+                dHeight = iframe.contentWindow.document.documentElement.offsetHeight + 2;//如果火狐浏览器高度不断增加删除+2
+            else if (isIE == false && isOpera == false && iframe.contentWindow) {
+                try {
+                    dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                } catch (ex) {
+                }
+            }
+            else if (isIE == true && isIE9More) {//ie9+
+                var heightDeviation = bHeight - eval("window.IE9MoreRealHeight" + iframeId);
+                if (heightDeviation == 0) {
+                    bHeight += 3;
+                } else if (heightDeviation != 3) {
+                    eval("window.IE9MoreRealHeight" + iframeId + "=" + bHeight);
+                    bHeight += 3;
+                }
+            }
+            else//ie[6-8]、OPERA
+                bHeight += 3;
+
+            var height = Math.max(bHeight, dHeight);
+            if (height < minHeight) height = minHeight;
+            //alert(iframe.contentWindow.document.body.scrollHeight + "~" + iframe.contentWindow.document.documentElement.scrollHeight);
+            iframe.style.height = height + "px";
+        } catch (ex) { }
+    },
+        timeLineList:function(ifr,win,item){
+            function startInit(iframeId, minHeight) {
+                //  eval("window.IE9MoreRealHeight" + iframeId + "=0");
+                window.setInterval("window.pageExt.form.reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
+            }
+            console.log("timeLineList",ifr,item);
+            var url ="/business/eam/repair_order_process/repair_time_line.html?orderId="+item.orderId+"&t="+timestamp
+            $("#timeLineList-iframe").attr("src", url);
+            $("#timeLineList-iframe").attr("scrolling", "no");
+            startInit('timeLineList-iframe', 300);
+        },
         repairOrderApply:function (ifr,win,data) {
             console.log("repairOrderApply",ifr,data);
             //设置 iframe 高度
             ifr.height("450px");
             //设置地址
-
             win.location="/business/eam/repair_order/repair_order_form.html?id="+data.orderId;
         },
         /**

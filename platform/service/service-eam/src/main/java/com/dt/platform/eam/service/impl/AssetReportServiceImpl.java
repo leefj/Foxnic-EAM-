@@ -263,10 +263,10 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         String sql1111="select count(1) wait_repair_asset_cnt from eam_asset_item where handle_id in ( select id from eam_repair_order where id in (select order_id from eam_repair_order_act where deleted=0 and status='wait_repair') )";
         result.put("waitRepairAssetCnt",dao.queryRecord(sql1111).getInteger("wait_repair_asset_cnt"));
 
-        String sql11111="select count(1) wait_accept_cnt from eam_repair_order_act where status ='wait_acceptance' and deleted=0";
+        String sql11111="select count(1) wait_accept_cnt from eam_repair_order where repair_status ='wait_acceptance' and deleted=0";
         result.put("waitAcceptCnt",dao.queryRecord(sql11111).getInteger("wait_accept_cnt"));
 
-        String sqlRepiaring="select count(1) wait_accept_cnt from eam_repair_order_act where status ='repairing' and deleted=0";
+        String sqlRepiaring="select count(1) wait_accept_cnt from eam_repair_order where repair_status ='repairing' and deleted=0";
         result.put("repairingtCnt",dao.queryRecord(sqlRepiaring).getInteger("wait_accept_cnt"));
 
 
@@ -303,12 +303,12 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
 
 
 
-        String sql4="select (select count(1) wait_repair_cnt from eam_repair_order_act where deleted=0 and status='wait_repair') wait_repair_cnt,\n" +
-                "(select count(1) not_dispatch_cnt from eam_repair_order_act where deleted=0 and status='not_dispatch')not_dispatch_cnt,\n" +
-                "(select count(1) finish_cnt from eam_repair_order_act where deleted=0 and status='finish')finish_cnt,\n" +
-                "(select count(1) wait_acceptance_cnt from eam_repair_order_act where  deleted=0 and status='wait_acceptance')wait_acceptance_cnt,\n" +
-                "(select count(1) dispatched_cnt from eam_repair_order_act where  deleted=0 and status='dispatched')dispatched_cnt,\n" +
-                "(select count(1) repairing_cnt from eam_repair_order_act where  deleted=0 and status='repairing')repairing_cnt";
+        String sql4="select (select count(1) wait_repair_cnt from eam_repair_order where deleted=0 and repair_status='wait_repair') wait_repair_cnt,\n" +
+                "(select count(1) not_dispatch_cnt from eam_repair_order where deleted=0 and repair_status='not_dispatch')not_dispatch_cnt,\n" +
+                "(select count(1) finish_cnt from eam_repair_order where deleted=0 and repair_status='finish')finish_cnt,\n" +
+                "(select count(1) wait_acceptance_cnt from eam_repair_order where  deleted=0 and repair_status='wait_acceptance')wait_acceptance_cnt,\n" +
+                "(select count(1) dispatched_cnt from eam_repair_order where  deleted=0 and repair_status='dispatched')dispatched_cnt,\n" +
+                "(select count(1) repairing_cnt from eam_repair_order where  deleted=0 and repair_status='repairing')repairing_cnt";
         Rcd rs=dao.queryRecord(sql4);
         JSONArray repairData=new JSONArray();
 

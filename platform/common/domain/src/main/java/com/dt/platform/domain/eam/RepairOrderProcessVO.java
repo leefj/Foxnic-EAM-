@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 流转过程VO类型
  * <p>流转过程 , 数据表 eam_repair_order_process 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 06:54:31
+ * @since 2023-08-05 10:42:27
  * @sign 8DCF767FECFC7D331EDF2DC397519EF2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -405,10 +405,12 @@ public class RepairOrderProcessVO extends RepairOrderProcess {
 		inst.setOrderId(this.getOrderId());
 		inst.setActId(this.getActId());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setLabel(this.getLabel());
 		inst.setUserName(this.getUserName());
 		inst.setUserId(this.getUserId());
 		inst.setProcessContent(this.getProcessContent());
 		inst.setVersion(this.getVersion());
+		inst.setPicture(this.getPicture());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
@@ -493,10 +495,12 @@ public class RepairOrderProcessVO extends RepairOrderProcess {
 			this.setOrderId(DataParser.parse(String.class, map.get(RepairOrderProcessVOMeta.ORDER_ID)));
 			this.setActId(DataParser.parse(String.class, map.get(RepairOrderProcessVOMeta.ACT_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(RepairOrderProcessVOMeta.UPDATE_TIME)));
+			this.setLabel(DataParser.parse(String.class, map.get(RepairOrderProcessVOMeta.LABEL)));
 			this.setUserName(DataParser.parse(String.class, map.get(RepairOrderProcessVOMeta.USER_NAME)));
 			this.setUserId(DataParser.parse(String.class, map.get(RepairOrderProcessVOMeta.USER_ID)));
 			this.setProcessContent(DataParser.parse(String.class, map.get(RepairOrderProcessVOMeta.PROCESS_CONTENT)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(RepairOrderProcessVOMeta.VERSION)));
+			this.setPicture(DataParser.parse(String.class, map.get(RepairOrderProcessVOMeta.PICTURE)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(RepairOrderProcessVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(RepairOrderProcessVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(RepairOrderProcessVOMeta.CREATE_TIME)));
@@ -523,10 +527,12 @@ public class RepairOrderProcessVO extends RepairOrderProcess {
 				this.setOrderId( (String)map.get(RepairOrderProcessVOMeta.ORDER_ID));
 				this.setActId( (String)map.get(RepairOrderProcessVOMeta.ACT_ID));
 				this.setUpdateTime( (Date)map.get(RepairOrderProcessVOMeta.UPDATE_TIME));
+				this.setLabel( (String)map.get(RepairOrderProcessVOMeta.LABEL));
 				this.setUserName( (String)map.get(RepairOrderProcessVOMeta.USER_NAME));
 				this.setUserId( (String)map.get(RepairOrderProcessVOMeta.USER_ID));
 				this.setProcessContent( (String)map.get(RepairOrderProcessVOMeta.PROCESS_CONTENT));
 				this.setVersion( (Integer)map.get(RepairOrderProcessVOMeta.VERSION));
+				this.setPicture( (String)map.get(RepairOrderProcessVOMeta.PICTURE));
 				this.setCreateBy( (String)map.get(RepairOrderProcessVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(RepairOrderProcessVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(RepairOrderProcessVOMeta.CREATE_TIME));
@@ -566,10 +572,12 @@ public class RepairOrderProcessVO extends RepairOrderProcess {
 			this.setOrderId(DataParser.parse(String.class, r.getValue(RepairOrderProcessVOMeta.ORDER_ID)));
 			this.setActId(DataParser.parse(String.class, r.getValue(RepairOrderProcessVOMeta.ACT_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(RepairOrderProcessVOMeta.UPDATE_TIME)));
+			this.setLabel(DataParser.parse(String.class, r.getValue(RepairOrderProcessVOMeta.LABEL)));
 			this.setUserName(DataParser.parse(String.class, r.getValue(RepairOrderProcessVOMeta.USER_NAME)));
 			this.setUserId(DataParser.parse(String.class, r.getValue(RepairOrderProcessVOMeta.USER_ID)));
 			this.setProcessContent(DataParser.parse(String.class, r.getValue(RepairOrderProcessVOMeta.PROCESS_CONTENT)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(RepairOrderProcessVOMeta.VERSION)));
+			this.setPicture(DataParser.parse(String.class, r.getValue(RepairOrderProcessVOMeta.PICTURE)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(RepairOrderProcessVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(RepairOrderProcessVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(RepairOrderProcessVOMeta.CREATE_TIME)));
@@ -585,10 +593,12 @@ public class RepairOrderProcessVO extends RepairOrderProcess {
 				this.setOrderId( (String)r.getValue(RepairOrderProcessVOMeta.ORDER_ID));
 				this.setActId( (String)r.getValue(RepairOrderProcessVOMeta.ACT_ID));
 				this.setUpdateTime( (Date)r.getValue(RepairOrderProcessVOMeta.UPDATE_TIME));
+				this.setLabel( (String)r.getValue(RepairOrderProcessVOMeta.LABEL));
 				this.setUserName( (String)r.getValue(RepairOrderProcessVOMeta.USER_NAME));
 				this.setUserId( (String)r.getValue(RepairOrderProcessVOMeta.USER_ID));
 				this.setProcessContent( (String)r.getValue(RepairOrderProcessVOMeta.PROCESS_CONTENT));
 				this.setVersion( (Integer)r.getValue(RepairOrderProcessVOMeta.VERSION));
+				this.setPicture( (String)r.getValue(RepairOrderProcessVOMeta.PICTURE));
 				this.setCreateBy( (String)r.getValue(RepairOrderProcessVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(RepairOrderProcessVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(RepairOrderProcessVOMeta.CREATE_TIME));
