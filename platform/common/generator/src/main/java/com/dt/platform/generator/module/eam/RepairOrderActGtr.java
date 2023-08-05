@@ -90,6 +90,7 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.SELECTED_CODE).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.REPAIR_COST).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.WITH_ACCEPTANCE).table().disable();
+
 //
 //        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPAIR_STATUS).form()
 //                .form().selectBox().enumType(RepairOrderStatusEnum.class);
@@ -177,11 +178,11 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
 
         cfg.view().form().addPage("设备列表","assetSelectList");
         cfg.view().form().addPage("备件列表","deviceSpList");
-
+        cfg.view().form().addPage("timeLineList","工作时间轴","timeLineList");
 
         cfg.view().list().addJsVariable("REPAIR_STATUS","[[${repairStatus}]]","单据ID");
         cfg.view().form().addJsVariable("ORDER_ID","[[${orderId}]]","工单");
-      //  cfg.view().list().operationColumn().addActionButton("开始维修","start","start-button","eam_repair_order_act:start");
+        cfg.view().list().operationColumn().addActionButton("开始维修","start","start-button","eam_repair_order_act:start");
         cfg.view().list().operationColumn().addActionButton("维修","maintenance","maintenance-button","eam_repair_order_act:maintenance");
         cfg.view().list().operationColumn().addActionButton("结束维修","finish","finish-button","eam_repair_order_act:finish");
         cfg.view().list().operationColumn().addActionButton("验收单","acceptance","acceptance-button","eam_repair_order_act:acceptance");

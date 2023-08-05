@@ -92,11 +92,11 @@ public class RepairOrderTransferServiceImpl extends SuperService<RepairOrderTran
 		act.setExecutorId(repairOrderTransfer.getExecutorId());
 		act.setGroupId(repairOrderTransfer.getGroupId());
 		act.setOrderId(repairOrderTransfer.getOrderId());
-		act.setStatus(RepairOrderActStatusEnum.WAIT_REPAIR.code());
 		act.setOrderName(order.getName());
 		act.setOrderBusinessCode(order.getBusinessCode());
 		Result rr=repairOrderActService.insert(act,false);
 		if(rr.isSuccess()){
+			//
 			repairOrderTransfer.setOrderActId(act.getId());
 			Result r=super.insert(repairOrderTransfer,throwsException);
 			//记录

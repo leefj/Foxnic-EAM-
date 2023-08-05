@@ -17,7 +17,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         beforeTableRender:function (cfg){
             cfg.defaultToolbar= [];
             cfg.limit=500;
-            console.log("list:beforeTableRender",cfg);
+            cfg.cellMinWidth=200;;
         },
 
         /**

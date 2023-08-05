@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 06:54:31
- * @sign 0E75F76A7DD27BED97455018C1FE9A39
+ * @since 2023-08-05 10:42:27
+ * @sign 815C5AAD070CBDDAE186BFD65A55E066
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -67,6 +67,16 @@ public class RepairOrderProcessMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderProcess,java.lang.String> USER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderProcess.class ,USER_NAME, java.lang.String.class, "人员", "人员", java.lang.String.class, null);
 	
 	/**
+	 * 标签 , 类型: java.lang.String
+	*/
+	public static final String LABEL="label";
+	
+	/**
+	 * 标签 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderProcess,java.lang.String> LABEL_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderProcess.class ,LABEL, java.lang.String.class, "标签", "标签", java.lang.String.class, null);
+	
+	/**
 	 * 执行过程 , 类型: java.lang.String
 	*/
 	public static final String PROCESS_CONTENT="processContent";
@@ -75,6 +85,16 @@ public class RepairOrderProcessMeta {
 	 * 执行过程 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderProcess,java.lang.String> PROCESS_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderProcess.class ,PROCESS_CONTENT, java.lang.String.class, "执行过程", "执行过程", java.lang.String.class, null);
+	
+	/**
+	 * 图片 , 类型: java.lang.String
+	*/
+	public static final String PICTURE="picture";
+	
+	/**
+	 * 图片 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderProcess,java.lang.String> PICTURE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderProcess.class ,PICTURE, java.lang.String.class, "图片", "图片", java.lang.String.class, null);
 	
 	/**
 	 * 操作时间 , 类型: java.util.Date
@@ -179,7 +199,7 @@ public class RepairOrderProcessMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , ORDER_ID , ACT_ID , USER_ID , USER_NAME , PROCESS_CONTENT , RCD_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ ID , ORDER_ID , ACT_ID , USER_ID , USER_NAME , LABEL , PROCESS_CONTENT , PICTURE , RCD_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -245,6 +265,17 @@ public class RepairOrderProcessMeta {
 		}
 		
 		/**
+		 * 设置 标签
+		 * @param label 标签
+		 * @return 当前对象
+		*/
+		public RepairOrderProcess setLabel(String label) {
+			super.change(LABEL,super.getLabel(),label);
+			super.setLabel(label);
+			return this;
+		}
+		
+		/**
 		 * 设置 执行过程
 		 * @param processContent 执行过程
 		 * @return 当前对象
@@ -252,6 +283,17 @@ public class RepairOrderProcessMeta {
 		public RepairOrderProcess setProcessContent(String processContent) {
 			super.change(PROCESS_CONTENT,super.getProcessContent(),processContent);
 			super.setProcessContent(processContent);
+			return this;
+		}
+		
+		/**
+		 * 设置 图片
+		 * @param picture 图片
+		 * @return 当前对象
+		*/
+		public RepairOrderProcess setPicture(String picture) {
+			super.change(PICTURE,super.getPicture(),picture);
+			super.setPicture(picture);
 			return this;
 		}
 		
@@ -384,10 +426,12 @@ public class RepairOrderProcessMeta {
 			inst.setOrderId(this.getOrderId());
 			inst.setActId(this.getActId());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setLabel(this.getLabel());
 			inst.setUserName(this.getUserName());
 			inst.setUserId(this.getUserId());
 			inst.setProcessContent(this.getProcessContent());
 			inst.setVersion(this.getVersion());
+			inst.setPicture(this.getPicture());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());

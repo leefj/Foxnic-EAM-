@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 流转过程
  * <p>流转过程 , 数据表 eam_repair_order_process 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 06:54:31
- * @sign 0E75F76A7DD27BED97455018C1FE9A39
+ * @since 2023-08-05 10:42:27
+ * @sign 815C5AAD070CBDDAE186BFD65A55E066
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,43 +40,55 @@ public class RepairOrderProcess extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "739974556063629312")
 	private String id;
 	
 	/**
 	 * 工单：工单
 	*/
-	@ApiModelProperty(required = false,value="工单" , notes = "工单")
+	@ApiModelProperty(required = false,value="工单" , notes = "工单" , example = "739860182028255232")
 	private String orderId;
 	
 	/**
 	 * 维修单：维修单
 	*/
-	@ApiModelProperty(required = false,value="维修单" , notes = "维修单")
+	@ApiModelProperty(required = false,value="维修单" , notes = "维修单" , example = "739974555405123584")
 	private String actId;
 	
 	/**
 	 * 人员：人员
 	*/
-	@ApiModelProperty(required = false,value="人员" , notes = "人员")
+	@ApiModelProperty(required = false,value="人员" , notes = "人员" , example = "E001")
 	private String userId;
 	
 	/**
 	 * 人员：人员
 	*/
-	@ApiModelProperty(required = false,value="人员" , notes = "人员")
+	@ApiModelProperty(required = false,value="人员" , notes = "人员" , example = "超级管理员")
 	private String userName;
+	
+	/**
+	 * 标签：标签
+	*/
+	@ApiModelProperty(required = false,value="标签" , notes = "标签")
+	private String label;
 	
 	/**
 	 * 执行过程：执行过程
 	*/
-	@ApiModelProperty(required = false,value="执行过程" , notes = "执行过程")
+	@ApiModelProperty(required = false,value="执行过程" , notes = "执行过程" , example = "分派到班组,操作人员:管理员")
 	private String processContent;
+	
+	/**
+	 * 图片：图片
+	*/
+	@ApiModelProperty(required = false,value="图片" , notes = "图片")
+	private String picture;
 	
 	/**
 	 * 操作时间：操作时间
 	*/
-	@ApiModelProperty(required = false,value="操作时间" , notes = "操作时间")
+	@ApiModelProperty(required = false,value="操作时间" , notes = "操作时间" , example = "2023-08-04 10:34:42")
 	private Date rcdTime;
 	
 	/**
@@ -88,13 +100,13 @@ public class RepairOrderProcess extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-04 10:34:42")
 	private Date createTime;
 	
 	/**
@@ -112,7 +124,7 @@ public class RepairOrderProcess extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -133,7 +145,7 @@ public class RepairOrderProcess extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -232,6 +244,25 @@ public class RepairOrderProcess extends Entity {
 	}
 	
 	/**
+	 * 获得 标签<br>
+	 * 标签
+	 * @return 标签
+	*/
+	public String getLabel() {
+		return label;
+	}
+	
+	/**
+	 * 设置 标签
+	 * @param label 标签
+	 * @return 当前对象
+	*/
+	public RepairOrderProcess setLabel(String label) {
+		this.label=label;
+		return this;
+	}
+	
+	/**
 	 * 获得 执行过程<br>
 	 * 执行过程
 	 * @return 执行过程
@@ -247,6 +278,25 @@ public class RepairOrderProcess extends Entity {
 	*/
 	public RepairOrderProcess setProcessContent(String processContent) {
 		this.processContent=processContent;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片<br>
+	 * 图片
+	 * @return 图片
+	*/
+	public String getPicture() {
+		return picture;
+	}
+	
+	/**
+	 * 设置 图片
+	 * @param picture 图片
+	 * @return 当前对象
+	*/
+	public RepairOrderProcess setPicture(String picture) {
+		this.picture=picture;
 		return this;
 	}
 	
@@ -519,10 +569,12 @@ public class RepairOrderProcess extends Entity {
 		inst.setOrderId(this.getOrderId());
 		inst.setActId(this.getActId());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setLabel(this.getLabel());
 		inst.setUserName(this.getUserName());
 		inst.setUserId(this.getUserId());
 		inst.setProcessContent(this.getProcessContent());
 		inst.setVersion(this.getVersion());
+		inst.setPicture(this.getPicture());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
@@ -593,10 +645,12 @@ public class RepairOrderProcess extends Entity {
 			this.setOrderId(DataParser.parse(String.class, map.get(RepairOrderProcessMeta.ORDER_ID)));
 			this.setActId(DataParser.parse(String.class, map.get(RepairOrderProcessMeta.ACT_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(RepairOrderProcessMeta.UPDATE_TIME)));
+			this.setLabel(DataParser.parse(String.class, map.get(RepairOrderProcessMeta.LABEL)));
 			this.setUserName(DataParser.parse(String.class, map.get(RepairOrderProcessMeta.USER_NAME)));
 			this.setUserId(DataParser.parse(String.class, map.get(RepairOrderProcessMeta.USER_ID)));
 			this.setProcessContent(DataParser.parse(String.class, map.get(RepairOrderProcessMeta.PROCESS_CONTENT)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(RepairOrderProcessMeta.VERSION)));
+			this.setPicture(DataParser.parse(String.class, map.get(RepairOrderProcessMeta.PICTURE)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(RepairOrderProcessMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(RepairOrderProcessMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(RepairOrderProcessMeta.CREATE_TIME)));
@@ -613,10 +667,12 @@ public class RepairOrderProcess extends Entity {
 				this.setOrderId( (String)map.get(RepairOrderProcessMeta.ORDER_ID));
 				this.setActId( (String)map.get(RepairOrderProcessMeta.ACT_ID));
 				this.setUpdateTime( (Date)map.get(RepairOrderProcessMeta.UPDATE_TIME));
+				this.setLabel( (String)map.get(RepairOrderProcessMeta.LABEL));
 				this.setUserName( (String)map.get(RepairOrderProcessMeta.USER_NAME));
 				this.setUserId( (String)map.get(RepairOrderProcessMeta.USER_ID));
 				this.setProcessContent( (String)map.get(RepairOrderProcessMeta.PROCESS_CONTENT));
 				this.setVersion( (Integer)map.get(RepairOrderProcessMeta.VERSION));
+				this.setPicture( (String)map.get(RepairOrderProcessMeta.PICTURE));
 				this.setCreateBy( (String)map.get(RepairOrderProcessMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(RepairOrderProcessMeta.DELETED));
 				this.setCreateTime( (Date)map.get(RepairOrderProcessMeta.CREATE_TIME));
@@ -646,10 +702,12 @@ public class RepairOrderProcess extends Entity {
 			this.setOrderId(DataParser.parse(String.class, r.getValue(RepairOrderProcessMeta.ORDER_ID)));
 			this.setActId(DataParser.parse(String.class, r.getValue(RepairOrderProcessMeta.ACT_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(RepairOrderProcessMeta.UPDATE_TIME)));
+			this.setLabel(DataParser.parse(String.class, r.getValue(RepairOrderProcessMeta.LABEL)));
 			this.setUserName(DataParser.parse(String.class, r.getValue(RepairOrderProcessMeta.USER_NAME)));
 			this.setUserId(DataParser.parse(String.class, r.getValue(RepairOrderProcessMeta.USER_ID)));
 			this.setProcessContent(DataParser.parse(String.class, r.getValue(RepairOrderProcessMeta.PROCESS_CONTENT)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(RepairOrderProcessMeta.VERSION)));
+			this.setPicture(DataParser.parse(String.class, r.getValue(RepairOrderProcessMeta.PICTURE)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(RepairOrderProcessMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(RepairOrderProcessMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(RepairOrderProcessMeta.CREATE_TIME)));
@@ -665,10 +723,12 @@ public class RepairOrderProcess extends Entity {
 				this.setOrderId( (String)r.getValue(RepairOrderProcessMeta.ORDER_ID));
 				this.setActId( (String)r.getValue(RepairOrderProcessMeta.ACT_ID));
 				this.setUpdateTime( (Date)r.getValue(RepairOrderProcessMeta.UPDATE_TIME));
+				this.setLabel( (String)r.getValue(RepairOrderProcessMeta.LABEL));
 				this.setUserName( (String)r.getValue(RepairOrderProcessMeta.USER_NAME));
 				this.setUserId( (String)r.getValue(RepairOrderProcessMeta.USER_ID));
 				this.setProcessContent( (String)r.getValue(RepairOrderProcessMeta.PROCESS_CONTENT));
 				this.setVersion( (Integer)r.getValue(RepairOrderProcessMeta.VERSION));
+				this.setPicture( (String)r.getValue(RepairOrderProcessMeta.PICTURE));
 				this.setCreateBy( (String)r.getValue(RepairOrderProcessMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(RepairOrderProcessMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(RepairOrderProcessMeta.CREATE_TIME));

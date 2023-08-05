@@ -48,6 +48,8 @@ import java.util.Map;
 @Service("EamRepairOrderAcceptanceService")
 public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAcceptance> implements IRepairOrderAcceptanceService {
 
+	@Autowired
+	private IRepairOrderProcessService repairOrderProcessService;
 
 	@Autowired
 	private IRepairOrderActService repairOrderActService;
@@ -145,12 +147,16 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 			}
 		}
 
-		Update ups=new Update("eam_repair_order_act");
-		ups.set("status",RepairOrderStatusEnum.FINISH.code());
-		ups.where().and("id=?",repairOrderAcceptance.getOrderActId());
-		dao.execute(ups);
+		RepairOrderProcess rcd=new RepairOrderProcess();
+		rcd.setRcdTime(new Date());
+		rcd.setOrderId(act.getOrderId());
+		rcd.setActId(act.getId());
+		rcd.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+		rcd.setUserName(SessionUser.getCurrent().getRealName());
+		rcd.setProcessContent("验收完成");
+		repairOrderProcessService.insert(rcd,true);
 
-
+		repairOrderService.changeRepairOrderStatus(repairOrderAcceptance.getOrderId(), RepairOrderActStatusEnum.FINISH.code());
 		Result r=super.insert(repairOrderAcceptance,throwsException);
 		return r;
 	}

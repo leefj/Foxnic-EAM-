@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE;
@@ -9,23 +10,29 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.RepairOrderAcceptanceMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 维修验收
+ * <p>维修验收 , 数据表 eam_repair_order_acceptance 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 05:56:19
- * @sign D0E5AB998802BFC4640D5FA59F004DD8
+ * @since 2023-08-05 09:01:08
+ * @sign B3D4E4C6F82D76A98A71076AC9F69BDB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_repair_order_acceptance")
+@ApiModel(description = "维修验收 ; 维修验收 , 数据表 eam_repair_order_acceptance 的PO类型")
 public class RepairOrderAcceptance extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -36,61 +43,61 @@ public class RepairOrderAcceptance extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "698166646480568320")
 	private String id;
 	
 	/**
 	 * 申请单：申请单
 	*/
-	@ApiModelProperty(required = false,value="申请单" , notes = "申请单")
+	@ApiModelProperty(required = false,value="申请单" , notes = "申请单" , example = "698166043993964544")
 	private String orderId;
 	
 	/**
 	 * 维修单：维修单
 	*/
-	@ApiModelProperty(required = false,value="维修单" , notes = "维修单")
+	@ApiModelProperty(required = false,value="维修单" , notes = "维修单" , example = "698166222956527616")
 	private String orderActId;
 	
 	/**
-	 * 业务编号：业务编号
+	 * 验收编号：验收编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="验收编号" , notes = "验收编号" , example = "RA202304111304699")
 	private String businessCode;
 	
 	/**
 	 * 维修结果：维修结果
 	*/
-	@ApiModelProperty(required = false,value="维修结果" , notes = "维修结果")
+	@ApiModelProperty(required = false,value="维修结果" , notes = "维修结果" , example = "repaired")
 	private String resultType;
 	
 	/**
-	 * 验收人：验收人
+	 * 验收人员：验收人员
 	*/
-	@ApiModelProperty(required = false,value="验收人" , notes = "验收人")
+	@ApiModelProperty(required = false,value="验收人员" , notes = "验收人员" , example = "586966848260538368")
 	private String accepterId;
 	
 	/**
 	 * 实际故障：实际故障
 	*/
-	@ApiModelProperty(required = false,value="实际故障" , notes = "实际故障")
+	@ApiModelProperty(required = false,value="实际故障" , notes = "实际故障" , example = "586544057816190976")
 	private String categoryTplId;
 	
 	/**
 	 * 实际花费：实际花费
 	*/
-	@ApiModelProperty(required = false,value="实际花费" , notes = "实际花费")
+	@ApiModelProperty(required = false,value="实际花费" , notes = "实际花费" , example = "2222.00")
 	private BigDecimal actualCost;
 	
 	/**
 	 * 完成时间：完成时间
 	*/
-	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间")
+	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间" , example = "2023-04-11 12:00:00")
 	private Date finishTime;
 	
 	/**
 	 * 验收备注：验收备注
 	*/
-	@ApiModelProperty(required = false,value="验收备注" , notes = "验收备注")
+	@ApiModelProperty(required = false,value="验收备注" , notes = "验收备注" , example = "1212")
 	private String notes;
 	
 	/**
@@ -100,41 +107,42 @@ public class RepairOrderAcceptance extends Entity {
 	private String pictureId;
 	
 	/**
-	 * 制单人：制单人
+	 * 制单人员：制单人员
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人员" , notes = "制单人员" , example = "E001")
 	private String originatorId;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-11 01:45:00")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-11 03:24:46")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -152,13 +160,13 @@ public class RepairOrderAcceptance extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -273,17 +281,17 @@ public class RepairOrderAcceptance extends Entity {
 	}
 	
 	/**
-	 * 获得 业务编号<br>
-	 * 业务编号
-	 * @return 业务编号
+	 * 获得 验收编号<br>
+	 * 验收编号
+	 * @return 验收编号
 	*/
 	public String getBusinessCode() {
 		return businessCode;
 	}
 	
 	/**
-	 * 设置 业务编号
-	 * @param businessCode 业务编号
+	 * 设置 验收编号
+	 * @param businessCode 验收编号
 	 * @return 当前对象
 	*/
 	public RepairOrderAcceptance setBusinessCode(String businessCode) {
@@ -311,17 +319,17 @@ public class RepairOrderAcceptance extends Entity {
 	}
 	
 	/**
-	 * 获得 验收人<br>
-	 * 验收人
-	 * @return 验收人
+	 * 获得 验收人员<br>
+	 * 验收人员
+	 * @return 验收人员
 	*/
 	public String getAccepterId() {
 		return accepterId;
 	}
 	
 	/**
-	 * 设置 验收人
-	 * @param accepterId 验收人
+	 * 设置 验收人员
+	 * @param accepterId 验收人员
 	 * @return 当前对象
 	*/
 	public RepairOrderAcceptance setAccepterId(String accepterId) {
@@ -425,17 +433,17 @@ public class RepairOrderAcceptance extends Entity {
 	}
 	
 	/**
-	 * 获得 制单人<br>
-	 * 制单人
-	 * @return 制单人
+	 * 获得 制单人员<br>
+	 * 制单人员
+	 * @return 制单人员
 	*/
 	public String getOriginatorId() {
 		return originatorId;
 	}
 	
 	/**
-	 * 设置 制单人
-	 * @param originatorId 制单人
+	 * 设置 制单人员
+	 * @param originatorId 制单人员
 	 * @return 当前对象
 	*/
 	public RepairOrderAcceptance setOriginatorId(String originatorId) {
@@ -546,6 +554,7 @@ public class RepairOrderAcceptance extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public RepairOrderAcceptance setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -845,6 +854,65 @@ public class RepairOrderAcceptance extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public RepairOrderAcceptance clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public RepairOrderAcceptance duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.RepairOrderAcceptanceMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.RepairOrderAcceptanceMeta.$$proxy$$();
+		inst.setFinishTime(this.getFinishTime());
+		inst.setNotes(this.getNotes());
+		inst.setOrderId(this.getOrderId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setPictureId(this.getPictureId());
+		inst.setAccepterId(this.getAccepterId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setOrderActId(this.getOrderActId());
+		inst.setCategoryTplId(this.getCategoryTplId());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setResultType(this.getResultType());
+		inst.setActualCost(this.getActualCost());
+		if(all) {
+			inst.setResultTypeDict(this.getResultTypeDict());
+			inst.setOrderAct(this.getOrderAct());
+			inst.setCategoryTpl(this.getCategoryTpl());
+			inst.setOriginator(this.getOriginator());
+			inst.setAccepter(this.getAccepter());
+			inst.setOrderBusinessCode(this.getOrderBusinessCode());
+			inst.setOrder(this.getOrder());
+			inst.setOrderName(this.getOrderName());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public RepairOrderAcceptance clone(boolean deep) {
+		return EntityContext.clone(RepairOrderAcceptance.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 RepairOrderAcceptance
 	 * @param repairOrderAcceptanceMap 包含实体信息的 Map 对象
 	 * @return RepairOrderAcceptance , 转换好的的 RepairOrderAcceptance 对象
@@ -852,7 +920,9 @@ public class RepairOrderAcceptance extends Entity {
 	@Transient
 	public static RepairOrderAcceptance createFrom(Map<String,Object> repairOrderAcceptanceMap) {
 		if(repairOrderAcceptanceMap==null) return null;
-		RepairOrderAcceptance po = EntityContext.create(RepairOrderAcceptance.class, repairOrderAcceptanceMap);
+		RepairOrderAcceptance po = create();
+		EntityContext.copyProperties(po,repairOrderAcceptanceMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -864,7 +934,9 @@ public class RepairOrderAcceptance extends Entity {
 	@Transient
 	public static RepairOrderAcceptance createFrom(Object pojo) {
 		if(pojo==null) return null;
-		RepairOrderAcceptance po = EntityContext.create(RepairOrderAcceptance.class,pojo);
+		RepairOrderAcceptance po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -874,6 +946,150 @@ public class RepairOrderAcceptance extends Entity {
 	*/
 	@Transient
 	public static RepairOrderAcceptance create() {
-		return EntityContext.create(RepairOrderAcceptance.class);
+		return new com.dt.platform.domain.eam.meta.RepairOrderAcceptanceMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setFinishTime(DataParser.parse(Date.class, map.get(RepairOrderAcceptanceMeta.FINISH_TIME)));
+			this.setNotes(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.NOTES)));
+			this.setOrderId(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.ORDER_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(RepairOrderAcceptanceMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(RepairOrderAcceptanceMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.SELECTED_CODE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(RepairOrderAcceptanceMeta.DELETED)));
+			this.setPictureId(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.PICTURE_ID)));
+			this.setAccepterId(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.ACCEPTER_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(RepairOrderAcceptanceMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(RepairOrderAcceptanceMeta.DELETE_TIME)));
+			this.setOrderActId(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.ORDER_ACT_ID)));
+			this.setCategoryTplId(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.CATEGORY_TPL_ID)));
+			this.setTenantId(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.ORIGINATOR_ID)));
+			this.setResultType(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.RESULT_TYPE)));
+			this.setActualCost(DataParser.parse(BigDecimal.class, map.get(RepairOrderAcceptanceMeta.ACTUAL_COST)));
+			// others
+			this.setResultTypeDict(DataParser.parse(DictItem.class, map.get(RepairOrderAcceptanceMeta.RESULT_TYPE_DICT)));
+			this.setOrderAct(DataParser.parse(RepairOrderAct.class, map.get(RepairOrderAcceptanceMeta.ORDER_ACT)));
+			this.setCategoryTpl(DataParser.parse(RepairCategoryTpl.class, map.get(RepairOrderAcceptanceMeta.CATEGORY_TPL)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(RepairOrderAcceptanceMeta.ORIGINATOR)));
+			this.setAccepter(DataParser.parse(Employee.class, map.get(RepairOrderAcceptanceMeta.ACCEPTER)));
+			this.setOrderBusinessCode(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.ORDER_BUSINESS_CODE)));
+			this.setOrder(DataParser.parse(RepairOrder.class, map.get(RepairOrderAcceptanceMeta.ORDER)));
+			this.setOrderName(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.ORDER_NAME)));
+			return true;
+		} else {
+			try {
+				this.setFinishTime( (Date)map.get(RepairOrderAcceptanceMeta.FINISH_TIME));
+				this.setNotes( (String)map.get(RepairOrderAcceptanceMeta.NOTES));
+				this.setOrderId( (String)map.get(RepairOrderAcceptanceMeta.ORDER_ID));
+				this.setUpdateTime( (Date)map.get(RepairOrderAcceptanceMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(RepairOrderAcceptanceMeta.VERSION));
+				this.setSelectedCode( (String)map.get(RepairOrderAcceptanceMeta.SELECTED_CODE));
+				this.setBusinessCode( (String)map.get(RepairOrderAcceptanceMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)map.get(RepairOrderAcceptanceMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(RepairOrderAcceptanceMeta.DELETED));
+				this.setPictureId( (String)map.get(RepairOrderAcceptanceMeta.PICTURE_ID));
+				this.setAccepterId( (String)map.get(RepairOrderAcceptanceMeta.ACCEPTER_ID));
+				this.setCreateTime( (Date)map.get(RepairOrderAcceptanceMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(RepairOrderAcceptanceMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(RepairOrderAcceptanceMeta.DELETE_TIME));
+				this.setOrderActId( (String)map.get(RepairOrderAcceptanceMeta.ORDER_ACT_ID));
+				this.setCategoryTplId( (String)map.get(RepairOrderAcceptanceMeta.CATEGORY_TPL_ID));
+				this.setTenantId( (String)map.get(RepairOrderAcceptanceMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(RepairOrderAcceptanceMeta.DELETE_BY));
+				this.setId( (String)map.get(RepairOrderAcceptanceMeta.ID));
+				this.setOriginatorId( (String)map.get(RepairOrderAcceptanceMeta.ORIGINATOR_ID));
+				this.setResultType( (String)map.get(RepairOrderAcceptanceMeta.RESULT_TYPE));
+				this.setActualCost( (BigDecimal)map.get(RepairOrderAcceptanceMeta.ACTUAL_COST));
+				// others
+				this.setResultTypeDict( (DictItem)map.get(RepairOrderAcceptanceMeta.RESULT_TYPE_DICT));
+				this.setOrderAct( (RepairOrderAct)map.get(RepairOrderAcceptanceMeta.ORDER_ACT));
+				this.setCategoryTpl( (RepairCategoryTpl)map.get(RepairOrderAcceptanceMeta.CATEGORY_TPL));
+				this.setOriginator( (Employee)map.get(RepairOrderAcceptanceMeta.ORIGINATOR));
+				this.setAccepter( (Employee)map.get(RepairOrderAcceptanceMeta.ACCEPTER));
+				this.setOrderBusinessCode( (String)map.get(RepairOrderAcceptanceMeta.ORDER_BUSINESS_CODE));
+				this.setOrder( (RepairOrder)map.get(RepairOrderAcceptanceMeta.ORDER));
+				this.setOrderName( (String)map.get(RepairOrderAcceptanceMeta.ORDER_NAME));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setFinishTime(DataParser.parse(Date.class, r.getValue(RepairOrderAcceptanceMeta.FINISH_TIME)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.NOTES)));
+			this.setOrderId(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.ORDER_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(RepairOrderAcceptanceMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(RepairOrderAcceptanceMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.SELECTED_CODE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(RepairOrderAcceptanceMeta.DELETED)));
+			this.setPictureId(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.PICTURE_ID)));
+			this.setAccepterId(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.ACCEPTER_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(RepairOrderAcceptanceMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(RepairOrderAcceptanceMeta.DELETE_TIME)));
+			this.setOrderActId(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.ORDER_ACT_ID)));
+			this.setCategoryTplId(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.CATEGORY_TPL_ID)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.ORIGINATOR_ID)));
+			this.setResultType(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.RESULT_TYPE)));
+			this.setActualCost(DataParser.parse(BigDecimal.class, r.getValue(RepairOrderAcceptanceMeta.ACTUAL_COST)));
+			return true;
+		} else {
+			try {
+				this.setFinishTime( (Date)r.getValue(RepairOrderAcceptanceMeta.FINISH_TIME));
+				this.setNotes( (String)r.getValue(RepairOrderAcceptanceMeta.NOTES));
+				this.setOrderId( (String)r.getValue(RepairOrderAcceptanceMeta.ORDER_ID));
+				this.setUpdateTime( (Date)r.getValue(RepairOrderAcceptanceMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(RepairOrderAcceptanceMeta.VERSION));
+				this.setSelectedCode( (String)r.getValue(RepairOrderAcceptanceMeta.SELECTED_CODE));
+				this.setBusinessCode( (String)r.getValue(RepairOrderAcceptanceMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)r.getValue(RepairOrderAcceptanceMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(RepairOrderAcceptanceMeta.DELETED));
+				this.setPictureId( (String)r.getValue(RepairOrderAcceptanceMeta.PICTURE_ID));
+				this.setAccepterId( (String)r.getValue(RepairOrderAcceptanceMeta.ACCEPTER_ID));
+				this.setCreateTime( (Date)r.getValue(RepairOrderAcceptanceMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(RepairOrderAcceptanceMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(RepairOrderAcceptanceMeta.DELETE_TIME));
+				this.setOrderActId( (String)r.getValue(RepairOrderAcceptanceMeta.ORDER_ACT_ID));
+				this.setCategoryTplId( (String)r.getValue(RepairOrderAcceptanceMeta.CATEGORY_TPL_ID));
+				this.setTenantId( (String)r.getValue(RepairOrderAcceptanceMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(RepairOrderAcceptanceMeta.DELETE_BY));
+				this.setId( (String)r.getValue(RepairOrderAcceptanceMeta.ID));
+				this.setOriginatorId( (String)r.getValue(RepairOrderAcceptanceMeta.ORIGINATOR_ID));
+				this.setResultType( (String)r.getValue(RepairOrderAcceptanceMeta.RESULT_TYPE));
+				this.setActualCost( (BigDecimal)r.getValue(RepairOrderAcceptanceMeta.ACTUAL_COST));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

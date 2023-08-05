@@ -27,6 +27,14 @@ import java.util.Map;
 
 public interface IRepairOrderActService extends ISuperService<RepairOrderAct> {
 
+	/**
+	 * 按主键获取 维修工单
+	 *
+	 * @param orderId 主键
+	 * @return RepairOrderAct 数据对象
+	 */
+	RepairOrderAct getByOrderId(String orderId);
+
 	Result start(String id);
 
 	Result finish(String id);

@@ -34,13 +34,27 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            console.log("list:beforeTableRender",cfg);
+            cfg.cellMinWidth=200;;
         },
         /**
          * 表格渲染后调用
          * */
         afterTableRender :function (){
 
+            var cells=$("#data-table").parent().find(".layui-table-body table td[data-field=row-ops] div");
+            var maxWidth=0;
+            console.log(cells);
+            for (var i = 0; i < cells.length; i++) {
+                var cw =0;
+                var cell=$(cells[i]);
+                for (let j = 0; j < cell.children().length; j++) {
+                    var  e=cell.children()[j];
+                    cw+=e.clientWidth+5*2;
+                }
+                if(cw>maxWidth) maxWidth=cw;
+            }
+            console.log("cw",cw)
+            console.log("maxWidth",maxWidth)
         },
         afterSearchInputReady: function() {
             console.log("list:afterSearchInputReady");

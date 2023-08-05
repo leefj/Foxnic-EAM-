@@ -1,7 +1,7 @@
 /**
  * 流转过程 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 06:54:33
+ * @since 2023-08-05 10:42:28
  */
 
 
@@ -89,7 +89,9 @@ function ListPage() {
 					,{ field: 'actId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修单') , templet: function (d) { return templet('actId',d.actId,d);}  }
 					,{ field: 'userId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员') , templet: function (d) { return templet('userId',d.userId,d);}  }
 					,{ field: 'userName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员') , templet: function (d) { return templet('userName',d.userName,d);}  }
+					,{ field: 'label', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签') , templet: function (d) { return templet('label',d.label,d);}  }
 					,{ field: 'processContent', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('执行过程') , templet: function (d) { return templet('processContent',d.processContent,d);}  }
+					,{ field: 'picture', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('图片') , templet: function (d) { return templet('picture',d.picture,d);}  }
 					,{ field: 'rcdTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('操作时间') ,templet: function (d) { return templet('rcdTime',fox.dateFormat(d.rcdTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }

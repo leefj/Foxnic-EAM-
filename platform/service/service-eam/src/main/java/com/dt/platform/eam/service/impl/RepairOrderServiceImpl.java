@@ -90,10 +90,8 @@ public class RepairOrderServiceImpl extends SuperService<RepairOrder> implements
 
 	@Override
 	public Result changeRepairOrderStatus(String id, String repairStatus) {
-		RepairOrder order=new RepairOrder();
-		order.setId(id);
-		order.setRepairStatus(repairStatus);
-		return super.update(order,SaveMode.NOT_NULL_FIELDS,false);
+		dao.execute("update eam_repair_order set repair_status=? where  id=?",repairStatus,id);
+		return ErrorDesc.success();
 	}
 
 	@Override

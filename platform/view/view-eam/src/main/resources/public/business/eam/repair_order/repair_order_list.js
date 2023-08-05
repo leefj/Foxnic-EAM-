@@ -1,7 +1,7 @@
 /**
  * 故障申请单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 20:25:50
+ * @since 2023-08-05 11:15:32
  */
 
 
@@ -490,8 +490,8 @@ function ListPage() {
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			else if (layEvent === 'finish-data') { // 结束维修
-				window.pageExt.list.finishData(data,this);
+			else if (layEvent === 'repair-order') { // 维修工单
+				window.pageExt.list.repairOrder(data,this);
 			}
 			else if (layEvent === 'confirm-data') { // 确认工单
 				window.pageExt.list.confirmData(data,this);

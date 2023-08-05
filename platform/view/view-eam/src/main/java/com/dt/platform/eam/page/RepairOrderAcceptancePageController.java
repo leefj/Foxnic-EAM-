@@ -2,6 +2,7 @@ package com.dt.platform.eam.page;
 
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +51,21 @@ public class RepairOrderAcceptancePageController extends ViewController {
 	 */
 	@RequestMapping("/repair_order_acceptance_form.html")
 	public String form(Model model,HttpServletRequest request , String id,String orderActId) {
-
+		String empId= SessionUser.getCurrent().getActivatedEmployeeId();
+		SessionUser user=SessionUser.getCurrent();
+		String userName=user.getUser().getActivatedEmployeeName();
+		model.addAttribute("curEmpId",empId);
+		model.addAttribute("curUserName",userName);
 		model.addAttribute("orderActId",orderActId);
 		return prefix+"/repair_order_acceptance_form";
+	}
+
+	/**
+	 * 维修验收 表单页面
+	 */
+	@RequestMapping("/repair_time_line.html")
+	public String timeLine(Model model,HttpServletRequest request , String id,String orderId) {
+		model.addAttribute("orderId",orderId);
+		return prefix+"/repair_time_line";
 	}
 }

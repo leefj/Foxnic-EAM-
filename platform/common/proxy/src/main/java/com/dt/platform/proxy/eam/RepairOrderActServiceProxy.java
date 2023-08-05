@@ -65,6 +65,11 @@ public interface RepairOrderActServiceProxy {
     /**
      * 获取单个维修工单
      */
+    public static final String GET_BY_ORDER_ID = API_PREFIX + "get-by-order-id";
+
+    /**
+     * 获取单个维修工单
+     */
     public static final String GET_BY_ID = API_PREFIX + "get-by-id";
 
     /**

@@ -92,6 +92,9 @@ public class RepairOrderAcceptGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.FINISH_TIME).form().validate().required().form().dateInput().format("yyyy-MM-dd").defaultNow();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ORIGINATOR_ID).table().fillBy("originator","name");
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ACCEPTER_ID).table().fillBy("accepter","name");
+
+
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.NOTES).form().textArea().height(135);
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ACCEPTER_ID).form().validate().required().form()
                 .button().chooseEmployee(true);
 
@@ -122,6 +125,9 @@ public class RepairOrderAcceptGtr extends BaseCodeGenerator {
                 }
         );
 
+
+        cfg.view().form().addJsVariable("CUR_EMP_ID","[[${curEmpId}]]","curEmpId");
+        cfg.view().form().addJsVariable("CUR_USER_NAME","[[${curUserName}]]","curUserName");
 
         cfg.view().list().operationColumn().addActionButton("确定验收","acceptance","acceptance-button","eam_repair_order_acceptance:acceptance");
         cfg.view().form().addJsVariable("ORDER_ACT_ID","[[${orderActId}]]","工单");

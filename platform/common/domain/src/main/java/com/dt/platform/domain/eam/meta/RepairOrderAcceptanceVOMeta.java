@@ -11,13 +11,14 @@ import com.dt.platform.domain.eam.RepairOrderAct;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.RepairCategoryTpl;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 05:56:19
- * @sign 5A1E021892D703C9753E036F4681E679
+ * @since 2023-08-05 09:01:08
+ * @sign D01CBB2BE798B6503918B58815AECD45
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -104,6 +105,36 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
 	*/
 	public static final String IDS="ids";
@@ -144,14 +175,14 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> ORDER_ACT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,ORDER_ACT_ID, java.lang.String.class, "维修单", "维修单", java.lang.String.class, null);
 	
 	/**
-	 * 业务编号 , 类型: java.lang.String
+	 * 验收编号 , 类型: java.lang.String
 	*/
 	public static final String BUSINESS_CODE="businessCode";
 	
 	/**
-	 * 业务编号 , 类型: java.lang.String
+	 * 验收编号 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,BUSINESS_CODE, java.lang.String.class, "业务编号", "业务编号", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,BUSINESS_CODE, java.lang.String.class, "验收编号", "验收编号", java.lang.String.class, null);
 	
 	/**
 	 * 维修结果 , 类型: java.lang.String
@@ -164,14 +195,14 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> RESULT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,RESULT_TYPE, java.lang.String.class, "维修结果", "维修结果", java.lang.String.class, null);
 	
 	/**
-	 * 验收人 , 类型: java.lang.String
+	 * 验收人员 , 类型: java.lang.String
 	*/
 	public static final String ACCEPTER_ID="accepterId";
 	
 	/**
-	 * 验收人 , 类型: java.lang.String
+	 * 验收人员 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> ACCEPTER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,ACCEPTER_ID, java.lang.String.class, "验收人", "验收人", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> ACCEPTER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,ACCEPTER_ID, java.lang.String.class, "验收人员", "验收人员", java.lang.String.class, null);
 	
 	/**
 	 * 实际故障 , 类型: java.lang.String
@@ -224,14 +255,14 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> PICTURE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,PICTURE_ID, java.lang.String.class, "图片", "图片", java.lang.String.class, null);
 	
 	/**
-	 * 制单人 , 类型: java.lang.String
+	 * 制单人员 , 类型: java.lang.String
 	*/
 	public static final String ORIGINATOR_ID="originatorId";
 	
 	/**
-	 * 制单人 , 类型: java.lang.String
+	 * 制单人员 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,ORIGINATOR_ID, java.lang.String.class, "制单人", "制单人", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,ORIGINATOR_ID, java.lang.String.class, "制单人员", "制单人员", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -416,7 +447,7 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , ORDER_ID , ORDER_ACT_ID , BUSINESS_CODE , RESULT_TYPE , ACCEPTER_ID , CATEGORY_TPL_ID , ACTUAL_COST , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ORDER , ORDER_ACT , ORIGINATOR , ACCEPTER , RESULT_TYPE_DICT , CATEGORY_TPL , ORDER_NAME , ORDER_BUSINESS_CODE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ORDER_ID , ORDER_ACT_ID , BUSINESS_CODE , RESULT_TYPE , ACCEPTER_ID , CATEGORY_TPL_ID , ACTUAL_COST , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ORDER , ORDER_ACT , ORIGINATOR , ACCEPTER , RESULT_TYPE_DICT , CATEGORY_TPL , ORDER_NAME , ORDER_BUSINESS_CODE };
 	
 	/**
 	 * 代理类
@@ -515,6 +546,39 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 		}
 		
 		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public RepairOrderAcceptanceVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public RepairOrderAcceptanceVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public RepairOrderAcceptanceVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
+			return this;
+		}
+		
+		/**
 		 * 设置 主键清单
 		 * @param ids 主键清单
 		 * @return 当前对象
@@ -559,8 +623,8 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 		}
 		
 		/**
-		 * 设置 业务编号
-		 * @param businessCode 业务编号
+		 * 设置 验收编号
+		 * @param businessCode 验收编号
 		 * @return 当前对象
 		*/
 		public RepairOrderAcceptance setBusinessCode(String businessCode) {
@@ -581,8 +645,8 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 		}
 		
 		/**
-		 * 设置 验收人
-		 * @param accepterId 验收人
+		 * 设置 验收人员
+		 * @param accepterId 验收人员
 		 * @return 当前对象
 		*/
 		public RepairOrderAcceptance setAccepterId(String accepterId) {
@@ -647,8 +711,8 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 		}
 		
 		/**
-		 * 设置 制单人
-		 * @param originatorId 制单人
+		 * 设置 制单人员
+		 * @param originatorId 制单人员
 		 * @return 当前对象
 		*/
 		public RepairOrderAcceptance setOriginatorId(String originatorId) {
@@ -854,5 +918,69 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 			super.setOrderBusinessCode(orderBusinessCode);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public RepairOrderAcceptanceVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public RepairOrderAcceptanceVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setFinishTime(this.getFinishTime());
+			inst.setNotes(this.getNotes());
+			inst.setOrderId(this.getOrderId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setPictureId(this.getPictureId());
+			inst.setAccepterId(this.getAccepterId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setOrderActId(this.getOrderActId());
+			inst.setCategoryTplId(this.getCategoryTplId());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setResultType(this.getResultType());
+			inst.setActualCost(this.getActualCost());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setResultTypeDict(this.getResultTypeDict());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setOriginator(this.getOriginator());
+				inst.setOrderBusinessCode(this.getOrderBusinessCode());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setOrderAct(this.getOrderAct());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setCategoryTpl(this.getCategoryTpl());
+				inst.setAccepter(this.getAccepter());
+				inst.setSearchValue(this.getSearchValue());
+				inst.setOrder(this.getOrder());
+				inst.setOrderName(this.getOrderName());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

@@ -2,7 +2,7 @@
 /**
  * 故障申请单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 20:25:50
+ * @since 2023-08-05 11:15:31
  */
  -->
  <!DOCTYPE html>
@@ -129,8 +129,11 @@
 
     <button th:if="${perm.checkAuth('eam_repair_order:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>
     <button th:if="${perm.checkAnyAuth('eam_repair_order:update','eam_repair_order:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改','','cmp:table.ops')}">修改</span></button>
+
+
     <button th:if="${perm.checkAuth('eam_repair_order:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
-    <button th:if="${perm.checkAuth('eam_repair_order:finish')}"class="layui-btn layui-btn-xs  finish-data-button " lay-event="finish-data" data-id="{{d.id}}"><span th:text="${lang.translate('结束维修','','cmp:table.ops')}">结束维修</span></button>
+
+    <button th:if="${perm.checkAuth('eam_repair_order:repairOrder')}"class="layui-btn layui-btn-xs  repair-order-button " lay-event="repair-order" data-id="{{d.id}}"><span th:text="${lang.translate('维修工单','','cmp:table.ops')}">维修工单</span></button>
     <button th:if="${perm.checkAuth('eam_repair_order:confirm')}"class="layui-btn layui-btn-xs  confirm-data-button " lay-event="confirm-data" data-id="{{d.id}}"><span th:text="${lang.translate('确认工单','','cmp:table.ops')}">确认工单</span></button>
     <button th:if="${perm.checkAuth('eam_repair_order:bill')}"class="layui-btn layui-btn-xs  download-bill-button " lay-event="download-bill" data-id="{{d.id}}"><span th:text="${lang.translate('单据','','cmp:table.ops')}">单据</span></button>
 

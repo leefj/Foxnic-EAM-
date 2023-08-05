@@ -9,13 +9,14 @@ import com.dt.platform.domain.eam.RepairOrderAct;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.RepairCategoryTpl;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 05:56:19
- * @sign D0E5AB998802BFC4640D5FA59F004DD8
+ * @since 2023-08-05 09:01:08
+ * @sign B3D4E4C6F82D76A98A71076AC9F69BDB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -52,14 +53,14 @@ public class RepairOrderAcceptanceMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptance,java.lang.String> ORDER_ACT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptance.class ,ORDER_ACT_ID, java.lang.String.class, "维修单", "维修单", java.lang.String.class, null);
 	
 	/**
-	 * 业务编号 , 类型: java.lang.String
+	 * 验收编号 , 类型: java.lang.String
 	*/
 	public static final String BUSINESS_CODE="businessCode";
 	
 	/**
-	 * 业务编号 , 类型: java.lang.String
+	 * 验收编号 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptance,java.lang.String> BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptance.class ,BUSINESS_CODE, java.lang.String.class, "业务编号", "业务编号", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptance,java.lang.String> BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptance.class ,BUSINESS_CODE, java.lang.String.class, "验收编号", "验收编号", java.lang.String.class, null);
 	
 	/**
 	 * 维修结果 , 类型: java.lang.String
@@ -72,14 +73,14 @@ public class RepairOrderAcceptanceMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptance,java.lang.String> RESULT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptance.class ,RESULT_TYPE, java.lang.String.class, "维修结果", "维修结果", java.lang.String.class, null);
 	
 	/**
-	 * 验收人 , 类型: java.lang.String
+	 * 验收人员 , 类型: java.lang.String
 	*/
 	public static final String ACCEPTER_ID="accepterId";
 	
 	/**
-	 * 验收人 , 类型: java.lang.String
+	 * 验收人员 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptance,java.lang.String> ACCEPTER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptance.class ,ACCEPTER_ID, java.lang.String.class, "验收人", "验收人", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptance,java.lang.String> ACCEPTER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptance.class ,ACCEPTER_ID, java.lang.String.class, "验收人员", "验收人员", java.lang.String.class, null);
 	
 	/**
 	 * 实际故障 , 类型: java.lang.String
@@ -132,14 +133,14 @@ public class RepairOrderAcceptanceMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptance,java.lang.String> PICTURE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptance.class ,PICTURE_ID, java.lang.String.class, "图片", "图片", java.lang.String.class, null);
 	
 	/**
-	 * 制单人 , 类型: java.lang.String
+	 * 制单人员 , 类型: java.lang.String
 	*/
 	public static final String ORIGINATOR_ID="originatorId";
 	
 	/**
-	 * 制单人 , 类型: java.lang.String
+	 * 制单人员 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptance,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptance.class ,ORIGINATOR_ID, java.lang.String.class, "制单人", "制单人", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptance,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptance.class ,ORIGINATOR_ID, java.lang.String.class, "制单人员", "制单人员", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -368,8 +369,8 @@ public class RepairOrderAcceptanceMeta {
 		}
 		
 		/**
-		 * 设置 业务编号
-		 * @param businessCode 业务编号
+		 * 设置 验收编号
+		 * @param businessCode 验收编号
 		 * @return 当前对象
 		*/
 		public RepairOrderAcceptance setBusinessCode(String businessCode) {
@@ -390,8 +391,8 @@ public class RepairOrderAcceptanceMeta {
 		}
 		
 		/**
-		 * 设置 验收人
-		 * @param accepterId 验收人
+		 * 设置 验收人员
+		 * @param accepterId 验收人员
 		 * @return 当前对象
 		*/
 		public RepairOrderAcceptance setAccepterId(String accepterId) {
@@ -456,8 +457,8 @@ public class RepairOrderAcceptanceMeta {
 		}
 		
 		/**
-		 * 设置 制单人
-		 * @param originatorId 制单人
+		 * 设置 制单人员
+		 * @param originatorId 制单人员
 		 * @return 当前对象
 		*/
 		public RepairOrderAcceptance setOriginatorId(String originatorId) {
@@ -663,5 +664,57 @@ public class RepairOrderAcceptanceMeta {
 			super.setOrderBusinessCode(orderBusinessCode);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public RepairOrderAcceptance clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public RepairOrderAcceptance duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setFinishTime(this.getFinishTime());
+			inst.setNotes(this.getNotes());
+			inst.setOrderId(this.getOrderId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setPictureId(this.getPictureId());
+			inst.setAccepterId(this.getAccepterId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setOrderActId(this.getOrderActId());
+			inst.setCategoryTplId(this.getCategoryTplId());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setResultType(this.getResultType());
+			inst.setActualCost(this.getActualCost());
+			if(all) {
+				inst.setResultTypeDict(this.getResultTypeDict());
+				inst.setOrderAct(this.getOrderAct());
+				inst.setCategoryTpl(this.getCategoryTpl());
+				inst.setOriginator(this.getOriginator());
+				inst.setAccepter(this.getAccepter());
+				inst.setOrderBusinessCode(this.getOrderBusinessCode());
+				inst.setOrder(this.getOrder());
+				inst.setOrderName(this.getOrderName());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

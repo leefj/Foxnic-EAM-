@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 维修工单
  * <p>维修工单 , 数据表 eam_repair_order_act 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 22:51:10
+ * @since 2023-08-05 09:40:46
  * @sign DAA12D5846AE8990425608408282BF6C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -45,31 +45,31 @@ public class RepairOrderAct extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "698166222956527616")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "740102041900154880")
 	private String id;
 	
 	/**
 	 * 申请单：申请单
 	*/
-	@ApiModelProperty(required = false,value="申请单" , notes = "申请单" , example = "698166043993964544")
+	@ApiModelProperty(required = false,value="申请单" , notes = "申请单" , example = "740102006546366464")
 	private String orderId;
 	
 	/**
 	 * 订单编号：订单编号
 	*/
-	@ApiModelProperty(required = false,value="订单编号" , notes = "订单编号")
+	@ApiModelProperty(required = false,value="订单编号" , notes = "订单编号" , example = "ROD202301050701166")
 	private String orderBusinessCode;
 	
 	/**
 	 * 订单名称：订单名称
 	*/
-	@ApiModelProperty(required = false,value="订单名称" , notes = "订单名称")
+	@ApiModelProperty(required = false,value="订单名称" , notes = "订单名称" , example = "121212")
 	private String orderName;
 	
 	/**
 	 * 维修编号：维修编号
 	*/
-	@ApiModelProperty(required = false,value="维修编号" , notes = "维修编号" , example = "MOD202304111304434")
+	@ApiModelProperty(required = false,value="维修编号" , notes = "维修编号" , example = "MOD202301050701796")
 	private String businessCode;
 	
 	/**
@@ -81,7 +81,7 @@ public class RepairOrderAct extends Entity {
 	/**
 	 * 维修人员：维修人员
 	*/
-	@ApiModelProperty(required = false,value="维修人员" , notes = "维修人员" , example = "E001")
+	@ApiModelProperty(required = false,value="维修人员" , notes = "维修人员")
 	private String executorId;
 	
 	/**
@@ -93,19 +93,19 @@ public class RepairOrderAct extends Entity {
 	/**
 	 * 开始时间：开始时间
 	*/
-	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2023-04-11 01:44:10")
+	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间")
 	private Date startTime;
 	
 	/**
 	 * 完成时间：完成时间
 	*/
-	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间" , example = "2023-04-11 01:44:14")
+	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间")
 	private Date finishTime;
 	
 	/**
 	 * 维修备注：维修备注
 	*/
-	@ApiModelProperty(required = false,value="维修备注" , notes = "维修备注" , example = "121212")
+	@ApiModelProperty(required = false,value="维修备注" , notes = "维修备注" , example = "qwwq")
 	private String notes;
 	
 	/**
@@ -135,7 +135,7 @@ public class RepairOrderAct extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-11 01:43:19")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-05 07:01:17")
 	private Date createTime;
 	
 	/**
@@ -147,7 +147,7 @@ public class RepairOrderAct extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-11 01:44:10")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-08-05 07:07:36")
 	private Date updateTime;
 	
 	/**
@@ -174,7 +174,7 @@ public class RepairOrderAct extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
@@ -186,7 +186,7 @@ public class RepairOrderAct extends Entity {
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1691190422000")
 	private String selectedCode;
 	
 	/**
