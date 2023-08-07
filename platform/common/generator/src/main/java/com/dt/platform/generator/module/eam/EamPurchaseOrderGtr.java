@@ -80,7 +80,7 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.GOODS_ID)
-               .form().button().action("选择物品","chosenGoods");
+               .form().validate().required().form().button().action("选择物品","chosenGoods");
 
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.NAME)
                 .form().validate().required();

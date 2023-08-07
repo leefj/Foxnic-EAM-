@@ -190,7 +190,7 @@ public class PurchaseOrderController extends SuperController {
         Result<PurchaseOrder> result = new Result<>();
         PurchaseOrder purchaseOrder = purchaseOrderService.getById(id);
         // join 关联的对象
-        purchaseOrderService.dao().fill(purchaseOrder).with(PurchaseOrderMeta.PURCHASE_APPLY).execute();
+        purchaseOrderService.dao().fill(purchaseOrder).with(PurchaseOrderMeta.GOODS).with(PurchaseOrderMeta.PURCHASE_APPLY).execute();
         result.success(true).data(purchaseOrder);
         return result;
     }
@@ -270,7 +270,7 @@ public class PurchaseOrderController extends SuperController {
         Result<PagedList<PurchaseOrder>> result = new Result<>();
         PagedList<PurchaseOrder> list = purchaseOrderService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        purchaseOrderService.dao().fill(list).with(PurchaseOrderMeta.PURCHASE_APPLY).execute();
+        purchaseOrderService.dao().fill(list).with(PurchaseOrderMeta.PURCHASE_APPLY).with(PurchaseOrderMeta.GOODS).execute();
         result.success(true).data(list);
         return result;
     }
@@ -301,7 +301,7 @@ public class PurchaseOrderController extends SuperController {
         Result<PagedList<PurchaseOrder>> result = new Result<>();
         PagedList<PurchaseOrder> list = purchaseOrderService.queryPagedListBySelected(sample);
         // join 关联的对象
-        purchaseOrderService.dao().fill(list).with(PurchaseOrderMeta.PURCHASE_APPLY).execute();
+        purchaseOrderService.dao().fill(list).with(PurchaseOrderMeta.PURCHASE_APPLY).with(PurchaseOrderMeta.GOODS).execute();
         result.success(true).data(list);
         return result;
     }

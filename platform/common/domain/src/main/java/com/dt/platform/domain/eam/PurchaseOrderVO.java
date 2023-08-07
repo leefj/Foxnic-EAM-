@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 采购清单VO类型
  * <p>采购清单 , 数据表 eam_purchase_order 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-07 18:07:27
+ * @since 2023-08-07 23:12:23
  * @sign B5D9DF0441DF846DFA5B4828D9E8B868
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

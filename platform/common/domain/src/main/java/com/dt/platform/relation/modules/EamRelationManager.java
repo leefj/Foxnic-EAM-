@@ -1488,6 +1488,9 @@ public class EamRelationManager extends RelationManager {
 
     public void setupPurchaseOrder() {
 
+        this.property(PurchaseOrderMeta.GOODS_PROP)
+                .using(EAMTables.EAM_PURCHASE_ORDER.GOODS_ID).join(EAMTables.EAM_GOODS_STOCK.ID);
+
         this.property(PurchaseOrderMeta.ORIGINATOR_PROP)
                 .using(EAMTables.EAM_PURCHASE_ORDER.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
@@ -1501,6 +1504,11 @@ public class EamRelationManager extends RelationManager {
 
 
     public void setupPurchaseApply() {
+
+
+        this.property(PurchaseApplyMeta.ORDER_LIST_PROP)
+                .using(EAMTables.EAM_PURCHASE_APPLY.ID).join(EAMTables.EAM_PURCHASE_ORDER.APPLY_ID)
+                .condition("selected_code='def'");;
 
 
         this.property(PurchaseApplyMeta.APPLY_ORG_PROP)

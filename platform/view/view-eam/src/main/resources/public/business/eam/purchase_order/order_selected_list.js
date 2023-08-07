@@ -168,7 +168,6 @@ function ListPage() {
 		ps.searchValue=JSON.stringify(value);
 		ps.selectedCode=SELECTED_CODE;
 		ps.applyId=OWNER_ID
-		console.log("ssss1");
 		if(sortField) {
 			ps.sortField=sortField;
 			ps.sortType=sortType;
@@ -179,12 +178,9 @@ function ListPage() {
 				ps.sortType=sort.type;
 			} 		}
 
-		console.log("ssss2");
 		if(reset) {
-			console.log(1111)
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
-			console.log(2222);
 			table.reload('data-table', { where : ps });
 		}
 	}

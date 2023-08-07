@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_PURCHASE_ORDER_DETAIL;
@@ -8,20 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.PurchaseOrderDetailMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 订单明细
+ * 清单明细
+ * <p>清单明细 , 数据表 eam_purchase_order_detail 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-15 05:22:46
- * @sign E929A4D1C687510B64DD1925CA6D64A0
+ * @since 2023-08-07 21:23:16
+ * @sign 811EEF8016BB0816C60159520781B72F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_purchase_order_detail")
+@ApiModel(description = "清单明细 ; 清单明细 , 数据表 eam_purchase_order_detail 的PO类型")
 public class PurchaseOrderDetail extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -36,9 +44,9 @@ public class PurchaseOrderDetail extends Entity {
 	private String id;
 	
 	/**
-	 * 订单：订单
+	 * 清单：清单
 	*/
-	@ApiModelProperty(required = true,value="订单" , notes = "订单")
+	@ApiModelProperty(required = true,value="清单" , notes = "清单")
 	private String orderId;
 	
 	/**
@@ -76,6 +84,9 @@ public class PurchaseOrderDetail extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -121,17 +132,17 @@ public class PurchaseOrderDetail extends Entity {
 	}
 	
 	/**
-	 * 获得 订单<br>
-	 * 订单
-	 * @return 订单
+	 * 获得 清单<br>
+	 * 清单
+	 * @return 清单
 	*/
 	public String getOrderId() {
 		return orderId;
 	}
 	
 	/**
-	 * 设置 订单
-	 * @param orderId 订单
+	 * 设置 清单
+	 * @param orderId 清单
 	 * @return 当前对象
 	*/
 	public PurchaseOrderDetail setOrderId(String orderId) {
@@ -244,12 +255,43 @@ public class PurchaseOrderDetail extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public PurchaseOrderDetail setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public PurchaseOrderDetail setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -359,6 +401,45 @@ public class PurchaseOrderDetail extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public PurchaseOrderDetail clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public PurchaseOrderDetail duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.PurchaseOrderDetailMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.PurchaseOrderDetailMeta.$$proxy$$();
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setOrderId(this.getOrderId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setAssetId(this.getAssetId());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setId(this.getId());
+		inst.setVersion(this.getVersion());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public PurchaseOrderDetail clone(boolean deep) {
+		return EntityContext.clone(PurchaseOrderDetail.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 PurchaseOrderDetail
 	 * @param purchaseOrderDetailMap 包含实体信息的 Map 对象
 	 * @return PurchaseOrderDetail , 转换好的的 PurchaseOrderDetail 对象
@@ -366,7 +447,9 @@ public class PurchaseOrderDetail extends Entity {
 	@Transient
 	public static PurchaseOrderDetail createFrom(Map<String,Object> purchaseOrderDetailMap) {
 		if(purchaseOrderDetailMap==null) return null;
-		PurchaseOrderDetail po = EntityContext.create(PurchaseOrderDetail.class, purchaseOrderDetailMap);
+		PurchaseOrderDetail po = create();
+		EntityContext.copyProperties(po,purchaseOrderDetailMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -378,7 +461,9 @@ public class PurchaseOrderDetail extends Entity {
 	@Transient
 	public static PurchaseOrderDetail createFrom(Object pojo) {
 		if(pojo==null) return null;
-		PurchaseOrderDetail po = EntityContext.create(PurchaseOrderDetail.class,pojo);
+		PurchaseOrderDetail po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -388,6 +473,94 @@ public class PurchaseOrderDetail extends Entity {
 	*/
 	@Transient
 	public static PurchaseOrderDetail create() {
-		return EntityContext.create(PurchaseOrderDetail.class);
+		return new com.dt.platform.domain.eam.meta.PurchaseOrderDetailMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setCreateBy(DataParser.parse(String.class, map.get(PurchaseOrderDetailMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(PurchaseOrderDetailMeta.DELETED)));
+			this.setOrderId(DataParser.parse(String.class, map.get(PurchaseOrderDetailMeta.ORDER_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(PurchaseOrderDetailMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(PurchaseOrderDetailMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(PurchaseOrderDetailMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, map.get(PurchaseOrderDetailMeta.ASSET_ID)));
+			this.setTenantId(DataParser.parse(String.class, map.get(PurchaseOrderDetailMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(PurchaseOrderDetailMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(PurchaseOrderDetailMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(PurchaseOrderDetailMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(PurchaseOrderDetailMeta.VERSION)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setCreateBy( (String)map.get(PurchaseOrderDetailMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(PurchaseOrderDetailMeta.DELETED));
+				this.setOrderId( (String)map.get(PurchaseOrderDetailMeta.ORDER_ID));
+				this.setCreateTime( (Date)map.get(PurchaseOrderDetailMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(PurchaseOrderDetailMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(PurchaseOrderDetailMeta.DELETE_TIME));
+				this.setAssetId( (String)map.get(PurchaseOrderDetailMeta.ASSET_ID));
+				this.setTenantId( (String)map.get(PurchaseOrderDetailMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(PurchaseOrderDetailMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(PurchaseOrderDetailMeta.UPDATE_TIME));
+				this.setId( (String)map.get(PurchaseOrderDetailMeta.ID));
+				this.setVersion( (Integer)map.get(PurchaseOrderDetailMeta.VERSION));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(PurchaseOrderDetailMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(PurchaseOrderDetailMeta.DELETED)));
+			this.setOrderId(DataParser.parse(String.class, r.getValue(PurchaseOrderDetailMeta.ORDER_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(PurchaseOrderDetailMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(PurchaseOrderDetailMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(PurchaseOrderDetailMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, r.getValue(PurchaseOrderDetailMeta.ASSET_ID)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(PurchaseOrderDetailMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(PurchaseOrderDetailMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PurchaseOrderDetailMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(PurchaseOrderDetailMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(PurchaseOrderDetailMeta.VERSION)));
+			return true;
+		} else {
+			try {
+				this.setCreateBy( (String)r.getValue(PurchaseOrderDetailMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(PurchaseOrderDetailMeta.DELETED));
+				this.setOrderId( (String)r.getValue(PurchaseOrderDetailMeta.ORDER_ID));
+				this.setCreateTime( (Date)r.getValue(PurchaseOrderDetailMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(PurchaseOrderDetailMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(PurchaseOrderDetailMeta.DELETE_TIME));
+				this.setAssetId( (String)r.getValue(PurchaseOrderDetailMeta.ASSET_ID));
+				this.setTenantId( (String)r.getValue(PurchaseOrderDetailMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(PurchaseOrderDetailMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(PurchaseOrderDetailMeta.UPDATE_TIME));
+				this.setId( (String)r.getValue(PurchaseOrderDetailMeta.ID));
+				this.setVersion( (Integer)r.getValue(PurchaseOrderDetailMeta.VERSION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

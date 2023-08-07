@@ -113,6 +113,20 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="goodsId"){
+                var str="";
+                if(r.goods&&r.goods.name){
+                    str=r.goods.name;
+                    if(r.goods.model){
+                        str=str+",型号:"+r.goods.model;
+                    }
+                    if(r.goods.code){
+                        str=str+",物品编号:"+r.goods.code;
+                    }
+                }
+                return str
+            }
             if(value==null) return "";
             return value;
         },
@@ -217,7 +231,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充后
          * */
         afterDataFill:function (data) {
-            console.log('afterDataFill',data);
+
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框

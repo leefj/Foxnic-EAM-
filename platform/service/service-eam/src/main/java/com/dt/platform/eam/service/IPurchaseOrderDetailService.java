@@ -1,5 +1,7 @@
 package com.dt.platform.eam.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -15,16 +17,18 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import java.util.Map;
 
 /**
  * <p>
- * 订单明细 服务接口
+ * 清单明细服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-15 05:22:46
+ * @since 2023-08-07 21:23:16
 */
 
-public interface IPurchaseOrderDetailService extends ISuperService<PurchaseOrderDetail> {
+public interface IPurchaseOrderDetailService extends  ISimpleIdService<PurchaseOrderDetail,String> {
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -52,7 +56,7 @@ public interface IPurchaseOrderDetailService extends ISuperService<PurchaseOrder
 
 		
 	/**
-	 * 按主键删除 订单明细
+	 * 按主键删除清单明细
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -60,7 +64,7 @@ public interface IPurchaseOrderDetailService extends ISuperService<PurchaseOrder
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 订单明细
+	 * 按主键删除清单明细
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -83,7 +87,7 @@ public interface IPurchaseOrderDetailService extends ISuperService<PurchaseOrder
 
 		
 	/**
-	 * 按主键更新字段 订单明细
+	 * 按主键更新清单明细
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -153,7 +157,7 @@ public interface IPurchaseOrderDetailService extends ISuperService<PurchaseOrder
 
 		
 	/**
-	 * 按主键获取 订单明细
+	 * 按主键获取清单明细
 	 *
 	 * @param id 主键
 	 * @return PurchaseOrderDetail 数据对象
@@ -165,7 +169,15 @@ public interface IPurchaseOrderDetailService extends ISuperService<PurchaseOrder
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<PurchaseOrderDetail> getByIds(List<String> ids);
+	List<PurchaseOrderDetail> queryListByIds(List<String> ids);
+
+	/**
+	 * 按 id 列表查询 Map
+	 * @param ids  主键清单
+	 * */
+	Map<String, PurchaseOrderDetail> queryMapByIds(List<String> ids);
+
+
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
@@ -195,7 +207,7 @@ public interface IPurchaseOrderDetailService extends ISuperService<PurchaseOrder
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<PurchaseOrderDetail> queryList(PurchaseOrderDetail sample);
+	List<PurchaseOrderDetail> queryList(PurchaseOrderDetailVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -236,7 +248,7 @@ public interface IPurchaseOrderDetailService extends ISuperService<PurchaseOrder
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<PurchaseOrderDetail> queryPagedList(PurchaseOrderDetail sample,int pageSize,int pageIndex);
+	PagedList<PurchaseOrderDetail> queryPagedList(PurchaseOrderDetailVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -290,28 +302,8 @@ public interface IPurchaseOrderDetailService extends ISuperService<PurchaseOrder
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
-	/**
-	 * 导出 Excel
-	 * */
-	ExcelWriter exportExcel(PurchaseOrderDetail sample);
 
-	/**
-	 * 导出用于数据导入的 Excel 模版
-	 * */
-	ExcelWriter  exportExcelTemplate();
 
-	/**
-	 * 构建 Excel 结构
-	 * @param  isForExport 是否用于数据导出
-	 * @return   ExcelStructure
-	 * */
-	ExcelStructure buildExcelStructure(boolean isForExport);
-
-	/**
-	 * 导入 Excel 数据
-	 * @return  错误信息，成功时返回 null
-	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
 }

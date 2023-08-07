@@ -623,10 +623,21 @@ function ListPage() {
         postData.ownerTmpId=OWNER_TMP_ID;
         postData.ids=getCheckedList("id");
         if(postData.ids.length==0){
-            top.layer.msg("请选择数据", {icon: 2, time: 1500});
+            top.layer.msg("请选择物品", {icon: 2, time: 1500});
             return;
         }
 
+        if(OPER_TYPE=="eam_asset_stock_goods_select"){
+            if(postData.ids.length>=2){
+                top.layer.msg("只能选择一个物品档案", {icon: 2, time: 1500});
+                return;
+            }
+            var checkStatus2 = table.checkStatus(TABLE_ID);
+            var datatmp = checkStatus2.data;
+            var resData=datatmp[0];
+            callback(resData);
+            return;
+        }
         var api=moduleURL+"/save-by-ids";
         admin.post(api,postData,function (r){
             if (r.success) {

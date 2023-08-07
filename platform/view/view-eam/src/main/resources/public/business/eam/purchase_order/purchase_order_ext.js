@@ -211,7 +211,28 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充后
          * */
         afterDataFill:function (data) {
-            console.log('afterDataFill',data);
+            console.log('afterDataFill22',data);
+
+
+            //填充物品档案
+            if(data&&data.goods){
+                var selData=data.goods;
+                if(selData){
+                    $("#goodsId").val(selData.id);
+                    var str=""
+                    if(selData.name){
+                        str=selData.name;
+                        if(selData.model){
+                            str=str+",型号:"+selData.model;
+                        }
+                        if(selData.code){
+                            str=str+",物品编号:"+selData.code;
+                        }
+                    }
+                    $("#goodsId-button").html(str);
+                }
+            }
+
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框
@@ -259,6 +280,56 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterSubmit:function (param,result) {
             console.log("afterSubmitt",param,result);
+        },
+        afterSubmit:function (param,result) {
+            console.log("afterSubmitt",param,result);
+        },
+
+        chosenGoods:function (data,el,it) {
+            console.log("chosenGoods",data,el,it);
+
+            var data={};
+            var ownerType="stock"
+            var ownerCode="stock"
+            var ownerTmpId="ownerTmpId";
+            var operType="eam_asset_stock_goods_select"
+            var pageType="create";
+            admin.putTempData('eam-goods-stock-form-data-form-action', "create",true);
+            var queryString="?ownerType="+ownerType+"&selectedCode="+SELECTED_CODE+"&ownerCode="+ownerCode+"&ownerTmpId="+ownerTmpId+"&operType="+operType+"&pageType="+pageType;
+            var formTop=2
+            var index=admin.popupCenter({
+                title: "选择物品档案",
+                resize: false,
+                offset: [formTop,null],
+                area: ["80%","90%"],
+                type: 2,
+                id:"eam-asset-select-data-popup-index",
+                content: '/business/eam/goods_stock/goods_stock_select_tree.html'+queryString,
+                finish: function (data) {
+                   var selData= admin.getTempData('eam-asset-select-data-popup-data');
+                   console.log("finish",selData);
+                   if(selData){
+                       $("#goodsId").val(selData.id);
+
+                       var str=""
+                       if(selData.name){
+                           str=selData.name;
+                           if(selData.model){
+                               str=str+",型号:"+selData.model;
+                           }
+                           if(selData.code){
+                               str=str+",物品编号:"+selData.code;
+                           }
+                       }
+
+                       $("#goodsId-button").html(str);
+
+
+                   }
+                }
+            });
+            admin.putTempData('eam-asset-select-data-popup-index', index);
+
         },
 
 
