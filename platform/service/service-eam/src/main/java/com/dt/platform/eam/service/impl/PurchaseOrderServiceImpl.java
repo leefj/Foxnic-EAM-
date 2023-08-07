@@ -1,11 +1,12 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.alibaba.fastjson.JSONArray;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.domain.eam.AssetItem;
-import com.dt.platform.domain.eam.PurchaseOrder;
+import com.dt.platform.domain.eam.*;
 import com.dt.platform.eam.service.IAssetSelectedDataService;
+import com.dt.platform.eam.service.IMappingOwnerService;
 import com.dt.platform.eam.service.IPurchaseOrderService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
@@ -13,6 +14,7 @@ import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -51,6 +53,9 @@ public class PurchaseOrderServiceImpl extends SuperService<PurchaseOrder> implem
 	@Autowired
 	private AssetItemServiceImpl assetItemService;
 
+	@Autowired
+	private IMappingOwnerService mappingOwnerService;
+
 
 	@Autowired
 	private IAssetSelectedDataService assetSelectedDataService;
@@ -72,6 +77,70 @@ public class PurchaseOrderServiceImpl extends SuperService<PurchaseOrder> implem
 	public Object generateId(Field field) {
 		return IDGenerator.getSnowflakeIdString();
 	}
+
+	@Override
+	public Result selectSaveIds(String ownerId, String ids, String selectedCode) {
+		if(StringUtil.isBlank(selectedCode)){
+			return ErrorDesc.failureMessage("selectCode 参数为空");
+		}
+		if(StringUtil.isBlank(ownerId)){
+			return ErrorDesc.failureMessage("ownerId 参数为空");
+		}
+		if(StringUtil.isBlank(ids)){
+			return ErrorDesc.failureMessage("ids 参数为空");
+		}
+		JSONArray idsArr=JSONArray.parseArray(ids);
+		if(idsArr.size()>0){
+			for(int i=0;i<idsArr.size();i++){
+				String itemId=idsArr.getString(i);
+				if(dao.queryRecord("select count(1) cnt from eam_inspection_point_owner where deleted=0 and owner_id=? and point_id=? and selected_code=?",ownerId,itemId,selectedCode).getInteger("cnt")==0){
+					InspectionPointOwner item=new InspectionPointOwner();
+					item.setPointId(itemId);
+					item.setOwnerId(ownerId);
+					item.setSelectedCode(selectedCode);
+				}else{
+					Logger.info("repeat,id:"+itemId+",ignore");
+				}
+			}
+		}
+		return ErrorDesc.success();
+
+	}
+
+	@Override
+	public Result selectDeleteById(String id) {
+		dao.execute("delete from eam_purchase_order where id=? ",id);
+		return ErrorDesc.success();
+	}
+
+	@Override
+	public PagedList<PurchaseOrder> queryPagedListBySelected(PurchaseOrderVO sample) {
+		String selectCode=sample.getSelectedCode();
+		if(dao().queryRecord("select count(1) cnt from eam_mapping_owner where deleted=0 and owner_id=? and selected_code=?",sample.getApplyId(),selectCode).getInteger("cnt")==0){
+			//做一份转
+			PurchaseOrder q=new PurchaseOrder();
+			q.setSelectedCode("def");
+			q.setApplyId(sample.getApplyId());
+			List<PurchaseOrder> orderList=this.queryList(q);
+			for(int i=0;i<orderList.size();i++){
+				PurchaseOrder obj= orderList.get(i);
+				obj.setId(null);
+				obj.setSelectedCode(sample.getSelectedCode());
+				super.insert(obj,false);
+			}
+			MappingOwner mappingOwner=new MappingOwner();
+			mappingOwner.setOwnerId(sample.getApplyId());
+			mappingOwner.setSelectedCode(selectCode);
+			mappingOwnerService.insert(mappingOwner,true);
+		}
+
+		ConditionExpr expr=new ConditionExpr();
+		expr.and("selected_code=? and apply_id=?",selectCode,sample.getApplyId());
+		return super.queryPagedList(sample,expr,sample.getPageSize(),sample.getPageIndex());
+	}
+
+
+
 
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
@@ -124,6 +193,9 @@ public class PurchaseOrderServiceImpl extends SuperService<PurchaseOrder> implem
 		}
 		return r;
 	}
+
+
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -215,7 +287,7 @@ public class PurchaseOrderServiceImpl extends SuperService<PurchaseOrder> implem
 		if(r.success()){
 			//保存表单数据
 			dao.execute("update eam_asset_item set crd='r' where crd='c' and handle_id=?",purchaseOrder.getId());
-			dao.execute("delete from eam_asset_item where crd in ('d','rd') and  handle_id=?",purchaseOrder.getId());
+			dao.execute("delete from eam_asset_item where crd ='d'  and  handle_id=?",purchaseOrder.getId());
 		}
 		return r;
 	}

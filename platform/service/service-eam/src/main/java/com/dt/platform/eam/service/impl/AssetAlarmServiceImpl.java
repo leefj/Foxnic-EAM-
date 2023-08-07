@@ -81,16 +81,19 @@ public class AssetAlarmServiceImpl extends SuperService<Asset> implements IAsset
     public JSONArray queryBorrowAlarmData(Asset sample, int pageSize, int pageIndex) {
 
         String tenantId=SessionUser.getCurrent().getActivatedTenantId();
-        String sql="select handle_id,asset_id,a.* from eam_asset_borrow a,eam_asset_item b,eam_asset c\n" +
+        String sql="select handle_id,asset_id,a.*,b.id asset_item_id from eam_asset_borrow a,eam_asset_item b,eam_asset c\n" +
                 "where a.tenant_id='"+tenantId+"' and a.id=b.handle_id \n" +
                 "and b.asset_id=c.id\n" +
+                "and b.crd in ('r','d')"+
                 "and a.deleted=0 and b.deleted=0\n" +
                 "and a.borrow_status='borrowed' \n" +
+                "and b.is_return='no'" +
                 "and c.asset_status='borrow'";
         RcdSet rs=dao.query(sql);
         HashMap<String, Rcd> assetMap=(HashMap<String,Rcd>)rs.getMappedRcds("asset_id",String.class);
+
         ConditionExpr exp=new ConditionExpr();
-        exp.and( " id in (  select asset_id from ("+sql+") t  )  " );
+        exp.and( " id in (select asset_id from ("+sql+") t  )  " );
         List<Asset> assetList=assetService.queryList(Asset.create(),exp);
         assetService.joinData(assetList);
         JSONArray data=new JSONArray();

@@ -22,8 +22,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产VO类型
  * <p>资产 , 数据表 eam_asset_item 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-13 18:13:51
- * @sign 43ACC8582D5BAFAE871200ABB1CAAC6E
+ * @since 2023-08-07 13:19:18
+ * @sign 33B33BF19E4718BFA8DF96A1264EB517
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -79,6 +79,24 @@ public class AssetItemVO extends AssetItem {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -242,6 +260,63 @@ public class AssetItemVO extends AssetItem {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public AssetItemVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public AssetItemVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public AssetItemVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -327,7 +402,9 @@ public class AssetItemVO extends AssetItem {
 	public AssetItemVO duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.AssetItemVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetItemVOMeta.$$proxy$$();
 		inst.setBeforeAssetStatus(this.getBeforeAssetStatus());
+		inst.setIsReturn(this.getIsReturn());
 		inst.setFlag(this.getFlag());
+		inst.setRAssetId(this.getRAssetId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setSelectedCode(this.getSelectedCode());
 		inst.setVersion(this.getVersion());
@@ -339,6 +416,7 @@ public class AssetItemVO extends AssetItem {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setAssetId(this.getAssetId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setBusiType(this.getBusiType());
 		inst.setId(this.getId());
 		inst.setHandleId(this.getHandleId());
 		inst.setBeforeUseUserId(this.getBeforeUseUserId());
@@ -346,11 +424,14 @@ public class AssetItemVO extends AssetItem {
 			inst.setSearchField(this.getSearchField());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setPageSize(this.getPageSize());
+			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -412,7 +493,9 @@ public class AssetItemVO extends AssetItem {
 		if(map==null) return false;
 		if(cast) {
 			this.setBeforeAssetStatus(DataParser.parse(String.class, map.get(AssetItemVOMeta.BEFORE_ASSET_STATUS)));
+			this.setIsReturn(DataParser.parse(String.class, map.get(AssetItemVOMeta.IS_RETURN)));
 			this.setFlag(DataParser.parse(String.class, map.get(AssetItemVOMeta.FLAG)));
+			this.setRAssetId(DataParser.parse(String.class, map.get(AssetItemVOMeta.R_ASSET_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetItemVOMeta.UPDATE_TIME)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetItemVOMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetItemVOMeta.VERSION)));
@@ -424,6 +507,7 @@ public class AssetItemVO extends AssetItem {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetItemVOMeta.DELETE_TIME)));
 			this.setAssetId(DataParser.parse(String.class, map.get(AssetItemVOMeta.ASSET_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetItemVOMeta.DELETE_BY)));
+			this.setBusiType(DataParser.parse(String.class, map.get(AssetItemVOMeta.BUSI_TYPE)));
 			this.setId(DataParser.parse(String.class, map.get(AssetItemVOMeta.ID)));
 			this.setHandleId(DataParser.parse(String.class, map.get(AssetItemVOMeta.HANDLE_ID)));
 			this.setBeforeUseUserId(DataParser.parse(String.class, map.get(AssetItemVOMeta.BEFORE_USE_USER_ID)));
@@ -431,15 +515,20 @@ public class AssetItemVO extends AssetItem {
 			this.setSearchField(DataParser.parse(String.class, map.get(AssetItemVOMeta.SEARCH_FIELD)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetItemVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AssetItemVOMeta.SORT_TYPE)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(AssetItemVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetItemVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssetItemVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetItemVOMeta.PAGE_SIZE)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(AssetItemVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(AssetItemVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssetItemVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
 			try {
 				this.setBeforeAssetStatus( (String)map.get(AssetItemVOMeta.BEFORE_ASSET_STATUS));
+				this.setIsReturn( (String)map.get(AssetItemVOMeta.IS_RETURN));
 				this.setFlag( (String)map.get(AssetItemVOMeta.FLAG));
+				this.setRAssetId( (String)map.get(AssetItemVOMeta.R_ASSET_ID));
 				this.setUpdateTime( (Date)map.get(AssetItemVOMeta.UPDATE_TIME));
 				this.setSelectedCode( (String)map.get(AssetItemVOMeta.SELECTED_CODE));
 				this.setVersion( (Integer)map.get(AssetItemVOMeta.VERSION));
@@ -451,6 +540,7 @@ public class AssetItemVO extends AssetItem {
 				this.setDeleteTime( (Date)map.get(AssetItemVOMeta.DELETE_TIME));
 				this.setAssetId( (String)map.get(AssetItemVOMeta.ASSET_ID));
 				this.setDeleteBy( (String)map.get(AssetItemVOMeta.DELETE_BY));
+				this.setBusiType( (String)map.get(AssetItemVOMeta.BUSI_TYPE));
 				this.setId( (String)map.get(AssetItemVOMeta.ID));
 				this.setHandleId( (String)map.get(AssetItemVOMeta.HANDLE_ID));
 				this.setBeforeUseUserId( (String)map.get(AssetItemVOMeta.BEFORE_USE_USER_ID));
@@ -458,9 +548,12 @@ public class AssetItemVO extends AssetItem {
 				this.setSearchField( (String)map.get(AssetItemVOMeta.SEARCH_FIELD));
 				this.setPageIndex( (Integer)map.get(AssetItemVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AssetItemVOMeta.SORT_TYPE));
+				this.setRequestAction( (String)map.get(AssetItemVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(AssetItemVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(AssetItemVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(AssetItemVOMeta.PAGE_SIZE));
+				this.setDataOrigin( (String)map.get(AssetItemVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(AssetItemVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(AssetItemVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {
@@ -479,7 +572,9 @@ public class AssetItemVO extends AssetItem {
 		if(r==null) return false;
 		if(cast) {
 			this.setBeforeAssetStatus(DataParser.parse(String.class, r.getValue(AssetItemVOMeta.BEFORE_ASSET_STATUS)));
+			this.setIsReturn(DataParser.parse(String.class, r.getValue(AssetItemVOMeta.IS_RETURN)));
 			this.setFlag(DataParser.parse(String.class, r.getValue(AssetItemVOMeta.FLAG)));
+			this.setRAssetId(DataParser.parse(String.class, r.getValue(AssetItemVOMeta.R_ASSET_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetItemVOMeta.UPDATE_TIME)));
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetItemVOMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetItemVOMeta.VERSION)));
@@ -491,6 +586,7 @@ public class AssetItemVO extends AssetItem {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetItemVOMeta.DELETE_TIME)));
 			this.setAssetId(DataParser.parse(String.class, r.getValue(AssetItemVOMeta.ASSET_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetItemVOMeta.DELETE_BY)));
+			this.setBusiType(DataParser.parse(String.class, r.getValue(AssetItemVOMeta.BUSI_TYPE)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetItemVOMeta.ID)));
 			this.setHandleId(DataParser.parse(String.class, r.getValue(AssetItemVOMeta.HANDLE_ID)));
 			this.setBeforeUseUserId(DataParser.parse(String.class, r.getValue(AssetItemVOMeta.BEFORE_USE_USER_ID)));
@@ -498,7 +594,9 @@ public class AssetItemVO extends AssetItem {
 		} else {
 			try {
 				this.setBeforeAssetStatus( (String)r.getValue(AssetItemVOMeta.BEFORE_ASSET_STATUS));
+				this.setIsReturn( (String)r.getValue(AssetItemVOMeta.IS_RETURN));
 				this.setFlag( (String)r.getValue(AssetItemVOMeta.FLAG));
+				this.setRAssetId( (String)r.getValue(AssetItemVOMeta.R_ASSET_ID));
 				this.setUpdateTime( (Date)r.getValue(AssetItemVOMeta.UPDATE_TIME));
 				this.setSelectedCode( (String)r.getValue(AssetItemVOMeta.SELECTED_CODE));
 				this.setVersion( (Integer)r.getValue(AssetItemVOMeta.VERSION));
@@ -510,6 +608,7 @@ public class AssetItemVO extends AssetItem {
 				this.setDeleteTime( (Date)r.getValue(AssetItemVOMeta.DELETE_TIME));
 				this.setAssetId( (String)r.getValue(AssetItemVOMeta.ASSET_ID));
 				this.setDeleteBy( (String)r.getValue(AssetItemVOMeta.DELETE_BY));
+				this.setBusiType( (String)r.getValue(AssetItemVOMeta.BUSI_TYPE));
 				this.setId( (String)r.getValue(AssetItemVOMeta.ID));
 				this.setHandleId( (String)r.getValue(AssetItemVOMeta.HANDLE_ID));
 				this.setBeforeUseUserId( (String)r.getValue(AssetItemVOMeta.BEFORE_USE_USER_ID));

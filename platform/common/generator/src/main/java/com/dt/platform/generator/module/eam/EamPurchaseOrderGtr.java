@@ -5,6 +5,7 @@ import com.dt.platform.constants.enums.eam.AssetApplyCheckStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetPurchaseAssetTypeEnum;
 import com.dt.platform.constants.enums.eam.AssetPurchaseStorageTypeEnum;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.GoodsStock;
 import com.dt.platform.domain.eam.PurchaseOrder;
 import com.dt.platform.domain.eam.meta.PurchaseApplyMeta;
 import com.dt.platform.domain.eam.meta.PurchaseOrderMeta;
@@ -32,6 +33,8 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"purchaseCheck","验收单","验收单");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
 
+        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goods","goods","goods");
+
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
 
@@ -43,12 +46,9 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
 
         cfg.view().search().inputLayout(
                 new Object[]{
-                        EAMTables.EAM_PURCHASE_ORDER.BUSINESS_CODE,
-                        EAMTables.EAM_PURCHASE_ORDER.CODE,
-                        EAMTables.EAM_PURCHASE_ORDER.STORAGE_TYPE
+                        EAMTables.EAM_PURCHASE_ORDER.NAME,
                 }
         );
-
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
@@ -56,36 +56,43 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth+30);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.ID).basic().hidden(true);
 
-
-
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.STORAGE_TYPE).table().disable(true);
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.GOODS_TYPE).table().disable(true);
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.ORIGINATOR_ID).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.SELECTED_CODE).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.CHECK_ID).table().disable();
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.APPLY_ID).table().disable();
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.CODE).table().disable();
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.BUSINESS_CODE).table().disable();
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.CREATE_TIME).table().disable();
 
-        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.GOODS_TYPE).form().validate().required().form().selectBox().enumType(AssetPurchaseAssetTypeEnum.class).defaultValue(AssetPurchaseAssetTypeEnum.ASSET.code());
-        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.STORAGE_TYPE).form().validate().required().form().selectBox().enumType(AssetPurchaseStorageTypeEnum.class).defaultValue(AssetPurchaseStorageTypeEnum.ASSET.code());
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.GOODS_TYPE).form().selectBox().enumType(AssetPurchaseAssetTypeEnum.class).defaultValue(AssetPurchaseAssetTypeEnum.ASSET.code());
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.STORAGE_TYPE).form().selectBox().enumType(AssetPurchaseStorageTypeEnum.class).defaultValue(AssetPurchaseStorageTypeEnum.ASSET.code());
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.NOTES).form().textArea().height(Config.textAreaHeight);
 
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.PURCHASE_NUMBER).form().numberInput().integer().defaultValue(1);
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.APPLY_ID)
                 .basic()
                 .form().selectBox().queryApi(PurchaseApplyServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(PurchaseApplyMeta.ID).textField(PurchaseApplyMeta.NAME).fillWith(PurchaseOrderMeta.PURCHASE_APPLY).muliti(false);
 
 
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.GOODS_ID)
+               .form().button().action("选择物品","chosenGoods");
+
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.NAME)
                 .form().validate().required();
-
         cfg.view().list().disableBatchDelete();
 
     //    cfg.view().form().addJsVariable("PAGE_TYPE","[[${pageType}]]","页面类型");
         cfg.view().list().addJsVariable("PAGE_TYPE","[[${pageType}]]","页面类型");
-        cfg.view().list().addJsVariable("APPLY_ID","[[${applyId}]]","applyId");
+
         cfg.view().list().addJsVariable("SELECTED_CODE","[[${selectedCode}]]","selectedCode");
         cfg.view().form().addJsVariable("SELECTED_CODE","[[${selectedCode}]]","selectedCode");
-        cfg.view().form().addJsVariable("APPLY_ID","[[${applyId}]]","applyId");
+        cfg.view().form().addJsVariable("OWNER_ID","[[${ownerId}]]","applyId");
+        cfg.view().list().addJsVariable("OWNER_ID","[[${ownerId}]]","ownerId");
 
         cfg.view().form().labelWidth(70);
         cfg.view().formWindow().bottomSpace(250);
@@ -93,11 +100,9 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_PURCHASE_ORDER.NAME,
-                        EAMTables.EAM_PURCHASE_ORDER.CODE,
-
-                }, new Object[] {
-                        EAMTables.EAM_PURCHASE_ORDER.STORAGE_TYPE,
-                        EAMTables.EAM_PURCHASE_ORDER.GOODS_TYPE,
+                        EAMTables.EAM_PURCHASE_ORDER.GOODS_ID,
+                        EAMTables.EAM_PURCHASE_ORDER.PURCHASE_NUMBER,
+                        EAMTables.EAM_PURCHASE_ORDER.UNIT_PRICE,
                 }
         );
 
@@ -107,9 +112,6 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
                 }
         );
 
-        //订单
-        cfg.view().form().addPage("资产","assetSelectList");
-
 
         //文件生成覆盖模式
         cfg.overrides()
@@ -117,7 +119,7 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
-                .setListPage(WriteMode.IGNORE)//列表HTML页
+                .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //生成代码
         cfg.buildAll();

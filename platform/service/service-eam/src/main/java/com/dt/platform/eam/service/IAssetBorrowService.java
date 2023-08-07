@@ -43,6 +43,11 @@ public interface IAssetBorrowService extends ISimpleIdService<AssetBorrow,String
 	 **/
 	public static final String FORM_DEFINITION_CODE="eam_asset_borrow";
 
+
+
+	Result clearAssetReturnWarnByIds(String ids);
+
+
 	/**
 	 * 处理流程回调
 	 * */

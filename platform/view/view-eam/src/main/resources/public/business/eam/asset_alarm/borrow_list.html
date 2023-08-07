@@ -63,6 +63,8 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
+<!--     -->
+        <button  th:if="${perm.checkAuth('eam_alarm_borrow:alarm-clear')}" id="clear-button" class="layui-btn icon-btn layui-btn-sm" lay-event="cleardata"> <span th:text="${lang.translate('清理')}">清理</span></button>
     </div>
 </script>
 

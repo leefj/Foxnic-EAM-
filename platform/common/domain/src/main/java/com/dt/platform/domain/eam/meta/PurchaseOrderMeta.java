@@ -2,17 +2,20 @@ package com.dt.platform.domain.eam.meta;
 
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.PurchaseOrder;
+import java.math.BigDecimal;
 import java.util.Date;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.dt.platform.domain.eam.GoodsStock;
 import com.dt.platform.domain.eam.Asset;
 import java.util.List;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 06:49:27
- * @sign BFE0BA3CAD4BFF6B1DF521F8DD8463D7
+ * @since 2023-08-07 18:07:27
+ * @sign 5FFB889BAB1497C1CF36C72B3B76E1D2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -39,44 +42,34 @@ public class PurchaseOrderMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.String> BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,BUSINESS_CODE, java.lang.String.class, "业务编码", "业务编码", java.lang.String.class, null);
 	
 	/**
-	 * 订单编号 , 类型: java.lang.String
+	 * 物品编码 , 类型: java.lang.String
 	*/
 	public static final String CODE="code";
 	
 	/**
-	 * 订单编号 , 类型: java.lang.String
+	 * 物品编码 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,CODE, java.lang.String.class, "订单编号", "订单编号", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,CODE, java.lang.String.class, "物品编码", "物品编码", java.lang.String.class, null);
 	
 	/**
-	 * 订单名称 , 类型: java.lang.String
+	 * 物品名称 , 类型: java.lang.String
 	*/
 	public static final String NAME="name";
 	
 	/**
-	 * 订单名称 , 类型: java.lang.String
+	 * 物品名称 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,NAME, java.lang.String.class, "订单名称", "订单名称", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,NAME, java.lang.String.class, "物品名称", "物品名称", java.lang.String.class, null);
 	
 	/**
-	 * 采购申请单 , 类型: java.lang.String
+	 * 物品档案 , 类型: java.lang.String
 	*/
-	public static final String APPLY_ID="applyId";
+	public static final String GOODS_ID="goodsId";
 	
 	/**
-	 * 采购申请单 , 类型: java.lang.String
+	 * 物品档案 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.String> APPLY_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,APPLY_ID, java.lang.String.class, "采购申请单", "采购申请单", java.lang.String.class, null);
-	
-	/**
-	 * 验收单 , 类型: java.lang.String
-	*/
-	public static final String CHECK_ID="checkId";
-	
-	/**
-	 * 验收单 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.String> CHECK_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,CHECK_ID, java.lang.String.class, "验收单", "验收单", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.String> GOODS_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,GOODS_ID, java.lang.String.class, "物品档案", "物品档案", java.lang.String.class, null);
 	
 	/**
 	 * 物品类型 , 类型: java.lang.String
@@ -99,6 +92,26 @@ public class PurchaseOrderMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.String> STORAGE_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,STORAGE_TYPE, java.lang.String.class, "存放类型", "存放类型", java.lang.String.class, null);
 	
 	/**
+	 * 采购数量 , 类型: java.lang.Integer
+	*/
+	public static final String PURCHASE_NUMBER="purchaseNumber";
+	
+	/**
+	 * 采购数量 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.Integer> PURCHASE_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,PURCHASE_NUMBER, java.lang.Integer.class, "采购数量", "采购数量", java.lang.Integer.class, null);
+	
+	/**
+	 * 采购单价 , 类型: java.math.BigDecimal
+	*/
+	public static final String UNIT_PRICE="unitPrice";
+	
+	/**
+	 * 采购单价 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.math.BigDecimal> UNIT_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,UNIT_PRICE, java.math.BigDecimal.class, "采购单价", "采购单价", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final String NOTES="notes";
@@ -107,6 +120,26 @@ public class PurchaseOrderMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 采购单 , 类型: java.lang.String
+	*/
+	public static final String APPLY_ID="applyId";
+	
+	/**
+	 * 采购单 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.String> APPLY_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,APPLY_ID, java.lang.String.class, "采购单", "采购单", java.lang.String.class, null);
+	
+	/**
+	 * 验收单 , 类型: java.lang.String
+	*/
+	public static final String CHECK_ID="checkId";
+	
+	/**
+	 * 验收单 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,java.lang.String> CHECK_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,CHECK_ID, java.lang.String.class, "验收单", "验收单", java.lang.String.class, null);
 	
 	/**
 	 * 制单人 , 类型: java.lang.String
@@ -249,6 +282,16 @@ public class PurchaseOrderMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,org.github.foxnic.web.domain.hrm.Employee> ORIGINATOR_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,ORIGINATOR, org.github.foxnic.web.domain.hrm.Employee.class, "制单人", "制单人", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * goods , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final String GOODS="goods";
+	
+	/**
+	 * goods , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrder,com.dt.platform.domain.eam.GoodsStock> GOODS_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrder.class ,GOODS, com.dt.platform.domain.eam.GoodsStock.class, "goods", "goods", com.dt.platform.domain.eam.GoodsStock.class, null);
+	
+	/**
 	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
 	*/
 	public static final String ASSET_LIST="assetList";
@@ -271,7 +314,7 @@ public class PurchaseOrderMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , CODE , NAME , APPLY_ID , CHECK_ID , GOODS_TYPE , STORAGE_TYPE , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , PURCHASE_APPLY , PURCHASE_CHECK , ORIGINATOR , ASSET_LIST , ASSET_IDS };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , CODE , NAME , GOODS_ID , GOODS_TYPE , STORAGE_TYPE , PURCHASE_NUMBER , UNIT_PRICE , NOTES , APPLY_ID , CHECK_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , PURCHASE_APPLY , PURCHASE_CHECK , ORIGINATOR , GOODS , ASSET_LIST , ASSET_IDS };
 	
 	/**
 	 * 代理类
@@ -304,8 +347,8 @@ public class PurchaseOrderMeta {
 		}
 		
 		/**
-		 * 设置 订单编号
-		 * @param code 订单编号
+		 * 设置 物品编码
+		 * @param code 物品编码
 		 * @return 当前对象
 		*/
 		public PurchaseOrder setCode(String code) {
@@ -315,8 +358,8 @@ public class PurchaseOrderMeta {
 		}
 		
 		/**
-		 * 设置 订单名称
-		 * @param name 订单名称
+		 * 设置 物品名称
+		 * @param name 物品名称
 		 * @return 当前对象
 		*/
 		public PurchaseOrder setName(String name) {
@@ -326,24 +369,13 @@ public class PurchaseOrderMeta {
 		}
 		
 		/**
-		 * 设置 采购申请单
-		 * @param applyId 采购申请单
+		 * 设置 物品档案
+		 * @param goodsId 物品档案
 		 * @return 当前对象
 		*/
-		public PurchaseOrder setApplyId(String applyId) {
-			super.change(APPLY_ID,super.getApplyId(),applyId);
-			super.setApplyId(applyId);
-			return this;
-		}
-		
-		/**
-		 * 设置 验收单
-		 * @param checkId 验收单
-		 * @return 当前对象
-		*/
-		public PurchaseOrder setCheckId(String checkId) {
-			super.change(CHECK_ID,super.getCheckId(),checkId);
-			super.setCheckId(checkId);
+		public PurchaseOrder setGoodsId(String goodsId) {
+			super.change(GOODS_ID,super.getGoodsId(),goodsId);
+			super.setGoodsId(goodsId);
 			return this;
 		}
 		
@@ -370,6 +402,28 @@ public class PurchaseOrderMeta {
 		}
 		
 		/**
+		 * 设置 采购数量
+		 * @param purchaseNumber 采购数量
+		 * @return 当前对象
+		*/
+		public PurchaseOrder setPurchaseNumber(Integer purchaseNumber) {
+			super.change(PURCHASE_NUMBER,super.getPurchaseNumber(),purchaseNumber);
+			super.setPurchaseNumber(purchaseNumber);
+			return this;
+		}
+		
+		/**
+		 * 设置 采购单价
+		 * @param unitPrice 采购单价
+		 * @return 当前对象
+		*/
+		public PurchaseOrder setUnitPrice(BigDecimal unitPrice) {
+			super.change(UNIT_PRICE,super.getUnitPrice(),unitPrice);
+			super.setUnitPrice(unitPrice);
+			return this;
+		}
+		
+		/**
 		 * 设置 备注
 		 * @param notes 备注
 		 * @return 当前对象
@@ -377,6 +431,28 @@ public class PurchaseOrderMeta {
 		public PurchaseOrder setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 采购单
+		 * @param applyId 采购单
+		 * @return 当前对象
+		*/
+		public PurchaseOrder setApplyId(String applyId) {
+			super.change(APPLY_ID,super.getApplyId(),applyId);
+			super.setApplyId(applyId);
+			return this;
+		}
+		
+		/**
+		 * 设置 验收单
+		 * @param checkId 验收单
+		 * @return 当前对象
+		*/
+		public PurchaseOrder setCheckId(String checkId) {
+			super.change(CHECK_ID,super.getCheckId(),checkId);
+			super.setCheckId(checkId);
 			return this;
 		}
 		
@@ -535,6 +611,17 @@ public class PurchaseOrderMeta {
 		}
 		
 		/**
+		 * 设置 goods
+		 * @param goods goods
+		 * @return 当前对象
+		*/
+		public PurchaseOrder setGoods(GoodsStock goods) {
+			super.change(GOODS,super.getGoods(),goods);
+			super.setGoods(goods);
+			return this;
+		}
+		
+		/**
 		 * 设置 资产
 		 * @param assetList 资产
 		 * @return 当前对象
@@ -555,5 +642,56 @@ public class PurchaseOrderMeta {
 			super.setAssetIds(assetIds);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public PurchaseOrder clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public PurchaseOrder duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setUnitPrice(this.getUnitPrice());
+			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setGoodsId(this.getGoodsId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setGoodsType(this.getGoodsType());
+			inst.setApplyId(this.getApplyId());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setStorageType(this.getStorageType());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setCheckId(this.getCheckId());
+			inst.setPurchaseNumber(this.getPurchaseNumber());
+			if(all) {
+				inst.setPurchaseCheck(this.getPurchaseCheck());
+				inst.setPurchaseApply(this.getPurchaseApply());
+				inst.setGoods(this.getGoods());
+				inst.setAssetIds(this.getAssetIds());
+				inst.setOriginator(this.getOriginator());
+				inst.setAssetList(this.getAssetList());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

@@ -1,5 +1,6 @@
 package com.dt.platform.domain.eam;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -7,17 +8,28 @@ import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
+import com.dt.platform.domain.eam.meta.PurchaseCheckVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import org.github.foxnic.web.domain.hrm.Organization;
+import org.github.foxnic.web.domain.hrm.Employee;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 采购验收
+ * 采购验收VO类型
+ * <p>采购验收 , 数据表 eam_purchase_check 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 07:31:06
- * @sign 0195E75D1437044564ACD2B3A16B6ECC
+ * @since 2023-08-07 20:15:33
+ * @sign 6D22B8980C7A1DFCC0B6CA7C1CD35C5D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "采购验收VO类型 ; 采购验收 , 数据表 eam_purchase_check 的通用VO类型" , parent = PurchaseCheck.class)
 public class PurchaseCheckVO extends PurchaseCheck {
 
 	private static final long serialVersionUID = 1L;
@@ -69,6 +81,24 @@ public class PurchaseCheckVO extends PurchaseCheck {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -232,6 +262,63 @@ public class PurchaseCheckVO extends PurchaseCheck {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public PurchaseCheckVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public PurchaseCheckVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public PurchaseCheckVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -261,7 +348,7 @@ public class PurchaseCheckVO extends PurchaseCheck {
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */
@@ -270,5 +357,306 @@ public class PurchaseCheckVO extends PurchaseCheck {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return PurchaseCheckVO , 转换好的 PurchaseCheckVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return PurchaseCheckVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public PurchaseCheckVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public PurchaseCheckVO duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.PurchaseCheckVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.PurchaseCheckVOMeta.$$proxy$$();
+		inst.setSupplierId(this.getSupplierId());
+		inst.setNotes(this.getNotes());
+		inst.setProcId(this.getProcId());
+		inst.setReceiveDate(this.getReceiveDate());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setCheckDate(this.getCheckDate());
+		inst.setVersion(this.getVersion());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setApplyId(this.getApplyId());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setCheckUserName(this.getCheckUserName());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setAttach(this.getAttach());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setCheckInformation(this.getCheckInformation());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setPurchaseApply(this.getPurchaseApply());
+			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setCheckOrg(this.getCheckOrg());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setOrderList(this.getOrderList());
+			inst.setPageSize(this.getPageSize());
+			inst.setOriginator(this.getOriginator());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setSupplier(this.getSupplier());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setDataOrigin(this.getDataOrigin());
+			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
+			inst.setOrderIds(this.getOrderIds());
+			inst.setSearchValue(this.getSearchValue());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public PurchaseCheckVO clone(boolean deep) {
+		return EntityContext.clone(PurchaseCheckVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 PurchaseCheckVO
+	 * @param purchaseCheckMap 包含实体信息的 Map 对象
+	 * @return PurchaseCheckVO , 转换好的的 PurchaseCheck 对象
+	*/
+	@Transient
+	public static PurchaseCheckVO createFrom(Map<String,Object> purchaseCheckMap) {
+		if(purchaseCheckMap==null) return null;
+		PurchaseCheckVO vo = create();
+		EntityContext.copyProperties(vo,purchaseCheckMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 PurchaseCheckVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return PurchaseCheckVO , 转换好的的 PurchaseCheck 对象
+	*/
+	@Transient
+	public static PurchaseCheckVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		PurchaseCheckVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 PurchaseCheckVO，等同于 new
+	 * @return PurchaseCheckVO 对象
+	*/
+	@Transient
+	public static PurchaseCheckVO create() {
+		return new com.dt.platform.domain.eam.meta.PurchaseCheckVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setSupplierId(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.SUPPLIER_ID)));
+			this.setNotes(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.NOTES)));
+			this.setProcId(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.PROC_ID)));
+			this.setReceiveDate(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.RECEIVE_DATE)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(PurchaseCheckVOMeta.UPDATE_TIME)));
+			this.setCheckDate(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.CHECK_DATE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(PurchaseCheckVOMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.SELECTED_CODE)));
+			this.setApplyId(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.APPLY_ID)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(PurchaseCheckVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(PurchaseCheckVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(PurchaseCheckVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.TENANT_ID)));
+			this.setCheckUserName(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.CHECK_USER_NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.ID)));
+			this.setAttach(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.ATTACH)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.ORIGINATOR_ID)));
+			this.setCheckInformation(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.CHECK_INFORMATION)));
+			this.setStatus(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.STATUS)));
+			// others
+			this.setPurchaseApply(DataParser.parse(PurchaseApply.class, map.get(PurchaseCheckVOMeta.PURCHASE_APPLY)));
+			this.setSearchField(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.REQUEST_ACTION)));
+			this.setCheckOrg(DataParser.parse(Organization.class, map.get(PurchaseCheckVOMeta.CHECK_ORG)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(PurchaseCheckVOMeta.PAGE_SIZE)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(PurchaseCheckVOMeta.ORIGINATOR)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(PurchaseCheckVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.SORT_TYPE)));
+			this.setSupplier(DataParser.parse(Supplier.class, map.get(PurchaseCheckVOMeta.SUPPLIER)));
+			this.setSortField(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.SORT_FIELD)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.QUERY_LOGIC)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(PurchaseCheckVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setSupplierId( (String)map.get(PurchaseCheckVOMeta.SUPPLIER_ID));
+				this.setNotes( (String)map.get(PurchaseCheckVOMeta.NOTES));
+				this.setProcId( (String)map.get(PurchaseCheckVOMeta.PROC_ID));
+				this.setReceiveDate( (String)map.get(PurchaseCheckVOMeta.RECEIVE_DATE));
+				this.setUpdateTime( (Date)map.get(PurchaseCheckVOMeta.UPDATE_TIME));
+				this.setCheckDate( (String)map.get(PurchaseCheckVOMeta.CHECK_DATE));
+				this.setVersion( (Integer)map.get(PurchaseCheckVOMeta.VERSION));
+				this.setSelectedCode( (String)map.get(PurchaseCheckVOMeta.SELECTED_CODE));
+				this.setApplyId( (String)map.get(PurchaseCheckVOMeta.APPLY_ID));
+				this.setBusinessCode( (String)map.get(PurchaseCheckVOMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)map.get(PurchaseCheckVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(PurchaseCheckVOMeta.DELETED));
+				this.setCreateTime( (Date)map.get(PurchaseCheckVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(PurchaseCheckVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(PurchaseCheckVOMeta.DELETE_TIME));
+				this.setName( (String)map.get(PurchaseCheckVOMeta.NAME));
+				this.setTenantId( (String)map.get(PurchaseCheckVOMeta.TENANT_ID));
+				this.setCheckUserName( (String)map.get(PurchaseCheckVOMeta.CHECK_USER_NAME));
+				this.setDeleteBy( (String)map.get(PurchaseCheckVOMeta.DELETE_BY));
+				this.setId( (String)map.get(PurchaseCheckVOMeta.ID));
+				this.setAttach( (String)map.get(PurchaseCheckVOMeta.ATTACH));
+				this.setOriginatorId( (String)map.get(PurchaseCheckVOMeta.ORIGINATOR_ID));
+				this.setCheckInformation( (String)map.get(PurchaseCheckVOMeta.CHECK_INFORMATION));
+				this.setStatus( (String)map.get(PurchaseCheckVOMeta.STATUS));
+				// others
+				this.setPurchaseApply( (PurchaseApply)map.get(PurchaseCheckVOMeta.PURCHASE_APPLY));
+				this.setSearchField( (String)map.get(PurchaseCheckVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(PurchaseCheckVOMeta.REQUEST_ACTION));
+				this.setCheckOrg( (Organization)map.get(PurchaseCheckVOMeta.CHECK_ORG));
+				this.setFuzzyField( (String)map.get(PurchaseCheckVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(PurchaseCheckVOMeta.PAGE_SIZE));
+				this.setOriginator( (Employee)map.get(PurchaseCheckVOMeta.ORIGINATOR));
+				this.setPageIndex( (Integer)map.get(PurchaseCheckVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(PurchaseCheckVOMeta.SORT_TYPE));
+				this.setSupplier( (Supplier)map.get(PurchaseCheckVOMeta.SUPPLIER));
+				this.setSortField( (String)map.get(PurchaseCheckVOMeta.SORT_FIELD));
+				this.setDataOrigin( (String)map.get(PurchaseCheckVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(PurchaseCheckVOMeta.QUERY_LOGIC));
+				this.setSearchValue( (String)map.get(PurchaseCheckVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setSupplierId(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.SUPPLIER_ID)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.NOTES)));
+			this.setProcId(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.PROC_ID)));
+			this.setReceiveDate(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.RECEIVE_DATE)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PurchaseCheckVOMeta.UPDATE_TIME)));
+			this.setCheckDate(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.CHECK_DATE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(PurchaseCheckVOMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.SELECTED_CODE)));
+			this.setApplyId(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.APPLY_ID)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(PurchaseCheckVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(PurchaseCheckVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(PurchaseCheckVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.TENANT_ID)));
+			this.setCheckUserName(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.CHECK_USER_NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.ID)));
+			this.setAttach(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.ATTACH)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.ORIGINATOR_ID)));
+			this.setCheckInformation(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.CHECK_INFORMATION)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(PurchaseCheckVOMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setSupplierId( (String)r.getValue(PurchaseCheckVOMeta.SUPPLIER_ID));
+				this.setNotes( (String)r.getValue(PurchaseCheckVOMeta.NOTES));
+				this.setProcId( (String)r.getValue(PurchaseCheckVOMeta.PROC_ID));
+				this.setReceiveDate( (String)r.getValue(PurchaseCheckVOMeta.RECEIVE_DATE));
+				this.setUpdateTime( (Date)r.getValue(PurchaseCheckVOMeta.UPDATE_TIME));
+				this.setCheckDate( (String)r.getValue(PurchaseCheckVOMeta.CHECK_DATE));
+				this.setVersion( (Integer)r.getValue(PurchaseCheckVOMeta.VERSION));
+				this.setSelectedCode( (String)r.getValue(PurchaseCheckVOMeta.SELECTED_CODE));
+				this.setApplyId( (String)r.getValue(PurchaseCheckVOMeta.APPLY_ID));
+				this.setBusinessCode( (String)r.getValue(PurchaseCheckVOMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)r.getValue(PurchaseCheckVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(PurchaseCheckVOMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(PurchaseCheckVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(PurchaseCheckVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(PurchaseCheckVOMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(PurchaseCheckVOMeta.NAME));
+				this.setTenantId( (String)r.getValue(PurchaseCheckVOMeta.TENANT_ID));
+				this.setCheckUserName( (String)r.getValue(PurchaseCheckVOMeta.CHECK_USER_NAME));
+				this.setDeleteBy( (String)r.getValue(PurchaseCheckVOMeta.DELETE_BY));
+				this.setId( (String)r.getValue(PurchaseCheckVOMeta.ID));
+				this.setAttach( (String)r.getValue(PurchaseCheckVOMeta.ATTACH));
+				this.setOriginatorId( (String)r.getValue(PurchaseCheckVOMeta.ORIGINATOR_ID));
+				this.setCheckInformation( (String)r.getValue(PurchaseCheckVOMeta.CHECK_INFORMATION));
+				this.setStatus( (String)r.getValue(PurchaseCheckVOMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

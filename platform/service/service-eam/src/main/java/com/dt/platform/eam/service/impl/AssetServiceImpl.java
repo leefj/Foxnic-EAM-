@@ -1427,7 +1427,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		if(assetOwnerId!=null&&assetOwnerId.length()>0){
 			//实现临时快照
 			if("refresh".equals(dataType)){
-				dao.execute("delete from eam_asset_item where crd in ('cd','c') and handle_id=?",assetOwnerId);
+				dao.execute("delete from eam_asset_item where crd in ('c') and handle_id=?",assetOwnerId);
 				dao.execute("update eam_asset_item set crd='r' where crd='d' and handle_id=?",assetOwnerId);
 			}
 			queryCondition.andIf("id in (select asset_id from eam_asset_item where crd in ('c','r') and deleted=0 and handle_id=?)" ,assetOwnerId);
@@ -1448,7 +1448,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		if(ownerId!=null&&ownerId.length()>0){
 			//实现临时快照
 			if("refresh".equals(dataType)){
-				dao.execute("delete from eam_asset_item where crd in ('cd','c') and handle_id=?",ownerId);
+				dao.execute("delete from eam_asset_item where crd in ('c') and handle_id=?",ownerId);
 				dao.execute("update eam_asset_item set crd='r' where crd='d' and handle_id=?",ownerId);
 			}
 			queryCondition.andIf("id in (select asset_id from eam_asset_item where crd in ('c','r') and deleted=0 and handle_id=?)" ,ownerId);
@@ -1466,6 +1466,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		ConditionExpr queryCondition=new ConditionExpr();
 		sample.setUseUserId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
 		sample.setStatus(AssetHandleStatusEnum.COMPLETE.code());
+		sample.setOwnerCode("asset");
 		//过滤资产已选数据
 		if(!StringUtil.isBlank(ownerId)) {
 			queryCondition.andIf("id not in (select asset_id from eam_asset_item where deleted=0 and handle_id=?)" ,ownerId);

@@ -1521,8 +1521,8 @@ public class EamRelationManager extends RelationManager {
         this.property(PurchaseCheckMeta.PURCHASE_APPLY_PROP)
                 .using(EAMTables.EAM_PURCHASE_CHECK.APPLY_ID).join(EAMTables.EAM_PURCHASE_APPLY.ID);
 
-        this.property(PurchaseCheckMeta.CHECK_ORG_PROP)
-                .using(EAMTables.EAM_PURCHASE_CHECK.CHECK_ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+//        this.property(PurchaseCheckMeta.CHECK_ORG_PROP)
+//                .using(EAMTables.EAM_PURCHASE_CHECK.CHECK_ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
 
         this.property(PurchaseCheckMeta.ORIGINATOR_PROP)
                 .using(EAMTables.EAM_PURCHASE_CHECK.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);

@@ -31,12 +31,12 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Supplier.class,"supplier","供应商","供应商");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"applyOrg","申请部门","申请部门");
-
         cfg.getPoClassFile().addSimpleProperty(ChangeInstance.class,"changeInstance","变更实例","变更实例");
-
         cfg.getPoClassFile().addListProperty(PurchaseOrder.class,"orderList","采购清单","采购清单");
         cfg.getPoClassFile().addListProperty(String.class,"orderIds","清单列表","清单列表");
 
+        cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
+        cfg.getPoClassFile().addSimpleProperty(Employee.class,"purchaseUser","purchaseUser","purchaseUser");
         cfg.bpm().form("eam_asset_purchase_apply");
         cfg.bpm().integrate(IntegrateMode.FRONT);
 
@@ -44,7 +44,6 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.NAME).basic().search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.NOTES).basic().search().fuzzySearch();
-        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.HARVEST_INFORMATION).basic().search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPLY_CONTENT).basic().search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.BUSINESS_CODE).basic().search().fuzzySearch().fuzzySearch();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.EXPECTED_ARRIVAL_DATE).basic().search().range();
@@ -54,20 +53,26 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.EXPECTED_ARRIVAL_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
 
+        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.PURCHASE_USER_ID).table().fillBy("purchaseUser","name");
+        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.PURCHASE_USER_ID).form()
+                .button().chooseEmployee(true);
+
+
+
+
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.ATTACH)
                 .form().label("附件").upload().acceptSingleImage().maxFileCount(1).displayFileName(false);
 
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_PURCHASE_APPLY.STATUS,
-//                        EAMTables.EAM_PURCHASE_APPLY.APPLY_STATUS,
                         EAMTables.EAM_PURCHASE_APPLY.SUPPLIER_ID,
-                        EAMTables.EAM_PURCHASE_APPLY.ASSET_CHECK,
-                        EAMTables.EAM_PURCHASE_APPLY.APPLY_ORG_ID,
-                },
-                new Object[]{
                         EAMTables.EAM_PURCHASE_APPLY.BUSINESS_CODE,
                         EAMTables.EAM_PURCHASE_APPLY.NAME,
+                },
+                new Object[]{
+                        EAMTables.EAM_PURCHASE_APPLY.ASSET_CHECK,
+                        EAMTables.EAM_PURCHASE_APPLY.APPLY_ORG_ID,
                         EAMTables.EAM_PURCHASE_APPLY.APPLY_DATE,
                 }
         );
@@ -92,13 +97,12 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
                 .form().selectBox().queryApi(SupplierServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(SupplierMeta.ID).textField(SupplierMeta.SUPPLIER_NAME).fillWith(PurchaseApplyMeta.SUPPLIER).muliti(false);
 
-        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.ASSET_CHECK).form().form().selectBox().enumType(AssetApplyCheckStatusEnum.class).defaultValue("not_check");
+        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.ASSET_CHECK).form().radioBox().enumType(AssetApplyCheckStatusEnum.class).defaultValue("not_check");
 
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPLY_CONTENT).form().validate().required();
 
 
-        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.SELECTED_CODE).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.PROC_ID).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPLY_STATUS).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.CHS_STATUS).table().disable();
@@ -113,7 +117,7 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.NEXT_APPROVER_NAMES).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPROVAL_OPINION).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.ATTACH).table().disable();
-
+        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.EXPECTED_ARRIVAL_DATE).table().disable();
 
 
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPLY_ORG_ID)
@@ -137,7 +141,7 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_PURCHASE_APPLY.NAME,
-                        EAMTables.EAM_PURCHASE_APPLY.HARVEST_INFORMATION,
+                        EAMTables.EAM_PURCHASE_APPLY.PURCHASE_USER_ID,
                 },
                 new Object[] {
                         EAMTables.EAM_PURCHASE_APPLY.APPLY_ORG_ID,

@@ -11,8 +11,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-13 18:13:51
- * @sign 43ACC8582D5BAFAE871200ABB1CAAC6E
+ * @since 2023-08-07 13:19:18
+ * @sign 33B33BF19E4718BFA8DF96A1264EB517
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -99,6 +99,36 @@ public class AssetItemVOMeta extends AssetItemMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetItemVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItemVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetItemVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItemVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetItemVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItemVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetItemVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItemVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
 	*/
 	public static final String IDS="ids";
@@ -139,6 +169,16 @@ public class AssetItemVOMeta extends AssetItemMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetItemVO,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItemVO.class ,ASSET_ID, java.lang.String.class, "资产", "资产", java.lang.String.class, null);
 	
 	/**
+	 * 资产 , 类型: java.lang.String
+	*/
+	public static final String R_ASSET_ID="rAssetId";
+	
+	/**
+	 * 资产 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetItemVO,java.lang.String> R_ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItemVO.class ,R_ASSET_ID, java.lang.String.class, "资产", "资产", java.lang.String.class, null);
+	
+	/**
 	 * 资产使用人 , 类型: java.lang.String
 	*/
 	public static final String BEFORE_USE_USER_ID="beforeUseUserId";
@@ -177,6 +217,26 @@ public class AssetItemVOMeta extends AssetItemMeta {
 	 * 修改标记 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetItemVO,java.lang.String> CRD_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItemVO.class ,CRD, java.lang.String.class, "修改标记", "修改标记", java.lang.String.class, null);
+	
+	/**
+	 * 业务类型 , 类型: java.lang.String
+	*/
+	public static final String BUSI_TYPE="busiType";
+	
+	/**
+	 * 业务类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetItemVO,java.lang.String> BUSI_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItemVO.class ,BUSI_TYPE, java.lang.String.class, "业务类型", "业务类型", java.lang.String.class, null);
+	
+	/**
+	 * 是否归还 , 类型: java.lang.String
+	*/
+	public static final String IS_RETURN="isReturn";
+	
+	/**
+	 * 是否归还 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetItemVO,java.lang.String> IS_RETURN_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItemVO.class ,IS_RETURN, java.lang.String.class, "是否归还", "是否归还", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -271,7 +331,7 @@ public class AssetItemVOMeta extends AssetItemMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , HANDLE_ID , ASSET_ID , BEFORE_USE_USER_ID , BEFORE_ASSET_STATUS , FLAG , CRD , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , HANDLE_ID , ASSET_ID , R_ASSET_ID , BEFORE_USE_USER_ID , BEFORE_ASSET_STATUS , FLAG , CRD , BUSI_TYPE , IS_RETURN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION };
 	
 	/**
 	 * 代理类
@@ -370,6 +430,39 @@ public class AssetItemVOMeta extends AssetItemMeta {
 		}
 		
 		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public AssetItemVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public AssetItemVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public AssetItemVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
+			return this;
+		}
+		
+		/**
 		 * 设置 主键清单
 		 * @param ids 主键清单
 		 * @return 当前对象
@@ -414,6 +507,17 @@ public class AssetItemVOMeta extends AssetItemMeta {
 		}
 		
 		/**
+		 * 设置 资产
+		 * @param rAssetId 资产
+		 * @return 当前对象
+		*/
+		public AssetItem setRAssetId(String rAssetId) {
+			super.change(R_ASSET_ID,super.getRAssetId(),rAssetId);
+			super.setRAssetId(rAssetId);
+			return this;
+		}
+		
+		/**
 		 * 设置 资产使用人
 		 * @param beforeUseUserId 资产使用人
 		 * @return 当前对象
@@ -454,6 +558,28 @@ public class AssetItemVOMeta extends AssetItemMeta {
 		public AssetItem setCrd(String crd) {
 			super.change(CRD,super.getCrd(),crd);
 			super.setCrd(crd);
+			return this;
+		}
+		
+		/**
+		 * 设置 业务类型
+		 * @param busiType 业务类型
+		 * @return 当前对象
+		*/
+		public AssetItem setBusiType(String busiType) {
+			super.change(BUSI_TYPE,super.getBusiType(),busiType);
+			super.setBusiType(busiType);
+			return this;
+		}
+		
+		/**
+		 * 设置 是否归还
+		 * @param isReturn 是否归还
+		 * @return 当前对象
+		*/
+		public AssetItem setIsReturn(String isReturn) {
+			super.change(IS_RETURN,super.getIsReturn(),isReturn);
+			super.setIsReturn(isReturn);
 			return this;
 		}
 		
@@ -572,7 +698,9 @@ public class AssetItemVOMeta extends AssetItemMeta {
 		public AssetItemVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setBeforeAssetStatus(this.getBeforeAssetStatus());
+			inst.setIsReturn(this.getIsReturn());
 			inst.setFlag(this.getFlag());
+			inst.setRAssetId(this.getRAssetId());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setVersion(this.getVersion());
@@ -584,6 +712,7 @@ public class AssetItemVOMeta extends AssetItemMeta {
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setAssetId(this.getAssetId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setBusiType(this.getBusiType());
 			inst.setId(this.getId());
 			inst.setHandleId(this.getHandleId());
 			inst.setBeforeUseUserId(this.getBeforeUseUserId());
@@ -591,11 +720,14 @@ public class AssetItemVOMeta extends AssetItemMeta {
 				inst.setSearchField(this.getSearchField());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
+				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setPageSize(this.getPageSize());
+				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
 			}
 			inst.clearModifies();

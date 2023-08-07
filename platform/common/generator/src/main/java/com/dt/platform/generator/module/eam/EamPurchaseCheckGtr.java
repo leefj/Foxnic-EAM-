@@ -34,7 +34,7 @@ public class EamPurchaseCheckGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(String.class,"orderIds","清单列表","清单列表");
 
         cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.CHECK_USER_NAME).search().fuzzySearch();
-        cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.CODE).search().fuzzySearch();
+        //cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.BUSINESS_CODE).search().fuzzySearch();
 
@@ -47,7 +47,7 @@ public class EamPurchaseCheckGtr extends BaseCodeGenerator {
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_PURCHASE_CHECK.BUSINESS_CODE,
-                        EAMTables.EAM_PURCHASE_CHECK.CODE,
+                      //  EAMTables.EAM_PURCHASE_CHECK.CODE,
                         EAMTables.EAM_PURCHASE_CHECK.NAME,
                         EAMTables.EAM_PURCHASE_CHECK.CHECK_USER_NAME,
                 },
@@ -108,9 +108,9 @@ public class EamPurchaseCheckGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.CHECK_ORG_ID)
-                .form().button().chooseOrganization(true);
-        cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.CHECK_ORG_ID).table().fillBy("checkOrg","fullName");
+//        cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.CHECK_ORG_ID)
+//                .form().button().chooseOrganization(true);
+//        cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.CHECK_ORG_ID).table().fillBy("checkOrg","fullName");
 
         cfg.view().list().disableBatchDelete();
 
@@ -131,12 +131,12 @@ public class EamPurchaseCheckGtr extends BaseCodeGenerator {
                 new Object[] {
                         EAMTables.EAM_PURCHASE_CHECK.NAME,
                         EAMTables.EAM_PURCHASE_CHECK.CHECK_USER_NAME,
-                        EAMTables.EAM_PURCHASE_CHECK.CODE,
+                  //      EAMTables.EAM_PURCHASE_CHECK.CODE,
 
                 }, new Object[] {
 
                         EAMTables.EAM_PURCHASE_CHECK.SUPPLIER_ID,
-                        EAMTables.EAM_PURCHASE_CHECK.CHECK_ORG_ID,
+                //        EAMTables.EAM_PURCHASE_CHECK.CHECK_ORG_ID,
                 }, new Object[] {
                         EAMTables.EAM_PURCHASE_CHECK.RECEIVE_DATE,
                         EAMTables.EAM_PURCHASE_CHECK.CHECK_DATE,

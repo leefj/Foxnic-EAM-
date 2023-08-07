@@ -56,6 +56,7 @@ function ListPage() {
                     return value;
                 }
             }
+
             var h=$(".search-bar").height();
             var tableConfig={
                 elem: '#data-table',
@@ -206,6 +207,30 @@ function ListPage() {
             switch(obj.event){
                 case 'refresh-data':
                     refreshTableData();
+                    break;
+                case 'cleardata':
+                    //调用批量删除接口
+
+                    var tableD = table.checkStatus('data-table');
+                    var tableData = tableD.data;
+                    var ids=[];
+                    for(var i=0;i<tableData.length;i++){
+                        if(tableData[i].bill){
+                            ids.push(tableData[i].bill.assetItemId)
+                        }
+                    }
+                    top.layer.confirm(fox.translate('是否确定进行清除？'), function (i) {
+                        top.layer.close(i);
+                        admin.post("/service-eam/eam-asset-borrow/clear-asset-return-warn-by-ids", { ids: JSON.stringify(ids) }, function (data) {
+                            if (data.success) {
+                                refreshTableData();
+                                fox.showMessage(data);
+                            } else {
+                                fox.showMessage(data);
+                            }
+                        },{delayLoading:200,elms:[$("#clear-button")]});
+                    });
+
                     break;
                 case 'other':
                     break;

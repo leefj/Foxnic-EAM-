@@ -1,6 +1,8 @@
 package com.dt.platform.eam.service;
 
 
+import com.dt.platform.domain.eam.InspectionPoint;
+import com.dt.platform.domain.eam.InspectionPointVO;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
 import com.dt.platform.domain.eam.PurchaseOrder;
@@ -25,6 +27,16 @@ import com.github.foxnic.dao.data.SaveMode;
 */
 
 public interface IPurchaseOrderService extends ISuperService<PurchaseOrder> {
+
+	Result selectDeleteById(String id);
+
+	Result selectSaveIds(String ownerId,String ids,String selectedCode);
+
+	PagedList<PurchaseOrder> queryPagedListBySelected(PurchaseOrderVO sample);
+
+
+
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

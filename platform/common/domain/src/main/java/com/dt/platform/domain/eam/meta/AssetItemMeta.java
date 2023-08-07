@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-13 18:13:51
- * @sign 18FABF07026DC9BABF26484FC1156091
+ * @since 2023-08-07 13:19:18
+ * @sign 110AB2A048FEC2B20C942EBD8150A552
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,6 +45,16 @@ public class AssetItemMeta {
 	 * 资产 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetItem,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItem.class ,ASSET_ID, java.lang.String.class, "资产", "资产", java.lang.String.class, null);
+	
+	/**
+	 * 资产 , 类型: java.lang.String
+	*/
+	public static final String R_ASSET_ID="rAssetId";
+	
+	/**
+	 * 资产 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetItem,java.lang.String> R_ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItem.class ,R_ASSET_ID, java.lang.String.class, "资产", "资产", java.lang.String.class, null);
 	
 	/**
 	 * 资产使用人 , 类型: java.lang.String
@@ -85,6 +95,26 @@ public class AssetItemMeta {
 	 * 修改标记 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetItem,java.lang.String> CRD_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItem.class ,CRD, java.lang.String.class, "修改标记", "修改标记", java.lang.String.class, null);
+	
+	/**
+	 * 业务类型 , 类型: java.lang.String
+	*/
+	public static final String BUSI_TYPE="busiType";
+	
+	/**
+	 * 业务类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetItem,java.lang.String> BUSI_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItem.class ,BUSI_TYPE, java.lang.String.class, "业务类型", "业务类型", java.lang.String.class, null);
+	
+	/**
+	 * 是否归还 , 类型: java.lang.String
+	*/
+	public static final String IS_RETURN="isReturn";
+	
+	/**
+	 * 是否归还 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetItem,java.lang.String> IS_RETURN_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItem.class ,IS_RETURN, java.lang.String.class, "是否归还", "是否归还", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -179,7 +209,7 @@ public class AssetItemMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , HANDLE_ID , ASSET_ID , BEFORE_USE_USER_ID , BEFORE_ASSET_STATUS , FLAG , CRD , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION };
+	public static final String[] $PROPS={ ID , HANDLE_ID , ASSET_ID , R_ASSET_ID , BEFORE_USE_USER_ID , BEFORE_ASSET_STATUS , FLAG , CRD , BUSI_TYPE , IS_RETURN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION };
 	
 	/**
 	 * 代理类
@@ -219,6 +249,17 @@ public class AssetItemMeta {
 		public AssetItem setAssetId(String assetId) {
 			super.change(ASSET_ID,super.getAssetId(),assetId);
 			super.setAssetId(assetId);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产
+		 * @param rAssetId 资产
+		 * @return 当前对象
+		*/
+		public AssetItem setRAssetId(String rAssetId) {
+			super.change(R_ASSET_ID,super.getRAssetId(),rAssetId);
+			super.setRAssetId(rAssetId);
 			return this;
 		}
 		
@@ -263,6 +304,28 @@ public class AssetItemMeta {
 		public AssetItem setCrd(String crd) {
 			super.change(CRD,super.getCrd(),crd);
 			super.setCrd(crd);
+			return this;
+		}
+		
+		/**
+		 * 设置 业务类型
+		 * @param busiType 业务类型
+		 * @return 当前对象
+		*/
+		public AssetItem setBusiType(String busiType) {
+			super.change(BUSI_TYPE,super.getBusiType(),busiType);
+			super.setBusiType(busiType);
+			return this;
+		}
+		
+		/**
+		 * 设置 是否归还
+		 * @param isReturn 是否归还
+		 * @return 当前对象
+		*/
+		public AssetItem setIsReturn(String isReturn) {
+			super.change(IS_RETURN,super.getIsReturn(),isReturn);
+			super.setIsReturn(isReturn);
 			return this;
 		}
 		
@@ -381,7 +444,9 @@ public class AssetItemMeta {
 		public AssetItem duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setBeforeAssetStatus(this.getBeforeAssetStatus());
+			inst.setIsReturn(this.getIsReturn());
 			inst.setFlag(this.getFlag());
+			inst.setRAssetId(this.getRAssetId());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setVersion(this.getVersion());
@@ -393,6 +458,7 @@ public class AssetItemMeta {
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setAssetId(this.getAssetId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setBusiType(this.getBusiType());
 			inst.setId(this.getId());
 			inst.setHandleId(this.getHandleId());
 			inst.setBeforeUseUserId(this.getBeforeUseUserId());

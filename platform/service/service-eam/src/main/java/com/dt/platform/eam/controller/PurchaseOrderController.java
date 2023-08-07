@@ -1,5 +1,6 @@
 package com.dt.platform.eam.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -61,18 +62,21 @@ public class PurchaseOrderController extends SuperController {
      * 添加采购订单
      */
     @ApiOperation(value = "添加采购订单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567219047221952512"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.BUSINESS_CODE, value = "业务编码", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.CODE, value = "订单编号", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.NAME, value = "订单名称", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.APPLY_ID, value = "采购申请单", required = false, dataTypeClass = String.class, example = "567749173793800192"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.CODE, value = "物品编码", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.APPLY_ID, value = "采购单", required = false, dataTypeClass = String.class, example = "567749173793800192"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.CHECK_ID, value = "验收单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_TYPE, value = "物品类型", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.STORAGE_TYPE, value = "存放类型", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_ID, value = "物品档案", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.PURCHASE_NUMBER, value = "采购数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = PurchaseOrderServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -87,7 +91,7 @@ public class PurchaseOrderController extends SuperController {
      * 删除采购订单
      */
     @ApiOperation(value = "删除采购订单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567219047221952512")
 	})
     @ApiOperationSupport(order = 2)
@@ -103,7 +107,7 @@ public class PurchaseOrderController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除采购订单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -118,18 +122,21 @@ public class PurchaseOrderController extends SuperController {
      * 更新采购订单
      */
     @ApiOperation(value = "更新采购订单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567219047221952512"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.BUSINESS_CODE, value = "业务编码", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.CODE, value = "订单编号", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.NAME, value = "订单名称", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.APPLY_ID, value = "采购申请单", required = false, dataTypeClass = String.class, example = "567749173793800192"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.CODE, value = "物品编码", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.APPLY_ID, value = "采购单", required = false, dataTypeClass = String.class, example = "567749173793800192"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.CHECK_ID, value = "验收单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_TYPE, value = "物品类型", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.STORAGE_TYPE, value = "存放类型", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_ID, value = "物品档案", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.PURCHASE_NUMBER, value = "采购数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { PurchaseOrderVOMeta.PAGE_INDEX, PurchaseOrderVOMeta.PAGE_SIZE, PurchaseOrderVOMeta.SEARCH_FIELD, PurchaseOrderVOMeta.FUZZY_FIELD, PurchaseOrderVOMeta.SEARCH_VALUE, PurchaseOrderVOMeta.DIRTY_FIELDS, PurchaseOrderVOMeta.SORT_FIELD, PurchaseOrderVOMeta.SORT_TYPE, PurchaseOrderVOMeta.IDS })
     @SentinelResource(value = PurchaseOrderServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -144,18 +151,21 @@ public class PurchaseOrderController extends SuperController {
      * 保存采购订单
      */
     @ApiOperation(value = "保存采购订单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567219047221952512"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.BUSINESS_CODE, value = "业务编码", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.CODE, value = "订单编号", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.NAME, value = "订单名称", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.APPLY_ID, value = "采购申请单", required = false, dataTypeClass = String.class, example = "567749173793800192"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.CODE, value = "物品编码", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.APPLY_ID, value = "采购单", required = false, dataTypeClass = String.class, example = "567749173793800192"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.CHECK_ID, value = "验收单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_TYPE, value = "物品类型", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.STORAGE_TYPE, value = "存放类型", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_ID, value = "物品档案", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.PURCHASE_NUMBER, value = "采购数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PurchaseOrderVOMeta.PAGE_INDEX, PurchaseOrderVOMeta.PAGE_SIZE, PurchaseOrderVOMeta.SEARCH_FIELD, PurchaseOrderVOMeta.FUZZY_FIELD, PurchaseOrderVOMeta.SEARCH_VALUE, PurchaseOrderVOMeta.DIRTY_FIELDS, PurchaseOrderVOMeta.SORT_FIELD, PurchaseOrderVOMeta.SORT_TYPE, PurchaseOrderVOMeta.IDS })
     @SentinelResource(value = PurchaseOrderServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -170,7 +180,7 @@ public class PurchaseOrderController extends SuperController {
      * 获取采购订单
      */
     @ApiOperation(value = "获取采购订单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -190,7 +200,7 @@ public class PurchaseOrderController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取采购订单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -207,18 +217,21 @@ public class PurchaseOrderController extends SuperController {
      * 查询采购订单
      */
     @ApiOperation(value = "查询采购订单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567219047221952512"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.BUSINESS_CODE, value = "业务编码", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.CODE, value = "订单编号", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.NAME, value = "订单名称", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.APPLY_ID, value = "采购申请单", required = false, dataTypeClass = String.class, example = "567749173793800192"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.CODE, value = "物品编码", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.APPLY_ID, value = "采购单", required = false, dataTypeClass = String.class, example = "567749173793800192"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.CHECK_ID, value = "验收单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_TYPE, value = "物品类型", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.STORAGE_TYPE, value = "存放类型", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_ID, value = "物品档案", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.PURCHASE_NUMBER, value = "采购数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PurchaseOrderVOMeta.PAGE_INDEX, PurchaseOrderVOMeta.PAGE_SIZE })
     @SentinelResource(value = PurchaseOrderServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -234,18 +247,21 @@ public class PurchaseOrderController extends SuperController {
      * 分页查询采购订单
      */
     @ApiOperation(value = "分页查询采购订单")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567219047221952512"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.BUSINESS_CODE, value = "业务编码", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.CODE, value = "订单编号", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.NAME, value = "订单名称", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.APPLY_ID, value = "采购申请单", required = false, dataTypeClass = String.class, example = "567749173793800192"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.CODE, value = "物品编码", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.APPLY_ID, value = "采购单", required = false, dataTypeClass = String.class, example = "567749173793800192"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.CHECK_ID, value = "验收单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_TYPE, value = "物品类型", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.STORAGE_TYPE, value = "存放类型", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_ID, value = "物品档案", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.PURCHASE_NUMBER, value = "采购数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = PurchaseOrderServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -257,5 +273,58 @@ public class PurchaseOrderController extends SuperController {
         purchaseOrderService.dao().fill(list).with(PurchaseOrderMeta.PURCHASE_APPLY).execute();
         result.success(true).data(list);
         return result;
+    }
+
+
+
+    @ApiOperation(value = "分页查询采购订单")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567219047221952512"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.BUSINESS_CODE, value = "业务编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.CODE, value = "清单编号", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.NAME, value = "清单名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.APPLY_ID, value = "采购单", required = false, dataTypeClass = String.class, example = "567749173793800192"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.CHECK_ID, value = "验收单", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_TYPE, value = "物品类型", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.STORAGE_TYPE, value = "存放类型", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_ID, value = "物品", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.PURCHASE_NUMBER, value = "采购数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class)
+	})
+    @ApiOperationSupport(order = 8)
+    @SentinelResource(value = PurchaseOrderServiceProxy.QUERY_PAGED_LIST_BY_SELECTED, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PurchaseOrderServiceProxy.QUERY_PAGED_LIST_BY_SELECTED)
+    public Result<PagedList<PurchaseOrder>> queryPagedListBySelected(PurchaseOrderVO sample) {
+        Result<PagedList<PurchaseOrder>> result = new Result<>();
+        PagedList<PurchaseOrder> list = purchaseOrderService.queryPagedListBySelected(sample);
+        // join 关联的对象
+        purchaseOrderService.dao().fill(list).with(PurchaseOrderMeta.PURCHASE_APPLY).execute();
+        result.success(true).data(list);
+        return result;
+    }
+
+    /**
+     * 获取采购订单
+     */
+    @ApiOperation(value = "获取采购订单")
+    @ApiOperationSupport(order = 6)
+    @SentinelResource(value = PurchaseOrderServiceProxy.SELECT_DELETE_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PurchaseOrderServiceProxy.SELECT_DELETE_BY_ID)
+    public Result selectDeleteById(String id) {
+        return purchaseOrderService.selectDeleteById(id);
+    }
+
+    /**
+     * 获取采购订单
+     */
+    @ApiOperation(value = "获取采购订单")
+    @ApiOperationSupport(order = 6)
+    @SentinelResource(value = PurchaseOrderServiceProxy.SELECT_SAVE_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PurchaseOrderServiceProxy.SELECT_SAVE_IDS)
+    public Result selectSaveIds(String ownerId, String ids, String selectedCode) {
+        return purchaseOrderService.selectSaveIds(ownerId, ids, selectedCode);
     }
 }

@@ -79,7 +79,7 @@ public class PurchaseCheckServiceImpl extends SuperService<PurchaseCheck> implem
 
 		//办理状态
 		if(StringUtil.isBlank(purchaseCheck.getStatus())){
-			purchaseCheck.setStatus(AssetHandleStatusEnum.INCOMPLETE.code());
+			purchaseCheck.setStatus(AssetHandleStatusEnum.COMPLETE.code());
 		}
 
 		//生成编码规则

@@ -695,7 +695,7 @@ public class AssetDataChangeServiceImpl extends SuperService<AssetDataChange> im
 		if(r.success()){
 			//保存表单数据
 			dao.execute("update eam_asset_item set crd='r' where crd='c' and handle_id=?",handleId);
-			dao.execute("delete from eam_asset_item where crd in ('d','rd') and handle_id=?",handleId);
+			dao.execute("delete from eam_asset_item where crd ='d'  and handle_id=?",handleId);
 		}
 		return r;
 	}

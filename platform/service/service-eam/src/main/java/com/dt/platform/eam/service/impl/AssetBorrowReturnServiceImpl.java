@@ -196,13 +196,20 @@ public class AssetBorrowReturnServiceImpl extends SuperService<AssetBorrowReturn
 	 * */
 	private Result operateResult(String id,String result,String status,String message) {
 		if(AssetHandleConfirmOperationEnum.SUCCESS.code().equals(result)){
+
 			Result verifyResult= verifyBillData(id);
 			if(!verifyResult.isSuccess()) return verifyResult;
+
 
 			Result applayResult=applyChange(id);
 			if(!applayResult.isSuccess()) return applayResult;
 
+			String sql="update eam_asset_item set is_return='yes' where busi_type='eam_asset_borrow' and  r_asset_id in (select r_asset_id from ((  select r_asset_id from eam_asset_item where crd in ('r','d') and handle_id= ?) t))";
+			dao.execute(sql,id);
+
 			dao.execute("update eam_asset_borrow_return set status=? where id=?",status,id);
+			//修改资产借用单据专题
+
 			return ErrorDesc.success();
 		}else if(AssetHandleConfirmOperationEnum.FAILED.code().equals(result)){
 			return ErrorDesc.failureMessage(message);
@@ -284,7 +291,7 @@ public class AssetBorrowReturnServiceImpl extends SuperService<AssetBorrowReturn
 			asset.setId(newAssetId);
 			asset.setOwnerCode(AssetOwnerCodeEnum.ASSET_DATE_AFTER.code());
 			assetService.sourceInsert(asset);
-			dao.execute("update eam_asset_item a set a.asset_id=?,flag=? where a.asset_id=? and a.handle_id=?",newAssetId,oldAssetId,oldAssetId,id);
+			dao.execute("update eam_asset_item a set r_asset_id=?,a.asset_id=?,flag=? where a.asset_id=? and a.handle_id=?",oldAssetId,newAssetId,oldAssetId,oldAssetId,id);
 		}
 		dao.execute("update eam_asset_item a,eam_asset b set b.borrow_id='' where b.owner_code='asset'  and a.flag=b.id and a.handle_id=?",id);
 		return  ErrorDesc.success();
@@ -410,7 +417,7 @@ public class AssetBorrowReturnServiceImpl extends SuperService<AssetBorrowReturn
 		if(r.success()){
 			//保存表单数据
 			dao.execute("update eam_asset_item set crd='r' where crd='c' and handle_id=?",assetBorrowReturn.getId());
-			dao.execute("delete from eam_asset_item where crd in ('d','rd') and  handle_id=?",assetBorrowReturn.getId());
+			dao.execute("delete from eam_asset_item where crd ='d'  and  handle_id=?",assetBorrowReturn.getId());
 		}
 
 		return r;

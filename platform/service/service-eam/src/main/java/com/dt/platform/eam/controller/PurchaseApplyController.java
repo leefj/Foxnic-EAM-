@@ -71,7 +71,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
      * 添加采购申请
      */
     @ApiOperation(value = "添加采购申请")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567098245956763648"),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -81,10 +81,9 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ASSET_CHECK, value = "验收情况", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class, example = "473623647488049153"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.HARVEST_INFORMATION, value = "收货信息", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.EXPECTED_ARRIVAL_DATE, value = "期望到货时间", required = false, dataTypeClass = String.class, example = "2022-04-12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_CONTENT, value = "申请说明", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = String.class, example = "2022-04-12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.EXPECTED_ARRIVAL_DATE, value = "到货时间", required = false, dataTypeClass = String.class, example = "2022-04-12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_CONTENT, value = "采购说明", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_DATE, value = "采购日期", required = false, dataTypeClass = String.class, example = "2022-04-12"),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -98,7 +97,10 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.PURCHASE_USER_ID, value = "采购人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.CHECK_ID, value = "验收单", required = false, dataTypeClass = String.class),
+
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = PurchaseApplyServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -113,7 +115,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
      * 删除采购申请
      */
     @ApiOperation(value = "删除采购申请")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567098245956763648")
 	})
     @ApiOperationSupport(order = 2)
@@ -129,7 +131,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除采购申请")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -144,7 +146,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
      * 更新采购申请
      */
     @ApiOperation(value = "更新采购申请")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567098245956763648"),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -154,10 +156,9 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ASSET_CHECK, value = "验收情况", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class, example = "473623647488049153"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.HARVEST_INFORMATION, value = "收货信息", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.EXPECTED_ARRIVAL_DATE, value = "期望到货时间", required = false, dataTypeClass = String.class, example = "2022-04-12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_CONTENT, value = "申请说明", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = String.class, example = "2022-04-12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.EXPECTED_ARRIVAL_DATE, value = "到货时间", required = false, dataTypeClass = String.class, example = "2022-04-12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_CONTENT, value = "采购说明", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_DATE, value = "采购日期", required = false, dataTypeClass = String.class, example = "2022-04-12"),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -171,7 +172,10 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.PURCHASE_USER_ID, value = "采购人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.CHECK_ID, value = "验收单", required = false, dataTypeClass = String.class),
+
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { PurchaseApplyVOMeta.PAGE_INDEX, PurchaseApplyVOMeta.PAGE_SIZE, PurchaseApplyVOMeta.SEARCH_FIELD, PurchaseApplyVOMeta.FUZZY_FIELD, PurchaseApplyVOMeta.SEARCH_VALUE, PurchaseApplyVOMeta.DIRTY_FIELDS, PurchaseApplyVOMeta.SORT_FIELD, PurchaseApplyVOMeta.SORT_TYPE, PurchaseApplyVOMeta.IDS })
     @SentinelResource(value = PurchaseApplyServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -186,7 +190,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
      * 保存采购申请
      */
     @ApiOperation(value = "保存采购申请")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567098245956763648"),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -196,10 +200,9 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ASSET_CHECK, value = "验收情况", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class, example = "473623647488049153"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.HARVEST_INFORMATION, value = "收货信息", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.EXPECTED_ARRIVAL_DATE, value = "期望到货时间", required = false, dataTypeClass = String.class, example = "2022-04-12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_CONTENT, value = "申请说明", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = String.class, example = "2022-04-12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.EXPECTED_ARRIVAL_DATE, value = "到货时间", required = false, dataTypeClass = String.class, example = "2022-04-12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_CONTENT, value = "采购说明", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_DATE, value = "采购日期", required = false, dataTypeClass = String.class, example = "2022-04-12"),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -213,7 +216,10 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.PURCHASE_USER_ID, value = "采购人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.CHECK_ID, value = "验收单", required = false, dataTypeClass = String.class),
+
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PurchaseApplyVOMeta.PAGE_INDEX, PurchaseApplyVOMeta.PAGE_SIZE, PurchaseApplyVOMeta.SEARCH_FIELD, PurchaseApplyVOMeta.FUZZY_FIELD, PurchaseApplyVOMeta.SEARCH_VALUE, PurchaseApplyVOMeta.DIRTY_FIELDS, PurchaseApplyVOMeta.SORT_FIELD, PurchaseApplyVOMeta.SORT_TYPE, PurchaseApplyVOMeta.IDS })
     @SentinelResource(value = PurchaseApplyServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -228,7 +234,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
      * 获取采购申请
      */
     @ApiOperation(value = "获取采购申请")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -248,7 +254,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取采购申请")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -265,7 +271,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
      * 查询采购申请
      */
     @ApiOperation(value = "查询采购申请")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567098245956763648"),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -275,11 +281,9 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ASSET_CHECK, value = "验收情况", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class, example = "473623647488049153"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.HARVEST_INFORMATION, value = "收货信息", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.EXPECTED_ARRIVAL_DATE, value = "期望到货时间", required = false, dataTypeClass = String.class, example = "2022-04-12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_CONTENT, value = "申请说明", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = String.class, example = "2022-04-12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.EXPECTED_ARRIVAL_DATE, value = "到货时间", required = false, dataTypeClass = String.class, example = "2022-04-12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_CONTENT, value = "采购说明", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_DATE, value = "采购日期", required = false, dataTypeClass = String.class, example = "2022-04-12"),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
@@ -292,7 +296,11 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.PURCHASE_USER_ID, value = "采购人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.CHECK_ID, value = "验收单", required = false, dataTypeClass = String.class),
+
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PurchaseApplyVOMeta.PAGE_INDEX, PurchaseApplyVOMeta.PAGE_SIZE })
     @SentinelResource(value = PurchaseApplyServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -308,7 +316,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
      * 分页查询采购申请
      */
     @ApiOperation(value = "分页查询采购申请")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "567098245956763648"),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -318,10 +326,9 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ASSET_CHECK, value = "验收情况", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class, example = "473623647488049153"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.HARVEST_INFORMATION, value = "收货信息", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.EXPECTED_ARRIVAL_DATE, value = "期望到货时间", required = false, dataTypeClass = String.class, example = "2022-04-12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_CONTENT, value = "申请说明", required = false, dataTypeClass = String.class, example = "12"),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = String.class, example = "2022-04-12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.EXPECTED_ARRIVAL_DATE, value = "到货时间", required = false, dataTypeClass = String.class, example = "2022-04-12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_CONTENT, value = "采购说明", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPLY_DATE, value = "采购日期", required = false, dataTypeClass = String.class, example = "2022-04-12"),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -335,7 +342,10 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.PURCHASE_USER_ID, value = "采购人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseApplyVOMeta.CHECK_ID, value = "验收单", required = false, dataTypeClass = String.class),
+
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = PurchaseApplyServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -353,7 +363,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
      * 确认
      */
     @ApiOperation(value = "报废确认")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 13)
@@ -367,7 +377,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
      * 验收
      */
     @ApiOperation(value = "验收")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = PurchaseApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 16)

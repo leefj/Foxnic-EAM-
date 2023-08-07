@@ -118,6 +118,12 @@ public interface AssetBorrowServiceProxy extends BpmCallbackController{
      * 流程事件回调接收接口
      */
     public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
+
+    /**
+     * 流程事件回调接收接口
+     */
+    public static final String CLEAR_ASSET_RETURN_WARN_BY_IDS = API_PREFIX + "clear-asset-return-warn-by-ids";
+
     /**
      * 分页查询资产报失
      */

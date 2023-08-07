@@ -246,6 +246,18 @@ public class AssetBorrowController extends SuperController implements BpmCallbac
     }
 
     /**
+     * 批量删除资产借用 <br>
+     * 联合主键时，请自行调整实现
+     */
+    @ApiOperation(value = "清除告警")
+    @ApiOperationSupport(order = 3)
+    @SentinelResource(value = AssetBorrowServiceProxy.CLEAR_ASSET_RETURN_WARN_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetBorrowServiceProxy.CLEAR_ASSET_RETURN_WARN_BY_IDS)
+    public Result clearAssetReturnWarnByIds(String ids) {
+        return assetBorrowService.clearAssetReturnWarnByIds(ids);
+    }
+
+    /**
      * 查询资产借用
      */
     @ApiOperation(value = "查询资产借用")
