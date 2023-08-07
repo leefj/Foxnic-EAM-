@@ -84,6 +84,17 @@ public interface PurchaseOrderServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+    public static final String SELECT_SAVE_IDS = API_PREFIX + "select-save-ids";
+
+    public static final String SELECT_DELETE_BY_ID = API_PREFIX + "select-delete-by-id";
+
+    public static final String QUERY_PAGED_LIST_BY_SELECTED = API_PREFIX + "query-paged-list-by-selected";
+
+
+    public static final String QUERY_PAGED_LIST_BY_SELECT = API_PREFIX + "query-paged-list-by-select";
+
+
+
     /**
      * 添加采购订单
      */

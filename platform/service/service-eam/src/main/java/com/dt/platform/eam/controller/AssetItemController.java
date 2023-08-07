@@ -67,7 +67,11 @@ public class AssetItemController extends SuperController {
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_ASSET_STATUS, value = "资产状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.CRD, value = "修改标记", required = false, dataTypeClass = String.class, example = "r"),
 		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.BUSI_TYPE, value = "业务类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.IS_RETURN, value = "是否归还", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.BUSI_TYPE, value = "业务类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.R_ASSET_ID, value = "资产", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetItemServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -121,7 +125,11 @@ public class AssetItemController extends SuperController {
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_ASSET_STATUS, value = "资产状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.CRD, value = "修改标记", required = false, dataTypeClass = String.class, example = "r"),
 		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.BUSI_TYPE, value = "业务类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.IS_RETURN, value = "是否归还", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.BUSI_TYPE, value = "业务类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.R_ASSET_ID, value = "资产", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetItemVOMeta.PAGE_INDEX, AssetItemVOMeta.PAGE_SIZE, AssetItemVOMeta.SEARCH_FIELD, AssetItemVOMeta.FUZZY_FIELD, AssetItemVOMeta.SEARCH_VALUE, AssetItemVOMeta.DIRTY_FIELDS, AssetItemVOMeta.SORT_FIELD, AssetItemVOMeta.SORT_TYPE, AssetItemVOMeta.IDS })
     @SentinelResource(value = AssetItemServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -144,7 +152,11 @@ public class AssetItemController extends SuperController {
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_ASSET_STATUS, value = "资产状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.CRD, value = "修改标记", required = false, dataTypeClass = String.class, example = "r"),
 		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.BUSI_TYPE, value = "业务类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.IS_RETURN, value = "是否归还", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.BUSI_TYPE, value = "业务类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.R_ASSET_ID, value = "资产", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetItemVOMeta.PAGE_INDEX, AssetItemVOMeta.PAGE_SIZE, AssetItemVOMeta.SEARCH_FIELD, AssetItemVOMeta.FUZZY_FIELD, AssetItemVOMeta.SEARCH_VALUE, AssetItemVOMeta.DIRTY_FIELDS, AssetItemVOMeta.SORT_FIELD, AssetItemVOMeta.SORT_TYPE, AssetItemVOMeta.IDS })
     @SentinelResource(value = AssetItemServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -202,7 +214,11 @@ public class AssetItemController extends SuperController {
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_ASSET_STATUS, value = "资产状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.CRD, value = "修改标记", required = false, dataTypeClass = String.class, example = "r"),
 		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.BUSI_TYPE, value = "业务类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.IS_RETURN, value = "是否归还", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.BUSI_TYPE, value = "业务类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.R_ASSET_ID, value = "资产", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetItemVOMeta.PAGE_INDEX, AssetItemVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetItemServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -226,7 +242,11 @@ public class AssetItemController extends SuperController {
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_ASSET_STATUS, value = "资产状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.CRD, value = "修改标记", required = false, dataTypeClass = String.class, example = "r"),
 		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.BUSI_TYPE, value = "业务类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.IS_RETURN, value = "是否归还", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.BUSI_TYPE, value = "业务类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.R_ASSET_ID, value = "资产", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetItemServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

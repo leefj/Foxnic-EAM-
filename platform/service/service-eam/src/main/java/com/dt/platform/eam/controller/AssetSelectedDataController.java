@@ -115,9 +115,8 @@ public class AssetSelectedDataController extends SuperController {
     @SentinelResource(value = AssetSelectedDataServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSelectedDataServiceProxy.DELETE_BY_IDS)
     public Result deleteByIds(List<String> ids, String assetSelectedCode, String assetOwnerId) {
+
         if (assetOwnerId != null && assetOwnerId.length() > 0) {
-            AssetItemVO vo = new AssetItemVO();
-            vo.setHandleId(assetOwnerId);
             ConditionExpr q = new ConditionExpr();
             q.andInIf("asset_id", ids);
             q.and("handle_id=?", assetOwnerId);
@@ -125,12 +124,13 @@ public class AssetSelectedDataController extends SuperController {
             for (int i = 0; i < list.size(); i++) {
                 if ("r".equals(list.get(i).getCrd())) {
                     list.get(i).setCrd("d");
-                } else {
-                    list.get(i).setCrd("cd");
+                    assetItemService.update(list.get(i),SaveMode.NOT_NULL_FIELDS);
+                } else if("c".equals(list.get(i).getCrd())){
+                    assetItemService.dao().execute("delete from eam_asset_item where id=?",list.get(i).getId());
                 }
             }
-            return assetItemService.updateList(list, SaveMode.NOT_NULL_FIELDS);
         } else {
+            //新建
             List<String> deleteList = new ArrayList<>();
             AssetSelectedDataVO vo = new AssetSelectedDataVO();
             vo.setAssetSelectedCode(assetSelectedCode);
@@ -143,6 +143,7 @@ public class AssetSelectedDataController extends SuperController {
             }
             return assetSelectedDataService.deleteByIdsLogical(deleteList);
         }
+        return ErrorDesc.success();
     }
 
     /**
@@ -315,6 +316,7 @@ public class AssetSelectedDataController extends SuperController {
                 obj.setCrd("c");
                 obj.setHandleId(assetOwnerId);
                 obj.setSelectedCode(assetSelectedCode);
+                obj.setBusiType(assetBusinessType);
                 list.add(obj);
             }
             return assetItemService.insertList(list);

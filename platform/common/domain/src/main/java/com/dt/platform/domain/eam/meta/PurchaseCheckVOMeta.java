@@ -10,13 +10,14 @@ import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.PurchaseApply;
 import com.dt.platform.domain.eam.PurchaseOrder;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 07:31:06
- * @sign 0195E75D1437044564ACD2B3A16B6ECC
+ * @since 2023-08-07 20:15:33
+ * @sign 6D22B8980C7A1DFCC0B6CA7C1CD35C5D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -103,6 +104,36 @@ public class PurchaseCheckVOMeta extends PurchaseCheckMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
 	*/
 	public static final String IDS="ids";
@@ -173,16 +204,6 @@ public class PurchaseCheckVOMeta extends PurchaseCheckMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,java.lang.String> APPLY_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,APPLY_ID, java.lang.String.class, "采购申请", "采购申请", java.lang.String.class, null);
 	
 	/**
-	 * 验收单 , 类型: java.lang.String
-	*/
-	public static final String CODE="code";
-	
-	/**
-	 * 验收单 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,CODE, java.lang.String.class, "验收单", "验收单", java.lang.String.class, null);
-	
-	/**
 	 * 供应商 , 类型: java.lang.String
 	*/
 	public static final String SUPPLIER_ID="supplierId";
@@ -191,16 +212,6 @@ public class PurchaseCheckVOMeta extends PurchaseCheckMeta {
 	 * 供应商 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,java.lang.String> SUPPLIER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,SUPPLIER_ID, java.lang.String.class, "供应商", "供应商", java.lang.String.class, null);
-	
-	/**
-	 * 验收部门 , 类型: java.lang.String
-	*/
-	public static final String CHECK_ORG_ID="checkOrgId";
-	
-	/**
-	 * 验收部门 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,java.lang.String> CHECK_ORG_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,CHECK_ORG_ID, java.lang.String.class, "验收部门", "验收部门", java.lang.String.class, null);
 	
 	/**
 	 * 验收人 , 类型: java.lang.String
@@ -413,29 +424,29 @@ public class PurchaseCheckVOMeta extends PurchaseCheckMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,com.dt.platform.domain.eam.PurchaseApply> PURCHASE_APPLY_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,PURCHASE_APPLY, com.dt.platform.domain.eam.PurchaseApply.class, "领用申请", "领用申请", com.dt.platform.domain.eam.PurchaseApply.class, null);
 	
 	/**
-	 * 订单 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.PurchaseOrder
+	 * 清单 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.PurchaseOrder
 	*/
 	public static final String ORDER_LIST="orderList";
 	
 	/**
-	 * 订单 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.PurchaseOrder
+	 * 清单 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.PurchaseOrder
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,com.dt.platform.domain.eam.PurchaseOrder> ORDER_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,ORDER_LIST, java.util.List.class, "订单", "订单", com.dt.platform.domain.eam.PurchaseOrder.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,com.dt.platform.domain.eam.PurchaseOrder> ORDER_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,ORDER_LIST, java.util.List.class, "清单", "清单", com.dt.platform.domain.eam.PurchaseOrder.class, null);
 	
 	/**
-	 * 订单列表 , 集合类型: LIST , 类型: java.lang.String
+	 * 清单列表 , 集合类型: LIST , 类型: java.lang.String
 	*/
 	public static final String ORDER_IDS="orderIds";
 	
 	/**
-	 * 订单列表 , 集合类型: LIST , 类型: java.lang.String
+	 * 清单列表 , 集合类型: LIST , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,java.lang.String> ORDER_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,ORDER_IDS, java.util.List.class, "订单列表", "订单列表", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheckVO,java.lang.String> ORDER_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheckVO.class ,ORDER_IDS, java.util.List.class, "清单列表", "清单列表", java.lang.String.class, null);
 	
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , PROC_ID , STATUS , BUSINESS_CODE , NAME , APPLY_ID , CODE , SUPPLIER_ID , CHECK_ORG_ID , CHECK_USER_NAME , RECEIVE_DATE , CHECK_DATE , CHECK_INFORMATION , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , SUPPLIER , CHECK_ORG , ORIGINATOR , PURCHASE_APPLY , ORDER_LIST , ORDER_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PROC_ID , STATUS , BUSINESS_CODE , NAME , APPLY_ID , SUPPLIER_ID , CHECK_USER_NAME , RECEIVE_DATE , CHECK_DATE , CHECK_INFORMATION , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , SUPPLIER , CHECK_ORG , ORIGINATOR , PURCHASE_APPLY , ORDER_LIST , ORDER_IDS };
 	
 	/**
 	 * 代理类
@@ -534,6 +545,39 @@ public class PurchaseCheckVOMeta extends PurchaseCheckMeta {
 		}
 		
 		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public PurchaseCheckVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public PurchaseCheckVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public PurchaseCheckVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
+			return this;
+		}
+		
+		/**
 		 * 设置 主键清单
 		 * @param ids 主键清单
 		 * @return 当前对象
@@ -611,17 +655,6 @@ public class PurchaseCheckVOMeta extends PurchaseCheckMeta {
 		}
 		
 		/**
-		 * 设置 验收单
-		 * @param code 验收单
-		 * @return 当前对象
-		*/
-		public PurchaseCheck setCode(String code) {
-			super.change(CODE,super.getCode(),code);
-			super.setCode(code);
-			return this;
-		}
-		
-		/**
 		 * 设置 供应商
 		 * @param supplierId 供应商
 		 * @return 当前对象
@@ -629,17 +662,6 @@ public class PurchaseCheckVOMeta extends PurchaseCheckMeta {
 		public PurchaseCheck setSupplierId(String supplierId) {
 			super.change(SUPPLIER_ID,super.getSupplierId(),supplierId);
 			super.setSupplierId(supplierId);
-			return this;
-		}
-		
-		/**
-		 * 设置 验收部门
-		 * @param checkOrgId 验收部门
-		 * @return 当前对象
-		*/
-		public PurchaseCheck setCheckOrgId(String checkOrgId) {
-			super.change(CHECK_ORG_ID,super.getCheckOrgId(),checkOrgId);
-			super.setCheckOrgId(checkOrgId);
 			return this;
 		}
 		
@@ -875,8 +897,8 @@ public class PurchaseCheckVOMeta extends PurchaseCheckMeta {
 		}
 		
 		/**
-		 * 设置 订单
-		 * @param orderList 订单
+		 * 设置 清单
+		 * @param orderList 清单
 		 * @return 当前对象
 		*/
 		public PurchaseCheck setOrderList(List<PurchaseOrder> orderList) {
@@ -886,8 +908,8 @@ public class PurchaseCheckVOMeta extends PurchaseCheckMeta {
 		}
 		
 		/**
-		 * 设置 订单列表
-		 * @param orderIds 订单列表
+		 * 设置 清单列表
+		 * @param orderIds 清单列表
 		 * @return 当前对象
 		*/
 		public PurchaseCheck setOrderIds(List<String> orderIds) {
@@ -895,5 +917,69 @@ public class PurchaseCheckVOMeta extends PurchaseCheckMeta {
 			super.setOrderIds(orderIds);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public PurchaseCheckVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public PurchaseCheckVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setSupplierId(this.getSupplierId());
+			inst.setNotes(this.getNotes());
+			inst.setProcId(this.getProcId());
+			inst.setReceiveDate(this.getReceiveDate());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setCheckDate(this.getCheckDate());
+			inst.setVersion(this.getVersion());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setApplyId(this.getApplyId());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setCheckUserName(this.getCheckUserName());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setAttach(this.getAttach());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setCheckInformation(this.getCheckInformation());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setPurchaseApply(this.getPurchaseApply());
+				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setCheckOrg(this.getCheckOrg());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setOrderList(this.getOrderList());
+				inst.setOriginator(this.getOriginator());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setSupplier(this.getSupplier());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setOrderIds(this.getOrderIds());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

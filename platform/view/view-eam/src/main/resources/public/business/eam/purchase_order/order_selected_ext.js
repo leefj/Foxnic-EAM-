@@ -32,9 +32,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
                 document.getElementById("toolbarTemplate").innerHTML=toolHtml;
 
-
                 var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                 operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
                 document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
             }
@@ -88,14 +88,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param location 调用的代码位置
          * */
         beforeQuery:function (conditions,param,location) {
-            console.log('beforeQuery',conditions,param,location);
-            if(OWNER_ID&&OWNER_ID!="undefined"&&OWNER_ID!="null"){
-                param.applyId=OWNER_ID
-            }else{
-                param.selectedCode=SELECTED_CODE
-
-            }
-            return true;
+            // console.log('beforeQuery',conditions,param,location);
+            // if(OWNER_ID&&OWNER_ID!="undefined"&&OWNER_ID!="null"){
+            //     param.applyId=OWNER_ID
+            // }else{
+            //     param.selectedCode=SELECTED_CODE;
+            //
+            // }
+            // return true;
         },
         /**
          * 查询结果渲染后调用
@@ -103,7 +103,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterQuery : function (data) {
             for (var i = 0; i < data.length; i++) {
                 if (PAGE_TYPE && PAGE_TYPE == "view") {
-                 //   fox.disableButton($('.ops-view-button').filter("[data-id='" + data[i].id + "']"), true);
+                    //   fox.disableButton($('.ops-view-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
                 }
@@ -120,7 +120,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单页面打开时，追加更多的参数信息
          * */
         makeFormQueryString:function(data,queryString,action) {
-            queryString=queryString+"&selectedCode="+SELECTED_CODE+"&ownerId="+OWNER_ID;
+            // if(data.id){
+            //     queryString=queryString+"&selectedCode="+SELECTED_CODE;
+            //
+            // }else{
+            //     queryString="selectedCode="+SELECTED_CODE;
+            // }
+            queryString="ownerId="+OWNER_ID+"&selectedCode="+SELECTED_CODE;
             return queryString;
         },
         /**
@@ -245,6 +251,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("beforeSubmit",data);
             data.selectedCode=SELECTED_CODE;
             data.applyId=OWNER_ID;
+
             return true;
         },
         /**
@@ -264,6 +271,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
         assetSelectList:function (ifr,win,orderData) {
 
+
             //设置 iframe 高度
             ifr.height("450px");
             //设置地址
@@ -273,6 +281,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             data.assetBusinessType="asset_purchase_apply"
             data.action=formAction;
             data.ownerCode="asset_purchase_apply";
+            //   if(BILL_ID==null)BILL_ID="";
             if(orderData.id){
                 data.assetOwnerId=orderData.id;
             }else{
@@ -283,7 +292,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             win.location="/business/eam/stock/stock_asset_list.html?assetSelectedCode="+SELECTED_CODE+"&ownerCode="+data.ownerCode;
 
 
-         },
+        },
 
         /**
          * 文件上传组件回调

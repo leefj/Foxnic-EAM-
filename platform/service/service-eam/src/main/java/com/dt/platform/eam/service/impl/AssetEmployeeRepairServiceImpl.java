@@ -233,7 +233,7 @@ public class AssetEmployeeRepairServiceImpl extends SuperService<AssetEmployeeRe
 		if(r.success()){
 			//保存表单数据
 			dao.execute("update eam_asset_item set crd='r' where crd='c' and handle_id=?",assetEmployeeRepair.getId());
-			dao.execute("delete from eam_asset_item where crd in ('d','rd') and  handle_id=?",assetEmployeeRepair.getId());
+			dao.execute("delete from eam_asset_item where crd ='d'  and  handle_id=?",assetEmployeeRepair.getId());
 		}
 		return r;
 	}

@@ -364,8 +364,6 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 		}
 
 
-
-
 		if(maintainPlan.getEndTime()!=null){
 			Calendar c = Calendar.getInstance();
 			Date now = new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH));

@@ -58,12 +58,8 @@
                         </div>
                     </div>
 
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('验收单')}">验收单</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="code" id="code" name="code" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('验收单') }" type="text" class="layui-input"  />
-                        </div>
-                    </div>
+
+
 
                 <!--结束：栏次内字段循环-->
             </div>
@@ -80,13 +76,6 @@
                     </div>
 
 
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('验收部门')}">验收部门</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="checkOrgId" id="checkOrgId" name="checkOrgId"  type="hidden" class="layui-input"   />
-                            <button id="checkOrgId-button" type="button" action-type="org-dialog" class="layui-btn   " style="width: 100%"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择组织节点')}" th:default-label="${lang.translate('请选择组织节点')}">按钮文本</span></button>
-                        </div>
-                    </div>
 
                 <!--结束：栏次内字段循环-->
             </div>

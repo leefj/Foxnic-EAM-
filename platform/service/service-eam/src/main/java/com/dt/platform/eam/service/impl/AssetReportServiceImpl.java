@@ -281,7 +281,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         result.put("maintainProjectCnt",dao.queryRecord(sql2).getInteger("maintain_project_cnt"));
 
         //保养任务数
-        String sqlWaitMaintainTask="select count(1) wait_maintain_task_cnt from eam_maintain_task where status ='wait' and deleted=0";
+        String sqlWaitMaintainTask="select count(1) wait_maintain_task_cnt from eam_maintain_task a,eam_maintain_plan b where a.status ='wait' and a.deleted=0 and a.plan_id=b.id and a.tenant_id='T001'";
         result.put("waitMaintainTaskCnt",dao.queryRecord(sqlWaitMaintainTask).getInteger("wait_maintain_task_cnt"));
 
 

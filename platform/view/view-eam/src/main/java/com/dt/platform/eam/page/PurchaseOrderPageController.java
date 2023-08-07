@@ -41,20 +41,30 @@ public class PurchaseOrderPageController extends ViewController {
 	 * 采购订单 功能主页面
 	 */
 	@RequestMapping("/purchase_order_list.html")
-	public String list(Model model,HttpServletRequest request,String pageType,String applyId,String selectedCode) {
+	public String list(Model model,HttpServletRequest request,String pageType,String ownerId,String selectedCode) {
 		model.addAttribute("pageType",pageType);
-		model.addAttribute("applyId",applyId);
+		model.addAttribute("ownerId",ownerId);
 		model.addAttribute("selectedCode",selectedCode);
 		return prefix+"/purchase_order_list";
 
 	}
-
+	/**
+	 * 保养项目 功能主页面
+	 */
+	@RequestMapping("/purchase_order_selected_list.html")
+	public String selectList2(Model model,HttpServletRequest request,String selectedCode,String ownerId,String ownerType,String pageType) {
+		model.addAttribute("ownerId",ownerId);
+		model.addAttribute("pageType",pageType);
+		model.addAttribute("ownerType",ownerType);
+		model.addAttribute("selectedCode",selectedCode);
+		return prefix+"/purchase_order_selected_list";
+	}
 	/**
 	 * 采购订单 表单页面
 	 */
 	@RequestMapping("/purchase_order_form.html")
-	public String form(Model model,HttpServletRequest request , String id,String applyId,String selectedCode) {
-		model.addAttribute("applyId",applyId);
+	public String form(Model model,HttpServletRequest request , String id,String ownerId,String selectedCode) {
+		model.addAttribute("ownerId",ownerId);
 		model.addAttribute("selectedCode",selectedCode);
 		return prefix+"/purchase_order_form";
 	}

@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-08-04 22:28:15
+ * @since 2023-08-07 20:12:44
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -4516,6 +4516,11 @@ public class EAMTables {
 		public static final DBField ASSET_ID = new DBField(DBDataType.STRING , "asset_id","assetId","资产","资产",false,false,true);
 		
 		/**
+		 * 资产
+		*/
+		public static final DBField R_ASSET_ID = new DBField(DBDataType.STRING , "r_asset_id","rAssetId","资产","资产",false,false,true);
+		
+		/**
 		 * 资产使用人
 		*/
 		public static final DBField BEFORE_USE_USER_ID = new DBField(DBDataType.STRING , "before_use_user_id","beforeUseUserId","资产使用人","资产使用人",false,false,true);
@@ -4534,6 +4539,16 @@ public class EAMTables {
 		 * 修改标记
 		*/
 		public static final DBField CRD = new DBField(DBDataType.STRING , "crd","crd","修改标记","修改标记",false,false,true);
+		
+		/**
+		 * 业务类型
+		*/
+		public static final DBField BUSI_TYPE = new DBField(DBDataType.STRING , "busi_type","busiType","业务类型","业务类型",false,false,true);
+		
+		/**
+		 * 是否归还
+		*/
+		public static final DBField IS_RETURN = new DBField(DBDataType.STRING , "is_return","isReturn","是否归还","是否归还",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -4580,7 +4595,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public EAM_ASSET_ITEM() {
-			this.init($NAME,"资产" , ID , HANDLE_ID , ASSET_ID , BEFORE_USE_USER_ID , BEFORE_ASSET_STATUS , FLAG , CRD , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION);
+			this.init($NAME,"资产" , ID , HANDLE_ID , ASSET_ID , R_ASSET_ID , BEFORE_USE_USER_ID , BEFORE_ASSET_STATUS , FLAG , CRD , BUSI_TYPE , IS_RETURN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION);
 		}
 		public static final EAM_ASSET_ITEM $TABLE=new EAM_ASSET_ITEM();
 	}
@@ -7415,13 +7430,8 @@ public class EAMTables {
 		*/
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
-		/**
-		 * 租户
-		*/
-		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
-		
 		public EAM_ASSET_SELECTED_DATA() {
-			this.init($NAME,"资产选择" , ID , ASSET_SELECTED_CODE , ASSET_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"资产选择" , ID , ASSET_SELECTED_CODE , ASSET_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final EAM_ASSET_SELECTED_DATA $TABLE=new EAM_ASSET_SELECTED_DATA();
 	}
@@ -18201,14 +18211,14 @@ public class EAMTables {
 		public static final DBField PROC_ID = new DBField(DBDataType.STRING , "proc_id","procId","流程","流程",false,false,true);
 		
 		/**
-		 * 办理状态
-		*/
-		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","办理状态","办理状态",false,false,true);
-		
-		/**
 		 * 业务名称
 		*/
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","业务名称","业务名称",false,false,true);
+		
+		/**
+		 * 办理状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","办理状态","办理状态",false,false,true);
 		
 		/**
 		 * 申请状态
@@ -18221,39 +18231,39 @@ public class EAMTables {
 		public static final DBField APPLY_ORG_ID = new DBField(DBDataType.STRING , "apply_org_id","applyOrgId","申请部门","申请部门",false,false,true);
 		
 		/**
+		 * 采购人
+		*/
+		public static final DBField PURCHASE_USER_ID = new DBField(DBDataType.STRING , "purchase_user_id","purchaseUserId","采购人","采购人",false,false,true);
+		
+		/**
 		 * 供应商
 		*/
 		public static final DBField SUPPLIER_ID = new DBField(DBDataType.STRING , "supplier_id","supplierId","供应商","供应商",false,false,true);
 		
 		/**
-		 * 收货信息
+		 * 采购说明
 		*/
-		public static final DBField HARVEST_INFORMATION = new DBField(DBDataType.STRING , "harvest_information","harvestInformation","收货信息","收货信息",false,false,true);
+		public static final DBField APPLY_CONTENT = new DBField(DBDataType.STRING , "apply_content","applyContent","采购说明","采购说明",false,false,true);
 		
 		/**
-		 * 期望到货时间
+		 * 采购日期
 		*/
-		public static final DBField EXPECTED_ARRIVAL_DATE = new DBField(DBDataType.STRING , "expected_arrival_date","expectedArrivalDate","期望到货时间","期望到货时间",false,false,true);
+		public static final DBField APPLY_DATE = new DBField(DBDataType.STRING , "apply_date","applyDate","采购日期","采购日期",false,false,true);
 		
 		/**
-		 * 申请说明
+		 * 到货时间
 		*/
-		public static final DBField APPLY_CONTENT = new DBField(DBDataType.STRING , "apply_content","applyContent","申请说明","申请说明",false,false,true);
+		public static final DBField EXPECTED_ARRIVAL_DATE = new DBField(DBDataType.DATE , "expected_arrival_date","expectedArrivalDate","到货时间","到货时间",false,false,true);
 		
 		/**
-		 * 申请日期
+		 * 验收单
 		*/
-		public static final DBField APPLY_DATE = new DBField(DBDataType.STRING , "apply_date","applyDate","申请日期","申请日期",false,false,true);
+		public static final DBField CHECK_ID = new DBField(DBDataType.STRING , "check_id","checkId","验收单","验收单",false,false,true);
 		
 		/**
 		 * 验收情况
 		*/
 		public static final DBField ASSET_CHECK = new DBField(DBDataType.STRING , "asset_check","assetCheck","验收情况","验收情况",false,false,true);
-		
-		/**
-		 * 验收编号
-		*/
-		public static final DBField CHECK_CODE = new DBField(DBDataType.STRING , "check_code","checkCode","验收编号","验收编号",false,false,true);
 		
 		/**
 		 * 备注
@@ -18276,14 +18286,14 @@ public class EAMTables {
 		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
 		
 		/**
-		 * 创建时间
-		*/
-		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
-		
-		/**
 		 * 修改人ID
 		*/
 		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
 		
 		/**
 		 * 修改时间
@@ -18313,11 +18323,6 @@ public class EAMTables {
 		 * 租户
 		*/
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
-		
-		/**
-		 * 选择数据
-		*/
-		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择数据","选择数据",false,false,true);
 		
 		/**
 		 * 变更类型
@@ -18370,7 +18375,7 @@ public class EAMTables {
 		public static final DBField APPROVAL_OPINION = new DBField(DBDataType.STRING , "approval_opinion","approvalOpinion","审批意见","审批意见",false,false,true);
 		
 		public EAM_PURCHASE_APPLY() {
-			this.init($NAME,"采购申请" , ID , BUSINESS_CODE , PROC_ID , STATUS , NAME , APPLY_STATUS , APPLY_ORG_ID , SUPPLIER_ID , HARVEST_INFORMATION , EXPECTED_ARRIVAL_DATE , APPLY_CONTENT , APPLY_DATE , ASSET_CHECK , CHECK_CODE , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION);
+			this.init($NAME,"采购申请" , ID , BUSINESS_CODE , PROC_ID , NAME , STATUS , APPLY_STATUS , APPLY_ORG_ID , PURCHASE_USER_ID , SUPPLIER_ID , APPLY_CONTENT , APPLY_DATE , EXPECTED_ARRIVAL_DATE , CHECK_ID , ASSET_CHECK , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , UPDATE_BY , CREATE_TIME , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION);
 		}
 		public static final EAM_PURCHASE_APPLY $TABLE=new EAM_PURCHASE_APPLY();
 	}
@@ -18491,19 +18496,9 @@ public class EAMTables {
 		public static final DBField APPLY_ID = new DBField(DBDataType.STRING , "apply_id","applyId","采购申请","采购申请",false,false,true);
 		
 		/**
-		 * 验收单
-		*/
-		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","验收单","验收单",false,false,true);
-		
-		/**
 		 * 供应商
 		*/
 		public static final DBField SUPPLIER_ID = new DBField(DBDataType.STRING , "supplier_id","supplierId","供应商","供应商",false,false,true);
-		
-		/**
-		 * 验收部门
-		*/
-		public static final DBField CHECK_ORG_ID = new DBField(DBDataType.STRING , "check_org_id","checkOrgId","验收部门","验收部门",false,false,true);
 		
 		/**
 		 * 验收人
@@ -18590,7 +18585,7 @@ public class EAMTables {
 		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择数据","选择数据",false,false,true);
 		
 		public EAM_PURCHASE_CHECK() {
-			this.init($NAME,"采购验收" , ID , PROC_ID , STATUS , BUSINESS_CODE , NAME , APPLY_ID , CODE , SUPPLIER_ID , CHECK_ORG_ID , CHECK_USER_NAME , RECEIVE_DATE , CHECK_DATE , CHECK_INFORMATION , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
+			this.init($NAME,"采购验收" , ID , PROC_ID , STATUS , BUSINESS_CODE , NAME , APPLY_ID , SUPPLIER_ID , CHECK_USER_NAME , RECEIVE_DATE , CHECK_DATE , CHECK_INFORMATION , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
 		}
 		public static final EAM_PURCHASE_CHECK $TABLE=new EAM_PURCHASE_CHECK();
 	}
@@ -18616,24 +18611,19 @@ public class EAMTables {
 		public static final DBField BUSINESS_CODE = new DBField(DBDataType.STRING , "business_code","businessCode","业务编码","业务编码",false,false,true);
 		
 		/**
-		 * 清单编号
+		 * 物品编码
 		*/
-		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","清单编号","清单编号",false,false,true);
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","物品编码","物品编码",false,false,true);
 		
 		/**
-		 * 清单名称
+		 * 物品名称
 		*/
-		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","清单名称","清单名称",false,false,true);
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","物品名称","物品名称",false,false,true);
 		
 		/**
-		 * 采购申请单
+		 * 物品档案
 		*/
-		public static final DBField APPLY_ID = new DBField(DBDataType.STRING , "apply_id","applyId","采购申请单","采购申请单",false,false,true);
-		
-		/**
-		 * 验收单
-		*/
-		public static final DBField CHECK_ID = new DBField(DBDataType.STRING , "check_id","checkId","验收单","验收单",false,false,true);
+		public static final DBField GOODS_ID = new DBField(DBDataType.STRING , "goods_id","goodsId","物品档案","物品档案",false,false,true);
 		
 		/**
 		 * 物品类型
@@ -18646,9 +18636,29 @@ public class EAMTables {
 		public static final DBField STORAGE_TYPE = new DBField(DBDataType.STRING , "storage_type","storageType","存放类型","存放类型",false,false,true);
 		
 		/**
+		 * 采购数量
+		*/
+		public static final DBField PURCHASE_NUMBER = new DBField(DBDataType.INTEGER , "purchase_number","purchaseNumber","采购数量","采购数量",false,false,true);
+		
+		/**
+		 * 采购单价
+		*/
+		public static final DBField UNIT_PRICE = new DBField(DBDataType.DECIMAL , "unit_price","unitPrice","采购单价","采购单价",false,false,true);
+		
+		/**
 		 * 备注
 		*/
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 采购单
+		*/
+		public static final DBField APPLY_ID = new DBField(DBDataType.STRING , "apply_id","applyId","采购单","采购单",false,false,true);
+		
+		/**
+		 * 验收单
+		*/
+		public static final DBField CHECK_ID = new DBField(DBDataType.STRING , "check_id","checkId","验收单","验收单",false,false,true);
 		
 		/**
 		 * 制单人
@@ -18705,7 +18715,7 @@ public class EAMTables {
 		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择数据","选择数据",false,false,true);
 		
 		public EAM_PURCHASE_ORDER() {
-			this.init($NAME,"采购清单" , ID , BUSINESS_CODE , CODE , NAME , APPLY_ID , CHECK_ID , GOODS_TYPE , STORAGE_TYPE , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
+			this.init($NAME,"采购清单" , ID , BUSINESS_CODE , CODE , NAME , GOODS_ID , GOODS_TYPE , STORAGE_TYPE , PURCHASE_NUMBER , UNIT_PRICE , NOTES , APPLY_ID , CHECK_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
 		}
 		public static final EAM_PURCHASE_ORDER $TABLE=new EAM_PURCHASE_ORDER();
 	}
@@ -19711,9 +19721,19 @@ public class EAMTables {
 		public static final DBField USER_NAME = new DBField(DBDataType.STRING , "user_name","userName","人员","人员",false,false,true);
 		
 		/**
+		 * 标签
+		*/
+		public static final DBField LABEL = new DBField(DBDataType.STRING , "label","label","标签","标签",false,false,true);
+		
+		/**
 		 * 执行过程
 		*/
 		public static final DBField PROCESS_CONTENT = new DBField(DBDataType.STRING , "process_content","processContent","执行过程","执行过程",false,false,true);
+		
+		/**
+		 * 图片
+		*/
+		public static final DBField PICTURE = new DBField(DBDataType.STRING , "picture","picture","图片","图片",false,false,true);
 		
 		/**
 		 * 操作时间
@@ -19765,7 +19785,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public EAM_REPAIR_ORDER_PROCESS() {
-			this.init($NAME,"流转过程" , ID , ORDER_ID , ACT_ID , USER_ID , USER_NAME , PROCESS_CONTENT , RCD_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"流转过程" , ID , ORDER_ID , ACT_ID , USER_ID , USER_NAME , LABEL , PROCESS_CONTENT , PICTURE , RCD_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final EAM_REPAIR_ORDER_PROCESS $TABLE=new EAM_REPAIR_ORDER_PROCESS();
 	}

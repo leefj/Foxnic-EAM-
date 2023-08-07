@@ -18,6 +18,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
     var bpmFunction=layui.bpmFunction;
 
+
+
     //模块基础路径
     const moduleURL="/service-eam/eam-purchase-apply";
 
@@ -441,11 +443,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
         beforeSubmit:function (data) {
-            var listData=$(".form-iframe")[0].contentWindow.module.getList(function(res){
-                data.orderIds=res;
-            })
-
-
+            data.selectedCode=timestamp;
             console.log("beforeSubmit",data);
             return true;
         },
@@ -467,25 +465,33 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          *  加载 订单列表
          */
         assetSelectOrderList:function (ifr,win,data) {
-            // debugger
-            var pageType="view";
-            var actionType=admin.getTempData('eam-purchase-apply-form-data-form-action');
-            if(actionType=="view"){
-                pageType="view"
-            }else {
-                pageType="edit"
-            }
 
-            if(data.id){
+            var pageType="view";
+            var ownerId=timestamp;
+            var actionType=admin.getTempData('eam-purchase-apply-form-data-form-action');
+
+            if(actionType=="create"){
+                pageType="create"
+                ownerId=timestamp;
+            }else if(actionType=="view"){
+                ownerId=data.id;
+                pageType="view"
+            }else if(actionType=="edit"){
+                ownerId=data.id;
                 if(data.status=="incomplete"){
+                    pageType="modify";
                 }else{
-                    pageType="view"
+                    pageType="view";
                 }
+            }else{
+                pageType="view";
+                ownerId=data.id;
             }
+            console.log("ownerId:######",ownerId,actionType,pageType);
             //设置 iframe 高度
             ifr.height("400px");
             //设置地址
-            win.location="/business/eam/purchase_order/purchase_order_list.html?selectedCode="+timestamp+"&pageType="+pageType+"&applyId="+data.id;
+            win.location="/business/eam/purchase_order/purchase_order_selected_list.html?selectedCode="+timestamp+"&pageType="+pageType+"&ownerId="+ownerId+"&ownerType=buy";
         },
         /**
          * 文件上传组件回调

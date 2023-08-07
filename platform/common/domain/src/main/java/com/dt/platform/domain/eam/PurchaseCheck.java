@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_PURCHASE_CHECK;
@@ -8,26 +9,32 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.hrm.Employee;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.PurchaseCheckMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 采购验收
+ * <p>采购验收 , 数据表 eam_purchase_check 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 07:31:06
- * @sign 516C88823BC6EBD290C9406F0A8FDFBF
+ * @since 2023-08-07 20:15:33
+ * @sign A43B348A367379A44426FA523275BC5E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_purchase_check")
+@ApiModel(description = "采购验收 ; 采购验收 , 数据表 eam_purchase_check 的PO类型")
 public class PurchaseCheck extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -38,7 +45,7 @@ public class PurchaseCheck extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "741024671125733376")
 	private String id;
 	
 	/**
@@ -50,49 +57,37 @@ public class PurchaseCheck extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "incomplete")
 	private String status;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "AC202307072007646")
 	private String businessCode;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "12")
 	private String name;
 	
 	/**
 	 * 采购申请：采购申请
 	*/
-	@ApiModelProperty(required = false,value="采购申请" , notes = "采购申请")
+	@ApiModelProperty(required = false,value="采购申请" , notes = "采购申请" , example = "741014517965651968")
 	private String applyId;
-	
-	/**
-	 * 验收单：验收单
-	*/
-	@ApiModelProperty(required = false,value="验收单" , notes = "验收单")
-	private String code;
 	
 	/**
 	 * 供应商：供应商
 	*/
-	@ApiModelProperty(required = false,value="供应商" , notes = "供应商")
+	@ApiModelProperty(required = false,value="供应商" , notes = "供应商" , example = "705063820187402240")
 	private String supplierId;
-	
-	/**
-	 * 验收部门：验收部门
-	*/
-	@ApiModelProperty(required = false,value="验收部门" , notes = "验收部门")
-	private String checkOrgId;
 	
 	/**
 	 * 验收人：验收人
 	*/
-	@ApiModelProperty(required = false,value="验收人" , notes = "验收人")
+	@ApiModelProperty(required = false,value="验收人" , notes = "验收人" , example = "12")
 	private String checkUserName;
 	
 	/**
@@ -110,13 +105,13 @@ public class PurchaseCheck extends Entity {
 	/**
 	 * 验收信息：验收信息
 	*/
-	@ApiModelProperty(required = false,value="验收信息" , notes = "验收信息")
+	@ApiModelProperty(required = false,value="验收信息" , notes = "验收信息" , example = "12")
 	private String checkInformation;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
 	private String notes;
 	
 	/**
@@ -128,19 +123,19 @@ public class PurchaseCheck extends Entity {
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-07 08:07:29")
 	private Date createTime;
 	
 	/**
@@ -158,9 +153,10 @@ public class PurchaseCheck extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -178,13 +174,13 @@ public class PurchaseCheck extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -218,15 +214,15 @@ public class PurchaseCheck extends Entity {
 	private PurchaseApply purchaseApply;
 	
 	/**
-	 * 订单：订单
+	 * 清单：清单
 	*/
-	@ApiModelProperty(required = false,value="订单" , notes = "订单")
+	@ApiModelProperty(required = false,value="清单" , notes = "清单")
 	private List<PurchaseOrder> orderList;
 	
 	/**
-	 * 订单列表：订单列表
+	 * 清单列表：清单列表
 	*/
-	@ApiModelProperty(required = false,value="订单列表" , notes = "订单列表")
+	@ApiModelProperty(required = false,value="清单列表" , notes = "清单列表")
 	private List<String> orderIds;
 	
 	/**
@@ -344,25 +340,6 @@ public class PurchaseCheck extends Entity {
 	}
 	
 	/**
-	 * 获得 验收单<br>
-	 * 验收单
-	 * @return 验收单
-	*/
-	public String getCode() {
-		return code;
-	}
-	
-	/**
-	 * 设置 验收单
-	 * @param code 验收单
-	 * @return 当前对象
-	*/
-	public PurchaseCheck setCode(String code) {
-		this.code=code;
-		return this;
-	}
-	
-	/**
 	 * 获得 供应商<br>
 	 * 供应商
 	 * @return 供应商
@@ -378,25 +355,6 @@ public class PurchaseCheck extends Entity {
 	*/
 	public PurchaseCheck setSupplierId(String supplierId) {
 		this.supplierId=supplierId;
-		return this;
-	}
-	
-	/**
-	 * 获得 验收部门<br>
-	 * 验收部门
-	 * @return 验收部门
-	*/
-	public String getCheckOrgId() {
-		return checkOrgId;
-	}
-	
-	/**
-	 * 设置 验收部门
-	 * @param checkOrgId 验收部门
-	 * @return 当前对象
-	*/
-	public PurchaseCheck setCheckOrgId(String checkOrgId) {
-		this.checkOrgId=checkOrgId;
 		return this;
 	}
 	
@@ -636,6 +594,7 @@ public class PurchaseCheck extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public PurchaseCheck setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -830,17 +789,17 @@ public class PurchaseCheck extends Entity {
 	}
 	
 	/**
-	 * 获得 订单<br>
-	 * 订单
-	 * @return 订单
+	 * 获得 清单<br>
+	 * 清单
+	 * @return 清单
 	*/
 	public List<PurchaseOrder> getOrderList() {
 		return orderList;
 	}
 	
 	/**
-	 * 设置 订单
-	 * @param orderList 订单
+	 * 设置 清单
+	 * @param orderList 清单
 	 * @return 当前对象
 	*/
 	public PurchaseCheck setOrderList(List<PurchaseOrder> orderList) {
@@ -849,8 +808,8 @@ public class PurchaseCheck extends Entity {
 	}
 	
 	/**
-	 * 添加 订单
-	 * @param order 订单
+	 * 添加 清单
+	 * @param order 清单
 	 * @return 当前对象
 	*/
 	public PurchaseCheck addOrder(PurchaseOrder... order) {
@@ -860,17 +819,17 @@ public class PurchaseCheck extends Entity {
 	}
 	
 	/**
-	 * 获得 订单列表<br>
-	 * 订单列表
-	 * @return 订单列表
+	 * 获得 清单列表<br>
+	 * 清单列表
+	 * @return 清单列表
 	*/
 	public List<String> getOrderIds() {
 		return orderIds;
 	}
 	
 	/**
-	 * 设置 订单列表
-	 * @param orderIds 订单列表
+	 * 设置 清单列表
+	 * @param orderIds 清单列表
 	 * @return 当前对象
 	*/
 	public PurchaseCheck setOrderIds(List<String> orderIds) {
@@ -879,8 +838,8 @@ public class PurchaseCheck extends Entity {
 	}
 	
 	/**
-	 * 添加 订单列表
-	 * @param orderId 订单列表
+	 * 添加 清单列表
+	 * @param orderId 清单列表
 	 * @return 当前对象
 	*/
 	public PurchaseCheck addOrderId(String... orderId) {
@@ -919,6 +878,65 @@ public class PurchaseCheck extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public PurchaseCheck clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public PurchaseCheck duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.PurchaseCheckMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.PurchaseCheckMeta.$$proxy$$();
+		inst.setSupplierId(this.getSupplierId());
+		inst.setNotes(this.getNotes());
+		inst.setProcId(this.getProcId());
+		inst.setReceiveDate(this.getReceiveDate());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setCheckDate(this.getCheckDate());
+		inst.setVersion(this.getVersion());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setApplyId(this.getApplyId());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setCheckUserName(this.getCheckUserName());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setAttach(this.getAttach());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setCheckInformation(this.getCheckInformation());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setPurchaseApply(this.getPurchaseApply());
+			inst.setCheckOrg(this.getCheckOrg());
+			inst.setSupplier(this.getSupplier());
+			inst.setOrderList(this.getOrderList());
+			inst.setOriginator(this.getOriginator());
+			inst.setOrderIds(this.getOrderIds());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public PurchaseCheck clone(boolean deep) {
+		return EntityContext.clone(PurchaseCheck.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 PurchaseCheck
 	 * @param purchaseCheckMap 包含实体信息的 Map 对象
 	 * @return PurchaseCheck , 转换好的的 PurchaseCheck 对象
@@ -926,7 +944,9 @@ public class PurchaseCheck extends Entity {
 	@Transient
 	public static PurchaseCheck createFrom(Map<String,Object> purchaseCheckMap) {
 		if(purchaseCheckMap==null) return null;
-		PurchaseCheck po = EntityContext.create(PurchaseCheck.class, purchaseCheckMap);
+		PurchaseCheck po = create();
+		EntityContext.copyProperties(po,purchaseCheckMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -938,7 +958,9 @@ public class PurchaseCheck extends Entity {
 	@Transient
 	public static PurchaseCheck createFrom(Object pojo) {
 		if(pojo==null) return null;
-		PurchaseCheck po = EntityContext.create(PurchaseCheck.class,pojo);
+		PurchaseCheck po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -948,6 +970,150 @@ public class PurchaseCheck extends Entity {
 	*/
 	@Transient
 	public static PurchaseCheck create() {
-		return EntityContext.create(PurchaseCheck.class);
+		return new com.dt.platform.domain.eam.meta.PurchaseCheckMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setSupplierId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.SUPPLIER_ID)));
+			this.setNotes(DataParser.parse(String.class, map.get(PurchaseCheckMeta.NOTES)));
+			this.setProcId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.PROC_ID)));
+			this.setReceiveDate(DataParser.parse(String.class, map.get(PurchaseCheckMeta.RECEIVE_DATE)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(PurchaseCheckMeta.UPDATE_TIME)));
+			this.setCheckDate(DataParser.parse(String.class, map.get(PurchaseCheckMeta.CHECK_DATE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(PurchaseCheckMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(PurchaseCheckMeta.SELECTED_CODE)));
+			this.setApplyId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.APPLY_ID)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(PurchaseCheckMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(PurchaseCheckMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(PurchaseCheckMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(PurchaseCheckMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(PurchaseCheckMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(PurchaseCheckMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(PurchaseCheckMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.TENANT_ID)));
+			this.setCheckUserName(DataParser.parse(String.class, map.get(PurchaseCheckMeta.CHECK_USER_NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(PurchaseCheckMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.ID)));
+			this.setAttach(DataParser.parse(String.class, map.get(PurchaseCheckMeta.ATTACH)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.ORIGINATOR_ID)));
+			this.setCheckInformation(DataParser.parse(String.class, map.get(PurchaseCheckMeta.CHECK_INFORMATION)));
+			this.setStatus(DataParser.parse(String.class, map.get(PurchaseCheckMeta.STATUS)));
+			// others
+			this.setPurchaseApply(DataParser.parse(PurchaseApply.class, map.get(PurchaseCheckMeta.PURCHASE_APPLY)));
+			this.setCheckOrg(DataParser.parse(Organization.class, map.get(PurchaseCheckMeta.CHECK_ORG)));
+			this.setSupplier(DataParser.parse(Supplier.class, map.get(PurchaseCheckMeta.SUPPLIER)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(PurchaseCheckMeta.ORIGINATOR)));
+			return true;
+		} else {
+			try {
+				this.setSupplierId( (String)map.get(PurchaseCheckMeta.SUPPLIER_ID));
+				this.setNotes( (String)map.get(PurchaseCheckMeta.NOTES));
+				this.setProcId( (String)map.get(PurchaseCheckMeta.PROC_ID));
+				this.setReceiveDate( (String)map.get(PurchaseCheckMeta.RECEIVE_DATE));
+				this.setUpdateTime( (Date)map.get(PurchaseCheckMeta.UPDATE_TIME));
+				this.setCheckDate( (String)map.get(PurchaseCheckMeta.CHECK_DATE));
+				this.setVersion( (Integer)map.get(PurchaseCheckMeta.VERSION));
+				this.setSelectedCode( (String)map.get(PurchaseCheckMeta.SELECTED_CODE));
+				this.setApplyId( (String)map.get(PurchaseCheckMeta.APPLY_ID));
+				this.setBusinessCode( (String)map.get(PurchaseCheckMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)map.get(PurchaseCheckMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(PurchaseCheckMeta.DELETED));
+				this.setCreateTime( (Date)map.get(PurchaseCheckMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(PurchaseCheckMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(PurchaseCheckMeta.DELETE_TIME));
+				this.setName( (String)map.get(PurchaseCheckMeta.NAME));
+				this.setTenantId( (String)map.get(PurchaseCheckMeta.TENANT_ID));
+				this.setCheckUserName( (String)map.get(PurchaseCheckMeta.CHECK_USER_NAME));
+				this.setDeleteBy( (String)map.get(PurchaseCheckMeta.DELETE_BY));
+				this.setId( (String)map.get(PurchaseCheckMeta.ID));
+				this.setAttach( (String)map.get(PurchaseCheckMeta.ATTACH));
+				this.setOriginatorId( (String)map.get(PurchaseCheckMeta.ORIGINATOR_ID));
+				this.setCheckInformation( (String)map.get(PurchaseCheckMeta.CHECK_INFORMATION));
+				this.setStatus( (String)map.get(PurchaseCheckMeta.STATUS));
+				// others
+				this.setPurchaseApply( (PurchaseApply)map.get(PurchaseCheckMeta.PURCHASE_APPLY));
+				this.setCheckOrg( (Organization)map.get(PurchaseCheckMeta.CHECK_ORG));
+				this.setSupplier( (Supplier)map.get(PurchaseCheckMeta.SUPPLIER));
+				this.setOriginator( (Employee)map.get(PurchaseCheckMeta.ORIGINATOR));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setSupplierId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.SUPPLIER_ID)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.NOTES)));
+			this.setProcId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.PROC_ID)));
+			this.setReceiveDate(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.RECEIVE_DATE)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PurchaseCheckMeta.UPDATE_TIME)));
+			this.setCheckDate(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.CHECK_DATE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(PurchaseCheckMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.SELECTED_CODE)));
+			this.setApplyId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.APPLY_ID)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(PurchaseCheckMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(PurchaseCheckMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(PurchaseCheckMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.TENANT_ID)));
+			this.setCheckUserName(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.CHECK_USER_NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.ID)));
+			this.setAttach(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.ATTACH)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.ORIGINATOR_ID)));
+			this.setCheckInformation(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.CHECK_INFORMATION)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setSupplierId( (String)r.getValue(PurchaseCheckMeta.SUPPLIER_ID));
+				this.setNotes( (String)r.getValue(PurchaseCheckMeta.NOTES));
+				this.setProcId( (String)r.getValue(PurchaseCheckMeta.PROC_ID));
+				this.setReceiveDate( (String)r.getValue(PurchaseCheckMeta.RECEIVE_DATE));
+				this.setUpdateTime( (Date)r.getValue(PurchaseCheckMeta.UPDATE_TIME));
+				this.setCheckDate( (String)r.getValue(PurchaseCheckMeta.CHECK_DATE));
+				this.setVersion( (Integer)r.getValue(PurchaseCheckMeta.VERSION));
+				this.setSelectedCode( (String)r.getValue(PurchaseCheckMeta.SELECTED_CODE));
+				this.setApplyId( (String)r.getValue(PurchaseCheckMeta.APPLY_ID));
+				this.setBusinessCode( (String)r.getValue(PurchaseCheckMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)r.getValue(PurchaseCheckMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(PurchaseCheckMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(PurchaseCheckMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(PurchaseCheckMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(PurchaseCheckMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(PurchaseCheckMeta.NAME));
+				this.setTenantId( (String)r.getValue(PurchaseCheckMeta.TENANT_ID));
+				this.setCheckUserName( (String)r.getValue(PurchaseCheckMeta.CHECK_USER_NAME));
+				this.setDeleteBy( (String)r.getValue(PurchaseCheckMeta.DELETE_BY));
+				this.setId( (String)r.getValue(PurchaseCheckMeta.ID));
+				this.setAttach( (String)r.getValue(PurchaseCheckMeta.ATTACH));
+				this.setOriginatorId( (String)r.getValue(PurchaseCheckMeta.ORIGINATOR_ID));
+				this.setCheckInformation( (String)r.getValue(PurchaseCheckMeta.CHECK_INFORMATION));
+				this.setStatus( (String)r.getValue(PurchaseCheckMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

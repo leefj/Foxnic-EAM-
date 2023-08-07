@@ -1,6 +1,8 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.eam.*;
@@ -92,6 +94,22 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 	}
 
 
+	@Override
+	public Result clearAssetReturnWarnByIds(String ids) {
+		if(StringUtil.isBlank(ids)){
+			return ErrorDesc.failureMessage("没有选择条目");
+		}
+		JSONArray idsArr=JSONArray.parseArray(ids);
+		if(idsArr==null||idsArr.size()==0){
+			return ErrorDesc.failureMessage("没有选择条目");
+		}
+
+		for(int i=0;i<idsArr.size();i++){
+			dao.execute("update eam_asset_item set is_return='yes' where id=?",idsArr.getString(i));
+		}
+
+		return ErrorDesc.success();
+	}
 
 	/**
 	 * 处理流程回调
@@ -200,6 +218,7 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 
 		//保存当前使用人
 		dao.execute("update eam_asset_item a,eam_asset b set a.before_use_user_id=b.use_user_id,a.before_asset_status=b.asset_status where a.asset_id=b.id and a.handle_id=?",id);
+
 		//资产记录保存借用单据
 		dao.execute("update eam_asset_item a,eam_asset b set b.borrow_id=? where a.asset_id=b.id and a.handle_id=?",id,id);
 
@@ -227,7 +246,7 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 			asset.setOwnerCode(AssetOwnerCodeEnum.ASSET_DATE_AFTER.code());
 			asset.setBorrowId(id);
 			assetService.sourceInsert(asset);
-			dao.execute("update eam_asset_item a set a.asset_id=?,flag=? where a.asset_id=? and a.handle_id=?",newAssetId,oldAssetId,oldAssetId,id);
+			dao.execute("update eam_asset_item a set r_asset_id=?,a.asset_id=?,flag=? where a.asset_id=? and a.handle_id=?",oldAssetId,newAssetId,oldAssetId,oldAssetId,id);
 		}
 		return ErrorDesc.success();
 	}
@@ -344,6 +363,7 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 				asset.setId(IDGenerator.getSnowflakeIdString());
 				asset.setHandleId(assetBorrow.getId());
 				asset.setAssetId(assetBorrow.getAssetIds().get(i));
+				asset.setBusiType(AssetOperateEnum.EAM_ASSET_BORROW.code());
 				saveList.add(asset);
 			}
 			Result batchInsertReuslt= assetItemService.insertList(saveList);
@@ -432,7 +452,8 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 	 * */
 	@Override
 	public Result update(AssetBorrow assetBorrow , SaveMode mode) {
-		//c  新建,r  原纪录,d  删除,cd 新建删除
+		//c 新建,r 原纪录,d 删除,cd 新建删除
+		//原始数据r,d
 		//验证数据
 		Result verifyResult = verifyBillData(assetBorrow.getId());
 		if(!verifyResult.isSuccess())return verifyResult;
@@ -441,7 +462,7 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 		if(r.success()){
 			//保存表单数据
 			dao.execute("update eam_asset_item set crd='r' where crd='c' and handle_id=?",assetBorrow.getId());
-			dao.execute("delete from eam_asset_item where crd in ('d','rd') and  handle_id=?",assetBorrow.getId());
+			dao.execute("delete from eam_asset_item where crd='d' and  handle_id=?",assetBorrow.getId());
 		}
 		return r;
 	}

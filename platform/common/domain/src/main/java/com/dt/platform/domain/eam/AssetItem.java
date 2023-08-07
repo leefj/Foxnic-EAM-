@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset_item 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-13 18:13:51
- * @sign 18FABF07026DC9BABF26484FC1156091
+ * @since 2023-08-07 13:19:18
+ * @sign 110AB2A048FEC2B20C942EBD8150A552
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,20 +40,26 @@ public class AssetItem extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "595862371419815936")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "740917988542119936")
 	private String id;
 	
 	/**
 	 * 处理：处理
 	*/
-	@ApiModelProperty(required = false,value="处理" , notes = "处理" , example = "595861733386485760")
+	@ApiModelProperty(required = false,value="处理" , notes = "处理" , example = "740917988420485120")
 	private String handleId;
 	
 	/**
 	 * 资产：资产
 	*/
-	@ApiModelProperty(required = false,value="资产" , notes = "资产" , example = "593901526246760448")
+	@ApiModelProperty(required = false,value="资产" , notes = "资产" , example = "740918020624351232")
 	private String assetId;
+	
+	/**
+	 * 资产：资产
+	*/
+	@ApiModelProperty(required = false,value="资产" , notes = "资产")
+	private String rAssetId;
 	
 	/**
 	 * 资产使用人：资产使用人
@@ -64,20 +70,32 @@ public class AssetItem extends Entity {
 	/**
 	 * 资产状态：资产状态
 	*/
-	@ApiModelProperty(required = false,value="资产状态" , notes = "资产状态")
+	@ApiModelProperty(required = false,value="资产状态" , notes = "资产状态" , example = "idle")
 	private String beforeAssetStatus;
 	
 	/**
 	 * 标记：标记
 	*/
-	@ApiModelProperty(required = false,value="标记" , notes = "标记")
+	@ApiModelProperty(required = false,value="标记" , notes = "标记" , example = "703903926566518784")
 	private String flag;
 	
 	/**
 	 * 修改标记：修改标记
 	*/
-	@ApiModelProperty(required = false,value="修改标记" , notes = "修改标记" , example = "c")
+	@ApiModelProperty(required = false,value="修改标记" , notes = "修改标记" , example = "r")
 	private String crd;
+	
+	/**
+	 * 业务类型：业务类型
+	*/
+	@ApiModelProperty(required = false,value="业务类型" , notes = "业务类型" , example = "eam_asset_borrow")
+	private String busiType;
+	
+	/**
+	 * 是否归还：是否归还
+	*/
+	@ApiModelProperty(required = false,value="是否归还" , notes = "是否归还" , example = "no")
+	private String isReturn;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -88,7 +106,7 @@ public class AssetItem extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-07-03 06:24:20")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-07 01:03:34")
 	private Date createTime;
 	
 	/**
@@ -127,7 +145,7 @@ public class AssetItem extends Entity {
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1656800566000")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择")
 	private String selectedCode;
 	
 	/**
@@ -190,6 +208,25 @@ public class AssetItem extends Entity {
 	*/
 	public AssetItem setAssetId(String assetId) {
 		this.assetId=assetId;
+		return this;
+	}
+	
+	/**
+	 * 获得 资产<br>
+	 * 资产
+	 * @return 资产
+	*/
+	public String getRAssetId() {
+		return rAssetId;
+	}
+	
+	/**
+	 * 设置 资产
+	 * @param rAssetId 资产
+	 * @return 当前对象
+	*/
+	public AssetItem setRAssetId(String rAssetId) {
+		this.rAssetId=rAssetId;
 		return this;
 	}
 	
@@ -266,6 +303,44 @@ public class AssetItem extends Entity {
 	*/
 	public AssetItem setCrd(String crd) {
 		this.crd=crd;
+		return this;
+	}
+	
+	/**
+	 * 获得 业务类型<br>
+	 * 业务类型
+	 * @return 业务类型
+	*/
+	public String getBusiType() {
+		return busiType;
+	}
+	
+	/**
+	 * 设置 业务类型
+	 * @param busiType 业务类型
+	 * @return 当前对象
+	*/
+	public AssetItem setBusiType(String busiType) {
+		this.busiType=busiType;
+		return this;
+	}
+	
+	/**
+	 * 获得 是否归还<br>
+	 * 是否归还
+	 * @return 是否归还
+	*/
+	public String getIsReturn() {
+		return isReturn;
+	}
+	
+	/**
+	 * 设置 是否归还
+	 * @param isReturn 是否归还
+	 * @return 当前对象
+	*/
+	public AssetItem setIsReturn(String isReturn) {
+		this.isReturn=isReturn;
 		return this;
 	}
 	
@@ -516,7 +591,9 @@ public class AssetItem extends Entity {
 	public AssetItem duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.AssetItemMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetItemMeta.$$proxy$$();
 		inst.setBeforeAssetStatus(this.getBeforeAssetStatus());
+		inst.setIsReturn(this.getIsReturn());
 		inst.setFlag(this.getFlag());
+		inst.setRAssetId(this.getRAssetId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setSelectedCode(this.getSelectedCode());
 		inst.setVersion(this.getVersion());
@@ -528,6 +605,7 @@ public class AssetItem extends Entity {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setAssetId(this.getAssetId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setBusiType(this.getBusiType());
 		inst.setId(this.getId());
 		inst.setHandleId(this.getHandleId());
 		inst.setBeforeUseUserId(this.getBeforeUseUserId());
@@ -590,7 +668,9 @@ public class AssetItem extends Entity {
 		if(map==null) return false;
 		if(cast) {
 			this.setBeforeAssetStatus(DataParser.parse(String.class, map.get(AssetItemMeta.BEFORE_ASSET_STATUS)));
+			this.setIsReturn(DataParser.parse(String.class, map.get(AssetItemMeta.IS_RETURN)));
 			this.setFlag(DataParser.parse(String.class, map.get(AssetItemMeta.FLAG)));
+			this.setRAssetId(DataParser.parse(String.class, map.get(AssetItemMeta.R_ASSET_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetItemMeta.UPDATE_TIME)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetItemMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetItemMeta.VERSION)));
@@ -602,6 +682,7 @@ public class AssetItem extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetItemMeta.DELETE_TIME)));
 			this.setAssetId(DataParser.parse(String.class, map.get(AssetItemMeta.ASSET_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetItemMeta.DELETE_BY)));
+			this.setBusiType(DataParser.parse(String.class, map.get(AssetItemMeta.BUSI_TYPE)));
 			this.setId(DataParser.parse(String.class, map.get(AssetItemMeta.ID)));
 			this.setHandleId(DataParser.parse(String.class, map.get(AssetItemMeta.HANDLE_ID)));
 			this.setBeforeUseUserId(DataParser.parse(String.class, map.get(AssetItemMeta.BEFORE_USE_USER_ID)));
@@ -610,7 +691,9 @@ public class AssetItem extends Entity {
 		} else {
 			try {
 				this.setBeforeAssetStatus( (String)map.get(AssetItemMeta.BEFORE_ASSET_STATUS));
+				this.setIsReturn( (String)map.get(AssetItemMeta.IS_RETURN));
 				this.setFlag( (String)map.get(AssetItemMeta.FLAG));
+				this.setRAssetId( (String)map.get(AssetItemMeta.R_ASSET_ID));
 				this.setUpdateTime( (Date)map.get(AssetItemMeta.UPDATE_TIME));
 				this.setSelectedCode( (String)map.get(AssetItemMeta.SELECTED_CODE));
 				this.setVersion( (Integer)map.get(AssetItemMeta.VERSION));
@@ -622,6 +705,7 @@ public class AssetItem extends Entity {
 				this.setDeleteTime( (Date)map.get(AssetItemMeta.DELETE_TIME));
 				this.setAssetId( (String)map.get(AssetItemMeta.ASSET_ID));
 				this.setDeleteBy( (String)map.get(AssetItemMeta.DELETE_BY));
+				this.setBusiType( (String)map.get(AssetItemMeta.BUSI_TYPE));
 				this.setId( (String)map.get(AssetItemMeta.ID));
 				this.setHandleId( (String)map.get(AssetItemMeta.HANDLE_ID));
 				this.setBeforeUseUserId( (String)map.get(AssetItemMeta.BEFORE_USE_USER_ID));
@@ -643,7 +727,9 @@ public class AssetItem extends Entity {
 		if(r==null) return false;
 		if(cast) {
 			this.setBeforeAssetStatus(DataParser.parse(String.class, r.getValue(AssetItemMeta.BEFORE_ASSET_STATUS)));
+			this.setIsReturn(DataParser.parse(String.class, r.getValue(AssetItemMeta.IS_RETURN)));
 			this.setFlag(DataParser.parse(String.class, r.getValue(AssetItemMeta.FLAG)));
+			this.setRAssetId(DataParser.parse(String.class, r.getValue(AssetItemMeta.R_ASSET_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetItemMeta.UPDATE_TIME)));
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetItemMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetItemMeta.VERSION)));
@@ -655,6 +741,7 @@ public class AssetItem extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetItemMeta.DELETE_TIME)));
 			this.setAssetId(DataParser.parse(String.class, r.getValue(AssetItemMeta.ASSET_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetItemMeta.DELETE_BY)));
+			this.setBusiType(DataParser.parse(String.class, r.getValue(AssetItemMeta.BUSI_TYPE)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetItemMeta.ID)));
 			this.setHandleId(DataParser.parse(String.class, r.getValue(AssetItemMeta.HANDLE_ID)));
 			this.setBeforeUseUserId(DataParser.parse(String.class, r.getValue(AssetItemMeta.BEFORE_USE_USER_ID)));
@@ -662,7 +749,9 @@ public class AssetItem extends Entity {
 		} else {
 			try {
 				this.setBeforeAssetStatus( (String)r.getValue(AssetItemMeta.BEFORE_ASSET_STATUS));
+				this.setIsReturn( (String)r.getValue(AssetItemMeta.IS_RETURN));
 				this.setFlag( (String)r.getValue(AssetItemMeta.FLAG));
+				this.setRAssetId( (String)r.getValue(AssetItemMeta.R_ASSET_ID));
 				this.setUpdateTime( (Date)r.getValue(AssetItemMeta.UPDATE_TIME));
 				this.setSelectedCode( (String)r.getValue(AssetItemMeta.SELECTED_CODE));
 				this.setVersion( (Integer)r.getValue(AssetItemMeta.VERSION));
@@ -674,6 +763,7 @@ public class AssetItem extends Entity {
 				this.setDeleteTime( (Date)r.getValue(AssetItemMeta.DELETE_TIME));
 				this.setAssetId( (String)r.getValue(AssetItemMeta.ASSET_ID));
 				this.setDeleteBy( (String)r.getValue(AssetItemMeta.DELETE_BY));
+				this.setBusiType( (String)r.getValue(AssetItemMeta.BUSI_TYPE));
 				this.setId( (String)r.getValue(AssetItemMeta.ID));
 				this.setHandleId( (String)r.getValue(AssetItemMeta.HANDLE_ID));
 				this.setBeforeUseUserId( (String)r.getValue(AssetItemMeta.BEFORE_USE_USER_ID));

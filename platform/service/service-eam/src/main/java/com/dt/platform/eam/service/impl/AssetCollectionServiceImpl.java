@@ -227,7 +227,7 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 			asset.setOwnerCode(AssetOwnerCodeEnum.ASSET_DATE_AFTER.code());
 			asset.setCollectionId(id);
 			assetService.sourceInsert(asset);
-			dao.execute("update eam_asset_item a set a.asset_id=?,flag=? where a.asset_id=? and a.handle_id=?",newAssetId,oldAssetId,oldAssetId,id);
+			dao.execute("update eam_asset_item a set r_asset_id=?,a.asset_id=?,flag=? where a.asset_id=? and a.handle_id=?",oldAssetId,newAssetId,oldAssetId,oldAssetId,id);
 		}
 		return ErrorDesc.success();
 	}
@@ -396,7 +396,7 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 		if(r.success()){
 			//保存表单数据
 			dao.execute("update eam_asset_item set crd='r' where crd='c' and handle_id=?",assetCollection.getId());
-			dao.execute("delete from eam_asset_item where crd in ('d','rd') and  handle_id=?",assetCollection.getId());
+			dao.execute("delete from eam_asset_item where crd ='d'  and  handle_id=?",assetCollection.getId());
 		}
 		return r;
 	}

@@ -2,10 +2,10 @@
 /**
  * 采购清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-07 18:07:28
+ * @since 2023-08-07 07:37:56
  */
  -->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -91,10 +91,8 @@
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
 
-    <button th:if="${perm.checkAuth('eam_purchase_order:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>
+    <button th:if="${perm.checkAuth('eam_purchase_order:view-form')}" class="layui-btn layui-ebtn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>
     <button th:if="${perm.checkAnyAuth('eam_purchase_order:update','eam_purchase_order:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改','','cmp:table.ops')}">修改</span></button>
-
-
     <button th:if="${perm.checkAuth('eam_purchase_order:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
 
@@ -105,19 +103,21 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var SELECT_GOODSTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetPurchaseAssetTypeEnum')}]];
     var SELECT_STORAGETYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetPurchaseStorageTypeEnum')}]];
-    var AUTH_PREFIX="eam_purchase_order";
+    var AUTH_PREFIX="eam_purchase_order_2";
 
     // 页面类型
     var PAGE_TYPE = [[${pageType}]] ;
+    // applyId
+    var OWNER_ID = [[${ownerId}]] ;
     // selectedCode
     var SELECTED_CODE = [[${selectedCode}]] ;
-    // ownerId
-    var OWNER_ID = [[${ownerId}]] ;
+
+    var PAGE_TYPE = [[${pageType}]] ;
 
 </script>
 
-<script th:src="'/business/eam/purchase_order/purchase_order_ext.js?'+${cacheKey}"></script>
-<script th:src="'/business/eam/purchase_order/purchase_order_list.js?'+${cacheKey}"></script>
+<script th:src="'/business/eam/purchase_order/order_selected_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/eam/purchase_order/order_selected_list.js?'+${cacheKey}"></script>
 
 </body>
 </html>

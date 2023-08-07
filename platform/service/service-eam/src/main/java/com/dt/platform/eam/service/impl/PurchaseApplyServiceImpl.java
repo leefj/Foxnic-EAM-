@@ -136,7 +136,6 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 		}
 
 
-
 		//生成编码规则
 		if(StringUtil.isBlank(purchaseApply.getBusinessCode())){
 			Result codeResult= CodeModuleServiceProxy.api().generateCode(AssetOperateEnum.EAM_ASSET_PURCHASE_APPLY.code());
@@ -147,19 +146,25 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 			}
 		}
 
+		String selectedCode=purchaseApply.getSelectedCode();
+		if(StringUtil.isBlank(selectedCode)){
+			return ErrorDesc.failureMessage("selectCode参数为空");
+		}
+
 		Result r=super.insert(purchaseApply,throwsException);
 
 		if(r.isSuccess()){
 			//更新订单
-			String applyId=purchaseApply.getId();
-			List<PurchaseOrder> orderList=new ArrayList<>();
-			for(int i=0;i<purchaseApply.getOrderIds().size();i++){
-				PurchaseOrder e=new PurchaseOrder();
-				e.setId(purchaseApply.getOrderIds().get(i));
-				e.setApplyId(applyId);
-				orderList.add(e);
-			}
-			purchaseOrderService.updateList(orderList,SaveMode.NOT_NULL_FIELDS);
+			dao.execute("update eam_purchase_order set selected_code=?,apply_id=? where apply_id=? and selected_code=?","def",purchaseApply.getId(),selectedCode,selectedCode);
+//			String applyId=purchaseApply.getId();
+//			List<PurchaseOrder> orderList=new ArrayList<>();
+//			for(int i=0;i<purchaseApply.getOrderIds().size();i++){
+//				PurchaseOrder e=new PurchaseOrder();
+//				e.setId(purchaseApply.getOrderIds().get(i));
+//				e.setApplyId(applyId);
+//				orderList.add(e);
+//			}
+//			purchaseOrderService.updateList(orderList,SaveMode.NOT_NULL_FIELDS);
 		}
 		return r;
 	}
@@ -175,8 +180,9 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 		PurchaseApply obj=new PurchaseApply();
 		obj.setId(id);
 		obj.setAssetCheck(AssetApplyCheckStatusEnum.CHECKED.code());
+		obj.setCheckId(checkId);
 		PurchaseCheck check=purchaseCheckService.getById(checkId);
-		obj.setCheckCode(check.getBusinessCode());
+
 		return super.update(obj,SaveMode.NOT_NULL_FIELDS,false);
 	}
 
@@ -304,17 +310,12 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 	@Override
 	public Result update(PurchaseApply purchaseApply , SaveMode mode,boolean throwsException) {
 		Result r=super.update(purchaseApply , mode , throwsException);
+		String selectedCode=purchaseApply.getSelectedCode();
 		if(r.isSuccess()){
-			//更新订单
-			String applyId=purchaseApply.getId();
-			List<PurchaseOrder> orderList=new ArrayList<>();
-			for(int i=0;i<purchaseApply.getOrderIds().size();i++){
-				PurchaseOrder e=new PurchaseOrder();
-				e.setId(purchaseApply.getOrderIds().get(i));
-				e.setApplyId(applyId);
-				orderList.add(e);
+			if(!StringUtil.isBlank(selectedCode)){
+				dao.execute("delete from eam_purchase_order where apply_id=? and selected_code='def'",purchaseApply.getId());
+				dao.execute("update eam_purchase_order set selected_code=? where apply_id=? and selected_code=?","def",purchaseApply.getId(),selectedCode);
 			}
-			purchaseOrderService.updateList(orderList,SaveMode.NOT_NULL_FIELDS);
 		}
 		return r;
 	}

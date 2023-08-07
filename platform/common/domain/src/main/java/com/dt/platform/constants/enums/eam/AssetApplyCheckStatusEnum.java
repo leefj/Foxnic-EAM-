@@ -14,8 +14,8 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum AssetApplyCheckStatusEnum implements CodeTextEnum {
 
 	CHECKED("checked" , "验收通过"),
-	NOT_CHECK("not_check" , "未验收");
-
+	NOT_CHECK("not_check" , "未验收"),
+	NOT_PASS("not_pass" , "验收未通过");
 	private String code;
 	private String text;
 	private AssetApplyCheckStatusEnum(String code, String text)  {

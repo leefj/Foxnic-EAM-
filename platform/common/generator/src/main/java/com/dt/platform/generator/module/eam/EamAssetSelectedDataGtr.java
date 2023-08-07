@@ -41,7 +41,6 @@ public class EamAssetSelectedDataGtr extends BaseCodeGenerator{
         cfg.view().list().disableMargin();
 
 
-
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.CREATE_IF_NOT_EXISTS) //服务与接口
@@ -61,6 +60,6 @@ public class EamAssetSelectedDataGtr extends BaseCodeGenerator{
 
         //生成菜单
         //  g.removeByBatchId("");
-        g.generateMenu(AssetSelectedDataServiceProxy.class, AssetSelectedDataPageController.class);
+       // g.generateMenu(AssetSelectedDataServiceProxy.class, AssetSelectedDataPageController.class);
     }
 }

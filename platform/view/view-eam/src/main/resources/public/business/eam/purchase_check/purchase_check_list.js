@@ -78,9 +78,9 @@ function ListPage() {
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'applyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('采购申请'), templet: function (d) { return templet('applyId' ,fox.joinLabel(d.purchaseApply,"name"),d);}}
-					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收单') , templet: function (d) { return templet('code',d.code,d);}  }
+				//	,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收单') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'supplierId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('供应商'), templet: function (d) { return templet('supplierId' ,fox.joinLabel(d.supplier,"supplierName"),d);}}
-					,{ field: 'checkOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收部门') , templet: function (d) { return templet('checkOrgId',fox.getProperty(d,["checkOrg","fullName"]),d);} }
+			//		,{ field: 'checkOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收部门') , templet: function (d) { return templet('checkOrgId',fox.getProperty(d,["checkOrg","fullName"]),d);} }
 					,{ field: 'checkUserName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收人') , templet: function (d) { return templet('checkUserName',d.checkUserName,d);}  }
 					,{ field: 'receiveDate', align:"left", fixed:false, hide:false, sort: true   ,title: fox.translate('到货日期') ,templet: function (d) { return templet('receiveDate',fox.dateFormat(d.receiveDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'checkDate', align:"left", fixed:false, hide:false, sort: true   ,title: fox.translate('验收时间') ,templet: function (d) { return templet('checkDate',fox.dateFormat(d.checkDate,"yyyy-MM-dd"),d); }  }
