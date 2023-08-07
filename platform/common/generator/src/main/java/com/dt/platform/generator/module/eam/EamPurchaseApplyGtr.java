@@ -28,13 +28,14 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
 
         System.out.println(this.getClass().getName());
 
+
+
         cfg.getPoClassFile().addSimpleProperty(Supplier.class,"supplier","供应商","供应商");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"applyOrg","申请部门","申请部门");
         cfg.getPoClassFile().addSimpleProperty(ChangeInstance.class,"changeInstance","变更实例","变更实例");
         cfg.getPoClassFile().addListProperty(PurchaseOrder.class,"orderList","采购清单","采购清单");
         cfg.getPoClassFile().addListProperty(String.class,"orderIds","清单列表","清单列表");
-
         cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"purchaseUser","purchaseUser","purchaseUser");
         cfg.bpm().form("eam_asset_purchase_apply");
@@ -136,7 +137,7 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
 
 
         cfg.view().form().labelWidth(70);
-        cfg.view().formWindow().bottomSpace(250);
+        cfg.view().formWindow().bottomSpace(50);
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {

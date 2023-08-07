@@ -338,8 +338,6 @@ function ListPage() {
             //设置新增是初始化数据
             var data={};
             admin.putTempData('eam-goods-stock-form-data-form-action', "create",true);
-
-
             var queryString="?ownerType="+OWNER_TYPE+"&selectedCode="+SELECTED_CODE+"&ownerCode="+OWNER_CODE+"&ownerTmpId="+OWNER_TMP_ID+"&operType="+OPER_TYPE+"&pageType="+PAGE_TYPE;
             var formTop=2
             var index=admin.popupCenter({

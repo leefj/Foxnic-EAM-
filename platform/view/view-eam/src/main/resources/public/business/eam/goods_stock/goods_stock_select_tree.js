@@ -112,11 +112,13 @@ function ListPage() {
     function bindButtonEvent(){
         //关闭窗口
         $("#submit-button").click(function(){
-
             //去定按钮
             var selectData=$("#assetList")[0].contentWindow.module.saveSelectData(function(seldata){
+                console.log("seldata:",seldata);
                 var index=admin.getTempData('eam-asset-select-data-popup-index');
+                admin.putTempData('eam-asset-select-data-popup-data', seldata,true);
                 admin.finishPopupCenter(index);
+
             })
         });
 

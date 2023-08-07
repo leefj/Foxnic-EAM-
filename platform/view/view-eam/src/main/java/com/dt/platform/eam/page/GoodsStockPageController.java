@@ -122,9 +122,6 @@ public class GoodsStockPageController extends ViewController {
 		model.addAttribute("ownerType",ownerType);
 		return prefix+"/goods_stock_selected_form";
 	}
-
-
-
 	//goods 物品档案
 	//real 库存
 	//type,		selected  select
@@ -152,6 +149,10 @@ public class GoodsStockPageController extends ViewController {
 
 	private String getOwnerCodeByOperType(String operType,String ownerType,String pageAction){
 		String ownerCode="";
+
+		if("eam_asset_stock_goods_select".equals(operType)){
+			ownerCode=AssetStockGoodsOwnerEnum.GOODS.code();
+		}
 
 
 		if(AssetStockGoodsTypeEnum.STOCK.code().equals(ownerType)){

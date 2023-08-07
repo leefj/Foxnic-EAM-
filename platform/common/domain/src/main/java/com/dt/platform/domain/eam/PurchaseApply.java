@@ -30,7 +30,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 采购申请
  * <p>采购申请 , 数据表 eam_purchase_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-07 19:46:41
+ * @since 2023-08-07 21:23:31
  * @sign EB3E719E1569B7A0BA7D5B27D6DE69E6
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -71,7 +71,7 @@ public class PurchaseApply extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "incomplete")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
 	private String status;
 	
 	/**

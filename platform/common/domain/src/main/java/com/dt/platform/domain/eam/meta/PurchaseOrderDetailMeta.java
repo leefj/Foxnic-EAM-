@@ -3,13 +3,14 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.PurchaseOrderDetail;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-15 05:22:46
- * @sign E929A4D1C687510B64DD1925CA6D64A0
+ * @since 2023-08-07 21:23:16
+ * @sign 811EEF8016BB0816C60159520781B72F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -26,14 +27,14 @@ public class PurchaseOrderDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrderDetail,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrderDetail.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
-	 * 订单 , 类型: java.lang.String
+	 * 清单 , 类型: java.lang.String
 	*/
 	public static final String ORDER_ID="orderId";
 	
 	/**
-	 * 订单 , 类型: java.lang.String
+	 * 清单 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrderDetail,java.lang.String> ORDER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrderDetail.class ,ORDER_ID, java.lang.String.class, "订单", "订单", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseOrderDetail,java.lang.String> ORDER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseOrderDetail.class ,ORDER_ID, java.lang.String.class, "清单", "清单", java.lang.String.class, null);
 	
 	/**
 	 * 资产 , 类型: java.lang.String
@@ -160,8 +161,8 @@ public class PurchaseOrderDetailMeta {
 		}
 		
 		/**
-		 * 设置 订单
-		 * @param orderId 订单
+		 * 设置 清单
+		 * @param orderId 清单
 		 * @return 当前对象
 		*/
 		public PurchaseOrderDetail setOrderId(String orderId) {
@@ -279,5 +280,37 @@ public class PurchaseOrderDetailMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public PurchaseOrderDetail clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public PurchaseOrderDetail duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setOrderId(this.getOrderId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setAssetId(this.getAssetId());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setId(this.getId());
+			inst.setVersion(this.getVersion());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }
