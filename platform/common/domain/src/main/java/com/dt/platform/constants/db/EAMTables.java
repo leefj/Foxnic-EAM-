@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-08-07 20:12:44
+ * @since 2023-08-08 18:37:23
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -19616,14 +19616,8 @@ public class EAMTables {
 		public static final DBField SP_ID = new DBField(DBDataType.STRING , "sp_id","spId","设备备件","设备备件",false,false,true);
 		
 		/**
-		 * 备件名称
 		*/
-		public static final DBField SP_NAME = new DBField(DBDataType.STRING , "sp_name","spName","备件名称","备件名称",false,false,true);
-		
-		/**
-		 * 备件编码
-		*/
-		public static final DBField SP_CODE = new DBField(DBDataType.STRING , "sp_code","spCode","备件编码","备件编码",false,false,true);
+		public static final DBField SP_NUMBER = new DBField(DBDataType.INTEGER , "sp_number","spNumber","sp_number","sp_number",false,false,true);
 		
 		/**
 		 * 备件序列
@@ -19639,6 +19633,16 @@ public class EAMTables {
 		 * 选择
 		*/
 		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择","选择",false,false,true);
+		
+		/**
+		 * 备件编码
+		*/
+		public static final DBField SP_CODE = new DBField(DBDataType.STRING , "sp_code","spCode","备件编码","备件编码",false,false,true);
+		
+		/**
+		 * 备件名称
+		*/
+		public static final DBField SP_NAME = new DBField(DBDataType.STRING , "sp_name","spName","备件名称","备件名称",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -19680,7 +19684,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public EAM_REPAIR_ORDER_ACT_SP() {
-			this.init($NAME,"维修备件" , ID , ACT_ID , SP_ID , SP_NAME , SP_CODE , SP_SN , SP_NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"维修备件" , ID , ACT_ID , SP_ID , SP_NUMBER , SP_SN , SP_NOTES , SELECTED_CODE , SP_CODE , SP_NAME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final EAM_REPAIR_ORDER_ACT_SP $TABLE=new EAM_REPAIR_ORDER_ACT_SP();
 	}

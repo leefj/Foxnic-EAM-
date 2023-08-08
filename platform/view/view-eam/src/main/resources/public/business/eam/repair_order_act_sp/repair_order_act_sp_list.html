@@ -2,7 +2,7 @@
 /**
  * 维修备件 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-18 12:04:28
+ * @since 2023-08-08 18:38:35
  */
  -->
  <!DOCTYPE html>
@@ -41,16 +41,21 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 维修工单 , actId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 备件 , spId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 备件名称 , spName ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 设备备件 , spId ,typeName=button, isHideInSearch=true -->
+                    <!-- sp_number , spNumber ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 备件序列 , spSn ,typeName=text_area, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('备件名称')}" class="search-label spName-label">备件名称</span><span class="search-colon">:</span></div>
-                        <input id="spName" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('备件序列')}" class="search-label spSn-label">备件序列</span><span class="search-colon">:</span></div>
+                        <input id="spSn" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
-                    <!-- 备件编码 , spCode ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 备件序列 , spSn ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 备注 , spNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 备件编码 , spCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 备件名称 , spName ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 备注 , spNotes ,typeName=text_area, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('备注')}" class="search-label spNotes-label">备注</span><span class="search-colon">:</span></div>
+                        <input id="spNotes" class="layui-input search-input" style="width: 180px" type="text" />
+                    </div>
 
 
                 </div>

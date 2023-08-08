@@ -310,7 +310,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                    console.log("finish",selData);
                    if(selData){
                        $("#goodsId").val(selData.id);
-
                        var str=""
                        if(selData.name){
                            str=selData.name;
@@ -323,7 +322,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                        }
 
                        $("#goodsId-button").html(str);
-
 
                    }
                 }

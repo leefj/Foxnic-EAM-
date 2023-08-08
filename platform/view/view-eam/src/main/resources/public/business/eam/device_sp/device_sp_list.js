@@ -1,7 +1,7 @@
 /**
  * 备件清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-30 12:48:38
+ * @since 2023-08-08 12:13:41
  */
 
 
@@ -86,7 +86,7 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件编号') , templet: function (d) { return templet('code',d.code,d);}  }
-					,{ field: 'goodId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品档案'), templet: function (d) { return templet('goodId' ,fox.joinLabel(d.goods,"name",',','','goodId'),d);}}
+					,{ field: 'goodId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品档案') , templet: function (d) { return templet('goodId',d.goodId,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所在仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName",',','','warehouseId'),d);}}
@@ -172,7 +172,7 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.goodId={ inputType:"select_box", value: getSelectedValue("#goodId","value") ,fillBy:["goods"]  , label:getSelectedValue("#goodId","nameStr") };
+		value.goodId={ inputType:"button",value: $("#goodId").val(),label:$("#goodId-button").text() };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.warehouseId={ inputType:"select_box", value: getSelectedValue("#warehouseId","value") ,fillBy:["warehouse"]  , label:getSelectedValue("#warehouseId","nameStr") };
@@ -231,37 +231,6 @@ function ListPage() {
 
 		fox.switchSearchRow(2);
 
-		//渲染 goodId 下拉字段
-		fox.renderSelectBox({
-			el: "goodId",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("goodId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("goodId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].id});
-					}
-				}
-				return opts;
-			}
-		});
 		//渲染 status 搜索框
 		fox.renderSelectBox({
 			el: "status",
@@ -395,6 +364,9 @@ function ListPage() {
 			});
 		});
 
+		// 物品选择对话框
+		$("#goodId-button").click(function(){
+		});
 		// 请选择人员对话框
 		$("#managerUserId-button").click(function(){
 				var managerUserIdDialogOptions={

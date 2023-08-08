@@ -28,7 +28,8 @@ public class SpGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_DEVICE_SP.ID).table().hidden(true);
 
 
-        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goods","goods","goods");
+        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goods","goods","goods")
+        ;
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsFillCode","goodsFillCode","goodsFillCode");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsFillModel","goodsFillModel","goodsFillModel");
 
@@ -133,11 +134,11 @@ public class SpGtr extends BaseCodeGenerator {
                 .valueField(WarehouseMeta.ID).textField( WarehouseMeta.WAREHOUSE_NAME).fillWith(DeviceSpMeta.WAREHOUSE).muliti(false);
 
 
-        cfg.view().field(EAMTables.EAM_DEVICE_SP.GOOD_ID)
-                .form().validate().required().form().selectBox().queryApi(GoodsStockServiceProxy.QUERY_PAGED_LIST+"?ownerCode=goods").paging(true).filter(true).toolbar(false)
-                .valueField(GoodsStockMeta.ID).textField(GoodsStockMeta.NAME).fillWith(DeviceSpMeta.GOODS).muliti(false);
+//        cfg.view().field(EAMTables.EAM_DEVICE_SP.GOOD_ID)
+//                .form().validate().required().form().selectBox().queryApi(GoodsStockServiceProxy.QUERY_PAGED_LIST+"?ownerCode=goods").paging(true).filter(true).toolbar(false)
+//                .valueField(GoodsStockMeta.ID).textField(GoodsStockMeta.NAME).fillWith(DeviceSpMeta.GOODS).muliti(false);
 
-
+        cfg.view().field(EAMTables.EAM_DEVICE_SP.GOOD_ID).form().validate().required().form().button().action("物品选择","goodsSelect");
 
         cfg.view().field(EAMTables.EAM_DEVICE_SP.LOC_ID)
                 .basic().label("存放位置")

@@ -5,13 +5,14 @@ import com.dt.platform.domain.eam.RepairOrderActSpVO;
 import java.util.List;
 import com.dt.platform.domain.eam.RepairOrderActSp;
 import java.util.Date;
+import com.dt.platform.domain.eam.GoodsStock;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-18 12:04:26
+ * @since 2023-08-08 18:38:33
  * @sign 37453FD06C395D70EF007DAB79F2228E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -159,34 +160,24 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> ACT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,ACT_ID, java.lang.String.class, "维修工单", "维修工单", java.lang.String.class, null);
 	
 	/**
-	 * 备件 , 类型: java.lang.String
+	 * 设备备件 , 类型: java.lang.String
 	*/
 	public static final String SP_ID="spId";
 	
 	/**
-	 * 备件 , 类型: java.lang.String
+	 * 设备备件 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> SP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,SP_ID, java.lang.String.class, "备件", "备件", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> SP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,SP_ID, java.lang.String.class, "设备备件", "设备备件", java.lang.String.class, null);
 	
 	/**
-	 * 备件名称 , 类型: java.lang.String
+	 * sp_number , 类型: java.lang.Integer
 	*/
-	public static final String SP_NAME="spName";
+	public static final String SP_NUMBER="spNumber";
 	
 	/**
-	 * 备件名称 , 类型: java.lang.String
+	 * sp_number , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> SP_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,SP_NAME, java.lang.String.class, "备件名称", "备件名称", java.lang.String.class, null);
-	
-	/**
-	 * 备件编码 , 类型: java.lang.String
-	*/
-	public static final String SP_CODE="spCode";
-	
-	/**
-	 * 备件编码 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> SP_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,SP_CODE, java.lang.String.class, "备件编码", "备件编码", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.Integer> SP_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,SP_NUMBER, java.lang.Integer.class, "sp_number", "sp_number", java.lang.Integer.class, null);
 	
 	/**
 	 * 备件序列 , 类型: java.lang.String
@@ -217,6 +208,26 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 	 * 选择 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
+	
+	/**
+	 * 备件编码 , 类型: java.lang.String
+	*/
+	public static final String SP_CODE="spCode";
+	
+	/**
+	 * 备件编码 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> SP_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,SP_CODE, java.lang.String.class, "备件编码", "备件编码", java.lang.String.class, null);
+	
+	/**
+	 * 备件名称 , 类型: java.lang.String
+	*/
+	public static final String SP_NAME="spName";
+	
+	/**
+	 * 备件名称 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.String> SP_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,SP_NAME, java.lang.String.class, "备件名称", "备件名称", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -299,6 +310,16 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
+	 * goods , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final String GOODS="goods";
+	
+	/**
+	 * goods , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActSpVO,com.dt.platform.domain.eam.GoodsStock> GOODS_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActSpVO.class ,GOODS, com.dt.platform.domain.eam.GoodsStock.class, "goods", "goods", com.dt.platform.domain.eam.GoodsStock.class, null);
+	
+	/**
 	 * ownerId , 类型: java.lang.String
 	*/
 	public static final String OWNER_ID="ownerId";
@@ -321,7 +342,7 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ACT_ID , SP_ID , SP_NAME , SP_CODE , SP_SN , SP_NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , OWNER_ID , OWNER_TYPE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ACT_ID , SP_ID , SP_NUMBER , SP_SN , SP_NOTES , SELECTED_CODE , SP_CODE , SP_NAME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , GOODS , OWNER_ID , OWNER_TYPE };
 	
 	/**
 	 * 代理类
@@ -486,8 +507,8 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 		}
 		
 		/**
-		 * 设置 备件
-		 * @param spId 备件
+		 * 设置 设备备件
+		 * @param spId 设备备件
 		 * @return 当前对象
 		*/
 		public RepairOrderActSp setSpId(String spId) {
@@ -497,24 +518,13 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 		}
 		
 		/**
-		 * 设置 备件名称
-		 * @param spName 备件名称
+		 * 设置 sp_number
+		 * @param spNumber sp_number
 		 * @return 当前对象
 		*/
-		public RepairOrderActSp setSpName(String spName) {
-			super.change(SP_NAME,super.getSpName(),spName);
-			super.setSpName(spName);
-			return this;
-		}
-		
-		/**
-		 * 设置 备件编码
-		 * @param spCode 备件编码
-		 * @return 当前对象
-		*/
-		public RepairOrderActSp setSpCode(String spCode) {
-			super.change(SP_CODE,super.getSpCode(),spCode);
-			super.setSpCode(spCode);
+		public RepairOrderActSp setSpNumber(Integer spNumber) {
+			super.change(SP_NUMBER,super.getSpNumber(),spNumber);
+			super.setSpNumber(spNumber);
 			return this;
 		}
 		
@@ -548,6 +558,28 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 		public RepairOrderActSp setSelectedCode(String selectedCode) {
 			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
 			super.setSelectedCode(selectedCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 备件编码
+		 * @param spCode 备件编码
+		 * @return 当前对象
+		*/
+		public RepairOrderActSp setSpCode(String spCode) {
+			super.change(SP_CODE,super.getSpCode(),spCode);
+			super.setSpCode(spCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 备件名称
+		 * @param spName 备件名称
+		 * @return 当前对象
+		*/
+		public RepairOrderActSp setSpName(String spName) {
+			super.change(SP_NAME,super.getSpName(),spName);
+			super.setSpName(spName);
 			return this;
 		}
 		
@@ -640,6 +672,17 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 		}
 		
 		/**
+		 * 设置 goods
+		 * @param goods goods
+		 * @return 当前对象
+		*/
+		public RepairOrderActSp setGoods(GoodsStock goods) {
+			super.change(GOODS,super.getGoods(),goods);
+			super.setGoods(goods);
+			return this;
+		}
+		
+		/**
 		 * 设置 ownerId
 		 * @param ownerId ownerId
 		 * @return 当前对象
@@ -680,9 +723,9 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 			inst.setActId(this.getActId());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setSpId(this.getSpId());
-			inst.setSpCode(this.getSpCode());
 			inst.setSpSn(this.getSpSn());
 			inst.setSelectedCode(this.getSelectedCode());
+			inst.setSpCode(this.getSpCode());
 			inst.setVersion(this.getVersion());
 			inst.setSpNotes(this.getSpNotes());
 			inst.setCreateBy(this.getCreateBy());
@@ -690,6 +733,7 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
+			inst.setSpNumber(this.getSpNumber());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
 			if(all) {
@@ -698,6 +742,7 @@ public class RepairOrderActSpVOMeta extends RepairOrderActSpMeta {
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
+				inst.setGoods(this.getGoods());
 				inst.setOwnerId(this.getOwnerId());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());

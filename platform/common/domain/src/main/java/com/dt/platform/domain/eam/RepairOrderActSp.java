@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 维修备件
  * <p>维修备件 , 数据表 eam_repair_order_act_sp 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-18 12:04:26
- * @sign 1B4BD4EA0A7508B3CA690F98A8F78BCB
+ * @since 2023-08-08 18:38:33
+ * @sign 48B85A31A807FD0C3F7018EF875C5E3B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,37 +40,31 @@ public class RepairOrderActSp extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "733688179906838528")
 	private String id;
 	
 	/**
 	 * 维修工单：维修工单
 	*/
-	@ApiModelProperty(required = false,value="维修工单" , notes = "维修工单")
+	@ApiModelProperty(required = false,value="维修工单" , notes = "维修工单" , example = "733627632276471808")
 	private String actId;
 	
 	/**
-	 * 备件：备件
+	 * 设备备件：设备备件
 	*/
-	@ApiModelProperty(required = false,value="备件" , notes = "备件")
+	@ApiModelProperty(required = false,value="设备备件" , notes = "设备备件" , example = "733306455418994688")
 	private String spId;
 	
 	/**
-	 * 备件名称：备件名称
+	 * sp_number：sp_number
 	*/
-	@ApiModelProperty(required = false,value="备件名称" , notes = "备件名称")
-	private String spName;
-	
-	/**
-	 * 备件编码：备件编码
-	*/
-	@ApiModelProperty(required = false,value="备件编码" , notes = "备件编码")
-	private String spCode;
+	@ApiModelProperty(required = false,value="sp_number" , notes = "sp_number")
+	private Integer spNumber;
 	
 	/**
 	 * 备件序列：备件序列
 	*/
-	@ApiModelProperty(required = false,value="备件序列" , notes = "备件序列")
+	@ApiModelProperty(required = false,value="备件序列" , notes = "备件序列" , example = "12")
 	private String spSn;
 	
 	/**
@@ -82,19 +76,31 @@ public class RepairOrderActSp extends Entity {
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "def")
 	private String selectedCode;
+	
+	/**
+	 * 备件编码：备件编码
+	*/
+	@ApiModelProperty(required = false,value="备件编码" , notes = "备件编码" , example = "C891147")
+	private String spCode;
+	
+	/**
+	 * 备件名称：备件名称
+	*/
+	@ApiModelProperty(required = false,value="备件名称" , notes = "备件名称" , example = "1212")
+	private String spName;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-18 02:10:51")
 	private Date createTime;
 	
 	/**
@@ -112,7 +118,7 @@ public class RepairOrderActSp extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -133,8 +139,14 @@ public class RepairOrderActSp extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
+	
+	/**
+	 * goods：goods
+	*/
+	@ApiModelProperty(required = false,value="goods" , notes = "goods")
+	private GoodsStock goods;
 	
 	/**
 	 * ownerId：ownerId
@@ -187,17 +199,17 @@ public class RepairOrderActSp extends Entity {
 	}
 	
 	/**
-	 * 获得 备件<br>
-	 * 备件
-	 * @return 备件
+	 * 获得 设备备件<br>
+	 * 设备备件
+	 * @return 设备备件
 	*/
 	public String getSpId() {
 		return spId;
 	}
 	
 	/**
-	 * 设置 备件
-	 * @param spId 备件
+	 * 设置 设备备件
+	 * @param spId 设备备件
 	 * @return 当前对象
 	*/
 	public RepairOrderActSp setSpId(String spId) {
@@ -206,40 +218,21 @@ public class RepairOrderActSp extends Entity {
 	}
 	
 	/**
-	 * 获得 备件名称<br>
-	 * 备件名称
-	 * @return 备件名称
+	 * 获得 sp_number<br>
+	 * sp_number
+	 * @return sp_number
 	*/
-	public String getSpName() {
-		return spName;
+	public Integer getSpNumber() {
+		return spNumber;
 	}
 	
 	/**
-	 * 设置 备件名称
-	 * @param spName 备件名称
+	 * 设置 sp_number
+	 * @param spNumber sp_number
 	 * @return 当前对象
 	*/
-	public RepairOrderActSp setSpName(String spName) {
-		this.spName=spName;
-		return this;
-	}
-	
-	/**
-	 * 获得 备件编码<br>
-	 * 备件编码
-	 * @return 备件编码
-	*/
-	public String getSpCode() {
-		return spCode;
-	}
-	
-	/**
-	 * 设置 备件编码
-	 * @param spCode 备件编码
-	 * @return 当前对象
-	*/
-	public RepairOrderActSp setSpCode(String spCode) {
-		this.spCode=spCode;
+	public RepairOrderActSp setSpNumber(Integer spNumber) {
+		this.spNumber=spNumber;
 		return this;
 	}
 	
@@ -297,6 +290,44 @@ public class RepairOrderActSp extends Entity {
 	*/
 	public RepairOrderActSp setSelectedCode(String selectedCode) {
 		this.selectedCode=selectedCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 备件编码<br>
+	 * 备件编码
+	 * @return 备件编码
+	*/
+	public String getSpCode() {
+		return spCode;
+	}
+	
+	/**
+	 * 设置 备件编码
+	 * @param spCode 备件编码
+	 * @return 当前对象
+	*/
+	public RepairOrderActSp setSpCode(String spCode) {
+		this.spCode=spCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 备件名称<br>
+	 * 备件名称
+	 * @return 备件名称
+	*/
+	public String getSpName() {
+		return spName;
+	}
+	
+	/**
+	 * 设置 备件名称
+	 * @param spName 备件名称
+	 * @return 当前对象
+	*/
+	public RepairOrderActSp setSpName(String spName) {
+		this.spName=spName;
 		return this;
 	}
 	
@@ -484,6 +515,25 @@ public class RepairOrderActSp extends Entity {
 	}
 	
 	/**
+	 * 获得 goods<br>
+	 * goods
+	 * @return goods
+	*/
+	public GoodsStock getGoods() {
+		return goods;
+	}
+	
+	/**
+	 * 设置 goods
+	 * @param goods goods
+	 * @return 当前对象
+	*/
+	public RepairOrderActSp setGoods(GoodsStock goods) {
+		this.goods=goods;
+		return this;
+	}
+	
+	/**
 	 * 获得 ownerId<br>
 	 * ownerId
 	 * @return ownerId
@@ -569,9 +619,9 @@ public class RepairOrderActSp extends Entity {
 		inst.setActId(this.getActId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setSpId(this.getSpId());
-		inst.setSpCode(this.getSpCode());
 		inst.setSpSn(this.getSpSn());
 		inst.setSelectedCode(this.getSelectedCode());
+		inst.setSpCode(this.getSpCode());
 		inst.setVersion(this.getVersion());
 		inst.setSpNotes(this.getSpNotes());
 		inst.setCreateBy(this.getCreateBy());
@@ -579,10 +629,12 @@ public class RepairOrderActSp extends Entity {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setSpNumber(this.getSpNumber());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
 			inst.setOwnerType(this.getOwnerType());
+			inst.setGoods(this.getGoods());
 			inst.setOwnerId(this.getOwnerId());
 		}
 		inst.clearModifies();
@@ -647,9 +699,9 @@ public class RepairOrderActSp extends Entity {
 			this.setActId(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.ACT_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(RepairOrderActSpMeta.UPDATE_TIME)));
 			this.setSpId(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.SP_ID)));
-			this.setSpCode(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.SP_CODE)));
 			this.setSpSn(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.SP_SN)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.SELECTED_CODE)));
+			this.setSpCode(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.SP_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(RepairOrderActSpMeta.VERSION)));
 			this.setSpNotes(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.SP_NOTES)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.CREATE_BY)));
@@ -657,10 +709,12 @@ public class RepairOrderActSp extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(RepairOrderActSpMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(RepairOrderActSpMeta.DELETE_TIME)));
+			this.setSpNumber(DataParser.parse(Integer.class, map.get(RepairOrderActSpMeta.SP_NUMBER)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.ID)));
 			// others
 			this.setOwnerType(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.OWNER_TYPE)));
+			this.setGoods(DataParser.parse(GoodsStock.class, map.get(RepairOrderActSpMeta.GOODS)));
 			this.setOwnerId(DataParser.parse(String.class, map.get(RepairOrderActSpMeta.OWNER_ID)));
 			return true;
 		} else {
@@ -669,9 +723,9 @@ public class RepairOrderActSp extends Entity {
 				this.setActId( (String)map.get(RepairOrderActSpMeta.ACT_ID));
 				this.setUpdateTime( (Date)map.get(RepairOrderActSpMeta.UPDATE_TIME));
 				this.setSpId( (String)map.get(RepairOrderActSpMeta.SP_ID));
-				this.setSpCode( (String)map.get(RepairOrderActSpMeta.SP_CODE));
 				this.setSpSn( (String)map.get(RepairOrderActSpMeta.SP_SN));
 				this.setSelectedCode( (String)map.get(RepairOrderActSpMeta.SELECTED_CODE));
+				this.setSpCode( (String)map.get(RepairOrderActSpMeta.SP_CODE));
 				this.setVersion( (Integer)map.get(RepairOrderActSpMeta.VERSION));
 				this.setSpNotes( (String)map.get(RepairOrderActSpMeta.SP_NOTES));
 				this.setCreateBy( (String)map.get(RepairOrderActSpMeta.CREATE_BY));
@@ -679,10 +733,12 @@ public class RepairOrderActSp extends Entity {
 				this.setCreateTime( (Date)map.get(RepairOrderActSpMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(RepairOrderActSpMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(RepairOrderActSpMeta.DELETE_TIME));
+				this.setSpNumber( (Integer)map.get(RepairOrderActSpMeta.SP_NUMBER));
 				this.setDeleteBy( (String)map.get(RepairOrderActSpMeta.DELETE_BY));
 				this.setId( (String)map.get(RepairOrderActSpMeta.ID));
 				// others
 				this.setOwnerType( (String)map.get(RepairOrderActSpMeta.OWNER_TYPE));
+				this.setGoods( (GoodsStock)map.get(RepairOrderActSpMeta.GOODS));
 				this.setOwnerId( (String)map.get(RepairOrderActSpMeta.OWNER_ID));
 				return true;
 			} catch (Exception e) {
@@ -704,9 +760,9 @@ public class RepairOrderActSp extends Entity {
 			this.setActId(DataParser.parse(String.class, r.getValue(RepairOrderActSpMeta.ACT_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(RepairOrderActSpMeta.UPDATE_TIME)));
 			this.setSpId(DataParser.parse(String.class, r.getValue(RepairOrderActSpMeta.SP_ID)));
-			this.setSpCode(DataParser.parse(String.class, r.getValue(RepairOrderActSpMeta.SP_CODE)));
 			this.setSpSn(DataParser.parse(String.class, r.getValue(RepairOrderActSpMeta.SP_SN)));
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(RepairOrderActSpMeta.SELECTED_CODE)));
+			this.setSpCode(DataParser.parse(String.class, r.getValue(RepairOrderActSpMeta.SP_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(RepairOrderActSpMeta.VERSION)));
 			this.setSpNotes(DataParser.parse(String.class, r.getValue(RepairOrderActSpMeta.SP_NOTES)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(RepairOrderActSpMeta.CREATE_BY)));
@@ -714,6 +770,7 @@ public class RepairOrderActSp extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(RepairOrderActSpMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(RepairOrderActSpMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(RepairOrderActSpMeta.DELETE_TIME)));
+			this.setSpNumber(DataParser.parse(Integer.class, r.getValue(RepairOrderActSpMeta.SP_NUMBER)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(RepairOrderActSpMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(RepairOrderActSpMeta.ID)));
 			return true;
@@ -723,9 +780,9 @@ public class RepairOrderActSp extends Entity {
 				this.setActId( (String)r.getValue(RepairOrderActSpMeta.ACT_ID));
 				this.setUpdateTime( (Date)r.getValue(RepairOrderActSpMeta.UPDATE_TIME));
 				this.setSpId( (String)r.getValue(RepairOrderActSpMeta.SP_ID));
-				this.setSpCode( (String)r.getValue(RepairOrderActSpMeta.SP_CODE));
 				this.setSpSn( (String)r.getValue(RepairOrderActSpMeta.SP_SN));
 				this.setSelectedCode( (String)r.getValue(RepairOrderActSpMeta.SELECTED_CODE));
+				this.setSpCode( (String)r.getValue(RepairOrderActSpMeta.SP_CODE));
 				this.setVersion( (Integer)r.getValue(RepairOrderActSpMeta.VERSION));
 				this.setSpNotes( (String)r.getValue(RepairOrderActSpMeta.SP_NOTES));
 				this.setCreateBy( (String)r.getValue(RepairOrderActSpMeta.CREATE_BY));
@@ -733,6 +790,7 @@ public class RepairOrderActSp extends Entity {
 				this.setCreateTime( (Date)r.getValue(RepairOrderActSpMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(RepairOrderActSpMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(RepairOrderActSpMeta.DELETE_TIME));
+				this.setSpNumber( (Integer)r.getValue(RepairOrderActSpMeta.SP_NUMBER));
 				this.setDeleteBy( (String)r.getValue(RepairOrderActSpMeta.DELETE_BY));
 				this.setId( (String)r.getValue(RepairOrderActSpMeta.ID));
 				return true;

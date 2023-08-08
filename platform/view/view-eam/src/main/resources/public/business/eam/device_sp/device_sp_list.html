@@ -2,7 +2,7 @@
 /**
  * 备件清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-30 12:48:37
+ * @since 2023-08-08 12:13:41
  */
  -->
  <!DOCTYPE html>
@@ -122,10 +122,11 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 物品档案 , goodId ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 物品档案 , goodId ,typeName=button, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('物品档案')}" class="search-label goodId-label">物品档案</span><span class="search-colon">:</span></div>
-                        <div id="goodId" th:data="${'/service-eam/eam-goods-stock/query-paged-list?ownerCode=goods'}" style="width:180px" extraParam="{}"></div>
+                            <input lay-filter="goodId" id="goodId" name="goodId"  type="hidden" class="layui-input"    lay-verify="|required"   />
+                            <button id="goodId-button" type="button" action-type="" class="layui-btn layui-btn-primary " style="width: 180px"><span th:text="${lang.translate('物品选择')}" th:default-label="${lang.translate('物品选择')}">按钮文本</span></button>
                     </div>
                     <!-- 物品档案编号 , goodsFillCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">

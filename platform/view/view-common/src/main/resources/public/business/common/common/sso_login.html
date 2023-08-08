@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8"/>
+    <title th:text="${lang.translate(fullTitle,null,'login')} + ' -' + ${lang.translate('SSO',null,'login')}">SSO</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}" />
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+</head>
+
+<body>
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+
+<script th:inline="javascript">
+    var USER_LOGIN_JSON = [[${userLoginJson}]];
+    var LANGUAGES = [[${enum.toArray('org.github.foxnic.web.language.Language')}]];
+    var USER_LANGUAGE_PROP=[[${lang.getUserLanguage().property()}]];
+    var USER_LANGUAGE_CODE=[[${lang.getUserLanguage().code()}]];
+    var LANGUAGE_RANGE = [[${languageRange}]];
+    var RESPONSE_FORMAT = [[${responseFormat}]];
+    var REDIRECT = [[${redirect}]];
+</script>
+<script>
+    localStorage.setItem("theme","[[${theme_code}]]");
+</script>
+<script type="text/javascript" src="/business/common/common/sso_login.js" th:src="'/business/common/common/sso_login.js?'+${cacheKey}"></script>
+</body>
+</html>

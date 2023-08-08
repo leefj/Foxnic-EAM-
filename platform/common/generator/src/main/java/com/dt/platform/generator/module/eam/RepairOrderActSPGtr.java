@@ -1,6 +1,7 @@
 package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
+import com.dt.platform.domain.eam.GoodsStock;
 import com.dt.platform.domain.eam.RepairGroup;
 import com.dt.platform.domain.eam.RepairOrder;
 import com.dt.platform.domain.eam.RepairOrderActSp;
@@ -25,7 +26,7 @@ public class RepairOrderActSPGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
-
+        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goods","goods","goods");
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT_SP.ID).basic().hidden(true);
 
@@ -34,10 +35,13 @@ public class RepairOrderActSPGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(String.class,"ownerId","ownerId","ownerId");
         cfg.getPoClassFile().addSimpleProperty(String.class,"ownerType","ownerType","ownerType");
 
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_SN).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_NOTES).search().fuzzySearch();
 
         cfg.view().search().inputLayout(
                 new Object[]{
-                        EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_NAME,
+                        EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_SN,
+                        EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_NOTES,
                 }
 
         );
@@ -49,8 +53,10 @@ public class RepairOrderActSPGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_ID).form().validate().required().form().button().action("选择物品","selectSp");
 
-
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_CODE).table().disable();
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_NAME).table().disable();
 //
 //        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPAIR_STATUS).form()
 //                .form().selectBox().enumType(RepairOrderStatusEnum.class);
@@ -69,20 +75,17 @@ public class RepairOrderActSPGtr extends BaseCodeGenerator {
 //                textField(PersonMeta.NAME).
 //                fillWith(RepairOrderActMeta.EXECUTOR).muliti(false);
 //
-//        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_SN).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_NOTES).form().textArea().height(Config.textAreaHeight);
 
 
 
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_NAME,
-                        EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_CODE,
+                        EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_ID,
                         EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_SN,
                         EAMTables.EAM_REPAIR_ORDER_ACT_SP.SP_NOTES,
-
-
                 }
-
         );
 
 

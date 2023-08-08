@@ -1,3 +1,14 @@
+-- bpm
+delete from bpm_form_instance where 1=1;
+delete from bpm_form_instance_bill where 1=1;
+delete from bpm_process_instance where 1=1;
+delete from bpm_task where 1=1;
+delete from oa_notice where 1=1;
+
+-- oa
+delete from oa_work_rpt where 1=1;
+delete from oa_schedule_plan where 1=1;
+
 -- system
 delete from sys_token where 1=1;;
 delete from hrm_company where id<>'002';

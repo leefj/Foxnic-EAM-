@@ -2,7 +2,7 @@
 /**
  * 维修备件 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-18 12:04:29
+ * @since 2023-08-08 18:38:35
  */
  -->
  <!DOCTYPE html>
@@ -38,41 +38,34 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-3191-content">
+        <div class="layui-row form-row" id="random-9178-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column" >
 
-                <!-- text_input : 备件名称 ,  spName -->
+                <!-- button : 设备备件 ,  spId  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备件名称')}">备件名称</div></div>
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('设备备件')}">设备备件</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="spName" id="spName" name="spName" th:placeholder="${ lang.translate('请输入'+'备件名称') }" type="text" class="layui-input"  />
+                        <input lay-filter="spId" id="spId" name="spId"  type="hidden" class="layui-input"    lay-verify="|required"   />
+                        <button id="spId-button" type="button" action-type="" class="layui-btn " style="width: 100%" default-width="100%" auto-width="false"><span th:text="${lang.translate('选择物品')}" th:default-label="${lang.translate('选择物品')}">按钮文本</span></button>
                     </div>
                 </div>
             
-                <!-- text_input : 备件编码 ,  spCode -->
-                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备件编码')}">备件编码</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="spCode" id="spCode" name="spCode" th:placeholder="${ lang.translate('请输入'+'备件编码') }" type="text" class="layui-input"  />
-                    </div>
-                </div>
-            
-                <!-- text_input : 备件序列 ,  spSn -->
+                <!-- text_area : 备件序列 ,  spSn  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备件序列')}">备件序列</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="spSn" id="spSn" name="spSn" th:placeholder="${ lang.translate('请输入'+'备件序列') }" type="text" class="layui-input"  />
+                        <textarea lay-filter="spSn" id="spSn" name="spSn" th:placeholder="${ lang.translate('请输入'+'备件序列') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
             
-                <!-- text_input : 备注 ,  spNotes -->
+                <!-- text_area : 备注 ,  spNotes  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="spNotes" id="spNotes" name="spNotes" th:placeholder="${ lang.translate('请输入'+'备注') }" type="text" class="layui-input"  />
+                        <textarea lay-filter="spNotes" id="spNotes" name="spNotes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -99,7 +92,7 @@
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
-    var VALIDATE_CONFIG={};
+    var VALIDATE_CONFIG={"spId":{"labelInForm":"设备备件","inputType":"button","required":true}};
     var AUTH_PREFIX="eam_repair_order_act_sp";
 
 
