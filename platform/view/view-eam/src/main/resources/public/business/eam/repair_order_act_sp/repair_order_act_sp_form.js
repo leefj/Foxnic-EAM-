@@ -1,7 +1,7 @@
 /**
  * 维修备件 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-18 12:04:29
+ * @since 2023-08-08 18:38:35
  */
 
 function FormPage() {
@@ -299,6 +299,10 @@ function FormPage() {
 
 	    form.on('submit(submit-button)', verifyAndSaveForm);
 
+		// 选择物品对话框
+		$("#spId-button").click(function(){
+			window.pageExt.form.selectSp && window.pageExt.form.selectSp(getFormData(),$("#spId"),$(this));
+		});
 
 	    //关闭窗口
 	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-repair-order-act-sp-form-data-win',this); });

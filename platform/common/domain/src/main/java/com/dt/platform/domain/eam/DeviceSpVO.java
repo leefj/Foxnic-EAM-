@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 备件清单VO类型
  * <p>备件清单 , 数据表 eam_device_sp 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-30 12:48:36
+ * @since 2023-08-08 12:13:40
  * @sign 0E46684EB74B7A7BF47F509EDF3C83AE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

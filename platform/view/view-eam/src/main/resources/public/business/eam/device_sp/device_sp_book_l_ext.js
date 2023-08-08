@@ -111,6 +111,22 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="goodId"){
+                var str="";
+                if(r.goods&&r.goods.name){
+                    str=r.goods.name;
+                    if(r.goods.model){
+                        str=str+",型号:"+r.goods.model;
+                    }
+                    if(r.goods.code){
+                        str=str+",物品编号:"+r.goods.code;
+                    }
+                }
+                return str
+            }
+
+
             if(value==null) return "";
             return value;
         },

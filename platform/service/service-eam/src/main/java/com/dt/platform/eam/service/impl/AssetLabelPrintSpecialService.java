@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -95,6 +96,8 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			String fontPath=printData.getLabel().getFontPath();
 			String fontAlias=printData.getLabel().getFontType();
 			File file = new File(fontPath);
+			//优先使用微软雅黑字体msyh.ttf
+			//simhei黑体字体
 			if(file.exists()){
 				Logger.info("pdf Font path:"+fontPath+",pdf Font:"+fontAlias);
 				PdfFontFactory.register(fontPath,fontAlias);
@@ -272,6 +275,7 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							cell.setWidth(valueWidthPoint);
 							cell.setMinWidth(valueWidthPoint);
 							cell.setMaxWidth(valueWidthPoint);
+							cell.setPaddingLeft(5);
 							cell.setTextAlignment(TextAlignment.LEFT);
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
@@ -279,11 +283,11 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 								cell.setBold();
 							}
 							if(asset.containsKey(layoutCode)){
-								Object tmpValue=asset.getOrDefault(layoutCode,"");
+								Object tmpValue=asset.getOrDefault(layoutCode,null);
 								if(tmpValue==null){
 									colValue="";
 								}else{
-									colValue=tmpValue.toString();
+									colValue="  "+tmpValue.toString();
 								}
 							}else{
 								colValue="";

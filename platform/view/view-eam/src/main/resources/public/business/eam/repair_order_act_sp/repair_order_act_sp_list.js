@@ -1,7 +1,7 @@
 /**
  * 维修备件 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-18 12:04:28
+ * @since 2023-08-08 18:38:35
  */
 
 
@@ -86,9 +86,8 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'actId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修工单') , templet: function (d) { return templet('actId',d.actId,d);}  }
-					,{ field: 'spId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件') , templet: function (d) { return templet('spId',d.spId,d);}  }
-					,{ field: 'spName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件名称') , templet: function (d) { return templet('spName',d.spName,d);}  }
-					,{ field: 'spCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件编码') , templet: function (d) { return templet('spCode',d.spCode,d);}  }
+					,{ field: 'spId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备备件') , templet: function (d) { return templet('spId',d.spId,d);}  }
+					,{ field: 'spNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('sp_number') , templet: function (d) { return templet('spNumber',d.spNumber,d);}  }
 					,{ field: 'spSn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件序列') , templet: function (d) { return templet('spSn',d.spSn,d);}  }
 					,{ field: 'spNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('spNotes',d.spNotes,d);}  }
 					,{ field: 'selectedCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('选择') , templet: function (d) { return templet('selectedCode',d.selectedCode,d);}  }
@@ -163,7 +162,8 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.spName={ inputType:"button",value: $("#spName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.spSn={ inputType:"button",value: $("#spSn").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.spNotes={ inputType:"button",value: $("#spNotes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
