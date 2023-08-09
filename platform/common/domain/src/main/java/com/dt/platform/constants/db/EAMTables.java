@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-08-08 18:37:23
+ * @since 2023-08-09 21:54:41
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -19584,8 +19584,13 @@ public class EAMTables {
 		*/
 		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择数据","选择数据",false,false,true);
 		
+		/**
+		 * 类型
+		*/
+		public static final DBField OWNER_TYPE = new DBField(DBDataType.STRING , "owner_type","ownerType","类型","类型",false,false,true);
+		
 		public EAM_REPAIR_ORDER_ACT() {
-			this.init($NAME,"维修工单" , ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
+			this.init($NAME,"维修工单" , ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , OWNER_TYPE);
 		}
 		public static final EAM_REPAIR_ORDER_ACT $TABLE=new EAM_REPAIR_ORDER_ACT();
 	}

@@ -104,9 +104,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
 
-            param.ownerId=OWNER_ID;
-            param.selectedCode=SELECTED_CODE;
-
             console.log('beforeQuery',conditions,param,location);
             return true;
         },

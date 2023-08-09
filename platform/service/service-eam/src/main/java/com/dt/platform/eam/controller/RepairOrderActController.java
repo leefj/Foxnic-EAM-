@@ -1,7 +1,6 @@
 package com.dt.platform.eam.controller;
 
 import java.util.List;
-
 import com.alibaba.csp.sentinel.util.StringUtil;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -84,7 +83,8 @@ public class RepairOrderActController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.STATUS, value = "维修状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.OWNER_TYPE, value = "类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = RepairOrderActServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -146,7 +146,8 @@ public class RepairOrderActController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.STATUS, value = "维修状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.OWNER_TYPE, value = "类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { RepairOrderActVOMeta.PAGE_INDEX, RepairOrderActVOMeta.PAGE_SIZE, RepairOrderActVOMeta.SEARCH_FIELD, RepairOrderActVOMeta.FUZZY_FIELD, RepairOrderActVOMeta.SEARCH_VALUE, RepairOrderActVOMeta.DIRTY_FIELDS, RepairOrderActVOMeta.SORT_FIELD, RepairOrderActVOMeta.SORT_TYPE, RepairOrderActVOMeta.IDS })
     @SentinelResource(value = RepairOrderActServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -177,7 +178,8 @@ public class RepairOrderActController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.STATUS, value = "维修状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.OWNER_TYPE, value = "类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairOrderActVOMeta.PAGE_INDEX, RepairOrderActVOMeta.PAGE_SIZE, RepairOrderActVOMeta.SEARCH_FIELD, RepairOrderActVOMeta.FUZZY_FIELD, RepairOrderActVOMeta.SEARCH_VALUE, RepairOrderActVOMeta.DIRTY_FIELDS, RepairOrderActVOMeta.SORT_FIELD, RepairOrderActVOMeta.SORT_TYPE, RepairOrderActVOMeta.IDS })
     @SentinelResource(value = RepairOrderActServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -214,8 +216,8 @@ public class RepairOrderActController extends SuperController {
      */
     @ApiOperation(value = "获取维修工单")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
-    })
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = RepairOrderActServiceProxy.GET_BY_ORDER_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairOrderActServiceProxy.GET_BY_ORDER_ID)
@@ -268,7 +270,8 @@ public class RepairOrderActController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.STATUS, value = "维修状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.OWNER_TYPE, value = "类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairOrderActVOMeta.PAGE_INDEX, RepairOrderActVOMeta.PAGE_SIZE })
     @SentinelResource(value = RepairOrderActServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -300,27 +303,24 @@ public class RepairOrderActController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderActVOMeta.WITH_ACCEPTANCE, value = "跟随验证", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.STATUS, value = "维修状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderActVOMeta.ORDER_BUSINESS_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderActVOMeta.OWNER_TYPE, value = "类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = RepairOrderActServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairOrderActServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<RepairOrderAct>> queryPagedList(RepairOrderActVO sample) {
         Result<PagedList<RepairOrderAct>> result = new Result<>();
-
-        ConditionExpr expr=new ConditionExpr();
+        ConditionExpr expr = new ConditionExpr();
         expr.and("1=1");
-        if(StringUtil.isNotBlank(sample.getStatus())){
-            expr.and("order_id in (select id from eam_repair_order where repair_status=?)",sample.getStatus());
+        if (StringUtil.isNotBlank(sample.getStatus())) {
+            expr.and("order_id in (select id from eam_repair_order where repair_status=?)", sample.getStatus());
         }
-        PagedList<RepairOrderAct> list = repairOrderActService.queryPagedList(sample, expr,sample.getPageSize(), sample.getPageIndex());
+        PagedList<RepairOrderAct> list = repairOrderActService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         repairOrderActService.dao().fill(list).with(RepairOrderActMeta.ORIGINATOR).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.EXECUTOR).with(RepairOrderActMeta.ORDER).execute();
-
         List<Employee> originator = CollectorUtil.collectList(list.getList(), RepairOrderAct::getOriginator);
         repairOrderActService.dao().join(originator, Person.class);
-
-
         List<Employee> executor = CollectorUtil.collectList(list.getList(), RepairOrderAct::getExecutor);
         repairOrderActService.dao().join(executor, Person.class);
         result.success(true).data(list);

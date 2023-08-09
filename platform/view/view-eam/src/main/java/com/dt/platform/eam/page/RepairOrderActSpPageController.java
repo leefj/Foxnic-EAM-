@@ -47,8 +47,8 @@ public class RepairOrderActSpPageController extends ViewController {
 
 	@RequestMapping("/repair_sp_selected_list.html")
 	public String selectedList(Model model,HttpServletRequest request,
-					   String ownerId,String ownerType,String selectedCode,String pageType) {
-		model.addAttribute("ownerId",ownerId);
+					   String ownerTmpId,String ownerType,String selectedCode,String pageType) {
+		model.addAttribute("ownerTmpId",ownerTmpId);
 		model.addAttribute("ownerType",ownerType);
 		model.addAttribute("selectedCode",selectedCode);
 		model.addAttribute("pageType",pageType);

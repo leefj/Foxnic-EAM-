@@ -599,6 +599,7 @@ public class GoodsStockController extends SuperController {
     @SentinelResource(value = GoodsStockServiceProxy.SAVE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsStockServiceProxy.SAVE_BY_IDS)
     public Result saveByIds(List<String> ids, String selectedCode, String ownerTmpId, String ownerType, String operType) {
+
         for (String id : ids) {
             GoodsStockVO e = new GoodsStockVO();
             GoodsStock goods = goodsStockService.getById(id);
@@ -614,6 +615,8 @@ public class GoodsStockController extends SuperController {
                 e.setWarehouseId(goods.getWarehouseId());
 				e.setGoodsId(goods.getGoodsId());
             }
+
+
 
 
 			// 耗材、物品、备件入库动作
@@ -632,6 +635,13 @@ public class GoodsStockController extends SuperController {
 					|| AssetOperateEnum.EAM_ASSET_PART_GOODS_OUT.code().equals(operType)) {
 				// 直接物品
 				e.setInterOperType("out"); // 获取的是库存数据,再次查询获取物品
+
+			}
+
+			if (AssetOperateEnum.EAM_ASSET_PART_GOODS_REPAIR_OUT.code().equals(operType)
+				 ) {
+				// 直接物品
+				e.setInterOperType("repair_out"); // 获取的是库存数据,再次查询获取物品
 
 			}
 

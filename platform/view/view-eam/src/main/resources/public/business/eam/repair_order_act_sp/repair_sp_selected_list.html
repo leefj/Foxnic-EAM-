@@ -84,7 +84,8 @@
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
-    <button class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>
+<!--    <button class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>-->
+    <button class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改','','cmp:table.ops')}">修改</span></button>
     <button class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 </script>
 
@@ -94,9 +95,8 @@
     var AUTH_PREFIX="eam_repair_order_act_sp_s";
 
 
-
+    var OWNER_TMP_ID = [[${ownerTmpId}]] ;
     var SELECTED_CODE = [[${selectedCode}]] ;
-    var OWNER_ID = [[${ownerId}]] ;
     var OWNER_TYPE = [[${ownerType}]] ;
     var PAGE_TYPE = [[${pageType}]] ;
 

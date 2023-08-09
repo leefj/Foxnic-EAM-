@@ -90,6 +90,7 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.SELECTED_CODE).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.REPAIR_COST).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.WITH_ACCEPTANCE).table().disable();
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.OWNER_TYPE).table().disable();
 
 //
 //        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPAIR_STATUS).form()

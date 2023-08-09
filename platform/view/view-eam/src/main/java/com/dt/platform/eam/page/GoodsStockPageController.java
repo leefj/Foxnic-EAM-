@@ -199,6 +199,7 @@ public class GoodsStockPageController extends ViewController {
 					ownerCode=AssetStockGoodsOwnerEnum.GOODS.code();
 				}else if(AssetOperateEnum.EAM_ASSET_PART_GOODS_OUT.code().equals(operType)
 						||AssetOperateEnum.EAM_ASSET_PART_GOODS_ADJUST.code().equals(operType)
+						||AssetOperateEnum.EAM_ASSET_PART_GOODS_REPAIR_OUT.code().equals(operType)
 						||AssetOperateEnum.EAM_ASSET_PART_GOODS_TRANFER.code().equals(operType)){
 					ownerCode=AssetStockGoodsOwnerEnum.REAL_PART.code();
 				}

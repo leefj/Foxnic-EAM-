@@ -27,6 +27,8 @@ import com.itextpdf.kernel.pdf.canvas.PdfCanvasConstants;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.*;
+import net.bytebuddy.asm.MemberSubstitution;
+import org.springframework.beans.TypeConverter;
 import org.springframework.stereotype.Service;
 import javax.imageio.ImageIO;
 import javax.xml.bind.Element;
@@ -34,6 +36,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -186,6 +189,8 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			Logger.info("print image margin bottom:"+imageMarginBottom);
 			Logger.info("print image margin left:"+imageMarginLeft);
 			Logger.info("print image margin right:"+imageMarginRight);
+
+			SimpleDateFormat format=new SimpleDateFormat("yyyy年MM月dd日");
 			if(assetList!=null){
 				Logger.info("print asset label number:"+assetList.size());
 				for(int i=0;i<assetList.size();i++){
@@ -283,12 +288,25 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 								cell.setBold();
 							}
 							if(asset.containsKey(layoutCode)){
-								Object tmpValue=asset.getOrDefault(layoutCode,null);
-								if(tmpValue==null){
-									colValue="";
+								Object tmpValue=asset.getOrDefault(layoutCode,"");
+								String res="";
+								if(tmpValue instanceof Date){
+									res=format.format((Date)tmpValue);
 								}else{
-									colValue="  "+tmpValue.toString();
+									res=tmpValue.toString();
 								}
+								colValue=""+res;
+//								if(tmpValue==null){
+//									colValue="";
+//								}else{
+//									String res="";
+//									if(tmpValue instanceof Date){
+//										时间类型
+//									}else{
+//										res
+//									}
+//									colValue="  "+tmpValue.toString();
+//								}
 							}else{
 								colValue="";
 							}
