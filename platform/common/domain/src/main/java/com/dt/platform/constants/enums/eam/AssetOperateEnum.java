@@ -98,6 +98,8 @@ public enum AssetOperateEnum implements CodeTextEnum {
     EAM_ASSET_PART_GOODS_ADJUST(CodeModuleEnum.EAM_ASSET_PART_GOODS_ADJUST.code(), CodeModuleEnum.EAM_ASSET_PART_GOODS_ADJUST.text()),
 
 
+    EAM_ASSET_PART_GOODS_REPAIR_OUT("eam_asset_part_goods_repair_out", "维修备件调出"),
+
 
 
     //物品耗材

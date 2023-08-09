@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-05 09:40:46
+ * @since 2023-08-09 22:04:33
  * @sign 043A5ADD17EDB7D84197AA89DA40989D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -385,6 +385,16 @@ public class RepairOrderActVOMeta extends RepairOrderActMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,SELECTED_CODE, java.lang.String.class, "选择数据", "选择数据", java.lang.String.class, null);
 	
 	/**
+	 * 类型 , part 备件仓库，partList 备件清单 , 类型: java.lang.String
+	*/
+	public static final String OWNER_TYPE="ownerType";
+	
+	/**
+	 * 类型 , part 备件仓库，partList 备件清单 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderActVO,java.lang.String> OWNER_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderActVO.class ,OWNER_TYPE, java.lang.String.class, "类型", "part 备件仓库，partList 备件清单", java.lang.String.class, null);
+	
+	/**
 	 * repairOrderProcess , 集合类型: LIST , 类型: com.dt.platform.domain.eam.RepairOrderProcess
 	*/
 	public static final String REPAIR_ORDER_PROCESS="repairOrderProcess";
@@ -467,7 +477,7 @@ public class RepairOrderActVOMeta extends RepairOrderActMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , REPAIR_ORDER_PROCESS , REPAIR_ORDER_ACT_SP_LIST , IDS_LIST , ORDER , ORIGINATOR , EXECUTOR , REPAIR_GROUP , STATUS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , OWNER_TYPE , REPAIR_ORDER_PROCESS , REPAIR_ORDER_ACT_SP_LIST , IDS_LIST , ORDER , ORIGINATOR , EXECUTOR , REPAIR_GROUP , STATUS };
 	
 	/**
 	 * 代理类
@@ -874,6 +884,17 @@ public class RepairOrderActVOMeta extends RepairOrderActMeta {
 		}
 		
 		/**
+		 * 设置 类型
+		 * @param ownerType 类型
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setOwnerType(String ownerType) {
+			super.change(OWNER_TYPE,super.getOwnerType(),ownerType);
+			super.setOwnerType(ownerType);
+			return this;
+		}
+		
+		/**
 		 * 设置 repairOrderProcess
 		 * @param repairOrderProcess repairOrderProcess
 		 * @return 当前对象
@@ -976,30 +997,31 @@ public class RepairOrderActVOMeta extends RepairOrderActMeta {
 		@Transient
 		public RepairOrderActVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setFinishTime(this.getFinishTime());
+			inst.setOwnerType(this.getOwnerType());
 			inst.setNotes(this.getNotes());
 			inst.setOrderId(this.getOrderId());
-			inst.setExecutorId(this.getExecutorId());
 			inst.setGroupId(this.getGroupId());
-			inst.setUpdateTime(this.getUpdateTime());
-			inst.setVersion(this.getVersion());
 			inst.setSelectedCode(this.getSelectedCode());
-			inst.setOrderBusinessCode(this.getOrderBusinessCode());
 			inst.setWithAcceptance(this.getWithAcceptance());
 			inst.setBusinessCode(this.getBusinessCode());
-			inst.setCreateBy(this.getCreateBy());
-			inst.setDeleted(this.getDeleted());
 			inst.setPictureId(this.getPictureId());
-			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
-			inst.setDeleteTime(this.getDeleteTime());
-			inst.setTenantId(this.getTenantId());
-			inst.setDeleteBy(this.getDeleteBy());
 			inst.setStartTime(this.getStartTime());
 			inst.setId(this.getId());
 			inst.setOriginatorId(this.getOriginatorId());
-			inst.setRepairCost(this.getRepairCost());
 			inst.setOrderName(this.getOrderName());
+			inst.setFinishTime(this.getFinishTime());
+			inst.setExecutorId(this.getExecutorId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setOrderBusinessCode(this.getOrderBusinessCode());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setRepairCost(this.getRepairCost());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
 				inst.setRequestAction(this.getRequestAction());

@@ -2,7 +2,9 @@ package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
 
+import com.dt.platform.domain.eam.GoodsStock;
 import com.dt.platform.domain.eam.MappingOwner;
+import com.dt.platform.eam.service.IGoodsStockService;
 import com.dt.platform.eam.service.IMappingOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +61,12 @@ public class RepairOrderActSpServiceImpl extends SuperService<RepairOrderActSp> 
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
+
+
+	@Autowired
+	private IGoodsStockService goodsStockService;
+
+
 	/**
 	 * 获得 DAO 对象
 	 * */
@@ -80,7 +88,11 @@ public class RepairOrderActSpServiceImpl extends SuperService<RepairOrderActSp> 
 	 */
 	@Override
 	public Result insert(RepairOrderActSp repairOrderActSp,boolean throwsException) {
+
+
+
 		Result r=super.insert(repairOrderActSp,throwsException);
+
 		return r;
 	}
 

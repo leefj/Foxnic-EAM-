@@ -6,9 +6,9 @@ import com.alibaba.fastjson.JSONArray;
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.eam.DeviceSpStatusEnum;
-import com.dt.platform.domain.eam.DeviceSpRcd;
-import com.dt.platform.domain.eam.RepairOrderActSp;
+import com.dt.platform.domain.eam.*;
 import com.dt.platform.eam.service.IDeviceSpRcdService;
+import com.dt.platform.eam.service.IGoodsStockService;
 import com.dt.platform.eam.service.IRepairOrderActSpService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.commons.lang.StringUtil;
@@ -23,8 +23,6 @@ import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
 
-import com.dt.platform.domain.eam.DeviceSp;
-import com.dt.platform.domain.eam.DeviceSpVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -84,6 +82,7 @@ public class DeviceSpServiceImpl extends SuperService<DeviceSp> implements IDevi
 	private IDeviceSpRcdService deviceSpRcdService;
 
 
+
 	@Override
 	public Object generateId(Field field) {
 		return IDGenerator.getSnowflakeIdString();
@@ -102,6 +101,7 @@ public class DeviceSpServiceImpl extends SuperService<DeviceSp> implements IDevi
 		//编码
 		deviceSp.setLocked("N");
 		deviceSp.setStatus(DeviceSpStatusEnum.DRAFT.code());
+
 		if(StringUtil.isBlank(deviceSp.getCode())){
 			Result codeResult= CodeModuleServiceProxy.api().generateCode(CodeModuleEnum.COMMON_CODE.code());
 			if(!codeResult.isSuccess()){
@@ -112,6 +112,7 @@ public class DeviceSpServiceImpl extends SuperService<DeviceSp> implements IDevi
 		}
 
 		Result r=super.insert(deviceSp,throwsException);
+
 		return r;
 	}
 

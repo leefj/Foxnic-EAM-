@@ -3,6 +3,7 @@ package com.dt.platform.eam.service.impl;
 
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta;
 import com.dt.platform.domain.eam.meta.RepairOrderActMeta;
 import com.dt.platform.domain.eam.meta.RepairOrderMeta;
 import com.dt.platform.eam.service.*;
@@ -49,6 +50,10 @@ public class RepairOrderActServiceImpl extends SuperService<RepairOrderAct> impl
 
 	@Autowired
 	private IAssetService assetService;
+
+	@Autowired
+	private IGoodsStockService goodsStockService;
+
 
 	@Autowired
 	private IRepairOrderService repairOrderService;
@@ -137,6 +142,19 @@ public class RepairOrderActServiceImpl extends SuperService<RepairOrderAct> impl
 
 	}
 
+	private Result computeStockData(List<GoodsStock> goods){
+		//不进行判断，直接进行库存减
+		if(goods!=null&&goods.size()>0){
+			for(int i=0;i<goods.size();i++){
+				String rid=goods.get(i).getRealStockId();
+				String value=goods.get(i).getStockInNumber()+"";
+				String sql="update eam_goods_stock set stock_cur_number=stock_cur_number-"+value+" where id=?";
+				this.dao.execute(sql,rid);
+			}
+		}
+		return ErrorDesc.success();
+	}
+
 	@Override
 	public Result finish(String id) {
 		RepairOrderAct act=this.getById(id);
@@ -165,26 +183,32 @@ public class RepairOrderActServiceImpl extends SuperService<RepairOrderAct> impl
 		if(!r.isSuccess()){
 			return r;
 		}
+
+		//库存减值
+		GoodsStock qE=new GoodsStock();
+		qE.setOwnerTmpId(id);
+		List<GoodsStock> goodsList =goodsStockService.queryList(qE);
+		computeStockData(goodsList);
+
 		//备件
-		dao.fill(act).with(RepairOrderActMeta.REPAIR_ORDER_ACT_SP_LIST).execute();
-		List<RepairOrderActSp> spList=act.getRepairOrderActSpList();
-		if(spList!=null&&spList.size()>0){
-			for(int j=0;j<spList.size();j++){
-				DeviceSpRcd rcd=new DeviceSpRcd();
-				rcd.setSpId(spList.get(j).getSpId());
-				rcd.setSpCode((spList.get(j).getSpCode()));
-				rcd.setOperTime(new Date());
-				rcd.setOperId(SessionUser.getCurrent().getActivatedEmployeeId());
-				rcd.setContent("备件已备使用,维修工单编号:"+act.getBusinessCode());
-				deviceSpRcdService.insert(rcd,false);
-			}
-			//
-			String upsql="update eam_device_sp set status=?  where id in (select sp_id from eam_repair_order_act_sp where deleted=0 and act_id=? and selected_code='def')";
-			dao.execute(upsql,DeviceSpStatusEnum.USED.code(),act.getId());
+//		dao.fill(act).with(RepairOrderActMeta.REPAIR_ORDER_ACT_SP_LIST).execute();
+//		List<RepairOrderActSp> spList=act.getRepairOrderActSpList();
+//		if(spList!=null&&spList.size()>0){
+//			for(int j=0;j<spList.size();j++){
+//				DeviceSpRcd rcd=new DeviceSpRcd();
+//				rcd.setSpId(spList.get(j).getSpId());
+//				rcd.setSpCode((spList.get(j).getSpCode()));
+//				rcd.setOperTime(new Date());
+//				rcd.setOperId(SessionUser.getCurrent().getActivatedEmployeeId());
+//				rcd.setContent("备件已备使用,维修工单编号:"+act.getBusinessCode());
+//				deviceSpRcdService.insert(rcd,false);
+//			}
+//			//
+//			String upsql="update eam_device_sp set status=?  where id in (select sp_id from eam_repair_order_act_sp where deleted=0 and act_id=? and selected_code='def')";
+//			dao.execute(upsql,DeviceSpStatusEnum.USED.code(),act.getId());
+//		}
 
-		}
-
-		//维修操作完成，登记记录
+		//维修操作完成，登记记录,这里默认只支持一个设备
 		repairOrderService.join(order, RepairOrderMeta.ASSET_LIST);
 		List<Asset> assetList=order.getAssetList();
 		if(assetList!=null&&assetList.size()>0){
@@ -285,10 +309,22 @@ public class RepairOrderActServiceImpl extends SuperService<RepairOrderAct> impl
 		}
 
 		Result r=super.insert(repairOrderAct,throwsException);
-		if(r.isSuccess()){
-			repairOrderService.changeRepairOrderStatus(repairOrderAct.getOrderId(),RepairOrderStatusEnum.WAIT_REPAIR.code());
+		if(!r.isSuccess()){
+			return r;
 		}
-		return r;
+		repairOrderService.changeRepairOrderStatus(repairOrderAct.getOrderId(),RepairOrderStatusEnum.WAIT_REPAIR.code());
+		return ErrorDesc.success();
+//		GoodsStock qE=new GoodsStock();
+//		qE.setSelectedCode(repairOrderAct.getSelectedCode());
+//		List<GoodsStock> list =goodsStockService.queryList(qE);
+//
+//		for(int i=0;i<list.size();i++){
+//			list.get(i).setOwnerCode(repairOrderAct.getOwnerType());
+//		}
+//		repairOrderService.changeRepairOrderStatus(repairOrderAct.getOrderId(),RepairOrderStatusEnum.WAIT_REPAIR.code());
+//		return goodsStockService.saveOwnerData(repairOrderAct.getId(),repairOrderAct.getOwnerType(),list);
+
+
 	}
 
 
@@ -393,7 +429,15 @@ public class RepairOrderActServiceImpl extends SuperService<RepairOrderAct> impl
 				dao.execute("update eam_repair_order_act_sp set selected_code='def' where act_id=? and selected_code=?",repairOrderAct.getId(),repairOrderAct.getSelectedCode());
 			}
 		 }
-		return r;
+
+		GoodsStock qE=new GoodsStock();
+		qE.setOwnerTmpId(repairOrderAct.getId());
+		List<GoodsStock> list =goodsStockService.queryList(qE);
+		for(int i=0;i<list.size();i++){
+			list.get(i).setOwnerCode(repairOrderAct.getOwnerType());
+		}
+		return goodsStockService.saveOwnerData(repairOrderAct.getId(),repairOrderAct.getOwnerType(),list);
+
 	}
 
 	/**

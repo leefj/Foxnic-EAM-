@@ -51,6 +51,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="acceptance"/i, "style=\"display:none\"");
                     operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="wait_repair"){
@@ -59,6 +60,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                      operHtml=operHtml.replace(/lay-event="maintenance"/i, "style=\"display:none\"");
                      operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
                      operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                      document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="repairing"){
@@ -551,6 +553,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         beforeSubmit:function (data) {
             data.orderId=ORDER_ID;
             data.selectedCode=timestamp;
+            data.ownerType="part"
             console.log("beforeSubmit",data);
             return true;
         },
@@ -574,18 +577,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 var  action=admin.getTempData('eam-repair-order-act-form-data-form-action');
                 //设置 iframe 高度
                 ifr.height("400px");
-
                 var selectCode=timestamp;
                 var pageType=action;
-                var ownerId="";
+                var ownerTmpId="";
+                console.log("pageType:"+pageType);
                 var ownerType="eam_repair_act_sp";
                 if(pageType=="create"){
-                    ownerId=timestamp;
+                    ownerTmpId="";
                 }else{
-                    ownerId=data.id;
+                    ownerTmpId=data.id;
                 }
                 //设置地址
-                win.location="/business/eam/repair_order_act_sp/repair_sp_selected_list.html?ownerType="+ownerType+"&ownerId="+ownerId+"&pageType="+pageType+"&selectedCode="+selectCode
+                win.location="/business/eam/repair_order_act_sp/repair_sp_selected_list.html?ownerType="+ownerType+"&ownerTmpId="+ownerTmpId+"&pageType="+pageType+"&selectedCode="+selectCode
 
 
         },

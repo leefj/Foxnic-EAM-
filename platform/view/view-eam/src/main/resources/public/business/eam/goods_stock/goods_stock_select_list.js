@@ -89,15 +89,15 @@ function ListPage() {
                 { fixed: 'left',type: 'numbers' },
                 { fixed: 'left',type:'checkbox'}
                 ,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-                ,{ field: 'goodsId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品'), templet: function (d) { return templet('goodsId' ,fox.joinLabel(d.goods,"name"),d);}}
-                ,{ field: 'goodsModel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品型号'), templet: function (d) { return templet('goodsModel' ,fox.joinLabel(d.goods,"model"),d);}}
                 ,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName"),d);}}
+                ,{ field: 'goodsId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品'), templet: function (d) { return templet('goodsId' ,fox.joinLabel(d.goods,"name"),d);}}
+                ,{ field: 'goodsCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品编码'), templet: function (d) { return templet('goodsCode' ,fox.joinLabel(d.goods,"code"),d);}}
+                ,{ field: 'goodsModel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品型号'), templet: function (d) { return templet('goodsModel' ,fox.joinLabel(d.goods,"model"),d);}}
                 ,{ field: 'stockCurNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('当前数量') , templet: function (d) { return templet('stockCurNumber',d.stockCurNumber,d);}  }
-                ,{ field: 'goodsStockMax', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('库存上限'), templet: function (d) { return templet('goodsStockMax' ,fox.joinLabel(d.goods,"stockMax"),d);}}
-                ,{ field: 'goodsStockMin', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('库存下限'), templet: function (d) { return templet('goodsStockMin' ,fox.joinLabel(d.goods,"stockMin"),d);}}
+            //    ,{ field: 'goodsStockMax', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('库存上限'), templet: function (d) { return templet('goodsStockMax' ,fox.joinLabel(d.goods,"stockMax"),d);}}
+          //      ,{ field: 'goodsStockMin', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('库存下限'), templet: function (d) { return templet('goodsStockMin' ,fox.joinLabel(d.goods,"stockMin"),d);}}
              //   ,{ field: 'goodsStockSecurity', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('安全库存'), templet: function (d) { return templet('goodsStockSecurity' ,fox.joinLabel(d.goods,"stockSecurity"),d);}}
                 ,{ field: 'goodsUnit', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('计量单位'), templet: function (d) { return templet('goodsUnit' ,fox.joinLabel(d.goods,"unit"),d);}}
-                ,{ field: 'goodsCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品编码'), templet: function (d) { return templet('goodsCode' ,fox.joinLabel(d.goods,"code"),d);}}
             //    ,{ field: 'goodsBarCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品条码'), templet: function (d) { return templet('goodsBarCode' ,fox.joinLabel(d.goods,"barCode"),d);}}
              //   ,{ field: 'goodsNotes', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('备注'), templet: function (d) { return templet('goodsNotes' ,fox.joinLabel(d.goods,"notes"),d);}}
 
@@ -116,8 +116,8 @@ function ListPage() {
                 ,{ field: 'brandId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('品牌'), templet: function (d) { return templet('brandId' ,fox.joinLabel(d.brand,"brandName"),d);}}
              //   ,{ field: 'unitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('默认单价') , templet: function (d) { return templet('unitPrice',d.unitPrice,d);}  }
                 ,{ field: 'unit', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计量单位') , templet: function (d) { return templet('unit',d.unit,d);}  }
-                ,{ field: 'stockMin', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('安全库存下限') , templet: function (d) { return templet('stockMin',d.stockMin,d);}  }
-                ,{ field: 'stockMax', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('安全库存上限') , templet: function (d) { return templet('stockMax',d.stockMax,d);}  }
+         //       ,{ field: 'stockMin', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('安全库存下限') , templet: function (d) { return templet('stockMin',d.stockMin,d);}  }
+           //     ,{ field: 'stockMax', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('安全库存上限') , templet: function (d) { return templet('stockMax',d.stockMax,d);}  }
              //   ,{ field: 'stockSecurity', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('安全库存') , templet: function (d) { return templet('stockSecurity',d.stockSecurity,d);}  }
           //      ,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
              ]

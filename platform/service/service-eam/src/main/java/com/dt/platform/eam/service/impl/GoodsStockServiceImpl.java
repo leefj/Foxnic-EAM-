@@ -86,6 +86,7 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 
 
 	//type:create,edit
+	@Override
 	public Result saveOwnerData(String oid,String ownerType,List<GoodsStock> list){
 		this.dao.execute("delete from eam_goods_stock where owner_id=?",oid);
 		for(int i=0;i<list.size();i++){
@@ -94,6 +95,7 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 			e.setOwnerId(oid);
 			e.setOwnerTmpId("none");
 			e.setOwnerType(ownerType);
+			e.setStockCurNumber(list.get(i).getStockCurNumber());
 			super.insert(e,false);
 		}
 		return ErrorDesc.success();

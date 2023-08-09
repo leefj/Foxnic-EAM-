@@ -112,8 +112,6 @@ public class RepairOrderTransferServiceImpl extends SuperService<RepairOrderTran
 		}else{
 			return rr;
 		}
-
-
 		return ErrorDesc.success();
 	}
 

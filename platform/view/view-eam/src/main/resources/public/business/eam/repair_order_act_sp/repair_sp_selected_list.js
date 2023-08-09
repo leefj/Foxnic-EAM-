@@ -10,7 +10,7 @@ function ListPage() {
     var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 
     //模块基础路径
-    const moduleURL="/service-eam/eam-repair-order-act-sp";
+    const moduleURL="/service-eam/eam-goods-stock";
     const queryURL=moduleURL+'/query-selected-paged-list';
     const deleteURL=moduleURL+'/delete';
     const batchDeleteURL=moduleURL+'/delete-by-ids';
@@ -18,7 +18,7 @@ function ListPage() {
     //
     var dataTable=null;
     var sort=null;
-
+    var DATA_TYPE="reset";
     /**
      * 入口函数，初始化
      */
@@ -65,6 +65,15 @@ function ListPage() {
             }
             ps.searchValue=JSON.stringify(contitions);
 
+            if(OWNER_TMP_ID&&OWNER_TMP_ID.length>5){
+                //修改操作
+                ps.ownerTmpId=OWNER_TMP_ID;
+            }else{
+                //新增操作
+                ps.selectedCode=SELECTED_CODE
+            }
+
+            ps.dataType=DATA_TYPE;
             var templet=window.pageExt.list.templet;
             if(templet==null) {
                 templet=function(field,value,row) {
@@ -77,7 +86,7 @@ function ListPage() {
                 elem: '#data-table',
                 toolbar: '#toolbarTemplate',
                 defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-                url: queryURL,
+                url: moduleURL +'/query-paged-list-by-selected',
                 height: 'full-'+(h+28),
                 limit: 50,
                 where: ps,
@@ -85,19 +94,25 @@ function ListPage() {
                     { fixed: 'left',type: 'numbers' },
                     { fixed: 'left',type:'checkbox'}
                     ,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-                //    ,{ field: 'actId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修工单') , templet: function (d) { return templet('actId',d.actId,d);}  }
-                 //   ,{ field: 'spId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件') , templet: function (d) { return templet('spId',d.spId,d);}  }
-                    ,{ field: 'spName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件名称') , templet: function (d) { return templet('spName',d.spName,d);}  }
-                    ,{ field: 'spCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件编码') , templet: function (d) { return templet('spCode',d.spCode,d);}  }
-                    ,{ field: 'spSn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备件序列') , templet: function (d) { return templet('spSn',d.spSn,d);}  }
-                    ,{ field: 'spNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('spNotes',d.spNotes,d);}  }
-                  //  ,{ field: 'selectedCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('选择') , templet: function (d) { return templet('selectedCode',d.selectedCode,d);}  }
-                    ,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-                    ,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
-                    ,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
+                    ,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName"),d);}}
+                    ,{ field: 'goodsId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品'), templet: function (d) { return templet('goodsId' ,fox.joinLabel(d.goods,"name"),d);}}
+                    ,{ field: 'goodsCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品编码'), templet: function (d) { return templet('goodsCode' ,fox.joinLabel(d.goods,"code"),d);}}
+                    ,{ field: 'goodsBarCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品条码'), templet: function (d) { return templet('goodsBarCode' ,fox.joinLabel(d.goods,"barCode"),d);}}
+                    ,{ field: 'stockInNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('物品数量') , templet: function (d) { return templet('stockInNumber',d.stockInNumber,d);}  }
+               //     ,{ field: 'amount', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('总金额') , templet: function (d) { return templet('amount',d.amount,d);}  }
+                 //   ,{ field: 'goodsModel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品型号'), templet: function (d) { return templet('goodsModel' ,fox.joinLabel(d.goods,"model"),d);}}
+                    ,{ field: 'goodsUnit', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('计量单位'), templet: function (d) { return templet('goodsUnit' ,fox.joinLabel(d.goods,"unit"),d);}}
+                    //    ,{ field: 'stockCurNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('当前数量') , templet: function (d) { return templet('stockCurNumber',d.stockCurNumber,d);}  }
+                //    ,{ field: 'goodsStockMax', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('库存上限'), templet: function (d) { return templet('goodsStockMax' ,fox.joinLabel(d.goods,"stockMax"),d);}}
+                 //   ,{ field: 'goodsStockMin', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('库存下限'), templet: function (d) { return templet('goodsStockMin' ,fox.joinLabel(d.goods,"stockMin"),d);}}
+               //     ,{ field: 'goodsStockSecurity', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('安全库存'), templet: function (d) { return templet('goodsStockSecurity' ,fox.joinLabel(d.goods,"stockSecurity"),d);}}
+                    ,{ field: 'notes', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('备注'), templet: function (d) { return templet('notes' ,d.notes,d);}}
+                    ,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
+                    ,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
                 ]],
                 done: function (data) {
                     lockSwitchInputs();
+                    DATA_TYPE="noreset";
                     window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
                 },
                 footer : {
@@ -169,6 +184,15 @@ function ListPage() {
             if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
         }
         ps.searchValue=JSON.stringify(value);
+        if(OWNER_TMP_ID&&OWNER_TMP_ID.length>5){
+            //修改操作
+            ps.ownerTmpId=OWNER_TMP_ID;
+        }else{
+            //新增操作
+            ps.selectedCode=SELECTED_CODE
+        }
+
+
         if(sortField) {
             ps.sortField=sortField;
             ps.sortType=sortType;
@@ -257,22 +281,40 @@ function ListPage() {
             }
             switch(obj.event){
                 case 'create':
-                    var queryString="?selectedCode="+SELECTED_CODE+"&ownerId="+OWNER_ID+"&ownerType="+OWNER_TYPE;
-                    admin.popupCenter({
-                        title: "备件清单",
+                    // var queryString="?selectedCode="+SELECTED_CODE+"&ownerId="+OWNER_ID+"&ownerType="+OWNER_TYPE;
+                    // admin.popupCenter({
+                    //     title: "备件清单",
+                    //     resize: false,
+                    //     offset: [2,null],
+                    //     area: ["80%","85%"],
+                    //     type: 2,
+                    //     id:"eam-repiar-order-sp-select-list-data-win",
+                    //     content: '/business/eam/device_sp/device_sp_select_list.html' + queryString,
+                    //     finish: function () {
+                    //         refreshTableData();
+                    //     }
+                    // });
+
+                    //设置新增是初始化数据
+                    var data={};
+                    admin.putTempData('eam-goods-stock-form-data-form-action', PAGE_TYPE,true);
+                    var queryString="?ownerType=part&selectedCode="+SELECTED_CODE+"&ownerCode=part&ownerTmpId="+OWNER_TMP_ID+"&operType=eam_asset_part_goods_repair_out&pageType="+PAGE_TYPE;
+                    var formTop=2
+                    var index=admin.popupCenter({
+                        title: "选择备件",
                         resize: false,
-                        offset: [2,null],
-                        area: ["80%","85%"],
+                        offset: [formTop,null],
+                        area: ["80%","90%"],
                         type: 2,
-                        id:"eam-repiar-order-sp-select-list-data-win",
-                        content: '/business/eam/device_sp/device_sp_select_list.html' + queryString,
+                        id:"eam-asset-select-data-win",
+                        content: '/business/eam/goods_stock/goods_stock_select_tree.html'+queryString,
                         finish: function () {
+                            console.log("select form finish,");
                             refreshTableData();
                         }
                     });
+                    admin.putTempData('eam-asset-select-data-popup-index', index);
                     break;
-                    // admin.putTempData('eam-repair-order-act-sp-form-data', {});
-                    // openCreateFrom();
                 case 'batch-del':
                     batchDelete(selected);
                     break;
@@ -344,28 +386,25 @@ function ListPage() {
 
             admin.putTempData('eam-repair-order-act-sp-form-data-form-action', "",true);
             if (layEvent === 'edit') { // 修改
-                top.layer.load(2);
-                top.layer.load(2);
-                admin.post(getByIdURL, { id : data.id }, function (data) {
-                    top.layer.closeAll('loading');
+                admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
                     if(data.success) {
-                        admin.putTempData('eam-repair-order-act-sp-form-data-form-action', "edit",true);
+                        admin.putTempData('eam-goods-stock-form-data-form-action', "edit",true);
                         showEditForm(data.data);
                     } else {
                         fox.showMessage(data);
                     }
                 });
             } else if (layEvent === 'view') { // 查看
-                top.layer.load(2);
-                admin.post(getByIdURL, { id : data.id }, function (data) {
-                    top.layer.closeAll('loading');
-                    if(data.success) {
-                        admin.putTempData('eam-repair-order-act-sp-form-data-form-action', "view",true);
-                        showEditForm(data.data);
-                    } else {
-                        fox.showMessage(data);
-                    }
-                });
+                // top.layer.load(2);
+                // admin.post(getByIdURL, { id : data.id }, function (data) {
+                //     top.layer.closeAll('loading');
+                //     if(data.success) {
+                //         admin.putTempData('eam-repair-order-act-sp-form-data-form-action', "view",true);
+                //         showEditForm(data.data);
+                //     } else {
+                //         fox.showMessage(data);
+                //     }
+                // });
             }
             else if (layEvent === 'del') { // 删除
 
@@ -404,29 +443,29 @@ function ListPage() {
             var doNext=window.pageExt.list.beforeEdit(data);
             if(!doNext) return;
         }
-        var action=admin.getTempData('eam-repair-order-act-sp-form-data-form-action');
+        var action=admin.getTempData('eam-goods-stock-form-data-form-action');
         var queryString="";
         if(data && data.id) queryString='id=' + data.id;
         if(window.pageExt.list.makeFormQueryString) {
             queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
         }
-        admin.putTempData('eam-repair-order-act-sp-form-data', data);
-        var area=admin.getTempData('eam-repair-order-act-sp-form-area');
+        admin.putTempData('eam-goods-stock-form-data', data);
+        var area=admin.getTempData('eam-goods-stock-form-area');
         var height= (area && area.height) ? area.height : ($(window).height()*0.6);
         var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-        var title = fox.translate('维修备件');
-        if(action=="create") title=fox.translate('添加','','cmp:table')+title;
-        else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
-        else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
+        var title = fox.translate('库存物品');
+        if(action=="create") title=fox.translate('添加')+title;
+        else if(action=="edit") title=fox.translate('修改')+title;
+        else if(action=="view") title=fox.translate('查看')+title;
 
         admin.popupCenter({
             title: title,
             resize: false,
             offset: [top,null],
-            area: ["500px",height+"px"],
+            area: ["80%",height+"px"],
             type: 2,
-            id:"eam-repair-order-act-sp-form-data-win",
-            content: '/business/eam/repair_order_act_sp/repair_order_act_sp_form.html' + (queryString?("?"+queryString):""),
+            id:"eam-goods-stock-form-data-win",
+            content: '/business/eam/goods_stock/goods_stock_selected_form.html' + (queryString?("?"+queryString):""),
             finish: function () {
                 if(action=="create") {
                     refreshTableData();

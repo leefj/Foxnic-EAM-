@@ -122,9 +122,7 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 		}
 
 
-
-
-		//制单人、
+		//制单人
 		if(StringUtil.isBlank(assetStockGoodsOut.getOriginatorId())){
 			assetStockGoodsOut.setOriginatorId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
 		}
@@ -243,7 +241,6 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 	}
 
 	private Result computeStockData(String id){
-
 		AssetStockGoodsOut bill=this.getById(id);
 		this.dao().fill(bill)
 				.with(AssetStockGoodsInMeta.GOODS_LIST)
