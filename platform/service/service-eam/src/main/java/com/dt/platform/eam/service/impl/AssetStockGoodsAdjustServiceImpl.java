@@ -2,12 +2,10 @@ package com.dt.platform.eam.service.impl;
 
 
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
-import com.dt.platform.constants.enums.eam.AssetHandleConfirmOperationEnum;
-import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
-import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.constants.enums.eam.AssetStockGoodsTypeEnum;
+import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.AssetStockGoodsAdjust;
 import com.dt.platform.domain.eam.GoodsStock;
+import com.dt.platform.domain.eam.GoodsStockUsage;
 import com.dt.platform.domain.eam.GoodsStockVO;
 import com.dt.platform.domain.eam.meta.AssetStockGoodsAdjustMeta;
 import com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta;
@@ -15,6 +13,7 @@ import com.dt.platform.domain.eam.meta.GoodsMeta;
 import com.dt.platform.domain.eam.meta.GoodsStockMeta;
 import com.dt.platform.eam.service.IAssetStockGoodsAdjustService;
 import com.dt.platform.eam.service.IGoodsStockService;
+import com.dt.platform.eam.service.IGoodsStockUsageService;
 import com.dt.platform.eam.service.IOperateService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.constant.CodeTextEnum;
@@ -66,6 +65,10 @@ public class AssetStockGoodsAdjustServiceImpl extends SuperService<AssetStockGoo
 
 	@Autowired
 	private IGoodsStockService goodsStockService;
+
+	@Autowired
+	private IGoodsStockUsageService goodsStockUsageService;
+
 
 	/**
 	 * 注入DAO对象
@@ -220,6 +223,8 @@ public class AssetStockGoodsAdjustServiceImpl extends SuperService<AssetStockGoo
 				.with(AssetStockGoodsInMeta.GOODS_LIST)
 				.execute();
 		//不进行判断，直接进行库存减
+		String cUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+		String cUserName=SessionUser.getCurrent().getUser().getActivatedEmployeeName();
 		List<GoodsStock> goods=bill.getGoodsList();
 		if(goods!=null&&goods.size()>0){
 			for(int i=0;i<goods.size();i++){
@@ -227,6 +232,18 @@ public class AssetStockGoodsAdjustServiceImpl extends SuperService<AssetStockGoo
 				String value=goods.get(i).getStockInNumber()+"";
 				String sql="update eam_goods_stock set stock_cur_number="+value+" where id=?";
 				this.dao.execute(sql,rid);
+
+				GoodsStockUsage goodsStockUsage=new GoodsStockUsage();
+				goodsStockUsage.setOwnerId(rid);
+				goodsStockUsage.setLabel("调整");
+				goodsStockUsage.setOperUserId(cUserId);
+				goodsStockUsage.setOperUserName(cUserName);
+				goodsStockUsage.setRecTime(new Date());
+				goodsStockUsage.setOper(AssetStockTypeEnum.ADJUST.code());
+				goodsStockUsage.setBillCode(bill.getBusinessCode());
+				goodsStockUsage.setOperNumber(value);
+				goodsStockUsage.setContent("调整完成");
+				goodsStockUsageService.insert(goodsStockUsage,true);
 			}
 		}
 		return ErrorDesc.success();

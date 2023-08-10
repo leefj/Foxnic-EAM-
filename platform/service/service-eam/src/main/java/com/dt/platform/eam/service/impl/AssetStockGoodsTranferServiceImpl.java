@@ -5,6 +5,7 @@ import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.AssetStockGoodsTranfer;
 import com.dt.platform.domain.eam.GoodsStock;
+import com.dt.platform.domain.eam.GoodsStockUsage;
 import com.dt.platform.domain.eam.GoodsStockVO;
 import com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta;
 import com.dt.platform.domain.eam.meta.AssetStockGoodsTranferMeta;
@@ -12,6 +13,7 @@ import com.dt.platform.domain.eam.meta.GoodsMeta;
 import com.dt.platform.domain.eam.meta.GoodsStockMeta;
 import com.dt.platform.eam.service.IAssetStockGoodsTranferService;
 import com.dt.platform.eam.service.IGoodsStockService;
+import com.dt.platform.eam.service.IGoodsStockUsageService;
 import com.dt.platform.eam.service.IOperateService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.constant.CodeTextEnum;
@@ -68,6 +70,8 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 	@Autowired
 	private IGoodsStockService goodsStockService;
 
+	@Autowired
+	private IGoodsStockUsageService goodsStockUsageService;
 
 	/**
 	 * 注入DAO对象
@@ -249,6 +253,8 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 			ownerCode=AssetStockGoodsOwnerEnum.REAL_PART.code();
 		}
 
+		String cUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+		String cUserName=SessionUser.getCurrent().getUser().getActivatedEmployeeName();
 
 		List<GoodsStock> goods=bill.getGoodsList();
 		if(goods!=null&&goods.size()>0){
@@ -259,7 +265,7 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 				String goodsId=goodsObj.getGoodsId();
 				String goodsNumber=goodsObj.getStockInNumber()+"";
 				//调入仓库不存在该物品
-				Rcd inRs=this.dao.queryRecord("select * from eam_goods_stock where deleted=0 and tenant_id='"+tenantId+"' and owner_code='"+ownerCode+"' and warehouse_id=? and goods_id=?",warehouseIn,goodsId);
+				Rcd inRs=this.dao.queryRecord("select * from eam_goods_stock where deleted=0 and tenant_id=? and owner_code=? and warehouse_id=? and goods_id=?",tenantId,ownerCode,warehouseIn,goodsId);
 				String inId="";
 				if(inRs==null){
 					inId=IDGenerator.getSnowflakeIdString();
@@ -274,19 +280,39 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 					this.dao.execute(ins);
 				}else{
 					inId=inRs.getString("id");
+					String sql2="update eam_goods_stock set stock_cur_number=stock_cur_number+"+goodsNumber+" where id=?";
+					this.dao.execute(sql2,inId);
 				}
+				GoodsStockUsage goodsStockUsageIn=new GoodsStockUsage();
+				goodsStockUsageIn.setOwnerId(inId);
+				goodsStockUsageIn.setLabel("调入");
+				goodsStockUsageIn.setOperUserId(cUserId);
+				goodsStockUsageIn.setOperUserName(cUserName);
+				goodsStockUsageIn.setRecTime(new Date());
+				goodsStockUsageIn.setOper(AssetStockTypeEnum.ALLOCATE_IN.code());
+				goodsStockUsageIn.setBillCode(bill.getBusinessCode());
+				goodsStockUsageIn.setOperNumber(goodsNumber);
+				goodsStockUsageIn.setContent("调拨调入完成");
+				goodsStockUsageService.insert(goodsStockUsageIn,true);
 
-				//新增
+
 				//调出仓库做减去
 				String outId=goods.get(i).getRealStockId();
 				String sql1="update eam_goods_stock set stock_cur_number=stock_cur_number-"+goodsNumber+" where id=?";
-
-				//调入仓库做加
-				//获取ID
-				String sql2="update eam_goods_stock set stock_cur_number=stock_cur_number+"+goodsNumber+" where id=?";
-				//执行
 				this.dao.execute(sql1,outId);
-				this.dao.execute(sql2,inId);
+				GoodsStockUsage goodsStockUsageOut=new GoodsStockUsage();
+				goodsStockUsageOut.setOwnerId(outId);
+				goodsStockUsageOut.setLabel("调出");
+				goodsStockUsageOut.setOperUserId(cUserId);
+				goodsStockUsageOut.setOperUserName(cUserName);
+				goodsStockUsageOut.setRecTime(new Date());
+				goodsStockUsageOut.setOper(AssetStockTypeEnum.ALLOCATE_OUT.code());
+				goodsStockUsageOut.setBillCode(bill.getBusinessCode());
+				goodsStockUsageOut.setOperNumber(goodsNumber);
+				goodsStockUsageOut.setContent("调拨调出完成");
+				goodsStockUsageService.insert(goodsStockUsageOut,true);
+
+
 			}
 		}
 		return ErrorDesc.success();

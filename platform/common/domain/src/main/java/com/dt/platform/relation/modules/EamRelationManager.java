@@ -61,7 +61,7 @@ public class EamRelationManager extends RelationManager {
         this.setupAssetStockOut();
         this.setupAssetStockAdjust();
         this.setupAssetStockTranfer();
-
+        this.setupAssetStockUsage();
 
         this.setupAssetStock();
         this.setupAssetStockCollection();
@@ -1287,6 +1287,13 @@ public class EamRelationManager extends RelationManager {
         this.property(AssetStockGoodsAdjustMeta.GOODS_LIST_PROP)
                 .using(EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.ID).join(EAMTables.EAM_GOODS_STOCK.OWNER_ID);
 
+
+    }
+
+    public void setupAssetStockUsage(){
+
+        this.property(GoodsStockUsageMeta.OPS_USER_PROP)
+                .using(EAMTables.EAM_GOODS_STOCK_USAGE.OPER_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
     }
     public void setupAssetStockTranfer(){

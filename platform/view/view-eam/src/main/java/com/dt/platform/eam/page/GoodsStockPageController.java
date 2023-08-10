@@ -49,6 +49,14 @@ public class GoodsStockPageController extends ViewController {
 		return proxy;
 	}
 
+	@RequestMapping("/stock_for_abnormal_list.html")
+	public String abnormalList(Model model,HttpServletRequest request,String ownerCode) {
+		model.addAttribute("ownerCode",ownerCode);
+		return prefix+"/stock_for_abnormal_list";
+	}
+
+
+
 	@RequestMapping("/stock_book_tree.html")
 	public String treeList(Model model,HttpServletRequest request,String ownerCode,String ownerType) {
 		model.addAttribute("ownerCode",ownerCode);

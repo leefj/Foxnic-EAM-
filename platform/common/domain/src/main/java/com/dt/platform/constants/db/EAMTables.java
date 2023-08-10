@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-08-09 21:54:41
+ * @since 2023-08-10 22:27:00
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -14227,6 +14227,111 @@ public class EAMTables {
 	}
 	
 	/**
+	 * 使用情况
+	*/
+	public static class EAM_GOODS_STOCK_USAGE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_goods_stock_usage";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 所属
+		*/
+		public static final DBField OWNER_ID = new DBField(DBDataType.STRING , "owner_id","ownerId","所属","所属",false,false,true);
+		
+		/**
+		 * 单据编码
+		*/
+		public static final DBField BILL_CODE = new DBField(DBDataType.STRING , "bill_code","billCode","单据编码","单据编码",false,false,true);
+		
+		/**
+		 * 操作标签
+		*/
+		public static final DBField LABEL = new DBField(DBDataType.STRING , "label","label","操作标签","操作标签",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","内容","内容",false,false,true);
+		
+		/**
+		 * 数量
+		*/
+		public static final DBField OPER_NUMBER = new DBField(DBDataType.STRING , "oper_number","operNumber","数量","数量",false,false,true);
+		
+		/**
+		 * 操作
+		*/
+		public static final DBField OPER = new DBField(DBDataType.STRING , "oper","oper","操作","操作",false,false,true);
+		
+		/**
+		 * 操作人员
+		*/
+		public static final DBField OPER_USER_ID = new DBField(DBDataType.STRING , "oper_user_id","operUserId","操作人员","操作人员",false,false,true);
+		
+		/**
+		 * 操作人员
+		*/
+		public static final DBField OPER_USER_NAME = new DBField(DBDataType.STRING , "oper_user_name","operUserName","操作人员","操作人员",false,false,true);
+		
+		/**
+		 * 记录时间
+		*/
+		public static final DBField REC_TIME = new DBField(DBDataType.DATE , "rec_time","recTime","记录时间","记录时间",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public EAM_GOODS_STOCK_USAGE() {
+			this.init($NAME,"使用情况" , ID , OWNER_ID , BILL_CODE , LABEL , CONTENT , OPER_NUMBER , OPER , OPER_USER_ID , OPER_USER_NAME , REC_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final EAM_GOODS_STOCK_USAGE $TABLE=new EAM_GOODS_STOCK_USAGE();
+	}
+	
+	/**
 	 * 班组成员
 	*/
 	public static class EAM_GROUP_USER extends DBTable {
@@ -19585,9 +19690,9 @@ public class EAMTables {
 		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择数据","选择数据",false,false,true);
 		
 		/**
-		 * 类型
+		 * 类型,part 备件仓库，partList 备件清单
 		*/
-		public static final DBField OWNER_TYPE = new DBField(DBDataType.STRING , "owner_type","ownerType","类型","类型",false,false,true);
+		public static final DBField OWNER_TYPE = new DBField(DBDataType.STRING , "owner_type","ownerType","类型","part 备件仓库，partList 备件清单",false,false,true);
 		
 		public EAM_REPAIR_ORDER_ACT() {
 			this.init($NAME,"维修工单" , ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , OWNER_TYPE);

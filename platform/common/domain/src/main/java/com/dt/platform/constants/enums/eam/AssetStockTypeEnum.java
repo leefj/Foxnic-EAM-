@@ -17,6 +17,9 @@ public enum AssetStockTypeEnum implements CodeTextEnum {
 	IN("in" , "入库"),
 	OUT("out" , "出库"),
 	ALLOCATE("allocate" , "调拨"),
+	ALLOCATE_IN("allocate_in" , "调进"),
+	ALLOCATE_OUT("allocate_out" , "调出"),
+	ADJUST("adjust" , "调整")
 	;
 	private String code;
 	private String text;

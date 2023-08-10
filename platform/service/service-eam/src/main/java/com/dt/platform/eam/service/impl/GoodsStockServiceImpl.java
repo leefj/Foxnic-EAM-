@@ -5,6 +5,8 @@ import com.alibaba.csp.sentinel.util.StringUtil;
 import com.dt.platform.constants.enums.eam.AssetStockGoodsOwnerEnum;
 import com.dt.platform.constants.enums.eam.AssetStockGoodsTypeEnum;
 import com.dt.platform.domain.eam.GoodsStock;
+import com.dt.platform.domain.eam.GoodsStockUsage;
+import com.dt.platform.domain.eam.GoodsStockUsageVO;
 import com.dt.platform.domain.eam.GoodsStockVO;
 import com.dt.platform.domain.eam.meta.GoodsMeta;
 import com.dt.platform.domain.eam.meta.GoodsStockMeta;
@@ -82,7 +84,12 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 		return r;
 	}
 
-
+	@Override
+	public PagedList<GoodsStock> queryPagedListForAbnormal(GoodsStockVO sample, int pageSize, int pageIndex) {
+		ConditionExpr expr=new ConditionExpr();
+		expr.and("stock_cur_number<0");
+		return super.queryPagedList(sample, expr,pageSize, pageIndex);
+	}
 
 
 	//type:create,edit
