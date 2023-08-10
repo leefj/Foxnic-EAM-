@@ -100,6 +100,7 @@ delete from eam_asset_stock_goods_detail  where 1=1  ;
 delete from eam_asset_stock_goods_in  where 1=1 and tenant_id='T001' ;
 delete from eam_asset_stock_goods_out  where 1=1 and tenant_id='T001' ;
 delete from eam_asset_stock_goods_tranfer  where 1=1 and tenant_id='T001' ;
+delete from eam_goods_stock_usage  where 1=1;
 delete from eam_goods_stock where owner_code<>'goods';
 -- cust inspect repair
 delete from eam_c_cust_inspect_item where 1=1 ;
@@ -232,6 +233,17 @@ delete from bpm_form_definition where deleted=1;
 delete from pcm_catalog where id='484764974338543617';
 delete from pcm_catalog where id='484764976855126017';
 -- HRM
+delete from hr_person  where 1=1;
+delete from hr_person_contract  where 1=1;
+delete from hr_salary_action  where 1=1;
+delete from hr_person_resume  where 1=1;
+delete from hr_person_salary where 1=1;
+delete from hr_person_attendance where 1=1;
+delete from hr_person_attendance_money where 1=1;
+delete from hr_person_attendance_rec where 1=1;
+delete from hr_person_cert where 1=1;
+delete from hr_person_file where 1=1;
+delete from hr_person_file_out where 1=1;
 delete from hrm_employee  where deleted=1;
 delete from hrm_person  where deleted=1;
 delete from hrm_company  where deleted=1;
