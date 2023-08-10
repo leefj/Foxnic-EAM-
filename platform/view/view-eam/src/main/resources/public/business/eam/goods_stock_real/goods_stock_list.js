@@ -92,8 +92,10 @@ function ListPage() {
 					,{ field: 'goodsStockMax', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('库存上限'), templet: function (d) { return templet('goodsStockMax' ,fox.joinLabel(d.goods,"stockMax"),d);}}
 					,{ field: 'goodsStockMin', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('库存下限'), templet: function (d) { return templet('goodsStockMin' ,fox.joinLabel(d.goods,"stockMin"),d);}}
 					,{ field: 'goodsStockSecurity', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('安全库存'), templet: function (d) { return templet('goodsStockSecurity' ,fox.joinLabel(d.goods,"stockSecurity"),d);}}
+					,{ field: 'goodsNotes', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品备注'), templet: function (d) { return templet('goodsNotes' ,fox.joinLabel(d.goods,"notes"),d);}}
 					,{ field: 'goodsUnit', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('计量单位'), templet: function (d) { return templet('goodsUnit' ,fox.joinLabel(d.goods,"unit"),d);}}
-					,{ field: 'goodsNotes', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('备注'), templet: function (d) { return templet('goodsNotes' ,fox.joinLabel(d.goods,"notes"),d);}}
+					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
+					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
@@ -484,6 +486,19 @@ function ListPage() {
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
+					}
+				});
+			}
+			else if (layEvent === 'record') { // 删除
+				admin.popupCenter({
+					title: "历史记录",
+					resize: false,
+					offset: [20,null],
+					area: ["85%","85%"],
+					type: 2,
+					id:"eam-goods-stock-usage-list-data-win",
+					content: '/business/eam/goods_stock_usage/goods_stock_usage_list.html?ownerId='+data.id,
+					finish: function () {
 					}
 				});
 			}

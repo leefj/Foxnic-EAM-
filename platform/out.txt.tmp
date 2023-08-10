@@ -1,6 +1,6 @@
 ###########121.43.103.102###########
 setdbname:foxnic
-starttobackup,dbname:foxnic,file:/app/app/backup/db/foxnic_backup_20230809_12_50_10.tar.gz
+starttobackup,dbname:foxnic,file:/app/app/backup/db/foxnic_backup_20230809_23_23_10.tar.gz
 mysqldump:[Warning]Usingapasswordonthecommandlineinterfacecanbeinsecure.
 ./db.sql
 backupfinish

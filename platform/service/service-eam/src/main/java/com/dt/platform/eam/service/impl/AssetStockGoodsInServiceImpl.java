@@ -5,12 +5,14 @@ import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.AssetStockGoodsIn;
 import com.dt.platform.domain.eam.GoodsStock;
+import com.dt.platform.domain.eam.GoodsStockUsage;
 import com.dt.platform.domain.eam.GoodsStockVO;
 import com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta;
 import com.dt.platform.domain.eam.meta.GoodsMeta;
 import com.dt.platform.domain.eam.meta.GoodsStockMeta;
 import com.dt.platform.eam.service.IAssetStockGoodsInService;
 import com.dt.platform.eam.service.IGoodsStockService;
+import com.dt.platform.eam.service.IGoodsStockUsageService;
 import com.dt.platform.eam.service.IOperateService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.constant.CodeTextEnum;
@@ -61,6 +63,8 @@ import java.util.Map;
 public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn> implements IAssetStockGoodsInService {
 
 
+	@Autowired
+	private IGoodsStockUsageService goodsStockUsageService;
 
 	@Autowired
 	private IOperateService operateService;
@@ -257,20 +261,25 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 				.execute();
 		List<GoodsStock> goods=bill.getGoodsList();
 
+		String cUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+		String cUserName=SessionUser.getCurrent().getUser().getActivatedEmployeeName();
 		if(goods!=null&&goods.size()>0){
 			for(int i=0;i<goods.size();i++){
 				String goodsId=goods.get(i).getGoodsId();
 				String stockInNumber=goods.get(i).getStockInNumber()+"";
 				String warehouseId=goods.get(i).getWarehouseId();
+
 				if(StringUtil.isBlank(goodsId)||StringUtil.isBlank(warehouseId)){
 					Logger.info("goodsId or warehouseId is empty");
 				}else{
-					String sql="select id,goods_id from eam_goods_stock where owner_code=? and deleted=0 and tenant_id=? and goods_id=? and warehouse_id=?";
+					String sql="select id,goods_id from eam_goods_stock where deleted=0 and owner_code=? and tenant_id=? and goods_id=? and warehouse_id=?";
 					Rcd rs=this.dao.queryRecord(sql,ownerCode,tenantId,goodsId,warehouseId);
+					String gId="";
 					if(rs==null){
 						//新增,真实物品
 						Insert ins=new Insert("eam_goods_stock");
-						ins.set("id",IDGenerator.getSnowflakeIdString());
+						gId=IDGenerator.getSnowflakeIdString();
+						ins.set("id",gId);
 						ins.set("owner_code",ownerCode);
 						ins.set("owner_type",bill.getOwnerType());
 						ins.set("stock_cur_number",stockInNumber);
@@ -281,11 +290,23 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 						this.dao.execute(ins);
 					}else{
 						//增量修改物品数据
-						String gid=rs.getString("id");
+						gId=rs.getString("id");
 						String updateSql="update eam_goods_stock set stock_cur_number=stock_cur_number+"+stockInNumber+" where id=?";
-						this.dao.execute(updateSql,gid);
+						this.dao.execute(updateSql,gId);
 					}
+					GoodsStockUsage goodsStockUsage=new GoodsStockUsage();
+					goodsStockUsage.setOwnerId(gId);
+					goodsStockUsage.setLabel("入库");
+					goodsStockUsage.setOperUserId(cUserId);
+					goodsStockUsage.setOperUserName(cUserName);
+					goodsStockUsage.setRecTime(new Date());
+					goodsStockUsage.setOper(AssetStockTypeEnum.IN.code());
+					goodsStockUsage.setBillCode(bill.getBusinessCode());
+					goodsStockUsage.setOperNumber(stockInNumber);
+					goodsStockUsage.setContent("入库完成");
+					goodsStockUsageService.insert(goodsStockUsage,true);
 				}
+
 			}
 		}else{
 			return ErrorDesc.failureMessage("没有物品");

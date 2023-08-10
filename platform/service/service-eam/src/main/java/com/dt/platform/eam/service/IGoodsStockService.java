@@ -2,12 +2,10 @@ package com.dt.platform.eam.service;
 
 
 import com.alibaba.fastjson.JSONArray;
-import com.dt.platform.domain.eam.Asset;
-import com.dt.platform.domain.eam.AssetVO;
+import com.dt.platform.domain.eam.*;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.eam.GoodsStock;
-import com.dt.platform.domain.eam.GoodsStockVO;
+
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -31,6 +29,7 @@ public interface IGoodsStockService extends ISuperService<GoodsStock> {
 
 	PagedList<GoodsStock> querySecurityStockWarn(GoodsStockVO sample);
 
+	PagedList<GoodsStock> queryPagedListForAbnormal(GoodsStockVO sample, int pageSize, int pageIndex);
 
 	PagedList<GoodsStock> queryMinStockWarn(GoodsStockVO sample);
 

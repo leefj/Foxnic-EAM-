@@ -38,7 +38,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         beforeTableRender:function (cfg){
             cfg.defaultToolbar= [];
             cfg.limit=500;
-            cfg.cellMinWidth=200;;
+            cfg.cellMinWidth=160;;
         },
         /**
          * 表格渲染后调用

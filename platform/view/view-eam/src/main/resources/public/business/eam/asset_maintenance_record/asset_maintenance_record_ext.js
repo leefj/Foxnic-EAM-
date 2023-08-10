@@ -57,7 +57,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            cfg.cellMinWidth=200;;
+            cfg.cellMinWidth=160;;
             cfg.defaultToolbar=['filter', 'print','exports',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}];
         },
         /**

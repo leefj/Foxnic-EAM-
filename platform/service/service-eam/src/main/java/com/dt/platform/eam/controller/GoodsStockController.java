@@ -8,7 +8,9 @@ import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.eam.AssetStockGoodsOwnerEnum;
 import com.dt.platform.constants.enums.eam.AssetStockTypeEnum;
 import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.GoodsStockUsageVOMeta;
 import com.dt.platform.proxy.eam.AssetReportServiceProxy;
+import com.dt.platform.proxy.eam.GoodsStockUsageServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.domain.hrm.Person;
@@ -565,6 +567,24 @@ public class GoodsStockController extends SuperController {
         return result;
     }
 
+	/**
+	 * 分页查询使用情况
+	 */
+	@ApiOperation(value = "分页查询使用情况")
+	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = GoodsStockServiceProxy.QUERY_PAGED_LIST_FOR_ABNORMAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(GoodsStockServiceProxy.QUERY_PAGED_LIST_FOR_ABNORMAL)
+	public Result<PagedList<GoodsStock>> queryPagedListForAbnormal(GoodsStockVO sample) {
+		Result<PagedList<GoodsStock>> result = new Result<>();
+		PagedList<GoodsStock> list =goodsStockService.queryPagedListForAbnormal(sample,sample.getPageSize(),sample.getPageIndex());
+		// join 关联的对象
+		goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+		List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
+		goodsStockService.dao().join(originatorList, Person.class);
+		result.success(true).data(list);
+		return result;
+	}
+
     @ApiOperationSupport(order = 10)
     @SentinelResource(value = GoodsStockServiceProxy.QUERY_MIN_STOCK_WARN, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsStockServiceProxy.QUERY_MIN_STOCK_WARN)
@@ -670,6 +690,8 @@ public class GoodsStockController extends SuperController {
         }
         return ErrorDesc.success();
     }
+
+
 
     @ApiOperation(value = "组织资产数据")
     @ApiOperationSupport(order = 1)

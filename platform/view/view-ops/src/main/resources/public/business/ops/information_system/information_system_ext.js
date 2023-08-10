@@ -22,7 +22,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         beforeTableRender:function (cfg){
             cfg.defaultToolbar= ['filter', 'print','exports',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}];
             cfg.limit=500;
-            cfg.cellMinWidth=200;;
+            cfg.cellMinWidth=160;;
         },
         /**
          * 列表页初始化前调用
