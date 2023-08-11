@@ -1,7 +1,7 @@
 /**
  * 检查项 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-11 14:08:55
+ * @since 2023-07-05 15:25:23
  */
 
 layui.config({
@@ -12,13 +12,12 @@ layui.config({
     foxnicUpload: 'upload/foxnic-upload'
 })
 //
-layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown'],function () {
+layui.define(['form', 'table', 'util', 'settings', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown'],function () {
 
-    var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
+    var settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     var eamCommonFunc=layui.eamCommonFunc;
-
     //模块基础路径
     const moduleURL="/service-eam/eam-check-item";
 
@@ -51,7 +50,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            console.log("list:beforeTableRender",cfg);
+            cfg.cellMinWidth=160;;
         },
         /**
          * 表格渲染后调用
@@ -114,12 +113,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         templet:function (field,value,r) {
 
+
             if(field=="config"){
                 return eamCommonFunc.parseInspectPointItemConfig(field,value,r);
             }else if(field=="defValue"){
                 return eamCommonFunc.parseInspectPointItemConfig(field,value,r);
             }
-
 
             if(value==null) return "";
             return value;
@@ -196,12 +195,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单初始化前调用 , 并传入表单数据
          * */
         beforeInit:function (action,data) {
-            $("#code").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#code").attr("placeholder","自动填充")
-
             //获取参数，并调整下拉框查询用的URL
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
+            $("#code").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#code").attr("placeholder","自动填充")
+
             console.log("form:beforeInit")
         },
         /**
