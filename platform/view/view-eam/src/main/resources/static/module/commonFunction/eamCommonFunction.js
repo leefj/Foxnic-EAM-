@@ -1,7 +1,5 @@
-layui.define([ 'layer','admin','form', 'table', 'util',"element"],
+layui.define([],
     function (exports) {
-
-
         function parseInspectPointItemConfig(field,value,r){
             if(field=="config"){
                 var res=""

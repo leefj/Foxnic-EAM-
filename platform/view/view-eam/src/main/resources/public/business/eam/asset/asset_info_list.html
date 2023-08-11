@@ -54,11 +54,13 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('规格型号')}" class="search-label model-label">规格型号</span><span class="search-colon">:</span></div>
                         <input id="model" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
-                    <!-- 序列号 , serialNumber ,typeName=text_input, isHideInSearch=false -->
+
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('序列号')}" class="search-label serialNumber-label">序列号</span><span class="search-colon">:</span></div>
-                        <input id="serialNumber" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('资产名称')}" class="search-label equipmentIp-label">资产名称</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
+
+
 
                     <!-- 资产编号 , assetCode ,typeName=text_input, isHideInSearch=false -->
 
@@ -187,10 +189,13 @@
                 </div>
 
                 <div class="layui-form toolbar search-inputs">
+
+                    <!-- 序列号 , serialNumber ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('资产名称')}" class="search-label equipmentIp-label">资产名称</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('序列号')}" class="search-label serialNumber-label">序列号</span><span class="search-colon">:</span></div>
+                        <input id="serialNumber" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
+
                 </div>
             </div>
             <!-- 按钮区域 -->
