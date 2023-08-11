@@ -2,7 +2,7 @@
 /**
  * 维修验收 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-05 09:01:10
+ * @since 2023-08-11 11:51:33
  */
  -->
  <!DOCTYPE html>
@@ -42,6 +42,7 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 申请单 , orderId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 维修单 , orderActId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 验收结果 , acceptResult ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 验收人员 , accepterId ,typeName=button, isHideInSearch=true -->
                     <!-- 实际故障 , categoryTplId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
@@ -49,7 +50,7 @@
                         <div id="categoryTplId" th:data="${'/service-eam/eam-repair-category-tpl/query-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 实际花费 , actualCost ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 图片 , pictureId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 图片 , pictureId ,typeName=upload, isHideInSearch=true -->
                     <!-- 制单人员 , originatorId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 选择数据 , selectedCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- orderBusinessCode , orderBusinessCode ,typeName=text_input, isHideInSearch=true -->
@@ -127,6 +128,7 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var RADIO_ACCEPTRESULT_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.RepairOrderActAcceptStatusEnum')}]];
     var AUTH_PREFIX="eam_repair_order_acceptance";
 
 

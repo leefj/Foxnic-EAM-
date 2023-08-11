@@ -34,21 +34,16 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
 
 
         cfg.getPoClassFile().addListProperty(RepairOrderProcess.class,"repairOrderProcess","repairOrderProcess","repairOrderProcess");
-
-
         cfg.getPoClassFile().addListProperty(RepairOrderActSp.class,"RepairOrderActSpList","RepairOrderActSpList","RepairOrderActSpList");
         cfg.getPoClassFile().addListProperty(String.class,"idsList","idsList","idsList");
-
-
         cfg.getPoClassFile().addSimpleProperty(RepairOrder.class,"order","维修申请","维修申请");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"executor","执行人","执行人");
         cfg.getPoClassFile().addSimpleProperty(RepairGroup.class,"repairGroup","维修班组","维修班组");
-
         cfg.getPoClassFile().addSimpleProperty(String.class,"status","status","status");
-//        cfg.getPoClassFile().addSimpleProperty(String.class,"orderName","订单名称","订单名称");
-//        cfg.getPoClassFile().addSimpleProperty(String.class,"orderBusinessCode","订单编号","订单编号");
-//        cfg.getPoClassFile().addSimpleProperty(String.class,"orderRepairStatus","维修状态","维修状态");
+        cfg.getPoClassFile().addListProperty(GoodsStock.class,"goodsStockPartList","goodsStockPartList","备件信息");
+        cfg.getPoClassFile().addSimpleProperty(RepairOrderAcceptance.class,"repairOrderAcceptance","repairOrderAcceptance","repairOrderAcceptance");
+
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.NOTES).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.BUSINESS_CODE).search().fuzzySearch();

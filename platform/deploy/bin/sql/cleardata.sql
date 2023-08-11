@@ -102,6 +102,21 @@ delete from eam_asset_stock_goods_out  where 1=1 and tenant_id='T001' ;
 delete from eam_asset_stock_goods_tranfer  where 1=1 and tenant_id='T001' ;
 delete from eam_goods_stock_usage  where 1=1;
 delete from eam_goods_stock where owner_code<>'goods';
+-- inventory
+delete from eam_inventory where 1=1 and tenant_id='T001' ;
+delete from eam_inventory_asset where 1=1 ;
+delete from eam_inventory_director where 1=1 ;
+delete from eam_inventory_manager where 1=1 ;
+delete from eam_inventory_user where 1=1 ;
+delete from eam_inventory_plan where 1=1 and tenant_id='T001' ;
+delete from eam_group_user where 1=1;
+-- eam_maintain
+delete from eam_maintain_plan where tenant_id='T001';
+delete from eam_maintain_group where tenant_id='T001';
+delete from eam_maintain_project where tenant_id='T001';
+delete from eam_maintain_project_select where 1=1;
+delete from eam_maintain_task where tenant_id='T001';
+delete from eam_maintain_task_project where tenant_id='T001';
 -- cust inspect repair
 delete from eam_c_cust_inspect_item where 1=1 ;
 delete from eam_c_cust_inspect_plan where 1=1 ;
@@ -110,21 +125,6 @@ delete from eam_c_cust_inspect_tpl where 1=1 ;
 delete from eam_c_cust_inspect_tpl_asset where 1=1 ;
 delete from eam_c_cust_repair_apply where 1=1 ;
 delete from eam_c_cust_repiar_item where 1=1 ;
--- inventory
-delete from eam_inventory where 1=1 and tenant_id='T001' ;
-delete from eam_inventory_asset where 1=1 ;
-delete from eam_inventory_director where 1=1 ;
-delete from eam_inventory_manager where 1=1 ;
-delete from eam_inventory_user where 1=1 ;
-delete from eam_inventory_plan where 1=1 and tenant_id='T001' ;
-delete from eam_group_user;
--- eam_maintain
-delete from eam_maintain_plan where tenant_id='T001';
-delete from eam_maintain_group where tenant_id='T001';
-delete from eam_maintain_project where tenant_id='T001';
-delete from eam_maintain_project_select where 1=1;
-delete from eam_maintain_task where tenant_id='T001';
-delete from eam_maintain_task_project where tenant_id='T001';
 -- repair
 -- delete from eam_repair_category where tenant_id='T001';
 -- delete from eam_repair_category_tpl where tenant_id='T001';
@@ -143,7 +143,7 @@ delete from eam_inspection_point  where tenant_id='T001';
 delete from eam_inspection_point_owner  where tenant_id='T001';
 delete from eam_inspection_route  where tenant_id='T001';
 delete from eam_inspection_task  where tenant_id='T001';
-delete from eam_inspection_task_point  where tenant_id='T001';
+delete from eam_inspection_task_point  where 1=1;
 -- stock
 delete from eam_stock where 1=1 and tenant_id='T001' ;
 delete from eam_asset_stock_collection where 1=1;
@@ -199,6 +199,7 @@ delete from eam_asset_employee_apply where 1=1 and tenant_id='T001' ;
 delete from eam_asset_employee_handover where 1=1 and tenant_id='T001' ;
 delete from eam_asset_employee_loss where 1=1 and tenant_id='T001' ;
 delete from eam_asset_employee_repair where 1=1 and tenant_id='T001' ;
+delete from eam_device_sp where 1=1 and tenant_id='T001' ;
 -- workorder
 delete from wo_network_strategy_apply where 1=1 and tenant_id='T001' ;
 delete from wo_network_strategy_info ;
@@ -270,6 +271,8 @@ delete from ops_auto_task_log  where  1=1;
 delete from ops_auto_task_m_log  where  1=1;
 delete from ops_auto_task_node  where  1=1;
 delete from ops_auto_voucher  where 1=1;
+delete from ops_monitor_node  where 1=1;
+
 -- custom middle table
 delete from eam_c1_mapping where 1=1;
 delete from eam_c1_qh_fa_additions where 1=1;

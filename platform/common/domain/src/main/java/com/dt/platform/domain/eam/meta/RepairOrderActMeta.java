@@ -10,14 +10,16 @@ import com.dt.platform.domain.eam.RepairOrderActSp;
 import com.dt.platform.domain.eam.RepairOrder;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.RepairGroup;
+import com.dt.platform.domain.eam.GoodsStock;
+import com.dt.platform.domain.eam.RepairOrderAcceptance;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-09 22:04:33
- * @sign 00AC1DC40DAB02522AA1ADEA846289B0
+ * @since 2023-08-11 11:53:48
+ * @sign 755E0851D071EFD894FE247A82947280
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -354,9 +356,29 @@ public class RepairOrderActMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,STATUS, java.lang.String.class, "status", "status", java.lang.String.class, null);
 	
 	/**
+	 * goodsStockPartList , 备件信息 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final String GOODS_STOCK_PART_LIST="goodsStockPartList";
+	
+	/**
+	 * goodsStockPartList , 备件信息 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,com.dt.platform.domain.eam.GoodsStock> GOODS_STOCK_PART_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,GOODS_STOCK_PART_LIST, java.util.List.class, "goodsStockPartList", "备件信息", com.dt.platform.domain.eam.GoodsStock.class, null);
+	
+	/**
+	 * repairOrderAcceptance , 类型: com.dt.platform.domain.eam.RepairOrderAcceptance
+	*/
+	public static final String REPAIR_ORDER_ACCEPTANCE="repairOrderAcceptance";
+	
+	/**
+	 * repairOrderAcceptance , 类型: com.dt.platform.domain.eam.RepairOrderAcceptance
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,com.dt.platform.domain.eam.RepairOrderAcceptance> REPAIR_ORDER_ACCEPTANCE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,REPAIR_ORDER_ACCEPTANCE, com.dt.platform.domain.eam.RepairOrderAcceptance.class, "repairOrderAcceptance", "repairOrderAcceptance", com.dt.platform.domain.eam.RepairOrderAcceptance.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , OWNER_TYPE , REPAIR_ORDER_PROCESS , REPAIR_ORDER_ACT_SP_LIST , IDS_LIST , ORDER , ORIGINATOR , EXECUTOR , REPAIR_GROUP , STATUS };
+	public static final String[] $PROPS={ ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , OWNER_TYPE , REPAIR_ORDER_PROCESS , REPAIR_ORDER_ACT_SP_LIST , IDS_LIST , ORDER , ORIGINATOR , EXECUTOR , REPAIR_GROUP , STATUS , GOODS_STOCK_PART_LIST , REPAIR_ORDER_ACCEPTANCE };
 	
 	/**
 	 * 代理类
@@ -728,6 +750,28 @@ public class RepairOrderActMeta {
 			super.setStatus(status);
 			return this;
 		}
+		
+		/**
+		 * 设置 goodsStockPartList
+		 * @param goodsStockPartList goodsStockPartList
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setGoodsStockPartList(List<GoodsStock> goodsStockPartList) {
+			super.change(GOODS_STOCK_PART_LIST,super.getGoodsStockPartList(),goodsStockPartList);
+			super.setGoodsStockPartList(goodsStockPartList);
+			return this;
+		}
+		
+		/**
+		 * 设置 repairOrderAcceptance
+		 * @param repairOrderAcceptance repairOrderAcceptance
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setRepairOrderAcceptance(RepairOrderAcceptance repairOrderAcceptance) {
+			super.change(REPAIR_ORDER_ACCEPTANCE,super.getRepairOrderAcceptance(),repairOrderAcceptance);
+			super.setRepairOrderAcceptance(repairOrderAcceptance);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -775,6 +819,8 @@ public class RepairOrderActMeta {
 				inst.setRepairGroup(this.getRepairGroup());
 				inst.setRepairOrderProcess(this.getRepairOrderProcess());
 				inst.setOriginator(this.getOriginator());
+				inst.setGoodsStockPartList(this.getGoodsStockPartList());
+				inst.setRepairOrderAcceptance(this.getRepairOrderAcceptance());
 				inst.setIdsList(this.getIdsList());
 				inst.setOrder(this.getOrder());
 				inst.setStatus(this.getStatus());

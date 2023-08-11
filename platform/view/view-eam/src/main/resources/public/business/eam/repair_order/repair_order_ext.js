@@ -97,6 +97,19 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
+                }else if(REPAIR_STATUS=="acceptance_failed"){
+                    var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                    toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
+                    toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+
+                    document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+                    var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                    operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                    document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
                 }else if(REPAIR_STATUS=="finish"){
                     var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
                     toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
@@ -214,6 +227,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterQuery : function (data) {
             for (var i = 0; i < data.length; i++) {
+
+                if(data[i].repairStatus=="not_dispatch"){
+                    fox.disableButton($('.repair-order-button').filter("[data-id='" + data[i].id + "']"), true);
+                }
                 //如果审批中或审批通过的不允许编辑
                 if(data[i].status=="complete") {
                     fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
@@ -222,6 +239,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
                     if(data[i].repairStatus=="repairing"){
+                        console.log("none");
                     }else{
                         fox.disableButton($('.finish-data-button').filter("[data-id='" + data[i].id + "']"), true);
                     }

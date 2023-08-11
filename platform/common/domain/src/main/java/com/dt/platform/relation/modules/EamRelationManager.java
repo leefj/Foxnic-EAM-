@@ -633,6 +633,12 @@ public class EamRelationManager extends RelationManager {
     }
     public void setupRepairOrderAct() {
 
+        this.property(RepairOrderActMeta.REPAIR_ORDER_ACCEPTANCE_PROP)
+                .using(EAMTables.EAM_REPAIR_ORDER_ACT.ID).join(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ORDER_ACT_ID);
+
+        this.property(RepairOrderActMeta.GOODS_STOCK_PART_LIST_PROP)
+                .using(EAMTables.EAM_REPAIR_ORDER_ACT.ID).join(EAMTables.EAM_GOODS_STOCK.OWNER_ID).condition("owner_code='part'");
+
         this.property(RepairOrderActMeta.REPAIR_ORDER_PROCESS_PROP)
                 .using(EAMTables.EAM_REPAIR_ORDER_ACT.ID).join(EAMTables.EAM_REPAIR_ORDER_PROCESS.ACT_ID);
 

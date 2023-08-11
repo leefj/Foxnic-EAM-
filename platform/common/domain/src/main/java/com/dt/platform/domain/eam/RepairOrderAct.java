@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 维修工单
  * <p>维修工单 , 数据表 eam_repair_order_act 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-09 22:04:33
- * @sign 00AC1DC40DAB02522AA1ADEA846289B0
+ * @since 2023-08-11 11:53:48
+ * @sign 755E0851D071EFD894FE247A82947280
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,43 +45,43 @@ public class RepairOrderAct extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "740102041900154880")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "742270400762740736")
 	private String id;
 	
 	/**
 	 * 申请单：申请单
 	*/
-	@ApiModelProperty(required = false,value="申请单" , notes = "申请单" , example = "740102006546366464")
+	@ApiModelProperty(required = false,value="申请单" , notes = "申请单" , example = "742270144746618880")
 	private String orderId;
 	
 	/**
 	 * 订单编号：订单编号
 	*/
-	@ApiModelProperty(required = false,value="订单编号" , notes = "订单编号" , example = "ROD202301050701166")
+	@ApiModelProperty(required = false,value="订单编号" , notes = "订单编号" , example = "ROD202336110636161")
 	private String orderBusinessCode;
 	
 	/**
 	 * 订单名称：订单名称
 	*/
-	@ApiModelProperty(required = false,value="订单名称" , notes = "订单名称" , example = "121212")
+	@ApiModelProperty(required = false,value="订单名称" , notes = "订单名称" , example = "1212")
 	private String orderName;
 	
 	/**
 	 * 维修编号：维修编号
 	*/
-	@ApiModelProperty(required = false,value="维修编号" , notes = "维修编号" , example = "MOD202301050701796")
+	@ApiModelProperty(required = false,value="维修编号" , notes = "维修编号" , example = "MOD202337110637844")
 	private String businessCode;
 	
 	/**
 	 * 维修班组：维修班组
 	*/
-	@ApiModelProperty(required = false,value="维修班组" , notes = "维修班组" , example = "698166168703205376")
+	@ApiModelProperty(required = false,value="维修班组" , notes = "维修班组" , example = "742270368294633472")
 	private String groupId;
 	
 	/**
 	 * 维修人员：维修人员
 	*/
-	@ApiModelProperty(required = false,value="维修人员" , notes = "维修人员")
+	@ApiModelProperty(required = false,value="维修人员" , notes = "维修人员" , example = "E001")
 	private String executorId;
 	
 	/**
@@ -93,19 +93,19 @@ public class RepairOrderAct extends Entity {
 	/**
 	 * 开始时间：开始时间
 	*/
-	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间")
+	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2023-08-11 06:37:43")
 	private Date startTime;
 	
 	/**
 	 * 完成时间：完成时间
 	*/
-	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间")
+	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间" , example = "2023-08-11 06:38:03")
 	private Date finishTime;
 	
 	/**
 	 * 维修备注：维修备注
 	*/
-	@ApiModelProperty(required = false,value="维修备注" , notes = "维修备注" , example = "qwwq")
+	@ApiModelProperty(required = false,value="维修备注" , notes = "维修备注" , example = "12")
 	private String notes;
 	
 	/**
@@ -135,7 +135,7 @@ public class RepairOrderAct extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-05 07:01:17")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-11 06:37:34")
 	private Date createTime;
 	
 	/**
@@ -147,7 +147,7 @@ public class RepairOrderAct extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-08-05 07:07:36")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-08-11 06:38:00")
 	private Date updateTime;
 	
 	/**
@@ -186,13 +186,13 @@ public class RepairOrderAct extends Entity {
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1691190422000")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1691707069000")
 	private String selectedCode;
 	
 	/**
 	 * 类型：part 备件仓库，partList 备件清单
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "part 备件仓库，partList 备件清单")
+	@ApiModelProperty(required = false,value="类型" , notes = "part 备件仓库，partList 备件清单" , example = "part")
 	private String ownerType;
 	
 	/**
@@ -242,6 +242,18 @@ public class RepairOrderAct extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="status" , notes = "status")
 	private String status;
+	
+	/**
+	 * goodsStockPartList：备件信息
+	*/
+	@ApiModelProperty(required = false,value="goodsStockPartList" , notes = "备件信息")
+	private List<GoodsStock> goodsStockPartList;
+	
+	/**
+	 * repairOrderAcceptance：repairOrderAcceptance
+	*/
+	@ApiModelProperty(required = false,value="repairOrderAcceptance" , notes = "repairOrderAcceptance")
+	private RepairOrderAcceptance repairOrderAcceptance;
 	
 	/**
 	 * 获得 主键<br>
@@ -933,6 +945,55 @@ public class RepairOrderAct extends Entity {
 		this.status=status;
 		return this;
 	}
+	
+	/**
+	 * 获得 goodsStockPartList<br>
+	 * 备件信息
+	 * @return goodsStockPartList
+	*/
+	public List<GoodsStock> getGoodsStockPartList() {
+		return goodsStockPartList;
+	}
+	
+	/**
+	 * 设置 goodsStockPartList
+	 * @param goodsStockPartList goodsStockPartList
+	 * @return 当前对象
+	*/
+	public RepairOrderAct setGoodsStockPartList(List<GoodsStock> goodsStockPartList) {
+		this.goodsStockPartList=goodsStockPartList;
+		return this;
+	}
+	
+	/**
+	 * 添加 goodsStockPartList
+	 * @param goodsStockPart goodsStockPartList
+	 * @return 当前对象
+	*/
+	public RepairOrderAct addGoodsStockPart(GoodsStock... goodsStockPart) {
+		if(this.goodsStockPartList==null) goodsStockPartList=new ArrayList<>();
+		this.goodsStockPartList.addAll(Arrays.asList(goodsStockPart));
+		return this;
+	}
+	
+	/**
+	 * 获得 repairOrderAcceptance<br>
+	 * repairOrderAcceptance
+	 * @return repairOrderAcceptance
+	*/
+	public RepairOrderAcceptance getRepairOrderAcceptance() {
+		return repairOrderAcceptance;
+	}
+	
+	/**
+	 * 设置 repairOrderAcceptance
+	 * @param repairOrderAcceptance repairOrderAcceptance
+	 * @return 当前对象
+	*/
+	public RepairOrderAct setRepairOrderAcceptance(RepairOrderAcceptance repairOrderAcceptance) {
+		this.repairOrderAcceptance=repairOrderAcceptance;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1009,6 +1070,8 @@ public class RepairOrderAct extends Entity {
 			inst.setRepairGroup(this.getRepairGroup());
 			inst.setRepairOrderProcess(this.getRepairOrderProcess());
 			inst.setOriginator(this.getOriginator());
+			inst.setGoodsStockPartList(this.getGoodsStockPartList());
+			inst.setRepairOrderAcceptance(this.getRepairOrderAcceptance());
 			inst.setIdsList(this.getIdsList());
 			inst.setOrder(this.getOrder());
 			inst.setStatus(this.getStatus());
@@ -1100,6 +1163,7 @@ public class RepairOrderAct extends Entity {
 			this.setExecutor(DataParser.parse(Employee.class, map.get(RepairOrderActMeta.EXECUTOR)));
 			this.setRepairGroup(DataParser.parse(RepairGroup.class, map.get(RepairOrderActMeta.REPAIR_GROUP)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(RepairOrderActMeta.ORIGINATOR)));
+			this.setRepairOrderAcceptance(DataParser.parse(RepairOrderAcceptance.class, map.get(RepairOrderActMeta.REPAIR_ORDER_ACCEPTANCE)));
 			this.setOrder(DataParser.parse(RepairOrder.class, map.get(RepairOrderActMeta.ORDER)));
 			this.setStatus(DataParser.parse(String.class, map.get(RepairOrderActMeta.STATUS)));
 			return true;
@@ -1134,6 +1198,7 @@ public class RepairOrderAct extends Entity {
 				this.setExecutor( (Employee)map.get(RepairOrderActMeta.EXECUTOR));
 				this.setRepairGroup( (RepairGroup)map.get(RepairOrderActMeta.REPAIR_GROUP));
 				this.setOriginator( (Employee)map.get(RepairOrderActMeta.ORIGINATOR));
+				this.setRepairOrderAcceptance( (RepairOrderAcceptance)map.get(RepairOrderActMeta.REPAIR_ORDER_ACCEPTANCE));
 				this.setOrder( (RepairOrder)map.get(RepairOrderActMeta.ORDER));
 				this.setStatus( (String)map.get(RepairOrderActMeta.STATUS));
 				return true;

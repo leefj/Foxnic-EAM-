@@ -1,7 +1,7 @@
 /**
  * 故障申请单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-05 11:15:32
+ * @since 2023-08-11 13:36:37
  */
 
 
@@ -90,7 +90,7 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'repairStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修状态'), templet:function (d){ return templet('repairStatus',fox.getEnumText(SELECT_REPAIRSTATUS_DATA,d.repairStatus,'','repairStatus'),d);}}
 					,{ field: 'categoryTplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('故障类型'), templet: function (d) { return templet('categoryTplId' ,fox.joinLabel(d.categoryTpl,"name",',','','categoryTplId'),d);}}
-					,{ field: 'repairType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修类型'), templet:function (d){ return templet('repairType',fox.getEnumText(SELECT_REPAIRTYPE_DATA,d.repairType,'','repairType'),d);}}
+					,{ field: 'repairType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修类型'), templet:function (d){ return templet('repairType',fox.getEnumText(RADIO_REPAIRTYPE_DATA,d.repairType,'','repairType'),d);}}
 					,{ field: 'urgencyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('紧急程度'), templet: function (d) { return templet('urgencyId' ,fox.joinLabel(d.repairUrgency,"name",',','','urgencyId'),d);}}
 					,{ field: 'reportOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报修部门') , templet: function (d) { return templet('reportOrgId',fox.getProperty(d,["organization","fullName"],0,'','reportOrgId'),d);} }
 					,{ field: 'planFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('计划完成日期') ,templet: function (d) { return templet('planFinishDate',fox.dateFormat(d.planFinishDate,"yyyy-MM-dd"),d); }  }
@@ -169,7 +169,7 @@ function ListPage() {
 		value.businessCode={ inputType:"button",value: $("#businessCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.repairType={ inputType:"select_box", value: getSelectedValue("#repairType","value"), label:getSelectedValue("#repairType","nameStr") };
+		value.repairType={ inputType:"radio_box", value: getSelectedValue("#repairType","value"), label:getSelectedValue("#repairType","nameStr") };
 		value.urgencyId={ inputType:"select_box", value: getSelectedValue("#urgencyId","value") ,fillBy:["repairUrgency"]  , label:getSelectedValue("#urgencyId","nameStr") };
 		value.businessDate={ inputType:"date_input", begin: $("#businessDate-begin").val(), end: $("#businessDate-end").val() ,matchType:"auto" };
 		var ps={searchField:"$composite"};
@@ -244,18 +244,17 @@ function ListPage() {
 				return opts;
 			}
 		});
-		//渲染 repairType 下拉字段
+		//渲染 repairType 搜索框
 		fox.renderSelectBox({
 			el: "repairType",
-			radio: true,
 			size: "small",
-			filterable: false,
+			radio: true,
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("repairType",data.arr,data.change,data.isAdd);
 				},1);
 			},
-			//转换数据
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
 			transform:function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var opts=[];

@@ -204,7 +204,7 @@ public class RepairOrderActController extends SuperController {
         Result<RepairOrderAct> result = new Result<>();
         RepairOrderAct repairOrderAct = repairOrderActService.getById(id);
         // join 关联的对象
-        repairOrderActService.dao().fill(repairOrderAct).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.EXECUTOR).with(RepairOrderActMeta.ORDER).execute();
+        repairOrderActService.dao().fill(repairOrderAct).with(RepairOrderActMeta.REPAIR_ORDER_ACCEPTANCE).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.REPAIR_GROUP).with(RepairOrderActMeta.EXECUTOR).with(RepairOrderActMeta.ORDER).execute();
         repairOrderActService.dao().join(repairOrderAct.getExecutor(), Person.class);
         repairOrderActService.dao().join(repairOrderAct.getOriginator(), Person.class);
         result.success(true).data(repairOrderAct);

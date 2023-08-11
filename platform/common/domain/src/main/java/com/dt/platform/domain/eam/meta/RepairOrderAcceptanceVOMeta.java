@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-05 09:01:08
+ * @since 2023-08-11 11:51:31
  * @sign D01CBB2BE798B6503918B58815AECD45
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -173,6 +173,16 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 	 * 维修单 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> ORDER_ACT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,ORDER_ACT_ID, java.lang.String.class, "维修单", "维修单", java.lang.String.class, null);
+	
+	/**
+	 * 验证结果 , 类型: java.lang.String
+	*/
+	public static final String ACCEPT_RESULT="acceptResult";
+	
+	/**
+	 * 验证结果 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAcceptanceVO,java.lang.String> ACCEPT_RESULT_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAcceptanceVO.class ,ACCEPT_RESULT, java.lang.String.class, "验证结果", "验证结果", java.lang.String.class, null);
 	
 	/**
 	 * 验收编号 , 类型: java.lang.String
@@ -447,7 +457,7 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ORDER_ID , ORDER_ACT_ID , BUSINESS_CODE , RESULT_TYPE , ACCEPTER_ID , CATEGORY_TPL_ID , ACTUAL_COST , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ORDER , ORDER_ACT , ORIGINATOR , ACCEPTER , RESULT_TYPE_DICT , CATEGORY_TPL , ORDER_NAME , ORDER_BUSINESS_CODE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ORDER_ID , ORDER_ACT_ID , ACCEPT_RESULT , BUSINESS_CODE , RESULT_TYPE , ACCEPTER_ID , CATEGORY_TPL_ID , ACTUAL_COST , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ORDER , ORDER_ACT , ORIGINATOR , ACCEPTER , RESULT_TYPE_DICT , CATEGORY_TPL , ORDER_NAME , ORDER_BUSINESS_CODE };
 	
 	/**
 	 * 代理类
@@ -619,6 +629,17 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 		public RepairOrderAcceptance setOrderActId(String orderActId) {
 			super.change(ORDER_ACT_ID,super.getOrderActId(),orderActId);
 			super.setOrderActId(orderActId);
+			return this;
+		}
+		
+		/**
+		 * 设置 验证结果
+		 * @param acceptResult 验证结果
+		 * @return 当前对象
+		*/
+		public RepairOrderAcceptance setAcceptResult(String acceptResult) {
+			super.change(ACCEPT_RESULT,super.getAcceptResult(),acceptResult);
+			super.setAcceptResult(acceptResult);
 			return this;
 		}
 		
@@ -944,6 +965,7 @@ public class RepairOrderAcceptanceVOMeta extends RepairOrderAcceptanceMeta {
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setPictureId(this.getPictureId());
+			inst.setAcceptResult(this.getAcceptResult());
 			inst.setAccepterId(this.getAccepterId());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());

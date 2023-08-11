@@ -130,7 +130,7 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
 
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.PICTURE_ID)
-                .form().label("图片").upload().acceptSingleImage().maxFileCount(1).displayFileName(false);
+                .form().label("图片").upload().acceptSingleImage().buttonLabel("选择图片").maxFileCount(1).displayFileName(false);
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.STATUS).form()
                 .label("办理状态").selectBox().enumType(AssetHandleStatusEnum.class);

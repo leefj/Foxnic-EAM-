@@ -2,7 +2,7 @@
 /**
  * 故障申请单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-05 11:15:31
+ * @since 2023-08-11 13:36:37
  */
  -->
  <!DOCTYPE html>
@@ -59,10 +59,12 @@
                     <!-- 创建规则 , autoActRule ,typeName=text_input, isHideInSearch=true -->
                     <!-- 故障设备 , assetId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 选择数据 , selectedCode ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 维修类型 , repairType ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 维修类型 , repairType ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('维修类型')}" class="search-label repairType-label">维修类型</span><span class="search-colon">:</span></div>
-                        <div id="repairType" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.RepairOrderTypeEnum')}" style="width:180px" extraParam="{}"></div>
+
+
+                        <div id="repairType" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.RepairOrderTypeEnum')}" style="width:180px"></div>
                     </div>
                     <!-- 订单编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
@@ -144,7 +146,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}]];
     var SELECT_REPAIRSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.RepairOrderStatusEnum')}]];
-    var SELECT_REPAIRTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.RepairOrderTypeEnum')}]];
+    var RADIO_REPAIRTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.RepairOrderTypeEnum')}]];
     var AUTH_PREFIX="eam_repair_order";
 
     // 单据ID

@@ -11,7 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
-    <title th:text="${lang.translate('分单规则')}">分单规则</title>
+    <title th:text="${lang.translate('维修订单')}">维修订单</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -35,8 +35,9 @@
         <li id="tab3">待维修</li>
         <li id="tab4">维修中</li>
         <li id="tab5">待验收</li>
-        <li id="tab6">维修结束</li>
-        <li id="tab7">全部</li>
+        <li id="tab6">验收未通过</li>
+        <li id="tab7">维修结束</li>
+        <li id="tab8">全部</li>
     </ul>
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show" id="tab1-ct">
@@ -74,14 +75,23 @@
                 </div>
             </div>
         </div>
+
         <div class="layui-tab-item" id="tab6-ct">
+            <div>
+                <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
+                    <iframe id="orderAcceptanceFailed" js-fn="orderAcceptanceFailed" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-tab-item" id="tab7-ct">
             <div>
                 <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
                     <iframe id="orderFinish" js-fn="orderFinish" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
                 </div>
             </div>
         </div>
-        <div class="layui-tab-item" id="tab7-ct">
+        <div class="layui-tab-item" id="tab8-ct">
             <div>
                 <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
                     <iframe id="orderAll" js-fn="orderAll" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
