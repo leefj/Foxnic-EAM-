@@ -79,9 +79,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                      operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"");
                      operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                      document.getElementById("tableOperationTemplate").innerHTML=operHtml;
-
-
-                }else if(REPAIR_STATUS=="finish"){
+                }else if(REPAIR_STATUS=="acceptance_failed"){
+                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                     operHtml=operHtml.replace(/lay-event="maintenance"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="finish"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="start"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"");
+                     operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+                 }else if(REPAIR_STATUS=="finish"){
 
                      var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                      operHtml=operHtml.replace(/lay-event="maintenance"/i, "style=\"display:none\"");

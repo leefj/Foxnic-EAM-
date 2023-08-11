@@ -29,23 +29,18 @@ public class RepairOrderGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
 
         cfg.getPoClassFile().addListProperty(RepairOrderProcess.class,"repairOrderProcess","repairOrderProcess","repairOrderProcess");
-
         cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","故障设备","故障设备");
-
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"reportUser","报修人","报修人");
-
         cfg.getPoClassFile().addSimpleProperty(RepairOrderAct.class,"orderAct","维修单","维修单");
-
         cfg.getPoClassFile().addSimpleProperty(RepairOrderAcceptance.class,"orderAcceptance","验收单","验收单");
-
         cfg.getPoClassFile().addSimpleProperty(RepairCategoryTpl.class,"categoryTpl","报修故障","报修故障");
         cfg.getPoClassFile().addSimpleProperty(RepairUrgency.class,"repairUrgency","紧急程度","紧急程度");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","报修部门","报修部门");
 
-       // cfg.getPoClassFile().addSimpleProperty(RepairOrderAct.class,"orderAct","维修单","维修单");
+
 
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.SELECTED_CODE).basic().hidden(true);
@@ -97,7 +92,7 @@ public class RepairOrderGtr extends BaseCodeGenerator{
                 textField(RepairUrgencyMeta.NAME).
                 fillWith(RepairOrderMeta.REPAIR_URGENCY).muliti(false).defaultIndex(0);
 
-        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPAIR_TYPE).form().validate().required().form().selectBox().enumType(RepairOrderTypeEnum.class);
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPAIR_TYPE).form().validate().required().form().radioBox().enumType(RepairOrderTypeEnum.class).defaultIndex(0);
 
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPORT_ORG_ID)

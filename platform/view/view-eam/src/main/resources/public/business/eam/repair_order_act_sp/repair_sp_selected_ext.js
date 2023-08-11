@@ -27,11 +27,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 列表页初始化前调用
          * */
         beforeInit:function () {
-            console.log("list:beforeInit");
+            console.log("sp_selected,list:beforeInit");
 
             if(PAGE_TYPE=="view"){
                 var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                 operHtml=operHtml.replace(/lay-event="view"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                 operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
                 document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 

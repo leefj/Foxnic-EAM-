@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 维修验收VO类型
  * <p>维修验收 , 数据表 eam_repair_order_acceptance 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-05 09:01:08
+ * @since 2023-08-11 11:51:31
  * @sign D01CBB2BE798B6503918B58815AECD45
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -414,6 +414,7 @@ public class RepairOrderAcceptanceVO extends RepairOrderAcceptance {
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setPictureId(this.getPictureId());
+		inst.setAcceptResult(this.getAcceptResult());
 		inst.setAccepterId(this.getAccepterId());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -516,6 +517,7 @@ public class RepairOrderAcceptanceVO extends RepairOrderAcceptance {
 			this.setCreateBy(DataParser.parse(String.class, map.get(RepairOrderAcceptanceVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(RepairOrderAcceptanceVOMeta.DELETED)));
 			this.setPictureId(DataParser.parse(String.class, map.get(RepairOrderAcceptanceVOMeta.PICTURE_ID)));
+			this.setAcceptResult(DataParser.parse(String.class, map.get(RepairOrderAcceptanceVOMeta.ACCEPT_RESULT)));
 			this.setAccepterId(DataParser.parse(String.class, map.get(RepairOrderAcceptanceVOMeta.ACCEPTER_ID)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(RepairOrderAcceptanceVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(RepairOrderAcceptanceVOMeta.UPDATE_BY)));
@@ -560,6 +562,7 @@ public class RepairOrderAcceptanceVO extends RepairOrderAcceptance {
 				this.setCreateBy( (String)map.get(RepairOrderAcceptanceVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(RepairOrderAcceptanceVOMeta.DELETED));
 				this.setPictureId( (String)map.get(RepairOrderAcceptanceVOMeta.PICTURE_ID));
+				this.setAcceptResult( (String)map.get(RepairOrderAcceptanceVOMeta.ACCEPT_RESULT));
 				this.setAccepterId( (String)map.get(RepairOrderAcceptanceVOMeta.ACCEPTER_ID));
 				this.setCreateTime( (Date)map.get(RepairOrderAcceptanceVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(RepairOrderAcceptanceVOMeta.UPDATE_BY));
@@ -617,6 +620,7 @@ public class RepairOrderAcceptanceVO extends RepairOrderAcceptance {
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(RepairOrderAcceptanceVOMeta.DELETED)));
 			this.setPictureId(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceVOMeta.PICTURE_ID)));
+			this.setAcceptResult(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceVOMeta.ACCEPT_RESULT)));
 			this.setAccepterId(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceVOMeta.ACCEPTER_ID)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(RepairOrderAcceptanceVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceVOMeta.UPDATE_BY)));
@@ -642,6 +646,7 @@ public class RepairOrderAcceptanceVO extends RepairOrderAcceptance {
 				this.setCreateBy( (String)r.getValue(RepairOrderAcceptanceVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(RepairOrderAcceptanceVOMeta.DELETED));
 				this.setPictureId( (String)r.getValue(RepairOrderAcceptanceVOMeta.PICTURE_ID));
+				this.setAcceptResult( (String)r.getValue(RepairOrderAcceptanceVOMeta.ACCEPT_RESULT));
 				this.setAccepterId( (String)r.getValue(RepairOrderAcceptanceVOMeta.ACCEPTER_ID));
 				this.setCreateTime( (Date)r.getValue(RepairOrderAcceptanceVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(RepairOrderAcceptanceVOMeta.UPDATE_BY));

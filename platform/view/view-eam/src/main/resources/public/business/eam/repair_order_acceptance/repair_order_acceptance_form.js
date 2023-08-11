@@ -1,7 +1,7 @@
 /**
  * 维修验收 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-05 09:01:10
+ * @since 2023-08-11 11:51:34
  */
 
 function FormPage() {
@@ -56,8 +56,6 @@ function FormPage() {
 		//绑定提交事件
 		bindButtonEvent();
 
-		//调整窗口的高度与位置
-		adjustPopup();
 
 
 	}
@@ -118,6 +116,13 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		form.on('radio(acceptResult)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=acceptResult]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("acceptResult",data,checked);
+		});
 		//渲染 resultType 下拉字段
 		fox.renderSelectBox({
 			el: "resultType",
@@ -200,6 +205,32 @@ function FormPage() {
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("finishTime",value, date, endDate);
 			}
 		});
+	    //渲染图片字段
+		foxup.render({
+			el:"pictureId",
+			maxFileCount: 6,
+			displayFileName: true,
+			accept: "image",
+			afterPreview:function(elId,index,fileId,upload,fileName,fileType){
+				adjustPopup();
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterPreview",elId:elId,index:index,fileId:fileId,upload:upload,fileName:fileName,fileType:fileType});
+			},
+			afterUpload:function (elId,result,index,upload) {
+				console.log("文件上传后回调");
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterUpload",elId:elId,index:index,upload:upload});
+			},
+			beforeRemove:function (elId,fileId,index,upload) {
+				console.log("文件删除前回调");
+				if(window.pageExt.form.onUploadEvent) {
+					return window.pageExt.form.onUploadEvent({event:"beforeRemove",elId:elId,index:index,fileId:fileId,upload:upload});
+				}
+				return true;
+			},
+			afterRemove:function (elId,fileId,index,upload) {
+				adjustPopup();
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterRemove",elId:elId,index:index,upload:upload});
+			}
+	    });
 	}
 
 	/**
@@ -248,6 +279,12 @@ function FormPage() {
 			fm[0].reset();
 			form.val('data-form', formData);
 
+			//设置 图片 显示附件
+		    if($("#pictureId").val()) {
+				foxup.fill("pictureId",$("#pictureId").val());
+		    } else {
+				adjustPopup();
+			}
 
 
 

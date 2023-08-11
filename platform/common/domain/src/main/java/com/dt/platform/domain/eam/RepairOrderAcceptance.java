@@ -26,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 维修验收
  * <p>维修验收 , 数据表 eam_repair_order_acceptance 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-05 09:01:08
- * @sign B3D4E4C6F82D76A98A71076AC9F69BDB
+ * @since 2023-08-11 11:51:31
+ * @sign BF78CF48AB1AC2E9BBE1C47F8A401326
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -43,25 +43,31 @@ public class RepairOrderAcceptance extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "698166646480568320")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "742347717484740608")
 	private String id;
 	
 	/**
 	 * 申请单：申请单
 	*/
-	@ApiModelProperty(required = false,value="申请单" , notes = "申请单" , example = "698166043993964544")
+	@ApiModelProperty(required = false,value="申请单" , notes = "申请单" , example = "742272745621946368")
 	private String orderId;
 	
 	/**
 	 * 维修单：维修单
 	*/
-	@ApiModelProperty(required = false,value="维修单" , notes = "维修单" , example = "698166222956527616")
+	@ApiModelProperty(required = false,value="维修单" , notes = "维修单" , example = "742272804027629568")
 	private String orderActId;
+	
+	/**
+	 * 验证结果：验证结果
+	*/
+	@ApiModelProperty(required = false,value="验证结果" , notes = "验证结果")
+	private String acceptResult;
 	
 	/**
 	 * 验收编号：验收编号
 	*/
-	@ApiModelProperty(required = false,value="验收编号" , notes = "验收编号" , example = "RA202304111304699")
+	@ApiModelProperty(required = false,value="验收编号" , notes = "验收编号" , example = "RA202344111144128")
 	private String businessCode;
 	
 	/**
@@ -73,7 +79,7 @@ public class RepairOrderAcceptance extends Entity {
 	/**
 	 * 验收人员：验收人员
 	*/
-	@ApiModelProperty(required = false,value="验收人员" , notes = "验收人员" , example = "586966848260538368")
+	@ApiModelProperty(required = false,value="验收人员" , notes = "验收人员" , example = "E001")
 	private String accepterId;
 	
 	/**
@@ -85,19 +91,19 @@ public class RepairOrderAcceptance extends Entity {
 	/**
 	 * 实际花费：实际花费
 	*/
-	@ApiModelProperty(required = false,value="实际花费" , notes = "实际花费" , example = "2222.00")
+	@ApiModelProperty(required = false,value="实际花费" , notes = "实际花费" , example = "0.00")
 	private BigDecimal actualCost;
 	
 	/**
 	 * 完成时间：完成时间
 	*/
-	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间" , example = "2023-04-11 12:00:00")
+	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间" , example = "2023-08-11 12:00:00")
 	private Date finishTime;
 	
 	/**
 	 * 验收备注：验收备注
 	*/
-	@ApiModelProperty(required = false,value="验收备注" , notes = "验收备注" , example = "1212")
+	@ApiModelProperty(required = false,value="验收备注" , notes = "验收备注" , example = "121212")
 	private String notes;
 	
 	/**
@@ -121,19 +127,19 @@ public class RepairOrderAcceptance extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-11 01:45:00")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-11 11:44:48")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-11 03:24:46")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
 	private Date updateTime;
 	
 	/**
@@ -160,7 +166,7 @@ public class RepairOrderAcceptance extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -277,6 +283,25 @@ public class RepairOrderAcceptance extends Entity {
 	*/
 	public RepairOrderAcceptance setOrderActId(String orderActId) {
 		this.orderActId=orderActId;
+		return this;
+	}
+	
+	/**
+	 * 获得 验证结果<br>
+	 * 验证结果
+	 * @return 验证结果
+	*/
+	public String getAcceptResult() {
+		return acceptResult;
+	}
+	
+	/**
+	 * 设置 验证结果
+	 * @param acceptResult 验证结果
+	 * @return 当前对象
+	*/
+	public RepairOrderAcceptance setAcceptResult(String acceptResult) {
+		this.acceptResult=acceptResult;
 		return this;
 	}
 	
@@ -878,6 +903,7 @@ public class RepairOrderAcceptance extends Entity {
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setPictureId(this.getPictureId());
+		inst.setAcceptResult(this.getAcceptResult());
 		inst.setAccepterId(this.getAccepterId());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -968,6 +994,7 @@ public class RepairOrderAcceptance extends Entity {
 			this.setCreateBy(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(RepairOrderAcceptanceMeta.DELETED)));
 			this.setPictureId(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.PICTURE_ID)));
+			this.setAcceptResult(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.ACCEPT_RESULT)));
 			this.setAccepterId(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.ACCEPTER_ID)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(RepairOrderAcceptanceMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(RepairOrderAcceptanceMeta.UPDATE_BY)));
@@ -1002,6 +1029,7 @@ public class RepairOrderAcceptance extends Entity {
 				this.setCreateBy( (String)map.get(RepairOrderAcceptanceMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(RepairOrderAcceptanceMeta.DELETED));
 				this.setPictureId( (String)map.get(RepairOrderAcceptanceMeta.PICTURE_ID));
+				this.setAcceptResult( (String)map.get(RepairOrderAcceptanceMeta.ACCEPT_RESULT));
 				this.setAccepterId( (String)map.get(RepairOrderAcceptanceMeta.ACCEPTER_ID));
 				this.setCreateTime( (Date)map.get(RepairOrderAcceptanceMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(RepairOrderAcceptanceMeta.UPDATE_BY));
@@ -1049,6 +1077,7 @@ public class RepairOrderAcceptance extends Entity {
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(RepairOrderAcceptanceMeta.DELETED)));
 			this.setPictureId(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.PICTURE_ID)));
+			this.setAcceptResult(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.ACCEPT_RESULT)));
 			this.setAccepterId(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.ACCEPTER_ID)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(RepairOrderAcceptanceMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(RepairOrderAcceptanceMeta.UPDATE_BY)));
@@ -1074,6 +1103,7 @@ public class RepairOrderAcceptance extends Entity {
 				this.setCreateBy( (String)r.getValue(RepairOrderAcceptanceMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(RepairOrderAcceptanceMeta.DELETED));
 				this.setPictureId( (String)r.getValue(RepairOrderAcceptanceMeta.PICTURE_ID));
+				this.setAcceptResult( (String)r.getValue(RepairOrderAcceptanceMeta.ACCEPT_RESULT));
 				this.setAccepterId( (String)r.getValue(RepairOrderAcceptanceMeta.ACCEPTER_ID));
 				this.setCreateTime( (Date)r.getValue(RepairOrderAcceptanceMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(RepairOrderAcceptanceMeta.UPDATE_BY));

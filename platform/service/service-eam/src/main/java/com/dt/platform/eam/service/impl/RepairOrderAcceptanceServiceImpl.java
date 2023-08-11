@@ -2,9 +2,11 @@ package com.dt.platform.eam.service.impl;
 
 
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.constants.enums.eam.AssetStockTypeEnum;
 import com.dt.platform.constants.enums.eam.RepairOrderActStatusEnum;
 import com.dt.platform.constants.enums.eam.RepairOrderStatusEnum;
 import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.RepairOrderActMeta;
 import com.dt.platform.domain.eam.meta.RepairOrderMeta;
 import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
@@ -63,6 +65,10 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 	@Autowired
 	private IAssetProcessRecordService assetProcessRecordService;
 
+
+	@Autowired
+	private IGoodsStockUsageService goodsStockUsageService;
+
 	/**
 	 * 注入DAO对象
 	 * */
@@ -86,8 +92,6 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 			ups.set("status",RepairOrderStatusEnum.CANCEL.code());
 			ups.where().and("id=?",accept.getOrderId());
 			dao.execute(ups);
-
-
 			//维修操作完成，登记记录
 			repairOrderService.join(order, RepairOrderMeta.ASSET_LIST);
 			List<Asset> assetList=order.getAssetList();
@@ -102,7 +106,6 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 					assetProcessRecordService.insert(assetProcessRecord);
 				}
 			}
-
 		}else{
 			return ErrorDesc.failureMessage("当前维修状态异常，不能进行验收工作");
 		}
@@ -129,8 +132,8 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 		if(StringUtil.isBlank(repairOrderAcceptance.getOrderActId())){
 			return ErrorDesc.failureMessage("维修工单不存在");
 		}
-		RepairOrderAct act=repairOrderActService.getById(repairOrderAcceptance.getOrderActId());
-		repairOrderAcceptance.setOrderId(act.getOrderId());
+		RepairOrderAct orderAct=repairOrderActService.getById(repairOrderAcceptance.getOrderActId());
+		repairOrderAcceptance.setOrderId(orderAct.getOrderId());
 
 		//制单人
 		if(StringUtil.isBlank(repairOrderAcceptance.getOriginatorId())){
@@ -147,17 +150,43 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 			}
 		}
 
+		Result r=super.insert(repairOrderAcceptance,throwsException);
+		//更新订单状态
+		repairOrderService.changeRepairOrderStatus(repairOrderAcceptance.getOrderId(), repairOrderAcceptance.getAcceptResult());
+		String cUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+		String cUserName=SessionUser.getCurrent().getUser().getActivatedEmployeeName();
+		//更新时间轴
 		RepairOrderProcess rcd=new RepairOrderProcess();
+		if(RepairOrderActStatusEnum.FINISH.code().equals(repairOrderAcceptance.getAcceptResult())){
+			rcd.setProcessContent("验收通过");
+			//更新备件
+			repairOrderActService.dao().fill(orderAct).with(RepairOrderActMeta.GOODS_STOCK_PART_LIST).execute();
+			List<GoodsStock> partList=orderAct.getGoodsStockPartList();
+			if(partList!=null&&partList.size()>0){
+				//备件库存扣减
+				for(int i=0;i<partList.size();i++){
+					GoodsStockUsage goodsStockUsage=new GoodsStockUsage();
+					goodsStockUsage.setOwnerId(partList.get(i).getRealStockId());
+					goodsStockUsage.setLabel("维修备件出货");
+					goodsStockUsage.setOperUserId(cUserId);
+					goodsStockUsage.setOperUserName(cUserName);
+					goodsStockUsage.setRecTime(new Date());
+					goodsStockUsage.setOper(AssetStockTypeEnum.REPAIR_PART_OUT.code());
+					goodsStockUsage.setBillCode(orderAct.getBusinessCode());
+					goodsStockUsage.setOperNumber(partList.get(i).getStockInNumber().toString());
+					goodsStockUsage.setContent("维修备件出货完成");
+					goodsStockUsageService.insert(goodsStockUsage,true);
+				}
+			}
+		}else{
+			rcd.setProcessContent("验收未通过");
+		}
 		rcd.setRcdTime(new Date());
-		rcd.setOrderId(act.getOrderId());
-		rcd.setActId(act.getId());
+		rcd.setOrderId(orderAct.getOrderId());
+		rcd.setActId(orderAct.getId());
 		rcd.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
 		rcd.setUserName(SessionUser.getCurrent().getRealName());
-		rcd.setProcessContent("验收完成");
 		repairOrderProcessService.insert(rcd,true);
-
-		repairOrderService.changeRepairOrderStatus(repairOrderAcceptance.getOrderId(), RepairOrderActStatusEnum.FINISH.code());
-		Result r=super.insert(repairOrderAcceptance,throwsException);
 		return r;
 	}
 
@@ -181,7 +210,6 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 		return super.insertList(repairOrderAcceptanceList);
 	}
 
-	
 	/**
 	 * 按主键删除 维修验收
 	 *
@@ -243,16 +271,51 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 	 * @param repairOrderAcceptance 数据对象
 	 * @param mode 保存模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
-	 * @return 保存是否成功
+	 * @return 保存是否成
 	 * */
 	@Override
 	public Result update(RepairOrderAcceptance repairOrderAcceptance , SaveMode mode,boolean throwsException) {
+
 		Result r=super.update(repairOrderAcceptance , mode , throwsException);
 		if(r.isSuccess()){
-			Update ups=new Update("eam_repair_order_act");
-			ups.set("status",RepairOrderStatusEnum.FINISH.code());
-			ups.where().and("id=?",repairOrderAcceptance.getOrderActId());
-			dao.execute(ups);
+			RepairOrderAct orderAct=repairOrderActService.getById(repairOrderAcceptance.getOrderActId());
+			//更新订单状态
+			repairOrderService.changeRepairOrderStatus(orderAct.getOrderId(), repairOrderAcceptance.getAcceptResult());
+			String cUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+			String cUserName=SessionUser.getCurrent().getUser().getActivatedEmployeeName();
+			//更新时间轴
+			RepairOrderProcess rcd=new RepairOrderProcess();
+			if(RepairOrderActStatusEnum.FINISH.code().equals(repairOrderAcceptance.getAcceptResult())){
+				rcd.setProcessContent("验收通过");
+				//更新备件
+				repairOrderActService.dao().fill(orderAct).with(RepairOrderActMeta.GOODS_STOCK_PART_LIST).execute();
+				List<GoodsStock> partList=orderAct.getGoodsStockPartList();
+				if(partList!=null&&partList.size()>0){
+					//备件库存扣减
+					for(int i=0;i<partList.size();i++){
+						GoodsStockUsage goodsStockUsage=new GoodsStockUsage();
+						goodsStockUsage.setOwnerId(partList.get(i).getRealStockId());
+						goodsStockUsage.setLabel("维修备件出货");
+						goodsStockUsage.setOperUserId(cUserId);
+						goodsStockUsage.setOperUserName(cUserName);
+						goodsStockUsage.setRecTime(new Date());
+						goodsStockUsage.setOper(AssetStockTypeEnum.REPAIR_PART_OUT.code());
+						goodsStockUsage.setBillCode(orderAct.getBusinessCode());
+						goodsStockUsage.setOperNumber(partList.get(i).getStockInNumber().toString());
+						goodsStockUsage.setContent("维修备件出货完成");
+						goodsStockUsageService.insert(goodsStockUsage,true);
+					}
+				}
+			}else{
+				rcd.setProcessContent("验收未通过");
+			}
+			rcd.setRcdTime(new Date());
+			rcd.setOrderId(orderAct.getOrderId());
+			rcd.setActId(orderAct.getId());
+			rcd.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+			rcd.setUserName(SessionUser.getCurrent().getRealName());
+			repairOrderProcessService.insert(rcd,true);
+			return r;
 		}
 		return r;
 	}

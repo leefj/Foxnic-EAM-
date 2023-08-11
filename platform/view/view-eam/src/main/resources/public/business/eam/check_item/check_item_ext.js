@@ -201,7 +201,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             $("#code").attr("disabled","disabled").css("background-color","#e6e6e6");
             $("#code").attr("placeholder","自动填充")
 
-
             console.log("form:beforeInit")
         },
         /**

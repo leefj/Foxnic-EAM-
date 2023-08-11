@@ -1,6 +1,7 @@
 package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
+import com.dt.platform.constants.enums.eam.RepairOrderActAcceptStatusEnum;
 import com.dt.platform.constants.enums.eam.RepairOrderTypeEnum;
 import com.dt.platform.domain.eam.RepairCategoryTpl;
 import com.dt.platform.domain.eam.RepairOrder;
@@ -39,6 +40,7 @@ public class RepairOrderAcceptGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(String.class,"orderName","订单名称","订单名称");
         cfg.getPoClassFile().addSimpleProperty(String.class,"orderBusinessCode","订单编号","订单编号");
 
+      //  cfg.getPoClassFile().addSimpleProperty(String.class,"accept_result","验证结果","验证结果");
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.FINISH_TIME).form().dateInput().format("yyyy-MM-dd").search().range();
 
@@ -98,33 +100,38 @@ public class RepairOrderAcceptGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ACCEPTER_ID).form().validate().required().form()
                 .button().chooseEmployee(true);
 
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.PICTURE_ID).form().upload().acceptImageType().maxFileCount(6).buttonLabel("图片");
 
-         cfg.view().formWindow().width(Config.baseFormWidth);;
+
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ACCEPT_RESULT).basic().label("验收结果")
+                .form().validate().required().form().radioBox().enumType(RepairOrderActAcceptStatusEnum.class).defaultIndex(0);
+
+
+        cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(200);
         cfg.view().list().operationColumn().width(30);
         cfg.view().list().disableBatchDelete();
         cfg.view().list().disableSingleDelete();
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ACCEPT_RESULT,
+                        EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.RESULT_TYPE,
+                        EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.CATEGORY_TPL_ID,
+                },
+                new Object[] {
                         EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ACCEPTER_ID,
                         EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.FINISH_TIME,
                         EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ACTUAL_COST,
-
-
-                },
-                new Object[]{
-                        EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.RESULT_TYPE,
-                        EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.CATEGORY_TPL_ID
                 }
 
-
         );
+
         cfg.view().form().addGroup(null,
                 new Object[]{
-                        EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.NOTES
+                        EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.NOTES,
+                        EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.PICTURE_ID
                 }
         );
-
 
         cfg.view().form().addJsVariable("CUR_EMP_ID","[[${curEmpId}]]","curEmpId");
         cfg.view().form().addJsVariable("CUR_USER_NAME","[[${curUserName}]]","curUserName");

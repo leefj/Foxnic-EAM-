@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-08-10 22:27:00
+ * @since 2023-08-11 11:49:16
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -19461,6 +19461,11 @@ public class EAMTables {
 		public static final DBField ORDER_ACT_ID = new DBField(DBDataType.STRING , "order_act_id","orderActId","维修单","维修单",false,false,true);
 		
 		/**
+		 * 验证结果
+		*/
+		public static final DBField ACCEPT_RESULT = new DBField(DBDataType.STRING , "accept_result","acceptResult","验证结果","验证结果",false,false,true);
+		
+		/**
 		 * 验收编号
 		*/
 		public static final DBField BUSINESS_CODE = new DBField(DBDataType.STRING , "business_code","businessCode","验收编号","验收编号",false,false,true);
@@ -19555,7 +19560,7 @@ public class EAMTables {
 		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择数据","选择数据",false,false,true);
 		
 		public EAM_REPAIR_ORDER_ACCEPTANCE() {
-			this.init($NAME,"维修验收" , ID , ORDER_ID , ORDER_ACT_ID , BUSINESS_CODE , RESULT_TYPE , ACCEPTER_ID , CATEGORY_TPL_ID , ACTUAL_COST , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
+			this.init($NAME,"维修验收" , ID , ORDER_ID , ORDER_ACT_ID , ACCEPT_RESULT , BUSINESS_CODE , RESULT_TYPE , ACCEPTER_ID , CATEGORY_TPL_ID , ACTUAL_COST , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
 		}
 		public static final EAM_REPAIR_ORDER_ACCEPTANCE $TABLE=new EAM_REPAIR_ORDER_ACCEPTANCE();
 	}

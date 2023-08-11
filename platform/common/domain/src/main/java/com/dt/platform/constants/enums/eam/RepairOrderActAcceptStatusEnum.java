@@ -11,18 +11,12 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 */
 
 
-public enum RepairOrderActStatusEnum implements CodeTextEnum {
-
-	WAIT_REPAIR("wait_repair" , "待维修"),
-	REPAIRING("repairing" , "维修中"),
-	WAIT_ACCEPTANCE("wait_acceptance" , "待验收"),
-	ACCEPTANCE_FAILED("acceptance_failed" , "验收未通过"),
-	FINISH("finish" , "维修结束"),
-	CANCEL("cancel" , "取消");
-
+public enum RepairOrderActAcceptStatusEnum implements CodeTextEnum {
+	FINISH("finish" , "验收通过"),
+	ACCEPTANCE_FAILED("acceptance_failed" , "验收未通过");
 	private String code;
 	private String text;
-	private RepairOrderActStatusEnum(String code, String text)  {
+	private RepairOrderActAcceptStatusEnum(String code, String text)  {
 		this.code=code;
 		this.text=text;
 	}

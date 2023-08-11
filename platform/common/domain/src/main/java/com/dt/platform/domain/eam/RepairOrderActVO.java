@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 维修工单VO类型
  * <p>维修工单 , 数据表 eam_repair_order_act 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-09 22:04:33
+ * @since 2023-08-11 11:53:48
  * @sign 043A5ADD17EDB7D84197AA89DA40989D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -435,6 +435,8 @@ public class RepairOrderActVO extends RepairOrderAct {
 			inst.setPageSize(this.getPageSize());
 			inst.setRepairOrderProcess(this.getRepairOrderProcess());
 			inst.setOriginator(this.getOriginator());
+			inst.setGoodsStockPartList(this.getGoodsStockPartList());
+			inst.setRepairOrderAcceptance(this.getRepairOrderAcceptance());
 			inst.setRepairOrderActSpList(this.getRepairOrderActSpList());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
@@ -539,6 +541,7 @@ public class RepairOrderActVO extends RepairOrderAct {
 			this.setFuzzyField(DataParser.parse(String.class, map.get(RepairOrderActVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(RepairOrderActVOMeta.PAGE_SIZE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(RepairOrderActVOMeta.ORIGINATOR)));
+			this.setRepairOrderAcceptance(DataParser.parse(RepairOrderAcceptance.class, map.get(RepairOrderActVOMeta.REPAIR_ORDER_ACCEPTANCE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(RepairOrderActVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(RepairOrderActVOMeta.SORT_TYPE)));
 			this.setExecutor(DataParser.parse(Employee.class, map.get(RepairOrderActVOMeta.EXECUTOR)));
@@ -583,6 +586,7 @@ public class RepairOrderActVO extends RepairOrderAct {
 				this.setFuzzyField( (String)map.get(RepairOrderActVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(RepairOrderActVOMeta.PAGE_SIZE));
 				this.setOriginator( (Employee)map.get(RepairOrderActVOMeta.ORIGINATOR));
+				this.setRepairOrderAcceptance( (RepairOrderAcceptance)map.get(RepairOrderActVOMeta.REPAIR_ORDER_ACCEPTANCE));
 				this.setPageIndex( (Integer)map.get(RepairOrderActVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(RepairOrderActVOMeta.SORT_TYPE));
 				this.setExecutor( (Employee)map.get(RepairOrderActVOMeta.EXECUTOR));

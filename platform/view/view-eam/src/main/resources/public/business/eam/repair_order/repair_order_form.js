@@ -1,7 +1,7 @@
 /**
  * 故障申请单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-05 11:15:32
+ * @since 2023-08-11 13:36:37
  */
 
 function FormPage() {
@@ -216,38 +216,12 @@ function FormPage() {
 				return opts;
 			}
 		});
-		//渲染 repairType 下拉字段
-		fox.renderSelectBox({
-			el: "repairType",
-			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("维修类型",'','cmp:form'),
-			filterable: false,
-			layVerify: 'required',
-			layVerType: 'msg',
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("repairType",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("repairType",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
+		form.on('radio(repairType)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=repairType]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("repairType",data,checked);
 		});
 		//渲染 urgencyId 下拉字段
 		fox.renderSelectBox({
@@ -397,8 +371,6 @@ function FormPage() {
 
 			//设置  故障类型 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#categoryTplId",formData.categoryTpl);
-			//设置  维修类型 设置下拉框勾选
-			fox.setSelectValue4Enum("#repairType",formData.repairType,SELECT_REPAIRTYPE_DATA);
 			//设置  紧急程度 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#urgencyId",formData.repairUrgency);
 
@@ -465,8 +437,6 @@ function FormPage() {
 
 		//获取 故障类型 下拉框的值
 		data["categoryTplId"]=fox.getSelectedValue("categoryTplId",false);
-		//获取 维修类型 下拉框的值
-		data["repairType"]=fox.getSelectedValue("repairType",false);
 		//获取 紧急程度 下拉框的值
 		data["urgencyId"]=fox.getSelectedValue("urgencyId",false);
 

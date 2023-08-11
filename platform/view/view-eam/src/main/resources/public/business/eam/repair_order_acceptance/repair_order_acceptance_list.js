@@ -1,7 +1,7 @@
 /**
  * 维修验收 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-05 09:01:10
+ * @since 2023-08-11 11:51:33
  */
 
 
@@ -85,6 +85,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'acceptResult', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收结果'), templet:function (d){ return templet('acceptResult',fox.getEnumText(RADIO_ACCEPTRESULT_DATA,d.acceptResult,'','acceptResult'),d);}}
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'resultType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修结果'), templet: function (d) { return templet('resultType' ,fox.joinLabel(d.resultTypeDict,"label",',','','resultType'),d);}}
 					,{ field: 'accepterId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收人员') , templet: function (d) { return templet('accepterId',fox.getProperty(d,["accepter","name"],0,'','accepterId'),d);} }

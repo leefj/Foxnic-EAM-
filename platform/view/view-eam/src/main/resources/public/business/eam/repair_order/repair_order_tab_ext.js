@@ -20,39 +20,44 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-eam/eam-repair-rule";
 
+    var timestamp = Date.parse(new Date());
     //列表页的扩展
     var list={
         orderNotDispatch:function (ifr,win,data) {
             ifr.height("720px");
-            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=not_dispatch"
+            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=not_dispatch&t="+timestamp
         },
         orderDispatched:function (ifr,win,data) {
             ifr.height("720px");
-            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=dispatched"
+            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=dispatched&t="+timestamp
         },
         orderWaitRepair:function (ifr,win,data) {
             ifr.height("720px");
-            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=wait_repair"
+            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=wait_repair&t="+timestamp
         },
         orderRepairing:function (ifr,win,data) {
             ifr.height("720px");
-            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=repairing"
+            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=repairing&t="+timestamp
         },
         orderWaitAcceptance:function (ifr,win,data) {
             ifr.height("720px");
-            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=wait_acceptance"
+            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=wait_acceptance&t="+timestamp
+        },
+        orderAcceptanceFailed:function (ifr,win,data) {
+            ifr.height("720px");
+            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=acceptance_failed&t="+timestamp
         },
         orderFinish:function (ifr,win,data) {
             ifr.height("720px");
-            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=finish"
+            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=finish&t="+timestamp
         },
         orderCancel:function (ifr,win,data) {
             ifr.height("720px");
-            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=cancel"
+            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=cancel&t="+timestamp
         },
         orderAll:function (ifr,win,data) {
             ifr.height("720px");
-            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=all"
+            win.location="/business/eam/repair_order/repair_order_list.html?repairStatus=all&t="+timestamp
         },
         /**
          * 列表页初始化前调用

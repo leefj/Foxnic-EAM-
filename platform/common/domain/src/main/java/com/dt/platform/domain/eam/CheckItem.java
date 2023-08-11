@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 检查项
  * <p>检查项 , 数据表 eam_check_item 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 12:35:18
+ * @since 2023-08-11 06:32:24
  * @sign 015FCE7FC422A1104EA86D12D411D1ED
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -70,7 +70,7 @@ public class CheckItem extends Entity {
 	/**
 	 * 描述：描述
 	*/
-	@ApiModelProperty(required = false,value="描述" , notes = "描述")
+	@ApiModelProperty(required = false,value="描述" , notes = "描述" , example = "检查外观")
 	private String checkDesc;
 	
 	/**
@@ -118,7 +118,7 @@ public class CheckItem extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-09 06:55:17")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-10 12:44:50")
 	private Date updateTime;
 	
 	/**
@@ -145,7 +145,7 @@ public class CheckItem extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "4")
 	private Integer version;
 	
 	/**
