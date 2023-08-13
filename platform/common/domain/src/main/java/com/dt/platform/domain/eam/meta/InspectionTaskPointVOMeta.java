@@ -13,13 +13,14 @@ import com.dt.platform.domain.eam.InspectionPointPos;
 import com.dt.platform.domain.eam.CheckItem;
 import com.dt.platform.domain.eam.CheckSelect;
 import com.dt.platform.domain.eam.InspectionPoint;
+import com.dt.platform.domain.eam.Asset;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:13:56
+ * @since 2023-08-12 17:33:43
  * @sign 651D328B81E70EC1A0B8941BD7D880C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -517,9 +518,19 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> ITEM_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,ITEM_COUNT, java.lang.String.class, "itemCount", "itemCount", java.lang.String.class, null);
 	
 	/**
+	 * asset , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET="asset";
+	
+	/**
+	 * asset , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,com.dt.platform.domain.eam.Asset> ASSET_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,ASSET, com.dt.platform.domain.eam.Asset.class, "asset", "asset", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , IMAGE_ID , POINT_ID , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION , ROUTE , TASK , OPER_USER , INSPECTION_POINT_POS , CHECK_ITEM_LIST , CHECK_SELECT_LIST , INSPECTION_POINT , ITEM_COUNT };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , IMAGE_ID , POINT_ID , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION , ROUTE , TASK , OPER_USER , INSPECTION_POINT_POS , CHECK_ITEM_LIST , CHECK_SELECT_LIST , INSPECTION_POINT , ITEM_COUNT , ASSET };
 	
 	/**
 	 * 代理类
@@ -1067,6 +1078,17 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 			super.setItemCount(itemCount);
 			return this;
 		}
+		
+		/**
+		 * 设置 asset
+		 * @param asset asset
+		 * @return 当前对象
+		*/
+		public InspectionTaskPoint setAsset(Asset asset) {
+			super.change(ASSET,super.getAsset(),asset);
+			super.setAsset(asset);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1130,6 +1152,7 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
+				inst.setAsset(this.getAsset());
 				inst.setSearchValue(this.getSearchValue());
 				inst.setOperUser(this.getOperUser());
 				inst.setInspectionPoint(this.getInspectionPoint());

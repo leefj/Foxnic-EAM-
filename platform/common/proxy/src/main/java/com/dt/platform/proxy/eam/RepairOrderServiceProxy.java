@@ -117,6 +117,9 @@ public interface RepairOrderServiceProxy {
     public static final String VALIDATE_DISPATCH_ORDER = API_PREFIX + "validate-dispatch-order";
 
 
+
+    public static final String QUERY_STATUS_COUNT_DATA = API_PREFIX + "query-status-count-data";
+
     /**
      * 添加维修工单
      */

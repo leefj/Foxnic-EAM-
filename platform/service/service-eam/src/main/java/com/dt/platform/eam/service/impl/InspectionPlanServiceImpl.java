@@ -237,6 +237,7 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 			task.setTaskStatus(InspectionTaskStatusEnum.WAIT.code());
 			task.setOvertimeMethod(plan.getOvertimeMethod());
 			task.setRemindTime(plan.getRemindTime());
+			task.setTenantId(plan.getTenantId());
 
 			this.dao().fill(pointOwnerList).with(InspectionPointOwnerMeta.CHECK_ITEM_LIST).
 					with(InspectionPointOwnerMeta.INSPECTION_POINT).execute();

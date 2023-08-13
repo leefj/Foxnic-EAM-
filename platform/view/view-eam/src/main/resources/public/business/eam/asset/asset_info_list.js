@@ -760,8 +760,6 @@ function ListPage() {
 					{"perm":"eam_asset:rwm","id":"rwm","title":fox.translate('二维码')  }
 				];
 
-
-
 				if(UPDATE_BTN){
 					operList.push({"perm":"updateBtn","id":"updateBtn","title":fox.translate('修改')})
 				}
@@ -771,7 +769,7 @@ function ListPage() {
 					}
 				}
 				if(CHANGE_QUERY_BTN){
-					operList.push({"perm":"changeQueryBtn","id":"changeQueryBtn","title":fox.translate('操作明细')})
+					operList.push({"perm":"changeQueryBtn_is_del","id":"changeQueryBtn","title":fox.translate('操作明细')})
 				}
 				if(DELETE_BTN){
 					operList.push({"perm":"deleteBtn","id":"deleteBtn","title": fox.translate('删除')})

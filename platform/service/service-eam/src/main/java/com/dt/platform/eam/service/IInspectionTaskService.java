@@ -31,6 +31,8 @@ import java.util.Map;
 public interface IInspectionTaskService extends ISuperService<InspectionTask> {
 
 
+	Result<JSONObject> queryStatusCountData(String label);
+
 	Result<JSONObject> queryData(String labels);
 
 	Result<JSONArray> queryDataByCal(String status, String startStr, String endStr);

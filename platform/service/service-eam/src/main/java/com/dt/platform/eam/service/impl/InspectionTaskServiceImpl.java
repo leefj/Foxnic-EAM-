@@ -4,16 +4,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.constants.enums.oa.MeetingRoomBookStatusEnum;
-import com.dt.platform.domain.eam.InspectionTask;
-import com.dt.platform.domain.eam.InspectionTaskAbnormal;
-import com.dt.platform.domain.eam.InspectionTaskPoint;
+import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.InspectionTaskMeta;
+import com.dt.platform.domain.eam.meta.InspectionTaskPointMeta;
 import com.dt.platform.domain.oa.MeetingRoomBookRcd;
 import com.dt.platform.domain.oa.meta.MeetingRoomBookRcdMeta;
-import com.dt.platform.eam.service.IInspectionTaskAbnormalService;
-import com.dt.platform.eam.service.IInspectionTaskPointService;
-import com.dt.platform.eam.service.IInspectionTaskService;
-import com.dt.platform.eam.service.IMaintainTaskService;
+import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
@@ -64,6 +60,11 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 	@Autowired
 	private IInspectionTaskAbnormalService inspectionTaskAbnormalService;
 
+
+	@Autowired
+	private IInspectionRcdService inspectionRcdService;
+
+
 	/**
 	 * 注入DAO对象
 	 * */
@@ -83,7 +84,17 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 	}
 
 
-
+	@Override
+	public Result<JSONObject> queryStatusCountData(String label) {
+		Result<JSONObject> res=new Result<JSONObject>();
+		String sql="select \n" +
+				"(select count(1) from eam_inspection_task where deleted=0 and task_status='wait')wait_count,\n" +
+				"(select count(1) from eam_inspection_task where deleted=0 and task_status='acting')acting_count";
+		JSONObject data=dao.queryRecord(sql).toJSONObject();
+		res.data(data);
+		res.success(true);
+		return res;
+	}
 
 	@Override
 	public Result<JSONObject> queryData(String labels) {
@@ -305,6 +316,7 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 				.with(InspectionTaskMeta.INSPECTION_TASK_POINT_LIST)
 				.execute();
 		List<InspectionTaskPoint> list=inspectionTask.getInspectionTaskPointList();
+		dao.fill(list).with(InspectionTaskPointMeta.ASSET).execute();;
 
 		if(list==null||list.size()==0){
 			return ErrorDesc.failureMessage("当前没有巡检点需要巡检");
@@ -315,6 +327,7 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 		Date maxDate=null;;
 
 		boolean insertAbnormal=false;
+
 		for(int i=0;i<list.size();i++){
 			InspectionTaskPoint inspectionTaskPoint=list.get(i);
 
@@ -340,6 +353,17 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 					maxDate=inspectionTaskPoint.getOperTime();
 				}
 			}
+			//记录
+			Asset asset=list.get(i).getAsset();
+			if(asset!=null){
+				InspectionRcd inspectionRcd=new InspectionRcd();
+				inspectionRcd.setAssetId(asset.getId());
+				inspectionRcd.setBusinessCode(inspectionTask.getTaskCode());
+				inspectionRcd.setContent("巡检完成");
+				inspectionRcd.setRcdTime(new Date());
+				inspectionRcdService.insert(inspectionRcd,false);
+			}
+
 		}
 		inspectionTask.setActStartTime(minDate);
 		inspectionTask.setActFinishTime(maxDate);
@@ -356,13 +380,14 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 		if(rr.isSuccess()){
 			if(insertAbnormal){
 				InspectionTaskAbnormal inspectionTaskAbnormal=new InspectionTaskAbnormal();
-
 				inspectionTaskAbnormal.setTaskId(inspectionTask.getId());
 				inspectionTaskAbnormal.setTaskAbnormalInfo("存在巡检点异常,请确认");
 				inspectionTaskAbnormal.setStatus(InspectionTaskAbnormalStatusEnum.NOT_PROCESS.code());
 				inspectionTaskAbnormalService.insert(inspectionTaskAbnormal,true);
 			}
 		}
+
+		//
 		return ErrorDesc.success();
 	}
 

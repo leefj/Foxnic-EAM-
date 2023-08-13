@@ -346,6 +346,14 @@ function FormPage() {
 		// 	}
 		// });
 
+		form.on('radio(equipmentStatus)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=equipmentStatus]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("equipmentStatus",data,checked);
+		});
+
 
 		//渲染 maintenanceMethod 下拉字段
 		fox.renderSelectBox({
@@ -752,27 +760,27 @@ function FormPage() {
 			}
 		});
 
-		//渲染 equipmentStatus 下拉字段
-		fox.renderSelectBox({
-			el: "equipmentStatus",
-			radio: true,
-			filterable: false,
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues="".split(",");
-					defaultIndexs="".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					opts.push({name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-				}
-				return opts;
-			}
-		});
+		// //渲染 equipmentStatus 下拉字段
+		// fox.renderSelectBox({
+		// 	el: "equipmentStatus",
+		// 	radio: true,
+		// 	filterable: false,
+		// 	//转换数据
+		// 	transform:function(data) {
+		// 		//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+		// 		var defaultValues=[],defaultIndexs=[];
+		// 		if(action=="create") {
+		// 			defaultValues="".split(",");
+		// 			defaultIndexs="".split(",");
+		// 		}
+		// 		var opts=[];
+		// 		if(!data) return opts;
+		// 		for (var i = 0; i < data.length; i++) {
+		// 			opts.push({name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+		// 		}
+		// 		return opts;
+		// 	}
+		// });
 
 		//渲染 equipmentEnvironmentCode 下拉字段
 		fox.renderSelectBox({
@@ -1065,7 +1073,7 @@ function FormPage() {
 
 
 			//设置  设备状态 设置下拉框勾选
-			fox.setSelectValue4Enum("#equipmentStatus",formData.equipmentStatus,SELECT_EQUIPMENTSTATUS_DATA);
+		//	fox.setSelectValue4Enum("#equipmentStatus",formData.equipmentStatus,SELECT_EQUIPMENTSTATUS_DATA);
 
 			fox.setSelectValue4QueryApi("#maintenanceStatus",formData.assetMaintenanceStatus);
 
@@ -1233,10 +1241,10 @@ function FormPage() {
 			data["supplierId"]=fox.getSelectedValue("supplierId",false);
 		}
 
-
-		if(xmSelect.get('#equipmentStatus', true)){
-			data["equipmentStatus"]=fox.getSelectedValue("equipmentStatus",false);
-		}
+		//
+		// if(xmSelect.get('#equipmentStatus', true)){
+		// 	data["equipmentStatus"]=fox.getSelectedValue("equipmentStatus",false);
+		// }
 
 
 		if(xmSelect.get('#maintenanceStatus', true)){

@@ -20,7 +20,38 @@ function ListPage() {
 				jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,'idle');
 			}
 		}
+
+		queryTabData("none");
+
+		$("#wait_repair_count_tab").on('click', function(){
+			queryTabData("none");
+		});
+		$("#repairing_count_tab").on('click', function(){
+			queryTabData("none");
+		});
+		$("#wait_acceptance_count_tab").on('click', function(){
+			queryTabData("none");
+		});
+		$("#acceptance_failed_count_tab").on('click', function(){
+			queryTabData("none");
+		});
+
 	}
+	function queryTabData(label){
+		admin.post("/service-eam/eam-repair-order/query-status-count-data", { label :label }, function (r) {
+			if (r.success) {
+				var data=r.data;
+				//$("#not_dispatch_count").html(data.notDispatchCount);
+				$("#wait_repair_count").html(data.waitRepairCount);
+				$("#repairing_count").html(data.repairingCount);
+				$("#wait_acceptance_count").html(data.waitAcceptanceCount);
+				$("#acceptance_failed_count").html(data.acceptanceFailedCount);
+			} else {
+				fox.showMessage(r);
+			}
+		});
+	}
+
 	window.module={};
 	window.pageExt.list.ending && window.pageExt.list.ending();
 };

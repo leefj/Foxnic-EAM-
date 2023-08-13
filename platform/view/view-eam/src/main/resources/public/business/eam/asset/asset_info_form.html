@@ -39,9 +39,13 @@
                     <li id="maintainer-tab"  th:text="${lang.translate('维保信息')}">维保信息</li>
                     <li id="financial-tab" th:text="${lang.translate('财务信息')}"> 财务信息</li>
                     <li id="equipment-tab" > <div th:text="${lang.translate('设备信息')}">设备信息</div></li>
+                    <li id="part-tab" > <div th:text="${lang.translate('关联备件')}">关联备件</div></li>
+                    <li id="repairRcd-tab" > <div th:text="${lang.translate('维修记录')}">维修记录</div></li>
+                    <li id="maintainRcd-tab" > <div th:text="${lang.translate('保养记录')}">保养记录</div></li>
+                    <li id="insepectionRcd-tab" > <div th:text="${lang.translate('巡检记录')}">巡检记录</div></li>
+                    <li id="history-tab" > <div th:text="${lang.translate('历史记录')}">历史记录</div></li>
                 </ul>
                 <div class="layui-tab-content">
-
                     <div class="layui-tab-item layui-show" id="attribution-tab-ct">
                         <!--开始：3栏模式 循环-->
                         <div class="layui-row form-row" >
@@ -71,10 +75,7 @@
                         </div>
                         <div id="pcmExtColumn">
                         </div>
-
                     </div>
-
-
                     <div class="layui-tab-item" id="maintainer-tab-ct">
                         <!--开始：3栏模式 循环-->
                         <div class="layui-row form-row" >
@@ -103,9 +104,7 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="layui-tab-item " id="financial-tab-ct">
+                    <div class="layui-tab-item" id="financial-tab-ct">
                         <!--开始：3栏模式 循环-->
                         <div class="layui-row form-row" >
                             <div class="layui-col-xs4 form-column">
@@ -133,9 +132,7 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="layui-tab-item " id="equipment-tab-ct">
+                    <div class="layui-tab-item" id="equipment-tab-ct">
                         <!--开始：3栏模式 循环-->
                         <div class="layui-row form-row" >
                             <div class="layui-col-xs4 form-column">
@@ -163,8 +160,33 @@
                             </div>
                         </div>
                     </div>
+                    <div  class="layui-tab-item" id="part-tab-ct">
 
+                    </div>
 
+                    <div  class="layui-tab-item" id="repairRcd-tab-ct">
+                        <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
+                            <iframe id="repairRcdList" js-fn="repairRcdList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+                        </div>
+                    </div>
+
+                    <div  class="layui-tab-item" id="maintainRcd-tab-ct">
+                        <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
+                            <iframe id="maintainRcdList" js-fn="maintainRcdList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+                        </div>
+                    </div>
+
+                    <div  class="layui-tab-item" id="insepectionRcd-tab-ct">
+                        <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
+                            <iframe id="insepectionRcdList" js-fn="insepectionRcdList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+                        </div>
+                    </div>
+
+                    <div  class="layui-tab-item" id="history-tab-ct">
+                        <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
+                            <iframe id="historyList" js-fn="historyList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -196,7 +218,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}]];
     var SELECT_ASSETSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetStatusEnum')}]];
-    var SELECT_EQUIPMENTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetEquipmentStatusEnum')}]];
+    var RADIO_EQUIPMENTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetEquipmentStatusEnum')}]];
     var AUTH_PREFIX="eam_asset";
     var ASSET_CODE_AUTO_CREATE =  [[${assetCodeAutoCreate}]];
     var VALIDATE_CONFIG =  [[${attributeRequiredData}]];

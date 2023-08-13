@@ -20,16 +20,12 @@ public class PlatformRelationManager extends RelationManager {
 				new OaRelationManager(),
 				new KnRelationManager(),
 				new EamRelationManager(),
-				new VehicleRelationManager(),
 				new OpsRelationManager(),
 				new CommonRelationManager(),
 				new DatacenterRelationManager(),
-
 				new MonitorRelationManager(),
 				new MobileRelationManager(),
 				new WmsRelationManager(),
-				new WorkOrderRelationManager(),
-
 				// 合同
 				new ContractRelationManager()
 

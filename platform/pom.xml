@@ -40,11 +40,8 @@
         <module>./service/service-ops</module>
         <module>./service/service-common</module>
         <module>./service/service-knowledgebase</module>
-
         <module>./service/service-customer</module>
-        <module>./service/service-vehicle</module>
         <module>./service/service-cms</module>
-        <module>./service/service-workorder</module>
         <module>./service/service-mobile</module>
         <module>./service/service-oa</module>
         <module>./service/service-wms</module>
@@ -57,9 +54,7 @@
         <module>./view/view-common</module>
         <module>./view/view-knowledgebase</module>
         <module>./view/view-customer</module>
-        <module>./view/view-vehicle</module>
         <module>./view/view-cms</module>
-        <module>./view/view-workorder</module>
         <module>./view/view-mobile</module>
         <module>./view/view-oa</module>
         <module>./view/view-wms</module>
@@ -69,15 +64,15 @@
     </modules>
     <dependencies>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-activemq</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-activemq</artifactId>-->
+        <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>org.apache.activemq</groupId>-->
-<!--            <artifactId>activemq-pool</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.activemq</groupId>-->
+        <!--            <artifactId>activemq-pool</artifactId>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
@@ -160,14 +155,14 @@
         </repository>
 
 
-<!--            <repository>-->
-<!--                <id>snapshots</id>-->
-<!--                <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
-<!--            </repository>-->
-<!--            <repository>-->
-<!--                <id>sonatype</id>-->
-<!--                <url>https://oss.sonatype.org/content/groups/public/</url>-->
-<!--            </repository>-->
+        <!--            <repository>-->
+        <!--                <id>snapshots</id>-->
+        <!--                <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
+        <!--            </repository>-->
+        <!--            <repository>-->
+        <!--                <id>sonatype</id>-->
+        <!--                <url>https://oss.sonatype.org/content/groups/public/</url>-->
+        <!--            </repository>-->
 
 
 

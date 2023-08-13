@@ -141,7 +141,7 @@ foxnic:
       ########################  common key list  #######################
       #system_ops
       ########################  eam key list  #######################
-      #eam,infrastructure,eam_employee,eam_equipment_mgr
+      #eam,eam_employee,eam_equipment_mgr
       ########################  ops key list  #######################
       #ops,zbx
       ########################  contract key list  ##################
@@ -154,7 +154,7 @@ foxnic:
       #hrm
       ########################  oa key list  #######################
       #oa
-      auth-keys: pay,system_monitor_list,oa,kb,eam,infrastructure,eam_employee,eam_equipment_mgr,system_ops,hrm,bpm-mgr,auto_perm,changes,hr,basic_permissions,common_system,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,dp_rule:mngr,system_config,sys_tpl_file:mngr,job
+      auth-keys: pay,system_monitor_list,oa,kb,eam,eam_employee,eam_equipment_mgr,system_ops,hrm,bpm-mgr,auto_perm,changes,hr,basic_permissions,common_system,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,dp_rule:mngr,system_config,sys_tpl_file:mngr,job
       # 是否在首页体现 module-authorities 控制
       apply-index-page: true
       # 是否在菜单树体现 module-authorities 控制，主要包括菜单管理、角色选择等。注意，此项若开启可能导致菜单权限勾选不全，建议仅在生产环境开启。

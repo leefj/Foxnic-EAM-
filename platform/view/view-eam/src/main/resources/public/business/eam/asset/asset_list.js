@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-28 21:32:33
+ * @since 2023-08-11 19:46:44
  */
 
 
@@ -156,7 +156,7 @@ function ListPage() {
 					,{ field: 'entryTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('登记时间') ,templet: function (d) { return templet('entryTime',fox.dateFormat(d.entryTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'financialNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('财务备注') , templet: function (d) { return templet('financialNotes',d.financialNotes,d);}  }
 					,{ field: 'equipmentCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备编号') , templet: function (d) { return templet('equipmentCode',d.equipmentCode,d);}  }
-					,{ field: 'equipmentStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备状态'), templet:function (d){ return templet('equipmentStatus',fox.getEnumText(SELECT_EQUIPMENTSTATUS_DATA,d.equipmentStatus,'','equipmentStatus'),d);}}
+					,{ field: 'equipmentStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('启停状态'), templet:function (d){ return templet('equipmentStatus',fox.getEnumText(RADIO_EQUIPMENTSTATUS_DATA,d.equipmentStatus,'','equipmentStatus'),d);}}
 					,{ field: 'equipmentIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备IP') , templet: function (d) { return templet('equipmentIp',d.equipmentIp,d);}  }
 					,{ field: 'manageIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('管理IP') , templet: function (d) { return templet('manageIp',d.manageIp,d);}  }
 					,{ field: 'equipmentCpu', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备CPU') , templet: function (d) { return templet('equipmentCpu',d.equipmentCpu,d);}  }
@@ -729,7 +729,10 @@ function ListPage() {
 
 			admin.putTempData('eam-asset-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('eam-asset-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -738,7 +741,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('eam-asset-form-data-form-action', "view",true);
 						showEditForm(data.data);

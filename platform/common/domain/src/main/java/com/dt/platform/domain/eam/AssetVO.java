@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产VO类型
  * <p>资产 , 数据表 eam_asset 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-28 21:32:31
+ * @since 2023-08-11 19:46:41
  * @sign 740673009F6EFF378B232C887D6576FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

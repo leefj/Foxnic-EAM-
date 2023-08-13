@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-28 21:32:33
+ * @since 2023-08-11 19:46:45
  */
 
 function FormPage() {
@@ -849,36 +849,12 @@ function FormPage() {
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("entryTime",value, date, endDate);
 			}
 		});
-		//渲染 equipmentStatus 下拉字段
-		fox.renderSelectBox({
-			el: "equipmentStatus",
-			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("设备状态",'','cmp:form'),
-			filterable: false,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("equipmentStatus",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("equipmentStatus",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
+		form.on('radio(equipmentStatus)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=equipmentStatus]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("equipmentStatus",data,checked);
 		});
 		//渲染 equipmentEnvironmentCode 下拉字段
 		fox.renderSelectBox({

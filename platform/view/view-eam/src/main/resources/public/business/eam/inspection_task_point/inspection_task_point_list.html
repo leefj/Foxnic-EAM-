@@ -2,7 +2,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:13:59
+ * @since 2023-08-12 17:33:45
  */
  -->
  <!DOCTYPE html>
@@ -51,8 +51,8 @@
                     <!-- RFID , pointRfid ,typeName=text_input, isHideInSearch=true -->
                     <!-- 位置 , pointPosId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('位置')}" class="search-label pointPosId-label">位置</span><span class="search-colon">:</span></div>
-                        <div id="pointPosId" th:data="${'/service-eam/eam-inspection-point-pos/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('位置')}" class="search-label pointPosId-label">位置</span><span class="search-colon">:</span></div>
+                        <div id="pointPosId" th:data="${'/service-eam/eam-inspection-point-pos/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 位置经度 , pointPosLongitude ,typeName=number_input, isHideInSearch=true -->
                     <!-- 位置纬度 , pointPosLatitude ,typeName=number_input, isHideInSearch=true -->
@@ -63,18 +63,18 @@
                     <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 编码 , pointCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('编码')}" class="search-label pointCode-label">编码</span><span class="search-colon">:</span></div>
-                        <input id="pointCode" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('编码')}" class="search-label pointCode-label">编码</span><span class="search-colon">:</span></div>
+                        <input id="pointCode" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 巡检点 , pointName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('巡检点')}" class="search-label pointName-label">巡检点</span><span class="search-colon">:</span></div>
-                        <input id="pointName" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('巡检点')}" class="search-label pointName-label">巡检点</span><span class="search-colon">:</span></div>
+                        <input id="pointName" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 位置详情 , pointPos ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('位置详情')}" class="search-label pointPos-label">位置详情</span><span class="search-colon">:</span></div>
-                        <input id="pointPos" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('位置详情')}" class="search-label pointPos-label">位置详情</span><span class="search-colon">:</span></div>
+                        <input id="pointPos" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
