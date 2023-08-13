@@ -46,9 +46,7 @@ import org.springframework.context.annotation.ComponentScan;
 		PlatformMeta.CUSTOMER_PACKAGE,
 		// 合同
 		ContractMeta.SERVICE_CONTRACT_PACKAGE
-		//PlatformMeta.VEHICLE_PACKAGE,
 		//PlatformMeta.WMS_PACKAGE,
-		//PlatformMeta.WORKORDER_PACKAGE,
 })
 @SpringBootApplication
 public class WrapperAllApp {

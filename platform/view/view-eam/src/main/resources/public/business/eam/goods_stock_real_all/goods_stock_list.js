@@ -82,7 +82,7 @@ function ListPage() {
 					,{ field: 'goodsUnit', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('计量单位'), templet: function (d) { return templet('goodsUnit' ,fox.joinLabel(d.goods,"unit"),d);}}
 					,{ field: 'goodsCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品编码'), templet: function (d) { return templet('goodsCode' ,fox.joinLabel(d.goods,"code"),d);}}
 					,{ field: 'goodsBarCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品条码'), templet: function (d) { return templet('goodsBarCode' ,fox.joinLabel(d.goods,"barCode"),d);}}
-					,{ field: 'goodsNotes', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('备注'), templet: function (d) { return templet('goodsNotes' ,fox.joinLabel(d.goods,"notes"),d);}}
+			//		,{ field: 'goodsNotes', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('档案备注'), templet: function (d) { return templet('goodsNotes' ,fox.joinLabel(d.goods,"notes"),d);}}
 
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },

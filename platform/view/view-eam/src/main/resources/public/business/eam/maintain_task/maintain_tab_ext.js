@@ -27,15 +27,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
         waitFunc:function (ifr,win,data) {
             ifr.height("720px");
-            win.location="/business/eam/inspection_task/inspection_task_list.html?taskStatus=wait&t="+timestamp
+            win.location="/business/eam/maintain_task/maintain_task_list.html?status=wait&t="+timestamp
         },
         actingFunc:function (ifr,win,data) {
             ifr.height("720px");
-            win.location="/business/eam/inspection_task/inspection_task_list.html?taskStatus=acting&t="+timestamp
+            win.location="/business/eam/maintain_task/maintain_task_list.html?status=acting&t="+timestamp
         },
         allFunc:function (ifr,win,data) {
             ifr.height("720px");
-            win.location = "/business/eam/inspection_task/inspection_task_list.html?taskStatus=all&t=" + timestamp
+            win.location = "/business/eam/maintain_task/maintain_task_list.html?status=all&t=" + timestamp
         },
         /**
          * 列表页初始化前调用

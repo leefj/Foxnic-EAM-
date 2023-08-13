@@ -143,11 +143,7 @@
             <artifactId>service-knowledgebase</artifactId>
             <version>${platform.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>service-vehicle</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>service-cms</artifactId>
@@ -158,11 +154,7 @@
             <artifactId>service-mobile</artifactId>
             <version>${platform.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>service-workorder</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>service-oa</artifactId>
@@ -239,16 +231,7 @@
             <artifactId>view-knowledgebase</artifactId>
             <version>${platform.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>view-vehicle</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>view-workorder</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>view-cms</artifactId>
