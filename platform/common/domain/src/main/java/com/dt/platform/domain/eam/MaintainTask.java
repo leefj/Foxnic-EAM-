@@ -29,7 +29,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养任务
  * <p>保养任务 , 数据表 eam_maintain_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 18:51:41
+ * @since 2023-08-13 09:12:14
  * @sign 8CD2B08F6E7CDC48FE0338493B600191
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -46,31 +46,31 @@ public class MaintainTask extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "731451914251665408")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "742135555822714880")
 	private String id;
 	
 	/**
 	 * 任务名称：任务名称
 	*/
-	@ApiModelProperty(required = false,value="任务名称" , notes = "任务名称" , example = "1212")
+	@ApiModelProperty(required = false,value="任务名称" , notes = "任务名称" , example = "TTTTTTT")
 	private String name;
 	
 	/**
 	 * 任务状态：任务状态
 	*/
-	@ApiModelProperty(required = false,value="任务状态" , notes = "任务状态" , example = "finish")
+	@ApiModelProperty(required = false,value="任务状态" , notes = "任务状态" , example = "wait")
 	private String status;
 	
 	/**
 	 * 任务单据：任务单据
 	*/
-	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "MT202308121008615")
+	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "MT202341102141522")
 	private String businessCode;
 	
 	/**
 	 * 方案：方案
 	*/
-	@ApiModelProperty(required = false,value="方案" , notes = "方案" , example = "730872799438045184")
+	@ApiModelProperty(required = false,value="方案" , notes = "方案" , example = "735029975651975168")
 	private String planId;
 	
 	/**
@@ -88,7 +88,7 @@ public class MaintainTask extends Entity {
 	/**
 	 * 保养设备：保养设备
 	*/
-	@ApiModelProperty(required = false,value="保养设备" , notes = "保养设备" , example = "681881153086423040")
+	@ApiModelProperty(required = false,value="保养设备" , notes = "保养设备" , example = "705002737598726144")
 	private String assetId;
 	
 	/**
@@ -100,7 +100,7 @@ public class MaintainTask extends Entity {
 	/**
 	 * 设备编码：设备编码
 	*/
-	@ApiModelProperty(required = false,value="设备编码" , notes = "设备编码" , example = "AS16217")
+	@ApiModelProperty(required = false,value="设备编码" , notes = "设备编码" , example = "AS16233")
 	private String assetCode;
 	
 	/**
@@ -118,7 +118,7 @@ public class MaintainTask extends Entity {
 	/**
 	 * 设备序列：设备序列
 	*/
-	@ApiModelProperty(required = false,value="设备序列" , notes = "设备序列" , example = "sn")
+	@ApiModelProperty(required = false,value="设备序列" , notes = "设备序列" , example = "12000000000000000000")
 	private String assetSn;
 	
 	/**
@@ -136,25 +136,25 @@ public class MaintainTask extends Entity {
 	/**
 	 * 执行人：执行人
 	*/
-	@ApiModelProperty(required = false,value="执行人" , notes = "执行人" , example = "E001")
+	@ApiModelProperty(required = false,value="执行人" , notes = "执行人")
 	private String executorId;
 	
 	/**
 	 * 应开始时间：应开始时间
 	*/
-	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2023-07-12 10:08:46")
+	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2023-08-10 09:41:45")
 	private Date planStartTime;
 	
 	/**
 	 * 实际开始：实际开始
 	*/
-	@ApiModelProperty(required = false,value="实际开始" , notes = "实际开始" , example = "2023-07-12 10:09:03")
+	@ApiModelProperty(required = false,value="实际开始" , notes = "实际开始")
 	private Date actStartTime;
 	
 	/**
 	 * 实际完成：实际完成
 	*/
-	@ApiModelProperty(required = false,value="实际完成" , notes = "实际完成" , example = "2023-07-12 10:09:13")
+	@ApiModelProperty(required = false,value="实际完成" , notes = "实际完成")
 	private Date actFinishTime;
 	
 	/**
@@ -214,19 +214,19 @@ public class MaintainTask extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-12 10:08:46")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-10 09:41:45")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-12 10:09:03")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
 	private Date updateTime;
 	
 	/**

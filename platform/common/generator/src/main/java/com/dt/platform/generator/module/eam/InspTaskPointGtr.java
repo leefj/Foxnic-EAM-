@@ -35,12 +35,12 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(InspectionTask.class,"task","task","task");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"operUser","operUser","operUser");
         cfg.getPoClassFile().addSimpleProperty(InspectionPointPos.class,"inspectionPointPos","inspectionPointPos","inspectionPointPos");
-
         cfg.getPoClassFile().addListProperty(CheckItem.class,"checkItemList","checkItemList","checkItemList");
         cfg.getPoClassFile().addListProperty(CheckSelect.class,"checkSelectList","checkSelectList","checkSelectList");
-
         cfg.getPoClassFile().addSimpleProperty(InspectionPoint.class,"inspectionPoint","inspectionPoint","inspectionPoint");
         cfg.getPoClassFile().addSimpleProperty(String.class,"itemCount","itemCount","itemCount");
+        cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","asset","asset");
+
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.OPER_ID).table().fillBy("operUser","name");
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.OPER_ID).form()

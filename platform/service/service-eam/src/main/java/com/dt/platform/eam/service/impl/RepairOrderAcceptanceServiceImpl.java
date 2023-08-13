@@ -63,6 +63,9 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 	private IOperateService operateService;
 
 	@Autowired
+	private IRepairRcdService repairRcdService;
+
+	@Autowired
 	private IAssetProcessRecordService assetProcessRecordService;
 
 
@@ -178,6 +181,14 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 					goodsStockUsageService.insert(goodsStockUsage,true);
 				}
 			}
+			//更新记录
+			RepairOrder order=repairOrderService.getById(orderAct.getOrderId());
+			RepairRcd repairRcd=new RepairRcd();
+			repairRcd.setRcdTime(new Date());
+			repairRcd.setContent("完成维修");
+			repairRcd.setBusinessCode(orderAct.getOrderBusinessCode());
+			repairRcd.setAssetId(order.getAssetId());
+			repairRcdService.insert(repairRcd,true);
 		}else{
 			rcd.setProcessContent("验收未通过");
 		}
@@ -306,6 +317,13 @@ public class RepairOrderAcceptanceServiceImpl extends SuperService<RepairOrderAc
 						goodsStockUsageService.insert(goodsStockUsage,true);
 					}
 				}
+				RepairOrder order=repairOrderService.getById(orderAct.getOrderId());
+				RepairRcd repairRcd=new RepairRcd();
+				repairRcd.setRcdTime(new Date());
+				repairRcd.setContent("完成维修");
+				repairRcd.setBusinessCode(orderAct.getOrderBusinessCode());
+				repairRcd.setAssetId(order.getAssetId());
+				repairRcdService.insert(repairRcd,true);
 			}else{
 				rcd.setProcessContent("验收未通过");
 			}

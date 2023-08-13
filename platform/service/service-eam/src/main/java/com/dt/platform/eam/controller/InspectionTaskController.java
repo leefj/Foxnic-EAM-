@@ -243,6 +243,14 @@ public class InspectionTaskController extends SuperController {
         return result;
     }
 
+    @ApiOperation(value = "获取tab数据")
+    @ApiOperationSupport(order = 3)
+    @SentinelResource(value = InspectionTaskServiceProxy.QUERY_STATUS_COUNT_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(InspectionTaskServiceProxy.QUERY_STATUS_COUNT_DATA)
+    public Result<JSONObject> queryStatusCountData(String label) {
+        return inspectionTaskService.queryStatusCountData(label);
+    }
+
     /**
      * 查询巡检任务
      */

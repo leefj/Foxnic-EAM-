@@ -37,6 +37,13 @@ public class InspectionTaskPageController extends ViewController {
 		return proxy;
 	}
 
+
+	@RequestMapping("/insepection_tab_list.html")
+	public String tab(Model model,HttpServletRequest request) {
+
+		return prefix+"/insepection_tab_list";
+	}
+
 	/**
 	 * 巡检日历
 	 */
@@ -50,7 +57,8 @@ public class InspectionTaskPageController extends ViewController {
 	 * 巡检任务 功能主页面
 	 */
 	@RequestMapping("/inspection_task_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String taskStatus) {
+		model.addAttribute("taskStatus",taskStatus);
 		return prefix+"/inspection_task_list";
 	}
 

@@ -352,6 +352,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 列表页初始化前调用
          * */
         beforeInit:function () {
+
+
             if(APPROVAL_REQUIRED){
                 var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
                 toolHtml=toolHtml.replace(/lay-event="batchConfirm"/i, "style=\"display:none\"")
@@ -612,7 +614,30 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单初始化前调用
          * */
         beforeInit:function () {
-
+            if($("#part-tab")){
+                $("#part-tab").remove();
+                $("#part-tab-ct").remove();
+            }
+            if(formAction=="view"){
+                console.log(1);
+            }else{
+                if($("#history-tab")){
+                    $("#history-tab").remove();
+                    $("#history-tab-ct").remove();
+                }
+                if($("#repairRcd-tab")){
+                    $("#repairRcd-tab").remove();
+                    $("#repairRcd-tab-ct").remove();
+                }
+                if($("#maintainRcd-tab")){
+                    $("#maintainRcd-tab").remove();
+                    $("#maintainRcd-tab-ct").remove();
+                }
+                if($("#insepectionRcd-tab")){
+                    $("#insepectionRcd-tab").remove();
+                    $("#insepectionRcd-tab-ct").remove();
+                }
+            }
             if(!ASSET_CODE_AUTO_CREATE){
                 setTimeout(function(){
                     $("#assetCode").removeAttr("disabled");
@@ -747,6 +772,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterSubmit:function (param,result) {
             console.log("afterSubmitt",param,result);
+        },
+        historyList:function (ifr,win,data) {
+            ifr.height("450px");
+            var queryString="?assetId="+data.id;
+            win.location='/business/eam/asset_process_record/asset_process_record_list.html' + queryString;
+        },
+        insepectionRcdList:function (ifr,win,data) {
+            ifr.height("450px");
+            var queryString="?assetId="+data.id;
+            win.location='/business/eam/inspection_rcd/inspection_rcd_list.html' + queryString;
+        },
+        maintainRcdList:function (ifr,win,data) {
+            ifr.height("450px");
+            var queryString="?assetId="+data.id;
+            win.location='/business/eam/maintain_rcd/maintain_rcd_list.html' + queryString;
+        },
+        repairRcdList:function (ifr,win,data) {
+            ifr.height("450px");
+            var queryString="?assetId="+data.id;
+            win.location='/business/eam/repair_rcd/repair_rcd_list.html' + queryString;
         },
         /**
          * 末尾执行

@@ -25,11 +25,9 @@ public class InspPointGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","asset","asset");
         cfg.getPoClassFile().addSimpleProperty(InspectionRoute.class,"route","route","route");
         cfg.getPoClassFile().addSimpleProperty(InspectionPointPos.class,"inspectionPointPos","inspectionPointPos","inspectionPointPos");
-
         cfg.getPoClassFile().addListProperty(CheckItem.class,"checkItemList","checkItemList","checkItemList");
         cfg.getPoClassFile().addListProperty(String.class,"idsList","idsList","idsList");
        // cfg.getPoClassFile().addSimpleProperty(String.class,"selectCode","selectCode","selectCode");
-
         cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
         cfg.getPoClassFile().addSimpleProperty(String.class,"itemCount","itemCount","itemCount");
         cfg.getPoClassFile().addSimpleProperty(String.class,"itemDisableCount","itemDisableCount","itemDisableCount");

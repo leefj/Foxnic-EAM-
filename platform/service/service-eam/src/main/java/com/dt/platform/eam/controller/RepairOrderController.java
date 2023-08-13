@@ -1,9 +1,12 @@
 package com.dt.platform.eam.controller;
 
 import java.util.List;
+
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.AssetRepairVOMeta;
 import com.dt.platform.proxy.eam.AssetRepairServiceProxy;
+import com.dt.platform.proxy.eam.MaintainTaskServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.hrm.Person;
@@ -238,6 +241,14 @@ public class RepairOrderController extends SuperController {
         List<RepairOrder> list = repairOrderService.queryListByIds(ids);
         result.success(true).data(list);
         return result;
+    }
+
+    @ApiOperation(value = "获取tab数据")
+    @ApiOperationSupport(order = 3)
+    @SentinelResource(value = RepairOrderServiceProxy.QUERY_STATUS_COUNT_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(RepairOrderServiceProxy.QUERY_STATUS_COUNT_DATA)
+    public Result<JSONObject> queryStatusCountData(String label) {
+        return repairOrderService.queryStatusCountData(label);
     }
 
     /**

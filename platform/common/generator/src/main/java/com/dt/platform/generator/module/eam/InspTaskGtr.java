@@ -36,22 +36,14 @@ public class InspTaskGtr extends BaseCodeGenerator {
 
 
         cfg.getPoClassFile().addSimpleProperty(InspectionPlan.class,"inspectionPlan","计划","计划");
-
         cfg.getPoClassFile().addListProperty(InspectionPoint.class,"inspectionPointList","巡检点","巡检点");
         cfg.getPoClassFile().addListProperty(String.class,"inspectionPointIds","巡检点","巡检点");
-
         cfg.getPoClassFile().addListProperty(InspectionTaskPoint.class,"inspectionTaskPointList","任务巡检点","任务巡检点");
-
         cfg.getPoClassFile().addListProperty(String.class,"inspectionTaskPointIds","任务巡检点","任务巡检点");
-
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"timeDict","时间","时间");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"inspectionTypeDict","类型","类型");
-
         cfg.getPoClassFile().addSimpleProperty(InspectionGroup.class,"inspectionGroup","班组","班组");
-
         cfg.getPoClassFile().addListProperty(Employee.class,"inspectUserList","inspectUserList","inspectUserList");
-
-
         cfg.getPoClassFile().addSimpleProperty(String.class,"pointCount","pointCount","pointCount");
         cfg.getPoClassFile().addSimpleProperty(String.class,"pointNormalCount","pointNormalCount","pointNormalCount");
         cfg.getPoClassFile().addSimpleProperty(String.class,"pointAbormalCount","pointAbormalCount","pointAbormalCount");
@@ -233,6 +225,7 @@ public class InspTaskGtr extends BaseCodeGenerator {
         );
 
         cfg.view().search().rowsDisplay(1);
+        cfg.view().list().addJsVariable("TASK_STATUS","[[${taskStatus}]]","taskStatus");
         cfg.view().form().addPage("巡检点","pointSelectList");
      //   cfg.view().list().operationColumn().addActionButton("巡检","inspect","execute-button","eam_inspection_task:execute");
         cfg.view().list().operationColumn().addActionButton("完成","finish","finish-button","eam_inspection_task:finish");

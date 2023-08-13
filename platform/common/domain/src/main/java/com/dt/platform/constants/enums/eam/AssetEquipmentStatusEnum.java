@@ -13,9 +13,8 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum AssetEquipmentStatusEnum implements CodeTextEnum {
 
-	RUNNING("running" , "运行中"),
-	STOP("stop" , "停用"),
-	FAULT("fault" , "故障")
+	RUNNING("running" , "运行"),
+	STOP("stop" , "停用")
 	;
 
 	private String code;

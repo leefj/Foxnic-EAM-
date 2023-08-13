@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点VO类型
  * <p>巡检点 , 数据表 eam_inspection_task_point 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-10 13:13:56
+ * @since 2023-08-12 17:33:43
  * @sign 651D328B81E70EC1A0B8941BD7D880C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -450,6 +450,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setAsset(this.getAsset());
 			inst.setOperUser(this.getOperUser());
 			inst.setSearchValue(this.getSearchValue());
 			inst.setInspectionPoint(this.getInspectionPoint());
@@ -555,6 +556,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			this.setSortField(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.QUERY_LOGIC)));
+			this.setAsset(DataParser.parse(Asset.class, map.get(InspectionTaskPointVOMeta.ASSET)));
 			this.setOperUser(DataParser.parse(Employee.class, map.get(InspectionTaskPointVOMeta.OPER_USER)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.SEARCH_VALUE)));
 			this.setInspectionPoint(DataParser.parse(InspectionPoint.class, map.get(InspectionTaskPointVOMeta.INSPECTION_POINT)));
@@ -604,6 +606,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 				this.setSortField( (String)map.get(InspectionTaskPointVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(InspectionTaskPointVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(InspectionTaskPointVOMeta.QUERY_LOGIC));
+				this.setAsset( (Asset)map.get(InspectionTaskPointVOMeta.ASSET));
 				this.setOperUser( (Employee)map.get(InspectionTaskPointVOMeta.OPER_USER));
 				this.setSearchValue( (String)map.get(InspectionTaskPointVOMeta.SEARCH_VALUE));
 				this.setInspectionPoint( (InspectionPoint)map.get(InspectionTaskPointVOMeta.INSPECTION_POINT));

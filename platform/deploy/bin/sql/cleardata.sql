@@ -139,9 +139,9 @@ delete from eam_repair_rule_item;
 delete from eam_inspection_group_user where 1=1;
 delete from eam_inspection_plan  where tenant_id='T001';
 delete from eam_inspection_plan_point  where tenant_id='T001';
-delete from eam_inspection_point  where tenant_id='T001';
+-- delete from eam_inspection_point  where tenant_id='T001';
 delete from eam_inspection_point_owner  where tenant_id='T001';
-delete from eam_inspection_route  where tenant_id='T001';
+-- delete from eam_inspection_route  where tenant_id='T001';
 delete from eam_inspection_task  where tenant_id='T001';
 delete from eam_inspection_task_point  where 1=1;
 -- stock

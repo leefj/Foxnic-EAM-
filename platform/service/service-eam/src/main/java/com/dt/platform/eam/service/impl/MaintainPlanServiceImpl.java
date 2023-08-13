@@ -167,9 +167,6 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 
 	private Result executePlan(MaintainPlan plan){
 
-
-
-
 		ActionCrontab cron=plan.getActionCrontab();
 		if(StringUtil.isBlank(cron)){
 			Logger.info("当前crontab为空，plan:"+plan.getId());
@@ -280,7 +277,7 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 			task.setAssetSn(asset.getSerialNumber());
 			task.setAssetCode(asset.getSerialNumber());
 			task.setNotes(plan.getNotes());
-
+			task.setTenantId(plan.getTenantId());
 
 			if(asset.getPosition()!=null){
 				task.setAssetPos(asset.getPosition().getHierarchyName());

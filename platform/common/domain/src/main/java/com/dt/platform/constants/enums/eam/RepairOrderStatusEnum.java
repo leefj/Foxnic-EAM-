@@ -19,6 +19,7 @@ public enum RepairOrderStatusEnum implements CodeTextEnum {
 	WAIT_REPAIR("wait_repair" , "待维修"),
 	REPAIRING("repairing" , "维修中"),
 	WAIT_ACCEPTANCE("wait_acceptance" , "待验收"),
+	ACCEPTANCE_FAILED("acceptance_failed" , "验收未通过"),
 	FINISH("finish" , "维修结束"),
 	CANCEL("cancel" , "取消");
 

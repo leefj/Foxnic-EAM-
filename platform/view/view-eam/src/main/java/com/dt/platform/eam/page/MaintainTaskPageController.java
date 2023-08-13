@@ -37,12 +37,18 @@ public class MaintainTaskPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+	@RequestMapping("maintain_tab_list.html")
+	public String tab(Model model,HttpServletRequest request) {
+		return prefix+"/maintain_tab_list";
+	}
+
 	/**
 	 * 保养任务 功能主页面
 	 */
 	@RequestMapping("/maintain_task_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String status) {
+		model.addAttribute("status",status);
 		return prefix+"/maintain_task_list";
 	}
 

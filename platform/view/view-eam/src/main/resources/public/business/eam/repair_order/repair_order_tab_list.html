@@ -27,20 +27,20 @@
     <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
 </head>
 
+<!--<span class="layui-badge">99+</span>-->
 <body style="background-color:white;">
-<div class="layui-tab">
+<div class="layui-tab layui-tab-brief">
     <ul class="layui-tab-title">
-        <li id="tab1" class="layui-this">未派单</li>
-<!--        <li id="tab2">已派单</li>-->
-        <li id="tab3">待维修</li>
-        <li id="tab4">维修中</li>
-        <li id="tab5">待验收</li>
-        <li id="tab6">验收未通过</li>
+        <li id="not_dispatch_count_tab" class="layui-this">未派单<span class="layui-badge" id="not_dispatch_count">0</span></li>
+        <li id="wait_repair_count_tab">待维修<span class="layui-badge" id="wait_repair_count">0</span></li>
+        <li id="repairing_count_tab">维修中<span class="layui-badge" id="repairing_count">0</span></li>
+        <li id="wait_acceptance_count_tab">待验收<span class="layui-badge" id="wait_acceptance_count">0</span></li>
+        <li id="acceptance_failed_count_tab">验收未通过<span class="layui-badge" id="acceptance_failed_count">0</span></li>
         <li id="tab7">维修结束</li>
         <li id="tab8">全部</li>
     </ul>
     <div class="layui-tab-content">
-        <div class="layui-tab-item layui-show" id="tab1-ct">
+        <div class="layui-tab-item layui-show" id="not_dispatch_count_tab-ct">
            <div>
                <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
                    <iframe id="random-7251-iframe" js-fn="orderNotDispatch" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
@@ -54,21 +54,21 @@
 <!--                </div>-->
 <!--            </div>-->
 <!--        </div>-->
-        <div class="layui-tab-item" id="tab3-ct">
+        <div class="layui-tab-item" id="wait_repair_count_tab-ct">
             <div>
                 <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
                     <iframe id="orderWaitRepair" js-fn="orderWaitRepair" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
                 </div>
             </div>
         </div>
-        <div class="layui-tab-item" id="tab4-ct">
+        <div class="layui-tab-item" id="repairing_count_tab-ct">
             <div>
                 <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
                     <iframe id="orderRepairing" js-fn="orderRepairing" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
                 </div>
             </div>
         </div>
-        <div class="layui-tab-item" id="tab5-ct">
+        <div class="layui-tab-item" id="wait_acceptance_count_tab-ct">
             <div>
                 <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
                     <iframe id="orderWaitAcceptance" js-fn="orderWaitAcceptance" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>
@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <div class="layui-tab-item" id="tab6-ct">
+        <div class="layui-tab-item" id="acceptance_failed_count_tab-ct">
             <div>
                 <div style="padding-right: 0px;padding-left: 0px" class="layui-col-xs12">
                     <iframe id="orderAcceptanceFailed" js-fn="orderAcceptanceFailed" scrolling="no" class="form-iframe" frameborder="0" onload="this.height=100" style="width: 100%;"></iframe>

@@ -1,6 +1,5 @@
 package com.dt.platform.relation.modules;
 
-import com.dt.platform.constants.db.DataCenterTables;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.AssetInventoryDetailStatusEnum;
@@ -31,7 +30,6 @@ public class EamRelationManager extends RelationManager {
         this.setupRelations();
         this.setupProperties();
         this.setupAssetDataPermissions();
-
         this.setupAsset();
         this.setupAlloction();
         this.setupAssetBorrow();
@@ -1149,7 +1147,9 @@ public class EamRelationManager extends RelationManager {
         this.property(InspectionTaskPointMeta.INSPECTION_POINT_PROP)
                 .using(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID);
 
-
+        this.property(InspectionTaskPointMeta.ASSET_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID)
+                .using(EAMTables.EAM_INSPECTION_POINT.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
 
         this.property(InspectionTaskPointMeta.CHECK_ITEM_LIST_PROP)
                 .using(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID)

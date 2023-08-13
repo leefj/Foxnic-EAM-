@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务VO类型
  * <p>巡检任务 , 数据表 eam_inspection_task 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 08:43:12
+ * @since 2023-08-13 09:12:44
  * @sign FC0E307EB7CDFD362C699424737E2FFB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

@@ -1,6 +1,7 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.eam.AssetHandleConfirmOperationEnum;
@@ -85,6 +86,24 @@ public class RepairOrderServiceImpl extends SuperService<RepairOrder> implements
 	@Override
 	public Object generateId(Field field) {
 		return IDGenerator.getSnowflakeIdString();
+	}
+
+
+	@Override
+	public Result<JSONObject> queryStatusCountData(String label) {
+		String sql="select \n" +
+				"(select count(1) from  eam_repair_order where deleted=0 and repair_status='not_dispatch')not_dispatch_count,\n" +
+				"(select count(1) from  eam_repair_order where deleted=0 and repair_status='dispatched')dispatched_count,\n" +
+				"(select count(1) from  eam_repair_order where deleted=0 and repair_status='wait_repair')wait_repair_count,\n" +
+				"(select count(1) from  eam_repair_order where deleted=0 and repair_status='repairing')repairing_count,\n" +
+				"(select count(1) from  eam_repair_order where deleted=0 and repair_status='wait_acceptance')wait_acceptance_count,\n" +
+				"(select count(1) from  eam_repair_order where deleted=0 and repair_status='acceptance_failed')acceptance_failed_count,\n" +
+				"(select count(1) from  eam_repair_order where deleted=0 and repair_status='finish')finish_count\n";
+		JSONObject data=dao.queryRecord(sql).toJSONObject();
+		Result<JSONObject> res=new Result();
+		res.success(true);
+		res.data(data);
+		return res;
 	}
 
 

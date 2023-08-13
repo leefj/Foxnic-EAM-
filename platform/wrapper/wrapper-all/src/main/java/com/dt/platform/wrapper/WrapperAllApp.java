@@ -10,9 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan(basePackages = {
 		// Foxnic-Web
-
-
-
 		FoxnicWebMeta.SERVICE_STORAGE_PACKAGE ,
 		FoxnicWebMeta.SERVICE_SYSTEM_PACKAGE ,
 		FoxnicWebMeta.SERVICE_OAUTH_PACKAGE,
@@ -24,26 +21,34 @@ import org.springframework.context.annotation.ComponentScan;
 		FoxnicWebMeta.SERVICE_JOB_PACKAGE,
 		FoxnicWebMeta.SERVICE_DOCS_PACKAGE,
 		FoxnicWebMeta.SERVICE_EXAMPLE_PACKAGE,
-		// EAM
+		// FRAMEWORK
 		PlatformMeta.FRAMEWORK_PACKAGE,
-		PlatformMeta.SERVICE_EAM_PACKAGE,
-		PlatformMeta.SERVICE_HR_PACKAGE,
-		PlatformMeta.DATACENTER_PACKAGE,
-		PlatformMeta.CMS_PACKAGE,
-
-
-		PlatformMeta.OPS_PACKAGE,
+		// COMMON
 		PlatformMeta.COMMON_PACKAGE,
-		PlatformMeta.KNOWLEDGEBASE_PACKAGE,
-		PlatformMeta.JOB_PACKAGE,
-		PlatformMeta.CUSTOMER_PACKAGE,
-		PlatformMeta.VEHICLE_PACKAGE,
-		PlatformMeta.WORKORDER_PACKAGE,
+		// MOBILE
 		PlatformMeta.MOBILE_PACKAGE,
-		PlatformMeta.WMS_PACKAGE,
+		// EAM
+		PlatformMeta.SERVICE_EAM_PACKAGE,
+		PlatformMeta.DATACENTER_PACKAGE,
+		// HR
+		PlatformMeta.SERVICE_HR_PACKAGE,
+		// CMS
+		PlatformMeta.CMS_PACKAGE,
+		// OPS
+		PlatformMeta.OPS_PACKAGE,
+		// OA
 		PlatformMeta.OA_PACKAGE,
+		// KN
+		PlatformMeta.KNOWLEDGEBASE_PACKAGE,
+		// JOB
+		PlatformMeta.JOB_PACKAGE,
+		// 自定义
+		PlatformMeta.CUSTOMER_PACKAGE,
 		// 合同
 		ContractMeta.SERVICE_CONTRACT_PACKAGE
+		//PlatformMeta.VEHICLE_PACKAGE,
+		//PlatformMeta.WMS_PACKAGE,
+		//PlatformMeta.WORKORDER_PACKAGE,
 })
 @SpringBootApplication
 public class WrapperAllApp {

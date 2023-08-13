@@ -624,7 +624,7 @@
 <div  th:fragment="equipment_status"  class="layui-form-item" >
     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate(item.attribute.label)}"></div><div th:if="${item.required} == 1" class="layui-required">*</div></div>
     <div class="layui-input-block layui-input-block-c1">
-        <input lay-filter="equipmentStatus" id="equipmentStatus" name="equipmentStatus" th:placeholder="${ lang.translate('请输入') +''+lang.translate( item.attribute.label) }" type="text" class="layui-input"  />
+        <input input-type="radio" type="radio" name="equipmentStatus" lay-filter="equipmentStatus" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetEquipmentStatusEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
     </div>
 </div>
 

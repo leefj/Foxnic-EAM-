@@ -8,10 +8,12 @@ import com.dt.platform.constants.enums.eam.MaintainTaskOverdueEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskProjectStatusEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskStatusEnum;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.MaintainRcd;
 import com.dt.platform.domain.eam.MaintainTask;
 import com.dt.platform.domain.eam.MaintainTaskProject;
 import com.dt.platform.domain.eam.meta.MaintainTaskMeta;
 import com.dt.platform.eam.service.IAssetService;
+import com.dt.platform.eam.service.IMaintainRcdService;
 import com.dt.platform.eam.service.IMaintainTaskProjectService;
 import com.dt.platform.eam.service.IMaintainTaskService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
@@ -62,6 +64,9 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 
 
 	@Autowired
+	private IMaintainRcdService maintainRcdService;
+
+	@Autowired
 	private IAssetService assetService;
 	/**
 	 * 注入DAO对象
@@ -74,7 +79,17 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 	 * */
 	public DAO dao() { return dao; }
 
-
+	@Override
+	public Result<JSONObject> queryStatusCountData(String label) {
+		Result<JSONObject> res=new Result<JSONObject>();
+		String sql="select \n" +
+				"(select count(1) from eam_maintain_task where deleted=0 and status='wait')wait_count,\n" +
+				"(select count(1) from eam_maintain_task where deleted=0 and status='acting')acting_count";
+		JSONObject data=dao.queryRecord(sql).toJSONObject();
+		res.data(data);
+		res.success(true);
+		return res;
+	}
 
 	@Override
 	public Result cancel(String id) {
@@ -151,7 +166,19 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 		maintainTask.setStatus(MaintainTaskStatusEnum.FINISH.code());
 		maintainTask.setExecutorId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
 		maintainTask.setActTotalCost(new BigDecimal(sumDiffTime));
+
+
+
 		Result r=super.update(maintainTask , SaveMode.NOT_NULL_FIELDS , false);
+
+		//记录
+		MaintainRcd maintainRcd=new MaintainRcd();
+		maintainRcd.setAssetId(maintainTask.getAssetId());
+		maintainRcd.setBusinessCode(maintainTask.getBusinessCode());
+		maintainRcd.setContent("完成保养");
+		maintainRcd.setRcdTime(new Date());
+		maintainRcdService.insert(maintainRcd,true);
+
 		return ErrorDesc.success();
 	}
 

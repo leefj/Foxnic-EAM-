@@ -32,8 +32,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-28 21:32:31
- * @sign 54639C0C17C8FD6DF6028C644C00FBB8
+ * @since 2023-08-11 19:46:41
+ * @sign BC42AB7EAB245547ABEA996E77EF55E0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -810,14 +810,14 @@ public class AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> EQUIPMENT_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,EQUIPMENT_CODE, java.lang.String.class, "设备编号", "设备编号", java.lang.String.class, null);
 	
 	/**
-	 * 设备状态 , 类型: java.lang.String
+	 * 启停状态 , 类型: java.lang.String
 	*/
 	public static final String EQUIPMENT_STATUS="equipmentStatus";
 	
 	/**
-	 * 设备状态 , 类型: java.lang.String
+	 * 启停状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> EQUIPMENT_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,EQUIPMENT_STATUS, java.lang.String.class, "设备状态", "设备状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> EQUIPMENT_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,EQUIPMENT_STATUS, java.lang.String.class, "启停状态", "启停状态", java.lang.String.class, null);
 	
 	/**
 	 * 设备IP , 类型: java.lang.String
@@ -2440,8 +2440,8 @@ public class AssetMeta {
 		}
 		
 		/**
-		 * 设置 设备状态
-		 * @param equipmentStatus 设备状态
+		 * 设置 启停状态
+		 * @param equipmentStatus 启停状态
 		 * @return 当前对象
 		*/
 		public Asset setEquipmentStatus(String equipmentStatus) {

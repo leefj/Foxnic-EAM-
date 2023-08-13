@@ -141,7 +141,7 @@ foxnic:
       ########################  common key list  #######################
       #system_ops
       ########################  eam key list  #######################
-      #eam,infrastructure,eam_employee,eam_equipment_mgr
+      #eam,eam_employee,eam_equipment_mgr
       ########################  ops key list  #######################
       #ops,zbx
       ########################  contract key list  ##################

@@ -1,6 +1,7 @@
 package com.dt.platform.eam.service;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.eam.*;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -30,7 +31,7 @@ import java.util.Map;
 
 public interface IRepairOrderService extends ISuperService<RepairOrder> {
 
-
+	Result<JSONObject> queryStatusCountData(String label);
 
 	Result changeRepairOrderStatus(String id,String repairStatus);
 

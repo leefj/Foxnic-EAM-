@@ -83,6 +83,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            if(STATUS){
+                if(STATUS=="all"){
+                    console.log("none")
+                }else{
+                    param.status=STATUS;
+                }
+            }
+
             return true;
         },
         /**

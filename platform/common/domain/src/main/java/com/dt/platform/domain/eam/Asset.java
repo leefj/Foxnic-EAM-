@@ -34,8 +34,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-28 21:32:31
- * @sign 54639C0C17C8FD6DF6028C644C00FBB8
+ * @since 2023-08-11 19:46:41
+ * @sign BC42AB7EAB245547ABEA996E77EF55E0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -249,7 +249,7 @@ public class Asset extends Entity {
 	/**
 	 * 采购日期：采购日期
 	*/
-	@ApiModelProperty(required = false,value="采购日期" , notes = "采购日期")
+	@ApiModelProperty(required = false,value="采购日期" , notes = "采购日期" , example = "2023-08-09 12:00:00")
 	private Date purchaseDate;
 	
 	/**
@@ -511,9 +511,9 @@ public class Asset extends Entity {
 	private String equipmentCode;
 	
 	/**
-	 * 设备状态：设备状态
+	 * 启停状态：启停状态
 	*/
-	@ApiModelProperty(required = false,value="设备状态" , notes = "设备状态")
+	@ApiModelProperty(required = false,value="启停状态" , notes = "启停状态" , example = "stop")
 	private String equipmentStatus;
 	
 	/**
@@ -2439,17 +2439,17 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 设备状态<br>
-	 * 设备状态
-	 * @return 设备状态
+	 * 获得 启停状态<br>
+	 * 启停状态
+	 * @return 启停状态
 	*/
 	public String getEquipmentStatus() {
 		return equipmentStatus;
 	}
 	
 	/**
-	 * 设置 设备状态
-	 * @param equipmentStatus 设备状态
+	 * 设置 启停状态
+	 * @param equipmentStatus 启停状态
 	 * @return 当前对象
 	*/
 	public Asset setEquipmentStatus(String equipmentStatus) {

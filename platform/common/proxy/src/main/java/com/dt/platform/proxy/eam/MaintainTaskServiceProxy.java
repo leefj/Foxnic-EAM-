@@ -108,6 +108,9 @@ public interface MaintainTaskServiceProxy {
 
     public static final String QUERY_DATA = API_PREFIX + "query-data";
 
+
+    public static final String QUERY_STATUS_COUNT_DATA = API_PREFIX + "query-status-count-data";
+
     /**
      * 添加保养任务
      */

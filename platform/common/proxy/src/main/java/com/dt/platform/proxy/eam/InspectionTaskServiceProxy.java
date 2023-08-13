@@ -112,6 +112,8 @@ public interface InspectionTaskServiceProxy {
     public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
 
+    public static final String QUERY_STATUS_COUNT_DATA = API_PREFIX + "query-status-count-data";
+
 
     /**
      * 添加巡检任务

@@ -57,8 +57,6 @@ public class PlatformMeta {
 	public static final String KNOWLEDGEBASE_PACKAGE=BASE_PACKAGE+".knowledgebase";
 
 
-
-
 	/**
 	 * 调度服务
 	 * */
@@ -71,19 +69,11 @@ public class PlatformMeta {
 
 
 	/**
-	 * 车辆管理
-	 * */
-	public static final String VEHICLE_PACKAGE=BASE_PACKAGE+".vehicle";
-
-	/**
 	 * CMS
 	 * */
 	public static final String CMS_PACKAGE=BASE_PACKAGE+".cms";
 
-	/**
-	 * 工单
-	 * */
-	public static final String WORKORDER_PACKAGE=BASE_PACKAGE+".workorder";
+
 
 	/**
 	 * 移动端
@@ -101,7 +91,7 @@ public class PlatformMeta {
 	 * */
 	public static final String WMS_PACKAGE=BASE_PACKAGE+".wms";
 
-	public static final String VERSION="2.4.0";
+	public static final String VERSION="2.7.0";
 
 
 

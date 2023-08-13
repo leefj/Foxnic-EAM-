@@ -29,7 +29,7 @@ import java.util.Map;
 public interface IMaintainTaskService extends ISuperService<MaintainTask> {
 
 
-
+	Result<JSONObject> queryStatusCountData(String label);
 
 	Result<JSONObject> queryData(String labels);
 
@@ -38,8 +38,6 @@ public interface IMaintainTaskService extends ISuperService<MaintainTask> {
 	 * @return
 	 */
 	Result batchCancel(List<String> ids);
-
-
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

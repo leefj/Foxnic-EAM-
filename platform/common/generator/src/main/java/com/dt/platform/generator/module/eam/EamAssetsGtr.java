@@ -270,7 +270,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
 //                label("资产状态").selectBox().enumType(AssetStatusEnum.class).defaultValue("idle");
 
         cfg.view().field(EAMTables.EAM_ASSET.EQUIPMENT_STATUS).form().
-                label("设备状态").selectBox().enumType(AssetEquipmentStatusEnum.class);
+                label("启停状态").radioBox().enumType(AssetEquipmentStatusEnum.class).defaultIndex(0);
 
 
         cfg.view().field(EAMTables.EAM_ASSET.CATEGORY_ID)
@@ -419,6 +419,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET.MODEL,
                         EAMTables.EAM_ASSET.UNIT,
                         EAMTables.EAM_ASSET.WAREHOUSE_ID,
+                        EAMTables.EAM_ASSET.EQUIPMENT_STATUS,
 
                 }
         );
@@ -444,12 +445,8 @@ public class EamAssetsGtr extends BaseCodeGenerator {
 //                new Tab("财务信息","loadFinancialIframe")
 //        );
 //
-
-
-
         cfg.view().list().operationColumn().addActionMenu("id1","测试1","id1");
-        cfg.view().list().operationColumn().addActionMenu("id1","测试2","id1");
-
+        cfg.view().list().operationColumn().addActionMenu("id2","测试2","id2");
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
@@ -461,11 +458,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
                 .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         //生成代码
         cfg.buildAll();
-
     }
-
-
-
 
     public static void main(String[] args) throws Exception {
         EamAssetsGtr g=new EamAssetsGtr();

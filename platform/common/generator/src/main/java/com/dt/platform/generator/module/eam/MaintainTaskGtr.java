@@ -37,20 +37,14 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addListProperty(MaintainProject.class,"projectList","项目","项目");
         cfg.getPoClassFile().addListProperty(String.class,"projectIds","项目","项目");
-
         cfg.getPoClassFile().addListProperty(MaintainTaskProject.class,"taskProjectList","项目","项目");
         cfg.getPoClassFile().addListProperty(String.class,"taskProjectIds","项目","项目");
-
-
         cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","资产","资产");
         cfg.getPoClassFile().addSimpleProperty(MaintainPlan.class,"maintainPlan","方案","方案");
-
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"maintainTypeDict","类型","类型");
         cfg.getPoClassFile().addSimpleProperty(MaintainGroup.class,"maintainGroup","执行班组","执行班组");
-
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"executor","执行人","执行人");
-
 
         cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
 
@@ -264,6 +258,8 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
                         EAMTables.EAM_MAINTAIN_TASK.ASSET_SN,
                 }
         );
+
+        cfg.view().list().addJsVariable("STATUS","[[${status}]]","status");
         cfg.view().form().addPage("保养项目","maintainSelectList");
         cfg.view().list().operationColumn().addActionButton("保养","maintain","execute-button","eam_maintain_task:execute");
         cfg.view().list().operationColumn().addActionButton("完成","finish","finish-button","eam_maintain_task:finish");
