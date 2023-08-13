@@ -3,7 +3,7 @@ delete from bpm_form_instance where 1=1;
 delete from bpm_form_instance_bill where 1=1;
 delete from bpm_process_instance where 1=1;
 delete from bpm_task where 1=1;
-delete from oa_notice where 1=1;
+delete from oa_notice where iftop='N'
 
 -- oa
 delete from oa_work_rpt where 1=1;
@@ -295,6 +295,4 @@ delete from hr_person where deleted=1;
 delete from hr_person_contract where deleted=1;
 delete from sys_user_import where deleted=1;
 
--- clear oa
-delete from oa_notice where 1=1;
 commit;

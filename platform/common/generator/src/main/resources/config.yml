@@ -116,17 +116,6 @@ applications:
     viewProjectPath: /view/view-customer
     viewPrefixPath: public/business/customer
     wrapperProjectPath: /wrapper/wrapper-all
-  #车辆模块
-  service-vehicle:
-    nacosGroup: service
-    nacosDataId: service-vehicle.yml
-    serviceProjectPath: /service/service-vehicle
-    packageName: com.dt.platform.vehicle
-    primaryDatasourceConfigKey: spring.datasource.druid.primary
-    microServiceNameConst: VEHICLE
-    viewProjectPath: /view/view-vehicle
-    viewPrefixPath: public/business/vehicle
-    wrapperProjectPath: /wrapper/wrapper-all
   #CMS
   service-cms:
     nacosGroup: service
@@ -137,17 +126,6 @@ applications:
     microServiceNameConst: CMS
     viewProjectPath: /view/view-cms
     viewPrefixPath: public/business/cms
-    wrapperProjectPath: /wrapper/wrapper-all
-  #WORKORDER
-  service-workorder:
-    nacosGroup: service
-    nacosDataId: service-workorder.yml
-    serviceProjectPath: /service/service-workorder
-    packageName: com.dt.platform.workorder
-    primaryDatasourceConfigKey: spring.datasource.druid.primary
-    microServiceNameConst: WORKORDER
-    viewProjectPath: /view/view-workorder
-    viewPrefixPath: public/business/workorder
     wrapperProjectPath: /wrapper/wrapper-all
   #MOBILE
   service-mobile:
