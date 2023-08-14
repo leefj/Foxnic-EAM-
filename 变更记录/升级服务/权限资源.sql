@@ -7,6 +7,8 @@ insert into sys_licence_free_sta select * from sys_licence;
 
 
 
+
+
 -- backup sys_menu sys_menu_resource
 drop table sys_config_bak1;
 create table sys_config_bak1 as select * from sys_config;

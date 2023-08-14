@@ -87,7 +87,7 @@
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
-    <button th:if="${perm.checkAuth('hrm_employee:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button" lay-event="view" th:text="${lang.translate('查看')}" data-id="{{d.id}}">查看</button>
+<!--    <button th:if="${perm.checkAuth('hrm_employee:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button" lay-event="view" th:text="${lang.translate('查看')}" data-id="{{d.id}}">查看</button>-->
     <button class="layui-btn layui-btn-primary layui-btn-xs ops-view-button" lay-event="viewAssetInfo" th:text="${lang.translate('资产')}" data-id="{{d.id}}">资产</button>
 </script>
 

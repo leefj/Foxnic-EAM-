@@ -52,9 +52,9 @@ update sys_menu set css='fa fa-circle-o'  where type='page' and ( css is null or
 
 
 create index ind1 on  ops_monitor_node_value_last(`node_id`,`monitor_tpl_code`,`indicator_code`,`record_time`);
- create index ind2 on  ops_monitor_node_value_last(`result_status`,`indicator_code`,`node_id`);
- create index ind3 on  ops_monitor_node_value_last (`indicator_code`,`record_time`);
- create index ind1 on  ops_monitor_node_value (`node_id`,`result_status`,`monitor_tpl_code`,`indicator_code`,`record_time`)
+create index ind2 on  ops_monitor_node_value_last(`result_status`,`indicator_code`,`node_id`);
+create index ind3 on  ops_monitor_node_value_last (`indicator_code`,`record_time`);
+create index ind1 on  ops_monitor_node_value (`node_id`,`result_status`,`monitor_tpl_code`,`indicator_code`,`record_time`)
 
 insert into ops_monitor_node_value select
                                                                       uuid(), `node_id`, `monitor_tpl_code`, `result_status`, `result_message`, `indicator_code`, `hostname`, `os_datetime`, `boottime`, `os_verion`, `arch`, `cpu_number`, `cpu_free`, `cpu_sys`, `cpu_user`, `cpu_wait`, `cpu_idle`, `cpu_used`, `os_load`, `os_load5`, `os_load15`, `network_flow_up`, `network_flow_down`, `process_cnt`, `p_memory_size`, `v_memory_size`, `p_memory_used`, `v_memory_used`, `info`, `label1`, `label2`, `label3`, `code1`, `code2`, `code3`, `value_number1`, `value_number2`, `value_number3`, `value_str1`, `value_str2`, `value_str3`, `value_int1`, `value_int2`, `value_int3`, `list_label1`, `list_label2`, `list_label3`, `list_code1`, `list_code2`, `list_code3`, `list_value_number1`, `list_value_number2`, `list_value_number3`, `list_value_str1`, `list_value_str2`, `list_value_str3`, `list_value_int1`, `list_value_int2`, `list_value_int3`, `uid`, `is_connected`, `record_time`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`
