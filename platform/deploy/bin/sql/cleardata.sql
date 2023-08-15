@@ -3,12 +3,10 @@ delete from bpm_form_instance where 1=1;
 delete from bpm_form_instance_bill where 1=1;
 delete from bpm_process_instance where 1=1;
 delete from bpm_task where 1=1;
-delete from oa_notice where iftop='N'
-
+delete from oa_notice where iftop='N';
 -- oa
 delete from oa_work_rpt where 1=1;
 delete from oa_schedule_plan where 1=1;
-
 -- system
 delete from sys_token where 1=1;;
 delete from hrm_company where id<>'002';
@@ -57,7 +55,7 @@ delete from eam_asset where 1=1  and tenant_id='T001' ;
 delete from eam_asset_item where 1=1;
 delete from eam_asset_batch where 1=1;
 delete from eam_asset_process_record where 1=1;
-delete from eam_asset_selected_data where 1=1  and tenant_id='T001' ;
+delete from eam_asset_selected_data where 1=1;
 delete from eam_asset_data_change where 1=1  and tenant_id='T001' ;
 delete from eam_asset_repair where 1=1  and tenant_id='T001' ;
 delete from eam_asset_scrap where 1=1  and tenant_id='T001' ;
@@ -116,7 +114,7 @@ delete from eam_maintain_group where tenant_id='T001';
 delete from eam_maintain_project where tenant_id='T001';
 delete from eam_maintain_project_select where 1=1;
 delete from eam_maintain_task where tenant_id='T001';
-delete from eam_maintain_task_project where tenant_id='T001';
+delete from eam_maintain_task_project where 1=1;
 -- cust inspect repair
 delete from eam_c_cust_inspect_item where 1=1 ;
 delete from eam_c_cust_inspect_plan where 1=1 ;
@@ -238,7 +236,6 @@ delete from hr_person  where 1=1;
 delete from hr_person_contract  where 1=1;
 delete from hr_salary_action  where 1=1;
 delete from hr_person_resume  where 1=1;
-delete from hr_person_salary where 1=1;
 delete from hr_person_attendance where 1=1;
 delete from hr_person_attendance_money where 1=1;
 delete from hr_person_attendance_rec where 1=1;
@@ -272,7 +269,6 @@ delete from ops_auto_task_m_log  where  1=1;
 delete from ops_auto_task_node  where  1=1;
 delete from ops_auto_voucher  where 1=1;
 delete from ops_monitor_node  where 1=1;
-
 -- custom middle table
 delete from eam_c1_mapping where 1=1;
 delete from eam_c1_qh_fa_additions where 1=1;
@@ -294,5 +290,4 @@ delete from hrm_person where id not in (select person_id from hrm_employee);
 delete from hr_person where deleted=1;
 delete from hr_person_contract where deleted=1;
 delete from sys_user_import where deleted=1;
-
 commit;

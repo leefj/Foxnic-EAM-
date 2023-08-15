@@ -13,7 +13,7 @@ public class DataCenterAuthority extends ModuleAuthority {
     @Override
     public String[] getAuthorities() {
         return new String[] {
-                "infrastructure"
+                "eam"
         };
     }
 }

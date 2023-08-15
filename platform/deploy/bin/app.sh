@@ -2,18 +2,15 @@
 #####################################################################
 # Script Help:
 #     sh app.sh start|stop|restart
-#
 #####################################################################
 ####################### Configure ###################################
 cur_dir=$(cd `dirname $0`; pwd)
 app_conf="${cur_dir}/app.conf"
 app_dir=$cur_dir/..
 app_log=$app_dir/logs
-
 if [[ ! -d "$app_dir/tmp" ]];then
   mkdir -p $app_dir/tmp
 fi
-
 ####################### Java Environment ############################
 JAVA=`cat $app_conf|grep -v "#"|grep JAVA=|awk -F "=" '{print $2}'`
 #java_Xmx="-Xmx1024m"
@@ -72,7 +69,6 @@ env(){
       mkdir -p $app_log
   fi
 }
-
 start(){
   env
   #echo "Action Start"
@@ -95,7 +91,6 @@ start(){
     fi
   fi
 }
-
 stop(){
   #echo "Action Stop"
   pidlist=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'`
@@ -112,13 +107,11 @@ stop(){
       echo "$app is not running"
   fi
 }
-
 restart(){
   stop
   sleep 2
   start
 }
-
 status(){
   #echo "Action Status"
   pidlist=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'`
@@ -129,16 +122,12 @@ status(){
     echo "$app process is not running"
   fi
 }
-
 help(){
     echo "Usage::"
     echo "   sh app.sh [start][stop][restart][status]  [app][bpm][job]"
     echo "Example:"
     echo "   sh app.sh restart app"
 }
-
-
-
 #zip wrapper-all-0.0.2.RELEASE.jar BOOT-INF/classes/application.yml
 ######################## Main ########################################
 if [[ $action == "start" ]];then
@@ -154,5 +143,4 @@ else
   help
   exit 1
 fi
-
 exit 0
