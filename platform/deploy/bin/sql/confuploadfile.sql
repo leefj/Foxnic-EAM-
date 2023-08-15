@@ -30,8 +30,6 @@ insert into sys_file(id,file_name,location,size,media_type,file_type)values('T00
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_28','eam_inventory_asset.xls','/tpl/T001/eam_inventory_asset.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_29','eam_asset_borrow_return.docx','/tpl/T001/eam_asset_borrow_return.docx',10000,'application/octet-stream','docx');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_30','eam_asset_download_depreciation_report.xls','/tpl/T001/eam_asset_download_depreciation_report.xls',10000,'application/octet-stream','xls');
-
-
 delete from sys_tpl_file where tenant_id='T001' and type in ('eam_bill_docx','eam_asset_excel');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_1','eam_bill_docx','资产报修','eam_download_asset_repair_bill','T001_eam_1','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_2','eam_bill_docx','资产借用','eam_download_asset_borrow_bill','T001_eam_2','T001');
@@ -63,38 +61,25 @@ insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_27
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_28','eam_asset_excel','盘点资产','eam_download_asset_inventory_asset','T001_eam_28','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_29','eam_bill_docx','资产归还','eam_download_asset_borrow_return_bill','T001_eam_29','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_30','eam_asset_excel','资产折旧','eam_asset_download_depreciation_report','T001_eam_30','T001');
-
-
 -- OPS
 delete from sys_file where id like 'T001_ops_%';
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_1','ops_download_host.xls','/tpl/T001/ops_download_host.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_2','ops_download_database_inst.xls','/tpl/T001/ops_download_database_inst.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_3','ops_download_information_system.xls','/tpl/T001/ops_download_information_system.xls',10000,'application/octet-stream','xls');
-
 delete from sys_tpl_file where tenant_id='T001' and code in ('ops_download_host','ops_download_database_inst','ops_download_information_system');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_ops_1','eam_asset_excel','主机数据下载','ops_download_host','T001_ops_1','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_ops_2','eam_asset_excel','数据库数据下载','ops_download_database_inst','T001_ops_2','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_ops_3','eam_asset_excel','信息系统数据下载','ops_download_information_system','T001_ops_3','T001');
-
-
-
 -- VEHICLE
 delete from sys_file where id like 'T001_vehicle_%';
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_vehicle_1','vehicle_info_download.xls','/tpl/T001/vehicle_info_download.xls',10000,'application/octet-stream','xls');
-
 delete from sys_tpl_file where tenant_id='T001' and code in ('vehicle_info_download');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_vehicle_1','eam_asset_excel','车辆数据下载下载','vehicle_info_download','T001_vehicle_1','T001');
-
-
-
 -- CONT
 delete from sys_file where id like 'T001_cont_%';
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_cont_1','cont_download_info.xls','/tpl/T001/cont_download_info.xls',10000,'application/octet-stream','xls');
-
 delete from sys_tpl_file where tenant_id='T001' and code in ('cont_download_info');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_cont_1','cont','合同下载','cont_download_info','T001_cont_1','T001');
-
-
 -- Mobile
 delete from app_software_info where id='T001_eam_mobile_a1';
 delete from sys_file where id='T001_eam_mobile_a1';
@@ -102,8 +87,6 @@ insert into sys_file(id,file_name,location,size,media_type,file_type)values('T00
 insert into `app_software_info` (`id`, `code`, `group_id`, `name`, `status`, `type`, `software_version`, `picture_id`, `file_id`,`tenant_id`) VALUES ('T001_eam_mobile_a1', 'eam_mobile_android', 'eam_mobile', '安卓移动端', 'enable', 'android', '2.4.0', '', 'T001_eam_mobile_a1', 'T001');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_mobile_a2','h5.tar.gz','/software/h5.tar.gz',10000,'application/octet-stream','gz');
 insert into `app_software_info` (`id`, `code`, `group_id`, `name`, `status`, `type`, `software_version`, `picture_id`, `file_id`,`tenant_id`) VALUES ('T001_eam_mobile_a2', 'eam_mobile_h5', 'eam_mobile', 'H5版本介质', 'enable', 'h5', '2.4.0', '', 'T001_eam_mobile_a2', 'T001');
-
-
 -- Ops Auto Task File
 -- File
 delete from sys_file where id like 'T001_ops_f_%';
@@ -121,7 +104,6 @@ insert into ops_auto_action_file(id,name,file_name,file_id,tenant_id)values('T00
 insert into ops_auto_action_file(id,name,file_name,file_id,tenant_id)values('T001_ops_f_4','redis-5.0.12.tar.gz','redis-5.0.12.tar.gz','T001_ops_f_4','T001');
 insert into ops_auto_action_file(id,name,file_name,file_id,tenant_id)values('T001_ops_f_5','nginx-1.18.0.tar.gz','nginx-1.18.0.tar.gz','T001_ops_f_5','T001');
 insert into ops_auto_action_file(id,name,file_name,file_id,tenant_id)values('T001_ops_f_6','apache-tomcat-9.0.46.tar.gz','apache-tomcat-9.0.46.tar.gz','T001_ops_f_6','T001');
-
 -- Script
 delete from sys_file where id like 'T001_ops_s_%';
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_s_1','deploy_tomcat.sh','/script/T001/deploy_tomcat.sh',10000,'text/x-sh','sh');
@@ -144,7 +126,6 @@ insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T
 insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_7','deploy_redis_single.sh','deploy_redis_single.sh','T001_ops_s_7','T001');
 insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_8','backup_db2.sh','backup_db2.sh','T001_ops_s_8','T001');
 insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_9','backup_mysql.sh','backup_mysql.sh','T001_ops_s_9','T001');
-
 -- oa
 delete from sys_file where id in ('T001_image_head','T001_image_banner1','T001_image_banner2');
 delete from sys_file where id in ('T001_image_project');
@@ -152,7 +133,6 @@ INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_
 INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_banner1', 'banner1.png', '/image/T001/portal_banner1.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);
 INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_banner2', 'banner2.png', '/image/T001/portal_banner2.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);
 INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_project', 'project.png', '/image/T001/project.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);
-
 -- common
 delete from sys_file where id like 'T001_common%';
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_common_1','common_user_import.xls','/tpl/T001/common_user_import.xls',10000,'application/octet-stream','xls');

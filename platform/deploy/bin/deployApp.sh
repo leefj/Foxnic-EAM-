@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/06/22"
+modify_date="2023/08/15"
 ####################################################################################
 # run:
 #   sh deployApp.sh
@@ -22,9 +22,21 @@ modify_date="2023/06/22"
 #                                                                 modify at $modify_date
 #                                                                 by lank
 # action
-#  sh deploy.sh         // default app_release_last.tar.gz
-#  sh deploy.sh 2.6.0   // app_release_2.6.0.tar.gz
-####################################################################################
+#  sh deploy.sh         // default app_release_last.tar.gz,app_release_last.tar.gz_backup
+#  sh deploy.sh 2.7.0   // app_release_2.7.0.tar.gz
+# ###############yum config###############
+#mount /dev/cdrom /mnt
+#mount /dev/sr0 /mnt
+#cd /etc/yum.repos.d
+#touch do
+#tar zcvf yum.conf.tar.gz ./*
+#rm -rf *.repo
+#echo "[local]"               >local.repo
+#echo "name=local"            >>local.repo
+#echo "baseurl=file:///mnt"   >>local.repo
+#echo "enabled=1"             >>local.repo
+#echo "gpgcheck=0"            >>local.repo
+#yum clean all
 ################################################################  config
 function qa(){
   echo "如果正常脚本执行后，应用无法访问或一键安装脚本无法进行"
@@ -35,7 +47,6 @@ function qa(){
   return 0
 }
 qa
-
 conf_system="eam"
 echo "script version:$modify_date"
 app_version="last"
@@ -45,7 +56,7 @@ MYSQL_SOCK_NAME=mysql_plat.sock
 app_port=8089
 db_port=$MYSQL_PORT
 db_user=root
-db_pwd=root_pwd
+db_pwd=P@ssw0rd_K
 db_name=foxnic
 db_host=127.0.0.1
 bpm_port=8099
@@ -315,7 +326,6 @@ EOF
 	chown -R mysql:mysql $mysql_dir
 	echo "#############install mysql success#############"
 	echo ""
-	echo ""
 }
 function installApp(){
 	echo "#############install app start#############"
@@ -376,6 +386,7 @@ function installApp(){
 	db_eam_setting_file=$app_dir/bin/sql/setting_eam.sql
 	db_hrm_setting_file=$app_dir/bin/sql/setting_hrm.sql
 	db_oa_setting_file=$app_dir/bin/sql/setting_oa.sql
+	db_licence_file=$app_dir/bin/sql/common_licence.sql
 	application_tpl_yml=$app_dir/app/application_tpl.yml
 	application_yml=$app_dir/app/application.yml
 	bpm_application_tpl_yml=$app_dir/bpm/application_tpl.yml
@@ -431,12 +442,14 @@ function installApp(){
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_oa_setting_file  2>/dev/null
 	echo "#########start to eam setting data $db_eam_setting_file"
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_eam_setting_file  2>/dev/null
+  echo "#########start to install licence $db_licence_file"
+  $MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_licence_file  2>/dev/null
 	echo "#########finish to application setting data ######### "
 	echo "#########other setting licence, resource grant, mysqldump loc"
 	setting_file="/tmp/setting_file.sql"
 	echo "">$setting_file
-	echo "delete from sys_licence where 1=1;">>$setting_file
-	echo "insert into sys_licence select * from sys_licence_free_full;">>$setting_file
+	#echo "delete from sys_licence where 1=1;">>$setting_file
+	#echo "insert into sys_licence select * from sys_licence_free_full;">>$setting_file
 	echo "update sys_resourze set access_type='LOGIN' where 1=1;">>$setting_file
 	echo "update sys_config set value='$base_dir/db/mysql/bin/mysqldump' where id='system.tool.mysqldump';">>$setting_file
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $setting_file  2>/dev/null
@@ -696,12 +709,12 @@ if [[ $db_port_cnt -eq 0 ]];then
 else
 	echo "mysql install success,password:$db_pwd"
 fi
-# start to install nginx
-installNginx
-# start to install redis
-installRedis
 ## install app
 installApp
+# installApp first,start to install nginx
+installNginx
+# installApp first,start to install redis
+installRedis
 ## stop Firewalld
 #process firewalld
 which firewall-cmd
@@ -790,4 +803,3 @@ ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
 ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
 ps -ef|grep nginx |grep -v grep |awk '{print $2}'|xargs kill -9
 ps -ef|grep redis |grep -v grep |awk '{print $2}'|xargs kill -9
-

@@ -136,6 +136,8 @@ foxnic:
     # 按模块控制菜单呈现，注意在开发环境下，此配置无效。
     module-authorities:
       # 指定最顶层菜单的权限Key，用逗号分隔；若未指定值则忽略该规则，不做控制。
+      #all
+      #auto_perm,system:mngr,changes,hr,basic_permissions,example,eam,system_monitor,zbx,common_system,oa,docs,sys_file:mngr,eam_employee,eam_equipment_mgr,kb,data_backup,pcm,oauth,public_resource,bpm,mobile_application,hrm,dp_rule:mngr,pay,system_monitor_list,ops,system_config,system_ops,sys_tpl_file:mngr,bigscreen,job,bpm-mgr
       ########################  public key list  ####################
       #pay,hrm,bpm-mgr,auto_perm,changes,hr,basic_permissions,common_system,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,dp_rule:mngr,system_config,sys_tpl_file:mngr,job
       ########################  common key list  #######################
@@ -154,7 +156,7 @@ foxnic:
       #hrm
       ########################  oa key list  #######################
       #oa
-      auth-keys: pay,system_monitor_list,oa,kb,eam,eam_employee,eam_equipment_mgr,system_ops,hrm,bpm-mgr,auto_perm,changes,hr,basic_permissions,common_system,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,dp_rule:mngr,system_config,sys_tpl_file:mngr,job
+      auth-keys: auto_perm,system:mngr,changes,hr,basic_permissions,eam,system_monitor,common_system,oa,docs,sys_file:mngr,eam_employee,eam_equipment_mgr,kb,data_backup,pcm,oauth,public_resource,bpm,mobile_application,hrm,dp_rule:mngr,pay,system_monitor_list,system_config,system_ops,sys_tpl_file:mngr,bigscreen,job,bpm-mgr
       # 是否在首页体现 module-authorities 控制
       apply-index-page: true
       # 是否在菜单树体现 module-authorities 控制，主要包括菜单管理、角色选择等。注意，此项若开启可能导致菜单权限勾选不全，建议仅在生产环境开启。
