@@ -3,8 +3,11 @@ package com.dt.platform.eam.page;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.proxy.eam.OperateServiceProxy;
 import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.lang.StringUtil;
+import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
+import org.github.foxnic.web.proxy.bpm.ProcessInstanceServiceProxy;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.eam.RepairOrderServiceProxy;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
  * <p>
  * 维修工单 模版页面控制器
@@ -70,16 +75,20 @@ public class RepairOrderPageController extends ViewController {
 	 * 维修工单 表单页面
 	 */
 	@RequestMapping("/repair_order_form.html")
-	public String form(Model model,HttpServletRequest request , String id) {
-
+	public String form(Model model,HttpServletRequest request , String id,String processId) {
 		String empId=SessionUser.getCurrent().getActivatedEmployeeId();
 		SessionUser user=SessionUser.getCurrent();
 		String userName=user.getUser().getActivatedEmployeeName();
 		model.addAttribute("curEmpId",empId);
 		model.addAttribute("curUserName",userName);
-
-		model.addAttribute("billId",id);
 		model.addAttribute("billType", AssetOperateEnum.EAM_ASSET_REPAIR_ORDER.code());
+		model.addAttribute("billId",id);
+		//打印流程数据
+		if(!StringUtil.isBlank(processId)){
+			Result<ProcessInstance> res=ProcessInstanceServiceProxy.api().getById(processId);
+			List<String> billList=res.getData().getBillIds();
+			model.addAttribute("billId",billList.get(0));
+		}
 		return prefix+"/repair_order_form";
 	}
 }

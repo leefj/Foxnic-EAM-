@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
+import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetScrap;
 import com.dt.platform.domain.eam.meta.*;
@@ -33,9 +34,9 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(DictItem.class,"methodDict","methodDict","methodDict");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
         cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
-//
-//        cfg.bpm().form("eam_asset_scrap");
-//        cfg.bpm().integrate(IntegrateMode.FRONT);
+
+        cfg.bpm().form("eam_asset_scrap");
+        cfg.bpm().integrate(IntegrateMode.FRONT);
 
         //cfg.service().addRelationSaveAction(AssetItemServiceImpl.class, AssetScrapVOMeta.ASSET_IDS);
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
@@ -53,13 +54,13 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.PROC_ID).table().disable();
-       // cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CREATE_TIME).table().disable();
+        // cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CREATE_TIME).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.ATTACH).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.BUSINESS_DATE).table().hidden();
-      //  cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).table().hidden();
+        //  cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).table().hidden();
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.STATUS).form().selectBox().enumType(AssetHandleStatusEnum.class);
-
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.STATUS).search().selectMuliti(true);
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CLEAN_STATUS).form().selectBox().enumType(AssetHandleStatusEnum.class);
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).form().validate().required();
@@ -106,7 +107,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CLEAN_STATUS).table().disable();
-      //  cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).table().disable();
+        //  cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).table().disable();
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.ATTACH).form().upload().acceptSingleFile().displayFileName(false);
 
@@ -129,7 +130,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
                 textField(DictItemMeta.LABEL).
                 fillWith(AssetScrapMeta.METHOD_DICT).muliti(false).defaultIndex(0);
 
-     //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_scrap:for-approval");
+        //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_scrap:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_scrap:confirm");
 //        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_scrap:revoke");
 
@@ -153,10 +154,10 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         );
 
         cfg.view().form().addGroup(null,
-              new Object[]
-                      {
-                        EAMTables.EAM_ASSET_SCRAP.SCRAP_DATE
-                }
+                new Object[]
+                        {
+                            EAMTables.EAM_ASSET_SCRAP.SCRAP_DATE
+                        }
         );
 
         cfg.view().form().addGroup(null,
@@ -169,10 +170,18 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
         cfg.view().form().addPage("资产列表","assetSelectList");
         cfg.view().form().addJsVariable("BILL_ID","[[${billId}]]","单据ID");
-        cfg.view().form().addJsVariable("BILL_TYPE","[[${billType}]]","单据类型");
-        cfg.view().list().addJsVariable("PAGE_TYPE","[[${pageType}]]","PAGE_TYPE");
+        //  cfg.view().form().addJsVariable("BILL_TYPE","[[${billType}]]","单据类型");
+
+        //   cfg.view().list().addJsVariable("PAGE_TYPE","[[${pageType}]]","PAGE_TYPE");
+        cfg.view().list().addJsVariable("TAB_STATUS","[[${tabStatus}]]","tabStatus");
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","是否需要审批");
 
+
+
+//        model.addAttribute("billId",id);
+//        model.addAttribute("pageType",pageType);
+//        model.addAttribute("billType", AssetOperateEnum.EAM_ASSET_SCRAP.code());
+//
 //        cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");
 //        cfg.view().form().addJsVariable("EMPLOYEE_NAME", "[[${user.getUser().getActivatedEmployeeName()}]]","用户姓名");
 //
@@ -186,7 +195,6 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
                 .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)
-                .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页; //列表HTML页
         cfg.buildAll();
     }
@@ -195,7 +203,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         //生成代码
         g.generateCode();
         //生成菜单
-       // g.generateMenu(AssetScrapServiceProxy.class, AssetScrapPageController.class);
+        // g.generateMenu(AssetScrapServiceProxy.class, AssetScrapPageController.class);
     }
 
 }

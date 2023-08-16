@@ -12,17 +12,12 @@ layui.config({
     foxnicUpload: 'upload/foxnic-upload'
 })
 //
-layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown','bpm'],function () {
+layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown'],function () {
 
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
-    table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
+    table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     const moduleURL="/service-eam/eam-asset-scrap";
-
-
-    var processId=QueryString.get("processId");
-    var processInstance=null;
-
 
     //列表页的扩展
     var list={
@@ -39,24 +34,27 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             }else{
                 operHtml=operHtml.replace(/lay-event="revoke-data"/i, "style=\"display:none\"")
                 operHtml=operHtml.replace(/lay-event="for-approval"/i, "style=\"display:none\"")
+                // operHtml=operHtml.replace(/lay-event="revoke-data"/i, "style=\"display:none\"")
+                // operHtml=operHtml.replace(/lay-event="for-approval"/i, "style=\"display:none\"")
+                // document.getElementById("tableOperationTemplate").innerHTML=operHtml;
             }
 
-            // if(PAGE_TYPE&&PAGE_TYPE=="approval"){
-            //     $("#status-search-unit").hide();
-            //     toolbarHtml=toolbarHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
-            //     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
-            //     operHtml=operHtml.replace(/lay-event="revoke-data"/i, "style=\"display:none\"")
-            //     operHtml=operHtml.replace(/lay-event="for-approval"/i, "style=\"display:none\"")
-            //     operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
-            //     operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
-            //
-            //     operHtml=operHtml.replace(/lay-event="clean-out"/i, "style=\"display:none\"")
-            //     operHtml=operHtml.replace(/lay-event="download-bill"/i, "style=\"display:none\"")
-            //
-            // }else if( PAGE_TYPE&&PAGE_TYPE=="asset_scrap"){
-            //     operHtml=operHtml.replace(/lay-event="agree"/i, "style=\"display:none\"")
-            //     operHtml=operHtml.replace(/lay-event="deny"/i, "style=\"display:none\"")
-            // }
+            if(PAGE_TYPE&&PAGE_TYPE=="approval"){
+                $("#status-search-unit").hide();
+                toolbarHtml=toolbarHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="revoke-data"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="for-approval"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
+
+                operHtml=operHtml.replace(/lay-event="clean-out"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="download-bill"/i, "style=\"display:none\"")
+
+            }else if( PAGE_TYPE&&PAGE_TYPE=="asset_scrap"){
+                operHtml=operHtml.replace(/lay-event="agree"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="deny"/i, "style=\"display:none\"")
+            }
 
             document.getElementById("toolbarTemplate").innerHTML=toolbarHtml;
             document.getElementById("tableOperationTemplate").innerHTML=operHtml;
@@ -65,28 +63,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterSearchInputReady: function() {
             console.log("list:afterSearchInputReady");
         },
-        makeFormQueryString:function(data,queryString,action) {
-            return queryString;
-        },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框
          * */
-        getBpmViewConfig:function (act) {
-            return {
-                title:"报废申请",
-                priority:"normal", // priority 的可选值 urgency，normal
-                labelWidth:77, // 标签宽度，用于对齐
-                displayTitle:true,  // 是否显示标题与优先级
-                displayPriority:true, // 是否显示优先级
-                displayDraftComment:true, // 是否显示起草节点的流程说明
-                displayApprovalComment:true, // 是否显示签字意见
-                displayDraftAttachment:true, // 是否使用起草附件
-                displayApprovalAttachment:true // 是否使用审批附件
-            }
-        },
-        handleNoProcessBill:function(idValue) {
-            top.layer.msg('当前业务单据尚未关联流程', {icon: 2, time: 1500});
-        },
         beforeDialog:function (param){
             param.title="组织/人员选择对话框";
             return param;
@@ -105,11 +84,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param location 调用的代码位置
          * */
         beforeQuery:function (conditions,param,location) {
-            // console.log('beforeQuery',conditions,param,location);
-            // if(PAGE_TYPE=="approval"){
-            //     param.status="approval";
-            // }
-            // param.pageType=PAGE_TYPE;
+            console.log('beforeQuery',conditions,param,location);
+            if(PAGE_TYPE=="approval"){
+                param.status="approval";
+            }
+            param.pageType=PAGE_TYPE;
             return true;
         },
         /**
@@ -120,18 +99,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 //如果审批中或审批通过的不允许编辑
                 if(data[i].status=="complete") {
                     fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    //fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
                 }else if(data[i].status=="incomplete"){
-                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
                     // fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
                     // fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                     // fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
                     // fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
                 }else if(data[i].status=="deny"){
+
                     fox.disableButton($('.clean-out-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
@@ -211,12 +190,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 列表操作栏按钮事件前调用，如果返回 false 则不执行后续代码
          * */
         beforeRowOperationEvent:function (data,obj) {
-            // if(obj.event=="edit") {
-            //     if(data.status=="complete"||data.status=="approval"){
-            //         layer.msg("当前状态不允许修改", {icon: 2, time: 1000});
-            //         return false;
-            //     }
-            // }
+            if(obj.event=="edit") {
+                if(data.status=="complete"||data.status=="approval"){
+                    layer.msg("当前状态不允许修改", {icon: 2, time: 1000});
+                    return false;
+                }
+            }
             return true;
         },
         /**
@@ -373,33 +352,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
         },
-        onProcessInstanceReady:function (result) {
-            // 可根据流程状态、当前审批节点判断和控制表单页面
-            processInstance=result.data;
-            console.log("processInstance",processInstance)
-            // 非起草状态不允许修改表单
-            if(processInstance && processInstance.approvalStatus!="drafting") {
-                fox.lockForm($("#data-form"),true);
-            }
-            // 获得所有待办节点
-            var todoNodes=bpm.getTodoNodes(processInstance);
-            console.log("todoNodes",todoNodes);
-            // 判断是否为待办节点
-            var isTodoNode=bpm.isTodoNodes(processInstance,"N1");
-            console.log("isTodoNode:N1",isTodoNode);
-            // 判断是否为当前账户的待办节点
-            var isMyTodoNode=bpm.isCurrentUserTodoNode(processInstance,"N1");
-            console.log("isMyTodoNode:N1",isMyTodoNode);
-        },
-        /**
-         * 在流程提交前处理表单数据
-         * */
-        processFormData4Bpm:function(processInstanceId,param,callback) {
-            // 设置流程变量，并通过回调返回
-            var variables={};
-            // 此回调是必须的，否则流程提交会被中断
-            callback(variables);
-        },
         /**
          * 表单数据填充前
          * */
@@ -458,31 +410,20 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterSubmit:function (param,result) {
             console.log("afterSubmitt",param,result);
         },
+
+
         /**
          *  加载 资产列表
          */
         assetSelectList:function (ifr,win,data) {
             console.log("assetSelectList",ifr,data);
-            //设置地址
-            if(processInstance){
-                if(processInstance.approvalStatus=="drafting"){
-                    console.log("processInstance",processInstance.approvalStatus,"edit");
-                    formAction="edit"
-                }else{
-                    console.log("processInstance",processInstance.approvalStatus,"view");
-                    formAction="view"
-                }
-            }else{
-                console.log("processInstance",processInstance,"create");
-                formAction="create";
-            }
-
+            //设置 iframe 高度
             ifr.height("450px");
             //设置地址
             var data={};
             data.searchContent={};
             data.assetSelectedCode=timestamp;
-            data.assetBusinessType="eam_asset_scrap"
+            data.assetBusinessType=BILL_TYPE
             data.action=formAction;
             data.ownerCode="asset";
             if(BILL_ID==null)BILL_ID="";

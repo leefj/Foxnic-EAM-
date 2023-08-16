@@ -1,5 +1,8 @@
 package com.dt.platform.proxy.eam;
 
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
@@ -20,7 +23,7 @@ import com.dt.platform.proxy.ServiceNames;
  * @since 2022-05-30 19:33:23
  */
 @FeignClient(value = ServiceNames.EAM, contextId = RepairOrderServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
-public interface RepairOrderServiceProxy {
+public interface RepairOrderServiceProxy extends BpmCallbackController {
 
     /**
      * 基础路径 , service-eam
@@ -121,6 +124,12 @@ public interface RepairOrderServiceProxy {
     public static final String QUERY_STATUS_COUNT_DATA = API_PREFIX + "query-status-count-data";
 
     /**
+     * 流程事件回调接收接口
+     */
+    public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
+
+
+    /**
      * 添加维修工单
      */
     @RequestMapping(RepairOrderServiceProxy.INSERT)
@@ -173,6 +182,12 @@ public interface RepairOrderServiceProxy {
      */
     @RequestMapping(RepairOrderServiceProxy.QUERY_PAGED_LIST)
     Result<PagedList<RepairOrder>> queryPagedList(@RequestParam(name = "sample") RepairOrderVO sample);
+
+    /**
+     * 分页查询领用申请
+     */
+    @RequestMapping(AssetEmployeeApplyServiceProxy.BPM_CALLBACK)
+    BpmActionResult onProcessCallback(@RequestParam(name = "event") BpmEvent event);
 
     /**
      * 控制器类名

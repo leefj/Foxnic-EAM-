@@ -14,6 +14,7 @@ import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
+import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
@@ -29,8 +30,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 故障申请单
  * <p>故障申请单 , 数据表 eam_repair_order 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-11 13:36:35
- * @sign 5BD55CB2EFCA666F76BF5DFD3D6C2D5E
+ * @since 2023-08-16 07:35:56
+ * @sign AA19CD8F7FED5C650C20BAC2FB7759BD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -76,7 +77,7 @@ public class RepairOrder extends Entity {
 	/**
 	 * 维修状态：维修状态
 	*/
-	@ApiModelProperty(required = false,value="维修状态" , notes = "维修状态" , example = "finish")
+	@ApiModelProperty(required = false,value="维修状态" , notes = "维修状态" , example = "repairing")
 	private String repairStatus;
 	
 	/**
@@ -291,6 +292,24 @@ public class RepairOrder extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="报修部门" , notes = "报修部门")
 	private Organization organization;
+	
+	/**
+	 * 历史流程清单：历史流程清单
+	*/
+	@ApiModelProperty(required = false,value="历史流程清单" , notes = "历史流程清单")
+	private List<ProcessInstance> historicProcessList;
+	
+	/**
+	 * 在批的流程清单：在批的流程清单
+	*/
+	@ApiModelProperty(required = false,value="在批的流程清单" , notes = "在批的流程清单")
+	private List<ProcessInstance> currentProcessList;
+	
+	/**
+	 * 默认流程：优先取在批的流程
+	*/
+	@ApiModelProperty(required = false,value="默认流程" , notes = "优先取在批的流程")
+	private ProcessInstance defaultProcess;
 	
 	/**
 	 * 获得 主键<br>
@@ -1134,6 +1153,85 @@ public class RepairOrder extends Entity {
 		this.organization=organization;
 		return this;
 	}
+	
+	/**
+	 * 获得 历史流程清单<br>
+	 * 历史流程清单
+	 * @return 历史流程清单
+	*/
+	public List<ProcessInstance> getHistoricProcessList() {
+		return historicProcessList;
+	}
+	
+	/**
+	 * 设置 历史流程清单
+	 * @param historicProcessList 历史流程清单
+	 * @return 当前对象
+	*/
+	public RepairOrder setHistoricProcessList(List<ProcessInstance> historicProcessList) {
+		this.historicProcessList=historicProcessList;
+		return this;
+	}
+	
+	/**
+	 * 添加 历史流程清单
+	 * @param historicProcess 历史流程清单
+	 * @return 当前对象
+	*/
+	public RepairOrder addHistoricProcess(ProcessInstance... historicProcess) {
+		if(this.historicProcessList==null) historicProcessList=new ArrayList<>();
+		this.historicProcessList.addAll(Arrays.asList(historicProcess));
+		return this;
+	}
+	
+	/**
+	 * 获得 在批的流程清单<br>
+	 * 在批的流程清单
+	 * @return 在批的流程清单
+	*/
+	public List<ProcessInstance> getCurrentProcessList() {
+		return currentProcessList;
+	}
+	
+	/**
+	 * 设置 在批的流程清单
+	 * @param currentProcessList 在批的流程清单
+	 * @return 当前对象
+	*/
+	public RepairOrder setCurrentProcessList(List<ProcessInstance> currentProcessList) {
+		this.currentProcessList=currentProcessList;
+		return this;
+	}
+	
+	/**
+	 * 添加 在批的流程清单
+	 * @param currentProcess 在批的流程清单
+	 * @return 当前对象
+	*/
+	public RepairOrder addCurrentProcess(ProcessInstance... currentProcess) {
+		if(this.currentProcessList==null) currentProcessList=new ArrayList<>();
+		this.currentProcessList.addAll(Arrays.asList(currentProcess));
+		return this;
+	}
+	
+	/**
+	 * 获得 默认流程<br>
+	 * 优先取在批的流程
+	 * @return 默认流程
+	*/
+	public ProcessInstance getDefaultProcess() {
+		return defaultProcess;
+	}
+	
+	/**
+	 * 设置 默认流程
+	 * @param defaultProcess 默认流程
+	 * @return 当前对象
+	*/
+	public RepairOrder setDefaultProcess(ProcessInstance defaultProcess) {
+		this.defaultProcess=defaultProcess;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1212,14 +1310,17 @@ public class RepairOrder extends Entity {
 		if(all) {
 			inst.setReportUser(this.getReportUser());
 			inst.setRepairUrgency(this.getRepairUrgency());
-			inst.setOrderAct(this.getOrderAct());
-			inst.setOrganization(this.getOrganization());
 			inst.setAssetIds(this.getAssetIds());
-			inst.setCategoryTpl(this.getCategoryTpl());
+			inst.setHistoricProcessList(this.getHistoricProcessList());
 			inst.setRepairOrderProcess(this.getRepairOrderProcess());
 			inst.setOriginator(this.getOriginator());
-			inst.setAsset(this.getAsset());
 			inst.setAssetList(this.getAssetList());
+			inst.setCurrentProcessList(this.getCurrentProcessList());
+			inst.setDefaultProcess(this.getDefaultProcess());
+			inst.setOrderAct(this.getOrderAct());
+			inst.setOrganization(this.getOrganization());
+			inst.setCategoryTpl(this.getCategoryTpl());
+			inst.setAsset(this.getAsset());
 			inst.setOrderAcceptance(this.getOrderAcceptance());
 		}
 		inst.clearModifies();
@@ -1313,10 +1414,11 @@ public class RepairOrder extends Entity {
 			// others
 			this.setReportUser(DataParser.parse(Employee.class, map.get(RepairOrderMeta.REPORT_USER)));
 			this.setRepairUrgency(DataParser.parse(RepairUrgency.class, map.get(RepairOrderMeta.REPAIR_URGENCY)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(RepairOrderMeta.ORIGINATOR)));
+			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(RepairOrderMeta.DEFAULT_PROCESS)));
 			this.setOrderAct(DataParser.parse(RepairOrderAct.class, map.get(RepairOrderMeta.ORDER_ACT)));
 			this.setOrganization(DataParser.parse(Organization.class, map.get(RepairOrderMeta.ORGANIZATION)));
 			this.setCategoryTpl(DataParser.parse(RepairCategoryTpl.class, map.get(RepairOrderMeta.CATEGORY_TPL)));
-			this.setOriginator(DataParser.parse(Employee.class, map.get(RepairOrderMeta.ORIGINATOR)));
 			this.setAsset(DataParser.parse(Asset.class, map.get(RepairOrderMeta.ASSET)));
 			this.setOrderAcceptance(DataParser.parse(RepairOrderAcceptance.class, map.get(RepairOrderMeta.ORDER_ACCEPTANCE)));
 			return true;
@@ -1355,10 +1457,11 @@ public class RepairOrder extends Entity {
 				// others
 				this.setReportUser( (Employee)map.get(RepairOrderMeta.REPORT_USER));
 				this.setRepairUrgency( (RepairUrgency)map.get(RepairOrderMeta.REPAIR_URGENCY));
+				this.setOriginator( (Employee)map.get(RepairOrderMeta.ORIGINATOR));
+				this.setDefaultProcess( (ProcessInstance)map.get(RepairOrderMeta.DEFAULT_PROCESS));
 				this.setOrderAct( (RepairOrderAct)map.get(RepairOrderMeta.ORDER_ACT));
 				this.setOrganization( (Organization)map.get(RepairOrderMeta.ORGANIZATION));
 				this.setCategoryTpl( (RepairCategoryTpl)map.get(RepairOrderMeta.CATEGORY_TPL));
-				this.setOriginator( (Employee)map.get(RepairOrderMeta.ORIGINATOR));
 				this.setAsset( (Asset)map.get(RepairOrderMeta.ASSET));
 				this.setOrderAcceptance( (RepairOrderAcceptance)map.get(RepairOrderMeta.ORDER_ACCEPTANCE));
 				return true;

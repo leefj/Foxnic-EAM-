@@ -1,6 +1,7 @@
 package com.dt.platform.generator.config;
 
 public class Config {
+    public static int  inputLabelWidth=100;
     public static int  searchLabelWidth=100;
     public static int  searchInputWidth=180;
     public static int textAreaHeight=120;

@@ -14,8 +14,7 @@ import com.dt.platform.eam.page.PurchaseOrderPageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.PurchaseApplyServiceProxy;
 import com.dt.platform.proxy.eam.PurchaseOrderServiceProxy;
-import com.dt.platform.proxy.eam.SupplierServiceProxy;
-import com.dt.platform.proxy.vehicle.ApplyServiceProxy;
+
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 

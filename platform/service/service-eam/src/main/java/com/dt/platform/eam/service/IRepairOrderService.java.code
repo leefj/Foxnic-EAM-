@@ -1,12 +1,14 @@
 package com.dt.platform.eam.service;
 
-
-import com.alibaba.fastjson.JSONObject;
-import com.dt.platform.domain.eam.*;
+import com.github.foxnic.dao.entity.ReferCause;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import com.github.foxnic.dao.entity.ISimpleIdService;
+
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-
+import com.dt.platform.domain.eam.RepairOrder;
+import com.dt.platform.domain.eam.RepairOrderVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -17,54 +19,23 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
-import org.github.foxnic.web.domain.bpm.BpmActionResult;
-import org.github.foxnic.web.domain.bpm.BpmEvent;
-import org.github.foxnic.web.domain.changes.ProcessApproveVO;
-import org.github.foxnic.web.domain.changes.ProcessStartVO;
-
 import java.util.Map;
 
 /**
  * <p>
- * 维修工单 服务接口
+ * 故障申请单服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-30 19:33:23
+ * @since 2023-08-16 07:35:56
 */
 
-public interface IRepairOrderService extends ISimpleIdService<RepairOrder,String> {
+public interface IRepairOrderService extends  ISimpleIdService<RepairOrder,String> {
+
 
 	/**
-	 * 表单定义代码
-	 **/
+ 	  * 表单定义代码
+      **/
 	public static final String FORM_DEFINITION_CODE="eam_asset_equipment_repair";
-
-
-	Result<JSONObject> queryStatusCountData(String label);
-
-	Result changeRepairOrderStatus(String id,String repairStatus);
-
-	Result validateDispatchOrder(List<String> ids);
-
-	Result dispatchOrder(List<String> ids,String actId);
-
-
-	/**
-	 * 获取单据数据
-	 * @param id ID
-	 * @return 返回结果
-	 * */
-	Map<String, Object> getBill(String id);
-
-
-
-	/**
-	 * 确认操作
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	Result confirmOperation(String id);
-
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param repairOrder 数据对象
@@ -91,7 +62,7 @@ public interface IRepairOrderService extends ISimpleIdService<RepairOrder,String
 
 		
 	/**
-	 * 按主键删除 维修工单
+	 * 按主键删除故障申请单
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -99,7 +70,7 @@ public interface IRepairOrderService extends ISimpleIdService<RepairOrder,String
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 维修工单
+	 * 按主键删除故障申请单
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -122,7 +93,7 @@ public interface IRepairOrderService extends ISimpleIdService<RepairOrder,String
 
 		
 	/**
-	 * 按主键更新字段 维修工单
+	 * 按主键更新故障申请单
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -192,7 +163,7 @@ public interface IRepairOrderService extends ISimpleIdService<RepairOrder,String
 
 		
 	/**
-	 * 按主键获取 维修工单
+	 * 按主键获取故障申请单
 	 *
 	 * @param id 主键
 	 * @return RepairOrder 数据对象
@@ -242,7 +213,7 @@ public interface IRepairOrderService extends ISimpleIdService<RepairOrder,String
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<RepairOrder> queryList(RepairOrder sample);
+	List<RepairOrder> queryList(RepairOrderVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -283,7 +254,7 @@ public interface IRepairOrderService extends ISimpleIdService<RepairOrder,String
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<RepairOrder> queryPagedList(RepairOrder sample,int pageSize,int pageIndex);
+	PagedList<RepairOrder> queryPagedList(RepairOrderVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -337,28 +308,7 @@ public interface IRepairOrderService extends ISimpleIdService<RepairOrder,String
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
-	/**
-	 * 导出 Excel
-	 * */
-	ExcelWriter exportExcel(RepairOrder sample);
 
-	/**
-	 * 导出用于数据导入的 Excel 模版
-	 * */
-	ExcelWriter  exportExcelTemplate();
-
-	/**
-	 * 构建 Excel 结构
-	 * @param  isForExport 是否用于数据导出
-	 * @return   ExcelStructure
-	 * */
-	ExcelStructure buildExcelStructure(boolean isForExport);
-
-	/**
-	 * 导入 Excel 数据
-	 * @return  错误信息，成功时返回 null
-	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
 	/**
@@ -366,12 +316,11 @@ public interface IRepairOrderService extends ISimpleIdService<RepairOrder,String
 	 * */
 	BpmActionResult onProcessCallback(BpmEvent event);
 
+
 	void joinProcess(RepairOrder repairOrder);
 
 	void joinProcess(List<RepairOrder> repairOrderList);
 
 	void joinProcess(PagedList<RepairOrder> repairOrderList);
-
-
 
 }

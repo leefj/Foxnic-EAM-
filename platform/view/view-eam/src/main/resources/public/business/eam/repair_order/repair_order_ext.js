@@ -12,13 +12,20 @@ layui.config({
     foxnicUpload: 'upload/foxnic-upload'
 })
 //
-layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown'],function () {
+layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown','bpm'],function () {
 
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
-    table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
+    table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
 
     //模块基础路径
     const moduleURL="/service-eam/eam-repair-order";
+
+
+    var processId=QueryString.get("processId");
+    var processInstance=null;
+
+
+
 
     var timestamp = Date.parse(new Date());
     var formAction=admin.getTempData('eam-repair-order-form-data-form-action');
@@ -46,6 +53,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 if(REPAIR_STATUS=="not_dispatch"){
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="repair-order"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
                 }else if(REPAIR_STATUS=="dispatched"){
                     var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
@@ -316,6 +324,25 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         makeFormQueryString:function(data,queryString,action) {
             return queryString;
         },
+        getBpmViewConfig:function (act) {
+            return {
+                title:"故障申请",
+                priority:"normal", // priority 的可选值 urgency，normal
+                labelWidth:108, // 标签宽度，用于对齐
+                displayTitle:true,  // 是否显示标题与优先级
+                displayPriority:true, // 是否显示优先级
+                displayDraftComment:true, // 是否显示起草节点的流程说明
+                displayApprovalComment:true, // 是否显示签字意见
+                displayDraftAttachment:true, // 是否使用起草附件
+                displayApprovalAttachment:true // 是否使用审批附件
+            }
+        },
+        /**
+         * 表单没有关联的流程时的处理逻辑
+         * */
+        handleNoProcessBill:function(idValue) {
+            top.layer.msg('当前业务单据尚未关联流程', {icon: 2, time: 1500});
+        },
         /**
          * 在新建或编辑窗口打开前调用，若返回 false 则不继续执行后续操作
          * */
@@ -410,6 +437,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('downloadBill',data);
         },
         repairOrder:function(item,it) {
+
             admin.post("/service-eam/eam-repair-order-act/get-by-order-id", { orderId : item.id }, function (data) {
                 if(data.success) {
                     admin.putTempData('eam-repair-order-act-form-data-form-action', "view",true);
@@ -433,10 +461,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     fox.showMessage(data);
                 }
             });
-
-
-
-
         },
          dispatchForm:function(data) {
                 admin.putTempData('eam-repair-order-transfer-form-data-form-action', "create",true);
@@ -514,6 +538,24 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeDataFill:function (data) {
             console.log('beforeDataFill',data);
+        },
+        onProcessInstanceReady:function (result) {
+            // 可根据流程状态、当前审批节点判断和控制表单页面
+            processInstance=result.data;
+            console.log("processInstance",processInstance)
+            // 非起草状态不允许修改表单
+            if(processInstance && processInstance.approvalStatus!="drafting") {
+                fox.lockForm($("#data-form"),true);
+            }
+            // 获得所有待办节点
+            var todoNodes=bpm.getTodoNodes(processInstance);
+            console.log("todoNodes",todoNodes);
+            // 判断是否为待办节点
+            var isTodoNode=bpm.isTodoNodes(processInstance,"N1");
+            console.log("isTodoNode:N1",isTodoNode);
+            // 判断是否为当前账户的待办节点
+            var isMyTodoNode=bpm.isCurrentUserTodoNode(processInstance,"N1");
+            console.log("isMyTodoNode:N1",isMyTodoNode);
         },
         /**
          * 表单数据填充后
@@ -594,11 +636,23 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          *  加载 资产列表
          */
         assetSelectList:function (ifr,win,data) {
-            console.log("assetSelectList",ifr,data);
+            console.log("assetSelectList",ifr,data,formAction);
             //设置 iframe 高度
             ifr.height("450px");
             //设置地址
             var data={};
+            if(processInstance){
+                if(processInstance.approvalStatus=="drafting"){
+                    console.log("processInstance",processInstance.approvalStatus,"edit");
+                    formAction="edit"
+                }else{
+                    console.log("processInstance",processInstance.approvalStatus,"view");
+                    formAction="view"
+                }
+            }else{
+                console.log("processInstance",processInstance,"create");
+                formAction="create";
+            }
             data.searchContent={};
             data.assetSelectedCode=timestamp;
             data.assetBusinessType=BILL_TYPE
@@ -606,7 +660,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             data.ownerCode="asset";
             if(BILL_ID==null)BILL_ID="";
             data.assetOwnerId=BILL_ID;
-          //  console.log("DATA:",data);
             admin.putTempData('eam-asset-selected-data'+timestamp,data,true);
             admin.putTempData('eam-asset-selected-action'+timestamp,formAction,true);
             win.location="/business/eam/asset/asset_selected_list.html?pageType="+formAction+"&assetSelectedCode="+timestamp+"&pageType="+formAction;

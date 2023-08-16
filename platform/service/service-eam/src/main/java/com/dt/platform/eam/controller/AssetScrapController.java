@@ -3,20 +3,15 @@ package com.dt.platform.eam.controller;
 import java.util.List;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.domain.eam.AssetRepair;
-import com.dt.platform.domain.eam.meta.*;
-import com.dt.platform.proxy.eam.AssetEmployeeRepairServiceProxy;
-import com.dt.platform.proxy.eam.AssetRepairServiceProxy;
+import com.dt.platform.domain.eam.meta.AssetScrapMeta;
+import com.dt.platform.domain.eam.meta.AssetScrapVOMeta;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
-import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
-import com.github.foxnic.commons.collection.CollectorUtil;
-import com.github.foxnic.dao.entity.ReferCause;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,13 +34,11 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.springboot.web.DownloadUtil;
 import com.github.foxnic.dao.data.PagedList;
 import java.util.Date;
-import java.sql.Timestamp;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.commons.io.StreamUtil;
 import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
-import com.dt.platform.domain.eam.Asset;
 import org.github.foxnic.web.domain.hrm.Employee;
 import io.swagger.annotations.Api;
 import com.github.xiaoymin.knife4j.annotations.ApiSort;
@@ -53,7 +46,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiImplicitParam;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.dt.platform.eam.service.IAssetScrapService;
 import com.github.foxnic.api.swagger.ApiParamSupport;
 
@@ -76,12 +68,12 @@ public class AssetScrapController extends SuperController implements BpmCallback
      * 添加资产报废
      */
     @ApiOperation(value = "添加资产报废")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetScrapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.CLEAN_STATUS, value = "是否清理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.CLEAN_STATUS, value = "清理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NAME, value = "业务名称", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.SCRAP_DATE, value = "报废时间", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.CONTENT, value = "报废说明", required = false, dataTypeClass = String.class),
@@ -98,7 +90,8 @@ public class AssetScrapController extends SuperController implements BpmCallback
 		@ApiImplicitParam(name = AssetScrapVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetScrapServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -112,7 +105,7 @@ public class AssetScrapController extends SuperController implements BpmCallback
      * 删除资产报废
      */
     @ApiOperation(value = "删除资产报废")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetScrapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 2)
@@ -133,7 +126,7 @@ public class AssetScrapController extends SuperController implements BpmCallback
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产报废")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetScrapVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -148,12 +141,12 @@ public class AssetScrapController extends SuperController implements BpmCallback
      * 更新资产报废
      */
     @ApiOperation(value = "更新资产报废")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetScrapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.CLEAN_STATUS, value = "是否清理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.CLEAN_STATUS, value = "清理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NAME, value = "业务名称", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.SCRAP_DATE, value = "报废时间", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.CONTENT, value = "报废说明", required = false, dataTypeClass = String.class),
@@ -170,7 +163,8 @@ public class AssetScrapController extends SuperController implements BpmCallback
 		@ApiImplicitParam(name = AssetScrapVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetScrapVOMeta.PAGE_INDEX, AssetScrapVOMeta.PAGE_SIZE, AssetScrapVOMeta.SEARCH_FIELD, AssetScrapVOMeta.FUZZY_FIELD, AssetScrapVOMeta.SEARCH_VALUE, AssetScrapVOMeta.SORT_FIELD, AssetScrapVOMeta.SORT_TYPE, AssetScrapVOMeta.IDS })
     @SentinelResource(value = AssetScrapServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -189,12 +183,12 @@ public class AssetScrapController extends SuperController implements BpmCallback
      * 保存资产报废
      */
     @ApiOperation(value = "保存资产报废")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetScrapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.CLEAN_STATUS, value = "是否清理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.CLEAN_STATUS, value = "清理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NAME, value = "业务名称", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.SCRAP_DATE, value = "报废时间", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.CONTENT, value = "报废说明", required = false, dataTypeClass = String.class),
@@ -211,7 +205,8 @@ public class AssetScrapController extends SuperController implements BpmCallback
 		@ApiImplicitParam(name = AssetScrapVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetScrapVOMeta.PAGE_INDEX, AssetScrapVOMeta.PAGE_SIZE, AssetScrapVOMeta.SEARCH_FIELD, AssetScrapVOMeta.FUZZY_FIELD, AssetScrapVOMeta.SEARCH_VALUE, AssetScrapVOMeta.SORT_FIELD, AssetScrapVOMeta.SORT_TYPE, AssetScrapVOMeta.IDS })
     @SentinelResource(value = AssetScrapServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -226,7 +221,7 @@ public class AssetScrapController extends SuperController implements BpmCallback
      * 获取资产报废
      */
     @ApiOperation(value = "获取资产报废")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetScrapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetScrapVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -258,7 +253,6 @@ public class AssetScrapController extends SuperController implements BpmCallback
         AssetScrap assetScrap = assetScrapService.getById(id);
         assetScrapService.join(assetScrap, AssetScrapMeta.ORIGINATOR);
         assetScrapService.join(assetScrap, AssetScrapMeta.METHOD_DICT);
-
         assetScrapService.dao().join(assetScrap.getOriginator(), Person.class);
         result.success(true).data(assetScrap);
         return result;
@@ -269,7 +263,7 @@ public class AssetScrapController extends SuperController implements BpmCallback
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产报废")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetScrapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -308,19 +302,30 @@ public class AssetScrapController extends SuperController implements BpmCallback
      * 查询资产报废
      */
     @ApiOperation(value = "查询资产报废")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetScrapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.CLEAN_STATUS, value = "是否清理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.CLEAN_STATUS, value = "清理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NAME, value = "业务名称", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.SCRAP_DATE, value = "报废时间", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.CONTENT, value = "报废说明", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetScrapVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage"),
+		@ApiImplicitParam(name = AssetScrapVOMeta.CHS_TYPE, value = "变更类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.CHS_STATUS, value = "变更状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.CHS_VERSION, value = "变更版本号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.CHANGE_INSTANCE_ID, value = "变更ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.SUMMARY, value = "流程概要", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.LATEST_APPROVER_ID, value = "最后审批人账户ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetScrapVOMeta.PAGE_INDEX, AssetScrapVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetScrapServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -336,7 +341,7 @@ public class AssetScrapController extends SuperController implements BpmCallback
      * 分页查询资产报废
      */
     @ApiOperation(value = "分页查询资产报废")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetScrapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -358,7 +363,8 @@ public class AssetScrapController extends SuperController implements BpmCallback
 		@ApiImplicitParam(name = AssetScrapVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetScrapServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -388,7 +394,7 @@ public class AssetScrapController extends SuperController implements BpmCallback
      * 确认
      */
     @ApiOperation(value = "报废确认")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetScrapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 13)

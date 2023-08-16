@@ -31,6 +31,12 @@ public enum CodeModuleEnum implements CodeTextEnum {
 
 
 
+	//设备维修
+	EAM_ASSET_EQUIPMENT_REPAIR("eam_asset_equipment_repair","设备维修"),
+	EAM_ASSET_EQUIPMENT_MAINTAIN("eam_asset_equipment_maintain","设备保养"),
+	EAM_ASSET_EQUIPMENT_INSPECTION("eam_asset_equipment_inspection","设备巡检"),
+
+
 	//软件资产
 	EAM_ASSET_SOFTWARE_INSERT("eam_asset_software_insert" , "EAM_资产软件登记"),
 	EAM_ASSET_SOFTWARE_CHANGE("eam_asset_software_change" , "EAM_资产软件变更"),

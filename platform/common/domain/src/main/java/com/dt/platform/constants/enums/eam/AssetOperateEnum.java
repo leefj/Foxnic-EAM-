@@ -7,7 +7,7 @@ public enum AssetOperateEnum implements CodeTextEnum {
 
     //资产
     RFID_RELEASE("rfid_release" , "RFID发卡"),
-
+    EAM_ASSET_DATA_SYNC("eam_asset_data_sync" , "EAM_资产数据同步"),
     //资产
     EAM_ASSET_INSERT("eam_asset_insert" , "EAM_资产登记"),
     EAM_ASSET_IMPORT("eam_asset_import" , "EAM_资产导入"),
@@ -27,6 +27,12 @@ public enum AssetOperateEnum implements CodeTextEnum {
     EAM_ASSET_SOFTWARE_CHANGE(CodeModuleEnum.EAM_ASSET_SOFTWARE_CHANGE.code(), CodeModuleEnum.EAM_ASSET_SOFTWARE_CHANGE.text()),
     EAM_ASSET_SOFTWARE_MAINTENANCE(CodeModuleEnum.EAM_ASSET_SOFTWARE_MAINTENANCE.code(), CodeModuleEnum.EAM_ASSET_SOFTWARE_MAINTENANCE.text()),
 
+
+
+    //设备
+    EAM_ASSET_EQUIPMENT_REPAIR(CodeModuleEnum.EAM_ASSET_EQUIPMENT_REPAIR.code(), CodeModuleEnum.EAM_ASSET_EQUIPMENT_REPAIR.text()),
+    EAM_ASSET_EQUIPMENT_MAINTAIN(CodeModuleEnum.EAM_ASSET_EQUIPMENT_MAINTAIN.code(), CodeModuleEnum.EAM_ASSET_EQUIPMENT_MAINTAIN.text()),
+    EAM_ASSET_EQUIPMENT_INSPECTION(CodeModuleEnum.EAM_ASSET_EQUIPMENT_INSPECTION.code(), CodeModuleEnum.EAM_ASSET_EQUIPMENT_INSPECTION.text()),
 
 
     //资产单据
@@ -62,16 +68,14 @@ public enum AssetOperateEnum implements CodeTextEnum {
     //维保数据变更
     EAM_ASSET_CHANGE_MAINTENANCE_2(CodeModuleEnum.EAM_ASSET_CHANGE_MAINTENANCE.code(), CodeModuleEnum.EAM_ASSET_CHANGE_MAINTENANCE.text()),
 
-
-
-
+    //耗材
     EAM_ASSET_CONSUMABLES_STOCK_IN(CodeModuleEnum.EAM_ASSET_CONSUMABLES_STOCK_IN.code(), CodeModuleEnum.EAM_ASSET_CONSUMABLES_STOCK_IN.text()),
     EAM_ASSET_CONSUMABLES_DELIVER(CodeModuleEnum.EAM_ASSET_CONSUMABLES_DELIVER.code(), CodeModuleEnum.EAM_ASSET_CONSUMABLES_DELIVER.text()),
     EAM_ASSET_CONSUMABLES_COLLECTION(CodeModuleEnum.EAM_ASSET_CONSUMABLES_COLLECTION.code(), CodeModuleEnum.EAM_ASSET_CONSUMABLES_COLLECTION.text()),
     EAM_ASSET_CONSUMABLES_TRANFER(CodeModuleEnum.EAM_ASSET_CONSUMABLES_TRANFER.code(), CodeModuleEnum.EAM_ASSET_CONSUMABLES_TRANFER.text()),
 
 
-
+    //物品
     EAM_ASSET_STOCK_DELIVER(CodeModuleEnum.EAM_ASSET_STOCK_DELIVER.code(), CodeModuleEnum.EAM_ASSET_STOCK_DELIVER.text()),
     EAM_ASSET_STOCK_IN(CodeModuleEnum.EAM_ASSET_STOCK_IN.code(), CodeModuleEnum.EAM_ASSET_STOCK_IN.text()),
     EAM_ASSET_STOCK_ALLOCATE(CodeModuleEnum.EAM_ASSET_STOCK_ALLOCATE.code(), CodeModuleEnum.EAM_ASSET_STOCK_ALLOCATE.text()),
@@ -91,19 +95,18 @@ public enum AssetOperateEnum implements CodeTextEnum {
     EAM_ASSET_STOCK_GOODS_INVENTORY(CodeModuleEnum.EAM_ASSET_STOCK_GOODS_INVENTORY.code(), CodeModuleEnum.EAM_ASSET_STOCK_GOODS_INVENTORY.text()),
 
 
-
+    //备件
     EAM_ASSET_PART_GOODS_IN(CodeModuleEnum.EAM_ASSET_PART_GOODS_IN.code(), CodeModuleEnum.EAM_ASSET_PART_GOODS_IN.text()),
     EAM_ASSET_PART_GOODS_OUT(CodeModuleEnum.EAM_ASSET_PART_GOODS_OUT.code(), CodeModuleEnum.EAM_ASSET_PART_GOODS_OUT.text()),
     EAM_ASSET_PART_GOODS_TRANFER(CodeModuleEnum.EAM_ASSET_PART_GOODS_TRANFER.code(), CodeModuleEnum.EAM_ASSET_PART_GOODS_TRANFER.text()),
     EAM_ASSET_PART_GOODS_ADJUST(CodeModuleEnum.EAM_ASSET_PART_GOODS_ADJUST.code(), CodeModuleEnum.EAM_ASSET_PART_GOODS_ADJUST.text()),
-
-
+    //备件维修调出
     EAM_ASSET_PART_GOODS_REPAIR_OUT("eam_asset_part_goods_repair_out", "维修备件调出"),
 
 
 
     //物品耗材
-//    EAM_ASSET_CONSUMABLES_GOODS(CodeModuleEnum.EAM_ASSET_CONSUMABLES_GOODS.code(), "EAM_资产物品库存入库"),
+    //EAM_ASSET_CONSUMABLES_GOODS(CodeModuleEnum.EAM_ASSET_CONSUMABLES_GOODS.code(), "EAM_资产物品库存入库"),
     EAM_ASSET_CONSUMABLES_GOODS_IN(CodeModuleEnum.EAM_ASSET_CONSUMABLES_GOODS_IN.code(), CodeModuleEnum.EAM_ASSET_CONSUMABLES_GOODS_IN.text()),
     EAM_ASSET_CONSUMABLES_GOODS_OUT(CodeModuleEnum.EAM_ASSET_CONSUMABLES_GOODS_OUT.code(), CodeModuleEnum.EAM_ASSET_CONSUMABLES_GOODS_OUT.text()),
     EAM_ASSET_CONSUMABLES_GOODS_TRANFER(CodeModuleEnum.EAM_ASSET_CONSUMABLES_GOODS_TRANFER.code(), CodeModuleEnum.EAM_ASSET_CONSUMABLES_GOODS_TRANFER.text()),
@@ -118,13 +121,10 @@ public enum AssetOperateEnum implements CodeTextEnum {
 
     //资产折旧
     EAM_ASSET_DEPRECIATION_OPER(CodeModuleEnum.EAM_ASSET_DEPRECIATION_OPER.code(), CodeModuleEnum.EAM_ASSET_DEPRECIATION_OPER.text()),
-
     EAM_DOWNLOAD_ASSET_SOFTWARE_INSERT_BILL("eam_download_asset_software_insert_bill" , "EAM_资产软件登记下载"),
     EAM_DOWNLOAD_ASSET_SOFTWARE_DISTRIBUTE_BILL("eam_download_asset_software_distribute_bill" , "EAM_资产软件分发下载"),
     EAM_DOWNLOAD_ASSET_SOFTWARE_CHANGE_BILL("eam_download_asset_software_change_bill" , "EAM_资产软件变更下载"),
     EAM_DOWNLOAD_ASSET_SOFTWARE_MAINTENANCE_BILL("eam_download_asset_software_maintenance_bill" , "EAM_资产软件维保下载"),
-
-
     EAM_ASSET_DOWNLOAD_DEPRECIATION_REPORT("eam_asset_download_depreciation_report", "资产折旧报表"),
 
 
@@ -138,13 +138,11 @@ public enum AssetOperateEnum implements CodeTextEnum {
     EAM_DOWNLOAD_ASSET_ALLOCATE_BILL("eam_download_asset_allocate_bill" , "EAM_资产调拨下载"),
     EAM_DOWNLOAD_ASSET_COLLECTION_BILL("eam_download_asset_collection_bill" , "EAM_资产领用下载"),
     EAM_DOWNLOAD_ASSET_COLLECTION_RETURN_BILL("eam_download_asset_collection_return_bill" , "EAM_资产退库下载"),
-
     EAM_DOWNLOAD_ASSET_BORROW_BILL("eam_download_asset_borrow_bill" , "EAM_资产借用下载"),
     EAM_DOWNLOAD_ASSET_BORROW_RETURN_BILL("eam_download_asset_borrow_return_bill" , "EAM_资产借用归还下载"),
     EAM_DOWNLOAD_ASSET_REPAIR_BILL("eam_download_asset_repair_bill" , "EAM_资产报修下载"),
     EAM_DOWNLOAD_ASSET_REPAIR_ORDER_BILL("eam_download_asset_repair_order_bill" , "EAM_资产维修工单下载"),
     EAM_DOWNLOAD_ASSET_SCRAP_BILL("eam_download_asset_scrap_bill" , "EAM_资产报废下载"),
-
     EAM_DOWNLOAD_ASSET_INVENTORY_BILL("eam_download_asset_inventory_bill" , "EAM_资产盘点单据下载"),
     EAM_DOWNLOAD_ASSET_INVENTORY_ASSET("eam_download_asset_inventory_asset" , "EAM_资产盘点资产下载"),
 
@@ -164,15 +162,15 @@ public enum AssetOperateEnum implements CodeTextEnum {
     EAM_DOWNLOAD_ASSET_PART_GOODS_TRANFER_BILL("eam_download_asset_part_goods_tranfer_bill" , "EAM_资产备件库存转移单下载"),
     EAM_DOWNLOAD_ASSET_PART_GOODS_ADJUST_BILL("eam_download_asset_part_goods_adjust_bill" , "EAM_资产备件库存调整单下载"),
 
-
-
     //耗材
     EAM_DOWNLOAD_ASSET_CONSUMABLES_GOODS_IN_BILL("eam_download_asset_consumables_goods_in_bill" , "EAM_耗材库存入库单下载"),
     EAM_DOWNLOAD_ASSET_CONSUMABLES_GOODS_OUT_BILL("eam_download_asset_consumables_goods_out_bill" , "EAM_耗材库存出库单下载"),
     EAM_DOWNLOAD_ASSET_CONSUMABLES_GOODS_TRANFER_BILL("eam_download_asset_consumables_goods_tranfer_bill" , "EAM_资产物品库存转移单下载"),
-    EAM_DOWNLOAD_ASSET_CONSUMABLES_GOODS_ADJUST_BILL("eam_download_asset_consumables_goods_adjust_bill" , "EAM_资产物品库存调整单下载"),
+    EAM_DOWNLOAD_ASSET_CONSUMABLES_GOODS_ADJUST_BILL("eam_download_asset_consumables_goods_adjust_bill" , "EAM_资产物品库存调整单下载")
 
-    EAM_ASSET_DATA_SYNC("eam_asset_data_sync" , "EAM_资产数据同步");
+    ;
+
+
 
 
     private String code;
