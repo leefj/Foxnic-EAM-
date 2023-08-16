@@ -1,7 +1,7 @@
 /**
  * 故障申请单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-11 13:36:37
+ * @since 2023-08-16 07:35:58
  */
 
 
@@ -366,7 +366,12 @@ function ListPage() {
 			switch(obj.event){
 				case 'create':
 					admin.putTempData('eam-repair-order-form-data', {});
-					openCreateFrom();
+					var defaultValue={};
+					if(window.pageExt.list.getBpmViewConfig) {
+						defaultValue=window.pageExt.list.getBpmViewConfig(obj.event);
+					}
+					admin.putTempData('eam-repair-order-form-data-form-action', "create",true);
+					bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_equipment_repair"},refreshTableData,refreshRowData,"bill",defaultValue);
 					break;
 				case 'batch-del':
 					batchDelete(selected);
@@ -443,16 +448,19 @@ function ListPage() {
 			admin.putTempData('eam-repair-order-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
 				top.layer.load(2);
-				top.layer.load(2);
-				admin.post(getByIdURL, { id : data.id }, function (data) {
+				bpm.getProcessInstanceByBill("eam_asset_equipment_repair",{ id : data.id },function(p) {
 					top.layer.closeAll('loading');
-					if(data.success) {
+					if(p) {
 						admin.putTempData('eam-repair-order-form-data-form-action', "edit",true);
-						showEditForm(data.data);
+						bpm.openProcessView(p.id,null,false,{"formDefinitionCode":"eam_asset_equipment_repair"},refreshTableData,refreshRowData,"bill");
 					} else {
-						 fox.showMessage(data);
+						if(window.pageExt.list.handleNoProcessBill) {
+							window.pageExt.list.handleNoProcessBill({id : data.id});
+						} else {
+							top.layer.msg(fox.translate('当前业务单据尚未关联流程','','cmp:table'), {icon: 2, time: 1500});
+						}
 					}
-				});
+				},"bill");
 			} else if (layEvent === 'view') { // 查看
 				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
@@ -472,21 +480,34 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'故障申请单'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定要废弃当前流程实例吗？','','cmp:table'), function (i) {
 					top.layer.close(i);
-					admin.post(deleteURL, { id : data.id }, function (data) {
-						top.layer.closeAll('loading');
-						if (data.success) {
-							if(window.pageExt.list.afterSingleDelete) {
-								var doNext=window.pageExt.list.afterSingleDelete(data);
-								if(!doNext) return;
-							}
-							fox.showMessage(data);
-							refreshTableData();
+					bpm.getProcessInstanceByBill("eam_asset_equipment_repair",{ id : data.id },function(p) {
+						if(p) {
+							bpm.abandon({processInstanceId:p.id,reason:"无",force:false},function (r){
+								if(r.success) {
+									fox.showMessage(r);
+									refreshTableData();
+								} else {
+									fox.showMessage(r);
+								}
+							},[$(".ops-delete-button[data-id='"+data.id+"']")]);
 						} else {
-							fox.showMessage(data);
+							admin.post(deleteURL, { id : data.id }, function (data) {
+								top.layer.closeAll('loading');
+								if (data.success) {
+									if(window.pageExt.list.afterSingleDelete) {
+										var doNext=window.pageExt.list.afterSingleDelete(data);
+										if(!doNext) return;
+									}
+									fox.showMessage(data);
+									refreshTableData();
+								} else {
+									fox.showMessage(data);
+								}
+							},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 						}
-					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
+					},"bill",);
 				});
 			}
 			else if (layEvent === 'repair-order') { // 维修工单

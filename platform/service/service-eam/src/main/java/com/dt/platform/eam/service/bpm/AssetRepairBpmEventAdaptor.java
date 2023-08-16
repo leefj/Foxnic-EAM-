@@ -21,8 +21,6 @@ import org.github.foxnic.web.framework.bpm.BpmEventAdaptor;
 
 public class AssetRepairBpmEventAdaptor extends BpmEventAdaptor<AssetRepair, IAssetRepairService> {
 
-
-
 	public String BPM_TABLE="eam_asset_repair";
 
 	private void updateBillStatus(String status ,String id){
@@ -42,7 +40,6 @@ public class AssetRepairBpmEventAdaptor extends BpmEventAdaptor<AssetRepair, IAs
 		Logger.info("onTemporarySaveStart result:" + event.getActionResult().code());
 		Logger.info("onTemporarySaveStart result:"+event.getActionResult().getData());
 		Logger.info("onTemporarySaveStart result:"+event.getActionResult().getMessage());
-
 		return event.getActionResult();
 	}
 
@@ -96,9 +93,6 @@ public class AssetRepairBpmEventAdaptor extends BpmEventAdaptor<AssetRepair, IAs
 		Logger.info("onNodeEnd result:"+event.getActionResult().code());
 		Logger.info("onNodeEnd result:"+event.getActionResult().getData());
 		Logger.info("onNodeEnd result:"+event.getActionResult().getMessage());
-
-
-
 
 		if("END".equals(event.getNodeId())){
 			updateBillStatus(AssetHandleStatusEnum.COMPLETE.code(), event.getBillId());

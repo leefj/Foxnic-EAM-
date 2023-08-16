@@ -12,6 +12,7 @@ import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.RepairCategoryTplServiceProxy;
 import com.dt.platform.proxy.eam.RepairOrderServiceProxy;
 import com.dt.platform.proxy.eam.RepairUrgencyServiceProxy;
+import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
@@ -41,6 +42,9 @@ public class RepairOrderGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","报修部门","报修部门");
 
 
+
+        cfg.bpm().form("eam_asset_equipment_repair");
+        cfg.bpm().integrate(IntegrateMode.FRONT);
 
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.SELECTED_CODE).basic().hidden(true);
@@ -183,12 +187,13 @@ public class RepairOrderGtr extends BaseCodeGenerator{
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
-                .setControllerAndAgent(WriteMode.IGNORE) //Rest
-                .setPageController(WriteMode.IGNORE) //页面控制器
+                .setServiceIntfAnfImpl(WriteMode.WRITE_TEMP_FILE) //服务与接口
+                .setControllerAndAgent(WriteMode.WRITE_TEMP_FILE) //Rest
+                .setPageController(WriteMode.WRITE_TEMP_FILE) //页面控制器
+                .setBpmEventAdaptor(WriteMode.WRITE_TEMP_FILE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
+                .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         cfg.buildAll();
     }
 

@@ -16,6 +16,7 @@ import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
 import java.math.BigDecimal;
 import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import org.github.foxnic.web.domain.hrm.Organization;
 import com.github.foxnic.sql.data.ExprRcd;
 
@@ -25,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 故障申请单VO类型
  * <p>故障申请单 , 数据表 eam_repair_order 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-11 13:36:35
+ * @since 2023-08-16 07:35:56
  * @sign B246C9A6519ACCA6F8C9E09407F19A01
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -438,23 +439,26 @@ public class RepairOrderVO extends RepairOrder {
 			inst.setReportUser(this.getReportUser());
 			inst.setRepairUrgency(this.getRepairUrgency());
 			inst.setSearchField(this.getSearchField());
-			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
-			inst.setAssetIds(this.getAssetIds());
 			inst.setPageSize(this.getPageSize());
+			inst.setHistoricProcessList(this.getHistoricProcessList());
 			inst.setRepairOrderProcess(this.getRepairOrderProcess());
 			inst.setOriginator(this.getOriginator());
 			inst.setAssetList(this.getAssetList());
+			inst.setCurrentProcessList(this.getCurrentProcessList());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setDataOrigin(this.getDataOrigin());
+			inst.setQueryLogic(this.getQueryLogic());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setAssetIds(this.getAssetIds());
+			inst.setDefaultProcess(this.getDefaultProcess());
 			inst.setOrderAct(this.getOrderAct());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setOrganization(this.getOrganization());
-			inst.setDirtyFields(this.getDirtyFields());
-			inst.setSortField(this.getSortField());
-			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setCategoryTpl(this.getCategoryTpl());
-			inst.setQueryLogic(this.getQueryLogic());
 			inst.setAsset(this.getAsset());
 			inst.setOrderAcceptance(this.getOrderAcceptance());
 			inst.setSearchValue(this.getSearchValue());
@@ -551,18 +555,19 @@ public class RepairOrderVO extends RepairOrder {
 			this.setReportUser(DataParser.parse(Employee.class, map.get(RepairOrderVOMeta.REPORT_USER)));
 			this.setRepairUrgency(DataParser.parse(RepairUrgency.class, map.get(RepairOrderVOMeta.REPAIR_URGENCY)));
 			this.setSearchField(DataParser.parse(String.class, map.get(RepairOrderVOMeta.SEARCH_FIELD)));
-			this.setRequestAction(DataParser.parse(String.class, map.get(RepairOrderVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(RepairOrderVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(RepairOrderVOMeta.PAGE_SIZE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(RepairOrderVOMeta.ORIGINATOR)));
+			this.setSortField(DataParser.parse(String.class, map.get(RepairOrderVOMeta.SORT_FIELD)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(RepairOrderVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(RepairOrderVOMeta.QUERY_LOGIC)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(RepairOrderVOMeta.REQUEST_ACTION)));
+			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(RepairOrderVOMeta.DEFAULT_PROCESS)));
 			this.setOrderAct(DataParser.parse(RepairOrderAct.class, map.get(RepairOrderVOMeta.ORDER_ACT)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(RepairOrderVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(RepairOrderVOMeta.SORT_TYPE)));
 			this.setOrganization(DataParser.parse(Organization.class, map.get(RepairOrderVOMeta.ORGANIZATION)));
-			this.setSortField(DataParser.parse(String.class, map.get(RepairOrderVOMeta.SORT_FIELD)));
-			this.setDataOrigin(DataParser.parse(String.class, map.get(RepairOrderVOMeta.DATA_ORIGIN)));
 			this.setCategoryTpl(DataParser.parse(RepairCategoryTpl.class, map.get(RepairOrderVOMeta.CATEGORY_TPL)));
-			this.setQueryLogic(DataParser.parse(String.class, map.get(RepairOrderVOMeta.QUERY_LOGIC)));
 			this.setAsset(DataParser.parse(Asset.class, map.get(RepairOrderVOMeta.ASSET)));
 			this.setOrderAcceptance(DataParser.parse(RepairOrderAcceptance.class, map.get(RepairOrderVOMeta.ORDER_ACCEPTANCE)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(RepairOrderVOMeta.SEARCH_VALUE)));
@@ -603,18 +608,19 @@ public class RepairOrderVO extends RepairOrder {
 				this.setReportUser( (Employee)map.get(RepairOrderVOMeta.REPORT_USER));
 				this.setRepairUrgency( (RepairUrgency)map.get(RepairOrderVOMeta.REPAIR_URGENCY));
 				this.setSearchField( (String)map.get(RepairOrderVOMeta.SEARCH_FIELD));
-				this.setRequestAction( (String)map.get(RepairOrderVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(RepairOrderVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(RepairOrderVOMeta.PAGE_SIZE));
 				this.setOriginator( (Employee)map.get(RepairOrderVOMeta.ORIGINATOR));
+				this.setSortField( (String)map.get(RepairOrderVOMeta.SORT_FIELD));
+				this.setDataOrigin( (String)map.get(RepairOrderVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(RepairOrderVOMeta.QUERY_LOGIC));
+				this.setRequestAction( (String)map.get(RepairOrderVOMeta.REQUEST_ACTION));
+				this.setDefaultProcess( (ProcessInstance)map.get(RepairOrderVOMeta.DEFAULT_PROCESS));
 				this.setOrderAct( (RepairOrderAct)map.get(RepairOrderVOMeta.ORDER_ACT));
 				this.setPageIndex( (Integer)map.get(RepairOrderVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(RepairOrderVOMeta.SORT_TYPE));
 				this.setOrganization( (Organization)map.get(RepairOrderVOMeta.ORGANIZATION));
-				this.setSortField( (String)map.get(RepairOrderVOMeta.SORT_FIELD));
-				this.setDataOrigin( (String)map.get(RepairOrderVOMeta.DATA_ORIGIN));
 				this.setCategoryTpl( (RepairCategoryTpl)map.get(RepairOrderVOMeta.CATEGORY_TPL));
-				this.setQueryLogic( (String)map.get(RepairOrderVOMeta.QUERY_LOGIC));
 				this.setAsset( (Asset)map.get(RepairOrderVOMeta.ASSET));
 				this.setOrderAcceptance( (RepairOrderAcceptance)map.get(RepairOrderVOMeta.ORDER_ACCEPTANCE));
 				this.setSearchValue( (String)map.get(RepairOrderVOMeta.SEARCH_VALUE));

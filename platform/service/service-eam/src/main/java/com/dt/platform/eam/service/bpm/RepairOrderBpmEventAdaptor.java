@@ -13,32 +13,30 @@ import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
 
-import com.dt.platform.domain.eam.AssetScrap;
-import com.dt.platform.eam.service.IAssetScrapService;
+import com.dt.platform.domain.eam.RepairOrder;
+import com.dt.platform.eam.service.IRepairOrderService;
 
 /**
  * <p>
- * 资产报废流程回调事件适配器
+ * 故障申请单流程回调事件适配器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-16 18:42:13
+ * @since 2023-08-16 07:35:56
 */
 
-@Service
-public class AssetScrapBpmEventAdaptor extends BpmEventAdaptor<AssetScrap,IAssetScrapService> {
-
-	@Autowired
-	private IAssetScrapService assetScrapService;
+public class RepairOrderBpmEventAdaptor extends BpmEventAdaptor<RepairOrder,IRepairOrderService> {
 
 
-	public String BPM_TABLE="eam_asset_scrap";
+
+	public String BPM_TABLE="eam_repair_order";
 
 
 	private void updateBillStatus(String status ,String id){
 		this.dao().execute("update "+BPM_TABLE+" set status=? where id=?", status, id);
 	}
 
-	public AssetScrapBpmEventAdaptor(IAssetScrapService service) {
+
+	public RepairOrderBpmEventAdaptor(IRepairOrderService service) {
 		super(service);
 	}
 
@@ -61,12 +59,10 @@ public class AssetScrapBpmEventAdaptor extends BpmEventAdaptor<AssetScrap,IAsset
 	 * 流程待办开始，通过返回 BpmActionResult  的 success 或  failure 控制流程待办处理过程是否继续进行
 	 * */
 	protected BpmActionResult onTaskStart(BpmEvent event) {
-
 		if(event.getActionResult().isSuccess()){
 			updateBillStatus(AssetHandleStatusEnum.APPROVAL.code(), event.getBillId());
 		}
 		return event.getActionResult();
-
 	}
 
 	/***
@@ -82,9 +78,7 @@ public class AssetScrapBpmEventAdaptor extends BpmEventAdaptor<AssetScrap,IAsset
 	protected BpmActionResult onNodeEnd(BpmEvent event) {
 		if("END".equals(event.getNodeId())){
 			updateBillStatus(AssetHandleStatusEnum.COMPLETE.code(), event.getBillId());
-			assetScrapService.confirmOperation(event.getBillId());
 		}
-
 		return event.getActionResult();
 	}
 
@@ -136,7 +130,6 @@ public class AssetScrapBpmEventAdaptor extends BpmEventAdaptor<AssetScrap,IAsset
 	 * 流程废弃开始，通过返回 BpmActionResult  的 success 或  failure 控制流程废弃处理过程是否继续进行
 	 * */
 	protected BpmActionResult onProcessAbandonStart(BpmEvent event) {
-
 		updateBillStatus(AssetHandleStatusEnum.CANCEL.code(), event.getBillId());
 		return event.getActionResult();
 	}

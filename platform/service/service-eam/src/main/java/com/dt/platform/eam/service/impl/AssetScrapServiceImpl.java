@@ -15,6 +15,7 @@ import com.dt.platform.eam.service.bpm.AssetScrapBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.dt.platform.proxy.eam.AssetScrapServiceProxy;
 import com.github.foxnic.api.constant.CodeTextEnum;
+import com.github.foxnic.api.error.CommonError;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.bean.BeanUtil;
@@ -22,6 +23,7 @@ import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
@@ -760,12 +762,18 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 	}
 
 
-	/**
-	 * 处理流程回调
-	 * */
+
 	public  BpmActionResult onProcessCallback(BpmEvent event) {
-		return (new AssetScrapBpmEventAdaptor(this)).onProcessCallback(event);
+		try {
+			return(new AssetScrapBpmEventAdaptor(this)).onProcessCallback(event);
+		} catch (Throwable t) {
+			Logger.exception("流程 "+event.getProcessInstance().getProcessDefinition().getName()+" , code = "+event.getProcessInstance().getProcessDefinition().getCode()+" , node = { name : "+event.getCurrentNode().getNodeName()+" , id : "+event.getCurrentNode().getCamundaNodeId()+"}  回调异常",t);
+			BpmActionResult result = new BpmActionResult();
+			result.success(false).code(CommonError.FAILURE).extra().setException(t);
+			return result;
+		}
 	}
+
 
 	@Override
 	public void joinProcess(AssetScrap assetScrap) {
@@ -774,7 +782,7 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 
 	@Override
 	public void joinProcess(List<AssetScrap> assetScrapList) {
-		BpmAssistant.joinProcess(assetScrapList, IAssetEmployeeLossService.FORM_DEFINITION_CODE);
+		BpmAssistant.joinProcess(assetScrapList, IAssetScrapService.FORM_DEFINITION_CODE);
 	}
 
 	@Override

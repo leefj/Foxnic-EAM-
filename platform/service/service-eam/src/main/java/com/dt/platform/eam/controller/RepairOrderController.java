@@ -8,10 +8,13 @@ import com.dt.platform.domain.eam.meta.AssetRepairVOMeta;
 import com.dt.platform.proxy.eam.AssetRepairServiceProxy;
 import com.dt.platform.proxy.eam.MaintainTaskServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.hrm.Person;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,7 +63,7 @@ import com.github.foxnic.api.swagger.ApiParamSupport;
 @Api(tags = "维修工单")
 @ApiSort(0)
 @RestController("EamRepairOrderController")
-public class RepairOrderController extends SuperController {
+public class RepairOrderController extends SuperController implements BpmCallbackController {
 
     @Autowired
     private IRepairOrderService repairOrderService;
@@ -419,4 +422,15 @@ public class RepairOrderController extends SuperController {
             return ErrorDesc.failure().message("导入失败").data(errors);
         }
     }
+
+    /**
+     *  流程回调处理
+     */
+    @SentinelResource(value = RepairOrderServiceProxy.BPM_CALLBACK , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+    @PostMapping(RepairOrderServiceProxy.BPM_CALLBACK)
+    public BpmActionResult onProcessCallback(BpmEvent event){
+
+        return repairOrderService.onProcessCallback(event);
+    }
+
 }

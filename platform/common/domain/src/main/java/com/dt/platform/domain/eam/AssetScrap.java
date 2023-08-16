@@ -12,6 +12,7 @@ import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.system.DictItem;
+import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetScrapMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
@@ -27,8 +30,8 @@ import com.github.foxnic.dao.entity.EntityContext;
  * 资产报废
  * <p>资产报废 , 数据表 eam_asset_scrap 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 19:54:32
- * @sign 62E78CD41A92483C79977FDBB9E53204
+ * @since 2023-08-16 20:26:27
+ * @sign D73206458B1A5165459226D05E0E91B0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,13 +47,13 @@ public class AssetScrap extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "559774509796696064")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "731175816267825152")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "SC202203251603172")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "SC202351111551429")
 	private String businessCode;
 	
 	/**
@@ -68,31 +71,31 @@ public class AssetScrap extends Entity {
 	/**
 	 * 清理状态：清理状态
 	*/
-	@ApiModelProperty(required = false,value="清理状态" , notes = "清理状态" , example = "complete")
+	@ApiModelProperty(required = false,value="清理状态" , notes = "清理状态" , example = "incomplete")
 	private String cleanStatus;
 	
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "12")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "1212")
 	private String name;
 	
 	/**
 	 * 报废方式：报废方式
 	*/
-	@ApiModelProperty(required = false,value="报废方式" , notes = "报废方式")
+	@ApiModelProperty(required = false,value="报废方式" , notes = "报废方式" , example = "damage")
 	private String method;
 	
 	/**
 	 * 报废时间：报废时间
 	*/
-	@ApiModelProperty(required = false,value="报废时间" , notes = "报废时间" , example = "2022-03-25")
+	@ApiModelProperty(required = false,value="报废时间" , notes = "报废时间" , example = "2023-07-11")
 	private String scrapDate;
 	
 	/**
 	 * 报废说明：报废说明
 	*/
-	@ApiModelProperty(required = false,value="报废说明" , notes = "报废说明")
+	@ApiModelProperty(required = false,value="报废说明" , notes = "报废说明" , example = "1212")
 	private String content;
 	
 	/**
@@ -104,7 +107,7 @@ public class AssetScrap extends Entity {
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2022-03-25 12:00:00")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-07-11 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -122,7 +125,7 @@ public class AssetScrap extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-03-25 04:24:03")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-11 03:51:39")
 	private Date createTime;
 	
 	/**
@@ -134,7 +137,7 @@ public class AssetScrap extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-03-25 04:24:57")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-08-07 03:38:03")
 	private Date updateTime;
 	
 	/**
@@ -173,7 +176,7 @@ public class AssetScrap extends Entity {
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1648196631000")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1691393874000")
 	private String selectedCode;
 	
 	/**
@@ -259,6 +262,24 @@ public class AssetScrap extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="申请人" , notes = "申请人")
 	private String originatorUserName;
+	
+	/**
+	 * 历史流程清单：历史流程清单
+	*/
+	@ApiModelProperty(required = false,value="历史流程清单" , notes = "历史流程清单")
+	private List<ProcessInstance> historicProcessList;
+	
+	/**
+	 * 在批的流程清单：在批的流程清单
+	*/
+	@ApiModelProperty(required = false,value="在批的流程清单" , notes = "在批的流程清单")
+	private List<ProcessInstance> currentProcessList;
+	
+	/**
+	 * 默认流程：优先取在批的流程
+	*/
+	@ApiModelProperty(required = false,value="默认流程" , notes = "优先取在批的流程")
+	private ProcessInstance defaultProcess;
 	
 	/**
 	 * 制单人：制单人
@@ -1021,6 +1042,85 @@ public class AssetScrap extends Entity {
 	}
 	
 	/**
+	 * 获得 历史流程清单<br>
+	 * 历史流程清单
+	 * @return 历史流程清单
+	*/
+	public List<ProcessInstance> getHistoricProcessList() {
+		return historicProcessList;
+	}
+	
+	/**
+	 * 设置 历史流程清单
+	 * @param historicProcessList 历史流程清单
+	 * @return 当前对象
+	*/
+	public AssetScrap setHistoricProcessList(List<ProcessInstance> historicProcessList) {
+		this.historicProcessList=historicProcessList;
+		return this;
+	}
+	
+	/**
+	 * 添加 历史流程清单
+	 * @param historicProcess 历史流程清单
+	 * @return 当前对象
+	*/
+	public AssetScrap addHistoricProcess(ProcessInstance... historicProcess) {
+		if(this.historicProcessList==null) historicProcessList=new ArrayList<>();
+		this.historicProcessList.addAll(Arrays.asList(historicProcess));
+		return this;
+	}
+	
+	/**
+	 * 获得 在批的流程清单<br>
+	 * 在批的流程清单
+	 * @return 在批的流程清单
+	*/
+	public List<ProcessInstance> getCurrentProcessList() {
+		return currentProcessList;
+	}
+	
+	/**
+	 * 设置 在批的流程清单
+	 * @param currentProcessList 在批的流程清单
+	 * @return 当前对象
+	*/
+	public AssetScrap setCurrentProcessList(List<ProcessInstance> currentProcessList) {
+		this.currentProcessList=currentProcessList;
+		return this;
+	}
+	
+	/**
+	 * 添加 在批的流程清单
+	 * @param currentProcess 在批的流程清单
+	 * @return 当前对象
+	*/
+	public AssetScrap addCurrentProcess(ProcessInstance... currentProcess) {
+		if(this.currentProcessList==null) currentProcessList=new ArrayList<>();
+		this.currentProcessList.addAll(Arrays.asList(currentProcess));
+		return this;
+	}
+	
+	/**
+	 * 获得 默认流程<br>
+	 * 优先取在批的流程
+	 * @return 默认流程
+	*/
+	public ProcessInstance getDefaultProcess() {
+		return defaultProcess;
+	}
+	
+	/**
+	 * 设置 默认流程
+	 * @param defaultProcess 默认流程
+	 * @return 当前对象
+	*/
+	public AssetScrap setDefaultProcess(ProcessInstance defaultProcess) {
+		this.defaultProcess=defaultProcess;
+		return this;
+	}
+	
+	/**
 	 * 获得 制单人<br>
 	 * 制单人
 	 * @return 制单人
@@ -1138,9 +1238,12 @@ public class AssetScrap extends Entity {
 			inst.setChangeInstance(this.getChangeInstance());
 			inst.setMethodDict(this.getMethodDict());
 			inst.setAssetIds(this.getAssetIds());
+			inst.setHistoricProcessList(this.getHistoricProcessList());
 			inst.setOriginator(this.getOriginator());
 			inst.setAssetList(this.getAssetList());
 			inst.setOriginatorUserName(this.getOriginatorUserName());
+			inst.setCurrentProcessList(this.getCurrentProcessList());
+			inst.setDefaultProcess(this.getDefaultProcess());
 		}
 		inst.clearModifies();
 		return inst;
@@ -1189,5 +1292,181 @@ public class AssetScrap extends Entity {
 	@Transient
 	public static AssetScrap create() {
 		return new com.dt.platform.domain.eam.meta.AssetScrapMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setChsVersion(DataParser.parse(String.class, map.get(AssetScrapMeta.CHS_VERSION)));
+			this.setCleanStatus(DataParser.parse(String.class, map.get(AssetScrapMeta.CLEAN_STATUS)));
+			this.setProcId(DataParser.parse(String.class, map.get(AssetScrapMeta.PROC_ID)));
+			this.setLatestApproverName(DataParser.parse(String.class, map.get(AssetScrapMeta.LATEST_APPROVER_NAME)));
+			this.setChangeInstanceId(DataParser.parse(String.class, map.get(AssetScrapMeta.CHANGE_INSTANCE_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetScrapMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(AssetScrapMeta.CONTENT)));
+			this.setNextApproverIds(DataParser.parse(String.class, map.get(AssetScrapMeta.NEXT_APPROVER_IDS)));
+			this.setApprovalOpinion(DataParser.parse(String.class, map.get(AssetScrapMeta.APPROVAL_OPINION)));
+			this.setChsStatus(DataParser.parse(String.class, map.get(AssetScrapMeta.CHS_STATUS)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(AssetScrapMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetScrapMeta.BUSINESS_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetScrapMeta.UPDATE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetScrapMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetScrapMeta.ORIGINATOR_ID)));
+			this.setAttach(DataParser.parse(String.class, map.get(AssetScrapMeta.ATTACH)));
+			this.setSummary(DataParser.parse(String.class, map.get(AssetScrapMeta.SUMMARY)));
+			this.setNextApproverNames(DataParser.parse(String.class, map.get(AssetScrapMeta.NEXT_APPROVER_NAMES)));
+			this.setLatestApproverId(DataParser.parse(String.class, map.get(AssetScrapMeta.LATEST_APPROVER_ID)));
+			this.setMethod(DataParser.parse(String.class, map.get(AssetScrapMeta.METHOD)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetScrapMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetScrapMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetScrapMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetScrapMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetScrapMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetScrapMeta.DELETE_TIME)));
+			this.setChsType(DataParser.parse(String.class, map.get(AssetScrapMeta.CHS_TYPE)));
+			this.setScrapDate(DataParser.parse(String.class, map.get(AssetScrapMeta.SCRAP_DATE)));
+			this.setName(DataParser.parse(String.class, map.get(AssetScrapMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetScrapMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetScrapMeta.DELETE_BY)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetScrapMeta.STATUS)));
+			// others
+			this.setChangeInstance(DataParser.parse(ChangeInstance.class, map.get(AssetScrapMeta.CHANGE_INSTANCE)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetScrapMeta.ORIGINATOR)));
+			this.setOriginatorUserName(DataParser.parse(String.class, map.get(AssetScrapMeta.ORIGINATOR_USER_NAME)));
+			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(AssetScrapMeta.DEFAULT_PROCESS)));
+			return true;
+		} else {
+			try {
+				this.setChsVersion( (String)map.get(AssetScrapMeta.CHS_VERSION));
+				this.setCleanStatus( (String)map.get(AssetScrapMeta.CLEAN_STATUS));
+				this.setProcId( (String)map.get(AssetScrapMeta.PROC_ID));
+				this.setLatestApproverName( (String)map.get(AssetScrapMeta.LATEST_APPROVER_NAME));
+				this.setChangeInstanceId( (String)map.get(AssetScrapMeta.CHANGE_INSTANCE_ID));
+				this.setSelectedCode( (String)map.get(AssetScrapMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(AssetScrapMeta.CONTENT));
+				this.setNextApproverIds( (String)map.get(AssetScrapMeta.NEXT_APPROVER_IDS));
+				this.setApprovalOpinion( (String)map.get(AssetScrapMeta.APPROVAL_OPINION));
+				this.setChsStatus( (String)map.get(AssetScrapMeta.CHS_STATUS));
+				this.setBusinessDate( (Date)map.get(AssetScrapMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(AssetScrapMeta.BUSINESS_CODE));
+				this.setUpdateBy( (String)map.get(AssetScrapMeta.UPDATE_BY));
+				this.setId( (String)map.get(AssetScrapMeta.ID));
+				this.setOriginatorId( (String)map.get(AssetScrapMeta.ORIGINATOR_ID));
+				this.setAttach( (String)map.get(AssetScrapMeta.ATTACH));
+				this.setSummary( (String)map.get(AssetScrapMeta.SUMMARY));
+				this.setNextApproverNames( (String)map.get(AssetScrapMeta.NEXT_APPROVER_NAMES));
+				this.setLatestApproverId( (String)map.get(AssetScrapMeta.LATEST_APPROVER_ID));
+				this.setMethod( (String)map.get(AssetScrapMeta.METHOD));
+				this.setUpdateTime( (Date)map.get(AssetScrapMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssetScrapMeta.VERSION));
+				this.setCreateBy( (String)map.get(AssetScrapMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetScrapMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetScrapMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(AssetScrapMeta.DELETE_TIME));
+				this.setChsType( (String)map.get(AssetScrapMeta.CHS_TYPE));
+				this.setScrapDate( (String)map.get(AssetScrapMeta.SCRAP_DATE));
+				this.setName( (String)map.get(AssetScrapMeta.NAME));
+				this.setTenantId( (String)map.get(AssetScrapMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetScrapMeta.DELETE_BY));
+				this.setStatus( (String)map.get(AssetScrapMeta.STATUS));
+				// others
+				this.setChangeInstance( (ChangeInstance)map.get(AssetScrapMeta.CHANGE_INSTANCE));
+				this.setOriginator( (Employee)map.get(AssetScrapMeta.ORIGINATOR));
+				this.setOriginatorUserName( (String)map.get(AssetScrapMeta.ORIGINATOR_USER_NAME));
+				this.setDefaultProcess( (ProcessInstance)map.get(AssetScrapMeta.DEFAULT_PROCESS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setChsVersion(DataParser.parse(String.class, r.getValue(AssetScrapMeta.CHS_VERSION)));
+			this.setCleanStatus(DataParser.parse(String.class, r.getValue(AssetScrapMeta.CLEAN_STATUS)));
+			this.setProcId(DataParser.parse(String.class, r.getValue(AssetScrapMeta.PROC_ID)));
+			this.setLatestApproverName(DataParser.parse(String.class, r.getValue(AssetScrapMeta.LATEST_APPROVER_NAME)));
+			this.setChangeInstanceId(DataParser.parse(String.class, r.getValue(AssetScrapMeta.CHANGE_INSTANCE_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetScrapMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AssetScrapMeta.CONTENT)));
+			this.setNextApproverIds(DataParser.parse(String.class, r.getValue(AssetScrapMeta.NEXT_APPROVER_IDS)));
+			this.setApprovalOpinion(DataParser.parse(String.class, r.getValue(AssetScrapMeta.APPROVAL_OPINION)));
+			this.setChsStatus(DataParser.parse(String.class, r.getValue(AssetScrapMeta.CHS_STATUS)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(AssetScrapMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetScrapMeta.BUSINESS_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetScrapMeta.UPDATE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetScrapMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetScrapMeta.ORIGINATOR_ID)));
+			this.setAttach(DataParser.parse(String.class, r.getValue(AssetScrapMeta.ATTACH)));
+			this.setSummary(DataParser.parse(String.class, r.getValue(AssetScrapMeta.SUMMARY)));
+			this.setNextApproverNames(DataParser.parse(String.class, r.getValue(AssetScrapMeta.NEXT_APPROVER_NAMES)));
+			this.setLatestApproverId(DataParser.parse(String.class, r.getValue(AssetScrapMeta.LATEST_APPROVER_ID)));
+			this.setMethod(DataParser.parse(String.class, r.getValue(AssetScrapMeta.METHOD)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetScrapMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetScrapMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetScrapMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetScrapMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetScrapMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetScrapMeta.DELETE_TIME)));
+			this.setChsType(DataParser.parse(String.class, r.getValue(AssetScrapMeta.CHS_TYPE)));
+			this.setScrapDate(DataParser.parse(String.class, r.getValue(AssetScrapMeta.SCRAP_DATE)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetScrapMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetScrapMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetScrapMeta.DELETE_BY)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetScrapMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setChsVersion( (String)r.getValue(AssetScrapMeta.CHS_VERSION));
+				this.setCleanStatus( (String)r.getValue(AssetScrapMeta.CLEAN_STATUS));
+				this.setProcId( (String)r.getValue(AssetScrapMeta.PROC_ID));
+				this.setLatestApproverName( (String)r.getValue(AssetScrapMeta.LATEST_APPROVER_NAME));
+				this.setChangeInstanceId( (String)r.getValue(AssetScrapMeta.CHANGE_INSTANCE_ID));
+				this.setSelectedCode( (String)r.getValue(AssetScrapMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(AssetScrapMeta.CONTENT));
+				this.setNextApproverIds( (String)r.getValue(AssetScrapMeta.NEXT_APPROVER_IDS));
+				this.setApprovalOpinion( (String)r.getValue(AssetScrapMeta.APPROVAL_OPINION));
+				this.setChsStatus( (String)r.getValue(AssetScrapMeta.CHS_STATUS));
+				this.setBusinessDate( (Date)r.getValue(AssetScrapMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(AssetScrapMeta.BUSINESS_CODE));
+				this.setUpdateBy( (String)r.getValue(AssetScrapMeta.UPDATE_BY));
+				this.setId( (String)r.getValue(AssetScrapMeta.ID));
+				this.setOriginatorId( (String)r.getValue(AssetScrapMeta.ORIGINATOR_ID));
+				this.setAttach( (String)r.getValue(AssetScrapMeta.ATTACH));
+				this.setSummary( (String)r.getValue(AssetScrapMeta.SUMMARY));
+				this.setNextApproverNames( (String)r.getValue(AssetScrapMeta.NEXT_APPROVER_NAMES));
+				this.setLatestApproverId( (String)r.getValue(AssetScrapMeta.LATEST_APPROVER_ID));
+				this.setMethod( (String)r.getValue(AssetScrapMeta.METHOD));
+				this.setUpdateTime( (Date)r.getValue(AssetScrapMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssetScrapMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(AssetScrapMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetScrapMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetScrapMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(AssetScrapMeta.DELETE_TIME));
+				this.setChsType( (String)r.getValue(AssetScrapMeta.CHS_TYPE));
+				this.setScrapDate( (String)r.getValue(AssetScrapMeta.SCRAP_DATE));
+				this.setName( (String)r.getValue(AssetScrapMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetScrapMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetScrapMeta.DELETE_BY));
+				this.setStatus( (String)r.getValue(AssetScrapMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

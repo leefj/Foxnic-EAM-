@@ -11,12 +11,15 @@ import com.dt.platform.constants.enums.eam.RepairOrderStatusEnum;
 import com.dt.platform.domain.eam.AssetItem;
 import com.dt.platform.domain.eam.RepairOrder;
 import com.dt.platform.eam.service.*;
+import com.dt.platform.eam.service.bpm.RepairOrderBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
+import com.github.foxnic.api.error.CommonError;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -27,6 +30,9 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.sql.meta.DBField;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +41,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -477,6 +480,14 @@ public class RepairOrderServiceImpl extends SuperService<RepairOrder> implements
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
+	@Override
+	public List<RepairOrder> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
 	@Override
 	public List<RepairOrder> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
@@ -574,5 +585,34 @@ public class RepairOrderServiceImpl extends SuperService<RepairOrder> implements
 		return super.buildExcelStructure(isForExport);
 	}
 
+
+	/**
+	 * 处理流程回调
+	 * */
+	public BpmActionResult onProcessCallback(BpmEvent event) {
+		try {
+			return(new RepairOrderBpmEventAdaptor(this)).onProcessCallback(event);
+		} catch (Throwable t) {
+			Logger.exception("流程 "+event.getProcessInstance().getProcessDefinition().getName()+" , code = "+event.getProcessInstance().getProcessDefinition().getCode()+" , node = { name : "+event.getCurrentNode().getNodeName()+" , id : "+event.getCurrentNode().getCamundaNodeId()+"}  回调异常",t);
+			BpmActionResult result = new BpmActionResult();
+			result.success(false).code(CommonError.FAILURE).extra().setException(t);
+			return result;
+		}
+	}
+
+	@Override
+	public void joinProcess(RepairOrder repairOrder) {
+		this.joinProcess(Arrays.asList(repairOrder));
+	}
+
+	@Override
+	public void joinProcess(List<RepairOrder> repairOrderList) {
+		BpmAssistant.joinProcess(repairOrderList,IRepairOrderService.FORM_DEFINITION_CODE);
+	}
+
+	@Override
+	public void joinProcess(PagedList<RepairOrder> repairOrderList) {
+		this.joinProcess(repairOrderList.getList());
+	}
 
 }
