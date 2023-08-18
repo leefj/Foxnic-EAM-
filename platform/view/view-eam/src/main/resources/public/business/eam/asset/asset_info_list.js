@@ -110,6 +110,7 @@ function ListPage() {
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
+				cellMinWidth:160,
 				cols: [COL_DATA],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				// footer : {

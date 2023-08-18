@@ -75,7 +75,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
                     operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
-                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                //    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="repairing"){
@@ -88,7 +88,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
                     operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
-                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+               //     operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
 
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
@@ -102,7 +102,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
                     operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
-                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+              //      operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="acceptance_failed"){
@@ -115,7 +115,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
                     operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
-                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+               //     operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="finish"){
@@ -123,13 +123,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     toolHtml=toolHtml.replace(/lay-event="tool-dispatch-order"/i, "style=\"display:none\"")
                     toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
                     operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"")
-                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                  //  operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("toolbarTemplate").innerHTML=toolHtml;
 
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
                     operHtml=operHtml.replace(/lay-event="cancel"/i, "style=\"display:none\"")
-                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+              //      operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="cancel"){
@@ -142,7 +142,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                     operHtml=operHtml.replace(/lay-event="confirm-data"/i, "style=\"display:none\"")
                     operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
-                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                //    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
                     document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
                 }else if(REPAIR_STATUS=="all"){
@@ -242,7 +242,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 //如果审批中或审批通过的不允许编辑
                 if(data[i].status=="complete") {
                     fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                 //   fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
@@ -641,16 +641,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             ifr.height("450px");
             //设置地址
             var data={};
-            if(processInstance){
-                if(processInstance.approvalStatus=="drafting"){
-                    console.log("processInstance",processInstance.approvalStatus,"edit");
+            if(INSTANCE_DATA){
+                if(INSTANCE_DATA.approvalStatus=="drafting"){
+                    console.log("processInstance",INSTANCE_DATA.approvalStatus,"edit");
                     formAction="edit"
+                }else if(INSTANCE_DATA.approvalStatus=="complete"){
+                    console.log("processInstance",INSTANCE_DATA.approvalStatus,"view");
+                    formAction="view"
                 }else{
-                    console.log("processInstance",processInstance.approvalStatus,"view");
+                    console.log("processInstance",INSTANCE_DATA.approvalStatus,"view");
                     formAction="view"
                 }
             }else{
-                console.log("processInstance",processInstance,"create");
                 formAction="create";
             }
             data.searchContent={};

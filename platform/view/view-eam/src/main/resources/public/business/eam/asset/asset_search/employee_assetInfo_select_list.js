@@ -85,6 +85,7 @@ function ListPage() {
             }
             dataTable=fox.renderTable({
                 elem: '#data-table',
+                cellMinWidth:160,
                 toolbar: '#toolbarTemplate',
                 defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
                 url: moduleURL +'/query-paged-list-by-employee-select',

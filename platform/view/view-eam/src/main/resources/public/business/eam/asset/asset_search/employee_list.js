@@ -65,6 +65,7 @@ function ListPage() {
                 height: 'full-'+(h+28),
                 limit: 50,
                 where: ps,
+                cellMinWidth:160,
                 cols: [[
                     { fixed: 'left',type: 'numbers' },
                     { fixed: 'left',type:'checkbox' }

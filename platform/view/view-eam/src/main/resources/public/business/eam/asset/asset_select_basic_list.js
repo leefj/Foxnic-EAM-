@@ -102,6 +102,7 @@ function ListPage() {
 				limit: 50,
 				limits:['50','100','500','1000','5000'],
 				where: ps,
+				cellMinWidth:160,
 				cols: [COL_DATA],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {

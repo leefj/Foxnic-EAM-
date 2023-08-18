@@ -78,6 +78,7 @@ public class RepairOrderPageController extends ViewController {
 	public String form(Model model,HttpServletRequest request , String id,String processId) {
 		String empId=SessionUser.getCurrent().getActivatedEmployeeId();
 		SessionUser user=SessionUser.getCurrent();
+		ProcessInstance instanceData=null;
 		String userName=user.getUser().getActivatedEmployeeName();
 		model.addAttribute("curEmpId",empId);
 		model.addAttribute("curUserName",userName);
@@ -88,6 +89,7 @@ public class RepairOrderPageController extends ViewController {
 			Result<ProcessInstance> res=ProcessInstanceServiceProxy.api().getById(processId);
 			List<String> billList=res.getData().getBillIds();
 			model.addAttribute("billId",billList.get(0));
+			model.addAttribute("instanceData",res.getData());
 		}
 		return prefix+"/repair_order_form";
 	}

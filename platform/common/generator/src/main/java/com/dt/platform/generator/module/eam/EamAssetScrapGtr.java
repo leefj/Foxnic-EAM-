@@ -176,6 +176,8 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.view().list().addJsVariable("TAB_STATUS","[[${tabStatus}]]","tabStatus");
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","是否需要审批");
 
+        cfg.view().list().addJsVariable("INSTANCE_DATA","[[${instanceData}]]","instanceData");
+
 
 
 //        model.addAttribute("billId",id);
