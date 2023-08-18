@@ -92,6 +92,7 @@ function ListPage() {
 			dataTable=fox.renderTable({
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
+				cellMinWidth:160,
 				defaultToolbar: ['filter','exports',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: moduleURL +'/query-paged-list-by-selected?assetSelectedCode='+ASSET_SELECTED_CODE+"&assetOwnerId="+billdata.assetOwnerId+"&dataType="+dataType,
 				height: 400,

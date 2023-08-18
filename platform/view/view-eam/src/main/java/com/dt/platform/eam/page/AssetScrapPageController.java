@@ -72,13 +72,16 @@ public class AssetScrapPageController extends ViewController {
 	@RequestMapping("/asset_scrap_form.html")
 	public String form(Model model,HttpServletRequest request , String id,String processId) {
 
+		ProcessInstance instanceData=null;
 		model.addAttribute("billType", AssetOperateEnum.EAM_ASSET_SCRAP.code());
 		//打印流程数据
 		if(!StringUtil.isBlank(processId)){
 			Result<ProcessInstance> res= ProcessInstanceServiceProxy.api().getById(processId);
 			List<String> billList=res.getData().getBillIds();
 			model.addAttribute("billId",billList.get(0));
+			model.addAttribute("instanceData",res.getData());
 		}
+
 		return prefix+"/asset_scrap_form";
 	}
 }

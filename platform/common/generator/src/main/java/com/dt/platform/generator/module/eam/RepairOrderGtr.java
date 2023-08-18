@@ -153,6 +153,8 @@ public class RepairOrderGtr extends BaseCodeGenerator{
 
         cfg.view().form().addJsVariable("CUR_EMP_ID","[[${curEmpId}]]","curEmpId");
         cfg.view().form().addJsVariable("CUR_USER_NAME","[[${curUserName}]]","curUserName");
+        cfg.view().form().addJsVariable("INSTANCE_DATA","[[${instanceData}]]","instanceData");
+
 
 
         cfg.view().list().operationColumn().width(300);

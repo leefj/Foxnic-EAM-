@@ -94,6 +94,7 @@ function ListPage() {
                 limit: 50,
                 where: ps,
                 cols: [COL_DATA],
+                cellMinWidth:160,
                 done: function (data) {
                     dataType="keep";
                     dataTable.config.url= moduleURL +'/query-paged-list-by-employee-selected?selectedCode='+SELECTED_CODE+"&ownerId="+OWNER_ID+"&dataType="+dataType;

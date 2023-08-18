@@ -375,6 +375,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         onProcessInstanceReady:function (result) {
             // 可根据流程状态、当前审批节点判断和控制表单页面
+            console.log("onProcessInstanceReady")
             processInstance=result.data;
             console.log("processInstance",processInstance)
             // 非起草状态不允许修改表单
@@ -464,19 +465,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         assetSelectList:function (ifr,win,data) {
             console.log("assetSelectList",ifr,data);
             //设置地址
-            if(processInstance){
-                if(processInstance.approvalStatus=="drafting"){
-                    console.log("processInstance",processInstance.approvalStatus,"edit");
+            if(INSTANCE_DATA){
+                if(INSTANCE_DATA.approvalStatus=="drafting"){
+                    console.log("processInstance",INSTANCE_DATA.approvalStatus,"edit");
                     formAction="edit"
+                }else if(INSTANCE_DATA.approvalStatus=="complete"){
+                    console.log("processInstance",INSTANCE_DATA.approvalStatus,"view");
+                    formAction="view"
                 }else{
-                    console.log("processInstance",processInstance.approvalStatus,"view");
+                    console.log("processInstance",INSTANCE_DATA.approvalStatus,"view");
                     formAction="view"
                 }
             }else{
-                console.log("processInstance",processInstance,"create");
                 formAction="create";
             }
-
+            console.log("assetSelectList data",formAction,processInstance)
             ifr.height("450px");
             //设置地址
             var data={};

@@ -79,6 +79,7 @@ function ListPage() {
             dataTable=fox.renderTable({
                 elem: '#data-table',
                 toolbar: '#toolbarTemplate',
+                cellMinWidth:160,
                 defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
                 url: moduleURL +'/query-paged-list',
                 height: 'full-'+(120),
