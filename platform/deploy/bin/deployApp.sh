@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/08/15"
+modify_date="2023/08/24"
 ####################################################################################
 # run:
 #   sh deployApp.sh
@@ -8,7 +8,7 @@ modify_date="2023/08/15"
 #   check yum source is ok
 #   check network connect is ok
 # soft list:
-#   mysql_soft:/tmp/mysql-5.7.37-linux-glibc2.12-x86_64.tar.gz
+#   mysql_soft:/tmp/mysql-5.7.42-linux-glibc2.12-x86_64.tar.gz
 #   java_soft:/tmp/jdk-8u333-linux-x64.tar.gz
 #   app_soft:/tmp/app_release_last.tar.gz
 # clear all
@@ -68,8 +68,8 @@ if [[ -n $1 ]];then
 	app_version=$1
 fi
 soft_base_dir=/tmp
-mysql_soft=$soft_base_dir/mysql-5.7.37-linux-glibc2.12-x86_64.tar.gz
-mysql_soft_md5=423915249cc67bbfa75223d9753cde77
+mysql_soft=$soft_base_dir/mysql-5.7.42-linux-glibc2.12-x86_64.tar.gz
+mysql_soft_md5=c00530249e4bf6899d1fbf6d3fed4897
 app_soft_name=app_release_${app_version}.tar.gz
 app_soft=$soft_base_dir/$app_soft_name
 java_file=jdk-linux-x64.tar.gz
@@ -546,7 +546,7 @@ fi
 
 if [[ $mysql_download -eq 1 ]];then
 	echo "start to download mysql"
-	wget https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.37-linux-glibc2.12-x86_64.tar.gz
+	wget https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.42-linux-glibc2.12-x86_64.tar.gz
 fi
 #################################################################### download mysql finish
 #################################################################### download java start
