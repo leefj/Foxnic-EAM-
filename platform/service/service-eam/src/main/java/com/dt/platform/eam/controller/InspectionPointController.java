@@ -287,7 +287,7 @@ public class InspectionPointController extends SuperController {
     @ApiOperationSupport(order = 10)
     @SentinelResource(value = InspectionPointServiceProxy.QUERY_PAGED_LIST_BY_SELECT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionPointServiceProxy.QUERY_PAGED_LIST_BY_SELECT)
-    public Result<PagedList<InspectionPoint>> queryPagedList2(InspectionPointVO sample, String ownerId, String ownerType) {
+    public Result<PagedList<InspectionPoint>> queryPagedListBySelect(InspectionPointVO sample, String ownerId, String ownerType) {
         Result<PagedList<InspectionPoint>> result = new Result<>();
         PagedList<InspectionPoint> list = inspectionPointService.queryPagedListBySelect(sample, ownerId, ownerType);
         // join 关联的对象

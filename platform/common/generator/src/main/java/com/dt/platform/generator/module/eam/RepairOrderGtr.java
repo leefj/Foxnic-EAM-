@@ -159,7 +159,7 @@ public class RepairOrderGtr extends BaseCodeGenerator{
 
         cfg.view().list().operationColumn().width(300);
 
-         cfg.view().formWindow().width(Config.baseFormWidth);;
+        cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_REPAIR_ORDER.NAME,
