@@ -14,7 +14,7 @@ public class KnAuthority extends ModuleAuthority {
     public String[] getAuthorities() {
         return new String[] {
                 // 合同管理
-                "kb"
+                "oa"
         };
     }
 }

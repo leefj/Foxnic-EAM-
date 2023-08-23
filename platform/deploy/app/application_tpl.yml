@@ -137,7 +137,7 @@ foxnic:
     module-authorities:
       # 指定最顶层菜单的权限Key，用逗号分隔；若未指定值则忽略该规则，不做控制。
       #all
-      #auto_perm,system:mngr,changes,hr,basic_permissions,example,eam,system_monitor,zbx,common_system,oa,docs,sys_file:mngr,eam_employee,eam_equipment_mgr,kb,data_backup,pcm,oauth,public_resource,bpm,mobile_application,hrm,dp_rule:mngr,pay,system_monitor_list,ops,system_config,system_ops,sys_tpl_file:mngr,bigscreen,job,bpm-mgr
+      #auto_perm,system:mngr,changes,hr,basic_permissions,example,eam,system_monitor,zbx,common_system,oa,docs,sys_file:mngr,eam_employee,eam_equipment_mgr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,hrm,dp_rule:mngr,pay,system_monitor_list,ops,system_config,system_ops,sys_tpl_file:mngr,bigscreen,job,bpm-mgr
       ########################  public key list  ####################
       #pay,hrm,bpm-mgr,auto_perm,changes,hr,basic_permissions,common_system,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,dp_rule:mngr,system_config,sys_tpl_file:mngr,job
       ########################  common key list  #######################
@@ -146,12 +146,8 @@ foxnic:
       #eam,eam_employee,eam_equipment_mgr
       ########################  ops key list  #######################
       #ops,zbx
-      ########################  contract key list  ##################
-      #contract
       ########################  wms key list  #######################
       #wms
-      ########################  kb key list  #######################
-      #kb
       ########################  hr key list  #######################
       #hrm
       ########################  oa key list  #######################
