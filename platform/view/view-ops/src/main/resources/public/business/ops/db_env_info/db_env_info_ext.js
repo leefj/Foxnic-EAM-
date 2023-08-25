@@ -28,6 +28,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+
+
         },
         /**
          * 按事件名称移除表格按钮栏的按钮
@@ -180,12 +182,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+
         /**
          * 末尾执行
          */
         ending:function() {
 
         }
+
     }
 
     //表单页的扩展
@@ -197,6 +201,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //获取参数，并调整下拉框查询用的URL
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
+
+            if(INST_ID&&INST_ID!="null"){
+                console.log("hiddenhidden")
+                $("#dbInstId").parent().parent().hide();
+            }
             console.log("form:beforeInit")
         },
         /**
@@ -212,6 +221,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         beforeDataFill:function (data) {
             console.log('beforeDataFill',data);
         },
+
         /**
          * 表单数据填充后
          * */
@@ -219,6 +229,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('afterDataFill',data);
         },
         /**
+         * 对话框打开之前调用，如果返回 null 则不打开对话框
          * 对话框打开之前调用，如果返回 null 则不打开对话框
          * */
         beforeDialog:function (param){
@@ -273,6 +284,20 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         betweenFormSubmitAndClose:function (param,result) {
             console.log("betweenFormSubmitAndClose",result);
             return true;
+        },
+        selectBoxDataTransform:function(id,obj,item,data,i){
+            console.log("selectBoxDataTransform")
+            console.log("hostId ",id)
+            console.log("data[i] ",item)
+            console.log("data ",data)
+            console.log("i ",i)
+            if (id&&id=="dbInstId"){
+                if(item&&item.name&&item.host&&item.host.hostIp){
+                    obj.name=item.name+"-("+item.host.hostIp+")";
+                }else {
+                }
+            }
+            return obj;
         },
         /**
          * 数据提交后执行

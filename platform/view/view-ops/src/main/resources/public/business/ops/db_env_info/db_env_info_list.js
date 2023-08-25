@@ -1,7 +1,7 @@
 /**
  * 数据库环境 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-14 20:44:20
+ * @since 2023-08-25 12:40:54
  */
 
 
@@ -85,6 +85,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'label', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签'), templet:function (d){ return templet('label',fox.getEnumText(RADIO_LABEL_DATA,d.label,'','label'),d);}}
+					,{ field: 'dbInstId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('生产数据库'), templet: function (d) { return templet('dbInstId' ,fox.joinLabel(d.dbInfo,"name",',','','dbInstId'),d);}}
 					,{ field: 'db', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库') , templet: function (d) { return templet('db',d.db,d);}  }
 					,{ field: 'dbDesc', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('描述') , templet: function (d) { return templet('dbDesc',d.dbDesc,d);}  }
 					,{ field: 'ip', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('IP') , templet: function (d) { return templet('ip',d.ip,d);}  }
@@ -92,7 +93,7 @@ function ListPage() {
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'hostName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('主机名') , templet: function (d) { return templet('hostName',fox.getProperty(d,["host","hostName"],0,'','hostName'),d);} }
-					,{ field: 'hostIp', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('源IP') , templet: function (d) { return templet('hostIp',fox.getProperty(d,["host","hostIp"],0,'','hostIp'),d);} }
+					,{ field: 'hostIp', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('生产IP') , templet: function (d) { return templet('hostIp',fox.getProperty(d,["host","hostIp"],0,'','hostIp'),d);} }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
