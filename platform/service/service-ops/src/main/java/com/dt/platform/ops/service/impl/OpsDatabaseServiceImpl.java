@@ -377,7 +377,7 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 
 		String sql="select ifnull(backup_result,'none')backup_result,count(1) cnt from (\n" +
 				"" +dbBackupInfoDetailListSql+") end where 1=1 \n" +
-				"and end.backup_result='success' and  end.backup_stime>DATE_FORMAT(CURDATE(),'%Y-%m-%d %H:%i:%s')\n" +
+				"and end.backup_stime>DATE_FORMAT(CURDATE(),'%Y-%m-%d %H:%i:%s')\n" +
 				"group by backup_result";
 		RcdSet rs=dao.query(sql);
 		JSONObject res=new JSONObject();
@@ -451,7 +451,7 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 		int day=60;
 		String subSql=buildDateSql(day);
 		String sql="select stime,sum(cnt) cnt from ( "+subSql+" union all\n" +
-				"select date_format(backup_stime,'%Y-%m-%d') stime,count(1) cnt from ops_db_backup_record where backup_result<>'success' and deleted=0 and backup_stime> subdate(now(),"+day+") \n" +
+				"select date_format(backup_stime,'%Y-%m-%d') stime,count(1) cnt from ops_db_backup_record where backup_result='failed' and deleted=0 and backup_stime> subdate(now(),"+day+") \n" +
 				"group by date_format(backup_stime,'%Y-%m-%d')  \n" +
 				") t group by stime order by 1 desc";
 		return dao.query(sql).toJSONArrayWithJSONObject();

@@ -12,8 +12,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-14 20:44:18
- * @sign 7A046F0890C92B29C0B976DB755E67CB
+ * @since 2023-08-25 12:40:53
+ * @sign 67F2D99161436A9482ED5FFA1DB1DF32
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,14 +40,14 @@ public class DbEnvInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbEnvInfo,java.lang.String> LABEL_PROP = new BeanProperty(com.dt.platform.domain.ops.DbEnvInfo.class ,LABEL, java.lang.String.class, "标签", "标签", java.lang.String.class, null);
 	
 	/**
-	 * 数据库 , 类型: java.lang.String
+	 * 生产数据库 , 类型: java.lang.String
 	*/
 	public static final String DB_INST_ID="dbInstId";
 	
 	/**
-	 * 数据库 , 类型: java.lang.String
+	 * 生产数据库 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbEnvInfo,java.lang.String> DB_INST_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbEnvInfo.class ,DB_INST_ID, java.lang.String.class, "数据库", "数据库", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.DbEnvInfo,java.lang.String> DB_INST_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbEnvInfo.class ,DB_INST_ID, java.lang.String.class, "生产数据库", "生产数据库", java.lang.String.class, null);
 	
 	/**
 	 * 数据库 , 类型: java.lang.String
@@ -285,8 +285,8 @@ public class DbEnvInfoMeta {
 		}
 		
 		/**
-		 * 设置 数据库
-		 * @param dbInstId 数据库
+		 * 设置 生产数据库
+		 * @param dbInstId 生产数据库
 		 * @return 当前对象
 		*/
 		public DbEnvInfo setDbInstId(String dbInstId) {

@@ -129,7 +129,7 @@
                         </div>
                         <div class="panel-content">
                             <h1 id="backup_count" class="no-margins hm">0</h1>
-                            <small>需要备份的数据库备份任务总数</small>
+                            <small>当前启用需要备份的数据库备份数</small>
                         </div>
                     </div>
                 </div>
@@ -141,11 +141,11 @@
                     <div class="panel-body">
                         <div class="panel-title ht">
                             <span class="label pull-right layui-bg-blue">实时</span>
-                            <h5>备份未设置总数</h5>
+                            <h5>备份策略配置总数</h5>
                         </div>
                         <div class="panel-content">
                             <h1 id="backup_task_setting_none_count" class="no-margins hm">0</h1>
-                            <small>当前备份任务设置异常总数</small>
+                            <small>当前备份已启用但未配置备份策略</small>
                         </div>
                     </div>
                 </div>
@@ -258,7 +258,7 @@
         <div class="layui-col-md6">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    数据库每日备份统计
+                    数据库每日备份次数统计
                 </div>
                 <div class="layui-card-body">
                     <div id="backup_count_trend" style="width:100%;height:300px"></div>
@@ -269,7 +269,7 @@
         <div class="layui-col-md6">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    数据库每日失败备份统计
+                    数据库每日失败备份次数统计
                 </div>
                 <div class="layui-card-body">
                     <div id="backup_failed_count_trend" style="width:100%;height:300px"></div>

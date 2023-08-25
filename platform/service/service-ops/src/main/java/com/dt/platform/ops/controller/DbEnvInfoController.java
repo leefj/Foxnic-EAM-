@@ -68,7 +68,7 @@ public class DbEnvInfoController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "677563001003311104"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "dev"),
-		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_INST_ID, value = "数据库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_INST_ID, value = "生产数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB, value = "数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class, example = "12"),
@@ -170,7 +170,7 @@ public class DbEnvInfoController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "677563001003311104"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "dev"),
-		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_INST_ID, value = "数据库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_INST_ID, value = "生产数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB, value = "数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class, example = "12"),
@@ -194,7 +194,7 @@ public class DbEnvInfoController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "677563001003311104"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "dev"),
-		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_INST_ID, value = "数据库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_INST_ID, value = "生产数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB, value = "数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class, example = "12"),
@@ -255,7 +255,7 @@ public class DbEnvInfoController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "677563001003311104"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "dev"),
-		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_INST_ID, value = "数据库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_INST_ID, value = "生产数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB, value = "数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class, example = "12"),
@@ -280,7 +280,7 @@ public class DbEnvInfoController extends SuperController {
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "677563001003311104"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "dev"),
-		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_INST_ID, value = "数据库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB_INST_ID, value = "生产数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.DB, value = "数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
 		@ApiImplicitParam(name = DbEnvInfoVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class, example = "12"),

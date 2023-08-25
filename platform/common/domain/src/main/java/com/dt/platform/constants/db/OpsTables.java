@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-08-10 14:46:45
+ * @since 2023-08-25 12:40:31
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -4181,9 +4181,9 @@ public class OpsTables {
 		public static final DBField LABEL = new DBField(DBDataType.STRING , "label","label","标签","标签",false,false,true);
 		
 		/**
-		 * 数据库
+		 * 生产数据库
 		*/
-		public static final DBField DB_INST_ID = new DBField(DBDataType.STRING , "db_inst_id","dbInstId","数据库","数据库",false,false,true);
+		public static final DBField DB_INST_ID = new DBField(DBDataType.STRING , "db_inst_id","dbInstId","生产数据库","生产数据库",false,false,true);
 		
 		/**
 		 * 数据库

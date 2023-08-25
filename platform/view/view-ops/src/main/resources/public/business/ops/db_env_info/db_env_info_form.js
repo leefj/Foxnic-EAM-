@@ -1,7 +1,7 @@
 /**
  * 数据库环境 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-14 20:44:21
+ * @since 2023-08-25 12:40:55
  */
 
 function FormPage() {
@@ -123,6 +123,42 @@ function FormPage() {
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("label",data,checked);
 		});
+		//渲染 dbInstId 下拉字段
+		fox.renderSelectBox({
+			el: "dbInstId",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("生产数据库",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("dbInstId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("dbInstId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 	    //渲染图片字段
 		foxup.render({
 			el:"fileIds",
@@ -208,6 +244,8 @@ function FormPage() {
 
 
 
+			//设置  生产数据库 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#dbInstId",formData.dbInfo);
 
 			//处理fillBy
 
@@ -270,6 +308,8 @@ function FormPage() {
 
 
 
+		//获取 生产数据库 下拉框的值
+		data["dbInstId"]=fox.getSelectedValue("dbInstId",false);
 
 		return data;
 	}

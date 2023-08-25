@@ -10,9 +10,13 @@ import com.dt.platform.domain.ops.DbInfo;
 import com.dt.platform.domain.ops.Host;
 import com.dt.platform.domain.ops.meta.DbEnvInfoMeta;
 import com.dt.platform.domain.ops.meta.DbInfoMeta;
+import com.dt.platform.domain.ops.meta.HostExByHostMeta;
+import com.dt.platform.domain.ops.meta.HostMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.page.DbEnvInfoPageController;
 import com.dt.platform.proxy.ops.DbEnvInfoServiceProxy;
+import com.dt.platform.proxy.ops.DbInfoServiceProxy;
+import com.dt.platform.proxy.ops.HostServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.system.meta.DictItemMeta;
 import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
@@ -27,7 +31,7 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
-        cfg.view().field(OpsTables.OPS_DB_ENV_INFO.DB_INST_ID).table().disable(true);
+        //cfg.view().field(OpsTables.OPS_DB_ENV_INFO.DB_INST_ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.ID).table().disable(true);
         cfg.getPoClassFile().addSimpleProperty(Host.class,"host","host","host");
         cfg.getPoClassFile().addSimpleProperty(String.class,"hostName","hostName","hostName");
@@ -46,6 +50,12 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.NOTES).search().fuzzySearch();
 
 
+        cfg.view().field(OpsTables.OPS_DB_ENV_INFO.DB_INST_ID)
+                .basic().label("生产数据库").form().selectBox().queryApi(DbInfoServiceProxy.QUERY_PAGED_LIST)
+                .valueField(DbInfoMeta.ID).textField(DbInfoMeta.NAME)
+                .toolbar(false).paging(true)
+                .fillWith(DbEnvInfoMeta.DB_INFO).muliti(false);
+
         cfg.view().search().inputLayout(
                 new Object[]{
                         OpsTables.OPS_DB_ENV_INFO.LABEL,
@@ -56,13 +66,12 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
         );
 
 
-
         cfg.view().field(DbEnvInfoMeta.HOST_NAME)
                 .basic().label("主机名")
                 .table().fillBy("host","hostName");
 
         cfg.view().field(DbEnvInfoMeta.HOST_IP)
-                .basic().label("源IP")
+                .basic().label("生产IP")
                 .table().fillBy("host","hostIp");
 
 //        cfg.view().field(DbEnvInfoMeta.DB_NAME)
@@ -101,6 +110,7 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
         cfg.view().formWindow().width(Config.baseFormWidth_95);;
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        OpsTables.OPS_DB_ENV_INFO.DB_INST_ID,
                         OpsTables.OPS_DB_ENV_INFO.LABEL,
                         OpsTables.OPS_DB_ENV_INFO.DB,
                 },

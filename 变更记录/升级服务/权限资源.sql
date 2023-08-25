@@ -36,7 +36,7 @@ insert into sys_menu_resource select * from foxnic_upgrade.sys_menu_resource;
 update sys_menu a set hidden=1 where a.id in (select id from sys_menu_bak1 where hidden=1);
 
 
-
+update sys_resourze set access_type='LOGIN';
 
 
 
