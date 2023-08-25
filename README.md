@@ -27,8 +27,9 @@
 - 2、SQL文件:(每日更新):http://eam-demo.rainbooow.com/upload/sql.tar.gz   ( **必须使用 source 命令导入！！！** )
 
 #### 开发环境(特别注意，严格按照以下要求)
-- 开发工具:IntelliJ IDEA 2020.2以上(不要使用eclipse)
+- 开发工具:IntelliJ IDEA 2022.2以上(不要使用eclipse)
 - 数据库:Mysql 5.7.32(必须为Mysql5.7.X)
+- maven:版本3.6.3(建议)
 - Redis:5.0.12(可选)
 - Java:JDK 1.8.200 (小版本200以上,但仅支持1.8)
 
