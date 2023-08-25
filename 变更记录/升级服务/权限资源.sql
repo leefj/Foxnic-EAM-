@@ -13,6 +13,9 @@ insert into sys_licence_free_sta select * from sys_licence;
 drop table sys_config_bak1;
 create table sys_config_bak1 as select * from sys_config;
 
+
+
+
 drop table sys_menu_bak1;
 create table sys_menu_bak1 as select * from sys_menu;
 
@@ -25,9 +28,9 @@ delete from sys_menu;
 delete from sys_menu_resource;
 
 -- source or insert into from
-insert into sys_resourze select * from eam_clone.sys_resourze;
-insert into sys_menu select * from eam_clone.sys_menu;
-insert into sys_menu_resource select * from eam_clone.sys_menu_resource;
+insert into sys_resourze select * from foxnic_upgrade.sys_resourze;
+insert into sys_menu select * from foxnic_upgrade.sys_menu;
+insert into sys_menu_resource select * from foxnic_upgrade.sys_menu_resource;
 
 -- update
 update sys_menu a set hidden=1 where a.id in (select id from sys_menu_bak1 where hidden=1);
