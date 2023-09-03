@@ -1,5 +1,6 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -21,10 +22,10 @@ import com.dt.platform.constants.db.OpsTables.*;
 
 /**
  * <p>
- * 执行脚本 服务接口
+ * 执行脚本服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 12:51:29
+ * @since 2023-09-01 07:58:11
 */
 
 public interface IAutoActionScriptService extends  ISimpleIdService<AutoActionScript,String> {
@@ -56,7 +57,7 @@ public interface IAutoActionScriptService extends  ISimpleIdService<AutoActionSc
 
 		
 	/**
-	 * 按主键删除 执行脚本
+	 * 按主键删除执行脚本
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -64,7 +65,7 @@ public interface IAutoActionScriptService extends  ISimpleIdService<AutoActionSc
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 执行脚本
+	 * 按主键删除执行脚本
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -87,7 +88,7 @@ public interface IAutoActionScriptService extends  ISimpleIdService<AutoActionSc
 
 		
 	/**
-	 * 按主键更新字段 执行脚本
+	 * 按主键更新执行脚本
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -157,7 +158,7 @@ public interface IAutoActionScriptService extends  ISimpleIdService<AutoActionSc
 
 		
 	/**
-	 * 按主键获取 执行脚本
+	 * 按主键获取执行脚本
 	 *
 	 * @param id 主键
 	 * @return AutoActionScript 数据对象

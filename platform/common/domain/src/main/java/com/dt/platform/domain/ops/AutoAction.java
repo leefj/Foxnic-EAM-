@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_AUTO_ACTION;
@@ -8,25 +9,31 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.system.DictItem;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.AutoActionMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 执行任务
+ * <p>执行任务 , 数据表 ops_auto_action 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 19:33:16
- * @sign F873CE44468D248A2C2B446782913CC3
+ * @since 2023-09-01 18:56:10
+ * @sign DF160C96F8ED551F82DA1137068B63F5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_auto_action")
+@ApiModel(description = "执行任务 ; 执行任务 , 数据表 ops_auto_action 的PO类型")
 public class AutoAction extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -37,25 +44,25 @@ public class AutoAction extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "613756265390145536")
 	private String id;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "测试1")
 	private String name;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
 	
 	/**
 	 * 类型：类型
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "类型")
+	@ApiModelProperty(required = false,value="类型" , notes = "类型" , example = "host")
 	private String type;
 	
 	/**
@@ -91,7 +98,7 @@ public class AutoAction extends Entity {
 	/**
 	 * 配置内容：配置内容
 	*/
-	@ApiModelProperty(required = false,value="配置内容" , notes = "配置内容")
+	@ApiModelProperty(required = false,value="配置内容" , notes = "配置内容" , example = "12")
 	private String confContent;
 	
 	/**
@@ -103,39 +110,52 @@ public class AutoAction extends Entity {
 	/**
 	 * 执行内容：执行内容
 	*/
-	@ApiModelProperty(required = false,value="执行内容" , notes = "执行内容")
+	@ApiModelProperty(required = false,value="执行内容" , notes = "执行内容" , example = "12")
 	private String executeContent;
 	
 	/**
 	 * 执行工具：执行工具
 	*/
-	@ApiModelProperty(required = false,value="执行工具" , notes = "执行工具")
+	@ApiModelProperty(required = false,value="执行工具" , notes = "执行工具" , example = "ops_tool")
 	private String executeTool;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
 	private String notes;
+	
+	/**
+	 * 创建人：创建人
+	*/
+	@ApiModelProperty(required = false,value="创建人" , notes = "创建人")
+	private String createBy;
+	
+	/**
+	 * 创建时间：创建时间
+	*/
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-08-21 03:40:47")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -153,13 +173,13 @@ public class AutoAction extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -459,6 +479,44 @@ public class AutoAction extends Entity {
 	}
 	
 	/**
+	 * 获得 创建人<br>
+	 * 创建人
+	 * @return 创建人
+	*/
+	public String getCreateBy() {
+		return createBy;
+	}
+	
+	/**
+	 * 设置 创建人
+	 * @param createBy 创建人
+	 * @return 当前对象
+	*/
+	public AutoAction setCreateBy(String createBy) {
+		this.createBy=createBy;
+		return this;
+	}
+	
+	/**
+	 * 获得 创建时间<br>
+	 * 创建时间
+	 * @return 创建时间
+	*/
+	public Date getCreateTime() {
+		return createTime;
+	}
+	
+	/**
+	 * 设置 创建时间
+	 * @param createTime 创建时间
+	 * @return 当前对象
+	*/
+	public AutoAction setCreateTime(Date createTime) {
+		this.createTime=createTime;
+		return this;
+	}
+	
+	/**
 	 * 获得 修改人ID<br>
 	 * 修改人ID
 	 * @return 修改人ID
@@ -523,6 +581,7 @@ public class AutoAction extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AutoAction setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -794,7 +853,48 @@ public class AutoAction extends Entity {
 	*/
 	@Transient
 	public AutoAction clone() {
-		return EntityContext.clone(AutoAction.class,this);
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AutoAction duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.AutoActionMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.AutoActionMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setNodeNumberType(this.getNodeNumberType());
+		inst.setExecuteContent(this.getExecuteContent());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setType(this.getType());
+		inst.setTplVersion(this.getTplVersion());
+		inst.setConfContent(this.getConfContent());
+		inst.setExampleConfContent(this.getExampleConfContent());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setExecuteTool(this.getExecuteTool());
+		inst.setDeleted(this.getDeleted());
+		inst.setFileStatus(this.getFileStatus());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setSupport(this.getSupport());
+		inst.setStatus(this.getStatus());
+		inst.setInfo(this.getInfo());
+		if(all) {
+			inst.setAutoActionScriptList(this.getAutoActionScriptList());
+			inst.setAutoActionScriptIds(this.getAutoActionScriptIds());
+			inst.setAutoActionFileIds(this.getAutoActionFileIds());
+			inst.setAutoActionFileList(this.getAutoActionFileList());
+			inst.setTypeDict(this.getTypeDict());
+		}
+		inst.clearModifies();
+		return inst;
 	}
 
 	/**
@@ -813,7 +913,9 @@ public class AutoAction extends Entity {
 	@Transient
 	public static AutoAction createFrom(Map<String,Object> autoActionMap) {
 		if(autoActionMap==null) return null;
-		AutoAction po = EntityContext.create(AutoAction.class, autoActionMap);
+		AutoAction po = create();
+		EntityContext.copyProperties(po,autoActionMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -825,7 +927,9 @@ public class AutoAction extends Entity {
 	@Transient
 	public static AutoAction createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AutoAction po = EntityContext.create(AutoAction.class,pojo);
+		AutoAction po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -835,6 +939,140 @@ public class AutoAction extends Entity {
 	*/
 	@Transient
 	public static AutoAction create() {
-		return EntityContext.create(AutoAction.class);
+		return new com.dt.platform.domain.ops.meta.AutoActionMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AutoActionMeta.NOTES)));
+			this.setNodeNumberType(DataParser.parse(String.class, map.get(AutoActionMeta.NODE_NUMBER_TYPE)));
+			this.setExecuteContent(DataParser.parse(String.class, map.get(AutoActionMeta.EXECUTE_CONTENT)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AutoActionMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, map.get(AutoActionMeta.TYPE)));
+			this.setTplVersion(DataParser.parse(String.class, map.get(AutoActionMeta.TPL_VERSION)));
+			this.setConfContent(DataParser.parse(String.class, map.get(AutoActionMeta.CONF_CONTENT)));
+			this.setExampleConfContent(DataParser.parse(String.class, map.get(AutoActionMeta.EXAMPLE_CONF_CONTENT)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AutoActionMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AutoActionMeta.CREATE_BY)));
+			this.setExecuteTool(DataParser.parse(String.class, map.get(AutoActionMeta.EXECUTE_TOOL)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AutoActionMeta.DELETED)));
+			this.setFileStatus(DataParser.parse(String.class, map.get(AutoActionMeta.FILE_STATUS)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AutoActionMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AutoActionMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AutoActionMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AutoActionMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AutoActionMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AutoActionMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AutoActionMeta.ID)));
+			this.setSupport(DataParser.parse(String.class, map.get(AutoActionMeta.SUPPORT)));
+			this.setStatus(DataParser.parse(String.class, map.get(AutoActionMeta.STATUS)));
+			this.setInfo(DataParser.parse(String.class, map.get(AutoActionMeta.INFO)));
+			// others
+			this.setTypeDict(DataParser.parse(DictItem.class, map.get(AutoActionMeta.TYPE_DICT)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AutoActionMeta.NOTES));
+				this.setNodeNumberType( (String)map.get(AutoActionMeta.NODE_NUMBER_TYPE));
+				this.setExecuteContent( (String)map.get(AutoActionMeta.EXECUTE_CONTENT));
+				this.setUpdateTime( (Date)map.get(AutoActionMeta.UPDATE_TIME));
+				this.setType( (String)map.get(AutoActionMeta.TYPE));
+				this.setTplVersion( (String)map.get(AutoActionMeta.TPL_VERSION));
+				this.setConfContent( (String)map.get(AutoActionMeta.CONF_CONTENT));
+				this.setExampleConfContent( (String)map.get(AutoActionMeta.EXAMPLE_CONF_CONTENT));
+				this.setVersion( (Integer)map.get(AutoActionMeta.VERSION));
+				this.setCreateBy( (String)map.get(AutoActionMeta.CREATE_BY));
+				this.setExecuteTool( (String)map.get(AutoActionMeta.EXECUTE_TOOL));
+				this.setDeleted( (Integer)map.get(AutoActionMeta.DELETED));
+				this.setFileStatus( (String)map.get(AutoActionMeta.FILE_STATUS));
+				this.setCreateTime( (Date)map.get(AutoActionMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AutoActionMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AutoActionMeta.DELETE_TIME));
+				this.setName( (String)map.get(AutoActionMeta.NAME));
+				this.setTenantId( (String)map.get(AutoActionMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AutoActionMeta.DELETE_BY));
+				this.setId( (String)map.get(AutoActionMeta.ID));
+				this.setSupport( (String)map.get(AutoActionMeta.SUPPORT));
+				this.setStatus( (String)map.get(AutoActionMeta.STATUS));
+				this.setInfo( (String)map.get(AutoActionMeta.INFO));
+				// others
+				this.setTypeDict( (DictItem)map.get(AutoActionMeta.TYPE_DICT));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AutoActionMeta.NOTES)));
+			this.setNodeNumberType(DataParser.parse(String.class, r.getValue(AutoActionMeta.NODE_NUMBER_TYPE)));
+			this.setExecuteContent(DataParser.parse(String.class, r.getValue(AutoActionMeta.EXECUTE_CONTENT)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AutoActionMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, r.getValue(AutoActionMeta.TYPE)));
+			this.setTplVersion(DataParser.parse(String.class, r.getValue(AutoActionMeta.TPL_VERSION)));
+			this.setConfContent(DataParser.parse(String.class, r.getValue(AutoActionMeta.CONF_CONTENT)));
+			this.setExampleConfContent(DataParser.parse(String.class, r.getValue(AutoActionMeta.EXAMPLE_CONF_CONTENT)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AutoActionMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AutoActionMeta.CREATE_BY)));
+			this.setExecuteTool(DataParser.parse(String.class, r.getValue(AutoActionMeta.EXECUTE_TOOL)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AutoActionMeta.DELETED)));
+			this.setFileStatus(DataParser.parse(String.class, r.getValue(AutoActionMeta.FILE_STATUS)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AutoActionMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AutoActionMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AutoActionMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AutoActionMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AutoActionMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AutoActionMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AutoActionMeta.ID)));
+			this.setSupport(DataParser.parse(String.class, r.getValue(AutoActionMeta.SUPPORT)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AutoActionMeta.STATUS)));
+			this.setInfo(DataParser.parse(String.class, r.getValue(AutoActionMeta.INFO)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AutoActionMeta.NOTES));
+				this.setNodeNumberType( (String)r.getValue(AutoActionMeta.NODE_NUMBER_TYPE));
+				this.setExecuteContent( (String)r.getValue(AutoActionMeta.EXECUTE_CONTENT));
+				this.setUpdateTime( (Date)r.getValue(AutoActionMeta.UPDATE_TIME));
+				this.setType( (String)r.getValue(AutoActionMeta.TYPE));
+				this.setTplVersion( (String)r.getValue(AutoActionMeta.TPL_VERSION));
+				this.setConfContent( (String)r.getValue(AutoActionMeta.CONF_CONTENT));
+				this.setExampleConfContent( (String)r.getValue(AutoActionMeta.EXAMPLE_CONF_CONTENT));
+				this.setVersion( (Integer)r.getValue(AutoActionMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(AutoActionMeta.CREATE_BY));
+				this.setExecuteTool( (String)r.getValue(AutoActionMeta.EXECUTE_TOOL));
+				this.setDeleted( (Integer)r.getValue(AutoActionMeta.DELETED));
+				this.setFileStatus( (String)r.getValue(AutoActionMeta.FILE_STATUS));
+				this.setCreateTime( (Date)r.getValue(AutoActionMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AutoActionMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AutoActionMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AutoActionMeta.NAME));
+				this.setTenantId( (String)r.getValue(AutoActionMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AutoActionMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AutoActionMeta.ID));
+				this.setSupport( (String)r.getValue(AutoActionMeta.SUPPORT));
+				this.setStatus( (String)r.getValue(AutoActionMeta.STATUS));
+				this.setInfo( (String)r.getValue(AutoActionMeta.INFO));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -159,7 +159,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             admin.popupCenter({
                 title: "日志",
                 resize: false,
-                offset: [null,null],
+                offset: [20,null],
                 area: ["80%","95%"],
                 type: 2,
                 id:"ops-auto-task-log-list-data-win",
@@ -171,7 +171,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         logDownload:function (data){
             var downloadUrl=moduleURL+"/log-download";
-            fox.submit(downloadUrl,{id:data.id});
+            fox.submit(downloadUrl,{id:data.id},"post",function(){
+                console.log("done")
+            });
         },
         /**
          * 末尾执行

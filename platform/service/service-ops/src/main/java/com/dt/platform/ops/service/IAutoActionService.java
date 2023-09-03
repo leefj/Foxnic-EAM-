@@ -1,5 +1,6 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 执行任务 服务接口
+ * 执行任务服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 19:33:16
+ * @since 2023-09-01 18:56:10
 */
 
 public interface IAutoActionService extends  ISimpleIdService<AutoAction,String> {
@@ -55,7 +56,7 @@ public interface IAutoActionService extends  ISimpleIdService<AutoAction,String>
 
 		
 	/**
-	 * 按主键删除 执行任务
+	 * 按主键删除执行任务
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IAutoActionService extends  ISimpleIdService<AutoAction,String>
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 执行任务
+	 * 按主键删除执行任务
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IAutoActionService extends  ISimpleIdService<AutoAction,String>
 
 		
 	/**
-	 * 按主键更新字段 执行任务
+	 * 按主键更新执行任务
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IAutoActionService extends  ISimpleIdService<AutoAction,String>
 
 		
 	/**
-	 * 按主键获取 执行任务
+	 * 按主键获取执行任务
 	 *
 	 * @param id 主键
 	 * @return AutoAction 数据对象

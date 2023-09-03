@@ -55,7 +55,7 @@ public class OpsIpAddressSegGtr extends BaseCodeGenerator{
                 }
         );
 
-
+        cfg.view().list().disableBatchDelete();
         cfg.view().field(OpsTables.OPS_IP_ADDRESS_RANGE.ADDRESS_SEGMENT).form().validate().required();
 
         cfg.view().field(OpsTables.OPS_IP_ADDRESS_RANGE.STATUS).basic()

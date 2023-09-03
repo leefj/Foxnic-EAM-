@@ -321,7 +321,7 @@ function ListPage() {
 						admin.popupCenter({
 							title: "巡检点巡检",
 							resize: false,
-							offset: [10,null],
+							offset: [20,null],
 							area: ["85%","95%"],
 							type: 2,
 							id:"eam-inspection-task-point-form-data-win",

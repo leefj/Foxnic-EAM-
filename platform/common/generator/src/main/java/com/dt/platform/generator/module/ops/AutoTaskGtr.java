@@ -36,6 +36,7 @@ public class AutoTaskGtr extends BaseCodeGenerator{
 
         cfg.getPoClassFile().addListProperty(AutoNode.class,"nodeList","nodeList","nodeList");
         cfg.getPoClassFile().addListProperty(String.class,"nodeIds","nodeIds","nodeIds");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"tplDtl","tplDtl","tplDtl");
 
 
         cfg.view().search().inputLayout(
@@ -69,11 +70,11 @@ public class AutoTaskGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_AUTO_TASK.OWNER_ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_TASK.CONF_CONTENT).table().disable(true);
-
+        cfg.view().field(AutoTaskMeta.TPL_DTL).table().disable(true);
 
         cfg.view().list().operationColumn().addActionButton("连通检查","autoTaskCheck","auto-task-check","ops_auto_task:check");
         cfg.view().list().operationColumn().addActionButton("执行","autoTaskExecute","auto-task-execute","ops_auto_task:execute");
-        cfg.view().list().operationColumn().addActionButton("日志","autoTaskLog",null,"ops_auto_task:log");
+        cfg.view().list().operationColumn().addActionButton("任务日志","autoTaskLog",null,"ops_auto_task:log");
         cfg.view().list().operationColumn().width(250);
 
         cfg.view().field(AutoTaskMeta.ACTION_CONF_CONTENT).basic().label("模版配置").form().readOnly().textArea().height(Config.textAreaHeight*2);
@@ -81,7 +82,11 @@ public class AutoTaskGtr extends BaseCodeGenerator{
         cfg.view().field(AutoTaskMeta.ACTION_INFO).basic().label("模版说明").form().readOnly().textInput();
         cfg.view().field(AutoTaskMeta.ACTION_SUPPORT).basic().label("模版场景").form().readOnly().textInput();
 
+        cfg.view().field(AutoTaskMeta.TPL_DTL).basic().label("模版详情");
+        cfg.view().field(AutoTaskMeta.TPL_DTL).form().button().action("模版详情","tpldtl");
 
+
+        cfg.view().list().disableBatchDelete();
         cfg.view().field(OpsTables.OPS_AUTO_TASK.ACTION_ID)
                 .form().validate().required().form().selectBox().queryApi(AutoActionServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
@@ -124,20 +129,25 @@ public class AutoTaskGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup("部署信息",
                 new Object[] {
                         OpsTables.OPS_AUTO_TASK.ACTION_ID,
-                        AutoTaskMeta.ACTION_INFO,
-                        AutoTaskMeta.ACTION_SUPPORT,
+
+//                        AutoTaskMeta.ACTION_SUPPORT,
+                },
+                new Object[] {
+
+                        AutoTaskMeta.TPL_DTL
+//                        AutoTaskMeta.ACTION_SUPPORT,
                 }
         );
 
-        cfg.view().form().addGroup(null,
-                new Object[] {
-                        AutoTaskMeta.ACTION_CONF_CONTENT,
-                        OpsTables.OPS_AUTO_TASK.CONF_CONTENT,
-                },
-                new Object[] {
-                        AutoTaskMeta.ACTION_EXECUTE_CONTENT,
-                }
-        );
+//        cfg.view().form().addGroup(null,
+//                new Object[] {
+//                        AutoTaskMeta.ACTION_CONF_CONTENT,
+//                        OpsTables.OPS_AUTO_TASK.CONF_CONTENT,
+//                },
+//                new Object[] {
+//                        AutoTaskMeta.ACTION_EXECUTE_CONTENT,
+//                }
+//        );
 
 
         cfg.view().form().addGroup("节点批次",
@@ -145,6 +155,7 @@ public class AutoTaskGtr extends BaseCodeGenerator{
                         OpsTables.OPS_AUTO_TASK.BATCH_ID,
                 }
         );
+
         cfg.view().form().addPage("节点列表","nodeListSelect");
 
         //文件生成覆盖模式

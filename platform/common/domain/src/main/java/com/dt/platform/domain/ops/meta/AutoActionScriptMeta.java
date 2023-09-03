@@ -3,12 +3,13 @@ package com.dt.platform.domain.ops.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.ops.AutoActionScript;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 12:51:29
+ * @since 2023-09-01 07:58:11
  * @sign 645723D685E8CBCC6C32E4A730EFBE1A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -279,5 +280,37 @@ public class AutoActionScriptMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AutoActionScript clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AutoActionScript duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setFileName(this.getFileName());
+			inst.setNotes(this.getNotes());
+			inst.setDeleted(this.getDeleted());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setId(this.getId());
+			inst.setVersion(this.getVersion());
+			inst.setFileId(this.getFileId());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

@@ -1,5 +1,6 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * IP地址段 服务接口
+ * IP地址段服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-30 07:16:57
+ * @since 2023-09-03 08:21:20
 */
 
 public interface IIpAddressRangeService extends  ISimpleIdService<IpAddressRange,String> {
@@ -55,7 +56,7 @@ public interface IIpAddressRangeService extends  ISimpleIdService<IpAddressRange
 
 		
 	/**
-	 * 按主键删除 IP地址段
+	 * 按主键删除IP地址段
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IIpAddressRangeService extends  ISimpleIdService<IpAddressRange
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 IP地址段
+	 * 按主键删除IP地址段
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IIpAddressRangeService extends  ISimpleIdService<IpAddressRange
 
 		
 	/**
-	 * 按主键更新字段 IP地址段
+	 * 按主键更新IP地址段
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,16 +157,12 @@ public interface IIpAddressRangeService extends  ISimpleIdService<IpAddressRange
 
 		
 	/**
-	 * 按主键获取 IP地址段
+	 * 按主键获取IP地址段
 	 *
 	 * @param id 主键
 	 * @return IpAddressRange 数据对象
 	 */
 	IpAddressRange getById(String id);
-
-
-
-
 
 	/**
 	 * 按 id 获取多个对象

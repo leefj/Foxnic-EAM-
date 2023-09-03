@@ -63,24 +63,24 @@ public class AutoActionGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXECUTE_CONTENT).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.CONF_CONTENT).table().disable(true);
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.CREATE_TIME).table().disable(true);
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXECUTE_TOOL).table().disable(true);
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.TYPE).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXAMPLE_CONF_CONTENT).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.INFO).table().disable(true);
-
-
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.FILE_STATUS).table().disable(true);
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.NOTES).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.STATUS).table().form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.NAME).table().form().validate().required();
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.TPL_VERSION).table().form().validate().required();
+
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.NOTES).table().form().textArea().height(Config.textAreaHeight);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXECUTE_TOOL).table().form().validate().required().form().radioBox().enumType(OpsAutoExecuteTypeEnum.class).defaultIndex(0);
-        cfg.view().field(OpsTables.OPS_AUTO_ACTION.CONF_CONTENT).table().form().validate().required().form().textArea().height(Config.textAreaHeight*2);
-        cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXAMPLE_CONF_CONTENT).table().form().validate().required().form().textArea().height(Config.textAreaHeight*2);
-
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.CONF_CONTENT).table().form().validate().required().form().textArea().height(120);
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXAMPLE_CONF_CONTENT).table().form().validate().required().form().textArea().height(120);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXECUTE_CONTENT).table().form().validate().required().form().textArea().height(Config.textAreaHeight*5);
-
-
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.TYPE).table().form().validate().required().form().radioBox().enumType(OpsAutoActionTypeEnum.class).defaultIndex(0);
-
-        cfg.view().field(OpsTables.OPS_AUTO_ACTION.FILE_STATUS).table().form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
-
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.FILE_STATUS).table().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.NODE_NUMBER_TYPE).table().form().validate().required().form().radioBox().enumType(OpsAutoActionNodeNumberTypeEnum.class).defaultIndex(0);
 
 
@@ -108,51 +108,49 @@ public class AutoActionGtr extends BaseCodeGenerator{
 
         cfg.view().formWindow().bottomSpace(100);
         cfg.view().formWindow().width(Config.baseFormWidth_95);;
-        cfg.view().form().addGroup(null,
+        cfg.view().form().addGroup("模版信息",
                 new Object[] {
                         OpsTables.OPS_AUTO_ACTION.NAME,
-                        OpsTables.OPS_AUTO_ACTION.STATUS,
                         OpsTables.OPS_AUTO_ACTION.TYPE,
-                        OpsTables.OPS_AUTO_ACTION.INFO,
-                        OpsTables.OPS_AUTO_ACTION.SUPPORT,
 
                 },
                 new Object[] {
                         OpsTables.OPS_AUTO_ACTION.TPL_VERSION,
-                        OpsTables.OPS_AUTO_ACTION.NODE_NUMBER_TYPE,
                         OpsTables.OPS_AUTO_ACTION.EXECUTE_TOOL,
-                        OpsTables.OPS_AUTO_ACTION.FILE_STATUS,
-
-
-                }
-        );
-
-        cfg.view().form().addGroup(null,
-                new Object[] {
-                        AutoActionMeta.AUTO_ACTION_SCRIPT_IDS,
+                   //     OpsTables.OPS_AUTO_ACTION.FILE_STATUS,
                 },
                 new Object[] {
-                        AutoActionMeta.AUTO_ACTION_FILE_IDS
+                        OpsTables.OPS_AUTO_ACTION.STATUS,
+                        OpsTables.OPS_AUTO_ACTION.NODE_NUMBER_TYPE,
                 }
         );
-//        cfg.view().form().addGroup(null,
-//                new Object[] {
-//
-//                },
-//                new Object[] {
-//
-//                }
-//        );
 
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        OpsTables.OPS_AUTO_ACTION.NOTES,
-                        OpsTables.OPS_AUTO_ACTION.CONF_CONTENT,
-                        OpsTables.OPS_AUTO_ACTION.EXAMPLE_CONF_CONTENT,
-                        OpsTables.OPS_AUTO_ACTION.EXECUTE_CONTENT,
+                        OpsTables.OPS_AUTO_ACTION.SUPPORT,
                 }
         );
 
+
+        cfg.view().form().addGroup("执行信息",
+                new Object[] {
+                        AutoActionMeta.AUTO_ACTION_SCRIPT_IDS,
+                        OpsTables.OPS_AUTO_ACTION.CONF_CONTENT,
+                },
+                new Object[] {
+                        AutoActionMeta.AUTO_ACTION_FILE_IDS,
+                        OpsTables.OPS_AUTO_ACTION.EXAMPLE_CONF_CONTENT,
+
+                }
+        );
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        OpsTables.OPS_AUTO_ACTION.EXECUTE_CONTENT,
+                }
+
+        );
+
+        cfg.view().list().disableBatchDelete();
 
 
         //文件生成覆盖模式
@@ -162,7 +160,7 @@ public class AutoActionGtr extends BaseCodeGenerator{
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //生成代码
         cfg.buildAll();
     }

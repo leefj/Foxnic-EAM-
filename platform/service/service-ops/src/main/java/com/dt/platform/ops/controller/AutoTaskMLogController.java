@@ -300,7 +300,7 @@ public class AutoTaskMLogController extends SuperController {
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = AutoTaskMLogServiceProxy.LOG_DOWNLOAD, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskMLogServiceProxy.LOG_DOWNLOAD)
-    public void queryPagedList(HttpServletRequest request, HttpServletResponse response, String id) {
+    public void logDownload(HttpServletRequest request, HttpServletResponse response, String id) {
         AutoTaskMLog log = autoTaskMLogService.logDownload(id);
         if (log != null) {
             StringBuffer logTxt = new StringBuffer();
@@ -326,6 +326,7 @@ public class AutoTaskMLogController extends SuperController {
             logTxt.append("---------任务批次结束----------");
             logTxt.append("\n\n\n\n");
             try {
+                DownloadUtil.writeDownloadSuccess(response);
                 InputStream inputstream = IOUtils.toInputStream(logTxt.toString(), StandardCharsets.UTF_8.name());
                 response.setCharacterEncoding("UTF-8");
                 response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("日志.txt", "UTF-8"))));

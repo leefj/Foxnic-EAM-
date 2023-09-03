@@ -3,13 +3,14 @@ package com.dt.platform.domain.ops.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.ops.AutoTaskNode;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 13:41:32
- * @sign C63418FA6935D42B07DF8905C6DC0BFB
+ * @since 2023-09-01 15:23:00
+ * @sign C685C47B1239C1B2025A6AE96ED281C0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -116,19 +117,9 @@ public class AutoTaskNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskNode,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskNode.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
-	 * 租户 , 类型: java.lang.String
-	*/
-	public static final String TENANT_ID="tenantId";
-	
-	/**
-	 * 租户 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskNode,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskNode.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
-	
-	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TASK_ID , NODE_ID , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , TASK_ID , NODE_ID , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -247,16 +238,35 @@ public class AutoTaskNodeMeta {
 			super.setVersion(version);
 			return this;
 		}
-		
+
 		/**
-		 * 设置 租户
-		 * @param tenantId 租户
-		 * @return 当前对象
+		 * 克隆当前对象
 		*/
-		public AutoTaskNode setTenantId(String tenantId) {
-			super.change(TENANT_ID,super.getTenantId(),tenantId);
-			super.setTenantId(tenantId);
-			return this;
+		@Transient
+		public AutoTaskNode clone() {
+			return duplicate(true);
 		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AutoTaskNode duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setDeleted(this.getDeleted());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setId(this.getId());
+			inst.setNodeId(this.getNodeId());
+			inst.setVersion(this.getVersion());
+			inst.setTaskId(this.getTaskId());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

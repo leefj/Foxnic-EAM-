@@ -16,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * IP地址段  控制器服务代理
+ * IP地址段 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-30 07:16:58
+ * @since 2023-09-03 08:21:20
  */
 @FeignClient(value = ServiceNames.OPS, contextId = IpAddressRangeServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface IpAddressRangeServiceProxy {

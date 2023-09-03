@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_AUTO_GROUP;
@@ -8,21 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.AutoGroupMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 自动化分组
+ * 节点分组
+ * <p>节点分组 , 数据表 ops_auto_group 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 09:09:52
- * @sign B14160FC9AEC0CFF5C1E776EDB709741
+ * @since 2023-09-01 15:21:32
+ * @sign 252D69ABDF8DA9D1E7F97C1CF9591276
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_auto_group")
+@ApiModel(description = "节点分组 ; 节点分组 , 数据表 ops_auto_group 的PO类型")
 public class AutoGroup extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -33,25 +40,25 @@ public class AutoGroup extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "749694127301459968")
 	private String id;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "默认分组")
 	private String name;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "11")
 	private String notes;
 	
 	/**
@@ -69,9 +76,10 @@ public class AutoGroup extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -89,14 +97,26 @@ public class AutoGroup extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * 创建人ID：创建人ID
+	*/
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	private String createBy;
+	
+	/**
+	 * 创建时间：创建时间
+	*/
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	private Date createTime;
 	
 	/**
 	 * 获得 主键<br>
@@ -239,6 +259,7 @@ public class AutoGroup extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AutoGroup setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -336,6 +357,44 @@ public class AutoGroup extends Entity {
 		this.tenantId=tenantId;
 		return this;
 	}
+	
+	/**
+	 * 获得 创建人ID<br>
+	 * 创建人ID
+	 * @return 创建人ID
+	*/
+	public String getCreateBy() {
+		return createBy;
+	}
+	
+	/**
+	 * 设置 创建人ID
+	 * @param createBy 创建人ID
+	 * @return 当前对象
+	*/
+	public AutoGroup setCreateBy(String createBy) {
+		this.createBy=createBy;
+		return this;
+	}
+	
+	/**
+	 * 获得 创建时间<br>
+	 * 创建时间
+	 * @return 创建时间
+	*/
+	public Date getCreateTime() {
+		return createTime;
+	}
+	
+	/**
+	 * 设置 创建时间
+	 * @param createTime 创建时间
+	 * @return 当前对象
+	*/
+	public AutoGroup setCreateTime(Date createTime) {
+		this.createTime=createTime;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -367,6 +426,46 @@ public class AutoGroup extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoGroup clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AutoGroup duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.AutoGroupMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.AutoGroupMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setStatus(this.getStatus());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoGroup clone(boolean deep) {
+		return EntityContext.clone(AutoGroup.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AutoGroup
 	 * @param autoGroupMap 包含实体信息的 Map 对象
 	 * @return AutoGroup , 转换好的的 AutoGroup 对象
@@ -374,7 +473,9 @@ public class AutoGroup extends Entity {
 	@Transient
 	public static AutoGroup createFrom(Map<String,Object> autoGroupMap) {
 		if(autoGroupMap==null) return null;
-		AutoGroup po = EntityContext.create(AutoGroup.class, autoGroupMap);
+		AutoGroup po = create();
+		EntityContext.copyProperties(po,autoGroupMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -386,7 +487,9 @@ public class AutoGroup extends Entity {
 	@Transient
 	public static AutoGroup createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AutoGroup po = EntityContext.create(AutoGroup.class,pojo);
+		AutoGroup po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -396,6 +499,98 @@ public class AutoGroup extends Entity {
 	*/
 	@Transient
 	public static AutoGroup create() {
-		return EntityContext.create(AutoGroup.class);
+		return new com.dt.platform.domain.ops.meta.AutoGroupMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AutoGroupMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AutoGroupMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AutoGroupMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AutoGroupMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AutoGroupMeta.DELETED)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AutoGroupMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AutoGroupMeta.DELETE_TIME)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AutoGroupMeta.CREATE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AutoGroupMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AutoGroupMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AutoGroupMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AutoGroupMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(AutoGroupMeta.STATUS)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AutoGroupMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(AutoGroupMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AutoGroupMeta.VERSION));
+				this.setCreateBy( (String)map.get(AutoGroupMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AutoGroupMeta.DELETED));
+				this.setUpdateBy( (String)map.get(AutoGroupMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AutoGroupMeta.DELETE_TIME));
+				this.setCreateTime( (Date)map.get(AutoGroupMeta.CREATE_TIME));
+				this.setName( (String)map.get(AutoGroupMeta.NAME));
+				this.setTenantId( (String)map.get(AutoGroupMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AutoGroupMeta.DELETE_BY));
+				this.setId( (String)map.get(AutoGroupMeta.ID));
+				this.setStatus( (String)map.get(AutoGroupMeta.STATUS));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AutoGroupMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AutoGroupMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AutoGroupMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AutoGroupMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AutoGroupMeta.DELETED)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AutoGroupMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AutoGroupMeta.DELETE_TIME)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AutoGroupMeta.CREATE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AutoGroupMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AutoGroupMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AutoGroupMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AutoGroupMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AutoGroupMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AutoGroupMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(AutoGroupMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AutoGroupMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(AutoGroupMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AutoGroupMeta.DELETED));
+				this.setUpdateBy( (String)r.getValue(AutoGroupMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AutoGroupMeta.DELETE_TIME));
+				this.setCreateTime( (Date)r.getValue(AutoGroupMeta.CREATE_TIME));
+				this.setName( (String)r.getValue(AutoGroupMeta.NAME));
+				this.setTenantId( (String)r.getValue(AutoGroupMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AutoGroupMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AutoGroupMeta.ID));
+				this.setStatus( (String)r.getValue(AutoGroupMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

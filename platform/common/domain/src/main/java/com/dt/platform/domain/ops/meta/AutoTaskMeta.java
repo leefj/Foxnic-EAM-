@@ -8,13 +8,14 @@ import com.dt.platform.domain.ops.AutoBatch;
 import com.dt.platform.domain.ops.AutoAction;
 import com.dt.platform.domain.ops.AutoNode;
 import java.util.List;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-24 08:44:56
- * @sign CF2B48F6F748B6D396E564431E7F1082
+ * @since 2023-09-02 16:07:10
+ * @sign DEF624F69A823DEE29662D14DE3CFBBA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -201,6 +202,26 @@ public class AutoTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * 创建人ID , 类型: java.lang.String
+	*/
+	public static final String CREATE_BY="createBy";
+	
+	/**
+	 * 创建人ID , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> CREATE_BY_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,CREATE_BY, java.lang.String.class, "创建人ID", "创建人ID", java.lang.String.class, null);
+	
+	/**
+	 * 创建时间 , 类型: java.util.Date
+	*/
+	public static final String CREATE_TIME="createTime";
+	
+	/**
+	 * 创建时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.util.Date> CREATE_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,CREATE_TIME, java.util.Date.class, "创建时间", "创建时间", java.util.Date.class, null);
+	
+	/**
 	 * group , 类型: com.dt.platform.domain.ops.AutoGroup
 	*/
 	public static final String GROUP="group";
@@ -291,9 +312,19 @@ public class AutoTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> NODE_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,NODE_IDS, java.util.List.class, "nodeIds", "nodeIds", java.lang.String.class, null);
 	
 	/**
+	 * tplDtl , 类型: java.lang.String
+	*/
+	public static final String TPL_DTL="tplDtl";
+	
+	/**
+	 * tplDtl , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> TPL_DTL_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,TPL_DTL, java.lang.String.class, "tplDtl", "tplDtl", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER_ID , NAME , STATUS , RUN_STATUS , GROUP_ID , BATCH_ID , ACTION_ID , CONF_CONTENT , NOTES , SELECTED_CODE , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GROUP , BATCH , ACTION , ACTION_CONF_CONTENT , ACTION_EXECUTE_CONTENT , ACTION_INFO , ACTION_SUPPORT , NODE_LIST , NODE_IDS };
+	public static final String[] $PROPS={ ID , OWNER_ID , NAME , STATUS , RUN_STATUS , GROUP_ID , BATCH_ID , ACTION_ID , CONF_CONTENT , NOTES , SELECTED_CODE , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CREATE_BY , CREATE_TIME , GROUP , BATCH , ACTION , ACTION_CONF_CONTENT , ACTION_EXECUTE_CONTENT , ACTION_INFO , ACTION_SUPPORT , NODE_LIST , NODE_IDS , TPL_DTL };
 	
 	/**
 	 * 代理类
@@ -502,6 +533,28 @@ public class AutoTaskMeta {
 		}
 		
 		/**
+		 * 设置 创建人ID
+		 * @param createBy 创建人ID
+		 * @return 当前对象
+		*/
+		public AutoTask setCreateBy(String createBy) {
+			super.change(CREATE_BY,super.getCreateBy(),createBy);
+			super.setCreateBy(createBy);
+			return this;
+		}
+		
+		/**
+		 * 设置 创建时间
+		 * @param createTime 创建时间
+		 * @return 当前对象
+		*/
+		public AutoTask setCreateTime(Date createTime) {
+			super.change(CREATE_TIME,super.getCreateTime(),createTime);
+			super.setCreateTime(createTime);
+			return this;
+		}
+		
+		/**
 		 * 设置 group
 		 * @param group group
 		 * @return 当前对象
@@ -599,5 +652,68 @@ public class AutoTaskMeta {
 			super.setNodeIds(nodeIds);
 			return this;
 		}
+		
+		/**
+		 * 设置 tplDtl
+		 * @param tplDtl tplDtl
+		 * @return 当前对象
+		*/
+		public AutoTask setTplDtl(String tplDtl) {
+			super.change(TPL_DTL,super.getTplDtl(),tplDtl);
+			super.setTplDtl(tplDtl);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AutoTask clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AutoTask duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setGroupId(this.getGroupId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setOwnerId(this.getOwnerId());
+			inst.setBatchId(this.getBatchId());
+			inst.setConfContent(this.getConfContent());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setActionId(this.getActionId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setRunStatus(this.getRunStatus());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setNodeIds(this.getNodeIds());
+				inst.setTplDtl(this.getTplDtl());
+				inst.setBatch(this.getBatch());
+				inst.setActionInfo(this.getActionInfo());
+				inst.setActionSupport(this.getActionSupport());
+				inst.setAction(this.getAction());
+				inst.setActionExecuteContent(this.getActionExecuteContent());
+				inst.setNodeList(this.getNodeList());
+				inst.setGroup(this.getGroup());
+				inst.setActionConfContent(this.getActionConfContent());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

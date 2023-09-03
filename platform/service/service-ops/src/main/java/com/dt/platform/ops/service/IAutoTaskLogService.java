@@ -1,5 +1,6 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 明细日志 服务接口
+ * 明细日志服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-24 13:48:40
+ * @since 2023-09-02 18:13:23
 */
 
 public interface IAutoTaskLogService extends  ISimpleIdService<AutoTaskLog,String> {
@@ -55,7 +56,7 @@ public interface IAutoTaskLogService extends  ISimpleIdService<AutoTaskLog,Strin
 
 		
 	/**
-	 * 按主键删除 明细日志
+	 * 按主键删除明细日志
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IAutoTaskLogService extends  ISimpleIdService<AutoTaskLog,Strin
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 明细日志
+	 * 按主键删除明细日志
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IAutoTaskLogService extends  ISimpleIdService<AutoTaskLog,Strin
 
 		
 	/**
-	 * 按主键更新字段 明细日志
+	 * 按主键更新明细日志
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IAutoTaskLogService extends  ISimpleIdService<AutoTaskLog,Strin
 
 		
 	/**
-	 * 按主键获取 明细日志
+	 * 按主键获取明细日志
 	 *
 	 * @param id 主键
 	 * @return AutoTaskLog 数据对象

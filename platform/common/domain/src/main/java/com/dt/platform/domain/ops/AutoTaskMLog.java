@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_AUTO_TASK_M_LOG;
@@ -8,24 +9,30 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.AutoTaskMLogMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 执行日志
+ * <p>执行日志 , 数据表 ops_auto_task_m_log 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-24 13:10:23
- * @sign 133281E9FDAFECEFA0479DDD24900BC6
+ * @since 2023-09-02 16:05:42
+ * @sign BDDCD47B78AD2990D452CBA1619FFAEF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_auto_task_m_log")
+@ApiModel(description = "执行日志 ; 执行日志 , 数据表 ops_auto_task_m_log 的PO类型")
 public class AutoTaskMLog extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -36,63 +43,64 @@ public class AutoTaskMLog extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "749696071613022208")
 	private String id;
 	
 	/**
 	 * 作业：作业
 	*/
-	@ApiModelProperty(required = false,value="作业" , notes = "作业")
+	@ApiModelProperty(required = false,value="作业" , notes = "作业" , example = "749696046161985536")
 	private String taskId;
 	
 	/**
 	 * 动作：动作
 	*/
-	@ApiModelProperty(required = false,value="动作" , notes = "动作")
+	@ApiModelProperty(required = false,value="动作" , notes = "动作" , example = "614741291334369280")
 	private String actionId;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "success")
 	private String status;
 	
 	/**
 	 * 内容：内容
 	*/
-	@ApiModelProperty(required = false,value="内容" , notes = "内容")
+	@ApiModelProperty(required = false,value="内容" , notes = "内容" , example = "节点数量:1 失败节点数量:0 ")
 	private String content;
 	
 	/**
 	 * 开始时间：开始时间
 	*/
-	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间")
+	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2023-08-31 06:24:32")
 	private Date stime;
 	
 	/**
 	 * 结束时间：结束时间
 	*/
-	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间")
+	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间" , example = "2023-08-31 06:24:33")
 	private Date etime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-08-31 06:24:33")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -110,14 +118,20 @@ public class AutoTaskMLog extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
-	 * 租户：租户
+	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
-	private String tenantId;
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	private String createBy;
+	
+	/**
+	 * 创建时间：创建时间
+	*/
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	private Date createTime;
 	
 	/**
 	 * task：task
@@ -335,6 +349,7 @@ public class AutoTaskMLog extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AutoTaskMLog setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -415,21 +430,40 @@ public class AutoTaskMLog extends Entity {
 	}
 	
 	/**
-	 * 获得 租户<br>
-	 * 租户
-	 * @return 租户
+	 * 获得 创建人ID<br>
+	 * 创建人ID
+	 * @return 创建人ID
 	*/
-	public String getTenantId() {
-		return tenantId;
+	public String getCreateBy() {
+		return createBy;
 	}
 	
 	/**
-	 * 设置 租户
-	 * @param tenantId 租户
+	 * 设置 创建人ID
+	 * @param createBy 创建人ID
 	 * @return 当前对象
 	*/
-	public AutoTaskMLog setTenantId(String tenantId) {
-		this.tenantId=tenantId;
+	public AutoTaskMLog setCreateBy(String createBy) {
+		this.createBy=createBy;
+		return this;
+	}
+	
+	/**
+	 * 获得 创建时间<br>
+	 * 创建时间
+	 * @return 创建时间
+	*/
+	public Date getCreateTime() {
+		return createTime;
+	}
+	
+	/**
+	 * 设置 创建时间
+	 * @param createTime 创建时间
+	 * @return 当前对象
+	*/
+	public AutoTaskMLog setCreateTime(Date createTime) {
+		this.createTime=createTime;
 		return this;
 	}
 	
@@ -535,7 +569,38 @@ public class AutoTaskMLog extends Entity {
 	*/
 	@Transient
 	public AutoTaskMLog clone() {
-		return EntityContext.clone(AutoTaskMLog.class,this);
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AutoTaskMLog duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.AutoTaskMLogMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.AutoTaskMLogMeta.$$proxy$$();
+		inst.setStime(this.getStime());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setContent(this.getContent());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setEtime(this.getEtime());
+		inst.setActionId(this.getActionId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setTaskId(this.getTaskId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setTask(this.getTask());
+			inst.setLogList(this.getLogList());
+			inst.setAction(this.getAction());
+		}
+		inst.clearModifies();
+		return inst;
 	}
 
 	/**
@@ -554,7 +619,9 @@ public class AutoTaskMLog extends Entity {
 	@Transient
 	public static AutoTaskMLog createFrom(Map<String,Object> autoTaskMLogMap) {
 		if(autoTaskMLogMap==null) return null;
-		AutoTaskMLog po = EntityContext.create(AutoTaskMLog.class, autoTaskMLogMap);
+		AutoTaskMLog po = create();
+		EntityContext.copyProperties(po,autoTaskMLogMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -566,7 +633,9 @@ public class AutoTaskMLog extends Entity {
 	@Transient
 	public static AutoTaskMLog createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AutoTaskMLog po = EntityContext.create(AutoTaskMLog.class,pojo);
+		AutoTaskMLog po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -576,6 +645,110 @@ public class AutoTaskMLog extends Entity {
 	*/
 	@Transient
 	public static AutoTaskMLog create() {
-		return EntityContext.create(AutoTaskMLog.class);
+		return new com.dt.platform.domain.ops.meta.AutoTaskMLogMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setStime(DataParser.parse(Date.class, map.get(AutoTaskMLogMeta.STIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AutoTaskMLogMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AutoTaskMLogMeta.VERSION)));
+			this.setContent(DataParser.parse(String.class, map.get(AutoTaskMLogMeta.CONTENT)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AutoTaskMLogMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AutoTaskMLogMeta.DELETED)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AutoTaskMLogMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AutoTaskMLogMeta.DELETE_TIME)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AutoTaskMLogMeta.CREATE_TIME)));
+			this.setEtime(DataParser.parse(Date.class, map.get(AutoTaskMLogMeta.ETIME)));
+			this.setActionId(DataParser.parse(String.class, map.get(AutoTaskMLogMeta.ACTION_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AutoTaskMLogMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AutoTaskMLogMeta.ID)));
+			this.setTaskId(DataParser.parse(String.class, map.get(AutoTaskMLogMeta.TASK_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(AutoTaskMLogMeta.STATUS)));
+			// others
+			this.setTask(DataParser.parse(AutoTask.class, map.get(AutoTaskMLogMeta.TASK)));
+			this.setAction(DataParser.parse(AutoAction.class, map.get(AutoTaskMLogMeta.ACTION)));
+			return true;
+		} else {
+			try {
+				this.setStime( (Date)map.get(AutoTaskMLogMeta.STIME));
+				this.setUpdateTime( (Date)map.get(AutoTaskMLogMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AutoTaskMLogMeta.VERSION));
+				this.setContent( (String)map.get(AutoTaskMLogMeta.CONTENT));
+				this.setCreateBy( (String)map.get(AutoTaskMLogMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AutoTaskMLogMeta.DELETED));
+				this.setUpdateBy( (String)map.get(AutoTaskMLogMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AutoTaskMLogMeta.DELETE_TIME));
+				this.setCreateTime( (Date)map.get(AutoTaskMLogMeta.CREATE_TIME));
+				this.setEtime( (Date)map.get(AutoTaskMLogMeta.ETIME));
+				this.setActionId( (String)map.get(AutoTaskMLogMeta.ACTION_ID));
+				this.setDeleteBy( (String)map.get(AutoTaskMLogMeta.DELETE_BY));
+				this.setId( (String)map.get(AutoTaskMLogMeta.ID));
+				this.setTaskId( (String)map.get(AutoTaskMLogMeta.TASK_ID));
+				this.setStatus( (String)map.get(AutoTaskMLogMeta.STATUS));
+				// others
+				this.setTask( (AutoTask)map.get(AutoTaskMLogMeta.TASK));
+				this.setAction( (AutoAction)map.get(AutoTaskMLogMeta.ACTION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setStime(DataParser.parse(Date.class, r.getValue(AutoTaskMLogMeta.STIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AutoTaskMLogMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AutoTaskMLogMeta.VERSION)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AutoTaskMLogMeta.CONTENT)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AutoTaskMLogMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AutoTaskMLogMeta.DELETED)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AutoTaskMLogMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AutoTaskMLogMeta.DELETE_TIME)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AutoTaskMLogMeta.CREATE_TIME)));
+			this.setEtime(DataParser.parse(Date.class, r.getValue(AutoTaskMLogMeta.ETIME)));
+			this.setActionId(DataParser.parse(String.class, r.getValue(AutoTaskMLogMeta.ACTION_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AutoTaskMLogMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AutoTaskMLogMeta.ID)));
+			this.setTaskId(DataParser.parse(String.class, r.getValue(AutoTaskMLogMeta.TASK_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AutoTaskMLogMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setStime( (Date)r.getValue(AutoTaskMLogMeta.STIME));
+				this.setUpdateTime( (Date)r.getValue(AutoTaskMLogMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AutoTaskMLogMeta.VERSION));
+				this.setContent( (String)r.getValue(AutoTaskMLogMeta.CONTENT));
+				this.setCreateBy( (String)r.getValue(AutoTaskMLogMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AutoTaskMLogMeta.DELETED));
+				this.setUpdateBy( (String)r.getValue(AutoTaskMLogMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AutoTaskMLogMeta.DELETE_TIME));
+				this.setCreateTime( (Date)r.getValue(AutoTaskMLogMeta.CREATE_TIME));
+				this.setEtime( (Date)r.getValue(AutoTaskMLogMeta.ETIME));
+				this.setActionId( (String)r.getValue(AutoTaskMLogMeta.ACTION_ID));
+				this.setDeleteBy( (String)r.getValue(AutoTaskMLogMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AutoTaskMLogMeta.ID));
+				this.setTaskId( (String)r.getValue(AutoTaskMLogMeta.TASK_ID));
+				this.setStatus( (String)r.getValue(AutoTaskMLogMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

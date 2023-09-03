@@ -64,13 +64,18 @@ public class AutoTaskController extends SuperController {
      * 添加批次作业
      */
     @ApiOperation(value = "添加批次作业")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
-		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "部署模版", required = false, dataTypeClass = String.class, example = "613756265390145536"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
-		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.RUN_STATUS, value = "运行状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.BATCH_ID, value = "批次", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.CONF_CONTENT, value = "动作配置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoTaskServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -85,7 +90,7 @@ public class AutoTaskController extends SuperController {
      * 删除批次作业
      */
     @ApiOperation(value = "删除批次作业")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224")
 	})
     @ApiOperationSupport(order = 2)
@@ -97,9 +102,9 @@ public class AutoTaskController extends SuperController {
             return this.validator().getFirstResult();
         }
         // 引用校验
-        ReferCause cause =  autoTaskService.hasRefers(id);
+        ReferCause cause = autoTaskService.hasRefers(id);
         // 判断是否可以删除
-        this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录："+cause.message(),false);
+        this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录：" + cause.message(), false);
         if (this.validator().failure()) {
             return this.validator().getFirstResult();
         }
@@ -112,7 +117,7 @@ public class AutoTaskController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除批次作业")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AutoTaskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -136,9 +141,9 @@ public class AutoTaskController extends SuperController {
         // 执行删除
         if (canDeleteIds.isEmpty()) {
             // 如果没有一行可以被删除
-            return ErrorDesc.failure().message("无法删除您选中的数据行：").data(0)
-				.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
-				.messageLevel4Confirm();
+            return ErrorDesc.failure().message("无法删除您选中的数据行：").data(0).addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(), (e) -> {
+                return e.hasRefer();
+            }), ReferCause::message, String.class)).messageLevel4Confirm();
         } else if (canDeleteIds.size() == ids.size()) {
             // 如果全部可以删除
             Result result = autoTaskService.deleteByIdsLogical(canDeleteIds);
@@ -149,9 +154,9 @@ public class AutoTaskController extends SuperController {
             if (result.failure()) {
                 return result;
             } else {
-                return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").data(canDeleteIds.size())
-					.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
-					.messageLevel4Confirm();
+                return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").data(canDeleteIds.size()).addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(), (e) -> {
+                    return e.hasRefer();
+                }), ReferCause::message, String.class)).messageLevel4Confirm();
             }
         } else {
             // 理论上，这个分支不存在
@@ -163,13 +168,18 @@ public class AutoTaskController extends SuperController {
      * 更新批次作业
      */
     @ApiOperation(value = "更新批次作业")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
-		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "部署模版", required = false, dataTypeClass = String.class, example = "613756265390145536"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
-		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.RUN_STATUS, value = "运行状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.BATCH_ID, value = "批次", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.CONF_CONTENT, value = "动作配置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoTaskVOMeta.PAGE_INDEX, AutoTaskVOMeta.PAGE_SIZE, AutoTaskVOMeta.SEARCH_FIELD, AutoTaskVOMeta.FUZZY_FIELD, AutoTaskVOMeta.SEARCH_VALUE, AutoTaskVOMeta.DIRTY_FIELDS, AutoTaskVOMeta.SORT_FIELD, AutoTaskVOMeta.SORT_TYPE, AutoTaskVOMeta.IDS })
     @SentinelResource(value = AutoTaskServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -184,13 +194,18 @@ public class AutoTaskController extends SuperController {
      * 保存批次作业
      */
     @ApiOperation(value = "保存批次作业")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
-		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "部署模版", required = false, dataTypeClass = String.class, example = "613756265390145536"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
-		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.RUN_STATUS, value = "运行状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.BATCH_ID, value = "批次", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.CONF_CONTENT, value = "动作配置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoTaskVOMeta.PAGE_INDEX, AutoTaskVOMeta.PAGE_SIZE, AutoTaskVOMeta.SEARCH_FIELD, AutoTaskVOMeta.FUZZY_FIELD, AutoTaskVOMeta.SEARCH_VALUE, AutoTaskVOMeta.DIRTY_FIELDS, AutoTaskVOMeta.SORT_FIELD, AutoTaskVOMeta.SORT_TYPE, AutoTaskVOMeta.IDS })
     @SentinelResource(value = AutoTaskServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -205,7 +220,7 @@ public class AutoTaskController extends SuperController {
      * 获取批次作业
      */
     @ApiOperation(value = "获取批次作业")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -225,7 +240,7 @@ public class AutoTaskController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取批次作业")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AutoTaskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -242,13 +257,18 @@ public class AutoTaskController extends SuperController {
      * 查询批次作业
      */
     @ApiOperation(value = "查询批次作业")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
-		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "部署模版", required = false, dataTypeClass = String.class, example = "613756265390145536"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
-		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.RUN_STATUS, value = "运行状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.BATCH_ID, value = "批次", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.CONF_CONTENT, value = "动作配置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoTaskVOMeta.PAGE_INDEX, AutoTaskVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoTaskServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -264,13 +284,18 @@ public class AutoTaskController extends SuperController {
      * 分页查询批次作业
      */
     @ApiOperation(value = "分页查询批次作业")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
-		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "部署模版", required = false, dataTypeClass = String.class, example = "613756265390145536"),
 		@ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
-		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.RUN_STATUS, value = "运行状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.BATCH_ID, value = "批次", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.CONF_CONTENT, value = "动作配置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoTaskServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -288,7 +313,7 @@ public class AutoTaskController extends SuperController {
      * 执行作业
      */
     @ApiOperation(value = "执行作业")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224")
 	})
     @ApiOperationSupport(order = 9)
@@ -296,13 +321,13 @@ public class AutoTaskController extends SuperController {
     @PostMapping(AutoTaskServiceProxy.EXECUTE)
     public Result execute(String id, String method) {
         SimpleTaskManager tm = new SimpleTaskManager();
-        // tm.doDelayTask(new Runnable() {
-        // @Override
-        // public void run() {
-        // Result result=autoTaskService.execute(id,method);
-        // }
-        // }, 10);
-        Result result = autoTaskService.execute(id, method);
+         tm.doDelayTask(new Runnable() {
+         @Override
+         public void run() {
+          Result result=autoTaskService.execute(id,method);
+         }
+         }, 200);
+       // Result result = autoTaskService.execute(id, method);
         Result r = new Result();
         r.success();
         r.message("已提交至后台执行,请在日志中查看执行结果");

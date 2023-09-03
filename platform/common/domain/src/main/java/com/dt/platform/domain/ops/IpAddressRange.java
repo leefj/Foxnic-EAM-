@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_IP_ADDRESS_RANGE;
@@ -8,22 +9,28 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import org.github.foxnic.web.domain.system.DictItem;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.IpAddressRangeMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * IP地址段
+ * <p>IP地址段 , 数据表 ops_ip_address_range 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-30 07:16:57
- * @sign 33C6E06FC336E6BDF2303441639F5A94
+ * @since 2023-09-03 08:21:20
+ * @sign CA2428A6F53407E45F0E91B98B84A744
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_ip_address_range")
+@ApiModel(description = "IP地址段 ; IP地址段 , 数据表 ops_ip_address_range 的PO类型")
 public class IpAddressRange extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -115,6 +122,7 @@ public class IpAddressRange extends Entity {
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -433,6 +441,7 @@ public class IpAddressRange extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public IpAddressRange setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -618,6 +627,56 @@ public class IpAddressRange extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public IpAddressRange clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public IpAddressRange duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.IpAddressRangeMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.IpAddressRangeMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setProdId(this.getProdId());
+		inst.setVersion(this.getVersion());
+		inst.setAddressSegment(this.getAddressSegment());
+		inst.setScene(this.getScene());
+		inst.setClassId(this.getClassId());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setVlan(this.getVlan());
+		inst.setRegionId(this.getRegionId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setProdDict(this.getProdDict());
+			inst.setClassDict(this.getClassDict());
+			inst.setRegionDict(this.getRegionDict());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public IpAddressRange clone(boolean deep) {
+		return EntityContext.clone(IpAddressRange.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 IpAddressRange
 	 * @param ipAddressRangeMap 包含实体信息的 Map 对象
 	 * @return IpAddressRange , 转换好的的 IpAddressRange 对象
@@ -625,7 +684,9 @@ public class IpAddressRange extends Entity {
 	@Transient
 	public static IpAddressRange createFrom(Map<String,Object> ipAddressRangeMap) {
 		if(ipAddressRangeMap==null) return null;
-		IpAddressRange po = EntityContext.create(IpAddressRange.class, ipAddressRangeMap);
+		IpAddressRange po = create();
+		EntityContext.copyProperties(po,ipAddressRangeMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -637,7 +698,9 @@ public class IpAddressRange extends Entity {
 	@Transient
 	public static IpAddressRange createFrom(Object pojo) {
 		if(pojo==null) return null;
-		IpAddressRange po = EntityContext.create(IpAddressRange.class,pojo);
+		IpAddressRange po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -647,6 +710,124 @@ public class IpAddressRange extends Entity {
 	*/
 	@Transient
 	public static IpAddressRange create() {
-		return EntityContext.create(IpAddressRange.class);
+		return new com.dt.platform.domain.ops.meta.IpAddressRangeMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(IpAddressRangeMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(IpAddressRangeMeta.UPDATE_TIME)));
+			this.setProdId(DataParser.parse(String.class, map.get(IpAddressRangeMeta.PROD_ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(IpAddressRangeMeta.VERSION)));
+			this.setAddressSegment(DataParser.parse(String.class, map.get(IpAddressRangeMeta.ADDRESS_SEGMENT)));
+			this.setScene(DataParser.parse(String.class, map.get(IpAddressRangeMeta.SCENE)));
+			this.setClassId(DataParser.parse(String.class, map.get(IpAddressRangeMeta.CLASS_ID)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(IpAddressRangeMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(IpAddressRangeMeta.DELETED)));
+			this.setVlan(DataParser.parse(String.class, map.get(IpAddressRangeMeta.VLAN)));
+			this.setRegionId(DataParser.parse(String.class, map.get(IpAddressRangeMeta.REGION_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(IpAddressRangeMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(IpAddressRangeMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(IpAddressRangeMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(IpAddressRangeMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(IpAddressRangeMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(IpAddressRangeMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(IpAddressRangeMeta.STATUS)));
+			// others
+			this.setProdDict(DataParser.parse(DictItem.class, map.get(IpAddressRangeMeta.PROD_DICT)));
+			this.setClassDict(DataParser.parse(DictItem.class, map.get(IpAddressRangeMeta.CLASS_DICT)));
+			this.setRegionDict(DataParser.parse(DictItem.class, map.get(IpAddressRangeMeta.REGION_DICT)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(IpAddressRangeMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(IpAddressRangeMeta.UPDATE_TIME));
+				this.setProdId( (String)map.get(IpAddressRangeMeta.PROD_ID));
+				this.setVersion( (Integer)map.get(IpAddressRangeMeta.VERSION));
+				this.setAddressSegment( (String)map.get(IpAddressRangeMeta.ADDRESS_SEGMENT));
+				this.setScene( (String)map.get(IpAddressRangeMeta.SCENE));
+				this.setClassId( (String)map.get(IpAddressRangeMeta.CLASS_ID));
+				this.setCreateBy( (String)map.get(IpAddressRangeMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(IpAddressRangeMeta.DELETED));
+				this.setVlan( (String)map.get(IpAddressRangeMeta.VLAN));
+				this.setRegionId( (String)map.get(IpAddressRangeMeta.REGION_ID));
+				this.setCreateTime( (Date)map.get(IpAddressRangeMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(IpAddressRangeMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(IpAddressRangeMeta.DELETE_TIME));
+				this.setTenantId( (String)map.get(IpAddressRangeMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(IpAddressRangeMeta.DELETE_BY));
+				this.setId( (String)map.get(IpAddressRangeMeta.ID));
+				this.setStatus( (String)map.get(IpAddressRangeMeta.STATUS));
+				// others
+				this.setProdDict( (DictItem)map.get(IpAddressRangeMeta.PROD_DICT));
+				this.setClassDict( (DictItem)map.get(IpAddressRangeMeta.CLASS_DICT));
+				this.setRegionDict( (DictItem)map.get(IpAddressRangeMeta.REGION_DICT));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(IpAddressRangeMeta.UPDATE_TIME)));
+			this.setProdId(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.PROD_ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(IpAddressRangeMeta.VERSION)));
+			this.setAddressSegment(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.ADDRESS_SEGMENT)));
+			this.setScene(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.SCENE)));
+			this.setClassId(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.CLASS_ID)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(IpAddressRangeMeta.DELETED)));
+			this.setVlan(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.VLAN)));
+			this.setRegionId(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.REGION_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(IpAddressRangeMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(IpAddressRangeMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(IpAddressRangeMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(IpAddressRangeMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(IpAddressRangeMeta.UPDATE_TIME));
+				this.setProdId( (String)r.getValue(IpAddressRangeMeta.PROD_ID));
+				this.setVersion( (Integer)r.getValue(IpAddressRangeMeta.VERSION));
+				this.setAddressSegment( (String)r.getValue(IpAddressRangeMeta.ADDRESS_SEGMENT));
+				this.setScene( (String)r.getValue(IpAddressRangeMeta.SCENE));
+				this.setClassId( (String)r.getValue(IpAddressRangeMeta.CLASS_ID));
+				this.setCreateBy( (String)r.getValue(IpAddressRangeMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(IpAddressRangeMeta.DELETED));
+				this.setVlan( (String)r.getValue(IpAddressRangeMeta.VLAN));
+				this.setRegionId( (String)r.getValue(IpAddressRangeMeta.REGION_ID));
+				this.setCreateTime( (Date)r.getValue(IpAddressRangeMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(IpAddressRangeMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(IpAddressRangeMeta.DELETE_TIME));
+				this.setTenantId( (String)r.getValue(IpAddressRangeMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(IpAddressRangeMeta.DELETE_BY));
+				this.setId( (String)r.getValue(IpAddressRangeMeta.ID));
+				this.setStatus( (String)r.getValue(IpAddressRangeMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

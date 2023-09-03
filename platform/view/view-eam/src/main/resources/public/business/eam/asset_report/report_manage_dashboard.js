@@ -20,7 +20,7 @@ function ListPage() {
             admin.popupCenter({
                 title: "资产登记审批清单",
                 resize: false,
-                offset: [null,null],
+                offset: [20,null],
                 area: ["80%","500px"],
                 type: 2,
                 id:"eam-asset-employee-approval-form-data-win",
@@ -35,7 +35,7 @@ function ListPage() {
             admin.popupCenter({
                 title: "资产基础变更审批清单",
                 resize: false,
-                offset: [null,null],
+                offset: [20,null],
                 area: ["80%","500px"],
                 type: 2,
                 id:"eam-asset-employee-approval-form-data-win",
@@ -49,7 +49,7 @@ function ListPage() {
             admin.popupCenter({
                 title: "资产维保变更审批清单",
                 resize: false,
-                offset: [null,null],
+                offset: [20,null],
                 area: ["80%","500px"],
                 type: 2,
                 id:"eam-asset-employee-approval-form-data-win",
@@ -63,7 +63,7 @@ function ListPage() {
             admin.popupCenter({
                 title: "资产财务变更审批清单",
                 resize: false,
-                offset: [null,null],
+                offset: [20,null],
                 area: ["80%","500px"],
                 type: 2,
                 id:"eam-asset-employee-approval-form-data-win",

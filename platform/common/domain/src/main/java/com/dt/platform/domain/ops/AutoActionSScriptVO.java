@@ -1,5 +1,6 @@
 package com.dt.platform.domain.ops;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -7,17 +8,26 @@ import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
+import com.dt.platform.domain.ops.meta.AutoActionSScriptVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 脚本选择
+ * 脚本选择VO类型
+ * <p>脚本选择 , 数据表 ops_auto_action_s_script 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 15:00:39
- * @sign B3681789D46E69A03A59F14F99D1BC29
+ * @since 2023-08-31 18:17:54
+ * @sign 7A51D32E03806BC5626F963930BBAF20
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "脚本选择VO类型 ; 脚本选择 , 数据表 ops_auto_action_s_script 的通用VO类型" , parent = AutoActionSScript.class)
 public class AutoActionSScriptVO extends AutoActionSScript {
 
 	private static final long serialVersionUID = 1L;
@@ -69,6 +79,24 @@ public class AutoActionSScriptVO extends AutoActionSScript {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -232,6 +260,63 @@ public class AutoActionSScriptVO extends AutoActionSScript {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public AutoActionSScriptVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public AutoActionSScriptVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public AutoActionSScriptVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -270,5 +355,217 @@ public class AutoActionSScriptVO extends AutoActionSScript {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return AutoActionSScriptVO , 转换好的 AutoActionSScriptVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return AutoActionSScriptVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoActionSScriptVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AutoActionSScriptVO duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.AutoActionSScriptVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.AutoActionSScriptVOMeta.$$proxy$$();
+		inst.setScriptId(this.getScriptId());
+		inst.setDeleted(this.getDeleted());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setId(this.getId());
+		inst.setOwnerId(this.getOwnerId());
+		inst.setVersion(this.getVersion());
+		if(all) {
+			inst.setSearchField(this.getSearchField());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setPageSize(this.getPageSize());
+			inst.setDataOrigin(this.getDataOrigin());
+			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
+			inst.setSearchValue(this.getSearchValue());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoActionSScriptVO clone(boolean deep) {
+		return EntityContext.clone(AutoActionSScriptVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 AutoActionSScriptVO
+	 * @param autoActionSScriptMap 包含实体信息的 Map 对象
+	 * @return AutoActionSScriptVO , 转换好的的 AutoActionSScript 对象
+	*/
+	@Transient
+	public static AutoActionSScriptVO createFrom(Map<String,Object> autoActionSScriptMap) {
+		if(autoActionSScriptMap==null) return null;
+		AutoActionSScriptVO vo = create();
+		EntityContext.copyProperties(vo,autoActionSScriptMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 AutoActionSScriptVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return AutoActionSScriptVO , 转换好的的 AutoActionSScript 对象
+	*/
+	@Transient
+	public static AutoActionSScriptVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		AutoActionSScriptVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 AutoActionSScriptVO，等同于 new
+	 * @return AutoActionSScriptVO 对象
+	*/
+	@Transient
+	public static AutoActionSScriptVO create() {
+		return new com.dt.platform.domain.ops.meta.AutoActionSScriptVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setScriptId(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.SCRIPT_ID)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AutoActionSScriptVOMeta.DELETED)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AutoActionSScriptVOMeta.DELETE_TIME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AutoActionSScriptVOMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.ID)));
+			this.setOwnerId(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.OWNER_ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AutoActionSScriptVOMeta.VERSION)));
+			// others
+			this.setSearchField(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.SEARCH_FIELD)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(AutoActionSScriptVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.SORT_TYPE)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.REQUEST_ACTION)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.FUZZY_FIELD)));
+			this.setSortField(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.SORT_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AutoActionSScriptVOMeta.PAGE_SIZE)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.QUERY_LOGIC)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(AutoActionSScriptVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setScriptId( (String)map.get(AutoActionSScriptVOMeta.SCRIPT_ID));
+				this.setDeleted( (Integer)map.get(AutoActionSScriptVOMeta.DELETED));
+				this.setUpdateBy( (String)map.get(AutoActionSScriptVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AutoActionSScriptVOMeta.DELETE_TIME));
+				this.setDeleteBy( (String)map.get(AutoActionSScriptVOMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(AutoActionSScriptVOMeta.UPDATE_TIME));
+				this.setId( (String)map.get(AutoActionSScriptVOMeta.ID));
+				this.setOwnerId( (String)map.get(AutoActionSScriptVOMeta.OWNER_ID));
+				this.setVersion( (Integer)map.get(AutoActionSScriptVOMeta.VERSION));
+				// others
+				this.setSearchField( (String)map.get(AutoActionSScriptVOMeta.SEARCH_FIELD));
+				this.setPageIndex( (Integer)map.get(AutoActionSScriptVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(AutoActionSScriptVOMeta.SORT_TYPE));
+				this.setRequestAction( (String)map.get(AutoActionSScriptVOMeta.REQUEST_ACTION));
+				this.setFuzzyField( (String)map.get(AutoActionSScriptVOMeta.FUZZY_FIELD));
+				this.setSortField( (String)map.get(AutoActionSScriptVOMeta.SORT_FIELD));
+				this.setPageSize( (Integer)map.get(AutoActionSScriptVOMeta.PAGE_SIZE));
+				this.setDataOrigin( (String)map.get(AutoActionSScriptVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(AutoActionSScriptVOMeta.QUERY_LOGIC));
+				this.setSearchValue( (String)map.get(AutoActionSScriptVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setScriptId(DataParser.parse(String.class, r.getValue(AutoActionSScriptVOMeta.SCRIPT_ID)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AutoActionSScriptVOMeta.DELETED)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AutoActionSScriptVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AutoActionSScriptVOMeta.DELETE_TIME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AutoActionSScriptVOMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AutoActionSScriptVOMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(AutoActionSScriptVOMeta.ID)));
+			this.setOwnerId(DataParser.parse(String.class, r.getValue(AutoActionSScriptVOMeta.OWNER_ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AutoActionSScriptVOMeta.VERSION)));
+			return true;
+		} else {
+			try {
+				this.setScriptId( (String)r.getValue(AutoActionSScriptVOMeta.SCRIPT_ID));
+				this.setDeleted( (Integer)r.getValue(AutoActionSScriptVOMeta.DELETED));
+				this.setUpdateBy( (String)r.getValue(AutoActionSScriptVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AutoActionSScriptVOMeta.DELETE_TIME));
+				this.setDeleteBy( (String)r.getValue(AutoActionSScriptVOMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(AutoActionSScriptVOMeta.UPDATE_TIME));
+				this.setId( (String)r.getValue(AutoActionSScriptVOMeta.ID));
+				this.setOwnerId( (String)r.getValue(AutoActionSScriptVOMeta.OWNER_ID));
+				this.setVersion( (Integer)r.getValue(AutoActionSScriptVOMeta.VERSION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

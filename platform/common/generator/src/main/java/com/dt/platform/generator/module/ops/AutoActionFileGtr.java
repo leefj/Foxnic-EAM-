@@ -28,10 +28,10 @@ public class AutoActionFileGtr extends BaseCodeGenerator{
                 }
         );
 
-
+        cfg.view().list().disableBatchDelete();
         cfg.view().search().rowsDisplay(1);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_FILE.ID).basic().hidden(true);
-        cfg.view().field(OpsTables.OPS_AUTO_ACTION_FILE.FILE_ID).table().disable(true);
+       // cfg.view().field(OpsTables.OPS_AUTO_ACTION_FILE.FILE_ID).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_FILE.NAME).form().validate().required();
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_FILE.FILE_NAME).form().validate().required();
@@ -56,7 +56,7 @@ public class AutoActionFileGtr extends BaseCodeGenerator{
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //生成代码
         cfg.buildAll();
     }

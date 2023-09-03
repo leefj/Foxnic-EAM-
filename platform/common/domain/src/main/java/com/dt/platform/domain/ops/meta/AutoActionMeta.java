@@ -7,13 +7,14 @@ import com.dt.platform.domain.ops.AutoActionScript;
 import java.util.List;
 import com.dt.platform.domain.ops.AutoActionFile;
 import org.github.foxnic.web.domain.system.DictItem;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 19:33:16
- * @sign F873CE44468D248A2C2B446782913CC3
+ * @since 2023-09-01 18:56:10
+ * @sign DF160C96F8ED551F82DA1137068B63F5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -160,6 +161,26 @@ public class AutoActionMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoAction,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoAction.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
+	 * 创建人 , 类型: java.lang.String
+	*/
+	public static final String CREATE_BY="createBy";
+	
+	/**
+	 * 创建人 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoAction,java.lang.String> CREATE_BY_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoAction.class ,CREATE_BY, java.lang.String.class, "创建人", "创建人", java.lang.String.class, null);
+	
+	/**
+	 * 创建时间 , 类型: java.util.Date
+	*/
+	public static final String CREATE_TIME="createTime";
+	
+	/**
+	 * 创建时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoAction,java.util.Date> CREATE_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoAction.class ,CREATE_TIME, java.util.Date.class, "创建时间", "创建时间", java.util.Date.class, null);
+	
+	/**
 	 * 修改人ID , 类型: java.lang.String
 	*/
 	public static final String UPDATE_BY="updateBy";
@@ -282,7 +303,7 @@ public class AutoActionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , STATUS , TYPE , TPL_VERSION , SUPPORT , INFO , FILE_STATUS , NODE_NUMBER_TYPE , CONF_CONTENT , EXAMPLE_CONF_CONTENT , EXECUTE_CONTENT , EXECUTE_TOOL , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , AUTO_ACTION_SCRIPT_LIST , AUTO_ACTION_SCRIPT_IDS , AUTO_ACTION_FILE_LIST , AUTO_ACTION_FILE_IDS , TYPE_DICT };
+	public static final String[] $PROPS={ ID , NAME , STATUS , TYPE , TPL_VERSION , SUPPORT , INFO , FILE_STATUS , NODE_NUMBER_TYPE , CONF_CONTENT , EXAMPLE_CONF_CONTENT , EXECUTE_CONTENT , EXECUTE_TOOL , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , AUTO_ACTION_SCRIPT_LIST , AUTO_ACTION_SCRIPT_IDS , AUTO_ACTION_FILE_LIST , AUTO_ACTION_FILE_IDS , TYPE_DICT };
 	
 	/**
 	 * 代理类
@@ -447,6 +468,28 @@ public class AutoActionMeta {
 		}
 		
 		/**
+		 * 设置 创建人
+		 * @param createBy 创建人
+		 * @return 当前对象
+		*/
+		public AutoAction setCreateBy(String createBy) {
+			super.change(CREATE_BY,super.getCreateBy(),createBy);
+			super.setCreateBy(createBy);
+			return this;
+		}
+		
+		/**
+		 * 设置 创建时间
+		 * @param createTime 创建时间
+		 * @return 当前对象
+		*/
+		public AutoAction setCreateTime(Date createTime) {
+			super.change(CREATE_TIME,super.getCreateTime(),createTime);
+			super.setCreateTime(createTime);
+			return this;
+		}
+		
+		/**
 		 * 设置 修改人ID
 		 * @param updateBy 修改人ID
 		 * @return 当前对象
@@ -577,5 +620,55 @@ public class AutoActionMeta {
 			super.setTypeDict(typeDict);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AutoAction clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AutoAction duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setNodeNumberType(this.getNodeNumberType());
+			inst.setExecuteContent(this.getExecuteContent());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setType(this.getType());
+			inst.setTplVersion(this.getTplVersion());
+			inst.setConfContent(this.getConfContent());
+			inst.setExampleConfContent(this.getExampleConfContent());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setExecuteTool(this.getExecuteTool());
+			inst.setDeleted(this.getDeleted());
+			inst.setFileStatus(this.getFileStatus());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setSupport(this.getSupport());
+			inst.setStatus(this.getStatus());
+			inst.setInfo(this.getInfo());
+			if(all) {
+				inst.setAutoActionScriptList(this.getAutoActionScriptList());
+				inst.setAutoActionScriptIds(this.getAutoActionScriptIds());
+				inst.setAutoActionFileIds(this.getAutoActionFileIds());
+				inst.setAutoActionFileList(this.getAutoActionFileList());
+				inst.setTypeDict(this.getTypeDict());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

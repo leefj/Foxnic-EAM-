@@ -6,13 +6,14 @@ import java.util.Date;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.ops.AutoGroup;
 import com.dt.platform.domain.ops.AutoVoucher;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 19:42:29
- * @sign 74E387C482F2748EBDAC9F33F1BE0C90
+ * @since 2023-09-01 15:21:45
+ * @sign AE76F5869794E4D5BE3112241EDABCE8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -229,6 +230,26 @@ public class AutoNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoNode,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNode.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * 创建人ID , 类型: java.lang.String
+	*/
+	public static final String CREATE_BY="createBy";
+	
+	/**
+	 * 创建人ID , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoNode,java.lang.String> CREATE_BY_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNode.class ,CREATE_BY, java.lang.String.class, "创建人ID", "创建人ID", java.lang.String.class, null);
+	
+	/**
+	 * 创建时间 , 类型: java.util.Date
+	*/
+	public static final String CREATE_TIME="createTime";
+	
+	/**
+	 * 创建时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoNode,java.util.Date> CREATE_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNode.class ,CREATE_TIME, java.util.Date.class, "创建时间", "创建时间", java.util.Date.class, null);
+	
+	/**
 	 * typeDict , 类型: org.github.foxnic.web.domain.system.DictItem
 	*/
 	public static final String TYPE_DICT="typeDict";
@@ -261,7 +282,7 @@ public class AutoNodeMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER_CODE , NAME , GROUP_ID , TYPE , STATUS , IP , PORT , AUTHENTICATION_METHOD , VOUCHER_ID , USER_NAME , PASSWORD , PUB_KEY , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TYPE_DICT , GROUP , VOUCHER };
+	public static final String[] $PROPS={ ID , OWNER_CODE , NAME , GROUP_ID , TYPE , STATUS , IP , PORT , AUTHENTICATION_METHOD , VOUCHER_ID , USER_NAME , PASSWORD , PUB_KEY , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CREATE_BY , CREATE_TIME , TYPE_DICT , GROUP , VOUCHER };
 	
 	/**
 	 * 代理类
@@ -503,6 +524,28 @@ public class AutoNodeMeta {
 		}
 		
 		/**
+		 * 设置 创建人ID
+		 * @param createBy 创建人ID
+		 * @return 当前对象
+		*/
+		public AutoNode setCreateBy(String createBy) {
+			super.change(CREATE_BY,super.getCreateBy(),createBy);
+			super.setCreateBy(createBy);
+			return this;
+		}
+		
+		/**
+		 * 设置 创建时间
+		 * @param createTime 创建时间
+		 * @return 当前对象
+		*/
+		public AutoNode setCreateTime(Date createTime) {
+			super.change(CREATE_TIME,super.getCreateTime(),createTime);
+			super.setCreateTime(createTime);
+			return this;
+		}
+		
+		/**
 		 * 设置 typeDict
 		 * @param typeDict typeDict
 		 * @return 当前对象
@@ -534,5 +577,53 @@ public class AutoNodeMeta {
 			super.setVoucher(voucher);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AutoNode clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AutoNode duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setOwnerCode(this.getOwnerCode());
+			inst.setGroupId(this.getGroupId());
+			inst.setIp(this.getIp());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setType(this.getType());
+			inst.setUserName(this.getUserName());
+			inst.setVersion(this.getVersion());
+			inst.setPassword(this.getPassword());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setPort(this.getPort());
+			inst.setAuthenticationMethod(this.getAuthenticationMethod());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setVoucherId(this.getVoucherId());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setStatus(this.getStatus());
+			inst.setPubKey(this.getPubKey());
+			if(all) {
+				inst.setVoucher(this.getVoucher());
+				inst.setTypeDict(this.getTypeDict());
+				inst.setGroup(this.getGroup());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

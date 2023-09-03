@@ -47,6 +47,7 @@ public class AutoBatchGtr extends BaseCodeGenerator{
                 }
         );
 
+        cfg.view().list().disableBatchDelete();
         cfg.view().field(OpsTables.OPS_AUTO_BATCH.NOTES).table().form().textArea().height(Config.textAreaHeight);
 
         cfg.view().form().addPage("节点","nodeListSelect");

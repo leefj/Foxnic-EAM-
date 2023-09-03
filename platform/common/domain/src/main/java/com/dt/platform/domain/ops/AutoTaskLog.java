@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_AUTO_TASK_LOG;
@@ -8,21 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.AutoTaskLogMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 明细日志
+ * <p>明细日志 , 数据表 ops_auto_task_log 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-24 13:48:40
- * @sign 486391774254B3AC4571B783E11CDCEA
+ * @since 2023-09-02 18:13:23
+ * @sign 28214DEF024BE9F8C42A648E1B1CD600
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_auto_task_log")
+@ApiModel(description = "明细日志 ; 明细日志 , 数据表 ops_auto_task_log 的PO类型")
 public class AutoTaskLog extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -33,73 +40,73 @@ public class AutoTaskLog extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "749696072762261504")
 	private String id;
 	
 	/**
 	 * 作业：作业
 	*/
-	@ApiModelProperty(required = false,value="作业" , notes = "作业")
+	@ApiModelProperty(required = false,value="作业" , notes = "作业" , example = "749696046161985536")
 	private String taskId;
 	
 	/**
 	 * 日志：日志
 	*/
-	@ApiModelProperty(required = false,value="日志" , notes = "日志")
+	@ApiModelProperty(required = false,value="日志" , notes = "日志" , example = "749696071613022208")
 	private String mLogId;
 	
 	/**
 	 * 动作：动作
 	*/
-	@ApiModelProperty(required = false,value="动作" , notes = "动作")
+	@ApiModelProperty(required = false,value="动作" , notes = "动作" , example = "614741291334369280")
 	private String actionId;
 	
 	/**
 	 * IP：IP
 	*/
-	@ApiModelProperty(required = false,value="IP" , notes = "IP")
+	@ApiModelProperty(required = false,value="IP" , notes = "IP" , example = "121.43.103.102")
 	private String nodeIp;
 	
 	/**
 	 * 节点：节点
 	*/
-	@ApiModelProperty(required = false,value="节点" , notes = "节点")
+	@ApiModelProperty(required = false,value="节点" , notes = "节点" , example = "749695855304376320")
 	private String nodeId;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "success")
 	private String status;
 	
 	/**
 	 * 开始时间：开始时间
 	*/
-	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间")
+	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2023-08-31 06:24:32")
 	private Date stime;
 	
 	/**
 	 * 结束时间：结束时间
 	*/
-	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间")
+	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间" , example = "2023-08-31 06:24:33")
 	private Date etime;
 	
 	/**
 	 * 记录结果：记录结果
 	*/
-	@ApiModelProperty(required = false,value="记录结果" , notes = "记录结果")
+	@ApiModelProperty(required = false,value="记录结果" , notes = "记录结果" , example = "操作完成")
 	private String recordContent;
 	
 	/**
 	 * 内容明细：内容明细
 	*/
-	@ApiModelProperty(required = false,value="内容明细" , notes = "内容明细")
+	@ApiModelProperty(required = false,value="内容明细" , notes = "内容明细" , example = "success!  Thu Aug 31 18:24:33 CST 2023")
 	private String contentDetail;
 	
 	/**
 	 * 记录时间：记录时间
 	*/
-	@ApiModelProperty(required = false,value="记录时间" , notes = "记录时间")
+	@ApiModelProperty(required = false,value="记录时间" , notes = "记录时间" , example = "2023-08-31 06:24:32")
 	private Date recordTime;
 	
 	/**
@@ -111,21 +118,22 @@ public class AutoTaskLog extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-08-31 06:24:33")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -143,14 +151,20 @@ public class AutoTaskLog extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
-	 * 租户：租户
+	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
-	private String tenantId;
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	private String createBy;
+	
+	/**
+	 * 创建时间：创建时间
+	*/
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	private Date createTime;
 	
 	/**
 	 * task：task
@@ -488,6 +502,7 @@ public class AutoTaskLog extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AutoTaskLog setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -568,21 +583,40 @@ public class AutoTaskLog extends Entity {
 	}
 	
 	/**
-	 * 获得 租户<br>
-	 * 租户
-	 * @return 租户
+	 * 获得 创建人ID<br>
+	 * 创建人ID
+	 * @return 创建人ID
 	*/
-	public String getTenantId() {
-		return tenantId;
+	public String getCreateBy() {
+		return createBy;
 	}
 	
 	/**
-	 * 设置 租户
-	 * @param tenantId 租户
+	 * 设置 创建人ID
+	 * @param createBy 创建人ID
 	 * @return 当前对象
 	*/
-	public AutoTaskLog setTenantId(String tenantId) {
-		this.tenantId=tenantId;
+	public AutoTaskLog setCreateBy(String createBy) {
+		this.createBy=createBy;
+		return this;
+	}
+	
+	/**
+	 * 获得 创建时间<br>
+	 * 创建时间
+	 * @return 创建时间
+	*/
+	public Date getCreateTime() {
+		return createTime;
+	}
+	
+	/**
+	 * 设置 创建时间
+	 * @param createTime 创建时间
+	 * @return 当前对象
+	*/
+	public AutoTaskLog setCreateTime(Date createTime) {
+		this.createTime=createTime;
 		return this;
 	}
 	
@@ -696,7 +730,45 @@ public class AutoTaskLog extends Entity {
 	*/
 	@Transient
 	public AutoTaskLog clone() {
-		return EntityContext.clone(AutoTaskLog.class,this);
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AutoTaskLog duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.AutoTaskLogMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.AutoTaskLogMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setNodeIp(this.getNodeIp());
+		inst.setStime(this.getStime());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setContentDetail(this.getContentDetail());
+		inst.setVersion(this.getVersion());
+		inst.setMLogId(this.getMLogId());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setRecordTime(this.getRecordTime());
+		inst.setDeleted(this.getDeleted());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setEtime(this.getEtime());
+		inst.setActionId(this.getActionId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setNodeId(this.getNodeId());
+		inst.setTaskId(this.getTaskId());
+		inst.setStatus(this.getStatus());
+		inst.setRecordContent(this.getRecordContent());
+		if(all) {
+			inst.setNode(this.getNode());
+			inst.setTask(this.getTask());
+			inst.setMLog(this.getMLog());
+			inst.setAction(this.getAction());
+		}
+		inst.clearModifies();
+		return inst;
 	}
 
 	/**
@@ -715,7 +787,9 @@ public class AutoTaskLog extends Entity {
 	@Transient
 	public static AutoTaskLog createFrom(Map<String,Object> autoTaskLogMap) {
 		if(autoTaskLogMap==null) return null;
-		AutoTaskLog po = EntityContext.create(AutoTaskLog.class, autoTaskLogMap);
+		AutoTaskLog po = create();
+		EntityContext.copyProperties(po,autoTaskLogMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -727,7 +801,9 @@ public class AutoTaskLog extends Entity {
 	@Transient
 	public static AutoTaskLog createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AutoTaskLog po = EntityContext.create(AutoTaskLog.class,pojo);
+		AutoTaskLog po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -737,6 +813,138 @@ public class AutoTaskLog extends Entity {
 	*/
 	@Transient
 	public static AutoTaskLog create() {
-		return EntityContext.create(AutoTaskLog.class);
+		return new com.dt.platform.domain.ops.meta.AutoTaskLogMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AutoTaskLogMeta.NOTES)));
+			this.setNodeIp(DataParser.parse(String.class, map.get(AutoTaskLogMeta.NODE_IP)));
+			this.setStime(DataParser.parse(Date.class, map.get(AutoTaskLogMeta.STIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AutoTaskLogMeta.UPDATE_TIME)));
+			this.setContentDetail(DataParser.parse(String.class, map.get(AutoTaskLogMeta.CONTENT_DETAIL)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AutoTaskLogMeta.VERSION)));
+			this.setMLogId(DataParser.parse(String.class, map.get(AutoTaskLogMeta.M_LOG_ID)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AutoTaskLogMeta.CREATE_BY)));
+			this.setRecordTime(DataParser.parse(Date.class, map.get(AutoTaskLogMeta.RECORD_TIME)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AutoTaskLogMeta.DELETED)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AutoTaskLogMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AutoTaskLogMeta.DELETE_TIME)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AutoTaskLogMeta.CREATE_TIME)));
+			this.setEtime(DataParser.parse(Date.class, map.get(AutoTaskLogMeta.ETIME)));
+			this.setActionId(DataParser.parse(String.class, map.get(AutoTaskLogMeta.ACTION_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AutoTaskLogMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AutoTaskLogMeta.ID)));
+			this.setNodeId(DataParser.parse(String.class, map.get(AutoTaskLogMeta.NODE_ID)));
+			this.setTaskId(DataParser.parse(String.class, map.get(AutoTaskLogMeta.TASK_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(AutoTaskLogMeta.STATUS)));
+			this.setRecordContent(DataParser.parse(String.class, map.get(AutoTaskLogMeta.RECORD_CONTENT)));
+			// others
+			this.setNode(DataParser.parse(AutoNode.class, map.get(AutoTaskLogMeta.NODE)));
+			this.setTask(DataParser.parse(AutoTask.class, map.get(AutoTaskLogMeta.TASK)));
+			this.setMLog(DataParser.parse(AutoTaskMLog.class, map.get(AutoTaskLogMeta.M_LOG)));
+			this.setAction(DataParser.parse(AutoAction.class, map.get(AutoTaskLogMeta.ACTION)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AutoTaskLogMeta.NOTES));
+				this.setNodeIp( (String)map.get(AutoTaskLogMeta.NODE_IP));
+				this.setStime( (Date)map.get(AutoTaskLogMeta.STIME));
+				this.setUpdateTime( (Date)map.get(AutoTaskLogMeta.UPDATE_TIME));
+				this.setContentDetail( (String)map.get(AutoTaskLogMeta.CONTENT_DETAIL));
+				this.setVersion( (Integer)map.get(AutoTaskLogMeta.VERSION));
+				this.setMLogId( (String)map.get(AutoTaskLogMeta.M_LOG_ID));
+				this.setCreateBy( (String)map.get(AutoTaskLogMeta.CREATE_BY));
+				this.setRecordTime( (Date)map.get(AutoTaskLogMeta.RECORD_TIME));
+				this.setDeleted( (Integer)map.get(AutoTaskLogMeta.DELETED));
+				this.setUpdateBy( (String)map.get(AutoTaskLogMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AutoTaskLogMeta.DELETE_TIME));
+				this.setCreateTime( (Date)map.get(AutoTaskLogMeta.CREATE_TIME));
+				this.setEtime( (Date)map.get(AutoTaskLogMeta.ETIME));
+				this.setActionId( (String)map.get(AutoTaskLogMeta.ACTION_ID));
+				this.setDeleteBy( (String)map.get(AutoTaskLogMeta.DELETE_BY));
+				this.setId( (String)map.get(AutoTaskLogMeta.ID));
+				this.setNodeId( (String)map.get(AutoTaskLogMeta.NODE_ID));
+				this.setTaskId( (String)map.get(AutoTaskLogMeta.TASK_ID));
+				this.setStatus( (String)map.get(AutoTaskLogMeta.STATUS));
+				this.setRecordContent( (String)map.get(AutoTaskLogMeta.RECORD_CONTENT));
+				// others
+				this.setNode( (AutoNode)map.get(AutoTaskLogMeta.NODE));
+				this.setTask( (AutoTask)map.get(AutoTaskLogMeta.TASK));
+				this.setMLog( (AutoTaskMLog)map.get(AutoTaskLogMeta.M_LOG));
+				this.setAction( (AutoAction)map.get(AutoTaskLogMeta.ACTION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.NOTES)));
+			this.setNodeIp(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.NODE_IP)));
+			this.setStime(DataParser.parse(Date.class, r.getValue(AutoTaskLogMeta.STIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AutoTaskLogMeta.UPDATE_TIME)));
+			this.setContentDetail(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.CONTENT_DETAIL)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AutoTaskLogMeta.VERSION)));
+			this.setMLogId(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.M_LOG_ID)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.CREATE_BY)));
+			this.setRecordTime(DataParser.parse(Date.class, r.getValue(AutoTaskLogMeta.RECORD_TIME)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AutoTaskLogMeta.DELETED)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AutoTaskLogMeta.DELETE_TIME)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AutoTaskLogMeta.CREATE_TIME)));
+			this.setEtime(DataParser.parse(Date.class, r.getValue(AutoTaskLogMeta.ETIME)));
+			this.setActionId(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.ACTION_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.ID)));
+			this.setNodeId(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.NODE_ID)));
+			this.setTaskId(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.TASK_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.STATUS)));
+			this.setRecordContent(DataParser.parse(String.class, r.getValue(AutoTaskLogMeta.RECORD_CONTENT)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AutoTaskLogMeta.NOTES));
+				this.setNodeIp( (String)r.getValue(AutoTaskLogMeta.NODE_IP));
+				this.setStime( (Date)r.getValue(AutoTaskLogMeta.STIME));
+				this.setUpdateTime( (Date)r.getValue(AutoTaskLogMeta.UPDATE_TIME));
+				this.setContentDetail( (String)r.getValue(AutoTaskLogMeta.CONTENT_DETAIL));
+				this.setVersion( (Integer)r.getValue(AutoTaskLogMeta.VERSION));
+				this.setMLogId( (String)r.getValue(AutoTaskLogMeta.M_LOG_ID));
+				this.setCreateBy( (String)r.getValue(AutoTaskLogMeta.CREATE_BY));
+				this.setRecordTime( (Date)r.getValue(AutoTaskLogMeta.RECORD_TIME));
+				this.setDeleted( (Integer)r.getValue(AutoTaskLogMeta.DELETED));
+				this.setUpdateBy( (String)r.getValue(AutoTaskLogMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AutoTaskLogMeta.DELETE_TIME));
+				this.setCreateTime( (Date)r.getValue(AutoTaskLogMeta.CREATE_TIME));
+				this.setEtime( (Date)r.getValue(AutoTaskLogMeta.ETIME));
+				this.setActionId( (String)r.getValue(AutoTaskLogMeta.ACTION_ID));
+				this.setDeleteBy( (String)r.getValue(AutoTaskLogMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AutoTaskLogMeta.ID));
+				this.setNodeId( (String)r.getValue(AutoTaskLogMeta.NODE_ID));
+				this.setTaskId( (String)r.getValue(AutoTaskLogMeta.TASK_ID));
+				this.setStatus( (String)r.getValue(AutoTaskLogMeta.STATUS));
+				this.setRecordContent( (String)r.getValue(AutoTaskLogMeta.RECORD_CONTENT));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

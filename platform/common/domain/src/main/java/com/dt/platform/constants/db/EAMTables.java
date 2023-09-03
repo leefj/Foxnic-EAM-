@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-08-13 11:03:16
+ * @since 2023-09-01 15:42:10
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -12921,7 +12921,7 @@ public class EAMTables {
 		/**
 		 * 备注
 		*/
-		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		public static final DBField VARCHAR = new DBField(DBDataType.STRING , "varchar","varchar","备注","备注",false,false,true);
 		
 		/**
 		 * 是否有效
@@ -12969,7 +12969,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
 		
 		public EAM_DEMO_C1() {
-			this.init($NAME,"C1客户代码生成测试专用表" , ID , TITLE , PRICE , NOTES , VALID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"C1客户代码生成测试专用表" , ID , TITLE , PRICE , VARCHAR , VALID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final EAM_DEMO_C1 $TABLE=new EAM_DEMO_C1();
 	}

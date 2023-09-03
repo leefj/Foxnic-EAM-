@@ -41,6 +41,9 @@ import java.util.*;
 @Service("AutoTaskBaseToolService")
 public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
+    @Autowired
+    private IAutoTaskLogDtlService autoTaskLogDtlService;
+
     @Value("${foxnic.storage.disk.location.windows}")
     private String windowsDir="";
 
@@ -395,17 +398,17 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
             //#############execute #############
             RemoteShellExecutor executor = new RemoteShellExecutor(node.getIp(),node.getUserName(),
                     node.getPassword(), node.getPort());
-
             ArrayList<String> exeCommands = new ArrayList<String>();
             exeCommands.add("sed -i \"s/^M//\" /tmp/"+execFileNameWithSuffix);
             exeCommands.add("sh /tmp/"+execFileNameWithSuffix);
             RemoteShellResult r2 = executor.exec(exeCommands);
             r2.print();
-            if(r2.result.length()>=10000){
-                log.setContentDetail(r2.result.substring(0,10000));
+            if(r2.result.length()>=200000){
+                log.setContentDetail(r2.result.substring(0,200000));
             }else{
                 log.setContentDetail(r2.result);
             }
+            //传入到db中
         }else if (METHOD_CHECK.equals(method)){
             RemoteShellExecutor executor = new RemoteShellExecutor(node.getIp(),node.getUserName(),
                     node.getPassword(), node.getPort());
@@ -418,6 +421,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
         }
        Logger.info("###########Action Finish,ip:"+node.getIp()+" #########");
+
 
 
         //执行
@@ -456,7 +460,6 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
             taskMainLog.setActionId(task.getAction().getId());
         }
         autoTaskMLogService.insert(taskMainLog);
-
 
 
         //获取nodeList
@@ -506,6 +509,8 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         if(nodeList==null|| nodeList.size()==0){
             String msg="执行节点数量为空";
             recordTaskMLogFailed(taskMainLog,msg);
+            updateTask.setRunStatus(OpsAutoTaskRunStatusEnum.FINISH.code());
+            autoTaskService.update(updateTask,SaveMode.NOT_NULL_FIELDS);
             return ErrorDesc.failureMessage(msg);
         }
 
@@ -513,14 +518,18 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         //检查节点数量是否符合模版
         if(OpsAutoActionNodeNumberTypeEnum.TWO.code().equals(action.getNodeNumberType())){
             if(nodeList.size()!=2){
-                String msg="当前部署模版,只能选择2个节点";
+                String msg="当前部署模版,必须选择2个节点";
                 recordTaskMLogFailed(taskMainLog,msg);
+                updateTask.setRunStatus(OpsAutoTaskRunStatusEnum.FINISH.code());
+                autoTaskService.update(updateTask,SaveMode.NOT_NULL_FIELDS);
                 return ErrorDesc.failureMessage(msg);
             }
         }else if (OpsAutoActionNodeNumberTypeEnum.THREE.code().equals(action.getNodeNumberType())){
             if(nodeList.size()!=3){
-                String msg="当前部署模版,只能选择3个节点";
+                String msg="当前部署模版,必须选择3个节点";
                 recordTaskMLogFailed(taskMainLog,msg);
+                updateTask.setRunStatus(OpsAutoTaskRunStatusEnum.FINISH.code());
+                autoTaskService.update(updateTask,SaveMode.NOT_NULL_FIELDS);
                 return ErrorDesc.failureMessage(msg);
             }
         }
@@ -529,6 +538,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         StringBuilder nodeResult=new StringBuilder();
         nodeResult.append("节点数量:"+nodeList.size()+"\n");
         Map<AutoNode,String> nodeMap=new HashMap<AutoNode, String>();
+        //按照节点开始执行任务
         for(AutoNode n:nodeList){
             Logger.info("task:"+task.getName()+",node:"+n.getName()+",action:"+action.getName());
             Result eRes=executeNode(n,action,task.getId(),id,method);
@@ -539,7 +549,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         nodeResult.append("失败节点数量:"+nodeMap.size()+"\n");
         Iterator<Map.Entry<AutoNode,String>> iterator=nodeMap.entrySet().iterator();
         while(iterator.hasNext()){
-            Map.Entry<AutoNode,String> entry=   iterator.next();
+            Map.Entry<AutoNode,String> entry=iterator.next();
             AutoNode node=entry.getKey();
             String msg=entry.getValue();
             nodeResult.append("节点:"+node.getIp()+"\n");

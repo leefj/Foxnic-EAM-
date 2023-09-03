@@ -5,12 +5,13 @@ import com.dt.platform.domain.ops.AutoBatch;
 import java.util.Date;
 import com.dt.platform.domain.ops.AutoNode;
 import java.util.List;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 10:28:37
+ * @since 2023-08-31 18:17:42
  * @sign 43D1CBDA67D6FD2AE67205D54C67EAB2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -323,5 +324,41 @@ public class AutoBatchMeta {
 			super.setNodeIds(nodeIds);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AutoBatch clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AutoBatch duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setDeleted(this.getDeleted());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setId(this.getId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setNodeIds(this.getNodeIds());
+				inst.setNodeList(this.getNodeList());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

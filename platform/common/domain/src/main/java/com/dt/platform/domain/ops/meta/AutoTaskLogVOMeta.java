@@ -9,13 +9,14 @@ import com.dt.platform.domain.ops.AutoTask;
 import com.dt.platform.domain.ops.AutoAction;
 import com.dt.platform.domain.ops.AutoNode;
 import com.dt.platform.domain.ops.AutoTaskMLog;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-24 13:48:40
- * @sign 1448E4913B5547D6098115CF03DF9C65
+ * @since 2023-09-02 18:13:23
+ * @sign F69F1600BCD6F88781ED121C565B123D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -100,6 +101,36 @@ public class AutoTaskLogVOMeta extends AutoTaskLogMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -302,14 +333,24 @@ public class AutoTaskLogVOMeta extends AutoTaskLogMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
-	 * 租户 , 类型: java.lang.String
+	 * 创建人ID , 类型: java.lang.String
 	*/
-	public static final String TENANT_ID="tenantId";
+	public static final String CREATE_BY="createBy";
 	
 	/**
-	 * 租户 , 类型: java.lang.String
+	 * 创建人ID , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.lang.String> CREATE_BY_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,CREATE_BY, java.lang.String.class, "创建人ID", "创建人ID", java.lang.String.class, null);
+	
+	/**
+	 * 创建时间 , 类型: java.util.Date
+	*/
+	public static final String CREATE_TIME="createTime";
+	
+	/**
+	 * 创建时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.util.Date> CREATE_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,CREATE_TIME, java.util.Date.class, "创建时间", "创建时间", java.util.Date.class, null);
 	
 	/**
 	 * task , 类型: com.dt.platform.domain.ops.AutoTask
@@ -354,7 +395,7 @@ public class AutoTaskLogVOMeta extends AutoTaskLogMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , TASK_ID , M_LOG_ID , ACTION_ID , NODE_IP , NODE_ID , STATUS , STIME , ETIME , RECORD_CONTENT , CONTENT_DETAIL , RECORD_TIME , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TASK , ACTION , NODE , M_LOG };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TASK_ID , M_LOG_ID , ACTION_ID , NODE_IP , NODE_ID , STATUS , STIME , ETIME , RECORD_CONTENT , CONTENT_DETAIL , RECORD_TIME , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , CREATE_BY , CREATE_TIME , TASK , ACTION , NODE , M_LOG };
 	
 	/**
 	 * 代理类
@@ -449,6 +490,39 @@ public class AutoTaskLogVOMeta extends AutoTaskLogMeta {
 		public AutoTaskLogVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public AutoTaskLogVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public AutoTaskLogVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public AutoTaskLogVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
 			return this;
 		}
 		
@@ -673,13 +747,24 @@ public class AutoTaskLogVOMeta extends AutoTaskLogMeta {
 		}
 		
 		/**
-		 * 设置 租户
-		 * @param tenantId 租户
+		 * 设置 创建人ID
+		 * @param createBy 创建人ID
 		 * @return 当前对象
 		*/
-		public AutoTaskLog setTenantId(String tenantId) {
-			super.change(TENANT_ID,super.getTenantId(),tenantId);
-			super.setTenantId(tenantId);
+		public AutoTaskLog setCreateBy(String createBy) {
+			super.change(CREATE_BY,super.getCreateBy(),createBy);
+			super.setCreateBy(createBy);
+			return this;
+		}
+		
+		/**
+		 * 设置 创建时间
+		 * @param createTime 创建时间
+		 * @return 当前对象
+		*/
+		public AutoTaskLog setCreateTime(Date createTime) {
+			super.change(CREATE_TIME,super.getCreateTime(),createTime);
+			super.setCreateTime(createTime);
 			return this;
 		}
 		
@@ -726,5 +811,64 @@ public class AutoTaskLogVOMeta extends AutoTaskLogMeta {
 			super.setMLog(mLog);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AutoTaskLogVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AutoTaskLogVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setNodeIp(this.getNodeIp());
+			inst.setStime(this.getStime());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setContentDetail(this.getContentDetail());
+			inst.setVersion(this.getVersion());
+			inst.setMLogId(this.getMLogId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setRecordTime(this.getRecordTime());
+			inst.setDeleted(this.getDeleted());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setEtime(this.getEtime());
+			inst.setActionId(this.getActionId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setNodeId(this.getNodeId());
+			inst.setTaskId(this.getTaskId());
+			inst.setStatus(this.getStatus());
+			inst.setRecordContent(this.getRecordContent());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setMLog(this.getMLog());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setNode(this.getNode());
+				inst.setTask(this.getTask());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setIds(this.getIds());
+				inst.setAction(this.getAction());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

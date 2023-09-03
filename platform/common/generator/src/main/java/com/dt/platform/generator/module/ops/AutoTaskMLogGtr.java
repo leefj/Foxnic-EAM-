@@ -76,7 +76,7 @@ public class AutoTaskMLogGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_AUTO_TASK_M_LOG.STIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(OpsTables.OPS_AUTO_TASK_M_LOG.ETIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
 
-        cfg.view().list().operationColumn().addActionButton("日志","autoTaskMLog",null,"ops_auto_task_m_log:log");
+        cfg.view().list().operationColumn().addActionButton("节点日志","autoTaskMLog",null,"ops_auto_task_m_log:log");
 
 
         cfg.view().list().disableSingleDelete();

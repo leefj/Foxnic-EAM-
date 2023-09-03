@@ -1,5 +1,6 @@
 package com.dt.platform.domain.ops;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -7,17 +8,26 @@ import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
+import com.dt.platform.domain.ops.meta.AutoTaskNodeVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 作业节点
+ * 作业节点VO类型
+ * <p>作业节点 , 数据表 ops_auto_task_node 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 13:41:32
- * @sign BE447D70FC1F064040CB503518306E4C
+ * @since 2023-09-01 15:23:00
+ * @sign 050F73E2A4C6B0D3C6D7655BF134DB30
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "作业节点VO类型 ; 作业节点 , 数据表 ops_auto_task_node 的通用VO类型" , parent = AutoTaskNode.class)
 public class AutoTaskNodeVO extends AutoTaskNode {
 
 	private static final long serialVersionUID = 1L;
@@ -69,6 +79,24 @@ public class AutoTaskNodeVO extends AutoTaskNode {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -232,6 +260,63 @@ public class AutoTaskNodeVO extends AutoTaskNode {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public AutoTaskNodeVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public AutoTaskNodeVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public AutoTaskNodeVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -270,5 +355,222 @@ public class AutoTaskNodeVO extends AutoTaskNode {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return AutoTaskNodeVO , 转换好的 AutoTaskNodeVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return AutoTaskNodeVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoTaskNodeVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AutoTaskNodeVO duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.AutoTaskNodeVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.AutoTaskNodeVOMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setDeleted(this.getDeleted());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setId(this.getId());
+		inst.setNodeId(this.getNodeId());
+		inst.setVersion(this.getVersion());
+		inst.setTaskId(this.getTaskId());
+		if(all) {
+			inst.setSearchField(this.getSearchField());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setPageSize(this.getPageSize());
+			inst.setDataOrigin(this.getDataOrigin());
+			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
+			inst.setSearchValue(this.getSearchValue());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoTaskNodeVO clone(boolean deep) {
+		return EntityContext.clone(AutoTaskNodeVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 AutoTaskNodeVO
+	 * @param autoTaskNodeMap 包含实体信息的 Map 对象
+	 * @return AutoTaskNodeVO , 转换好的的 AutoTaskNode 对象
+	*/
+	@Transient
+	public static AutoTaskNodeVO createFrom(Map<String,Object> autoTaskNodeMap) {
+		if(autoTaskNodeMap==null) return null;
+		AutoTaskNodeVO vo = create();
+		EntityContext.copyProperties(vo,autoTaskNodeMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 AutoTaskNodeVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return AutoTaskNodeVO , 转换好的的 AutoTaskNode 对象
+	*/
+	@Transient
+	public static AutoTaskNodeVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		AutoTaskNodeVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 AutoTaskNodeVO，等同于 new
+	 * @return AutoTaskNodeVO 对象
+	*/
+	@Transient
+	public static AutoTaskNodeVO create() {
+		return new com.dt.platform.domain.ops.meta.AutoTaskNodeVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.NOTES)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AutoTaskNodeVOMeta.DELETED)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AutoTaskNodeVOMeta.DELETE_TIME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AutoTaskNodeVOMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.ID)));
+			this.setNodeId(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.NODE_ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AutoTaskNodeVOMeta.VERSION)));
+			this.setTaskId(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.TASK_ID)));
+			// others
+			this.setSearchField(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.SEARCH_FIELD)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(AutoTaskNodeVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.SORT_TYPE)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.REQUEST_ACTION)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.FUZZY_FIELD)));
+			this.setSortField(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.SORT_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AutoTaskNodeVOMeta.PAGE_SIZE)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.QUERY_LOGIC)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(AutoTaskNodeVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AutoTaskNodeVOMeta.NOTES));
+				this.setDeleted( (Integer)map.get(AutoTaskNodeVOMeta.DELETED));
+				this.setUpdateBy( (String)map.get(AutoTaskNodeVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AutoTaskNodeVOMeta.DELETE_TIME));
+				this.setDeleteBy( (String)map.get(AutoTaskNodeVOMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(AutoTaskNodeVOMeta.UPDATE_TIME));
+				this.setId( (String)map.get(AutoTaskNodeVOMeta.ID));
+				this.setNodeId( (String)map.get(AutoTaskNodeVOMeta.NODE_ID));
+				this.setVersion( (Integer)map.get(AutoTaskNodeVOMeta.VERSION));
+				this.setTaskId( (String)map.get(AutoTaskNodeVOMeta.TASK_ID));
+				// others
+				this.setSearchField( (String)map.get(AutoTaskNodeVOMeta.SEARCH_FIELD));
+				this.setPageIndex( (Integer)map.get(AutoTaskNodeVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(AutoTaskNodeVOMeta.SORT_TYPE));
+				this.setRequestAction( (String)map.get(AutoTaskNodeVOMeta.REQUEST_ACTION));
+				this.setFuzzyField( (String)map.get(AutoTaskNodeVOMeta.FUZZY_FIELD));
+				this.setSortField( (String)map.get(AutoTaskNodeVOMeta.SORT_FIELD));
+				this.setPageSize( (Integer)map.get(AutoTaskNodeVOMeta.PAGE_SIZE));
+				this.setDataOrigin( (String)map.get(AutoTaskNodeVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(AutoTaskNodeVOMeta.QUERY_LOGIC));
+				this.setSearchValue( (String)map.get(AutoTaskNodeVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AutoTaskNodeVOMeta.NOTES)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AutoTaskNodeVOMeta.DELETED)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AutoTaskNodeVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AutoTaskNodeVOMeta.DELETE_TIME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AutoTaskNodeVOMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AutoTaskNodeVOMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(AutoTaskNodeVOMeta.ID)));
+			this.setNodeId(DataParser.parse(String.class, r.getValue(AutoTaskNodeVOMeta.NODE_ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AutoTaskNodeVOMeta.VERSION)));
+			this.setTaskId(DataParser.parse(String.class, r.getValue(AutoTaskNodeVOMeta.TASK_ID)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AutoTaskNodeVOMeta.NOTES));
+				this.setDeleted( (Integer)r.getValue(AutoTaskNodeVOMeta.DELETED));
+				this.setUpdateBy( (String)r.getValue(AutoTaskNodeVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AutoTaskNodeVOMeta.DELETE_TIME));
+				this.setDeleteBy( (String)r.getValue(AutoTaskNodeVOMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(AutoTaskNodeVOMeta.UPDATE_TIME));
+				this.setId( (String)r.getValue(AutoTaskNodeVOMeta.ID));
+				this.setNodeId( (String)r.getValue(AutoTaskNodeVOMeta.NODE_ID));
+				this.setVersion( (Integer)r.getValue(AutoTaskNodeVOMeta.VERSION));
+				this.setTaskId( (String)r.getValue(AutoTaskNodeVOMeta.TASK_ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -16,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * 自动化凭证  控制器服务代理
+ * 自动化凭证 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 14:09:43
+ * @since 2023-08-31 18:20:41
  */
 @FeignClient(value = ServiceNames.OPS, contextId = AutoVoucherServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AutoVoucherServiceProxy {

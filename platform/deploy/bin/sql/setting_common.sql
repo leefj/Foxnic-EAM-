@@ -20,13 +20,10 @@ update sys_user set language ='zh_cn' where 1=1;
 update sys_menu set hidden=1 where id='495201409763901440';
 update sys_menu set hidden=1 where id='610152549789466624';
 -- 回收站
-update sys_menu set hidden=1 where id='473612721665867776';
+update sys_menu set hidden=1 where id='694545227850973184';
 -- 资产字段配置，开发人员使用
 update sys_menu set hidden=1 where id='487568362436558848';
 update sys_menu set hidden=1 where id='487559533120454656';
 -- 版本切换
 update sys_menu set hidden=1 where id='578624635919138816';
--- 人员档案
-update sys_menu set hidden=1 where id='623153794699493376';
--- 接口管理
-update sys_menu set hidden=1 where id='622447317160558592';
+
