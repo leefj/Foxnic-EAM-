@@ -16,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * 执行介质  控制器服务代理
+ * 执行介质 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 13:59:12
+ * @since 2023-09-01 15:03:41
  */
 @FeignClient(value = ServiceNames.OPS, contextId = AutoActionFileServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AutoActionFileServiceProxy {

@@ -2,7 +2,7 @@
 /**
  * 自动化凭证 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 14:09:44
+ * @since 2023-08-31 18:20:42
  */
  -->
  <!DOCTYPE html>
@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
 	<title th:text="${lang.translate('自动化凭证')}">自动化凭证</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
@@ -30,51 +31,51 @@
 <body style="overflow-y: hidden;">
 <div class="form-container" >
 
-    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="display:none">
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="opacity:0">
 
         <input name="id" id="id"  type="hidden"/>
 
          <!--开始：group 循环-->
 
 
-
-        <div class="layui-row form-row" id="random-9291-content">
+        <div class="layui-row form-row" id="random-3774-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column" >
 
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('名称') }" type="text" class="layui-input"    lay-verify="|required"  />
-                        </div>
-                    </div>
-
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('账户')}">账户</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="account" id="account" name="account" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('账户') }" type="text" class="layui-input"    lay-verify="|required"  />
-                        </div>
-                    </div>
-
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('凭证')}">凭证</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="voucher" id="voucher" name="voucher" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('凭证') }" type="text" class="layui-input"    lay-verify="|required"  />
-                        </div>
-                    </div>
-
-
-                    <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
+                <!-- text_input : 名称 ,  name -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
-
-
-                <!--结束：栏次内字段循环-->
+            
+                <!-- text_input : 账户 ,  account -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('账户')}">账户</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="account" id="account" name="account" th:placeholder="${ lang.translate('请输入'+'账户') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 凭证 ,  voucher -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('凭证')}">凭证</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="voucher" id="voucher" name="voucher" th:placeholder="${ lang.translate('请输入'+'凭证') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            
+                <!-- text_area : 备注 ,  notes  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
@@ -88,8 +89,8 @@
 
 </div>
 <div class="model-form-footer">
-    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('ops_auto_voucher:create','ops_auto_voucher:update','ops_auto_voucher:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('ops_auto_voucher:create','ops_auto_voucher:update','ops_auto_voucher:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>

@@ -182,7 +182,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     if (r.success) {
                         fox.showMessage(r);
                     } else {
-
                     }
                 }, {delayLoading: 1000, elms: [btn]});
             });
@@ -192,7 +191,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             admin.popupCenter({
                 title: "日志",
                 resize: false,
-                offset: [null,null],
+                offset: [20,null],
                 area: ["80%","95%"],
                 type: 2,
                 id:"ops-auto-task-m-log-list-data-win",
@@ -203,6 +202,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('autoTaskMLog',data);
             console.log('autoTaskLog',data);
         },
+
         /**
          * 末尾执行
          */
@@ -360,6 +360,47 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         onUploadEvent: function(e) {
             console.log("onUploadEvent",e);
+        },
+        tpldtl:function (data,el,it){
+            console.log("data",data)
+            console.log("el",el)
+            console.log("it",it)
+            var actionSelect=xmSelect.get('#actionId', true);
+            var tplId;
+            if(actionSelect){
+                var actionData=actionSelect.getValue()
+                console.log("actionData",actionData);
+                if(actionData&&actionData.length==1){
+                    if(actionData[0].data){
+                        tplId=actionData[0].data.id;
+                    }
+                }
+            }
+            if(tplId){
+                var queryString="?id="+tplId;
+                top.layer.load(2);
+                admin.post("/service-ops/ops-auto-action/get-by-id", { id :tplId }, function (res) {
+                    top.layer.closeAll('loading');
+                    if(res.success) {
+                        admin.putTempData('ops-auto-action-form-data-form-action', "view",true);
+                        admin.putTempData('ops-auto-action-form-data', res.data);
+                        admin.popupCenter({
+                            title: "模版详情况",
+                            resize: false,
+                            offset: [20,null],
+                            area: ["80%","95%"],
+                            type: 2,
+                            id:"ops-auto-action-form-data-win",
+                            content: '/business/ops/auto_action/auto_action_form.html' +queryString,
+                            finish: function () {
+                            }
+                        });
+                    }
+                });
+
+            }else{
+                alert("未获取模版信息");
+            }
         },
         /**
          * 末尾执行

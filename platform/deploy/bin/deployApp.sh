@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/08/24"
+modify_date="2023/08/29"
 ####################################################################################
 # run:
 #   sh deployApp.sh
@@ -521,9 +521,45 @@ function installRedis(){
   sh deployRedis.sh
   return 0
 }
+function adjustParameter(){
+  #redis
+  echo "vm.overcommit_memory = 1 to sysctl.conf"
+  sed -i '/vm.overcommit_memory/d' /etc/sysctl.conf
+  echo "vm.overcommit_memory = 1">>/etc/sysctl.conf
+  echo "net.core.somaxconn = 1024 to sysctl.conf"
+  sed -i '/net.core.somaxconn/d' /etc/sysctl.conf
+  echo "net.core.somaxconn = 1024">>/etc/sysctl.conf
+  #comon
+  echo "fs.aio-max-nr = 1048576 to sysctl.conf "
+  sed -i '/fs.aio-max-nr/d' /etc/sysctl.conf
+  echo "fs.aio-max-nr = 1048576">>/etc/sysctl.conf
+  echo "fs.file-max = 6815744 to sysctl.conf"
+  sed -i '/fs.file-max/d' /etc/sysctl.conf
+  echo "fs.file-max = 6815744">>/etc/sysctl.conf
+  echo "vm.swappiness to sysctl.conf"
+  sed -i '/vm.swappiness/d' /etc/sysctl.conf
+  echo "vm.swappiness = 5">>/etc/sysctl.conf
+  sysctl -p
+  #selinux
+  echo "to close selinux"
+  echo "SELINUX=disabled to /etc/selinux/config"
+  sed -i '/SELINUX=/d' /etc/selinux/config
+  echo "SELINUX=disabled">>/etc/selinux/config
+  setenforce 0
+  #limits.conf
+  sed -i '/nofile/d' /etc/security/limits.conf
+  echo "* soft nofile 65535">>/etc/security/limits.conf
+  echo "* hard nofile 65535">>/etc/security/limits.conf
+  sed -i '/nproc/d' /etc/security/limits.conf
+  echo "* soft nproc 16384">>/etc/security/limits.conf
+  echo "* hard nproc 16384">>/etc/security/limits.conf
+  return 0
+}
 ##########################################################################################
 ################################# Install Main Run Start #################################
 #################################################################### download mysql start
+echo "start to adjust linux parameter"
+adjustParameter
 total_mem=`free -m|grep Mem|awk '{print $2}'`
 if [[ $total_mem -lt 3500 ]];then
   echo "your system memory:${total_mem}m,too lower!"
@@ -709,6 +745,7 @@ if [[ $db_port_cnt -eq 0 ]];then
 else
 	echo "mysql install success,password:$db_pwd"
 fi
+
 ## install app
 installApp
 # installApp first,start to install nginx

@@ -1,5 +1,6 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 自动化凭证 服务接口
+ * 自动化凭证服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 14:09:42
+ * @since 2023-08-31 18:20:41
 */
 
 public interface IAutoVoucherService extends  ISimpleIdService<AutoVoucher,String> {
@@ -55,7 +56,7 @@ public interface IAutoVoucherService extends  ISimpleIdService<AutoVoucher,Strin
 
 		
 	/**
-	 * 按主键删除 自动化凭证
+	 * 按主键删除自动化凭证
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IAutoVoucherService extends  ISimpleIdService<AutoVoucher,Strin
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 自动化凭证
+	 * 按主键删除自动化凭证
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IAutoVoucherService extends  ISimpleIdService<AutoVoucher,Strin
 
 		
 	/**
-	 * 按主键更新字段 自动化凭证
+	 * 按主键更新自动化凭证
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IAutoVoucherService extends  ISimpleIdService<AutoVoucher,Strin
 
 		
 	/**
-	 * 按主键获取 自动化凭证
+	 * 按主键获取自动化凭证
 	 *
 	 * @param id 主键
 	 * @return AutoVoucher 数据对象

@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-08-13 11:03:30
+ * @since 2023-09-01 15:42:29
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -961,24 +961,14 @@ public class ContractTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 所有者ID
+		 * 履约信息
 		*/
-		public static final DBField OWNER_ID = new DBField(DBDataType.STRING , "owner_id","ownerId","所有者ID","所有者ID",false,false,true);
+		public static final DBField PERFORMANCE_ID = new DBField(DBDataType.STRING , "performance_id","performanceId","履约信息","履约信息",false,false,true);
 		
 		/**
-		 * 文件ID
+		 * 资金流向
 		*/
-		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","文件ID","文件ID",false,false,true);
-		
-		/**
-		 * 名称
-		*/
-		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
-		
-		/**
-		 * 销售方
-		*/
-		public static final DBField SELLER = new DBField(DBDataType.STRING , "seller","seller","销售方","销售方",false,false,true);
+		public static final DBField FUNDING_DIRECTION = new DBField(DBDataType.STRING , "funding_direction","fundingDirection","资金流向","资金流向",false,false,true);
 		
 		/**
 		 * 发票类型
@@ -986,24 +976,49 @@ public class ContractTables {
 		public static final DBField INVOICE_TYPE = new DBField(DBDataType.STRING , "invoice_type","invoiceType","发票类型","发票类型",false,false,true);
 		
 		/**
+		 * 开票日期
+		*/
+		public static final DBField INVOICE_DATE = new DBField(DBDataType.DATE , "invoice_date","invoiceDate","开票日期","开票日期",false,false,true);
+		
+		/**
+		 * 开票方
+		*/
+		public static final DBField SELLER = new DBField(DBDataType.STRING , "seller","seller","开票方","开票方",false,false,true);
+		
+		/**
+		 * 接收方
+		*/
+		public static final DBField RECEIVER = new DBField(DBDataType.STRING , "receiver","receiver","接收方","接收方",false,false,true);
+		
+		/**
 		 * 含税价格
 		*/
 		public static final DBField TAX_PRICE = new DBField(DBDataType.DECIMAL , "tax_price","taxPrice","含税价格","含税价格",false,false,true);
 		
 		/**
-		 * 开盘时间
+		 * 税率
 		*/
-		public static final DBField INVOICE_DATE = new DBField(DBDataType.DATE , "invoice_date","invoiceDate","开盘时间","开盘时间",false,false,true);
+		public static final DBField TAX_PCT = new DBField(DBDataType.DECIMAL , "tax_pct","taxPct","税率","税率",false,false,true);
+		
+		/**
+		 * 币种
+		*/
+		public static final DBField CURRENCY_TYPE = new DBField(DBDataType.STRING , "currency_type","currencyType","币种","币种",false,false,true);
+		
+		/**
+		 * 发票
+		*/
+		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","发票","发票",false,false,true);
+		
+		/**
+		 * 选择
+		*/
+		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择","选择",false,false,true);
 		
 		/**
 		 * 备注
 		*/
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
-		
-		/**
-		 * 租户ID
-		*/
-		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户ID","租户ID",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -1046,7 +1061,7 @@ public class ContractTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
 		
 		public CONT_CONTRACT_INVOICE() {
-			this.init($NAME,"发票信息" , ID , OWNER_ID , FILE_ID , NAME , SELLER , INVOICE_TYPE , TAX_PRICE , INVOICE_DATE , NOTES , TENANT_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"发票信息" , ID , PERFORMANCE_ID , FUNDING_DIRECTION , INVOICE_TYPE , INVOICE_DATE , SELLER , RECEIVER , TAX_PRICE , TAX_PCT , CURRENCY_TYPE , FILE_ID , SELECTED_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final CONT_CONTRACT_INVOICE $TABLE=new CONT_CONTRACT_INVOICE();
 	}
@@ -1383,19 +1398,24 @@ public class ContractTables {
 		public static final DBField LABEL = new DBField(DBDataType.STRING , "label","label","款项","款项",false,false,true);
 		
 		/**
-		 * 计划日期
+		 * 履约条件
 		*/
-		public static final DBField PLAN_DATE = new DBField(DBDataType.STRING , "plan_date","planDate","计划日期","计划日期",false,false,true);
+		public static final DBField PERFORMANCE_CONDITIONS = new DBField(DBDataType.STRING , "performance_conditions","performanceConditions","履约条件","履约条件",false,false,true);
+		
+		/**
+		 * 履约金额
+		*/
+		public static final DBField AMOUNT = new DBField(DBDataType.DECIMAL , "amount","amount","履约金额","履约金额",false,false,true);
+		
+		/**
+		 * 预计日期
+		*/
+		public static final DBField PLAN_DATE = new DBField(DBDataType.DATE , "plan_date","planDate","预计日期","预计日期",false,false,true);
 		
 		/**
 		 * 实际日期
 		*/
 		public static final DBField ACT_DATE = new DBField(DBDataType.STRING , "act_date","actDate","实际日期","实际日期",false,false,true);
-		
-		/**
-		 * 履约细节
-		*/
-		public static final DBField DETAIL = new DBField(DBDataType.STRING , "detail","detail","履约细节","履约细节",false,false,true);
 		
 		/**
 		 * 验收人
@@ -1413,19 +1433,29 @@ public class ContractTables {
 		public static final DBField ACCEPT_IF = new DBField(DBDataType.STRING , "accept_if","acceptIf","是否验收","是否验收",false,false,true);
 		
 		/**
+		 * 验收内容
+		*/
+		public static final DBField DETAIL = new DBField(DBDataType.STRING , "detail","detail","验收内容","验收内容",false,false,true);
+		
+		/**
 		 * 附件
 		*/
 		public static final DBField ATTACH = new DBField(DBDataType.STRING , "attach","attach","附件","附件",false,false,true);
 		
 		/**
+		 * 发票
+		*/
+		public static final DBField INVOICE_IMAGE_IDS = new DBField(DBDataType.STRING , "invoice_image_ids","invoiceImageIds","发票","发票",false,false,true);
+		
+		/**
+		 * 顺序
+		*/
+		public static final DBField SORT = new DBField(DBDataType.INTEGER , "sort","sort","顺序","顺序",false,false,true);
+		
+		/**
 		 * 制单人
 		*/
 		public static final DBField OWNER_ID = new DBField(DBDataType.STRING , "owner_id","ownerId","制单人","制单人",false,false,true);
-		
-		/**
-		 * 租户ID
-		*/
-		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户ID","租户ID",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -1468,7 +1498,7 @@ public class ContractTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
 		
 		public CONT_CONTRACT_PERFORMANCE() {
-			this.init($NAME,"履行情况表" , ID , CONTRACT_ID , CONTRACT_NO , TITLE , ACTION , STATUS , LABEL , PLAN_DATE , ACT_DATE , DETAIL , ACCEPT_USER_ID , ACCEPT_LABEL , ACCEPT_IF , ATTACH , OWNER_ID , TENANT_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"履行情况表" , ID , CONTRACT_ID , CONTRACT_NO , TITLE , ACTION , STATUS , LABEL , PERFORMANCE_CONDITIONS , AMOUNT , PLAN_DATE , ACT_DATE , ACCEPT_USER_ID , ACCEPT_LABEL , ACCEPT_IF , DETAIL , ATTACH , INVOICE_IMAGE_IDS , SORT , OWNER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final CONT_CONTRACT_PERFORMANCE $TABLE=new CONT_CONTRACT_PERFORMANCE();
 	}

@@ -1,5 +1,6 @@
 package com.dt.platform.domain.ops;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -7,17 +8,27 @@ import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
+import com.dt.platform.domain.ops.meta.AutoNodeVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import org.github.foxnic.web.domain.system.DictItem;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 节点
+ * 节点VO类型
+ * <p>节点 , 数据表 ops_auto_node 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 19:42:29
- * @sign 1BF0833ED01505E6D1141402C3E7C9F7
+ * @since 2023-09-01 15:21:45
+ * @sign 354BED8FF451BA813421B8FC1EE94C39
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "节点VO类型 ; 节点 , 数据表 ops_auto_node 的通用VO类型" , parent = AutoNode.class)
 public class AutoNodeVO extends AutoNode {
 
 	private static final long serialVersionUID = 1L;
@@ -69,6 +80,24 @@ public class AutoNodeVO extends AutoNode {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -232,6 +261,63 @@ public class AutoNodeVO extends AutoNode {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public AutoNodeVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public AutoNodeVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public AutoNodeVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -270,5 +356,296 @@ public class AutoNodeVO extends AutoNode {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return AutoNodeVO , 转换好的 AutoNodeVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return AutoNodeVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoNodeVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AutoNodeVO duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.AutoNodeVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.AutoNodeVOMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setOwnerCode(this.getOwnerCode());
+		inst.setGroupId(this.getGroupId());
+		inst.setIp(this.getIp());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setType(this.getType());
+		inst.setUserName(this.getUserName());
+		inst.setVersion(this.getVersion());
+		inst.setPassword(this.getPassword());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setPort(this.getPort());
+		inst.setAuthenticationMethod(this.getAuthenticationMethod());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setVoucherId(this.getVoucherId());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setStatus(this.getStatus());
+		inst.setPubKey(this.getPubKey());
+		if(all) {
+			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setVoucher(this.getVoucher());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setTypeDict(this.getTypeDict());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setDataOrigin(this.getDataOrigin());
+			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
+			inst.setSearchValue(this.getSearchValue());
+			inst.setGroup(this.getGroup());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoNodeVO clone(boolean deep) {
+		return EntityContext.clone(AutoNodeVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 AutoNodeVO
+	 * @param autoNodeMap 包含实体信息的 Map 对象
+	 * @return AutoNodeVO , 转换好的的 AutoNode 对象
+	*/
+	@Transient
+	public static AutoNodeVO createFrom(Map<String,Object> autoNodeMap) {
+		if(autoNodeMap==null) return null;
+		AutoNodeVO vo = create();
+		EntityContext.copyProperties(vo,autoNodeMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 AutoNodeVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return AutoNodeVO , 转换好的的 AutoNode 对象
+	*/
+	@Transient
+	public static AutoNodeVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		AutoNodeVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 AutoNodeVO，等同于 new
+	 * @return AutoNodeVO 对象
+	*/
+	@Transient
+	public static AutoNodeVO create() {
+		return new com.dt.platform.domain.ops.meta.AutoNodeVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AutoNodeVOMeta.NOTES)));
+			this.setOwnerCode(DataParser.parse(String.class, map.get(AutoNodeVOMeta.OWNER_CODE)));
+			this.setGroupId(DataParser.parse(String.class, map.get(AutoNodeVOMeta.GROUP_ID)));
+			this.setIp(DataParser.parse(String.class, map.get(AutoNodeVOMeta.IP)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AutoNodeVOMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, map.get(AutoNodeVOMeta.TYPE)));
+			this.setUserName(DataParser.parse(String.class, map.get(AutoNodeVOMeta.USER_NAME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AutoNodeVOMeta.VERSION)));
+			this.setPassword(DataParser.parse(String.class, map.get(AutoNodeVOMeta.PASSWORD)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AutoNodeVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AutoNodeVOMeta.DELETED)));
+			this.setPort(DataParser.parse(Integer.class, map.get(AutoNodeVOMeta.PORT)));
+			this.setAuthenticationMethod(DataParser.parse(String.class, map.get(AutoNodeVOMeta.AUTHENTICATION_METHOD)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AutoNodeVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AutoNodeVOMeta.DELETE_TIME)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AutoNodeVOMeta.CREATE_TIME)));
+			this.setVoucherId(DataParser.parse(String.class, map.get(AutoNodeVOMeta.VOUCHER_ID)));
+			this.setName(DataParser.parse(String.class, map.get(AutoNodeVOMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AutoNodeVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AutoNodeVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AutoNodeVOMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(AutoNodeVOMeta.STATUS)));
+			this.setPubKey(DataParser.parse(String.class, map.get(AutoNodeVOMeta.PUB_KEY)));
+			// others
+			this.setSearchField(DataParser.parse(String.class, map.get(AutoNodeVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(AutoNodeVOMeta.REQUEST_ACTION)));
+			this.setVoucher(DataParser.parse(AutoVoucher.class, map.get(AutoNodeVOMeta.VOUCHER)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AutoNodeVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AutoNodeVOMeta.PAGE_SIZE)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(AutoNodeVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(AutoNodeVOMeta.SORT_TYPE)));
+			this.setTypeDict(DataParser.parse(DictItem.class, map.get(AutoNodeVOMeta.TYPE_DICT)));
+			this.setSortField(DataParser.parse(String.class, map.get(AutoNodeVOMeta.SORT_FIELD)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(AutoNodeVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(AutoNodeVOMeta.QUERY_LOGIC)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(AutoNodeVOMeta.SEARCH_VALUE)));
+			this.setGroup(DataParser.parse(AutoGroup.class, map.get(AutoNodeVOMeta.GROUP)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AutoNodeVOMeta.NOTES));
+				this.setOwnerCode( (String)map.get(AutoNodeVOMeta.OWNER_CODE));
+				this.setGroupId( (String)map.get(AutoNodeVOMeta.GROUP_ID));
+				this.setIp( (String)map.get(AutoNodeVOMeta.IP));
+				this.setUpdateTime( (Date)map.get(AutoNodeVOMeta.UPDATE_TIME));
+				this.setType( (String)map.get(AutoNodeVOMeta.TYPE));
+				this.setUserName( (String)map.get(AutoNodeVOMeta.USER_NAME));
+				this.setVersion( (Integer)map.get(AutoNodeVOMeta.VERSION));
+				this.setPassword( (String)map.get(AutoNodeVOMeta.PASSWORD));
+				this.setCreateBy( (String)map.get(AutoNodeVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AutoNodeVOMeta.DELETED));
+				this.setPort( (Integer)map.get(AutoNodeVOMeta.PORT));
+				this.setAuthenticationMethod( (String)map.get(AutoNodeVOMeta.AUTHENTICATION_METHOD));
+				this.setUpdateBy( (String)map.get(AutoNodeVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AutoNodeVOMeta.DELETE_TIME));
+				this.setCreateTime( (Date)map.get(AutoNodeVOMeta.CREATE_TIME));
+				this.setVoucherId( (String)map.get(AutoNodeVOMeta.VOUCHER_ID));
+				this.setName( (String)map.get(AutoNodeVOMeta.NAME));
+				this.setTenantId( (String)map.get(AutoNodeVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AutoNodeVOMeta.DELETE_BY));
+				this.setId( (String)map.get(AutoNodeVOMeta.ID));
+				this.setStatus( (String)map.get(AutoNodeVOMeta.STATUS));
+				this.setPubKey( (String)map.get(AutoNodeVOMeta.PUB_KEY));
+				// others
+				this.setSearchField( (String)map.get(AutoNodeVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(AutoNodeVOMeta.REQUEST_ACTION));
+				this.setVoucher( (AutoVoucher)map.get(AutoNodeVOMeta.VOUCHER));
+				this.setFuzzyField( (String)map.get(AutoNodeVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(AutoNodeVOMeta.PAGE_SIZE));
+				this.setPageIndex( (Integer)map.get(AutoNodeVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(AutoNodeVOMeta.SORT_TYPE));
+				this.setTypeDict( (DictItem)map.get(AutoNodeVOMeta.TYPE_DICT));
+				this.setSortField( (String)map.get(AutoNodeVOMeta.SORT_FIELD));
+				this.setDataOrigin( (String)map.get(AutoNodeVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(AutoNodeVOMeta.QUERY_LOGIC));
+				this.setSearchValue( (String)map.get(AutoNodeVOMeta.SEARCH_VALUE));
+				this.setGroup( (AutoGroup)map.get(AutoNodeVOMeta.GROUP));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.NOTES)));
+			this.setOwnerCode(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.OWNER_CODE)));
+			this.setGroupId(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.GROUP_ID)));
+			this.setIp(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.IP)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AutoNodeVOMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.TYPE)));
+			this.setUserName(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.USER_NAME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AutoNodeVOMeta.VERSION)));
+			this.setPassword(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.PASSWORD)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AutoNodeVOMeta.DELETED)));
+			this.setPort(DataParser.parse(Integer.class, r.getValue(AutoNodeVOMeta.PORT)));
+			this.setAuthenticationMethod(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.AUTHENTICATION_METHOD)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AutoNodeVOMeta.DELETE_TIME)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AutoNodeVOMeta.CREATE_TIME)));
+			this.setVoucherId(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.VOUCHER_ID)));
+			this.setName(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.STATUS)));
+			this.setPubKey(DataParser.parse(String.class, r.getValue(AutoNodeVOMeta.PUB_KEY)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AutoNodeVOMeta.NOTES));
+				this.setOwnerCode( (String)r.getValue(AutoNodeVOMeta.OWNER_CODE));
+				this.setGroupId( (String)r.getValue(AutoNodeVOMeta.GROUP_ID));
+				this.setIp( (String)r.getValue(AutoNodeVOMeta.IP));
+				this.setUpdateTime( (Date)r.getValue(AutoNodeVOMeta.UPDATE_TIME));
+				this.setType( (String)r.getValue(AutoNodeVOMeta.TYPE));
+				this.setUserName( (String)r.getValue(AutoNodeVOMeta.USER_NAME));
+				this.setVersion( (Integer)r.getValue(AutoNodeVOMeta.VERSION));
+				this.setPassword( (String)r.getValue(AutoNodeVOMeta.PASSWORD));
+				this.setCreateBy( (String)r.getValue(AutoNodeVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AutoNodeVOMeta.DELETED));
+				this.setPort( (Integer)r.getValue(AutoNodeVOMeta.PORT));
+				this.setAuthenticationMethod( (String)r.getValue(AutoNodeVOMeta.AUTHENTICATION_METHOD));
+				this.setUpdateBy( (String)r.getValue(AutoNodeVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AutoNodeVOMeta.DELETE_TIME));
+				this.setCreateTime( (Date)r.getValue(AutoNodeVOMeta.CREATE_TIME));
+				this.setVoucherId( (String)r.getValue(AutoNodeVOMeta.VOUCHER_ID));
+				this.setName( (String)r.getValue(AutoNodeVOMeta.NAME));
+				this.setTenantId( (String)r.getValue(AutoNodeVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AutoNodeVOMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AutoNodeVOMeta.ID));
+				this.setStatus( (String)r.getValue(AutoNodeVOMeta.STATUS));
+				this.setPubKey( (String)r.getValue(AutoNodeVOMeta.PUB_KEY));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

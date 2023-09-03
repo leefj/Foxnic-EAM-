@@ -1,7 +1,7 @@
 /**
  * 执行脚本 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 12:51:30
+ * @since 2023-09-01 07:33:49
  */
 
 layui.config({
@@ -30,11 +30,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("list:beforeInit");
         },
         /**
+         * 按事件名称移除表格按钮栏的按钮
+         * */
+        removeOperationButtonByEvent(event) {
+            var template=$("#tableOperationTemplate");
+            var content=template.text();
+            content=content.split("\n");
+            var buttons=[]
+            for (let i = 0; i < content.length ; i++) {
+                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
+                    buttons.push(content[i]);
+                }
+            }
+            template.text(buttons.join("\n"))
+        },
+        /**
          * 表格渲染前调用
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            cfg.cellMinWidth=160;;
+            console.log("list:beforeTableRender",cfg);
         },
         /**
          * 表格渲染后调用
@@ -87,10 +102,23 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
         },
         /**
+         * 单行数据刷新后调用
+         * */
+        afterRefreshRowData: function (data,remote,context) {
+
+        },
+        /**
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
             if(value==null) return "";
+            if(field=="fileId"){
+                if(value&&value.length>8){
+                    var btn="<a href=\"/service-storage/sys-file/download?id="+value+"&inline=0\"><button class=\"layui-btn layui-btn-xs layui-upload-button\">下载</button></a>"
+                    var html=btn;
+                    return html;
+                }
+            }
             return value;
         },
         /**
@@ -173,7 +201,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 窗口调节前
          * */
-        beforeAdjustPopup:function () {
+        beforeAdjustPopup:function (arg) {
             console.log('beforeAdjustPopup');
             return true;
         },

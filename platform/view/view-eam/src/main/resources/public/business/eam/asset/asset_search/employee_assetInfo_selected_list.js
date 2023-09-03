@@ -238,7 +238,7 @@ function ListPage() {
                     admin.popupCenter({
                         title: "选择资产",
                         resize: false,
-                        offset: [null,null],
+                        offset: [20,null],
                         area: ["80%","75%"],
                         type: 2,
                         id:"eam-asset-employee-select-form-data-win",

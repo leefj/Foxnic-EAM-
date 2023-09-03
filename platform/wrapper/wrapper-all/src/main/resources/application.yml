@@ -36,13 +36,13 @@ spring:
         # 8.x
         #driver-class-name: com.mysql.cj.jdbc.Driver
         # 5.x
-        driver-class-name: com.mysql.jdbc.Driver
+        #driver-class-name: com.mysql.jdbc.Driver
         url: ai+mCm8asbK9SNrQDk7ac29neidjdgHp2jFU7HYbZZM7XPIVnc3jn040SCi2ghsOJmvzo7Z8DsMWz0GJtHzk5fVkSVq8PVTLpt97W7e4//KN1tJ8luj3f2R4xGk6d01pnyaG7DyU2tsIMcGZTOl8T0kLJom6Izu9ePptW1UPa7MuTPWKDKUSCYKdQSv51ASxJE99hLodGgxEtGeRBhnlDigwekNCLkMQGvjVKTeDRDsro2ghN1qDTzmyCaGJQxMq
         username: tD5wkJAfnCt04A+Y+QN5GA==
         password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
-#        url: jdbc:mysql://121.43.103.102:3306/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
-#        username: root
-#        password: P@ss
+        #url: jdbc:mysql://10.0.2.16:2883/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
+        #username: app@app_tenant
+        #password: oracle
         # 启动程序时，在连接池中初始化多少个连接
         initialSize: 10
         # 连接池中最多支持多少个活动会话
@@ -50,13 +50,14 @@ spring:
         # 程序向连接池中请求连接时,超过maxWait的值后，认为本次请求失败，即连接池没有可用连接，单位毫秒，设置-1时表示无限等待
         maxWait: 3000
         # 池中某个连接的空闲时长达到 N 毫秒后, 连接池在下次检查空闲连接时，将回收该连接,要小于防火墙超时设置
-        minEvictableIdleTimeMillis: 30000
-        # 检查空闲连接的频率，单位毫秒, 非正整数时表示不进行检查程序没有close连接且空闲时长超过 minEvictableIdleTimeMillis,则会执行validationQuery指定的SQL,以保证该程序连接不会池kill掉,其范围不超过minIdle指定的连接个数。
-        timeBetweenEvictionRunsMillis: 10000
+        minEvictableIdleTimeMillis: 300000
+        #  3600000 一个小时 检查空闲连接的频率，单位毫秒, 非正整数时表示不进行检查程序没有close连接且空闲时长超过 minEvictableIdleTimeMillis,则会执行validationQuery指定的SQL,以保证该程序连接不会池kill掉,其范围不超过minIdle指定的连接个数。
+        timeBetweenEvictionRunsMillis: 60000
+        #keepAliveBetweenTimeMillis: 3600000
         # 回收空闲连接时，将保证至少有minIdle个连接.
-        minIdle: 8
+        minIdle: 10
         # 要求程序从池中get到连接后, N 秒后必须close,否则druid 会强制回收该连接,不管该连接中是活动还是空闲。
-        removeAbandoned: false
+        removeAbandoned: true
         # 设置druid 强制回收连接的时限，当程序从池中get到连接开始算起，超过此值后，druid将强制回收该连接，单位秒。
         removeAbandonedTimeout: 86400000
         # 当druid强制回收连接后，是否将stack trace 记录到日志中
@@ -67,6 +68,7 @@ spring:
         keepAlive: true
         # 检查池中的连接是否仍可用的 SQL 语句,drui会连接到数据库执行该SQL, 如果正常返回，则表示连接可用，否则表示连接不可用
         validationQuery: select 1
+        validationQueryTimeout: 5000
         # 程序 申请 连接时,进行连接有效性检查（低效，影响性能）
         testOnBorrow: false
         # 程序 返还 连接时,进行连接有效性检查（低效，影响性能）
@@ -158,7 +160,7 @@ foxnic:
       apply-menu-tree: false
   # 设置 API 接口
   job:
-    enable: true
+    enable: false
     force-run-job-ids:
     # 指定 Quartz 使用的DAO数据源
     dao-bean-name: primaryDAO

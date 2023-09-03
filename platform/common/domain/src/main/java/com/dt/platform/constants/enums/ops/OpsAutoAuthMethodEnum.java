@@ -14,8 +14,8 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum OpsAutoAuthMethodEnum implements CodeTextEnum {
 
 
-    VOUCHER("voucher" , "凭证"),
-    PUB_KEY("pub_key" , "钥匙");
+    VOUCHER("voucher" , "凭证");
+//    PUB_KEY("pub_key" , "钥匙");
 
     private String code;
     private String text;

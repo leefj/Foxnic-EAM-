@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_AUTO_NODE;
@@ -8,22 +9,28 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import org.github.foxnic.web.domain.system.DictItem;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.AutoNodeMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 节点
+ * <p>节点 , 数据表 ops_auto_node 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 19:42:29
- * @sign 74E387C482F2748EBDAC9F33F1BE0C90
+ * @since 2023-09-01 15:21:45
+ * @sign AE76F5869794E4D5BE3112241EDABCE8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_auto_node")
+@ApiModel(description = "节点 ; 节点 , 数据表 ops_auto_node 的PO类型")
 public class AutoNode extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -34,55 +41,55 @@ public class AutoNode extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "749695855304376320")
 	private String id;
 	
 	/**
 	 * 归属：归属
 	*/
-	@ApiModelProperty(required = false,value="归属" , notes = "归属")
+	@ApiModelProperty(required = false,value="归属" , notes = "归属" , example = "none")
 	private String ownerCode;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "121.43.103.102_1")
 	private String name;
 	
 	/**
 	 * 分组：分组
 	*/
-	@ApiModelProperty(required = false,value="分组" , notes = "分组")
+	@ApiModelProperty(required = false,value="分组" , notes = "分组" , example = "749694127301459968")
 	private String groupId;
 	
 	/**
 	 * 节点类型：节点类型
 	*/
-	@ApiModelProperty(required = false,value="节点类型" , notes = "节点类型")
+	@ApiModelProperty(required = false,value="节点类型" , notes = "节点类型" , example = "host")
 	private String type;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
 	
 	/**
 	 * IP：IP
 	*/
-	@ApiModelProperty(required = false,value="IP" , notes = "IP")
+	@ApiModelProperty(required = false,value="IP" , notes = "IP" , example = "121.43.103.102")
 	private String ip;
 	
 	/**
 	 * 端口：端口
 	*/
-	@ApiModelProperty(required = false,value="端口" , notes = "端口")
+	@ApiModelProperty(required = false,value="端口" , notes = "端口" , example = "22")
 	private Integer port;
 	
 	/**
 	 * 认证方式：认证方式
 	*/
-	@ApiModelProperty(required = false,value="认证方式" , notes = "认证方式")
+	@ApiModelProperty(required = false,value="认证方式" , notes = "认证方式" , example = "voucher")
 	private String authenticationMethod;
 	
 	/**
@@ -94,13 +101,13 @@ public class AutoNode extends Entity {
 	/**
 	 * 账户：账户
 	*/
-	@ApiModelProperty(required = false,value="账户" , notes = "账户")
+	@ApiModelProperty(required = false,value="账户" , notes = "账户" , example = "root")
 	private String userName;
 	
 	/**
 	 * 密码：密码
 	*/
-	@ApiModelProperty(required = false,value="密码" , notes = "密码")
+	@ApiModelProperty(required = false,value="密码" , notes = "密码" , example = "******")
 	private String password;
 	
 	/**
@@ -118,21 +125,22 @@ public class AutoNode extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-09-01 06:50:52")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -150,14 +158,26 @@ public class AutoNode extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * 创建人ID：创建人ID
+	*/
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	private String createBy;
+	
+	/**
+	 * 创建时间：创建时间
+	*/
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	private Date createTime;
 	
 	/**
 	 * typeDict：typeDict
@@ -508,6 +528,7 @@ public class AutoNode extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AutoNode setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -607,6 +628,44 @@ public class AutoNode extends Entity {
 	}
 	
 	/**
+	 * 获得 创建人ID<br>
+	 * 创建人ID
+	 * @return 创建人ID
+	*/
+	public String getCreateBy() {
+		return createBy;
+	}
+	
+	/**
+	 * 设置 创建人ID
+	 * @param createBy 创建人ID
+	 * @return 当前对象
+	*/
+	public AutoNode setCreateBy(String createBy) {
+		this.createBy=createBy;
+		return this;
+	}
+	
+	/**
+	 * 获得 创建时间<br>
+	 * 创建时间
+	 * @return 创建时间
+	*/
+	public Date getCreateTime() {
+		return createTime;
+	}
+	
+	/**
+	 * 设置 创建时间
+	 * @param createTime 创建时间
+	 * @return 当前对象
+	*/
+	public AutoNode setCreateTime(Date createTime) {
+		this.createTime=createTime;
+		return this;
+	}
+	
+	/**
 	 * 获得 typeDict<br>
 	 * typeDict
 	 * @return typeDict
@@ -697,7 +756,46 @@ public class AutoNode extends Entity {
 	*/
 	@Transient
 	public AutoNode clone() {
-		return EntityContext.clone(AutoNode.class,this);
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AutoNode duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.AutoNodeMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.AutoNodeMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setOwnerCode(this.getOwnerCode());
+		inst.setGroupId(this.getGroupId());
+		inst.setIp(this.getIp());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setType(this.getType());
+		inst.setUserName(this.getUserName());
+		inst.setVersion(this.getVersion());
+		inst.setPassword(this.getPassword());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setPort(this.getPort());
+		inst.setAuthenticationMethod(this.getAuthenticationMethod());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setVoucherId(this.getVoucherId());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setStatus(this.getStatus());
+		inst.setPubKey(this.getPubKey());
+		if(all) {
+			inst.setVoucher(this.getVoucher());
+			inst.setTypeDict(this.getTypeDict());
+			inst.setGroup(this.getGroup());
+		}
+		inst.clearModifies();
+		return inst;
 	}
 
 	/**
@@ -716,7 +814,9 @@ public class AutoNode extends Entity {
 	@Transient
 	public static AutoNode createFrom(Map<String,Object> autoNodeMap) {
 		if(autoNodeMap==null) return null;
-		AutoNode po = EntityContext.create(AutoNode.class, autoNodeMap);
+		AutoNode po = create();
+		EntityContext.copyProperties(po,autoNodeMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -728,7 +828,9 @@ public class AutoNode extends Entity {
 	@Transient
 	public static AutoNode createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AutoNode po = EntityContext.create(AutoNode.class,pojo);
+		AutoNode po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -738,6 +840,144 @@ public class AutoNode extends Entity {
 	*/
 	@Transient
 	public static AutoNode create() {
-		return EntityContext.create(AutoNode.class);
+		return new com.dt.platform.domain.ops.meta.AutoNodeMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AutoNodeMeta.NOTES)));
+			this.setOwnerCode(DataParser.parse(String.class, map.get(AutoNodeMeta.OWNER_CODE)));
+			this.setGroupId(DataParser.parse(String.class, map.get(AutoNodeMeta.GROUP_ID)));
+			this.setIp(DataParser.parse(String.class, map.get(AutoNodeMeta.IP)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AutoNodeMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, map.get(AutoNodeMeta.TYPE)));
+			this.setUserName(DataParser.parse(String.class, map.get(AutoNodeMeta.USER_NAME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AutoNodeMeta.VERSION)));
+			this.setPassword(DataParser.parse(String.class, map.get(AutoNodeMeta.PASSWORD)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AutoNodeMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AutoNodeMeta.DELETED)));
+			this.setPort(DataParser.parse(Integer.class, map.get(AutoNodeMeta.PORT)));
+			this.setAuthenticationMethod(DataParser.parse(String.class, map.get(AutoNodeMeta.AUTHENTICATION_METHOD)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AutoNodeMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AutoNodeMeta.DELETE_TIME)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AutoNodeMeta.CREATE_TIME)));
+			this.setVoucherId(DataParser.parse(String.class, map.get(AutoNodeMeta.VOUCHER_ID)));
+			this.setName(DataParser.parse(String.class, map.get(AutoNodeMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AutoNodeMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AutoNodeMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AutoNodeMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(AutoNodeMeta.STATUS)));
+			this.setPubKey(DataParser.parse(String.class, map.get(AutoNodeMeta.PUB_KEY)));
+			// others
+			this.setVoucher(DataParser.parse(AutoVoucher.class, map.get(AutoNodeMeta.VOUCHER)));
+			this.setTypeDict(DataParser.parse(DictItem.class, map.get(AutoNodeMeta.TYPE_DICT)));
+			this.setGroup(DataParser.parse(AutoGroup.class, map.get(AutoNodeMeta.GROUP)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AutoNodeMeta.NOTES));
+				this.setOwnerCode( (String)map.get(AutoNodeMeta.OWNER_CODE));
+				this.setGroupId( (String)map.get(AutoNodeMeta.GROUP_ID));
+				this.setIp( (String)map.get(AutoNodeMeta.IP));
+				this.setUpdateTime( (Date)map.get(AutoNodeMeta.UPDATE_TIME));
+				this.setType( (String)map.get(AutoNodeMeta.TYPE));
+				this.setUserName( (String)map.get(AutoNodeMeta.USER_NAME));
+				this.setVersion( (Integer)map.get(AutoNodeMeta.VERSION));
+				this.setPassword( (String)map.get(AutoNodeMeta.PASSWORD));
+				this.setCreateBy( (String)map.get(AutoNodeMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AutoNodeMeta.DELETED));
+				this.setPort( (Integer)map.get(AutoNodeMeta.PORT));
+				this.setAuthenticationMethod( (String)map.get(AutoNodeMeta.AUTHENTICATION_METHOD));
+				this.setUpdateBy( (String)map.get(AutoNodeMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AutoNodeMeta.DELETE_TIME));
+				this.setCreateTime( (Date)map.get(AutoNodeMeta.CREATE_TIME));
+				this.setVoucherId( (String)map.get(AutoNodeMeta.VOUCHER_ID));
+				this.setName( (String)map.get(AutoNodeMeta.NAME));
+				this.setTenantId( (String)map.get(AutoNodeMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AutoNodeMeta.DELETE_BY));
+				this.setId( (String)map.get(AutoNodeMeta.ID));
+				this.setStatus( (String)map.get(AutoNodeMeta.STATUS));
+				this.setPubKey( (String)map.get(AutoNodeMeta.PUB_KEY));
+				// others
+				this.setVoucher( (AutoVoucher)map.get(AutoNodeMeta.VOUCHER));
+				this.setTypeDict( (DictItem)map.get(AutoNodeMeta.TYPE_DICT));
+				this.setGroup( (AutoGroup)map.get(AutoNodeMeta.GROUP));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AutoNodeMeta.NOTES)));
+			this.setOwnerCode(DataParser.parse(String.class, r.getValue(AutoNodeMeta.OWNER_CODE)));
+			this.setGroupId(DataParser.parse(String.class, r.getValue(AutoNodeMeta.GROUP_ID)));
+			this.setIp(DataParser.parse(String.class, r.getValue(AutoNodeMeta.IP)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AutoNodeMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, r.getValue(AutoNodeMeta.TYPE)));
+			this.setUserName(DataParser.parse(String.class, r.getValue(AutoNodeMeta.USER_NAME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AutoNodeMeta.VERSION)));
+			this.setPassword(DataParser.parse(String.class, r.getValue(AutoNodeMeta.PASSWORD)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AutoNodeMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AutoNodeMeta.DELETED)));
+			this.setPort(DataParser.parse(Integer.class, r.getValue(AutoNodeMeta.PORT)));
+			this.setAuthenticationMethod(DataParser.parse(String.class, r.getValue(AutoNodeMeta.AUTHENTICATION_METHOD)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AutoNodeMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AutoNodeMeta.DELETE_TIME)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AutoNodeMeta.CREATE_TIME)));
+			this.setVoucherId(DataParser.parse(String.class, r.getValue(AutoNodeMeta.VOUCHER_ID)));
+			this.setName(DataParser.parse(String.class, r.getValue(AutoNodeMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AutoNodeMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AutoNodeMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AutoNodeMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AutoNodeMeta.STATUS)));
+			this.setPubKey(DataParser.parse(String.class, r.getValue(AutoNodeMeta.PUB_KEY)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AutoNodeMeta.NOTES));
+				this.setOwnerCode( (String)r.getValue(AutoNodeMeta.OWNER_CODE));
+				this.setGroupId( (String)r.getValue(AutoNodeMeta.GROUP_ID));
+				this.setIp( (String)r.getValue(AutoNodeMeta.IP));
+				this.setUpdateTime( (Date)r.getValue(AutoNodeMeta.UPDATE_TIME));
+				this.setType( (String)r.getValue(AutoNodeMeta.TYPE));
+				this.setUserName( (String)r.getValue(AutoNodeMeta.USER_NAME));
+				this.setVersion( (Integer)r.getValue(AutoNodeMeta.VERSION));
+				this.setPassword( (String)r.getValue(AutoNodeMeta.PASSWORD));
+				this.setCreateBy( (String)r.getValue(AutoNodeMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AutoNodeMeta.DELETED));
+				this.setPort( (Integer)r.getValue(AutoNodeMeta.PORT));
+				this.setAuthenticationMethod( (String)r.getValue(AutoNodeMeta.AUTHENTICATION_METHOD));
+				this.setUpdateBy( (String)r.getValue(AutoNodeMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AutoNodeMeta.DELETE_TIME));
+				this.setCreateTime( (Date)r.getValue(AutoNodeMeta.CREATE_TIME));
+				this.setVoucherId( (String)r.getValue(AutoNodeMeta.VOUCHER_ID));
+				this.setName( (String)r.getValue(AutoNodeMeta.NAME));
+				this.setTenantId( (String)r.getValue(AutoNodeMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AutoNodeMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AutoNodeMeta.ID));
+				this.setStatus( (String)r.getValue(AutoNodeMeta.STATUS));
+				this.setPubKey( (String)r.getValue(AutoNodeMeta.PUB_KEY));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

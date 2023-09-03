@@ -7,13 +7,14 @@ import com.dt.platform.domain.ops.AutoTask;
 import com.dt.platform.domain.ops.AutoAction;
 import com.dt.platform.domain.ops.AutoNode;
 import com.dt.platform.domain.ops.AutoTaskMLog;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-24 13:48:40
- * @sign 486391774254B3AC4571B783E11CDCEA
+ * @since 2023-09-02 18:13:23
+ * @sign 28214DEF024BE9F8C42A648E1B1CD600
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -210,14 +211,24 @@ public class AutoTaskLogMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLog,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLog.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
-	 * 租户 , 类型: java.lang.String
+	 * 创建人ID , 类型: java.lang.String
 	*/
-	public static final String TENANT_ID="tenantId";
+	public static final String CREATE_BY="createBy";
 	
 	/**
-	 * 租户 , 类型: java.lang.String
+	 * 创建人ID , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLog,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLog.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLog,java.lang.String> CREATE_BY_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLog.class ,CREATE_BY, java.lang.String.class, "创建人ID", "创建人ID", java.lang.String.class, null);
+	
+	/**
+	 * 创建时间 , 类型: java.util.Date
+	*/
+	public static final String CREATE_TIME="createTime";
+	
+	/**
+	 * 创建时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLog,java.util.Date> CREATE_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLog.class ,CREATE_TIME, java.util.Date.class, "创建时间", "创建时间", java.util.Date.class, null);
 	
 	/**
 	 * task , 类型: com.dt.platform.domain.ops.AutoTask
@@ -262,7 +273,7 @@ public class AutoTaskLogMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TASK_ID , M_LOG_ID , ACTION_ID , NODE_IP , NODE_ID , STATUS , STIME , ETIME , RECORD_CONTENT , CONTENT_DETAIL , RECORD_TIME , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TASK , ACTION , NODE , M_LOG };
+	public static final String[] $PROPS={ ID , TASK_ID , M_LOG_ID , ACTION_ID , NODE_IP , NODE_ID , STATUS , STIME , ETIME , RECORD_CONTENT , CONTENT_DETAIL , RECORD_TIME , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , CREATE_BY , CREATE_TIME , TASK , ACTION , NODE , M_LOG };
 	
 	/**
 	 * 代理类
@@ -482,13 +493,24 @@ public class AutoTaskLogMeta {
 		}
 		
 		/**
-		 * 设置 租户
-		 * @param tenantId 租户
+		 * 设置 创建人ID
+		 * @param createBy 创建人ID
 		 * @return 当前对象
 		*/
-		public AutoTaskLog setTenantId(String tenantId) {
-			super.change(TENANT_ID,super.getTenantId(),tenantId);
-			super.setTenantId(tenantId);
+		public AutoTaskLog setCreateBy(String createBy) {
+			super.change(CREATE_BY,super.getCreateBy(),createBy);
+			super.setCreateBy(createBy);
+			return this;
+		}
+		
+		/**
+		 * 设置 创建时间
+		 * @param createTime 创建时间
+		 * @return 当前对象
+		*/
+		public AutoTaskLog setCreateTime(Date createTime) {
+			super.change(CREATE_TIME,super.getCreateTime(),createTime);
+			super.setCreateTime(createTime);
 			return this;
 		}
 		
@@ -535,5 +557,52 @@ public class AutoTaskLogMeta {
 			super.setMLog(mLog);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AutoTaskLog clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AutoTaskLog duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setNodeIp(this.getNodeIp());
+			inst.setStime(this.getStime());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setContentDetail(this.getContentDetail());
+			inst.setVersion(this.getVersion());
+			inst.setMLogId(this.getMLogId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setRecordTime(this.getRecordTime());
+			inst.setDeleted(this.getDeleted());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setEtime(this.getEtime());
+			inst.setActionId(this.getActionId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setNodeId(this.getNodeId());
+			inst.setTaskId(this.getTaskId());
+			inst.setStatus(this.getStatus());
+			inst.setRecordContent(this.getRecordContent());
+			if(all) {
+				inst.setNode(this.getNode());
+				inst.setTask(this.getTask());
+				inst.setMLog(this.getMLog());
+				inst.setAction(this.getAction());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

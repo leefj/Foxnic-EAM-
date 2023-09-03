@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_AUTO_BATCH;
@@ -8,24 +9,30 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.AutoBatchMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 节点批次
+ * <p>节点批次 , 数据表 ops_auto_batch 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 10:28:37
+ * @since 2023-08-31 18:17:42
  * @sign 43D1CBDA67D6FD2AE67205D54C67EAB2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_auto_batch")
+@ApiModel(description = "节点批次 ; 节点批次 , 数据表 ops_auto_batch 的PO类型")
 public class AutoBatch extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -81,6 +88,7 @@ public class AutoBatch extends Entity {
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -279,6 +287,7 @@ public class AutoBatch extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AutoBatch setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -471,7 +480,34 @@ public class AutoBatch extends Entity {
 	*/
 	@Transient
 	public AutoBatch clone() {
-		return EntityContext.clone(AutoBatch.class,this);
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AutoBatch duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.AutoBatchMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.AutoBatchMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setDeleted(this.getDeleted());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setId(this.getId());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setVersion(this.getVersion());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setNodeIds(this.getNodeIds());
+			inst.setNodeList(this.getNodeList());
+		}
+		inst.clearModifies();
+		return inst;
 	}
 
 	/**
@@ -490,7 +526,9 @@ public class AutoBatch extends Entity {
 	@Transient
 	public static AutoBatch createFrom(Map<String,Object> autoBatchMap) {
 		if(autoBatchMap==null) return null;
-		AutoBatch po = EntityContext.create(AutoBatch.class, autoBatchMap);
+		AutoBatch po = create();
+		EntityContext.copyProperties(po,autoBatchMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -502,7 +540,9 @@ public class AutoBatch extends Entity {
 	@Transient
 	public static AutoBatch createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AutoBatch po = EntityContext.create(AutoBatch.class,pojo);
+		AutoBatch po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -512,6 +552,94 @@ public class AutoBatch extends Entity {
 	*/
 	@Transient
 	public static AutoBatch create() {
-		return EntityContext.create(AutoBatch.class);
+		return new com.dt.platform.domain.ops.meta.AutoBatchMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AutoBatchMeta.NOTES)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AutoBatchMeta.DELETED)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AutoBatchMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AutoBatchMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AutoBatchMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AutoBatchMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AutoBatchMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AutoBatchMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(AutoBatchMeta.ID)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AutoBatchMeta.SELECTED_CODE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AutoBatchMeta.VERSION)));
+			this.setStatus(DataParser.parse(String.class, map.get(AutoBatchMeta.STATUS)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AutoBatchMeta.NOTES));
+				this.setDeleted( (Integer)map.get(AutoBatchMeta.DELETED));
+				this.setUpdateBy( (String)map.get(AutoBatchMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AutoBatchMeta.DELETE_TIME));
+				this.setName( (String)map.get(AutoBatchMeta.NAME));
+				this.setTenantId( (String)map.get(AutoBatchMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AutoBatchMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(AutoBatchMeta.UPDATE_TIME));
+				this.setId( (String)map.get(AutoBatchMeta.ID));
+				this.setSelectedCode( (String)map.get(AutoBatchMeta.SELECTED_CODE));
+				this.setVersion( (Integer)map.get(AutoBatchMeta.VERSION));
+				this.setStatus( (String)map.get(AutoBatchMeta.STATUS));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AutoBatchMeta.NOTES)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AutoBatchMeta.DELETED)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AutoBatchMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AutoBatchMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AutoBatchMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AutoBatchMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AutoBatchMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AutoBatchMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(AutoBatchMeta.ID)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AutoBatchMeta.SELECTED_CODE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AutoBatchMeta.VERSION)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AutoBatchMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AutoBatchMeta.NOTES));
+				this.setDeleted( (Integer)r.getValue(AutoBatchMeta.DELETED));
+				this.setUpdateBy( (String)r.getValue(AutoBatchMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AutoBatchMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AutoBatchMeta.NAME));
+				this.setTenantId( (String)r.getValue(AutoBatchMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AutoBatchMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(AutoBatchMeta.UPDATE_TIME));
+				this.setId( (String)r.getValue(AutoBatchMeta.ID));
+				this.setSelectedCode( (String)r.getValue(AutoBatchMeta.SELECTED_CODE));
+				this.setVersion( (Integer)r.getValue(AutoBatchMeta.VERSION));
+				this.setStatus( (String)r.getValue(AutoBatchMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -1,9 +1,6 @@
 package com.dt.platform.ops.service.impl;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -138,6 +135,23 @@ public class RemoteShellExecutor {
                 outStr = processStream(stdOut, charset);
                 stdErr = new StreamGobbler(session.getStderr());
                 outErr = processStream(stdErr, charset);
+//                BufferedReader stdoutReader = new BufferedReader(new InputStreamReader(stdOut));
+//                BufferedReader stderrReader = new BufferedReader(new InputStreamReader(stdErr));
+//                while (true)
+//                {
+//                    String line = stdoutReader.readLine();
+//                    if (line == null)
+//                        break;
+//                    System.out.println("out >>> " + line);
+//                }
+//                while (true)
+//                {
+//                    String line = stderrReader.readLine();
+//                    if (line == null)
+//                        break;
+//                    System.out.println("err >>> " + line);
+//                }
+                System.out.println("脚本退出状态 >>> " + session.getExitStatus());
                 session.waitForCondition(ChannelCondition.EXIT_STATUS, TIME_OUT);
                 result.append(outStr.trim());
                 result.append(outErr.trim());

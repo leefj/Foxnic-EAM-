@@ -40,6 +40,7 @@ public class AutoGroupGtr extends BaseCodeGenerator{
                 }
         );
 
+        cfg.view().list().disableBatchDelete();
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口

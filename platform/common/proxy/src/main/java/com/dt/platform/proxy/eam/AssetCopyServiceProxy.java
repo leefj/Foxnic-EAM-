@@ -4,8 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.eam.AssetCopy;
 import com.dt.platform.domain.eam.AssetCopyVO;

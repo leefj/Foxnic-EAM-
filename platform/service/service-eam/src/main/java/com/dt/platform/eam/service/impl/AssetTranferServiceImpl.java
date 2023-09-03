@@ -202,7 +202,7 @@ public class AssetTranferServiceImpl extends SuperService<AssetTranfer> implemen
 			asset.setId(newAssetId);
 			asset.setOwnerCode(AssetOwnerCodeEnum.ASSET_DATE_AFTER.code());
 			assetService.sourceInsert(asset);
-			dao.execute("update eam_asset_item a set a.r_asset_id,a.asset_id=?,flag=? where a.asset_id=? and a.handle_id=?",oldAssetId,newAssetId,oldAssetId,oldAssetId,id);
+			dao.execute("update eam_asset_item a set a.r_asset_id=?,a.asset_id=?,flag=? where a.asset_id=? and a.handle_id=?",oldAssetId,newAssetId,oldAssetId,oldAssetId,id);
 		}
 		return ErrorDesc.success();
 	}

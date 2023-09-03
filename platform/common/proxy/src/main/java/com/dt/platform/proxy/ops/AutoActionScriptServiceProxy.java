@@ -16,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * 执行脚本  控制器服务代理
+ * 执行脚本 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 12:51:30
+ * @since 2023-09-01 07:58:11
  */
 @FeignClient(value = ServiceNames.OPS, contextId = AutoActionScriptServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AutoActionScriptServiceProxy {

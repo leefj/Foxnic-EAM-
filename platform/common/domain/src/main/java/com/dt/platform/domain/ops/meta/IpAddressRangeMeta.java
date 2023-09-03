@@ -4,13 +4,14 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.ops.IpAddressRange;
 import java.util.Date;
 import org.github.foxnic.web.domain.system.DictItem;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-30 07:16:57
- * @sign 33C6E06FC336E6BDF2303441639F5A94
+ * @since 2023-09-03 08:21:20
+ * @sign CA2428A6F53407E45F0E91B98B84A744
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -469,5 +470,48 @@ public class IpAddressRangeMeta {
 			super.setProdDict(prodDict);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public IpAddressRange clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public IpAddressRange duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setProdId(this.getProdId());
+			inst.setVersion(this.getVersion());
+			inst.setAddressSegment(this.getAddressSegment());
+			inst.setScene(this.getScene());
+			inst.setClassId(this.getClassId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setVlan(this.getVlan());
+			inst.setRegionId(this.getRegionId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setProdDict(this.getProdDict());
+				inst.setClassDict(this.getClassDict());
+				inst.setRegionDict(this.getRegionDict());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

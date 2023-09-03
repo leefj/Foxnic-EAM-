@@ -16,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * 作业节点  控制器服务代理
+ * 作业节点 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 13:41:32
+ * @since 2023-09-01 15:23:01
  */
 @FeignClient(value = ServiceNames.OPS, contextId = AutoTaskNodeServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AutoTaskNodeServiceProxy {

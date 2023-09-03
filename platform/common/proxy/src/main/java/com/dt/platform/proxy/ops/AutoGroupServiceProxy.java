@@ -16,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * 自动化分组  控制器服务代理
+ * 节点分组 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 09:09:52
+ * @since 2023-09-01 15:21:32
  */
 @FeignClient(value = ServiceNames.OPS, contextId = AutoGroupServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AutoGroupServiceProxy {
@@ -40,100 +40,100 @@ public interface AutoGroupServiceProxy {
     public static final String API_PREFIX = "/" + API_BASIC_PATH + "/" + API_CONTEXT_PATH + "/";
 
     /**
-     * 添加自动化分组
+     * 添加节点分组
      */
     public static final String INSERT = API_PREFIX + "insert";
 
     /**
-     * 删除自动化分组
+     * 删除节点分组
      */
     public static final String DELETE = API_PREFIX + "delete";
 
     /**
-     * 批量删除自动化分组
+     * 批量删除节点分组
      */
     public static final String DELETE_BY_IDS = API_PREFIX + "delete-by-ids";
 
     /**
-     * 更新自动化分组
+     * 更新节点分组
      */
     public static final String UPDATE = API_PREFIX + "update";
 
     /**
-     * 保存自动化分组
+     * 保存节点分组
      */
     public static final String SAVE = API_PREFIX + "save";
 
     /**
-     * 获取单个自动化分组
+     * 获取单个节点分组
      */
     public static final String GET_BY_ID = API_PREFIX + "get-by-id";
 
     /**
-     * 获取多个自动化分组
+     * 获取多个节点分组
      */
     public static final String GET_BY_IDS = API_PREFIX + "get-by-ids";
 
     /**
-     * 查询自动化分组
+     * 查询节点分组
      */
     public static final String QUERY_LIST = API_PREFIX + "query-list";
 
     /**
-     * 分页查询自动化分组
+     * 分页查询节点分组
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
-     * 添加自动化分组
+     * 添加节点分组
      */
     @RequestMapping(AutoGroupServiceProxy.INSERT)
     Result insert(@RequestParam(name = "autoGroupVO") AutoGroupVO autoGroupVO);
 
     /**
-     * 删除自动化分组
+     * 删除节点分组
      */
     @RequestMapping(AutoGroupServiceProxy.DELETE)
     Result deleteById(@RequestParam(name = "id") String id);
 
     /**
-     * 批量删除自动化分组
+     * 批量删除节点分组
      */
     @RequestMapping(AutoGroupServiceProxy.DELETE_BY_IDS)
     Result deleteByIds(@RequestParam(name = "ids") List<String> ids);
 
     /**
-     * 更新自动化分组
+     * 更新节点分组
      */
     @RequestMapping(AutoGroupServiceProxy.UPDATE)
     Result update(@RequestParam(name = "autoGroupVO") AutoGroupVO autoGroupVO);
 
     /**
-     * 更新自动化分组
+     * 更新节点分组
      */
     @RequestMapping(AutoGroupServiceProxy.SAVE)
     Result save(@RequestParam(name = "autoGroupVO") AutoGroupVO autoGroupVO);
 
     /**
-     * 获取自动化分组
+     * 获取节点分组
      */
     @RequestMapping(AutoGroupServiceProxy.GET_BY_ID)
     Result<AutoGroup> getById(@RequestParam(name = "id") String id);
 
     /**
-     * 获取多个自动化分组
+     * 获取多个节点分组
      */
     @RequestMapping(AutoGroupServiceProxy.GET_BY_IDS)
     Result<List<AutoGroup>> getByIds(@RequestParam(name = "ids") List<String> ids);
 
     /**
-     * 查询自动化分组
+     * 查询节点分组
      */
     @RequestMapping(AutoGroupServiceProxy.QUERY_LIST)
     Result<List<AutoGroup>> queryList(@RequestParam(name = "sample") AutoGroupVO sample);
 
     /**
-     * 分页查询自动化分组
+     * 分页查询节点分组
      */
     @RequestMapping(AutoGroupServiceProxy.QUERY_PAGED_LIST)
     Result<PagedList<AutoGroup>> queryPagedList(@RequestParam(name = "sample") AutoGroupVO sample);

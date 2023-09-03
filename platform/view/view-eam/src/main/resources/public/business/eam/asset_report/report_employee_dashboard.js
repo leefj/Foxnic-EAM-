@@ -37,7 +37,7 @@ function ListPage() {
             admin.popupCenter({
                 title: "我的资产",
                 resize: false,
-                offset: [null,null],
+                offset: [20,null],
                 area: ["80%","500px"],
                 type: 2,
                 id:"eam-asset-employee-myasset-form-data-win",

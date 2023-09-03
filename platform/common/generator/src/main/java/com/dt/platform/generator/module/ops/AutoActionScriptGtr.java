@@ -38,7 +38,7 @@ public class AutoActionScriptGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_SCRIPT.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_SCRIPT.NAME).form().validate().required();
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_SCRIPT.FILE_NAME).form().validate().required();
-        cfg.view().field(OpsTables.OPS_AUTO_ACTION_SCRIPT.FILE_ID).table().disable(true);
+
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_SCRIPT.FILE_ID).table().form().validate().required().form().upload().acceptSingleFile().maxFileCount(1).acceptAllType();
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_SCRIPT.NOTES).table().form().textArea().height(Config.textAreaHeight);
 
@@ -53,7 +53,7 @@ public class AutoActionScriptGtr extends BaseCodeGenerator{
                 }
         );
 
-
+        cfg.view().list().disableBatchDelete();
         //A和B，一对多 ，AA。
         cfg.setRelationField(MonitorNode.class,OpsTables.OPS_MONITOR_NODE_TPL_ITEM.NODE_ID, MonitorTpl.class, OpsTables.OPS_MONITOR_NODE_TPL_ITEM.TPL_CODE,true);
         //cfg.setRelationField(Host.class,OpsTables.OPS_HOST_MID.HOST_ID, ServiceInfo.class, OpsTables.OPS_HOST_MID.SERVICE_INFO_ID,true);
@@ -65,7 +65,7 @@ public class AutoActionScriptGtr extends BaseCodeGenerator{
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //生成代码
         cfg.buildAll();
     }

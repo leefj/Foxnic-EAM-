@@ -60,7 +60,7 @@ public class AutoNodeGtr extends BaseCodeGenerator{
 
 
         cfg.view().field(OpsTables.OPS_AUTO_NODE.AUTHENTICATION_METHOD).table().form().validate().required().form().radioBox().enumType(OpsAutoAuthMethodEnum.class).defaultIndex(0);
-        cfg.view().field(OpsTables.OPS_AUTO_NODE.PORT).table().form().validate().required().form().numberInput().defaultValue(22);
+        cfg.view().field(OpsTables.OPS_AUTO_NODE.PORT).table().form().validate().required().form().numberInput().integer().scale(0).defaultValue(22);
 
 
         cfg.view().field(OpsTables.OPS_AUTO_NODE.TYPE)
@@ -89,6 +89,7 @@ public class AutoNodeGtr extends BaseCodeGenerator{
                 fillWith(AutoNodeMeta.VOUCHER).muliti(false);
 
 
+        cfg.view().list().disableBatchDelete();
 
         cfg.view().formWindow().bottomSpace(80);
         cfg.view().formWindow().width(Config.baseFormWidth);;

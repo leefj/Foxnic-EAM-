@@ -1,7 +1,7 @@
 /**
  * 执行任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 19:33:17
+ * @since 2023-09-01 07:28:48
  */
 
 layui.config({
@@ -20,7 +20,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-ops/ops-auto-action";
 
-
+    var formAction=admin.getTempData('ops-auto-action-form-data-form-action');
     //列表页的扩展
     var list={
         /**
@@ -30,11 +30,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("list:beforeInit");
         },
         /**
+         * 按事件名称移除表格按钮栏的按钮
+         * */
+        removeOperationButtonByEvent(event) {
+            var template=$("#tableOperationTemplate");
+            var content=template.text();
+            content=content.split("\n");
+            var buttons=[]
+            for (let i = 0; i < content.length ; i++) {
+                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
+                    buttons.push(content[i]);
+                }
+            }
+            template.text(buttons.join("\n"))
+        },
+        /**
          * 表格渲染前调用
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            cfg.cellMinWidth=160;;
+            console.log("list:beforeTableRender",cfg);
         },
         /**
          * 表格渲染后调用
@@ -84,6 +99,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
+
+        },
+        /**
+         * 单行数据刷新后调用
+         * */
+        afterRefreshRowData: function (data,remote,context) {
 
         },
         /**
@@ -169,11 +190,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
+            if(formAction=="create"){
+                console.log("init fill");
+                $("#confContent").val("{}");
+                $("#exampleConfContent").val("[]");
+                $("#executeContent").val("exit 0");
+            }
         },
         /**
          * 窗口调节前
          * */
-        beforeAdjustPopup:function () {
+        beforeAdjustPopup:function (arg) {
             console.log('beforeAdjustPopup');
             return true;
         },

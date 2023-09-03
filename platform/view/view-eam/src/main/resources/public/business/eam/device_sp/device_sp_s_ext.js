@@ -204,7 +204,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             admin.popupCenter({
                 title: "修改状态",
                 resize: false,
-                offset: [10,null],
+                offset: [20,null],
                 area: ["80%","85%"],
                 type: 2,
                 id:"eam-device-sp-status-form-data-win",
@@ -220,7 +220,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             admin.popupCenter({
                 title: "使用记录",
                 resize: false,
-                offset: [10,null],
+                offset: [20,null],
                 area: ["80%","85%"],
                 type: 2,
                 id:"eam-device-sp-rcd-list-data-win",

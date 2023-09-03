@@ -81,51 +81,12 @@ insert into sys_file(id,file_name,location,size,media_type,file_type)values('T00
 delete from sys_tpl_file where tenant_id='T001' and code in ('cont_download_info');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_cont_1','cont','合同下载','cont_download_info','T001_cont_1','T001');
 -- Mobile
-delete from app_software_info where id='T001_eam_mobile_a1';
+delete from app_software_info where id in ('T001_eam_mobile_a1','T001_eam_mobile_a2');
 delete from sys_file where id='T001_eam_mobile_a1';
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_mobile_a1','app.apk','/software/app.apk',10000,'application/octet-stream','apk');
 insert into `app_software_info` (`id`, `code`, `group_id`, `name`, `status`, `type`, `software_version`, `picture_id`, `file_id`,`tenant_id`) VALUES ('T001_eam_mobile_a1', 'eam_mobile_android', 'eam_mobile', '安卓移动端', 'enable', 'android', '2.4.0', '', 'T001_eam_mobile_a1', 'T001');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_mobile_a2','h5.tar.gz','/software/h5.tar.gz',10000,'application/octet-stream','gz');
 insert into `app_software_info` (`id`, `code`, `group_id`, `name`, `status`, `type`, `software_version`, `picture_id`, `file_id`,`tenant_id`) VALUES ('T001_eam_mobile_a2', 'eam_mobile_h5', 'eam_mobile', 'H5版本介质', 'enable', 'h5', '2.4.0', '', 'T001_eam_mobile_a2', 'T001');
--- Ops Auto Task File
--- File
-delete from sys_file where id like 'T001_ops_f_%';
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_f_1','db2v11_db2ese_c.lic','/media/T001/db2v11_db2ese_c.lic',10000,'application/octet-stream','lic');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_f_2','db2v11_tar.gz','/media/T001/db2v11_tar.gz',10000,'application/x-tar','gz');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_f_3','mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz','/media/T001/mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz',10000,'application/x-tar','gz');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_f_4','redis-5.0.12.tar.gz','/media/T001/redis-5.0.12.tar.gz',10000,'application/x-tar','gz');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_f_5','nginx-1.18.0.tar.gz','/media/T001/nginx-1.18.0.tar.gz',10000,'application/x-tar','gz');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_f_6','apache-tomcat-9.0.46.tar.gz','/media/T001/apache-tomcat-9.0.46.tar.gz',10000,'application/x-tar','gz');
--- Action File
-delete from ops_auto_action_file where id like 'T001_ops_f_%';
-insert into ops_auto_action_file(id,name,file_name,file_id,tenant_id)values('T001_ops_f_1','db2v11_db2ese_c.lic','db2v11_db2ese_c.lic','T001_ops_f_1','T001');
-insert into ops_auto_action_file(id,name,file_name,file_id,tenant_id)values('T001_ops_f_2','db2v11_tar.gz','db2v11_tar.gz','T001_ops_f_2','T001');
-insert into ops_auto_action_file(id,name,file_name,file_id,tenant_id)values('T001_ops_f_3','mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz','mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz','T001_ops_f_3','T001');
-insert into ops_auto_action_file(id,name,file_name,file_id,tenant_id)values('T001_ops_f_4','redis-5.0.12.tar.gz','redis-5.0.12.tar.gz','T001_ops_f_4','T001');
-insert into ops_auto_action_file(id,name,file_name,file_id,tenant_id)values('T001_ops_f_5','nginx-1.18.0.tar.gz','nginx-1.18.0.tar.gz','T001_ops_f_5','T001');
-insert into ops_auto_action_file(id,name,file_name,file_id,tenant_id)values('T001_ops_f_6','apache-tomcat-9.0.46.tar.gz','apache-tomcat-9.0.46.tar.gz','T001_ops_f_6','T001');
--- Script
-delete from sys_file where id like 'T001_ops_s_%';
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_s_1','deploy_tomcat.sh','/script/T001/deploy_tomcat.sh',10000,'text/x-sh','sh');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_s_2','deploy_nginx.sh','/script/T001/deploy_nginx.sh',10000,'text/x-sh','sh');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_s_3','deploy_mysql.sh','/script/T001/deploy_mysql.sh',10000,'text/x-sh','sh');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_s_4','deploy_db2.sh','/script/T001/deploy_db2.sh',10000,'text/x-sh','sh');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_s_5','deploy_zabbix_agent.sh','/script/T001/deploy_zabbix_agent.sh',10000,'text/x-sh','sh');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_s_6','deploy_was_single.sh','/script/T001/deploy_was_single.sh',10000,'text/x-sh','sh');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_s_7','deploy_redis_single.sh','/script/T001/deploy_redis_single.sh',10000,'text/x-sh','sh');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_s_8','backup_db2.sh','/script/T001/backup_db2.sh',10000,'text/x-sh','sh');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_s_9','backup_mysql.sh','/script/T001/backup_mysql.sh',10000,'text/x-sh','sh');
--- Action File
-delete from ops_auto_action_script where id like 'T001_ops_s_%';
-insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_1','deploy_tomcat.sh','deploy_tomcat.sh','T001_ops_s_1','T001');
-insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_2','deploy_nginx.sh','deploy_nginx.sh','T001_ops_s_2','T001');
-insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_3','deploy_mysql.sh','deploy_mysql.sh','T001_ops_s_3','T001');
-insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_4','deploy_db2.sh','deploy_db2.sh','T001_ops_s_4','T001');
-insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_5','deploy_zabbix_agent.sh','deploy_zabbix_agent.sh','T001_ops_s_5','T001');
-insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_6','deploy_was_single.sh','deploy_was_single.sh','T001_ops_s_6','T001');
-insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_7','deploy_redis_single.sh','deploy_redis_single.sh','T001_ops_s_7','T001');
-insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_8','backup_db2.sh','backup_db2.sh','T001_ops_s_8','T001');
-insert into ops_auto_action_script(id,name,file_name,file_id,tenant_id)values('T001_ops_s_9','backup_mysql.sh','backup_mysql.sh','T001_ops_s_9','T001');
 -- oa
 delete from sys_file where id in ('T001_image_head','T001_image_banner1','T001_image_banner2');
 delete from sys_file where id in ('T001_image_project');

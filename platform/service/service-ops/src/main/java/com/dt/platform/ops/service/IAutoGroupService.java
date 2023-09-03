@@ -1,5 +1,6 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 自动化分组 服务接口
+ * 节点分组服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 09:09:52
+ * @since 2023-09-01 15:21:32
 */
 
 public interface IAutoGroupService extends  ISimpleIdService<AutoGroup,String> {
@@ -55,7 +56,7 @@ public interface IAutoGroupService extends  ISimpleIdService<AutoGroup,String> {
 
 		
 	/**
-	 * 按主键删除 自动化分组
+	 * 按主键删除节点分组
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IAutoGroupService extends  ISimpleIdService<AutoGroup,String> {
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 自动化分组
+	 * 按主键删除节点分组
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IAutoGroupService extends  ISimpleIdService<AutoGroup,String> {
 
 		
 	/**
-	 * 按主键更新字段 自动化分组
+	 * 按主键更新节点分组
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IAutoGroupService extends  ISimpleIdService<AutoGroup,String> {
 
 		
 	/**
-	 * 按主键获取 自动化分组
+	 * 按主键获取节点分组
 	 *
 	 * @param id 主键
 	 * @return AutoGroup 数据对象
