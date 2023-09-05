@@ -88,17 +88,17 @@
 
 
 
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>service-vehicle</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.dt.platform</groupId>-->
+<!--            <artifactId>service-vehicle</artifactId>-->
+<!--            <version>${platform.version}</version>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>service-workorder</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.dt.platform</groupId>-->
+<!--            <artifactId>service-workorder</artifactId>-->
+<!--            <version>${platform.version}</version>-->
+<!--        </dependency>-->
 
 
         <dependency>
@@ -114,37 +114,18 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>service-wms</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.dt.platform</groupId>-->
+<!--            <artifactId>service-wms</artifactId>-->
+<!--            <version>${platform.version}</version>-->
+<!--        </dependency>-->
+<!-- -->
 
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>service-customer</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>view-customer</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>view-customer</artifactId>
-            <version>2.7.0.6</version>
-            <scope>compile</scope>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>view-wms</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.dt.platform</groupId>-->
+<!--            <artifactId>view-wms</artifactId>-->
+<!--            <version>${platform.version}</version>-->
+<!--        </dependency>-->
 
 
         <dependency>
@@ -200,18 +181,18 @@
 
 
 
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>view-vehicle</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.dt.platform</groupId>-->
+<!--            <artifactId>view-vehicle</artifactId>-->
+<!--            <version>${platform.version}</version>-->
+<!--        </dependency>-->
 
 
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>view-workorder</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.dt.platform</groupId>-->
+<!--            <artifactId>view-workorder</artifactId>-->
+<!--            <version>${platform.version}</version>-->
+<!--        </dependency>-->
 
 
         <dependency>

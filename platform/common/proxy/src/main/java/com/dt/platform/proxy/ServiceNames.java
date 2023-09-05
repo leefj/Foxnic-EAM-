@@ -39,18 +39,18 @@ public class ServiceNames {
 	 * */
 	public static final String KNOWLEDGEBASE="service-knowledgebase";
 
-	/**
-	 * 合同服务 <br>
-	 * 对应 bootstrap.yml 中 spring.application.name 属性
-	 * */
-	public static final String CONTRACT="service-contract";
+//	/**
+//	 * 合同服务 <br>
+//	 * 对应 bootstrap.yml 中 spring.application.name 属性
+//	 * */
+//	public static final String CONTRACT="service-contract";
 
-
-	/**
-	 * CMS服务 <br>
-	 * 对应 bootstrap.yml 中 spring.application.name 属性
-	 * */
-	public static final String CMS="service-cms";
+//
+//	/**
+//	 * CMS服务 <br>
+//	 * 对应 bootstrap.yml 中 spring.application.name 属性
+//	 * */
+//	public static final String CMS="service-cms";
 
 	/**
 	 * 移动端 <br>
@@ -71,9 +71,9 @@ public class ServiceNames {
 	 * */
 	public static final String WMS="service-wms";
 
-	/**
-	 * 协同办公 <br>
-	 * 对应 bootstrap.yml 中 spring.application.name 属性
-	 * */
-	public static final String CUSTOMER="service-customer";
+//	/**
+//	 * 协同办公 <br>
+//	 * 对应 bootstrap.yml 中 spring.application.name 属性
+//	 * */
+//	public static final String CUSTOMER="service-customer";
 }

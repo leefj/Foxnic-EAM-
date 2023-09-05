@@ -32,6 +32,13 @@
         </dependency>
 
         <dependency>
+            <groupId>com.foxnicweb.web</groupId>
+            <artifactId>customer-proxy</artifactId>
+            <version>${foxnic-customer.version}</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>domain</artifactId>
             <version>${platform.version}</version>

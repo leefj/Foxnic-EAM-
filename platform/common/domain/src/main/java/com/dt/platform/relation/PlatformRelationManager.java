@@ -1,8 +1,10 @@
 package com.dt.platform.relation;
 
+import com.dt.platform.domain.wms.Customer;
 import com.dt.platform.relation.modules.*;
 import com.dt.platform.relation.modules.HrmRelationManager;
 import com.foxnicweb.web.relation.modules.ContractRelationManager;
+import com.foxnicweb.web.relation.modules.CustomerRelationManager;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.relation.FoxnicWebRelationManager;
 import org.github.foxnic.web.relation.modules.*;
@@ -25,9 +27,10 @@ public class PlatformRelationManager extends RelationManager {
 				new DatacenterRelationManager(),
 				new MonitorRelationManager(),
 				new MobileRelationManager(),
-				new WmsRelationManager(),
+//				new WmsRelationManager(),
 				// 合同
-				new ContractRelationManager()
+				new ContractRelationManager(),
+				new CustomerRelationManager()
 
 		);
 		//启动动态刷入
