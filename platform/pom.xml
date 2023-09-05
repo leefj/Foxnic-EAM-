@@ -26,6 +26,7 @@
         <foxnic-web.version>1.8.0.RELEASE</foxnic-web.version>
         <mysql.version>5.1.49</mysql.version>
         <foxnic-contract.version>1.0.0.2</foxnic-contract.version>
+        <foxnic-customer.version>1.0.0.2</foxnic-customer.version>
     </properties>
     <modules>
         <!-- 通用模块 -->
@@ -40,10 +41,9 @@
         <module>./service/service-ops</module>
         <module>./service/service-common</module>
         <module>./service/service-knowledgebase</module>
-        <module>./service/service-customer</module>
-        <module>./service/service-cms</module>
         <module>./service/service-mobile</module>
         <module>./service/service-oa</module>
+<!--        <module>./service/service-customer</module>-->
 <!--        <module>./service/service-wms</module>-->
         <!-- 界面视图 -->
         <module>./view/view-console</module>
@@ -53,11 +53,8 @@
         <module>./view/view-ops</module>
         <module>./view/view-common</module>
         <module>./view/view-knowledgebase</module>
-        <module>./view/view-customer</module>
-        <module>./view/view-cms</module>
         <module>./view/view-mobile</module>
         <module>./view/view-oa</module>
-<!--        <module>./view/view-wms</module>-->
         <!-- 聚合 -->
         <module>./wrapper/wrapper-all</module>
         <module>./wrapper/wrapper-camunda</module>

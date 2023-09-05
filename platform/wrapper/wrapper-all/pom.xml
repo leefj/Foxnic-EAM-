@@ -146,11 +146,6 @@
 
         <dependency>
             <groupId>com.dt.platform</groupId>
-            <artifactId>service-cms</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.dt.platform</groupId>
             <artifactId>service-mobile</artifactId>
             <version>${platform.version}</version>
         </dependency>
@@ -166,18 +161,6 @@
 <!--            <artifactId>service-wms</artifactId>-->
 <!--            <version>${platform.version}</version>-->
 <!--        </dependency>-->
-
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>service-customer</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>view-customer</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
 
 <!--        <dependency>-->
 <!--            <groupId>com.dt.platform</groupId>-->
@@ -232,11 +215,6 @@
             <version>${platform.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>view-cms</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
 
         <!-- 合同 -->
         <dependency>
@@ -249,6 +227,19 @@
             <groupId>com.foxnicweb.web</groupId>
             <artifactId>view-contract</artifactId>
             <version>${foxnic-contract.version}</version>
+        </dependency>
+
+        <!-- 客户模块 -->
+        <dependency>
+            <groupId>com.foxnicweb.web</groupId>
+            <artifactId>service-customer</artifactId>
+            <version>${foxnic-customer.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.foxnicweb.web</groupId>
+            <artifactId>view-customer</artifactId>
+            <version>${foxnic-customer.version}</version>
         </dependency>
 
 

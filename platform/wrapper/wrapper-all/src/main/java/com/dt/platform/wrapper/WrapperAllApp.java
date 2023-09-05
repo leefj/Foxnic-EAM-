@@ -2,10 +2,10 @@ package com.dt.platform.wrapper;
 
 import com.dt.platform.framework.PlatformMeta;
 import com.foxnicweb.web.contract.framework.ContractMeta;
+import com.foxnicweb.web.customer.framework.CustomerMeta;
 import org.github.foxnic.web.framework.FoxnicWebMeta;
 import org.github.foxnic.web.framework.starter.BootApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.openfeign.FeignAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan(basePackages = {
@@ -32,8 +32,6 @@ import org.springframework.context.annotation.ComponentScan;
 		PlatformMeta.DATACENTER_PACKAGE,
 		// HR
 		PlatformMeta.SERVICE_HR_PACKAGE,
-		// CMS
-		PlatformMeta.CMS_PACKAGE,
 		// OPS
 		PlatformMeta.OPS_PACKAGE,
 		// OA
@@ -45,7 +43,9 @@ import org.springframework.context.annotation.ComponentScan;
 		// 自定义
 		PlatformMeta.CUSTOMER_PACKAGE,
 		// 合同
-		ContractMeta.SERVICE_CONTRACT_PACKAGE
+		ContractMeta.SERVICE_CONTRACT_PACKAGE,
+		// 客户
+		CustomerMeta.SERVICE_CUSTOMER_PACKAGE
 		//PlatformMeta.WMS_PACKAGE,
 })
 @SpringBootApplication

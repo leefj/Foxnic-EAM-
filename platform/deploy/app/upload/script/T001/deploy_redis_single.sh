@@ -31,7 +31,7 @@ fi
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 systemctl stop      firewalld.service
 systemctl disable   firewalld.service
-systemctl stop 		postfix.service
+systemctl stop 		  postfix.service
 systemctl disable   postfix.service
 sed -i '/nofile/d' /etc/rc.d/rc.local
 sed -i '/nproc/d' /etc/rc.d/rc.local
@@ -50,6 +50,8 @@ if [[ $userCK -eq 1 ]];then
   groupadd $user
   useradd -g $user -m -d /home/$user $user
   echo 'P@ssw0rd123456' |passwd --stdin $user
+else
+  usermod -s /bin/bash $user
 fi
 mkdir -p $appdir
 mkdir -p $appdir/{data,logs,etc,run,bin}
