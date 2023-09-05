@@ -63,13 +63,14 @@ if [[ $userCK -eq 1 ]];then
   chmod 755 /home/mysql
   usermod -s /bin/bash mysql
   echo 'P@ssw0rd123456' |passwd --stdin mysql
+else
+  usermod -s /bin/bash mysql
 fi
-
 #pre linux setting
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 systemctl stop      firewalld.service
 systemctl disable   firewalld.service
-systemctl stop 		postfix.service
+systemctl stop 		  postfix.service
 systemctl disable   postfix.service
 sed -i '/nofile/d' /etc/rc.d/rc.local
 sed -i '/nproc/d' /etc/rc.d/rc.local
@@ -136,6 +137,7 @@ lc-messages-dir=/usr/local/mysql/share
 symbolic-links=0
 port=$MYSQL_PORT
 sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
+skip_ssl
 [client]
 default-character-set=utf8
 socket=/usr/local/mysql/mysql.sock
