@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan(basePackages = {
-		// Foxnic-Web
+		// 基础包
 		FoxnicWebMeta.SERVICE_STORAGE_PACKAGE ,
 		FoxnicWebMeta.SERVICE_SYSTEM_PACKAGE ,
 		FoxnicWebMeta.SERVICE_OAUTH_PACKAGE,
@@ -23,30 +23,28 @@ import org.springframework.context.annotation.ComponentScan;
 		FoxnicWebMeta.SERVICE_EXAMPLE_PACKAGE,
 		// FRAMEWORK
 		PlatformMeta.FRAMEWORK_PACKAGE,
-		// COMMON
+		// Common
 		PlatformMeta.COMMON_PACKAGE,
-		// MOBILE
+		// Mobile
 		PlatformMeta.MOBILE_PACKAGE,
-		// EAM
+		// Eam
 		PlatformMeta.SERVICE_EAM_PACKAGE,
+		// Datacenter
 		PlatformMeta.DATACENTER_PACKAGE,
-		// HR
+		// Hr
 		PlatformMeta.SERVICE_HR_PACKAGE,
-		// OPS
+		// Ops
 		PlatformMeta.OPS_PACKAGE,
-		// OA
+		// Oa
 		PlatformMeta.OA_PACKAGE,
-		// KN
+		// Kn
 		PlatformMeta.KNOWLEDGEBASE_PACKAGE,
-		// JOB
+		// Job
 		PlatformMeta.JOB_PACKAGE,
-		// 自定义
-		PlatformMeta.CUSTOMER_PACKAGE,
-		// 合同
+		// 合同-Jar引用
 		ContractMeta.SERVICE_CONTRACT_PACKAGE,
-		// 客户
+		// 客户-Jar引用
 		CustomerMeta.SERVICE_CUSTOMER_PACKAGE
-		//PlatformMeta.WMS_PACKAGE,
 })
 @SpringBootApplication
 public class WrapperAllApp {
