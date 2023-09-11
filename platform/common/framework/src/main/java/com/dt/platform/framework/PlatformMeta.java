@@ -62,18 +62,6 @@ public class PlatformMeta {
 	 * */
 	public static final String JOB_PACKAGE=BASE_PACKAGE+".job";
 
-	/**
-	 * 客户服务
-	 * */
-	public static final String CUSTOMER_PACKAGE=BASE_PACKAGE+".customer";
-
-
-	/**
-	 * CMS
-	 * */
-	public static final String CMS_PACKAGE=BASE_PACKAGE+".cms";
-
-
 
 	/**
 	 * 移动端

@@ -2,7 +2,6 @@ package com.dt.platform.generator.module.wms;
 
 
 import com.dt.platform.constants.db.WmsTables;
-import com.dt.platform.domain.cms.Category;
 import com.dt.platform.domain.wms.Customer;
 import com.dt.platform.domain.wms.ProductAttr;
 import com.dt.platform.domain.wms.ProductCategory;
@@ -10,7 +9,6 @@ import com.dt.platform.domain.wms.Unit;
 import com.dt.platform.domain.wms.meta.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.wms.*;
-import com.dt.platform.wms.page.ProductPageController;
 import com.github.foxnic.generator.config.WriteMode;
 
 public class WmsProductGtr extends BaseCodeGenerator {
