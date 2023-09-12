@@ -4,7 +4,6 @@ import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetDepreciationMethodEnum;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.meta.*;
-import com.dt.platform.domain.workorder.meta.NetworkStrategyApplyMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
@@ -42,9 +41,7 @@ public class AssetDepreciationHistoryGtr extends BaseCodeGenerator {
                 }
         );
 
-        cfg.view().field(NetworkStrategyApplyMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
-                .form().fillBy("originator","name");
-        cfg.view().field(NetworkStrategyApplyMeta.ORIGINATOR_ID).table().fillBy("originator","name");
+
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
 

@@ -7,7 +7,7 @@ import com.dt.platform.domain.vehicle.Info;
 import com.dt.platform.domain.vehicle.meta.MaintenanceMeta;
 import com.dt.platform.domain.vehicle.meta.MaintenanceVOMeta;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.vehicle.service.impl.MSelectItemServiceImpl;
+
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.system.DictItem;
@@ -132,7 +132,7 @@ public class VehicleMaintenanceGtr extends BaseCodeGenerator {
 
 
 
-        cfg.service().addRelationSaveAction(MSelectItemServiceImpl.class, MaintenanceVOMeta.VEHICLE_INFO_IDS);
+       // cfg.service().addRelationSaveAction(MSelectItemServiceImpl.class, MaintenanceVOMeta.VEHICLE_INFO_IDS);
 
         cfg.view().form().addPage("车辆列表","vehicleSelectList");
 

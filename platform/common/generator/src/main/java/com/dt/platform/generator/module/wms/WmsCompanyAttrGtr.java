@@ -4,8 +4,7 @@ package com.dt.platform.generator.module.wms;
 import com.dt.platform.constants.db.WmsTables;
 import com.dt.platform.domain.wms.CompanyAttr;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.wms.CompanyAttrServiceProxy;
-import com.dt.platform.wms.page.CompanyAttrPageController;
+
 import com.github.foxnic.generator.config.WriteMode;
 
 public class WmsCompanyAttrGtr extends BaseCodeGenerator {

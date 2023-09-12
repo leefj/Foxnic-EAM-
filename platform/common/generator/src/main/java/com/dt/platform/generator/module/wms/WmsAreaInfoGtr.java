@@ -4,8 +4,7 @@ package com.dt.platform.generator.module.wms;
 import com.dt.platform.constants.db.WmsTables;
 import com.dt.platform.domain.wms.AreaInfo;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.wms.AreaInfoServiceProxy;
-import com.dt.platform.wms.page.AreaInfoPageController;
+
 import com.github.foxnic.generator.config.WriteMode;
 
 public class WmsAreaInfoGtr extends BaseCodeGenerator {

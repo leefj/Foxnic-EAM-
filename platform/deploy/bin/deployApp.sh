@@ -511,6 +511,11 @@ function addCrontabTask(){
   crontab -l
   return 0
 }
+function installTengine(){
+  cd $app_dir/bin
+  sh deployTengine.sh
+  return 0
+}
 function installNginx(){
   cd $app_dir/bin
   sh deployNginx.sh
@@ -579,7 +584,6 @@ if [[ -f $mysql_soft ]];then
 	  rm -rf $mysql_soft
 	fi
 fi
-
 if [[ $mysql_download -eq 1 ]];then
 	echo "start to download mysql"
 	wget https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.42-linux-glibc2.12-x86_64.tar.gz
@@ -749,7 +753,9 @@ fi
 ## install app
 installApp
 # installApp first,start to install nginx
-installNginx
+#installNginx
+# installApp first,start to install Tengine
+installTengine
 # installApp first,start to install redis
 installRedis
 ## stop Firewalld
@@ -774,7 +780,7 @@ echo "#for lank app quick command list:">>~/.bash_profile
 echo "alias ga='cd $base_dir/app/app'" >>~/.bash_profile
 echo "alias gb='cd $base_dir/app/bpm'" >>~/.bash_profile
 echo "alias gj='cd $base_dir/app/job'" >>~/.bash_profile
-echo "alias gn='cd $base_dir/app/nginx'" >>~/.bash_profile
+echo "alias gt='cd $base_dir/app/tengine'" >>~/.bash_profile
 echo "alias g='cd $base_dir/app'" >>~/.bash_profile
 echo "alias talog='tail -f $base_dir/app/logs/app.jar.log' ">>~/.bash_profile
 echo "alias tblog='tail -f $base_dir/app/logs/bpm.jar.log' ">>~/.bash_profile
@@ -782,7 +788,7 @@ echo "alias k='sh $base_dir/app/bin/k.sh'" >>~/.bash_profile
 echo "alias ka_restart='cd $base_dir/app;sh restartApp.sh'" >>~/.bash_profile
 echo "alias kb_restart='cd $base_dir/app;sh restartBpm.sh'" >>~/.bash_profile
 echo "alias kj_restart='cd $base_dir/app;sh restartJob.sh'" >>~/.bash_profile
-echo "alias kn_restart='cd $base_dir/app;sh restartNginx.sh'" >>~/.bash_profile
+echo "alias kt_restart='cd $base_dir/app;sh restartTengine.sh'" >>~/.bash_profile
 echo "alias tdb='$base_dir/db/mysql/bin/mysql -h$db_host -P$db_port -u$db_user -p$db_pwd $db_name'" >>~/.bash_profile
 echo "alias tdb_none='$base_dir/db/mysql/bin/mysql -h$db_host -P$db_port -u$db_user -p$db_pwd '" >>~/.bash_profile
 echo "to install k to sbin"
@@ -806,19 +812,22 @@ echo "Login info password:123456"
 echo "Mysql info port=$db_port"
 echo "Mysql info user=$db_user"
 echo "Mysql info password=$db_pwd"
+
 echo "Quick command list:"
 echo "k:simple maintenance window"
 echo "g:  go to $base_dir/app"
 echo "ga: go to $base_dir/app/app"
 echo "gb: go to $base_dir/app/bpm"
 echo "gj: go to $base_dir/app/job"
-echo "gn: go to $base_dir/app/nginx"
+echo "gt: go to $base_dir/app/tengine"
+
 echo "talog: go to view tail app log"
 echo "talog: go to view tail bpm log"
+
 echo "ka_restart:restartApp"
 echo "kb_restart:restartBpm"
 echo "kj_restart:restartJob"
-echo "kn_restart:restartNginx"
+echo "kt_restart:restartTengine"
 echo "tdb: go to connect to database"
 echo "---------------------------------------------- end ---------------------------------------"
 qa

@@ -8,11 +8,11 @@ help(){
   echo "ga=cd /app/app/app"
   echo "gb=cd /app/app/bpm"
   echo "gj=cd /app/app/job"
-  echo "gn=cd /app/app/nginx"
+  echo "gt=cd /app/app/tengine"
   echo "ka_restart=restartApp"
   echo "kb_restart=restartBpm"
   echo "kj_restart=restartJob"
-  echo "kn_restart=restartNginx"
+  echo "kt_restart=restartTengine"
   echo "tdb=mysql foxnic"
   echo "tdb_none=mysql "
   return 0
@@ -30,13 +30,13 @@ checkService(){
   cd $cur_dir
   sh app.sh status job
   echo ""
-  echo "check nginx process"
+  echo "check tengine process"
   cd $cur_dir
   nginxcnt=`ps -ef|grep nginx|grep process|grep -v grep|wc -l`
   if [[ $nginxcnt -gt 0 ]];then
-    echo "nginx is running,process number count:$nginxcnt"
+    echo "tengine is running,process number count:$nginxcnt"
   else
-    echo "nginx is not running"
+    echo "tengine is not running"
   fi
   echo ""
   echo "check mysql process"
@@ -57,13 +57,13 @@ function menu {
 	echo -e "\t\t\t系统维护界面-v2.0\n"
 	echo -e "\t1. 启动应用程序"
 	echo -e "\t2. 启动流程引擎"
-	echo -e "\t3. 启动nginx"
+	echo -e "\t3. 启动Tengine"
 	echo -e "\t4. 停止应用程序"
 	echo -e "\t5. 停止流程引擎"
-	echo -e "\t6. 停止nginx"
+	echo -e "\t6. 停止Tengine"
 	echo -e "\t7. 重启应用程序,ka_restart"
 	echo -e "\t8. 重启流程引擎,kb_restart"
-	echo -e "\t9. 重启nginx,kn_restart"
+	echo -e "\t9. 重启Tengine,kt_restart"
 	echo -e "\tm. 重启Mysql数据库"
 	echo -e "\tx. 重启所有服务"
 	echo -e "\tc. 检查所有服务"
@@ -79,7 +79,7 @@ function restartAllService(){
   echo "";
   sh restartBpm.sh
   echo "";
-  sh restartNginx.sh
+  sh restartTengine.sh
   return 0
 }
 function stopMysql(){
@@ -107,19 +107,19 @@ do
 	2)
 	  cd $app_dir;echo "";sh startBpm.sh ;;
 	3)
-	  cd $app_dir;echo "";sh startNginx.sh ;;
+	  cd $app_dir;echo "";sh startTengine.sh ;;
 	4)
 		cd $app_dir;echo "";sh stopApp.sh ;;
 	5)
   	cd $app_dir;echo "";sh stopBpm.sh ;;
 	6)
-	  cd $app_dir;echo "";sh stopNginx.sh ;;
+	  cd $app_dir;echo "";sh stopTengine.sh ;;
 	7)
 	  cd $app_dir;echo "";sh restartApp.sh ;;
 	8)
 	  cd $app_dir;echo "";sh restartBpm.sh ;;
 	9)
-  	cd $app_dir;echo "";sh restartNginx.sh ;;
+  	cd $app_dir;echo "";sh restartTengine.sh ;;
  	'x')
 	  echo "";restartAllService ;;
 	'c')
