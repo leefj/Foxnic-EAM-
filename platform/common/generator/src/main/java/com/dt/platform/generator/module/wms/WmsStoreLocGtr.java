@@ -7,7 +7,7 @@ import com.dt.platform.domain.wms.*;
 import com.dt.platform.domain.wms.meta.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.wms.*;
-import com.dt.platform.wms.page.StorelocationPageController;
+
 import com.github.foxnic.generator.config.WriteMode;
 
 public class WmsStoreLocGtr extends BaseCodeGenerator {

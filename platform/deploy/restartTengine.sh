@@ -1,7 +1,7 @@
 #!/bin/sh
 cur_dir=$(cd `dirname $0`; pwd)
 cd $cur_dir
-sh stopNginx.sh
+sh stopTengine.sh
 sleep 1
-sh startNginx.sh
+sh startTengine.sh
 exit 0

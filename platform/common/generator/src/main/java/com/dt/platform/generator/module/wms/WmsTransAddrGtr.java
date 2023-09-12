@@ -6,8 +6,7 @@ import com.dt.platform.domain.wms.TransportAddr;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.wms.CarServiceProxy;
 import com.dt.platform.proxy.wms.TransportAddrServiceProxy;
-import com.dt.platform.wms.page.CarPageController;
-import com.dt.platform.wms.page.TransportAddrPageController;
+
 import com.github.foxnic.generator.config.WriteMode;
 
 public class WmsTransAddrGtr extends BaseCodeGenerator {
@@ -69,7 +68,7 @@ public class WmsTransAddrGtr extends BaseCodeGenerator {
         //移除之前生成的菜单，视情况执行
 //        g.removeByBatchId("471622036347682816");
         //生成菜单
-        g.generateMenu(TransportAddrServiceProxy.class, TransportAddrPageController.class);
+        //g.generateMenu(TransportAddrServiceProxy.class, TransportAddrPageController.class);
     }
 
 }

@@ -3,7 +3,7 @@ package com.dt.platform.generator.module.mobile;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.MobileTables;
 
-//import com.dt.platform.domain.workorder.ModuleGroup;
+
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.domain.datacenter.meta.RackMeta;
 import com.dt.platform.domain.eam.meta.AssetMeta;

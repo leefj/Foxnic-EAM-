@@ -6,7 +6,7 @@ import com.dt.platform.constants.enums.vehicle.VehicleHandleStatusEnum;
 import com.dt.platform.domain.vehicle.Info;
 import com.dt.platform.domain.vehicle.meta.ApplyVOMeta;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.vehicle.service.impl.ASelectItemServiceImpl;
+
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
@@ -142,7 +142,7 @@ public class VehicleApplyGtr extends BaseCodeGenerator {
 
 
         //Info中间数据  ，Apply为A
-        cfg.service().addRelationSaveAction(ASelectItemServiceImpl.class, ApplyVOMeta.VEHICLE_INFO_IDS);
+       // cfg.service().addRelationSaveAction(ASelectItemServiceImpl.class, ApplyVOMeta.VEHICLE_INFO_IDS);
 
         //文件生成覆盖模式
         cfg.overrides()

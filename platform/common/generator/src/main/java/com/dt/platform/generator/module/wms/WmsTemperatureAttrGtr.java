@@ -4,8 +4,7 @@ package com.dt.platform.generator.module.wms;
 import com.dt.platform.constants.db.WmsTables;
 import com.dt.platform.domain.wms.TemperatureAttribute;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.wms.TemperatureAttributeServiceProxy;
-import com.dt.platform.wms.page.TemperatureAttributePageController;
+
 import com.github.foxnic.generator.config.WriteMode;
 
 public class WmsTemperatureAttrGtr extends BaseCodeGenerator {

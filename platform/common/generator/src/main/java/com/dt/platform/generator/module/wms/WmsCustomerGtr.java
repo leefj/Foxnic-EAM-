@@ -10,10 +10,7 @@ import com.dt.platform.domain.wms.meta.StorelocationMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.wms.CompanyAttrServiceProxy;
 import com.dt.platform.proxy.wms.CustomerServiceProxy;
-import com.dt.platform.proxy.wms.LocTypeServiceProxy;
-import com.dt.platform.proxy.wms.ProductServiceProxy;
-import com.dt.platform.wms.page.CustomerPageController;
-import com.dt.platform.wms.page.ProductPageController;
+
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.system.DictItem;
 

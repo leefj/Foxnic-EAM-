@@ -3,8 +3,7 @@ package com.dt.platform.generator.module.wms;
 
 import com.dt.platform.constants.db.WmsTables;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.wms.CompanyStatusServiceProxy;
-import com.dt.platform.wms.page.CompanyStatusPageController;
+
 import com.github.foxnic.generator.config.WriteMode;
 
 public class WmsCompanyStatusGtr extends BaseCodeGenerator {
