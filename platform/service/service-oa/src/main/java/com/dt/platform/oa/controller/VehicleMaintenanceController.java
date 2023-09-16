@@ -267,6 +267,7 @@ public class VehicleMaintenanceController extends SuperController {
 			.with(VehicleMaintenanceMeta.MAINTENANCE_DICT)
 			.with(VehicleMaintenanceMeta.VEHICLE_INFO)
 			.execute();
+
 		result.success(true).data(vehicleMaintenance);
 		return result;
 	}

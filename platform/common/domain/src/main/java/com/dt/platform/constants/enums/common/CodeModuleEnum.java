@@ -13,6 +13,8 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum CodeModuleEnum implements CodeTextEnum {
 
+	OA_CRM_CUSTOMER("oa_crm_customer" , "OA_CRM_客户"),
+
 	COMMON_CODE("common_code" , "通用编码"),
 	COMMON_SEQ_CODE("common_seq_code" , "通用顺序编码"),
 

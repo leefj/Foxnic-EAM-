@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养方案VO类型
  * <p>保养方案 , 数据表 eam_maintain_plan 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 15:06:00
+ * @since 2023-09-14 13:09:58
  * @sign C8E16B1999220CF1B368CB50BBEA512E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

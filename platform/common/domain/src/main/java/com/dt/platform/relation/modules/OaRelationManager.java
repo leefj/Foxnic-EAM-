@@ -1,11 +1,11 @@
 package com.dt.platform.relation.modules;
 
  
+import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.OaTables;
 
-import com.dt.platform.domain.oa.MeetingRoomBookRcd;
-import com.dt.platform.domain.oa.SchedulePlan;
-import com.dt.platform.domain.oa.WorkRpt;
+import com.dt.platform.domain.eam.meta.DeviceSpMeta;
+import com.dt.platform.domain.oa.*;
 import com.dt.platform.domain.oa.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
@@ -24,7 +24,174 @@ public class OaRelationManager extends RelationManager {
 		this.setupMeetingRoom();
 		this.setupMeetingRoomBookRcd();
 
+		this.setupCustomerLeader();
+		this.setupCustomerLeads();
+		this.setupCustomerBusiness();
+		this.setupCustomerReview();
+		this.setupCustomerRecord();
+		this.setupCustomerContact();
+		this.setupCustomerFollow();
+		this.setupCustomerTeam();
+		this.setupCustomer();
+
 	}
+
+
+
+
+	public void setupCustomerLeads() {
+
+		this.property(CrmCustomerLeadsMeta.ORIGINATOR_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_LEADS.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(CrmCustomerLeadsMeta.OWNER_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_LEADS.OWNER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(CrmCustomerLeadsMeta.CRM_CUSTOMER_INDUSTRY_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_LEADS.INDUSTRY_ID).join(OaTables.OA_CRM_CUSTOMER_INDUSTRY.ID);
+
+		this.property(CrmCustomerLeadsMeta.CRM_CUSTOMER_LEVEL_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_LEADS.LEVEL).join(OaTables.OA_CRM_CUSTOMER_LEVEL.ID);
+
+		this.property(CrmCustomerLeadsMeta.CRM_CUSTOMER_INTENTIONAL_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_LEADS.INTENTIONAL_STATE).join(OaTables.OA_CRM_CUSTOMER_INTENTIONAL.ID);
+
+		this.property(CrmCustomerLeadsMeta.CRM_CUSTOMER_SOURCE_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_LEADS.SOURCE_ID).join(OaTables.OA_CRM_CUSTOMER_SOURCE.ID);
+
+
+	}
+
+	public void setupCustomer() {
+
+
+		this.property(CrmCustomerMeta.CRM_CUSTOMER_BUSINESS_LIST_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER.ID).join(OaTables.OA_CRM_CUSTOMER_BUSINESS.CUSTOMER_ID);
+
+		this.property(CrmCustomerMeta.CRM_CUSTOMER_CONTACT_LIST_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER.ID).join(OaTables.OA_CRM_CUSTOMER_CONTACT.CUSTOMER_ID);
+
+		this.property(CrmCustomerMeta.CRM_CUSTOMER_REVIEW_LIST_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER.ID).join(OaTables.OA_CRM_CUSTOMER_REVIEW.CUSTOMER_ID);
+
+
+		this.property(CrmCustomerMeta.CRM_CUSTOMER_RECORD_LIST_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER.ID).join(OaTables.OA_CRM_CUSTOMER_RECORD.CUSTOMER_ID);
+
+		this.property(CrmCustomerMeta.CRM_CUSTOMER_FOLLOW_LIST_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER.ID).join(OaTables.OA_CRM_CUSTOMER_FOLLOW.CUSTOMER_ID);
+
+
+
+		this.property(CrmCustomerMeta.CRM_FIRST_CUSTOMER_CONTACT_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER.ID).join(OaTables.OA_CRM_CUSTOMER_CONTACT.CUSTOMER_ID)
+				.condition("role='first_contact'");
+
+
+		this.property(CrmCustomerMeta.ORIGINATOR_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(CrmCustomerMeta.OWNER_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER.OWNER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
+
+		this.property(CrmCustomerMeta.CRM_CUSTOMER_INDUSTRY_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER.INDUSTRY_ID).join(OaTables.OA_CRM_CUSTOMER_INDUSTRY.ID);
+
+		this.property(CrmCustomerMeta.CRM_CUSTOMER_LEVEL_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER.LEVEL).join(OaTables.OA_CRM_CUSTOMER_LEVEL.ID);
+
+		this.property(CrmCustomerMeta.CRM_CUSTOMER_INTENTIONAL_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER.INTENTIONAL_STATE).join(OaTables.OA_CRM_CUSTOMER_INTENTIONAL.ID);
+
+		this.property(CrmCustomerMeta.CRM_CUSTOMER_SOURCE_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER.SOURCE_ID).join(OaTables.OA_CRM_CUSTOMER_SOURCE.ID);
+
+
+	}
+
+
+	public void setupCustomerTeam() {
+
+		this.property(CrmCustomerTeamMeta.USER_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_TEAM.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(CrmCustomerTeamMeta.CRM_CUSTOMER_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_TEAM.CUSTOMER_ID).join(OaTables.OA_CRM_CUSTOMER.ID);
+
+	}
+
+
+	public void setupCustomerBusiness() {
+		this.property(CrmCustomerBusinessMeta.ORIGINATOR_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_BUSINESS.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(CrmCustomerBusinessMeta.CRM_CUSTOMER_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_BUSINESS.CUSTOMER_ID).join(OaTables.OA_CRM_CUSTOMER.ID);
+
+	}
+
+	public void setupCustomerRecord() {
+		this.property(CrmCustomerRecordMeta.ORIGINATOR_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_RECORD.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(CrmCustomerRecordMeta.CRM_CUSTOMER_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_RECORD.CUSTOMER_ID).join(OaTables.OA_CRM_CUSTOMER.ID);
+
+	}
+
+
+	public void setupCustomerLeader() {
+
+
+
+
+	}
+
+
+	public void setupCustomerFollow() {
+		this.property(CrmCustomerFollowMeta.ORIGINATOR_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_FOLLOW.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(CrmCustomerFollowMeta.CRM_CUSTOMER_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_FOLLOW.CUSTOMER_ID).join(OaTables.OA_CRM_CUSTOMER.ID);
+
+	}
+
+	public void setupCustomerContact() {
+		this.property(CrmCustomerContactMeta.ORIGINATOR_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_CONTACT.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(CrmCustomerContactMeta.CRM_CUSTOMER_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_CONTACT.CUSTOMER_ID).join(OaTables.OA_CRM_CUSTOMER.ID);
+
+	}
+
+
+	public void setupCustomerReview() {
+		this.property(CrmCustomerReviewMeta.ORIGINATOR_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_REVIEW.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(CrmCustomerReviewMeta.REVIEW_USER_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_REVIEW.REVIEW_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
+		this.property(CrmCustomerReviewMeta.CRM_CUSTOMER_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_REVIEW.CUSTOMER_ID).join(OaTables.OA_CRM_CUSTOMER.ID);
+
+		this.property(CrmCustomerReviewMeta.REVIEW_METHOD_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_REVIEW.METHOD_ID).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='crm_customer_review_type'");
+
+		this.property(CrmCustomerReviewMeta.SATISFACTION_PROP)
+				.using(OaTables.OA_CRM_CUSTOMER_REVIEW.SATISFACTION_ID).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='crm_customer_satisfaction'");
+
+
+
+	}
+
 	public void setupMeetingRoomBookRcd() {
 		this.property(MeetingRoomBookRcdMeta.MEETING_ROOM_PROP)
 				.using(OaTables.OA_MEETING_ROOM_BOOK_RCD.ROOM_ID).join(OaTables.OA_MEETING_ROOM.ID);
