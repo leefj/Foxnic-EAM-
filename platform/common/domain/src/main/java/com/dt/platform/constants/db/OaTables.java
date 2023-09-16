@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-09-12 20:22:17
+ * @since 2023-09-16 19:20:17
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -136,19 +136,29 @@ public class OaTables {
 		public static final DBField LEVEL = new DBField(DBDataType.STRING , "level","level","客户等级","客户等级",false,false,true);
 		
 		/**
-		 * 归属客户
+		 * 负责人
 		*/
-		public static final DBField OWNER_ID = new DBField(DBDataType.STRING , "owner_id","ownerId","归属客户","归属客户",false,false,true);
-		
-		/**
-		 * 所属顾问
-		*/
-		public static final DBField ADVISER_ID = new DBField(DBDataType.STRING , "adviser_id","adviserId","所属顾问","所属顾问",false,false,true);
+		public static final DBField OWNER_ID = new DBField(DBDataType.STRING , "owner_id","ownerId","负责人","负责人",false,false,true);
 		
 		/**
 		 * 意向状态
 		*/
 		public static final DBField INTENTIONAL_STATE = new DBField(DBDataType.STRING , "intentional_state","intentionalState","意向状态","意向状态",false,false,true);
+		
+		/**
+		 * 联系人
+		*/
+		public static final DBField CONTACTS = new DBField(DBDataType.STRING , "contacts","contacts","联系人","联系人",false,false,true);
+		
+		/**
+		 * 联系方式
+		*/
+		public static final DBField CONTACT_INFO = new DBField(DBDataType.STRING , "contact_info","contactInfo","联系方式","联系方式",false,false,true);
+		
+		/**
+		 * 网址
+		*/
+		public static final DBField WEBSITE = new DBField(DBDataType.STRING , "website","website","网址","网址",false,false,true);
 		
 		/**
 		 * 所在行业
@@ -166,6 +176,11 @@ public class OaTables {
 		public static final DBField SOURCE_ID = new DBField(DBDataType.STRING , "source_id","sourceId","客户来源","客户来源",false,false,true);
 		
 		/**
+		 * 客户地址
+		*/
+		public static final DBField ADDRESS = new DBField(DBDataType.STRING , "address","address","客户地址","客户地址",false,false,true);
+		
+		/**
 		 * 最近跟进
 		*/
 		public static final DBField RECENT_FOLLOW_TIME = new DBField(DBDataType.DATE , "recent_follow_time","recentFollowTime","最近跟进","最近跟进",false,false,true);
@@ -176,39 +191,29 @@ public class OaTables {
 		public static final DBField NEXT_FOLLOW_TIME = new DBField(DBDataType.DATE , "next_follow_time","nextFollowTime","下次跟进","下次跟进",false,false,true);
 		
 		/**
-		 * 地址
+		 * 成交状态
 		*/
-		public static final DBField ADDRESS = new DBField(DBDataType.STRING , "address","address","地址","地址",false,false,true);
+		public static final DBField TRANSACTION_STATUS = new DBField(DBDataType.STRING , "transaction_status","transactionStatus","成交状态","成交状态",false,false,true);
 		
 		/**
-		 * 联系人
+		 * 是否锁定,lcoked|unlock
 		*/
-		public static final DBField CONTACT_USER = new DBField(DBDataType.STRING , "contact_user","contactUser","联系人","联系人",false,false,true);
-		
-		/**
-		 * 手机号
-		*/
-		public static final DBField CONTACT_MOBILE = new DBField(DBDataType.STRING , "contact_mobile","contactMobile","手机号","手机号",false,false,true);
-		
-		/**
-		 * 邮箱
-		*/
-		public static final DBField CONTACT_MAIL = new DBField(DBDataType.STRING , "contact_mail","contactMail","邮箱","邮箱",false,false,true);
-		
-		/**
-		 * 性别
-		*/
-		public static final DBField SEX = new DBField(DBDataType.STRING , "sex","sex","性别","性别",false,false,true);
-		
-		/**
-		 * 制单人
-		*/
-		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
+		public static final DBField LOCKED = new DBField(DBDataType.STRING , "locked","locked","是否锁定","lcoked|unlock",false,false,true);
 		
 		/**
 		 * 备注
 		*/
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 客户位置
+		*/
+		public static final DBField ROLE_POS = new DBField(DBDataType.STRING , "role_pos","rolePos","客户位置","客户位置",false,false,true);
+		
+		/**
+		 * 制单人
+		*/
+		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
 		
 		/**
 		 * 版本
@@ -256,9 +261,398 @@ public class OaTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OA_CRM_CUSTOMER() {
-			this.init($NAME,"客户" , ID , CODE , NAME , LEVEL , OWNER_ID , ADVISER_ID , INTENTIONAL_STATE , INDUSTRY_ID , PROFILE , SOURCE_ID , RECENT_FOLLOW_TIME , NEXT_FOLLOW_TIME , ADDRESS , CONTACT_USER , CONTACT_MOBILE , CONTACT_MAIL , SEX , ORIGINATOR_ID , NOTES , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+			this.init($NAME,"客户" , ID , CODE , NAME , LEVEL , OWNER_ID , INTENTIONAL_STATE , CONTACTS , CONTACT_INFO , WEBSITE , INDUSTRY_ID , PROFILE , SOURCE_ID , ADDRESS , RECENT_FOLLOW_TIME , NEXT_FOLLOW_TIME , TRANSACTION_STATUS , LOCKED , NOTES , ROLE_POS , ORIGINATOR_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
 		}
 		public static final OA_CRM_CUSTOMER $TABLE=new OA_CRM_CUSTOMER();
+	}
+	
+	/**
+	 * 商机
+	*/
+	public static class OA_CRM_CUSTOMER_BUSINESS extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_crm_customer_business";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 客户
+		*/
+		public static final DBField CUSTOMER_ID = new DBField(DBDataType.STRING , "customer_id","customerId","客户","客户",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","内容","内容",false,false,true);
+		
+		/**
+		 * 价格
+		*/
+		public static final DBField AMOUNT = new DBField(DBDataType.DECIMAL , "amount","amount","价格","价格",false,false,true);
+		
+		/**
+		 * 商机阶段
+		*/
+		public static final DBField STAGE = new DBField(DBDataType.STRING , "stage","stage","商机阶段","商机阶段",false,false,true);
+		
+		/**
+		 * 附件
+		*/
+		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","附件","附件",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 制单人
+		*/
+		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_CRM_CUSTOMER_BUSINESS() {
+			this.init($NAME,"商机" , ID , CUSTOMER_ID , CONTENT , AMOUNT , STAGE , FILE_ID , NOTES , VERSION , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_CRM_CUSTOMER_BUSINESS $TABLE=new OA_CRM_CUSTOMER_BUSINESS();
+	}
+	
+	/**
+	 * 我的关注
+	*/
+	public static class OA_CRM_CUSTOMER_CARE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_crm_customer_care";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 客户
+		*/
+		public static final DBField CUSTOMER_ID = new DBField(DBDataType.STRING , "customer_id","customerId","客户","客户",false,false,true);
+		
+		/**
+		 * 用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		public OA_CRM_CUSTOMER_CARE() {
+			this.init($NAME,"我的关注" , ID , CUSTOMER_ID , USER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME);
+		}
+		public static final OA_CRM_CUSTOMER_CARE $TABLE=new OA_CRM_CUSTOMER_CARE();
+	}
+	
+	/**
+	 * 联系人
+	*/
+	public static class OA_CRM_CUSTOMER_CONTACT extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_crm_customer_contact";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 客户
+		*/
+		public static final DBField CUSTOMER_ID = new DBField(DBDataType.STRING , "customer_id","customerId","客户","客户",false,false,true);
+		
+		/**
+		 * 姓名
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","姓名","姓名",false,false,true);
+		
+		/**
+		 * 手机
+		*/
+		public static final DBField MOBILE = new DBField(DBDataType.STRING , "mobile","mobile","手机","手机",false,false,true);
+		
+		/**
+		 * 邮箱
+		*/
+		public static final DBField MAIL = new DBField(DBDataType.STRING , "mail","mail","邮箱","邮箱",false,false,true);
+		
+		/**
+		 * 微信
+		*/
+		public static final DBField WEXIN = new DBField(DBDataType.STRING , "wexin","wexin","微信","微信",false,false,true);
+		
+		/**
+		 * 职位
+		*/
+		public static final DBField JOB = new DBField(DBDataType.STRING , "job","job","职位","职位",false,false,true);
+		
+		/**
+		 * 性别
+		*/
+		public static final DBField SEX = new DBField(DBDataType.STRING , "sex","sex","性别","性别",false,false,true);
+		
+		/**
+		 * 地址
+		*/
+		public static final DBField ADDRESS = new DBField(DBDataType.STRING , "address","address","地址","地址",false,false,true);
+		
+		/**
+		 * 角色
+		*/
+		public static final DBField ROLE = new DBField(DBDataType.STRING , "role","role","角色","角色",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 制单人
+		*/
+		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_CRM_CUSTOMER_CONTACT() {
+			this.init($NAME,"联系人" , ID , CUSTOMER_ID , NAME , MOBILE , MAIL , WEXIN , JOB , SEX , ADDRESS , ROLE , NOTES , ORIGINATOR_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_CRM_CUSTOMER_CONTACT $TABLE=new OA_CRM_CUSTOMER_CONTACT();
+	}
+	
+	/**
+	 * 跟进记录
+	*/
+	public static class OA_CRM_CUSTOMER_FOLLOW extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_crm_customer_follow";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 客户
+		*/
+		public static final DBField CUSTOMER_ID = new DBField(DBDataType.STRING , "customer_id","customerId","客户","客户",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","内容","内容",false,false,true);
+		
+		/**
+		 * 记录时间
+		*/
+		public static final DBField REC_TIME = new DBField(DBDataType.DATE , "rec_time","recTime","记录时间","记录时间",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 附件
+		*/
+		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","附件","附件",false,false,true);
+		
+		/**
+		 * 制单人
+		*/
+		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_CRM_CUSTOMER_FOLLOW() {
+			this.init($NAME,"跟进记录" , ID , CUSTOMER_ID , CONTENT , REC_TIME , NOTES , FILE_ID , ORIGINATOR_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_CRM_CUSTOMER_FOLLOW $TABLE=new OA_CRM_CUSTOMER_FOLLOW();
 	}
 	
 	/**
@@ -414,6 +808,223 @@ public class OaTables {
 	}
 	
 	/**
+	 * 共享成员
+	*/
+	public static class OA_CRM_CUSTOMER_LEADER extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_crm_customer_leader";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 客户
+		*/
+		public static final DBField CUSTOMER_IDS = new DBField(DBDataType.STRING , "customer_ids","customerIds","客户","客户",false,false,true);
+		
+		/**
+		 * 负责人
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","负责人","负责人",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_CRM_CUSTOMER_LEADER() {
+			this.init($NAME,"共享成员" , ID , CUSTOMER_IDS , USER_ID , NOTES , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_CRM_CUSTOMER_LEADER $TABLE=new OA_CRM_CUSTOMER_LEADER();
+	}
+	
+	/**
+	 * 线索
+	*/
+	public static class OA_CRM_CUSTOMER_LEADS extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_crm_customer_leads";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 客户名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","客户名称","客户名称",false,false,true);
+		
+		/**
+		 * 客户等级
+		*/
+		public static final DBField LEVEL = new DBField(DBDataType.STRING , "level","level","客户等级","客户等级",false,false,true);
+		
+		/**
+		 * 负责人
+		*/
+		public static final DBField OWNER_ID = new DBField(DBDataType.STRING , "owner_id","ownerId","负责人","负责人",false,false,true);
+		
+		/**
+		 * 意向状态
+		*/
+		public static final DBField INTENTIONAL_STATE = new DBField(DBDataType.STRING , "intentional_state","intentionalState","意向状态","意向状态",false,false,true);
+		
+		/**
+		 * 客户来源
+		*/
+		public static final DBField SOURCE_ID = new DBField(DBDataType.STRING , "source_id","sourceId","客户来源","客户来源",false,false,true);
+		
+		/**
+		 * 联系人
+		*/
+		public static final DBField CONTACTS = new DBField(DBDataType.STRING , "contacts","contacts","联系人","联系人",false,false,true);
+		
+		/**
+		 * 联系方式
+		*/
+		public static final DBField CONTACT_INFO = new DBField(DBDataType.STRING , "contact_info","contactInfo","联系方式","联系方式",false,false,true);
+		
+		/**
+		 * 所在行业
+		*/
+		public static final DBField INDUSTRY_ID = new DBField(DBDataType.STRING , "industry_id","industryId","所在行业","所在行业",false,false,true);
+		
+		/**
+		 * 网址
+		*/
+		public static final DBField WEBSITE = new DBField(DBDataType.STRING , "website","website","网址","网址",false,false,true);
+		
+		/**
+		 * 最近跟进
+		*/
+		public static final DBField RECENT_FOLLOW_TIME = new DBField(DBDataType.DATE , "recent_follow_time","recentFollowTime","最近跟进","最近跟进",false,false,true);
+		
+		/**
+		 * 下次跟进
+		*/
+		public static final DBField NEXT_FOLLOW_TIME = new DBField(DBDataType.DATE , "next_follow_time","nextFollowTime","下次跟进","下次跟进",false,false,true);
+		
+		/**
+		 * 客户地址
+		*/
+		public static final DBField ADDRESS = new DBField(DBDataType.STRING , "address","address","客户地址","客户地址",false,false,true);
+		
+		/**
+		 * 制单人
+		*/
+		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_CRM_CUSTOMER_LEADS() {
+			this.init($NAME,"线索" , ID , NAME , LEVEL , OWNER_ID , INTENTIONAL_STATE , SOURCE_ID , CONTACTS , CONTACT_INFO , INDUSTRY_ID , WEBSITE , RECENT_FOLLOW_TIME , NEXT_FOLLOW_TIME , ADDRESS , ORIGINATOR_ID , NOTES , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_CRM_CUSTOMER_LEADS $TABLE=new OA_CRM_CUSTOMER_LEADS();
+	}
+	
+	/**
 	 * 客户等级
 	*/
 	public static class OA_CRM_CUSTOMER_LEVEL extends DBTable {
@@ -490,7 +1101,204 @@ public class OaTables {
 	}
 	
 	/**
-	 * 客户渠道
+	 * 历史记录
+	*/
+	public static class OA_CRM_CUSTOMER_RECORD extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_crm_customer_record";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 客户
+		*/
+		public static final DBField CUSTOMER_ID = new DBField(DBDataType.STRING , "customer_id","customerId","客户","客户",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","内容","内容",false,false,true);
+		
+		/**
+		 * 记录时间
+		*/
+		public static final DBField RCD_TIME = new DBField(DBDataType.DATE , "rcd_time","rcdTime","记录时间","记录时间",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 制单人
+		*/
+		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		public OA_CRM_CUSTOMER_RECORD() {
+			this.init($NAME,"历史记录" , ID , CUSTOMER_ID , CONTENT , RCD_TIME , NOTES , ORIGINATOR_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME);
+		}
+		public static final OA_CRM_CUSTOMER_RECORD $TABLE=new OA_CRM_CUSTOMER_RECORD();
+	}
+	
+	/**
+	 * 回访
+	*/
+	public static class OA_CRM_CUSTOMER_REVIEW extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_crm_customer_review";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 客户
+		*/
+		public static final DBField CUSTOMER_ID = new DBField(DBDataType.STRING , "customer_id","customerId","客户","客户",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 回访人
+		*/
+		public static final DBField REVIEW_USER_ID = new DBField(DBDataType.STRING , "review_user_id","reviewUserId","回访人","回访人",false,false,true);
+		
+		/**
+		 * 回访时间
+		*/
+		public static final DBField REVIEW_DATE = new DBField(DBDataType.DATE , "review_date","reviewDate","回访时间","回访时间",false,false,true);
+		
+		/**
+		 * 回访形式
+		*/
+		public static final DBField METHOD_ID = new DBField(DBDataType.STRING , "method_id","methodId","回访形式","回访形式",false,false,true);
+		
+		/**
+		 * 客户满意度
+		*/
+		public static final DBField SATISFACTION_ID = new DBField(DBDataType.STRING , "satisfaction_id","satisfactionId","客户满意度","客户满意度",false,false,true);
+		
+		/**
+		 * 附件
+		*/
+		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","附件","附件",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 制单人
+		*/
+		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_CRM_CUSTOMER_REVIEW() {
+			this.init($NAME,"回访" , ID , CUSTOMER_ID , NAME , REVIEW_USER_ID , REVIEW_DATE , METHOD_ID , SATISFACTION_ID , FILE_ID , NOTES , ORIGINATOR_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_CRM_CUSTOMER_REVIEW $TABLE=new OA_CRM_CUSTOMER_REVIEW();
+	}
+	
+	/**
+	 * 客户来源
 	*/
 	public static class OA_CRM_CUSTOMER_SOURCE extends DBTable {
 		
@@ -560,9 +1368,95 @@ public class OaTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OA_CRM_CUSTOMER_SOURCE() {
-			this.init($NAME,"客户渠道" , ID , NAME , NOTES , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+			this.init($NAME,"客户来源" , ID , NAME , NOTES , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
 		}
 		public static final OA_CRM_CUSTOMER_SOURCE $TABLE=new OA_CRM_CUSTOMER_SOURCE();
+	}
+	
+	/**
+	 * 团队成员
+	*/
+	public static class OA_CRM_CUSTOMER_TEAM extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_crm_customer_team";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 客户
+		*/
+		public static final DBField CUSTOMER_ID = new DBField(DBDataType.STRING , "customer_id","customerId","客户","客户",false,false,true);
+		
+		/**
+		 * 成员
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","成员","成员",false,false,true);
+		
+		/**
+		 * 团队角色
+		*/
+		public static final DBField USER_ROLE = new DBField(DBDataType.STRING , "user_role","userRole","团队角色","团队角色",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_CRM_CUSTOMER_TEAM() {
+			this.init($NAME,"团队成员" , ID , CUSTOMER_ID , USER_ID , USER_ROLE , NOTES , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_CRM_CUSTOMER_TEAM $TABLE=new OA_CRM_CUSTOMER_TEAM();
 	}
 	
 	/**
