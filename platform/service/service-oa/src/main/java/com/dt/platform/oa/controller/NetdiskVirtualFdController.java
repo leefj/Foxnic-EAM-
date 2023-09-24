@@ -13,6 +13,7 @@ import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.dao.data.RcdSet;
 import com.alibaba.fastjson.JSONObject;
 import org.github.foxnic.web.framework.web.SuperController;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -265,17 +266,19 @@ public class NetdiskVirtualFdController extends SuperController {
             fdType= NetdiskVirtualFdTypeEnum.FILE.code();
         }
         //目前只有，只查询文件，或者文件+文件夹
-        String folderSql = "select id id,id fd_id,name fd_name,'-' fd_size,user_id,parent_id ,create_time,'folder' fd_type,0 sn,hierarchy fd_hierarchy, hierarchy_name fd_hierarchy_name from oa_netdisk_folder where deleted=0 and in_recycle='N' and parent_id=?";
-        String fileSql   = "select id id,id fd_id,file_name fd_name,file_size fd_size,user_id,folder_id, create_time,'file' fd_type, 1 sn,'-' fd_hierarchy, '-' fd_hierarchy_name from oa_netdisk_file where deleted=0 and in_recycle='N' and folder_id=?";
+        String folderSql = "select id id,id fd_id,name fd_name,'-' fd_size,user_id,parent_id ,create_time,'folder' fd_type,0 sn,hierarchy fd_hierarchy, hierarchy_name fd_hierarchy_name from oa_netdisk_folder where user_id='"+ SessionUser.getCurrent().getActivatedEmployeeId() +"' and deleted=0 and in_recycle='N' and parent_id=?";
+        String fileSql   = "select id id,id fd_id,file_name fd_name,file_size fd_size,user_id,folder_id, create_time,'file' fd_type, 1 sn,'-' fd_hierarchy, '-' fd_hierarchy_name from oa_netdisk_file where user_id='"+SessionUser.getCurrent().getActivatedEmployeeId() +"' and deleted=0 and in_recycle='N' and folder_id=?";
         String sql="";
         if(NetdiskVirtualFdTypeEnum.FILE.code().equals(fdType)){
              sql=fileSql;
         }else{
              sql=folderSql+" union all "+fileSql;
         }
+
         if(!StringUtil.isBlank(sample.getFdName())){
             sql=sql+" and file_name like '%"+sample.getFdName()+"%'";
         }
+
         String countSql = "select count(1) cnt from (" + sql + ") end";
         Integer countVal = netdiskVirtualFdService.dao().queryRecord(countSql, currentId, currentId).getInteger("cnt");
         RcdSet rs = netdiskVirtualFdService.dao().query(sql, currentId, currentId);

@@ -2,6 +2,7 @@ package com.dt.platform.oa.controller;
 
 import java.util.*;
 import org.github.foxnic.web.framework.web.SuperController;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -278,6 +279,7 @@ public class NetdiskRecycleController extends SuperController {
     @PostMapping(NetdiskRecycleServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<NetdiskRecycle>> queryPagedList(NetdiskRecycleVO sample) {
         Result<PagedList<NetdiskRecycle>> result = new Result<>();
+        sample.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
         PagedList<NetdiskRecycle> list = netdiskRecycleService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         netdiskRecycleService.dao().fill(list).with("ownerUser").with(NetdiskRecycleMeta.NETDISK_ORIGIN_FILE).with(NetdiskRecycleMeta.NETDISK_FILE).with(NetdiskRecycleMeta.NETDISK_FOLDER).execute();
