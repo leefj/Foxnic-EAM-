@@ -169,7 +169,7 @@ public class NetdiskFileServiceImpl extends SuperService<NetdiskFile> implements
 			share.setFileId(id);
 			share.setExpirationMethod(NetDiskShareExpirationMethodEnum.NO_EXPIRATION.code());
 			share.setStatus(NetDiskShareStatusEnum.VALID.code());
-			share.setUserId(SessionUser.getCurrent().getUserId());
+			share.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
 			share.setType(NetDiskShareTypeEnum.IN.code());
 			netdiskMyShareService.insert(share,false);
 			shareId=share.getId();

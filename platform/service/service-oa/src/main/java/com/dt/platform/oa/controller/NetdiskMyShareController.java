@@ -312,6 +312,7 @@ public class NetdiskMyShareController extends SuperController {
     public Result<PagedList<NetdiskMyShare>> queryPagedList(NetdiskMyShareVO sample) {
         Result<PagedList<NetdiskMyShare>> result = new Result<>();
         ConditionExpr expr =new ConditionExpr();
+        sample.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
         expr.and("file_id not in (select fd_id from oa_netdisk_recycle where deleted=0 and user_id=?)", SessionUser.getCurrent().getActivatedEmployeeId());
         PagedList<NetdiskMyShare> list = netdiskMyShareService.queryPagedList(sample,expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
