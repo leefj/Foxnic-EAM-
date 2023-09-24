@@ -131,7 +131,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            console.log("list:beforeTableRender",cfg);
+              cfg.cellMinWidth=160;;
             var cols=cfg.cols[0];
             for(var i=0;i<cols.length;i++){
                 if(cols[i]&&cols[i].field=="name"){
@@ -447,7 +447,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         followup:function(data,it){
             var action="create";
-            var queryString="customer_id="+data.id;
+            var queryString="customerId="+data.id;
             admin.putTempData('oa-crm-customer-follow-form-data-form-action', "create",true);
             admin.putTempData('oa-crm-customer-follow-form-data', {});
             var area=admin.getTempData('oa-crm-customer-follow-form-area');

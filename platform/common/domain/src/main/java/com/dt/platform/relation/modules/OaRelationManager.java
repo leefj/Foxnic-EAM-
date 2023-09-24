@@ -4,6 +4,7 @@ package com.dt.platform.relation.modules;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.OaTables;
 
+import com.dt.platform.constants.enums.oa.NetDiskFileTypeEnum;
 import com.dt.platform.domain.eam.meta.DeviceSpMeta;
 import com.dt.platform.domain.oa.*;
 import com.dt.platform.domain.oa.meta.*;
@@ -34,10 +35,116 @@ public class OaRelationManager extends RelationManager {
 		this.setupCustomerTeam();
 		this.setupCustomer();
 
+		this.setupNetDiskFile();
+		this.setupNetDiskFolder();
+		this.setupNetDiskMyFav();
+		this.setupNetDiskOriginFile();
+		this.setupNetDiskShareMe();
+		this.setupNetDiskMyShare();
+		this.setupNetDiskRecycle();
+		this.setupNetDiskVirtualFile();
+	}
+
+	public void setupNetDiskVirtualFile() {
+		this.property(NetdiskVirtualFdMeta.OWNER_USER_PROP)
+				.using(OaTables.OA_NETDISK_VIRTUAL_FD.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(NetdiskVirtualFdMeta.NETDISK_FILE_PROP)
+				.using(OaTables.OA_NETDISK_VIRTUAL_FD.FD_ID).join(OaTables.OA_NETDISK_FILE.ID);
+
+		this.property(NetdiskVirtualFdMeta.NETDISK_ORIGIN_FILE_PROP)
+				.using(OaTables.OA_NETDISK_VIRTUAL_FD.FD_ID).join(OaTables.OA_NETDISK_FILE.ID)
+				.using(OaTables.OA_NETDISK_FILE.ORIGIN_FILE_ID).join(OaTables.OA_NETDISK_ORIGIN_FILE.ID);
+
+	}
+	public void setupNetDiskFile() {
+		this.property(NetdiskFileMeta.OWNER_USER_PROP)
+				.using(OaTables.OA_NETDISK_FILE.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(NetdiskFileMeta.NETDISK_ORIGIN_FILE_PROP)
+				.using(OaTables.OA_NETDISK_FILE.ORIGIN_FILE_ID).join(OaTables.OA_NETDISK_ORIGIN_FILE.ID);
+
+		this.property(NetdiskFileMeta.NETDISK_FOLDER_PROP)
+				.using(OaTables.OA_NETDISK_FILE.FOLDER_ID).join(OaTables.OA_NETDISK_FOLDER.ID);
+
+	}
+
+	public void setupNetDiskFolder() {
+		this.property(NetdiskFolderMeta.OWNER_USER_PROP)
+				.using(OaTables.OA_NETDISK_FOLDER.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
 	}
 
 
+	public void setupNetDiskRecycle() {
 
+		this.property(NetdiskRecycleMeta.OWNER_USER_PROP)
+				.using(OaTables.OA_NETDISK_RECYCLE.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(NetdiskRecycleMeta.NETDISK_ORIGIN_FILE_PROP)
+				.using(OaTables.OA_NETDISK_RECYCLE.FD_ID).join(OaTables.OA_NETDISK_FILE.ID)
+				.using(OaTables.OA_NETDISK_FILE.ORIGIN_FILE_ID).join(OaTables.OA_NETDISK_ORIGIN_FILE.ID);
+
+		this.property(NetdiskRecycleMeta.NETDISK_FILE_PROP)
+				.using(OaTables.OA_NETDISK_RECYCLE.FD_ID).join(OaTables.OA_NETDISK_FILE.ID);
+
+		this.property(NetdiskRecycleMeta.NETDISK_FOLDER_PROP)
+				.using(OaTables.OA_NETDISK_RECYCLE.FD_ID).join(OaTables.OA_NETDISK_FOLDER.ID);
+
+	}
+
+	public void setupNetDiskMyFav() {
+
+		this.property(NetdiskMyFavoriteMeta.OWNER_USER_PROP)
+				.using(OaTables.OA_NETDISK_MY_FAVORITE.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(NetdiskMyFavoriteMeta.NETDISK_ORIGIN_FILE_PROP)
+				.using(OaTables.OA_NETDISK_MY_FAVORITE.FILE_ID).join(OaTables.OA_NETDISK_FILE.ID)
+					.using(OaTables.OA_NETDISK_FILE.ORIGIN_FILE_ID).join(OaTables.OA_NETDISK_ORIGIN_FILE.ID);
+
+
+		this.property(NetdiskMyFavoriteMeta.NETDISK_FILE_PROP)
+				.using(OaTables.OA_NETDISK_MY_FAVORITE.FILE_ID).join(OaTables.OA_NETDISK_FILE.ID);
+
+	}
+
+	public void setupNetDiskOriginFile() {
+		this.property(NetdiskOriginFileMeta.OWNER_USER_PROP)
+				.using(OaTables.OA_NETDISK_ORIGIN_FILE.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+	}
+
+	public void setupNetDiskMyShare() {
+
+		this.property(NetdiskMyShareMeta.OWNER_USER_PROP)
+				.using(OaTables.OA_NETDISK_MY_SHARE.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(NetdiskMyShareMeta.NETDISK_FILE_PROP)
+				.using(OaTables.OA_NETDISK_MY_SHARE.FILE_ID).join(OaTables.OA_NETDISK_FILE.ID);
+
+		this.property(NetdiskMyShareMeta.NETDISK_ORIGIN_FILE_PROP)
+				.using(OaTables.OA_NETDISK_MY_SHARE.FILE_ID).join(OaTables.OA_NETDISK_FILE.ID)
+				.using(OaTables.OA_NETDISK_FILE.ORIGIN_FILE_ID).join(OaTables.OA_NETDISK_ORIGIN_FILE.ID);
+
+
+	}
+
+	public void setupNetDiskShareMe() {
+		this.property(NetdiskShareMeMeta.OWNER_USER_PROP)
+				.using(OaTables.OA_NETDISK_SHARE_ME.OWNER_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(NetdiskShareMeMeta.USER_PROP)
+				.using(OaTables.OA_NETDISK_SHARE_ME.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(NetdiskShareMeMeta.NETDISK_ORIGIN_FILE_PROP)
+				.using(OaTables.OA_NETDISK_SHARE_ME.FILE_ID).join(OaTables.OA_NETDISK_FILE.ID)
+				.using(OaTables.OA_NETDISK_FILE.ORIGIN_FILE_ID).join(OaTables.OA_NETDISK_ORIGIN_FILE.ID);
+
+		this.property(NetdiskShareMeMeta.NETDISK_FILE_PROP)
+				.using(OaTables.OA_NETDISK_SHARE_ME.FILE_ID).join(OaTables.OA_NETDISK_FILE.ID);
+
+
+	}
 
 	public void setupCustomerLeads() {
 

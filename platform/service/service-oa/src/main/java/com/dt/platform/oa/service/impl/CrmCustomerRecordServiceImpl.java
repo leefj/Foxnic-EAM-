@@ -1,6 +1,9 @@
 package com.dt.platform.oa.service.impl;
 
 import javax.annotation.Resource;
+
+import com.github.foxnic.commons.lang.StringUtil;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -50,7 +53,7 @@ public class CrmCustomerRecordServiceImpl extends SuperService<CrmCustomerRecord
 	 * 注入DAO对象
 	 * */
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
-	private DAO dao=null;
+	private final DAO dao=null;
 
 	/**
 	 * 获得 DAO 对象
@@ -73,6 +76,15 @@ public class CrmCustomerRecordServiceImpl extends SuperService<CrmCustomerRecord
 	 */
 	@Override
 	public Result insert(CrmCustomerRecord crmCustomerRecord,boolean throwsException) {
+
+		if(StringUtil.isBlank(crmCustomerRecord.getOriginatorId())){
+			crmCustomerRecord.setOriginatorId(SessionUser.getCurrent().getActivatedEmployeeId());
+		}
+
+		if(StringUtil.isBlank(crmCustomerRecord.getRcdTime())){
+			crmCustomerRecord.setRcdTime(new Date());
+		}
+
 		Result r=super.insert(crmCustomerRecord,throwsException);
 		return r;
 	}

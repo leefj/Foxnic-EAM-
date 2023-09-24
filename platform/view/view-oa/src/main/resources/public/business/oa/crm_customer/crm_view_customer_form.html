@@ -39,15 +39,13 @@
                 <ul class="layui-tab-title">
                     <li id="baseInfo-tab" th:text="${lang.translate('客户信息')}" class="layui-this">客户信息</li>
                     <li id="follow-tab"> <div th:text="${lang.translate('跟进')}">跟进记录</div></li>
-                    <li id="contact-tab"> <div th:text="${lang.translate('联系人')}">联系人</div></li>
                     <li id="business-tab"> <div th:text="${lang.translate('商机')}">客户商机</div></li>
                     <li id="review-tab"> <div th:text="${lang.translate('回访')}">客户回访</div></li>
+                    <li id="contact-tab"> <div th:text="${lang.translate('联系人')}">客户联系人</div></li>
                     <li id="shareuser-tab"> <div th:text="${lang.translate('协作成员')}">协作成员</div></li>
                     <li id="record-tab"> <div th:text="${lang.translate('操作记录')}">操作记录</div></li>
                 </ul>
                 <div class="layui-tab-content">
-
-
                     <div class="layui-tab-item layui-show" id="baseInfo-tab-ct">
 
 <!--                        <form id="data-form" lay-filter="data-form" class="layui-form model-form"  style="">-->
@@ -175,16 +173,9 @@
                             <!--结束：group循环-->
 <!--                        </form>-->
                     </div>
-
                     <div class="layui-tab-item" id="follow-tab-ct">
                         <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
                             <iframe id="follow" js-fn="follow" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
-                        </div>
-                    </div>
-
-                    <div class="layui-tab-item" id="contact-tab-ct">
-                        <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
-                            <iframe id="contact" js-fn="contact" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
                         </div>
                     </div>
 
@@ -203,7 +194,11 @@
                             <iframe id="shareuser" js-fn="shareuser" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
                         </div>
                     </div>
-
+                    <div class="layui-tab-item" id="contact-tab-ct">
+                        <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
+                            <iframe id="contact" js-fn="contact" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+                        </div>
+                    </div>
                     <div class="layui-tab-item" id="record-tab-ct">
                         <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
                             <iframe id="record" js-fn="record" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
@@ -212,7 +207,6 @@
                 </div>
             </div>
         </div>
-
         <div style="height: 80px"></div>
     </form>
 

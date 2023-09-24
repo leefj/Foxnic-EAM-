@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 通知公告
  * <p>通知公告 , 数据表 oa_notice 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-26 07:25:44
+ * @since 2023-09-17 17:52:17
  * @sign C53CEB10340859D348D74D34B045535D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -42,19 +42,19 @@ public class Notice extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "708211477789540352")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "709029727368642560")
 	private String id;
 	
 	/**
 	 * 文号：文号
 	*/
-	@ApiModelProperty(required = false,value="文号" , notes = "文号" , example = "12121212")
+	@ApiModelProperty(required = false,value="文号" , notes = "文号")
 	private String number;
 	
 	/**
 	 * 标题：标题
 	*/
-	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "1212")
+	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "置顶")
 	private String title;
 	
 	/**
@@ -72,13 +72,13 @@ public class Notice extends Entity {
 	/**
 	 * 内容：内容
 	*/
-	@ApiModelProperty(required = false,value="内容" , notes = "内容" , example = "<p>1212</p>")
+	@ApiModelProperty(required = false,value="内容" , notes = "内容" , example = "<p>这是一个置顶测试</p>")
 	private String content;
 	
 	/**
 	 * 是否置顶：是否置顶
 	*/
-	@ApiModelProperty(required = false,value="是否置顶" , notes = "是否置顶" , example = "N")
+	@ApiModelProperty(required = false,value="是否置顶" , notes = "是否置顶" , example = "Y")
 	private String iftop;
 	
 	/**
@@ -96,7 +96,7 @@ public class Notice extends Entity {
 	/**
 	 * 发布人：发布人
 	*/
-	@ApiModelProperty(required = false,value="发布人" , notes = "发布人")
+	@ApiModelProperty(required = false,value="发布人" , notes = "发布人" , example = "E001")
 	private String userId;
 	
 	/**
@@ -108,7 +108,7 @@ public class Notice extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-05-09 06:59:34")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-05-11 01:11:00")
 	private Date createTime;
 	
 	/**
@@ -120,7 +120,7 @@ public class Notice extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-11 12:25:24")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-08-13 07:41:11")
 	private Date updateTime;
 	
 	/**
@@ -135,19 +135,19 @@ public class Notice extends Entity {
 	/**
 	 * 删除人ID：删除人ID
 	*/
-	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID")
+	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID" , example = "110588348101165911")
 	private String deleteBy;
 	
 	/**
 	 * 删除时间：删除时间
 	*/
-	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间")
+	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2023-08-13 07:41:11")
 	private Date deleteTime;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "4")
 	private Integer version;
 	
 	/**

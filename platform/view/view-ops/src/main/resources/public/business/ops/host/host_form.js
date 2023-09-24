@@ -655,7 +655,6 @@ function FormPage() {
 		var data=form.val("data-form");
 
 
-
 		//获取 信息系统 下拉框的值
 		data["systemId"]=fox.getSelectedValue("systemId",false);
 		//获取 主机类型 下拉框的值
