@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 通知公告VO类型
  * <p>通知公告 , 数据表 oa_notice 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-26 07:25:44
+ * @since 2023-09-17 17:52:17
  * @sign DBC37635BD030E726CE0AFE2306C56C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

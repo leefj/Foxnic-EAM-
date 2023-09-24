@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-09-16 19:20:17
+ * @since 2023-09-23 13:35:24
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -317,9 +317,9 @@ public class OaTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
 		
 		/**
-		 * 制单人
+		 * 操作人员
 		*/
-		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
+		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","操作人员","操作人员",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -504,9 +504,9 @@ public class OaTables {
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
 		
 		/**
-		 * 制单人
+		 * 操作人员
 		*/
-		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
+		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","操作人员","操作人员",false,false,true);
 		
 		/**
 		 * 版本
@@ -600,9 +600,9 @@ public class OaTables {
 		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","附件","附件",false,false,true);
 		
 		/**
-		 * 制单人
+		 * 操作人员
 		*/
-		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
+		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","操作人员","操作人员",false,false,true);
 		
 		/**
 		 * 版本
@@ -1136,9 +1136,9 @@ public class OaTables {
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
 		
 		/**
-		 * 制单人
+		 * 操作人员
 		*/
-		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
+		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","操作人员","操作人员",false,false,true);
 		
 		/**
 		 * 版本
@@ -1242,9 +1242,9 @@ public class OaTables {
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
 		
 		/**
-		 * 制单人
+		 * 操作人员
 		*/
-		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
+		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","操作人员","操作人员",false,false,true);
 		
 		/**
 		 * 版本
@@ -1905,6 +1905,1182 @@ public class OaTables {
 			this.init($NAME,"会议室位置" , ID , NAME , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OA_MEETING_ROOM_POSITION $TABLE=new OA_MEETING_ROOM_POSITION();
+	}
+	
+	/**
+	 * 文件
+	*/
+	public static class OA_NETDISK_FILE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_file";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 文件
+		*/
+		public static final DBField ORIGIN_FILE_ID = new DBField(DBDataType.STRING , "origin_file_id","originFileId","文件","文件",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField FILE_NAME = new DBField(DBDataType.STRING , "file_name","fileName","名称","名称",false,false,true);
+		
+		/**
+		 * 大小
+		*/
+		public static final DBField FILE_SIZE = new DBField(DBDataType.STRING , "file_size","fileSize","大小","大小",false,false,true);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField FILE_TYPE = new DBField(DBDataType.STRING , "file_type","fileType","类型","类型",false,false,true);
+		
+		/**
+		 * 是否收藏
+		*/
+		public static final DBField IS_FAVOURITE = new DBField(DBDataType.STRING , "is_favourite","isFavourite","是否收藏","是否收藏",false,false,true);
+		
+		/**
+		 * 回收站
+		*/
+		public static final DBField IN_RECYCLE = new DBField(DBDataType.STRING , "in_recycle","inRecycle","回收站","回收站",false,false,true);
+		
+		/**
+		 * 用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
+		
+		/**
+		 * 文件夹
+		*/
+		public static final DBField FOLDER_ID = new DBField(DBDataType.STRING , "folder_id","folderId","文件夹","文件夹",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		public OA_NETDISK_FILE() {
+			this.init($NAME,"文件" , ID , ORIGIN_FILE_ID , FILE_NAME , FILE_SIZE , FILE_TYPE , IS_FAVOURITE , IN_RECYCLE , USER_ID , FOLDER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME);
+		}
+		public static final OA_NETDISK_FILE $TABLE=new OA_NETDISK_FILE();
+	}
+	
+	/**
+	 * 文件夹
+	*/
+	public static class OA_NETDISK_FOLDER extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_folder";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
+		
+		/**
+		 * 是否收藏
+		*/
+		public static final DBField IS_FAVOURITE = new DBField(DBDataType.STRING , "is_favourite","isFavourite","是否收藏","是否收藏",false,false,true);
+		
+		/**
+		 * 回收站
+		*/
+		public static final DBField IN_RECYCLE = new DBField(DBDataType.STRING , "in_recycle","inRecycle","回收站","回收站",false,false,true);
+		
+		/**
+		 * 父级
+		*/
+		public static final DBField PARENT_ID = new DBField(DBDataType.STRING , "parent_id","parentId","父级","父级",false,false,true);
+		
+		/**
+		 * 文件路径
+		*/
+		public static final DBField HIERARCHY = new DBField(DBDataType.STRING , "hierarchy","hierarchy","文件路径","文件路径",false,false,true);
+		
+		/**
+		 * 路径全名
+		*/
+		public static final DBField HIERARCHY_NAME = new DBField(DBDataType.STRING , "hierarchy_name","hierarchyName","路径全名","路径全名",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_NETDISK_FOLDER() {
+			this.init($NAME,"文件夹" , ID , NAME , USER_ID , IS_FAVOURITE , IN_RECYCLE , PARENT_ID , HIERARCHY , HIERARCHY_NAME , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_NETDISK_FOLDER $TABLE=new OA_NETDISK_FOLDER();
+	}
+	
+	/**
+	 * 资源限制
+	*/
+	public static class OA_NETDISK_LIMIT extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_limit";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 容量(G)
+		*/
+		public static final DBField CAPACITY_SIZE = new DBField(DBDataType.INTEGER , "capacity_size","capacitySize","容量","G)",false,false,true);
+		
+		/**
+		 * 上传大小(M)
+		*/
+		public static final DBField UPLOAD_MAX_SIZE = new DBField(DBDataType.INTEGER , "upload_max_size","uploadMaxSize","上传大小","M)",false,false,true);
+		
+		/**
+		 * 文件类型
+		*/
+		public static final DBField UPLOAD_FILE_TYPE = new DBField(DBDataType.STRING , "upload_file_type","uploadFileType","文件类型","文件类型",false,false,true);
+		
+		/**
+		 * 视频播放
+		*/
+		public static final DBField PLAY_VIDEO_VALID = new DBField(DBDataType.STRING , "play_video_valid","playVideoValid","视频播放","视频播放",false,false,true);
+		
+		/**
+		 * 音频播放
+		*/
+		public static final DBField PLAY_MUSIC_VALID = new DBField(DBDataType.STRING , "play_music_valid","playMusicValid","音频播放","音频播放",false,false,true);
+		
+		/**
+		 * 用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_NETDISK_LIMIT() {
+			this.init($NAME,"资源限制" , ID , CAPACITY_SIZE , UPLOAD_MAX_SIZE , UPLOAD_FILE_TYPE , PLAY_VIDEO_VALID , PLAY_MUSIC_VALID , USER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_NETDISK_LIMIT $TABLE=new OA_NETDISK_LIMIT();
+	}
+	
+	/**
+	 * 文件菜单
+	*/
+	public static class OA_NETDISK_MENU extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_menu";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 编码
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 图标
+		*/
+		public static final DBField ICON_CODE = new DBField(DBDataType.STRING , "icon_code","iconCode","图标","图标",false,false,true);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","类型",false,false,true);
+		
+		/**
+		 * 是否显示,Y|N
+		*/
+		public static final DBField SHOW_VALUE = new DBField(DBDataType.STRING , "show_value","showValue","是否显示","Y|N",false,false,true);
+		
+		/**
+		 * 排序
+		*/
+		public static final DBField SORT_VALUE = new DBField(DBDataType.INTEGER , "sort_value","sortValue","排序","排序",false,false,true);
+		
+		/**
+		 * 上一级
+		*/
+		public static final DBField PARENT_ID = new DBField(DBDataType.STRING , "parent_id","parentId","上一级","上一级",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_NETDISK_MENU() {
+			this.init($NAME,"文件菜单" , ID , CODE , NAME , ICON_CODE , TYPE , SHOW_VALUE , SORT_VALUE , PARENT_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_NETDISK_MENU $TABLE=new OA_NETDISK_MENU();
+	}
+	
+	/**
+	 * 我的收藏(未使用)
+	*/
+	public static class OA_NETDISK_MY_FAVORITE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_my_favorite";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
+		
+		/**
+		 * 文件
+		*/
+		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","文件","文件",false,false,true);
+		
+		/**
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","type","type",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_NETDISK_MY_FAVORITE() {
+			this.init($NAME,"我的收藏(未使用)" , ID , USER_ID , FILE_ID , TYPE , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_NETDISK_MY_FAVORITE $TABLE=new OA_NETDISK_MY_FAVORITE();
+	}
+	
+	/**
+	 * 我的分享
+	*/
+	public static class OA_NETDISK_MY_SHARE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_my_share";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
+		
+		/**
+		 * 文件
+		*/
+		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","文件","文件",false,false,true);
+		
+		/**
+		 * 链接
+		*/
+		public static final DBField FILE_URL = new DBField(DBDataType.STRING , "file_url","fileUrl","链接","链接",false,false,true);
+		
+		/**
+		 * 过期时间
+		*/
+		public static final DBField EXPIRATION_TIME = new DBField(DBDataType.DATE , "expiration_time","expirationTime","过期时间","过期时间",false,false,true);
+		
+		/**
+		 * 过期方式
+		*/
+		public static final DBField EXPIRATION_METHOD = new DBField(DBDataType.STRING , "expiration_method","expirationMethod","过期方式","过期方式",false,false,true);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","类型",false,false,true);
+		
+		/**
+		 * 状态,valid|expired|delete
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","valid|expired|delete",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_NETDISK_MY_SHARE() {
+			this.init($NAME,"我的分享" , ID , USER_ID , FILE_ID , FILE_URL , EXPIRATION_TIME , EXPIRATION_METHOD , TYPE , STATUS , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_NETDISK_MY_SHARE $TABLE=new OA_NETDISK_MY_SHARE();
+	}
+	
+	/**
+	 * 操作记录
+	*/
+	public static class OA_NETDISK_OPER_RECORD extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_oper_record";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 对象
+		*/
+		public static final DBField FD_ID = new DBField(DBDataType.STRING , "fd_id","fdId","对象","对象",false,false,true);
+		
+		/**
+		 * 操作内容
+		*/
+		public static final DBField OPER_CONTENT = new DBField(DBDataType.STRING , "oper_content","operContent","操作内容","操作内容",false,false,true);
+		
+		/**
+		 * 操作人
+		*/
+		public static final DBField OPER_USER_ID = new DBField(DBDataType.STRING , "oper_user_id","operUserId","操作人","操作人",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_NETDISK_OPER_RECORD() {
+			this.init($NAME,"操作记录" , ID , FD_ID , OPER_CONTENT , OPER_USER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_NETDISK_OPER_RECORD $TABLE=new OA_NETDISK_OPER_RECORD();
+	}
+	
+	/**
+	 * 源文件
+	*/
+	public static class OA_NETDISK_ORIGIN_FILE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_origin_file";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 文件名称
+		*/
+		public static final DBField FILE_NAME = new DBField(DBDataType.STRING , "file_name","fileName","文件名称","文件名称",false,false,true);
+		
+		/**
+		 * 大小
+		*/
+		public static final DBField FILE_SIZE = new DBField(DBDataType.LONG , "file_size","fileSize","大小","大小",false,false,true);
+		
+		/**
+		 * 路径
+		*/
+		public static final DBField LOCATION = new DBField(DBDataType.STRING , "location","location","路径","路径",false,false,true);
+		
+		/**
+		 * 媒体类型
+		*/
+		public static final DBField MEDIA_TYPE = new DBField(DBDataType.STRING , "media_type","mediaType","媒体类型","媒体类型",false,false,true);
+		
+		/**
+		 * 文件类型
+		*/
+		public static final DBField FILE_TYPE = new DBField(DBDataType.STRING , "file_type","fileType","文件类型","文件类型",false,false,true);
+		
+		/**
+		 * 扩展类型,jpg,png
+		*/
+		public static final DBField EXT_VALUE = new DBField(DBDataType.STRING , "ext_value","extValue","扩展类型","jpg,png",false,false,true);
+		
+		/**
+		 * 存储类型
+		*/
+		public static final DBField STORAGE_TYPE = new DBField(DBDataType.STRING , "storage_type","storageType","存储类型","存储类型",false,false,true);
+		
+		/**
+		 * 是否加密,Y|N
+		*/
+		public static final DBField ENCRYPTED = new DBField(DBDataType.STRING , "encrypted","encrypted","是否加密","Y|N",false,false,true);
+		
+		/**
+		 * 所属用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","所属用户","所属用户",false,false,true);
+		
+		/**
+		 * 存储地址
+		*/
+		public static final DBField STORAGE_STORE_ID = new DBField(DBDataType.STRING , "storage_store_id","storageStoreId","存储地址","存储地址",false,false,true);
+		
+		/**
+		 * 下载地址
+		*/
+		public static final DBField DOWNLOAD_URL = new DBField(DBDataType.STRING , "download_url","downloadUrl","下载地址","下载地址",false,false,true);
+		
+		/**
+		 * 下载次数
+		*/
+		public static final DBField DOWNLOAD_COUNT = new DBField(DBDataType.LONG , "download_count","downloadCount","下载次数","下载次数",false,false,true);
+		
+		/**
+		 * 引用次数
+		*/
+		public static final DBField REFERENCE_COUNT = new DBField(DBDataType.INTEGER , "reference_count","referenceCount","引用次数","引用次数",false,false,true);
+		
+		/**
+		 * 上次访问时间
+		*/
+		public static final DBField LAST_VISIT_TIME = new DBField(DBDataType.DATE , "last_visit_time","lastVisitTime","上次访问时间","上次访问时间",false,false,true);
+		
+		/**
+		 * MD5
+		*/
+		public static final DBField MD5_VALUE = new DBField(DBDataType.STRING , "md5_value","md5Value","MD5","MD5",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_NETDISK_ORIGIN_FILE() {
+			this.init($NAME,"源文件" , ID , FILE_NAME , FILE_SIZE , LOCATION , MEDIA_TYPE , FILE_TYPE , EXT_VALUE , STORAGE_TYPE , ENCRYPTED , USER_ID , STORAGE_STORE_ID , DOWNLOAD_URL , DOWNLOAD_COUNT , REFERENCE_COUNT , LAST_VISIT_TIME , MD5_VALUE , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_NETDISK_ORIGIN_FILE $TABLE=new OA_NETDISK_ORIGIN_FILE();
+	}
+	
+	/**
+	 * 回收站
+	*/
+	public static class OA_NETDISK_RECYCLE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_recycle";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * FD
+		*/
+		public static final DBField FD_ID = new DBField(DBDataType.STRING , "fd_id","fdId","FD","FD",false,false,true);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField FD_TYPE = new DBField(DBDataType.STRING , "fd_type","fdType","类型","类型",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DEL_TIME = new DBField(DBDataType.DATE , "del_time","delTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_NETDISK_RECYCLE() {
+			this.init($NAME,"回收站" , ID , FD_ID , FD_TYPE , DEL_TIME , USER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_NETDISK_RECYCLE $TABLE=new OA_NETDISK_RECYCLE();
+	}
+	
+	/**
+	 * 分享给我
+	*/
+	public static class OA_NETDISK_SHARE_ME extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_share_me";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 文件
+		*/
+		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","文件","文件",false,false,true);
+		
+		/**
+		 * 分享
+		*/
+		public static final DBField SHARE_ID = new DBField(DBDataType.STRING , "share_id","shareId","分享","分享",false,false,true);
+		
+		/**
+		 * 用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
+		
+		/**
+		 * 所属
+		*/
+		public static final DBField OWNER_USER_ID = new DBField(DBDataType.STRING , "owner_user_id","ownerUserId","所属","所属",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_NETDISK_SHARE_ME() {
+			this.init($NAME,"分享给我" , ID , FILE_ID , SHARE_ID , USER_ID , OWNER_USER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_NETDISK_SHARE_ME $TABLE=new OA_NETDISK_SHARE_ME();
+	}
+	
+	/**
+	 * 存储方式
+	*/
+	public static class OA_NETDISK_STORAGE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_storage";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 编码
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 状态,valid|invalid
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","valid|invalid",false,false,true);
+		
+		/**
+		 * 是否加密,Y|N
+		*/
+		public static final DBField ENCRYPTED = new DBField(DBDataType.STRING , "encrypted","encrypted","是否加密","Y|N",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_NETDISK_STORAGE() {
+			this.init($NAME,"存储方式" , ID , CODE , NAME , STATUS , ENCRYPTED , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_NETDISK_STORAGE $TABLE=new OA_NETDISK_STORAGE();
+	}
+	
+	/**
+	 * 虚拟文件
+	*/
+	public static class OA_NETDISK_VIRTUAL_FD extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_virtual_fd";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 文件
+		*/
+		public static final DBField FD_ID = new DBField(DBDataType.STRING , "fd_id","fdId","文件","文件",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField FD_NAME = new DBField(DBDataType.STRING , "fd_name","fdName","名称","名称",false,false,true);
+		
+		/**
+		 * 大小
+		*/
+		public static final DBField FD_SIZE = new DBField(DBDataType.STRING , "fd_size","fdSize","大小","大小",false,false,true);
+		
+		/**
+		 * 文件类型
+		*/
+		public static final DBField FD_FILE_TYPE = new DBField(DBDataType.STRING , "fd_file_type","fdFileType","文件类型","文件类型",false,false,true);
+		
+		/**
+		 * 路径编号
+		*/
+		public static final DBField FD_HIERARCHY = new DBField(DBDataType.STRING , "fd_hierarchy","fdHierarchy","路径编号","路径编号",false,false,true);
+		
+		/**
+		 * 路径名称
+		*/
+		public static final DBField FD_HIERARCHY_NAME = new DBField(DBDataType.STRING , "fd_hierarchy_name","fdHierarchyName","路径名称","路径名称",false,false,true);
+		
+		/**
+		 * 是否收藏
+		*/
+		public static final DBField IS_FAVOURITE = new DBField(DBDataType.STRING , "is_favourite","isFavourite","是否收藏","是否收藏",false,false,true);
+		
+		/**
+		 * 文件夹
+		*/
+		public static final DBField FOLDER_ID = new DBField(DBDataType.STRING , "folder_id","folderId","文件夹","文件夹",false,false,true);
+		
+		/**
+		 * fd类型
+		*/
+		public static final DBField FD_TYPE = new DBField(DBDataType.STRING , "fd_type","fdType","fd类型","fd类型",false,false,true);
+		
+		/**
+		 * 用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
+		
+		/**
+		 * 父节点
+		*/
+		public static final DBField PARENT_ID = new DBField(DBDataType.STRING , "parent_id","parentId","父节点","父节点",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		public OA_NETDISK_VIRTUAL_FD() {
+			this.init($NAME,"虚拟文件" , ID , FD_ID , FD_NAME , FD_SIZE , FD_FILE_TYPE , FD_HIERARCHY , FD_HIERARCHY_NAME , IS_FAVOURITE , FOLDER_ID , FD_TYPE , USER_ID , PARENT_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME);
+		}
+		public static final OA_NETDISK_VIRTUAL_FD $TABLE=new OA_NETDISK_VIRTUAL_FD();
 	}
 	
 	/**

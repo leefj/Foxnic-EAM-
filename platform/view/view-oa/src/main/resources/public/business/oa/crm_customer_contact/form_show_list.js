@@ -72,7 +72,7 @@ function ListPage() {
 					return value;
 				}
 			}
-			var h=-28;
+			var h=0;
 
 			var tableConfig={
 				elem: '#data-table',
@@ -81,6 +81,7 @@ function ListPage() {
 				url: queryURL,
 				height: 'full-'+(h+28),
 				limit: 100,
+				page:false,
 				where: ps,
 				cols: [[
 					 { field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('姓名') , templet: function (d) { return templet('name',d.name,d);}  }
@@ -89,7 +90,7 @@ function ListPage() {
 					,{ field: 'sex', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('性别'), templet:function (d){ return templet('sex',fox.getEnumText(RADIO_SEX_DATA,d.sex,'','sex'),d);}}
 					,{ field: 'address', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('地址') , templet: function (d) { return templet('address',d.address,d);}  }
 					,{ field: 'role', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('角色'), templet:function (d){ return templet('role',fox.getEnumText(RADIO_ROLE_DATA,d.role,'','role'),d);}}
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('操作人员') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					 ,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

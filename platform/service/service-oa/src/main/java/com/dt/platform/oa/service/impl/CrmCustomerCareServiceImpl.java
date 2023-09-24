@@ -50,7 +50,7 @@ public class CrmCustomerCareServiceImpl extends SuperService<CrmCustomerCare> im
 	 * 注入DAO对象
 	 * */
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
-	private DAO dao=null;
+	private final DAO dao=null;
 
 	/**
 	 * 获得 DAO 对象

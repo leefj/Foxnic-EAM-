@@ -1,7 +1,7 @@
 /**
  * 通知公告 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-26 07:25:45
+ * @since 2023-09-17 17:52:18
  */
 
 
@@ -382,7 +382,10 @@ function ListPage() {
 
 			admin.putTempData('oa-notice-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('oa-notice-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -391,7 +394,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('oa-notice-form-data-form-action', "view",true);
 						showEditForm(data.data);

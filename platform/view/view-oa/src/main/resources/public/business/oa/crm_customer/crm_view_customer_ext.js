@@ -52,7 +52,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            console.log("list:beforeTableRender",cfg);
+              cfg.cellMinWidth=160;;
         },
         /**
          * 表格渲染后调用
@@ -555,38 +555,38 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         follow:function (ifr,win,data) {
             var timestamp = Date.parse(new Date());
-            ifr.height("450px");
-            var queryString="?customerId="+data.id+"&t="+timestamp+"&pageShowType=formInclude";
+            ifr.height("500px");
+            var queryString="?customerId="+CUSTOMER_ID+"&t="+timestamp+"&pageShowType=formInclude";
             win.location='/business/oa/crm_customer_follow/form_show_list.html' + queryString;
         },
         contact:function (ifr,win,data) {
             var timestamp = Date.parse(new Date());
-            ifr.height("450px");
-            var queryString="?customerId="+data.id+"&t="+timestamp+"&pageShowType=formInclude";
+            ifr.height("500px");
+            var queryString="?customerId="+CUSTOMER_ID+"&t="+timestamp+"&pageShowType=formInclude";
             win.location='/business/oa/crm_customer_contact/form_show_list.html' + queryString;
         },
         business:function (ifr,win,data) {
             var timestamp = Date.parse(new Date());
-            ifr.height("450px");
-            var queryString="?customerId="+data.id+"&t="+timestamp+"&pageShowType=formInclude";
+            ifr.height("500px");
+            var queryString="?customerId="+CUSTOMER_ID+"&t="+timestamp+"&pageShowType=formInclude";
             win.location='/business/oa/crm_customer_business/form_show_list.html' + queryString;
         },
         review:function (ifr,win,data) {
             var timestamp = Date.parse(new Date());
-            ifr.height("450px");
-            var queryString="?customerId="+data.id+"&t="+timestamp+"&pageShowType=formInclude";
+            ifr.height("500px");
+            var queryString="?customerId="+CUSTOMER_ID+"&t="+timestamp+"&pageShowType=formInclude";
             win.location='/business/oa/crm_customer_review/form_show_list.html' + queryString;
         },
         shareuser:function (ifr,win,data) {
             var timestamp = Date.parse(new Date());
-            ifr.height("450px");
-            var queryString="?customerId="+data.id+"&t="+timestamp+"&pageShowType=formInclude";
+            ifr.height("500px");
+            var queryString="?customerId="+CUSTOMER_ID+"&t="+timestamp+"&pageShowType=formInclude";
             win.location='/business/oa/crm_customer_team/form_show_list.html' + queryString;
         },
         record:function (ifr,win,data) {
             var timestamp = Date.parse(new Date());
-            ifr.height("450px");
-            var queryString="?customerId="+data.id+"&t="+timestamp+"&pageShowType=formInclude";
+            ifr.height("500px");
+            var queryString="?customerId="+CUSTOMER_ID+"&t="+timestamp+"&pageShowType=formInclude";
             win.location='/business/oa/crm_customer_record/form_show_list.html' + queryString;
         },
         /**

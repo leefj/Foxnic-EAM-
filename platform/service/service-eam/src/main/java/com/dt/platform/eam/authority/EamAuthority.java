@@ -13,7 +13,7 @@ public class EamAuthority extends ModuleAuthority {
     @Override
     public String[] getAuthorities() {
         return new String[] {
-                "eam","eam_employee","eam_equipment_mgr"
+                "eam","eam_equipment_mgr"
         };
     }
 }

@@ -143,7 +143,7 @@ foxnic:
       ########################  common key list  #######################
       #system_ops
       ########################  eam key list  #######################
-      #eam,eam_employee,eam_equipment_mgr
+      #eam,eam_equipment_mgr
       ########################  ops key list  #######################
       #ops,zbx
       ########################  hr key list  #######################
@@ -176,6 +176,12 @@ foxnic:
         windows: c:/uploads
         mac: /Users/Shared/upload
         linux: /app/app/app/upload
+    netdisk:
+      location:
+        #本地文件存储方式文件管理
+        windows: c:/netdisk
+        mac: /Users/Shared/netdisk
+        linux: /app/app/app/netdisk
     oss-aliyun:
       access-key-Id: WwzbiM7QkNGkw9X0tPA/tJcb9HFyBWtXZh+1Jd0h/zA=
       access-secret: UCYyxDXhItJRZFMApz9cZh45oUPTijVfwycIGpXnj0M=

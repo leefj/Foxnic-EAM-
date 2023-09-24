@@ -50,7 +50,7 @@ public class CrmCustomerTeamServiceImpl extends SuperService<CrmCustomerTeam> im
 	 * 注入DAO对象
 	 * */
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
-	private DAO dao=null;
+	private final DAO dao=null;
 
 	/**
 	 * 获得 DAO 对象
@@ -73,8 +73,17 @@ public class CrmCustomerTeamServiceImpl extends SuperService<CrmCustomerTeam> im
 	 */
 	@Override
 	public Result insert(CrmCustomerTeam crmCustomerTeam,boolean throwsException) {
-		Result r=super.insert(crmCustomerTeam,throwsException);
-		return r;
+
+
+		CrmCustomerTeamVO query=new CrmCustomerTeamVO();
+		query.setUserId(crmCustomerTeam.getUserId());
+		query.setCustomerId(crmCustomerTeam.getCustomerId());
+		if(this.queryList(query).size()>0){
+			return ErrorDesc.success();
+		}else{
+			Result r=super.insert(crmCustomerTeam,throwsException);
+			return r;
+		}
 	}
 
 	/**

@@ -2,7 +2,7 @@
 /**
  * 通知公告 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-26 07:25:45
+ * @since 2023-09-17 17:52:18
  */
  -->
  <!DOCTYPE html>
@@ -42,10 +42,10 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
 
 
-                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:150px"></div>
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:180px"></div>
                     </div>
                     <!-- 内容 , content ,typeName=text_area, isHideInSearch=true -->
                     <!-- 是否置顶 , iftop ,typeName=radio_box, isHideInSearch=true -->
@@ -54,20 +54,20 @@
                     <!-- 发布人 , userId ,typeName=button, isHideInSearch=true -->
                     <!-- 分类 , type ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('分类')}" class="search-label type-label">分类</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('分类')}" class="search-label type-label">分类</span><span class="search-colon">:</span></div>
 
 
-                        <div id="type" th:data="${enum.toArray('com.dt.platform.constants.enums.oa.NoticeTypeEnum')}" style="width:150px"></div>
+                        <div id="type" th:data="${enum.toArray('com.dt.platform.constants.enums.oa.NoticeTypeEnum')}" style="width:180px"></div>
                     </div>
                     <!-- 标题 , title ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('标题')}" class="search-label title-label">标题</span><span class="search-colon">:</span></div>
-                        <input id="title" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('标题')}" class="search-label title-label">标题</span><span class="search-colon">:</span></div>
+                        <input id="title" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 文号 , number ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('文号')}" class="search-label number-label">文号</span><span class="search-colon">:</span></div>
-                        <input id="number" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('文号')}" class="search-label number-label">文号</span><span class="search-colon">:</span></div>
+                        <input id="number" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 

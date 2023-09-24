@@ -126,6 +126,7 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
                 },
                 new Object[] {
                         EAMTables.EAM_ASSET_COLLECTION_RETURN.RETURN_DATE,
+                        EAMTables.EAM_ASSET_COLLECTION_RETURN.POSITION_DETAIL,
                 }
         );
         cfg.view().form().addGroup(null,

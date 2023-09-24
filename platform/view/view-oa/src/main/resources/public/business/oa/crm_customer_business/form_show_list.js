@@ -72,20 +72,21 @@ function ListPage() {
 					return value;
 				}
 			}
-			var h=-28
+			var h=0
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: queryURL,
 				height: 'full-'+(h+28),
-				limit: 50,
+				limit: 1000,
+				page:false,
 				where: ps,
 				cols: [[
 				    { field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内容') , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'amount', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('价格') , templet: function (d) { return templet('amount',d.amount,d);}  }
 					,{ field: 'stage', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('商机阶段') , templet: function (d) { return templet('stage',d.stage,d);}  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('操作人员') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 				 	,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

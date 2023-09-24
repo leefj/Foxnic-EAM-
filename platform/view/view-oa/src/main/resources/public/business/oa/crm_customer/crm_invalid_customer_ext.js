@@ -67,7 +67,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            console.log("list:beforeTableRender",cfg);
+              cfg.cellMinWidth=160;;
             var cols=cfg.cols[0];
             for(var i=0;i<cols.length;i++){
                 if(cols[i]&&cols[i].field=="name"){

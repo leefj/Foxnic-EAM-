@@ -72,17 +72,19 @@ function ListPage() {
 					return value;
 				}
 			}
-			var h=-28;
+			var h=0
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: queryURL,
 				height: 'full-'+(h+28),
-				limit: 50,
+				limit: 100,
+				page:false,
 				where: ps,
 				cols: [[
-					 { field: 'userId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('成员') , templet: function (d) { return templet('userId',fox.getProperty(d,["user","name"],0,'','userId'),d);} }
+					{ fixed: 'left',type:'checkbox'}
+					, { field: 'userId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('成员') , templet: function (d) { return templet('userId',fox.getProperty(d,["user","name"],0,'','userId'),d);} }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 				 ]],
@@ -324,6 +326,9 @@ function ListPage() {
 				case 'create':
 					admin.putTempData('oa-crm-customer-team-form-data', {});
 					openCreateFrom();
+					break;
+				case 'del':
+					batchDelete(selected);
 					break;
 				case 'batch-del':
 					batchDelete(selected);

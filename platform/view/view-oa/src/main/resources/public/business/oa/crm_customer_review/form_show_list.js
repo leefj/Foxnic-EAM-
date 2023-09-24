@@ -72,14 +72,15 @@ function ListPage() {
 					return value;
 				}
 			}
-			var h=-28
+			var h=0
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: queryURL,
 				height: 'full-'+(h+28),
-				limit: 50,
+				limit: 100,
+				page:false,
 				where: ps,
 				cols: [[
 				    { field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
