@@ -425,8 +425,8 @@ function ListPage() {
 				admin.popupCenter({
 					title: title,
 					resize: false,
-					offset: [20,null],
-					area: ["85%","85%"],
+					offset: [120,null],
+					area: ["60%","50%"],
 					type: 2,
 					id:"oa-netdisk-share-member-form-data-win",
 					content: '/business/oa/netdisk_my_share/netdisk_share_member_list.html' + queryString,

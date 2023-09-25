@@ -136,9 +136,8 @@ public class NetdiskFolderServiceImpl extends SuperService<NetdiskFolder> implem
 		String split="-";
 		String afterHierarchyName="";
 		String[] ids = hierarchy.split(split);
-
 		for (int i = 0; i < ids.length;i++) {
-			afterHierarchyName = afterHierarchyName + split+ dao.queryRecord("select name name from oa_netdisk_folder where deleted=0 and id=?", ids[i]).getString("categoryName");
+			afterHierarchyName = afterHierarchyName + split+ dao.queryRecord("select name name from oa_netdisk_folder where deleted=0 and id=?", ids[i]).getString("name");
 		}
 		afterHierarchyName = afterHierarchyName.replaceFirst(split, "");
 		Update ups = new Update("oa_netdisk_folder");

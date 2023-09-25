@@ -20,11 +20,15 @@
     <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
 </head>
 <body>
-当前格式不支持预览
+    <div style="margin-top:150px;width:100%;text-align: center;color: blue;font-size: 30px">当前文件格式不支持预览</div>
 </body>
 <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script th:inline="javascript">
+    var ID = [[${id}]];
+    var FD = [[${fd}]];
+    var TYPE = [[${type}]];
+
 
 </script>
 

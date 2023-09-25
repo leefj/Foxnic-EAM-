@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.commons.collection.MapUtil;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -93,12 +94,30 @@ public class NetdiskFileServiceImpl extends SuperService<NetdiskFile> implements
 	@Override
 	public Result uploadFilesInfo(String fileIds,String fdId) {
 		JSONArray fileIdsArr=JSONArray.parseArray(fileIds);
+		DecimalFormat decimalFormat = new DecimalFormat("#.##");
 		for(int i=0;i<fileIdsArr.size();i++){
 			NetdiskOriginFile originFile=netdiskOriginFileService.getById(fileIdsArr.getString(i));
 			NetdiskFile netdiskFile=new NetdiskFile();
 			netdiskFile.setOriginFileId(fileIdsArr.getString(i));
 			netdiskFile.setFileName(originFile.getFileName());
-			netdiskFile.setFileSize(originFile.getFileSize().toString());
+			Long fileSize=originFile.getFileSize();
+			String fileSizeValue="";
+			if(fileSize<1024L){
+				fileSizeValue=originFile.getFileSize()+"B";
+			}else if(fileSize>=1024L&&fileSize<1024L*1024L){
+				Double d=(originFile.getFileSize()/(double)1024);
+				fileSizeValue=decimalFormat.format(d)+"KB";
+			}else if(fileSize>=1024L*1024L&&fileSize<1024L*1024L*1024L){
+				Double d=originFile.getFileSize()/((double)(1024*1024));
+				fileSizeValue=decimalFormat.format(d)+"M";
+			}else if(fileSize>=1024L*1024L*1024L&&fileSize<1024L*1024L*1024L*1024L){
+				Double d=originFile.getFileSize()/((double)(1024/1024/1024));
+				fileSizeValue=decimalFormat.format(d)+"G";
+			}else{
+				Double d=originFile.getFileSize()/((double)(1024*1024*1024));
+				fileSizeValue=decimalFormat.format(d)+"G";
+			}
+			netdiskFile.setFileSize(fileSizeValue);
 			netdiskFile.setFileType(originFile.getFileType());
 			netdiskFile.setFolderId(fdId);
 			netdiskFile.setInRecycle("N");

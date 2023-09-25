@@ -43,32 +43,29 @@ function FormPage() {
 		//渲染表单组件
 		renderFormFields();
 
-		//填充表单数据
-		fillFormData();
-
-		//绑定提交事件
-		bindButtonEvent();
 
 		//调整窗口的高度与位置
 		adjustPopup();
 
 		$('#attach-button').on('click', function() {
 			// 1. 将 jQuery 对象转化为 DOM 对象，并获取选中的文件列表
-			var data=form.val("data-form");
-			console.log("data",data);
+			//var data=form.val("data-form");
 			var ids=$("#fileId").attr("fileids");
-			console.log("ids:",ids);
 			var ps={fileIds:ids,fdId:FD_ID}
-			admin.post("/service-oa/oa-netdisk-file/upload-files-info", ps, function (data) {
-				if (data.success) {
-					fox.showMessage(data);
-					admin.finishPopupCenterById('oa-netdisk-upload-file-form-data-win');
-				} else {
-					fox.showMessage(data);
-				}
-			}, {delayLoading:1000,elms:[$("#attach-button")]});
-		})
+			if(ids&&ids.length>0){
+				admin.post("/service-oa/oa-netdisk-file/upload-files-info", ps, function (data) {
+					if (data.success) {
+						fox.showMessage(data);
+						admin.finishPopupCenterById('oa-netdisk-upload-file-form-data-win');
+					} else {
+						fox.showMessage(data);
+					}
+				}, {delayLoading:1000,elms:[$("#attach-button")]});
+			}else{
+				alert("请选择需要上传的文件");
 
+			}
+		})
 	}
 	/**
 	 * 自动调节窗口高度
@@ -149,22 +146,22 @@ function FormPage() {
 		});
 	}
 
-	/**
-	 * 根据id填充表单
-	 * */
-	function fillFormDataByIds(ids) {
-		if(!ids) return;
-		if(ids.length==0) return;
-		var id=ids[0];
-		if(!id) return;
-		admin.post(moduleURL+"/get-by-id", { id : id }, function (r) {
-			if (r.success) {
-				fillFormData(r.data)
-			} else {
-				fox.showMessage(r);
-			}
-		});
-	}
+	// /**
+	//  * 根据id填充表单
+	//  * */
+	// function fillFormDataByIds(ids) {
+	// 	if(!ids) return;
+	// 	if(ids.length==0) return;
+	// 	var id=ids[0];
+	// 	if(!id) return;
+	// 	admin.post(moduleURL+"/get-by-id", { id : id }, function (r) {
+	// 		if (r.success) {
+	// 			fillFormData(r.data)
+	// 		} else {
+	// 			fox.showMessage(r);
+	// 		}
+	// 	});
+	// }
 
 	/**
 	 * 在流程提交前处理表单数据
@@ -176,158 +173,147 @@ function FormPage() {
 	/**
 	 * 填充表单数据
 	 */
-	function fillFormData(formData) {
-		if(!formData) {
-			formData = admin.getTempData('eam-asset-item-form-data');
-		}
+	// function fillFormData(formData) {
+	// 	if(!formData) {
+	// 		formData = admin.getTempData('eam-asset-item-form-data');
+	// 	}
+	//
+	// 	window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
+	//
+	// 	var hasData=true;
+	// 	//如果是新建
+	// 	if(!formData || !formData.id) {
+	// 		adjustPopup();
+	// 		hasData=false;
+	// 	}
+	// 	var fm=$('#data-form');
+	// 	if (hasData) {
+	// 		fm[0].reset();
+	// 		form.val('data-form', formData);
+	//
+	//
+	//
+	// 		//处理fillBy
+	//
+	// 		//
+	// 		fm.attr('method', 'POST');
+	// 		fox.fillDialogButtons();
+	// 		renderFormFields();
+	//
+	// 		window.pageExt.form.afterDataFill && window.pageExt.form.afterDataFill(formData);
+	//
+	// 	}
+	//
+	// 	//渐显效果
+	// 	fm.css("opacity","0.0");
+	// 	fm.css("display","");
+	// 	setTimeout(function (){
+	// 		fm.animate({
+	// 			opacity:'1.0'
+	// 		},100,null,function (){
+	// 			fm.css("opacity","1.0");});
+	// 	},1);
+	//
+	// 	//禁用编辑
+	// 	if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+	// 		fox.lockForm($("#data-form"),true);
+	// 		$("#submit-button").hide();
+	// 		$("#cancel-button").css("margin-right","15px")
+	// 	} else {
+	// 		$("#submit-button").show();
+	// 		$("#cancel-button").css("margin-right","0px")
+	// 	}
+	//
+	// 	//调用 iframe 加载过程
+	// 	var formIfrs=$(".form-iframe");
+	// 	for (var i = 0; i < formIfrs.length; i++) {
+	// 		var jsFn=$(formIfrs[i]).attr("js-fn");
+	// 		if(window.pageExt.form){
+	// 			jsFn=window.pageExt.form[jsFn];
+	// 			jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,formData);
+	// 		}
+	// 	}
+	//
+	// 	dataBeforeEdit=getFormData();
+	//
+	// }
 
-		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
-
-		var hasData=true;
-		//如果是新建
-		if(!formData || !formData.id) {
-			adjustPopup();
-			hasData=false;
-		}
-		var fm=$('#data-form');
-		if (hasData) {
-			fm[0].reset();
-			form.val('data-form', formData);
-
-
-
-			//处理fillBy
-
-			//
-			fm.attr('method', 'POST');
-			fox.fillDialogButtons();
-			renderFormFields();
-
-			window.pageExt.form.afterDataFill && window.pageExt.form.afterDataFill(formData);
-
-		}
-
-		//渐显效果
-		fm.css("opacity","0.0");
-		fm.css("display","");
-		setTimeout(function (){
-			fm.animate({
-				opacity:'1.0'
-			},100,null,function (){
-				fm.css("opacity","1.0");});
-		},1);
-
-		//禁用编辑
-		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
-			fox.lockForm($("#data-form"),true);
-			$("#submit-button").hide();
-			$("#cancel-button").css("margin-right","15px")
-		} else {
-			$("#submit-button").show();
-			$("#cancel-button").css("margin-right","0px")
-		}
-
-		//调用 iframe 加载过程
-		var formIfrs=$(".form-iframe");
-		for (var i = 0; i < formIfrs.length; i++) {
-			var jsFn=$(formIfrs[i]).attr("js-fn");
-			if(window.pageExt.form){
-				jsFn=window.pageExt.form[jsFn];
-				jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,formData);
-			}
-		}
-
-		dataBeforeEdit=getFormData();
-
-	}
-
-	function getFormData() {
-		var data=form.val("data-form");
-
-		return data;
-	}
+	// function getFormData() {
+	// 	var data=form.val("data-form");
+	//
+	// 	return data;
+	// }
 
 	function verifyForm(data) {
 		return fox.formVerify("data-form",data,VALIDATE_CONFIG)
 	}
 
-	function saveForm(param,callback) {
+	// function saveForm(param,callback) {
+	//
+	// 	if(window.pageExt.form.beforeSubmit) {
+	// 		var doNext=window.pageExt.form.beforeSubmit(param);
+	// 		if(!doNext) return ;
+	// 	}
+	//
+	// 	param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
+	// 	var action=param.id?"edit":"create";
+	// 	var api=moduleURL+"/"+(param.id?"update":"insert");
+	// 	admin.post(api, param, function (data) {
+	// 		if (data.success) {
+	// 			var doNext=true;
+	// 			var pkValues=data.data;
+	// 			if(pkValues) {
+	// 				for (var key in pkValues) {
+	// 					$("#"+key).val(pkValues[key]);
+	// 				}
+	// 			}
+	// 			if(window.pageExt.form.betweenFormSubmitAndClose) {
+	// 				doNext=window.pageExt.form.betweenFormSubmitAndClose(param,data);
+	// 			}
+	//
+	// 			if(callback) {
+	// 				doNext = callback(data,action);
+	// 			}
+	//
+	// 			if(doNext) {
+	// 				admin.finishPopupCenterById('eam-asset-item-form-data-win');
+	// 			}
+	//
+	// 			// 调整状态为编辑
+	// 			action="edit";
+	//
+	// 		} else {
+	// 			fox.showMessage(data);
+	// 		}
+	// 		window.pageExt.form.afterSubmit && window.pageExt.form.afterSubmit(param,data);
+	// 	}, {delayLoading:1000,elms:[$("#submit-button")]});
+	// }
 
-		if(window.pageExt.form.beforeSubmit) {
-			var doNext=window.pageExt.form.beforeSubmit(param);
-			if(!doNext) return ;
-		}
-
-		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
-		var action=param.id?"edit":"create";
-		var api=moduleURL+"/"+(param.id?"update":"insert");
-		admin.post(api, param, function (data) {
-			if (data.success) {
-				var doNext=true;
-				var pkValues=data.data;
-				if(pkValues) {
-					for (var key in pkValues) {
-						$("#"+key).val(pkValues[key]);
-					}
-				}
-				if(window.pageExt.form.betweenFormSubmitAndClose) {
-					doNext=window.pageExt.form.betweenFormSubmitAndClose(param,data);
-				}
-
-				if(callback) {
-					doNext = callback(data,action);
-				}
-
-				if(doNext) {
-					admin.finishPopupCenterById('eam-asset-item-form-data-win');
-				}
-
-				// 调整状态为编辑
-				action="edit";
-
-			} else {
-				fox.showMessage(data);
-			}
-			window.pageExt.form.afterSubmit && window.pageExt.form.afterSubmit(param,data);
-		}, {delayLoading:1000,elms:[$("#submit-button")]});
-	}
-
-	function verifyAndSaveForm(data) {
-		if(!data) data={};
-		//debugger;
-		data.field = getFormData();
-		//校验表单
-		if(!verifyForm(data.field)) return;
-		saveForm(data.field);
-		return false;
-	}
+	// function verifyAndSaveForm(data) {
+	// 	if(!data) data={};
+	// 	//debugger;
+	// 	data.field = getFormData();
+	// 	//校验表单
+	// 	if(!verifyForm(data.field)) return;
+	// 	saveForm(data.field);
+	// 	return false;
+	// }
 
 	/**
 	 * 保存数据，表单提交事件
 	 */
-	function bindButtonEvent() {
-
-		form.on('submit(submit-button)', verifyAndSaveForm);
-
-
-		//关闭窗口
-		$("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-asset-item-form-data-win',this); });
-
-	}
+	// function bindButtonEvent() {
+	//
+	// 	form.on('submit(submit-button)', verifyAndSaveForm);
+	//
+	//
+	// 	//关闭窗口
+	// 	$("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-asset-item-form-data-win',this); });
+	//
+	// }
 
 	window.module={
-		getFormData: getFormData,
-		verifyForm: verifyForm,
-		saveForm: saveForm,
-		verifyAndSaveForm:verifyAndSaveForm,
-		fillFormData: fillFormData,
-		fillFormDataByIds:fillFormDataByIds,
-		processFormData4Bpm:processFormData4Bpm,
-		adjustPopup: adjustPopup,
-		action: action,
-		setAction: function (act) {
-			action = act;
-		}
+		adjustPopup: adjustPopup
 	};
 
 	window.pageExt.form.ending && window.pageExt.form.ending();

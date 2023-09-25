@@ -27,7 +27,7 @@
 	<link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
 </head>
 
-<body style="overflow-y: hidden;">
+<body>
 <div class="form-container" >
 	<div style="height: 50px"></div>
 	<div id="data-form" lay-filter="data-form" class="layui-form model-form" >
@@ -42,13 +42,10 @@
 					</div>
 				</div>
 			</div>
-			<!--结束：栏次输入框循环-->
 		</div>
-		<!--结束：group循环-->
 		<div style="height: 20px"></div>
 	</div>
-
-	<div id="loading"></div>
+	<div style="height: 80px"></div>
 	<div style="width:100%;text-align:center">
 		<button type="button" class="layui-btn" id="attach-button" th:text="${lang.translate('上传提交')}">上传提交</button>
 	</div>
@@ -61,12 +58,8 @@
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
 <script th:inline="javascript">
-	var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
 	var VALIDATE_CONFIG={};
-
-	var RADIO_EQUIPMENTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetEquipmentStatusEnum')}]];
 	var AUTH_PREFIX="oa_netdisk_file_upload";
-
 	var FD_ID = [[${fdId}]];
 </script>
 

@@ -122,7 +122,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                         }else if(r.netdiskFile.fileType=="file_photo"){
                             html="<image style='margin-right:5px;width:25px;height: 25px' src='/assets/netdiskimg/photo2.png'></image>"+r.netdiskFile.fileName
                         }else if(r.netdiskFile.fileType=="file_video"){
-                            html="<image style='margin-right:5px;width:25px;height: 25px' src='/assets/netdiskimg/folder.png'></image>"+r.netdiskFile.fileName
+                            html="<image style='margin-right:5px;width:25px;height: 25px' src='/assets/netdiskimg/video2.png'></image>"+r.netdiskFile.fileName
                         }else if(r.netdiskFile.fileType=="file_music"){
                             html="<image style='margin-right:5px;width:25px;height: 25px' src='/assets/netdiskimg/music.png'></image>"+r.netdiskFile.fileName
                         }else if(r.netdiskFile.fileType=="file_zip"){
