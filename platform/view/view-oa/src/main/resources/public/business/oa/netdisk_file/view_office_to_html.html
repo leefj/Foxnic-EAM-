@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+    <title th:text="${lang.translate('预览')}">预览</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+
+    <script type="text/javascript" src="/assets/officeToHtml/jquery/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/assets/officeToHtml/jquery_ui/jquery-ui.min.js"></script>
+    <!--PDF-->
+    <link rel="stylesheet" href="/assets/officeToHtml/pdf/pdf.viewer.css">
+    <script src="/assets/officeToHtml/pdf/pdf.js"></script>
+    <!--Docs-->
+    <script src="/assets/officeToHtml/docx/jszip-utils.js"></script>
+    <script src="/assets/officeToHtml/docx/mammoth.browser.min.js"></script>
+    <!--PPTX-->
+    <link rel="stylesheet" href="/assets/officeToHtml/PPTXjs/css/pptxjs.css">
+    <link rel="stylesheet" href="/assets/officeToHtml/PPTXjs/css/nv.d3.min.css">
+    <!-- optional if you want to use revealjs (v1.11.0) -->
+    <link rel="stylesheet" href="/assets/officeToHtml/revealjs/reveal.css">
+    <script type="text/javascript" src="/assets/officeToHtml/PPTXjs/js/filereader.js"></script>
+    <script type="text/javascript" src="/assets/officeToHtml/PPTXjs/js/d3.min.js"></script>
+    <script type="text/javascript" src="/assets/officeToHtml/PPTXjs/js/nv.d3.min.js"></script>
+    <script type="text/javascript" src="/assets/officeToHtml/PPTXjs/js/pptxjs.js"></script>
+    <script type="text/javascript" src="/assets/officeToHtml/PPTXjs/js/divs2slides.js"></script>
+    <!--All Spreadsheet -->
+    <link rel="stylesheet" href="/assets/officeToHtml/SheetJS/handsontable.full.min.css">
+    <script type="text/javascript" src="/assets/officeToHtml/SheetJS/handsontable.full.min.js"></script>
+    <script type="text/javascript" src="/assets/officeToHtml/SheetJS/xlsx.full.min.js"></script>
+    <!--Image viewer-->
+    <link rel="stylesheet" href="/assets/officeToHtml/verySimpleImageViewer/css/jquery.verySimpleImageViewer.css">
+    <script type="text/javascript" src="/assets/officeToHtml/verySimpleImageViewer/js/jquery.verySimpleImageViewer.js"></script>
+    <!--officeToHtml-->
+    <script src="/assets/officeToHtml/oToH/officeToHtml.js"></script>
+    <link rel="stylesheet" href="/assets/officeToHtml/oToH/officeToHtml.css">
+</head>
+<body>
+<div style="width:100%;height:800px" id="resolte-contaniner"></div>
+</body>
+
+<script th:inline="javascript">
+    var ID = [[${id}]];
+    var TYPE = [[${type}]];
+    var FILE_EXT = [[${fileExt}]];
+    var FD = [[${fd}]];
+    var AUTH_PREFIX="oa_netdisk_view_oth";
+</script>
+
+<script>
+    var url="/service-oa/oa-netdisk-virtual-fd/download-by-id?id="+ID+"&fdType=file&filename=file."+FILE_EXT
+    $("#resolte-contaniner").officeToHtml({
+        url: url
+    });
+    var h=$(document).height();
+    $("#resolte-contaniner").height(h-80);
+</script>
+</body>
+</html>

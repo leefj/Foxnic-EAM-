@@ -12,7 +12,7 @@
 - http://web.foxnicweb.com/
 - 1、QQ群:634770774
 - 2、微信号:myxyjm
-- 企业或个人相关技术开发合作，请进群联系我们！
+- 企业或个人相关技术开发合作，请进群联系！
 - 微信群：      
   ![微信群](platform/view/view-console/src/main/resources/static/assets/images/wx.png)
 

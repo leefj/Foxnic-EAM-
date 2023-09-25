@@ -282,8 +282,8 @@ function ListPage() {
                     admin.popupCenter({
                         title: "上传文件",
                         resize: false,
-                        offset: [20,null],
-                        area: ["70%","50%"],
+                        offset: [100,null],
+                        area: ["75%","60%"],
                         type: 2,
                         id:"oa-netdisk-upload-file-form-data-win",
                         content: '/business/oa/netdisk_virtual_fd/upload_file_list.html' + queryString,

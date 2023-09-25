@@ -269,16 +269,14 @@ public class NetdiskVirtualFdController extends SuperController {
         String folderSql = "select id id,id fd_id,name fd_name,'-' fd_size,user_id,parent_id ,create_time,'folder' fd_type,0 sn,hierarchy fd_hierarchy, hierarchy_name fd_hierarchy_name from oa_netdisk_folder where user_id='"+ SessionUser.getCurrent().getActivatedEmployeeId() +"' and deleted=0 and in_recycle='N' and parent_id=?";
         String fileSql   = "select id id,id fd_id,file_name fd_name,file_size fd_size,user_id,folder_id, create_time,'file' fd_type, 1 sn,'-' fd_hierarchy, '-' fd_hierarchy_name from oa_netdisk_file where user_id='"+SessionUser.getCurrent().getActivatedEmployeeId() +"' and deleted=0 and in_recycle='N' and folder_id=?";
         String sql="";
-        if(NetdiskVirtualFdTypeEnum.FILE.code().equals(fdType)){
-             sql=fileSql;
-        }else{
-             sql=folderSql+" union all "+fileSql;
-        }
-
         if(!StringUtil.isBlank(sample.getFdName())){
-            sql=sql+" and file_name like '%"+sample.getFdName()+"%'";
+            fileSql=fileSql+" and file_name like '%"+sample.getFdName()+"%'";
         }
-
+        if(NetdiskVirtualFdTypeEnum.FILE.code().equals(fdType)){
+             sql=fileSql + " order by create_time desc";
+        }else{
+            sql= "select * from ("+ folderSql+" union all "+fileSql +" ) hz order by fd_type desc,create_time desc";
+        }
         String countSql = "select count(1) cnt from (" + sql + ") end";
         Integer countVal = netdiskVirtualFdService.dao().queryRecord(countSql, currentId, currentId).getInteger("cnt");
         RcdSet rs = netdiskVirtualFdService.dao().query(sql, currentId, currentId);
@@ -295,10 +293,9 @@ public class NetdiskVirtualFdController extends SuperController {
             obj.setCreateTime(new Date());
             fdList.add(obj);
         }
-        PagedList<NetdiskVirtualFd> pageList = new PagedList<>(fdList, sample.getPageSize(), sample.getPageIndex(), 1, countVal);
-
+        int pageCount=countVal%sample.getPageSize()>0?countVal/sample.getPageSize()+1:countVal/sample.getPageSize();
+        PagedList<NetdiskVirtualFd> pageList = new PagedList<>(fdList, sample.getPageSize(), sample.getPageIndex(), pageCount, countVal);
         netdiskVirtualFdService.dao().fill(pageList).with(NetdiskVirtualFdMeta.NETDISK_ORIGIN_FILE).execute();
-
         Result<PagedList<NetdiskVirtualFd>> result = new Result<>();
         result.success(true).data(pageList);
         return result;

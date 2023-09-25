@@ -72,7 +72,7 @@ function ListPage() {
 					return value;
 				}
 			}
-			var h=-28;
+			var h=0;
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
