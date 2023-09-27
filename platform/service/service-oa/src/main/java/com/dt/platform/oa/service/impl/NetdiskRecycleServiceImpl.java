@@ -4,8 +4,11 @@ import javax.annotation.Resource;
 
 import com.dt.platform.constants.enums.oa.NetDiskStoragTypeEnum;
 import com.dt.platform.constants.enums.oa.NetdiskVirtualFdTypeEnum;
+import com.dt.platform.domain.oa.NetdiskFile;
+import com.dt.platform.domain.oa.NetdiskFolder;
 import com.dt.platform.oa.service.INetdiskFileService;
 import com.dt.platform.oa.service.INetdiskFolderService;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -88,6 +91,50 @@ public class NetdiskRecycleServiceImpl extends SuperService<NetdiskRecycle> impl
 	public Result insert(NetdiskRecycle netdiskRecycle,boolean throwsException) {
 		Result r=super.insert(netdiskRecycle,throwsException);
 		return r;
+	}
+
+	@Override
+	public Result clearRecycle() {
+		String sql="select id from oa_netdisk_recycle where user_id=?";
+		List<String> ids=dao.query(sql,SessionUser.getCurrent().getActivatedEmployeeId()).getValueList("id",String.class);
+		return clearRecycleByIds(ids);
+	}
+
+	@Override
+	public Result clearRecycleByIds(List<String> ids) {
+		List<NetdiskRecycle> list=queryListByIds(ids);
+		List<String> fileList=new ArrayList<>();
+		List<String> folderList=new ArrayList<>();
+		if(ids.size()>0){
+			for(int i=0;i<list.size();i++){
+				NetdiskRecycle obj=list.get(i);
+				if(NetdiskVirtualFdTypeEnum.FOLDER.code().equals(obj.getFdType())){
+					folderList.add(obj.getFdId());
+				}else if(NetdiskVirtualFdTypeEnum.FILE.code().equals(obj.getFdType())){
+					fileList.add(obj.getFdId());
+				}
+			}
+		}
+		if(fileList.size()>0){
+			for(int i=0;i<fileList.size();i++){
+				dao.execute("update oa_netdisk_file set deleted=1 where id=?",fileList.get(i));
+				dao.execute("delete from oa_netdisk_my_favorite where fd_id=?",fileList.get(i));
+				dao.execute("delete from oa_netdisk_my_share where file_id=?",fileList.get(i));
+				dao.execute("delete from oa_netdisk_share_me where file_id=?",fileList.get(i));
+				dao.execute("delete from oa_netdisk_recycle where fd_id=?",fileList.get(i));
+			}
+		}
+		if(folderList.size()>0){
+			for(int i=0;i<folderList.size();i++){
+				dao.execute("delete from oa_netdisk_recycle where fd_id=?",folderList.get(i));
+				dao.execute("delete from oa_netdisk_my_favorite where fd_id=?",folderList.get(i));
+				dao.execute("update oa_netdisk_file set deleted=1 where folder_id in (select id from oa_netdisk_folder where hierarchy like '%"+folderList.get(i)+"%')");
+				dao.execute("delete from oa_netdisk_folder where hierarchy like '%"+folderList.get(i)+"%'");
+			}
+		}
+		String userId=SessionUser.getCurrent().getActivatedEmployeeId();
+		dao.execute("update oa_netdisk_resource_limit set current_size_b=(select case when sum(a.file_size) is null then 0 else sum(a.file_size) end value from oa_netdisk_origin_file a,oa_netdisk_file b where a.id=b.origin_file_id and b.deleted=0 and b.user_id=?) where user_id=?",userId,userId);
+		return ErrorDesc.success();
 	}
 
 	@Override

@@ -83,11 +83,12 @@ function ListPage() {
 				limit: 50,
 				where: ps,
 				cols: [[
-					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					//{ fixed: 'left',type:'checkbox'},
+					{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'fdId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('fdId',d.fdId,d);}  }
 					,{ field: 'delTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('删除时间') ,templet: function (d) { return templet('delTime',fox.dateFormat(d.delTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-			 	]],
+					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
+				]],
 				done: function (data) {
 					lockSwitchInputs();
 					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
@@ -291,6 +292,21 @@ function ListPage() {
 				case 'restoreFile':
 					restore(selected);
 					break;
+				case 'clearRecycle':
+					top.layer.confirm(fox.translate('确定清空回收站吗？'), function (i) {
+						top.layer.close(i);
+						admin.post(moduleURL+"/clear-recycle", {}, function (data) {
+							if (data.success) {
+								fox.showMessage(data);
+								refreshTableData();
+							} else {
+
+								fox.showMessage(data);
+							}
+						},{delayLoading:200,elms:[$("#clear-recycle-button")]});
+					});
+					break;
+
 
 			};
 		});
@@ -402,22 +418,14 @@ function ListPage() {
 					}
 				});
 			}
-			else if (layEvent === 'del') { // 删除
-
-				if(window.pageExt.list.beforeSingleDelete) {
-					var doNext=window.pageExt.list.beforeSingleDelete(data);
-					if(!doNext) return;
-				}
-
-				top.layer.confirm(fox.translate('确定删除此'+'回收站'+'吗？'), function (i) {
+			else if (layEvent === 'remove') { // 删除
+				var ids=[];
+				ids.push(data.id)
+				top.layer.confirm(fox.translate('确定删除吗？'), function (i) {
 					top.layer.close(i);
-					admin.post(deleteURL, { id : data.id }, function (data) {
+					admin.post(moduleURL+"/clear-recycle-by-ids", { ids : ids}, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
-							if(window.pageExt.list.afterSingleDelete) {
-								var doNext=window.pageExt.list.afterSingleDelete(data);
-								if(!doNext) return;
-							}
 							fox.showMessage(data);
 							refreshTableData();
 						} else {

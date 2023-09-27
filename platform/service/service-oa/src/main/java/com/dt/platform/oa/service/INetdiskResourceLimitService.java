@@ -5,8 +5,8 @@ import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.oa.NetdiskOriginFile;
-import com.dt.platform.domain.oa.NetdiskOriginFileVO;
+import com.dt.platform.domain.oa.NetdiskResourceLimit;
+import com.dt.platform.domain.oa.NetdiskResourceLimitVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -17,62 +17,58 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
-import org.github.foxnic.web.constants.enums.system.FileCatalog;
-import org.github.foxnic.web.domain.storage.File;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
  * <p>
- * 源文件服务接口
+ * 资源限制服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-09-18 15:18:14
- */
+ * @since 2023-09-27 15:59:06
+*/
 
-public interface INetdiskOriginFileService extends  ISimpleIdService<NetdiskOriginFile,String> {
+public interface INetdiskResourceLimitService extends  ISimpleIdService<NetdiskResourceLimit,String> {
 
-	void downloadFile(String id, Boolean inline, HttpServletResponse response);
+	Result recalculate();
+	NetdiskResourceLimit getByUserId(String id);
 
-	Result<NetdiskOriginFile> uploadFile(MultipartFile multipartFile, String dir);
-
+	NetdiskResourceLimit getMyResource();
 	/**
+	 *
 	 * 添加，如果语句错误，则抛出异常
-	 * @param netdiskOriginFile 数据对象
+	 * @param netdiskResourceLimit 数据对象
 	 * @return 插入是否成功
 	 * */
-	Result insert(NetdiskOriginFile netdiskOriginFile);
+	Result insert(NetdiskResourceLimit netdiskResourceLimit);
 
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param netdiskOriginFile  数据对象
+	 * @param netdiskResourceLimit  数据对象
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
-	Result insert(NetdiskOriginFile netdiskOriginFile,boolean throwsException);
+	Result insert(NetdiskResourceLimit netdiskResourceLimit,boolean throwsException);
 
 	/**
 	 * 批量插入实体，事务内
-	 * @param netdiskOriginFileList 实体数据清单
+	 * @param netdiskResourceLimitList 实体数据清单
 	 * @return 插入是否成功
 	 * */
-	Result insertList(List<NetdiskOriginFile> netdiskOriginFileList);
+	Result insertList(List<NetdiskResourceLimit> netdiskResourceLimitList);
 
 
-
+		
 	/**
-	 * 按主键删除源文件
+	 * 按主键删除资源限制
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
 	 */
 	Result deleteByIdPhysical(String id);
-
+	
 	/**
-	 * 按主键删除源文件
+	 * 按主键删除资源限制
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -93,9 +89,9 @@ public interface INetdiskOriginFileService extends  ISimpleIdService<NetdiskOrig
 	 * */
 	<T> Result deleteByIdsLogical(List<T> ids);
 
-
+		
 	/**
-	 * 按主键更新源文件
+	 * 按主键更新资源限制
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -104,103 +100,103 @@ public interface INetdiskOriginFileService extends  ISimpleIdService<NetdiskOrig
 
 	/**
 	 * 更新，如果执行错误，则抛出异常
-	 * @param netdiskOriginFile 数据对象
+	 * @param netdiskResourceLimit 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result update(NetdiskOriginFile netdiskOriginFile , SaveMode mode);
+	Result update(NetdiskResourceLimit netdiskResourceLimit , SaveMode mode);
 
 
 	/**
 	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param netdiskOriginFile 数据对象
+	 * @param netdiskResourceLimit 数据对象
 	 * @param mode SaveMode,数据更新的模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果
 	 */
-	Result update(NetdiskOriginFile netdiskOriginFile , SaveMode mode,boolean throwsException);
+	Result update(NetdiskResourceLimit netdiskResourceLimit , SaveMode mode,boolean throwsException);
 
 
 	/**
 	 * 更新实体集，事务内
-	 * @param netdiskOriginFileList 数据对象列表
+	 * @param netdiskResourceLimitList 数据对象列表
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result updateList(List<NetdiskOriginFile> netdiskOriginFileList, SaveMode mode);
+	Result updateList(List<NetdiskResourceLimit> netdiskResourceLimitList, SaveMode mode);
 
 	/**
 	 * 保存实体，根据 throwsException 参数抛出异常或返回 Result 对象
-	 * @param netdiskOriginFile 实体数据
+	 * @param netdiskResourceLimit 实体数据
 	 * @param mode 保存模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 保存是否成功
 	 * */
-	Result save(NetdiskOriginFile netdiskOriginFile , SaveMode mode,boolean throwsException);
+	Result save(NetdiskResourceLimit netdiskResourceLimit , SaveMode mode,boolean throwsException);
 
 	/**
 	 * 保存实体，如果语句错误，则抛出异常
-	 * @param netdiskOriginFile 实体数据
+	 * @param netdiskResourceLimit 实体数据
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result save(NetdiskOriginFile netdiskOriginFile , SaveMode mode);
+	Result save(NetdiskResourceLimit netdiskResourceLimit , SaveMode mode);
 
 	/**
 	 * 保存实体，如果主键值不为null，则更新，否则插入
-	 * @param netdiskOriginFileList 实体数据清单
+	 * @param netdiskResourceLimitList 实体数据清单
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result saveList(List<NetdiskOriginFile> netdiskOriginFileList , SaveMode mode);
+	Result saveList(List<NetdiskResourceLimit> netdiskResourceLimitList , SaveMode mode);
 
 	/**
 	 * 检查实体中的数据字段是否已经存在 . 判断 主键值不同，但指定字段的值相同的记录是否存在
-	 * @param netdiskOriginFile  实体对象
+	 * @param netdiskResourceLimit  实体对象
 	 * @param field  字段清单，至少指定一个
 	 * @return 是否已经存在
 	 * */
-	boolean checkExists(NetdiskOriginFile netdiskOriginFile,DBField... field);
+	boolean checkExists(NetdiskResourceLimit netdiskResourceLimit,DBField... field);
 
-
+		
 	/**
-	 * 按主键获取源文件
+	 * 按主键获取资源限制
 	 *
 	 * @param id 主键
-	 * @return NetdiskOriginFile 数据对象
+	 * @return NetdiskResourceLimit 数据对象
 	 */
-	NetdiskOriginFile getById(String id);
+	NetdiskResourceLimit getById(String id);
 
 	/**
 	 * 按 id 获取多个对象
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<NetdiskOriginFile> queryListByIds(List<String> ids);
+	List<NetdiskResourceLimit> queryListByIds(List<String> ids);
 
 	/**
 	 * 按 id 列表查询 Map
 	 * @param ids  主键清单
 	 * */
-	Map<String, NetdiskOriginFile> queryMapByIds(List<String> ids);
+	Map<String, NetdiskResourceLimit> queryMapByIds(List<String> ids);
 
 
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
-	 * @param netdiskOriginFile 数据对象
+	 * @param netdiskResourceLimit 数据对象
 	 * @return 判断结果
 	 */
-	Boolean checkExists(NetdiskOriginFile netdiskOriginFile);
+	Boolean checkExists(NetdiskResourceLimit netdiskResourceLimit);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
 	 * @param sample 数据样例
 	 * @return ConditionExpr 条件表达式
 	 * */
-	ConditionExpr buildQueryCondition(NetdiskOriginFile sample);
+	ConditionExpr buildQueryCondition(NetdiskResourceLimit sample);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
@@ -208,14 +204,14 @@ public interface INetdiskOriginFileService extends  ISimpleIdService<NetdiskOrig
 	 * @param tableAliase 数据表别名
 	 * 	@return ConditionExpr 条件表达式
 	 * */
-	ConditionExpr buildQueryCondition(NetdiskOriginFile sample,String tableAliase);
+	ConditionExpr buildQueryCondition(NetdiskResourceLimit sample,String tableAliase);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<NetdiskOriginFile> queryList(NetdiskOriginFileVO sample);
+	List<NetdiskResourceLimit> queryList(NetdiskResourceLimitVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -224,7 +220,7 @@ public interface INetdiskOriginFileService extends  ISimpleIdService<NetdiskOrig
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	List<NetdiskOriginFile> queryList(NetdiskOriginFile sample,ConditionExpr condition,OrderBy orderBy);
+	List<NetdiskResourceLimit> queryList(NetdiskResourceLimit sample,ConditionExpr condition,OrderBy orderBy);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -232,7 +228,7 @@ public interface INetdiskOriginFileService extends  ISimpleIdService<NetdiskOrig
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	List<NetdiskOriginFile> queryList(NetdiskOriginFile sample,OrderBy orderBy);
+	List<NetdiskResourceLimit> queryList(NetdiskResourceLimit sample,OrderBy orderBy);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -240,14 +236,14 @@ public interface INetdiskOriginFileService extends  ISimpleIdService<NetdiskOrig
 	 * @param condition  其它条件
 	 * @return 查询结果
 	 * */
-	List<NetdiskOriginFile> queryList(NetdiskOriginFile sample,ConditionExpr condition);
+	List<NetdiskResourceLimit> queryList(NetdiskResourceLimit sample,ConditionExpr condition);
 
 	/**
 	 * 查询单个实体
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	NetdiskOriginFile queryEntity(NetdiskOriginFile sample);
+	NetdiskResourceLimit queryEntity(NetdiskResourceLimit sample);
 
 	/**
 	 * 分页查询实体集
@@ -256,7 +252,7 @@ public interface INetdiskOriginFileService extends  ISimpleIdService<NetdiskOrig
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<NetdiskOriginFile> queryPagedList(NetdiskOriginFileVO sample,int pageSize,int pageIndex);
+	PagedList<NetdiskResourceLimit> queryPagedList(NetdiskResourceLimitVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -267,7 +263,7 @@ public interface INetdiskOriginFileService extends  ISimpleIdService<NetdiskOrig
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	PagedList<NetdiskOriginFile> queryPagedList(NetdiskOriginFile sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
+	PagedList<NetdiskResourceLimit> queryPagedList(NetdiskResourceLimit sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -277,7 +273,7 @@ public interface INetdiskOriginFileService extends  ISimpleIdService<NetdiskOrig
 	 * @param condition  其它条件
 	 * @return 查询结果
 	 * */
-	PagedList<NetdiskOriginFile> queryPagedList(NetdiskOriginFile sample,ConditionExpr condition,int pageSize,int pageIndex);
+	PagedList<NetdiskResourceLimit> queryPagedList(NetdiskResourceLimit sample,ConditionExpr condition,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -287,9 +283,9 @@ public interface INetdiskOriginFileService extends  ISimpleIdService<NetdiskOrig
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	PagedList<NetdiskOriginFile> queryPagedList(NetdiskOriginFile sample,OrderBy orderBy,int pageSize,int pageIndex);
+	PagedList<NetdiskResourceLimit> queryPagedList(NetdiskResourceLimit sample,OrderBy orderBy,int pageSize,int pageIndex);
 
-	/**
+ 	/**
 	 * 查询指定字段的数据清单
 	 * @param <T> 元素类型
 	 * @param field 字段
@@ -309,6 +305,9 @@ public interface INetdiskOriginFileService extends  ISimpleIdService<NetdiskOrig
 	 * @return 列数据
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
+
+
+
 
 
 }

@@ -13,94 +13,446 @@
     <meta charset="utf-8"/>
     <title th:text="${lang.translate('文件管理')}">文件管理</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css"
+          th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/libs/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css"
+          th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
     <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
-    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css"
+          th:href="@{/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
     <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
-    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null" ) rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null" ) rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
     <style>
         .top-container {
             display: -webkit-flex; /* Safari */
             display: flex;
             width: 100%;
-            align-items:top;
+            align-items: top;
         }
+
         .left-tree {
             width: 220px;
             background-color: #ffffff;
             border-right: 1px #e6e6e6 solid;
         }
+
         .right-tab {
-            flex:1;
+            flex: 1;
         }
 
-        .level1{
-            margin-bottom:5px!important;
-            margin-top:5px!important;
+        .level1 {
+            margin-bottom: 5px !important;
+            margin-top: 5px !important;
         }
 
-        .level2{
-            margin-bottom: 5px!important;
-            margin-top: 5px!important;
+        .level2 {
+            margin-bottom: 5px !important;
+            margin-top: 5px !important;
         }
-        .ztree li span.button.icon_recycle_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/recycle.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_recycle_ico_close{margin-right:2px; background: url(/assets/netdiskimg/recycle.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_recycle_ico_open{margin-right:2px; background: url(/assets/netdiskimg/recycle.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
 
-        .ztree li span.button.icon_sharetome_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/sharetome.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_sharetome_ico_close{margin-right:2px; background: url(/assets/netdiskimg/sharetome.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_sharetome_ico_open{margin-right:2px; background: url(/assets/netdiskimg/sharetome.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
+        .ztree li span.button.icon_recycle_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/recycle.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
 
-        .ztree li span.button.icon_share_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/share.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_share_ico_close{margin-right:2px; background: url(/assets/netdiskimg/share.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_share_ico_open{margin-right:2px; background: url(/assets/netdiskimg/share.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
+        .ztree li span.button.icon_recycle_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/recycle.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
 
-        .ztree li span.button.icon_home_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/home.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_home_ico_close{margin-right:2px; background: url(/assets/netdiskimg/home.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_home_ico_open{margin-right:2px; background: url(/assets/netdiskimg/home.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
+        .ztree li span.button.icon_recycle_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/recycle.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
 
-        .ztree li span.button.icon_fav_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/collect3.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_fav_ico_close{margin-right:2px; background: url(/assets/netdiskimg/collect3.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_fav_ico_open{margin-right:2px; background: url(/assets/netdiskimg/collect3.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
+        .ztree li span.button.icon_sharetome_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/sharetome.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
 
-        .ztree li span.button.icon_folder_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/folder.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_folder_ico_close{margin-right:2px; background: url(/assets/netdiskimg/folder.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_folder_ico_open{margin-right:2px; background: url(/assets/netdiskimg/folder.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
+        .ztree li span.button.icon_sharetome_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/sharetome.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
 
-        .ztree li span.button.icon_file_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/document2.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_file_ico_close{margin-right:2px; background: url(/assets/netdiskimg/document2.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_file_ico_open{margin-right:2px; background: url(/assets/netdiskimg/document2.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
+        .ztree li span.button.icon_sharetome_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/sharetome.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
 
-        .ztree li span.button.icon_doc_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/document3.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_doc_ico_close{margin-right:2px; background: url(/assets/netdiskimg/document3.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_doc_ico_open{margin-right:2px; background: url(/assets/netdiskimg/document3.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
+        .ztree li span.button.icon_share_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/share.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
 
-        .ztree li span.button.icon_music_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/music.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_music_ico_close{margin-right:2px; background: url(/assets/netdiskimg/music.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_music_ico_open{margin-right:2px; background: url(/assets/netdiskimg/music.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
+        .ztree li span.button.icon_share_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/share.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
 
-        .ztree li span.button.icon_photo_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/photo2.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_photo_ico_close{margin-right:2px; background: url(/assets/netdiskimg/photo2.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_photo_ico_open{margin-right:2px; background: url(/assets/netdiskimg/photo2.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
+        .ztree li span.button.icon_share_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/share.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_home_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/home.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_home_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/home.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_home_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/home.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_fav_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/collect3.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_fav_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/collect3.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_fav_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/collect3.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_folder_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/folder.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_folder_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/folder.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_folder_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/folder.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_file_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/document2.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_file_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/document2.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_file_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/document2.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_doc_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/document3.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_doc_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/document3.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_doc_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/document3.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_music_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/music.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_music_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/music.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_music_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/music.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_photo_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/photo2.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_photo_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/photo2.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_photo_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/photo2.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
 
 
-        .ztree li span.button.icon_video_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/video2.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_video_ico_close{margin-right:2px; background: url(/assets/netdiskimg/video2.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_video_ico_open{margin-right:2px; background: url(/assets/netdiskimg/video2.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
+        .ztree li span.button.icon_video_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/video2.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
 
-        .ztree li span.button.icon_other_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/document3.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_other_ico_close{margin-right:2px; background: url(/assets/netdiskimg/document3.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_other_ico_open{margin-right:2px; background: url(/assets/netdiskimg/document3.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
+        .ztree li span.button.icon_video_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/video2.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_video_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/video2.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_other_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/document3.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_other_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/document3.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_other_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/document3.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
 
 
-        .ztree li span.button.icon_zip_ico_docu{margin-right:2px; background: url(/assets/netdiskimg/zip.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_zip_ico_close{margin-right:2px; background: url(/assets/netdiskimg/zip.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
-        .ztree li span.button.icon_zip_ico_open{margin-right:2px; background: url(/assets/netdiskimg/zip.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle;background-size: 100% auto;}
+        .ztree li span.button.icon_zip_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/zip.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_zip_ico_close {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/zip.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_zip_ico_open {
+            margin-right: 2px;
+            background: url(/assets/netdiskimg/zip.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+
+    </style>
+
+    <style>
+        .wp-s-aside-nav__sub-bottom {
+            position: absolute;
+            bottom: 25px;
+            margin-left:30px;
+            /*width: 100%;*/
+            /*margin: 0 auto;*/
+            /*text-align: center*/
+        }
+
+        .wp-s-aside-nav__sub-bottom-button {
+            display: block;
+            margin: 0 auto;
+            line-height: 12px;
+            width: 174px
+        }
+
+        .wp-s-aside-nav-bubble,.wp-s-aside-nav__sub-bottom-button-text {
+            display: -ms-flexbox;
+            -webkit-box-orient: vertical
+        }
+
+        .wp-s-aside-nav__sub-bottom-button-text {
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        .wp-s-aside-nav__sub-bottom-button-text-small {
+            margin-top: 4px;
+            font-weight: 400
+        }
+        .wp-s-aside-nav__quota {
+            text-align: center
+        }
+
+        .wp-s-aside-nav__quota.is-warn .wp-s-aside-nav__quota-progress-rate {
+            background-color: #ffd821
+        }
+
+        .wp-s-aside-nav__quota.is-over .wp-s-aside-nav__quota-progress-rate {
+            background-color: #fc9259
+        }
+
+        .wp-s-aside-nav__quota-wrapper {
+            display: inline-block;
+            width: 140px;
+            text-align: left
+        }
+
+        .wp-s-aside-nav__quota-progress {
+            height: 6px;
+            border-radius: 4px;
+            background-color: #eeeff4;
+            position: relative
+        }
+
+        .wp-s-aside-nav__quota-progress-rate {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background-color: #06a7ff;
+            border-radius: 4px;
+            max-width: 100%
+        }
+
+        .wp-s-aside-nav__quota-body {
+            margin-top: 8px;
+            font-size: 12px
+        }
+
+        .wp-s-aside-nav__quota-body-text {
+            color: #afb3bf
+        }
+
+        .wp-s-aside-nav__quota-body-action {
+            color: #06a7ff;
+            float: right;
+            font-weight: 700
+        }
 
     </style>
 </head>
@@ -112,22 +464,52 @@
         </div>
         <div id="tree-container" style="overflow:auto">
             <ul id="menu-tree" class="ztree"></ul>
+            <div id="cap" style="display: none" class="wp-s-aside-nav__sub-bottom">
+                <div class="wp-s-aside-nav__quota">
+                    <span><div role="tooltip" id="u-popover-2815" aria-hidden="true"
+                                                              class="u-popover u-popper wp-s-tooltip-no-padding wp-s-tooltip-padding-sub"
+                                                              tabindex="0" style="width: 232px; display: none;"><!----><div
+                        class="wp-s-aside-nav__sub-content-header"><i
+                        class="wp-s-aside-nav__sub-content-header-icon u-icon-warning"></i> <span
+                        class="wp-s-aside-nav__sub-content-header-title"></span> <i
+                        class="wp-s-aside-nav__sub-content-header-icon-close u-icon-close"></i></div> <div
+                        class="wp-s-aside-nav__sub-content-desc"></div> <button type="button"
+                                                                                class="u-button u-svip-button wp-s-aside-nav__sub-bottom-button u-button--default u-button--larger is-round u-svip-button--main u-svip-button--larger"
+                                                                                round=""><!----><!----><span><!----><div
+                        class="wp-s-aside-nav__sub-bottom-button-text"></div><!----></span></button> </div><span
+                        class="u-popover__reference-wrapper"><div
+                        class="wp-s-aside-nav__quota-wrapper u-popover__reference" aria-describedby="u-popover-2815"
+                        tabindex="0"><div class="wp-s-aside-nav__quota-progress"><div
+                        class="wp-s-aside-nav__quota-progress-rate" style="width: 80%;" id="capPct"></div></div> <div
+                        class="wp-s-aside-nav__quota-body"><span
+                        class="wp-s-aside-nav__quota-body-text" id="capStr">206G/2157G</span> <!----></div></div></span></span>
+                </div>
+            </div>
+
+
         </div>
     </div>
     <div class="right-tab" style="margin-left: 8px;margin-right: 8px">
         <div class="layui-tab-item layui-show" type="emp">
-            <iframe id="myFav"   src="/business/oa/netdisk_my_favorite/netdisk_my_favorite_list.html" frameborder=0 width="100%"></iframe>
-            <iframe id="mySpace" src="/business/oa/netdisk_menu/netdisk_myspace_list.html" frameborder=0 width="100%"></iframe>
-            <iframe id="shareMe" src="/business/oa/netdisk_share_me/netdisk_share_me_list.html" frameborder=0 width="100%"></iframe>
-            <iframe id="myShare" src="/business/oa/netdisk_my_share/netdisk_my_share_list.html" frameborder=0 width="100%"></iframe>
-            <iframe id="file"    src="/business/oa/netdisk_file/netdisk_file_list.html" frameborder=0 width="100%"></iframe>
-            <iframe id="recycle" src="/business/oa/netdisk_recycle/netdisk_recycle_list.html" frameborder=0 width="100%"></iframe>
+            <iframe style="display: none" id="myFav"
+                    src="/business/oa/netdisk_my_favorite/netdisk_my_favorite_list.html" frameborder=0
+                    width="100%"></iframe>
+            <iframe id="mySpace" src="/business/oa/netdisk_menu/netdisk_myspace_list.html" frameborder=0
+                    width="100%"></iframe>
+            <iframe style="display: none" id="shareMe" src="/business/oa/netdisk_share_me/netdisk_share_me_list.html"
+                    frameborder=0 width="100%"></iframe>
+            <iframe style="display: none" id="myShare" src="/business/oa/netdisk_my_share/netdisk_my_share_list.html"
+                    frameborder=0 width="100%"></iframe>
+            <iframe style="display: none" id="file" src="/business/oa/netdisk_file/netdisk_file_list.html" frameborder=0
+                    width="100%"></iframe>
+            <iframe style="display: none" id="recycle" src="/business/oa/netdisk_recycle/netdisk_recycle_list.html"
+                    frameborder=0 width="100%"></iframe>
         </div>
     </div>
 </div>
 
 <script th:inline="javascript">
-    var AUTH_PREFIX='oa_netdisk_data';
+    var AUTH_PREFIX = 'oa_netdisk_data';
 </script>
 
 <script type="text/javascript" src="/module/global.js"></script>

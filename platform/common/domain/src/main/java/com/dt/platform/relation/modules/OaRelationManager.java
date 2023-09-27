@@ -43,6 +43,13 @@ public class OaRelationManager extends RelationManager {
 		this.setupNetDiskMyShare();
 		this.setupNetDiskRecycle();
 		this.setupNetDiskVirtualFile();
+		this.setupNetDiskResourceLimit();
+	}
+
+	public void setupNetDiskResourceLimit() {
+		this.property(NetdiskResourceLimitMeta.USER_PROP)
+				.using(OaTables.OA_NETDISK_RESOURCE_LIMIT.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
 	}
 
 	public void setupNetDiskVirtualFile() {
@@ -99,12 +106,12 @@ public class OaRelationManager extends RelationManager {
 				.using(OaTables.OA_NETDISK_MY_FAVORITE.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
 		this.property(NetdiskMyFavoriteMeta.NETDISK_ORIGIN_FILE_PROP)
-				.using(OaTables.OA_NETDISK_MY_FAVORITE.FILE_ID).join(OaTables.OA_NETDISK_FILE.ID)
+				.using(OaTables.OA_NETDISK_MY_FAVORITE.FD_ID).join(OaTables.OA_NETDISK_FILE.ID)
 					.using(OaTables.OA_NETDISK_FILE.ORIGIN_FILE_ID).join(OaTables.OA_NETDISK_ORIGIN_FILE.ID);
 
 
 		this.property(NetdiskMyFavoriteMeta.NETDISK_FILE_PROP)
-				.using(OaTables.OA_NETDISK_MY_FAVORITE.FILE_ID).join(OaTables.OA_NETDISK_FILE.ID);
+				.using(OaTables.OA_NETDISK_MY_FAVORITE.FD_ID).join(OaTables.OA_NETDISK_FILE.ID);
 
 	}
 

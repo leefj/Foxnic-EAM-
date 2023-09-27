@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-09-23 13:35:24
+ * @since 2023-09-27 20:36:42
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -2110,102 +2110,6 @@ public class OaTables {
 	}
 	
 	/**
-	 * 资源限制
-	*/
-	public static class OA_NETDISK_LIMIT extends DBTable {
-		
-		/**
-		 * 表名
-		*/
-		public static final String $NAME = "oa_netdisk_limit";
-		
-		/**
-		 * 主键
-		*/
-		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
-		
-		/**
-		 * 容量(G)
-		*/
-		public static final DBField CAPACITY_SIZE = new DBField(DBDataType.INTEGER , "capacity_size","capacitySize","容量","G)",false,false,true);
-		
-		/**
-		 * 上传大小(M)
-		*/
-		public static final DBField UPLOAD_MAX_SIZE = new DBField(DBDataType.INTEGER , "upload_max_size","uploadMaxSize","上传大小","M)",false,false,true);
-		
-		/**
-		 * 文件类型
-		*/
-		public static final DBField UPLOAD_FILE_TYPE = new DBField(DBDataType.STRING , "upload_file_type","uploadFileType","文件类型","文件类型",false,false,true);
-		
-		/**
-		 * 视频播放
-		*/
-		public static final DBField PLAY_VIDEO_VALID = new DBField(DBDataType.STRING , "play_video_valid","playVideoValid","视频播放","视频播放",false,false,true);
-		
-		/**
-		 * 音频播放
-		*/
-		public static final DBField PLAY_MUSIC_VALID = new DBField(DBDataType.STRING , "play_music_valid","playMusicValid","音频播放","音频播放",false,false,true);
-		
-		/**
-		 * 用户
-		*/
-		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
-		
-		/**
-		 * 版本
-		*/
-		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
-		
-		/**
-		 * 创建人ID
-		*/
-		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
-		
-		/**
-		 * 创建时间
-		*/
-		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
-		
-		/**
-		 * 修改人ID
-		*/
-		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
-		
-		/**
-		 * 修改时间
-		*/
-		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
-		
-		/**
-		 * 是否已删除
-		*/
-		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
-		
-		/**
-		 * 删除人ID
-		*/
-		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
-		
-		/**
-		 * 删除时间
-		*/
-		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
-		
-		/**
-		 * 租户
-		*/
-		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
-		
-		public OA_NETDISK_LIMIT() {
-			this.init($NAME,"资源限制" , ID , CAPACITY_SIZE , UPLOAD_MAX_SIZE , UPLOAD_FILE_TYPE , PLAY_VIDEO_VALID , PLAY_MUSIC_VALID , USER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
-		}
-		public static final OA_NETDISK_LIMIT $TABLE=new OA_NETDISK_LIMIT();
-	}
-	
-	/**
 	 * 文件菜单
 	*/
 	public static class OA_NETDISK_MENU extends DBTable {
@@ -2329,11 +2233,12 @@ public class OaTables {
 		/**
 		 * 文件
 		*/
-		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","文件","文件",false,false,true);
+		public static final DBField FD_ID = new DBField(DBDataType.STRING , "fd_id","fdId","文件","文件",false,false,true);
 		
 		/**
+		 * 类型
 		*/
-		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","type","type",false,false,true);
+		public static final DBField FD_TYPE = new DBField(DBDataType.STRING , "fd_type","fdType","类型","类型",false,false,true);
 		
 		/**
 		 * 版本
@@ -2381,7 +2286,7 @@ public class OaTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OA_NETDISK_MY_FAVORITE() {
-			this.init($NAME,"我的收藏(未使用)" , ID , USER_ID , FILE_ID , TYPE , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+			this.init($NAME,"我的收藏(未使用)" , ID , USER_ID , FD_ID , FD_TYPE , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
 		}
 		public static final OA_NETDISK_MY_FAVORITE $TABLE=new OA_NETDISK_MY_FAVORITE();
 	}
@@ -2654,6 +2559,11 @@ public class OaTables {
 		public static final DBField LAST_VISIT_TIME = new DBField(DBDataType.DATE , "last_visit_time","lastVisitTime","上次访问时间","上次访问时间",false,false,true);
 		
 		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
 		 * MD5
 		*/
 		public static final DBField MD5_VALUE = new DBField(DBDataType.STRING , "md5_value","md5Value","MD5","MD5",false,false,true);
@@ -2704,7 +2614,7 @@ public class OaTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OA_NETDISK_ORIGIN_FILE() {
-			this.init($NAME,"源文件" , ID , FILE_NAME , FILE_SIZE , LOCATION , MEDIA_TYPE , FILE_TYPE , EXT_VALUE , STORAGE_TYPE , ENCRYPTED , USER_ID , STORAGE_STORE_ID , DOWNLOAD_URL , DOWNLOAD_COUNT , REFERENCE_COUNT , LAST_VISIT_TIME , MD5_VALUE , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+			this.init($NAME,"源文件" , ID , FILE_NAME , FILE_SIZE , LOCATION , MEDIA_TYPE , FILE_TYPE , EXT_VALUE , STORAGE_TYPE , ENCRYPTED , USER_ID , STORAGE_STORE_ID , DOWNLOAD_URL , DOWNLOAD_COUNT , REFERENCE_COUNT , LAST_VISIT_TIME , NOTES , MD5_VALUE , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
 		}
 		public static final OA_NETDISK_ORIGIN_FILE $TABLE=new OA_NETDISK_ORIGIN_FILE();
 	}
@@ -2793,6 +2703,117 @@ public class OaTables {
 			this.init($NAME,"回收站" , ID , FD_ID , FD_TYPE , DEL_TIME , USER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
 		}
 		public static final OA_NETDISK_RECYCLE $TABLE=new OA_NETDISK_RECYCLE();
+	}
+	
+	/**
+	 * 资源限制
+	*/
+	public static class OA_NETDISK_RESOURCE_LIMIT extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "oa_netdisk_resource_limit";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 用户
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
+		
+		/**
+		 * 最大容量_M
+		*/
+		public static final DBField CAPACITY_SIZE_M = new DBField(DBDataType.LONG , "capacity_size_m","capacitySizeM","最大容量","M",false,false,true);
+		
+		/**
+		 * 当前容量_B
+		*/
+		public static final DBField CURRENT_SIZE_B = new DBField(DBDataType.LONG , "current_size_b","currentSizeB","当前容量","B",false,false,true);
+		
+		/**
+		 * 上传大小_M
+		*/
+		public static final DBField UPLOAD_MAX_SIZE_M = new DBField(DBDataType.LONG , "upload_max_size_m","uploadMaxSizeM","上传大小","M",false,false,true);
+		
+		/**
+		 * 文件类型
+		*/
+		public static final DBField UPLOAD_FILE_TYPE = new DBField(DBDataType.STRING , "upload_file_type","uploadFileType","文件类型","文件类型",false,false,true);
+		
+		/**
+		 * 视频播放
+		*/
+		public static final DBField PLAY_VIDEO_VALID = new DBField(DBDataType.STRING , "play_video_valid","playVideoValid","视频播放","视频播放",false,false,true);
+		
+		/**
+		 * 音频播放
+		*/
+		public static final DBField PLAY_MUSIC_VALID = new DBField(DBDataType.STRING , "play_music_valid","playMusicValid","音频播放","音频播放",false,false,true);
+		
+		/**
+		 * 图片预览
+		*/
+		public static final DBField VIEW_PHOTO_VALID = new DBField(DBDataType.STRING , "view_photo_valid","viewPhotoValid","图片预览","图片预览",false,false,true);
+		
+		/**
+		 * 文档预览
+		*/
+		public static final DBField VIEW_DOC_VALID = new DBField(DBDataType.STRING , "view_doc_valid","viewDocValid","文档预览","文档预览",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OA_NETDISK_RESOURCE_LIMIT() {
+			this.init($NAME,"资源限制" , ID , USER_ID , CAPACITY_SIZE_M , CURRENT_SIZE_B , UPLOAD_MAX_SIZE_M , UPLOAD_FILE_TYPE , PLAY_VIDEO_VALID , PLAY_MUSIC_VALID , VIEW_PHOTO_VALID , VIEW_DOC_VALID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+		}
+		public static final OA_NETDISK_RESOURCE_LIMIT $TABLE=new OA_NETDISK_RESOURCE_LIMIT();
 	}
 	
 	/**

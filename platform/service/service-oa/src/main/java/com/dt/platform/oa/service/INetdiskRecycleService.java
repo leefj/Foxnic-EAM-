@@ -30,6 +30,10 @@ import java.util.Map;
 public interface INetdiskRecycleService extends  ISimpleIdService<NetdiskRecycle,String> {
 
 
+	Result clearRecycleByIds(List<String> ids);
+
+	Result clearRecycle();
+
 	Result restore(List<String> ids);
 	/**
 	 * 添加，如果语句错误，则抛出异常

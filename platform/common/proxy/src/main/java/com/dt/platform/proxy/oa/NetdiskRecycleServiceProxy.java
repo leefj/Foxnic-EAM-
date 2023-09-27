@@ -88,12 +88,17 @@ public interface NetdiskRecycleServiceProxy {
     /**
      * 分页查询回收站
      */
-
     public static final String RESTORE = API_PREFIX + "restore";
 
+    /**
+     * 清空回收站
+     */
+    public static final String CLEAR_RECYCLE= API_PREFIX + "clear-recycle";
 
-
-
+    /**
+     * 清空回收站
+     */
+    public static final String CLEAR_RECYCLE_BY_IDS= API_PREFIX + "clear-recycle-by-ids";
 
     /**
      * 添加回收站

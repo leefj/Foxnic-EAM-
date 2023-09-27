@@ -170,16 +170,31 @@ public class NetdiskVirtualFdController extends SuperController {
         //
         JSONArray list = new JSONArray();
         JSONObject ret = new JSONObject();
+        Result<NetdiskOriginFile> fileInfoResult=null;
+        Boolean addRight=true;
         for (String f : map.keySet()) {
             MultipartFile mf = map.get(f);
-            NetdiskOriginFile fileInfo = netdiskOriginFileService.uploadFile(mf,dir);
-            String id = fileInfo.getId();
+            fileInfoResult = netdiskOriginFileService.uploadFile(mf,dir);
+            String id = fileInfoResult.data().getId();
             ret.put("fileId", id);
             ret.put("fileName", mf.getOriginalFilename());
             ret.put("field", mf.getName());
             list.add(ret);
+            if(!fileInfoResult.isSuccess()){
+                addRight=false;
+            }
+            break;
         }
-        response.getWriter().write(JSON.toJSONString(ErrorDesc.success().data(list)));
+        if(addRight){
+            response.getWriter().write(JSON.toJSONString(ErrorDesc.success().data(list)));
+        }else{
+            Result<JSONArray> r=new Result<>();
+            r.success(false);
+            r.data(list);
+            r.message(fileInfoResult.getMessage());
+            response.getWriter().write(JSON.toJSONString(r));
+        }
+
     }
 
 

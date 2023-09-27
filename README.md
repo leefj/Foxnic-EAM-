@@ -96,9 +96,11 @@
 - 自动安装Mysql,Java,应用，Mysql从官方下载，因此整体安装速度会慢
 - 安装环境前先确认
 - 操作系统支持:RedHat 7.9-8.2 较为干净的系统，同时支持CentOS、麒麟、欧拉。yum源配置需正确(unzip,wget,zip等包需要安装)，公有云的默认yum配置一般没问题
-- 应用访问地址为:http://ip-address:8089
 - 数据库:端口3308，密码root_pwd
 - 安装目录:/app
+- 应用访问地址为:http://ip-address:8089
+- 管理员账户:admin,默认密码:123456
+
 ```
 #安装命令
 curl -s 'http://resource.rainbooow.com/deploy.sh'|bash

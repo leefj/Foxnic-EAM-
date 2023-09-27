@@ -1,7 +1,7 @@
 /**
- * 我的收藏 列表页 JS 脚本
+ * 资源限制 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-09-18 14:20:22
+ * @since 2023-09-27 15:59:07
  */
 
 layui.config({
@@ -18,7 +18,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     //模块基础路径
-    const moduleURL="/service-oa/oa-netdisk-my-favorite";
+    const moduleURL="/service-oa/oa-netdisk-resource-limit";
 
 
     //列表页的扩展
@@ -50,48 +50,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeTableRender:function (cfg){
             console.log("list:beforeTableRender",cfg);
-
         },
         /**
          * 表格渲染后调用
          * */
-        processNavData:function(){
-            console.log("CURRENT_NODE:",CURRENT_NODE)
-            console.log("CURRENT_NODE fdHierarchy length:", CURRENT_NODE.fdHierarchy.split("-").length)
-            if(CURRENT_NODE.fdHierarchy.split("-").length>1){
-                setTimeout(function(){
-                    $("#lastNode").show();
-                    $("#fileNav").show();},50);
-            }else if (CURRENT_NODE.fdHierarchy.split("-").length==1) {
-                if(CURRENT_NODE.fdHierarchy.length==0){
-                    //不存在数据
-                    $("#lastNode").hide();
-                    $("#fileNav").hide();
-                    CURRENT_NODE={
-                        fdHierarchyName:"",
-                        fdHierarchy:"",
-                        fdId:"space",
-                    };
-                    CURRENT_LAST_NODE={
-                        fdHierarchyName:"",
-                        fdHierarchy:"",
-                        fdId:"space",
-                    };
-                }else{
-                    setTimeout(function(){
-                        $("#lastNode").show();
-                        $("#fileNav").show();},50);
-                }
-            }else{
-                alert("异常");
-            }
-            setTimeout(function(){
-                $("#fileNav").text(CURRENT_NODE.fdHierarchyName);
-                },50);
-
-        },
         afterTableRender :function (){
-            window.pageExt.list.processNavData();
 
         },
         afterSearchInputReady: function() {
@@ -129,7 +92,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param location 调用的代码位置
          * */
         beforeQuery:function (conditions,param,location) {
-            param.fdId=CURRENT_NODE.fdId;
             console.log('beforeQuery',conditions,param,location);
             return true;
         },
@@ -137,18 +99,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-            window.pageExt.list.processNavData();
-            for(var i=0;i<data.length;i++){
-                console.log(data[i].fdType,data[i]);
-                if(data[i].fdType=="folder"){
-                    fox.disableButton($('.ops-review-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-download-button').filter("[data-id='" + data[i].id + "']"), true);
-                }else if(data[i].fdType=="file"){
-                    console.log("##file")
-                }else{
-                    console.log("##none")
-                }
-            }
+
         },
         /**
          * 单行数据刷新后调用
@@ -160,30 +111,25 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
-            if(field=="fdName"){
-               if(r.fdType=="folder"){
-                   return "<image style='margin-right:5px;width:35px;height: 35px' src='/assets/netdiskimg/folder.png'></image>"+value
-               }else if(r.fdType=="file"){
-                   var html="<span style='margin-right:40px' >"+value+"</span>";
-                   if(r.netdiskOriginFile&&r.netdiskOriginFile.fileType){
-                        if(r.netdiskOriginFile.fileType=="file_doc"){
-                            html="<image style='margin-right:5px;width:25px;height:25px' src='/assets/netdiskimg/document3.png'></image>"+value
-                        }else if(r.netdiskOriginFile.fileType=="file_photo"){
-                            html="<image style='margin-right:5px;width:25px;height: 25px' src='/assets/netdiskimg/photo2.png'></image>"+value
-                        }else if(r.netdiskOriginFile.fileType=="file_video"){
-                            html="<image style='margin-right:5px;width:25px;height: 25px' src='/assets/netdiskimg/video2.png'></image>"+value
-                        }else if(r.netdiskOriginFile.fileType=="file_music"){
-                            html="<image style='margin-right:5px;width:25px;height: 25px' src='/assets/netdiskimg/music.png'></image>"+value
-                        }else if(r.netdiskOriginFile.fileType=="file_zip"){
-                            html="<image style='margin-right:5px;width:25px;height: 25px' src='/assets/netdiskimg/zip.png'></image>"+value
-                        }else {
-                            html="<image style='margin-right:5px;width:25px;height: 25px' src='/assets/netdiskimg/document3.png'></image>"+value
-                        }
-                   }
-                   return html
-               }else{
-                   return value
-               }
+            if(field=="userId"){
+                if (r.userId=="default"){
+                    return "默认配置"
+                }else{
+                    return value;
+                }
+            }
+
+            if(field=="currentSizeB"){
+                var html=value;
+                if(value){
+                    if(v>0&&v<1024*1024){
+                        html= "<1M"
+                    }else{
+                        var v=value/(1024*1024);
+                        html=v.toFixed(2)+"M";
+                    }
+                }
+                return html;
             }
             if(value==null) return "";
             return value;
@@ -238,117 +184,27 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeRowOperationEvent:function (data,obj) {
             console.log('beforeRowOperationEvent',data,obj);
-            if(obj.event&&obj.event=="fdNameEvent"){
-                window.pageExt.list.fdNameClick(data);
-            }
             return true;
-        },
-        fdNameClick:function (data){
-            if(data.fdType=="folder"){
-                console.log("CURRENT_NODE",CURRENT_NODE)
-                CURRENT_LAST_NODE_DATA.push(CURRENT_NODE)
-                CURRENT_NODE=data
-                window.pageExt.list.processNavData();
-                window.module.refreshTableData();
-            }
-        },
-        lastNode:function(select,obj){
-            console.log("CURRENT_LAST_NODE_DATA",CURRENT_LAST_NODE_DATA)
-            if(CURRENT_LAST_NODE_DATA.length>0){
-                CURRENT_NODE=CURRENT_LAST_NODE_DATA[CURRENT_LAST_NODE_DATA.length-1];
-                CURRENT_LAST_NODE_DATA.pop();
-            }
-            window.pageExt.list.processNavData();
-            window.module.refreshTableData();
         },
         /**
          * 表格右侧操作列更多按钮事件
          * */
-        review:function(data){
-            console.log("review####",data)
-            var netdiskOriginFile=data.netdiskOriginFile;
-            if(data&&data.netdiskOriginFile){
-                var url="/business/oa/netdisk_file/view.html?id="+data.netdiskOriginFile.id;
-                window.open(url);
-            }else{
-                alert("原始文件不存在");
-            }
-        },
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
-            if(menu.id=="del"){
-                top.layer.confirm(fox.translate('确定删除吗？'), function (i) {
-                    var ps={};
-                    ps.id=data.fdId;
-                    ps.type=data.fdType;
-                    top.layer.close(i);
-                    admin.post("/service-oa/oa-netdisk-virtual-fd/delete", ps, function (data) {
-                        if (data.success) {
-                            fox.showMessage(data);
-                            window.module.refreshTableData()
-                        } else {
-                            fox.showMessage(data);
-                        }
-                    });
-                });
-            }else if(menu.id=="fav"){
-
-            }else if(menu.id=="share"){
-                var fdData=[];
-                var fdObj={fdId:data.fdId,fdType:"file"};
-                fdData.push(fdObj);
-                $("#userId").val("");
-                var userIdDialogOptions={
-                    field:"userId",
-                    formData: {},
-                    inputEl:$("#userId"),
-                    buttonEl:$(this),
-                    single:false,
-                    autoWidth:false,
-                    //限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
-                    root: "",
-                    targetType:"emp",
-                    prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
-                    callback:function(param,result){
-                        console.log("param",param)
-                        console.log("result",result)
-                        var userIds=result.selectedIds;
-                        var ps={};
-                        ps.userIds=userIds;
-                        ps.data=JSON.stringify(fdData);
-                        console.log("userIds",userIds+",userIds size",userIds.length);
-                        if(userIds.length>0){
-                            admin.post("/service-oa/oa-netdisk-virtual-fd/share", ps, function (data) {
-                                if (data.success) {
-                                    fox.showMessage(data);
-                                    window.module.refreshTableData()
-                                } else {
-                                    fox.showMessage(data);
-                                }
-                            });
-                        }
+        },
+        recalculate:function (seleced,obj) {
+            //调用批量删除接口
+            top.layer.confirm(fox.translate('确定重新计算用户资源吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(moduleURL+"/recalculate", {  }, function (data) {
+                    if (data.success) {
+                        fox.showMessage(data);
+                        window.module.refreshTableData();
+                    } else {
+                        fox.showMessage(data);
                     }
-                };
-                fox.chooseEmployee(userIdDialogOptions);
-            }else if(menu.id=="rename"){
-                //
-                layer.prompt({title:"请输入文件夹名称",value:data.fdName,area:['600px','400px']},function(val,index){
-                    console.log(val,index)
-                    var ps={};
-                    ps.id=data.fdId;
-                    ps.name=val;
-                    ps.type=data.fdType;
-                    admin.post("/service-oa/oa-netdisk-virtual-fd/rename", ps, function (rs) {
-                        if (rs.success) {
-                            layer.close(index);
-                            fox.showMessage(rs);
-                            window.module.refreshTableData()
-                        } else {
-                            fox.showMessage(rs);
-                        }
-                    });
-                });
-            }
+                },{delayLoading:200,elms:[$("#recalculate-button")]});
+            });
         },
         /**
          * 末尾执行
@@ -449,7 +305,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterSubmit:function (param,result) {
             console.log("afterSubmitt",param,result);
         },
-
         /**
          * 文件上传组件回调
          *  event 类型包括：

@@ -99,6 +99,7 @@ public interface NetdiskVirtualFdServiceProxy {
     public static final String UPLOAD_FOLDER = API_PREFIX + "upload-folder";
 
     public static final String SHARE = API_PREFIX + "share";
+
     /**
      * 添加虚拟文件
      */

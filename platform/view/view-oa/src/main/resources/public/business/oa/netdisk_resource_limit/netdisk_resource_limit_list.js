@@ -1,7 +1,7 @@
 /**
- * 分享给我 列表页 JS 脚本
+ * 资源限制 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-09-18 14:21:06
+ * @since 2023-09-27 22:40:36
  */
 
 
@@ -10,7 +10,7 @@ function ListPage() {
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	
 	//模块基础路径
-	const moduleURL="/service-oa/oa-netdisk-share-me";
+	const moduleURL="/service-oa/oa-netdisk-resource-limit";
 	const queryURL=moduleURL+'/query-paged-list';
 	const deleteURL=moduleURL+'/delete';
 	const batchDeleteURL=moduleURL+'/delete-by-ids';
@@ -72,20 +72,25 @@ function ListPage() {
 					return value;
 				}
 			}
-			var h=-28; 
+			var h=$(".search-bar").height();
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
-				defaultToolbar: [{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
+				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: queryURL,
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
 				cols: [[
-					//{ fixed: 'left',type:'checkbox'},
-					{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'fileId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('文件') , templet: function (d) { return templet('fileId',d.fileId,d);}  }
+					{ fixed: 'left',type: 'numbers' },
+					{ fixed: 'left',type:'checkbox'}
+					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'userId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('用户') , templet: function (d) { return templet('userId',fox.getProperty(d,["user","name"],0,'','userId'),d);} }
+					,{ field: 'capacitySizeM', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('最大容量(M)') , templet: function (d) { return templet('capacitySizeM',d.capacitySizeM,d);}  }
+					,{ field: 'currentSizeB', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('当前容量(M)') , templet: function (d) { return templet('currentSizeB',d.currentSizeB,d);}  }
+					,{ field: 'uploadMaxSizeM', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('上传大小（M）') , templet: function (d) { return templet('uploadMaxSizeM',d.uploadMaxSizeM,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
 				done: function (data) {
@@ -155,9 +160,7 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.fileId={ inputType:"button",value: $("#fileId").val()};
-		value.userId={ inputType:"button",value: $("#userId").val(),fillBy:["ownerUser","name"] ,label:$("#userId-button").text() };
-		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
+		value.userId={ inputType:"button",value: $("#userId").val(),fillBy:["user","name"] ,label:$("#userId-button").text() };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -266,11 +269,14 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
-					admin.putTempData('oa-netdisk-share-me-form-data', {});
+					admin.putTempData('oa-netdisk-resource-limit-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
 					batchDelete(selected);
+					break;
+				case 'tool-recalculate':
+					window.pageExt.list.recalculate && window.pageExt.list.recalculate(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();
@@ -285,7 +291,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('oa-netdisk-share-me-form-data-form-action', "create",true);
+			admin.putTempData('oa-netdisk-resource-limit-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -299,11 +305,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'分享给我'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的'+'资源限制'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'分享给我'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'资源限制'+'吗？'), function (i) {
                 top.layer.close(i);
 				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
@@ -338,14 +344,14 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('oa-netdisk-share-me-form-data-form-action', "",true);
+			admin.putTempData('oa-netdisk-resource-limit-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
 				top.layer.load(2);
 				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
 					top.layer.closeAll('loading');
 					if(data.success) {
-						admin.putTempData('oa-netdisk-share-me-form-data-form-action', "edit",true);
+						admin.putTempData('oa-netdisk-resource-limit-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
 						 fox.showMessage(data);
@@ -356,18 +362,12 @@ function ListPage() {
 				admin.post(getByIdURL, { id : data.id }, function (data) {
 					top.layer.closeAll('loading');
 					if(data.success) {
-						admin.putTempData('oa-netdisk-share-me-form-data-form-action', "view",true);
+						admin.putTempData('oa-netdisk-resource-limit-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
 					}
 				});
-			}
-			else if (layEvent === 'review') { // 删除
-				window.pageExt.list.review && window.pageExt.list.review(data);
-			}else if (layEvent === 'download') { // 删除
-				var downloadUrl="/service-oa/oa-netdisk-virtual-fd/download-by-id";
-				fox.submit(downloadUrl,{fdId:data.fileId,fdType:"file"});
 			}
 			else if (layEvent === 'del') { // 删除
 
@@ -376,7 +376,7 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'分享给我'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此'+'资源限制'+'吗？'), function (i) {
 					top.layer.close(i);
 					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
@@ -406,17 +406,17 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('oa-netdisk-share-me-form-data-form-action');
+		var action=admin.getTempData('oa-netdisk-resource-limit-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('oa-netdisk-share-me-form-data', data);
-		var area=admin.getTempData('oa-netdisk-share-me-form-area');
+		admin.putTempData('oa-netdisk-resource-limit-form-data', data);
+		var area=admin.getTempData('oa-netdisk-resource-limit-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('分享给我');
+		var title = fox.translate('资源限制');
 		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
 		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
 		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
@@ -425,10 +425,10 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["50%",height+"px"],
 			type: 2,
-			id:"oa-netdisk-share-me-form-data-win",
-			content: '/business/oa/netdisk_share_me/netdisk_share_me_form.html' + (queryString?("?"+queryString):""),
+			id:"oa-netdisk-resource-limit-form-data-win",
+			content: '/business/oa/netdisk_resource_limit/netdisk_resource_limit_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();
@@ -439,10 +439,6 @@ function ListPage() {
 			}
 		});
 	};
-	function loadFileData() {
-		refreshTableData()
-	};
-	window.loadFileData=loadFileData;
 
 	window.module={
 		refreshTableData: refreshTableData,

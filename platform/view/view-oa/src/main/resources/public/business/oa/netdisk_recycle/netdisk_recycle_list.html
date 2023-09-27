@@ -83,17 +83,15 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-        <button id="restoreFile" class="layui-btn icon-btn layui-btn-sm restore-file-button " lay-event="restoreFile"><span th:text="${lang.translate('还原','','cmp:table.button')}">还原</span></button>
+        <button id="restoreFile" class="layui-btn icon-btn layui-btn-sm restore-file-button " lay-event="restoreFile"><span th:text="${lang.translate('还原文件','','cmp:table.button')}">还原文件</span></button>
+        <button id="clearRecycle" class="layui-btn icon-btn layui-btn-sm clear-recycle-button " lay-event="clearRecycle"><span th:text="${lang.translate('清空回收站','','cmp:table.button')}">清空回收站</span></button>
+
     </div>
 </script>
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
-
-
-
-
-
+    <button class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button  ops-cancel-button" lay-event="remove" data-id="{{d.id}}"> <span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 </script>
 
 
