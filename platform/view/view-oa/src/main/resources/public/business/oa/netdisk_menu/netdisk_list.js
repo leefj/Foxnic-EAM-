@@ -59,6 +59,22 @@ function ListPage() {
 			}
 		};
 
+
+		admin.request("/service-oa/oa-netdisk-resource-limit/get-my-resource",{},function(r) {
+			if(r.success) {
+				var str=r.data.currentSizeValue+"/"+r.data.capacitySizeValue
+				$("#capStr").html(str);
+				if(r.data.currentSizeB<0){
+					r.data.currentSizeB=0;
+				}
+				var pct=((r.data.currentSizeB/(1024*1024) )/r.data.capacitySizeM )*100;
+				var rpct=pct.toFixed(2);
+				$("#capPct").width(rpct+"%");
+				$("#cap").show();
+			} else {
+			}
+		});
+
 		admin.request(moduleURL+"/query-list",{},function(r) {
 			if(r.success) {
 				var treeData=r.data;

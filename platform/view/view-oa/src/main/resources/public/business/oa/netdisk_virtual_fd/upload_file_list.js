@@ -16,6 +16,7 @@ function FormPage() {
 	const bpmIntegrateMode="none";
 	var isInProcess=QueryString.get("isInProcess");
 
+
 	/**
 	 * 入口函数，初始化
 	 */
@@ -118,7 +119,7 @@ function FormPage() {
 		fox.renderFormInputs(form);
 
 		//渲染图片字段
-		foxup.render({
+		 var cc=foxup.render({
 			el:"fileId",
 			url:"/service-oa/oa-netdisk-virtual-fd/upload-file",
 			maxFileCount: 16,
@@ -126,6 +127,7 @@ function FormPage() {
 			accept: "file",
 			afterPreview:function(elId,index,fileId,upload,fileName,fileType){
 				adjustPopup();
+				console.log("afterPreview");
 				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterPreview",elId:elId,index:index,fileId:fileId,upload:upload,fileName:fileName,fileType:fileType});
 			},
 			afterUpload:function (elId,result,index,upload) {
@@ -144,6 +146,9 @@ function FormPage() {
 				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterRemove",elId:elId,index:index,upload:upload});
 			}
 		});
+
+		console.log("upload",cc);
+		console.log("upload",upload.config);
 	}
 
 	// /**

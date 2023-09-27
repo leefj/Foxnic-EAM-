@@ -137,6 +137,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             if(value==null) return "";
             return value;
         },
+        review:function(data){
+            console.log("review####",data)
+            var netdiskOriginFile=data.netdiskOriginFile;
+            if(data&&data.netdiskOriginFile){
+                var url="/business/oa/netdisk_file/view.html?id="+data.netdiskOriginFile.id;
+                window.open(url);
+            }else{
+                alert("原始文件不存在");
+            }
+        },
         /**
          * 表单页面打开时，追加更多的参数信息
          * */

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 
 
@@ -32,9 +33,6 @@ public class NetdiskStoreDataDiskServiceImpl implements INetdiskStoreDataService
     public final String linuxDir="";
 
     public String getStorageDir() {
-//        windows: c:/netdisk
-//        mac: /Users/Shared/netdisk
-//        linux: /app/app/app/netdisk
         if(OSType.isWindows()) return "c:/netdisk";
         else if(OSType.isLinux()) return "/app/app/app/netdisk";
         else if(OSType.isMac()) return "/Users/Shared/netdisk";
@@ -47,15 +45,10 @@ public class NetdiskStoreDataDiskServiceImpl implements INetdiskStoreDataService
     @Override
     public NetdiskOriginFile write(NetdiskOriginFile fileInfo, MultipartFile file, String userDir) {
         String dir=this.getStorageDir();
-
-        byte[] bytes=new byte[0];
+        Logger.info("current file size:"+file.getSize());
+        String url="";
         try {
-            bytes = file.getBytes();
-        } catch (Exception e) {
-            Logger.error("文件字节错误",e);
-        }
-        String url=null;
-        try {
+            InputStream input=file.getInputStream();
             java.io.File f= FileUtil.resolveByPath(dir, DateUtil.format(new Date(), "yyyyMMdd"), IDGenerator.getSnowflakeId()+".block");
             url=f.getAbsolutePath().substring(dir.length());
             fileInfo.setLocation(url);
@@ -63,15 +56,35 @@ public class NetdiskStoreDataDiskServiceImpl implements INetdiskStoreDataService
                 f.getParentFile().mkdirs();
             }
             FileOutputStream out=new FileOutputStream(f);
-            fileInfo.setFileSize(new Long(bytes.length));
-            IOUtils.write(bytes, out);
-            out.close();
+            IOUtils.copy(input,out);
+            IOUtils.close();
 
         } catch (Exception e) {
             Logger.error("文件写入错误",e);
         }
         return fileInfo;
     }
+
+    public NetdiskOriginFile writeByStream(NetdiskOriginFile fileInfo, MultipartFile file, String userDir) {
+        String dir=this.getStorageDir();
+        String url="";
+        try {
+            InputStream input=file.getInputStream();
+            java.io.File f= FileUtil.resolveByPath(dir, DateUtil.format(new Date(), "yyyyMMdd"), IDGenerator.getSnowflakeId()+".block");
+            if(!f.getParentFile().exists()) {
+                f.getParentFile().mkdirs();
+            }
+            url=f.getAbsolutePath().substring(dir.length());
+            FileOutputStream out=new FileOutputStream(f);
+            IOUtils.close(input,out);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return fileInfo;
+    }
+
+
     @Override
     public byte[] read(NetdiskOriginFile fileInfo) {
         byte[] bytes=null;

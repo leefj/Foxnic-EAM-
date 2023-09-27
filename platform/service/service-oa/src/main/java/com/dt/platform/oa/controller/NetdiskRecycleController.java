@@ -231,6 +231,38 @@ public class NetdiskRecycleController extends SuperController {
         return result;
     }
 
+    /**
+     * 批量获取回收站 <br>
+     * 联合主键时，请自行调整实现
+     */
+    @ApiOperation(value = "批量获取回收站")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = NetdiskRecycleVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+    })
+    @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = NetdiskRecycleServiceProxy.CLEAR_RECYCLE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(NetdiskRecycleServiceProxy.CLEAR_RECYCLE)
+    public Result clearRecycle() {
+        return netdiskRecycleService.clearRecycle();
+    }
+
+    /**
+     * 批量获取回收站 <br>
+     * 联合主键时，请自行调整实现
+     */
+    @ApiOperation(value = "批量获取回收站")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = NetdiskRecycleVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+    })
+    @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = NetdiskRecycleServiceProxy.CLEAR_RECYCLE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(NetdiskRecycleServiceProxy.CLEAR_RECYCLE_BY_IDS)
+    public Result clearRecycleByIds(List<String> ids) {
+        return netdiskRecycleService.clearRecycleByIds(ids);
+    }
+
+
+
     @ApiOperation(value = "还原")
     @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
     @ApiImplicitParams({

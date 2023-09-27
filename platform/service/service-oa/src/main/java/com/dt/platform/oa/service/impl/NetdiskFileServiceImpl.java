@@ -122,7 +122,10 @@ public class NetdiskFileServiceImpl extends SuperService<NetdiskFile> implements
 			netdiskFile.setFolderId(fdId);
 			netdiskFile.setInRecycle("N");
 			netdiskFile.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
-			this.insert(netdiskFile);
+			Result r=this.insert(netdiskFile);
+			if(r.isSuccess()){
+				dao.execute("update oa_netdisk_resource_limit set current_size_b=current_size_b+(select file_size from oa_netdisk_origin_file where id=?) where user_id=?",fileIdsArr.getString(i),SessionUser.getCurrent().getActivatedEmployeeId());
+			}
 		}
 		return ErrorDesc.success();
 	}

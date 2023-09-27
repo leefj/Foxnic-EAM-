@@ -7,6 +7,8 @@ import com.alibaba.fastjson.JSON;
 import com.dt.platform.constants.enums.oa.NetDiskEncryptedEnum;
 import com.dt.platform.constants.enums.oa.NetDiskFileTypeEnum;
 import com.dt.platform.constants.enums.oa.NetDiskStoragTypeEnum;
+import com.dt.platform.domain.oa.NetdiskResourceLimit;
+import com.dt.platform.oa.service.INetdiskResourceLimitService;
 import com.dt.platform.oa.service.INetdiskStoreDataService;
 import com.github.foxnic.api.error.CommonError;
 import com.github.foxnic.commons.io.FileUtil;
@@ -14,6 +16,7 @@ import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.springboot.web.DownloadUtil;
 import com.github.foxnic.sql.expr.Update;
+import com.mysql.jdbc.log.Log;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
 import org.github.foxnic.web.constants.enums.system.FileCatalog;
 import org.github.foxnic.web.domain.storage.File;
@@ -63,6 +66,11 @@ public class NetdiskOriginFileServiceImpl extends SuperService<NetdiskOriginFile
 
 
 	@Autowired
+	private INetdiskResourceLimitService netdiskResourceLimitService;
+
+
+
+	@Autowired
 	private NetdiskStoreDataDiskServiceImpl netdiskStoreDiskServiceImpl;
 
 
@@ -103,67 +111,69 @@ public class NetdiskOriginFileServiceImpl extends SuperService<NetdiskOriginFile
 
 
 	@Override
-	public NetdiskOriginFile uploadFile(MultipartFile multipartFile, String dir) {
+	public Result<NetdiskOriginFile> uploadFile(MultipartFile multipartFile, String dir) {
+		Result<NetdiskOriginFile> res=new Result<>();
+		res.success(true);
+		Logger.info("上传文件:"+multipartFile.getOriginalFilename()+",文件大小:"+multipartFile.getSize());
 		NetdiskOriginFile fileinfo=new NetdiskOriginFile();
 		fileinfo.setDownloadCount(0L);
 		fileinfo.setMediaType(multipartFile.getContentType());
 //		//获取源文件名称
 		String originalFileName = multipartFile.getOriginalFilename();
 //		//获取文件后缀
-		String extension = FileUtil.getExtName(originalFileName);
-		if(extension.toLowerCase().endsWith("png")
-				||extension.toLowerCase().equals(".jpg")
-				||extension.toLowerCase().equals("jpeg")
-				||extension.toLowerCase().equals("bmp")
-				||extension.toLowerCase().equals("jpg")
-				||extension.toLowerCase().equals("tif")
+		String extension = FileUtil.getExtName(originalFileName).toLowerCase();
+		if(		extension.endsWith("png")
+				||extension.equals("jpg")
+				||extension.equals("jpeg")
+				||extension.equals("bmp")
+				||extension.equals("tif")
 		){
 			fileinfo.setFileType(NetDiskFileTypeEnum.FILE_PHOTO.code());
-		}else if(extension.toLowerCase().equals("tar")
-				||extension.toLowerCase().equals("7z")
-				||extension.toLowerCase().equals("rar")
-				||extension.toLowerCase().equals("gz")
-				||extension.toLowerCase().equals("z")
-				||extension.toLowerCase().equals("xz")
-				||extension.toLowerCase().equals("compress")){
+		}else if(extension.equals("tar")
+				||extension.equals("7z")
+				||extension.equals("rar")
+				||extension.equals("gz")
+				||extension.equals("z")
+				||extension.equals("xz")
+				||extension.equals("compress")){
 			fileinfo.setFileType(NetDiskFileTypeEnum.FILE_ZIP.code());
-		}else if(extension.toLowerCase().equals("mp3")
-				||extension.toLowerCase().equals("wav")
-				||extension.toLowerCase().equals("mdi")
-				||extension.toLowerCase().equals("flac")
-				||extension.toLowerCase().equals("ape")
-				||extension.toLowerCase().equals("alac")
-				||extension.toLowerCase().equals("aac")
-				||extension.toLowerCase().equals("ogg")
-				||extension.toLowerCase().equals("m4a")
-				||extension.toLowerCase().equals("mpa")
+		}else if(extension.equals("mp3")
+				||extension.equals("wav")
+				||extension.equals("mdi")
+				||extension.equals("flac")
+				||extension.equals("ape")
+				||extension.equals("alac")
+				||extension.equals("aac")
+				||extension.equals("ogg")
+				||extension.equals("m4a")
+				||extension.equals("mpa")
 		){
 			fileinfo.setFileType(NetDiskFileTypeEnum.FILE_MUSIC.code());
-		}else if(extension.toLowerCase().equals("doc")
-				||extension.toLowerCase().equals("docx")
-				||extension.toLowerCase().equals("xls")
-				||extension.toLowerCase().equals("xlt")
-				||extension.toLowerCase().equals("xml")
-				||extension.toLowerCase().equals("rtf")
-				||extension.toLowerCase().equals("ppt")
-				||extension.toLowerCase().equals("txt")
-				||extension.toLowerCase().equals("pdf")
-				||extension.toLowerCase().equals("sh")
-				||extension.toLowerCase().equals("sql")
-				||extension.toLowerCase().equals("pptx")
-				||extension.toLowerCase().equals("xlsm")
-				||extension.toLowerCase().equals("xlsx")
+		}else if(extension.equals("doc")
+				||extension.equals("docx")
+				||extension.equals("xls")
+				||extension.equals("xlt")
+				||extension.equals("xml")
+				||extension.equals("rtf")
+				||extension.equals("ppt")
+				||extension.equals("txt")
+				||extension.equals("pdf")
+				||extension.equals("sh")
+				||extension.equals("sql")
+				||extension.equals("pptx")
+				||extension.equals("xlsm")
+				||extension.equals("xlsx")
 		){
 			fileinfo.setFileType(NetDiskFileTypeEnum.FILE_DOC.code());
-		}else if(extension.toLowerCase().equals("mp4")
-				||extension.toLowerCase().equals("avi")
-				||extension.toLowerCase().equals("mkv")
-				||extension.toLowerCase().equals("wmv")
-				||extension.toLowerCase().equals("mpeg")
-				||extension.toLowerCase().equals("rmvb")
-				||extension.toLowerCase().equals("rm")
-				||extension.toLowerCase().equals("vob")
-				||extension.toLowerCase().equals("3gp")
+		}else if(extension.equals("mp4")
+				||extension.equals("avi")
+				||extension.equals("mkv")
+				||extension.equals("wmv")
+				||extension.equals("mpeg")
+				||extension.equals("rmvb")
+				||extension.equals("rm")
+				||extension.equals("vob")
+				||extension.equals("3gp")
 		){
 			fileinfo.setFileType(NetDiskFileTypeEnum.FILE_VIDEO.code());
 		}else{
@@ -173,13 +183,28 @@ public class NetdiskOriginFileServiceImpl extends SuperService<NetdiskOriginFile
 		fileinfo.setExtValue(extension);
 		fileinfo.setFileName(originalFileName);
 		fileinfo.setFileSize(multipartFile.getSize());
-		fileinfo.setReferenceCount(0);
+		fileinfo.setReferenceCount(1);
+
+		String userId="";
+		NetdiskResourceLimit myResource=null;
 		if(SessionUser.getCurrent()!=null&&SessionUser.getCurrent().getActivatedEmployeeId()!=null){
-			fileinfo.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+			userId=SessionUser.getCurrent().getActivatedEmployeeId();
+			myResource=netdiskResourceLimitService.getMyResource();
+			//判断是否超过限制
+			Logger.info("current size(M):"+((myResource.getCurrentSizeB()+multipartFile.getSize())/(1024L*1024L))+",capacity size(M):"+myResource.getCapacitySizeM());
+			if(((myResource.getCurrentSizeB()+multipartFile.getSize())/(1024L*1024L))>myResource.getCapacitySizeM()){
+				res.success(false);
+				res.message("超过当前用户容量大小");
+				res.data(fileinfo);
+				return res;
+			}
 		}
+		fileinfo.setUserId(userId);
+		//只计算本次上传是否会失败，如果在多个批量上传任务中，会超过，属于正常
 		fileinfo=this.getStorageSupport(fileinfo).write(fileinfo,multipartFile,dir);
 		this.insert(fileinfo);
-		return fileinfo;
+		res.data(fileinfo);
+		return res;
 	}
 
 	private void resurgence(String fileId,boolean dowloads) {
@@ -208,6 +233,7 @@ public class NetdiskOriginFileServiceImpl extends SuperService<NetdiskOriginFile
 		}
 		return bytes;
 	}
+
 	@Override
 	public void downloadFile(String id, Boolean inline, HttpServletResponse response) {
 
