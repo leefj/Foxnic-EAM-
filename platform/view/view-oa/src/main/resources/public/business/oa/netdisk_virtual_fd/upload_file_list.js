@@ -131,8 +131,17 @@ function FormPage() {
 				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterPreview",elId:elId,index:index,fileId:fileId,upload:upload,fileName:fileName,fileType:fileType});
 			},
 			afterUpload:function (elId,result,index,upload) {
-				console.log("文件上传后回调");
-				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterUpload",elId:elId,index:index,upload:upload});
+				var el="fileId-download-button-"+index
+				console.log("文件上传后回调",el);
+				if ($("#"+el)) {
+					$("#"+el).remove();
+				}
+				window.pageExt.form.onUploadEvent && window.pageExt.form.onUploadEvent({
+					event: "afterUpload",
+					elId: elId,
+					index: index,
+					upload: upload
+				});
 			},
 			beforeRemove:function (elId,fileId,index,upload) {
 				console.log("文件删除前回调");

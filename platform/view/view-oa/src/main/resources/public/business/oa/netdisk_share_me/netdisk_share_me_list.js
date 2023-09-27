@@ -85,6 +85,7 @@ function ListPage() {
 					//{ fixed: 'left',type:'checkbox'},
 					{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'fileId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('文件') , templet: function (d) { return templet('fileId',d.fileId,d);}  }
+					,{ field: 'ownerUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属用户') , templet: function (d) { return templet('ownerUserId',fox.getProperty(d,["ownerUser","name"],0,'','ownerUserId'),d);} }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
