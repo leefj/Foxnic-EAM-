@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-09-23 15:51:15
+ * @since 2023-09-28 13:33:04
  * @sign 1FD694172F12D169B186EB0CE1260509
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -160,6 +160,26 @@ public class NetdiskShareMeVOMeta extends NetdiskShareMeMeta {
 	 * 文件 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.oa.NetdiskShareMeVO,java.lang.String> FILE_ID_PROP = new BeanProperty(com.dt.platform.domain.oa.NetdiskShareMeVO.class ,FILE_ID, java.lang.String.class, "文件", "文件", java.lang.String.class, null);
+	
+	/**
+	 * 文件 , 类型: java.lang.String
+	*/
+	public static final String FD_ID="fdId";
+	
+	/**
+	 * 文件 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.NetdiskShareMeVO,java.lang.String> FD_ID_PROP = new BeanProperty(com.dt.platform.domain.oa.NetdiskShareMeVO.class ,FD_ID, java.lang.String.class, "文件", "文件", java.lang.String.class, null);
+	
+	/**
+	 * 文件类型 , 类型: java.lang.String
+	*/
+	public static final String FD_TYPE="fdType";
+	
+	/**
+	 * 文件类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.NetdiskShareMeVO,java.lang.String> FD_TYPE_PROP = new BeanProperty(com.dt.platform.domain.oa.NetdiskShareMeVO.class ,FD_TYPE, java.lang.String.class, "文件类型", "文件类型", java.lang.String.class, null);
 	
 	/**
 	 * 分享 , 类型: java.lang.String
@@ -324,7 +344,7 @@ public class NetdiskShareMeVOMeta extends NetdiskShareMeMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , FILE_ID , SHARE_ID , USER_ID , OWNER_USER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , NETDISK_FILE , NETDISK_ORIGIN_FILE , USER , OWNER_USER };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , FILE_ID , FD_ID , FD_TYPE , SHARE_ID , USER_ID , OWNER_USER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , NETDISK_FILE , NETDISK_ORIGIN_FILE , USER , OWNER_USER };
 	
 	/**
 	 * 代理类
@@ -485,6 +505,28 @@ public class NetdiskShareMeVOMeta extends NetdiskShareMeMeta {
 		public NetdiskShareMe setFileId(String fileId) {
 			super.change(FILE_ID,super.getFileId(),fileId);
 			super.setFileId(fileId);
+			return this;
+		}
+		
+		/**
+		 * 设置 文件
+		 * @param fdId 文件
+		 * @return 当前对象
+		*/
+		public NetdiskShareMe setFdId(String fdId) {
+			super.change(FD_ID,super.getFdId(),fdId);
+			super.setFdId(fdId);
+			return this;
+		}
+		
+		/**
+		 * 设置 文件类型
+		 * @param fdType 文件类型
+		 * @return 当前对象
+		*/
+		public NetdiskShareMe setFdType(String fdType) {
+			super.change(FD_TYPE,super.getFdType(),fdType);
+			super.setFdType(fdType);
 			return this;
 		}
 		
@@ -683,11 +725,13 @@ public class NetdiskShareMeVOMeta extends NetdiskShareMeMeta {
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setUserId(this.getUserId());
 			inst.setVersion(this.getVersion());
+			inst.setFdType(this.getFdType());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
+			inst.setFdId(this.getFdId());
 			inst.setOwnerUserId(this.getOwnerUserId());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());

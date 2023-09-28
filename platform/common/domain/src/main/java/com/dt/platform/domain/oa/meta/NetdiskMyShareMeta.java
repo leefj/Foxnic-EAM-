@@ -12,8 +12,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-09-23 15:50:57
- * @sign 01F3A3B1A7C3A9EAB30BCC6516F0C6F2
+ * @since 2023-09-28 13:31:43
+ * @sign 447658EC885645924648BF86E2DAF81D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -58,6 +58,26 @@ public class NetdiskMyShareMeta {
 	 * 链接 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.oa.NetdiskMyShare,java.lang.String> FILE_URL_PROP = new BeanProperty(com.dt.platform.domain.oa.NetdiskMyShare.class ,FILE_URL, java.lang.String.class, "链接", "链接", java.lang.String.class, null);
+	
+	/**
+	 * 文件 , 类型: java.lang.String
+	*/
+	public static final String FD_ID="fdId";
+	
+	/**
+	 * 文件 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.NetdiskMyShare,java.lang.String> FD_ID_PROP = new BeanProperty(com.dt.platform.domain.oa.NetdiskMyShare.class ,FD_ID, java.lang.String.class, "文件", "文件", java.lang.String.class, null);
+	
+	/**
+	 * 文件类型 , 类型: java.lang.String
+	*/
+	public static final String FD_TYPE="fdType";
+	
+	/**
+	 * 文件类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.NetdiskMyShare,java.lang.String> FD_TYPE_PROP = new BeanProperty(com.dt.platform.domain.oa.NetdiskMyShare.class ,FD_TYPE, java.lang.String.class, "文件类型", "文件类型", java.lang.String.class, null);
 	
 	/**
 	 * 过期时间 , 类型: java.util.Date
@@ -222,7 +242,7 @@ public class NetdiskMyShareMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , USER_ID , FILE_ID , FILE_URL , EXPIRATION_TIME , EXPIRATION_METHOD , TYPE , STATUS , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , NETDISK_FILE , NETDISK_ORIGIN_FILE , OWNER_USER };
+	public static final String[] $PROPS={ ID , USER_ID , FILE_ID , FILE_URL , FD_ID , FD_TYPE , EXPIRATION_TIME , EXPIRATION_METHOD , TYPE , STATUS , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , NETDISK_FILE , NETDISK_ORIGIN_FILE , OWNER_USER };
 	
 	/**
 	 * 代理类
@@ -273,6 +293,28 @@ public class NetdiskMyShareMeta {
 		public NetdiskMyShare setFileUrl(String fileUrl) {
 			super.change(FILE_URL,super.getFileUrl(),fileUrl);
 			super.setFileUrl(fileUrl);
+			return this;
+		}
+		
+		/**
+		 * 设置 文件
+		 * @param fdId 文件
+		 * @return 当前对象
+		*/
+		public NetdiskMyShare setFdId(String fdId) {
+			super.change(FD_ID,super.getFdId(),fdId);
+			super.setFdId(fdId);
+			return this;
+		}
+		
+		/**
+		 * 设置 文件类型
+		 * @param fdType 文件类型
+		 * @return 当前对象
+		*/
+		public NetdiskMyShare setFdType(String fdType) {
+			super.change(FD_TYPE,super.getFdType(),fdType);
+			super.setFdType(fdType);
 			return this;
 		}
 		
@@ -471,12 +513,14 @@ public class NetdiskMyShareMeta {
 			inst.setType(this.getType());
 			inst.setUserId(this.getUserId());
 			inst.setVersion(this.getVersion());
+			inst.setFdType(this.getFdType());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setExpirationMethod(this.getExpirationMethod());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
+			inst.setFdId(this.getFdId());
 			inst.setExpirationTime(this.getExpirationTime());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());

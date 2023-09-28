@@ -1,7 +1,6 @@
 package com.dt.platform.oa.controller;
 
 import java.util.*;
-
 import com.dt.platform.domain.oa.*;
 import com.dt.platform.domain.oa.meta.NetdiskMyShareMeta;
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -66,7 +65,9 @@ public class NetdiskShareMeController extends SuperController {
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.OWNER_USER_ID, value = "所属", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NetdiskShareMeVOMeta.SHARE_ID, value = "分享", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.SHARE_ID, value = "分享", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FD_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FD_TYPE, value = "文件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -164,7 +165,9 @@ public class NetdiskShareMeController extends SuperController {
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.OWNER_USER_ID, value = "所属", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NetdiskShareMeVOMeta.SHARE_ID, value = "分享", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.SHARE_ID, value = "分享", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FD_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FD_TYPE, value = "文件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { NetdiskShareMeVOMeta.PAGE_INDEX, NetdiskShareMeVOMeta.PAGE_SIZE, NetdiskShareMeVOMeta.SEARCH_FIELD, NetdiskShareMeVOMeta.FUZZY_FIELD, NetdiskShareMeVOMeta.SEARCH_VALUE, NetdiskShareMeVOMeta.DIRTY_FIELDS, NetdiskShareMeVOMeta.SORT_FIELD, NetdiskShareMeVOMeta.SORT_TYPE, NetdiskShareMeVOMeta.DATA_ORIGIN, NetdiskShareMeVOMeta.QUERY_LOGIC, NetdiskShareMeVOMeta.REQUEST_ACTION, NetdiskShareMeVOMeta.IDS })
@@ -184,7 +187,9 @@ public class NetdiskShareMeController extends SuperController {
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.OWNER_USER_ID, value = "所属", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NetdiskShareMeVOMeta.SHARE_ID, value = "分享", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.SHARE_ID, value = "分享", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FD_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FD_TYPE, value = "文件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { NetdiskShareMeVOMeta.PAGE_INDEX, NetdiskShareMeVOMeta.PAGE_SIZE, NetdiskShareMeVOMeta.SEARCH_FIELD, NetdiskShareMeVOMeta.FUZZY_FIELD, NetdiskShareMeVOMeta.SEARCH_VALUE, NetdiskShareMeVOMeta.DIRTY_FIELDS, NetdiskShareMeVOMeta.SORT_FIELD, NetdiskShareMeVOMeta.SORT_TYPE, NetdiskShareMeVOMeta.DATA_ORIGIN, NetdiskShareMeVOMeta.QUERY_LOGIC, NetdiskShareMeVOMeta.REQUEST_ACTION, NetdiskShareMeVOMeta.IDS })
@@ -241,7 +246,9 @@ public class NetdiskShareMeController extends SuperController {
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.OWNER_USER_ID, value = "所属", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NetdiskShareMeVOMeta.SHARE_ID, value = "分享", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.SHARE_ID, value = "分享", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FD_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FD_TYPE, value = "文件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { NetdiskShareMeVOMeta.PAGE_INDEX, NetdiskShareMeVOMeta.PAGE_SIZE })
     @SentinelResource(value = NetdiskShareMeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -262,7 +269,9 @@ public class NetdiskShareMeController extends SuperController {
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskShareMeVOMeta.OWNER_USER_ID, value = "所属", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NetdiskShareMeVOMeta.SHARE_ID, value = "分享", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.SHARE_ID, value = "分享", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FD_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskShareMeVOMeta.FD_TYPE, value = "文件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = NetdiskShareMeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -270,9 +279,9 @@ public class NetdiskShareMeController extends SuperController {
     public Result<PagedList<NetdiskShareMe>> queryPagedList(NetdiskShareMeVO sample) {
         Result<PagedList<NetdiskShareMe>> result = new Result<>();
         sample.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
-        ConditionExpr expr=new ConditionExpr();
+        ConditionExpr expr = new ConditionExpr();
         expr.and("file_id not in (select fd_id from oa_netdisk_recycle where deleted=0)");
-        PagedList<NetdiskShareMe> list = netdiskShareMeService.queryPagedList(sample, expr,sample.getPageSize(), sample.getPageIndex());
+        PagedList<NetdiskShareMe> list = netdiskShareMeService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         netdiskShareMeService.dao().fill(list).with("ownerUser").with(NetdiskShareMeMeta.NETDISK_FILE).with(NetdiskShareMeMeta.NETDISK_ORIGIN_FILE).execute();
         List<Employee> owners = CollectorUtil.collectList(list, NetdiskShareMe::getOwnerUser);

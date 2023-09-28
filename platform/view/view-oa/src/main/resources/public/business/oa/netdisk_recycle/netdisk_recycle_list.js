@@ -83,7 +83,7 @@ function ListPage() {
 				limit: 50,
 				where: ps,
 				cols: [[
-					//{ fixed: 'left',type:'checkbox'},
+					{ fixed: 'left',type:'checkbox'},
 					{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'fdId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('fdId',d.fdId,d);}  }
 					,{ field: 'delTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('删除时间') ,templet: function (d) { return templet('delTime',fox.dateFormat(d.delTime,"yyyy-MM-dd HH:mm:ss"),d); }  }

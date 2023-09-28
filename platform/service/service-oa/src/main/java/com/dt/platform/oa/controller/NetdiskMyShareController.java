@@ -1,7 +1,6 @@
 package com.dt.platform.oa.controller;
 
 import java.util.*;
-
 import com.dt.platform.domain.oa.*;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.domain.hrm.Person;
@@ -68,7 +67,9 @@ public class NetdiskMyShareController extends SuperController {
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.EXPIRATION_TIME, value = "过期时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.EXPIRATION_METHOD, value = "过期方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NetdiskMyShareVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.FD_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.FD_TYPE, value = "文件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -169,7 +170,9 @@ public class NetdiskMyShareController extends SuperController {
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.EXPIRATION_TIME, value = "过期时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.EXPIRATION_METHOD, value = "过期方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NetdiskMyShareVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.FD_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.FD_TYPE, value = "文件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { NetdiskMyShareVOMeta.PAGE_INDEX, NetdiskMyShareVOMeta.PAGE_SIZE, NetdiskMyShareVOMeta.SEARCH_FIELD, NetdiskMyShareVOMeta.FUZZY_FIELD, NetdiskMyShareVOMeta.SEARCH_VALUE, NetdiskMyShareVOMeta.DIRTY_FIELDS, NetdiskMyShareVOMeta.SORT_FIELD, NetdiskMyShareVOMeta.SORT_TYPE, NetdiskMyShareVOMeta.DATA_ORIGIN, NetdiskMyShareVOMeta.QUERY_LOGIC, NetdiskMyShareVOMeta.REQUEST_ACTION, NetdiskMyShareVOMeta.IDS })
@@ -192,7 +195,9 @@ public class NetdiskMyShareController extends SuperController {
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.EXPIRATION_TIME, value = "过期时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.EXPIRATION_METHOD, value = "过期方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NetdiskMyShareVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.FD_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.FD_TYPE, value = "文件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { NetdiskMyShareVOMeta.PAGE_INDEX, NetdiskMyShareVOMeta.PAGE_SIZE, NetdiskMyShareVOMeta.SEARCH_FIELD, NetdiskMyShareVOMeta.FUZZY_FIELD, NetdiskMyShareVOMeta.SEARCH_VALUE, NetdiskMyShareVOMeta.DIRTY_FIELDS, NetdiskMyShareVOMeta.SORT_FIELD, NetdiskMyShareVOMeta.SORT_TYPE, NetdiskMyShareVOMeta.DATA_ORIGIN, NetdiskMyShareVOMeta.QUERY_LOGIC, NetdiskMyShareVOMeta.REQUEST_ACTION, NetdiskMyShareVOMeta.IDS })
@@ -227,8 +232,8 @@ public class NetdiskMyShareController extends SuperController {
      */
     @ApiOperation(value = "取消")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = NetdiskMyShareVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
-    })
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = NetdiskMyShareServiceProxy.CANCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(NetdiskMyShareServiceProxy.CANCEL)
@@ -241,8 +246,8 @@ public class NetdiskMyShareController extends SuperController {
      */
     @ApiOperation(value = "移除成员")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = NetdiskMyShareVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
-    })
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = NetdiskMyShareServiceProxy.REMOVE_SHARE_MEMBER, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(NetdiskMyShareServiceProxy.REMOVE_SHARE_MEMBER)
@@ -280,7 +285,9 @@ public class NetdiskMyShareController extends SuperController {
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.EXPIRATION_TIME, value = "过期时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.EXPIRATION_METHOD, value = "过期方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NetdiskMyShareVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.FD_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.FD_TYPE, value = "文件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { NetdiskMyShareVOMeta.PAGE_INDEX, NetdiskMyShareVOMeta.PAGE_SIZE })
     @SentinelResource(value = NetdiskMyShareServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -304,23 +311,24 @@ public class NetdiskMyShareController extends SuperController {
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.EXPIRATION_TIME, value = "过期时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.EXPIRATION_METHOD, value = "过期方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = NetdiskMyShareVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = NetdiskMyShareVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.FD_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetdiskMyShareVOMeta.FD_TYPE, value = "文件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = NetdiskMyShareServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(NetdiskMyShareServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<NetdiskMyShare>> queryPagedList(NetdiskMyShareVO sample) {
         Result<PagedList<NetdiskMyShare>> result = new Result<>();
-        ConditionExpr expr =new ConditionExpr();
+        ConditionExpr expr = new ConditionExpr();
         sample.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
         expr.and("file_id not in (select fd_id from oa_netdisk_recycle where deleted=0 and user_id=?)", SessionUser.getCurrent().getActivatedEmployeeId());
-        PagedList<NetdiskMyShare> list = netdiskMyShareService.queryPagedList(sample,expr, sample.getPageSize(), sample.getPageIndex());
+        PagedList<NetdiskMyShare> list = netdiskMyShareService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         netdiskMyShareService.dao().fill(list).with("ownerUser").with(NetdiskMyShareMeta.NETDISK_FILE).with(NetdiskMyShareMeta.NETDISK_ORIGIN_FILE).execute();
         result.success(true).data(list);
         return result;
     }
-
 
     @ApiOperation(value = "成员成员")
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")

@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 我的分享
  * <p>我的分享 , 数据表 oa_netdisk_my_share 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-09-23 15:50:57
- * @sign 01F3A3B1A7C3A9EAB30BCC6516F0C6F2
+ * @since 2023-09-28 13:31:43
+ * @sign 447658EC885645924648BF86E2DAF81D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,7 +41,7 @@ public class NetdiskMyShare extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "757989427397001216")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "758122044071084033")
 	private String id;
 	
 	/**
@@ -61,6 +61,18 @@ public class NetdiskMyShare extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="链接" , notes = "链接")
 	private String fileUrl;
+	
+	/**
+	 * 文件：文件
+	*/
+	@ApiModelProperty(required = false,value="文件" , notes = "文件")
+	private String fdId;
+	
+	/**
+	 * 文件类型：文件类型
+	*/
+	@ApiModelProperty(required = false,value="文件类型" , notes = "文件类型")
+	private String fdType;
 	
 	/**
 	 * 过期时间：过期时间
@@ -101,7 +113,7 @@ public class NetdiskMyShare extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-09-23 03:39:22")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-09-24 12:26:21")
 	private Date createTime;
 	
 	/**
@@ -234,6 +246,44 @@ public class NetdiskMyShare extends Entity {
 	*/
 	public NetdiskMyShare setFileUrl(String fileUrl) {
 		this.fileUrl=fileUrl;
+		return this;
+	}
+	
+	/**
+	 * 获得 文件<br>
+	 * 文件
+	 * @return 文件
+	*/
+	public String getFdId() {
+		return fdId;
+	}
+	
+	/**
+	 * 设置 文件
+	 * @param fdId 文件
+	 * @return 当前对象
+	*/
+	public NetdiskMyShare setFdId(String fdId) {
+		this.fdId=fdId;
+		return this;
+	}
+	
+	/**
+	 * 获得 文件类型<br>
+	 * 文件类型
+	 * @return 文件类型
+	*/
+	public String getFdType() {
+		return fdType;
+	}
+	
+	/**
+	 * 设置 文件类型
+	 * @param fdType 文件类型
+	 * @return 当前对象
+	*/
+	public NetdiskMyShare setFdType(String fdType) {
+		this.fdType=fdType;
 		return this;
 	}
 	
@@ -620,12 +670,14 @@ public class NetdiskMyShare extends Entity {
 		inst.setType(this.getType());
 		inst.setUserId(this.getUserId());
 		inst.setVersion(this.getVersion());
+		inst.setFdType(this.getFdType());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setExpirationMethod(this.getExpirationMethod());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setFdId(this.getFdId());
 		inst.setExpirationTime(this.getExpirationTime());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
@@ -700,12 +752,14 @@ public class NetdiskMyShare extends Entity {
 			this.setType(DataParser.parse(String.class, map.get(NetdiskMyShareMeta.TYPE)));
 			this.setUserId(DataParser.parse(String.class, map.get(NetdiskMyShareMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(NetdiskMyShareMeta.VERSION)));
+			this.setFdType(DataParser.parse(String.class, map.get(NetdiskMyShareMeta.FD_TYPE)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(NetdiskMyShareMeta.CREATE_BY)));
 			this.setExpirationMethod(DataParser.parse(String.class, map.get(NetdiskMyShareMeta.EXPIRATION_METHOD)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(NetdiskMyShareMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(NetdiskMyShareMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(NetdiskMyShareMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(NetdiskMyShareMeta.DELETE_TIME)));
+			this.setFdId(DataParser.parse(String.class, map.get(NetdiskMyShareMeta.FD_ID)));
 			this.setExpirationTime(DataParser.parse(Date.class, map.get(NetdiskMyShareMeta.EXPIRATION_TIME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(NetdiskMyShareMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(NetdiskMyShareMeta.DELETE_BY)));
@@ -724,12 +778,14 @@ public class NetdiskMyShare extends Entity {
 				this.setType( (String)map.get(NetdiskMyShareMeta.TYPE));
 				this.setUserId( (String)map.get(NetdiskMyShareMeta.USER_ID));
 				this.setVersion( (Integer)map.get(NetdiskMyShareMeta.VERSION));
+				this.setFdType( (String)map.get(NetdiskMyShareMeta.FD_TYPE));
 				this.setCreateBy( (String)map.get(NetdiskMyShareMeta.CREATE_BY));
 				this.setExpirationMethod( (String)map.get(NetdiskMyShareMeta.EXPIRATION_METHOD));
 				this.setDeleted( (Integer)map.get(NetdiskMyShareMeta.DELETED));
 				this.setCreateTime( (Date)map.get(NetdiskMyShareMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(NetdiskMyShareMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(NetdiskMyShareMeta.DELETE_TIME));
+				this.setFdId( (String)map.get(NetdiskMyShareMeta.FD_ID));
 				this.setExpirationTime( (Date)map.get(NetdiskMyShareMeta.EXPIRATION_TIME));
 				this.setTenantId( (String)map.get(NetdiskMyShareMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(NetdiskMyShareMeta.DELETE_BY));
@@ -761,12 +817,14 @@ public class NetdiskMyShare extends Entity {
 			this.setType(DataParser.parse(String.class, r.getValue(NetdiskMyShareMeta.TYPE)));
 			this.setUserId(DataParser.parse(String.class, r.getValue(NetdiskMyShareMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(NetdiskMyShareMeta.VERSION)));
+			this.setFdType(DataParser.parse(String.class, r.getValue(NetdiskMyShareMeta.FD_TYPE)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(NetdiskMyShareMeta.CREATE_BY)));
 			this.setExpirationMethod(DataParser.parse(String.class, r.getValue(NetdiskMyShareMeta.EXPIRATION_METHOD)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(NetdiskMyShareMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(NetdiskMyShareMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(NetdiskMyShareMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(NetdiskMyShareMeta.DELETE_TIME)));
+			this.setFdId(DataParser.parse(String.class, r.getValue(NetdiskMyShareMeta.FD_ID)));
 			this.setExpirationTime(DataParser.parse(Date.class, r.getValue(NetdiskMyShareMeta.EXPIRATION_TIME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(NetdiskMyShareMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(NetdiskMyShareMeta.DELETE_BY)));
@@ -781,12 +839,14 @@ public class NetdiskMyShare extends Entity {
 				this.setType( (String)r.getValue(NetdiskMyShareMeta.TYPE));
 				this.setUserId( (String)r.getValue(NetdiskMyShareMeta.USER_ID));
 				this.setVersion( (Integer)r.getValue(NetdiskMyShareMeta.VERSION));
+				this.setFdType( (String)r.getValue(NetdiskMyShareMeta.FD_TYPE));
 				this.setCreateBy( (String)r.getValue(NetdiskMyShareMeta.CREATE_BY));
 				this.setExpirationMethod( (String)r.getValue(NetdiskMyShareMeta.EXPIRATION_METHOD));
 				this.setDeleted( (Integer)r.getValue(NetdiskMyShareMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(NetdiskMyShareMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(NetdiskMyShareMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(NetdiskMyShareMeta.DELETE_TIME));
+				this.setFdId( (String)r.getValue(NetdiskMyShareMeta.FD_ID));
 				this.setExpirationTime( (Date)r.getValue(NetdiskMyShareMeta.EXPIRATION_TIME));
 				this.setTenantId( (String)r.getValue(NetdiskMyShareMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(NetdiskMyShareMeta.DELETE_BY));

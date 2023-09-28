@@ -203,7 +203,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
 
             if(INST_ID&&INST_ID!="null"){
-                console.log("hiddenhidden")
+                console.log("hidden")
                 $("#dbInstId").parent().parent().hide();
             }
             console.log("form:beforeInit")
@@ -275,7 +275,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
-            data.dbInstId=INST_ID;
+            if(INST_ID!=null&&INST_ID!="null"){
+                data.dbInstId=INST_ID;
+            }
             return true;
         },
         /**

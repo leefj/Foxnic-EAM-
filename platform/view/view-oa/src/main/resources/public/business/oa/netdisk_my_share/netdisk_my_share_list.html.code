@@ -2,7 +2,7 @@
 /**
  * 我的分享 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-09-23 15:50:59
+ * @since 2023-09-28 13:31:44
  */
  -->
  <!DOCTYPE html>
@@ -55,6 +55,16 @@
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('链接')}" class="search-label fileUrl-label">链接</span><span class="search-colon">:</span></div>
                         <input id="fileUrl" class="layui-input search-input" style="width: 180px" type="text" />
+                    </div>
+                    <!-- 文件 , fdId ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('文件')}" class="search-label fdId-label">文件</span><span class="search-colon">:</span></div>
+                        <input id="fdId" class="layui-input search-input" style="width: 180px" type="text" />
+                    </div>
+                    <!-- 文件类型 , fdType ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('文件类型')}" class="search-label fdType-label">文件类型</span><span class="search-colon">:</span></div>
+                        <input id="fdType" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 过期时间 , expirationTime ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
