@@ -1,7 +1,7 @@
 /**
  * 我的分享 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-09-23 15:50:59
+ * @since 2023-09-28 13:31:44
  */
 
 
@@ -87,6 +87,8 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'fileId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('文件') , templet: function (d) { return templet('fileId',d.fileId,d);}  }
 					,{ field: 'fileUrl', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('链接') , templet: function (d) { return templet('fileUrl',d.fileUrl,d);}  }
+					,{ field: 'fdId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('文件') , templet: function (d) { return templet('fdId',d.fdId,d);}  }
+					,{ field: 'fdType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('文件类型') , templet: function (d) { return templet('fdType',d.fdType,d);}  }
 					,{ field: 'expirationTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('过期时间') ,templet: function (d) { return templet('expirationTime',fox.dateFormat(d.expirationTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'expirationMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('过期方式'), templet:function (d){ return templet('expirationMethod',fox.getEnumText(RADIO_EXPIRATIONMETHOD_DATA,d.expirationMethod,'','expirationMethod'),d);}}
 					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('类型'), templet:function (d){ return templet('type',fox.getEnumText(RADIO_TYPE_DATA,d.type,'','type'),d);}}
@@ -163,6 +165,8 @@ function ListPage() {
 		value.userId={ inputType:"button",value: $("#userId").val(),fillBy:["ownerUser","name"] ,label:$("#userId-button").text() };
 		value.fileId={ inputType:"button",value: $("#fileId").val()};
 		value.fileUrl={ inputType:"button",value: $("#fileUrl").val()};
+		value.fdId={ inputType:"button",value: $("#fdId").val()};
+		value.fdType={ inputType:"button",value: $("#fdType").val()};
 		value.expirationTime={ inputType:"date_input", value: $("#expirationTime").val() ,matchType:"auto"};
 		value.expirationMethod={ inputType:"radio_box", value: getSelectedValue("#expirationMethod","value"), label:getSelectedValue("#expirationMethod","nameStr") };
 		value.type={ inputType:"radio_box", value: getSelectedValue("#type","value"), label:getSelectedValue("#type","nameStr") };

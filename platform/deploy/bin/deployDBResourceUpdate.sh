@@ -64,7 +64,6 @@ echo "delete from sys_menu_resource where 1=1;"                                 
 echo "insert into sys_menu_resource select * from $db_update_name.sys_menu_resource;"             >>$updateSql
 echo "update sys_menu a set hidden=1 where a.id in (select id from sys_menu_$t where hidden=1);"  >>$updateSql
 echo "update sys_resourze set access_type='LOGIN';">>$updateSql
-echo "">>$updateSql
 echo "update resource sql list:">>$logfile
 cat $updateSql>>$logfile
 echo "start to load update.sql">>$logfile

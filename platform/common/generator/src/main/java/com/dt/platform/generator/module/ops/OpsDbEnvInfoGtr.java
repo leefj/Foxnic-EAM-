@@ -87,7 +87,7 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-        cfg.view().list().disableBatchDelete();
+       // cfg.view().list().disableBatchDelete();
       //  cfg.view().list().disableCreateNew();
 
         cfg.view().field(OpsTables.OPS_DB_ENV_INFO.IP).search().fuzzySearch();

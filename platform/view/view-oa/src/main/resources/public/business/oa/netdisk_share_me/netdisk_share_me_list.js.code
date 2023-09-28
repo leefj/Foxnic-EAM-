@@ -1,7 +1,7 @@
 /**
  * 分享给我 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-09-23 15:51:16
+ * @since 2023-09-28 13:33:05
  */
 
 
@@ -86,6 +86,8 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'fileId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('文件') , templet: function (d) { return templet('fileId',d.fileId,d);}  }
+					,{ field: 'fdId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('文件') , templet: function (d) { return templet('fdId',d.fdId,d);}  }
+					,{ field: 'fdType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('文件类型') , templet: function (d) { return templet('fdType',d.fdType,d);}  }
 					,{ field: 'shareId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分享') , templet: function (d) { return templet('shareId',d.shareId,d);}  }
 					,{ field: 'ownerUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属') , templet: function (d) { return templet('ownerUserId',fox.getProperty(d,["ownerUser","name"],0,'','ownerUserId'),d);} }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
@@ -158,6 +160,8 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.fileId={ inputType:"button",value: $("#fileId").val()};
+		value.fdId={ inputType:"button",value: $("#fdId").val()};
+		value.fdType={ inputType:"button",value: $("#fdType").val()};
 		value.shareId={ inputType:"button",value: $("#shareId").val()};
 		value.userId={ inputType:"button",value: $("#userId").val(),fillBy:["user","name"] ,label:$("#userId-button").text() };
 		value.ownerUserId={ inputType:"button",value: $("#ownerUserId").val(),fillBy:["ownerUser","name"] ,label:$("#ownerUserId-button").text() };

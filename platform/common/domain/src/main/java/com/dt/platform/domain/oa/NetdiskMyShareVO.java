@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 我的分享VO类型
  * <p>我的分享 , 数据表 oa_netdisk_my_share 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-09-23 15:50:57
+ * @since 2023-09-28 13:31:43
  * @sign C29190DDDFFE56E5369150C0E2CD7B95
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -406,12 +406,14 @@ public class NetdiskMyShareVO extends NetdiskMyShare {
 		inst.setType(this.getType());
 		inst.setUserId(this.getUserId());
 		inst.setVersion(this.getVersion());
+		inst.setFdType(this.getFdType());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setExpirationMethod(this.getExpirationMethod());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setFdId(this.getFdId());
 		inst.setExpirationTime(this.getExpirationTime());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
@@ -498,12 +500,14 @@ public class NetdiskMyShareVO extends NetdiskMyShare {
 			this.setType(DataParser.parse(String.class, map.get(NetdiskMyShareVOMeta.TYPE)));
 			this.setUserId(DataParser.parse(String.class, map.get(NetdiskMyShareVOMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(NetdiskMyShareVOMeta.VERSION)));
+			this.setFdType(DataParser.parse(String.class, map.get(NetdiskMyShareVOMeta.FD_TYPE)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(NetdiskMyShareVOMeta.CREATE_BY)));
 			this.setExpirationMethod(DataParser.parse(String.class, map.get(NetdiskMyShareVOMeta.EXPIRATION_METHOD)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(NetdiskMyShareVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(NetdiskMyShareVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(NetdiskMyShareVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(NetdiskMyShareVOMeta.DELETE_TIME)));
+			this.setFdId(DataParser.parse(String.class, map.get(NetdiskMyShareVOMeta.FD_ID)));
 			this.setExpirationTime(DataParser.parse(Date.class, map.get(NetdiskMyShareVOMeta.EXPIRATION_TIME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(NetdiskMyShareVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(NetdiskMyShareVOMeta.DELETE_BY)));
@@ -532,12 +536,14 @@ public class NetdiskMyShareVO extends NetdiskMyShare {
 				this.setType( (String)map.get(NetdiskMyShareVOMeta.TYPE));
 				this.setUserId( (String)map.get(NetdiskMyShareVOMeta.USER_ID));
 				this.setVersion( (Integer)map.get(NetdiskMyShareVOMeta.VERSION));
+				this.setFdType( (String)map.get(NetdiskMyShareVOMeta.FD_TYPE));
 				this.setCreateBy( (String)map.get(NetdiskMyShareVOMeta.CREATE_BY));
 				this.setExpirationMethod( (String)map.get(NetdiskMyShareVOMeta.EXPIRATION_METHOD));
 				this.setDeleted( (Integer)map.get(NetdiskMyShareVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(NetdiskMyShareVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(NetdiskMyShareVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(NetdiskMyShareVOMeta.DELETE_TIME));
+				this.setFdId( (String)map.get(NetdiskMyShareVOMeta.FD_ID));
 				this.setExpirationTime( (Date)map.get(NetdiskMyShareVOMeta.EXPIRATION_TIME));
 				this.setTenantId( (String)map.get(NetdiskMyShareVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(NetdiskMyShareVOMeta.DELETE_BY));
@@ -579,12 +585,14 @@ public class NetdiskMyShareVO extends NetdiskMyShare {
 			this.setType(DataParser.parse(String.class, r.getValue(NetdiskMyShareVOMeta.TYPE)));
 			this.setUserId(DataParser.parse(String.class, r.getValue(NetdiskMyShareVOMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(NetdiskMyShareVOMeta.VERSION)));
+			this.setFdType(DataParser.parse(String.class, r.getValue(NetdiskMyShareVOMeta.FD_TYPE)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(NetdiskMyShareVOMeta.CREATE_BY)));
 			this.setExpirationMethod(DataParser.parse(String.class, r.getValue(NetdiskMyShareVOMeta.EXPIRATION_METHOD)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(NetdiskMyShareVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(NetdiskMyShareVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(NetdiskMyShareVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(NetdiskMyShareVOMeta.DELETE_TIME)));
+			this.setFdId(DataParser.parse(String.class, r.getValue(NetdiskMyShareVOMeta.FD_ID)));
 			this.setExpirationTime(DataParser.parse(Date.class, r.getValue(NetdiskMyShareVOMeta.EXPIRATION_TIME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(NetdiskMyShareVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(NetdiskMyShareVOMeta.DELETE_BY)));
@@ -599,12 +607,14 @@ public class NetdiskMyShareVO extends NetdiskMyShare {
 				this.setType( (String)r.getValue(NetdiskMyShareVOMeta.TYPE));
 				this.setUserId( (String)r.getValue(NetdiskMyShareVOMeta.USER_ID));
 				this.setVersion( (Integer)r.getValue(NetdiskMyShareVOMeta.VERSION));
+				this.setFdType( (String)r.getValue(NetdiskMyShareVOMeta.FD_TYPE));
 				this.setCreateBy( (String)r.getValue(NetdiskMyShareVOMeta.CREATE_BY));
 				this.setExpirationMethod( (String)r.getValue(NetdiskMyShareVOMeta.EXPIRATION_METHOD));
 				this.setDeleted( (Integer)r.getValue(NetdiskMyShareVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(NetdiskMyShareVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(NetdiskMyShareVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(NetdiskMyShareVOMeta.DELETE_TIME));
+				this.setFdId( (String)r.getValue(NetdiskMyShareVOMeta.FD_ID));
 				this.setExpirationTime( (Date)r.getValue(NetdiskMyShareVOMeta.EXPIRATION_TIME));
 				this.setTenantId( (String)r.getValue(NetdiskMyShareVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(NetdiskMyShareVOMeta.DELETE_BY));

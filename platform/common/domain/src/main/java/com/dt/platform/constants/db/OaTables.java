@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-09-27 20:36:42
+ * @since 2023-09-28 13:26:54
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -2322,6 +2322,16 @@ public class OaTables {
 		public static final DBField FILE_URL = new DBField(DBDataType.STRING , "file_url","fileUrl","链接","链接",false,false,true);
 		
 		/**
+		 * 文件
+		*/
+		public static final DBField FD_ID = new DBField(DBDataType.STRING , "fd_id","fdId","文件","文件",false,false,true);
+		
+		/**
+		 * 文件类型
+		*/
+		public static final DBField FD_TYPE = new DBField(DBDataType.STRING , "fd_type","fdType","文件类型","文件类型",false,false,true);
+		
+		/**
 		 * 过期时间
 		*/
 		public static final DBField EXPIRATION_TIME = new DBField(DBDataType.DATE , "expiration_time","expirationTime","过期时间","过期时间",false,false,true);
@@ -2387,7 +2397,7 @@ public class OaTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OA_NETDISK_MY_SHARE() {
-			this.init($NAME,"我的分享" , ID , USER_ID , FILE_ID , FILE_URL , EXPIRATION_TIME , EXPIRATION_METHOD , TYPE , STATUS , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+			this.init($NAME,"我的分享" , ID , USER_ID , FILE_ID , FILE_URL , FD_ID , FD_TYPE , EXPIRATION_TIME , EXPIRATION_METHOD , TYPE , STATUS , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
 		}
 		public static final OA_NETDISK_MY_SHARE $TABLE=new OA_NETDISK_MY_SHARE();
 	}
@@ -2726,19 +2736,19 @@ public class OaTables {
 		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
 		
 		/**
-		 * 最大容量_M
+		 * 最大容量（M）
 		*/
-		public static final DBField CAPACITY_SIZE_M = new DBField(DBDataType.LONG , "capacity_size_m","capacitySizeM","最大容量","M",false,false,true);
+		public static final DBField CAPACITY_SIZE_M = new DBField(DBDataType.LONG , "capacity_size_m","capacitySizeM","最大容量","M）",false,false,true);
 		
 		/**
-		 * 当前容量_B
+		 * 当前容量（B）
 		*/
-		public static final DBField CURRENT_SIZE_B = new DBField(DBDataType.LONG , "current_size_b","currentSizeB","当前容量","B",false,false,true);
+		public static final DBField CURRENT_SIZE_B = new DBField(DBDataType.LONG , "current_size_b","currentSizeB","当前容量","B）",false,false,true);
 		
 		/**
-		 * 上传大小_M
+		 * 上传大小（M）
 		*/
-		public static final DBField UPLOAD_MAX_SIZE_M = new DBField(DBDataType.LONG , "upload_max_size_m","uploadMaxSizeM","上传大小","M",false,false,true);
+		public static final DBField UPLOAD_MAX_SIZE_M = new DBField(DBDataType.LONG , "upload_max_size_m","uploadMaxSizeM","上传大小","M）",false,false,true);
 		
 		/**
 		 * 文件类型
@@ -2837,6 +2847,16 @@ public class OaTables {
 		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","文件","文件",false,false,true);
 		
 		/**
+		 * 文件
+		*/
+		public static final DBField FD_ID = new DBField(DBDataType.STRING , "fd_id","fdId","文件","文件",false,false,true);
+		
+		/**
+		 * 文件类型
+		*/
+		public static final DBField FD_TYPE = new DBField(DBDataType.STRING , "fd_type","fdType","文件类型","文件类型",false,false,true);
+		
+		/**
 		 * 分享
 		*/
 		public static final DBField SHARE_ID = new DBField(DBDataType.STRING , "share_id","shareId","分享","分享",false,false,true);
@@ -2897,7 +2917,7 @@ public class OaTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OA_NETDISK_SHARE_ME() {
-			this.init($NAME,"分享给我" , ID , FILE_ID , SHARE_ID , USER_ID , OWNER_USER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+			this.init($NAME,"分享给我" , ID , FILE_ID , FD_ID , FD_TYPE , SHARE_ID , USER_ID , OWNER_USER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
 		}
 		public static final OA_NETDISK_SHARE_ME $TABLE=new OA_NETDISK_SHARE_ME();
 	}

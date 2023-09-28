@@ -296,26 +296,32 @@ function ListPage() {
                 case 'lastNode':
                     window.pageExt.list.lastNode(selected,obj);
                     break;
-
-                case 'deleteFd':
+                case 'deleteFds':
                     //删除
-                    var ids=getCheckedList("id");
-                    if(ids.length==0) {
+                    var checkStatus = table.checkStatus('data-table');
+                    var checkData = checkStatus.data;
+                    if(checkData.length==0) {
                         top.layer.msg(fox.translate('请选择要删除的内容'));
                         return;
                     }
+                    var psData=[];
+                    for(var i=0;i<checkData.length;i++){
+                        var obj={};
+                        obj.fdId=checkData[i].fdId;
+                        obj.fdType=checkData[i].fdType;
+                        psData.push(obj);
+                    }
                     //调用批量删除接口
+                    var ps={data:JSON.stringify(psData)};
                     top.layer.confirm(fox.translate('确定删除已选中的内容吗？'), function (i) {
                         top.layer.close(i);
-                        admin.post(batchDeleteURL, { ids: ids }, function (data) {
-                            if (data.success) {
-                                fox.showMessage(data);
+                        admin.post(moduleURL+"/batch-delete",ps , function (rs) {
+                            if (rs.success) {
+                                fox.showMessage(rs);
                                 refreshTableData();
                             } else {
-                                if(data.data>0) {
-                                    refreshTableData();
-                                }
-                                fox.showMessage(data);
+
+                                fox.showMessage(rs);
                             }
                         },{delayLoading:200,elms:[$("#del-fd-button")]});
                     });
