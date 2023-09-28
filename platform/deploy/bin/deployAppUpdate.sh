@@ -5,6 +5,15 @@ echo "cur_dir:$cur_dir"
 prod_app_dir=/app/app
 app_conf="${cur_dir}/app.conf"
 
+logfile="$prod_app_dir/logs/app_update.log";
+mkdir -p $prod_app_dir/logs
+if [[ ! -d $prod_app_dir/logs ]];then
+  echo "$prod_app_dir/logs not exists"
+  exit 1
+fi
+
+nowTime=`date +%Y$m%d%H%M%S`
+echo "start to update app,time:$nowTime">>$logfile
 tpl_update_par_cnt=`cat $app_conf|grep -v "#"|grep APP_TPL_UPDATE=|wc -l`
 if [[ $tpl_update_par_cnt -eq 0 ]];then
   tpl_update=0
@@ -19,9 +28,9 @@ fi
 
 #app.jar will overwrite if exist
 echo "######## start to update app.jar ##############"
+echo "start to update app jar">>$logfile
 if [[ -f "$prod_app_dir/app/app.jar" ]];then
   rm -rf $prod_app_dir/app/app.jar
-  cd $app_dir/app/app
   echo "cp $app_dir/app/app.jar $prod_app_dir/app/"
   cp $app_dir/app/app.jar $prod_app_dir/app/
   ls -rtl $prod_app_dir/app/
@@ -34,7 +43,8 @@ echo ""
 echo ""
 
 #app lib will copy
-echo " ########start to update app.lib ##############"
+echo " ########start to update app lib ##############"
+echo "start to update app lib">>$logfile
 if [[ -d $prod_app_dir/app/lib ]];then
   rm -rf $prod_app_dir/app/lib/*
   cd $app_dir/app/lib/
@@ -50,6 +60,7 @@ echo ""
 
 #bpm.jar will overwrite
 echo "######## start to update bpm.jar ##############"
+echo "start to update bpm jar">>$logfile
 if [[ -f "$prod_app_dir/bpm/bpm.jar" ]];then
   cd $app_dir/bpm
   echo "cp bpm.jar $prod_app_dir/bpm/"
@@ -64,6 +75,7 @@ echo ""
 
 #sh file will overwrite
 echo "######## start to update script file ##############"
+echo "start to update script file">>$logfile
 cd $app_dir/bin/
 scriptFileList=`ls -rtl |grep ".sh"|awk '{print $NF}'`
 for scriptFile in $scriptFileList
@@ -79,6 +91,7 @@ ls -rtl $prod_app_dir/bin/*.sh
 
 #Tpl File
 echo "######## start to update tpl file ##############"
+echo "start to update tpl file">>$logfile
 if [[ $tpl_update -eq 1 ]];then
   echo "start to overwrite tpl file"
   if [[ -d "$prod_app_dir/app/upload/tpl/T001" ]];then
@@ -94,7 +107,10 @@ if [[ $tpl_update -eq 1 ]];then
   fi
 fi
 #restart
+
 echo "######## restart app ##############"
 cd $prod_app_dir
+echo "restart all app">>$logfile
+echo "update finish">>$logfile
 sh restartAll.sh
 exit 0
