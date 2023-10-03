@@ -125,9 +125,9 @@
 
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('搜索时间')}" class="search-label sTime-label">搜索时间</span><span class="search-colon">:</span></div>
-                        <input type="text" id="sTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                        <input type="text" id="sTime-begin" style="width: 150px" lay-verify="datetime" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                         <span class="search-dash">-</span>
-                        <input type="text" id="sTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                        <input type="text" id="sTime-end"  style="width: 150px"  lay-verify="datetime" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
                 </div>
             </div>
