@@ -118,11 +118,13 @@ function ListPage() {
         ps.day=5;
         var stime=$("#sTime-begin").val();
         var etime=$("#sTime-end").val();
-        if(stime!=""&&stime.length==10){
-            ps.sdate=stime+" 00:00";
+        // console.log("stime",stime)
+        // console.log("etime",etime)
+        if(stime!=""){
+            ps.sdate=stime;
         }
-        if(etime!=""&&etime.length==10){
-            ps.edate=etime+" 00:00";
+        if(etime!=""){
+            ps.edate=etime;
         }
         var task=setTimeout(function(){layer.load(2);},1000);
         admin.post("/service-ops/ops-statistics/query-node-collect-data-graph", ps, function (data) {
@@ -296,7 +298,7 @@ function ListPage() {
         var tDate = today.getDate();
         tMonth = doHandleMonth(tMonth + 1);
         tDate = doHandleMonth(tDate);
-        return tYear+"-"+tMonth+"-"+tDate;
+        return tYear+"-"+tMonth+"-"+tDate+" 00:00:00";
     }
     function doHandleMonth(month){
         var m = month;
@@ -339,6 +341,7 @@ function ListPage() {
         var start=laydate.render({
             elem: '#sTime-begin',
             max:0,
+            type:'datetime',
             value:getRecentDay(-1),
             trigger:"click",
             done:function(value,date) {
@@ -356,6 +359,7 @@ function ListPage() {
         var end=laydate.render({
             elem: '#sTime-end',
             // max:1,
+            type:'datetime',
             value: getRecentDay(1),
             trigger:"click",
             done:function(value,date) {
