@@ -5,13 +5,14 @@ import com.dt.platform.domain.ops.MonitorTplIndicator;
 import java.util.Date;
 import com.dt.platform.domain.ops.MonitorTpl;
 import com.dt.platform.domain.ops.MonitorTplIndicatorType;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 16:33:31
- * @sign A5FC431328491449C6DE44AAE2018621
+ * @since 2023-10-03 08:00:12
+ * @sign 7330C579BC20DD65AEEF6A35C3446E19
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -148,24 +149,24 @@ public class MonitorTplIndicatorMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicator,java.lang.String> VALUE_COLUMN_NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicator.class ,VALUE_COLUMN_NAME, java.lang.String.class, "字段名称", "字段名称", java.lang.String.class, null);
 	
 	/**
-	 * 超时(秒) , 类型: java.lang.Integer
+	 * 超时时间 , 秒) , 类型: java.lang.Integer
 	*/
 	public static final String TIME_OUT="timeOut";
 	
 	/**
-	 * 超时(秒) , 类型: java.lang.Integer
+	 * 超时时间 , 秒) , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicator,java.lang.Integer> TIME_OUT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicator.class ,TIME_OUT, java.lang.Integer.class, "超时(秒)", "超时(秒)", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicator,java.lang.Integer> TIME_OUT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicator.class ,TIME_OUT, java.lang.Integer.class, "超时时间", "秒)", java.lang.Integer.class, null);
 	
 	/**
-	 * 间隔时间(秒） , 类型: java.lang.Integer
+	 * 间隔时间 , 秒） , 类型: java.lang.Integer
 	*/
 	public static final String INTERVAL_TIME="intervalTime";
 	
 	/**
-	 * 间隔时间(秒） , 类型: java.lang.Integer
+	 * 间隔时间 , 秒） , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicator,java.lang.Integer> INTERVAL_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicator.class ,INTERVAL_TIME, java.lang.Integer.class, "间隔时间(秒）", "间隔时间(秒）", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicator,java.lang.Integer> INTERVAL_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicator.class ,INTERVAL_TIME, java.lang.Integer.class, "间隔时间", "秒）", java.lang.Integer.class, null);
 	
 	/**
 	 * 数据保留天数 , 类型: java.lang.Integer
@@ -504,8 +505,8 @@ public class MonitorTplIndicatorMeta {
 		}
 		
 		/**
-		 * 设置 超时(秒)
-		 * @param timeOut 超时(秒)
+		 * 设置 超时时间
+		 * @param timeOut 超时时间
 		 * @return 当前对象
 		*/
 		public MonitorTplIndicator setTimeOut(Integer timeOut) {
@@ -515,8 +516,8 @@ public class MonitorTplIndicatorMeta {
 		}
 		
 		/**
-		 * 设置 间隔时间(秒）
-		 * @param intervalTime 间隔时间(秒）
+		 * 设置 间隔时间
+		 * @param intervalTime 间隔时间
 		 * @return 当前对象
 		*/
 		public MonitorTplIndicator setIntervalTime(Integer intervalTime) {
@@ -722,5 +723,60 @@ public class MonitorTplIndicatorMeta {
 			super.setMonitorIndicatorType(monitorIndicatorType);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public MonitorTplIndicator clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public MonitorTplIndicator duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCode(this.getCode());
+			inst.setDataKeepDay(this.getDataKeepDay());
+			inst.setNotes(this.getNotes());
+			inst.setValueColumnRows(this.getValueColumnRows());
+			inst.setMonitorMethod(this.getMonitorMethod());
+			inst.setValueColumnCols(this.getValueColumnCols());
+			inst.setMonitorTplCode(this.getMonitorTplCode());
+			inst.setIndicatorType(this.getIndicatorType());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setValueColumn(this.getValueColumn());
+			inst.setId(this.getId());
+			inst.setIntervalTime(this.getIntervalTime());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setLabel(this.getLabel());
+			inst.setValueColumnMap(this.getValueColumnMap());
+			inst.setVersion(this.getVersion());
+			inst.setCommand(this.getCommand());
+			inst.setTimeOut(this.getTimeOut());
+			inst.setValueColumnType(this.getValueColumnType());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCommandValue(this.getCommandValue());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setIndicatorVariable(this.getIndicatorVariable());
+			inst.setSnmpOid(this.getSnmpOid());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setValueColumnName(this.getValueColumnName());
+			inst.setItemSort(this.getItemSort());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setTpl(this.getTpl());
+				inst.setMonitorIndicatorType(this.getMonitorIndicatorType());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

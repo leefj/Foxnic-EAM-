@@ -62,6 +62,15 @@ public class NetdiskFilePageController extends ViewController {
 
 
 
+	/**
+	 * 文件 表单页面
+	 */
+	@RequestMapping("/select_folder_form.html")
+	public String selectFolderForm(Model model,HttpServletRequest request , String data) {
+		model.addAttribute("data",data);
+		return getTemplatePath(prefix,"select_folder_form");
+	}
+
 
 	/**
 	 * 预览

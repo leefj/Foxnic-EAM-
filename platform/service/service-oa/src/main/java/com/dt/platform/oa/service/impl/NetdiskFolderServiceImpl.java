@@ -1,6 +1,7 @@
 package com.dt.platform.oa.service.impl;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.Order;
 
 import com.dt.platform.constants.enums.oa.NetDiskRootEnum;
 import com.dt.platform.constants.enums.oa.NetdiskVirtualFdTypeEnum;
@@ -10,6 +11,7 @@ import com.github.foxnic.api.error.CommonError;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
+import com.github.foxnic.sql.expr.OrderBy;
 import com.github.foxnic.sql.expr.Update;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ import com.github.foxnic.commons.collection.MapUtil;
 
 import com.dt.platform.domain.oa.NetdiskFolder;
 import com.dt.platform.domain.oa.NetdiskFolderVO;
+
+import java.util.ArrayList;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -399,6 +403,27 @@ public class NetdiskFolderServiceImpl extends SuperService<NetdiskFolder> implem
 	@Override
 	public PagedList<NetdiskFolder> queryPagedList(NetdiskFolder sample, ConditionExpr condition, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, condition, pageSize, pageIndex);
+	}
+
+	@Override
+	public PagedList<NetdiskFolder> queryMyFolderPagedList(NetdiskFolder sample, int pageSize, int pageIndex) {
+
+
+		NetdiskRecycle q=new NetdiskRecycle();
+		q.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+		q.setFdType(NetdiskVirtualFdTypeEnum.FOLDER.code());
+		List<NetdiskRecycle> folders=netdiskRecycleService.queryList(q);
+		ConditionExpr expr=new ConditionExpr();
+		expr.and("1=1");
+		if(folders!=null&&folders.size()>0){
+			for(int i=0;i<folders.size();i++){
+				expr.and("hierarchy not like '"+folders.get(i).getFdId()+"%'");
+			}
+		}
+		OrderBy order=new OrderBy();
+		order.desc("hierarchy_name");
+		sample.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+		return super.queryPagedList(sample, expr,order, pageSize, pageIndex);
 	}
 
 	/**

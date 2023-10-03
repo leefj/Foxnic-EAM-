@@ -1,5 +1,6 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 模版指标 服务接口
+ * 模版指标服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 16:33:31
+ * @since 2023-10-03 08:00:12
 */
 
 public interface IMonitorTplIndicatorService extends  ISimpleIdService<MonitorTplIndicator,String> {
@@ -55,7 +56,7 @@ public interface IMonitorTplIndicatorService extends  ISimpleIdService<MonitorTp
 
 		
 	/**
-	 * 按主键删除 模版指标
+	 * 按主键删除模版指标
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IMonitorTplIndicatorService extends  ISimpleIdService<MonitorTp
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 模版指标
+	 * 按主键删除模版指标
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IMonitorTplIndicatorService extends  ISimpleIdService<MonitorTp
 
 		
 	/**
-	 * 按主键更新字段 模版指标
+	 * 按主键更新模版指标
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IMonitorTplIndicatorService extends  ISimpleIdService<MonitorTp
 
 		
 	/**
-	 * 按主键获取 模版指标
+	 * 按主键获取模版指标
 	 *
 	 * @param id 主键
 	 * @return MonitorTplIndicator 数据对象

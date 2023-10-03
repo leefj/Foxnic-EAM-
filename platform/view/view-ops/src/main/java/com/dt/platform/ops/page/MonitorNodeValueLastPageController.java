@@ -10,25 +10,25 @@ import com.dt.platform.proxy.ops.MonitorNodeValueLastServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 节点数值最新 模版页面控制器
+ * 节点数值最新模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-20 14:46:45
+ * @since 2023-10-02 18:25:42
 */
 
 @Controller("OpsMonitorNodeValueLastPageController")
 @RequestMapping(MonitorNodeValueLastPageController.prefix)
 public class MonitorNodeValueLastPageController extends ViewController {
-	
+
 	public static final String prefix="business/ops/monitor_node_value_last";
 
 	private MonitorNodeValueLastServiceProxy proxy;
-	
+
 	/**
-	 * 获得代理对象<br> 
-	 * 1、单体应用时，在应用内部调用；<br> 
-	 * 2、前后端分离时，通过配置，以Rest方式调用后端；<br> 
-	 * 3、微服务时，通过feign调用; <br> 
+	 * 获得代理对象<br>
+	 * 1、单体应用时，在应用内部调用；<br>
+	 * 2、前后端分离时，通过配置，以Rest方式调用后端；<br>
+	 * 3、微服务时，通过feign调用; <br>
 	 * */
 	public MonitorNodeValueLastServiceProxy proxy() {
 		if(proxy==null) {
@@ -36,13 +36,13 @@ public class MonitorNodeValueLastPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
 	/**
 	 * 节点数值最新 功能主页面
 	 */
 	@RequestMapping("/monitor_node_value_last_list.html")
 	public String list(Model model,HttpServletRequest request) {
-		return prefix+"/monitor_node_value_last_list";
+		return getTemplatePath(prefix,"monitor_node_value_last_list");
 	}
 
 	/**
@@ -50,6 +50,6 @@ public class MonitorNodeValueLastPageController extends ViewController {
 	 */
 	@RequestMapping("/monitor_node_value_last_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
-		return prefix+"/monitor_node_value_last_form";
+		return getTemplatePath(prefix,"monitor_node_value_last_form");
 	}
 }

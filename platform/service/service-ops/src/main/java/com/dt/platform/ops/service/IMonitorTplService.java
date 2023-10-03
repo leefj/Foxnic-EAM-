@@ -1,5 +1,6 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 监控模版 服务接口
+ * 监控模版服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 16:26:05
+ * @since 2023-10-02 12:33:20
 */
 
 public interface IMonitorTplService extends  ISimpleIdService<MonitorTpl,String> {
@@ -55,7 +56,7 @@ public interface IMonitorTplService extends  ISimpleIdService<MonitorTpl,String>
 
 		
 	/**
-	 * 按主键删除 监控模版
+	 * 按主键删除监控模版
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IMonitorTplService extends  ISimpleIdService<MonitorTpl,String>
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 监控模版
+	 * 按主键删除监控模版
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IMonitorTplService extends  ISimpleIdService<MonitorTpl,String>
 
 		
 	/**
-	 * 按主键更新字段 监控模版
+	 * 按主键更新监控模版
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IMonitorTplService extends  ISimpleIdService<MonitorTpl,String>
 
 		
 	/**
-	 * 按主键获取 监控模版
+	 * 按主键获取监控模版
 	 *
 	 * @param id 主键
 	 * @return MonitorTpl 数据对象

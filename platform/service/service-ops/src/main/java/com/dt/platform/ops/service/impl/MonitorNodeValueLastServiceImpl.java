@@ -1,42 +1,49 @@
 package com.dt.platform.ops.service.impl;
 
+import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
+
 
 import com.dt.platform.domain.ops.MonitorNodeValueLast;
-import com.dt.platform.ops.service.IMonitorNodeValueLastService;
-import com.github.foxnic.api.error.ErrorDesc;
+import com.dt.platform.domain.ops.MonitorNodeValueLastVO;
+import java.util.List;
 import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.excel.ExcelStructure;
+import com.github.foxnic.dao.spec.DAO;
+import java.lang.reflect.Field;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
-import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.sql.meta.DBField;
-import org.github.foxnic.web.framework.dao.DBConfigs;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
+import com.github.foxnic.dao.excel.ExcelStructure;
 import java.io.InputStream;
-import java.lang.reflect.Field;
+import com.github.foxnic.sql.meta.DBField;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.meta.DBColumnMeta;
+import com.github.foxnic.sql.expr.Select;
+import java.util.ArrayList;
+import com.dt.platform.ops.service.IMonitorNodeValueLastService;
+import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
  * <p>
- * 节点数值最新 服务实现
+ * 节点数值最新服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-20 14:46:45
+ * @since 2023-10-02 18:25:42
 */
 
 
 @Service("OpsMonitorNodeValueLastService")
+
 public class MonitorNodeValueLastServiceImpl extends SuperService<MonitorNodeValueLast> implements IMonitorNodeValueLastService {
 
 	/**
@@ -92,7 +99,7 @@ public class MonitorNodeValueLastServiceImpl extends SuperService<MonitorNodeVal
 
 	
 	/**
-	 * 按主键删除 节点数值最新
+	 * 按主键删除节点数值最新
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -113,7 +120,7 @@ public class MonitorNodeValueLastServiceImpl extends SuperService<MonitorNodeVal
 	}
 	
 	/**
-	 * 按主键删除 节点数值最新
+	 * 按主键删除节点数值最新
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -122,7 +129,7 @@ public class MonitorNodeValueLastServiceImpl extends SuperService<MonitorNodeVal
 		MonitorNodeValueLast monitorNodeValueLast = new MonitorNodeValueLast();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		monitorNodeValueLast.setId(id);
-		monitorNodeValueLast.setDeleted(dao.getDBTreaty().getTrueValue());
+		monitorNodeValueLast.setDeleted(true);
 		monitorNodeValueLast.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		monitorNodeValueLast.setDeleteTime(new Date());
 		try {
@@ -173,7 +180,7 @@ public class MonitorNodeValueLastServiceImpl extends SuperService<MonitorNodeVal
 
 	
 	/**
-	 * 按主键更新字段 节点数值最新
+	 * 按主键更新节点数值最新
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -187,7 +194,7 @@ public class MonitorNodeValueLastServiceImpl extends SuperService<MonitorNodeVal
 
 	
 	/**
-	 * 按主键获取 节点数值最新
+	 * 按主键获取节点数值最新
 	 *
 	 * @param id 主键
 	 * @return MonitorNodeValueLast 数据对象
@@ -199,9 +206,22 @@ public class MonitorNodeValueLastServiceImpl extends SuperService<MonitorNodeVal
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
 	@Override
 	public List<MonitorNodeValueLast> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
+	@Override
+	public List<MonitorNodeValueLast> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
+	}
+
+	@Override
+	public Map<String, MonitorNodeValueLast> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, MonitorNodeValueLast::getId);
 	}
 
 
@@ -213,7 +233,7 @@ public class MonitorNodeValueLastServiceImpl extends SuperService<MonitorNodeVal
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<MonitorNodeValueLast> queryList(MonitorNodeValueLast sample) {
+	public List<MonitorNodeValueLast> queryList(MonitorNodeValueLastVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -227,7 +247,7 @@ public class MonitorNodeValueLastServiceImpl extends SuperService<MonitorNodeVal
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<MonitorNodeValueLast> queryPagedList(MonitorNodeValueLast sample, int pageSize, int pageIndex) {
+	public PagedList<MonitorNodeValueLast> queryPagedList(MonitorNodeValueLastVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -258,22 +278,7 @@ public class MonitorNodeValueLastServiceImpl extends SuperService<MonitorNodeVal
 		return false;
 	}
 
-	@Override
-	public ExcelWriter exportExcel(MonitorNodeValueLast sample) {
-		return super.exportExcel(sample);
-	}
-
-	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
-	}
-
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
-
-/**
+	/**
 	 * 批量检查引用
 	 * @param ids  检查这些ID是否又被外部表引用
 	 * */
@@ -284,10 +289,8 @@ public class MonitorNodeValueLastServiceImpl extends SuperService<MonitorNodeVal
 		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }

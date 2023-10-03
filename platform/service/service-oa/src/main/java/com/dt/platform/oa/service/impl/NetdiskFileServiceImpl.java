@@ -139,6 +139,14 @@ public class NetdiskFileServiceImpl extends SuperService<NetdiskFile> implements
 	}
 
 	@Override
+	public Result move(List<String> ids, String folderId) {
+		for(int i=0;i<ids.size();i++){
+			dao.execute("update oa_netdisk_file set folder_id=? where id=?",folderId,ids.get(i));
+		}
+		return ErrorDesc.success();
+	}
+
+	@Override
 	public Result delete(String id) {
 		dao.execute("update oa_netdisk_file set in_recycle='Y' where id=?",id);
 		NetdiskFile file=this.getById(id);

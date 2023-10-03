@@ -41,6 +41,8 @@ public class MonitorTplGtr extends BaseCodeGenerator{
                 }
         );
 
+        cfg.view().search().rowsDisplay(1);
+
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
@@ -80,16 +82,18 @@ public class MonitorTplGtr extends BaseCodeGenerator{
                         OpsTables.OPS_MONITOR_TPL.NOTES,
                 }
         );
+        cfg.view().list().operationColumn().addActionButton("指标","items","items-button","ops_monitor_tpl:items");
+        cfg.view().list().operationColumn().addActionButton("图形","graph","graph-button","ops_monitor_tpl:graph");
 
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
                 .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
-                .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
+                .setPageController(WriteMode.IGNORE) //页面控制器
                 .setBpmEventAdaptor(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //生成代码
         cfg.buildAll();
     }

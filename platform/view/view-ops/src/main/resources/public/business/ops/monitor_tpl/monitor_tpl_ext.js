@@ -1,7 +1,7 @@
 /**
  * 监控模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 16:26:06
+ * @since 2023-10-02 11:32:35
  */
 
 layui.config({
@@ -30,11 +30,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("list:beforeInit");
         },
         /**
+         * 按事件名称移除表格按钮栏的按钮
+         * */
+        removeOperationButtonByEvent(event) {
+            var template=$("#tableOperationTemplate");
+            var content=template.text();
+            content=content.split("\n");
+            var buttons=[]
+            for (let i = 0; i < content.length ; i++) {
+                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
+                    buttons.push(content[i]);
+                }
+            }
+            template.text(buttons.join("\n"))
+        },
+        /**
          * 表格渲染前调用
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            cfg.cellMinWidth=160;;
+            console.log("list:beforeTableRender",cfg);
         },
         /**
          * 表格渲染后调用
@@ -84,6 +99,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
+
+        },
+        /**
+         * 单行数据刷新后调用
+         * */
+        afterRefreshRowData: function (data,remote,context) {
 
         },
         /**
@@ -151,6 +172,42 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        graph:function (data){
+            console.log('graph',data);
+            var queryString="?tplCode="+data.code;
+
+            admin.popupCenter({
+                title: "图形",
+                resize: false,
+                offset: [20,null],
+                area: ["80%","90%"],
+                type: 2,
+                id:"ops-monitor-tpl-graph-list-data-win",
+                content: '/business/ops/monitor_tpl_graph/monitor_tpl_graph_list.html' + queryString,
+                finish: function () {
+
+                }
+            });
+
+
+        },
+        items:function (data){
+            console.log('items',data);
+            var queryString="?tplCode="+data.code;
+            admin.popupCenter({
+                title: "指标",
+                resize: false,
+                offset: [20,null],
+                area: ["80%","90%"],
+                type: 2,
+                id:"ops-monitor-tpl-indicator-list-data-win",
+                content: '/business/ops/monitor_tpl_indicator/monitor_tpl_indicator_list.html' + queryString,
+                finish: function () {
+
+                }
+            });
+
+        },
         /**
          * 末尾执行
          */
@@ -173,7 +230,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 窗口调节前
          * */
-        beforeAdjustPopup:function () {
+        beforeAdjustPopup:function (arg) {
             console.log('beforeAdjustPopup');
             return true;
         },

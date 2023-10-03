@@ -100,6 +100,8 @@ public interface NetdiskVirtualFdServiceProxy {
 
     public static final String SHARE = API_PREFIX + "share";
 
+    public static final String MOVE = API_PREFIX + "move";
+
     /**
      * 添加虚拟文件
      */

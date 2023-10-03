@@ -292,4 +292,31 @@ public class NetdiskFolderController extends SuperController {
         result.success(true).data(list);
         return result;
     }
+
+
+    /**
+     * 分页查询文件夹
+     */
+    @ApiOperation(value = "分页查询文件夹")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = NetdiskFolderVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+            @ApiImplicitParam(name = NetdiskFolderVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = NetdiskFolderVOMeta.USER_ID, value = "用户", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = NetdiskFolderVOMeta.PARENT_ID, value = "父级", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = NetdiskFolderVOMeta.HIERARCHY, value = "文件路径", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = NetdiskFolderVOMeta.IS_FAVOURITE, value = "是否收藏", required = false, dataTypeClass = String.class, example = "N"),
+            @ApiImplicitParam(name = NetdiskFolderVOMeta.IN_RECYCLE, value = "回收站", required = false, dataTypeClass = String.class, example = "N"),
+            @ApiImplicitParam(name = NetdiskFolderVOMeta.HIERARCHY_NAME, value = "路径全名", required = false, dataTypeClass = String.class)
+    })
+    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = NetdiskFolderServiceProxy.QUERY_MY_FOLDER_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(NetdiskFolderServiceProxy.QUERY_MY_FOLDER_PAGED_LIST)
+    public Result<PagedList<NetdiskFolder>> queryMyFolderPagedList(NetdiskFolderVO sample) {
+        Result<PagedList<NetdiskFolder>> result = new Result<>();
+        PagedList<NetdiskFolder> list = netdiskFolderService.queryMyFolderPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        result.success(true).data(list);
+        return result;
+    }
+
+
 }

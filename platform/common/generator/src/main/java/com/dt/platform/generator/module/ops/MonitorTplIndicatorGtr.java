@@ -30,7 +30,7 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
 
         cfg.getPoClassFile().addSimpleProperty(MonitorTpl.class,"tpl","节点模版","节点模版");
         cfg.getPoClassFile().addSimpleProperty(MonitorTplIndicatorType.class,"monitorIndicatorType","指标类型","指标类型");
-
+        cfg.view().search().rowsDisplay(1);
         cfg.view().search().inputLayout(
                 new Object[]{
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.MONITOR_TPL_CODE,
@@ -67,6 +67,10 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.COMMAND_VALUE).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.CREATE_TIME).table().disable(true);
 
+
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.TIME_OUT).basic().label("超时时间(秒)");
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.INTERVAL_TIME).basic().label("间隔时间(秒)");
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.DATA_KEEP_DAY).basic().label("保留时间(天)");
 
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.MONITOR_TPL_CODE)
@@ -115,23 +119,42 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.NAME,
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.MONITOR_TPL_CODE,
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.CODE,
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.LABEL,
                 },
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.STATUS,
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.INDICATOR_TYPE,
+                },
+                new Object[] {
+                        OpsTables.OPS_MONITOR_TPL_INDICATOR.LABEL,
+                        OpsTables.OPS_MONITOR_TPL_INDICATOR.ITEM_SORT,
+                }
+        );
+        cfg.view().form().addGroup("采集方式",
+                new Object[] {
+                        OpsTables.OPS_MONITOR_TPL_INDICATOR.CODE,
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.MONITOR_METHOD,
                 },
                 new Object[] {
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.TIME_OUT,
+                        OpsTables.OPS_MONITOR_TPL_INDICATOR.INTERVAL_TIME,
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.DATA_KEEP_DAY,
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.ITEM_SORT,
+
+                },
+                new Object[] {
+                        OpsTables.OPS_MONITOR_TPL_INDICATOR.TIME_OUT,
+                        OpsTables.OPS_MONITOR_TPL_INDICATOR.SNMP_OID
                 }
         );
 
 
-        cfg.view().form().addGroup("填充信息",
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        OpsTables.OPS_MONITOR_TPL_INDICATOR.COMMAND,
+                        OpsTables.OPS_MONITOR_TPL_INDICATOR.INDICATOR_VARIABLE,
+                }
+        );
+
+
+        cfg.view().form().addGroup("数据填充",
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN_TYPE,
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN_NAME,
@@ -148,29 +171,23 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
                 }
         );
 
-        cfg.view().form().addGroup("SNMP信息",
+        cfg.view().form().addGroup(null,
                 new Object[] {
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.SNMP_OID
-                }
-        );
-
-        cfg.view().form().addGroup("其他信息",
-                new Object[] {
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.COMMAND,
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.INDICATOR_VARIABLE,
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.NOTES
                 }
         );
+
+        cfg.view().list().addJsVariable("TPL_CODE","[[${tplCode}]]","tplCode");
 
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
                 .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
-                .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
+                .setPageController(WriteMode.IGNORE) //页面控制器
                 .setBpmEventAdaptor(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //生成代码
         cfg.buildAll();
     }

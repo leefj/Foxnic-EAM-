@@ -2,7 +2,7 @@
 /**
  * 模版指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 16:33:32
+ * @since 2023-10-03 08:00:14
  */
  -->
  <!DOCTYPE html>
@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
 	<title th:text="${lang.translate('模版指标')}">模版指标</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
@@ -30,265 +31,274 @@
 <body style="overflow-y: hidden;">
 <div class="form-container" >
 
-    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="display:none">
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="opacity:0">
 
         <input name="id" id="id"  type="hidden"/>
 
          <!--开始：group 循环-->
 
-
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3432-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7989-fieldset">
             <legend>基本信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-3432-content">
+        <div class="layui-row form-row" id="random-7989-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs4 form-column" >
 
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('名称') }" type="text" class="layui-input"    lay-verify="|required"  />
-                        </div>
+                <!-- text_input : 名称 ,  name -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('模版')}">模版</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <div id="monitorTplCode" input-type="select" th:data="${'/service-ops/ops-monitor-tpl/query-paged-list'}" extraParam="{}"></div>
-                        </div>
+                </div>
+            
+                <!-- select_box : 模版 ,  monitorTplCode  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('模版')}">模版</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="monitorTplCode" input-type="select" th:data="${'/service-ops/ops-monitor-tpl/query-paged-list'}" extraParam="{}"></div>
                     </div>
-
-
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('编码')}">编码</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="code" id="code" name="code" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('编码') }" type="text" class="layui-input"    lay-verify="|required"  />
-                        </div>
-                    </div>
-
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('标签')}">标签</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="label" id="label" name="label" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('标签') }" type="text" class="layui-input"  />
-                        </div>
-                    </div>
-
-                <!--结束：栏次内字段循环-->
+                </div>
+            <!--结束：栏次内字段循环-->
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs4 form-column" >
 
-
-                <div class="layui-form-item" >
+                <!-- radio_box : 状态 ,  status  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
                         <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.ops.MonitorEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
-
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('指标类型')}">指标类型</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <div id="indicatorType" input-type="select" th:data="${'/service-ops/ops-monitor-tpl-indicator-type/query-paged-list'}" extraParam="{}"></div>
-                        </div>
+            
+                <!-- select_box : 指标类型 ,  indicatorType  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('指标类型')}">指标类型</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="indicatorType" input-type="select" th:data="${'/service-ops/ops-monitor-tpl-indicator-type/query-paged-list'}" extraParam="{}"></div>
                     </div>
-
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('采集方式')}">采集方式</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <div id="monitorMethod" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.MonitorMethodEnum')}" extraParam="{}"></div>
-                        </div>
-                    </div>
-
-
-                <!--结束：栏次内字段循环-->
+                </div>
+            <!--结束：栏次内字段循环-->
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs4 form-column" >
 
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('超时(秒)')}">超时(秒)</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="timeOut" id="timeOut" name="timeOut" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('超时(秒)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
-                        </div>
+                <!-- text_input : 标签 ,  label -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('标签')}">标签</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="label" id="label" name="label" th:placeholder="${ lang.translate('请输入'+'标签') }" type="text" class="layui-input"  />
                     </div>
-
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('数据保留天数')}">数据保留天数</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="dataKeepDay" id="dataKeepDay" name="dataKeepDay" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('数据保留天数') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
-                        </div>
+                </div>
+            
+                <!-- number_input : 排序 ,  itemSort  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('排序')}">排序</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="itemSort" id="itemSort" name="itemSort" th:placeholder="${ lang.translate('请输入'+'排序') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
                     </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
 
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6167-fieldset">
+            <legend>采集方式</legend>
+        </fieldset>
 
+        <div class="layui-row form-row" id="random-6167-content">
 
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('排序')}">排序</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="itemSort" id="itemSort" name="itemSort" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('排序') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
-                        </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- text_input : 编码 ,  code -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('编码')}">编码</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="code" id="code" name="code" th:placeholder="${ lang.translate('请输入'+'编码') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
+                </div>
+            
+                <!-- select_box : 采集方式 ,  monitorMethod  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('采集方式')}">采集方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="monitorMethod" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.MonitorMethodEnum')}" extraParam="{}"></div>
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
 
+                <!-- number_input : 间隔时间(秒) ,  intervalTime  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('间隔时间(秒)')}">间隔时间(秒)</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="intervalTime" id="intervalTime" name="intervalTime" th:placeholder="${ lang.translate('请输入'+'间隔时间(秒)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 保留时间(天) ,  dataKeepDay  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('保留时间(天)')}">保留时间(天)</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="dataKeepDay" id="dataKeepDay" name="dataKeepDay" th:placeholder="${ lang.translate('请输入'+'保留时间(天)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
 
-                <!--结束：栏次内字段循环-->
+                <!-- number_input : 超时时间(秒) ,  timeOut  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('超时时间(秒)')}">超时时间(秒)</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="timeOut" id="timeOut" name="timeOut" th:placeholder="${ lang.translate('请输入'+'超时时间(秒)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- text_input : snmp元数据 ,  snmpOid -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('snmp元数据')}">snmp元数据</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="snmpOid" id="snmpOid" name="snmpOid" th:placeholder="${ lang.translate('请输入'+'snmp元数据') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
 
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9971-fieldset">
-            <legend>填充信息</legend>
-        </fieldset>
-
-        <div class="layui-row form-row" id="random-9971-content">
+        <div class="layui-row form-row" id="random-9989-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
+            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
 
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('数值类型')}">数值类型</div></div>
-                        <div class="layui-input-block ">
-                            <div id="valueColumnType" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.MonitorIndicatorValueColumnTypeEnum')}" extraParam="{}"></div>
-                        </div>
-                    </div>
-
-
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('字段名称')}">字段名称</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="valueColumnName" id="valueColumnName" name="valueColumnName" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('字段名称') }" type="text" class="layui-input"  />
-                        </div>
-                    </div>
-
-                <!--结束：栏次内字段循环-->
-            </div>
-             <!--开始：column 循环-->
-            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('数值列数')}">数值列数</div></div>
-                        <div class="layui-input-block ">
-                            <div id="valueColumnCols" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.MonitorIndicatorValueColumnColsEnum')}" extraParam="{}"></div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('数值行数')}">数值行数</div></div>
-                        <div class="layui-input-block ">
-                            <div id="valueColumnRows" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.MonitorIndicatorValueColumnRowsEnum')}" extraParam="{}"></div>
-                        </div>
-                    </div>
-
-
-                <!--结束：栏次内字段循环-->
-            </div>
-             <!--开始：column 循环-->
-            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('数值字段')}">数值字段</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="valueColumn" id="valueColumn" name="valueColumn" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('数值字段') }" type="text" class="layui-input"  />
-                        </div>
-                    </div>
-
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('数值字段映射')}">数值字段映射</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="valueColumnMap" id="valueColumnMap" name="valueColumnMap" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('数值字段映射') }" type="text" class="layui-input"  />
-                        </div>
-                    </div>
-
-                <!--结束：栏次内字段循环-->
-            </div>
-            <!--结束：栏次输入框循环-->
-        </div>
-         <!--开始：group 循环-->
-
-
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5661-fieldset">
-            <legend>SNMP信息</legend>
-        </fieldset>
-
-        <div class="layui-row form-row" id="random-5661-content">
-
-             <!--开始：column 循环-->
-            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs12 form-column" >
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('snmp元数据')}">snmp元数据</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="snmpOid" id="snmpOid" name="snmpOid" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('snmp元数据') }" type="text" class="layui-input"  />
-                        </div>
-                    </div>
-
-                <!--结束：栏次内字段循环-->
-            </div>
-            <!--结束：栏次输入框循环-->
-        </div>
-         <!--开始：group 循环-->
-
-
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4934-fieldset">
-            <legend>其他信息</legend>
-        </fieldset>
-
-        <div class="layui-row form-row" id="random-4934-content">
-
-             <!--开始：column 循环-->
-            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs12 form-column" >
-
-
-                    <div class="layui-form-item" >
+                <!-- text_area : 命令 ,  command  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('命令')}">命令</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="command" id="command" name="command" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('命令') }" class="layui-textarea" style="height: 120px" ></textarea>
+                        <textarea lay-filter="command" id="command" name="command" th:placeholder="${ lang.translate('请输入'+'命令') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
-
-
-
-                    <div class="layui-form-item" >
+            
+                <!-- text_area : 变量 ,  indicatorVariable  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('变量')}">变量</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="indicatorVariable" id="indicatorVariable" name="indicatorVariable" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('变量') }" class="layui-textarea" style="height: 120px" ></textarea>
+                        <textarea lay-filter="indicatorVariable" id="indicatorVariable" name="indicatorVariable" th:placeholder="${ lang.translate('请输入'+'变量') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9163-fieldset">
+            <legend>数据填充</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-9163-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- select_box : 数值类型 ,  valueColumnType  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('数值类型')}">数值类型</div></div>
+                    <div class="layui-input-block ">
+                        <div id="valueColumnType" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.MonitorIndicatorValueColumnTypeEnum')}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- text_input : 字段名称 ,  valueColumnName -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('字段名称')}">字段名称</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="valueColumnName" id="valueColumnName" name="valueColumnName" th:placeholder="${ lang.translate('请输入'+'字段名称') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- select_box : 数值列数 ,  valueColumnCols  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('数值列数')}">数值列数</div></div>
+                    <div class="layui-input-block ">
+                        <div id="valueColumnCols" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.MonitorIndicatorValueColumnColsEnum')}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- select_box : 数值行数 ,  valueColumnRows  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('数值行数')}">数值行数</div></div>
+                    <div class="layui-input-block ">
+                        <div id="valueColumnRows" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.MonitorIndicatorValueColumnRowsEnum')}" extraParam="{}"></div>
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- text_input : 数值字段 ,  valueColumn -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('数值字段')}">数值字段</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="valueColumn" id="valueColumn" name="valueColumn" th:placeholder="${ lang.translate('请输入'+'数值字段') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 数值字段映射 ,  valueColumnMap -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('数值字段映射')}">数值字段映射</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="valueColumnMap" id="valueColumnMap" name="valueColumnMap" th:placeholder="${ lang.translate('请输入'+'数值字段映射') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
 
 
+        <div class="layui-row form-row" id="random-6253-content">
 
-                    <div class="layui-form-item" >
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
+
+                <!-- text_area : 备注 ,  notes  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
-
-
-                <!--结束：栏次内字段循环-->
+            <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
@@ -302,8 +312,8 @@
 
 </div>
 <div class="model-form-footer">
-    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('ops_monitor_tpl_indicator:create','ops_monitor_tpl_indicator:update','ops_monitor_tpl_indicator:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('ops_monitor_tpl_indicator:create','ops_monitor_tpl_indicator:update','ops_monitor_tpl_indicator:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>

@@ -41,7 +41,8 @@ public class MonitorTplIndicatorPageController extends ViewController {
 	 * 模版指标 功能主页面
 	 */
 	@RequestMapping("/monitor_tpl_indicator_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String tplCode) {
+		model.addAttribute("tplCode",tplCode);
 		return prefix+"/monitor_tpl_indicator_list";
 	}
 

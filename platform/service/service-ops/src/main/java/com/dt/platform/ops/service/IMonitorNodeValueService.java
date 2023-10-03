@@ -1,5 +1,7 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -15,16 +17,18 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import java.util.Map;
 
 /**
  * <p>
- * 节点数值 服务接口
+ * 节点数值服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-20 14:46:23
+ * @since 2023-10-02 18:25:18
 */
 
-public interface IMonitorNodeValueService extends ISuperService<MonitorNodeValue> {
+public interface IMonitorNodeValueService extends  ISimpleIdService<MonitorNodeValue,String> {
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -52,7 +56,7 @@ public interface IMonitorNodeValueService extends ISuperService<MonitorNodeValue
 
 		
 	/**
-	 * 按主键删除 节点数值
+	 * 按主键删除节点数值
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -60,7 +64,7 @@ public interface IMonitorNodeValueService extends ISuperService<MonitorNodeValue
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 节点数值
+	 * 按主键删除节点数值
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -83,7 +87,7 @@ public interface IMonitorNodeValueService extends ISuperService<MonitorNodeValue
 
 		
 	/**
-	 * 按主键更新字段 节点数值
+	 * 按主键更新节点数值
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -153,7 +157,7 @@ public interface IMonitorNodeValueService extends ISuperService<MonitorNodeValue
 
 		
 	/**
-	 * 按主键获取 节点数值
+	 * 按主键获取节点数值
 	 *
 	 * @param id 主键
 	 * @return MonitorNodeValue 数据对象
@@ -165,7 +169,15 @@ public interface IMonitorNodeValueService extends ISuperService<MonitorNodeValue
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<MonitorNodeValue> getByIds(List<String> ids);
+	List<MonitorNodeValue> queryListByIds(List<String> ids);
+
+	/**
+	 * 按 id 列表查询 Map
+	 * @param ids  主键清单
+	 * */
+	Map<String, MonitorNodeValue> queryMapByIds(List<String> ids);
+
+
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
@@ -195,7 +207,7 @@ public interface IMonitorNodeValueService extends ISuperService<MonitorNodeValue
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<MonitorNodeValue> queryList(MonitorNodeValue sample);
+	List<MonitorNodeValue> queryList(MonitorNodeValueVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -236,7 +248,7 @@ public interface IMonitorNodeValueService extends ISuperService<MonitorNodeValue
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<MonitorNodeValue> queryPagedList(MonitorNodeValue sample,int pageSize,int pageIndex);
+	PagedList<MonitorNodeValue> queryPagedList(MonitorNodeValueVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -290,28 +302,8 @@ public interface IMonitorNodeValueService extends ISuperService<MonitorNodeValue
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
-	/**
-	 * 导出 Excel
-	 * */
-	ExcelWriter exportExcel(MonitorNodeValue sample);
 
-	/**
-	 * 导出用于数据导入的 Excel 模版
-	 * */
-	ExcelWriter  exportExcelTemplate();
 
-	/**
-	 * 构建 Excel 结构
-	 * @param  isForExport 是否用于数据导出
-	 * @return   ExcelStructure
-	 * */
-	ExcelStructure buildExcelStructure(boolean isForExport);
-
-	/**
-	 * 导入 Excel 数据
-	 * @return  错误信息，成功时返回 null
-	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
 }

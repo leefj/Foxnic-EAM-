@@ -30,6 +30,7 @@ import java.util.Map;
 public interface INetdiskMyFavoriteService extends  ISimpleIdService<NetdiskMyFavorite,String> {
 
 
+
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param netdiskMyFavorite 数据对象
@@ -290,6 +291,8 @@ public interface INetdiskMyFavoriteService extends  ISimpleIdService<NetdiskMyFa
 	 * @return 列数据
 	 * */
 	<T> List<T> queryValues(DBField field,Class<T> type, ConditionExpr condition);
+
+
 
 	/**
 	 * 查询指定字段的数据清单

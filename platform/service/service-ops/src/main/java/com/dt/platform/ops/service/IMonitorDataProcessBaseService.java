@@ -18,7 +18,6 @@ public interface IMonitorDataProcessBaseService {
 
     Result<JSONArray> queryNodeZabbixAgentData();
 
-
     List<MonitorNode> queryNodeListByMonitorMethod(String monitorMethod);
 
     List<MonitorTpl> queryTplListByMonitorMethod(String monitorMethod);

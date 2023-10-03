@@ -43,7 +43,16 @@ public class MonitorNodeResourcePageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+	/**
+	 * 节点数值 功能主页面
+	 */
+	@RequestMapping("/monitor_node_db_list.html")
+	public String nodeDBList(Model model,HttpServletRequest request) {
+		return prefix+"/monitor_node_db_list";
+	}
+
+
 	/**
 	 * 节点数值 功能主页面
 	 */

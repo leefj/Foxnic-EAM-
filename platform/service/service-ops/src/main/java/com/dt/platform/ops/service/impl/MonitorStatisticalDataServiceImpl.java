@@ -80,94 +80,127 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
     }
 
     @Override
-    public Result<JSONObject> queryNodeHostResourceList() {
+    public Result<JSONObject> queryNodeHostResourceList(String type) {
 
-        String sql=" \n" +
-                "select\n" +
-
-                "\n" +
-                "(select 100-cpu_idle\n" +
-                "from ops_monitor_node_value_last t where \n" +
-                "(node_id,indicator_code,record_time) in \n" +
-                "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess'  and  indicator_code='os.cpu' group by node_id,indicator_code)\n" +
-                " and t.node_id=end.id limit 1\n" +
-                ") data_os_cpu_used, \n" +
+        String sql="";
+        if("os".equals(type)){
+            sql= "select\n" +
+                    "(select 100-cpu_idle\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess'  and  indicator_code='os.cpu' group by node_id,indicator_code)\n" +
+                    " and t.node_id=end.id limit 1\n" +
+                    ") data_os_cpu_used, \n" +
 //                "(select max_record_time from \n" +
 //                "(select node_id, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' group by node_id) t\n" +
 //                "where t.node_id=end.id limit 1\n" +
 //                ") data_max_record_time,\n" +
-                "(\n" +
-                "select p_memory_size\n" +
-                "from ops_monitor_node_value_last t where \n" +
-                "(node_id,indicator_code,record_time) in \n" +
-                "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' and indicator_code='os.memory_size' group by node_id,indicator_code)\n" +
-                "  and t.node_id=end.id limit 1\n" +
-                ") data_p_memory_size,\n" +
-                "(\n" +
-                "select process_cnt\n" +
-                "from ops_monitor_node_value_last t where \n" +
-                "(node_id,indicator_code,record_time) in \n" +
-                "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess'  and indicator_code='os.process_cnt' group by node_id,indicator_code)\n" +
-                "  and t.node_id=end.id limit 1\n" +
-                ") data_process_cnt,\n" +
-                "(\n" +
-                "select os_load\n" +
-                "from ops_monitor_node_value_last t where \n" +
-                "(node_id,indicator_code,record_time) in \n" +
-                "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' and indicator_code='os.load'  group by node_id,indicator_code)\n" +
-                "  and t.node_id=end.id limit 1\n" +
-                ") data_os_load,\n" +
-                "(\n" +
-                "select cpu_number\n" +
-                "from ops_monitor_node_value_last t where \n" +
-                "(node_id,indicator_code,record_time) in \n" +
-                "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess'  and indicator_code='os.cpu_number'  group by node_id,indicator_code)\n" +
-                "and t.node_id=end.id limit 1\n" +
-                ") data_os_cpu_number,\n" +
-                "(\n" +
-                "select hostname\n" +
-                "from ops_monitor_node_value_last t where \n" +
-                "(node_id,indicator_code,record_time) in \n" +
-                "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess'  and indicator_code='os.hostname'  group by node_id,indicator_code)\n" +
-                " and t.node_id=end.id limit 1\n" +
-                ") data_hostname,\n" +
-                "\n" +
-                "(\n" +
-                "select p_memory_used\n" +
-                "from ops_monitor_node_value_last t where \n" +
-                "(node_id,indicator_code,record_time) in \n" +
-                "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess'  and indicator_code='os.memory_used'  group by node_id,indicator_code)\n" +
-                " and t.node_id=end.id limit 1\n" +
-                ") data_p_memory_used,\n" +
-                "(\n" +
-                "select os_datetime\n" +
-                "from ops_monitor_node_value_last t where \n" +
-                "(node_id,indicator_code,record_time) in \n" +
-                "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess'   and indicator_code='os.datetime'  group by node_id,indicator_code)\n" +
-                "and t.node_id=end.id limit 1\n" +
-                ") data_os_datetime,\n" +
-                "\n" +
-                "(\n" +
-                "select max(list_value_number1) flow_up\n" +
-                "from ops_monitor_node_value_last t where \n" +
-                "(node_id,indicator_code,record_time) in \n" +
-                "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' and indicator_code='os.net_interface_flow'  group by node_id,indicator_code)\n" +
-                "  and t.node_id=end.id limit 1\n" +
-                ") data_os_net_interface_flow_up,\n" +
-                "(\n" +
-                "select max(list_value_number2) flow_down\n" +
-                "from ops_monitor_node_value_last t where \n" +
-                "(node_id,indicator_code,record_time) in \n" +
-                "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' and indicator_code='os.net_interface_flow' group by node_id,indicator_code)\n" +
-                "  and t.node_id=end.id limit 1\n" +
-                ") data_os_net_interface_flow_down,\n" +
-                "\n" +
-                "end.*\n" +
-                "from ops_monitor_node end where node_enabled='enable' and deleted=0 \n" ;
+                    "(\n" +
+                    "select p_memory_size\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' and indicator_code='os.memory_size' group by node_id,indicator_code)\n" +
+                    "  and t.node_id=end.id limit 1\n" +
+                    ") data_p_memory_size,\n" +
+                    "(\n" +
+                    "select process_cnt\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess'  and indicator_code='os.process_cnt' group by node_id,indicator_code)\n" +
+                    "  and t.node_id=end.id limit 1\n" +
+                    ") data_process_cnt,\n" +
+                    "(\n" +
+                    "select os_load\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' and indicator_code='os.load'  group by node_id,indicator_code)\n" +
+                    "  and t.node_id=end.id limit 1\n" +
+                    ") data_os_load,\n" +
+                    "(\n" +
+                    "select cpu_number\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess'  and indicator_code='os.cpu_number'  group by node_id,indicator_code)\n" +
+                    "and t.node_id=end.id limit 1\n" +
+                    ") data_os_cpu_number,\n" +
+                    "(\n" +
+                    "select hostname\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess'  and indicator_code='os.hostname'  group by node_id,indicator_code)\n" +
+                    " and t.node_id=end.id limit 1\n" +
+                    ") data_hostname,\n" +
+                    "\n" +
+                    "(\n" +
+                    "select p_memory_used\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess'  and indicator_code='os.memory_used'  group by node_id,indicator_code)\n" +
+                    " and t.node_id=end.id limit 1\n" +
+                    ") data_p_memory_used,\n" +
+                    "(\n" +
+                    "select os_datetime\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess'   and indicator_code='os.datetime'  group by node_id,indicator_code)\n" +
+                    "and t.node_id=end.id limit 1\n" +
+                    ") data_os_datetime,\n" +
+                    "\n" +
+                    "(\n" +
+                    "select max(list_value_number1) flow_up\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' and indicator_code='os.net_interface_flow'  group by node_id,indicator_code)\n" +
+                    "  and t.node_id=end.id limit 1\n" +
+                    ") data_os_net_interface_flow_up,\n" +
+                    "(\n" +
+                    "select max(list_value_number2) flow_down\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' and indicator_code='os.net_interface_flow' group by node_id,indicator_code)\n" +
+                    "  and t.node_id=end.id limit 1\n" +
+                    ") data_os_net_interface_flow_down,\n" +
+                    "\n" +
+                    "end.*\n" +
+                    "from ops_monitor_node end where type=? and node_enabled='enable' and deleted=0 \n" ;
+        }else if("db".equals(type)){
+            sql= "select\n" +
+                    "(\n" +
+                    "select max(node_version) node_version\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' and indicator_code='db.version'  group by node_id,indicator_code)\n" +
+                    "  and t.node_id=end.id limit 1\n" +
+                    ") data_db_node_version,\n" +
+                    "(\n" +
+                    "select max(db_size) node_version\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' and indicator_code='db.size'  group by node_id,indicator_code)\n" +
+                    "  and t.node_id=end.id limit 1\n" +
+                    ") data_db_size,\n" +
+                    "(\n" +
+                    "select max(db_status) node_version\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' and indicator_code='db.status'  group by node_id,indicator_code)\n" +
+                    "  and t.node_id=end.id limit 1\n" +
+                    ") data_db_status,\n" +
+                    "(\n" +
+                    "select max(db_connect_number) db_connect_number\n" +
+                    "from ops_monitor_node_value_last t where \n" +
+                    "(node_id,indicator_code,record_time) in \n" +
+                    "(select node_id,indicator_code, max(record_time) max_record_time from ops_monitor_node_value_last where result_status='sucess' and indicator_code='db.connect_number' group by node_id,indicator_code)\n" +
+                    "  and t.node_id=end.id limit 1\n" +
+                    ") data_db_connect_number,\n" +
+                    "\n" +
+                    "end.*\n" +
+                    "from ops_monitor_node end where type=? and node_enabled='enable' and deleted=0 \n" ;
+        }
         Result<JSONObject> result=new Result<>();
         JSONObject resultData=new JSONObject();
         //统计节点个数
-        resultData.put("nodeHostList",dao.query(sql).toJSONArrayWithJSONObject());
+        resultData.put("nodeList",dao.query(sql,type).toJSONArrayWithJSONObject());
         return result.success(true).data(resultData);
     }
 
@@ -196,7 +229,8 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
                  nodeObj.put("parentId",r.getString("id"));
                  nodeObj.put("id",noder.getString("id"));
                  nodeObj.put("ip",noder.getString("node_ip"));
-                 nodeObj.put("name",noder.getString("name")+"["+noder.getString("node_ip")+"]");
+                // nodeObj.put("name",noder.getString("name")+"["+noder.getString("node_ip")+"]");
+                 nodeObj.put("name",noder.getString("name"));
                  nodeObj.put("type","node");
                  nodeObj.put("showType",noder.getString("show_type"));
                  data.add(nodeObj);
