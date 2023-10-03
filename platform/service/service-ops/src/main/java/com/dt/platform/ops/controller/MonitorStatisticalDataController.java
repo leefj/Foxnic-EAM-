@@ -61,8 +61,8 @@ public class MonitorStatisticalDataController {
     @ApiOperationSupport(order=3)
     @SentinelResource(value = MonitorStatisticalDataServiceProxy.QUERY_NODE_HOST_RESOURCE_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
     @PostMapping(MonitorStatisticalDataServiceProxy.QUERY_NODE_HOST_RESOURCE_LIST)
-    public Result<JSONObject> queryNodeHostResourceList() {
-        return monitorStatisticalData.queryNodeHostResourceList();
+    public Result<JSONObject> queryNodeHostResourceList(String type) {
+        return monitorStatisticalData.queryNodeHostResourceList(type);
     }
 
     /**

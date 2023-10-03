@@ -86,6 +86,9 @@ public interface NetdiskFolderServiceProxy {
 
 
     public static final String CREATE_FOLDER = API_PREFIX + "create-folder";
+
+    public static final String QUERY_MY_FOLDER_PAGED_LIST = API_PREFIX + "query-my-folder-paged-list";
+
     /**
      * 添加文件夹
      */

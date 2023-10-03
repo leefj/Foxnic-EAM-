@@ -1,13 +1,12 @@
 package com.dt.platform.oa.service;
 
-import com.dt.platform.domain.oa.NetdiskFile;
+import com.dt.platform.domain.oa.*;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.oa.NetdiskFolder;
-import com.dt.platform.domain.oa.NetdiskFolderVO;
+
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -319,7 +318,7 @@ public interface INetdiskFolderService extends  ISimpleIdService<NetdiskFolder,S
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
 
-
+	PagedList<NetdiskFolder> queryMyFolderPagedList(NetdiskFolder sample, int pageSize, int pageIndex);
 
 
 }

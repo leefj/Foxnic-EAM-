@@ -49,6 +49,8 @@ public interface INetdiskVirtualFdService extends  ISimpleIdService<NetdiskVirtu
 
 	Result restoreFromRecycle(String id, String type);
 
+	Result move(String data, String folderId);
+
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param netdiskVirtualFd 数据对象

@@ -24,10 +24,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service("MonitorDataProcessZabbixAgentService")
 public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataProcessZabbixAgentService {
@@ -118,7 +115,9 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
         }
         return ErrorDesc.success();
 
+
     }
+
 
     private String getZabbixGetExe(){
         Result<Config> configResult= ConfigServiceProxy.api().getById("ops.monitorZabbixGetRoute");
@@ -263,6 +262,13 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
             return RemoteZabbixAgentResult.setData(99, "没有找到Command");
         }
         String exeCommand=cmdExe.trim()+" -s "+ip+" -p "+port+" -k "+cmd.trim();
+        String var=node.getVar();
+        JSONObject varObj=JSONObject.parseObject(var);
+        if(varObj!=null&&varObj.size()>0){
+            for(Map.Entry<String,Object> entry : varObj.entrySet()){
+                exeCommand=exeCommand.replaceAll("#"+entry.getKey()+"#",entry.getValue().toString());
+            }
+        }
         SystemCommandtResult r=SystemCommandExecutor.exeCmd(exeCommand,30);
         Logger.info("execute zabbix agent,command:\n"+exeCommand+",result:"+r.result);
         if(r.code==0){

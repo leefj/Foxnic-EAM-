@@ -11,13 +11,14 @@ import com.dt.platform.domain.ops.MonitorNodeGroup;
 import com.dt.platform.domain.ops.MonitorNodeType;
 import com.dt.platform.domain.ops.MonitorNodeSubtype;
 import com.dt.platform.domain.ops.MonitorTpl;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 16:24:29
- * @sign 1901A1E912B1D0B13636A1FE27796F4C
+ * @since 2023-10-03 10:10:21
+ * @sign A0DAA15EEAE86AB22EC81FC5E9341DE2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -42,6 +43,16 @@ public class MonitorNodeMeta {
 	 * IP , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> NODE_IP_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,NODE_IP, java.lang.String.class, "IP", "IP", java.lang.String.class, null);
+	
+	/**
+	 * 可见主机名 , 类型: java.lang.String
+	*/
+	public static final String NODE_NAME_SHOW="nodeNameShow";
+	
+	/**
+	 * 可见主机名 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> NODE_NAME_SHOW_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,NODE_NAME_SHOW, java.lang.String.class, "可见主机名", "可见主机名", java.lang.String.class, null);
 	
 	/**
 	 * 父节点 , 类型: java.lang.String
@@ -94,16 +105,6 @@ public class MonitorNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> NODE_NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,NODE_NAME, java.lang.String.class, "主机名", "主机名", java.lang.String.class, null);
 	
 	/**
-	 * 可见主机名 , 类型: java.lang.String
-	*/
-	public static final String NODE_NAME_SHOW="nodeNameShow";
-	
-	/**
-	 * 可见主机名 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> NODE_NAME_SHOW_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,NODE_NAME_SHOW, java.lang.String.class, "可见主机名", "可见主机名", java.lang.String.class, null);
-	
-	/**
 	 * 类型 , 类型: java.lang.String
 	*/
 	public static final String NODE_TYPE="nodeType";
@@ -134,14 +135,14 @@ public class MonitorNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,STATUS, java.lang.String.class, "监控状态", "监控状态", java.lang.String.class, null);
 	
 	/**
-	 * 凭证(SSH) , 类型: java.lang.String
+	 * 凭证 , SSH) , 类型: java.lang.String
 	*/
 	public static final String SSH_VOUCHER_ID="sshVoucherId";
 	
 	/**
-	 * 凭证(SSH) , 类型: java.lang.String
+	 * 凭证 , SSH) , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> SSH_VOUCHER_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,SSH_VOUCHER_ID, java.lang.String.class, "凭证(SSH)", "凭证(SSH)", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> SSH_VOUCHER_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,SSH_VOUCHER_ID, java.lang.String.class, "凭证", "SSH)", java.lang.String.class, null);
 	
 	/**
 	 * SSH端口 , 类型: java.lang.Integer
@@ -232,6 +233,16 @@ public class MonitorNodeMeta {
 	 * Jdbc地址 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> JDBC_URL_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,JDBC_URL, java.lang.String.class, "Jdbc地址", "Jdbc地址", java.lang.String.class, null);
+	
+	/**
+	 * 变量 , 类型: java.lang.String
+	*/
+	public static final String VAR="var";
+	
+	/**
+	 * 变量 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> VAR_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,VAR, java.lang.String.class, "变量", "变量", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -404,9 +415,19 @@ public class MonitorNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> MONITOR_TPL_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,MONITOR_TPL_IDS, java.util.List.class, "监控模版Ids", "监控模版Ids", java.lang.String.class, null);
 	
 	/**
+	 * 当前模版 , 类型: java.lang.String
+	*/
+	public static final String CAL_INDICATOR_TPL_CODE="calIndicatorTplCode";
+	
+	/**
+	 * 当前模版 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> CAL_INDICATOR_TPL_CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,CAL_INDICATOR_TPL_CODE, java.lang.String.class, "当前模版", "当前模版", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NODE_IP , PID , TYPE , SUB_TYPE , GROUP_ID , NODE_NAME , NODE_NAME_SHOW , NODE_TYPE , NODE_ENABLED , STATUS , SSH_VOUCHER_ID , SSH_PORT , AGENT_PORT , ZABBIX_AGENT_PORT , SNMP_PORT , SNMP_VERSION , SNMP_COMMUNITY , JMX_PORT , IMPI_PORT , JDBC_URL , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SSH_VOUCHER , MONITOR_NODE_DB , MONITOR_NODE_VALUE_LIST , MONITOR_NODE_GROUP , MONITOR_NODE_TYPE , MONITOR_NODE_SUB_TYPE , MONITOR_TPL_LIST , MONITOR_TPL_IDS };
+	public static final String[] $PROPS={ ID , NODE_IP , NODE_NAME_SHOW , PID , TYPE , SUB_TYPE , GROUP_ID , NODE_NAME , NODE_TYPE , NODE_ENABLED , STATUS , SSH_VOUCHER_ID , SSH_PORT , AGENT_PORT , ZABBIX_AGENT_PORT , SNMP_PORT , SNMP_VERSION , SNMP_COMMUNITY , JMX_PORT , IMPI_PORT , JDBC_URL , VAR , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SSH_VOUCHER , MONITOR_NODE_DB , MONITOR_NODE_VALUE_LIST , MONITOR_NODE_GROUP , MONITOR_NODE_TYPE , MONITOR_NODE_SUB_TYPE , MONITOR_TPL_LIST , MONITOR_TPL_IDS , CAL_INDICATOR_TPL_CODE };
 	
 	/**
 	 * 代理类
@@ -435,6 +456,17 @@ public class MonitorNodeMeta {
 		public MonitorNode setNodeIp(String nodeIp) {
 			super.change(NODE_IP,super.getNodeIp(),nodeIp);
 			super.setNodeIp(nodeIp);
+			return this;
+		}
+		
+		/**
+		 * 设置 可见主机名
+		 * @param nodeNameShow 可见主机名
+		 * @return 当前对象
+		*/
+		public MonitorNode setNodeNameShow(String nodeNameShow) {
+			super.change(NODE_NAME_SHOW,super.getNodeNameShow(),nodeNameShow);
+			super.setNodeNameShow(nodeNameShow);
 			return this;
 		}
 		
@@ -494,17 +526,6 @@ public class MonitorNodeMeta {
 		}
 		
 		/**
-		 * 设置 可见主机名
-		 * @param nodeNameShow 可见主机名
-		 * @return 当前对象
-		*/
-		public MonitorNode setNodeNameShow(String nodeNameShow) {
-			super.change(NODE_NAME_SHOW,super.getNodeNameShow(),nodeNameShow);
-			super.setNodeNameShow(nodeNameShow);
-			return this;
-		}
-		
-		/**
 		 * 设置 类型
 		 * @param nodeType 类型
 		 * @return 当前对象
@@ -538,8 +559,8 @@ public class MonitorNodeMeta {
 		}
 		
 		/**
-		 * 设置 凭证(SSH)
-		 * @param sshVoucherId 凭证(SSH)
+		 * 设置 凭证
+		 * @param sshVoucherId 凭证
 		 * @return 当前对象
 		*/
 		public MonitorNode setSshVoucherId(String sshVoucherId) {
@@ -644,6 +665,17 @@ public class MonitorNodeMeta {
 		public MonitorNode setJdbcUrl(String jdbcUrl) {
 			super.change(JDBC_URL,super.getJdbcUrl(),jdbcUrl);
 			super.setJdbcUrl(jdbcUrl);
+			return this;
+		}
+		
+		/**
+		 * 设置 变量
+		 * @param var 变量
+		 * @return 当前对象
+		*/
+		public MonitorNode setVar(String var) {
+			super.change(VAR,super.getVar(),var);
+			super.setVar(var);
 			return this;
 		}
 		
@@ -833,5 +865,78 @@ public class MonitorNodeMeta {
 			super.setMonitorTplIds(monitorTplIds);
 			return this;
 		}
+		
+		/**
+		 * 设置 当前模版
+		 * @param calIndicatorTplCode 当前模版
+		 * @return 当前对象
+		*/
+		public MonitorNode setCalIndicatorTplCode(String calIndicatorTplCode) {
+			super.change(CAL_INDICATOR_TPL_CODE,super.getCalIndicatorTplCode(),calIndicatorTplCode);
+			super.setCalIndicatorTplCode(calIndicatorTplCode);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public MonitorNode clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public MonitorNode duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNodeName(this.getNodeName());
+			inst.setNotes(this.getNotes());
+			inst.setGroupId(this.getGroupId());
+			inst.setNodeIp(this.getNodeIp());
+			inst.setPid(this.getPid());
+			inst.setType(this.getType());
+			inst.setSshVoucherId(this.getSshVoucherId());
+			inst.setImpiPort(this.getImpiPort());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setId(this.getId());
+			inst.setSshPort(this.getSshPort());
+			inst.setSnmpCommunity(this.getSnmpCommunity());
+			inst.setJmxPort(this.getJmxPort());
+			inst.setSnmpVersion(this.getSnmpVersion());
+			inst.setVar(this.getVar());
+			inst.setNodeEnabled(this.getNodeEnabled());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setNodeType(this.getNodeType());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setNodeNameShow(this.getNodeNameShow());
+			inst.setJdbcUrl(this.getJdbcUrl());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setSubType(this.getSubType());
+			inst.setZabbixAgentPort(this.getZabbixAgentPort());
+			inst.setSnmpPort(this.getSnmpPort());
+			inst.setAgentPort(this.getAgentPort());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setSshVoucher(this.getSshVoucher());
+				inst.setMonitorTplIds(this.getMonitorTplIds());
+				inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
+				inst.setMonitorNodeSubType(this.getMonitorNodeSubType());
+				inst.setMonitorNodeType(this.getMonitorNodeType());
+				inst.setCalIndicatorTplCode(this.getCalIndicatorTplCode());
+				inst.setMonitorNodeGroup(this.getMonitorNodeGroup());
+				inst.setMonitorNodeDb(this.getMonitorNodeDb());
+				inst.setMonitorTplList(this.getMonitorTplList());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

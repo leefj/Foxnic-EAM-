@@ -6,13 +6,14 @@ import java.util.List;
 import com.dt.platform.domain.ops.MonitorNodeValueLast;
 import java.util.Date;
 import java.math.BigDecimal;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-20 14:46:45
- * @sign FDFB11067B851B9CEA9CE82B4038AD40
+ * @since 2023-10-02 18:25:41
+ * @sign 7D3B3E23201E986A974DCCC3023EB63F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -97,6 +98,36 @@ public class MonitorNodeValueLastVOMeta extends MonitorNodeValueLastMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -349,44 +380,84 @@ public class MonitorNodeValueLastVOMeta extends MonitorNodeValueLastMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.Integer> PROCESS_CNT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,PROCESS_CNT, java.lang.Integer.class, "连接数", "连接数", java.lang.Integer.class, null);
 	
 	/**
-	 * 物理内存(M) , 类型: java.lang.Long
+	 * 物理内存 , M) , 类型: java.lang.Long
 	*/
 	public static final String P_MEMORY_SIZE="pMemorySize";
 	
 	/**
-	 * 物理内存(M) , 类型: java.lang.Long
+	 * 物理内存 , M) , 类型: java.lang.Long
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.Long> P_MEMORY_SIZE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,P_MEMORY_SIZE, java.lang.Long.class, "物理内存(M)", "物理内存(M)", java.lang.Long.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.Long> P_MEMORY_SIZE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,P_MEMORY_SIZE, java.lang.Long.class, "物理内存", "M)", java.lang.Long.class, null);
 	
 	/**
-	 * 虚拟内存(M) , 类型: java.lang.Long
+	 * 虚拟内存 , M) , 类型: java.lang.Long
 	*/
 	public static final String V_MEMORY_SIZE="vMemorySize";
 	
 	/**
-	 * 虚拟内存(M) , 类型: java.lang.Long
+	 * 虚拟内存 , M) , 类型: java.lang.Long
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.Long> V_MEMORY_SIZE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,V_MEMORY_SIZE, java.lang.Long.class, "虚拟内存(M)", "虚拟内存(M)", java.lang.Long.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.Long> V_MEMORY_SIZE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,V_MEMORY_SIZE, java.lang.Long.class, "虚拟内存", "M)", java.lang.Long.class, null);
 	
 	/**
-	 * 物理内存使用率 , 类型: java.lang.Long
+	 * 物理内存使用率 , 类型: java.math.BigDecimal
 	*/
 	public static final String P_MEMORY_USED="pMemoryUsed";
 	
 	/**
-	 * 物理内存使用率 , 类型: java.lang.Long
+	 * 物理内存使用率 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.Long> P_MEMORY_USED_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,P_MEMORY_USED, java.lang.Long.class, "物理内存使用率", "物理内存使用率", java.lang.Long.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.math.BigDecimal> P_MEMORY_USED_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,P_MEMORY_USED, java.math.BigDecimal.class, "物理内存使用率", "物理内存使用率", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 虚拟内存使用率 , 类型: java.lang.Long
+	 * 虚拟内存使用率 , 类型: java.math.BigDecimal
 	*/
 	public static final String V_MEMORY_USED="vMemoryUsed";
 	
 	/**
-	 * 虚拟内存使用率 , 类型: java.lang.Long
+	 * 虚拟内存使用率 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.Long> V_MEMORY_USED_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,V_MEMORY_USED, java.lang.Long.class, "虚拟内存使用率", "虚拟内存使用率", java.lang.Long.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.math.BigDecimal> V_MEMORY_USED_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,V_MEMORY_USED, java.math.BigDecimal.class, "虚拟内存使用率", "虚拟内存使用率", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 数据库状态 , 类型: java.lang.Integer
+	*/
+	public static final String DB_STATUS="dbStatus";
+	
+	/**
+	 * 数据库状态 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.Integer> DB_STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,DB_STATUS, java.lang.Integer.class, "数据库状态", "数据库状态", java.lang.Integer.class, null);
+	
+	/**
+	 * 数据库大小 , 类型: java.lang.Long
+	*/
+	public static final String DB_SIZE="dbSize";
+	
+	/**
+	 * 数据库大小 , 类型: java.lang.Long
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.Long> DB_SIZE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,DB_SIZE, java.lang.Long.class, "数据库大小", "数据库大小", java.lang.Long.class, null);
+	
+	/**
+	 * 数据库连接数 , 类型: java.lang.Integer
+	*/
+	public static final String DB_CONNECT_NUMBER="dbConnectNumber";
+	
+	/**
+	 * 数据库连接数 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.Integer> DB_CONNECT_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,DB_CONNECT_NUMBER, java.lang.Integer.class, "数据库连接数", "数据库连接数", java.lang.Integer.class, null);
+	
+	/**
+	 * 版本 , 类型: java.lang.String
+	*/
+	public static final String NODE_VERSION="nodeVersion";
+	
+	/**
+	 * 版本 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.String> NODE_VERSION_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,NODE_VERSION, java.lang.String.class, "版本", "版本", java.lang.String.class, null);
 	
 	/**
 	 * 信息 , 类型: java.lang.String
@@ -517,6 +588,16 @@ public class MonitorNodeValueLastVOMeta extends MonitorNodeValueLastMeta {
 	 * 字符串3 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.String> VALUE_STR3_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,VALUE_STR3, java.lang.String.class, "字符串3", "字符串3", java.lang.String.class, null);
+	
+	/**
+	 * 字符串1 , 类型: java.lang.String
+	*/
+	public static final String VALUE_BSTR1="valueBstr1";
+	
+	/**
+	 * 字符串1 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeValueLastVO,java.lang.String> VALUE_BSTR1_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeValueLastVO.class ,VALUE_BSTR1, java.lang.String.class, "字符串1", "字符串1", java.lang.String.class, null);
 	
 	/**
 	 * 整数1 , 类型: java.lang.Long
@@ -811,7 +892,7 @@ public class MonitorNodeValueLastVOMeta extends MonitorNodeValueLastMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NODE_ID , MONITOR_TPL_CODE , RESULT_STATUS , RESULT_MESSAGE , INDICATOR_CODE , HOSTNAME , OS_DATETIME , BOOTTIME , OS_VERION , ARCH , CPU_NUMBER , CPU_FREE , CPU_SYS , CPU_USER , CPU_WAIT , CPU_IDLE , CPU_USED , OS_LOAD , OS_LOAD5 , OS_LOAD15 , NETWORK_FLOW_UP , NETWORK_FLOW_DOWN , PROCESS_CNT , P_MEMORY_SIZE , V_MEMORY_SIZE , P_MEMORY_USED , V_MEMORY_USED , INFO , LABEL1 , LABEL2 , LABEL3 , CODE1 , CODE2 , CODE3 , VALUE_NUMBER1 , VALUE_NUMBER2 , VALUE_NUMBER3 , VALUE_STR1 , VALUE_STR2 , VALUE_STR3 , VALUE_INT1 , VALUE_INT2 , VALUE_INT3 , LIST_LABEL1 , LIST_LABEL2 , LIST_LABEL3 , LIST_CODE1 , LIST_CODE2 , LIST_CODE3 , LIST_VALUE_NUMBER1 , LIST_VALUE_NUMBER2 , LIST_VALUE_NUMBER3 , LIST_VALUE_STR1 , LIST_VALUE_STR2 , LIST_VALUE_STR3 , LIST_VALUE_INT1 , LIST_VALUE_INT2 , LIST_VALUE_INT3 , UID , IS_CONNECTED , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NODE_ID , MONITOR_TPL_CODE , RESULT_STATUS , RESULT_MESSAGE , INDICATOR_CODE , HOSTNAME , OS_DATETIME , BOOTTIME , OS_VERION , ARCH , CPU_NUMBER , CPU_FREE , CPU_SYS , CPU_USER , CPU_WAIT , CPU_IDLE , CPU_USED , OS_LOAD , OS_LOAD5 , OS_LOAD15 , NETWORK_FLOW_UP , NETWORK_FLOW_DOWN , PROCESS_CNT , P_MEMORY_SIZE , V_MEMORY_SIZE , P_MEMORY_USED , V_MEMORY_USED , DB_STATUS , DB_SIZE , DB_CONNECT_NUMBER , NODE_VERSION , INFO , LABEL1 , LABEL2 , LABEL3 , CODE1 , CODE2 , CODE3 , VALUE_NUMBER1 , VALUE_NUMBER2 , VALUE_NUMBER3 , VALUE_STR1 , VALUE_STR2 , VALUE_STR3 , VALUE_BSTR1 , VALUE_INT1 , VALUE_INT2 , VALUE_INT3 , LIST_LABEL1 , LIST_LABEL2 , LIST_LABEL3 , LIST_CODE1 , LIST_CODE2 , LIST_CODE3 , LIST_VALUE_NUMBER1 , LIST_VALUE_NUMBER2 , LIST_VALUE_NUMBER3 , LIST_VALUE_STR1 , LIST_VALUE_STR2 , LIST_VALUE_STR3 , LIST_VALUE_INT1 , LIST_VALUE_INT2 , LIST_VALUE_INT3 , UID , IS_CONNECTED , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -906,6 +987,39 @@ public class MonitorNodeValueLastVOMeta extends MonitorNodeValueLastMeta {
 		public MonitorNodeValueLastVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public MonitorNodeValueLastVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public MonitorNodeValueLastVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public MonitorNodeValueLastVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
 			return this;
 		}
 		
@@ -1185,8 +1299,8 @@ public class MonitorNodeValueLastVOMeta extends MonitorNodeValueLastMeta {
 		}
 		
 		/**
-		 * 设置 物理内存(M)
-		 * @param pMemorySize 物理内存(M)
+		 * 设置 物理内存
+		 * @param pMemorySize 物理内存
 		 * @return 当前对象
 		*/
 		public MonitorNodeValueLast setPMemorySize(Long pMemorySize) {
@@ -1196,8 +1310,8 @@ public class MonitorNodeValueLastVOMeta extends MonitorNodeValueLastMeta {
 		}
 		
 		/**
-		 * 设置 虚拟内存(M)
-		 * @param vMemorySize 虚拟内存(M)
+		 * 设置 虚拟内存
+		 * @param vMemorySize 虚拟内存
 		 * @return 当前对象
 		*/
 		public MonitorNodeValueLast setVMemorySize(Long vMemorySize) {
@@ -1211,7 +1325,7 @@ public class MonitorNodeValueLastVOMeta extends MonitorNodeValueLastMeta {
 		 * @param pMemoryUsed 物理内存使用率
 		 * @return 当前对象
 		*/
-		public MonitorNodeValueLast setPMemoryUsed(Long pMemoryUsed) {
+		public MonitorNodeValueLast setPMemoryUsed(BigDecimal pMemoryUsed) {
 			super.change(P_MEMORY_USED,super.getPMemoryUsed(),pMemoryUsed);
 			super.setPMemoryUsed(pMemoryUsed);
 			return this;
@@ -1222,9 +1336,53 @@ public class MonitorNodeValueLastVOMeta extends MonitorNodeValueLastMeta {
 		 * @param vMemoryUsed 虚拟内存使用率
 		 * @return 当前对象
 		*/
-		public MonitorNodeValueLast setVMemoryUsed(Long vMemoryUsed) {
+		public MonitorNodeValueLast setVMemoryUsed(BigDecimal vMemoryUsed) {
 			super.change(V_MEMORY_USED,super.getVMemoryUsed(),vMemoryUsed);
 			super.setVMemoryUsed(vMemoryUsed);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据库状态
+		 * @param dbStatus 数据库状态
+		 * @return 当前对象
+		*/
+		public MonitorNodeValueLast setDbStatus(Integer dbStatus) {
+			super.change(DB_STATUS,super.getDbStatus(),dbStatus);
+			super.setDbStatus(dbStatus);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据库大小
+		 * @param dbSize 数据库大小
+		 * @return 当前对象
+		*/
+		public MonitorNodeValueLast setDbSize(Long dbSize) {
+			super.change(DB_SIZE,super.getDbSize(),dbSize);
+			super.setDbSize(dbSize);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据库连接数
+		 * @param dbConnectNumber 数据库连接数
+		 * @return 当前对象
+		*/
+		public MonitorNodeValueLast setDbConnectNumber(Integer dbConnectNumber) {
+			super.change(DB_CONNECT_NUMBER,super.getDbConnectNumber(),dbConnectNumber);
+			super.setDbConnectNumber(dbConnectNumber);
+			return this;
+		}
+		
+		/**
+		 * 设置 版本
+		 * @param nodeVersion 版本
+		 * @return 当前对象
+		*/
+		public MonitorNodeValueLast setNodeVersion(String nodeVersion) {
+			super.change(NODE_VERSION,super.getNodeVersion(),nodeVersion);
+			super.setNodeVersion(nodeVersion);
 			return this;
 		}
 		
@@ -1368,6 +1526,17 @@ public class MonitorNodeValueLastVOMeta extends MonitorNodeValueLastMeta {
 		public MonitorNodeValueLast setValueStr3(String valueStr3) {
 			super.change(VALUE_STR3,super.getValueStr3(),valueStr3);
 			super.setValueStr3(valueStr3);
+			return this;
+		}
+		
+		/**
+		 * 设置 字符串1
+		 * @param valueBstr1 字符串1
+		 * @return 当前对象
+		*/
+		public MonitorNodeValueLast setValueBstr1(String valueBstr1) {
+			super.change(VALUE_BSTR1,super.getValueBstr1(),valueBstr1);
+			super.setValueBstr1(valueBstr1);
 			return this;
 		}
 		
@@ -1689,5 +1858,114 @@ public class MonitorNodeValueLastVOMeta extends MonitorNodeValueLastMeta {
 			super.setVersion(version);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public MonitorNodeValueLastVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public MonitorNodeValueLastVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setPMemorySize(this.getPMemorySize());
+			inst.setOsLoad15(this.getOsLoad15());
+			inst.setOsLoad(this.getOsLoad());
+			inst.setCpuFree(this.getCpuFree());
+			inst.setHostname(this.getHostname());
+			inst.setDbConnectNumber(this.getDbConnectNumber());
+			inst.setMonitorTplCode(this.getMonitorTplCode());
+			inst.setListCode3(this.getListCode3());
+			inst.setListCode2(this.getListCode2());
+			inst.setId(this.getId());
+			inst.setListCode1(this.getListCode1());
+			inst.setOsVerion(this.getOsVerion());
+			inst.setInfo(this.getInfo());
+			inst.setValueBstr1(this.getValueBstr1());
+			inst.setOsDatetime(this.getOsDatetime());
+			inst.setCpuIdle(this.getCpuIdle());
+			inst.setNodeVersion(this.getNodeVersion());
+			inst.setVersion(this.getVersion());
+			inst.setDbSize(this.getDbSize());
+			inst.setVMemorySize(this.getVMemorySize());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setBoottime(this.getBoottime());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setNodeId(this.getNodeId());
+			inst.setNetworkFlowDown(this.getNetworkFlowDown());
+			inst.setListLabel2(this.getListLabel2());
+			inst.setListValueStr3(this.getListValueStr3());
+			inst.setCode3(this.getCode3());
+			inst.setListLabel3(this.getListLabel3());
+			inst.setListValueStr2(this.getListValueStr2());
+			inst.setCode2(this.getCode2());
+			inst.setCode1(this.getCode1());
+			inst.setCpuUsed(this.getCpuUsed());
+			inst.setListValueInt1(this.getListValueInt1());
+			inst.setValueNumber2(this.getValueNumber2());
+			inst.setListValueStr1(this.getListValueStr1());
+			inst.setListValueInt2(this.getListValueInt2());
+			inst.setValueNumber3(this.getValueNumber3());
+			inst.setListLabel1(this.getListLabel1());
+			inst.setListValueInt3(this.getListValueInt3());
+			inst.setIsConnected(this.getIsConnected());
+			inst.setValueNumber1(this.getValueNumber1());
+			inst.setUid(this.getUid());
+			inst.setCpuUser(this.getCpuUser());
+			inst.setProcessCnt(this.getProcessCnt());
+			inst.setCpuSys(this.getCpuSys());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setNetworkFlowUp(this.getNetworkFlowUp());
+			inst.setDbStatus(this.getDbStatus());
+			inst.setPMemoryUsed(this.getPMemoryUsed());
+			inst.setCpuNumber(this.getCpuNumber());
+			inst.setValueInt3(this.getValueInt3());
+			inst.setValueInt2(this.getValueInt2());
+			inst.setValueInt1(this.getValueInt1());
+			inst.setListValueNumber2(this.getListValueNumber2());
+			inst.setListValueNumber3(this.getListValueNumber3());
+			inst.setListValueNumber1(this.getListValueNumber1());
+			inst.setIndicatorCode(this.getIndicatorCode());
+			inst.setValueStr3(this.getValueStr3());
+			inst.setValueStr2(this.getValueStr2());
+			inst.setValueStr1(this.getValueStr1());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setResultMessage(this.getResultMessage());
+			inst.setLabel1(this.getLabel1());
+			inst.setLabel2(this.getLabel2());
+			inst.setLabel3(this.getLabel3());
+			inst.setResultStatus(this.getResultStatus());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setRecordTime(this.getRecordTime());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setOsLoad5(this.getOsLoad5());
+			inst.setVMemoryUsed(this.getVMemoryUsed());
+			inst.setArch(this.getArch());
+			inst.setCpuWait(this.getCpuWait());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setPageSize(this.getPageSize());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

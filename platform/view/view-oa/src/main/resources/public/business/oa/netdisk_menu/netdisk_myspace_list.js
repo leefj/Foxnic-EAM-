@@ -296,6 +296,45 @@ function ListPage() {
                 case 'lastNode':
                     window.pageExt.list.lastNode(selected,obj);
                     break;
+                case 'moveFds':
+
+                    //删除
+                    var checkStatus = table.checkStatus('data-table');
+                    var checkData = checkStatus.data;
+                    if(checkData.length==0) {
+                        top.layer.msg(fox.translate('请选择要删除的内容'));
+                        return;
+                    }
+                    var psData=[];
+                    var folderIn=false;
+                    for(var i=0;i<checkData.length;i++){
+                        var obj={};
+                        obj.fdId=checkData[i].fdId;
+                        obj.fdType=checkData[i].fdType;
+                        if(obj.fdType=="folder"){
+                            folderIn=true
+                            break;
+                        }
+                        psData.push(obj);
+                    }
+                    if(folderIn){
+                        top.layer.msg(fox.translate('请误选择文件夹进行移动'));
+                        return ;
+                    }
+                    admin.putTempData('oa-netdisk-move-file-form-data', psData);
+                    admin.popupCenter({
+                        title: "移动文件",
+                        resize: false,
+                        offset: [100,null],
+                        area: ["60%","80%"],
+                        type: 2,
+                        id:"oa-netdisk-move-file-form-data-win",
+                        content: '/business/oa/netdisk_file/select_folder_form.html' ,
+                        finish: function () {
+                            refreshTableData();
+                        }
+                    });
+                    break;
                 case 'deleteFds':
                     //删除
                     var checkStatus = table.checkStatus('data-table');

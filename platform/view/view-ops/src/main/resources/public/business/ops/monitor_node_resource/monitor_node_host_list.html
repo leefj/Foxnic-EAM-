@@ -10,7 +10,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
-    <title th:text="${lang.translate('主机资源')}">主机资源</title>
+    <title th:text="${lang.translate('主机')}">主机</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -76,6 +76,7 @@
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
 
+
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
@@ -84,17 +85,17 @@
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
-    <button class="layui-btn layui-btn-primary layui-btn-xs ops-graph-button" lay-event="graph" th:text="${lang.translate('图形')}" data-id="{{d.id}}">图形</button>
+    <button class="layui-btn layui-btn-primary layui-btn-xs ops-view-button ops-graph-button" lay-event="graph" th:text="${lang.translate('图形')}" data-id="{{d.id}}">图形</button>
     <button class="layui-btn layui-btn-primary layui-btn-xs ops-view-button" lay-event="view" th:text="${lang.translate('最新数据')}" data-id="{{d.id}}">最新数据</button>
 </script>
 
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
-    var AUTH_PREFIX="eam_report_org";
+    var AUTH_PREFIX="ops_node_host";
 </script>
 <script th:src="'/business/ops/monitor_node_resource/monitor_node_host_list.js?'+${cacheKey}"></script>
-<script th:src="'/business/ops/monitor_node_resource/monitor_node_host_list_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/ops/monitor_node_resource/monitor_node_host_ext.js?'+${cacheKey}"></script>
 
 </body>
 </html>

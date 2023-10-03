@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_MONITOR_NODE_VALUE;
@@ -9,20 +10,27 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import java.math.BigDecimal;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.MonitorNodeValueMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 节点数值
+ * <p>节点数值 , 数据表 ops_monitor_node_value 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-20 14:46:23
- * @sign 9A6DDE87533E2B1081071E463ECA43FF
+ * @since 2023-10-02 18:25:18
+ * @sign 3DD4F672BD9AAE520F5B607D64BA6AC2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_monitor_node_value")
+@ApiModel(description = "节点数值 ; 节点数值 , 数据表 ops_monitor_node_value 的PO类型")
 public class MonitorNodeValue extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -33,37 +41,37 @@ public class MonitorNodeValue extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "545950298741407744")
 	private String id;
 	
 	/**
 	 * 节点：节点
 	*/
-	@ApiModelProperty(required = false,value="节点" , notes = "节点")
+	@ApiModelProperty(required = false,value="节点" , notes = "节点" , example = "2571f8e4-89a4-11ec-bf3e-00163e1b60a7")
 	private String nodeId;
 	
 	/**
 	 * 监控模版：监控模版
 	*/
-	@ApiModelProperty(required = false,value="监控模版" , notes = "监控模版")
+	@ApiModelProperty(required = false,value="监控模版" , notes = "监控模版" , example = "tpl_host_linux_script")
 	private String monitorTplCode;
 	
 	/**
 	 * 结果状态：结果状态
 	*/
-	@ApiModelProperty(required = false,value="结果状态" , notes = "结果状态")
+	@ApiModelProperty(required = false,value="结果状态" , notes = "结果状态" , example = "sucess")
 	private String resultStatus;
 	
 	/**
 	 * 结果内容：结果内容
 	*/
-	@ApiModelProperty(required = false,value="结果内容" , notes = "结果内容")
+	@ApiModelProperty(required = false,value="结果内容" , notes = "结果内容" , example = "执行成功")
 	private String resultMessage;
 	
 	/**
 	 * 指标：指标
 	*/
-	@ApiModelProperty(required = false,value="指标" , notes = "指标")
+	@ApiModelProperty(required = false,value="指标" , notes = "指标" , example = "os.arch")
 	private String indicatorCode;
 	
 	/**
@@ -93,7 +101,7 @@ public class MonitorNodeValue extends Entity {
 	/**
 	 * 架构：架构
 	*/
-	@ApiModelProperty(required = false,value="架构" , notes = "架构")
+	@ApiModelProperty(required = false,value="架构" , notes = "架构" , example = "x86_64")
 	private String arch;
 	
 	/**
@@ -123,7 +131,7 @@ public class MonitorNodeValue extends Entity {
 	/**
 	 * cpuWait：cpuWait
 	*/
-	@ApiModelProperty(required = false,value="cpuWait" , notes = "cpuWait")
+	@ApiModelProperty(required = false,value="cpuWait" , notes = "cpuWait" , example = "0.31")
 	private BigDecimal cpuWait;
 	
 	/**
@@ -171,32 +179,56 @@ public class MonitorNodeValue extends Entity {
 	/**
 	 * 连接数：连接数
 	*/
-	@ApiModelProperty(required = false,value="连接数" , notes = "连接数")
+	@ApiModelProperty(required = false,value="连接数" , notes = "连接数" , example = "0")
 	private Integer processCnt;
 	
 	/**
-	 * 物理内存(M)：物理内存(M)
+	 * 物理内存：M)
 	*/
-	@ApiModelProperty(required = false,value="物理内存(M)" , notes = "物理内存(M)")
+	@ApiModelProperty(required = false,value="物理内存" , notes = "M)")
 	private Long pMemorySize;
 	
 	/**
-	 * 虚拟内存(M)：虚拟内存(M)
+	 * 虚拟内存：M)
 	*/
-	@ApiModelProperty(required = false,value="虚拟内存(M)" , notes = "虚拟内存(M)")
+	@ApiModelProperty(required = false,value="虚拟内存" , notes = "M)")
 	private Long vMemorySize;
 	
 	/**
 	 * 物理内存使用率：物理内存使用率
 	*/
-	@ApiModelProperty(required = false,value="物理内存使用率" , notes = "物理内存使用率")
-	private Long pMemoryUsed;
+	@ApiModelProperty(required = false,value="物理内存使用率" , notes = "物理内存使用率" , example = "0.00")
+	private BigDecimal pMemoryUsed;
 	
 	/**
 	 * 虚拟内存使用率：虚拟内存使用率
 	*/
-	@ApiModelProperty(required = false,value="虚拟内存使用率" , notes = "虚拟内存使用率")
-	private Long vMemoryUsed;
+	@ApiModelProperty(required = false,value="虚拟内存使用率" , notes = "虚拟内存使用率" , example = "0.00")
+	private BigDecimal vMemoryUsed;
+	
+	/**
+	 * 数据库状态：数据库状态
+	*/
+	@ApiModelProperty(required = false,value="数据库状态" , notes = "数据库状态")
+	private Integer dbStatus;
+	
+	/**
+	 * 数据库大小：数据库大小
+	*/
+	@ApiModelProperty(required = false,value="数据库大小" , notes = "数据库大小")
+	private Long dbSize;
+	
+	/**
+	 * 数据库连接数：数据库连接数
+	*/
+	@ApiModelProperty(required = false,value="数据库连接数" , notes = "数据库连接数")
+	private Integer dbConnectNumber;
+	
+	/**
+	 * 版本：版本
+	*/
+	@ApiModelProperty(required = false,value="版本" , notes = "版本")
+	private String nodeVersion;
 	
 	/**
 	 * 信息：信息
@@ -275,6 +307,12 @@ public class MonitorNodeValue extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="字符串3" , notes = "字符串3")
 	private String valueStr3;
+	
+	/**
+	 * 字符串1：字符串1
+	*/
+	@ApiModelProperty(required = false,value="字符串1" , notes = "字符串1")
+	private String valueBstr1;
 	
 	/**
 	 * 整数1：整数1
@@ -393,13 +431,13 @@ public class MonitorNodeValue extends Entity {
 	/**
 	 * 是否连接：是否连接
 	*/
-	@ApiModelProperty(required = false,value="是否连接" , notes = "是否连接")
+	@ApiModelProperty(required = false,value="是否连接" , notes = "是否连接" , example = "1")
 	private Integer isConnected;
 	
 	/**
 	 * 记录时间：记录时间
 	*/
-	@ApiModelProperty(required = false,value="记录时间" , notes = "记录时间")
+	@ApiModelProperty(required = false,value="记录时间" , notes = "记录时间" , example = "2022-02-15 12:51:34")
 	private Date recordTime;
 	
 	/**
@@ -429,8 +467,11 @@ public class MonitorNodeValue extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -447,7 +488,7 @@ public class MonitorNodeValue extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "1")
 	private Integer version;
 	
 	/**
@@ -907,17 +948,17 @@ public class MonitorNodeValue extends Entity {
 	}
 	
 	/**
-	 * 获得 物理内存(M)<br>
-	 * 物理内存(M)
-	 * @return 物理内存(M)
+	 * 获得 物理内存<br>
+	 * M)
+	 * @return 物理内存
 	*/
 	public Long getPMemorySize() {
 		return pMemorySize;
 	}
 	
 	/**
-	 * 设置 物理内存(M)
-	 * @param pMemorySize 物理内存(M)
+	 * 设置 物理内存
+	 * @param pMemorySize 物理内存
 	 * @return 当前对象
 	*/
 	public MonitorNodeValue setPMemorySize(Long pMemorySize) {
@@ -926,17 +967,17 @@ public class MonitorNodeValue extends Entity {
 	}
 	
 	/**
-	 * 获得 虚拟内存(M)<br>
-	 * 虚拟内存(M)
-	 * @return 虚拟内存(M)
+	 * 获得 虚拟内存<br>
+	 * M)
+	 * @return 虚拟内存
 	*/
 	public Long getVMemorySize() {
 		return vMemorySize;
 	}
 	
 	/**
-	 * 设置 虚拟内存(M)
-	 * @param vMemorySize 虚拟内存(M)
+	 * 设置 虚拟内存
+	 * @param vMemorySize 虚拟内存
 	 * @return 当前对象
 	*/
 	public MonitorNodeValue setVMemorySize(Long vMemorySize) {
@@ -949,7 +990,7 @@ public class MonitorNodeValue extends Entity {
 	 * 物理内存使用率
 	 * @return 物理内存使用率
 	*/
-	public Long getPMemoryUsed() {
+	public BigDecimal getPMemoryUsed() {
 		return pMemoryUsed;
 	}
 	
@@ -958,7 +999,7 @@ public class MonitorNodeValue extends Entity {
 	 * @param pMemoryUsed 物理内存使用率
 	 * @return 当前对象
 	*/
-	public MonitorNodeValue setPMemoryUsed(Long pMemoryUsed) {
+	public MonitorNodeValue setPMemoryUsed(BigDecimal pMemoryUsed) {
 		this.pMemoryUsed=pMemoryUsed;
 		return this;
 	}
@@ -968,7 +1009,7 @@ public class MonitorNodeValue extends Entity {
 	 * 虚拟内存使用率
 	 * @return 虚拟内存使用率
 	*/
-	public Long getVMemoryUsed() {
+	public BigDecimal getVMemoryUsed() {
 		return vMemoryUsed;
 	}
 	
@@ -977,8 +1018,84 @@ public class MonitorNodeValue extends Entity {
 	 * @param vMemoryUsed 虚拟内存使用率
 	 * @return 当前对象
 	*/
-	public MonitorNodeValue setVMemoryUsed(Long vMemoryUsed) {
+	public MonitorNodeValue setVMemoryUsed(BigDecimal vMemoryUsed) {
 		this.vMemoryUsed=vMemoryUsed;
+		return this;
+	}
+	
+	/**
+	 * 获得 数据库状态<br>
+	 * 数据库状态
+	 * @return 数据库状态
+	*/
+	public Integer getDbStatus() {
+		return dbStatus;
+	}
+	
+	/**
+	 * 设置 数据库状态
+	 * @param dbStatus 数据库状态
+	 * @return 当前对象
+	*/
+	public MonitorNodeValue setDbStatus(Integer dbStatus) {
+		this.dbStatus=dbStatus;
+		return this;
+	}
+	
+	/**
+	 * 获得 数据库大小<br>
+	 * 数据库大小
+	 * @return 数据库大小
+	*/
+	public Long getDbSize() {
+		return dbSize;
+	}
+	
+	/**
+	 * 设置 数据库大小
+	 * @param dbSize 数据库大小
+	 * @return 当前对象
+	*/
+	public MonitorNodeValue setDbSize(Long dbSize) {
+		this.dbSize=dbSize;
+		return this;
+	}
+	
+	/**
+	 * 获得 数据库连接数<br>
+	 * 数据库连接数
+	 * @return 数据库连接数
+	*/
+	public Integer getDbConnectNumber() {
+		return dbConnectNumber;
+	}
+	
+	/**
+	 * 设置 数据库连接数
+	 * @param dbConnectNumber 数据库连接数
+	 * @return 当前对象
+	*/
+	public MonitorNodeValue setDbConnectNumber(Integer dbConnectNumber) {
+		this.dbConnectNumber=dbConnectNumber;
+		return this;
+	}
+	
+	/**
+	 * 获得 版本<br>
+	 * 版本
+	 * @return 版本
+	*/
+	public String getNodeVersion() {
+		return nodeVersion;
+	}
+	
+	/**
+	 * 设置 版本
+	 * @param nodeVersion 版本
+	 * @return 当前对象
+	*/
+	public MonitorNodeValue setNodeVersion(String nodeVersion) {
+		this.nodeVersion=nodeVersion;
 		return this;
 	}
 	
@@ -1226,6 +1343,25 @@ public class MonitorNodeValue extends Entity {
 	*/
 	public MonitorNodeValue setValueStr3(String valueStr3) {
 		this.valueStr3=valueStr3;
+		return this;
+	}
+	
+	/**
+	 * 获得 字符串1<br>
+	 * 字符串1
+	 * @return 字符串1
+	*/
+	public String getValueBstr1() {
+		return valueBstr1;
+	}
+	
+	/**
+	 * 设置 字符串1
+	 * @param valueBstr1 字符串1
+	 * @return 当前对象
+	*/
+	public MonitorNodeValue setValueBstr1(String valueBstr1) {
+		this.valueBstr1=valueBstr1;
 		return this;
 	}
 	
@@ -1714,12 +1850,43 @@ public class MonitorNodeValue extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public MonitorNodeValue setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public MonitorNodeValue setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -1810,6 +1977,108 @@ public class MonitorNodeValue extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MonitorNodeValue clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public MonitorNodeValue duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.MonitorNodeValueMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.MonitorNodeValueMeta.$$proxy$$();
+		inst.setPMemorySize(this.getPMemorySize());
+		inst.setOsLoad15(this.getOsLoad15());
+		inst.setOsLoad(this.getOsLoad());
+		inst.setCpuFree(this.getCpuFree());
+		inst.setHostname(this.getHostname());
+		inst.setDbConnectNumber(this.getDbConnectNumber());
+		inst.setMonitorTplCode(this.getMonitorTplCode());
+		inst.setListCode3(this.getListCode3());
+		inst.setListCode2(this.getListCode2());
+		inst.setId(this.getId());
+		inst.setListCode1(this.getListCode1());
+		inst.setOsVerion(this.getOsVerion());
+		inst.setInfo(this.getInfo());
+		inst.setValueBstr1(this.getValueBstr1());
+		inst.setOsDatetime(this.getOsDatetime());
+		inst.setCpuIdle(this.getCpuIdle());
+		inst.setNodeVersion(this.getNodeVersion());
+		inst.setVersion(this.getVersion());
+		inst.setDbSize(this.getDbSize());
+		inst.setVMemorySize(this.getVMemorySize());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setBoottime(this.getBoottime());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setNodeId(this.getNodeId());
+		inst.setNetworkFlowDown(this.getNetworkFlowDown());
+		inst.setListLabel2(this.getListLabel2());
+		inst.setListValueStr3(this.getListValueStr3());
+		inst.setCode3(this.getCode3());
+		inst.setListLabel3(this.getListLabel3());
+		inst.setListValueStr2(this.getListValueStr2());
+		inst.setCode2(this.getCode2());
+		inst.setCode1(this.getCode1());
+		inst.setCpuUsed(this.getCpuUsed());
+		inst.setListValueInt1(this.getListValueInt1());
+		inst.setValueNumber2(this.getValueNumber2());
+		inst.setListValueStr1(this.getListValueStr1());
+		inst.setListValueInt2(this.getListValueInt2());
+		inst.setValueNumber3(this.getValueNumber3());
+		inst.setListLabel1(this.getListLabel1());
+		inst.setListValueInt3(this.getListValueInt3());
+		inst.setIsConnected(this.getIsConnected());
+		inst.setValueNumber1(this.getValueNumber1());
+		inst.setUid(this.getUid());
+		inst.setCpuUser(this.getCpuUser());
+		inst.setProcessCnt(this.getProcessCnt());
+		inst.setCpuSys(this.getCpuSys());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setNetworkFlowUp(this.getNetworkFlowUp());
+		inst.setDbStatus(this.getDbStatus());
+		inst.setPMemoryUsed(this.getPMemoryUsed());
+		inst.setCpuNumber(this.getCpuNumber());
+		inst.setValueInt3(this.getValueInt3());
+		inst.setValueInt2(this.getValueInt2());
+		inst.setValueInt1(this.getValueInt1());
+		inst.setListValueNumber2(this.getListValueNumber2());
+		inst.setListValueNumber3(this.getListValueNumber3());
+		inst.setListValueNumber1(this.getListValueNumber1());
+		inst.setIndicatorCode(this.getIndicatorCode());
+		inst.setValueStr3(this.getValueStr3());
+		inst.setValueStr2(this.getValueStr2());
+		inst.setValueStr1(this.getValueStr1());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setResultMessage(this.getResultMessage());
+		inst.setLabel1(this.getLabel1());
+		inst.setLabel2(this.getLabel2());
+		inst.setLabel3(this.getLabel3());
+		inst.setResultStatus(this.getResultStatus());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setRecordTime(this.getRecordTime());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setOsLoad5(this.getOsLoad5());
+		inst.setVMemoryUsed(this.getVMemoryUsed());
+		inst.setArch(this.getArch());
+		inst.setCpuWait(this.getCpuWait());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MonitorNodeValue clone(boolean deep) {
+		return EntityContext.clone(MonitorNodeValue.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 MonitorNodeValue
 	 * @param monitorNodeValueMap 包含实体信息的 Map 对象
 	 * @return MonitorNodeValue , 转换好的的 MonitorNodeValue 对象
@@ -1817,7 +2086,9 @@ public class MonitorNodeValue extends Entity {
 	@Transient
 	public static MonitorNodeValue createFrom(Map<String,Object> monitorNodeValueMap) {
 		if(monitorNodeValueMap==null) return null;
-		MonitorNodeValue po = EntityContext.create(MonitorNodeValue.class, monitorNodeValueMap);
+		MonitorNodeValue po = create();
+		EntityContext.copyProperties(po,monitorNodeValueMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1829,7 +2100,9 @@ public class MonitorNodeValue extends Entity {
 	@Transient
 	public static MonitorNodeValue createFrom(Object pojo) {
 		if(pojo==null) return null;
-		MonitorNodeValue po = EntityContext.create(MonitorNodeValue.class,pojo);
+		MonitorNodeValue po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1839,6 +2112,346 @@ public class MonitorNodeValue extends Entity {
 	*/
 	@Transient
 	public static MonitorNodeValue create() {
-		return EntityContext.create(MonitorNodeValue.class);
+		return new com.dt.platform.domain.ops.meta.MonitorNodeValueMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setPMemorySize(DataParser.parse(Long.class, map.get(MonitorNodeValueMeta.P_MEMORY_SIZE)));
+			this.setOsLoad15(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.OS_LOAD15)));
+			this.setOsLoad(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.OS_LOAD)));
+			this.setCpuFree(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.CPU_FREE)));
+			this.setHostname(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.HOSTNAME)));
+			this.setDbConnectNumber(DataParser.parse(Integer.class, map.get(MonitorNodeValueMeta.DB_CONNECT_NUMBER)));
+			this.setMonitorTplCode(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.MONITOR_TPL_CODE)));
+			this.setListCode3(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.LIST_CODE3)));
+			this.setListCode2(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.LIST_CODE2)));
+			this.setId(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.ID)));
+			this.setListCode1(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.LIST_CODE1)));
+			this.setOsVerion(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.OS_VERION)));
+			this.setInfo(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.INFO)));
+			this.setValueBstr1(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.VALUE_BSTR1)));
+			this.setOsDatetime(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.OS_DATETIME)));
+			this.setCpuIdle(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.CPU_IDLE)));
+			this.setNodeVersion(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.NODE_VERSION)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(MonitorNodeValueMeta.VERSION)));
+			this.setDbSize(DataParser.parse(Long.class, map.get(MonitorNodeValueMeta.DB_SIZE)));
+			this.setVMemorySize(DataParser.parse(Long.class, map.get(MonitorNodeValueMeta.V_MEMORY_SIZE)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(MonitorNodeValueMeta.DELETE_TIME)));
+			this.setBoottime(DataParser.parse(Date.class, map.get(MonitorNodeValueMeta.BOOTTIME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.DELETE_BY)));
+			this.setNodeId(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.NODE_ID)));
+			this.setNetworkFlowDown(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.NETWORK_FLOW_DOWN)));
+			this.setListLabel2(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.LIST_LABEL2)));
+			this.setListValueStr3(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.LIST_VALUE_STR3)));
+			this.setCode3(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.CODE3)));
+			this.setListLabel3(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.LIST_LABEL3)));
+			this.setListValueStr2(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.LIST_VALUE_STR2)));
+			this.setCode2(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.CODE2)));
+			this.setCode1(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.CODE1)));
+			this.setCpuUsed(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.CPU_USED)));
+			this.setListValueInt1(DataParser.parse(Long.class, map.get(MonitorNodeValueMeta.LIST_VALUE_INT1)));
+			this.setValueNumber2(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.VALUE_NUMBER2)));
+			this.setListValueStr1(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.LIST_VALUE_STR1)));
+			this.setListValueInt2(DataParser.parse(Long.class, map.get(MonitorNodeValueMeta.LIST_VALUE_INT2)));
+			this.setValueNumber3(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.VALUE_NUMBER3)));
+			this.setListLabel1(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.LIST_LABEL1)));
+			this.setListValueInt3(DataParser.parse(Long.class, map.get(MonitorNodeValueMeta.LIST_VALUE_INT3)));
+			this.setIsConnected(DataParser.parse(Integer.class, map.get(MonitorNodeValueMeta.IS_CONNECTED)));
+			this.setValueNumber1(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.VALUE_NUMBER1)));
+			this.setUid(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.UID)));
+			this.setCpuUser(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.CPU_USER)));
+			this.setProcessCnt(DataParser.parse(Integer.class, map.get(MonitorNodeValueMeta.PROCESS_CNT)));
+			this.setCpuSys(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.CPU_SYS)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.UPDATE_BY)));
+			this.setNetworkFlowUp(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.NETWORK_FLOW_UP)));
+			this.setDbStatus(DataParser.parse(Integer.class, map.get(MonitorNodeValueMeta.DB_STATUS)));
+			this.setPMemoryUsed(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.P_MEMORY_USED)));
+			this.setCpuNumber(DataParser.parse(Integer.class, map.get(MonitorNodeValueMeta.CPU_NUMBER)));
+			this.setValueInt3(DataParser.parse(Long.class, map.get(MonitorNodeValueMeta.VALUE_INT3)));
+			this.setValueInt2(DataParser.parse(Long.class, map.get(MonitorNodeValueMeta.VALUE_INT2)));
+			this.setValueInt1(DataParser.parse(Long.class, map.get(MonitorNodeValueMeta.VALUE_INT1)));
+			this.setListValueNumber2(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.LIST_VALUE_NUMBER2)));
+			this.setListValueNumber3(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.LIST_VALUE_NUMBER3)));
+			this.setListValueNumber1(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.LIST_VALUE_NUMBER1)));
+			this.setIndicatorCode(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.INDICATOR_CODE)));
+			this.setValueStr3(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.VALUE_STR3)));
+			this.setValueStr2(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.VALUE_STR2)));
+			this.setValueStr1(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.VALUE_STR1)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(MonitorNodeValueMeta.UPDATE_TIME)));
+			this.setResultMessage(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.RESULT_MESSAGE)));
+			this.setLabel1(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.LABEL1)));
+			this.setLabel2(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.LABEL2)));
+			this.setLabel3(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.LABEL3)));
+			this.setResultStatus(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.RESULT_STATUS)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.CREATE_BY)));
+			this.setRecordTime(DataParser.parse(Date.class, map.get(MonitorNodeValueMeta.RECORD_TIME)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(MonitorNodeValueMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(MonitorNodeValueMeta.CREATE_TIME)));
+			this.setOsLoad5(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.OS_LOAD5)));
+			this.setVMemoryUsed(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.V_MEMORY_USED)));
+			this.setArch(DataParser.parse(String.class, map.get(MonitorNodeValueMeta.ARCH)));
+			this.setCpuWait(DataParser.parse(BigDecimal.class, map.get(MonitorNodeValueMeta.CPU_WAIT)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setPMemorySize( (Long)map.get(MonitorNodeValueMeta.P_MEMORY_SIZE));
+				this.setOsLoad15( (BigDecimal)map.get(MonitorNodeValueMeta.OS_LOAD15));
+				this.setOsLoad( (BigDecimal)map.get(MonitorNodeValueMeta.OS_LOAD));
+				this.setCpuFree( (BigDecimal)map.get(MonitorNodeValueMeta.CPU_FREE));
+				this.setHostname( (String)map.get(MonitorNodeValueMeta.HOSTNAME));
+				this.setDbConnectNumber( (Integer)map.get(MonitorNodeValueMeta.DB_CONNECT_NUMBER));
+				this.setMonitorTplCode( (String)map.get(MonitorNodeValueMeta.MONITOR_TPL_CODE));
+				this.setListCode3( (String)map.get(MonitorNodeValueMeta.LIST_CODE3));
+				this.setListCode2( (String)map.get(MonitorNodeValueMeta.LIST_CODE2));
+				this.setId( (String)map.get(MonitorNodeValueMeta.ID));
+				this.setListCode1( (String)map.get(MonitorNodeValueMeta.LIST_CODE1));
+				this.setOsVerion( (String)map.get(MonitorNodeValueMeta.OS_VERION));
+				this.setInfo( (String)map.get(MonitorNodeValueMeta.INFO));
+				this.setValueBstr1( (String)map.get(MonitorNodeValueMeta.VALUE_BSTR1));
+				this.setOsDatetime( (String)map.get(MonitorNodeValueMeta.OS_DATETIME));
+				this.setCpuIdle( (BigDecimal)map.get(MonitorNodeValueMeta.CPU_IDLE));
+				this.setNodeVersion( (String)map.get(MonitorNodeValueMeta.NODE_VERSION));
+				this.setVersion( (Integer)map.get(MonitorNodeValueMeta.VERSION));
+				this.setDbSize( (Long)map.get(MonitorNodeValueMeta.DB_SIZE));
+				this.setVMemorySize( (Long)map.get(MonitorNodeValueMeta.V_MEMORY_SIZE));
+				this.setDeleteTime( (Date)map.get(MonitorNodeValueMeta.DELETE_TIME));
+				this.setBoottime( (Date)map.get(MonitorNodeValueMeta.BOOTTIME));
+				this.setDeleteBy( (String)map.get(MonitorNodeValueMeta.DELETE_BY));
+				this.setNodeId( (String)map.get(MonitorNodeValueMeta.NODE_ID));
+				this.setNetworkFlowDown( (BigDecimal)map.get(MonitorNodeValueMeta.NETWORK_FLOW_DOWN));
+				this.setListLabel2( (String)map.get(MonitorNodeValueMeta.LIST_LABEL2));
+				this.setListValueStr3( (String)map.get(MonitorNodeValueMeta.LIST_VALUE_STR3));
+				this.setCode3( (String)map.get(MonitorNodeValueMeta.CODE3));
+				this.setListLabel3( (String)map.get(MonitorNodeValueMeta.LIST_LABEL3));
+				this.setListValueStr2( (String)map.get(MonitorNodeValueMeta.LIST_VALUE_STR2));
+				this.setCode2( (String)map.get(MonitorNodeValueMeta.CODE2));
+				this.setCode1( (String)map.get(MonitorNodeValueMeta.CODE1));
+				this.setCpuUsed( (BigDecimal)map.get(MonitorNodeValueMeta.CPU_USED));
+				this.setListValueInt1( (Long)map.get(MonitorNodeValueMeta.LIST_VALUE_INT1));
+				this.setValueNumber2( (BigDecimal)map.get(MonitorNodeValueMeta.VALUE_NUMBER2));
+				this.setListValueStr1( (String)map.get(MonitorNodeValueMeta.LIST_VALUE_STR1));
+				this.setListValueInt2( (Long)map.get(MonitorNodeValueMeta.LIST_VALUE_INT2));
+				this.setValueNumber3( (BigDecimal)map.get(MonitorNodeValueMeta.VALUE_NUMBER3));
+				this.setListLabel1( (String)map.get(MonitorNodeValueMeta.LIST_LABEL1));
+				this.setListValueInt3( (Long)map.get(MonitorNodeValueMeta.LIST_VALUE_INT3));
+				this.setIsConnected( (Integer)map.get(MonitorNodeValueMeta.IS_CONNECTED));
+				this.setValueNumber1( (BigDecimal)map.get(MonitorNodeValueMeta.VALUE_NUMBER1));
+				this.setUid( (String)map.get(MonitorNodeValueMeta.UID));
+				this.setCpuUser( (BigDecimal)map.get(MonitorNodeValueMeta.CPU_USER));
+				this.setProcessCnt( (Integer)map.get(MonitorNodeValueMeta.PROCESS_CNT));
+				this.setCpuSys( (BigDecimal)map.get(MonitorNodeValueMeta.CPU_SYS));
+				this.setUpdateBy( (String)map.get(MonitorNodeValueMeta.UPDATE_BY));
+				this.setNetworkFlowUp( (BigDecimal)map.get(MonitorNodeValueMeta.NETWORK_FLOW_UP));
+				this.setDbStatus( (Integer)map.get(MonitorNodeValueMeta.DB_STATUS));
+				this.setPMemoryUsed( (BigDecimal)map.get(MonitorNodeValueMeta.P_MEMORY_USED));
+				this.setCpuNumber( (Integer)map.get(MonitorNodeValueMeta.CPU_NUMBER));
+				this.setValueInt3( (Long)map.get(MonitorNodeValueMeta.VALUE_INT3));
+				this.setValueInt2( (Long)map.get(MonitorNodeValueMeta.VALUE_INT2));
+				this.setValueInt1( (Long)map.get(MonitorNodeValueMeta.VALUE_INT1));
+				this.setListValueNumber2( (BigDecimal)map.get(MonitorNodeValueMeta.LIST_VALUE_NUMBER2));
+				this.setListValueNumber3( (BigDecimal)map.get(MonitorNodeValueMeta.LIST_VALUE_NUMBER3));
+				this.setListValueNumber1( (BigDecimal)map.get(MonitorNodeValueMeta.LIST_VALUE_NUMBER1));
+				this.setIndicatorCode( (String)map.get(MonitorNodeValueMeta.INDICATOR_CODE));
+				this.setValueStr3( (String)map.get(MonitorNodeValueMeta.VALUE_STR3));
+				this.setValueStr2( (String)map.get(MonitorNodeValueMeta.VALUE_STR2));
+				this.setValueStr1( (String)map.get(MonitorNodeValueMeta.VALUE_STR1));
+				this.setUpdateTime( (Date)map.get(MonitorNodeValueMeta.UPDATE_TIME));
+				this.setResultMessage( (String)map.get(MonitorNodeValueMeta.RESULT_MESSAGE));
+				this.setLabel1( (String)map.get(MonitorNodeValueMeta.LABEL1));
+				this.setLabel2( (String)map.get(MonitorNodeValueMeta.LABEL2));
+				this.setLabel3( (String)map.get(MonitorNodeValueMeta.LABEL3));
+				this.setResultStatus( (String)map.get(MonitorNodeValueMeta.RESULT_STATUS));
+				this.setCreateBy( (String)map.get(MonitorNodeValueMeta.CREATE_BY));
+				this.setRecordTime( (Date)map.get(MonitorNodeValueMeta.RECORD_TIME));
+				this.setDeleted( (Integer)map.get(MonitorNodeValueMeta.DELETED));
+				this.setCreateTime( (Date)map.get(MonitorNodeValueMeta.CREATE_TIME));
+				this.setOsLoad5( (BigDecimal)map.get(MonitorNodeValueMeta.OS_LOAD5));
+				this.setVMemoryUsed( (BigDecimal)map.get(MonitorNodeValueMeta.V_MEMORY_USED));
+				this.setArch( (String)map.get(MonitorNodeValueMeta.ARCH));
+				this.setCpuWait( (BigDecimal)map.get(MonitorNodeValueMeta.CPU_WAIT));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setPMemorySize(DataParser.parse(Long.class, r.getValue(MonitorNodeValueMeta.P_MEMORY_SIZE)));
+			this.setOsLoad15(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.OS_LOAD15)));
+			this.setOsLoad(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.OS_LOAD)));
+			this.setCpuFree(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.CPU_FREE)));
+			this.setHostname(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.HOSTNAME)));
+			this.setDbConnectNumber(DataParser.parse(Integer.class, r.getValue(MonitorNodeValueMeta.DB_CONNECT_NUMBER)));
+			this.setMonitorTplCode(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.MONITOR_TPL_CODE)));
+			this.setListCode3(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.LIST_CODE3)));
+			this.setListCode2(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.LIST_CODE2)));
+			this.setId(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.ID)));
+			this.setListCode1(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.LIST_CODE1)));
+			this.setOsVerion(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.OS_VERION)));
+			this.setInfo(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.INFO)));
+			this.setValueBstr1(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.VALUE_BSTR1)));
+			this.setOsDatetime(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.OS_DATETIME)));
+			this.setCpuIdle(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.CPU_IDLE)));
+			this.setNodeVersion(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.NODE_VERSION)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(MonitorNodeValueMeta.VERSION)));
+			this.setDbSize(DataParser.parse(Long.class, r.getValue(MonitorNodeValueMeta.DB_SIZE)));
+			this.setVMemorySize(DataParser.parse(Long.class, r.getValue(MonitorNodeValueMeta.V_MEMORY_SIZE)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MonitorNodeValueMeta.DELETE_TIME)));
+			this.setBoottime(DataParser.parse(Date.class, r.getValue(MonitorNodeValueMeta.BOOTTIME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.DELETE_BY)));
+			this.setNodeId(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.NODE_ID)));
+			this.setNetworkFlowDown(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.NETWORK_FLOW_DOWN)));
+			this.setListLabel2(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.LIST_LABEL2)));
+			this.setListValueStr3(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.LIST_VALUE_STR3)));
+			this.setCode3(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.CODE3)));
+			this.setListLabel3(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.LIST_LABEL3)));
+			this.setListValueStr2(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.LIST_VALUE_STR2)));
+			this.setCode2(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.CODE2)));
+			this.setCode1(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.CODE1)));
+			this.setCpuUsed(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.CPU_USED)));
+			this.setListValueInt1(DataParser.parse(Long.class, r.getValue(MonitorNodeValueMeta.LIST_VALUE_INT1)));
+			this.setValueNumber2(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.VALUE_NUMBER2)));
+			this.setListValueStr1(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.LIST_VALUE_STR1)));
+			this.setListValueInt2(DataParser.parse(Long.class, r.getValue(MonitorNodeValueMeta.LIST_VALUE_INT2)));
+			this.setValueNumber3(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.VALUE_NUMBER3)));
+			this.setListLabel1(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.LIST_LABEL1)));
+			this.setListValueInt3(DataParser.parse(Long.class, r.getValue(MonitorNodeValueMeta.LIST_VALUE_INT3)));
+			this.setIsConnected(DataParser.parse(Integer.class, r.getValue(MonitorNodeValueMeta.IS_CONNECTED)));
+			this.setValueNumber1(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.VALUE_NUMBER1)));
+			this.setUid(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.UID)));
+			this.setCpuUser(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.CPU_USER)));
+			this.setProcessCnt(DataParser.parse(Integer.class, r.getValue(MonitorNodeValueMeta.PROCESS_CNT)));
+			this.setCpuSys(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.CPU_SYS)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.UPDATE_BY)));
+			this.setNetworkFlowUp(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.NETWORK_FLOW_UP)));
+			this.setDbStatus(DataParser.parse(Integer.class, r.getValue(MonitorNodeValueMeta.DB_STATUS)));
+			this.setPMemoryUsed(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.P_MEMORY_USED)));
+			this.setCpuNumber(DataParser.parse(Integer.class, r.getValue(MonitorNodeValueMeta.CPU_NUMBER)));
+			this.setValueInt3(DataParser.parse(Long.class, r.getValue(MonitorNodeValueMeta.VALUE_INT3)));
+			this.setValueInt2(DataParser.parse(Long.class, r.getValue(MonitorNodeValueMeta.VALUE_INT2)));
+			this.setValueInt1(DataParser.parse(Long.class, r.getValue(MonitorNodeValueMeta.VALUE_INT1)));
+			this.setListValueNumber2(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.LIST_VALUE_NUMBER2)));
+			this.setListValueNumber3(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.LIST_VALUE_NUMBER3)));
+			this.setListValueNumber1(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.LIST_VALUE_NUMBER1)));
+			this.setIndicatorCode(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.INDICATOR_CODE)));
+			this.setValueStr3(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.VALUE_STR3)));
+			this.setValueStr2(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.VALUE_STR2)));
+			this.setValueStr1(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.VALUE_STR1)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MonitorNodeValueMeta.UPDATE_TIME)));
+			this.setResultMessage(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.RESULT_MESSAGE)));
+			this.setLabel1(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.LABEL1)));
+			this.setLabel2(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.LABEL2)));
+			this.setLabel3(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.LABEL3)));
+			this.setResultStatus(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.RESULT_STATUS)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.CREATE_BY)));
+			this.setRecordTime(DataParser.parse(Date.class, r.getValue(MonitorNodeValueMeta.RECORD_TIME)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MonitorNodeValueMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MonitorNodeValueMeta.CREATE_TIME)));
+			this.setOsLoad5(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.OS_LOAD5)));
+			this.setVMemoryUsed(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.V_MEMORY_USED)));
+			this.setArch(DataParser.parse(String.class, r.getValue(MonitorNodeValueMeta.ARCH)));
+			this.setCpuWait(DataParser.parse(BigDecimal.class, r.getValue(MonitorNodeValueMeta.CPU_WAIT)));
+			return true;
+		} else {
+			try {
+				this.setPMemorySize( (Long)r.getValue(MonitorNodeValueMeta.P_MEMORY_SIZE));
+				this.setOsLoad15( (BigDecimal)r.getValue(MonitorNodeValueMeta.OS_LOAD15));
+				this.setOsLoad( (BigDecimal)r.getValue(MonitorNodeValueMeta.OS_LOAD));
+				this.setCpuFree( (BigDecimal)r.getValue(MonitorNodeValueMeta.CPU_FREE));
+				this.setHostname( (String)r.getValue(MonitorNodeValueMeta.HOSTNAME));
+				this.setDbConnectNumber( (Integer)r.getValue(MonitorNodeValueMeta.DB_CONNECT_NUMBER));
+				this.setMonitorTplCode( (String)r.getValue(MonitorNodeValueMeta.MONITOR_TPL_CODE));
+				this.setListCode3( (String)r.getValue(MonitorNodeValueMeta.LIST_CODE3));
+				this.setListCode2( (String)r.getValue(MonitorNodeValueMeta.LIST_CODE2));
+				this.setId( (String)r.getValue(MonitorNodeValueMeta.ID));
+				this.setListCode1( (String)r.getValue(MonitorNodeValueMeta.LIST_CODE1));
+				this.setOsVerion( (String)r.getValue(MonitorNodeValueMeta.OS_VERION));
+				this.setInfo( (String)r.getValue(MonitorNodeValueMeta.INFO));
+				this.setValueBstr1( (String)r.getValue(MonitorNodeValueMeta.VALUE_BSTR1));
+				this.setOsDatetime( (String)r.getValue(MonitorNodeValueMeta.OS_DATETIME));
+				this.setCpuIdle( (BigDecimal)r.getValue(MonitorNodeValueMeta.CPU_IDLE));
+				this.setNodeVersion( (String)r.getValue(MonitorNodeValueMeta.NODE_VERSION));
+				this.setVersion( (Integer)r.getValue(MonitorNodeValueMeta.VERSION));
+				this.setDbSize( (Long)r.getValue(MonitorNodeValueMeta.DB_SIZE));
+				this.setVMemorySize( (Long)r.getValue(MonitorNodeValueMeta.V_MEMORY_SIZE));
+				this.setDeleteTime( (Date)r.getValue(MonitorNodeValueMeta.DELETE_TIME));
+				this.setBoottime( (Date)r.getValue(MonitorNodeValueMeta.BOOTTIME));
+				this.setDeleteBy( (String)r.getValue(MonitorNodeValueMeta.DELETE_BY));
+				this.setNodeId( (String)r.getValue(MonitorNodeValueMeta.NODE_ID));
+				this.setNetworkFlowDown( (BigDecimal)r.getValue(MonitorNodeValueMeta.NETWORK_FLOW_DOWN));
+				this.setListLabel2( (String)r.getValue(MonitorNodeValueMeta.LIST_LABEL2));
+				this.setListValueStr3( (String)r.getValue(MonitorNodeValueMeta.LIST_VALUE_STR3));
+				this.setCode3( (String)r.getValue(MonitorNodeValueMeta.CODE3));
+				this.setListLabel3( (String)r.getValue(MonitorNodeValueMeta.LIST_LABEL3));
+				this.setListValueStr2( (String)r.getValue(MonitorNodeValueMeta.LIST_VALUE_STR2));
+				this.setCode2( (String)r.getValue(MonitorNodeValueMeta.CODE2));
+				this.setCode1( (String)r.getValue(MonitorNodeValueMeta.CODE1));
+				this.setCpuUsed( (BigDecimal)r.getValue(MonitorNodeValueMeta.CPU_USED));
+				this.setListValueInt1( (Long)r.getValue(MonitorNodeValueMeta.LIST_VALUE_INT1));
+				this.setValueNumber2( (BigDecimal)r.getValue(MonitorNodeValueMeta.VALUE_NUMBER2));
+				this.setListValueStr1( (String)r.getValue(MonitorNodeValueMeta.LIST_VALUE_STR1));
+				this.setListValueInt2( (Long)r.getValue(MonitorNodeValueMeta.LIST_VALUE_INT2));
+				this.setValueNumber3( (BigDecimal)r.getValue(MonitorNodeValueMeta.VALUE_NUMBER3));
+				this.setListLabel1( (String)r.getValue(MonitorNodeValueMeta.LIST_LABEL1));
+				this.setListValueInt3( (Long)r.getValue(MonitorNodeValueMeta.LIST_VALUE_INT3));
+				this.setIsConnected( (Integer)r.getValue(MonitorNodeValueMeta.IS_CONNECTED));
+				this.setValueNumber1( (BigDecimal)r.getValue(MonitorNodeValueMeta.VALUE_NUMBER1));
+				this.setUid( (String)r.getValue(MonitorNodeValueMeta.UID));
+				this.setCpuUser( (BigDecimal)r.getValue(MonitorNodeValueMeta.CPU_USER));
+				this.setProcessCnt( (Integer)r.getValue(MonitorNodeValueMeta.PROCESS_CNT));
+				this.setCpuSys( (BigDecimal)r.getValue(MonitorNodeValueMeta.CPU_SYS));
+				this.setUpdateBy( (String)r.getValue(MonitorNodeValueMeta.UPDATE_BY));
+				this.setNetworkFlowUp( (BigDecimal)r.getValue(MonitorNodeValueMeta.NETWORK_FLOW_UP));
+				this.setDbStatus( (Integer)r.getValue(MonitorNodeValueMeta.DB_STATUS));
+				this.setPMemoryUsed( (BigDecimal)r.getValue(MonitorNodeValueMeta.P_MEMORY_USED));
+				this.setCpuNumber( (Integer)r.getValue(MonitorNodeValueMeta.CPU_NUMBER));
+				this.setValueInt3( (Long)r.getValue(MonitorNodeValueMeta.VALUE_INT3));
+				this.setValueInt2( (Long)r.getValue(MonitorNodeValueMeta.VALUE_INT2));
+				this.setValueInt1( (Long)r.getValue(MonitorNodeValueMeta.VALUE_INT1));
+				this.setListValueNumber2( (BigDecimal)r.getValue(MonitorNodeValueMeta.LIST_VALUE_NUMBER2));
+				this.setListValueNumber3( (BigDecimal)r.getValue(MonitorNodeValueMeta.LIST_VALUE_NUMBER3));
+				this.setListValueNumber1( (BigDecimal)r.getValue(MonitorNodeValueMeta.LIST_VALUE_NUMBER1));
+				this.setIndicatorCode( (String)r.getValue(MonitorNodeValueMeta.INDICATOR_CODE));
+				this.setValueStr3( (String)r.getValue(MonitorNodeValueMeta.VALUE_STR3));
+				this.setValueStr2( (String)r.getValue(MonitorNodeValueMeta.VALUE_STR2));
+				this.setValueStr1( (String)r.getValue(MonitorNodeValueMeta.VALUE_STR1));
+				this.setUpdateTime( (Date)r.getValue(MonitorNodeValueMeta.UPDATE_TIME));
+				this.setResultMessage( (String)r.getValue(MonitorNodeValueMeta.RESULT_MESSAGE));
+				this.setLabel1( (String)r.getValue(MonitorNodeValueMeta.LABEL1));
+				this.setLabel2( (String)r.getValue(MonitorNodeValueMeta.LABEL2));
+				this.setLabel3( (String)r.getValue(MonitorNodeValueMeta.LABEL3));
+				this.setResultStatus( (String)r.getValue(MonitorNodeValueMeta.RESULT_STATUS));
+				this.setCreateBy( (String)r.getValue(MonitorNodeValueMeta.CREATE_BY));
+				this.setRecordTime( (Date)r.getValue(MonitorNodeValueMeta.RECORD_TIME));
+				this.setDeleted( (Integer)r.getValue(MonitorNodeValueMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(MonitorNodeValueMeta.CREATE_TIME));
+				this.setOsLoad5( (BigDecimal)r.getValue(MonitorNodeValueMeta.OS_LOAD5));
+				this.setVMemoryUsed( (BigDecimal)r.getValue(MonitorNodeValueMeta.V_MEMORY_USED));
+				this.setArch( (String)r.getValue(MonitorNodeValueMeta.ARCH));
+				this.setCpuWait( (BigDecimal)r.getValue(MonitorNodeValueMeta.CPU_WAIT));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

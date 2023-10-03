@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-09-28 13:26:54
+ * @since 2023-10-02 12:22:39
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -2423,6 +2423,11 @@ public class OaTables {
 		public static final DBField FD_ID = new DBField(DBDataType.STRING , "fd_id","fdId","对象","对象",false,false,true);
 		
 		/**
+		 * 对象类型
+		*/
+		public static final DBField FD_TYPE = new DBField(DBDataType.STRING , "fd_type","fdType","对象类型","对象类型",false,false,true);
+		
+		/**
 		 * 操作内容
 		*/
 		public static final DBField OPER_CONTENT = new DBField(DBDataType.STRING , "oper_content","operContent","操作内容","操作内容",false,false,true);
@@ -2431,6 +2436,11 @@ public class OaTables {
 		 * 操作人
 		*/
 		public static final DBField OPER_USER_ID = new DBField(DBDataType.STRING , "oper_user_id","operUserId","操作人","操作人",false,false,true);
+		
+		/**
+		 * 操作时间
+		*/
+		public static final DBField OPER_TIME = new DBField(DBDataType.DATE , "oper_time","operTime","操作时间","操作时间",false,false,true);
 		
 		/**
 		 * 版本
@@ -2478,7 +2488,7 @@ public class OaTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OA_NETDISK_OPER_RECORD() {
-			this.init($NAME,"操作记录" , ID , FD_ID , OPER_CONTENT , OPER_USER_ID , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+			this.init($NAME,"操作记录" , ID , FD_ID , FD_TYPE , OPER_CONTENT , OPER_USER_ID , OPER_TIME , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
 		}
 		public static final OA_NETDISK_OPER_RECORD $TABLE=new OA_NETDISK_OPER_RECORD();
 	}

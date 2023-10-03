@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_MONITOR_TPL_INDICATOR;
@@ -8,21 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.MonitorTplIndicatorMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 模版指标
+ * <p>模版指标 , 数据表 ops_monitor_tpl_indicator 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 16:33:31
- * @sign A5FC431328491449C6DE44AAE2018621
+ * @since 2023-10-03 08:00:12
+ * @sign 7330C579BC20DD65AEEF6A35C3446E19
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_monitor_tpl_indicator")
+@ApiModel(description = "模版指标 ; 模版指标 , 数据表 ops_monitor_tpl_indicator 的PO类型")
 public class MonitorTplIndicator extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -33,103 +40,103 @@ public class MonitorTplIndicator extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "100")
 	private String id;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "系统负载")
 	private String name;
 	
 	/**
 	 * 编码：编码
 	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "os.load")
 	private String code;
 	
 	/**
 	 * 监控模版：监控模版
 	*/
-	@ApiModelProperty(required = false,value="监控模版" , notes = "监控模版")
+	@ApiModelProperty(required = false,value="监控模版" , notes = "监控模版" , example = "tpl_host_linux_script")
 	private String monitorTplCode;
 	
 	/**
 	 * 监控方式：监控方式
 	*/
-	@ApiModelProperty(required = false,value="监控方式" , notes = "监控方式")
+	@ApiModelProperty(required = false,value="监控方式" , notes = "监控方式" , example = "script")
 	private String monitorMethod;
 	
 	/**
 	 * 指标类型：指标类型
 	*/
-	@ApiModelProperty(required = false,value="指标类型" , notes = "指标类型")
+	@ApiModelProperty(required = false,value="指标类型" , notes = "指标类型" , example = "system")
 	private String indicatorType;
 	
 	/**
 	 * 值行数：值行数
 	*/
-	@ApiModelProperty(required = false,value="值行数" , notes = "值行数")
+	@ApiModelProperty(required = false,value="值行数" , notes = "值行数" , example = "single")
 	private String valueColumnRows;
 	
 	/**
 	 * 值列数：值列数
 	*/
-	@ApiModelProperty(required = false,value="值列数" , notes = "值列数")
+	@ApiModelProperty(required = false,value="值列数" , notes = "值列数" , example = "single")
 	private String valueColumnCols;
 	
 	/**
 	 * 数值类型：数值类型
 	*/
-	@ApiModelProperty(required = false,value="数值类型" , notes = "数值类型")
+	@ApiModelProperty(required = false,value="数值类型" , notes = "数值类型" , example = "number")
 	private String valueColumnType;
 	
 	/**
 	 * 数值字段：数值字段
 	*/
-	@ApiModelProperty(required = false,value="数值字段" , notes = "数值字段")
+	@ApiModelProperty(required = false,value="数值字段" , notes = "数值字段" , example = "os_load")
 	private String valueColumn;
 	
 	/**
 	 * 数值字段映射：数值字段映射
 	*/
-	@ApiModelProperty(required = false,value="数值字段映射" , notes = "数值字段映射")
+	@ApiModelProperty(required = false,value="数值字段映射" , notes = "数值字段映射" , example = "os_load")
 	private String valueColumnMap;
 	
 	/**
 	 * 字段名称：字段名称
 	*/
-	@ApiModelProperty(required = false,value="字段名称" , notes = "字段名称")
+	@ApiModelProperty(required = false,value="字段名称" , notes = "字段名称" , example = "系统负载")
 	private String valueColumnName;
 	
 	/**
-	 * 超时(秒)：超时(秒)
+	 * 超时时间：秒)
 	*/
-	@ApiModelProperty(required = false,value="超时(秒)" , notes = "超时(秒)")
+	@ApiModelProperty(required = false,value="超时时间" , notes = "秒)" , example = "15")
 	private Integer timeOut;
 	
 	/**
-	 * 间隔时间(秒）：间隔时间(秒）
+	 * 间隔时间：秒）
 	*/
-	@ApiModelProperty(required = false,value="间隔时间(秒）" , notes = "间隔时间(秒）")
+	@ApiModelProperty(required = false,value="间隔时间" , notes = "秒）" , example = "180")
 	private Integer intervalTime;
 	
 	/**
 	 * 数据保留天数：数据保留天数
 	*/
-	@ApiModelProperty(required = false,value="数据保留天数" , notes = "数据保留天数")
+	@ApiModelProperty(required = false,value="数据保留天数" , notes = "数据保留天数" , example = "365")
 	private Integer dataKeepDay;
 	
 	/**
 	 * 命令：命令
 	*/
-	@ApiModelProperty(required = false,value="命令" , notes = "命令")
+	@ApiModelProperty(required = false,value="命令" , notes = "命令" , example = "uptime|awk -F \":\" '{print $NF}'|awk -F \",\" '{print $1}'")
 	private String command;
 	
 	/**
@@ -141,7 +148,7 @@ public class MonitorTplIndicator extends Entity {
 	/**
 	 * 变量：变量
 	*/
-	@ApiModelProperty(required = false,value="变量" , notes = "变量")
+	@ApiModelProperty(required = false,value="变量" , notes = "变量" , example = "[]")
 	private String indicatorVariable;
 	
 	/**
@@ -159,13 +166,13 @@ public class MonitorTplIndicator extends Entity {
 	/**
 	 * 排序：排序
 	*/
-	@ApiModelProperty(required = false,value="排序" , notes = "排序")
+	@ApiModelProperty(required = false,value="排序" , notes = "排序" , example = "800")
 	private Integer itemSort;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "系统负载")
 	private String notes;
 	
 	/**
@@ -195,9 +202,10 @@ public class MonitorTplIndicator extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -215,7 +223,7 @@ public class MonitorTplIndicator extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "1")
 	private Integer version;
 	
 	/**
@@ -478,17 +486,17 @@ public class MonitorTplIndicator extends Entity {
 	}
 	
 	/**
-	 * 获得 超时(秒)<br>
-	 * 超时(秒)
-	 * @return 超时(秒)
+	 * 获得 超时时间<br>
+	 * 秒)
+	 * @return 超时时间
 	*/
 	public Integer getTimeOut() {
 		return timeOut;
 	}
 	
 	/**
-	 * 设置 超时(秒)
-	 * @param timeOut 超时(秒)
+	 * 设置 超时时间
+	 * @param timeOut 超时时间
 	 * @return 当前对象
 	*/
 	public MonitorTplIndicator setTimeOut(Integer timeOut) {
@@ -497,17 +505,17 @@ public class MonitorTplIndicator extends Entity {
 	}
 	
 	/**
-	 * 获得 间隔时间(秒）<br>
-	 * 间隔时间(秒）
-	 * @return 间隔时间(秒）
+	 * 获得 间隔时间<br>
+	 * 秒）
+	 * @return 间隔时间
 	*/
 	public Integer getIntervalTime() {
 		return intervalTime;
 	}
 	
 	/**
-	 * 设置 间隔时间(秒）
-	 * @param intervalTime 间隔时间(秒）
+	 * 设置 间隔时间
+	 * @param intervalTime 间隔时间
 	 * @return 当前对象
 	*/
 	public MonitorTplIndicator setIntervalTime(Integer intervalTime) {
@@ -770,6 +778,7 @@ public class MonitorTplIndicator extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public MonitorTplIndicator setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -917,6 +926,68 @@ public class MonitorTplIndicator extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MonitorTplIndicator clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public MonitorTplIndicator duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.MonitorTplIndicatorMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.MonitorTplIndicatorMeta.$$proxy$$();
+		inst.setCode(this.getCode());
+		inst.setDataKeepDay(this.getDataKeepDay());
+		inst.setNotes(this.getNotes());
+		inst.setValueColumnRows(this.getValueColumnRows());
+		inst.setMonitorMethod(this.getMonitorMethod());
+		inst.setValueColumnCols(this.getValueColumnCols());
+		inst.setMonitorTplCode(this.getMonitorTplCode());
+		inst.setIndicatorType(this.getIndicatorType());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setValueColumn(this.getValueColumn());
+		inst.setId(this.getId());
+		inst.setIntervalTime(this.getIntervalTime());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setLabel(this.getLabel());
+		inst.setValueColumnMap(this.getValueColumnMap());
+		inst.setVersion(this.getVersion());
+		inst.setCommand(this.getCommand());
+		inst.setTimeOut(this.getTimeOut());
+		inst.setValueColumnType(this.getValueColumnType());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCommandValue(this.getCommandValue());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setIndicatorVariable(this.getIndicatorVariable());
+		inst.setSnmpOid(this.getSnmpOid());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setValueColumnName(this.getValueColumnName());
+		inst.setItemSort(this.getItemSort());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setTpl(this.getTpl());
+			inst.setMonitorIndicatorType(this.getMonitorIndicatorType());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MonitorTplIndicator clone(boolean deep) {
+		return EntityContext.clone(MonitorTplIndicator.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 MonitorTplIndicator
 	 * @param monitorTplIndicatorMap 包含实体信息的 Map 对象
 	 * @return MonitorTplIndicator , 转换好的的 MonitorTplIndicator 对象
@@ -924,7 +995,9 @@ public class MonitorTplIndicator extends Entity {
 	@Transient
 	public static MonitorTplIndicator createFrom(Map<String,Object> monitorTplIndicatorMap) {
 		if(monitorTplIndicatorMap==null) return null;
-		MonitorTplIndicator po = EntityContext.create(MonitorTplIndicator.class, monitorTplIndicatorMap);
+		MonitorTplIndicator po = create();
+		EntityContext.copyProperties(po,monitorTplIndicatorMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -936,7 +1009,9 @@ public class MonitorTplIndicator extends Entity {
 	@Transient
 	public static MonitorTplIndicator createFrom(Object pojo) {
 		if(pojo==null) return null;
-		MonitorTplIndicator po = EntityContext.create(MonitorTplIndicator.class,pojo);
+		MonitorTplIndicator po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -946,6 +1021,174 @@ public class MonitorTplIndicator extends Entity {
 	*/
 	@Transient
 	public static MonitorTplIndicator create() {
-		return EntityContext.create(MonitorTplIndicator.class);
+		return new com.dt.platform.domain.ops.meta.MonitorTplIndicatorMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setCode(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.CODE)));
+			this.setDataKeepDay(DataParser.parse(Integer.class, map.get(MonitorTplIndicatorMeta.DATA_KEEP_DAY)));
+			this.setNotes(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.NOTES)));
+			this.setValueColumnRows(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_ROWS)));
+			this.setMonitorMethod(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.MONITOR_METHOD)));
+			this.setValueColumnCols(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_COLS)));
+			this.setMonitorTplCode(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.MONITOR_TPL_CODE)));
+			this.setIndicatorType(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.INDICATOR_TYPE)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.UPDATE_BY)));
+			this.setValueColumn(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.VALUE_COLUMN)));
+			this.setId(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.ID)));
+			this.setIntervalTime(DataParser.parse(Integer.class, map.get(MonitorTplIndicatorMeta.INTERVAL_TIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(MonitorTplIndicatorMeta.UPDATE_TIME)));
+			this.setLabel(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.LABEL)));
+			this.setValueColumnMap(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_MAP)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(MonitorTplIndicatorMeta.VERSION)));
+			this.setCommand(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.COMMAND)));
+			this.setTimeOut(DataParser.parse(Integer.class, map.get(MonitorTplIndicatorMeta.TIME_OUT)));
+			this.setValueColumnType(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_TYPE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(MonitorTplIndicatorMeta.DELETED)));
+			this.setCommandValue(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.COMMAND_VALUE)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(MonitorTplIndicatorMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(MonitorTplIndicatorMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.NAME)));
+			this.setIndicatorVariable(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.INDICATOR_VARIABLE)));
+			this.setSnmpOid(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.SNMP_OID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.DELETE_BY)));
+			this.setValueColumnName(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_NAME)));
+			this.setItemSort(DataParser.parse(Integer.class, map.get(MonitorTplIndicatorMeta.ITEM_SORT)));
+			this.setStatus(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.STATUS)));
+			// others
+			this.setTpl(DataParser.parse(MonitorTpl.class, map.get(MonitorTplIndicatorMeta.TPL)));
+			this.setMonitorIndicatorType(DataParser.parse(MonitorTplIndicatorType.class, map.get(MonitorTplIndicatorMeta.MONITOR_INDICATOR_TYPE)));
+			return true;
+		} else {
+			try {
+				this.setCode( (String)map.get(MonitorTplIndicatorMeta.CODE));
+				this.setDataKeepDay( (Integer)map.get(MonitorTplIndicatorMeta.DATA_KEEP_DAY));
+				this.setNotes( (String)map.get(MonitorTplIndicatorMeta.NOTES));
+				this.setValueColumnRows( (String)map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_ROWS));
+				this.setMonitorMethod( (String)map.get(MonitorTplIndicatorMeta.MONITOR_METHOD));
+				this.setValueColumnCols( (String)map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_COLS));
+				this.setMonitorTplCode( (String)map.get(MonitorTplIndicatorMeta.MONITOR_TPL_CODE));
+				this.setIndicatorType( (String)map.get(MonitorTplIndicatorMeta.INDICATOR_TYPE));
+				this.setUpdateBy( (String)map.get(MonitorTplIndicatorMeta.UPDATE_BY));
+				this.setValueColumn( (String)map.get(MonitorTplIndicatorMeta.VALUE_COLUMN));
+				this.setId( (String)map.get(MonitorTplIndicatorMeta.ID));
+				this.setIntervalTime( (Integer)map.get(MonitorTplIndicatorMeta.INTERVAL_TIME));
+				this.setUpdateTime( (Date)map.get(MonitorTplIndicatorMeta.UPDATE_TIME));
+				this.setLabel( (String)map.get(MonitorTplIndicatorMeta.LABEL));
+				this.setValueColumnMap( (String)map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_MAP));
+				this.setVersion( (Integer)map.get(MonitorTplIndicatorMeta.VERSION));
+				this.setCommand( (String)map.get(MonitorTplIndicatorMeta.COMMAND));
+				this.setTimeOut( (Integer)map.get(MonitorTplIndicatorMeta.TIME_OUT));
+				this.setValueColumnType( (String)map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_TYPE));
+				this.setCreateBy( (String)map.get(MonitorTplIndicatorMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(MonitorTplIndicatorMeta.DELETED));
+				this.setCommandValue( (String)map.get(MonitorTplIndicatorMeta.COMMAND_VALUE));
+				this.setCreateTime( (Date)map.get(MonitorTplIndicatorMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(MonitorTplIndicatorMeta.DELETE_TIME));
+				this.setName( (String)map.get(MonitorTplIndicatorMeta.NAME));
+				this.setIndicatorVariable( (String)map.get(MonitorTplIndicatorMeta.INDICATOR_VARIABLE));
+				this.setSnmpOid( (String)map.get(MonitorTplIndicatorMeta.SNMP_OID));
+				this.setDeleteBy( (String)map.get(MonitorTplIndicatorMeta.DELETE_BY));
+				this.setValueColumnName( (String)map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_NAME));
+				this.setItemSort( (Integer)map.get(MonitorTplIndicatorMeta.ITEM_SORT));
+				this.setStatus( (String)map.get(MonitorTplIndicatorMeta.STATUS));
+				// others
+				this.setTpl( (MonitorTpl)map.get(MonitorTplIndicatorMeta.TPL));
+				this.setMonitorIndicatorType( (MonitorTplIndicatorType)map.get(MonitorTplIndicatorMeta.MONITOR_INDICATOR_TYPE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setCode(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.CODE)));
+			this.setDataKeepDay(DataParser.parse(Integer.class, r.getValue(MonitorTplIndicatorMeta.DATA_KEEP_DAY)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.NOTES)));
+			this.setValueColumnRows(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_ROWS)));
+			this.setMonitorMethod(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.MONITOR_METHOD)));
+			this.setValueColumnCols(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_COLS)));
+			this.setMonitorTplCode(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.MONITOR_TPL_CODE)));
+			this.setIndicatorType(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.INDICATOR_TYPE)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.UPDATE_BY)));
+			this.setValueColumn(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN)));
+			this.setId(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.ID)));
+			this.setIntervalTime(DataParser.parse(Integer.class, r.getValue(MonitorTplIndicatorMeta.INTERVAL_TIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MonitorTplIndicatorMeta.UPDATE_TIME)));
+			this.setLabel(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.LABEL)));
+			this.setValueColumnMap(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_MAP)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(MonitorTplIndicatorMeta.VERSION)));
+			this.setCommand(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.COMMAND)));
+			this.setTimeOut(DataParser.parse(Integer.class, r.getValue(MonitorTplIndicatorMeta.TIME_OUT)));
+			this.setValueColumnType(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_TYPE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MonitorTplIndicatorMeta.DELETED)));
+			this.setCommandValue(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.COMMAND_VALUE)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MonitorTplIndicatorMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MonitorTplIndicatorMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.NAME)));
+			this.setIndicatorVariable(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.INDICATOR_VARIABLE)));
+			this.setSnmpOid(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.SNMP_OID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.DELETE_BY)));
+			this.setValueColumnName(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_NAME)));
+			this.setItemSort(DataParser.parse(Integer.class, r.getValue(MonitorTplIndicatorMeta.ITEM_SORT)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setCode( (String)r.getValue(MonitorTplIndicatorMeta.CODE));
+				this.setDataKeepDay( (Integer)r.getValue(MonitorTplIndicatorMeta.DATA_KEEP_DAY));
+				this.setNotes( (String)r.getValue(MonitorTplIndicatorMeta.NOTES));
+				this.setValueColumnRows( (String)r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_ROWS));
+				this.setMonitorMethod( (String)r.getValue(MonitorTplIndicatorMeta.MONITOR_METHOD));
+				this.setValueColumnCols( (String)r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_COLS));
+				this.setMonitorTplCode( (String)r.getValue(MonitorTplIndicatorMeta.MONITOR_TPL_CODE));
+				this.setIndicatorType( (String)r.getValue(MonitorTplIndicatorMeta.INDICATOR_TYPE));
+				this.setUpdateBy( (String)r.getValue(MonitorTplIndicatorMeta.UPDATE_BY));
+				this.setValueColumn( (String)r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN));
+				this.setId( (String)r.getValue(MonitorTplIndicatorMeta.ID));
+				this.setIntervalTime( (Integer)r.getValue(MonitorTplIndicatorMeta.INTERVAL_TIME));
+				this.setUpdateTime( (Date)r.getValue(MonitorTplIndicatorMeta.UPDATE_TIME));
+				this.setLabel( (String)r.getValue(MonitorTplIndicatorMeta.LABEL));
+				this.setValueColumnMap( (String)r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_MAP));
+				this.setVersion( (Integer)r.getValue(MonitorTplIndicatorMeta.VERSION));
+				this.setCommand( (String)r.getValue(MonitorTplIndicatorMeta.COMMAND));
+				this.setTimeOut( (Integer)r.getValue(MonitorTplIndicatorMeta.TIME_OUT));
+				this.setValueColumnType( (String)r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_TYPE));
+				this.setCreateBy( (String)r.getValue(MonitorTplIndicatorMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(MonitorTplIndicatorMeta.DELETED));
+				this.setCommandValue( (String)r.getValue(MonitorTplIndicatorMeta.COMMAND_VALUE));
+				this.setCreateTime( (Date)r.getValue(MonitorTplIndicatorMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(MonitorTplIndicatorMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(MonitorTplIndicatorMeta.NAME));
+				this.setIndicatorVariable( (String)r.getValue(MonitorTplIndicatorMeta.INDICATOR_VARIABLE));
+				this.setSnmpOid( (String)r.getValue(MonitorTplIndicatorMeta.SNMP_OID));
+				this.setDeleteBy( (String)r.getValue(MonitorTplIndicatorMeta.DELETE_BY));
+				this.setValueColumnName( (String)r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_NAME));
+				this.setItemSort( (Integer)r.getValue(MonitorTplIndicatorMeta.ITEM_SORT));
+				this.setStatus( (String)r.getValue(MonitorTplIndicatorMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

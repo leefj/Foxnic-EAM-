@@ -41,7 +41,8 @@ public class MonitorTplGraphPageController extends ViewController {
 	 * 模版图形 功能主页面
 	 */
 	@RequestMapping("/monitor_tpl_graph_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String tplCode) {
+		model.addAttribute("tplCode",tplCode);
 		return prefix+"/monitor_tpl_graph_list";
 	}
 

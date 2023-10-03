@@ -95,7 +95,9 @@ function ListPage() {
         bindButtonEvent();
         //绑定行操作按钮事件
         bindRowOperationEvent();
-        //searchData();
+
+
+        searchData();
     }
 
 
@@ -107,7 +109,7 @@ function ListPage() {
         if(tpl&&tpl.length>0){
             ps.tplCode=tpl[0];
         }else{
-            alert("请选择模版")
+           // alert("请选择模版")
             return 1;
         }
         ps.nodeId=nodeId;
@@ -134,7 +136,6 @@ function ListPage() {
                     var graphData=tplData[i];
                     for(var j=0;j<graphData.length;j++){
                         if(j==0){
-
                         }
                         var gap="<div class=\"gap\"></div>";
                         $("#chartList").append(gap);

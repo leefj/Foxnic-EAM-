@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_MONITOR_TPL;
@@ -8,24 +9,30 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.MonitorTplMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 监控模版
+ * <p>监控模版 , 数据表 ops_monitor_tpl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 16:26:05
- * @sign 4634778753998E231F85A0ACB82DCFDB
+ * @since 2023-10-02 12:33:20
+ * @sign D082C28891A1CB5CB6C252271C638A81
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_monitor_tpl")
+@ApiModel(description = "监控模版 ; 监控模版 , 数据表 ops_monitor_tpl 的PO类型")
 public class MonitorTpl extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -36,37 +43,37 @@ public class MonitorTpl extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1")
 	private String id;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "主机_Linux监控zabbix模版")
 	private String name;
 	
 	/**
 	 * 编码：编码
 	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "tpl_host_linux_zabbix")
 	private String code;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
 	
 	/**
 	 * 分类：分类
 	*/
-	@ApiModelProperty(required = false,value="分类" , notes = "分类")
+	@ApiModelProperty(required = false,value="分类" , notes = "分类" , example = "host")
 	private String type;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "Linux主机监控模版")
 	private String notes;
 	
 	/**
@@ -84,21 +91,22 @@ public class MonitorTpl extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-10-02 11:23:51")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -116,7 +124,7 @@ public class MonitorTpl extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "6")
 	private Integer version;
 	
 	/**
@@ -354,6 +362,7 @@ public class MonitorTpl extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public MonitorTpl setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -542,6 +551,52 @@ public class MonitorTpl extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MonitorTpl clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public MonitorTpl duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.MonitorTplMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.MonitorTplMeta.$$proxy$$();
+		inst.setCode(this.getCode());
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setType(this.getType());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setTplType(this.getTplType());
+			inst.setTplIndicatorList(this.getTplIndicatorList());
+			inst.setGraphList(this.getGraphList());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MonitorTpl clone(boolean deep) {
+		return EntityContext.clone(MonitorTpl.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 MonitorTpl
 	 * @param monitorTplMap 包含实体信息的 Map 对象
 	 * @return MonitorTpl , 转换好的的 MonitorTpl 对象
@@ -549,7 +604,9 @@ public class MonitorTpl extends Entity {
 	@Transient
 	public static MonitorTpl createFrom(Map<String,Object> monitorTplMap) {
 		if(monitorTplMap==null) return null;
-		MonitorTpl po = EntityContext.create(MonitorTpl.class, monitorTplMap);
+		MonitorTpl po = create();
+		EntityContext.copyProperties(po,monitorTplMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -561,7 +618,9 @@ public class MonitorTpl extends Entity {
 	@Transient
 	public static MonitorTpl createFrom(Object pojo) {
 		if(pojo==null) return null;
-		MonitorTpl po = EntityContext.create(MonitorTpl.class,pojo);
+		MonitorTpl po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -571,6 +630,104 @@ public class MonitorTpl extends Entity {
 	*/
 	@Transient
 	public static MonitorTpl create() {
-		return EntityContext.create(MonitorTpl.class);
+		return new com.dt.platform.domain.ops.meta.MonitorTplMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setCode(DataParser.parse(String.class, map.get(MonitorTplMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, map.get(MonitorTplMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(MonitorTplMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, map.get(MonitorTplMeta.TYPE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(MonitorTplMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(MonitorTplMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(MonitorTplMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(MonitorTplMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(MonitorTplMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(MonitorTplMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(MonitorTplMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorTplMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(MonitorTplMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(MonitorTplMeta.STATUS)));
+			// others
+			this.setTplType(DataParser.parse(MonitorTplType.class, map.get(MonitorTplMeta.TPL_TYPE)));
+			return true;
+		} else {
+			try {
+				this.setCode( (String)map.get(MonitorTplMeta.CODE));
+				this.setNotes( (String)map.get(MonitorTplMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(MonitorTplMeta.UPDATE_TIME));
+				this.setType( (String)map.get(MonitorTplMeta.TYPE));
+				this.setVersion( (Integer)map.get(MonitorTplMeta.VERSION));
+				this.setCreateBy( (String)map.get(MonitorTplMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(MonitorTplMeta.DELETED));
+				this.setCreateTime( (Date)map.get(MonitorTplMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(MonitorTplMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(MonitorTplMeta.DELETE_TIME));
+				this.setName( (String)map.get(MonitorTplMeta.NAME));
+				this.setDeleteBy( (String)map.get(MonitorTplMeta.DELETE_BY));
+				this.setId( (String)map.get(MonitorTplMeta.ID));
+				this.setStatus( (String)map.get(MonitorTplMeta.STATUS));
+				// others
+				this.setTplType( (MonitorTplType)map.get(MonitorTplMeta.TPL_TYPE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setCode(DataParser.parse(String.class, r.getValue(MonitorTplMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(MonitorTplMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MonitorTplMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, r.getValue(MonitorTplMeta.TYPE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(MonitorTplMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(MonitorTplMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MonitorTplMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MonitorTplMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MonitorTplMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MonitorTplMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(MonitorTplMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorTplMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(MonitorTplMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(MonitorTplMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setCode( (String)r.getValue(MonitorTplMeta.CODE));
+				this.setNotes( (String)r.getValue(MonitorTplMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(MonitorTplMeta.UPDATE_TIME));
+				this.setType( (String)r.getValue(MonitorTplMeta.TYPE));
+				this.setVersion( (Integer)r.getValue(MonitorTplMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(MonitorTplMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(MonitorTplMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(MonitorTplMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(MonitorTplMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(MonitorTplMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(MonitorTplMeta.NAME));
+				this.setDeleteBy( (String)r.getValue(MonitorTplMeta.DELETE_BY));
+				this.setId( (String)r.getValue(MonitorTplMeta.ID));
+				this.setStatus( (String)r.getValue(MonitorTplMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

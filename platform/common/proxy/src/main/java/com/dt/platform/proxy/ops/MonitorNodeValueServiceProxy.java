@@ -3,6 +3,9 @@ package com.dt.platform.proxy.ops;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.ops.MonitorNodeValue;
 import com.dt.platform.domain.ops.MonitorNodeValueVO;
@@ -10,14 +13,13 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
- * 节点数值  控制器服务代理
+ * 节点数值 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-20 14:46:23
+ * @since 2023-10-02 18:25:18
  */
 @FeignClient(value = ServiceNames.OPS, contextId = MonitorNodeValueServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface MonitorNodeValueServiceProxy {
@@ -81,21 +83,6 @@ public interface MonitorNodeValueServiceProxy {
      * 分页查询节点数值
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
-
-    /**
-     * 导出节点数值数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载节点数值导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入节点数值数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
      * 添加节点数值

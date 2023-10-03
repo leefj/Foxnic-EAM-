@@ -27,6 +27,8 @@ public interface INetdiskFileService extends ISimpleIdService<NetdiskFile,String
 
     Result batchDelete(List<String> ids);
 
+    Result move(List<String> ids,String folderId);
+
     Result delete(String id);
 
     Result restoreFromRecycle(String id);

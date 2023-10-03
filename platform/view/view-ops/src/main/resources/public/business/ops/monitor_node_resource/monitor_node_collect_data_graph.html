@@ -10,7 +10,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
-    <title th:text="${lang.translate('节点图形')}">节点图形</title>
+    <title th:text="${lang.translate('图形')}">图形</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -168,7 +168,7 @@
 
 <script th:inline="javascript">
 
-    var AUTH_PREFIX="eam_report_org";
+    var AUTH_PREFIX="ops_node_chart";
 
     var SELECT_NODE_TPL_DATA = [[${nodeTplData}]];
 

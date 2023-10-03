@@ -101,8 +101,8 @@ function ListPage() {
                     return {
                         "code": res.code == "00" ? 0 : -1, //解析接口状态
                         "msg": res.message, //解析提示文本
-                        "count": res.data.nodeHostList.length, //解析数据长度
-                        "data": res.data.nodeHostList //解析数据列表
+                        "count": res.data.nodeList.length, //解析数据长度
+                        "data": res.data.nodeList //解析数据列表
                     };
                 },
                 done: function (data) {
@@ -248,12 +248,11 @@ function ListPage() {
                 var area=admin.getTempData('eam-report-form-area');
                 var height= (area && area.height) ? area.height : ($(window).height()*0.6);
                 var title = '节点图形'
-                top=8;
                 var index=admin.popupCenter({
                     title: title,
                     resize: false,
-                    offset: [top,null],
-                    area: ["80%","95%"],
+                    offset: [15,null],
+                    area: ["85%","95%"],
                     type: 2,
                     id:"eam-report-form-data-win",
                     content: '/business/ops/monitor_node_resource/monitor_node_collect_data_graph.html?nodeId=' + data.id,

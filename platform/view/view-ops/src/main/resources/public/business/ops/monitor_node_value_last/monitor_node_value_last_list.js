@@ -1,24 +1,31 @@
 /**
  * 节点数值最新 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-20 14:46:46
+ * @since 2023-10-02 18:25:43
  */
 
 
 function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
+	
 	//模块基础路径
 	const moduleURL="/service-ops/ops-monitor-node-value-last";
+	const queryURL=moduleURL+'/query-paged-list';
+	const deleteURL=moduleURL+'/delete';
+	const batchDeleteURL=moduleURL+'/delete-by-ids';
+	const getByIdURL=moduleURL+'/get-by-id';
+	//
 	var dataTable=null;
 	var sort=null;
+
 	/**
       * 入口函数，初始化
       */
 	this.init=function(layui) {
 
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
-		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
+		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;
 
 		if(window.pageExt.list.beforeInit) {
 			window.pageExt.list.beforeInit();
@@ -45,6 +52,9 @@ function ListPage() {
 		});
 		fox.adjustSearchElement();
 		//
+		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		 $("#table-area").css("margin-top",marginTop+"px");
+		//
 		function renderTableInternal() {
 
 			var ps={searchField: "$composite"};
@@ -66,8 +76,8 @@ function ListPage() {
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
-				defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-paged-list',
+				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
+				url: queryURL,
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
@@ -76,7 +86,7 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'nodeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点') , templet: function (d) { return templet('nodeId',d.nodeId,d);}  }
 					,{ field: 'monitorTplCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控模版') , templet: function (d) { return templet('monitorTplCode',d.monitorTplCode,d);}  }
-					,{ field: 'resultStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('结果状态'), templet:function (d){ return templet('resultStatus',fox.getEnumText(SELECT_RESULTSTATUS_DATA,d.resultStatus),d);}}
+					,{ field: 'resultStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('结果状态'), templet:function (d){ return templet('resultStatus',fox.getEnumText(SELECT_RESULTSTATUS_DATA,d.resultStatus,'','resultStatus'),d);}}
 					,{ field: 'resultMessage', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('结果内容') , templet: function (d) { return templet('resultMessage',d.resultMessage,d);}  }
 					,{ field: 'indicatorCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('指标') , templet: function (d) { return templet('indicatorCode',d.indicatorCode,d);}  }
 					,{ field: 'hostname', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('主机名称') , templet: function (d) { return templet('hostname',d.hostname,d);}  }
@@ -97,10 +107,14 @@ function ListPage() {
 					,{ field: 'networkFlowUp', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('上行流量') , templet: function (d) { return templet('networkFlowUp',d.networkFlowUp,d);}  }
 					,{ field: 'networkFlowDown', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('下流量') , templet: function (d) { return templet('networkFlowDown',d.networkFlowDown,d);}  }
 					,{ field: 'processCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('连接数') , templet: function (d) { return templet('processCnt',d.processCnt,d);}  }
-					,{ field: 'pMemorySize', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('物理内存(M)') , templet: function (d) { return templet('pMemorySize',d.pMemorySize,d);}  }
-					,{ field: 'vMemorySize', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('虚拟内存(M)') , templet: function (d) { return templet('vMemorySize',d.vMemorySize,d);}  }
+					,{ field: 'pMemorySize', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('物理内存') , templet: function (d) { return templet('pMemorySize',d.pMemorySize,d);}  }
+					,{ field: 'vMemorySize', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('虚拟内存') , templet: function (d) { return templet('vMemorySize',d.vMemorySize,d);}  }
 					,{ field: 'pMemoryUsed', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('物理内存使用率') , templet: function (d) { return templet('pMemoryUsed',d.pMemoryUsed,d);}  }
 					,{ field: 'vMemoryUsed', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('虚拟内存使用率') , templet: function (d) { return templet('vMemoryUsed',d.vMemoryUsed,d);}  }
+					,{ field: 'dbStatus', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库状态') , templet: function (d) { return templet('dbStatus',d.dbStatus,d);}  }
+					,{ field: 'dbSize', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库大小') , templet: function (d) { return templet('dbSize',d.dbSize,d);}  }
+					,{ field: 'dbConnectNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库连接数') , templet: function (d) { return templet('dbConnectNumber',d.dbConnectNumber,d);}  }
+					,{ field: 'nodeVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('版本') , templet: function (d) { return templet('nodeVersion',d.nodeVersion,d);}  }
 					,{ field: 'info', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('信息') , templet: function (d) { return templet('info',d.info,d);}  }
 					,{ field: 'label1', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签1') , templet: function (d) { return templet('label1',d.label1,d);}  }
 					,{ field: 'label2', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签2') , templet: function (d) { return templet('label2',d.label2,d);}  }
@@ -114,6 +128,7 @@ function ListPage() {
 					,{ field: 'valueStr1', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('字符串1') , templet: function (d) { return templet('valueStr1',d.valueStr1,d);}  }
 					,{ field: 'valueStr2', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('字符串2') , templet: function (d) { return templet('valueStr2',d.valueStr2,d);}  }
 					,{ field: 'valueStr3', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('字符串3') , templet: function (d) { return templet('valueStr3',d.valueStr3,d);}  }
+					,{ field: 'valueBstr1', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('字符串1') , templet: function (d) { return templet('valueBstr1',d.valueBstr1,d);}  }
 					,{ field: 'valueInt1', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('整数1') , templet: function (d) { return templet('valueInt1',d.valueInt1,d);}  }
 					,{ field: 'valueInt2', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('整数2') , templet: function (d) { return templet('valueInt2',d.valueInt2,d);}  }
 					,{ field: 'valueInt3', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('整数3') , templet: function (d) { return templet('valueInt3',d.valueInt3,d);}  }
@@ -136,24 +151,16 @@ function ListPage() {
 					,{ field: 'isConnected', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('是否连接') , templet: function (d) { return templet('isConnected',d.isConnected,d);}  }
 					,{ field: 'recordTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('记录时间') ,templet: function (d) { return templet('recordTime',fox.dateFormat(d.recordTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
-					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
+					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
+					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
-				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
+				done: function (data) {
+					lockSwitchInputs();
+					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
+				},
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -168,74 +175,53 @@ function ListPage() {
     };
 
 	/**
+	 * 刷新单号数据
+	 * */
+	function refreshRowData(data,remote) {
+		var context=dataTable.getDataRowContext( { id : data.id } );
+		if(context==null) return;
+		if(remote) {
+			admin.post(getByIdURL, { id : data.id }, function (r) {
+				if (r.success) {
+					data = r.data;
+					context.update(data);
+					fox.renderFormInputs(form);
+					lockSwitchInputs();
+					window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
+				} else {
+					fox.showMessage(data);
+				}
+			});
+		} else {
+			context.update(data);
+			fox.renderFormInputs(form);
+			lockSwitchInputs();
+			window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
+		}
+	}
+
+
+
+	function lockSwitchInputs() {
+	}
+
+	function lockSwitchInput(field) {
+		var inputs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find("input");
+		var switchs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find(".layui-form-switch");
+		inputs.attr("readonly", "yes");
+		inputs.attr("disabled", "yes");
+		switchs.addClass("layui-disabled");
+		switchs.addClass("layui-checkbox-disabled");
+		switchs.addClass("layui-form-switch-disabled");
+	}
+
+	/**
       * 刷新表格数据
       */
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.id={ inputType:"button",value: $("#id").val()};
-		value.nodeId={ inputType:"button",value: $("#nodeId").val()};
-		value.monitorTplCode={ inputType:"button",value: $("#monitorTplCode").val()};
-		value.resultStatus={ inputType:"select_box", value: getSelectedValue("#resultStatus","value"), label:getSelectedValue("#resultStatus","nameStr") };
-		value.resultMessage={ inputType:"button",value: $("#resultMessage").val()};
-		value.indicatorCode={ inputType:"button",value: $("#indicatorCode").val()};
-		value.hostname={ inputType:"button",value: $("#hostname").val()};
-		value.osDatetime={ inputType:"button",value: $("#osDatetime").val()};
-		value.boottime={ inputType:"date_input", value: $("#boottime").val() ,matchType:"auto"};
-		value.osVerion={ inputType:"button",value: $("#osVerion").val()};
 		value.arch={ inputType:"button",value: $("#arch").val()};
-		value.cpuNumber={ inputType:"number_input", value: $("#cpuNumber").val() };
-		value.cpuFree={ inputType:"number_input", value: $("#cpuFree").val() };
-		value.cpuSys={ inputType:"number_input", value: $("#cpuSys").val() };
-		value.cpuUser={ inputType:"number_input", value: $("#cpuUser").val() };
-		value.cpuWait={ inputType:"number_input", value: $("#cpuWait").val() };
-		value.cpuIdle={ inputType:"number_input", value: $("#cpuIdle").val() };
-		value.cpuUsed={ inputType:"number_input", value: $("#cpuUsed").val() };
-		value.osLoad={ inputType:"number_input", value: $("#osLoad").val() };
-		value.osLoad5={ inputType:"number_input", value: $("#osLoad5").val() };
-		value.osLoad15={ inputType:"number_input", value: $("#osLoad15").val() };
-		value.networkFlowUp={ inputType:"number_input", value: $("#networkFlowUp").val() };
-		value.networkFlowDown={ inputType:"number_input", value: $("#networkFlowDown").val() };
-		value.processCnt={ inputType:"number_input", value: $("#processCnt").val() };
-		value.pMemorySize={ inputType:"button",value: $("#pMemorySize").val()};
-		value.vMemorySize={ inputType:"button",value: $("#vMemorySize").val()};
-		value.pMemoryUsed={ inputType:"button",value: $("#pMemoryUsed").val()};
-		value.vMemoryUsed={ inputType:"button",value: $("#vMemoryUsed").val()};
-		value.info={ inputType:"button",value: $("#info").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-		value.label1={ inputType:"button",value: $("#label1").val()};
-		value.label2={ inputType:"button",value: $("#label2").val()};
-		value.label3={ inputType:"button",value: $("#label3").val()};
-		value.code1={ inputType:"button",value: $("#code1").val()};
-		value.code2={ inputType:"button",value: $("#code2").val()};
-		value.code3={ inputType:"button",value: $("#code3").val()};
-		value.valueNumber1={ inputType:"number_input", value: $("#valueNumber1").val() };
-		value.valueNumber2={ inputType:"number_input", value: $("#valueNumber2").val() };
-		value.valueNumber3={ inputType:"number_input", value: $("#valueNumber3").val() };
-		value.valueStr1={ inputType:"button",value: $("#valueStr1").val()};
-		value.valueStr2={ inputType:"button",value: $("#valueStr2").val()};
-		value.valueStr3={ inputType:"button",value: $("#valueStr3").val()};
-		value.valueInt1={ inputType:"button",value: $("#valueInt1").val()};
-		value.valueInt2={ inputType:"button",value: $("#valueInt2").val()};
-		value.valueInt3={ inputType:"button",value: $("#valueInt3").val()};
-		value.listLabel1={ inputType:"button",value: $("#listLabel1").val()};
-		value.listLabel2={ inputType:"button",value: $("#listLabel2").val()};
-		value.listLabel3={ inputType:"button",value: $("#listLabel3").val()};
-		value.listCode1={ inputType:"button",value: $("#listCode1").val()};
-		value.listCode2={ inputType:"button",value: $("#listCode2").val()};
-		value.listCode3={ inputType:"button",value: $("#listCode3").val()};
-		value.listValueNumber1={ inputType:"number_input", value: $("#listValueNumber1").val() };
-		value.listValueNumber2={ inputType:"number_input", value: $("#listValueNumber2").val() };
-		value.listValueNumber3={ inputType:"number_input", value: $("#listValueNumber3").val() };
-		value.listValueStr1={ inputType:"button",value: $("#listValueStr1").val()};
-		value.listValueStr2={ inputType:"button",value: $("#listValueStr2").val()};
-		value.listValueStr3={ inputType:"button",value: $("#listValueStr3").val()};
-		value.listValueInt1={ inputType:"button",value: $("#listValueInt1").val()};
-		value.listValueInt2={ inputType:"button",value: $("#listValueInt2").val()};
-		value.listValueInt3={ inputType:"button",value: $("#listValueInt3").val()};
-		value.uid={ inputType:"button",value: $("#uid").val()};
-		value.isConnected={ inputType:"number_input", value: $("#isConnected").val() };
-		value.recordTime={ inputType:"date_input", value: $("#recordTime").val() ,matchType:"auto"};
-		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -249,8 +235,7 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			}
-		}
+			} 		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -330,6 +315,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('ops-monitor-node-value-last-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -362,23 +348,27 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('节点数值最新')+"!");
+				top.layer.msg(fox.translate('请选择需要删除的'+'节点数值最新'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('节点数值最新')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'节点数值最新'+'吗？'), function (i) {
+                top.layer.close(i);
+				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
 							if(!doNext) return;
 						}
-                    	top.layer.msg(data.message, {icon: 1, time: 500});
+						fox.showMessage(data);
                         refreshTableData();
                     } else {
-						top.layer.msg(data.message, {icon: 2, time: 1500});
+						if(data.data>0) {
+							refreshTableData();
+						}
+						fox.showMessage(data);
                     }
-                });
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -399,21 +389,26 @@ function ListPage() {
 
 			admin.putTempData('ops-monitor-node-value-last-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				top.layer.load(2);
+				top.layer.load(2);
+				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('ops-monitor-node-value-last-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
-						 top.layer.msg(data.message, {icon: 1, time: 1500});
+						 fox.showMessage(data);
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				top.layer.load(2);
+				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('ops-monitor-node-value-last-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
-						top.layer.msg(data.message, {icon: 1, time: 1500});
+						fox.showMessage(data);
 					}
 				});
 			}
@@ -423,23 +418,22 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
-				top.layer.confirm(fox.translate('确定删除此')+fox.translate('节点数值最新')+fox.translate('吗？'), function (i) {
-					top.layer.close(i);
 
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+				top.layer.confirm(fox.translate('确定删除此'+'节点数值最新'+'吗？'), function (i) {
+					top.layer.close(i);
+					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
 								var doNext=window.pageExt.list.afterSingleDelete(data);
 								if(!doNext) return;
 							}
-							top.layer.msg(data.message, {icon: 1, time: 500});
+							fox.showMessage(data);
 							refreshTableData();
 						} else {
-							top.layer.msg(data.message, {icon: 2, time: 1500});
+							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
 			
@@ -466,9 +460,9 @@ function ListPage() {
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
 		var title = fox.translate('节点数值最新');
-		if(action=="create") title=fox.translate('添加')+title;
-		else if(action=="edit") title=fox.translate('修改')+title;
-		else if(action=="view") title=fox.translate('查看')+title;
+		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
+		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
+		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
 
 		admin.popupCenter({
 			title: title,
@@ -479,14 +473,21 @@ function ListPage() {
 			id:"ops-monitor-node-value-last-form-data-win",
 			content: '/business/ops/monitor_node_value_last/monitor_node_value_last_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
-				refreshTableData();
+				if(action=="create") {
+					refreshTableData();
+				}
+				if(action=="edit") {
+					false?refreshTableData():refreshRowData(data,true);
+				}
 			}
 		});
 	};
 
 	window.module={
 		refreshTableData: refreshTableData,
-		getCheckedList: getCheckedList
+		refreshRowData: refreshRowData,
+		getCheckedList: getCheckedList,
+		showEditForm: showEditForm
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();

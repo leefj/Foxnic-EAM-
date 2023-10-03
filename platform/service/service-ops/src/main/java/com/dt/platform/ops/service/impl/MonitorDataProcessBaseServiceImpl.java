@@ -139,6 +139,7 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
     public String queryIndicatorCommand(MonitorNode node, String cmd,String cmdVar) {
 //        String cmd=iplIndicator.getCommand();
 //        String cmdVar=iplIndicator.getIndicatorVariable();
+
         JSONArray cmdArr=JSONArray.parseArray(cmdVar);
         if(cmdArr==null||cmdArr.size()==0){
             return cmd;

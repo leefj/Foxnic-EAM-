@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-09-01 15:42:14
+ * @since 2023-10-03 08:22:42
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -6431,6 +6431,121 @@ public class OpsTables {
 	}
 	
 	/**
+	 * 地址分组
+	*/
+	public static class OPS_IP_GROUP extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_ip_group";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField CATEGORY_NAME = new DBField(DBDataType.STRING , "category_name","categoryName","名称","名称",false,false,true);
+		
+		/**
+		 * 全称
+		*/
+		public static final DBField CATEGORY_FULLNAME = new DBField(DBDataType.STRING , "category_fullname","categoryFullname","全称","全称",false,false,true);
+		
+		/**
+		 * 编码
+		*/
+		public static final DBField CATEGORY_CODE = new DBField(DBDataType.STRING , "category_code","categoryCode","编码","编码",false,false,true);
+		
+		/**
+		 * 使用期限
+		*/
+		public static final DBField SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "service_life","serviceLife","使用期限","使用期限",false,false,true);
+		
+		/**
+		 * 父节点
+		*/
+		public static final DBField PARENT_ID = new DBField(DBDataType.STRING , "parent_id","parentId","父节点","父节点",false,false,true);
+		
+		/**
+		 * 排序
+		*/
+		public static final DBField SORT = new DBField(DBDataType.INTEGER , "sort","sort","排序","排序",false,false,true);
+		
+		/**
+		 * 节点路径
+		*/
+		public static final DBField HIERARCHY = new DBField(DBDataType.STRING , "hierarchy","hierarchy","节点路径","节点路径",false,false,true);
+		
+		/**
+		 * 节点路径名称
+		*/
+		public static final DBField HIERARCHY_NAME = new DBField(DBDataType.STRING , "hierarchy_name","hierarchyName","节点路径名称","节点路径名称",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OPS_IP_GROUP() {
+			this.init($NAME,"地址分组" , ID , STATUS , CATEGORY_NAME , CATEGORY_FULLNAME , CATEGORY_CODE , SERVICE_LIFE , PARENT_ID , SORT , HIERARCHY , HIERARCHY_NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final OPS_IP_GROUP $TABLE=new OPS_IP_GROUP();
+	}
+	
+	/**
 	 * 节点
 	*/
 	public static class OPS_MONITOR_NODE extends DBTable {
@@ -6449,6 +6564,11 @@ public class OpsTables {
 		 * IP
 		*/
 		public static final DBField NODE_IP = new DBField(DBDataType.STRING , "node_ip","nodeIp","IP","IP",false,false,true);
+		
+		/**
+		 * 可见主机名
+		*/
+		public static final DBField NODE_NAME_SHOW = new DBField(DBDataType.STRING , "node_name_show","nodeNameShow","可见主机名","可见主机名",false,false,true);
 		
 		/**
 		 * 父节点
@@ -6474,11 +6594,6 @@ public class OpsTables {
 		 * 主机名
 		*/
 		public static final DBField NODE_NAME = new DBField(DBDataType.STRING , "node_name","nodeName","主机名","主机名",false,false,true);
-		
-		/**
-		 * 可见主机名
-		*/
-		public static final DBField NODE_NAME_SHOW = new DBField(DBDataType.STRING , "node_name_show","nodeNameShow","可见主机名","可见主机名",false,false,true);
 		
 		/**
 		 * 类型
@@ -6546,6 +6661,11 @@ public class OpsTables {
 		public static final DBField JDBC_URL = new DBField(DBDataType.STRING , "jdbc_url","jdbcUrl","Jdbc地址","Jdbc地址",false,false,true);
 		
 		/**
+		 * 变量
+		*/
+		public static final DBField VAR = new DBField(DBDataType.STRING , "var","var","变量","变量",false,false,true);
+		
+		/**
 		 * 备注
 		*/
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
@@ -6591,7 +6711,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
 		
 		public OPS_MONITOR_NODE() {
-			this.init($NAME,"节点" , ID , NODE_IP , PID , TYPE , SUB_TYPE , GROUP_ID , NODE_NAME , NODE_NAME_SHOW , NODE_TYPE , NODE_ENABLED , STATUS , SSH_VOUCHER_ID , SSH_PORT , AGENT_PORT , ZABBIX_AGENT_PORT , SNMP_PORT , SNMP_VERSION , SNMP_COMMUNITY , JMX_PORT , IMPI_PORT , JDBC_URL , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"节点" , ID , NODE_IP , NODE_NAME_SHOW , PID , TYPE , SUB_TYPE , GROUP_ID , NODE_NAME , NODE_TYPE , NODE_ENABLED , STATUS , SSH_VOUCHER_ID , SSH_PORT , AGENT_PORT , ZABBIX_AGENT_PORT , SNMP_PORT , SNMP_VERSION , SNMP_COMMUNITY , JMX_PORT , IMPI_PORT , JDBC_URL , VAR , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_MONITOR_NODE $TABLE=new OPS_MONITOR_NODE();
 	}
@@ -7575,6 +7695,26 @@ public class OpsTables {
 		public static final DBField V_MEMORY_USED = new DBField(DBDataType.DECIMAL , "v_memory_used","vMemoryUsed","虚拟内存使用率","虚拟内存使用率",false,false,true);
 		
 		/**
+		 * 数据库状态
+		*/
+		public static final DBField DB_STATUS = new DBField(DBDataType.INTEGER , "db_status","dbStatus","数据库状态","数据库状态",false,false,true);
+		
+		/**
+		 * 数据库大小
+		*/
+		public static final DBField DB_SIZE = new DBField(DBDataType.LONG , "db_size","dbSize","数据库大小","数据库大小",false,false,true);
+		
+		/**
+		 * 数据库连接数
+		*/
+		public static final DBField DB_CONNECT_NUMBER = new DBField(DBDataType.INTEGER , "db_connect_number","dbConnectNumber","数据库连接数","数据库连接数",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField NODE_VERSION = new DBField(DBDataType.STRING , "node_version","nodeVersion","版本","版本",false,false,true);
+		
+		/**
 		 * 信息
 		*/
 		public static final DBField INFO = new DBField(DBDataType.STRING , "info","info","信息","信息",false,false,true);
@@ -7638,6 +7778,11 @@ public class OpsTables {
 		 * 字符串3
 		*/
 		public static final DBField VALUE_STR3 = new DBField(DBDataType.STRING , "value_str3","valueStr3","字符串3","字符串3",false,false,true);
+		
+		/**
+		 * 字符串1
+		*/
+		public static final DBField VALUE_BSTR1 = new DBField(DBDataType.STRING , "value_bstr1","valueBstr1","字符串1","字符串1",false,false,true);
 		
 		/**
 		 * 整数1
@@ -7785,7 +7930,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
 		
 		public OPS_MONITOR_NODE_VALUE() {
-			this.init($NAME,"节点数值" , ID , NODE_ID , MONITOR_TPL_CODE , RESULT_STATUS , RESULT_MESSAGE , INDICATOR_CODE , HOSTNAME , OS_DATETIME , BOOTTIME , OS_VERION , ARCH , CPU_NUMBER , CPU_FREE , CPU_SYS , CPU_USER , CPU_WAIT , CPU_IDLE , CPU_USED , OS_LOAD , OS_LOAD5 , OS_LOAD15 , NETWORK_FLOW_UP , NETWORK_FLOW_DOWN , PROCESS_CNT , P_MEMORY_SIZE , V_MEMORY_SIZE , P_MEMORY_USED , V_MEMORY_USED , INFO , LABEL1 , LABEL2 , LABEL3 , CODE1 , CODE2 , CODE3 , VALUE_NUMBER1 , VALUE_NUMBER2 , VALUE_NUMBER3 , VALUE_STR1 , VALUE_STR2 , VALUE_STR3 , VALUE_INT1 , VALUE_INT2 , VALUE_INT3 , LIST_LABEL1 , LIST_LABEL2 , LIST_LABEL3 , LIST_CODE1 , LIST_CODE2 , LIST_CODE3 , LIST_VALUE_NUMBER1 , LIST_VALUE_NUMBER2 , LIST_VALUE_NUMBER3 , LIST_VALUE_STR1 , LIST_VALUE_STR2 , LIST_VALUE_STR3 , LIST_VALUE_INT1 , LIST_VALUE_INT2 , LIST_VALUE_INT3 , UID , IS_CONNECTED , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"节点数值" , ID , NODE_ID , MONITOR_TPL_CODE , RESULT_STATUS , RESULT_MESSAGE , INDICATOR_CODE , HOSTNAME , OS_DATETIME , BOOTTIME , OS_VERION , ARCH , CPU_NUMBER , CPU_FREE , CPU_SYS , CPU_USER , CPU_WAIT , CPU_IDLE , CPU_USED , OS_LOAD , OS_LOAD5 , OS_LOAD15 , NETWORK_FLOW_UP , NETWORK_FLOW_DOWN , PROCESS_CNT , P_MEMORY_SIZE , V_MEMORY_SIZE , P_MEMORY_USED , V_MEMORY_USED , DB_STATUS , DB_SIZE , DB_CONNECT_NUMBER , NODE_VERSION , INFO , LABEL1 , LABEL2 , LABEL3 , CODE1 , CODE2 , CODE3 , VALUE_NUMBER1 , VALUE_NUMBER2 , VALUE_NUMBER3 , VALUE_STR1 , VALUE_STR2 , VALUE_STR3 , VALUE_BSTR1 , VALUE_INT1 , VALUE_INT2 , VALUE_INT3 , LIST_LABEL1 , LIST_LABEL2 , LIST_LABEL3 , LIST_CODE1 , LIST_CODE2 , LIST_CODE3 , LIST_VALUE_NUMBER1 , LIST_VALUE_NUMBER2 , LIST_VALUE_NUMBER3 , LIST_VALUE_STR1 , LIST_VALUE_STR2 , LIST_VALUE_STR3 , LIST_VALUE_INT1 , LIST_VALUE_INT2 , LIST_VALUE_INT3 , UID , IS_CONNECTED , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_MONITOR_NODE_VALUE $TABLE=new OPS_MONITOR_NODE_VALUE();
 	}
@@ -7941,6 +8086,26 @@ public class OpsTables {
 		public static final DBField V_MEMORY_USED = new DBField(DBDataType.DECIMAL , "v_memory_used","vMemoryUsed","虚拟内存使用率","虚拟内存使用率",false,false,true);
 		
 		/**
+		 * 数据库状态
+		*/
+		public static final DBField DB_STATUS = new DBField(DBDataType.INTEGER , "db_status","dbStatus","数据库状态","数据库状态",false,false,true);
+		
+		/**
+		 * 数据库大小
+		*/
+		public static final DBField DB_SIZE = new DBField(DBDataType.LONG , "db_size","dbSize","数据库大小","数据库大小",false,false,true);
+		
+		/**
+		 * 数据库连接数
+		*/
+		public static final DBField DB_CONNECT_NUMBER = new DBField(DBDataType.INTEGER , "db_connect_number","dbConnectNumber","数据库连接数","数据库连接数",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField NODE_VERSION = new DBField(DBDataType.STRING , "node_version","nodeVersion","版本","版本",false,false,true);
+		
+		/**
 		 * 信息
 		*/
 		public static final DBField INFO = new DBField(DBDataType.STRING , "info","info","信息","信息",false,false,true);
@@ -8004,6 +8169,11 @@ public class OpsTables {
 		 * 字符串3
 		*/
 		public static final DBField VALUE_STR3 = new DBField(DBDataType.STRING , "value_str3","valueStr3","字符串3","字符串3",false,false,true);
+		
+		/**
+		 * 字符串1
+		*/
+		public static final DBField VALUE_BSTR1 = new DBField(DBDataType.STRING , "value_bstr1","valueBstr1","字符串1","字符串1",false,false,true);
 		
 		/**
 		 * 整数1
@@ -8151,7 +8321,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
 		
 		public OPS_MONITOR_NODE_VALUE_LAST() {
-			this.init($NAME,"节点数值最新" , ID , NODE_ID , MONITOR_TPL_CODE , RESULT_STATUS , RESULT_MESSAGE , INDICATOR_CODE , HOSTNAME , OS_DATETIME , BOOTTIME , OS_VERION , ARCH , CPU_NUMBER , CPU_FREE , CPU_SYS , CPU_USER , CPU_WAIT , CPU_IDLE , CPU_USED , OS_LOAD , OS_LOAD5 , OS_LOAD15 , NETWORK_FLOW_UP , NETWORK_FLOW_DOWN , PROCESS_CNT , P_MEMORY_SIZE , V_MEMORY_SIZE , P_MEMORY_USED , V_MEMORY_USED , INFO , LABEL1 , LABEL2 , LABEL3 , CODE1 , CODE2 , CODE3 , VALUE_NUMBER1 , VALUE_NUMBER2 , VALUE_NUMBER3 , VALUE_STR1 , VALUE_STR2 , VALUE_STR3 , VALUE_INT1 , VALUE_INT2 , VALUE_INT3 , LIST_LABEL1 , LIST_LABEL2 , LIST_LABEL3 , LIST_CODE1 , LIST_CODE2 , LIST_CODE3 , LIST_VALUE_NUMBER1 , LIST_VALUE_NUMBER2 , LIST_VALUE_NUMBER3 , LIST_VALUE_STR1 , LIST_VALUE_STR2 , LIST_VALUE_STR3 , LIST_VALUE_INT1 , LIST_VALUE_INT2 , LIST_VALUE_INT3 , UID , IS_CONNECTED , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"节点数值最新" , ID , NODE_ID , MONITOR_TPL_CODE , RESULT_STATUS , RESULT_MESSAGE , INDICATOR_CODE , HOSTNAME , OS_DATETIME , BOOTTIME , OS_VERION , ARCH , CPU_NUMBER , CPU_FREE , CPU_SYS , CPU_USER , CPU_WAIT , CPU_IDLE , CPU_USED , OS_LOAD , OS_LOAD5 , OS_LOAD15 , NETWORK_FLOW_UP , NETWORK_FLOW_DOWN , PROCESS_CNT , P_MEMORY_SIZE , V_MEMORY_SIZE , P_MEMORY_USED , V_MEMORY_USED , DB_STATUS , DB_SIZE , DB_CONNECT_NUMBER , NODE_VERSION , INFO , LABEL1 , LABEL2 , LABEL3 , CODE1 , CODE2 , CODE3 , VALUE_NUMBER1 , VALUE_NUMBER2 , VALUE_NUMBER3 , VALUE_STR1 , VALUE_STR2 , VALUE_STR3 , VALUE_BSTR1 , VALUE_INT1 , VALUE_INT2 , VALUE_INT3 , LIST_LABEL1 , LIST_LABEL2 , LIST_LABEL3 , LIST_CODE1 , LIST_CODE2 , LIST_CODE3 , LIST_VALUE_NUMBER1 , LIST_VALUE_NUMBER2 , LIST_VALUE_NUMBER3 , LIST_VALUE_STR1 , LIST_VALUE_STR2 , LIST_VALUE_STR3 , LIST_VALUE_INT1 , LIST_VALUE_INT2 , LIST_VALUE_INT3 , UID , IS_CONNECTED , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_MONITOR_NODE_VALUE_LAST $TABLE=new OPS_MONITOR_NODE_VALUE_LAST();
 	}
@@ -9077,9 +9247,9 @@ public class OpsTables {
 		public static final DBField VALUE_COLUMN_NAME = new DBField(DBDataType.STRING , "value_column_name","valueColumnName","字段名称","字段名称",false,false,true);
 		
 		/**
-		 * 超时(秒)
+		 * 超时时间(秒)
 		*/
-		public static final DBField TIME_OUT = new DBField(DBDataType.INTEGER , "time_out","timeOut","超时","秒)",false,false,true);
+		public static final DBField TIME_OUT = new DBField(DBDataType.INTEGER , "time_out","timeOut","超时时间","秒)",false,false,true);
 		
 		/**
 		 * 间隔时间(秒）

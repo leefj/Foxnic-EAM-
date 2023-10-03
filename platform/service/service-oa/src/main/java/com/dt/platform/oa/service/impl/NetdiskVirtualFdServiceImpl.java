@@ -114,7 +114,7 @@ public class NetdiskVirtualFdServiceImpl extends SuperService<NetdiskVirtualFd> 
 			netdiskFileService.batchDelete(fileIds);
 		}
 		if(folderIds.size()>0){
-			netdiskFileService.batchDelete(folderIds);
+			netdiskFolderService.batchDelete(folderIds);
 		}
 
 		return ErrorDesc.success();
@@ -237,6 +237,27 @@ public class NetdiskVirtualFdServiceImpl extends SuperService<NetdiskVirtualFd> 
 	@Override
 	public Result restoreFromRecycle(String id, String type) {
 		return null;
+	}
+
+	@Override
+	public Result move(String data, String folderId) {
+		JSONArray dataArr=JSONArray.parseArray(data);
+		List<String> idsList=new ArrayList<>();
+		for(int i=0;i<dataArr.size();i++){
+			JSONObject obj=dataArr.getJSONObject(i);
+			String id=obj.getString("fdId");
+			String type=obj.getString("fdType");
+			if(NetdiskVirtualFdTypeEnum.FILE.code().equals(type)){
+				idsList.add(id);
+			}
+			if(NetdiskVirtualFdTypeEnum.FOLDER.code().equals(type)){
+				return ErrorDesc.failureMessage("请误选择文件夹，当前不支持文件夹的移动");
+			}
+		}
+		if(idsList.size()>0){
+			return netdiskFileService.move(idsList,folderId);
+		}
+	 	return ErrorDesc.success();
 	}
 
 

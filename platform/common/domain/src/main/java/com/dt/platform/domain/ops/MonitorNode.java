@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_MONITOR_NODE;
@@ -8,24 +9,30 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.MonitorNodeMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 节点
+ * <p>节点 , 数据表 ops_monitor_node 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 16:24:29
- * @sign 1901A1E912B1D0B13636A1FE27796F4C
+ * @since 2023-10-03 10:10:21
+ * @sign A0DAA15EEAE86AB22EC81FC5E9341DE2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_monitor_node")
+@ApiModel(description = "节点 ; 节点 , 数据表 ops_monitor_node 的PO类型")
 public class MonitorNode extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -36,50 +43,50 @@ public class MonitorNode extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1")
 	private String id;
 	
 	/**
 	 * IP：IP
 	*/
-	@ApiModelProperty(required = false,value="IP" , notes = "IP")
+	@ApiModelProperty(required = false,value="IP" , notes = "IP" , example = "121.43.103.102:d1")
 	private String nodeIp;
+	
+	/**
+	 * 可见主机名：可见主机名
+	*/
+	@ApiModelProperty(required = false,value="可见主机名" , notes = "可见主机名" , example = "121.43.103.10222")
+	private String nodeNameShow;
 	
 	/**
 	 * 父节点：父节点
 	*/
-	@ApiModelProperty(required = false,value="父节点" , notes = "父节点")
+	@ApiModelProperty(required = false,value="父节点" , notes = "父节点" , example = "0")
 	private String pid;
 	
 	/**
 	 * 类型：类型
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "类型")
+	@ApiModelProperty(required = false,value="类型" , notes = "类型" , example = "os")
 	private String type;
 	
 	/**
 	 * 子类型：子类型
 	*/
-	@ApiModelProperty(required = false,value="子类型" , notes = "子类型")
+	@ApiModelProperty(required = false,value="子类型" , notes = "子类型" , example = "Redhat")
 	private String subType;
 	
 	/**
 	 * 节点分组：节点分组
 	*/
-	@ApiModelProperty(required = false,value="节点分组" , notes = "节点分组")
+	@ApiModelProperty(required = false,value="节点分组" , notes = "节点分组" , example = "543027032871665664")
 	private String groupId;
 	
 	/**
 	 * 主机名：主机名
 	*/
-	@ApiModelProperty(required = false,value="主机名" , notes = "主机名")
+	@ApiModelProperty(required = false,value="主机名" , notes = "主机名" , example = "192.168.1.1")
 	private String nodeName;
-	
-	/**
-	 * 可见主机名：可见主机名
-	*/
-	@ApiModelProperty(required = false,value="可见主机名" , notes = "可见主机名")
-	private String nodeNameShow;
 	
 	/**
 	 * 类型：类型
@@ -90,43 +97,43 @@ public class MonitorNode extends Entity {
 	/**
 	 * 是否启用：是否启用
 	*/
-	@ApiModelProperty(required = false,value="是否启用" , notes = "是否启用")
+	@ApiModelProperty(required = false,value="是否启用" , notes = "是否启用" , example = "disabled")
 	private String nodeEnabled;
 	
 	/**
 	 * 监控状态：监控状态
 	*/
-	@ApiModelProperty(required = false,value="监控状态" , notes = "监控状态")
+	@ApiModelProperty(required = false,value="监控状态" , notes = "监控状态" , example = "online")
 	private String status;
 	
 	/**
-	 * 凭证(SSH)：凭证(SSH)
+	 * 凭证：SSH)
 	*/
-	@ApiModelProperty(required = false,value="凭证(SSH)" , notes = "凭证(SSH)")
+	@ApiModelProperty(required = false,value="凭证" , notes = "SSH)" , example = "1")
 	private String sshVoucherId;
 	
 	/**
 	 * SSH端口：SSH端口
 	*/
-	@ApiModelProperty(required = false,value="SSH端口" , notes = "SSH端口")
+	@ApiModelProperty(required = false,value="SSH端口" , notes = "SSH端口" , example = "22")
 	private Integer sshPort;
 	
 	/**
 	 * Agent端口：Agent端口
 	*/
-	@ApiModelProperty(required = false,value="Agent端口" , notes = "Agent端口")
+	@ApiModelProperty(required = false,value="Agent端口" , notes = "Agent端口" , example = "10052")
 	private Integer agentPort;
 	
 	/**
 	 * Zabbix代理端口：Zabbix代理端口
 	*/
-	@ApiModelProperty(required = false,value="Zabbix代理端口" , notes = "Zabbix代理端口")
+	@ApiModelProperty(required = false,value="Zabbix代理端口" , notes = "Zabbix代理端口" , example = "10050")
 	private Integer zabbixAgentPort;
 	
 	/**
 	 * Snmp端口：Snmp端口
 	*/
-	@ApiModelProperty(required = false,value="Snmp端口" , notes = "Snmp端口")
+	@ApiModelProperty(required = false,value="Snmp端口" , notes = "Snmp端口" , example = "12345")
 	private Integer snmpPort;
 	
 	/**
@@ -144,13 +151,13 @@ public class MonitorNode extends Entity {
 	/**
 	 * Jmx端口：Jmx端口
 	*/
-	@ApiModelProperty(required = false,value="Jmx端口" , notes = "Jmx端口")
+	@ApiModelProperty(required = false,value="Jmx端口" , notes = "Jmx端口" , example = "12345")
 	private Integer jmxPort;
 	
 	/**
 	 * Jmx端口：Jmx端口
 	*/
-	@ApiModelProperty(required = false,value="Jmx端口" , notes = "Jmx端口")
+	@ApiModelProperty(required = false,value="Jmx端口" , notes = "Jmx端口" , example = "623")
 	private Integer impiPort;
 	
 	/**
@@ -158,6 +165,12 @@ public class MonitorNode extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="Jdbc地址" , notes = "Jdbc地址")
 	private String jdbcUrl;
+	
+	/**
+	 * 变量：变量
+	*/
+	@ApiModelProperty(required = false,value="变量" , notes = "变量" , example = "{}")
+	private String var;
 	
 	/**
 	 * 备注：备注
@@ -180,21 +193,22 @@ public class MonitorNode extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-02-09 08:42:06")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -212,7 +226,7 @@ public class MonitorNode extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "6")
 	private Integer version;
 	
 	/**
@@ -264,6 +278,12 @@ public class MonitorNode extends Entity {
 	private List<String> monitorTplIds;
 	
 	/**
+	 * 当前模版：当前模版
+	*/
+	@ApiModelProperty(required = false,value="当前模版" , notes = "当前模版")
+	private String calIndicatorTplCode;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -298,6 +318,25 @@ public class MonitorNode extends Entity {
 	*/
 	public MonitorNode setNodeIp(String nodeIp) {
 		this.nodeIp=nodeIp;
+		return this;
+	}
+	
+	/**
+	 * 获得 可见主机名<br>
+	 * 可见主机名
+	 * @return 可见主机名
+	*/
+	public String getNodeNameShow() {
+		return nodeNameShow;
+	}
+	
+	/**
+	 * 设置 可见主机名
+	 * @param nodeNameShow 可见主机名
+	 * @return 当前对象
+	*/
+	public MonitorNode setNodeNameShow(String nodeNameShow) {
+		this.nodeNameShow=nodeNameShow;
 		return this;
 	}
 	
@@ -397,25 +436,6 @@ public class MonitorNode extends Entity {
 	}
 	
 	/**
-	 * 获得 可见主机名<br>
-	 * 可见主机名
-	 * @return 可见主机名
-	*/
-	public String getNodeNameShow() {
-		return nodeNameShow;
-	}
-	
-	/**
-	 * 设置 可见主机名
-	 * @param nodeNameShow 可见主机名
-	 * @return 当前对象
-	*/
-	public MonitorNode setNodeNameShow(String nodeNameShow) {
-		this.nodeNameShow=nodeNameShow;
-		return this;
-	}
-	
-	/**
 	 * 获得 类型<br>
 	 * 类型
 	 * @return 类型
@@ -473,17 +493,17 @@ public class MonitorNode extends Entity {
 	}
 	
 	/**
-	 * 获得 凭证(SSH)<br>
-	 * 凭证(SSH)
-	 * @return 凭证(SSH)
+	 * 获得 凭证<br>
+	 * SSH)
+	 * @return 凭证
 	*/
 	public String getSshVoucherId() {
 		return sshVoucherId;
 	}
 	
 	/**
-	 * 设置 凭证(SSH)
-	 * @param sshVoucherId 凭证(SSH)
+	 * 设置 凭证
+	 * @param sshVoucherId 凭证
 	 * @return 当前对象
 	*/
 	public MonitorNode setSshVoucherId(String sshVoucherId) {
@@ -663,6 +683,25 @@ public class MonitorNode extends Entity {
 	}
 	
 	/**
+	 * 获得 变量<br>
+	 * 变量
+	 * @return 变量
+	*/
+	public String getVar() {
+		return var;
+	}
+	
+	/**
+	 * 设置 变量
+	 * @param var 变量
+	 * @return 当前对象
+	*/
+	public MonitorNode setVar(String var) {
+		this.var=var;
+		return this;
+	}
+	
+	/**
 	 * 获得 备注<br>
 	 * 备注
 	 * @return 备注
@@ -784,6 +823,7 @@ public class MonitorNode extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public MonitorNode setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -1047,6 +1087,25 @@ public class MonitorNode extends Entity {
 		this.monitorTplIds.addAll(Arrays.asList(monitorTplId));
 		return this;
 	}
+	
+	/**
+	 * 获得 当前模版<br>
+	 * 当前模版
+	 * @return 当前模版
+	*/
+	public String getCalIndicatorTplCode() {
+		return calIndicatorTplCode;
+	}
+	
+	/**
+	 * 设置 当前模版
+	 * @param calIndicatorTplCode 当前模版
+	 * @return 当前对象
+	*/
+	public MonitorNode setCalIndicatorTplCode(String calIndicatorTplCode) {
+		this.calIndicatorTplCode=calIndicatorTplCode;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1078,6 +1137,75 @@ public class MonitorNode extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MonitorNode clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public MonitorNode duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.MonitorNodeMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.MonitorNodeMeta.$$proxy$$();
+		inst.setNodeName(this.getNodeName());
+		inst.setNotes(this.getNotes());
+		inst.setGroupId(this.getGroupId());
+		inst.setNodeIp(this.getNodeIp());
+		inst.setPid(this.getPid());
+		inst.setType(this.getType());
+		inst.setSshVoucherId(this.getSshVoucherId());
+		inst.setImpiPort(this.getImpiPort());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setId(this.getId());
+		inst.setSshPort(this.getSshPort());
+		inst.setSnmpCommunity(this.getSnmpCommunity());
+		inst.setJmxPort(this.getJmxPort());
+		inst.setSnmpVersion(this.getSnmpVersion());
+		inst.setVar(this.getVar());
+		inst.setNodeEnabled(this.getNodeEnabled());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setNodeType(this.getNodeType());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setNodeNameShow(this.getNodeNameShow());
+		inst.setJdbcUrl(this.getJdbcUrl());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setSubType(this.getSubType());
+		inst.setZabbixAgentPort(this.getZabbixAgentPort());
+		inst.setSnmpPort(this.getSnmpPort());
+		inst.setAgentPort(this.getAgentPort());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setSshVoucher(this.getSshVoucher());
+			inst.setMonitorTplIds(this.getMonitorTplIds());
+			inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
+			inst.setMonitorNodeSubType(this.getMonitorNodeSubType());
+			inst.setMonitorNodeType(this.getMonitorNodeType());
+			inst.setCalIndicatorTplCode(this.getCalIndicatorTplCode());
+			inst.setMonitorNodeGroup(this.getMonitorNodeGroup());
+			inst.setMonitorNodeDb(this.getMonitorNodeDb());
+			inst.setMonitorTplList(this.getMonitorTplList());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MonitorNode clone(boolean deep) {
+		return EntityContext.clone(MonitorNode.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 MonitorNode
 	 * @param monitorNodeMap 包含实体信息的 Map 对象
 	 * @return MonitorNode , 转换好的的 MonitorNode 对象
@@ -1085,7 +1213,9 @@ public class MonitorNode extends Entity {
 	@Transient
 	public static MonitorNode createFrom(Map<String,Object> monitorNodeMap) {
 		if(monitorNodeMap==null) return null;
-		MonitorNode po = EntityContext.create(MonitorNode.class, monitorNodeMap);
+		MonitorNode po = create();
+		EntityContext.copyProperties(po,monitorNodeMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1097,7 +1227,9 @@ public class MonitorNode extends Entity {
 	@Transient
 	public static MonitorNode createFrom(Object pojo) {
 		if(pojo==null) return null;
-		MonitorNode po = EntityContext.create(MonitorNode.class,pojo);
+		MonitorNode po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1107,6 +1239,182 @@ public class MonitorNode extends Entity {
 	*/
 	@Transient
 	public static MonitorNode create() {
-		return EntityContext.create(MonitorNode.class);
+		return new com.dt.platform.domain.ops.meta.MonitorNodeMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNodeName(DataParser.parse(String.class, map.get(MonitorNodeMeta.NODE_NAME)));
+			this.setNotes(DataParser.parse(String.class, map.get(MonitorNodeMeta.NOTES)));
+			this.setGroupId(DataParser.parse(String.class, map.get(MonitorNodeMeta.GROUP_ID)));
+			this.setNodeIp(DataParser.parse(String.class, map.get(MonitorNodeMeta.NODE_IP)));
+			this.setPid(DataParser.parse(String.class, map.get(MonitorNodeMeta.PID)));
+			this.setType(DataParser.parse(String.class, map.get(MonitorNodeMeta.TYPE)));
+			this.setSshVoucherId(DataParser.parse(String.class, map.get(MonitorNodeMeta.SSH_VOUCHER_ID)));
+			this.setImpiPort(DataParser.parse(Integer.class, map.get(MonitorNodeMeta.IMPI_PORT)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(MonitorNodeMeta.UPDATE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(MonitorNodeMeta.ID)));
+			this.setSshPort(DataParser.parse(Integer.class, map.get(MonitorNodeMeta.SSH_PORT)));
+			this.setSnmpCommunity(DataParser.parse(String.class, map.get(MonitorNodeMeta.SNMP_COMMUNITY)));
+			this.setJmxPort(DataParser.parse(Integer.class, map.get(MonitorNodeMeta.JMX_PORT)));
+			this.setSnmpVersion(DataParser.parse(String.class, map.get(MonitorNodeMeta.SNMP_VERSION)));
+			this.setVar(DataParser.parse(String.class, map.get(MonitorNodeMeta.VAR)));
+			this.setNodeEnabled(DataParser.parse(String.class, map.get(MonitorNodeMeta.NODE_ENABLED)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(MonitorNodeMeta.UPDATE_TIME)));
+			this.setNodeType(DataParser.parse(String.class, map.get(MonitorNodeMeta.NODE_TYPE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(MonitorNodeMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(MonitorNodeMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(MonitorNodeMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(MonitorNodeMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(MonitorNodeMeta.DELETE_TIME)));
+			this.setNodeNameShow(DataParser.parse(String.class, map.get(MonitorNodeMeta.NODE_NAME_SHOW)));
+			this.setJdbcUrl(DataParser.parse(String.class, map.get(MonitorNodeMeta.JDBC_URL)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorNodeMeta.DELETE_BY)));
+			this.setSubType(DataParser.parse(String.class, map.get(MonitorNodeMeta.SUB_TYPE)));
+			this.setZabbixAgentPort(DataParser.parse(Integer.class, map.get(MonitorNodeMeta.ZABBIX_AGENT_PORT)));
+			this.setSnmpPort(DataParser.parse(Integer.class, map.get(MonitorNodeMeta.SNMP_PORT)));
+			this.setAgentPort(DataParser.parse(Integer.class, map.get(MonitorNodeMeta.AGENT_PORT)));
+			this.setStatus(DataParser.parse(String.class, map.get(MonitorNodeMeta.STATUS)));
+			// others
+			this.setSshVoucher(DataParser.parse(MonitorVoucher.class, map.get(MonitorNodeMeta.SSH_VOUCHER)));
+			this.setMonitorNodeSubType(DataParser.parse(MonitorNodeSubtype.class, map.get(MonitorNodeMeta.MONITOR_NODE_SUB_TYPE)));
+			this.setMonitorNodeType(DataParser.parse(MonitorNodeType.class, map.get(MonitorNodeMeta.MONITOR_NODE_TYPE)));
+			this.setCalIndicatorTplCode(DataParser.parse(String.class, map.get(MonitorNodeMeta.CAL_INDICATOR_TPL_CODE)));
+			this.setMonitorNodeGroup(DataParser.parse(MonitorNodeGroup.class, map.get(MonitorNodeMeta.MONITOR_NODE_GROUP)));
+			this.setMonitorNodeDb(DataParser.parse(MonitorNodeDb.class, map.get(MonitorNodeMeta.MONITOR_NODE_DB)));
+			return true;
+		} else {
+			try {
+				this.setNodeName( (String)map.get(MonitorNodeMeta.NODE_NAME));
+				this.setNotes( (String)map.get(MonitorNodeMeta.NOTES));
+				this.setGroupId( (String)map.get(MonitorNodeMeta.GROUP_ID));
+				this.setNodeIp( (String)map.get(MonitorNodeMeta.NODE_IP));
+				this.setPid( (String)map.get(MonitorNodeMeta.PID));
+				this.setType( (String)map.get(MonitorNodeMeta.TYPE));
+				this.setSshVoucherId( (String)map.get(MonitorNodeMeta.SSH_VOUCHER_ID));
+				this.setImpiPort( (Integer)map.get(MonitorNodeMeta.IMPI_PORT));
+				this.setUpdateBy( (String)map.get(MonitorNodeMeta.UPDATE_BY));
+				this.setId( (String)map.get(MonitorNodeMeta.ID));
+				this.setSshPort( (Integer)map.get(MonitorNodeMeta.SSH_PORT));
+				this.setSnmpCommunity( (String)map.get(MonitorNodeMeta.SNMP_COMMUNITY));
+				this.setJmxPort( (Integer)map.get(MonitorNodeMeta.JMX_PORT));
+				this.setSnmpVersion( (String)map.get(MonitorNodeMeta.SNMP_VERSION));
+				this.setVar( (String)map.get(MonitorNodeMeta.VAR));
+				this.setNodeEnabled( (String)map.get(MonitorNodeMeta.NODE_ENABLED));
+				this.setUpdateTime( (Date)map.get(MonitorNodeMeta.UPDATE_TIME));
+				this.setNodeType( (String)map.get(MonitorNodeMeta.NODE_TYPE));
+				this.setVersion( (Integer)map.get(MonitorNodeMeta.VERSION));
+				this.setCreateBy( (String)map.get(MonitorNodeMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(MonitorNodeMeta.DELETED));
+				this.setCreateTime( (Date)map.get(MonitorNodeMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(MonitorNodeMeta.DELETE_TIME));
+				this.setNodeNameShow( (String)map.get(MonitorNodeMeta.NODE_NAME_SHOW));
+				this.setJdbcUrl( (String)map.get(MonitorNodeMeta.JDBC_URL));
+				this.setDeleteBy( (String)map.get(MonitorNodeMeta.DELETE_BY));
+				this.setSubType( (String)map.get(MonitorNodeMeta.SUB_TYPE));
+				this.setZabbixAgentPort( (Integer)map.get(MonitorNodeMeta.ZABBIX_AGENT_PORT));
+				this.setSnmpPort( (Integer)map.get(MonitorNodeMeta.SNMP_PORT));
+				this.setAgentPort( (Integer)map.get(MonitorNodeMeta.AGENT_PORT));
+				this.setStatus( (String)map.get(MonitorNodeMeta.STATUS));
+				// others
+				this.setSshVoucher( (MonitorVoucher)map.get(MonitorNodeMeta.SSH_VOUCHER));
+				this.setMonitorNodeSubType( (MonitorNodeSubtype)map.get(MonitorNodeMeta.MONITOR_NODE_SUB_TYPE));
+				this.setMonitorNodeType( (MonitorNodeType)map.get(MonitorNodeMeta.MONITOR_NODE_TYPE));
+				this.setCalIndicatorTplCode( (String)map.get(MonitorNodeMeta.CAL_INDICATOR_TPL_CODE));
+				this.setMonitorNodeGroup( (MonitorNodeGroup)map.get(MonitorNodeMeta.MONITOR_NODE_GROUP));
+				this.setMonitorNodeDb( (MonitorNodeDb)map.get(MonitorNodeMeta.MONITOR_NODE_DB));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNodeName(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.NODE_NAME)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.NOTES)));
+			this.setGroupId(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.GROUP_ID)));
+			this.setNodeIp(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.NODE_IP)));
+			this.setPid(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.PID)));
+			this.setType(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.TYPE)));
+			this.setSshVoucherId(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.SSH_VOUCHER_ID)));
+			this.setImpiPort(DataParser.parse(Integer.class, r.getValue(MonitorNodeMeta.IMPI_PORT)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.UPDATE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.ID)));
+			this.setSshPort(DataParser.parse(Integer.class, r.getValue(MonitorNodeMeta.SSH_PORT)));
+			this.setSnmpCommunity(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.SNMP_COMMUNITY)));
+			this.setJmxPort(DataParser.parse(Integer.class, r.getValue(MonitorNodeMeta.JMX_PORT)));
+			this.setSnmpVersion(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.SNMP_VERSION)));
+			this.setVar(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.VAR)));
+			this.setNodeEnabled(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.NODE_ENABLED)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MonitorNodeMeta.UPDATE_TIME)));
+			this.setNodeType(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.NODE_TYPE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(MonitorNodeMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MonitorNodeMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MonitorNodeMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MonitorNodeMeta.DELETE_TIME)));
+			this.setNodeNameShow(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.NODE_NAME_SHOW)));
+			this.setJdbcUrl(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.JDBC_URL)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.DELETE_BY)));
+			this.setSubType(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.SUB_TYPE)));
+			this.setZabbixAgentPort(DataParser.parse(Integer.class, r.getValue(MonitorNodeMeta.ZABBIX_AGENT_PORT)));
+			this.setSnmpPort(DataParser.parse(Integer.class, r.getValue(MonitorNodeMeta.SNMP_PORT)));
+			this.setAgentPort(DataParser.parse(Integer.class, r.getValue(MonitorNodeMeta.AGENT_PORT)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(MonitorNodeMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNodeName( (String)r.getValue(MonitorNodeMeta.NODE_NAME));
+				this.setNotes( (String)r.getValue(MonitorNodeMeta.NOTES));
+				this.setGroupId( (String)r.getValue(MonitorNodeMeta.GROUP_ID));
+				this.setNodeIp( (String)r.getValue(MonitorNodeMeta.NODE_IP));
+				this.setPid( (String)r.getValue(MonitorNodeMeta.PID));
+				this.setType( (String)r.getValue(MonitorNodeMeta.TYPE));
+				this.setSshVoucherId( (String)r.getValue(MonitorNodeMeta.SSH_VOUCHER_ID));
+				this.setImpiPort( (Integer)r.getValue(MonitorNodeMeta.IMPI_PORT));
+				this.setUpdateBy( (String)r.getValue(MonitorNodeMeta.UPDATE_BY));
+				this.setId( (String)r.getValue(MonitorNodeMeta.ID));
+				this.setSshPort( (Integer)r.getValue(MonitorNodeMeta.SSH_PORT));
+				this.setSnmpCommunity( (String)r.getValue(MonitorNodeMeta.SNMP_COMMUNITY));
+				this.setJmxPort( (Integer)r.getValue(MonitorNodeMeta.JMX_PORT));
+				this.setSnmpVersion( (String)r.getValue(MonitorNodeMeta.SNMP_VERSION));
+				this.setVar( (String)r.getValue(MonitorNodeMeta.VAR));
+				this.setNodeEnabled( (String)r.getValue(MonitorNodeMeta.NODE_ENABLED));
+				this.setUpdateTime( (Date)r.getValue(MonitorNodeMeta.UPDATE_TIME));
+				this.setNodeType( (String)r.getValue(MonitorNodeMeta.NODE_TYPE));
+				this.setVersion( (Integer)r.getValue(MonitorNodeMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(MonitorNodeMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(MonitorNodeMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(MonitorNodeMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(MonitorNodeMeta.DELETE_TIME));
+				this.setNodeNameShow( (String)r.getValue(MonitorNodeMeta.NODE_NAME_SHOW));
+				this.setJdbcUrl( (String)r.getValue(MonitorNodeMeta.JDBC_URL));
+				this.setDeleteBy( (String)r.getValue(MonitorNodeMeta.DELETE_BY));
+				this.setSubType( (String)r.getValue(MonitorNodeMeta.SUB_TYPE));
+				this.setZabbixAgentPort( (Integer)r.getValue(MonitorNodeMeta.ZABBIX_AGENT_PORT));
+				this.setSnmpPort( (Integer)r.getValue(MonitorNodeMeta.SNMP_PORT));
+				this.setAgentPort( (Integer)r.getValue(MonitorNodeMeta.AGENT_PORT));
+				this.setStatus( (String)r.getValue(MonitorNodeMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 模版图形 服务接口
+ * 模版图形服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 16:30:57
+ * @since 2023-10-02 12:00:13
 */
 
 public interface IMonitorTplGraphService extends  ISimpleIdService<MonitorTplGraph,String> {
@@ -55,7 +56,7 @@ public interface IMonitorTplGraphService extends  ISimpleIdService<MonitorTplGra
 
 		
 	/**
-	 * 按主键删除 模版图形
+	 * 按主键删除模版图形
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IMonitorTplGraphService extends  ISimpleIdService<MonitorTplGra
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 模版图形
+	 * 按主键删除模版图形
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IMonitorTplGraphService extends  ISimpleIdService<MonitorTplGra
 
 		
 	/**
-	 * 按主键更新字段 模版图形
+	 * 按主键更新模版图形
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IMonitorTplGraphService extends  ISimpleIdService<MonitorTplGra
 
 		
 	/**
-	 * 按主键获取 模版图形
+	 * 按主键获取模版图形
 	 *
 	 * @param id 主键
 	 * @return MonitorTplGraph 数据对象

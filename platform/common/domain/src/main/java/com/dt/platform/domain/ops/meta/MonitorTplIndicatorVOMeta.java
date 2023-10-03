@@ -7,13 +7,14 @@ import com.dt.platform.domain.ops.MonitorTplIndicator;
 import java.util.Date;
 import com.dt.platform.domain.ops.MonitorTpl;
 import com.dt.platform.domain.ops.MonitorTplIndicatorType;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 16:33:31
- * @sign C0886492D704913F5D2D80E8CED30CF8
+ * @since 2023-10-03 08:00:12
+ * @sign A30CF0E8E3F7E78C68BEB54048A66F1B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -98,6 +99,36 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -240,24 +271,24 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> VALUE_COLUMN_NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,VALUE_COLUMN_NAME, java.lang.String.class, "字段名称", "字段名称", java.lang.String.class, null);
 	
 	/**
-	 * 超时(秒) , 类型: java.lang.Integer
+	 * 超时时间 , 秒) , 类型: java.lang.Integer
 	*/
 	public static final String TIME_OUT="timeOut";
 	
 	/**
-	 * 超时(秒) , 类型: java.lang.Integer
+	 * 超时时间 , 秒) , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.Integer> TIME_OUT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,TIME_OUT, java.lang.Integer.class, "超时(秒)", "超时(秒)", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.Integer> TIME_OUT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,TIME_OUT, java.lang.Integer.class, "超时时间", "秒)", java.lang.Integer.class, null);
 	
 	/**
-	 * 间隔时间(秒） , 类型: java.lang.Integer
+	 * 间隔时间 , 秒） , 类型: java.lang.Integer
 	*/
 	public static final String INTERVAL_TIME="intervalTime";
 	
 	/**
-	 * 间隔时间(秒） , 类型: java.lang.Integer
+	 * 间隔时间 , 秒） , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.Integer> INTERVAL_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,INTERVAL_TIME, java.lang.Integer.class, "间隔时间(秒）", "间隔时间(秒）", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.Integer> INTERVAL_TIME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,INTERVAL_TIME, java.lang.Integer.class, "间隔时间", "秒）", java.lang.Integer.class, null);
 	
 	/**
 	 * 数据保留天数 , 类型: java.lang.Integer
@@ -442,7 +473,7 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , STATUS , NAME , CODE , MONITOR_TPL_CODE , MONITOR_METHOD , INDICATOR_TYPE , VALUE_COLUMN_ROWS , VALUE_COLUMN_COLS , VALUE_COLUMN_TYPE , VALUE_COLUMN , VALUE_COLUMN_MAP , VALUE_COLUMN_NAME , TIME_OUT , INTERVAL_TIME , DATA_KEEP_DAY , COMMAND , COMMAND_VALUE , INDICATOR_VARIABLE , SNMP_OID , LABEL , ITEM_SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_INDICATOR_TYPE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , STATUS , NAME , CODE , MONITOR_TPL_CODE , MONITOR_METHOD , INDICATOR_TYPE , VALUE_COLUMN_ROWS , VALUE_COLUMN_COLS , VALUE_COLUMN_TYPE , VALUE_COLUMN , VALUE_COLUMN_MAP , VALUE_COLUMN_NAME , TIME_OUT , INTERVAL_TIME , DATA_KEEP_DAY , COMMAND , COMMAND_VALUE , INDICATOR_VARIABLE , SNMP_OID , LABEL , ITEM_SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_INDICATOR_TYPE };
 	
 	/**
 	 * 代理类
@@ -537,6 +568,39 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 		public MonitorTplIndicatorVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public MonitorTplIndicatorVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public MonitorTplIndicatorVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public MonitorTplIndicatorVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
 			return this;
 		}
 		
@@ -695,8 +759,8 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 		}
 		
 		/**
-		 * 设置 超时(秒)
-		 * @param timeOut 超时(秒)
+		 * 设置 超时时间
+		 * @param timeOut 超时时间
 		 * @return 当前对象
 		*/
 		public MonitorTplIndicator setTimeOut(Integer timeOut) {
@@ -706,8 +770,8 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 		}
 		
 		/**
-		 * 设置 间隔时间(秒）
-		 * @param intervalTime 间隔时间(秒）
+		 * 设置 间隔时间
+		 * @param intervalTime 间隔时间
 		 * @return 当前对象
 		*/
 		public MonitorTplIndicator setIntervalTime(Integer intervalTime) {
@@ -913,5 +977,72 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 			super.setMonitorIndicatorType(monitorIndicatorType);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public MonitorTplIndicatorVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public MonitorTplIndicatorVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCode(this.getCode());
+			inst.setDataKeepDay(this.getDataKeepDay());
+			inst.setNotes(this.getNotes());
+			inst.setValueColumnRows(this.getValueColumnRows());
+			inst.setMonitorMethod(this.getMonitorMethod());
+			inst.setValueColumnCols(this.getValueColumnCols());
+			inst.setMonitorTplCode(this.getMonitorTplCode());
+			inst.setIndicatorType(this.getIndicatorType());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setValueColumn(this.getValueColumn());
+			inst.setId(this.getId());
+			inst.setIntervalTime(this.getIntervalTime());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setLabel(this.getLabel());
+			inst.setValueColumnMap(this.getValueColumnMap());
+			inst.setVersion(this.getVersion());
+			inst.setCommand(this.getCommand());
+			inst.setTimeOut(this.getTimeOut());
+			inst.setValueColumnType(this.getValueColumnType());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCommandValue(this.getCommandValue());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setIndicatorVariable(this.getIndicatorVariable());
+			inst.setSnmpOid(this.getSnmpOid());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setValueColumnName(this.getValueColumnName());
+			inst.setItemSort(this.getItemSort());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setTpl(this.getTpl());
+				inst.setMonitorIndicatorType(this.getMonitorIndicatorType());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

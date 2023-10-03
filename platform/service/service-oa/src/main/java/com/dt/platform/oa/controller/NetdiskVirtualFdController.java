@@ -139,6 +139,14 @@ public class NetdiskVirtualFdController extends SuperController {
 
     }
 
+    @ApiOperation(value = "移动")
+    @ApiOperationSupport(order = 2, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = NetdiskVirtualFdServiceProxy.MOVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(NetdiskVirtualFdServiceProxy.MOVE)
+    public Result move(String data,String folderId){
+        return netdiskVirtualFdService.move(data,folderId);
+    }
+
     /**
      * 上传文件
      */
