@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 触发器
  * <p>触发器 , 数据表 ops_monitor_tpl_trigger 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 23:10:37
+ * @since 2023-10-05 23:33:26
  * @sign 4E4CD906BAD23ED934D64003FA44A950
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

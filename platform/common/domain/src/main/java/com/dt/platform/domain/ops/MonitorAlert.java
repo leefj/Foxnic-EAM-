@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 监控告警
  * <p>监控告警 , 数据表 ops_monitor_alert 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 23:17:55
- * @sign 0E1CEAA42D455DBFD936C38BA5F8788E
+ * @since 2023-10-05 23:25:19
+ * @sign E4E5F72A11835EED1424178582CF5C76
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,7 +44,7 @@ public class MonitorAlert extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "762448048759504896")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "762451881111846912")
 	private String id;
 	
 	/**
@@ -68,8 +68,8 @@ public class MonitorAlert extends Entity {
 	/**
 	 * 节点：节点
 	*/
-	@ApiModelProperty(required = false,value="节点" , notes = "节点")
-	private String nodeName;
+	@ApiModelProperty(required = false,value="节点" , notes = "节点" , example = "Demo_MySQL(121.43.103.102)")
+	private String nodeShowName;
 	
 	/**
 	 * 触发器：触发器
@@ -92,13 +92,13 @@ public class MonitorAlert extends Entity {
 	/**
 	 * 监控数值：监控数值
 	*/
-	@ApiModelProperty(required = false,value="监控数值" , notes = "监控数值")
+	@ApiModelProperty(required = false,value="监控数值" , notes = "监控数值" , example = "82")
 	private String alertValue;
 	
 	/**
 	 * 告警时间：告警时间
 	*/
-	@ApiModelProperty(required = false,value="告警时间" , notes = "告警时间" , example = "2023-10-05 10:56:20")
+	@ApiModelProperty(required = false,value="告警时间" , notes = "告警时间" , example = "2023-10-05 11:11:34")
 	private Date warnTime;
 	
 	/**
@@ -140,7 +140,7 @@ public class MonitorAlert extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-10-05 10:56:20")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-10-05 11:11:34")
 	private Date createTime;
 	
 	/**
@@ -281,17 +281,17 @@ public class MonitorAlert extends Entity {
 	 * 节点
 	 * @return 节点
 	*/
-	public String getNodeName() {
-		return nodeName;
+	public String getNodeShowName() {
+		return nodeShowName;
 	}
 	
 	/**
 	 * 设置 节点
-	 * @param nodeName 节点
+	 * @param nodeShowName 节点
 	 * @return 当前对象
 	*/
-	public MonitorAlert setNodeName(String nodeName) {
-		this.nodeName=nodeName;
+	public MonitorAlert setNodeShowName(String nodeShowName) {
+		this.nodeShowName=nodeShowName;
 		return this;
 	}
 	
@@ -780,7 +780,6 @@ public class MonitorAlert extends Entity {
 	@Transient
 	public MonitorAlert duplicate(boolean all) {
 		com.dt.platform.domain.ops.meta.MonitorAlertMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.MonitorAlertMeta.$$proxy$$();
-		inst.setNodeName(this.getNodeName());
 		inst.setProcessMessage(this.getProcessMessage());
 		inst.setNotes(this.getNotes());
 		inst.setWarnLevel(this.getWarnLevel());
@@ -798,6 +797,7 @@ public class MonitorAlert extends Entity {
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setTriggerRuleDesc(this.getTriggerRuleDesc());
+		inst.setNodeShowName(this.getNodeShowName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		inst.setNodeId(this.getNodeId());
@@ -866,7 +866,6 @@ public class MonitorAlert extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setNodeName(DataParser.parse(String.class, map.get(MonitorAlertMeta.NODE_NAME)));
 			this.setProcessMessage(DataParser.parse(String.class, map.get(MonitorAlertMeta.PROCESS_MESSAGE)));
 			this.setNotes(DataParser.parse(String.class, map.get(MonitorAlertMeta.NOTES)));
 			this.setWarnLevel(DataParser.parse(String.class, map.get(MonitorAlertMeta.WARN_LEVEL)));
@@ -884,6 +883,7 @@ public class MonitorAlert extends Entity {
 			this.setUpdateBy(DataParser.parse(String.class, map.get(MonitorAlertMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(MonitorAlertMeta.DELETE_TIME)));
 			this.setTriggerRuleDesc(DataParser.parse(String.class, map.get(MonitorAlertMeta.TRIGGER_RULE_DESC)));
+			this.setNodeShowName(DataParser.parse(String.class, map.get(MonitorAlertMeta.NODE_SHOW_NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorAlertMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(MonitorAlertMeta.ID)));
 			this.setNodeId(DataParser.parse(String.class, map.get(MonitorAlertMeta.NODE_ID)));
@@ -895,7 +895,6 @@ public class MonitorAlert extends Entity {
 			return true;
 		} else {
 			try {
-				this.setNodeName( (String)map.get(MonitorAlertMeta.NODE_NAME));
 				this.setProcessMessage( (String)map.get(MonitorAlertMeta.PROCESS_MESSAGE));
 				this.setNotes( (String)map.get(MonitorAlertMeta.NOTES));
 				this.setWarnLevel( (String)map.get(MonitorAlertMeta.WARN_LEVEL));
@@ -913,6 +912,7 @@ public class MonitorAlert extends Entity {
 				this.setUpdateBy( (String)map.get(MonitorAlertMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(MonitorAlertMeta.DELETE_TIME));
 				this.setTriggerRuleDesc( (String)map.get(MonitorAlertMeta.TRIGGER_RULE_DESC));
+				this.setNodeShowName( (String)map.get(MonitorAlertMeta.NODE_SHOW_NAME));
 				this.setDeleteBy( (String)map.get(MonitorAlertMeta.DELETE_BY));
 				this.setId( (String)map.get(MonitorAlertMeta.ID));
 				this.setNodeId( (String)map.get(MonitorAlertMeta.NODE_ID));
@@ -937,7 +937,6 @@ public class MonitorAlert extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setNodeName(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.NODE_NAME)));
 			this.setProcessMessage(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.PROCESS_MESSAGE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.NOTES)));
 			this.setWarnLevel(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.WARN_LEVEL)));
@@ -955,6 +954,7 @@ public class MonitorAlert extends Entity {
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MonitorAlertMeta.DELETE_TIME)));
 			this.setTriggerRuleDesc(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.TRIGGER_RULE_DESC)));
+			this.setNodeShowName(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.NODE_SHOW_NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.ID)));
 			this.setNodeId(DataParser.parse(String.class, r.getValue(MonitorAlertMeta.NODE_ID)));
@@ -963,7 +963,6 @@ public class MonitorAlert extends Entity {
 			return true;
 		} else {
 			try {
-				this.setNodeName( (String)r.getValue(MonitorAlertMeta.NODE_NAME));
 				this.setProcessMessage( (String)r.getValue(MonitorAlertMeta.PROCESS_MESSAGE));
 				this.setNotes( (String)r.getValue(MonitorAlertMeta.NOTES));
 				this.setWarnLevel( (String)r.getValue(MonitorAlertMeta.WARN_LEVEL));
@@ -981,6 +980,7 @@ public class MonitorAlert extends Entity {
 				this.setUpdateBy( (String)r.getValue(MonitorAlertMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(MonitorAlertMeta.DELETE_TIME));
 				this.setTriggerRuleDesc( (String)r.getValue(MonitorAlertMeta.TRIGGER_RULE_DESC));
+				this.setNodeShowName( (String)r.getValue(MonitorAlertMeta.NODE_SHOW_NAME));
 				this.setDeleteBy( (String)r.getValue(MonitorAlertMeta.DELETE_BY));
 				this.setId( (String)r.getValue(MonitorAlertMeta.ID));
 				this.setNodeId( (String)r.getValue(MonitorAlertMeta.NODE_ID));

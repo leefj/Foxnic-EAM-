@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-10-05 23:06:19
+ * @since 2023-10-05 23:23:44
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -6578,7 +6578,7 @@ public class OpsTables {
 		/**
 		 * 节点
 		*/
-		public static final DBField NODE_NAME = new DBField(DBDataType.STRING , "node_name","nodeName","节点","节点",false,false,true);
+		public static final DBField NODE_SHOW_NAME = new DBField(DBDataType.STRING , "node_show_name","nodeShowName","节点","节点",false,false,true);
 		
 		/**
 		 * 触发器
@@ -6671,7 +6671,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
 		
 		public OPS_MONITOR_ALERT() {
-			this.init($NAME,"监控告警" , ID , NODE_ID , STATUS , WARN_LEVEL , NODE_NAME , TRIGGER_ID , TRIGGER_NAME , TRIGGER_RULE_DESC , ALERT_VALUE , WARN_TIME , HANDLED_TIME , USER_ID , PROCESS_MESSAGE , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"监控告警" , ID , NODE_ID , STATUS , WARN_LEVEL , NODE_SHOW_NAME , TRIGGER_ID , TRIGGER_NAME , TRIGGER_RULE_DESC , ALERT_VALUE , WARN_TIME , HANDLED_TIME , USER_ID , PROCESS_MESSAGE , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_MONITOR_ALERT $TABLE=new OPS_MONITOR_ALERT();
 	}
