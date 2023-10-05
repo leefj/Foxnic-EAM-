@@ -1,7 +1,7 @@
 /**
  * 监控告警 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 23:17:57
+ * @since 2023-10-05 23:25:21
  */
 
 
@@ -86,7 +86,7 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('处理状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'warnLevel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('告警等级'), templet:function (d){ return templet('warnLevel',fox.getEnumText(SELECT_WARNLEVEL_DATA,d.warnLevel,'','warnLevel'),d);}}
-					,{ field: 'nodeName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点') , templet: function (d) { return templet('nodeName',d.nodeName,d);}  }
+					,{ field: 'nodeShowName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点') , templet: function (d) { return templet('nodeShowName',d.nodeShowName,d);}  }
 					,{ field: 'triggerName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('触发器') , templet: function (d) { return templet('triggerName',d.triggerName,d);}  }
 					,{ field: 'alertValue', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控数值') , templet: function (d) { return templet('alertValue',d.alertValue,d);}  }
 					,{ field: 'warnTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('告警时间') ,templet: function (d) { return templet('warnTime',fox.dateFormat(d.warnTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
@@ -164,7 +164,7 @@ function ListPage() {
 		var value = {};
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.warnLevel={ inputType:"select_box", value: getSelectedValue("#warnLevel","value"), label:getSelectedValue("#warnLevel","nameStr") };
-		value.nodeName={ inputType:"button",value: $("#nodeName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.nodeShowName={ inputType:"button",value: $("#nodeShowName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.triggerId={ inputType:"button",value: $("#triggerId").val()};
 		value.triggerName={ inputType:"button",value: $("#triggerName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.warnTime={ inputType:"date_input", begin: $("#warnTime-begin").val(), end: $("#warnTime-end").val() ,matchType:"auto" };
@@ -472,9 +472,6 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
-			}
-			else if (layEvent === 'process') { // 确认
-				window.pageExt.list.process(data,this);
 			}
 			
 		});

@@ -2,7 +2,7 @@
 /**
  * 监控告警 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 23:17:56
+ * @since 2023-10-05 23:25:21
  */
  -->
  <!DOCTYPE html>
@@ -55,10 +55,10 @@
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('告警等级')}" class="search-label warnLevel-label">告警等级</span><span class="search-colon">:</span></div>
                         <div id="warnLevel" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.MonitorWarnLevelEnum')}" style="width:180px" extraParam="{}"></div>
                     </div>
-                    <!-- 节点 , nodeName ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 节点 , nodeShowName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('节点')}" class="search-label nodeName-label">节点</span><span class="search-colon">:</span></div>
-                        <input id="nodeName" class="layui-input search-input" style="width: 180px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('节点')}" class="search-label nodeShowName-label">节点</span><span class="search-colon">:</span></div>
+                        <input id="nodeShowName" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 触发器 , triggerName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
@@ -143,7 +143,6 @@
 
 
 
-    <button th:if="${perm.checkAuth('ops_monitor_alert:process')}"class="layui-btn layui-btn-xs  process-button " lay-event="process" data-id="{{d.id}}"><span th:text="${lang.translate('确认','','cmp:table.ops')}">确认</span></button>
 
 </script>
 

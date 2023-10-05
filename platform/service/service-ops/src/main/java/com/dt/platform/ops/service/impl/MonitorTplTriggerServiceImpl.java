@@ -329,7 +329,7 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 			Object alertValue = calculationValue(ct,map);
 			MonitorAlert alert=new MonitorAlert();
 			alert.setNodeId(node.getId());
-			alert.setNodeName(node.getNodeNameShow());
+			alert.setNodeShowName(node.getNodeNameShow());
 			alert.setWarnTime(new Date());
 			alert.setTriggerId(trigger.getId());
 			alert.setTriggerName(trigger.getName());

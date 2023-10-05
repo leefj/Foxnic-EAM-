@@ -54,6 +54,7 @@ public class MonitorTplTriggerGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.MONITOR_TPL_CODE).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.CONTENT_VALUE).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE_DESC).form().validate().required();
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE).form().validate().required().form().textArea().height(Config.textAreaHeight);

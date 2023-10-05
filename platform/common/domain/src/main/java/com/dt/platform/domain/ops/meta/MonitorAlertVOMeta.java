@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 23:17:55
+ * @since 2023-10-05 23:25:19
  * @sign B8316D1F4E7A66EBCB7702AF11988742
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -184,12 +184,12 @@ public class MonitorAlertVOMeta extends MonitorAlertMeta {
 	/**
 	 * 节点 , 类型: java.lang.String
 	*/
-	public static final String NODE_NAME="nodeName";
+	public static final String NODE_SHOW_NAME="nodeShowName";
 	
 	/**
 	 * 节点 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorAlertVO,java.lang.String> NODE_NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorAlertVO.class ,NODE_NAME, java.lang.String.class, "节点", "节点", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorAlertVO,java.lang.String> NODE_SHOW_NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorAlertVO.class ,NODE_SHOW_NAME, java.lang.String.class, "节点", "节点", java.lang.String.class, null);
 	
 	/**
 	 * 触发器 , 类型: java.lang.String
@@ -404,7 +404,7 @@ public class MonitorAlertVOMeta extends MonitorAlertMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NODE_ID , STATUS , WARN_LEVEL , NODE_NAME , TRIGGER_ID , TRIGGER_NAME , TRIGGER_RULE_DESC , ALERT_VALUE , WARN_TIME , HANDLED_TIME , USER_ID , PROCESS_MESSAGE , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_TPL_TRIGGER , USER };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NODE_ID , STATUS , WARN_LEVEL , NODE_SHOW_NAME , TRIGGER_ID , TRIGGER_NAME , TRIGGER_RULE_DESC , ALERT_VALUE , WARN_TIME , HANDLED_TIME , USER_ID , PROCESS_MESSAGE , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_TPL_TRIGGER , USER };
 	
 	/**
 	 * 代理类
@@ -592,12 +592,12 @@ public class MonitorAlertVOMeta extends MonitorAlertMeta {
 		
 		/**
 		 * 设置 节点
-		 * @param nodeName 节点
+		 * @param nodeShowName 节点
 		 * @return 当前对象
 		*/
-		public MonitorAlert setNodeName(String nodeName) {
-			super.change(NODE_NAME,super.getNodeName(),nodeName);
-			super.setNodeName(nodeName);
+		public MonitorAlert setNodeShowName(String nodeShowName) {
+			super.change(NODE_SHOW_NAME,super.getNodeShowName(),nodeShowName);
+			super.setNodeShowName(nodeShowName);
 			return this;
 		}
 		
@@ -847,7 +847,6 @@ public class MonitorAlertVOMeta extends MonitorAlertMeta {
 		@Transient
 		public MonitorAlertVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setNodeName(this.getNodeName());
 			inst.setProcessMessage(this.getProcessMessage());
 			inst.setNotes(this.getNotes());
 			inst.setWarnLevel(this.getWarnLevel());
@@ -865,6 +864,7 @@ public class MonitorAlertVOMeta extends MonitorAlertMeta {
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setTriggerRuleDesc(this.getTriggerRuleDesc());
+			inst.setNodeShowName(this.getNodeShowName());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
 			inst.setNodeId(this.getNodeId());

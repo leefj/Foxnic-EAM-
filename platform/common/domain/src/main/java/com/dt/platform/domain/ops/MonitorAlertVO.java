@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 监控告警VO类型
  * <p>监控告警 , 数据表 ops_monitor_alert 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 23:17:55
+ * @since 2023-10-05 23:25:19
  * @sign B8316D1F4E7A66EBCB7702AF11988742
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -402,7 +402,6 @@ public class MonitorAlertVO extends MonitorAlert {
 	@Transient
 	public MonitorAlertVO duplicate(boolean all) {
 		com.dt.platform.domain.ops.meta.MonitorAlertVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.MonitorAlertVOMeta.$$proxy$$();
-		inst.setNodeName(this.getNodeName());
 		inst.setProcessMessage(this.getProcessMessage());
 		inst.setNotes(this.getNotes());
 		inst.setWarnLevel(this.getWarnLevel());
@@ -420,6 +419,7 @@ public class MonitorAlertVO extends MonitorAlert {
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setTriggerRuleDesc(this.getTriggerRuleDesc());
+		inst.setNodeShowName(this.getNodeShowName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		inst.setNodeId(this.getNodeId());
@@ -500,7 +500,6 @@ public class MonitorAlertVO extends MonitorAlert {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setNodeName(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.NODE_NAME)));
 			this.setProcessMessage(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.PROCESS_MESSAGE)));
 			this.setNotes(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.NOTES)));
 			this.setWarnLevel(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.WARN_LEVEL)));
@@ -518,6 +517,7 @@ public class MonitorAlertVO extends MonitorAlert {
 			this.setUpdateBy(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(MonitorAlertVOMeta.DELETE_TIME)));
 			this.setTriggerRuleDesc(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.TRIGGER_RULE_DESC)));
+			this.setNodeShowName(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.NODE_SHOW_NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.ID)));
 			this.setNodeId(DataParser.parse(String.class, map.get(MonitorAlertVOMeta.NODE_ID)));
@@ -539,7 +539,6 @@ public class MonitorAlertVO extends MonitorAlert {
 			return true;
 		} else {
 			try {
-				this.setNodeName( (String)map.get(MonitorAlertVOMeta.NODE_NAME));
 				this.setProcessMessage( (String)map.get(MonitorAlertVOMeta.PROCESS_MESSAGE));
 				this.setNotes( (String)map.get(MonitorAlertVOMeta.NOTES));
 				this.setWarnLevel( (String)map.get(MonitorAlertVOMeta.WARN_LEVEL));
@@ -557,6 +556,7 @@ public class MonitorAlertVO extends MonitorAlert {
 				this.setUpdateBy( (String)map.get(MonitorAlertVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(MonitorAlertVOMeta.DELETE_TIME));
 				this.setTriggerRuleDesc( (String)map.get(MonitorAlertVOMeta.TRIGGER_RULE_DESC));
+				this.setNodeShowName( (String)map.get(MonitorAlertVOMeta.NODE_SHOW_NAME));
 				this.setDeleteBy( (String)map.get(MonitorAlertVOMeta.DELETE_BY));
 				this.setId( (String)map.get(MonitorAlertVOMeta.ID));
 				this.setNodeId( (String)map.get(MonitorAlertVOMeta.NODE_ID));
@@ -591,7 +591,6 @@ public class MonitorAlertVO extends MonitorAlert {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setNodeName(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.NODE_NAME)));
 			this.setProcessMessage(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.PROCESS_MESSAGE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.NOTES)));
 			this.setWarnLevel(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.WARN_LEVEL)));
@@ -609,6 +608,7 @@ public class MonitorAlertVO extends MonitorAlert {
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MonitorAlertVOMeta.DELETE_TIME)));
 			this.setTriggerRuleDesc(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.TRIGGER_RULE_DESC)));
+			this.setNodeShowName(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.NODE_SHOW_NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.ID)));
 			this.setNodeId(DataParser.parse(String.class, r.getValue(MonitorAlertVOMeta.NODE_ID)));
@@ -617,7 +617,6 @@ public class MonitorAlertVO extends MonitorAlert {
 			return true;
 		} else {
 			try {
-				this.setNodeName( (String)r.getValue(MonitorAlertVOMeta.NODE_NAME));
 				this.setProcessMessage( (String)r.getValue(MonitorAlertVOMeta.PROCESS_MESSAGE));
 				this.setNotes( (String)r.getValue(MonitorAlertVOMeta.NOTES));
 				this.setWarnLevel( (String)r.getValue(MonitorAlertVOMeta.WARN_LEVEL));
@@ -635,6 +634,7 @@ public class MonitorAlertVO extends MonitorAlert {
 				this.setUpdateBy( (String)r.getValue(MonitorAlertVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(MonitorAlertVOMeta.DELETE_TIME));
 				this.setTriggerRuleDesc( (String)r.getValue(MonitorAlertVOMeta.TRIGGER_RULE_DESC));
+				this.setNodeShowName( (String)r.getValue(MonitorAlertVOMeta.NODE_SHOW_NAME));
 				this.setDeleteBy( (String)r.getValue(MonitorAlertVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(MonitorAlertVOMeta.ID));
 				this.setNodeId( (String)r.getValue(MonitorAlertVOMeta.NODE_ID));

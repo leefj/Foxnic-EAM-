@@ -31,7 +31,7 @@ public class MonitorAlertGtr extends BaseCodeGenerator{
                 new Object[]{
                         OpsTables.OPS_MONITOR_ALERT.STATUS,
                         OpsTables.OPS_MONITOR_ALERT.WARN_LEVEL,
-                        OpsTables.OPS_MONITOR_ALERT.NODE_NAME,
+                        OpsTables.OPS_MONITOR_ALERT.NODE_SHOW_NAME,
                         OpsTables.OPS_MONITOR_ALERT.TRIGGER_NAME,
                 },
                 new Object[]{
@@ -60,7 +60,7 @@ public class MonitorAlertGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_ALERT.WARN_TIME).search().range();
         cfg.view().field(OpsTables.OPS_MONITOR_ALERT.HANDLED_TIME).search().range();
         cfg.view().field(OpsTables.OPS_MONITOR_ALERT.TRIGGER_NAME).search().fuzzySearch();
-        cfg.view().field(OpsTables.OPS_MONITOR_ALERT.NODE_NAME).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_MONITOR_ALERT.NODE_SHOW_NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_MONITOR_ALERT.NOTES).search().fuzzySearch();
 
         cfg.view().field(OpsTables.OPS_MONITOR_ALERT.PROCESS_MESSAGE).search().fuzzySearch();
@@ -93,7 +93,7 @@ public class MonitorAlertGtr extends BaseCodeGenerator{
         cfg.view().formWindow().width("85%");
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        OpsTables.OPS_MONITOR_ALERT.NODE_NAME,
+                        OpsTables.OPS_MONITOR_ALERT.NODE_SHOW_NAME,
                         OpsTables.OPS_MONITOR_ALERT.WARN_LEVEL,
                 },
                 new Object[] {
@@ -127,7 +127,7 @@ public class MonitorAlertGtr extends BaseCodeGenerator{
                 }
         );
 
-        cfg.view().list().operationColumn().addActionButton("确认","process","process-button","ops_monitor_alert:process");
+      //  cfg.view().list().operationColumn().addActionButton("确认","process","process-button","ops_monitor_alert:process");
 
         //文件生成覆盖模式
         cfg.overrides()
