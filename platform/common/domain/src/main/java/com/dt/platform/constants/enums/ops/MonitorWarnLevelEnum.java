@@ -17,8 +17,7 @@ public enum MonitorWarnLevelEnum implements CodeTextEnum {
     high("high" , "严重"),
     average("average" , "一般严重"),
     warning("warning" , "警告"),
-    info("info" , "信息")
-    ;
+    info("info" , "信息");
     private String code;
     private String text;
     private MonitorWarnLevelEnum(String code, String text)  {

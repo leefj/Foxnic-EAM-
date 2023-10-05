@@ -123,7 +123,7 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
         Result<Config> configResult= ConfigServiceProxy.api().getById("ops.monitorZabbixGetRoute");
         Config config=configResult.getData();
         if(config==null){
-            return "";
+            return "zabbix_agent";
         }
         return config.getValue();
     }
@@ -132,46 +132,36 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
         //逗号间隔
         String cmd=tplIndicator.getCommand();
         String ip=node.getNodeIp();
-        String port=node.getZabbixAgentPort()+"";
         String cmdExe=getZabbixGetExe();
         String result="";
         int code=0;
         if(StringUtil.isBlank(cmdExe)){
-            Logger.info("ip:"+ip+",没有找到zabbix_get");
+            Logger.info("没有找到zabbix_get");
             return RemoteZabbixAgentResult.setData(99, "没有找到zabbix_get");
         }
         if(StringUtil.isBlank(cmd)){
             Logger.info("ip:"+ip+",Command 为空");
             return RemoteZabbixAgentResult.setData(99, "没有找到Command");
         }
-
         RemoteZabbixAgentResult res=null;
-        if(MonitorIndicatorValueColumnColsEnum.MULTIPLE.code().equals(tplIndicator.getValueColumnCols())
-                &&MonitorIndicatorValueColumnRowsEnum.SINGLE.code().equals(tplIndicator.getValueColumnRows())){
-            String[] cmdArr=cmd.split("\\|");
-            for(int i=0;i<cmdArr.length;i++){
-                res=executeZabbixAgentCommandSingle(node,cmdArr[i],tplIndicator.getIndicatorVariable());
-                if(res.code!=0){
-                    return res;
-                }
-                if(i==0){
-                    result=res.result;
-                }else{
-                    result=result+","+res.result;
-                }
+        //单行多列，名列是多个
+        String[] cmdArr=cmd.split("\\|");
+        for(int i=0;i<cmdArr.length;i++){
+            res=executeZabbixAgentCommandSingle(node,cmdArr[i],tplIndicator.getIndicatorVariable());
+            if(res.code!=0){
+                return res;
             }
-        }else{
-           res=executeZabbixAgentCommandSingle(node,tplIndicator.getCommand(),tplIndicator.getIndicatorVariable());
-           code=res.code;
-           result=res.result;
+            result=result+","+res.result;
         }
-
-
-        if(MonitorZabbixAgentIndicatorTranslateEnum.SYSTEM_CONNECTED.code().equals(tplIndicator.getCode())){
-
-        }else if(MonitorZabbixAgentIndicatorTranslateEnum.OS_NET_INTERFACE_FLOW.code().equals(tplIndicator.getCode())){
+        result=result.replaceFirst(",","");
+        if(MonitorZabbixAgentIndicatorTranslateEnum.OS_NET_INTERFACE_FLOW.code().equals(tplIndicator.getCode())){
+            if(res.code!=0){
+                return res;
+            }
             JSONArray netInt= JSONArray.parseArray(result);
             result=getNetFlowData(node,netInt);
+        }else if(MonitorZabbixAgentIndicatorTranslateEnum.SYSTEM_CONNECTED.code().equals(tplIndicator.getCode())){
+
         }
         Logger.info("zabbix agent result,code:"+res.code+",content:"+res.result);
         return RemoteZabbixAgentResult.setData(code, result);
@@ -248,7 +238,6 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
     }
 
     private RemoteZabbixAgentResult executeZabbixAgentCommandSingle(MonitorNode node,String command,String cmdVar){
-        //逗号间隔
         String cmd=monitorDataProcessBaseService.queryIndicatorCommand(node,command,cmdVar);
         String cmdExe=getZabbixGetExe();
         String ip=node.getNodeIp();
@@ -271,6 +260,10 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
         }
         SystemCommandtResult r=SystemCommandExecutor.exeCmd(exeCommand,30);
         Logger.info("execute zabbix agent,command:\n"+exeCommand+",result:"+r.result);
+        if(StringUtil.isBlank(r.result)||r.result.startsWith("zabbix_get")){
+            r.code=1;
+        }
+
         if(r.code==0){
             if(MonitorZabbixAgentItemKeyValueTranslateEnum.SYSTEM_LOCALTIME_UTC.code().equals(cmd.trim())){
                 String unixTime=r.result.replaceAll("\n","".trim());
@@ -279,15 +272,12 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 r.result= sdf.format(date);
             }else if(MonitorZabbixAgentItemKeyValueTranslateEnum.NET_INTERFACE_FLOW.code().equals(cmd.trim())){
-
-            }
-            else if(MonitorZabbixAgentItemKeyValueTranslateEnum.VFS_FS_GET.code().equals(cmd.trim())){
+            }else if(MonitorZabbixAgentItemKeyValueTranslateEnum.VFS_FS_GET.code().equals(cmd.trim())){
                 JSONArray resArr=JSONArray.parseArray(r.result);
                 List<String> resList=new ArrayList<>();
                 String targetResult="";
                 for(int i=0;i<resArr.size();i++){
                     JSONObject obj=resArr.getJSONObject(i);
-                    ///dev/vda1,103080204,8034572,92
                     String fsname=obj.getString("fsname");
                     JSONObject bytesObj=obj.getJSONObject("bytes");
                     String total=bytesObj.getString("total");
@@ -318,7 +308,6 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
             //获取一个指标的执行结果
             Logger.info("tplIndicator tpl:"+tplIndicator.getMonitorTplCode()+",tplIndicator code:"+tplIndicator.getCode()+",execute command:"+tplIndicator.getCommand());
             RemoteZabbixAgentResult executeResult = executeZabbixAgentCommand(node,tplIndicator);
-            Logger.info("executeCode:"+executeResult.code+",executeResult:"+executeResult.result);
             if(executeResult.code==0){
                 //执行结果
                 String content=executeResult.result;

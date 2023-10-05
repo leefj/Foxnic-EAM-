@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_MONITOR_TPL_GRAPH_ITEM;
@@ -8,20 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.MonitorTplGraphItemMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 图形指标
+ * <p>图形指标 , 数据表 ops_monitor_tpl_graph_item 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-13 20:47:04
- * @sign 092A4056712C2B5BA36928CD898F19B2
+ * @since 2023-10-04 09:22:11
+ * @sign 8E110BDD11E3044E08767FEF6A2A1945
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_monitor_tpl_graph_item")
+@ApiModel(description = "图形指标 ; 图形指标 , 数据表 ops_monitor_tpl_graph_item 的PO类型")
 public class MonitorTplGraphItem extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -32,37 +40,37 @@ public class MonitorTplGraphItem extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1")
 	private String id;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
 	
 	/**
 	 * 图形：图形
 	*/
-	@ApiModelProperty(required = false,value="图形" , notes = "图形")
+	@ApiModelProperty(required = false,value="图形" , notes = "图形" , example = "1")
 	private String graphId;
 	
 	/**
 	 * 指标：指标
 	*/
-	@ApiModelProperty(required = false,value="指标" , notes = "指标")
+	@ApiModelProperty(required = false,value="指标" , notes = "指标" , example = "os.cpu")
 	private String indicatorCode;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "CPU用户使用率")
 	private String name;
 	
 	/**
 	 * 数据：数据
 	*/
-	@ApiModelProperty(required = false,value="数据" , notes = "数据")
+	@ApiModelProperty(required = false,value="数据" , notes = "数据" , example = "cpu_user")
 	private String route;
 	
 	/**
@@ -92,8 +100,11 @@ public class MonitorTplGraphItem extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -110,7 +121,7 @@ public class MonitorTplGraphItem extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "1")
 	private Integer version;
 	
 	/**
@@ -313,12 +324,43 @@ public class MonitorTplGraphItem extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public MonitorTplGraphItem setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public MonitorTplGraphItem setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -409,6 +451,47 @@ public class MonitorTplGraphItem extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MonitorTplGraphItem clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public MonitorTplGraphItem duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.MonitorTplGraphItemMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.MonitorTplGraphItemMeta.$$proxy$$();
+		inst.setIndicatorCode(this.getIndicatorCode());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setRoute(this.getRoute());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setGraphId(this.getGraphId());
+		inst.setStatus(this.getStatus());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MonitorTplGraphItem clone(boolean deep) {
+		return EntityContext.clone(MonitorTplGraphItem.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 MonitorTplGraphItem
 	 * @param monitorTplGraphItemMap 包含实体信息的 Map 对象
 	 * @return MonitorTplGraphItem , 转换好的的 MonitorTplGraphItem 对象
@@ -416,7 +499,9 @@ public class MonitorTplGraphItem extends Entity {
 	@Transient
 	public static MonitorTplGraphItem createFrom(Map<String,Object> monitorTplGraphItemMap) {
 		if(monitorTplGraphItemMap==null) return null;
-		MonitorTplGraphItem po = EntityContext.create(MonitorTplGraphItem.class, monitorTplGraphItemMap);
+		MonitorTplGraphItem po = create();
+		EntityContext.copyProperties(po,monitorTplGraphItemMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -428,7 +513,9 @@ public class MonitorTplGraphItem extends Entity {
 	@Transient
 	public static MonitorTplGraphItem createFrom(Object pojo) {
 		if(pojo==null) return null;
-		MonitorTplGraphItem po = EntityContext.create(MonitorTplGraphItem.class,pojo);
+		MonitorTplGraphItem po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -438,6 +525,102 @@ public class MonitorTplGraphItem extends Entity {
 	*/
 	@Transient
 	public static MonitorTplGraphItem create() {
-		return EntityContext.create(MonitorTplGraphItem.class);
+		return new com.dt.platform.domain.ops.meta.MonitorTplGraphItemMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setIndicatorCode(DataParser.parse(String.class, map.get(MonitorTplGraphItemMeta.INDICATOR_CODE)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(MonitorTplGraphItemMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(MonitorTplGraphItemMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(MonitorTplGraphItemMeta.CREATE_BY)));
+			this.setRoute(DataParser.parse(String.class, map.get(MonitorTplGraphItemMeta.ROUTE)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(MonitorTplGraphItemMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(MonitorTplGraphItemMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(MonitorTplGraphItemMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(MonitorTplGraphItemMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(MonitorTplGraphItemMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorTplGraphItemMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(MonitorTplGraphItemMeta.ID)));
+			this.setGraphId(DataParser.parse(String.class, map.get(MonitorTplGraphItemMeta.GRAPH_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(MonitorTplGraphItemMeta.STATUS)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setIndicatorCode( (String)map.get(MonitorTplGraphItemMeta.INDICATOR_CODE));
+				this.setUpdateTime( (Date)map.get(MonitorTplGraphItemMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(MonitorTplGraphItemMeta.VERSION));
+				this.setCreateBy( (String)map.get(MonitorTplGraphItemMeta.CREATE_BY));
+				this.setRoute( (String)map.get(MonitorTplGraphItemMeta.ROUTE));
+				this.setDeleted( (Integer)map.get(MonitorTplGraphItemMeta.DELETED));
+				this.setCreateTime( (Date)map.get(MonitorTplGraphItemMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(MonitorTplGraphItemMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(MonitorTplGraphItemMeta.DELETE_TIME));
+				this.setName( (String)map.get(MonitorTplGraphItemMeta.NAME));
+				this.setDeleteBy( (String)map.get(MonitorTplGraphItemMeta.DELETE_BY));
+				this.setId( (String)map.get(MonitorTplGraphItemMeta.ID));
+				this.setGraphId( (String)map.get(MonitorTplGraphItemMeta.GRAPH_ID));
+				this.setStatus( (String)map.get(MonitorTplGraphItemMeta.STATUS));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setIndicatorCode(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemMeta.INDICATOR_CODE)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MonitorTplGraphItemMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(MonitorTplGraphItemMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemMeta.CREATE_BY)));
+			this.setRoute(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemMeta.ROUTE)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MonitorTplGraphItemMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MonitorTplGraphItemMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MonitorTplGraphItemMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemMeta.ID)));
+			this.setGraphId(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemMeta.GRAPH_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setIndicatorCode( (String)r.getValue(MonitorTplGraphItemMeta.INDICATOR_CODE));
+				this.setUpdateTime( (Date)r.getValue(MonitorTplGraphItemMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(MonitorTplGraphItemMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(MonitorTplGraphItemMeta.CREATE_BY));
+				this.setRoute( (String)r.getValue(MonitorTplGraphItemMeta.ROUTE));
+				this.setDeleted( (Integer)r.getValue(MonitorTplGraphItemMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(MonitorTplGraphItemMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(MonitorTplGraphItemMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(MonitorTplGraphItemMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(MonitorTplGraphItemMeta.NAME));
+				this.setDeleteBy( (String)r.getValue(MonitorTplGraphItemMeta.DELETE_BY));
+				this.setId( (String)r.getValue(MonitorTplGraphItemMeta.ID));
+				this.setGraphId( (String)r.getValue(MonitorTplGraphItemMeta.GRAPH_ID));
+				this.setStatus( (String)r.getValue(MonitorTplGraphItemMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

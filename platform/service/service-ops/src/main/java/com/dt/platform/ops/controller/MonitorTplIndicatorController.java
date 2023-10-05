@@ -46,7 +46,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 模版指标接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-03 08:00:12
+ * @since 2023-10-05 20:26:38
 */
 
 @InDoc
@@ -69,8 +69,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class , example = "tpl_host_linux_script"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.MONITOR_METHOD , value = "监控方式" , required = false , dataTypeClass=String.class , example = "script"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INDICATOR_TYPE , value = "指标类型" , required = false , dataTypeClass=String.class , example = "system"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_ROWS , value = "值行数" , required = false , dataTypeClass=String.class , example = "single"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_COLS , value = "值列数" , required = false , dataTypeClass=String.class , example = "single"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.ROW_COL_TYPE , value = "值行列数" , required = false , dataTypeClass=String.class , example = "single_single"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_TYPE , value = "数值类型" , required = false , dataTypeClass=String.class , example = "number"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN , value = "数值字段" , required = false , dataTypeClass=String.class , example = "os_load"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_MAP , value = "数值字段映射" , required = false , dataTypeClass=String.class , example = "os_load"),
@@ -193,8 +192,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class , example = "tpl_host_linux_script"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.MONITOR_METHOD , value = "监控方式" , required = false , dataTypeClass=String.class , example = "script"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INDICATOR_TYPE , value = "指标类型" , required = false , dataTypeClass=String.class , example = "system"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_ROWS , value = "值行数" , required = false , dataTypeClass=String.class , example = "single"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_COLS , value = "值列数" , required = false , dataTypeClass=String.class , example = "single"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.ROW_COL_TYPE , value = "值行列数" , required = false , dataTypeClass=String.class , example = "single_single"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_TYPE , value = "数值类型" , required = false , dataTypeClass=String.class , example = "number"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN , value = "数值字段" , required = false , dataTypeClass=String.class , example = "os_load"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_MAP , value = "数值字段映射" , required = false , dataTypeClass=String.class , example = "os_load"),
@@ -233,8 +231,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class , example = "tpl_host_linux_script"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.MONITOR_METHOD , value = "监控方式" , required = false , dataTypeClass=String.class , example = "script"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INDICATOR_TYPE , value = "指标类型" , required = false , dataTypeClass=String.class , example = "system"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_ROWS , value = "值行数" , required = false , dataTypeClass=String.class , example = "single"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_COLS , value = "值列数" , required = false , dataTypeClass=String.class , example = "single"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.ROW_COL_TYPE , value = "值行列数" , required = false , dataTypeClass=String.class , example = "single_single"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_TYPE , value = "数值类型" , required = false , dataTypeClass=String.class , example = "number"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN , value = "数值字段" , required = false , dataTypeClass=String.class , example = "os_load"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_MAP , value = "数值字段映射" , required = false , dataTypeClass=String.class , example = "os_load"),
@@ -317,8 +314,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class , example = "tpl_host_linux_script"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.MONITOR_METHOD , value = "监控方式" , required = false , dataTypeClass=String.class , example = "script"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INDICATOR_TYPE , value = "指标类型" , required = false , dataTypeClass=String.class , example = "system"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_ROWS , value = "值行数" , required = false , dataTypeClass=String.class , example = "single"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_COLS , value = "值列数" , required = false , dataTypeClass=String.class , example = "single"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.ROW_COL_TYPE , value = "值行列数" , required = false , dataTypeClass=String.class , example = "single_single"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_TYPE , value = "数值类型" , required = false , dataTypeClass=String.class , example = "number"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN , value = "数值字段" , required = false , dataTypeClass=String.class , example = "os_load"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_MAP , value = "数值字段映射" , required = false , dataTypeClass=String.class , example = "os_load"),
@@ -358,8 +354,7 @@ public class MonitorTplIndicatorController extends SuperController {
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.MONITOR_TPL_CODE , value = "监控模版" , required = false , dataTypeClass=String.class , example = "tpl_host_linux_script"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.MONITOR_METHOD , value = "监控方式" , required = false , dataTypeClass=String.class , example = "script"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.INDICATOR_TYPE , value = "指标类型" , required = false , dataTypeClass=String.class , example = "system"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_ROWS , value = "值行数" , required = false , dataTypeClass=String.class , example = "single"),
-		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_COLS , value = "值列数" , required = false , dataTypeClass=String.class , example = "single"),
+		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.ROW_COL_TYPE , value = "值行列数" , required = false , dataTypeClass=String.class , example = "single_single"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_TYPE , value = "数值类型" , required = false , dataTypeClass=String.class , example = "number"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN , value = "数值字段" , required = false , dataTypeClass=String.class , example = "os_load"),
 		@ApiImplicitParam(name = MonitorTplIndicatorVOMeta.VALUE_COLUMN_MAP , value = "数值字段映射" , required = false , dataTypeClass=String.class , example = "os_load"),

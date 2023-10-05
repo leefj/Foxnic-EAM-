@@ -24,7 +24,7 @@ import java.util.Map;
  * 模版图形服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-02 12:00:13
+ * @since 2023-10-04 09:11:42
 */
 
 public interface IMonitorTplGraphService extends  ISimpleIdService<MonitorTplGraph,String> {

@@ -4,6 +4,7 @@ import com.alibaba.csp.sentinel.util.StringUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.constants.enums.ops.MonitorIndicatorColumnRowColTypeEnum;
 import com.dt.platform.constants.enums.ops.MonitorTopDataEnum;
 import com.dt.platform.constants.enums.ops.MonitorTplGraphTypeEnum;
 import com.dt.platform.domain.ops.MonitorNode;
@@ -299,13 +300,15 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
         result.put("indicatorName",meta.getString("name"));
         result.put("recordTime",meta.getString("recordTime"));
         result.put("valueColumnName",meta.getString("valueColumnName"));
-        String colType=meta.getString("valueColumnCols");
-        if("single".equals(colType)){
+        String colType=meta.getString("rowColType");
+        //列
+        if(MonitorIndicatorColumnRowColTypeEnum.SINGLE_SINGLE.code().equals(colType)
+                ||MonitorIndicatorColumnRowColTypeEnum.MULTIPLE_SINGLE.code().equals(colType)){
             String col=meta.getString("valueColumn");
             result.put("value",meta.getString(lineToHump(col)));
-        }else if("multiple".equals(colType)){
+        }else if(MonitorIndicatorColumnRowColTypeEnum.MULTIPLE_MULTIPLE.code().equals(colType)
+               ||MonitorIndicatorColumnRowColTypeEnum.MULTIPLE_MULTIPLE.code().equals(colType)){
             String[] colArr=meta.getString("valueColumn").split(",");
-
             if(colArr.length>0){
                 String v="";
                 for(int i=0;i<colArr.length;i++){

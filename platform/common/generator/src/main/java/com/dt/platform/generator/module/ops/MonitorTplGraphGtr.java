@@ -53,6 +53,9 @@ public class MonitorTplGraphGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.STATUS).form().validate().required().form()
                 .label("状态").radioBox().defaultIndex(0).enumType(MonitorEnableEnum.class);
 
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.NOTES).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.DS).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.CONTENT).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.CONTENT).form().textArea().height(Config.textAreaHeight);
@@ -76,29 +79,27 @@ public class MonitorTplGraphGtr extends BaseCodeGenerator{
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL_GRAPH.NAME,
                         OpsTables.OPS_MONITOR_TPL_GRAPH.STATUS,
-                        OpsTables.OPS_MONITOR_TPL_GRAPH.GRAPH_TYPE,
+                        OpsTables.OPS_MONITOR_TPL_GRAPH.SORT,
                 },
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL_GRAPH.TPL_CODE,
-                        OpsTables.OPS_MONITOR_TPL_GRAPH.SORT,
+                        OpsTables.OPS_MONITOR_TPL_GRAPH.GRAPH_TYPE,
+
                 },
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL_GRAPH.GRAPH_WIDTH,
                         OpsTables.OPS_MONITOR_TPL_GRAPH.GRAPH_HEIGHT,
                 }
         );
-        cfg.view().form().addGroup(null,
-                new Object[] {
-                        OpsTables.OPS_MONITOR_TPL_GRAPH.CONTENT,
-                }
 
-        );
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL_GRAPH.NOTES,
                 }
-
         );
+        cfg.view().form().addPage("item",null,"itemFunction");
+
+
 
         cfg.view().list().addJsVariable("TPL_CODE","[[${tplCode}]]","tplCode");
 
@@ -110,7 +111,7 @@ public class MonitorTplGraphGtr extends BaseCodeGenerator{
                 .setBpmEventAdaptor(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
+                .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         //生成代码
         cfg.buildAll();
     }

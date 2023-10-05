@@ -1,7 +1,7 @@
 /**
  * 监控模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-02 12:33:21
+ * @since 2023-10-05 15:21:08
  */
 
 
@@ -435,6 +435,9 @@ function ListPage() {
 			}
 			else if (layEvent === 'items') { // 指标
 				window.pageExt.list.items(data,this);
+			}
+			else if (layEvent === 'trigger') { // 触发器
+				window.pageExt.list.trigger(data,this);
 			}
 			else if (layEvent === 'graph') { // 图形
 				window.pageExt.list.graph(data,this);

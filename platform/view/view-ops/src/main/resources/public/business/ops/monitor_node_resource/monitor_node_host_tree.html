@@ -32,20 +32,117 @@
             align-items:top;
         }
         .left-tree {
-            width: 260px;
+            width: 300px;
             background-color: #ffffff;
             border-right: 1px #e6e6e6 solid;
         }
         .right-tab {
             flex:1 ;
         }
+
+
+
+        .ztree li span.button.icon_folder_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/images/folder.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_folder_ico_close {
+            margin-right: 2px;
+            background: url(/assets/images/folder.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_folder_ico_open {
+            margin-right: 2px;
+            background: url(/assets/images/folder.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+
+        .ztree li span.button.icon_db_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/images/db.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_db_ico_close {
+            margin-right: 2px;
+            background: url(/assets/images/db.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_db_ico_open {
+            margin-right: 2px;
+            background: url(/assets/images/db.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_os_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/images/os.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_os_ico_close {
+            margin-right: 2px;
+            background: url(/assets/images/os.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_os_ico_open {
+            margin-right: 2px;
+            background: url(/assets/images/os.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_other_ico_docu {
+            margin-right: 2px;
+            background: url(/assets/images/other.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_other_ico_close {
+            margin-right: 2px;
+            background: url(/assets/images/other.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+        .ztree li span.button.icon_other_ico_open {
+            margin-right: 2px;
+            background: url(/assets/images/other.png) no-repeat scroll 0 0 transparent;
+            vertical-align: top;
+            *vertical-align: middle;
+            background-size: 100% auto;
+        }
+
+
     </style>
 </head>
-
-
 <body>
-
-
 <div class="top-container">
     <div class="left-tree">
 <!--        <div class="layui-form toolbar" style="padding:6px; border-bottom:1px #e6e6e6 solid; " id="toolbar">-->
@@ -89,11 +186,9 @@
 <script type="text/javascript" src="/assets/libs/layui/layui.js"></script>
 <script type="text/javascript" src="/assets/libs/zTree/js/jquery.ztree.all-3.5.min.js"></script>
 
-
-
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
-    var AUTH_PREFIX="eam_report_org";
+    var AUTH_PREFIX="ops_node_resource_list";
 </script>
 
 

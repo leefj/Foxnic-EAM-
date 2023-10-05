@@ -102,18 +102,7 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
         return result.success(true).data(dao.query(sql).toJSONArrayWithJSONObject());
     }
 
-    @Override
-    public Insert createBaseInsert(MonitorTplIndicator indicator,MonitorNode node){
-        Insert nodeV=new Insert("ops_monitor_node_value");
-        nodeV.set("id", IDGenerator.getSnowflakeIdString());
-        nodeV.set("monitor_tpl_code",indicator.getMonitorTplCode());
-        nodeV.set("indicator_code",indicator.getCode());
-        nodeV.set("result_status", MonitorNodeValueResultStatusEnum.SUCESS.code());
-        nodeV.set("result_message","执行成功");
-        nodeV.set("record_time",new Date());
-        nodeV.set("node_id",node.getId());
-        return nodeV;
-    }
+
 
 
     @Override
@@ -137,8 +126,6 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
 
     @Override
     public String queryIndicatorCommand(MonitorNode node, String cmd,String cmdVar) {
-//        String cmd=iplIndicator.getCommand();
-//        String cmdVar=iplIndicator.getIndicatorVariable();
 
         JSONArray cmdArr=JSONArray.parseArray(cmdVar);
         if(cmdArr==null||cmdArr.size()==0){
@@ -220,24 +207,40 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
                 insert.into("ops_monitor_node_value_last");
                 dao.execute(insert);
             }catch(UncategorizedSQLException e){
+                e.printStackTrace();
                 Logger.info("Sql execute error,sql:"+insert.getSQL());
                 Insert errInsert=new Insert("ops_monitor_node_value");
-                errInsert.set("id",insert.getValue("id"));
+                errInsert.set("id",IDGenerator.getSnowflakeIdString());
                 errInsert.setIf("result_status","failed");
                 errInsert.setIf("result_message","error execute sql");
                 errInsert.setIf("indicator_code",insert.getValue("indicator_code"));
                 errInsert.setIf("node_id",insert.getValue("node_id"));
                 errInsert.setIf("monitor_tpl_code",insert.getValue("monitor_tpl_code"));
                 errInsert.setIf("record_time",new Date());
-                dao.execute(errInsert);
-                errInsert.into("ops_monitor_node_value_last");
-                dao.execute(errInsert);
-                e.printStackTrace();
+                try {
+                    dao.execute(errInsert);
+                    errInsert.into("ops_monitor_node_value_last");
+                    dao.execute(errInsert);
+                }catch(UncategorizedSQLException e2){
+                    e2.printStackTrace();
+                }
             }
         }
         return ErrorDesc.success();
     }
 
+    @Override
+    public Insert createBaseInsert(MonitorTplIndicator indicator,MonitorNode node){
+        Insert nodeV=new Insert("ops_monitor_node_value");
+        nodeV.set("id", IDGenerator.getSnowflakeIdString());
+        nodeV.set("monitor_tpl_code",indicator.getMonitorTplCode());
+        nodeV.set("indicator_code",indicator.getCode());
+        nodeV.set("result_status", MonitorNodeValueResultStatusEnum.SUCESS.code());
+        nodeV.set("result_message","执行成功");
+        nodeV.set("record_time",new Date());
+        nodeV.set("node_id",node.getId());
+        return nodeV;
+    }
 
     @Override
     public Result<Object> convertToInsertData(MonitorTplIndicator tplIndicator,String content,MonitorNode node){
@@ -245,71 +248,73 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
         List<Insert> insList=new ArrayList<>();
         List<String> contentList=new ArrayList<>();
 
-        //判断验证
+        //如果内容为空
         String errorMsg="模版:"+tplIndicator.getMonitorTplCode()+",指标:"+tplIndicator.getMonitorTplCode()+",节点:"+node.getId();
         if(StringUtil.isBlank(content)){
             Insert ins=createBaseInsert(tplIndicator,node);
             ins.set("result_status", MonitorNodeValueResultStatusEnum.FAILED.code());
             ins.set("result_message",errorMsg+",采集数据为空");
+            insList.add(ins);
             return ErrorDesc.success().data(insList);
         }
+
+        //如果是内置system.connected，则更新ops_monitor_node状态
         if("system.connected".equals(tplIndicator.getCode())){
-            if("1".equals(content.replaceAll("\n","").trim())){
-                dao.execute("update ops_monitor_node set status='online' where id=? ",node.getId());
+            if("1".equals(content.trim().replaceAll("\n","").trim())){
+                dao.execute("update ops_monitor_node set status='online' where id=?",node.getId());
             }else{
-                dao.execute("update ops_monitor_node set status='offline' where id=? ",node.getId());
+                dao.execute("update ops_monitor_node set status='offline' where id=?",node.getId());
             }
         }
-        //结果数据转换，开始转换行
-        if(MonitorIndicatorValueColumnRowsEnum.SINGLE.code().equals(tplIndicator.getValueColumnRows())){
-            contentList.add(content);
-        }else if (MonitorIndicatorValueColumnRowsEnum.MULTIPLE.code().equals(tplIndicator.getValueColumnRows())){
 
+        //开始转换行，将多行内容放置于contentList
+        if(MonitorIndicatorColumnRowColTypeEnum.SINGLE_SINGLE.code().equals(tplIndicator.getRowColType())
+                ||MonitorIndicatorColumnRowColTypeEnum.SINGLE_MULTIPLE.code().equals(tplIndicator.getRowColType())){
+                //单行
+                contentList.add(content);
+        }else if (MonitorIndicatorColumnRowColTypeEnum.MULTIPLE_MULTIPLE.code().equals(tplIndicator.getRowColType())
+             ||MonitorIndicatorColumnRowColTypeEnum.MULTIPLE_SINGLE.code().equals(tplIndicator.getRowColType())){
+            //多行
             String colContent=null;
             BufferedReader br = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(content.getBytes(Charset.forName("utf8"))), Charset.forName("utf8")));
             try {
                 colContent = br.readLine();
-                while (colContent != null)
-                {
+                while (colContent != null) {
                     contentList.add(colContent);
                     colContent=br.readLine();
                 }
-            }
-            catch (IOException e) {
+            }catch (IOException e) {
                 e.printStackTrace();
             }
-
         }else{
             Insert ins=createBaseInsert(tplIndicator,node);
             ins.set("result_status", MonitorNodeValueResultStatusEnum.FAILED.code());
-            ins.set("result_message",errorMsg+",getValueColumnRows参数设置错误");
+            ins.set("result_message",errorMsg+",getValueColumnRows参数设置错误，目前只支持单行单列和多行多列");
             return ErrorDesc.success().data(insList);
         }
 
-        //结果数据转换，开始转换列
+        //开始转换列
         String[] valueColumnArr=tplIndicator.getValueColumn().split(NODE_VALUE_COLUMN_COLS_SPLIT);
         Date uidDate=new Date();
         //当单列时
-        if(MonitorIndicatorValueColumnColsEnum.SINGLE.code().equals(tplIndicator.getValueColumnCols())){
+        if(MonitorIndicatorColumnRowColTypeEnum.SINGLE_SINGLE.code().equals(tplIndicator.getRowColType())||
+                MonitorIndicatorColumnRowColTypeEnum.MULTIPLE_SINGLE.code().equals(tplIndicator.getRowColType())){
+            //单列
             for(String itemValue:contentList){
                 Insert ins=createBaseInsert(tplIndicator,node);
                 ins.set(tplIndicator.getValueColumn(),itemValue);
-                if(MonitorIndicatorValueColumnRowsEnum.MULTIPLE.code().equals(tplIndicator.getValueColumnRows())){
-                    ins.set("record_time",uidDate);
-                }
+                ins.set("record_time",uidDate);
                 insList.add(ins);
             }
-        }else if(MonitorIndicatorValueColumnColsEnum.MULTIPLE.code().equals(tplIndicator.getValueColumnCols())){
+        }else if(
+                MonitorIndicatorColumnRowColTypeEnum.MULTIPLE_MULTIPLE.code().equals(tplIndicator.getRowColType())
+                ||    MonitorIndicatorColumnRowColTypeEnum.SINGLE_MULTIPLE.code().equals(tplIndicator.getRowColType())){
             //当多列时
             for(String itemValue:contentList){
                 Logger.info("itemValue:"+itemValue);
                 String[] valueColumnItemArr=itemValue.split(NODE_VALUE_COLUMN_COLS_SPLIT);
                 Insert ins=createBaseInsert(tplIndicator,node);
-                if(MonitorIndicatorValueColumnRowsEnum.MULTIPLE.code().equals(tplIndicator.getValueColumnRows())){
-                    ins.set("record_time",uidDate);
-                }
-                //Logger.info("valueColumnItemArr"+valueColumnItemArr);
-                //Logger.info("valueColumnArr"+valueColumnArr);
+                ins.set("record_time",uidDate);
                 if(valueColumnItemArr.length==valueColumnArr.length){
                     for(int i=0;i<valueColumnArr.length;i++){
                         ins.set(valueColumnArr[i],valueColumnItemArr[i]);

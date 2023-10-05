@@ -11,14 +11,16 @@ import com.github.foxnic.api.constant.CodeTextEnum;
  */
 
 
-public enum MonitorIndicatorValueColumnColsEnum implements CodeTextEnum {
+public enum MonitorIndicatorColumnRowColTypeEnum implements CodeTextEnum {
 
-    SINGLE("single" , "单列"),
-    MULTIPLE("multiple" , "多列");
+    SINGLE_SINGLE("single_single" , "单行单列"),
+    SINGLE_MULTIPLE("single_multiple" , "单行多列"),
+    MULTIPLE_MULTIPLE("multiple_multiple" , "多行多列"),
+    MULTIPLE_SINGLE("multiple_single" , "多行多列");
 
     private String code;
     private String text;
-    private MonitorIndicatorValueColumnColsEnum(String code, String text)  {
+    private MonitorIndicatorColumnRowColTypeEnum(String code, String text)  {
         this.code=code;
         this.text=text;
     }

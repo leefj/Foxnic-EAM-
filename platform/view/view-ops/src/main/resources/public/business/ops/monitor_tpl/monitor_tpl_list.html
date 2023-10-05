@@ -2,7 +2,7 @@
 /**
  * 监控模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-02 12:33:21
+ * @since 2023-10-05 15:21:08
  */
  -->
  <!DOCTYPE html>
@@ -105,6 +105,7 @@
     <button th:if="${perm.checkAuth('ops_monitor_tpl:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
     <button th:if="${perm.checkAuth('ops_monitor_tpl:items')}"class="layui-btn layui-btn-xs  items-button " lay-event="items" data-id="{{d.id}}"><span th:text="${lang.translate('指标','','cmp:table.ops')}">指标</span></button>
+    <button th:if="${perm.checkAuth('ops_monitor_tpl:trigger')}"class="layui-btn layui-btn-xs  trigger-button " lay-event="trigger" data-id="{{d.id}}"><span th:text="${lang.translate('触发器','','cmp:table.ops')}">触发器</span></button>
     <button th:if="${perm.checkAuth('ops_monitor_tpl:graph')}"class="layui-btn layui-btn-xs  graph-button " lay-event="graph" data-id="{{d.id}}"><span th:text="${lang.translate('图形','','cmp:table.ops')}">图形</span></button>
 
 </script>

@@ -83,6 +83,7 @@ public class MonitorTplGtr extends BaseCodeGenerator{
                 }
         );
         cfg.view().list().operationColumn().addActionButton("指标","items","items-button","ops_monitor_tpl:items");
+        cfg.view().list().operationColumn().addActionButton("触发器","trigger","trigger-button","ops_monitor_tpl:trigger");
         cfg.view().list().operationColumn().addActionButton("图形","graph","graph-button","ops_monitor_tpl:graph");
 
         //文件生成覆盖模式

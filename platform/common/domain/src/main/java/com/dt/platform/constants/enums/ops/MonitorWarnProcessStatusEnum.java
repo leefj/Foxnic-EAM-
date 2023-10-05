@@ -13,9 +13,9 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum MonitorWarnProcessStatusEnum implements CodeTextEnum {
 
-    CONFIRM("confirm" , "在线"),
-    RESOLVED("resolved" , "已解决"),
-    UNRESOLVED("unresolved" , "未解决");
+    CONFIRM("confirm" , "已确认"),
+  //  RESOLVED("resolved" , "已解决"),
+    NOT_CONFIRM("not_confirm" , "未确认");
 
     private String code;
     private String text;

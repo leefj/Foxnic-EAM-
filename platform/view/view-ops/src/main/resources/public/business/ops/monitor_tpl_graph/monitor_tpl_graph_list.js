@@ -1,7 +1,7 @@
 /**
  * 模版图形 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-02 12:00:15
+ * @since 2023-10-04 09:11:44
  */
 
 
@@ -90,11 +90,8 @@ function ListPage() {
 					,{ field: 'graphWidth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('宽度') , templet: function (d) { return templet('graphWidth',d.graphWidth,d);}  }
 					,{ field: 'graphHeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('高度') , templet: function (d) { return templet('graphHeight',d.graphHeight,d);}  }
 					,{ field: 'graphType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('图形类别'), templet:function (d){ return templet('graphType',fox.getEnumText(SELECT_GRAPHTYPE_DATA,d.graphType,'','graphType'),d);}}
-					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('图形设置') , templet: function (d) { return templet('content',d.content,d);}  }
-					,{ field: 'ds', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据来源') , templet: function (d) { return templet('ds',d.ds,d);}  }
 					,{ field: 'label', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签') , templet: function (d) { return templet('label',d.label,d);}  }
 					,{ field: 'sort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('排序') , templet: function (d) { return templet('sort',d.sort,d);}  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

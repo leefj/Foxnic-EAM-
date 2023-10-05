@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 模版指标
  * <p>模版指标 , 数据表 ops_monitor_tpl_indicator 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-03 08:00:12
- * @sign 7330C579BC20DD65AEEF6A35C3446E19
+ * @since 2023-10-05 20:26:38
+ * @sign 680AA458DB8B522CA7B0F58294F54B32
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -80,16 +80,10 @@ public class MonitorTplIndicator extends Entity {
 	private String indicatorType;
 	
 	/**
-	 * 值行数：值行数
+	 * 值行列数：值行列数
 	*/
-	@ApiModelProperty(required = false,value="值行数" , notes = "值行数" , example = "single")
-	private String valueColumnRows;
-	
-	/**
-	 * 值列数：值列数
-	*/
-	@ApiModelProperty(required = false,value="值列数" , notes = "值列数" , example = "single")
-	private String valueColumnCols;
+	@ApiModelProperty(required = false,value="值行列数" , notes = "值行列数" , example = "single_single")
+	private String rowColType;
 	
 	/**
 	 * 数值类型：数值类型
@@ -372,40 +366,21 @@ public class MonitorTplIndicator extends Entity {
 	}
 	
 	/**
-	 * 获得 值行数<br>
-	 * 值行数
-	 * @return 值行数
+	 * 获得 值行列数<br>
+	 * 值行列数
+	 * @return 值行列数
 	*/
-	public String getValueColumnRows() {
-		return valueColumnRows;
+	public String getRowColType() {
+		return rowColType;
 	}
 	
 	/**
-	 * 设置 值行数
-	 * @param valueColumnRows 值行数
+	 * 设置 值行列数
+	 * @param rowColType 值行列数
 	 * @return 当前对象
 	*/
-	public MonitorTplIndicator setValueColumnRows(String valueColumnRows) {
-		this.valueColumnRows=valueColumnRows;
-		return this;
-	}
-	
-	/**
-	 * 获得 值列数<br>
-	 * 值列数
-	 * @return 值列数
-	*/
-	public String getValueColumnCols() {
-		return valueColumnCols;
-	}
-	
-	/**
-	 * 设置 值列数
-	 * @param valueColumnCols 值列数
-	 * @return 当前对象
-	*/
-	public MonitorTplIndicator setValueColumnCols(String valueColumnCols) {
-		this.valueColumnCols=valueColumnCols;
+	public MonitorTplIndicator setRowColType(String rowColType) {
+		this.rowColType=rowColType;
 		return this;
 	}
 	
@@ -943,9 +918,7 @@ public class MonitorTplIndicator extends Entity {
 		inst.setCode(this.getCode());
 		inst.setDataKeepDay(this.getDataKeepDay());
 		inst.setNotes(this.getNotes());
-		inst.setValueColumnRows(this.getValueColumnRows());
 		inst.setMonitorMethod(this.getMonitorMethod());
-		inst.setValueColumnCols(this.getValueColumnCols());
 		inst.setMonitorTplCode(this.getMonitorTplCode());
 		inst.setIndicatorType(this.getIndicatorType());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -959,6 +932,7 @@ public class MonitorTplIndicator extends Entity {
 		inst.setCommand(this.getCommand());
 		inst.setTimeOut(this.getTimeOut());
 		inst.setValueColumnType(this.getValueColumnType());
+		inst.setRowColType(this.getRowColType());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCommandValue(this.getCommandValue());
@@ -1036,9 +1010,7 @@ public class MonitorTplIndicator extends Entity {
 			this.setCode(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.CODE)));
 			this.setDataKeepDay(DataParser.parse(Integer.class, map.get(MonitorTplIndicatorMeta.DATA_KEEP_DAY)));
 			this.setNotes(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.NOTES)));
-			this.setValueColumnRows(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_ROWS)));
 			this.setMonitorMethod(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.MONITOR_METHOD)));
-			this.setValueColumnCols(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_COLS)));
 			this.setMonitorTplCode(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.MONITOR_TPL_CODE)));
 			this.setIndicatorType(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.INDICATOR_TYPE)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.UPDATE_BY)));
@@ -1052,6 +1024,7 @@ public class MonitorTplIndicator extends Entity {
 			this.setCommand(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.COMMAND)));
 			this.setTimeOut(DataParser.parse(Integer.class, map.get(MonitorTplIndicatorMeta.TIME_OUT)));
 			this.setValueColumnType(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_TYPE)));
+			this.setRowColType(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.ROW_COL_TYPE)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(MonitorTplIndicatorMeta.DELETED)));
 			this.setCommandValue(DataParser.parse(String.class, map.get(MonitorTplIndicatorMeta.COMMAND_VALUE)));
@@ -1073,9 +1046,7 @@ public class MonitorTplIndicator extends Entity {
 				this.setCode( (String)map.get(MonitorTplIndicatorMeta.CODE));
 				this.setDataKeepDay( (Integer)map.get(MonitorTplIndicatorMeta.DATA_KEEP_DAY));
 				this.setNotes( (String)map.get(MonitorTplIndicatorMeta.NOTES));
-				this.setValueColumnRows( (String)map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_ROWS));
 				this.setMonitorMethod( (String)map.get(MonitorTplIndicatorMeta.MONITOR_METHOD));
-				this.setValueColumnCols( (String)map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_COLS));
 				this.setMonitorTplCode( (String)map.get(MonitorTplIndicatorMeta.MONITOR_TPL_CODE));
 				this.setIndicatorType( (String)map.get(MonitorTplIndicatorMeta.INDICATOR_TYPE));
 				this.setUpdateBy( (String)map.get(MonitorTplIndicatorMeta.UPDATE_BY));
@@ -1089,6 +1060,7 @@ public class MonitorTplIndicator extends Entity {
 				this.setCommand( (String)map.get(MonitorTplIndicatorMeta.COMMAND));
 				this.setTimeOut( (Integer)map.get(MonitorTplIndicatorMeta.TIME_OUT));
 				this.setValueColumnType( (String)map.get(MonitorTplIndicatorMeta.VALUE_COLUMN_TYPE));
+				this.setRowColType( (String)map.get(MonitorTplIndicatorMeta.ROW_COL_TYPE));
 				this.setCreateBy( (String)map.get(MonitorTplIndicatorMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(MonitorTplIndicatorMeta.DELETED));
 				this.setCommandValue( (String)map.get(MonitorTplIndicatorMeta.COMMAND_VALUE));
@@ -1123,9 +1095,7 @@ public class MonitorTplIndicator extends Entity {
 			this.setCode(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.CODE)));
 			this.setDataKeepDay(DataParser.parse(Integer.class, r.getValue(MonitorTplIndicatorMeta.DATA_KEEP_DAY)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.NOTES)));
-			this.setValueColumnRows(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_ROWS)));
 			this.setMonitorMethod(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.MONITOR_METHOD)));
-			this.setValueColumnCols(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_COLS)));
 			this.setMonitorTplCode(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.MONITOR_TPL_CODE)));
 			this.setIndicatorType(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.INDICATOR_TYPE)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.UPDATE_BY)));
@@ -1139,6 +1109,7 @@ public class MonitorTplIndicator extends Entity {
 			this.setCommand(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.COMMAND)));
 			this.setTimeOut(DataParser.parse(Integer.class, r.getValue(MonitorTplIndicatorMeta.TIME_OUT)));
 			this.setValueColumnType(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_TYPE)));
+			this.setRowColType(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.ROW_COL_TYPE)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MonitorTplIndicatorMeta.DELETED)));
 			this.setCommandValue(DataParser.parse(String.class, r.getValue(MonitorTplIndicatorMeta.COMMAND_VALUE)));
@@ -1157,9 +1128,7 @@ public class MonitorTplIndicator extends Entity {
 				this.setCode( (String)r.getValue(MonitorTplIndicatorMeta.CODE));
 				this.setDataKeepDay( (Integer)r.getValue(MonitorTplIndicatorMeta.DATA_KEEP_DAY));
 				this.setNotes( (String)r.getValue(MonitorTplIndicatorMeta.NOTES));
-				this.setValueColumnRows( (String)r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_ROWS));
 				this.setMonitorMethod( (String)r.getValue(MonitorTplIndicatorMeta.MONITOR_METHOD));
-				this.setValueColumnCols( (String)r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_COLS));
 				this.setMonitorTplCode( (String)r.getValue(MonitorTplIndicatorMeta.MONITOR_TPL_CODE));
 				this.setIndicatorType( (String)r.getValue(MonitorTplIndicatorMeta.INDICATOR_TYPE));
 				this.setUpdateBy( (String)r.getValue(MonitorTplIndicatorMeta.UPDATE_BY));
@@ -1173,6 +1142,7 @@ public class MonitorTplIndicator extends Entity {
 				this.setCommand( (String)r.getValue(MonitorTplIndicatorMeta.COMMAND));
 				this.setTimeOut( (Integer)r.getValue(MonitorTplIndicatorMeta.TIME_OUT));
 				this.setValueColumnType( (String)r.getValue(MonitorTplIndicatorMeta.VALUE_COLUMN_TYPE));
+				this.setRowColType( (String)r.getValue(MonitorTplIndicatorMeta.ROW_COL_TYPE));
 				this.setCreateBy( (String)r.getValue(MonitorTplIndicatorMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(MonitorTplIndicatorMeta.DELETED));
 				this.setCommandValue( (String)r.getValue(MonitorTplIndicatorMeta.COMMAND_VALUE));

@@ -1,22 +1,33 @@
 package com.dt.platform.domain.ops;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
+import com.dt.platform.domain.ops.meta.MonitorTplGraphItemVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 图形指标
+ * 图形指标VO类型
+ * <p>图形指标 , 数据表 ops_monitor_tpl_graph_item 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-13 20:47:04
- * @sign 046EA0EEF4F82EB765597CA2A2050960
+ * @since 2023-10-04 09:22:11
+ * @sign 1A631D73174E103348D0C35FCB3F0B3A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "图形指标VO类型 ; 图形指标 , 数据表 ops_monitor_tpl_graph_item 的通用VO类型" , parent = MonitorTplGraphItem.class)
 public class MonitorTplGraphItemVO extends MonitorTplGraphItem {
 
 	private static final long serialVersionUID = 1L;
@@ -68,6 +79,24 @@ public class MonitorTplGraphItemVO extends MonitorTplGraphItem {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -188,9 +217,9 @@ public class MonitorTplGraphItemVO extends MonitorTplGraphItem {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public MonitorTplGraphItemVO addDirtyField(String dirtyField) {
+	public MonitorTplGraphItemVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
-		this.dirtyFields.add(dirtyField);
+		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
 	}
 	
@@ -231,6 +260,63 @@ public class MonitorTplGraphItemVO extends MonitorTplGraphItem {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public MonitorTplGraphItemVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public MonitorTplGraphItemVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public MonitorTplGraphItemVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -254,13 +340,13 @@ public class MonitorTplGraphItemVO extends MonitorTplGraphItem {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public MonitorTplGraphItemVO addId(String id) {
+	public MonitorTplGraphItemVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
-		this.ids.add(id);
+		this.ids.addAll(Arrays.asList(id));
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */
@@ -269,5 +355,242 @@ public class MonitorTplGraphItemVO extends MonitorTplGraphItem {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return MonitorTplGraphItemVO , 转换好的 MonitorTplGraphItemVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return MonitorTplGraphItemVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MonitorTplGraphItemVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public MonitorTplGraphItemVO duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.MonitorTplGraphItemVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.MonitorTplGraphItemVOMeta.$$proxy$$();
+		inst.setIndicatorCode(this.getIndicatorCode());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setRoute(this.getRoute());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setGraphId(this.getGraphId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setSearchField(this.getSearchField());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setPageSize(this.getPageSize());
+			inst.setDataOrigin(this.getDataOrigin());
+			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
+			inst.setSearchValue(this.getSearchValue());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MonitorTplGraphItemVO clone(boolean deep) {
+		return EntityContext.clone(MonitorTplGraphItemVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 MonitorTplGraphItemVO
+	 * @param monitorTplGraphItemMap 包含实体信息的 Map 对象
+	 * @return MonitorTplGraphItemVO , 转换好的的 MonitorTplGraphItem 对象
+	*/
+	@Transient
+	public static MonitorTplGraphItemVO createFrom(Map<String,Object> monitorTplGraphItemMap) {
+		if(monitorTplGraphItemMap==null) return null;
+		MonitorTplGraphItemVO vo = create();
+		EntityContext.copyProperties(vo,monitorTplGraphItemMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 MonitorTplGraphItemVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return MonitorTplGraphItemVO , 转换好的的 MonitorTplGraphItem 对象
+	*/
+	@Transient
+	public static MonitorTplGraphItemVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		MonitorTplGraphItemVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 MonitorTplGraphItemVO，等同于 new
+	 * @return MonitorTplGraphItemVO 对象
+	*/
+	@Transient
+	public static MonitorTplGraphItemVO create() {
+		return new com.dt.platform.domain.ops.meta.MonitorTplGraphItemVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setIndicatorCode(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.INDICATOR_CODE)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(MonitorTplGraphItemVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(MonitorTplGraphItemVOMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.CREATE_BY)));
+			this.setRoute(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.ROUTE)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(MonitorTplGraphItemVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(MonitorTplGraphItemVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(MonitorTplGraphItemVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.ID)));
+			this.setGraphId(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.GRAPH_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.STATUS)));
+			// others
+			this.setSearchField(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.SEARCH_FIELD)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(MonitorTplGraphItemVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.SORT_TYPE)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.REQUEST_ACTION)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.FUZZY_FIELD)));
+			this.setSortField(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.SORT_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(MonitorTplGraphItemVOMeta.PAGE_SIZE)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.QUERY_LOGIC)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(MonitorTplGraphItemVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setIndicatorCode( (String)map.get(MonitorTplGraphItemVOMeta.INDICATOR_CODE));
+				this.setUpdateTime( (Date)map.get(MonitorTplGraphItemVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(MonitorTplGraphItemVOMeta.VERSION));
+				this.setCreateBy( (String)map.get(MonitorTplGraphItemVOMeta.CREATE_BY));
+				this.setRoute( (String)map.get(MonitorTplGraphItemVOMeta.ROUTE));
+				this.setDeleted( (Integer)map.get(MonitorTplGraphItemVOMeta.DELETED));
+				this.setCreateTime( (Date)map.get(MonitorTplGraphItemVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(MonitorTplGraphItemVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(MonitorTplGraphItemVOMeta.DELETE_TIME));
+				this.setName( (String)map.get(MonitorTplGraphItemVOMeta.NAME));
+				this.setDeleteBy( (String)map.get(MonitorTplGraphItemVOMeta.DELETE_BY));
+				this.setId( (String)map.get(MonitorTplGraphItemVOMeta.ID));
+				this.setGraphId( (String)map.get(MonitorTplGraphItemVOMeta.GRAPH_ID));
+				this.setStatus( (String)map.get(MonitorTplGraphItemVOMeta.STATUS));
+				// others
+				this.setSearchField( (String)map.get(MonitorTplGraphItemVOMeta.SEARCH_FIELD));
+				this.setPageIndex( (Integer)map.get(MonitorTplGraphItemVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(MonitorTplGraphItemVOMeta.SORT_TYPE));
+				this.setRequestAction( (String)map.get(MonitorTplGraphItemVOMeta.REQUEST_ACTION));
+				this.setFuzzyField( (String)map.get(MonitorTplGraphItemVOMeta.FUZZY_FIELD));
+				this.setSortField( (String)map.get(MonitorTplGraphItemVOMeta.SORT_FIELD));
+				this.setPageSize( (Integer)map.get(MonitorTplGraphItemVOMeta.PAGE_SIZE));
+				this.setDataOrigin( (String)map.get(MonitorTplGraphItemVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(MonitorTplGraphItemVOMeta.QUERY_LOGIC));
+				this.setSearchValue( (String)map.get(MonitorTplGraphItemVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setIndicatorCode(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemVOMeta.INDICATOR_CODE)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MonitorTplGraphItemVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(MonitorTplGraphItemVOMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemVOMeta.CREATE_BY)));
+			this.setRoute(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemVOMeta.ROUTE)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MonitorTplGraphItemVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MonitorTplGraphItemVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MonitorTplGraphItemVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemVOMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemVOMeta.ID)));
+			this.setGraphId(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemVOMeta.GRAPH_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(MonitorTplGraphItemVOMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setIndicatorCode( (String)r.getValue(MonitorTplGraphItemVOMeta.INDICATOR_CODE));
+				this.setUpdateTime( (Date)r.getValue(MonitorTplGraphItemVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(MonitorTplGraphItemVOMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(MonitorTplGraphItemVOMeta.CREATE_BY));
+				this.setRoute( (String)r.getValue(MonitorTplGraphItemVOMeta.ROUTE));
+				this.setDeleted( (Integer)r.getValue(MonitorTplGraphItemVOMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(MonitorTplGraphItemVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(MonitorTplGraphItemVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(MonitorTplGraphItemVOMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(MonitorTplGraphItemVOMeta.NAME));
+				this.setDeleteBy( (String)r.getValue(MonitorTplGraphItemVOMeta.DELETE_BY));
+				this.setId( (String)r.getValue(MonitorTplGraphItemVOMeta.ID));
+				this.setGraphId( (String)r.getValue(MonitorTplGraphItemVOMeta.GRAPH_ID));
+				this.setStatus( (String)r.getValue(MonitorTplGraphItemVOMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

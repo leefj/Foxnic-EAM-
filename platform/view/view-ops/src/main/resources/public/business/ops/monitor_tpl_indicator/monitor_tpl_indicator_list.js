@@ -1,7 +1,7 @@
 /**
  * 模版指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-03 08:00:14
+ * @since 2023-10-05 20:26:40
  */
 
 
@@ -90,8 +90,7 @@ function ListPage() {
 					,{ field: 'monitorTplCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版'), templet: function (d) { return templet('monitorTplCode' ,fox.joinLabel(d.tpl,"name",',','','monitorTplCode'),d);}}
 					,{ field: 'monitorMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控方式'), templet:function (d){ return templet('monitorMethod',fox.getEnumText(SELECT_MONITORMETHOD_DATA,d.monitorMethod,'','monitorMethod'),d);}}
 					,{ field: 'indicatorType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('指标类型'), templet: function (d) { return templet('indicatorType' ,fox.joinLabel(d.monitorIndicatorType,"name",',','','indicatorType'),d);}}
-					,{ field: 'valueColumnRows', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('值行数'), templet:function (d){ return templet('valueColumnRows',fox.getEnumText(SELECT_VALUECOLUMNROWS_DATA,d.valueColumnRows,'','valueColumnRows'),d);}}
-					,{ field: 'valueColumnCols', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('值列数'), templet:function (d){ return templet('valueColumnCols',fox.getEnumText(SELECT_VALUECOLUMNCOLS_DATA,d.valueColumnCols,'','valueColumnCols'),d);}}
+					,{ field: 'rowColType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('值行列数'), templet:function (d){ return templet('rowColType',fox.getEnumText(SELECT_ROWCOLTYPE_DATA,d.rowColType,'','rowColType'),d);}}
 					,{ field: 'valueColumnType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数值类型'), templet:function (d){ return templet('valueColumnType',fox.getEnumText(SELECT_VALUECOLUMNTYPE_DATA,d.valueColumnType,'','valueColumnType'),d);}}
 					,{ field: 'valueColumn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数值字段') , templet: function (d) { return templet('valueColumn',d.valueColumn,d);}  }
 					,{ field: 'valueColumnMap', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数值字段映射') , templet: function (d) { return templet('valueColumnMap',d.valueColumnMap,d);}  }
@@ -101,8 +100,6 @@ function ListPage() {
 					,{ field: 'dataKeepDay', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('保留时间(天)') , templet: function (d) { return templet('dataKeepDay',d.dataKeepDay,d);}  }
 					,{ field: 'command', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('命令') , templet: function (d) { return templet('command',d.command,d);}  }
 					,{ field: 'indicatorVariable', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('变量') , templet: function (d) { return templet('indicatorVariable',d.indicatorVariable,d);}  }
-					,{ field: 'snmpOid', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('snmp元数据') , templet: function (d) { return templet('snmpOid',d.snmpOid,d);}  }
-					,{ field: 'label', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签') , templet: function (d) { return templet('label',d.label,d);}  }
 					,{ field: 'itemSort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('排序') , templet: function (d) { return templet('itemSort',d.itemSort,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
@@ -484,7 +481,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["98%",height+"px"],
+			area: ["90%",height+"px"],
 			type: 2,
 			id:"ops-monitor-tpl-indicator-form-data-win",
 			content: '/business/ops/monitor_tpl_indicator/monitor_tpl_indicator_form.html' + (queryString?("?"+queryString):""),
