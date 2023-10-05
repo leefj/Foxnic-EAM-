@@ -1,7 +1,7 @@
 /**
  * 模版指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-03 08:00:14
+ * @since 2023-10-05 20:26:40
  */
 
 function FormPage() {
@@ -234,15 +234,17 @@ function FormPage() {
 				return opts;
 			}
 		});
-		//渲染 valueColumnRows 下拉字段
+		//渲染 rowColType 下拉字段
 		fox.renderSelectBox({
-			el: "valueColumnRows",
+			el: "rowColType",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("数值行数",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("值行列数",'','cmp:form'),
 			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("valueColumnRows",data.arr,data.change,data.isAdd);
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("rowColType",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
@@ -251,44 +253,13 @@ function FormPage() {
 				var defaultValues=[],defaultIndexs=[];
 				if(action=="create") {
 					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
+					defaultIndexs = "0".split(",");
 				}
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("valueColumnRows",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 valueColumnCols 下拉字段
-		fox.renderSelectBox({
-			el: "valueColumnCols",
-			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("数值列数",'','cmp:form'),
-			filterable: false,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("valueColumnCols",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("valueColumnCols",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+						opts.push(window.pageExt.form.selectBoxDataTransform("rowColType",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
 					}
@@ -302,6 +273,8 @@ function FormPage() {
 			radio: true,
 			tips: fox.translate("请选择",'','cmp:form')+fox.translate("数值类型",'','cmp:form'),
 			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("valueColumnType",data.arr,data.change,data.isAdd);
@@ -386,10 +359,8 @@ function FormPage() {
 			fox.setSelectValue4Enum("#monitorMethod",formData.monitorMethod,SELECT_MONITORMETHOD_DATA);
 			//设置  指标类型 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#indicatorType",formData.monitorIndicatorType);
-			//设置  数值行数 设置下拉框勾选
-			fox.setSelectValue4Enum("#valueColumnRows",formData.valueColumnRows,SELECT_VALUECOLUMNROWS_DATA);
-			//设置  数值列数 设置下拉框勾选
-			fox.setSelectValue4Enum("#valueColumnCols",formData.valueColumnCols,SELECT_VALUECOLUMNCOLS_DATA);
+			//设置  值行列数 设置下拉框勾选
+			fox.setSelectValue4Enum("#rowColType",formData.rowColType,SELECT_ROWCOLTYPE_DATA);
 			//设置  数值类型 设置下拉框勾选
 			fox.setSelectValue4Enum("#valueColumnType",formData.valueColumnType,SELECT_VALUECOLUMNTYPE_DATA);
 
@@ -460,10 +431,8 @@ function FormPage() {
 		data["monitorMethod"]=fox.getSelectedValue("monitorMethod",false);
 		//获取 指标类型 下拉框的值
 		data["indicatorType"]=fox.getSelectedValue("indicatorType",false);
-		//获取 数值行数 下拉框的值
-		data["valueColumnRows"]=fox.getSelectedValue("valueColumnRows",false);
-		//获取 数值列数 下拉框的值
-		data["valueColumnCols"]=fox.getSelectedValue("valueColumnCols",false);
+		//获取 值行列数 下拉框的值
+		data["rowColType"]=fox.getSelectedValue("rowColType",false);
 		//获取 数值类型 下拉框的值
 		data["valueColumnType"]=fox.getSelectedValue("valueColumnType",false);
 

@@ -117,7 +117,6 @@ public class MonitorDataProcessCalculateServiceImpl implements IMonitorDataProce
         JexlBuilder jb=new JexlBuilder();
         Map<String, Object> funcs =new HashMap<>();
         funcs.put("cF",monitorDataProcessUtilService);
-
         jb.namespaces(funcs);
         JexlEngine jexl =jb.create();
         JexlExpression expression = jexl.createExpression(jexlExp);
@@ -142,13 +141,9 @@ public class MonitorDataProcessCalculateServiceImpl implements IMonitorDataProce
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("node", node);
         Logger.info("nodeId:"+node.getId()+",indicator:"+indicator.getCode()+",表达式:"+expr);
-        if(StringUtil.isBlank(expr)){
-          return null;
-        }
         Object result = calculationValue(expr,map);
         Logger.info("result:"+result);
         if(StringUtil.isBlank(result)){
-            Logger.info("result is null");
             Insert valueInsert=new Insert("ops_monitor_node_value");
             valueInsert.set("id", IDGenerator.getSnowflakeId());
             valueInsert.setIf("result_status","failed");
@@ -158,19 +153,17 @@ public class MonitorDataProcessCalculateServiceImpl implements IMonitorDataProce
             valueInsert.setIf("is_connected",0);
             valueInsert.setIf("monitor_tpl_code",indicator.getMonitorTplCode());
             valueInsert.setIf("record_time",new Date());
-            return null;
-        }
-        String content=result.toString();
-        //转换成insert语句
-        Result<Object> insertResult=monitorDataProcessBaseService.convertToInsertData(indicator,content,node);
-        if(insertResult.isSuccess()){
-            list=(List<Insert>)insertResult.getData();
-
+            list.add(valueInsert);
+        }else{
+            //转换成insert语句
+            String content=result.toString();
+            Result<Object> insertResult=monitorDataProcessBaseService.convertToInsertData(indicator,content,node);
+            if(insertResult.isSuccess()){
+                list=(List<Insert>)insertResult.getData();
+            }
         }
         return list;
     }
-
-
 
     @Override
     public Result clearNodeValueLastHistoryData() {

@@ -19,7 +19,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //模块基础路径
     const moduleURL="/service-ops/ops-monitor-node";
-
+    var formAction=admin.getTempData('ops-monitor-node-form-data-form-action');
 
     //列表页的扩展
     var list={
@@ -169,6 +169,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
+            if(formAction=="create"){
+
+            }
         },
         /**
          * 窗口调节前

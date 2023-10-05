@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 模版图形
  * <p>模版图形 , 数据表 ops_monitor_tpl_graph 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-02 12:00:13
+ * @since 2023-10-04 09:11:42
  * @sign EF3733ADD8856336630003DE9FBA5FDC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

@@ -191,6 +191,23 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
 
         },
+        trigger:function (data){
+            console.log('items',data);
+            var queryString="?tplCode="+data.code;
+            admin.popupCenter({
+                title: "触发器",
+                resize: false,
+                offset: [20,null],
+                area: ["80%","90%"],
+                type: 2,
+                id:"ops-monitor-tpl-trigger-list-data-win",
+                content: '/business/ops/monitor_tpl_trigger/monitor_tpl_trigger_list.html' + queryString,
+                finish: function () {
+
+                }
+            });
+
+        },
         items:function (data){
             console.log('items',data);
             var queryString="?tplCode="+data.code;

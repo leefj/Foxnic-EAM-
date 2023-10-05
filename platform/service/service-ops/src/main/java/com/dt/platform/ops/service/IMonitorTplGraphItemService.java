@@ -1,5 +1,7 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -15,16 +17,18 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import java.util.Map;
 
 /**
  * <p>
- * 图形指标 服务接口
+ * 图形指标服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-13 20:47:04
+ * @since 2023-10-04 09:22:12
 */
 
-public interface IMonitorTplGraphItemService extends ISuperService<MonitorTplGraphItem> {
+public interface IMonitorTplGraphItemService extends  ISimpleIdService<MonitorTplGraphItem,String> {
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -52,7 +56,7 @@ public interface IMonitorTplGraphItemService extends ISuperService<MonitorTplGra
 
 		
 	/**
-	 * 按主键删除 图形指标
+	 * 按主键删除图形指标
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -60,7 +64,7 @@ public interface IMonitorTplGraphItemService extends ISuperService<MonitorTplGra
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 图形指标
+	 * 按主键删除图形指标
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -83,7 +87,7 @@ public interface IMonitorTplGraphItemService extends ISuperService<MonitorTplGra
 
 		
 	/**
-	 * 按主键更新字段 图形指标
+	 * 按主键更新图形指标
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -153,7 +157,7 @@ public interface IMonitorTplGraphItemService extends ISuperService<MonitorTplGra
 
 		
 	/**
-	 * 按主键获取 图形指标
+	 * 按主键获取图形指标
 	 *
 	 * @param id 主键
 	 * @return MonitorTplGraphItem 数据对象
@@ -165,7 +169,15 @@ public interface IMonitorTplGraphItemService extends ISuperService<MonitorTplGra
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<MonitorTplGraphItem> getByIds(List<String> ids);
+	List<MonitorTplGraphItem> queryListByIds(List<String> ids);
+
+	/**
+	 * 按 id 列表查询 Map
+	 * @param ids  主键清单
+	 * */
+	Map<String, MonitorTplGraphItem> queryMapByIds(List<String> ids);
+
+
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
@@ -195,7 +207,7 @@ public interface IMonitorTplGraphItemService extends ISuperService<MonitorTplGra
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<MonitorTplGraphItem> queryList(MonitorTplGraphItem sample);
+	List<MonitorTplGraphItem> queryList(MonitorTplGraphItemVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -236,7 +248,7 @@ public interface IMonitorTplGraphItemService extends ISuperService<MonitorTplGra
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<MonitorTplGraphItem> queryPagedList(MonitorTplGraphItem sample,int pageSize,int pageIndex);
+	PagedList<MonitorTplGraphItem> queryPagedList(MonitorTplGraphItemVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -290,28 +302,8 @@ public interface IMonitorTplGraphItemService extends ISuperService<MonitorTplGra
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
-	/**
-	 * 导出 Excel
-	 * */
-	ExcelWriter exportExcel(MonitorTplGraphItem sample);
 
-	/**
-	 * 导出用于数据导入的 Excel 模版
-	 * */
-	ExcelWriter  exportExcelTemplate();
 
-	/**
-	 * 构建 Excel 结构
-	 * @param  isForExport 是否用于数据导出
-	 * @return   ExcelStructure
-	 * */
-	ExcelStructure buildExcelStructure(boolean isForExport);
-
-	/**
-	 * 导入 Excel 数据
-	 * @return  错误信息，成功时返回 null
-	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
 }

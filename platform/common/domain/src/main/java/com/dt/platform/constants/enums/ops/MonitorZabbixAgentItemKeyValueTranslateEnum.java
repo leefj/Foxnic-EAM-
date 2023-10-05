@@ -15,8 +15,7 @@ public enum MonitorZabbixAgentItemKeyValueTranslateEnum implements CodeTextEnum 
 
     VFS_FS_GET("vfs.fs.get" , "文件系统"),
     SYSTEM_LOCALTIME_UTC("system.localtime[utc]" , "系统时间"),
-    NET_INTERFACE_FLOW("net.interface.flow" , "主机网络流量"),
-    ;
+    NET_INTERFACE_FLOW("net.interface.flow" , "主机网络流量");
 
     private String code;
     private String text;

@@ -58,8 +58,31 @@ public class OpsRelationManager extends RelationManager {
         this.setupDbDoc();
         this.setupFaultRcd();
         this.setupDbRecoverRcd();
+        this.setupMonitorTrigger();
+        this.setupMonitorAlert();
+    }
+
+    public void setupMonitorTrigger() {
+        this.property(MonitorTplTriggerMeta.TPL_PROP)
+                .using(OpsTables.OPS_MONITOR_TPL_TRIGGER.MONITOR_TPL_CODE).join(OpsTables.OPS_MONITOR_TPL.ID);
+
+        this.property(MonitorTplTriggerMeta.MONITOR_NODE_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_TPL_TRIGGER.MONITOR_TPL_CODE).join(OpsTables.OPS_MONITOR_NODE_TPL_ITEM.TPL_CODE)
+             .using(OpsTables.OPS_MONITOR_NODE_TPL_ITEM.NODE_ID).join(OpsTables.OPS_MONITOR_NODE.ID);
+    }
+
+    public void setupMonitorAlert() {
+        this.property(MonitorAlertMeta.TPL_PROP)
+                .using(OpsTables.OPS_MONITOR_ALERT.MONITOR_TPL_CODE).join(OpsTables.OPS_MONITOR_TPL.ID);
+
+        this.property(MonitorAlertMeta.MONITOR_TPL_TRIGGER_PROP)
+                .using(OpsTables.OPS_MONITOR_ALERT.TRIGGER_ID).join(OpsTables.OPS_MONITOR_TPL_TRIGGER.ID);
+
+        this.property(MonitorAlertMeta.USER_PROP)
+                .using(OpsTables.OPS_MONITOR_ALERT.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
     }
+
     public void setupFaultRcd() {
         this.property(DbFaultRcdMeta.DB_INSTANCE_PROP)
                 .using(OpsTables.OPS_DB_FAULT_RCD.DB_INSTANCE_ID).join(OpsTables.OPS_DB_INFO.ID);

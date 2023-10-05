@@ -20,7 +20,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-ops/ops-monitor-tpl-graph";
 
-
+    var formAction=admin.getTempData('ops-monitor-tpl-graph-form-data-form-action');
     //列表页的扩展
     var list={
         /**
@@ -34,6 +34,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
+            cfg.defaultToolbar=[{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}]
             cfg.cellMinWidth=160;;
         },
         /**
@@ -172,6 +173,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
+            if(formAction=="create"){
+                $("#item-content").hide();
+            }else{
+                console.log("edit")
+            }
         },
         /**
          * 窗口调节前
@@ -246,6 +252,19 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         betweenFormSubmitAndClose:function (param,result) {
             console.log("betweenFormSubmitAndClose",result);
             return true;
+        },
+        itemFunction:function (ifr,win,data) {
+            // debugger
+            console.log("itemFunction",ifr,data);
+            //设置 iframe 高度
+            ifr.height("395");
+            //设置地址
+            console.log("iframe,data:",data);
+            var gi="none";
+            if(formAction!="create"){
+                gi=data.id;
+            }
+            win.location="/business/ops/monitor_tpl_graph_item/monitor_tpl_graph_item_list.html?pageAction="+formAction+"&graphId="+gi;
         },
         /**
          * 数据提交后执行

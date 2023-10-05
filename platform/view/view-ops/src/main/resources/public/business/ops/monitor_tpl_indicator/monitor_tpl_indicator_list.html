@@ -2,7 +2,7 @@
 /**
  * 模版指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-03 08:00:13
+ * @since 2023-10-05 20:26:39
  */
  -->
  <!DOCTYPE html>
@@ -47,8 +47,7 @@
                     </div>
                     <!-- 监控方式 , monitorMethod ,typeName=select_box, isHideInSearch=true -->
                     <!-- 指标类型 , indicatorType ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 值行数 , valueColumnRows ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 值列数 , valueColumnCols ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 值行列数 , rowColType ,typeName=select_box, isHideInSearch=true -->
                     <!-- 数值类型 , valueColumnType ,typeName=select_box, isHideInSearch=true -->
                     <!-- 数值字段 , valueColumn ,typeName=text_input, isHideInSearch=true -->
                     <!-- 数值字段映射 , valueColumnMap ,typeName=text_input, isHideInSearch=true -->
@@ -147,8 +146,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.MonitorEnableEnum')}]];
     var SELECT_MONITORMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.MonitorMethodEnum')}]];
-    var SELECT_VALUECOLUMNROWS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.MonitorIndicatorValueColumnRowsEnum')}]];
-    var SELECT_VALUECOLUMNCOLS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.MonitorIndicatorValueColumnColsEnum')}]];
+    var SELECT_ROWCOLTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.MonitorIndicatorColumnRowColTypeEnum')}]];
     var SELECT_VALUECOLUMNTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.MonitorIndicatorValueColumnTypeEnum')}]];
     var AUTH_PREFIX="ops_monitor_tpl_indicator";
 

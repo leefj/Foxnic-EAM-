@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-03 08:00:12
+ * @since 2023-10-05 20:26:38
  * @sign A30CF0E8E3F7E78C68BEB54048A66F1B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -211,24 +211,14 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> INDICATOR_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,INDICATOR_TYPE, java.lang.String.class, "指标类型", "指标类型", java.lang.String.class, null);
 	
 	/**
-	 * 值行数 , 类型: java.lang.String
+	 * 值行列数 , 类型: java.lang.String
 	*/
-	public static final String VALUE_COLUMN_ROWS="valueColumnRows";
+	public static final String ROW_COL_TYPE="rowColType";
 	
 	/**
-	 * 值行数 , 类型: java.lang.String
+	 * 值行列数 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> VALUE_COLUMN_ROWS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,VALUE_COLUMN_ROWS, java.lang.String.class, "值行数", "值行数", java.lang.String.class, null);
-	
-	/**
-	 * 值列数 , 类型: java.lang.String
-	*/
-	public static final String VALUE_COLUMN_COLS="valueColumnCols";
-	
-	/**
-	 * 值列数 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> VALUE_COLUMN_COLS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,VALUE_COLUMN_COLS, java.lang.String.class, "值列数", "值列数", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> ROW_COL_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,ROW_COL_TYPE, java.lang.String.class, "值行列数", "值行列数", java.lang.String.class, null);
 	
 	/**
 	 * 数值类型 , 类型: java.lang.String
@@ -473,7 +463,7 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , STATUS , NAME , CODE , MONITOR_TPL_CODE , MONITOR_METHOD , INDICATOR_TYPE , VALUE_COLUMN_ROWS , VALUE_COLUMN_COLS , VALUE_COLUMN_TYPE , VALUE_COLUMN , VALUE_COLUMN_MAP , VALUE_COLUMN_NAME , TIME_OUT , INTERVAL_TIME , DATA_KEEP_DAY , COMMAND , COMMAND_VALUE , INDICATOR_VARIABLE , SNMP_OID , LABEL , ITEM_SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_INDICATOR_TYPE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , STATUS , NAME , CODE , MONITOR_TPL_CODE , MONITOR_METHOD , INDICATOR_TYPE , ROW_COL_TYPE , VALUE_COLUMN_TYPE , VALUE_COLUMN , VALUE_COLUMN_MAP , VALUE_COLUMN_NAME , TIME_OUT , INTERVAL_TIME , DATA_KEEP_DAY , COMMAND , COMMAND_VALUE , INDICATOR_VARIABLE , SNMP_OID , LABEL , ITEM_SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_INDICATOR_TYPE };
 	
 	/**
 	 * 代理类
@@ -693,24 +683,13 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 		}
 		
 		/**
-		 * 设置 值行数
-		 * @param valueColumnRows 值行数
+		 * 设置 值行列数
+		 * @param rowColType 值行列数
 		 * @return 当前对象
 		*/
-		public MonitorTplIndicator setValueColumnRows(String valueColumnRows) {
-			super.change(VALUE_COLUMN_ROWS,super.getValueColumnRows(),valueColumnRows);
-			super.setValueColumnRows(valueColumnRows);
-			return this;
-		}
-		
-		/**
-		 * 设置 值列数
-		 * @param valueColumnCols 值列数
-		 * @return 当前对象
-		*/
-		public MonitorTplIndicator setValueColumnCols(String valueColumnCols) {
-			super.change(VALUE_COLUMN_COLS,super.getValueColumnCols(),valueColumnCols);
-			super.setValueColumnCols(valueColumnCols);
+		public MonitorTplIndicator setRowColType(String rowColType) {
+			super.change(ROW_COL_TYPE,super.getRowColType(),rowColType);
+			super.setRowColType(rowColType);
 			return this;
 		}
 		
@@ -996,9 +975,7 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 			inst.setCode(this.getCode());
 			inst.setDataKeepDay(this.getDataKeepDay());
 			inst.setNotes(this.getNotes());
-			inst.setValueColumnRows(this.getValueColumnRows());
 			inst.setMonitorMethod(this.getMonitorMethod());
-			inst.setValueColumnCols(this.getValueColumnCols());
 			inst.setMonitorTplCode(this.getMonitorTplCode());
 			inst.setIndicatorType(this.getIndicatorType());
 			inst.setUpdateBy(this.getUpdateBy());
@@ -1012,6 +989,7 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 			inst.setCommand(this.getCommand());
 			inst.setTimeOut(this.getTimeOut());
 			inst.setValueColumnType(this.getValueColumnType());
+			inst.setRowColType(this.getRowColType());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setCommandValue(this.getCommandValue());

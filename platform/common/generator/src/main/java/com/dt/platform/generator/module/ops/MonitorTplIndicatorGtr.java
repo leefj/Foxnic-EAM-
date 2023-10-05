@@ -63,10 +63,13 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.ID).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.LABEL).table().disable(true);
+
+
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.COMMAND_VALUE).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.COMMAND_VALUE).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.CREATE_TIME).table().disable(true);
-
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.SNMP_OID).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.TIME_OUT).basic().label("超时时间(秒)");
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.INTERVAL_TIME).basic().label("间隔时间(秒)");
@@ -90,11 +93,16 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
                 textField(MonitorTplIndicatorTypeMeta.NAME).
                 fillWith(MonitorTplIndicatorMeta.MONITOR_INDICATOR_TYPE).muliti(false);
 
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.ROW_COL_TYPE).form().validate().required();
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.ROW_COL_TYPE).form().validate().required();
 
 
-        cfg.view().field(OpsTables.OPS_MONITOR_TPL.CODE).form().validate().required();
-        cfg.view().field(OpsTables.OPS_MONITOR_TPL.NAME).form().validate().required();
-        cfg.view().field(OpsTables.OPS_MONITOR_TPL.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN_NAME).form().validate().required();
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN_MAP).form().validate().required();
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN).form().validate().required();
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.CODE).form().validate().required();
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.NAME).form().validate().required();
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.STATUS).form().validate().required().form()
                 .label("状态").radioBox().defaultIndex(0).enumType(MonitorEnableEnum.class);
@@ -102,49 +110,46 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.MONITOR_METHOD).form().validate().required().form()
                 .label("采集方式").selectBox().enumType(MonitorMethodEnum.class);
 
-        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN_TYPE).form()
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN_TYPE).form().validate().required().form().form().validate().required().form()
                 .label("数值类型").selectBox().enumType(MonitorIndicatorValueColumnTypeEnum.class);
 
-        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN_ROWS).form()
-                .label("数值行数").selectBox().enumType(MonitorIndicatorValueColumnRowsEnum.class);
 
-        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN_COLS).form()
-                .label("数值列数").selectBox().enumType(MonitorIndicatorValueColumnColsEnum.class);
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.ROW_COL_TYPE).form()
+                .label("值行列数").validate().required().form().selectBox()
+                .enumType(MonitorIndicatorColumnRowColTypeEnum.class).defaultIndex(0);
+
 
         cfg.view().formWindow().bottomSpace(120);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width("90%");
 
 
         cfg.view().form().addGroup("基本信息",
                 new Object[] {
+                        OpsTables.OPS_MONITOR_TPL_INDICATOR.CODE,
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.NAME,
+
+                },
+                new Object[] {
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.MONITOR_TPL_CODE,
-                },
-                new Object[] {
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.STATUS,
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.INDICATOR_TYPE,
+
                 },
                 new Object[] {
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.LABEL,
+                        OpsTables.OPS_MONITOR_TPL_INDICATOR.INDICATOR_TYPE,
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.ITEM_SORT,
                 }
         );
         cfg.view().form().addGroup("采集方式",
                 new Object[] {
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.CODE,
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.MONITOR_METHOD,
                 },
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.INTERVAL_TIME,
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.DATA_KEEP_DAY,
-
                 },
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.TIME_OUT,
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.SNMP_OID
                 }
         );
-
 
         cfg.view().form().addGroup(null,
                 new Object[] {
@@ -160,13 +165,11 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN_NAME,
                 },
                 new Object[] {
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN_COLS,
-                        OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN_ROWS,
-
-                },
-                new Object[] {
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN,
                         OpsTables.OPS_MONITOR_TPL_INDICATOR.VALUE_COLUMN_MAP,
+                },
+                new Object[] {
+                        OpsTables.OPS_MONITOR_TPL_INDICATOR.ROW_COL_TYPE,
 
                 }
         );
@@ -178,6 +181,7 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
         );
 
         cfg.view().list().addJsVariable("TPL_CODE","[[${tplCode}]]","tplCode");
+        cfg.view().form().addJsVariable("TPL_CODE","[[${tplCode}]]","tplCode");
 
         //文件生成覆盖模式
         cfg.overrides()

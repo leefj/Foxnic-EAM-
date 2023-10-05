@@ -2,7 +2,6 @@ package com.dt.platform.generator.module.ops;
 import com.dt.platform.constants.db.OpsTables;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.ops.MonitorEnableEnum;
-import com.dt.platform.constants.enums.ops.MonitorIndicatorValueColumnRowsEnum;
 import com.dt.platform.constants.enums.ops.MonitorStatusEnum;
 import com.dt.platform.domain.ops.*;
 import com.dt.platform.domain.ops.meta.*;
@@ -21,7 +20,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
-        cfg.getPoClassFile().addSimpleProperty(MonitorVoucher.class,"sshVoucher","ssh凭证","ssh凭证");
+        cfg.getPoClassFile().addSimpleProperty(MonitorVoucher.class,"sshVoucher","凭证","凭证");
 
      //  cfg.getPoClassFile().addSimpleProperty(MonitorNodeHost.class,"monitorNodeHost","主机信息","主机信息");
         cfg.getPoClassFile().addSimpleProperty(MonitorNodeDb.class,"monitorNodeDb","数据库信息","数据库信息");
@@ -110,7 +109,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                 .fillWith(MonitorNodeMeta.MONITOR_TPL_LIST).muliti(true);
 
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.SSH_VOUCHER_ID)
-                .basic().label("凭证(SSH)")
+                .basic().label("凭证")
                 .form().selectBox().queryApi(MonitorVoucherServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
                 .valueField(MonitorVoucherMeta.ID).

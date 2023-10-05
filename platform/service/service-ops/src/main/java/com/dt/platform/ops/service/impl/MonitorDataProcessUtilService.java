@@ -31,16 +31,40 @@ public class MonitorDataProcessUtilService {
      * */
     public DAO dao() { return dao; }
 
-    public String getLastValue(MonitorNode node,String code){
+
+    public BigDecimal getLastValueDouble(MonitorNode node,String code,int minute){
+        String value=getLastValue(node,code,minute,"0");
+        return new BigDecimal(value);
+    }
+
+    public BigDecimal getLastValueDouble(MonitorNode node,String code,int minute,String defValue){
+        String value=getLastValue(node,code,minute,defValue);
+        System.out.println("value###"+value);
+        return new BigDecimal(value);
+    }
+
+    public String getLastValueString(MonitorNode node,String code,int minute,String defValue){
+        return getLastValue(node,code,minute,defValue);
+    }
+
+    public String getLastValueString(MonitorNode node,String code,int minute){
+        return getLastValue(node,code,minute,null);
+    }
+
+    public String getLastValue(MonitorNode node,String code,int minute,String defValue){
         String curTplCode=node.getCalIndicatorTplCode();
-        String res=null;
-        System.out.println("dao:"+dao);
-        Rcd rs=dao.queryRecord("select "
+        String res=defValue;
+        String timestr="";
+        if(minute>0){
+            timestr=" and record_time>date_sub(now(), interval "+minute+" minute) ";
+        }
+        String sql="select "
                 +" (select value_column from ops_monitor_tpl_indicator where monitor_tpl_code=? and code=?) col,"
                 +" t.* from ops_monitor_node_value_last t"
-                +" where result_status='sucess' and monitor_tpl_code=? and indicator_code=? and node_id=? "
-                +" and record_time=(select max(t.record_time) from ops_monitor_node_value_last t where result_status='sucess' and monitor_tpl_code=? and indicator_code=? and node_id= ?)"
-                ,curTplCode,code,curTplCode,code,node.getId(),curTplCode,code,node.getId());
+                +" where result_status='sucess' #TIME# and monitor_tpl_code=? and indicator_code=? and node_id=? "
+                +" and record_time=(select max(t.record_time) from ops_monitor_node_value_last t where result_status='sucess' and monitor_tpl_code=? and indicator_code=? and node_id= ?)";
+        sql=sql.replace("#TIME#",timestr);
+        Rcd rs=dao.queryRecord(sql,curTplCode,code,curTplCode,code,node.getId(),curTplCode,code,node.getId());
         if(rs!=null){
             res=rs.getString(rs.getString("col"));
         }
@@ -97,7 +121,6 @@ public class MonitorDataProcessUtilService {
 
         Date d1=new Date();
         Date d2=new Date();
-        String expr="d1>d2";
 
         JexlContext jexlContext = new MapContext();
         jexlContext.set("bb",  bb);
@@ -105,10 +128,9 @@ public class MonitorDataProcessUtilService {
         jexlContext.set("d2",  d2);
         jexlContext.set("a",  new BigDecimal("1"));
         jexlContext.set("b",  new BigDecimal("1.0"));
-
+        String expr="a>b";
         JexlExpression expression = jexlEngine.createExpression(expr);
         Object r=expression.evaluate(jexlContext);
-
         System.out.println(r.getClass()+","+r);
         // 初始化Jexl构造器
 //        JexlBuilder jexlBuilder = new JexlBuilder();
