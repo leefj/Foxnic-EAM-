@@ -87,7 +87,7 @@ public class MonitorNodeController extends SuperController {
 		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"),
-		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Impi端口", required = false, dataTypeClass = Integer.class, example = "623"),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class)
@@ -100,6 +100,21 @@ public class MonitorNodeController extends SuperController {
         Result result = monitorNodeService.insert(monitorNodeVO, false);
         return result;
     }
+
+    /**
+     * 复制
+     */
+    @ApiOperation(value = "复制")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+    })
+    @ApiOperationSupport(order = 2)
+    @SentinelResource(value = MonitorNodeServiceProxy.COPY, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(MonitorNodeServiceProxy.COPY)
+    public Result copy(String id,String num) {
+        return  monitorNodeService.copy(id,num);
+    }
+
 
     /**
      * 删除节点
@@ -203,7 +218,7 @@ public class MonitorNodeController extends SuperController {
 		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"),
-		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Impi端口", required = false, dataTypeClass = Integer.class, example = "623"),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class)
@@ -241,7 +256,7 @@ public class MonitorNodeController extends SuperController {
 		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"),
-		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Impi端口", required = false, dataTypeClass = Integer.class, example = "623"),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class)
@@ -316,7 +331,7 @@ public class MonitorNodeController extends SuperController {
 		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"),
-		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Impi端口", required = false, dataTypeClass = Integer.class, example = "623"),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class)
@@ -355,7 +370,7 @@ public class MonitorNodeController extends SuperController {
 		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"),
-		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Impi端口", required = false, dataTypeClass = Integer.class, example = "623"),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class)

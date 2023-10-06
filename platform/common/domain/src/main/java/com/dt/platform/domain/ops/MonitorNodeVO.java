@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 节点VO类型
  * <p>节点 , 数据表 ops_monitor_node 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 08:59:06
+ * @since 2023-10-06 11:19:59
  * @sign 05DF7270C512DCD4908D3A955CF15039
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -433,7 +433,6 @@ public class MonitorNodeVO extends MonitorNode {
 		inst.setAgentPort(this.getAgentPort());
 		inst.setStatus(this.getStatus());
 		if(all) {
-			inst.setUidProcess(this.getUidProcess());
 			inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
 			inst.setSearchField(this.getSearchField());
 			inst.setUidList(this.getUidList());
@@ -547,7 +546,6 @@ public class MonitorNodeVO extends MonitorNode {
 			this.setAgentPort(DataParser.parse(Integer.class, map.get(MonitorNodeVOMeta.AGENT_PORT)));
 			this.setStatus(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.STATUS)));
 			// others
-			this.setUidProcess(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.UID_PROCESS)));
 			this.setSearchField(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.SEARCH_FIELD)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(MonitorNodeVOMeta.FUZZY_FIELD)));
@@ -599,7 +597,6 @@ public class MonitorNodeVO extends MonitorNode {
 				this.setAgentPort( (Integer)map.get(MonitorNodeVOMeta.AGENT_PORT));
 				this.setStatus( (String)map.get(MonitorNodeVOMeta.STATUS));
 				// others
-				this.setUidProcess( (String)map.get(MonitorNodeVOMeta.UID_PROCESS));
 				this.setSearchField( (String)map.get(MonitorNodeVOMeta.SEARCH_FIELD));
 				this.setRequestAction( (String)map.get(MonitorNodeVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(MonitorNodeVOMeta.FUZZY_FIELD));

@@ -28,6 +28,7 @@ import java.util.Map;
 
 public interface IMonitorNodeService extends  ISimpleIdService<MonitorNode,String> {
 
+	Result copy(String id,String num);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

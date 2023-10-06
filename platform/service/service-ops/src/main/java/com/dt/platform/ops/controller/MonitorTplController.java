@@ -301,6 +301,9 @@ public class MonitorTplController extends SuperController {
 		// join 关联的对象
 		monitorTplService.dao().fill(list)
 			.with(MonitorTplMeta.TPL_TYPE)
+				.with(MonitorTplMeta.TPL_INDICATOR_LIST)
+				.with(MonitorTplMeta.GRAPH_LIST)
+				.with(MonitorTplMeta.TRIGGER_LIST)
 			.execute();
 		result.success(true).data(list);
 		return result;

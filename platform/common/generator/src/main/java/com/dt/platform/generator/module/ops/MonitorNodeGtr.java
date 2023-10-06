@@ -85,6 +85,17 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.NOTES).table().disable(true);
 
 
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.SNMP_COMMUNITY).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.SNMP_PORT).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.SNMP_VERSION).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.IMPI_PORT).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.AGENT_PORT).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.ZABBIX_AGENT_PORT).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.JMX_PORT).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.JDBC_URL).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.SSH_PORT).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.SSH_VOUCHER_ID).table().disable(true);
+
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.NODE_IP).form().validate().required();
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.NODE_NAME_SHOW).form().validate().required();
 
@@ -187,6 +198,8 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                         OpsTables.OPS_MONITOR_NODE.NOTES,
                 }
         );
+
+        cfg.view().list().operationColumn().addActionButton("复制","copyFunc","copy-button","ops_monitor_node:copy");
 
         //文件生成覆盖模式
         cfg.overrides()

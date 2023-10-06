@@ -2,7 +2,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 08:59:08
+ * @since 2023-10-06 11:20:02
  */
  -->
  <!DOCTYPE html>
@@ -57,7 +57,7 @@
                     <!-- Snmp版本 , snmpVersion ,typeName=text_input, isHideInSearch=true -->
                     <!-- Snmp团体 , snmpCommunity ,typeName=text_input, isHideInSearch=true -->
                     <!-- Jmx端口 , jmxPort ,typeName=number_input, isHideInSearch=true -->
-                    <!-- Jmx端口 , impiPort ,typeName=number_input, isHideInSearch=true -->
+                    <!-- Impi端口 , impiPort ,typeName=number_input, isHideInSearch=true -->
                     <!-- Jdbc地址 , jdbcUrl ,typeName=text_input, isHideInSearch=true -->
                     <!-- 变量 , var ,typeName=text_area, isHideInSearch=true -->
                     <!-- 监控模版 , monitorTplIds ,typeName=select_box, isHideInSearch=true -->
@@ -142,6 +142,7 @@
 
     <button th:if="${perm.checkAuth('ops_monitor_node:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
+    <button th:if="${perm.checkAuth('ops_monitor_node:copy')}"class="layui-btn layui-btn-xs  copy-button " lay-event="copy-func" data-id="{{d.id}}"><span th:text="${lang.translate('复制','','cmp:table.ops')}">复制</span></button>
 
 </script>
 

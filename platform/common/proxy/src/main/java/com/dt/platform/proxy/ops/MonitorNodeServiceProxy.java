@@ -84,6 +84,8 @@ public interface MonitorNodeServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+    public static final String COPY = API_PREFIX + "copy";
+
     /**
      * 添加节点
      */
