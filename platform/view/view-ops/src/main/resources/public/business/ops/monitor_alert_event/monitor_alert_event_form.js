@@ -1,7 +1,7 @@
 /**
- * 监控告警 列表页 JS 脚本
+ * 告警事件 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 09:23:04
+ * @since 2023-10-06 09:10:58
  */
 
 function FormPage() {
@@ -9,7 +9,7 @@ function FormPage() {
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
 	
 	// 接口地址
-	const moduleURL="/service-ops/ops-monitor-alert";
+	const moduleURL="/service-ops/ops-monitor-alert-event";
 	const queryURL=moduleURL+"/get-by-id";
 	const insertURL=moduleURL+"/insert";
 	const updateURL=moduleURL+"/update";
@@ -17,7 +17,7 @@ function FormPage() {
 	var rawFormData=null;
 	// 表单执行操作类型：view，create，edit
 	var action=null;
-	var disableCreateNew=true;
+	var disableCreateNew=false;
 	var disableModify=false;
 	var dataBeforeEdit=null;
 	const bpmIntegrateMode="none";
@@ -30,7 +30,7 @@ function FormPage() {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
-		action=admin.getTempData('ops-monitor-alert-form-data-form-action');
+		action=admin.getTempData('ops-monitor-alert-event-form-data-form-action');
 		//如果没有修改和保存权限
 		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
 			disableModify=true;
@@ -44,7 +44,7 @@ function FormPage() {
 		}
 
 		if(window.pageExt.form.beforeInit) {
-			window.pageExt.form.beforeInit(action,admin.getTempData('ops-monitor-alert-form-data'));
+			window.pageExt.form.beforeInit(action,admin.getTempData('ops-monitor-alert-event-form-data'));
 		}
 
 		//渲染表单组件
@@ -96,9 +96,9 @@ function FormPage() {
 				prevBodyHeight = bodyHeight;
 				return;
 			}
-			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-monitor-alert-form-data-win');
+			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-monitor-alert-event-form-data-win');
 			if(area==null) return;
-			admin.putTempData('ops-monitor-alert-form-area', area);
+			admin.putTempData('ops-monitor-alert-event-form-area', area);
 			window.adjustPopup=adjustPopup;
 			if(area.tooHeigh) {
 				var windowHeight=area.iframeHeight;
@@ -118,86 +118,6 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
-		//渲染 status 下拉字段
-		fox.renderSelectBox({
-			el: "status",
-			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("处理状态",'','cmp:form'),
-			filterable: false,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 warnLevel 下拉字段
-		fox.renderSelectBox({
-			el: "warnLevel",
-			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("告警等级",'','cmp:form'),
-			filterable: false,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("warnLevel",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("warnLevel",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
-		});
-		laydate.render({
-			elem: '#warnTime',
-			type:"date",
-			format:"yyyy-MM-dd HH:mm:ss",
-			trigger:"click",
-			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("warnTime",value, date, endDate);
-			}
-		});
-		laydate.render({
-			elem: '#handledTime',
-			type:"date",
-			format:"yyyy-MM-dd HH:mm:ss",
-			trigger:"click",
-			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("handledTime",value, date, endDate);
-			}
-		});
 	}
 
 	/**
@@ -229,7 +149,7 @@ function FormPage() {
       */
 	function fillFormData(formData) {
 		if(!formData) {
-			formData = admin.getTempData('ops-monitor-alert-form-data');
+			formData = admin.getTempData('ops-monitor-alert-event-form-data');
 		}
 		rawFormData=formData;
 
@@ -249,20 +169,8 @@ function FormPage() {
 
 
 
-			//设置 告警时间 显示复选框勾选
-			if(formData["warnTime"]) {
-				$("#warnTime").val(fox.dateFormat(formData["warnTime"],"yyyy-MM-dd HH:mm:ss"));
-			}
-			//设置 处理时间 显示复选框勾选
-			if(formData["handledTime"]) {
-				$("#handledTime").val(fox.dateFormat(formData["handledTime"],"yyyy-MM-dd HH:mm:ss"));
-			}
 
 
-			//设置  处理状态 设置下拉框勾选
-			fox.setSelectValue4Enum("#status",formData.status,SELECT_STATUS_DATA);
-			//设置  告警等级 设置下拉框勾选
-			fox.setSelectValue4Enum("#warnLevel",formData.warnLevel,SELECT_WARNLEVEL_DATA);
 
 			//处理fillBy
 
@@ -315,7 +223,7 @@ function FormPage() {
 	 * */
 	function getRawFormData() {
 		if(!rawFormData) {
-			rawFormData = admin.getTempData('ops-monitor-alert-form-data');
+			rawFormData = admin.getTempData('ops-monitor-alert-event-form-data');
 		}
 		return rawFormData;
 	}
@@ -325,10 +233,6 @@ function FormPage() {
 
 
 
-		//获取 处理状态 下拉框的值
-		data["status"]=fox.getSelectedValue("status",false);
-		//获取 告警等级 下拉框的值
-		data["warnLevel"]=fox.getSelectedValue("warnLevel",false);
 
 		return data;
 	}
@@ -365,7 +269,7 @@ function FormPage() {
 				}
 
 				if(doNext) {
-					admin.finishPopupCenterById('ops-monitor-alert-form-data-win');
+					admin.finishPopupCenterById('ops-monitor-alert-event-form-data-win');
 				}
 
 				// 调整状态为编辑
@@ -395,26 +299,9 @@ function FormPage() {
 
 	    form.on('submit(submit-button)', verifyAndSaveForm);
 
-		// 请选择人员对话框
-		$("#userId-button").click(function(){
-				var userIdDialogOptions={
-				field:"userId",
-				formData:getFormData(),
-				inputEl:$("#userId"),
-				buttonEl:$(this),
-				single:true,
-				autoWidth:false,
-				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
-				root: "",
-				targetType:"emp",
-				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
-				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
-			};
-			fox.chooseEmployee(userIdDialogOptions);
-		});
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-monitor-alert-form-data-win',this); });
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-monitor-alert-event-form-data-win',this); });
 
     }
 

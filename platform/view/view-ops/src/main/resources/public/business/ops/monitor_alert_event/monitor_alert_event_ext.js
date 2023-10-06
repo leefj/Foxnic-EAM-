@@ -1,7 +1,7 @@
 /**
- * 监控模版 列表页 JS 脚本
+ * 告警事件 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-02 11:32:35
+ * @since 2023-10-06 09:10:57
  */
 
 layui.config({
@@ -18,7 +18,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     //模块基础路径
-    const moduleURL="/service-ops/ops-monitor-tpl";
+    const moduleURL="/service-ops/ops-monitor-alert-event";
 
 
     //列表页的扩展
@@ -111,26 +111,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
-
-            if(field=="indicatorCount"){
-                if(r&&r.tplIndicatorList){
-                    return r.tplIndicatorList.length;
-                }else{
-                    return 0
-                }
-            }else if(field=="graphCount"){
-                if(r&&r.graphList){
-                    return r.graphList.length;
-                }else{
-                    return 0
-                }
-            }else if(field=="triggerCount"){
-                if(r&&r.triggerList){
-                    return r.triggerList.length;
-                }else{
-                    return 0
-                }
-            }
             if(value==null) return "";
             return value;
         },
@@ -191,59 +171,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
-        },
-        graph:function (data){
-            console.log('graph',data);
-            var queryString="?tplCode="+data.code;
-
-            admin.popupCenter({
-                title: "图形",
-                resize: false,
-                offset: [20,null],
-                area: ["80%","90%"],
-                type: 2,
-                id:"ops-monitor-tpl-graph-list-data-win",
-                content: '/business/ops/monitor_tpl_graph/monitor_tpl_graph_list.html' + queryString,
-                finish: function () {
-
-                }
-            });
-
-
-        },
-        trigger:function (data){
-            console.log('items',data);
-            var queryString="?tplCode="+data.code;
-            admin.popupCenter({
-                title: "触发器",
-                resize: false,
-                offset: [20,null],
-                area: ["80%","90%"],
-                type: 2,
-                id:"ops-monitor-tpl-trigger-list-data-win",
-                content: '/business/ops/monitor_tpl_trigger/monitor_tpl_trigger_list.html' + queryString,
-                finish: function () {
-
-                }
-            });
-
-        },
-        items:function (data){
-            console.log('items',data);
-            var queryString="?tplCode="+data.code;
-            admin.popupCenter({
-                title: "指标",
-                resize: false,
-                offset: [20,null],
-                area: ["80%","90%"],
-                type: 2,
-                id:"ops-monitor-tpl-indicator-list-data-win",
-                content: '/business/ops/monitor_tpl_indicator/monitor_tpl_indicator_list.html' + queryString,
-                finish: function () {
-
-                }
-            });
-
         },
         /**
          * 末尾执行

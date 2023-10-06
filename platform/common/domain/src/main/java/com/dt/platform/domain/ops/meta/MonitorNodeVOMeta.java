@@ -18,7 +18,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-04 09:22:29
+ * @since 2023-10-06 08:59:06
  * @sign 05DF7270C512DCD4908D3A955CF15039
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -456,14 +456,14 @@ public class MonitorNodeVOMeta extends MonitorNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeVO.class ,VERSION, java.lang.Integer.class, "版本", "版本", java.lang.Integer.class, null);
 	
 	/**
-	 * ssh凭证 , 类型: com.dt.platform.domain.ops.MonitorVoucher
+	 * 凭证 , 类型: com.dt.platform.domain.ops.MonitorVoucher
 	*/
 	public static final String SSH_VOUCHER="sshVoucher";
 	
 	/**
-	 * ssh凭证 , 类型: com.dt.platform.domain.ops.MonitorVoucher
+	 * 凭证 , 类型: com.dt.platform.domain.ops.MonitorVoucher
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeVO,com.dt.platform.domain.ops.MonitorVoucher> SSH_VOUCHER_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeVO.class ,SSH_VOUCHER, com.dt.platform.domain.ops.MonitorVoucher.class, "ssh凭证", "ssh凭证", com.dt.platform.domain.ops.MonitorVoucher.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeVO,com.dt.platform.domain.ops.MonitorVoucher> SSH_VOUCHER_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeVO.class ,SSH_VOUCHER, com.dt.platform.domain.ops.MonitorVoucher.class, "凭证", "凭证", com.dt.platform.domain.ops.MonitorVoucher.class, null);
 	
 	/**
 	 * 数据库信息 , 类型: com.dt.platform.domain.ops.MonitorNodeDb
@@ -546,9 +546,29 @@ public class MonitorNodeVOMeta extends MonitorNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeVO,java.lang.String> CAL_INDICATOR_TPL_CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeVO.class ,CAL_INDICATOR_TPL_CODE, java.lang.String.class, "当前模版", "当前模版", java.lang.String.class, null);
 	
 	/**
+	 * uidList , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String UID_LIST="uidList";
+	
+	/**
+	 * uidList , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeVO,java.lang.String> UID_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeVO.class ,UID_LIST, java.util.List.class, "uidList", "uidList", java.lang.String.class, null);
+	
+	/**
+	 * uidProcess , 类型: java.lang.String
+	*/
+	public static final String UID_PROCESS="uidProcess";
+	
+	/**
+	 * uidProcess , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNodeVO,java.lang.String> UID_PROCESS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNodeVO.class ,UID_PROCESS, java.lang.String.class, "uidProcess", "uidProcess", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NODE_IP , NODE_NAME_SHOW , PID , TYPE , SUB_TYPE , GROUP_ID , NODE_NAME , NODE_TYPE , NODE_ENABLED , STATUS , SSH_VOUCHER_ID , SSH_PORT , AGENT_PORT , ZABBIX_AGENT_PORT , SNMP_PORT , SNMP_VERSION , SNMP_COMMUNITY , JMX_PORT , IMPI_PORT , JDBC_URL , VAR , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SSH_VOUCHER , MONITOR_NODE_DB , MONITOR_NODE_VALUE_LIST , MONITOR_NODE_GROUP , MONITOR_NODE_TYPE , MONITOR_NODE_SUB_TYPE , MONITOR_TPL_LIST , MONITOR_TPL_IDS , CAL_INDICATOR_TPL_CODE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NODE_IP , NODE_NAME_SHOW , PID , TYPE , SUB_TYPE , GROUP_ID , NODE_NAME , NODE_TYPE , NODE_ENABLED , STATUS , SSH_VOUCHER_ID , SSH_PORT , AGENT_PORT , ZABBIX_AGENT_PORT , SNMP_PORT , SNMP_VERSION , SNMP_COMMUNITY , JMX_PORT , IMPI_PORT , JDBC_URL , VAR , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SSH_VOUCHER , MONITOR_NODE_DB , MONITOR_NODE_VALUE_LIST , MONITOR_NODE_GROUP , MONITOR_NODE_TYPE , MONITOR_NODE_SUB_TYPE , MONITOR_TPL_LIST , MONITOR_TPL_IDS , CAL_INDICATOR_TPL_CODE , UID_LIST , UID_PROCESS };
 	
 	/**
 	 * 代理类
@@ -1032,8 +1052,8 @@ public class MonitorNodeVOMeta extends MonitorNodeMeta {
 		}
 		
 		/**
-		 * 设置 ssh凭证
-		 * @param sshVoucher ssh凭证
+		 * 设置 凭证
+		 * @param sshVoucher 凭证
 		 * @return 当前对象
 		*/
 		public MonitorNode setSshVoucher(MonitorVoucher sshVoucher) {
@@ -1129,6 +1149,28 @@ public class MonitorNodeVOMeta extends MonitorNodeMeta {
 			super.setCalIndicatorTplCode(calIndicatorTplCode);
 			return this;
 		}
+		
+		/**
+		 * 设置 uidList
+		 * @param uidList uidList
+		 * @return 当前对象
+		*/
+		public MonitorNode setUidList(List<String> uidList) {
+			super.change(UID_LIST,super.getUidList(),uidList);
+			super.setUidList(uidList);
+			return this;
+		}
+		
+		/**
+		 * 设置 uidProcess
+		 * @param uidProcess uidProcess
+		 * @return 当前对象
+		*/
+		public MonitorNode setUidProcess(String uidProcess) {
+			super.change(UID_PROCESS,super.getUidProcess(),uidProcess);
+			super.setUidProcess(uidProcess);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1177,9 +1219,11 @@ public class MonitorNodeVOMeta extends MonitorNodeMeta {
 			inst.setAgentPort(this.getAgentPort());
 			inst.setStatus(this.getStatus());
 			if(all) {
+				inst.setUidProcess(this.getUidProcess());
 				inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
 				inst.setSearchField(this.getSearchField());
 				inst.setRequestAction(this.getRequestAction());
+				inst.setUidList(this.getUidList());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setMonitorNodeType(this.getMonitorNodeType());
 				inst.setPageSize(this.getPageSize());

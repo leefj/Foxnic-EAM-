@@ -32,26 +32,25 @@ public class MonitorDataProcessUtilService {
     public DAO dao() { return dao; }
 
 
-    public BigDecimal getLastValueDouble(MonitorNode node,String code,int minute){
-        String value=getLastValue(node,code,minute,"0");
+    public BigDecimal lastDouble(MonitorNode node,String code,int minute){
+        String value=last(node,code,minute,"0");
         return new BigDecimal(value);
     }
 
-    public BigDecimal getLastValueDouble(MonitorNode node,String code,int minute,String defValue){
-        String value=getLastValue(node,code,minute,defValue);
-        System.out.println("value###"+value);
+    public BigDecimal lastDouble(MonitorNode node,String code,int minute,String defValue){
+        String value=last(node,code,minute,defValue);
         return new BigDecimal(value);
     }
 
-    public String getLastValueString(MonitorNode node,String code,int minute,String defValue){
-        return getLastValue(node,code,minute,defValue);
+    public String lastString(MonitorNode node,String code,int minute,String defValue){
+        return last(node,code,minute,defValue);
     }
 
-    public String getLastValueString(MonitorNode node,String code,int minute){
-        return getLastValue(node,code,minute,null);
+    public String lastString(MonitorNode node,String code,int minute){
+        return last(node,code,minute,null);
     }
 
-    public String getLastValue(MonitorNode node,String code,int minute,String defValue){
+    public String last(MonitorNode node,String code,int minute,String defValue){
         String curTplCode=node.getCalIndicatorTplCode();
         String res=defValue;
         String timestr="";
@@ -62,11 +61,15 @@ public class MonitorDataProcessUtilService {
                 +" (select value_column from ops_monitor_tpl_indicator where monitor_tpl_code=? and code=?) col,"
                 +" t.* from ops_monitor_node_value_last t"
                 +" where result_status='sucess' #TIME# and monitor_tpl_code=? and indicator_code=? and node_id=? "
-                +" and record_time=(select max(t.record_time) from ops_monitor_node_value_last t where result_status='sucess' and monitor_tpl_code=? and indicator_code=? and node_id= ?)";
-        sql=sql.replace("#TIME#",timestr);
-        Rcd rs=dao.queryRecord(sql,curTplCode,code,curTplCode,code,node.getId(),curTplCode,code,node.getId());
+                +" and record_time=(select max(t.record_time) from ops_monitor_node_value_last t where result_status='sucess' and monitor_tpl_code=? and indicator_code=? and node_id=?)";
+        Rcd rs=dao.queryRecord(sql.replace("#TIME#",timestr),curTplCode,code,curTplCode,code,node.getId(),curTplCode,code,node.getId());
         if(rs!=null){
             res=rs.getString(rs.getString("col"));
+            String id=rs.getString("id");
+            if(node.getUidList()==null){
+                node.setUidList(new ArrayList<>());
+            }
+            node.getUidList().add(id);
         }
         return res;
     }

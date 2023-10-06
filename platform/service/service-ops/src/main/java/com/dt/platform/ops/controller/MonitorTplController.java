@@ -33,6 +33,7 @@ import com.dt.platform.domain.ops.meta.MonitorTplMeta;
 import com.dt.platform.domain.ops.MonitorTplType;
 import com.dt.platform.domain.ops.MonitorTplIndicator;
 import com.dt.platform.domain.ops.MonitorTplGraph;
+import com.dt.platform.domain.ops.MonitorTplTrigger;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -47,7 +48,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 监控模版接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 15:21:07
+ * @since 2023-10-06 10:29:20
 */
 
 @InDoc

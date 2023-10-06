@@ -101,14 +101,6 @@ public class MonitorRelationManager extends RelationManager {
     }
 
     private void monitorTpl() {
-        this.property(MonitorTplMeta.GRAPH_LIST_PROP)
-                .using(OpsTables.OPS_MONITOR_TPL.CODE).join(OpsTables.OPS_MONITOR_TPL_GRAPH.TPL_CODE);
-
-        this.property(MonitorTplMeta.TPL_TYPE_PROP)
-                .using(OpsTables.OPS_MONITOR_TPL.TYPE).join(OpsTables.OPS_MONITOR_TPL_TYPE.CODE);
-
-        this.property(MonitorTplMeta.TPL_INDICATOR_LIST_PROP)
-                .using(OpsTables.OPS_MONITOR_TPL.CODE).join(OpsTables.OPS_MONITOR_TPL_INDICATOR.MONITOR_TPL_CODE);
 
 
     }

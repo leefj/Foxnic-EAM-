@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 触发器VO类型
  * <p>触发器 , 数据表 ops_monitor_tpl_trigger 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 23:33:26
+ * @since 2023-10-06 09:32:58
  * @sign 1CE0B46D4AE363891DE76A401E183965
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -413,7 +413,6 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
-		inst.setRuleDesc(this.getRuleDesc());
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
@@ -504,7 +503,6 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(MonitorTplTriggerVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(MonitorTplTriggerVOMeta.DELETE_TIME)));
-			this.setRuleDesc(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.RULE_DESC)));
 			this.setName(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(MonitorTplTriggerVOMeta.ID)));
@@ -536,7 +534,6 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 				this.setCreateTime( (Date)map.get(MonitorTplTriggerVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(MonitorTplTriggerVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(MonitorTplTriggerVOMeta.DELETE_TIME));
-				this.setRuleDesc( (String)map.get(MonitorTplTriggerVOMeta.RULE_DESC));
 				this.setName( (String)map.get(MonitorTplTriggerVOMeta.NAME));
 				this.setDeleteBy( (String)map.get(MonitorTplTriggerVOMeta.DELETE_BY));
 				this.setId( (String)map.get(MonitorTplTriggerVOMeta.ID));
@@ -581,7 +578,6 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MonitorTplTriggerVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MonitorTplTriggerVOMeta.DELETE_TIME)));
-			this.setRuleDesc(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.RULE_DESC)));
 			this.setName(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(MonitorTplTriggerVOMeta.ID)));
@@ -601,7 +597,6 @@ public class MonitorTplTriggerVO extends MonitorTplTrigger {
 				this.setCreateTime( (Date)r.getValue(MonitorTplTriggerVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(MonitorTplTriggerVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(MonitorTplTriggerVOMeta.DELETE_TIME));
-				this.setRuleDesc( (String)r.getValue(MonitorTplTriggerVOMeta.RULE_DESC));
 				this.setName( (String)r.getValue(MonitorTplTriggerVOMeta.NAME));
 				this.setDeleteBy( (String)r.getValue(MonitorTplTriggerVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(MonitorTplTriggerVOMeta.ID));

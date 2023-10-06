@@ -1,7 +1,7 @@
 /**
- * 监控模版 列表页 JS 脚本
+ * 告警事件 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 10:29:21
+ * @since 2023-10-06 09:10:57
  */
 
 
@@ -10,7 +10,7 @@ function ListPage() {
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	
 	//模块基础路径
-	const moduleURL="/service-ops/ops-monitor-tpl";
+	const moduleURL="/service-ops/ops-monitor-alert-event";
 	const queryURL=moduleURL+'/query-paged-list';
 	const deleteURL=moduleURL+'/delete';
 	const batchDeleteURL=moduleURL+'/delete-by-ids';
@@ -84,11 +84,11 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'indicatorCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('指标数量') , templet: function (d) { return templet('indicatorCount',d.indicatorCount,d);}  }
-					,{ field: 'graphCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('图形数量') , templet: function (d) { return templet('graphCount',d.graphCount,d);}  }
-					,{ field: 'triggerCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('触发器数量') , templet: function (d) { return templet('triggerCount',d.triggerCount,d);}  }
+					,{ field: 'id', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'alertId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('告警') , templet: function (d) { return templet('alertId',d.alertId,d);}  }
+					,{ field: 'eventId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点') , templet: function (d) { return templet('eventId',d.eventId,d);}  }
+					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'notes', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('notes') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -159,10 +159,8 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.type={ inputType:"select_box", value: getSelectedValue("#type","value") ,fillBy:["tplType"]  , label:getSelectedValue("#type","nameStr") };
+		value.alertId={ inputType:"button",value: $("#alertId").val()};
+		value.eventId={ inputType:"button",value: $("#eventId").val()};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -209,62 +207,6 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
-		//渲染 status 搜索框
-		fox.renderSelectBox({
-			el: "status",
-			size: "small",
-			radio: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 type 下拉字段
-		fox.renderSelectBox({
-			el: "type",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("type",{data:data[i],name:data[i].name,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
@@ -312,7 +254,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
-					admin.putTempData('ops-monitor-tpl-form-data', {});
+					admin.putTempData('ops-monitor-alert-event-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -331,7 +273,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('ops-monitor-tpl-form-data-form-action', "create",true);
+			admin.putTempData('ops-monitor-alert-event-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -345,11 +287,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'监控模版'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的'+'告警事件'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'监控模版'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'告警事件'+'吗？'), function (i) {
                 top.layer.close(i);
 				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
@@ -384,14 +326,14 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('ops-monitor-tpl-form-data-form-action', "",true);
+			admin.putTempData('ops-monitor-alert-event-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
 				top.layer.load(2);
 				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
 					top.layer.closeAll('loading');
 					if(data.success) {
-						admin.putTempData('ops-monitor-tpl-form-data-form-action', "edit",true);
+						admin.putTempData('ops-monitor-alert-event-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
 						 fox.showMessage(data);
@@ -402,7 +344,7 @@ function ListPage() {
 				admin.post(getByIdURL, { id : data.id }, function (data) {
 					top.layer.closeAll('loading');
 					if(data.success) {
-						admin.putTempData('ops-monitor-tpl-form-data-form-action', "view",true);
+						admin.putTempData('ops-monitor-alert-event-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -416,7 +358,7 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'监控模版'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此'+'告警事件'+'吗？'), function (i) {
 					top.layer.close(i);
 					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
@@ -433,15 +375,6 @@ function ListPage() {
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			else if (layEvent === 'items') { // 指标
-				window.pageExt.list.items(data,this);
-			}
-			else if (layEvent === 'trigger') { // 触发器
-				window.pageExt.list.trigger(data,this);
-			}
-			else if (layEvent === 'graph') { // 图形
-				window.pageExt.list.graph(data,this);
-			}
 			
 		});
 
@@ -455,17 +388,17 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('ops-monitor-tpl-form-data-form-action');
+		var action=admin.getTempData('ops-monitor-alert-event-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('ops-monitor-tpl-form-data', data);
-		var area=admin.getTempData('ops-monitor-tpl-form-area');
+		admin.putTempData('ops-monitor-alert-event-form-data', data);
+		var area=admin.getTempData('ops-monitor-alert-event-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('监控模版');
+		var title = fox.translate('告警事件');
 		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
 		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
 		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
@@ -474,10 +407,10 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["800px",height+"px"],
 			type: 2,
-			id:"ops-monitor-tpl-form-data-win",
-			content: '/business/ops/monitor_tpl/monitor_tpl_form.html' + (queryString?("?"+queryString):""),
+			id:"ops-monitor-alert-event-form-data-win",
+			content: '/business/ops/monitor_alert_event/monitor_alert_event_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();

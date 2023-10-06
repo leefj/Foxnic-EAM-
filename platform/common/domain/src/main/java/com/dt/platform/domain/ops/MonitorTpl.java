@@ -26,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 监控模版
  * <p>监控模版 , 数据表 ops_monitor_tpl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 15:21:07
- * @sign D082C28891A1CB5CB6C252271C638A81
+ * @since 2023-10-06 10:29:20
+ * @sign 95C0708A60B6D2EA9726F319E49ADF0D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -144,6 +144,30 @@ public class MonitorTpl extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="图形" , notes = "图形")
 	private List<MonitorTplGraph> graphList;
+	
+	/**
+	 * 触发器：触发器
+	*/
+	@ApiModelProperty(required = false,value="触发器" , notes = "触发器")
+	private List<MonitorTplTrigger> triggerList;
+	
+	/**
+	 * indicatorCount：indicatorCount
+	*/
+	@ApiModelProperty(required = false,value="indicatorCount" , notes = "indicatorCount")
+	private String indicatorCount;
+	
+	/**
+	 * graphCount：graphCount
+	*/
+	@ApiModelProperty(required = false,value="graphCount" , notes = "graphCount")
+	private String graphCount;
+	
+	/**
+	 * triggerCount：triggerCount
+	*/
+	@ApiModelProperty(required = false,value="triggerCount" , notes = "triggerCount")
+	private String triggerCount;
 	
 	/**
 	 * 获得 主键<br>
@@ -520,6 +544,93 @@ public class MonitorTpl extends Entity {
 		this.graphList.addAll(Arrays.asList(graph));
 		return this;
 	}
+	
+	/**
+	 * 获得 触发器<br>
+	 * 触发器
+	 * @return 触发器
+	*/
+	public List<MonitorTplTrigger> getTriggerList() {
+		return triggerList;
+	}
+	
+	/**
+	 * 设置 触发器
+	 * @param triggerList 触发器
+	 * @return 当前对象
+	*/
+	public MonitorTpl setTriggerList(List<MonitorTplTrigger> triggerList) {
+		this.triggerList=triggerList;
+		return this;
+	}
+	
+	/**
+	 * 添加 触发器
+	 * @param trigger 触发器
+	 * @return 当前对象
+	*/
+	public MonitorTpl addTrigger(MonitorTplTrigger... trigger) {
+		if(this.triggerList==null) triggerList=new ArrayList<>();
+		this.triggerList.addAll(Arrays.asList(trigger));
+		return this;
+	}
+	
+	/**
+	 * 获得 indicatorCount<br>
+	 * indicatorCount
+	 * @return indicatorCount
+	*/
+	public String getIndicatorCount() {
+		return indicatorCount;
+	}
+	
+	/**
+	 * 设置 indicatorCount
+	 * @param indicatorCount indicatorCount
+	 * @return 当前对象
+	*/
+	public MonitorTpl setIndicatorCount(String indicatorCount) {
+		this.indicatorCount=indicatorCount;
+		return this;
+	}
+	
+	/**
+	 * 获得 graphCount<br>
+	 * graphCount
+	 * @return graphCount
+	*/
+	public String getGraphCount() {
+		return graphCount;
+	}
+	
+	/**
+	 * 设置 graphCount
+	 * @param graphCount graphCount
+	 * @return 当前对象
+	*/
+	public MonitorTpl setGraphCount(String graphCount) {
+		this.graphCount=graphCount;
+		return this;
+	}
+	
+	/**
+	 * 获得 triggerCount<br>
+	 * triggerCount
+	 * @return triggerCount
+	*/
+	public String getTriggerCount() {
+		return triggerCount;
+	}
+	
+	/**
+	 * 设置 triggerCount
+	 * @param triggerCount triggerCount
+	 * @return 当前对象
+	*/
+	public MonitorTpl setTriggerCount(String triggerCount) {
+		this.triggerCount=triggerCount;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -582,7 +693,11 @@ public class MonitorTpl extends Entity {
 		if(all) {
 			inst.setTplType(this.getTplType());
 			inst.setTplIndicatorList(this.getTplIndicatorList());
+			inst.setTriggerList(this.getTriggerList());
+			inst.setIndicatorCount(this.getIndicatorCount());
 			inst.setGraphList(this.getGraphList());
+			inst.setTriggerCount(this.getTriggerCount());
+			inst.setGraphCount(this.getGraphCount());
 		}
 		inst.clearModifies();
 		return inst;
@@ -658,6 +773,9 @@ public class MonitorTpl extends Entity {
 			this.setStatus(DataParser.parse(String.class, map.get(MonitorTplMeta.STATUS)));
 			// others
 			this.setTplType(DataParser.parse(MonitorTplType.class, map.get(MonitorTplMeta.TPL_TYPE)));
+			this.setIndicatorCount(DataParser.parse(String.class, map.get(MonitorTplMeta.INDICATOR_COUNT)));
+			this.setTriggerCount(DataParser.parse(String.class, map.get(MonitorTplMeta.TRIGGER_COUNT)));
+			this.setGraphCount(DataParser.parse(String.class, map.get(MonitorTplMeta.GRAPH_COUNT)));
 			return true;
 		} else {
 			try {
@@ -677,6 +795,9 @@ public class MonitorTpl extends Entity {
 				this.setStatus( (String)map.get(MonitorTplMeta.STATUS));
 				// others
 				this.setTplType( (MonitorTplType)map.get(MonitorTplMeta.TPL_TYPE));
+				this.setIndicatorCount( (String)map.get(MonitorTplMeta.INDICATOR_COUNT));
+				this.setTriggerCount( (String)map.get(MonitorTplMeta.TRIGGER_COUNT));
+				this.setGraphCount( (String)map.get(MonitorTplMeta.GRAPH_COUNT));
 				return true;
 			} catch (Exception e) {
 				return false;
