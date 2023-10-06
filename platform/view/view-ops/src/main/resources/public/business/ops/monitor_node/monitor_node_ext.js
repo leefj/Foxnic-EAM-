@@ -151,6 +151,25 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        copyFunc:function (data, it){
+            console.log('data',data,it);
+            layer.prompt({title:"请输入复制的数量",value:1,area:['600px','400px']},function(val,index){
+                console.log(val,index)
+                var ps={};
+                ps.id=data.id;
+                ps.num=val;
+                admin.post(moduleURL+"/copy", ps, function (rs) {
+                    if (rs.success) {
+                        layer.close(index);
+                        fox.showMessage(rs);
+                        window.module.refreshTableData()
+                    } else {
+                        fox.showMessage(rs);
+                    }
+                });
+            });
+
+        },
         /**
          * 末尾执行
          */

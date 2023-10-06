@@ -17,8 +17,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 08:59:06
- * @sign D655D869C809C6101764379E3705F81C
+ * @since 2023-10-06 11:19:59
+ * @sign 911616E72A3DB035CB99FE22EBE210DA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -215,14 +215,14 @@ public class MonitorNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.Integer> JMX_PORT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,JMX_PORT, java.lang.Integer.class, "Jmx端口", "Jmx端口", java.lang.Integer.class, null);
 	
 	/**
-	 * Jmx端口 , 类型: java.lang.Integer
+	 * Impi端口 , 类型: java.lang.Integer
 	*/
 	public static final String IMPI_PORT="impiPort";
 	
 	/**
-	 * Jmx端口 , 类型: java.lang.Integer
+	 * Impi端口 , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.Integer> IMPI_PORT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,IMPI_PORT, java.lang.Integer.class, "Jmx端口", "Jmx端口", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.Integer> IMPI_PORT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,IMPI_PORT, java.lang.Integer.class, "Impi端口", "Impi端口", java.lang.Integer.class, null);
 	
 	/**
 	 * Jdbc地址 , 类型: java.lang.String
@@ -435,19 +435,9 @@ public class MonitorNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> UID_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,UID_LIST, java.util.List.class, "uidList", "uidList", java.lang.String.class, null);
 	
 	/**
-	 * uidProcess , 类型: java.lang.String
-	*/
-	public static final String UID_PROCESS="uidProcess";
-	
-	/**
-	 * uidProcess , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorNode,java.lang.String> UID_PROCESS_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorNode.class ,UID_PROCESS, java.lang.String.class, "uidProcess", "uidProcess", java.lang.String.class, null);
-	
-	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NODE_IP , NODE_NAME_SHOW , PID , TYPE , SUB_TYPE , GROUP_ID , NODE_NAME , NODE_TYPE , NODE_ENABLED , STATUS , SSH_VOUCHER_ID , SSH_PORT , AGENT_PORT , ZABBIX_AGENT_PORT , SNMP_PORT , SNMP_VERSION , SNMP_COMMUNITY , JMX_PORT , IMPI_PORT , JDBC_URL , VAR , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SSH_VOUCHER , MONITOR_NODE_DB , MONITOR_NODE_VALUE_LIST , MONITOR_NODE_GROUP , MONITOR_NODE_TYPE , MONITOR_NODE_SUB_TYPE , MONITOR_TPL_LIST , MONITOR_TPL_IDS , CAL_INDICATOR_TPL_CODE , UID_LIST , UID_PROCESS };
+	public static final String[] $PROPS={ ID , NODE_IP , NODE_NAME_SHOW , PID , TYPE , SUB_TYPE , GROUP_ID , NODE_NAME , NODE_TYPE , NODE_ENABLED , STATUS , SSH_VOUCHER_ID , SSH_PORT , AGENT_PORT , ZABBIX_AGENT_PORT , SNMP_PORT , SNMP_VERSION , SNMP_COMMUNITY , JMX_PORT , IMPI_PORT , JDBC_URL , VAR , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SSH_VOUCHER , MONITOR_NODE_DB , MONITOR_NODE_VALUE_LIST , MONITOR_NODE_GROUP , MONITOR_NODE_TYPE , MONITOR_NODE_SUB_TYPE , MONITOR_TPL_LIST , MONITOR_TPL_IDS , CAL_INDICATOR_TPL_CODE , UID_LIST };
 	
 	/**
 	 * 代理类
@@ -667,8 +657,8 @@ public class MonitorNodeMeta {
 		}
 		
 		/**
-		 * 设置 Jmx端口
-		 * @param impiPort Jmx端口
+		 * 设置 Impi端口
+		 * @param impiPort Impi端口
 		 * @return 当前对象
 		*/
 		public MonitorNode setImpiPort(Integer impiPort) {
@@ -907,17 +897,6 @@ public class MonitorNodeMeta {
 			super.setUidList(uidList);
 			return this;
 		}
-		
-		/**
-		 * 设置 uidProcess
-		 * @param uidProcess uidProcess
-		 * @return 当前对象
-		*/
-		public MonitorNode setUidProcess(String uidProcess) {
-			super.change(UID_PROCESS,super.getUidProcess(),uidProcess);
-			super.setUidProcess(uidProcess);
-			return this;
-		}
 
 		/**
 		 * 克隆当前对象
@@ -968,7 +947,6 @@ public class MonitorNodeMeta {
 			if(all) {
 				inst.setSshVoucher(this.getSshVoucher());
 				inst.setMonitorTplIds(this.getMonitorTplIds());
-				inst.setUidProcess(this.getUidProcess());
 				inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
 				inst.setMonitorNodeSubType(this.getMonitorNodeSubType());
 				inst.setUidList(this.getUidList());

@@ -1,6 +1,9 @@
 package com.dt.platform.ops.service.impl;
 
+import com.alibaba.csp.sentinel.util.StringUtil;
 import com.dt.platform.domain.ops.MonitorNode;
+import com.dt.platform.domain.ops.MonitorNodeTplItem;
+import com.dt.platform.domain.ops.MonitorNodeTplItemVO;
 import com.dt.platform.domain.ops.MonitorNodeVO;
 import com.dt.platform.ops.service.IMonitorNodeService;
 import com.github.foxnic.api.error.ErrorDesc;
@@ -73,6 +76,43 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 			monitorNodeTplItemServiceImpl.saveRelation(monitorNode.getId(), monitorNode.getMonitorTplIds());
 		}
 		return r;
+	}
+
+	@Override
+	public Result copy(String id, String num) {
+		MonitorNode node=this.getById(id);
+
+		MonitorNodeTplItemVO tplItem=new MonitorNodeTplItemVO();
+		List<MonitorNodeTplItem> tplItemList=monitorNodeTplItemServiceImpl.queryList(tplItem);
+		if(node==null){
+			return ErrorDesc.failureMessage("当前选择的节点不存在");
+		}
+		if(StringUtil.isBlank(num)){
+			return ErrorDesc.failureMessage("请选择要复制的数量");
+		}
+		int n=Integer.parseInt(num);
+		if(n==0){
+			return ErrorDesc.failureMessage("复制的数量必须大于0");
+		}
+		String nodeName=node.getNodeNameShow();
+		for(int i=0;i<n;i++){
+			node.setId(null);
+			node.setNodeIp("127.0.0.1");
+			node.setNodeNameShow(nodeName+"复制"+(i+1));
+			node.setStatus("offline");
+			node.setNodeEnabled("disabled");
+			this.insert(node,true);
+			String nodeId=node.getId();
+			if(tplItemList!=null&&tplItemList.size()>0){
+				for(int j=0;j<tplItemList.size();j++){
+					MonitorNodeTplItem tpl = new MonitorNodeTplItem();
+					tpl.setNodeId(nodeId);
+					tpl.setTplCode(tplItemList.get(j).getTplCode());
+					monitorNodeTplItemServiceImpl.insert(tpl, true);
+				}
+			}
+		}
+		return ErrorDesc.success();
 	}
 
 	/**

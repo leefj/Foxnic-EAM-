@@ -90,7 +90,7 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
                 "b.value_str1 zabbix_agent_version,\n" +
                 "b.record_time record_time\n" +
                 "from (\n" +
-                "select * from ops_monitor_node where id in (select node_id from ops_monitor_node_tpl_item where tpl_code='tpl_zabbix_agent')\n" +
+                "select * from ops_monitor_node where node_enabled='enable' and deleted=0 and id in (select node_id from ops_monitor_node_tpl_item where tpl_code='tpl_zabbix_agent')\n" +
                 ")a\n" +
                 "left join \n" +
                 "( \n" +

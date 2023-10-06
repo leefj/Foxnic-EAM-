@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 08:59:09
+ * @since 2023-10-06 11:20:03
  */
 
 
@@ -90,16 +90,6 @@ function ListPage() {
 					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点分组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.monitorNodeGroup,"name",',','','groupId'),d);}}
 					,{ field: 'nodeEnabled', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否启用'), templet:function (d){ return templet('nodeEnabled',fox.getEnumText(RADIO_NODEENABLED_DATA,d.nodeEnabled,'','nodeEnabled'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'sshVoucherId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('凭证'), templet: function (d) { return templet('sshVoucherId' ,fox.joinLabel(d.sshVoucher,"name",',','','sshVoucherId'),d);}}
-					,{ field: 'sshPort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('SSH端口') , templet: function (d) { return templet('sshPort',d.sshPort,d);}  }
-					,{ field: 'agentPort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('Agent端口') , templet: function (d) { return templet('agentPort',d.agentPort,d);}  }
-					,{ field: 'zabbixAgentPort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('Zabbix代理端口') , templet: function (d) { return templet('zabbixAgentPort',d.zabbixAgentPort,d);}  }
-					,{ field: 'snmpPort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('Snmp端口') , templet: function (d) { return templet('snmpPort',d.snmpPort,d);}  }
-					,{ field: 'snmpVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('Snmp版本') , templet: function (d) { return templet('snmpVersion',d.snmpVersion,d);}  }
-					,{ field: 'snmpCommunity', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('Snmp团体') , templet: function (d) { return templet('snmpCommunity',d.snmpCommunity,d);}  }
-					,{ field: 'jmxPort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('Jmx端口') , templet: function (d) { return templet('jmxPort',d.jmxPort,d);}  }
-					,{ field: 'impiPort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('Jmx端口') , templet: function (d) { return templet('impiPort',d.impiPort,d);}  }
-					,{ field: 'jdbcUrl', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('Jdbc地址') , templet: function (d) { return templet('jdbcUrl',d.jdbcUrl,d);}  }
 					,{ field: 'monitorTplIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('监控模版'), templet: function (d) { return templet('monitorTplIds' ,fox.joinLabel(d.monitorTplList,"name",',','','monitorTplIds'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
@@ -503,6 +493,9 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'copy-func') { // 复制
+				window.pageExt.list.copyFunc(data,this);
 			}
 			
 		});

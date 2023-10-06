@@ -75,7 +75,7 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
         Result<JSONObject> result=new Result<>();
         JSONObject resultData=new JSONObject();
         //统计节点个数
-        String sql="select a.name,a.code,ifnull(b.cnt,0) cnt from ops_monitor_node_type a left join (select type,count(1) cnt from ops_monitor_node where deleted=0 group by type) b on a.code=b.type";
+        String sql="select a.name,a.code,ifnull(b.cnt,0) cnt from ops_monitor_node_type a left join (select type,count(1) cnt from ops_monitor_node where deleted=0 and node_enabled='enable' group by type) b on a.code=b.type";
         resultData.put("nodeStatistics",dao.query(sql).toJSONArrayWithJSONObject());
         return result.success(true).data(resultData);
     }

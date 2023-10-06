@@ -26,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 节点
  * <p>节点 , 数据表 ops_monitor_node 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 08:59:06
- * @sign D655D869C809C6101764379E3705F81C
+ * @since 2023-10-06 11:19:59
+ * @sign 911616E72A3DB035CB99FE22EBE210DA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -155,9 +155,9 @@ public class MonitorNode extends Entity {
 	private Integer jmxPort;
 	
 	/**
-	 * Jmx端口：Jmx端口
+	 * Impi端口：Impi端口
 	*/
-	@ApiModelProperty(required = false,value="Jmx端口" , notes = "Jmx端口" , example = "623")
+	@ApiModelProperty(required = false,value="Impi端口" , notes = "Impi端口" , example = "623")
 	private Integer impiPort;
 	
 	/**
@@ -288,12 +288,6 @@ public class MonitorNode extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="uidList" , notes = "uidList")
 	private List<String> uidList;
-	
-	/**
-	 * uidProcess：uidProcess
-	*/
-	@ApiModelProperty(required = false,value="uidProcess" , notes = "uidProcess")
-	private String uidProcess;
 	
 	/**
 	 * 获得 主键<br>
@@ -657,17 +651,17 @@ public class MonitorNode extends Entity {
 	}
 	
 	/**
-	 * 获得 Jmx端口<br>
-	 * Jmx端口
-	 * @return Jmx端口
+	 * 获得 Impi端口<br>
+	 * Impi端口
+	 * @return Impi端口
 	*/
 	public Integer getImpiPort() {
 		return impiPort;
 	}
 	
 	/**
-	 * 设置 Jmx端口
-	 * @param impiPort Jmx端口
+	 * 设置 Impi端口
+	 * @param impiPort Impi端口
 	 * @return 当前对象
 	*/
 	public MonitorNode setImpiPort(Integer impiPort) {
@@ -1148,25 +1142,6 @@ public class MonitorNode extends Entity {
 		this.uidList.addAll(Arrays.asList(uid));
 		return this;
 	}
-	
-	/**
-	 * 获得 uidProcess<br>
-	 * uidProcess
-	 * @return uidProcess
-	*/
-	public String getUidProcess() {
-		return uidProcess;
-	}
-	
-	/**
-	 * 设置 uidProcess
-	 * @param uidProcess uidProcess
-	 * @return 当前对象
-	*/
-	public MonitorNode setUidProcess(String uidProcess) {
-		this.uidProcess=uidProcess;
-		return this;
-	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1246,7 +1221,6 @@ public class MonitorNode extends Entity {
 		if(all) {
 			inst.setSshVoucher(this.getSshVoucher());
 			inst.setMonitorTplIds(this.getMonitorTplIds());
-			inst.setUidProcess(this.getUidProcess());
 			inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
 			inst.setMonitorNodeSubType(this.getMonitorNodeSubType());
 			inst.setUidList(this.getUidList());
@@ -1347,7 +1321,6 @@ public class MonitorNode extends Entity {
 			this.setStatus(DataParser.parse(String.class, map.get(MonitorNodeMeta.STATUS)));
 			// others
 			this.setSshVoucher(DataParser.parse(MonitorVoucher.class, map.get(MonitorNodeMeta.SSH_VOUCHER)));
-			this.setUidProcess(DataParser.parse(String.class, map.get(MonitorNodeMeta.UID_PROCESS)));
 			this.setMonitorNodeSubType(DataParser.parse(MonitorNodeSubtype.class, map.get(MonitorNodeMeta.MONITOR_NODE_SUB_TYPE)));
 			this.setMonitorNodeType(DataParser.parse(MonitorNodeType.class, map.get(MonitorNodeMeta.MONITOR_NODE_TYPE)));
 			this.setCalIndicatorTplCode(DataParser.parse(String.class, map.get(MonitorNodeMeta.CAL_INDICATOR_TPL_CODE)));
@@ -1389,7 +1362,6 @@ public class MonitorNode extends Entity {
 				this.setStatus( (String)map.get(MonitorNodeMeta.STATUS));
 				// others
 				this.setSshVoucher( (MonitorVoucher)map.get(MonitorNodeMeta.SSH_VOUCHER));
-				this.setUidProcess( (String)map.get(MonitorNodeMeta.UID_PROCESS));
 				this.setMonitorNodeSubType( (MonitorNodeSubtype)map.get(MonitorNodeMeta.MONITOR_NODE_SUB_TYPE));
 				this.setMonitorNodeType( (MonitorNodeType)map.get(MonitorNodeMeta.MONITOR_NODE_TYPE));
 				this.setCalIndicatorTplCode( (String)map.get(MonitorNodeMeta.CAL_INDICATOR_TPL_CODE));
