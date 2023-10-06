@@ -60,8 +60,23 @@ public class OpsRelationManager extends RelationManager {
         this.setupDbRecoverRcd();
         this.setupMonitorTrigger();
         this.setupMonitorAlert();
+        this.setupMonitorTpl();
     }
 
+    public void setupMonitorTpl() {
+        this.property(MonitorTplMeta.TRIGGER_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_TPL.CODE).join(OpsTables.OPS_MONITOR_TPL_TRIGGER.MONITOR_TPL_CODE);
+
+        this.property(MonitorTplMeta.GRAPH_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_TPL.CODE).join(OpsTables.OPS_MONITOR_TPL_GRAPH.TPL_CODE);
+
+        this.property(MonitorTplMeta.TPL_INDICATOR_LIST_PROP)
+                .using(OpsTables.OPS_MONITOR_TPL.CODE).join(OpsTables.OPS_MONITOR_TPL_INDICATOR.MONITOR_TPL_CODE);
+
+        this.property(MonitorTplMeta.TPL_TYPE_PROP)
+                .using(OpsTables.OPS_MONITOR_TPL.TYPE).join(OpsTables.OPS_MONITOR_TPL_TYPE.CODE);
+
+    }
     public void setupMonitorTrigger() {
         this.property(MonitorTplTriggerMeta.TPL_PROP)
                 .using(OpsTables.OPS_MONITOR_TPL_TRIGGER.MONITOR_TPL_CODE).join(OpsTables.OPS_MONITOR_TPL.ID);

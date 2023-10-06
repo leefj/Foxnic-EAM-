@@ -7,14 +7,15 @@ import com.dt.platform.domain.ops.MonitorTplType;
 import com.dt.platform.domain.ops.MonitorTplIndicator;
 import java.util.List;
 import com.dt.platform.domain.ops.MonitorTplGraph;
+import com.dt.platform.domain.ops.MonitorTplTrigger;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 15:21:07
- * @sign D082C28891A1CB5CB6C252271C638A81
+ * @since 2023-10-06 10:29:20
+ * @sign 95C0708A60B6D2EA9726F319E49ADF0D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -191,9 +192,49 @@ public class MonitorTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTpl,com.dt.platform.domain.ops.MonitorTplGraph> GRAPH_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTpl.class ,GRAPH_LIST, java.util.List.class, "图形", "图形", com.dt.platform.domain.ops.MonitorTplGraph.class, null);
 	
 	/**
+	 * 触发器 , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorTplTrigger
+	*/
+	public static final String TRIGGER_LIST="triggerList";
+	
+	/**
+	 * 触发器 , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorTplTrigger
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTpl,com.dt.platform.domain.ops.MonitorTplTrigger> TRIGGER_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTpl.class ,TRIGGER_LIST, java.util.List.class, "触发器", "触发器", com.dt.platform.domain.ops.MonitorTplTrigger.class, null);
+	
+	/**
+	 * indicatorCount , 类型: java.lang.String
+	*/
+	public static final String INDICATOR_COUNT="indicatorCount";
+	
+	/**
+	 * indicatorCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTpl,java.lang.String> INDICATOR_COUNT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTpl.class ,INDICATOR_COUNT, java.lang.String.class, "indicatorCount", "indicatorCount", java.lang.String.class, null);
+	
+	/**
+	 * graphCount , 类型: java.lang.String
+	*/
+	public static final String GRAPH_COUNT="graphCount";
+	
+	/**
+	 * graphCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTpl,java.lang.String> GRAPH_COUNT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTpl.class ,GRAPH_COUNT, java.lang.String.class, "graphCount", "graphCount", java.lang.String.class, null);
+	
+	/**
+	 * triggerCount , 类型: java.lang.String
+	*/
+	public static final String TRIGGER_COUNT="triggerCount";
+	
+	/**
+	 * triggerCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTpl,java.lang.String> TRIGGER_COUNT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTpl.class ,TRIGGER_COUNT, java.lang.String.class, "triggerCount", "triggerCount", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , CODE , STATUS , TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL_TYPE , TPL_INDICATOR_LIST , GRAPH_LIST };
+	public static final String[] $PROPS={ ID , NAME , CODE , STATUS , TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL_TYPE , TPL_INDICATOR_LIST , GRAPH_LIST , TRIGGER_LIST , INDICATOR_COUNT , GRAPH_COUNT , TRIGGER_COUNT };
 	
 	/**
 	 * 代理类
@@ -389,6 +430,50 @@ public class MonitorTplMeta {
 			super.setGraphList(graphList);
 			return this;
 		}
+		
+		/**
+		 * 设置 触发器
+		 * @param triggerList 触发器
+		 * @return 当前对象
+		*/
+		public MonitorTpl setTriggerList(List<MonitorTplTrigger> triggerList) {
+			super.change(TRIGGER_LIST,super.getTriggerList(),triggerList);
+			super.setTriggerList(triggerList);
+			return this;
+		}
+		
+		/**
+		 * 设置 indicatorCount
+		 * @param indicatorCount indicatorCount
+		 * @return 当前对象
+		*/
+		public MonitorTpl setIndicatorCount(String indicatorCount) {
+			super.change(INDICATOR_COUNT,super.getIndicatorCount(),indicatorCount);
+			super.setIndicatorCount(indicatorCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 graphCount
+		 * @param graphCount graphCount
+		 * @return 当前对象
+		*/
+		public MonitorTpl setGraphCount(String graphCount) {
+			super.change(GRAPH_COUNT,super.getGraphCount(),graphCount);
+			super.setGraphCount(graphCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 triggerCount
+		 * @param triggerCount triggerCount
+		 * @return 当前对象
+		*/
+		public MonitorTpl setTriggerCount(String triggerCount) {
+			super.change(TRIGGER_COUNT,super.getTriggerCount(),triggerCount);
+			super.setTriggerCount(triggerCount);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -422,7 +507,11 @@ public class MonitorTplMeta {
 			if(all) {
 				inst.setTplType(this.getTplType());
 				inst.setTplIndicatorList(this.getTplIndicatorList());
+				inst.setTriggerList(this.getTriggerList());
+				inst.setIndicatorCount(this.getIndicatorCount());
 				inst.setGraphList(this.getGraphList());
+				inst.setTriggerCount(this.getTriggerCount());
+				inst.setGraphCount(this.getGraphCount());
 			}
 			inst.clearModifies();
 			return inst;

@@ -56,7 +56,6 @@ public class MonitorTplTriggerGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.CONTENT_VALUE).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE).table().disable(true);
 
-        cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE_DESC).form().validate().required();
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE).form().validate().required().form().textArea().height(Config.textAreaHeight);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TRIGGER.NOTES).form().textArea().height(Config.textAreaHeight);
 
@@ -89,7 +88,6 @@ public class MonitorTplTriggerGtr extends BaseCodeGenerator{
         );
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE_DESC,
                         OpsTables.OPS_MONITOR_TPL_TRIGGER.RULE,
                         OpsTables.OPS_MONITOR_TPL_TRIGGER.CONTENT_VALUE,
                         OpsTables.OPS_MONITOR_TPL_TRIGGER.NOTES,

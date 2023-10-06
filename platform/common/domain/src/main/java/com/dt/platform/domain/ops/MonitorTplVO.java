@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 监控模版VO类型
  * <p>监控模版 , 数据表 ops_monitor_tpl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 15:21:07
+ * @since 2023-10-06 10:29:20
  * @sign F02CFE6F1F65D981972CCFD6C08AA669
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -423,6 +423,10 @@ public class MonitorTplVO extends MonitorTpl {
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setGraphList(this.getGraphList());
+			inst.setTriggerCount(this.getTriggerCount());
+			inst.setGraphCount(this.getGraphCount());
+			inst.setTriggerList(this.getTriggerList());
+			inst.setIndicatorCount(this.getIndicatorCount());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
@@ -510,6 +514,9 @@ public class MonitorTplVO extends MonitorTpl {
 			this.setRequestAction(DataParser.parse(String.class, map.get(MonitorTplVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(MonitorTplVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(MonitorTplVOMeta.PAGE_SIZE)));
+			this.setTriggerCount(DataParser.parse(String.class, map.get(MonitorTplVOMeta.TRIGGER_COUNT)));
+			this.setGraphCount(DataParser.parse(String.class, map.get(MonitorTplVOMeta.GRAPH_COUNT)));
+			this.setIndicatorCount(DataParser.parse(String.class, map.get(MonitorTplVOMeta.INDICATOR_COUNT)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(MonitorTplVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(MonitorTplVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(MonitorTplVOMeta.SORT_FIELD)));
@@ -539,6 +546,9 @@ public class MonitorTplVO extends MonitorTpl {
 				this.setRequestAction( (String)map.get(MonitorTplVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(MonitorTplVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(MonitorTplVOMeta.PAGE_SIZE));
+				this.setTriggerCount( (String)map.get(MonitorTplVOMeta.TRIGGER_COUNT));
+				this.setGraphCount( (String)map.get(MonitorTplVOMeta.GRAPH_COUNT));
+				this.setIndicatorCount( (String)map.get(MonitorTplVOMeta.INDICATOR_COUNT));
 				this.setPageIndex( (Integer)map.get(MonitorTplVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(MonitorTplVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(MonitorTplVOMeta.SORT_FIELD));

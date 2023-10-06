@@ -26,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 节点
  * <p>节点 , 数据表 ops_monitor_node 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-04 09:22:29
- * @sign A0DAA15EEAE86AB22EC81FC5E9341DE2
+ * @since 2023-10-06 08:59:06
+ * @sign D655D869C809C6101764379E3705F81C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -230,9 +230,9 @@ public class MonitorNode extends Entity {
 	private Integer version;
 	
 	/**
-	 * ssh凭证：ssh凭证
+	 * 凭证：凭证
 	*/
-	@ApiModelProperty(required = false,value="ssh凭证" , notes = "ssh凭证")
+	@ApiModelProperty(required = false,value="凭证" , notes = "凭证")
 	private MonitorVoucher sshVoucher;
 	
 	/**
@@ -282,6 +282,18 @@ public class MonitorNode extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="当前模版" , notes = "当前模版")
 	private String calIndicatorTplCode;
+	
+	/**
+	 * uidList：uidList
+	*/
+	@ApiModelProperty(required = false,value="uidList" , notes = "uidList")
+	private List<String> uidList;
+	
+	/**
+	 * uidProcess：uidProcess
+	*/
+	@ApiModelProperty(required = false,value="uidProcess" , notes = "uidProcess")
+	private String uidProcess;
 	
 	/**
 	 * 获得 主键<br>
@@ -904,17 +916,17 @@ public class MonitorNode extends Entity {
 	}
 	
 	/**
-	 * 获得 ssh凭证<br>
-	 * ssh凭证
-	 * @return ssh凭证
+	 * 获得 凭证<br>
+	 * 凭证
+	 * @return 凭证
 	*/
 	public MonitorVoucher getSshVoucher() {
 		return sshVoucher;
 	}
 	
 	/**
-	 * 设置 ssh凭证
-	 * @param sshVoucher ssh凭证
+	 * 设置 凭证
+	 * @param sshVoucher 凭证
 	 * @return 当前对象
 	*/
 	public MonitorNode setSshVoucher(MonitorVoucher sshVoucher) {
@@ -1106,6 +1118,55 @@ public class MonitorNode extends Entity {
 		this.calIndicatorTplCode=calIndicatorTplCode;
 		return this;
 	}
+	
+	/**
+	 * 获得 uidList<br>
+	 * uidList
+	 * @return uidList
+	*/
+	public List<String> getUidList() {
+		return uidList;
+	}
+	
+	/**
+	 * 设置 uidList
+	 * @param uidList uidList
+	 * @return 当前对象
+	*/
+	public MonitorNode setUidList(List<String> uidList) {
+		this.uidList=uidList;
+		return this;
+	}
+	
+	/**
+	 * 添加 uidList
+	 * @param uid uidList
+	 * @return 当前对象
+	*/
+	public MonitorNode addUid(String... uid) {
+		if(this.uidList==null) uidList=new ArrayList<>();
+		this.uidList.addAll(Arrays.asList(uid));
+		return this;
+	}
+	
+	/**
+	 * 获得 uidProcess<br>
+	 * uidProcess
+	 * @return uidProcess
+	*/
+	public String getUidProcess() {
+		return uidProcess;
+	}
+	
+	/**
+	 * 设置 uidProcess
+	 * @param uidProcess uidProcess
+	 * @return 当前对象
+	*/
+	public MonitorNode setUidProcess(String uidProcess) {
+		this.uidProcess=uidProcess;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1185,8 +1246,10 @@ public class MonitorNode extends Entity {
 		if(all) {
 			inst.setSshVoucher(this.getSshVoucher());
 			inst.setMonitorTplIds(this.getMonitorTplIds());
+			inst.setUidProcess(this.getUidProcess());
 			inst.setMonitorNodeValueList(this.getMonitorNodeValueList());
 			inst.setMonitorNodeSubType(this.getMonitorNodeSubType());
+			inst.setUidList(this.getUidList());
 			inst.setMonitorNodeType(this.getMonitorNodeType());
 			inst.setCalIndicatorTplCode(this.getCalIndicatorTplCode());
 			inst.setMonitorNodeGroup(this.getMonitorNodeGroup());
@@ -1284,6 +1347,7 @@ public class MonitorNode extends Entity {
 			this.setStatus(DataParser.parse(String.class, map.get(MonitorNodeMeta.STATUS)));
 			// others
 			this.setSshVoucher(DataParser.parse(MonitorVoucher.class, map.get(MonitorNodeMeta.SSH_VOUCHER)));
+			this.setUidProcess(DataParser.parse(String.class, map.get(MonitorNodeMeta.UID_PROCESS)));
 			this.setMonitorNodeSubType(DataParser.parse(MonitorNodeSubtype.class, map.get(MonitorNodeMeta.MONITOR_NODE_SUB_TYPE)));
 			this.setMonitorNodeType(DataParser.parse(MonitorNodeType.class, map.get(MonitorNodeMeta.MONITOR_NODE_TYPE)));
 			this.setCalIndicatorTplCode(DataParser.parse(String.class, map.get(MonitorNodeMeta.CAL_INDICATOR_TPL_CODE)));
@@ -1325,6 +1389,7 @@ public class MonitorNode extends Entity {
 				this.setStatus( (String)map.get(MonitorNodeMeta.STATUS));
 				// others
 				this.setSshVoucher( (MonitorVoucher)map.get(MonitorNodeMeta.SSH_VOUCHER));
+				this.setUidProcess( (String)map.get(MonitorNodeMeta.UID_PROCESS));
 				this.setMonitorNodeSubType( (MonitorNodeSubtype)map.get(MonitorNodeMeta.MONITOR_NODE_SUB_TYPE));
 				this.setMonitorNodeType( (MonitorNodeType)map.get(MonitorNodeMeta.MONITOR_NODE_TYPE));
 				this.setCalIndicatorTplCode( (String)map.get(MonitorNodeMeta.CAL_INDICATOR_TPL_CODE));

@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-04 09:22:32
+ * @since 2023-10-06 08:59:09
  */
 
 
@@ -90,7 +90,7 @@ function ListPage() {
 					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点分组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.monitorNodeGroup,"name",',','','groupId'),d);}}
 					,{ field: 'nodeEnabled', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否启用'), templet:function (d){ return templet('nodeEnabled',fox.getEnumText(RADIO_NODEENABLED_DATA,d.nodeEnabled,'','nodeEnabled'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'sshVoucherId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('凭证(SSH)'), templet: function (d) { return templet('sshVoucherId' ,fox.joinLabel(d.sshVoucher,"name",',','','sshVoucherId'),d);}}
+					,{ field: 'sshVoucherId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('凭证'), templet: function (d) { return templet('sshVoucherId' ,fox.joinLabel(d.sshVoucher,"name",',','','sshVoucherId'),d);}}
 					,{ field: 'sshPort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('SSH端口') , templet: function (d) { return templet('sshPort',d.sshPort,d);}  }
 					,{ field: 'agentPort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('Agent端口') , templet: function (d) { return templet('agentPort',d.agentPort,d);}  }
 					,{ field: 'zabbixAgentPort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('Zabbix代理端口') , templet: function (d) { return templet('zabbixAgentPort',d.zabbixAgentPort,d);}  }

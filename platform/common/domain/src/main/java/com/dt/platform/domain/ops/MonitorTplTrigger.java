@@ -26,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 触发器
  * <p>触发器 , 数据表 ops_monitor_tpl_trigger 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 23:33:26
- * @sign 4E4CD906BAD23ED934D64003FA44A950
+ * @since 2023-10-06 09:32:58
+ * @sign E7BE4C086BD5CE9615C4FD8F58A5A34E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -59,21 +59,15 @@ public class MonitorTplTrigger extends Entity {
 	private String warnLevel;
 	
 	/**
-	 * 规则描述：规则描述
-	*/
-	@ApiModelProperty(required = false,value="规则描述" , notes = "规则描述" , example = "数据库连接数大于10")
-	private String ruleDesc;
-	
-	/**
 	 * 规则：规则
 	*/
-	@ApiModelProperty(required = false,value="规则" , notes = "规则" , example = "cF:getLastValueDouble(node,\"db.connect_number\",0,\"0\")>10")
+	@ApiModelProperty(required = false,value="规则" , notes = "规则" , example = "cF:lastDouble(node,\"db.connect_number\",0,\"0\")>10")
 	private String rule;
 	
 	/**
 	 * 告警值：告警值
 	*/
-	@ApiModelProperty(required = false,value="告警值" , notes = "告警值" , example = "cF:getLastValueString(node,\"db.connect_number\",0,\"0\")")
+	@ApiModelProperty(required = false,value="告警值" , notes = "告警值" , example = "cF:lastString(node,\"db.connect_number\",0,\"0\")")
 	private String contentValue;
 	
 	/**
@@ -115,7 +109,7 @@ public class MonitorTplTrigger extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-10-05 11:09:44")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-10-06 08:31:06")
 	private Date updateTime;
 	
 	/**
@@ -142,7 +136,7 @@ public class MonitorTplTrigger extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "8")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "9")
 	private Integer version;
 	
 	/**
@@ -211,25 +205,6 @@ public class MonitorTplTrigger extends Entity {
 	*/
 	public MonitorTplTrigger setWarnLevel(String warnLevel) {
 		this.warnLevel=warnLevel;
-		return this;
-	}
-	
-	/**
-	 * 获得 规则描述<br>
-	 * 规则描述
-	 * @return 规则描述
-	*/
-	public String getRuleDesc() {
-		return ruleDesc;
-	}
-	
-	/**
-	 * 设置 规则描述
-	 * @param ruleDesc 规则描述
-	 * @return 当前对象
-	*/
-	public MonitorTplTrigger setRuleDesc(String ruleDesc) {
-		this.ruleDesc=ruleDesc;
 		return this;
 	}
 	
@@ -616,7 +591,6 @@ public class MonitorTplTrigger extends Entity {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
-		inst.setRuleDesc(this.getRuleDesc());
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
@@ -695,7 +669,6 @@ public class MonitorTplTrigger extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(MonitorTplTriggerMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(MonitorTplTriggerMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(MonitorTplTriggerMeta.DELETE_TIME)));
-			this.setRuleDesc(DataParser.parse(String.class, map.get(MonitorTplTriggerMeta.RULE_DESC)));
 			this.setName(DataParser.parse(String.class, map.get(MonitorTplTriggerMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(MonitorTplTriggerMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(MonitorTplTriggerMeta.ID)));
@@ -717,7 +690,6 @@ public class MonitorTplTrigger extends Entity {
 				this.setCreateTime( (Date)map.get(MonitorTplTriggerMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(MonitorTplTriggerMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(MonitorTplTriggerMeta.DELETE_TIME));
-				this.setRuleDesc( (String)map.get(MonitorTplTriggerMeta.RULE_DESC));
 				this.setName( (String)map.get(MonitorTplTriggerMeta.NAME));
 				this.setDeleteBy( (String)map.get(MonitorTplTriggerMeta.DELETE_BY));
 				this.setId( (String)map.get(MonitorTplTriggerMeta.ID));
@@ -752,7 +724,6 @@ public class MonitorTplTrigger extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MonitorTplTriggerMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MonitorTplTriggerMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MonitorTplTriggerMeta.DELETE_TIME)));
-			this.setRuleDesc(DataParser.parse(String.class, r.getValue(MonitorTplTriggerMeta.RULE_DESC)));
 			this.setName(DataParser.parse(String.class, r.getValue(MonitorTplTriggerMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MonitorTplTriggerMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(MonitorTplTriggerMeta.ID)));
@@ -772,7 +743,6 @@ public class MonitorTplTrigger extends Entity {
 				this.setCreateTime( (Date)r.getValue(MonitorTplTriggerMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(MonitorTplTriggerMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(MonitorTplTriggerMeta.DELETE_TIME));
-				this.setRuleDesc( (String)r.getValue(MonitorTplTriggerMeta.RULE_DESC));
 				this.setName( (String)r.getValue(MonitorTplTriggerMeta.NAME));
 				this.setDeleteBy( (String)r.getValue(MonitorTplTriggerMeta.DELETE_BY));
 				this.setId( (String)r.getValue(MonitorTplTriggerMeta.ID));

@@ -8,13 +8,14 @@ import java.util.Date;
 import com.dt.platform.domain.ops.MonitorTplType;
 import com.dt.platform.domain.ops.MonitorTplIndicator;
 import com.dt.platform.domain.ops.MonitorTplGraph;
+import com.dt.platform.domain.ops.MonitorTplTrigger;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 15:21:07
+ * @since 2023-10-06 10:29:20
  * @sign F02CFE6F1F65D981972CCFD6C08AA669
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -312,9 +313,49 @@ public class MonitorTplVOMeta extends MonitorTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplVO,com.dt.platform.domain.ops.MonitorTplGraph> GRAPH_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplVO.class ,GRAPH_LIST, java.util.List.class, "图形", "图形", com.dt.platform.domain.ops.MonitorTplGraph.class, null);
 	
 	/**
+	 * 触发器 , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorTplTrigger
+	*/
+	public static final String TRIGGER_LIST="triggerList";
+	
+	/**
+	 * 触发器 , 集合类型: LIST , 类型: com.dt.platform.domain.ops.MonitorTplTrigger
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplVO,com.dt.platform.domain.ops.MonitorTplTrigger> TRIGGER_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplVO.class ,TRIGGER_LIST, java.util.List.class, "触发器", "触发器", com.dt.platform.domain.ops.MonitorTplTrigger.class, null);
+	
+	/**
+	 * indicatorCount , 类型: java.lang.String
+	*/
+	public static final String INDICATOR_COUNT="indicatorCount";
+	
+	/**
+	 * indicatorCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplVO,java.lang.String> INDICATOR_COUNT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplVO.class ,INDICATOR_COUNT, java.lang.String.class, "indicatorCount", "indicatorCount", java.lang.String.class, null);
+	
+	/**
+	 * graphCount , 类型: java.lang.String
+	*/
+	public static final String GRAPH_COUNT="graphCount";
+	
+	/**
+	 * graphCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplVO,java.lang.String> GRAPH_COUNT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplVO.class ,GRAPH_COUNT, java.lang.String.class, "graphCount", "graphCount", java.lang.String.class, null);
+	
+	/**
+	 * triggerCount , 类型: java.lang.String
+	*/
+	public static final String TRIGGER_COUNT="triggerCount";
+	
+	/**
+	 * triggerCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplVO,java.lang.String> TRIGGER_COUNT_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplVO.class ,TRIGGER_COUNT, java.lang.String.class, "triggerCount", "triggerCount", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , CODE , STATUS , TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL_TYPE , TPL_INDICATOR_LIST , GRAPH_LIST };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , CODE , STATUS , TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL_TYPE , TPL_INDICATOR_LIST , GRAPH_LIST , TRIGGER_LIST , INDICATOR_COUNT , GRAPH_COUNT , TRIGGER_COUNT };
 	
 	/**
 	 * 代理类
@@ -642,6 +683,50 @@ public class MonitorTplVOMeta extends MonitorTplMeta {
 			super.setGraphList(graphList);
 			return this;
 		}
+		
+		/**
+		 * 设置 触发器
+		 * @param triggerList 触发器
+		 * @return 当前对象
+		*/
+		public MonitorTpl setTriggerList(List<MonitorTplTrigger> triggerList) {
+			super.change(TRIGGER_LIST,super.getTriggerList(),triggerList);
+			super.setTriggerList(triggerList);
+			return this;
+		}
+		
+		/**
+		 * 设置 indicatorCount
+		 * @param indicatorCount indicatorCount
+		 * @return 当前对象
+		*/
+		public MonitorTpl setIndicatorCount(String indicatorCount) {
+			super.change(INDICATOR_COUNT,super.getIndicatorCount(),indicatorCount);
+			super.setIndicatorCount(indicatorCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 graphCount
+		 * @param graphCount graphCount
+		 * @return 当前对象
+		*/
+		public MonitorTpl setGraphCount(String graphCount) {
+			super.change(GRAPH_COUNT,super.getGraphCount(),graphCount);
+			super.setGraphCount(graphCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 triggerCount
+		 * @param triggerCount triggerCount
+		 * @return 当前对象
+		*/
+		public MonitorTpl setTriggerCount(String triggerCount) {
+			super.change(TRIGGER_COUNT,super.getTriggerCount(),triggerCount);
+			super.setTriggerCount(triggerCount);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -680,6 +765,10 @@ public class MonitorTplVOMeta extends MonitorTplMeta {
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
 				inst.setGraphList(this.getGraphList());
+				inst.setTriggerCount(this.getTriggerCount());
+				inst.setGraphCount(this.getGraphCount());
+				inst.setTriggerList(this.getTriggerList());
+				inst.setIndicatorCount(this.getIndicatorCount());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());

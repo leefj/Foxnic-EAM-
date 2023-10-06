@@ -70,6 +70,7 @@ public class MonitorAlertGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_ALERT.CREATE_TIME).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_ALERT.USER_ID).table().disable(true);
 
+
         cfg.view().field(OpsTables.OPS_MONITOR_ALERT.STATUS).form()
                 .label("处理状态").selectBox().enumType(MonitorWarnProcessStatusEnum.class);
 

@@ -3,12 +3,13 @@ package com.dt.platform.ops.service.impl;
 import javax.annotation.Resource;
 
 import com.dt.platform.constants.enums.ops.MonitorWarnProcessStatusEnum;
-import com.dt.platform.domain.ops.MonitorAlert;
-import com.dt.platform.domain.ops.MonitorNode;
+import com.dt.platform.domain.ops.*;
 import com.dt.platform.domain.ops.meta.MonitorTplTriggerMeta;
+import com.dt.platform.ops.service.IMonitorAlertEventService;
 import com.dt.platform.ops.service.IMonitorAlertService;
 import com.github.foxnic.commons.concurrent.SimpleJoinForkTask;
 import com.github.foxnic.commons.log.Logger;
+import com.mysql.jdbc.log.Log;
 import org.apache.commons.jexl3.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,6 @@ import com.github.foxnic.commons.collection.MapUtil;
 import java.util.*;
 
 
-import com.dt.platform.domain.ops.MonitorTplTrigger;
-import com.dt.platform.domain.ops.MonitorTplTriggerVO;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.entity.SuperService;
@@ -68,6 +67,9 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 
 	@Autowired
 	private MonitorDataProcessUtilService monitorDataProcessUtilService;
+
+	@Autowired
+	private IMonitorAlertEventService monitorAlertEventService;
 
 
 	@Override
@@ -256,8 +258,6 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 				"where a.deleted=0 and b.deleted=0 and c.deleted=0\n" +
 				"and a.id=b.node_id and a.status='online' and c.status='enable'\n" +
 				"and b.tpl_code=c.code)");
-
-
 		return super.queryList(sample,expr);
 	}
 
@@ -322,22 +322,41 @@ public class MonitorTplTriggerServiceImpl extends SuperService<MonitorTplTrigger
 		String ct=trigger.getContentValue();
 		Map<String, Object> map = new HashMap<String, Object>();
 		node.setCalIndicatorTplCode(trigger.getMonitorTplCode());
+		node.setUidList(new ArrayList<>());
 		map.put("node", node);
 		Object result = calculationValue(rule,map);
 		if("true".equals(result)){
 			res.success(true);
-			Object alertValue = calculationValue(ct,map);
-			MonitorAlert alert=new MonitorAlert();
-			alert.setNodeId(node.getId());
-			alert.setNodeShowName(node.getNodeNameShow());
-			alert.setWarnTime(new Date());
-			alert.setTriggerId(trigger.getId());
-			alert.setTriggerName(trigger.getName());
-			alert.setTriggerRuleDesc(trigger.getRuleDesc());
-			alert.setWarnLevel(trigger.getWarnLevel());
-			alert.setAlertValue(alertValue.toString());
-			alert.setStatus(MonitorWarnProcessStatusEnum.NOT_CONFIRM.code());
-			monitorAlertService.insert(alert,true);
+			List<String> uidList=node.getUidList();
+			if(uidList!=null&&uidList.size()>0){
+				int listSize=uidList.size();
+				ConditionExpr expr=new ConditionExpr();
+				expr.andIn("event_id",uidList);
+				List<MonitorAlertEvent> list= monitorAlertEventService.queryList(new MonitorAlertEventVO(),expr);
+				if(list.size()>=uidList.size()){
+					Logger.info("当前Event已记录过");
+				}else{
+					Logger.info("当前Event需要告警");
+					Object alertValue = calculationValue(ct,map);
+					MonitorAlert alert=new MonitorAlert();
+					alert.setNodeId(node.getId());
+					alert.setNodeShowName(node.getNodeNameShow());
+					alert.setWarnTime(new Date());
+					alert.setTriggerId(trigger.getId());
+					alert.setTriggerName(trigger.getName());
+					alert.setTriggerRuleDesc(trigger.getName());
+					alert.setWarnLevel(trigger.getWarnLevel());
+					alert.setAlertValue(alertValue.toString());
+					alert.setStatus(MonitorWarnProcessStatusEnum.NOT_CONFIRM.code());
+					monitorAlertService.insert(alert,true);
+					for(int i=0;i<listSize;i++){
+						MonitorAlertEvent event=new MonitorAlertEvent();
+						event.setEventId(uidList.get(i));
+						event.setAlertId(alert.getId());
+						monitorAlertEventService.insert(event,true);
+					}
+				}
+			}
 		}else if("false".equals(result)){
 			res.success(false);
 		}

@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-04 09:22:33
+ * @since 2023-10-06 08:59:10
  */
 
 function FormPage() {
@@ -212,7 +212,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "sshVoucherId",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("凭证(SSH)",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("凭证",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -337,7 +337,7 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#type",formData.monitorNodeType);
 			//设置  节点分组 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#groupId",formData.monitorNodeGroup);
-			//设置  凭证(SSH) 设置下拉框勾选
+			//设置  凭证 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#sshVoucherId",formData.sshVoucher);
 			//设置  监控模版 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#monitorTplIds",formData.monitorTplList);
@@ -407,7 +407,7 @@ function FormPage() {
 		data["type"]=fox.getSelectedValue("type",false);
 		//获取 节点分组 下拉框的值
 		data["groupId"]=fox.getSelectedValue("groupId",false);
-		//获取 凭证(SSH) 下拉框的值
+		//获取 凭证 下拉框的值
 		data["sshVoucherId"]=fox.getSelectedValue("sshVoucherId",false);
 		//获取 监控模版 下拉框的值
 		data["monitorTplIds"]=fox.getSelectedValue("monitorTplIds",true);

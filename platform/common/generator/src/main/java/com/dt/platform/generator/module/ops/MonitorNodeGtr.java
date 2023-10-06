@@ -36,10 +36,12 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
 
         cfg.getPoClassFile().addSimpleProperty(String.class,"calIndicatorTplCode","当前模版","当前模版");
 
+        cfg.getPoClassFile().addListProperty(String.class,"uidList","uidList","uidList");
+      //  cfg.getPoClassFile().addSimpleProperty(String.class,"uidProcess","uidProcess","uidProcess");
+
         cfg.view().search().rowsDisplay(1);
         cfg.view().search().inputLayout(
                 new Object[]{
-
                         OpsTables.OPS_MONITOR_NODE.GROUP_ID,
                         OpsTables.OPS_MONITOR_NODE.STATUS,
                         OpsTables.OPS_MONITOR_NODE.NODE_IP,
@@ -50,7 +52,6 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                         OpsTables.OPS_MONITOR_NODE.NODE_ENABLED,
                         OpsTables.OPS_MONITOR_NODE.NOTES
                 }
-
         );
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);

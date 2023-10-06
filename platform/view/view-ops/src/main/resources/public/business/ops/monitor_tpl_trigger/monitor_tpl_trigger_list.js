@@ -1,7 +1,7 @@
 /**
  * 触发器 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 23:33:28
+ * @since 2023-10-06 09:33:00
  */
 
 
@@ -86,7 +86,6 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('触发器') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'warnLevel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('告警等级'), templet:function (d){ return templet('warnLevel',fox.getEnumText(SELECT_WARNLEVEL_DATA,d.warnLevel,'','warnLevel'),d);}}
-					,{ field: 'ruleDesc', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('规则描述') , templet: function (d) { return templet('ruleDesc',d.ruleDesc,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }

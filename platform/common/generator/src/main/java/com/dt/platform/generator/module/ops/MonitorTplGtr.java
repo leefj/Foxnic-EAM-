@@ -2,10 +2,8 @@ package com.dt.platform.generator.module.ops;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.ops.MonitorEnableEnum;
-import com.dt.platform.domain.ops.MonitorNodeType;
-import com.dt.platform.domain.ops.MonitorTplGraph;
-import com.dt.platform.domain.ops.MonitorTplIndicator;
-import com.dt.platform.domain.ops.MonitorTplType;
+import com.dt.platform.domain.ops.*;
+import com.dt.platform.domain.ops.meta.DbInfoMeta;
 import com.dt.platform.domain.ops.meta.MonitorNodeTypeMeta;
 import com.dt.platform.domain.ops.meta.MonitorTplMeta;
 import com.dt.platform.domain.ops.meta.MonitorTplTypeMeta;
@@ -28,9 +26,18 @@ public class MonitorTplGtr extends BaseCodeGenerator{
 
         //node type
         cfg.getPoClassFile().addSimpleProperty(MonitorTplType.class,"tplType","节点模版类型","节点模版类型");
+
         cfg.getPoClassFile().addListProperty(MonitorTplIndicator.class,"tplIndicatorList","指标列表","指标列表");
         cfg.getPoClassFile().addListProperty(MonitorTplGraph.class,"graphList","图形","图形");
+        cfg.getPoClassFile().addListProperty(MonitorTplTrigger.class,"triggerList","触发器","触发器");
 
+        cfg.getPoClassFile().addSimpleProperty(String.class,"indicatorCount","indicatorCount","indicatorCount");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"graphCount","graphCount","graphCount");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"triggerCount","triggerCount","triggerCount");
+
+        cfg.view().field(MonitorTplMeta.INDICATOR_COUNT).basic().label("指标数量").table().disable(false);
+        cfg.view().field(MonitorTplMeta.GRAPH_COUNT).basic().label("图形数量").table().disable(false);
+        cfg.view().field(MonitorTplMeta.TRIGGER_COUNT).basic().label("触发器数量").table().disable(false);
 
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -53,6 +60,9 @@ public class MonitorTplGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.CREATE_TIME).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL.NOTES).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL.CODE).table().disable(true);
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL.TYPE).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.STATUS).form().validate().required().form()
                 .label("状态").radioBox().defaultIndex(0).enumType(MonitorEnableEnum.class);

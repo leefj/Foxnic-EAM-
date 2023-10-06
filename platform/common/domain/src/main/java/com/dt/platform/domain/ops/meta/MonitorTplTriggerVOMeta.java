@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 23:33:26
+ * @since 2023-10-06 09:32:58
  * @sign 1CE0B46D4AE363891DE76A401E183965
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -171,16 +171,6 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> WARN_LEVEL_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,WARN_LEVEL, java.lang.String.class, "告警等级", "告警等级", java.lang.String.class, null);
 	
 	/**
-	 * 规则描述 , 类型: java.lang.String
-	*/
-	public static final String RULE_DESC="ruleDesc";
-	
-	/**
-	 * 规则描述 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplTriggerVO,java.lang.String> RULE_DESC_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplTriggerVO.class ,RULE_DESC, java.lang.String.class, "规则描述", "规则描述", java.lang.String.class, null);
-	
-	/**
 	 * 规则 , 类型: java.lang.String
 	*/
 	public static final String RULE="rule";
@@ -333,7 +323,7 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , WARN_LEVEL , RULE_DESC , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_NODE_LIST };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , WARN_LEVEL , RULE , CONTENT_VALUE , STATUS , MONITOR_TPL_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TPL , MONITOR_NODE_LIST };
 	
 	/**
 	 * 代理类
@@ -505,17 +495,6 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 		public MonitorTplTrigger setWarnLevel(String warnLevel) {
 			super.change(WARN_LEVEL,super.getWarnLevel(),warnLevel);
 			super.setWarnLevel(warnLevel);
-			return this;
-		}
-		
-		/**
-		 * 设置 规则描述
-		 * @param ruleDesc 规则描述
-		 * @return 当前对象
-		*/
-		public MonitorTplTrigger setRuleDesc(String ruleDesc) {
-			super.change(RULE_DESC,super.getRuleDesc(),ruleDesc);
-			super.setRuleDesc(ruleDesc);
 			return this;
 		}
 		
@@ -711,7 +690,6 @@ public class MonitorTplTriggerVOMeta extends MonitorTplTriggerMeta {
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
-			inst.setRuleDesc(this.getRuleDesc());
 			inst.setName(this.getName());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
