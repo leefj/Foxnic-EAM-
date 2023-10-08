@@ -368,6 +368,10 @@ app:
 #format:json
 #http://127.0.0.1:8089/security/sso-login.html?st=123456789&lang=ch&format=json
 #http://127.0.0.1:8089/business/common/common/sso_login.html?st=123456789&lang=ch&format=json
+
+
+# http://eam-demo.rainbooow.com:8089/business/common/common/sso_login.html?uid=110588348101165911&lang=ch
+
 ###
 #uid方式,uid 为sys_user的账户ID
 #http://127.0.0.1:8089/security/sso-login.html?uid=110588348101165911&lang=ch&format=json

@@ -97,7 +97,7 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
             return ErrorDesc.failure().message("主机Zabbix代理端口("+zabbix_port+")端口不存在");
         }
 
-        if(zabbix_port<1024||zabbix_port>20000){
+        if(zabbix_port<1024||zabbix_port>30000){
             return ErrorDesc.failure().message("主机Zabbix代理端口("+zabbix_port+")端口设置不正确");
         }
 
@@ -259,11 +259,11 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
             }
         }
         SystemCommandtResult r=SystemCommandExecutor.exeCmd(exeCommand,30);
-        Logger.info("execute zabbix agent,command:\n"+exeCommand+",result:"+r.result);
+        Logger.info("command:\n"+exeCommand);
+        Logger.error("result:\n"+r.result);
         if(StringUtil.isBlank(r.result)||r.result.startsWith("zabbix_get")){
             r.code=1;
         }
-
         if(r.code==0){
             if(MonitorZabbixAgentItemKeyValueTranslateEnum.SYSTEM_LOCALTIME_UTC.code().equals(cmd.trim())){
                 String unixTime=r.result.replaceAll("\n","".trim());

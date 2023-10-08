@@ -81,8 +81,8 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 	@Override
 	public Result copy(String id, String num) {
 		MonitorNode node=this.getById(id);
-
 		MonitorNodeTplItemVO tplItem=new MonitorNodeTplItemVO();
+		tplItem.setNodeId(id);
 		List<MonitorNodeTplItem> tplItemList=monitorNodeTplItemServiceImpl.queryList(tplItem);
 		if(node==null){
 			return ErrorDesc.failureMessage("当前选择的节点不存在");
