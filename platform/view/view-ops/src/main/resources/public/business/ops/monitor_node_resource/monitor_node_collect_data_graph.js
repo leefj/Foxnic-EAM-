@@ -390,6 +390,37 @@ function ListPage() {
             refreshTableData(null,null,true);
         });
 
+        // 搜索按钮点击事件
+        $('#last_data').click(function () {
+            var d={}
+            d.nodeId=nodeId;
+            if(!nodeId){
+                return 1;
+            }
+            if(nodeId=="none"){
+                return 1;
+            }
+            console.log("ddd",d);
+            admin.putTempData('eam-report-form-data', d);
+            var area=admin.getTempData('eam-report-form-area');
+            var height= (area && area.height) ? area.height : ($(window).height()*0.6);
+            var title = fox.translate('最新数据');
+            top=8;
+            var index=admin.popupCenter({
+                title: title,
+                resize: false,
+                offset: [top,null],
+                area: ["80%","95%"],
+                type: 2,
+                id:"eam-report-form-data-win",
+                content: '/business/ops/monitor_node_resource/monitor_node_collect_data.html?nodeId=' + d.nodeId,
+                finish: function () {
+                }
+            });
+            admin.putTempData('eam-report-form-data-popup-index', index);
+
+        });
+
         fox.renderSearchInputs();
 
         // 搜索按钮点击事件

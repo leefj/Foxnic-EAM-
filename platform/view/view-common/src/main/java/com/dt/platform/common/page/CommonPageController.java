@@ -55,6 +55,7 @@ public class CommonPageController extends ViewController {
 
 		//format
 		//redirect
+		System.out.println("SessionUser.USER_LOGIN_JSON"+SessionUser.USER_LOGIN_JSON);
 		SSOResponseFormat responseFormat= SSOResponseFormat.parseByCode(request.getParameter(SSOConstants.PARAMETER_FORMAT_NAME));
 		String redirect=request.getParameter(SSOConstants.PARAMETER_REDIRECT_NAME);
 		if(StringUtil.isBlank(redirect)) {
