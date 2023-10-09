@@ -1,6 +1,7 @@
 package com.dt.platform.ops.service.impl;
 
 import com.dt.platform.constants.enums.ops.MonitorMethodEnum;
+import com.dt.platform.domain.ops.MonitorNode;
 import com.dt.platform.ops.service.*;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
@@ -43,12 +44,13 @@ public class MonitorDataProcessZabbixServerServiceImpl implements IMonitorDataPr
 
     @Override
     public Result collectData() {
-
-
-        return null;
+        return ErrorDesc.success();
     }
 
-
+    @Override
+    public Result collectNodeData(MonitorNode node) {
+        return ErrorDesc.success();
+    }
     @Override
     public Result clearNodeValueLastHistoryData() {
         return ErrorDesc.success();

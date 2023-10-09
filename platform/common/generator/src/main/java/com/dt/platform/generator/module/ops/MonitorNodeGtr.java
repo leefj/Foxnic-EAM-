@@ -199,6 +199,8 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                 }
         );
 
+        cfg.view().list().operationColumn().addActionButton("采集","collectFunc","collect-button","ops_monitor_node:collect");
+
         cfg.view().list().operationColumn().addActionButton("复制","copyFunc","copy-button","ops_monitor_node:copy");
 
         //文件生成覆盖模式

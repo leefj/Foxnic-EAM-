@@ -151,6 +151,25 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+
+        collectFunc:function (ps, it){
+            var btnClass="collect-button";
+            if(ps.nodeEnabled=="disabled"){
+                top.layer.msg("当前节点状态未启用，无法进行收集操作。", {time: 1000});
+                return 1;
+            }
+            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
+            var api=moduleURL+"/collect";
+            top.layer.confirm(fox.translate('确定进行数据采集操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                       // window.module.refreshTableData();
+                    }
+                    fox.showMessage(r);
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+        },
         copyFunc:function (data, it){
             console.log('data',data,it);
             layer.prompt({title:"请输入复制的数量",value:1,area:['600px','400px']},function(val,index){

@@ -1,7 +1,7 @@
 /**
  * 模版指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 20:26:40
+ * @since 2023-10-09 18:47:00
  */
 
 
@@ -88,7 +88,7 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'monitorTplCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版'), templet: function (d) { return templet('monitorTplCode' ,fox.joinLabel(d.tpl,"name",',','','monitorTplCode'),d);}}
-					,{ field: 'monitorMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控方式'), templet:function (d){ return templet('monitorMethod',fox.getEnumText(SELECT_MONITORMETHOD_DATA,d.monitorMethod,'','monitorMethod'),d);}}
+					,{ field: 'monitorMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('采集方式'), templet:function (d){ return templet('monitorMethod',fox.getEnumText(SELECT_MONITORMETHOD_DATA,d.monitorMethod,'','monitorMethod'),d);}}
 					,{ field: 'indicatorType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('指标类型'), templet: function (d) { return templet('indicatorType' ,fox.joinLabel(d.monitorIndicatorType,"name",',','','indicatorType'),d);}}
 					,{ field: 'rowColType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('值行列数'), templet:function (d){ return templet('rowColType',fox.getEnumText(SELECT_ROWCOLTYPE_DATA,d.rowColType,'','rowColType'),d);}}
 					,{ field: 'valueColumnType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数值类型'), templet:function (d){ return templet('valueColumnType',fox.getEnumText(SELECT_VALUECOLUMNTYPE_DATA,d.valueColumnType,'','valueColumnType'),d);}}

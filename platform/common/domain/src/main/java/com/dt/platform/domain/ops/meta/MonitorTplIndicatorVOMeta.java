@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 20:26:38
+ * @since 2023-10-09 18:46:58
  * @sign A30CF0E8E3F7E78C68BEB54048A66F1B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -191,14 +191,14 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> MONITOR_TPL_CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,MONITOR_TPL_CODE, java.lang.String.class, "监控模版", "监控模版", java.lang.String.class, null);
 	
 	/**
-	 * 监控方式 , 类型: java.lang.String
+	 * 采集方式 , 类型: java.lang.String
 	*/
 	public static final String MONITOR_METHOD="monitorMethod";
 	
 	/**
-	 * 监控方式 , 类型: java.lang.String
+	 * 采集方式 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> MONITOR_METHOD_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,MONITOR_METHOD, java.lang.String.class, "监控方式", "监控方式", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> MONITOR_METHOD_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,MONITOR_METHOD, java.lang.String.class, "采集方式", "采集方式", java.lang.String.class, null);
 	
 	/**
 	 * 指标类型 , 类型: java.lang.String
@@ -661,8 +661,8 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 		}
 		
 		/**
-		 * 设置 监控方式
-		 * @param monitorMethod 监控方式
+		 * 设置 采集方式
+		 * @param monitorMethod 采集方式
 		 * @return 当前对象
 		*/
 		public MonitorTplIndicator setMonitorMethod(String monitorMethod) {

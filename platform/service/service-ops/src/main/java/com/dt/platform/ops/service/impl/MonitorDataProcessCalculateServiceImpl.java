@@ -89,6 +89,7 @@ public class MonitorDataProcessCalculateServiceImpl implements IMonitorDataProce
         return ErrorDesc.success();
     }
 
+    @Override
     public Result collectNodeData(MonitorNode node) {
         //获取指标
         List<MonitorTplIndicator> monitorTplIndicatorList=monitorDataProcessBaseService.queryExecuteIndicatorList(node.getId(),MONITOR_METHOD);

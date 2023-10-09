@@ -86,6 +86,7 @@ public interface MonitorNodeServiceProxy {
 
     public static final String COPY = API_PREFIX + "copy";
 
+    public static final String COLLECT = API_PREFIX + "collect";
     /**
      * 添加节点
      */

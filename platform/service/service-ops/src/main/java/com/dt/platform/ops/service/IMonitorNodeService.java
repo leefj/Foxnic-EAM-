@@ -28,6 +28,9 @@ import java.util.Map;
 
 public interface IMonitorNodeService extends  ISimpleIdService<MonitorNode,String> {
 
+	Result collect(String id,String tplCode);
+
+
 	Result copy(String id,String num);
 
 	/**
