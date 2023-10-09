@@ -66,7 +66,7 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
         Logger.info("collectData,find nodes number:"+nodeList.size());
 
         // 创建 ForkJoin 工具，其中 输入一个 Integer 元素的 List ，输出 Long 元素的 List ，每个线程处理 若干元素 ，此处为 5 个
-        SimpleJoinForkTask<MonitorNode,Result> task=new SimpleJoinForkTask<>(nodeList,5);
+        SimpleJoinForkTask<MonitorNode,Result> task=new SimpleJoinForkTask<>(nodeList,10);
         // 并行执行
         List<Result> rvs=task.execute(els->{
             // 打印当前线程信息
@@ -92,19 +92,15 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
 
         String ip=node.getNodeIp();
         int zabbix_port=node.getZabbixAgentPort();
-
         if(StringUtil.isBlank(zabbix_port+"")){
             return ErrorDesc.failure().message("主机Zabbix代理端口("+zabbix_port+")端口不存在");
         }
-
-        if(zabbix_port<1024||zabbix_port>30000){
-            return ErrorDesc.failure().message("主机Zabbix代理端口("+zabbix_port+")端口设置不正确");
+        if(zabbix_port<1024){
+            return ErrorDesc.failure().message("主机Zabbix代理端口("+zabbix_port+")端口设置不正确,端口必须在1024以上");
         }
-
         if(StringUtil.isBlank(ip+"")){
             return ErrorDesc.failure().message("主机("+ip+")不存在");
         }
-
         //获取指标
         List<MonitorTplIndicator> monitorTplIndicatorList=monitorDataProcessBaseService.queryExecuteIndicatorList(node.getId(),MONITOR_METHOD);
         Logger.info("method:"+this.MONITOR_METHOD+",collectData,process node:"+node.getId()+",ip:"+node.getNodeIp()+",find indicator number:"+monitorTplIndicatorList.size());
@@ -114,7 +110,6 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
             monitorDataProcessBaseService.executeCollectDataInsert(list);
         }
         return ErrorDesc.success();
-
 
     }
 
@@ -260,7 +255,7 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
         }
         SystemCommandtResult r=SystemCommandExecutor.exeCmd(exeCommand,30);
         Logger.info("command:\n"+exeCommand);
-        Logger.error("result:\n"+r.result);
+      //  Logger.info("result:\n"+r.result);
         if(StringUtil.isBlank(r.result)||r.result.startsWith("zabbix_get")){
             r.code=1;
         }
@@ -327,7 +322,7 @@ public class MonitorDataProcessZabbixAgentServiceImpl implements IMonitorDataPro
                 errInsert.setIf("result_message",executeResult.result);
                 errInsert.setIf("indicator_code",tplIndicator.getCode());
                 errInsert.setIf("node_id",node.getId());
-                errInsert.setIf("is_connected",0);
+                errInsert.setIf("is_connected",1);
                 errInsert.setIf("monitor_tpl_code",tplIndicator.getMonitorTplCode());
                 errInsert.setIf("record_time",new Date());
                 nodeInsList.add(errInsert);

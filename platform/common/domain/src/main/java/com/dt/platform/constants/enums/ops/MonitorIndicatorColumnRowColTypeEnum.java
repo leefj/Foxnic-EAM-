@@ -16,7 +16,7 @@ public enum MonitorIndicatorColumnRowColTypeEnum implements CodeTextEnum {
     SINGLE_SINGLE("single_single" , "单行单列"),
     SINGLE_MULTIPLE("single_multiple" , "单行多列"),
     MULTIPLE_MULTIPLE("multiple_multiple" , "多行多列"),
-    MULTIPLE_SINGLE("multiple_single" , "多行多列");
+    MULTIPLE_SINGLE("multiple_single" , "多行单列");
 
     private String code;
     private String text;
