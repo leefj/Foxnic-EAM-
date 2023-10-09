@@ -97,6 +97,7 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
 
 
     //同一个节点指标必须一样
+    @Override
     public Result collectNodeData(MonitorNode node) {
         //获取指标
         String sql="select distinct c.monitor_method from ops_monitor_tpl a,ops_monitor_node_tpl_item b,ops_monitor_tpl_indicator c\n" +

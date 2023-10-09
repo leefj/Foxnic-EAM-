@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-10-06 09:30:27
+ * @since 2023-10-09 18:44:13
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -6853,9 +6853,9 @@ public class OpsTables {
 		public static final DBField JMX_PORT = new DBField(DBDataType.INTEGER , "jmx_port","jmxPort","Jmx端口","Jmx端口",false,false,true);
 		
 		/**
-		 * Jmx端口
+		 * Impi端口
 		*/
-		public static final DBField IMPI_PORT = new DBField(DBDataType.INTEGER , "impi_port","impiPort","Jmx端口","Jmx端口",false,false,true);
+		public static final DBField IMPI_PORT = new DBField(DBDataType.INTEGER , "impi_port","impiPort","Impi端口","Impi端口",false,false,true);
 		
 		/**
 		 * Jdbc地址
@@ -7967,6 +7967,21 @@ public class OpsTables {
 		public static final DBField VALUE_NUMBER3 = new DBField(DBDataType.DECIMAL , "value_number3","valueNumber3","数值3","数值3",false,false,true);
 		
 		/**
+		 * 数值3
+		*/
+		public static final DBField VALUE_NUMBER4 = new DBField(DBDataType.DECIMAL , "value_number4","valueNumber4","数值3","数值3",false,false,true);
+		
+		/**
+		 * 数值3
+		*/
+		public static final DBField VALUE_NUMBER5 = new DBField(DBDataType.DECIMAL , "value_number5","valueNumber5","数值3","数值3",false,false,true);
+		
+		/**
+		 * 数值3
+		*/
+		public static final DBField VALUE_NUMBER6 = new DBField(DBDataType.DECIMAL , "value_number6","valueNumber6","数值3","数值3",false,false,true);
+		
+		/**
 		 * 字符串1
 		*/
 		public static final DBField VALUE_STR1 = new DBField(DBDataType.STRING , "value_str1","valueStr1","字符串1","字符串1",false,false,true);
@@ -8045,6 +8060,21 @@ public class OpsTables {
 		 * 数值列3
 		*/
 		public static final DBField LIST_VALUE_NUMBER3 = new DBField(DBDataType.DECIMAL , "list_value_number3","listValueNumber3","数值列3","数值列3",false,false,true);
+		
+		/**
+		 * 数值列4
+		*/
+		public static final DBField LIST_VALUE_NUMBER4 = new DBField(DBDataType.DECIMAL , "list_value_number4","listValueNumber4","数值列4","数值列4",false,false,true);
+		
+		/**
+		 * 数值列5
+		*/
+		public static final DBField LIST_VALUE_NUMBER5 = new DBField(DBDataType.DECIMAL , "list_value_number5","listValueNumber5","数值列5","数值列5",false,false,true);
+		
+		/**
+		 * 数值列6
+		*/
+		public static final DBField LIST_VALUE_NUMBER6 = new DBField(DBDataType.DECIMAL , "list_value_number6","listValueNumber6","数值列6","数值列6",false,false,true);
 		
 		/**
 		 * 字符串列1
@@ -8132,7 +8162,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
 		
 		public OPS_MONITOR_NODE_VALUE() {
-			this.init($NAME,"节点数值" , ID , NODE_ID , MONITOR_TPL_CODE , RESULT_STATUS , RESULT_MESSAGE , INDICATOR_CODE , HOSTNAME , OS_DATETIME , BOOTTIME , OS_VERION , ARCH , CPU_NUMBER , CPU_FREE , CPU_SYS , CPU_USER , CPU_WAIT , CPU_IDLE , CPU_USED , OS_LOAD , OS_LOAD5 , OS_LOAD15 , NETWORK_FLOW_UP , NETWORK_FLOW_DOWN , PROCESS_CNT , P_MEMORY_SIZE , V_MEMORY_SIZE , P_MEMORY_USED , V_MEMORY_USED , DB_STATUS , DB_SIZE , DB_CONNECT_NUMBER , NODE_VERSION , INFO , LABEL1 , LABEL2 , LABEL3 , CODE1 , CODE2 , CODE3 , VALUE_NUMBER1 , VALUE_NUMBER2 , VALUE_NUMBER3 , VALUE_STR1 , VALUE_STR2 , VALUE_STR3 , VALUE_BSTR1 , VALUE_INT1 , VALUE_INT2 , VALUE_INT3 , LIST_LABEL1 , LIST_LABEL2 , LIST_LABEL3 , LIST_CODE1 , LIST_CODE2 , LIST_CODE3 , LIST_VALUE_NUMBER1 , LIST_VALUE_NUMBER2 , LIST_VALUE_NUMBER3 , LIST_VALUE_STR1 , LIST_VALUE_STR2 , LIST_VALUE_STR3 , LIST_VALUE_INT1 , LIST_VALUE_INT2 , LIST_VALUE_INT3 , UID , IS_CONNECTED , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"节点数值" , ID , NODE_ID , MONITOR_TPL_CODE , RESULT_STATUS , RESULT_MESSAGE , INDICATOR_CODE , HOSTNAME , OS_DATETIME , BOOTTIME , OS_VERION , ARCH , CPU_NUMBER , CPU_FREE , CPU_SYS , CPU_USER , CPU_WAIT , CPU_IDLE , CPU_USED , OS_LOAD , OS_LOAD5 , OS_LOAD15 , NETWORK_FLOW_UP , NETWORK_FLOW_DOWN , PROCESS_CNT , P_MEMORY_SIZE , V_MEMORY_SIZE , P_MEMORY_USED , V_MEMORY_USED , DB_STATUS , DB_SIZE , DB_CONNECT_NUMBER , NODE_VERSION , INFO , LABEL1 , LABEL2 , LABEL3 , CODE1 , CODE2 , CODE3 , VALUE_NUMBER1 , VALUE_NUMBER2 , VALUE_NUMBER3 , VALUE_NUMBER4 , VALUE_NUMBER5 , VALUE_NUMBER6 , VALUE_STR1 , VALUE_STR2 , VALUE_STR3 , VALUE_BSTR1 , VALUE_INT1 , VALUE_INT2 , VALUE_INT3 , LIST_LABEL1 , LIST_LABEL2 , LIST_LABEL3 , LIST_CODE1 , LIST_CODE2 , LIST_CODE3 , LIST_VALUE_NUMBER1 , LIST_VALUE_NUMBER2 , LIST_VALUE_NUMBER3 , LIST_VALUE_NUMBER4 , LIST_VALUE_NUMBER5 , LIST_VALUE_NUMBER6 , LIST_VALUE_STR1 , LIST_VALUE_STR2 , LIST_VALUE_STR3 , LIST_VALUE_INT1 , LIST_VALUE_INT2 , LIST_VALUE_INT3 , UID , IS_CONNECTED , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_MONITOR_NODE_VALUE $TABLE=new OPS_MONITOR_NODE_VALUE();
 	}
@@ -8358,6 +8388,21 @@ public class OpsTables {
 		public static final DBField VALUE_NUMBER3 = new DBField(DBDataType.DECIMAL , "value_number3","valueNumber3","数值3","数值3",false,false,true);
 		
 		/**
+		 * 数值3
+		*/
+		public static final DBField VALUE_NUMBER4 = new DBField(DBDataType.DECIMAL , "value_number4","valueNumber4","数值3","数值3",false,false,true);
+		
+		/**
+		 * 数值3
+		*/
+		public static final DBField VALUE_NUMBER5 = new DBField(DBDataType.DECIMAL , "value_number5","valueNumber5","数值3","数值3",false,false,true);
+		
+		/**
+		 * 数值3
+		*/
+		public static final DBField VALUE_NUMBER6 = new DBField(DBDataType.DECIMAL , "value_number6","valueNumber6","数值3","数值3",false,false,true);
+		
+		/**
 		 * 字符串1
 		*/
 		public static final DBField VALUE_STR1 = new DBField(DBDataType.STRING , "value_str1","valueStr1","字符串1","字符串1",false,false,true);
@@ -8436,6 +8481,21 @@ public class OpsTables {
 		 * 数值列3
 		*/
 		public static final DBField LIST_VALUE_NUMBER3 = new DBField(DBDataType.DECIMAL , "list_value_number3","listValueNumber3","数值列3","数值列3",false,false,true);
+		
+		/**
+		 * 数值列3
+		*/
+		public static final DBField LIST_VALUE_NUMBER4 = new DBField(DBDataType.DECIMAL , "list_value_number4","listValueNumber4","数值列3","数值列3",false,false,true);
+		
+		/**
+		 * 数值列3
+		*/
+		public static final DBField LIST_VALUE_NUMBER5 = new DBField(DBDataType.DECIMAL , "list_value_number5","listValueNumber5","数值列3","数值列3",false,false,true);
+		
+		/**
+		 * 数值列3
+		*/
+		public static final DBField LIST_VALUE_NUMBER6 = new DBField(DBDataType.DECIMAL , "list_value_number6","listValueNumber6","数值列3","数值列3",false,false,true);
 		
 		/**
 		 * 字符串列1
@@ -8523,7 +8583,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
 		
 		public OPS_MONITOR_NODE_VALUE_LAST() {
-			this.init($NAME,"节点数值最新" , ID , NODE_ID , MONITOR_TPL_CODE , RESULT_STATUS , RESULT_MESSAGE , INDICATOR_CODE , HOSTNAME , OS_DATETIME , BOOTTIME , OS_VERION , ARCH , CPU_NUMBER , CPU_FREE , CPU_SYS , CPU_USER , CPU_WAIT , CPU_IDLE , CPU_USED , OS_LOAD , OS_LOAD5 , OS_LOAD15 , NETWORK_FLOW_UP , NETWORK_FLOW_DOWN , PROCESS_CNT , P_MEMORY_SIZE , V_MEMORY_SIZE , P_MEMORY_USED , V_MEMORY_USED , DB_STATUS , DB_SIZE , DB_CONNECT_NUMBER , NODE_VERSION , INFO , LABEL1 , LABEL2 , LABEL3 , CODE1 , CODE2 , CODE3 , VALUE_NUMBER1 , VALUE_NUMBER2 , VALUE_NUMBER3 , VALUE_STR1 , VALUE_STR2 , VALUE_STR3 , VALUE_BSTR1 , VALUE_INT1 , VALUE_INT2 , VALUE_INT3 , LIST_LABEL1 , LIST_LABEL2 , LIST_LABEL3 , LIST_CODE1 , LIST_CODE2 , LIST_CODE3 , LIST_VALUE_NUMBER1 , LIST_VALUE_NUMBER2 , LIST_VALUE_NUMBER3 , LIST_VALUE_STR1 , LIST_VALUE_STR2 , LIST_VALUE_STR3 , LIST_VALUE_INT1 , LIST_VALUE_INT2 , LIST_VALUE_INT3 , UID , IS_CONNECTED , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"节点数值最新" , ID , NODE_ID , MONITOR_TPL_CODE , RESULT_STATUS , RESULT_MESSAGE , INDICATOR_CODE , HOSTNAME , OS_DATETIME , BOOTTIME , OS_VERION , ARCH , CPU_NUMBER , CPU_FREE , CPU_SYS , CPU_USER , CPU_WAIT , CPU_IDLE , CPU_USED , OS_LOAD , OS_LOAD5 , OS_LOAD15 , NETWORK_FLOW_UP , NETWORK_FLOW_DOWN , PROCESS_CNT , P_MEMORY_SIZE , V_MEMORY_SIZE , P_MEMORY_USED , V_MEMORY_USED , DB_STATUS , DB_SIZE , DB_CONNECT_NUMBER , NODE_VERSION , INFO , LABEL1 , LABEL2 , LABEL3 , CODE1 , CODE2 , CODE3 , VALUE_NUMBER1 , VALUE_NUMBER2 , VALUE_NUMBER3 , VALUE_NUMBER4 , VALUE_NUMBER5 , VALUE_NUMBER6 , VALUE_STR1 , VALUE_STR2 , VALUE_STR3 , VALUE_BSTR1 , VALUE_INT1 , VALUE_INT2 , VALUE_INT3 , LIST_LABEL1 , LIST_LABEL2 , LIST_LABEL3 , LIST_CODE1 , LIST_CODE2 , LIST_CODE3 , LIST_VALUE_NUMBER1 , LIST_VALUE_NUMBER2 , LIST_VALUE_NUMBER3 , LIST_VALUE_NUMBER4 , LIST_VALUE_NUMBER5 , LIST_VALUE_NUMBER6 , LIST_VALUE_STR1 , LIST_VALUE_STR2 , LIST_VALUE_STR3 , LIST_VALUE_INT1 , LIST_VALUE_INT2 , LIST_VALUE_INT3 , UID , IS_CONNECTED , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_MONITOR_NODE_VALUE_LAST $TABLE=new OPS_MONITOR_NODE_VALUE_LAST();
 	}
@@ -9409,9 +9469,9 @@ public class OpsTables {
 		public static final DBField MONITOR_TPL_CODE = new DBField(DBDataType.STRING , "monitor_tpl_code","monitorTplCode","监控模版","监控模版",false,false,true);
 		
 		/**
-		 * 监控方式
+		 * 采集方式
 		*/
-		public static final DBField MONITOR_METHOD = new DBField(DBDataType.STRING , "monitor_method","monitorMethod","监控方式","监控方式",false,false,true);
+		public static final DBField MONITOR_METHOD = new DBField(DBDataType.STRING , "monitor_method","monitorMethod","采集方式","采集方式",false,false,true);
 		
 		/**
 		 * 指标类型

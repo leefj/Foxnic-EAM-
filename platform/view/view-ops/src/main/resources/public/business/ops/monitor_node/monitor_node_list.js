@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 11:20:03
+ * @since 2023-10-09 18:46:48
  */
 
 
@@ -493,6 +493,9 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'collect-func') { // 采集
+				window.pageExt.list.collectFunc(data,this);
 			}
 			else if (layEvent === 'copy-func') { // 复制
 				window.pageExt.list.copyFunc(data,this);

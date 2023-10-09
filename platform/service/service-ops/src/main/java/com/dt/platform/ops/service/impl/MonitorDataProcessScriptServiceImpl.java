@@ -110,7 +110,7 @@ public class MonitorDataProcessScriptServiceImpl implements IMonitorDataProcessS
 
         return ErrorDesc.success();
     }
-
+    @Override
     public Result collectNodeData(MonitorNode node) {
 
         String ip=node.getNodeIp();

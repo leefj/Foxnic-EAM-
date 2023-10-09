@@ -117,6 +117,17 @@ public class MonitorNodeController extends SuperController {
 
 
     /**
+     * 采集数据
+     */
+    @ApiOperation(value = "采集数据")
+    @ApiOperationSupport(order = 2)
+    @SentinelResource(value = MonitorNodeServiceProxy.COLLECT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(MonitorNodeServiceProxy.COLLECT)
+    public Result collect(String id,String tplCode) {
+         return monitorNodeService.collect(id,tplCode);
+    }
+
+    /**
      * 删除节点
      */
     @ApiOperation(value = "删除节点")

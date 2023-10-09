@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 模版指标
  * <p>模版指标 , 数据表 ops_monitor_tpl_indicator 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-05 20:26:38
- * @sign 680AA458DB8B522CA7B0F58294F54B32
+ * @since 2023-10-09 18:46:58
+ * @sign 3457572487F39496B05022BDCF4F1C52
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -68,9 +68,9 @@ public class MonitorTplIndicator extends Entity {
 	private String monitorTplCode;
 	
 	/**
-	 * 监控方式：监控方式
+	 * 采集方式：采集方式
 	*/
-	@ApiModelProperty(required = false,value="监控方式" , notes = "监控方式" , example = "script")
+	@ApiModelProperty(required = false,value="采集方式" , notes = "采集方式" , example = "script")
 	private String monitorMethod;
 	
 	/**
@@ -328,17 +328,17 @@ public class MonitorTplIndicator extends Entity {
 	}
 	
 	/**
-	 * 获得 监控方式<br>
-	 * 监控方式
-	 * @return 监控方式
+	 * 获得 采集方式<br>
+	 * 采集方式
+	 * @return 采集方式
 	*/
 	public String getMonitorMethod() {
 		return monitorMethod;
 	}
 	
 	/**
-	 * 设置 监控方式
-	 * @param monitorMethod 监控方式
+	 * 设置 采集方式
+	 * @param monitorMethod 采集方式
 	 * @return 当前对象
 	*/
 	public MonitorTplIndicator setMonitorMethod(String monitorMethod) {

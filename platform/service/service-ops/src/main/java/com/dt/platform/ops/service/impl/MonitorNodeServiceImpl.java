@@ -5,7 +5,7 @@ import com.dt.platform.domain.ops.MonitorNode;
 import com.dt.platform.domain.ops.MonitorNodeTplItem;
 import com.dt.platform.domain.ops.MonitorNodeTplItemVO;
 import com.dt.platform.domain.ops.MonitorNodeVO;
-import com.dt.platform.ops.service.IMonitorNodeService;
+import com.dt.platform.ops.service.*;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
@@ -46,6 +46,24 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
+
+	@Autowired
+	IMonitorDataProcessCalculateService monitorDataProcessCalculateService;
+
+	@Autowired
+	IMonitorDataProcessJdbcService monitorDataProcessJdbcService;
+
+	@Autowired
+	IMonitorDataProcessScriptService monitorDataProcessScriptService;
+
+	@Autowired
+	IMonitorDataProcessZabbixAgentService monitorDataProcessZabbixAgentService;
+
+	@Autowired
+	IMonitorDataProcessZabbixServerService monitorDataProcessZabbixServerService;
+
+
+
 	/**
 	 * 获得 DAO 对象
 	 * */
@@ -77,6 +95,23 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 		}
 		return r;
 	}
+	@Override
+	public Result collect(String id, String tplCode) {
+		MonitorNode node=this.getById(id);
+		if(node==null){
+			return ErrorDesc.failureMessage("当前节点不存在");
+		}
+		if(!"enable".equals(node.getNodeEnabled())){
+			return ErrorDesc.failureMessage("当前节点状态不能进行采集操作");
+		}
+		monitorDataProcessScriptService.collectNodeData(node);
+		monitorDataProcessZabbixAgentService.collectNodeData(node);
+		monitorDataProcessZabbixServerService.collectNodeData(node);
+		monitorDataProcessJdbcService.collectNodeData(node);
+		monitorDataProcessCalculateService.collectNodeData(node);
+		return ErrorDesc.success();
+	}
+
 
 	@Override
 	public Result copy(String id, String num) {
