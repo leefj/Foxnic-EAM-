@@ -307,7 +307,7 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
             String col=meta.getString("valueColumn");
             result.put("value",meta.getString(lineToHump(col)));
         }else if(MonitorIndicatorColumnRowColTypeEnum.MULTIPLE_MULTIPLE.code().equals(colType)
-               ||MonitorIndicatorColumnRowColTypeEnum.MULTIPLE_MULTIPLE.code().equals(colType)){
+               ||MonitorIndicatorColumnRowColTypeEnum.SINGLE_MULTIPLE.code().equals(colType)){
             String[] colArr=meta.getString("valueColumn").split(",");
             if(colArr.length>0){
                 String v="";

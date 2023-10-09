@@ -69,7 +69,7 @@ public class MonitorDataProcessCalculateServiceImpl implements IMonitorDataProce
         Logger.info("collectData,find nodes number:"+nodeList.size());
 
         // 创建 ForkJoin 工具，其中 输入一个 Integer 元素的 List ，输出 Long 元素的 List ，每个线程处理 若干元素 ，此处为 5 个
-        SimpleJoinForkTask<MonitorNode,Result> task=new SimpleJoinForkTask<>(nodeList,5);
+        SimpleJoinForkTask<MonitorNode,Result> task=new SimpleJoinForkTask<>(nodeList,10);
         // 并行执行
         List<Result> rvs=task.execute(els->{
             // 打印当前线程信息
@@ -142,6 +142,9 @@ public class MonitorDataProcessCalculateServiceImpl implements IMonitorDataProce
         map.put("node", node);
         Logger.info("nodeId:"+node.getId()+",indicator:"+indicator.getCode()+",表达式:"+expr);
         Object result = calculationValue(expr,map);
+        if(!indicator.getStatus().equals("enable")){
+            return list;
+        }
         Logger.info("result:"+result);
         if(StringUtil.isBlank(result)){
             Insert valueInsert=new Insert("ops_monitor_node_value");
@@ -150,7 +153,7 @@ public class MonitorDataProcessCalculateServiceImpl implements IMonitorDataProce
             valueInsert.setIf("result_message","result is null");
             valueInsert.setIf("indicator_code",indicator.getCode());
             valueInsert.setIf("node_id",node.getId());
-            valueInsert.setIf("is_connected",0);
+            valueInsert.setIf("is_connected",1);
             valueInsert.setIf("monitor_tpl_code",indicator.getMonitorTplCode());
             valueInsert.setIf("record_time",new Date());
             list.add(valueInsert);

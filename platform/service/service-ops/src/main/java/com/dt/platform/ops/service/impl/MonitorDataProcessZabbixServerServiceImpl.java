@@ -39,11 +39,11 @@ public class MonitorDataProcessZabbixServerServiceImpl implements IMonitorDataPr
     @Autowired
     private IMonitorTplIndicatorService monitorTplIndicatorService;
 
-    private String MONITOR_METHOD=MonitorMethodEnum.ZABBIX_SERVER.code();
 
 
     @Override
     public Result collectData() {
+
 
         return null;
     }
