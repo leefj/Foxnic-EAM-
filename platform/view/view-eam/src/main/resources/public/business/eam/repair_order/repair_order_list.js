@@ -566,6 +566,11 @@ function ListPage() {
 		});
 	};
 
+	function calWidth() {
+		console.log("calWidth");
+	};
+	window.calWidth=calWidth;
+
 	window.module={
 		refreshTableData: refreshTableData,
 		refreshRowData: refreshRowData,

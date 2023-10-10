@@ -25,15 +25,19 @@ function ListPage() {
 
 		$("#wait_repair_count_tab").on('click', function(){
 			queryTabData("none");
+			$("#orderWaitRepair")[0].contentWindow.calWidth();
 		});
 		$("#repairing_count_tab").on('click', function(){
 			queryTabData("none");
+			$("#orderRepairing")[0].contentWindow.calWidth();
 		});
 		$("#wait_acceptance_count_tab").on('click', function(){
 			queryTabData("none");
+			$("#orderWaitAcceptance")[0].contentWindow.calWidth();
 		});
 		$("#acceptance_failed_count_tab").on('click', function(){
 			queryTabData("none");
+			$("#orderAcceptanceFailed")[0].contentWindow.calWidth();
 		});
 
 	}
