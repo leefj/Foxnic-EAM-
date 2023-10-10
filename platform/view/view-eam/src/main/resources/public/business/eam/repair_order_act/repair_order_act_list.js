@@ -112,10 +112,20 @@ function ListPage() {
 			  refreshTableData(obj.sortField,obj.type);
 			});
 			window.pageExt.list.afterTableRender && window.pageExt.list.afterTableRender();
+			calWidth();
 		}
 		setTimeout(renderTableInternal,1);
     };
 
+	function calWidth() {
+		console.log("calWidth",table.instance);
+		if(table&&table.instance&&table.instance.length>0&&table.instance[0].updateOpsColumnWidth){
+			console.log("start to cal width")
+			table.instance[0].updateOpsColumnWidth();
+			setTimeout(table.instance[0].updateOpsColumnWidth(),150);
+		}
+	};
+	window.calWidth=calWidth;
 	/**
 	 * 刷新单号数据
 	 * */
@@ -188,6 +198,8 @@ function ListPage() {
 			table.reload('data-table', { where : ps });
 		}
 	}
+
+
 
 
 	/**
@@ -448,6 +460,7 @@ function ListPage() {
 		});
 
     };
+
 
     /**
      * 打开编辑窗口

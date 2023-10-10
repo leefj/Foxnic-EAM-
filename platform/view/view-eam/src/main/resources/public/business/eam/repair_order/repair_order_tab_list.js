@@ -22,21 +22,43 @@ function ListPage() {
 			}
 		}
 		queryTabData("none");
+
 		$("#not_dispatch_count_tab").on('click', function(){
 			queryTabData("none");
+			//$("#orderRepairing").contentWindow.calWidth();
 		});
+
 		$("#wait_repair_count_tab").on('click', function(){
 			queryTabData("none");
+			console.log("##")
+			$("#orderWaitRepair").contentWindow.calWidth();
 		});
+
 		$("#repairing_count_tab").on('click', function(){
 			queryTabData("none");
+			console.log("##")
+			console.log($("#orderRepairing"));
+			$("#orderRepairing").contentWindow.calWidth();
 		});
+
 		$("#wait_acceptance_count_tab").on('click', function(){
 			queryTabData("none");
+			console.log("##")
+			$("#orderWaitAcceptance").contentWindow.calWidth();
 		});
+
 		$("#acceptance_failed_count_tab").on('click', function(){
 			queryTabData("none");
+			console.log("##")
+			$("#orderAcceptanceFailed").contentWindow.calWidth();
 		});
+
+		$("#repaire_finish-ct").on('click', function(){
+			queryTabData("none");
+			console.log("##")
+			$("#orderFinish").contentWindow.calWidth();
+		});
+
 	}
 
 	function queryTabData(label){
