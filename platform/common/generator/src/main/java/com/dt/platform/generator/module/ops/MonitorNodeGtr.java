@@ -198,10 +198,10 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                         OpsTables.OPS_MONITOR_NODE.NOTES,
                 }
         );
-
         cfg.view().list().operationColumn().addActionButton("采集","collectFunc","collect-button","ops_monitor_node:collect");
-
         cfg.view().list().operationColumn().addActionButton("复制","copyFunc","copy-button","ops_monitor_node:copy");
+        cfg.view().list().operationColumn().addActionButton("最新数据","lastFunc","last-button");
+
 
         //文件生成覆盖模式
         cfg.overrides()

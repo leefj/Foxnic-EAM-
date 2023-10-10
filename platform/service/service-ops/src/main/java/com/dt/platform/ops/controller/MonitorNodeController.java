@@ -90,7 +90,8 @@ public class MonitorNodeController extends SuperController {
 		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Impi端口", required = false, dataTypeClass = Integer.class, example = "623"),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MonitorNodeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -106,15 +107,14 @@ public class MonitorNodeController extends SuperController {
      */
     @ApiOperation(value = "复制")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
-    })
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorNodeServiceProxy.COPY, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.COPY)
-    public Result copy(String id,String num) {
-        return  monitorNodeService.copy(id,num);
+    public Result copy(String id, String num) {
+        return monitorNodeService.copy(id, num);
     }
-
 
     /**
      * 采集数据
@@ -123,8 +123,8 @@ public class MonitorNodeController extends SuperController {
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorNodeServiceProxy.COLLECT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.COLLECT)
-    public Result collect(String id,String tplCode) {
-         return monitorNodeService.collect(id,tplCode);
+    public Result collect(String id, String tplCode) {
+        return monitorNodeService.collect(id, tplCode);
     }
 
     /**
@@ -232,7 +232,8 @@ public class MonitorNodeController extends SuperController {
 		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Impi端口", required = false, dataTypeClass = Integer.class, example = "623"),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MonitorNodeVOMeta.PAGE_INDEX, MonitorNodeVOMeta.PAGE_SIZE, MonitorNodeVOMeta.SEARCH_FIELD, MonitorNodeVOMeta.FUZZY_FIELD, MonitorNodeVOMeta.SEARCH_VALUE, MonitorNodeVOMeta.DIRTY_FIELDS, MonitorNodeVOMeta.SORT_FIELD, MonitorNodeVOMeta.SORT_TYPE, MonitorNodeVOMeta.IDS })
     @SentinelResource(value = MonitorNodeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -270,7 +271,8 @@ public class MonitorNodeController extends SuperController {
 		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Impi端口", required = false, dataTypeClass = Integer.class, example = "623"),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeVOMeta.PAGE_INDEX, MonitorNodeVOMeta.PAGE_SIZE, MonitorNodeVOMeta.SEARCH_FIELD, MonitorNodeVOMeta.FUZZY_FIELD, MonitorNodeVOMeta.SEARCH_VALUE, MonitorNodeVOMeta.DIRTY_FIELDS, MonitorNodeVOMeta.SORT_FIELD, MonitorNodeVOMeta.SORT_TYPE, MonitorNodeVOMeta.IDS })
     @SentinelResource(value = MonitorNodeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -345,7 +347,8 @@ public class MonitorNodeController extends SuperController {
 		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Impi端口", required = false, dataTypeClass = Integer.class, example = "623"),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeVOMeta.PAGE_INDEX, MonitorNodeVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorNodeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -384,7 +387,8 @@ public class MonitorNodeController extends SuperController {
 		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Impi端口", required = false, dataTypeClass = Integer.class, example = "623"),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MonitorNodeVOMeta.VAR, value = "变量", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MonitorNodeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

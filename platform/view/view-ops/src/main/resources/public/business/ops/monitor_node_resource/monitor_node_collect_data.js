@@ -166,6 +166,30 @@ function ListPage() {
             refreshTableData(null,null,true);
         });
 
+
+        $('#chart-button').click(function () {
+            //延迟显示加载动画，避免界面闪动
+            console.log("chart");
+            var data={};
+            admin.putTempData('eam-report-form-data', data);
+            var title = '图形'
+            var index=admin.popupCenter({
+                title: title,
+                resize: false,
+                offset: [15,null],
+                area: ["85%","95%"],
+                type: 2,
+                id:"eam-report-form-data-win",
+                content: '/business/ops/monitor_node_resource/monitor_node_collect_data_graph.html?nodeId=' + data.id,
+                finish: function () {
+
+                }
+            });
+            admin.putTempData('eam-report-form-data-popup-index', index);
+
+
+        });
+
         // 搜索按钮点击事件
         $('#search-button').click(function () {
             refreshTableData(null,null,true);
