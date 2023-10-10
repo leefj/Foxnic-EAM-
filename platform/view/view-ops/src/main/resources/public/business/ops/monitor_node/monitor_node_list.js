@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-09 18:46:48
+ * @since 2023-10-10 18:27:15
  */
 
 
@@ -90,6 +90,7 @@ function ListPage() {
 					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点分组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.monitorNodeGroup,"name",',','','groupId'),d);}}
 					,{ field: 'nodeEnabled', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否启用'), templet:function (d){ return templet('nodeEnabled',fox.getEnumText(RADIO_NODEENABLED_DATA,d.nodeEnabled,'','nodeEnabled'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: 'monitorTplIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('监控模版'), templet: function (d) { return templet('monitorTplIds' ,fox.joinLabel(d.monitorTplList,"name",',','','monitorTplIds'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
@@ -499,6 +500,9 @@ function ListPage() {
 			}
 			else if (layEvent === 'copy-func') { // 复制
 				window.pageExt.list.copyFunc(data,this);
+			}
+			else if (layEvent === 'last-func') { // 最新数据
+				window.pageExt.list.lastFunc(data,this);
 			}
 			
 		});

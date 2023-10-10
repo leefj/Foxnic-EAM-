@@ -171,6 +171,28 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 }, {delayLoading: 1000, elms: [btn]});
             });
         },
+        lastFunc:function (data, it){
+            var d={}
+            d.nodeId=data.id;
+            admin.putTempData('eam-report-form-data', d);
+            var area=admin.getTempData('eam-report-form-area');
+            var height= (area && area.height) ? area.height : ($(window).height()*0.6);
+            var title = fox.translate('最新数据');
+            top=8;
+            var index=admin.popupCenter({
+                title: title,
+                resize: false,
+                offset: [top,null],
+                area: ["80%","95%"],
+                type: 2,
+                id:"eam-report-form-data-win",
+                content: '/business/ops/monitor_node_resource/monitor_node_collect_data.html?nodeId=' + d.nodeId,
+                finish: function () {
+                }
+            });
+            admin.putTempData('eam-report-form-data-popup-index', index);
+
+        },
         copyFunc:function (data, it){
             console.log('data',data,it);
             layer.prompt({title:"请输入复制的数量",value:1,area:['600px','400px']},function(val,index){
