@@ -50,15 +50,15 @@ echo "########### execute resource sql list #########"
 echo "update sys_config set value='$t' where code='system.cachekey';"                            >$updateSql
 #echo "drop table sys_config_$t;"                                                                 >>$updateSql
 #echo "create table sys_config_$t as select * from sys_config;"                                   >>$updateSql
-echo "drop table sys_resourze_$t;"                                                                >>$updateSql
+#echo "drop table sys_resourze_$t;"                                                                >>$updateSql
 echo "create table sys_resourze_$t as select * from sys_resourze;"                                >>$updateSql
 echo "delete from sys_resourze where 1=1;"                                                        >>$updateSql
 echo "insert into sys_resourze select * from $db_update_name.sys_resourze;"                       >>$updateSql
-echo "drop table sys_menu_$t;"                                                                    >>$updateSql
+#echo "drop table sys_menu_$t;"                                                                    >>$updateSql
 echo "create table sys_menu_$t as select * from sys_menu;"                                        >>$updateSql
 echo "delete from sys_menu where 1=1;"                                                            >>$updateSql
 echo "insert into sys_menu select * from $db_update_name.sys_menu;"                               >>$updateSql
-echo "drop table sys_menu_resource_$t;"                                                           >>$updateSql
+#echo "drop table sys_menu_resource_$t;"                                                           >>$updateSql
 echo "create table sys_menu_resource_$t as select * from sys_menu_resource;"                      >>$updateSql
 echo "delete from sys_menu_resource where 1=1;"                                                   >>$updateSql
 echo "insert into sys_menu_resource select * from $db_update_name.sys_menu_resource;"             >>$updateSql

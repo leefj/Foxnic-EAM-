@@ -160,9 +160,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             }
             var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
             var api=moduleURL+"/collect";
+            var pps={id:ps.id,tplCode:""};
             top.layer.confirm(fox.translate('确定进行数据采集操作吗？'), function (i) {
                 top.layer.close(i);
-                admin.post(api, ps, function (r) {
+                admin.post(api, pps, function (r) {
                     if (r.success) {
                        // window.module.refreshTableData();
                     }
