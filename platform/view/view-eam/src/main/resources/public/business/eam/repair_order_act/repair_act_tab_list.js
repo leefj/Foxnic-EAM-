@@ -25,21 +25,35 @@ function ListPage() {
 
 		$("#wait_repair_count_tab").on('click', function(){
 			queryTabData("none");
+		//	$("#orderWaitRepair")[0].contentWindow.location.reload();
 			$("#orderWaitRepair")[0].contentWindow.calWidth();
 		});
+
 		$("#repairing_count_tab").on('click', function(){
 			queryTabData("none");
+			//$("#orderRepairing")[0].contentWindow.location.reload();
 			$("#orderRepairing")[0].contentWindow.calWidth();
 		});
 		$("#wait_acceptance_count_tab").on('click', function(){
 			queryTabData("none");
+			//$("#orderWaitAcceptance")[0].contentWindow.location.reload();
 			$("#orderWaitAcceptance")[0].contentWindow.calWidth();
 		});
 		$("#acceptance_failed_count_tab").on('click', function(){
 			queryTabData("none");
+			//$("#orderAcceptanceFailed")[0].contentWindow.location.reload();
 			$("#orderAcceptanceFailed")[0].contentWindow.calWidth();
 		});
 
+		$("#orderFinish_tab").on('click', function(){
+			//$("#orderAcceptanceFailed")[0].contentWindow.location.reload();
+			$("#orderFinish")[0].contentWindow.calWidth();
+		});
+
+		$("#all_tab").on('click', function(){
+			//$("#orderAcceptanceFailed")[0].contentWindow.location.reload();
+			$("#orderAll")[0].contentWindow.calWidth();
+		});
 	}
 	function queryTabData(label){
 		admin.post("/service-eam/eam-repair-order/query-status-count-data", { label :label }, function (r) {

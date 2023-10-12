@@ -170,6 +170,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param location 调用的代码位置
          * */
         beforeQuery:function (conditions,param,location) {
+            LOADING="yes";
             console.log('beforeQuery',conditions,param,location);
             if(REPAIR_STATUS){
                 if(REPAIR_STATUS=="all"){
@@ -184,11 +185,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-
-
+            LOADING="no";
+            console.log("afterQuery",this);
             for (var i = 0; i < data.length; i++) {
                 //如果审批中或审批通过的不允许编辑
-                console.log(data[i]);
                 var status=data[i].status;
                 if(status=="finish") {
                     fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
@@ -203,7 +203,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     fox.disableButton($('.finish-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.cancel-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.acceptance-button').filter("[data-id='" + data[i].id + "']"), true);
-
                     fox.disableButton($('.maintenance-button').filter("[data-id='" + data[i].id + "']"), true);
 
                 }

@@ -14,13 +14,14 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum MonitorMethodEnum implements CodeTextEnum {
 
     ZABBIX_AGENT("zabbix_agent" , "Zabbix客户端取数"),
-  //  ZABBIX_SERVER("zabbix_server" , "Zabbix服务端取数"),
     CALCULATED_BY_CODE("calculated_by_code" , "计算取数"),
     SCRIPT("script" , "脚本取数"),
     SNMP("snmp" , "SNMP方式"),
-    ORACLE_JDBC("oracle_jdbc" , "Oracle_Jdbc"),
-    MYSQL_JDBC("mysql_jdbc" , "Mysq_Jdbc"),
-    DB2_JDBC("db2_jdbc" , "DB2_Jdbc");
+    ORACLE_JDBC("oracle_jdbc" , "Oracle_JDBC"),
+    MYSQL_JDBC("mysql_jdbc" , "Mysq_JDBC"),
+    DB2_JDBC("db2_jdbc" , "DB2_JDBC"),
+    PG_JDBC("pg_jdbc" , "PG_JDBC"),
+    SQLSERVER_JDBC("sqlserver_jdbc" , "SqlServer_JDBC");
     private String code;
     private String text;
     private MonitorMethodEnum(String code, String text)  {
