@@ -53,16 +53,20 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
     private MonitorDataProcessBaseServiceImpl monitorDataProcessBaseService;
 
     private String MONITOR_METHOD_DB2= MonitorMethodEnum.DB2_JDBC.code();
-
     private String MONITOR_METHOD_ORACLE= MonitorMethodEnum.ORACLE_JDBC.code();
-
     private String MONITOR_METHOD_MYSQL= MonitorMethodEnum.MYSQL_JDBC.code();
+    private String MONITOR_METHOD_PG= MonitorMethodEnum.PG_JDBC.code();
+    private String MONITOR_METHOD_SQLSERVER= MonitorMethodEnum.SQLSERVER_JDBC.code();
+
     @Override
     public Result collectData() {
         List<MonitorNode> nodeList=new ArrayList<>();
         List<MonitorNode> nodeListDb2=monitorDataProcessBaseService.queryExecuteNodeList(MONITOR_METHOD_DB2);
         List<MonitorNode> nodeListOracle=monitorDataProcessBaseService.queryExecuteNodeList(MONITOR_METHOD_ORACLE);
         List<MonitorNode> nodeListMysql=monitorDataProcessBaseService.queryExecuteNodeList(MONITOR_METHOD_MYSQL);
+        List<MonitorNode> nodeListPg=monitorDataProcessBaseService.queryExecuteNodeList(MONITOR_METHOD_PG);
+        List<MonitorNode> nodeListSqlServer=monitorDataProcessBaseService.queryExecuteNodeList(MONITOR_METHOD_SQLSERVER);
+
         if(nodeListDb2!=null&&nodeListDb2.size()>0){
             nodeList.addAll(nodeListDb2);
         }
@@ -71,6 +75,12 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
         }
         if(nodeListOracle!=null&&nodeListOracle.size()>0){
             nodeList.addAll(nodeListMysql);
+        }
+        if(nodeListPg!=null&&nodeListPg.size()>0){
+            nodeList.addAll(nodeListPg);
+        }
+        if(nodeListSqlServer!=null&&nodeListSqlServer.size()>0){
+            nodeList.addAll(nodeListSqlServer);
         }
         Logger.info("collectData,find nodes number:"+nodeList.size());
 
@@ -99,7 +109,7 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
     //同一个节点指标必须一样
     @Override
     public Result collectNodeData(MonitorNode node) {
-        //获取指标
+
         String sql="select distinct c.monitor_method from ops_monitor_tpl a,ops_monitor_node_tpl_item b,ops_monitor_tpl_indicator c\n" +
                 "where a.code=b.tpl_code \n" +
                 "and a.code=c.monitor_tpl_code\n" +
@@ -107,7 +117,7 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
                 "and c.deleted=0\n" +
                 "and a.status='enable'\n" +
                 "and c.status='enable'\n" +
-                "and c.monitor_method in ('oracle_jdbc','db2_jdbc','mysql_jdbc')\n" +
+                "and c.monitor_method in ('oracle_jdbc','db2_jdbc','mysql_jdbc','sqlserver_jdbc')\n" +
                 "and b.node_id=?";
         RcdSet rs=dao.query(sql,node.getId());
         if(rs.size()!=1){
@@ -133,12 +143,22 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
         }else if(MonitorMethodEnum.MYSQL_JDBC.code().equals(me)){
             dbType="mysql"; //mysql 5.7
             driver="com.mysql.jdbc.Driver";
+        }else if(MonitorMethodEnum.SQLSERVER_JDBC.code().equals(me)){
+            dbType="sqlserver";
+            driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        }else if(MonitorMethodEnum.PG_JDBC.code().equals(me)){
+            dbType="pg";
+            driver="org.postgresql.Driver";
         }else{
             return ErrorDesc.failureMessage("当前节点所选JDBC不支持");
         }
+        Logger.info("dbType:"+dbType+",driver:"+driver);
         DAO d=createDAO(dbType,driver,node.getJdbcUrl(),user,pwd);
         if(d==null){
+            Logger.info("create dao failed!");
             return ErrorDesc.failureMessage("dao创建失败");
+        }else{
+            Logger.info("create dao success!");
         }
         List<Insert> list=queryIndicators(d,monitorTplIndicatorList,node);
         if(list.size()>0){
@@ -211,8 +231,12 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
             dbType=DBType.DB2;
         }else if("mysql".equals(type)){
             dbType=DBType.MYSQL;
+        }else if("sqlserver".equals(type)){
+            dbType=DBType.SQLSVR;
+        }else if("pg".equals(type)){
+            dbType=DBType.PG;
         }
-        Logger.info("create dao,current dbType:"+dbType.getDAOType());
+        Logger.info("create dao,current dbType:"+dbType.getDAOType()+",driver:"+driverName+",jdbc:"+url+",userName:"+userName);
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(driverName);
         dataSource.setUrl(url);

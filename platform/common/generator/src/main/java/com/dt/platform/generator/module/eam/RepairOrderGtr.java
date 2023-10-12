@@ -194,7 +194,7 @@ public class RepairOrderGtr extends BaseCodeGenerator{
                 .setPageController(WriteMode.WRITE_TEMP_FILE) //页面控制器
                 .setBpmEventAdaptor(WriteMode.WRITE_TEMP_FILE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
-                .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
+                .setListPage(WriteMode.WRITE_TEMP_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         cfg.buildAll();
     }

@@ -31,32 +31,32 @@ function ListPage() {
 		$("#wait_repair_count_tab").on('click', function(){
 			queryTabData("none");
 			console.log("##")
-			$("#orderWaitRepair").contentWindow.calWidth();
+			//$("#orderWaitRepair").contentWindow.calWidth();
 		});
 
 		$("#repairing_count_tab").on('click', function(){
 			queryTabData("none");
 			console.log("##")
 			console.log($("#orderRepairing"));
-			$("#orderRepairing").contentWindow.calWidth();
+		//	$("#orderRepairing").contentWindow.calWidth();
 		});
 
 		$("#wait_acceptance_count_tab").on('click', function(){
 			queryTabData("none");
 			console.log("##")
-			$("#orderWaitAcceptance").contentWindow.calWidth();
+		//	$("#orderWaitAcceptance").contentWindow.calWidth();
 		});
 
 		$("#acceptance_failed_count_tab").on('click', function(){
 			queryTabData("none");
 			console.log("##")
-			$("#orderAcceptanceFailed").contentWindow.calWidth();
+		//	$("#orderAcceptanceFailed").contentWindow.calWidth();
 		});
 
 		$("#repaire_finish-ct").on('click', function(){
 			queryTabData("none");
 			console.log("##")
-			$("#orderFinish").contentWindow.calWidth();
+		//	$("#orderFinish").contentWindow.calWidth();
 		});
 
 	}

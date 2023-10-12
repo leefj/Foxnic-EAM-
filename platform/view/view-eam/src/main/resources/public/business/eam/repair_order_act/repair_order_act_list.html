@@ -111,6 +111,8 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('eam_repair_order_act:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
+        <button  id="test-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="test"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('tet','','cmp:table.button')}">test</span></button>
+
     </div>
 </script>
 
@@ -135,6 +137,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var AUTH_PREFIX="eam_repair_order_act";
 
+    var LOADING="none";
     // 单据ID
     var REPAIR_STATUS = [[${repairStatus}]] ;
 

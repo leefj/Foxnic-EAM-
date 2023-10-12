@@ -40,6 +40,7 @@ function ListPage() {
 		bindButtonEvent();
 		//绑定行操作按钮事件
     	bindRowOperationEvent();
+    	console.log("REPAIR_STATUS",REPAIR_STATUS)
      }
 
 
@@ -55,6 +56,7 @@ function ListPage() {
 		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
 		 $("#table-area").css("margin-top",marginTop+"px");
 		//
+
 		function renderTableInternal() {
 
 			var ps={searchField: "$composite"};
@@ -73,7 +75,7 @@ function ListPage() {
 				}
 			}
 			var h=$(".search-bar").height();
-			var tableConfig={
+			 var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
@@ -99,6 +101,7 @@ function ListPage() {
 				done: function (data) {
 					lockSwitchInputs();
 					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
+					calWidth();
 				},
 				footer : {
 					exportExcel : false ,
@@ -117,12 +120,41 @@ function ListPage() {
 		setTimeout(renderTableInternal,1);
     };
 
+    function sleep(ms){
+    	console.log("sleep");
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+
 	function calWidth() {
-		console.log("calWidth",table.instance);
-		if(table&&table.instance&&table.instance.length>0&&table.instance[0].updateOpsColumnWidth){
-			console.log("start to cal width")
-			table.instance[0].updateOpsColumnWidth();
-			setTimeout(table.instance[0].updateOpsColumnWidth(),150);
+		var maxWidth=0;
+		if(dataTable){
+			var tableId="data-table"
+			var cells=$("#"+tableId).parent().find(".layui-table-body table td[data-field=row-ops] div");
+			for (var i = 0; i < cells.length; i++) {
+				var cw =0;
+				var cell=$(cells[i]);
+				for (let j = 0; j < cell.children().length; j++) {
+					if(cell.children()[j].clientWidth<35){
+						cell.children()[j].clientWidth=35;
+					}else{
+						cell.children()[j].clientWidth=cell.children()[j].clientWidth+1;
+					}
+					var e=cell.children()[j];
+					cw+=e.clientWidth+5*2+1;
+				}
+				if(cw>maxWidth) maxWidth=cw;
+			}
+			console.log("maxWidth"+maxWidth);
+			for(var i=100;i<1000;i=i+100){
+				setTimeout(function(){
+					if(dataTable.updateOpsColumnWidth){
+						dataTable.updateOpsColumnWidth();
+					}
+				},i);
+			}
+
+		}else{
+			console.log("dataTable is null");
 		}
 	};
 	window.calWidth=calWidth;
@@ -328,6 +360,9 @@ function ListPage() {
 					break;
 				case 'refresh-data':
 					refreshTableData();
+					break;
+				case 'test':
+					calWidth();
 					break;
 				case 'other':
 					break;
