@@ -262,7 +262,7 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
                 ") end where a2_max_record_time is null or max_record_time>a2_max_record_time\n" +
                 ")\n" +
                 ")t1,ops_monitor_node t2,ops_monitor_tpl t3\n" +
-                "where t1.node_id=t2.id and t3.code=t1.monitor_tpl_code";
+                "where t1.node_id=t2.id and t3.code=t1.monitor_tpl_code order by record_time desc";
         Result<JSONObject> result=new Result<>();
         JSONObject resultData=new JSONObject();
         //统计节点个数
