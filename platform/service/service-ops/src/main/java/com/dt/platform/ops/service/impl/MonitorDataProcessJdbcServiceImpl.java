@@ -128,10 +128,14 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
         if(var==null){
             return ErrorDesc.failureMessage("当前节点,所需的变量不存在");
         }
+
         String user=varObj.getString("user");
         String pwd=varObj.getString("pwd");
         String me=rs.getRcd(0).getString("monitor_method");
         List<MonitorTplIndicator> monitorTplIndicatorList=monitorDataProcessBaseService.queryExecuteIndicatorList(node.getId(),me);
+        if(monitorTplIndicatorList==null||monitorTplIndicatorList.size()==0){
+            return ErrorDesc.success();
+        }
         String dbType="";
         String driver="";
         if(MonitorMethodEnum.DB2_JDBC.code().equals(me)){
@@ -155,7 +159,29 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
         Logger.info("dbType:"+dbType+",driver:"+driver);
         DAO d=createDAO(dbType,driver,node.getJdbcUrl(),user,pwd);
         if(d==null){
-            Logger.info("create dao failed!");
+            Logger.info("create dao failed!,url:"+node.getJdbcUrl());
+            //插入节点报错数据
+            MonitorTplIndicator indicator=monitorTplIndicatorList.get(0);
+            Insert errInsert=new Insert("ops_monitor_node_value");
+            errInsert.set("id", IDGenerator.getSnowflakeId());
+            errInsert.setIf("result_status","failed");
+            errInsert.setIf("result_message","dao create failed");
+            errInsert.setIf("indicator_code",indicator.getCode());
+            errInsert.setIf("node_id",node.getId());
+            errInsert.setIf("is_connected",1);
+            errInsert.setIf("monitor_tpl_code",indicator.getMonitorTplCode());
+            errInsert.setIf("record_time",new Date());
+            dao.execute(errInsert);
+            Insert errInsertLast=new Insert("ops_monitor_node_value_last");
+            errInsertLast.set("id", IDGenerator.getSnowflakeId());
+            errInsertLast.setIf("result_status","failed");
+            errInsertLast.setIf("result_message","dao create failed");
+            errInsertLast.setIf("indicator_code",indicator.getCode());
+            errInsertLast.setIf("node_id",node.getId());
+            errInsertLast.setIf("is_connected",1);
+            errInsertLast.setIf("monitor_tpl_code",indicator.getMonitorTplCode());
+            errInsertLast.setIf("record_time",new Date());
+            dao.execute(errInsertLast);
             return ErrorDesc.failureMessage("dao创建失败");
         }else{
             Logger.info("create dao success!");
@@ -223,6 +249,7 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
     }
 
     private DAO createDAO(String type,String driverName, String url, String userName, String passwd) {
+        Logger.info("create dao driver:"+driverName+",jdbc:"+url+",userName:"+userName);
         DAO newDao=null;
         DBType dbType=DBType.parseFromURL(url);
         if("oracle".equals(type)){
@@ -236,7 +263,17 @@ public class MonitorDataProcessJdbcServiceImpl implements IMonitorDataProcessJdb
         }else if("pg".equals(type)){
             dbType=DBType.PG;
         }
-        Logger.info("create dao,current dbType:"+dbType.getDAOType()+",driver:"+driverName+",jdbc:"+url+",userName:"+userName);
+        if(dbType==null){
+            dbType=DBType.parseFromURL(url);
+        }
+        if(dbType==null){
+            dbType=DBType.parseFromDriver(url);
+        }
+        if(dbType==null){
+            Logger.info("dbType is null");
+            return null;
+        }
+        Logger.info("dbType:"+dbType.getDAOType());
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(driverName);
         dataSource.setUrl(url);
