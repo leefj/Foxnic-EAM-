@@ -46,6 +46,8 @@ function FormPage() {
 		//绑定提交事件
 		bindButtonEvent();
 
+		setTimeout(adjustPopup(),1000)
+
 	}
 
 	/**
@@ -54,8 +56,14 @@ function FormPage() {
 	var adjustPopupTask=-1;
 	function adjustPopup() {
 		clearTimeout(adjustPopupTask);
+		console.log("scroll");
 		var scroll=$(".form-container").attr("scroll");
-		if(scroll=='yes') return;
+		if(scroll=='yes'){
+			console.log("yes")
+			return 1;
+		}else{
+			console.log("no")
+		}
 		adjustPopupTask=setTimeout(function () {
 			var body=$("body");
 			var bodyHeight=body.height();
@@ -64,6 +72,9 @@ function FormPage() {
 			if(area==null) return;
 			admin.putTempData('eam-asset-form-area', area);
 			window.adjustPopup=adjustPopup;
+			console.log("area",area)
+			console.log(area.tooHeigh)
+			area.tooHeigh=true;
 			if(area.tooHeigh) {
 				var windowHeight=area.iframeHeight;
 				var finalHeight=windowHeight-footerHeight-16;
@@ -72,6 +83,7 @@ function FormPage() {
 				$(".form-container").css("overflow-y","scroll");
 				$(".form-container").css("height",finalHeight+"px");
 				$(".form-container").attr("scroll","yes");
+				console.log("set,"+finalHeight);
 			}
 		},250);
 	}

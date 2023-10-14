@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 监控模版
  * <p>监控模版 , 数据表 ops_monitor_tpl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-06 10:29:20
+ * @since 2023-10-13 20:26:02
  * @sign 95C0708A60B6D2EA9726F319E49ADF0D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
