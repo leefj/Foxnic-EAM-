@@ -63,7 +63,7 @@ public class MonitorTplGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.NOTES).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.CODE).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.TYPE).table().disable(true);
-
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL.UPDATE_BY).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.STATUS).form().validate().required().form()
                 .label("状态").radioBox().defaultIndex(0).enumType(MonitorEnableEnum.class);
 
@@ -79,7 +79,7 @@ public class MonitorTplGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.CODE).form().validate().required();
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.NAME).form().validate().required();
-        cfg.view().field(OpsTables.OPS_MONITOR_TPL.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL.NOTES).form().textArea().height(450);
         cfg.view().formWindow().bottomSpace(120);
 
         cfg.view().formWindow().width(Config.baseFormWidth);;

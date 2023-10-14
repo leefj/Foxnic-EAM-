@@ -16,9 +16,9 @@ public enum MonitorMethodEnum implements CodeTextEnum {
     ZABBIX_AGENT("zabbix_agent" , "Zabbix客户端取数"),
     CALCULATED_BY_CODE("calculated_by_code" , "计算取数"),
     SCRIPT("script" , "脚本取数"),
-    SNMP("snmp" , "SNMP方式"),
+    SNMP("snmp" , "SNMP"),
     ORACLE_JDBC("oracle_jdbc" , "Oracle_JDBC"),
-    MYSQL_JDBC("mysql_jdbc" , "Mysq_JDBC"),
+    MYSQL_JDBC("mysql_jdbc" , "MySQL_JDBC"),
     DB2_JDBC("db2_jdbc" , "DB2_JDBC"),
     PG_JDBC("pg_jdbc" , "PG_JDBC"),
     SQLSERVER_JDBC("sqlserver_jdbc" , "SqlServer_JDBC");

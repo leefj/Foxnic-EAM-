@@ -84,7 +84,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.VAR).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.NOTES).table().disable(true);
 
-
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE.UPDATE_BY).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.SNMP_COMMUNITY).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.SNMP_PORT).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.SNMP_VERSION).table().disable(true);
