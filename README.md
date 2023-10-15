@@ -22,7 +22,6 @@
 
 # 使用方案二
 #### 源代码部署，技术要求非常非常高，开发能力至少3年以上，否则别轻易折腾
-#### 我没空陪你折腾
 #### 百分之99都选择方案一就行，别折腾，别折腾，别折腾
 
 
@@ -108,7 +107,7 @@ curl -s 'http://resource.rainbooow.com/deploy.sh'|bash
 curl -s 'https://gitee.com/lank/eam/raw/2.6.0/platform/deploy/bin/deployApp.sh'|bash
 ```
 ### 安装包
-- https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.37-linux-glibc2.12-x86_64.tar.gz
+- https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.42-linux-glibc2.12-x86_64.tar.gz
 - http://resource.rainbooow.com/upload/app_release_last.tar.gz
 
 ### 系统DEMO
