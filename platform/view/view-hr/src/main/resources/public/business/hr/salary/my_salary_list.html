@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
     <meta name="referrer" content="no-referrer">
-    <title th:text="${lang.translate('人员薪酬')}">人员薪酬</title>
+    <title th:text="${lang.translate('我的薪酬')}">我的薪酬</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -41,11 +41,11 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 人员 , personId ,typeName=button, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('人员')}" class="search-label personId-label">人员</span><span class="search-colon">:</span></div>
-                        <input lay-filter="personId" id="personId" name="personId"  type="hidden" class="layui-input"   />
-                        <button id="personId-button" type="button" action-type="emp-dialog" class="layui-btn layui-btn-primary   " style="width: 150px"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>
-                    </div>
+<!--                    <div class="search-unit">-->
+<!--                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('人员')}" class="search-label personId-label">人员</span><span class="search-colon">:</span></div>-->
+<!--                        <input lay-filter="personId" id="personId" name="personId"  type="hidden" class="layui-input"   />-->
+<!--                        <button id="personId-button" type="button" action-type="emp-dialog" class="layui-btn layui-btn-primary   " style="width: 150px"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>-->
+<!--                    </div>-->
                     <!-- 基本工资 , baseSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 岗位工资 , postSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 工龄工资 , workingYearsSalary ,typeName=number_input, isHideInSearch=true -->
@@ -91,15 +91,13 @@
 
                 </div>
             </div>
-
-
             <!-- 按钮区域 -->
-            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
-                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
-            </div>
+<!--            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">-->
+<!--                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>-->
+<!--            </div>-->
         </div>
 
-        <div id="table-area" style="margin-top: 42px ">
+        <div id="table-area" style="margin-top:10px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -114,7 +112,8 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-     </div>
+        <button id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm detail-button " lay-event="salary-detail"><span th:text="${lang.translate('薪酬明细','','cmp:table.button')}">薪酬明细</span></button>
+    </div>
 </script>
 
 <!-- 表格操作列 -->

@@ -37,10 +37,10 @@ spring:
         #driver-class-name: com.mysql.cj.jdbc.Driver
         # 5.x
         #driver-class-name: com.mysql.jdbc.Driver
-        url: ai+mCm8asbK9SNrQDk7ac29neidjdgHp2jFU7HYbZZM7XPIVnc3jn040SCi2ghsOJmvzo7Z8DsMWz0GJtHzk5fVkSVq8PVTLpt97W7e4//KN1tJ8luj3f2R4xGk6d01pnyaG7DyU2tsIMcGZTOl8T0kLJom6Izu9ePptW1UPa7MuTPWKDKUSCYKdQSv51ASxJE99hLodGgxEtGeRBhnlDigwekNCLkMQGvjVKTeDRDsro2ghN1qDTzmyCaGJQxMq
+        url: bOfoWsTmRXXNZ0PJIvNUhUWY9QIencf1xUgWg3JXN9yF/k9AgCBkYlaJCO9eeeIfvAud7IljFG/Ef+hufdetQJ3V5e5JSuTb+VrqdJ5ErxKKH+bTZKQJX6jFxflT9OmJHm+R8DjDCysaQ9e99Dwh1Dh+ecnc+zs4Fg+Uk/QdAeBGD2wmJLdAn082VpQn4vPIlOEb2y+sUF9r0RJD+jdwfvW8lcX4lTWFBOUaMBMutyVKiUENuttDcgwCl1MDsd3R
         username: tD5wkJAfnCt04A+Y+QN5GA==
         password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
-        #url: jdbc:mysql://10.0.2.16:2883/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
+        #url: jdbc:mysql://127.0.0.1:3306/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
         #username: app@app_tenant
         #password: oracle
         # 启动程序时，在连接池中初始化多少个连接

@@ -166,6 +166,7 @@ function ListPage() {
       */
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
+
 		var value = {};
 		value.planCode={ inputType:"button",value: $("#planCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
