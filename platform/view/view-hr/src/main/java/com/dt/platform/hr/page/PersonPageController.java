@@ -1,13 +1,19 @@
 package com.dt.platform.hr.page;
 
+import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.PersonVO;
+import com.github.foxnic.api.transter.Result;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.hr.PersonServiceProxy;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
  * <p>
  * 人员信息模版页面控制器
@@ -37,7 +43,6 @@ public class PersonPageController extends ViewController {
 		return proxy;
 	}
 
-
 	/**
 	 * 人员信息 功能主页面
 	 */
@@ -45,6 +50,23 @@ public class PersonPageController extends ViewController {
 	public String searchList(Model model,HttpServletRequest request,String code) {
 		model.addAttribute("code",code);
 		return getTemplatePath(prefix,"person_search_list");
+	}
+
+	/**
+	 * 人员信息 功能主页面
+	 */
+	@RequestMapping("/my_info.html")
+	public String myInfo(Model model,HttpServletRequest request) {
+		String employId=SessionUser.getCurrent().getActivatedEmployeeId();
+		String personId="none";
+		PersonVO vo=new PersonVO();
+		vo.setEmployeeId(employId);
+		Result<List<Person>> listRes=PersonServiceProxy.api().queryList(vo);
+		if(listRes.success()&&listRes.data().size()>0){
+			personId=listRes.data().get(0).getId();
+		}
+		model.addAttribute("personId",personId);
+		return getTemplatePath(prefix,"my_info");
 	}
 
 	/**
@@ -62,8 +84,6 @@ public class PersonPageController extends ViewController {
 	public String dashboard(Model model,HttpServletRequest request) {
 		return getTemplatePath(prefix,"person_dashboard");
 	}
-
-
 
 
 	/**

@@ -123,7 +123,7 @@ function ListPage() {
 		// value.name={ inputType:"button",value: $("#name").val()};
 		// value.status={ inputType:"select_box", value: xmSelect.get("#status",true).getValue("value"), label:xmSelect.get("#status",true).getValue("nameStr") };
 		// value.notes={ inputType:"button",value: $("#notes").val()};
-
+		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.notes={ inputType:"button",value: $("#notes").val()};

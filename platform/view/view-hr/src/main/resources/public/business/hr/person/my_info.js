@@ -1,7 +1,7 @@
 /**
- * 人员薪酬 列表页 JS 脚本
+ * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-04 13:57:33
+ * @since 2023-06-06 11:12:21
  */
 
 
@@ -10,8 +10,8 @@ function ListPage() {
     var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 
     //模块基础路径
-    const moduleURL="/service-hr/hr-salary";
-    const queryURL=moduleURL+'/my-query-paged-list';
+    const moduleURL="/service-hr/hr-person";
+    const queryURL=moduleURL+'/query-paged-list';
     const deleteURL=moduleURL+'/delete';
     const batchDeleteURL=moduleURL+'/delete-by-ids';
     const getByIdURL=moduleURL+'/get-by-id';
@@ -83,51 +83,36 @@ function ListPage() {
                 where: ps,
                 cols: [[
                     { fixed: 'left',type: 'numbers' }
-                  //  { fixed: 'left',type:'checkbox'}
+                   // { fixed: 'left',type:'checkbox'}
                     ,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-                    ,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员') , templet: function (d) { return templet('personId',fox.getProperty(d,["person","name"],0,'','personId'),d);} }
-                    ,{ field: 'baseSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('基本工资') , templet: function (d) { return templet('baseSalary',d.baseSalary,d);}  }
-                    ,{ field: 'postSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('岗位工资') , templet: function (d) { return templet('postSalary',d.postSalary,d);}  }
-                    ,{ field: 'workingYearsSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('工龄工资') , templet: function (d) { return templet('workingYearsSalary',d.workingYearsSalary,d);}  }
-                    ,{ field: 'fixedSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('固定补贴') , templet: function (d) { return templet('fixedSalary',d.fixedSalary,d);}  }
-                    ,{ field: 'achievementSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('绩效补贴') , templet: function (d) { return templet('achievementSalary',d.achievementSalary,d);}  }
-                    ,{ field: 'overtimeSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('加班补贴') , templet: function (d) { return templet('overtimeSalary',d.overtimeSalary,d);}  }
-                    ,{ field: 'otherSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('其他补贴') , templet: function (d) { return templet('otherSalary',d.otherSalary,d);}  }
-                    ,{ field: 'communicationSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('通讯补贴') , templet: function (d) { return templet('communicationSalary',d.communicationSalary,d);}  }
-                    ,{ field: 'trafficSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('交通补贴') , templet: function (d) { return templet('trafficSalary',d.trafficSalary,d);}  }
-                    ,{ field: 'housingSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('住房补贴') , templet: function (d) { return templet('housingSalary',d.housingSalary,d);}  }
-                    ,{ field: 'commissionSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('提成工资') , templet: function (d) { return templet('commissionSalary',d.commissionSalary,d);}  }
-                    ,{ field: 'highTemperatureSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('高温补贴') , templet: function (d) { return templet('highTemperatureSalary',d.highTemperatureSalary,d);}  }
-                    ,{ field: 'welfareZfgjjBase', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('住房公积金基数') , templet: function (d) { return templet('welfareZfgjjBase',d.welfareZfgjjBase,d);}  }
-                    ,{ field: 'welfareZfgjjPerson', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('住房公积金个人') , templet: function (d) { return templet('welfareZfgjjPerson',d.welfareZfgjjPerson,d);}  }
-                    ,{ field: 'welfareZfgjjCompany', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('住房公积金公司') , templet: function (d) { return templet('welfareZfgjjCompany',d.welfareZfgjjCompany,d);}  }
-                    ,{ field: 'welfaerYlbxBase', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('养老保险基数') , templet: function (d) { return templet('welfaerYlbxBase',d.welfaerYlbxBase,d);}  }
-                    ,{ field: 'welfaerYlbxPerson', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('养老保险个人') , templet: function (d) { return templet('welfaerYlbxPerson',d.welfaerYlbxPerson,d);}  }
-                    ,{ field: 'welfaerYlbxCompany', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('养老保险公司') , templet: function (d) { return templet('welfaerYlbxCompany',d.welfaerYlbxCompany,d);}  }
-                    ,{ field: 'welfaerGsbxBase', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('工伤保险基数') , templet: function (d) { return templet('welfaerGsbxBase',d.welfaerGsbxBase,d);}  }
-                    ,{ field: 'welfaerGsbxPerson', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('工伤保险个人') , templet: function (d) { return templet('welfaerGsbxPerson',d.welfaerGsbxPerson,d);}  }
-                    ,{ field: 'welfaerGsbxCompany', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('工伤保险公司') , templet: function (d) { return templet('welfaerGsbxCompany',d.welfaerGsbxCompany,d);}  }
-                    ,{ field: 'welfaerYrbxBase', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('医疗保险基数') , templet: function (d) { return templet('welfaerYrbxBase',d.welfaerYrbxBase,d);}  }
-                    ,{ field: 'welfaerYrbxPerson', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('医疗保险个人') , templet: function (d) { return templet('welfaerYrbxPerson',d.welfaerYrbxPerson,d);}  }
-                    ,{ field: 'welfaerYrbxCompany', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('医疗保险公司') , templet: function (d) { return templet('welfaerYrbxCompany',d.welfaerYrbxCompany,d);}  }
-                    ,{ field: 'welfaerSybxBase', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('生育保险基数') , templet: function (d) { return templet('welfaerSybxBase',d.welfaerSybxBase,d);}  }
-                    ,{ field: 'welfaerSybxPerson', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('生育保险个人') , templet: function (d) { return templet('welfaerSybxPerson',d.welfaerSybxPerson,d);}  }
-                    ,{ field: 'welfaerSybxCompany', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('生育保险公司') , templet: function (d) { return templet('welfaerSybxCompany',d.welfaerSybxCompany,d);}  }
-                    ,{ field: 'welfaerSyebxBase', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('失业保险基数') , templet: function (d) { return templet('welfaerSyebxBase',d.welfaerSyebxBase,d);}  }
-                    ,{ field: 'welfaerSyebxPerson', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('失业保险个人') , templet: function (d) { return templet('welfaerSyebxPerson',d.welfaerSyebxPerson,d);}  }
-                    ,{ field: 'welfaerSyebxCompany', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('失业保险公司') , templet: function (d) { return templet('welfaerSyebxCompany',d.welfaerSyebxCompany,d);}  }
-                    ,{ field: 'deductPersonalTaxRed', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('个税抵扣') , templet: function (d) { return templet('deductPersonalTaxRed',d.deductPersonalTaxRed,d);}  }
-                    ,{ field: 'deductKq', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('扣除考勤') , templet: function (d) { return templet('deductKq',d.deductKq,d);}  }
-                    ,{ field: 'deductGh', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('扣除工会') , templet: function (d) { return templet('deductGh',d.deductGh,d);}  }
-                    ,{ field: 'duductOther', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('扣除其他') , templet: function (d) { return templet('duductOther',d.duductOther,d);}  }
-                    ,{ field: 'personalTaxZnjy', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('子女教育') , templet: function (d) { return templet('personalTaxZnjy',d.personalTaxZnjy,d);}  }
-                    ,{ field: 'personalTaxJxjy', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('继续教育') , templet: function (d) { return templet('personalTaxJxjy',d.personalTaxJxjy,d);}  }
-                    ,{ field: 'personalTaxDbyl', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('大病医疗') , templet: function (d) { return templet('personalTaxDbyl',d.personalTaxDbyl,d);}  }
-                    ,{ field: 'personalTaxZfdk', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('住房贷款') , templet: function (d) { return templet('personalTaxZfdk',d.personalTaxZfdk,d);}  }
-                    ,{ field: 'personalTaxZfzj', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('住房租金') , templet: function (d) { return templet('personalTaxZfzj',d.personalTaxZfzj,d);}  }
-                    ,{ field: 'personalTaxSylr', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('赡养老人') , templet: function (d) { return templet('personalTaxSylr',d.personalTaxSylr,d);}  }
-                    ,{ field: 'personalTaxErzh', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('幼儿照护') , templet: function (d) { return templet('personalTaxErzh',d.personalTaxErzh,d);}  }
-                    ,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+                    ,{ field: 'jobNumber', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('工号') , templet: function (d) { return templet('jobNumber',d.jobNumber,d);}  }
+                    ,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('姓名') , templet: function (d) { return templet('name',d.name,d);}  }
+                    ,{ field: 'sexCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('性别'), templet: function (d) { return templet('sexCode' ,fox.joinLabel(d.sexDict,"label",',','','sexCode'),d);}}
+                    ,{ field: 'employeeStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工状态'), templet:function (d){ return templet('employeeStatus',fox.getEnumText(RADIO_EMPLOYEESTATUS_DATA,d.employeeStatus,'','employeeStatus'),d);}}
+               //     ,{ field: 'employeeIdentityStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工标记'), templet: function (d) { return templet('employeeIdentityStatus' ,fox.joinLabel(d.employeeIdentity,"label",',','','employeeIdentityStatus'),d);}}
+                    ,{ field: 'employeeTypeCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员类型'), templet: function (d) { return templet('employeeTypeCode' ,fox.joinLabel(d.employeeOwnerTypeDict,"label",',','','employeeTypeCode'),d);}}
+                    ,{ field: 'contactInformation', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('联系方式') , templet: function (d) { return templet('contactInformation',d.contactInformation,d);}  }
+                //    ,{ field: 'email', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('电子邮件') , templet: function (d) { return templet('email',d.email,d);}  }
+                    ,{ field: 'educationCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('学历'), templet: function (d) { return templet('educationCode' ,fox.joinLabel(d.educationData,"label",',','','educationCode'),d);}}
+               //     ,{ field: 'politicCountenanceCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('政治面貌'), templet: function (d) { return templet('politicCountenanceCode' ,fox.joinLabel(d.politicCountenanceData,"label",',','','politicCountenanceCode'),d);}}
+                //    ,{ field: 'employmentDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('入职日期') ,templet: function (d) { return templet('employmentDate',fox.dateFormat(d.employmentDate,"yyyy-MM-dd"),d); }  }
+               //     ,{ field: 'employmentConfirmDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('转正日期') ,templet: function (d) { return templet('employmentConfirmDate',fox.dateFormat(d.employmentConfirmDate,"yyyy-MM-dd"),d); }  }
+              //      ,{ field: 'firstEmploymentDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('初次日期') ,templet: function (d) { return templet('firstEmploymentDate',fox.dateFormat(d.firstEmploymentDate,"yyyy-MM-dd"),d); }  }
+               //     ,{ field: 'firstWorkDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('参加工作时间') ,templet: function (d) { return templet('firstWorkDate',fox.dateFormat(d.firstWorkDate,"yyyy-MM-dd"),d); }  }
+               //     ,{ field: 'orgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工部门') , templet: function (d) { return templet('orgId',d.orgId,d);}  }
+                  //  ,{ field: 'positionCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工岗位'), templet: function (d) { return templet('positionCode' ,fox.joinLabel(d.position,"name",',','','positionCode'),d);}}
+                 //   ,{ field: 'employeeTitleCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工职称'), templet: function (d) { return templet('employeeTitleCode' ,fox.joinLabel(d.professionalLevel,"name",',','','employeeTitleCode'),d);}}
+                //    ,{ field: 'rankCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工职级'), templet: function (d) { return templet('rankCode' ,fox.joinLabel(d.rank,"code",',','','rankCode'),d);}}
+                //    ,{ field: 'leaveDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('离职日期') ,templet: function (d) { return templet('leaveDate',fox.dateFormat(d.leaveDate,"yyyy-MM-dd"),d); }  }
+                 //   ,{ field: 'salaryTplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('薪酬模版'), templet: function (d) { return templet('salaryTplId' ,fox.joinLabel(d.salaryTpl,"name",',','','salaryTplId'),d);}}
+                  //  ,{ field: 'salaryPayOut', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否发放'), templet:function (d){ return templet('salaryPayOut',fox.getEnumText(RADIO_SALARYPAYOUT_DATA,d.salaryPayOut,'','salaryPayOut'),d);}}
+                 //   ,{ field: 'salaryNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('薪酬备注') , templet: function (d) { return templet('salaryNotes',d.salaryNotes,d);}  }
+                //    ,{ field: 'employeeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工') , templet: function (d) { return templet('employeeId',fox.getProperty(d,["employee","name"],0,'','employeeId'),d);} }
+               //     ,{ field: 'contractDuration', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同周期') , templet: function (d) { return templet('contractDuration',d.contractDuration,d);}  }
+                  //  ,{ field: 'contractStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('合同开始时间') ,templet: function (d) { return templet('contractStartDate',fox.dateFormat(d.contractStartDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
+                //    ,{ field: 'contractFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('合同结束时间') ,templet: function (d) { return templet('contractFinishDate',fox.dateFormat(d.contractFinishDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
+                 //   ,{ field: 'note', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('note',d.note,d);}  }
+                //    ,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
                     ,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
                     ,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
                 ]],
@@ -198,7 +183,6 @@ function ListPage() {
     function refreshTableData(sortField,sortType,reset) {
         function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
         var value = {};
-        value.personId={ inputType:"button",value: $("#personId").val(),fillBy:["person","name"] ,label:$("#personId-button").text() };
         var ps={searchField:"$composite"};
         if(window.pageExt.list.beforeQuery){
             if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -245,6 +229,7 @@ function ListPage() {
 
         fox.switchSearchRow(1);
 
+
         fox.renderSearchInputs();
         window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
     }
@@ -276,10 +261,10 @@ function ListPage() {
         });
 
         // 请选择人员对话框
-        $("#personId-button").click(function(){
-            var personIdDialogOptions={
-                field:"personId",
-                inputEl:$("#personId"),
+        $("#employeeId-button").click(function(){
+            var employeeIdDialogOptions={
+                field:"employeeId",
+                inputEl:$("#employeeId"),
                 buttonEl:$(this),
                 single:false,
                 //限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
@@ -288,7 +273,7 @@ function ListPage() {
                 prepose:function(param){ return window.pageExt.list.beforeDialog && window.pageExt.list.beforeDialog(param);},
                 callback:function(param,result){ window.pageExt.list.afterDialog && window.pageExt.list.afterDialog(param,result);}
             };
-            fox.chooseEmployee(personIdDialogOptions);
+            fox.chooseEmployee(employeeIdDialogOptions);
         });
     }
 
@@ -306,22 +291,9 @@ function ListPage() {
                 if(!doNext) return;
             }
             switch(obj.event){
-                case 'salary-detail':
-                    var action="view"
-                    var queryString="";
-                    admin.putTempData('hr-salary-form-data', {});
-                    var title = fox.translate('薪酬明细');
-                    admin.popupCenter({
-                        title: title,
-                        resize: false,
-                        offset: [20,null],
-                        area: ["85%","85%"],
-                        type: 2,
-                        id:"hr-salary-dtl-form-data-win",
-                        content: '/business/hr/salary/my_salary_dtl_list.html' + (queryString?("?"+queryString):""),
-                        finish: function () {
-                        }
-                    });
+                case 'create':
+                    admin.putTempData('hr-person-form-data', {});
+                    openCreateFrom();
                     break;
                 case 'batch-del':
                     batchDelete(selected);
@@ -339,7 +311,7 @@ function ListPage() {
         function openCreateFrom() {
             //设置新增是初始化数据
             var data={};
-            admin.putTempData('hr-salary-form-data-form-action', "create",true);
+            admin.putTempData('hr-person-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -353,11 +325,11 @@ function ListPage() {
 
             var ids=getCheckedList("id");
             if(ids.length==0) {
-                top.layer.msg(fox.translate('请选择需要删除的'+'人员薪酬'+"!"));
+                top.layer.msg(fox.translate('请选择需要删除的'+'人员信息'+"!"));
                 return;
             }
             //调用批量删除接口
-            top.layer.confirm(fox.translate('确定删除已选中的'+'人员薪酬'+'吗？'), function (i) {
+            top.layer.confirm(fox.translate('确定删除已选中的'+'人员信息'+'吗？'), function (i) {
                 top.layer.close(i);
                 admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
@@ -392,11 +364,11 @@ function ListPage() {
                 if(!doNext) return;
             }
 
-            admin.putTempData('hr-salary-form-data-form-action', "",true);
+            admin.putTempData('hr-person-form-data-form-action', "",true);
             if (layEvent === 'edit') { // 修改
                 admin.post(getByIdURL, { id : data.id }, function (data) {
                     if(data.success) {
-                        admin.putTempData('hr-salary-form-data-form-action', "edit",true);
+                        admin.putTempData('hr-person-form-data-form-action', "edit",true);
                         showEditForm(data.data);
                     } else {
                         fox.showMessage(data);
@@ -405,7 +377,7 @@ function ListPage() {
             } else if (layEvent === 'view') { // 查看
                 admin.post(getByIdURL, { id : data.id }, function (data) {
                     if(data.success) {
-                        admin.putTempData('hr-salary-form-data-form-action', "view",true);
+                        admin.putTempData('hr-person-form-data-form-action', "view",true);
                         showEditForm(data.data);
                     } else {
                         fox.showMessage(data);
@@ -419,7 +391,7 @@ function ListPage() {
                     if(!doNext) return;
                 }
 
-                top.layer.confirm(fox.translate('确定删除此'+'人员薪酬'+'吗？'), function (i) {
+                top.layer.confirm(fox.translate('确定删除此'+'人员信息'+'吗？'), function (i) {
                     top.layer.close(i);
                     admin.post(deleteURL, { id : data.id }, function (data) {
                         top.layer.closeAll('loading');
@@ -436,6 +408,12 @@ function ListPage() {
                     },{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
                 });
             }
+            else if (layEvent === 'person-cont') { // 合同
+                window.pageExt.list.personCont(data,this);
+            }
+            else if (layEvent === 'person-sal') { // 薪酬
+                window.pageExt.list.personSal(data,this);
+            }
 
         });
 
@@ -449,17 +427,17 @@ function ListPage() {
             var doNext=window.pageExt.list.beforeEdit(data);
             if(!doNext) return;
         }
-        var action=admin.getTempData('hr-salary-form-data-form-action');
+        var action=admin.getTempData('hr-person-form-data-form-action');
         var queryString="";
         if(data && data.id) queryString='id=' + data.id;
         if(window.pageExt.list.makeFormQueryString) {
             queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
         }
-        admin.putTempData('hr-salary-form-data', data);
-        var area=admin.getTempData('hr-salary-form-area');
+        admin.putTempData('hr-person-form-data', data);
+        var area=admin.getTempData('hr-person-form-area');
         var height= (area && area.height) ? area.height : ($(window).height()*0.6);
         var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-        var title = fox.translate('人员薪酬');
+        var title = fox.translate('人员信息');
         if(action=="create") title=fox.translate('添加','','cmp:table')+title;
         else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
         else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
@@ -470,8 +448,8 @@ function ListPage() {
             offset: [top,null],
             area: ["80%",height+"px"],
             type: 2,
-            id:"hr-salary-form-data-win",
-            content: '/business/hr/salary/salary_form.html' + (queryString?("?"+queryString):""),
+            id:"hr-person-form-data-win",
+            content: '/business/hr/person/person_form.html' + (queryString?("?"+queryString):""),
             finish: function () {
                 if(action=="create") {
                     refreshTableData();

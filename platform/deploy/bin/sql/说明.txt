@@ -1,3 +1,16 @@
+select
+(select count(1) from oa_netdisk_file)oa_netdisk_file,
+(select count(1) from eam_maintain_task where deleted=0 and tenant_id is not null) eam_maintain_task,
+(select count(1) from eam_inspection_task where deleted=0 and tenant_id is not null) eam_inspection_task,
+(select count(1) from eam_repair_order_act where deleted=0 and owner_type='part' and tenant_id is not null) eam_repair_order_act,
+(select count(1) from eam_goods_stock where deleted=0 and owner_code='real_part') eam_goods_stock,
+(select count(1) from eam_goods_stock where deleted=0 and owner_code='real_stock') eam_goods_stock,
+(select count(1) from eam_asset where deleted=0 and owner_code='asset') eam_asset,
+(select count(1) from ops_monitor_node where deleted=0) ops_monitor_node,
+(select count(1) from ops_host where deleted=0) ops_host,
+(select count(1) from hr_person where deleted=0) hr_person,
+(select count(1) from cont_contract where deleted=0) cont_contract
+
 
 
 --------------- 创建数据库
