@@ -163,7 +163,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
-            console.log(menu.id);
             if(menu.id=="backup"){
                 this.openBackupWindow(data,it);
             }else if (menu.id=="box"){
@@ -171,6 +170,20 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             }else if (menu.id=="env"){
                 this.actionEnv(data,it);
             }
+        },
+        softList:function (data,it){
+            admin.popupCenter({
+                title: "数据库软件列表",
+                resize: false,
+                offset: [20,null],
+                area: ["80%","85%"],
+                type: 2,
+                id:"ops-db-soft-list-data-win",
+                content: '/business/ops/db_info/db_software_list.html',
+                finish: function () {
+
+                }
+            });
         },
         actionEnv:function (data,it){
             admin.putTempData("instId",data.id,true);

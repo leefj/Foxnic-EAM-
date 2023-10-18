@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧方案VO类型
  * <p>折旧方案 , 数据表 eam_asset_depreciation 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 12:24:36
- * @sign 6ED67DFA8CB43209E521A1C25B226E71
+ * @since 2023-10-18 06:46:25
+ * @sign 5AB5ED3D34B53CABE26E65707925EF56
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -80,6 +80,24 @@ public class AssetDepreciationVO extends AssetDepreciation {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -243,6 +261,63 @@ public class AssetDepreciationVO extends AssetDepreciation {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public AssetDepreciationVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public AssetDepreciationVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public AssetDepreciationVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -346,10 +421,12 @@ public class AssetDepreciationVO extends AssetDepreciation {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPreResidualRate(this.getPreResidualRate());
 		inst.setId(this.getId());
+		inst.setFlowConf(this.getFlowConf());
 		inst.setCategoryId(this.getCategoryId());
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setCategoryIds(this.getCategoryIds());
@@ -359,7 +436,9 @@ public class AssetDepreciationVO extends AssetDepreciation {
 			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
+			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
 			inst.setCategory(this.getCategory());
 			inst.setSearchValue(this.getSearchValue());
 		}
@@ -440,15 +519,19 @@ public class AssetDepreciationVO extends AssetDepreciation {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.DELETE_BY)));
 			this.setPreResidualRate(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationVOMeta.PRE_RESIDUAL_RATE)));
 			this.setId(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.ID)));
+			this.setFlowConf(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.FLOW_CONF)));
 			this.setCategoryId(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.CATEGORY_ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetDepreciationVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetDepreciationVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.SORT_FIELD)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -472,15 +555,19 @@ public class AssetDepreciationVO extends AssetDepreciation {
 				this.setDeleteBy( (String)map.get(AssetDepreciationVOMeta.DELETE_BY));
 				this.setPreResidualRate( (BigDecimal)map.get(AssetDepreciationVOMeta.PRE_RESIDUAL_RATE));
 				this.setId( (String)map.get(AssetDepreciationVOMeta.ID));
+				this.setFlowConf( (String)map.get(AssetDepreciationVOMeta.FLOW_CONF));
 				this.setCategoryId( (String)map.get(AssetDepreciationVOMeta.CATEGORY_ID));
 				this.setStatus( (String)map.get(AssetDepreciationVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(AssetDepreciationVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(AssetDepreciationVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(AssetDepreciationVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(AssetDepreciationVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(AssetDepreciationVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AssetDepreciationVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(AssetDepreciationVOMeta.SORT_FIELD));
+				this.setDataOrigin( (String)map.get(AssetDepreciationVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(AssetDepreciationVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(AssetDepreciationVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {
@@ -517,6 +604,7 @@ public class AssetDepreciationVO extends AssetDepreciation {
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.DELETE_BY)));
 			this.setPreResidualRate(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationVOMeta.PRE_RESIDUAL_RATE)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.ID)));
+			this.setFlowConf(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.FLOW_CONF)));
 			this.setCategoryId(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.CATEGORY_ID)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.STATUS)));
 			return true;
@@ -541,6 +629,7 @@ public class AssetDepreciationVO extends AssetDepreciation {
 				this.setDeleteBy( (String)r.getValue(AssetDepreciationVOMeta.DELETE_BY));
 				this.setPreResidualRate( (BigDecimal)r.getValue(AssetDepreciationVOMeta.PRE_RESIDUAL_RATE));
 				this.setId( (String)r.getValue(AssetDepreciationVOMeta.ID));
+				this.setFlowConf( (String)r.getValue(AssetDepreciationVOMeta.FLOW_CONF));
 				this.setCategoryId( (String)r.getValue(AssetDepreciationVOMeta.CATEGORY_ID));
 				this.setStatus( (String)r.getValue(AssetDepreciationVOMeta.STATUS));
 				return true;

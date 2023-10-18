@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 12:24:36
- * @sign 2167A9512830F2F86763A1931003DE0E
+ * @since 2023-10-18 06:46:25
+ * @sign C28456F89EE12B5B31502E975711E979
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -231,6 +231,16 @@ public class AssetDepreciationMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciation,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciation.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * 规则编排 , 类型: java.lang.String
+	*/
+	public static final String FLOW_CONF="flowConf";
+	
+	/**
+	 * 规则编排 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciation,java.lang.String> FLOW_CONF_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciation.class ,FLOW_CONF, java.lang.String.class, "规则编排", "规则编排", java.lang.String.class, null);
+	
+	/**
 	 * 资产分类 , 集合类型: LIST , 类型: org.github.foxnic.web.domain.pcm.Catalog
 	*/
 	public static final String CATEGORY="category";
@@ -273,7 +283,7 @@ public class AssetDepreciationMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , STATUS , CODE , NAME , METHOD , PRE_RESIDUAL_RATE , RESIDUAL_VALUE_SELECT , FIRST_DEPRECIATION_METHOD , OWN_COMPANY_ID , CATEGORY_ID , SELECTED_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , CATEGORY_IDS , CAL_RULE_LIST , CAL_RULE_IDS };
+	public static final String[] $PROPS={ ID , STATUS , CODE , NAME , METHOD , PRE_RESIDUAL_RATE , RESIDUAL_VALUE_SELECT , FIRST_DEPRECIATION_METHOD , OWN_COMPANY_ID , CATEGORY_ID , SELECTED_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , FLOW_CONF , CATEGORY , CATEGORY_IDS , CAL_RULE_LIST , CAL_RULE_IDS };
 	
 	/**
 	 * 代理类
@@ -515,6 +525,17 @@ public class AssetDepreciationMeta {
 		}
 		
 		/**
+		 * 设置 规则编排
+		 * @param flowConf 规则编排
+		 * @return 当前对象
+		*/
+		public AssetDepreciation setFlowConf(String flowConf) {
+			super.change(FLOW_CONF,super.getFlowConf(),flowConf);
+			super.setFlowConf(flowConf);
+			return this;
+		}
+		
+		/**
 		 * 设置 资产分类
 		 * @param category 资产分类
 		 * @return 当前对象
@@ -592,6 +613,7 @@ public class AssetDepreciationMeta {
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setPreResidualRate(this.getPreResidualRate());
 			inst.setId(this.getId());
+			inst.setFlowConf(this.getFlowConf());
 			inst.setCategoryId(this.getCategoryId());
 			inst.setStatus(this.getStatus());
 			if(all) {

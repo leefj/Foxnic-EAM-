@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库容量
  * <p>数据库容量 , 数据表 ops_db_capacity_rpt 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-14 20:44:47
+ * @since 2023-10-17 16:14:55
  * @sign 98BDF6CD4D2F7C6B5BC844211310BB2B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

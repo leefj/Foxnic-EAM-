@@ -16,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * 资产状态  控制器服务代理
+ * 资产状态 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-06 09:44:10
+ * @since 2023-10-17 16:13:50
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetStatusServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetStatusServiceProxy {

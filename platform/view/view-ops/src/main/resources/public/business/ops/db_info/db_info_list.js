@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-14 20:45:36
+ * @since 2023-10-17 14:00:57
  */
 
 
@@ -438,6 +438,9 @@ function ListPage() {
 				case 'batch-del':
 					batchDelete(selected);
 					break;
+				case 'tool-soft-list':
+					window.pageExt.list.softList && window.pageExt.list.softList(selected,obj);
+					break;
 				case 'tool-db-search':
 					window.pageExt.list.dbSearch && window.pageExt.list.dbSearch(selected,obj);
 					break;
@@ -559,6 +562,9 @@ function ListPage() {
 			else if(obj.event === 'ops-more'){
 				//更多下拉菜单
 				var  items = [{"perm":"ops_db_info:backup","id":"backup","title":"备份记录"},{"perm":"ops_db_info:box","id":"box","title":"密文箱"},{"perm":"ops_db_info:boxhistory","id":"boxhistory","title":"密文历史"},{"perm":"ops_db_info:env","id":"env","title":"环境信息"}];
+				if(window.pageExt.list.moreActionMenu) {
+					items=window.pageExt.list.moreActionMenu(items,data, othis);
+				 }
 				items=items.filter(function (item,i,arr){
 					if(!item.perm) return true;
 					else return admin.checkAuth(item.perm);

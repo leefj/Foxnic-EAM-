@@ -2,7 +2,7 @@
 /**
  * 数据库巡检 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-11 09:33:50
+ * @since 2023-10-17 16:14:26
  */
  -->
  <!DOCTYPE html>
@@ -42,19 +42,20 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 巡检方 , actionUser ,typeName=text_input, isHideInSearch=true -->
                     <!-- 巡检结果 , result ,typeName=text_area, isHideInSearch=true -->
                     <!-- 文件 , fileId ,typeName=upload, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 记录时间 , rcdDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('记录时间')}" class="search-label rcdDate-label">记录时间</span><span class="search-colon">:</span></div>
-                            <input type="text" id="rcdDate-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('记录时间')}" class="search-label rcdDate-label">记录时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="rcdDate-begin" style="width: 180px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
-                            <input type="text" id="rcdDate-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                            <input type="text" id="rcdDate-end"  style="width: 180px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
 
 

@@ -45,7 +45,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 数据库巡检接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-11 09:33:49
+ * @since 2023-10-17 16:14:26
 */
 
 @InDoc
@@ -68,6 +68,7 @@ public class DbInspectionController extends SuperController {
 		@ApiImplicitParam(name = DbInspectionVOMeta.RCD_DATE , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2023-06-07 12:00:00"),
 		@ApiImplicitParam(name = DbInspectionVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "720207503857549313"),
 		@ApiImplicitParam(name = DbInspectionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "阿道夫"),
+		@ApiImplicitParam(name = DbInspectionVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -176,6 +177,7 @@ public class DbInspectionController extends SuperController {
 		@ApiImplicitParam(name = DbInspectionVOMeta.RCD_DATE , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2023-06-07 12:00:00"),
 		@ApiImplicitParam(name = DbInspectionVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "720207503857549313"),
 		@ApiImplicitParam(name = DbInspectionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "阿道夫"),
+		@ApiImplicitParam(name = DbInspectionVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbInspectionVOMeta.PAGE_INDEX , DbInspectionVOMeta.PAGE_SIZE , DbInspectionVOMeta.SEARCH_FIELD , DbInspectionVOMeta.FUZZY_FIELD , DbInspectionVOMeta.SEARCH_VALUE , DbInspectionVOMeta.DIRTY_FIELDS , DbInspectionVOMeta.SORT_FIELD , DbInspectionVOMeta.SORT_TYPE , DbInspectionVOMeta.DATA_ORIGIN , DbInspectionVOMeta.QUERY_LOGIC , DbInspectionVOMeta.REQUEST_ACTION , DbInspectionVOMeta.IDS } )
@@ -200,6 +202,7 @@ public class DbInspectionController extends SuperController {
 		@ApiImplicitParam(name = DbInspectionVOMeta.RCD_DATE , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2023-06-07 12:00:00"),
 		@ApiImplicitParam(name = DbInspectionVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "720207503857549313"),
 		@ApiImplicitParam(name = DbInspectionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "阿道夫"),
+		@ApiImplicitParam(name = DbInspectionVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { DbInspectionVOMeta.PAGE_INDEX , DbInspectionVOMeta.PAGE_SIZE , DbInspectionVOMeta.SEARCH_FIELD , DbInspectionVOMeta.FUZZY_FIELD , DbInspectionVOMeta.SEARCH_VALUE , DbInspectionVOMeta.DIRTY_FIELDS , DbInspectionVOMeta.SORT_FIELD , DbInspectionVOMeta.SORT_TYPE , DbInspectionVOMeta.DATA_ORIGIN , DbInspectionVOMeta.QUERY_LOGIC , DbInspectionVOMeta.REQUEST_ACTION , DbInspectionVOMeta.IDS } )
@@ -263,6 +266,7 @@ public class DbInspectionController extends SuperController {
 		@ApiImplicitParam(name = DbInspectionVOMeta.RCD_DATE , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2023-06-07 12:00:00"),
 		@ApiImplicitParam(name = DbInspectionVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "720207503857549313"),
 		@ApiImplicitParam(name = DbInspectionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "阿道夫"),
+		@ApiImplicitParam(name = DbInspectionVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbInspectionVOMeta.PAGE_INDEX , DbInspectionVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = DbInspectionServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -288,6 +292,7 @@ public class DbInspectionController extends SuperController {
 		@ApiImplicitParam(name = DbInspectionVOMeta.RCD_DATE , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2023-06-07 12:00:00"),
 		@ApiImplicitParam(name = DbInspectionVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "720207503857549313"),
 		@ApiImplicitParam(name = DbInspectionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "阿道夫"),
+		@ApiImplicitParam(name = DbInspectionVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = DbInspectionServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

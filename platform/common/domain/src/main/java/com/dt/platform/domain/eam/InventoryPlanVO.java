@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 盘点计划VO类型
  * <p>盘点计划 , 数据表 eam_inventory_plan 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-14 21:19:28
+ * @since 2023-10-18 06:54:16
  * @sign 5709FA7469DA8A43011CFD68D8548AA3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

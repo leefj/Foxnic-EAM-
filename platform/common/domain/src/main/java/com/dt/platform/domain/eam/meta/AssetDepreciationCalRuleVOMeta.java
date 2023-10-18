@@ -12,8 +12,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 17:04:42
- * @sign 28BAA1B1146496F48E6F2C484F903CEA
+ * @since 2023-10-18 06:50:17
+ * @sign 4FFDCCCCAF196C07C943BFE4B50D74DE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -98,6 +98,36 @@ public class AssetDepreciationCalRuleVOMeta extends AssetDepreciationCalRuleMeta
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationCalRuleVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationCalRuleVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationCalRuleVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationCalRuleVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationCalRuleVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationCalRuleVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationCalRuleVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationCalRuleVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -332,7 +362,7 @@ public class AssetDepreciationCalRuleVOMeta extends AssetDepreciationCalRuleMeta
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , DEPRECIATION_ID , STATUS , ACTION_CODE , RULE_NUMBER , COLUMN_VALUE , COLUMN_NAME , CALCULATION_TYPE , METHOD_CONTENT , METHOD_CONTENT_INFO , RETURN_TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_DEPRECIATION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , DEPRECIATION_ID , STATUS , ACTION_CODE , RULE_NUMBER , COLUMN_VALUE , COLUMN_NAME , CALCULATION_TYPE , METHOD_CONTENT , METHOD_CONTENT_INFO , RETURN_TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_DEPRECIATION };
 	
 	/**
 	 * 代理类
@@ -427,6 +457,39 @@ public class AssetDepreciationCalRuleVOMeta extends AssetDepreciationCalRuleMeta
 		public AssetDepreciationCalRuleVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public AssetDepreciationCalRuleVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public AssetDepreciationCalRuleVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public AssetDepreciationCalRuleVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
 			return this;
 		}
 		
@@ -721,15 +784,18 @@ public class AssetDepreciationCalRuleVOMeta extends AssetDepreciationCalRuleMeta
 			inst.setColumnName(this.getColumnName());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setAssetDepreciation(this.getAssetDepreciation());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setFuzzyField(this.getFuzzyField());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
+				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
-				inst.setAssetDepreciation(this.getAssetDepreciation());
 			}
 			inst.clearModifies();
 			return inst;

@@ -143,7 +143,7 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_INFO.VOUCHER_STR).form().textArea().height(100);
         cfg.view().field(OpsTables.OPS_DB_INFO.USER_INFO).form().textArea().height(100);
         cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_INFO).form().textArea().height(100);
-
+        cfg.view().field(OpsTables.OPS_DB_INFO.UPDATE_BY).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_DB_INFO.ID).table().hidden(true);
 
@@ -278,21 +278,18 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         );
 
 
-        cfg.view().list().addToolButton("搜索","dbSearch",null,"ops_db_info:dbSearch");
+
 
 //        cfg.view().list().operationColumn().addActionButton("备份记录","openBackupWindow",null,"ops_db_info:backup");
 //        cfg.view().list().operationColumn().addActionButton("密文箱","boxWindow",null,"ops_db_info:box");
         cfg.view().list().operationColumn().addActionMenu("backup","备份记录","ops_db_info:backup");
         cfg.view().list().operationColumn().addActionMenu("box","密文箱","ops_db_info:box");
         cfg.view().list().operationColumn().addActionMenu("boxhistory","密文历史","ops_db_info:boxhistory");
-
-
         cfg.view().list().operationColumn().addActionMenu("env","环境信息","ops_db_info:env");
-
-
         cfg.view().form().addPage("备份情况","backInfoList");
       //  cfg.view().list().operationColumn().addActionButton("备份记录","backupRecord","backupRecord","ops_auto_task:check");
-
+        cfg.view().list().addToolButton("软件列表","softList",null);
+        cfg.view().list().addToolButton("搜索","dbSearch",null);
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口

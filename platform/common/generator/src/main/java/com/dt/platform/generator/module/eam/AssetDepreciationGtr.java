@@ -79,7 +79,7 @@ public class AssetDepreciationGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.CATEGORY_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.OWN_COMPANY_ID).table().disable(true);
-
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.UPDATE_BY).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.CREATE_TIME).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.CODE).form().validate().required().form().selectBox().enumType(AssetDepreciationCodeEnum.class);
@@ -114,6 +114,8 @@ public class AssetDepreciationGtr extends BaseCodeGenerator {
 
         );
 
+        cfg.view().list().operationColumn().addActionButton("计算方式","calMethod","cal-method");
+        cfg.view().list().operationColumn().addActionButton("排除资产","excludeAsset","exclude-asset");
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
         //文件生成覆盖模式

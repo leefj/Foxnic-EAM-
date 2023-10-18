@@ -1,5 +1,6 @@
 package com.dt.platform.eam.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 资产状态 服务接口
+ * 资产状态服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-06 09:44:10
+ * @since 2023-10-17 16:13:49
 */
 
 public interface IAssetStatusService extends  ISimpleIdService<AssetStatus,String> {
@@ -55,7 +56,7 @@ public interface IAssetStatusService extends  ISimpleIdService<AssetStatus,Strin
 
 		
 	/**
-	 * 按主键删除 资产状态
+	 * 按主键删除资产状态
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IAssetStatusService extends  ISimpleIdService<AssetStatus,Strin
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 资产状态
+	 * 按主键删除资产状态
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IAssetStatusService extends  ISimpleIdService<AssetStatus,Strin
 
 		
 	/**
-	 * 按主键更新字段 资产状态
+	 * 按主键更新资产状态
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IAssetStatusService extends  ISimpleIdService<AssetStatus,Strin
 
 		
 	/**
-	 * 按主键获取 资产状态
+	 * 按主键获取资产状态
 	 *
 	 * @param id 主键
 	 * @return AssetStatus 数据对象

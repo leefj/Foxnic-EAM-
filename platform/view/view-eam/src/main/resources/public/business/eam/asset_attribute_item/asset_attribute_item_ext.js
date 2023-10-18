@@ -86,6 +86,20 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        colDef:function (selected, obj){
+            admin.popupCenter({
+                title: "预定字段配置",
+                resize: false,
+                offset: [20,null],
+                area: ["85%","85%"],
+                type: 2,
+                id:"eam-asset-attribute-def-item-form-data-win",
+                content: '/business/eam/asset_attribute/asset_attribute_list.html',
+                finish: function () {
+
+                }
+            });
+        },
         /**
          * 末尾执行
          */

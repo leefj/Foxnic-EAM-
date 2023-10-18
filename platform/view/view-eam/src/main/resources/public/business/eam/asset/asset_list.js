@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-11 19:46:44
+ * @since 2023-10-17 16:09:44
  */
 
 
@@ -180,6 +180,7 @@ function ListPage() {
 					,{ field: 'collectionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('领用ID') , templet: function (d) { return templet('collectionId',d.collectionId,d);}  }
 					,{ field: 'borrowId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('借用ID') , templet: function (d) { return templet('borrowId',d.borrowId,d);}  }
 					,{ field: 'scrapId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报废ID') , templet: function (d) { return templet('scrapId',d.scrapId,d);}  }
+					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',d.originatorId,d);}  }
 					,{ field: 'chsType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('变更类型') , templet: function (d) { return templet('chsType',d.chsType,d);}  }
 					,{ field: 'chsStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('变更状态') , templet: function (d) { return templet('chsStatus',d.chsStatus,d);}  }
@@ -781,7 +782,10 @@ function ListPage() {
 			}
 			else if(obj.event === 'ops-more'){
 				//更多下拉菜单
-				var  items = [{"perm":"id1","id":"id1","title":"测试1"},{"perm":"id1","id":"id1","title":"测试2"}];
+				var  items = [{"perm":"id1","id":"id1","title":"测试1"},{"perm":"id2","id":"id2","title":"测试2"}];
+				if(window.pageExt.list.moreActionMenu) {
+					items=window.pageExt.list.moreActionMenu(items,data, othis);
+				 }
 				items=items.filter(function (item,i,arr){
 					if(!item.perm) return true;
 					else return admin.checkAuth(item.perm);

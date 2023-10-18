@@ -2,7 +2,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-14 20:45:36
+ * @since 2023-10-17 14:00:57
  */
  -->
  <!DOCTYPE html>
@@ -60,30 +60,31 @@
                     <!-- 文档 , fileIds ,typeName=upload, isHideInSearch=true -->
                     <!-- UID , uid ,typeName=text_input, isHideInSearch=true -->
                     <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 库类型 , dbTypeIds ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('库类型')}" class="search-label dbTypeIds-label">库类型</span><span class="search-colon">:</span></div>
-                        <div id="dbTypeIds" th:data="${'/service-ops/ops-service-category/query-list?groupId=db'}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('库类型')}" class="search-label dbTypeIds-label">库类型</span><span class="search-colon">:</span></div>
+                        <div id="dbTypeIds" th:data="${'/service-ops/ops-service-category/query-list?groupId=db'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 其他环境数量 , otherEnvInfoCount ,typeName=text_input, isHideInSearch=true -->
                     <!-- IP , resHostIp ,typeName=text_input, isHideInSearch=true -->
                     <!-- 数据存放 , dataLocIds ,typeName=select_box, isHideInSearch=true -->
                     <!-- 库状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('库状态')}" class="search-label status-label">库状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('库状态')}" class="search-label status-label">库状态</span><span class="search-colon">:</span></div>
 
 
-                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbStatusEnum')}" style="width:150px"></div>
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbStatusEnum')}" style="width:180px"></div>
                     </div>
                     <!-- 标签 , labelIds ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('标签')}" class="search-label labelIds-label">标签</span><span class="search-colon">:</span></div>
-                        <div id="labelIds" th:data="${'/service-system/sys-dict-item/query-list?dictCode=ops_db_label'}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('标签')}" class="search-label labelIds-label">标签</span><span class="search-colon">:</span></div>
+                        <div id="labelIds" th:data="${'/service-system/sys-dict-item/query-list?dictCode=ops_db_label'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 数据库名 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('数据库名')}" class="search-label name-label">数据库名</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('数据库名')}" class="search-label name-label">数据库名</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -92,20 +93,20 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 备份状态 , backupStatus ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('备份状态')}" class="search-label backupStatus-label">备份状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('备份状态')}" class="search-label backupStatus-label">备份状态</span><span class="search-colon">:</span></div>
 
 
-                        <div id="backupStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbBackupStatusEnum')}" style="width:150px"></div>
+                        <div id="backupStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbBackupStatusEnum')}" style="width:180px"></div>
                     </div>
                     <!-- 部署模式 , deployMode ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('部署模式')}" class="search-label deployMode-label">部署模式</span><span class="search-colon">:</span></div>
-                        <div id="deployMode" th:data="${'/service-system/sys-dict-item/query-list?dictCode=ops_db_deploy_mode'}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('部署模式')}" class="search-label deployMode-label">部署模式</span><span class="search-colon">:</span></div>
+                        <div id="deployMode" th:data="${'/service-system/sys-dict-item/query-list?dictCode=ops_db_deploy_mode'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 数据存放 , dataLoc ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('数据存放')}" class="search-label dataLoc-label">数据存放</span><span class="search-colon">:</span></div>
-                        <input id="dataLoc" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('数据存放')}" class="search-label dataLoc-label">数据存放</span><span class="search-colon">:</span></div>
+                        <input id="dataLoc" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -114,15 +115,15 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 备注 , notes ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
-                        <input id="notes" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
+                        <input id="notes" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 创建时间 , createTime ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('创建时间')}" class="search-label createTime-label">创建时间</span><span class="search-colon">:</span></div>
-                            <input type="text" id="createTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('创建时间')}" class="search-label createTime-label">创建时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="createTime-begin" style="width: 180px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
-                            <input type="text" id="createTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                            <input type="text" id="createTime-end"  style="width: 180px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
 
 
@@ -153,7 +154,8 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('ops_db_info:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
-        <button id="db-search"  th:if="${perm.checkAuth('ops_db_info:dbSearch')}"class="layui-btn icon-btn layui-btn-sm " lay-event="tool-db-search"><span th:text="${lang.translate('搜索','','cmp:table.button')}">搜索</span></button>
+        <button id="soft-list"  class="layui-btn icon-btn layui-btn-sm " lay-event="tool-soft-list"><span th:text="${lang.translate('软件列表','','cmp:table.button')}">软件列表</span></button>
+        <button id="db-search"  class="layui-btn icon-btn layui-btn-sm " lay-event="tool-db-search"><span th:text="${lang.translate('搜索','','cmp:table.button')}">搜索</span></button>
     </div>
 </script>
 

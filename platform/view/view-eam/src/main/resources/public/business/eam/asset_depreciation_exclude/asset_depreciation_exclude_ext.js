@@ -78,6 +78,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            if(DEPRECIATION_ID){
+                param.depreciationId=DEPRECIATION_ID;
+            }
             return true;
         },
         /**

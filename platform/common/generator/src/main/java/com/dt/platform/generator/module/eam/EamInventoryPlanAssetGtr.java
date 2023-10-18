@@ -46,7 +46,9 @@ public class EamInventoryPlanAssetGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.CREATE_TIME).table().hidden(true);
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.STATUS).form().validate().required().form()
-                .label("状态").radioBox().enumType(StatusEnableEnum.class);
+                .label("状态").radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
+
+        cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.NOTES).form().textArea().height(120);
 
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.PLAN_TYPE)
                 .basic().label("计划类型")
@@ -86,8 +88,8 @@ public class EamInventoryPlanAssetGtr extends BaseCodeGenerator{
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
                 .setListPage(WriteMode.WRITE_TEMP_FILE)//列表HTML页

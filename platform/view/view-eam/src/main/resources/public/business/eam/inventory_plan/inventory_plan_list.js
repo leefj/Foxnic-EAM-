@@ -384,15 +384,10 @@ function ListPage() {
 
 			else if (layEvent === 'modify-tpl') { // 修改模板
 				//window.pageExt.list.modifyTpl(data);
-
-				console.log(' inventory modifyTpl',data);
-
+				console.log('inventory modifyTpl',data);
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
 					 	var planData=data.data;
-
-
-
 						var d={};
 						d.id="";
 						var action="create"
@@ -400,14 +395,10 @@ function ListPage() {
 							action="edit"
 							d.id=planData.inventory.id;
 						}
-
 						admin.putTempData('eam-inventory-form-data-form-action', action,true);
-
 						var queryString="?planId="+planData.id+"&ownerCode=inventory_plan_tpl";
 						if(d && d.id) queryString=queryString+"&" + 'id=' + d.id;
 						admin.putTempData('eam-inventory-form-data', d);
-
-
 						var area=admin.getTempData('eam-inventory-form-area');
 						var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 						var top= (area && area.top) ? area.top : (($(window).height()-height)/2);

@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 计算方法
  * <p>计算方法 , 数据表 eam_asset_depreciation_cal_rule 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 17:04:42
+ * @since 2023-10-18 06:50:17
  * @sign 028FA54B25CCA1BC8071AAAB3CBE628B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -40,7 +40,7 @@ public class AssetDepreciationCalRule extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "0013")
 	private String id;
 	
 	/**
@@ -58,25 +58,25 @@ public class AssetDepreciationCalRule extends Entity {
 	/**
 	 * 动作：动作
 	*/
-	@ApiModelProperty(required = false,value="动作" , notes = "动作" , example = "depreciation_normal")
+	@ApiModelProperty(required = false,value="动作" , notes = "动作" , example = "depreciation_last")
 	private String actionCode;
 	
 	/**
 	 * 规则编号：规则编号
 	*/
-	@ApiModelProperty(required = false,value="规则编号" , notes = "规则编号" , example = "300")
+	@ApiModelProperty(required = false,value="规则编号" , notes = "规则编号" , example = "800")
 	private Integer ruleNumber;
 	
 	/**
 	 * 字段值：字段值
 	*/
-	@ApiModelProperty(required = false,value="字段值" , notes = "字段值" , example = "s_original_price")
+	@ApiModelProperty(required = false,value="字段值" , notes = "字段值" , example = "c_original_price_increase")
 	private String columnValue;
 	
 	/**
 	 * 字段名称：字段名称
 	*/
-	@ApiModelProperty(required = false,value="字段名称" , notes = "字段名称" , example = "(期初)期初原值")
+	@ApiModelProperty(required = false,value="字段名称" , notes = "字段名称" , example = "(本期发生)原值增加")
 	private String columnName;
 	
 	/**
@@ -88,13 +88,13 @@ public class AssetDepreciationCalRule extends Entity {
 	/**
 	 * 计算方法：计算方法
 	*/
-	@ApiModelProperty(required = false,value="计算方法" , notes = "计算方法" , example = "asset.assetOriginalUnitPrice")
+	@ApiModelProperty(required = false,value="计算方法" , notes = "计算方法" , example = "0")
 	private String methodContent;
 	
 	/**
 	 * 方法描述：方法描述
 	*/
-	@ApiModelProperty(required = false,value="方法描述" , notes = "方法描述" , example = "(期初)期初原值=上一期期末原值")
+	@ApiModelProperty(required = false,value="方法描述" , notes = "方法描述" , example = "已确认不会有增加 ")
 	private String methodContentInfo;
 	
 	/**
@@ -130,7 +130,7 @@ public class AssetDepreciationCalRule extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-27 08:37:08")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-26 04:45:04")
 	private Date updateTime;
 	
 	/**
@@ -157,7 +157,7 @@ public class AssetDepreciationCalRule extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "4")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
 	private Integer version;
 	
 	/**

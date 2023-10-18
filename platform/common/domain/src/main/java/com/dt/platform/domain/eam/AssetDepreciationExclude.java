@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧排除
  * <p>折旧排除 , 数据表 eam_asset_depreciation_exclude 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-28 20:42:05
+ * @since 2023-10-18 07:29:33
  * @sign D4BE7365B29CEE64D914AC37CB332BC9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -40,25 +40,25 @@ public class AssetDepreciationExclude extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "649264051653705728")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
 	
 	/**
 	 * 资产：资产
 	*/
-	@ApiModelProperty(required = false,value="资产" , notes = "资产" , example = "649264028098494465")
+	@ApiModelProperty(required = false,value="资产" , notes = "资产")
 	private String assetId;
 	
 	/**
 	 * 折旧方案：折旧方案
 	*/
-	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案" , example = "647736203386290176")
+	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案")
 	private String depreciationId;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "折旧排除")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
 	
 	/**
@@ -88,7 +88,7 @@ public class AssetDepreciationExclude extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -109,7 +109,7 @@ public class AssetDepreciationExclude extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version")
 	private Integer version;
 	
 	/**

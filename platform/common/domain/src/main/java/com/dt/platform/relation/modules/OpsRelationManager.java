@@ -56,8 +56,7 @@ public class OpsRelationManager extends RelationManager {
         this.setupPublicContent();
         this.setupDbEvnInfo();
         this.setupDbDoc();
-        this.setupFaultRcd();
-        this.setupDbRecoverRcd();
+
         this.setupMonitorTrigger();
         this.setupMonitorAlert();
         this.setupMonitorTpl();
@@ -98,15 +97,7 @@ public class OpsRelationManager extends RelationManager {
 
     }
 
-    public void setupFaultRcd() {
-        this.property(DbFaultRcdMeta.DB_INSTANCE_PROP)
-                .using(OpsTables.OPS_DB_FAULT_RCD.DB_INSTANCE_ID).join(OpsTables.OPS_DB_INFO.ID);
 
-    }
-    public void setupDbRecoverRcd() {
-        this.property(DbRecoveryRecMeta.DB_INSTANCE_PROP)
-                .using(OpsTables.OPS_DB_RECOVERY_REC.DB_INSTANCE_ID).join(OpsTables.OPS_DB_INFO.ID);
-    }
 
 
     public void setupDbDoc() {

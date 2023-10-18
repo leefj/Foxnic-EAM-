@@ -34,9 +34,9 @@ public class EamAssetStatusGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_STATUS.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_ASSET_STATUS.CODE).form().validate().required();
         cfg.view().field(EAMTables.EAM_ASSET_STATUS.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_ASSET_STATUS.UPDATE_BY).table().disable(true);
 
-
-
+        cfg.view().list().disableBatchDelete();
         cfg.view().field(EAMTables.EAM_ASSET_STATUS.TYPE).form()
                 .validate().required().form().radioBox().enumType(AssetStatusTypeEnum.class).defaultIndex(1);
 
@@ -45,6 +45,9 @@ public class EamAssetStatusGtr extends BaseCodeGenerator{
         cfg.view().formWindow().bottomSpace(20);
 
 
+
+        cfg.view().list().addToolButton("状态规则","statusRule","status-rule");
+
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
@@ -52,7 +55,7 @@ public class EamAssetStatusGtr extends BaseCodeGenerator{
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         cfg.buildAll();
     }
 

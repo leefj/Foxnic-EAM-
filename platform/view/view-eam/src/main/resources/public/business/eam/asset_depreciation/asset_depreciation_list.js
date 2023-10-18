@@ -1,7 +1,7 @@
 /**
  * 折旧方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 12:24:38
+ * @since 2023-10-18 06:46:27
  */
 
 
@@ -11,8 +11,14 @@ function ListPage() {
 	
 	//模块基础路径
 	const moduleURL="/service-eam/eam-asset-depreciation";
+	const queryURL=moduleURL+'/query-paged-list';
+	const deleteURL=moduleURL+'/delete';
+	const batchDeleteURL=moduleURL+'/delete-by-ids';
+	const getByIdURL=moduleURL+'/get-by-id';
+	//
 	var dataTable=null;
 	var sort=null;
+
 	/**
       * 入口函数，初始化
       */
@@ -71,7 +77,7 @@ function ListPage() {
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-paged-list',
+				url: queryURL,
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
@@ -87,11 +93,16 @@ function ListPage() {
 					,{ field: 'residualValueSelect', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('残值选择'), templet:function (d){ return templet('residualValueSelect',fox.getEnumText(SELECT_RESIDUALVALUESELECT_DATA,d.residualValueSelect,'','residualValueSelect'),d);}}
 					,{ field: 'firstDepreciationMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('首次折旧方式'), templet:function (d){ return templet('firstDepreciationMethod',fox.getEnumText(SELECT_FIRSTDEPRECIATIONMETHOD_DATA,d.firstDepreciationMethod,'','firstDepreciationMethod'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
+					,{ field: 'flowConf', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('规则编排') , templet: function (d) { return templet('flowConf',d.flowConf,d);}  }
 					,{ field: 'categoryIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产分类'), templet: function (d) { return templet('categoryIds' ,fox.joinLabel(d.category,"name",',','','categoryIds'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
-				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
+				done: function (data) {
+					lockSwitchInputs();
+					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
+				},
 				footer : {
 					exportExcel : false ,
 					importExcel : false 
@@ -115,11 +126,13 @@ function ListPage() {
 		var context=dataTable.getDataRowContext( { id : data.id } );
 		if(context==null) return;
 		if(remote) {
-			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+			admin.post(getByIdURL, { id : data.id }, function (r) {
 				if (r.success) {
 					data = r.data;
 					context.update(data);
 					fox.renderFormInputs(form);
+					lockSwitchInputs();
+					window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 				} else {
 					fox.showMessage(data);
 				}
@@ -127,7 +140,24 @@ function ListPage() {
 		} else {
 			context.update(data);
 			fox.renderFormInputs(form);
+			lockSwitchInputs();
+			window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 		}
+	}
+
+
+
+	function lockSwitchInputs() {
+	}
+
+	function lockSwitchInput(field) {
+		var inputs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find("input");
+		var switchs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find(".layui-form-switch");
+		inputs.attr("readonly", "yes");
+		inputs.attr("disabled", "yes");
+		switchs.addClass("layui-disabled");
+		switchs.addClass("layui-checkbox-disabled");
+		switchs.addClass("layui-form-switch-disabled");
 	}
 
 	/**
@@ -202,7 +232,11 @@ function ListPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -224,7 +258,11 @@ function ListPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("method",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -315,7 +353,7 @@ function ListPage() {
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的'+'折旧方案'+'吗？'), function (i) {
                 top.layer.close(i);
-				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -350,7 +388,10 @@ function ListPage() {
 
 			admin.putTempData('eam-asset-depreciation-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				top.layer.load(2);
+				top.layer.load(2);
+				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('eam-asset-depreciation-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -359,7 +400,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				top.layer.load(2);
+				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('eam-asset-depreciation-form-data-form-action', "view",true);
 						showEditForm(data.data);
@@ -377,7 +420,7 @@ function ListPage() {
 
 				top.layer.confirm(fox.translate('确定删除此'+'折旧方案'+'吗？'), function (i) {
 					top.layer.close(i);
-					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -391,6 +434,12 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'cal-method') { // 计算方式
+				window.pageExt.list.calMethod(data,this);
+			}
+			else if (layEvent === 'exclude-asset') { // 排除资产
+				window.pageExt.list.excludeAsset(data,this);
 			}
 			
 		});

@@ -1,36 +1,40 @@
 package com.dt.platform.eam.service.impl;
 
-import javax.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.github.foxnic.dao.entity.ReferCause;
-import com.github.foxnic.commons.collection.MapUtil;
-import java.util.Arrays;
-
-
-import com.dt.platform.domain.eam.InventoryPlan;
-import com.dt.platform.domain.eam.InventoryPlanVO;
-import java.util.List;
-import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.spec.DAO;
-import java.lang.reflect.Field;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.sql.expr.ConditionExpr;
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.constants.enums.eam.AssetInventoryActionStatusEnum;
+import com.dt.platform.constants.enums.eam.AssetInventoryOwnerEnum;
+import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.InventoryMeta;
+import com.dt.platform.domain.eam.meta.InventoryPlanMeta;
+import com.dt.platform.eam.service.IInventoryPlanService;
+import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
+import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.commons.collection.MapUtil;
+import com.github.foxnic.dao.data.PagedList;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.dao.entity.SuperService;
+import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
-import com.github.foxnic.dao.excel.ExcelStructure;
-import java.io.InputStream;
+import com.github.foxnic.dao.spec.DAO;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.sql.meta.DBField;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.meta.DBColumnMeta;
-import com.github.foxnic.sql.expr.Select;
-import java.util.ArrayList;
-import com.dt.platform.eam.service.IInventoryPlanService;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.framework.dao.DBConfigs;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,6 +50,8 @@ import java.util.Map;
 
 public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implements IInventoryPlanService {
 
+	@Autowired
+	private InventoryServiceImpl inventoryServiceImpl;
 	/**
 	 * 注入DAO对象
 	 * */
@@ -56,6 +62,110 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 	 * 获得 DAO 对象
 	 * */
 	public DAO dao() { return dao; }
+
+
+	@Override
+	public Result applyTpl(String id) {
+		InventoryPlan sample = new InventoryPlan();
+		if(id==null) throw new IllegalArgumentException("id 不允许为 null ");
+		sample.setId(id);
+		InventoryPlan plan=dao.queryEntity(sample);
+		dao().fill(plan)
+				.with(InventoryPlanMeta.INVENTORY_PLAN_TYPE)
+				.with(InventoryPlanMeta.INVENTORY)
+				.execute();
+		if(!StatusEnableEnum.ENABLE.code().equals(plan.getStatus())){
+			return ErrorDesc.failureMessage("当前状态无法应用模板!");
+		}
+
+		if(plan.getInventory()!=null&&plan.getInventory().getId()!=null){
+
+		}else{
+			return ErrorDesc.failureMessage("未找到模板，无法应用!");
+		}
+
+		Result codeResult= CodeModuleServiceProxy.api().generateCode(AssetOperateEnum.EAM_ASSET_INVENTORY.code());
+		if(!codeResult.isSuccess()){
+			return codeResult;
+		}
+
+		Inventory inventoryTpl=plan.getInventory();
+		inventoryTpl.setBusinessCode(codeResult.getData().toString());
+		inventoryServiceImpl.dao().fill(inventoryTpl)
+				.with(InventoryMeta.MANAGER)
+				.with(InventoryMeta.DIRECTOR)
+				.with(InventoryMeta.INVENTORY_USER)
+				.with(InventoryMeta.CATEGORY)
+				.with(InventoryMeta.WAREHOUSE)
+				.with(InventoryMeta.POSITION)
+				.execute();
+		inventoryTpl.setId(null);
+		//处理分类
+		List<Catalog> catalogList=inventoryTpl.getCategory();
+		if(catalogList!=null&&catalogList.size()>0){
+			List<String> catalogIdList =new ArrayList<>();
+			for(Catalog c : catalogList){
+				catalogIdList.add(c.getId());
+			}
+			inventoryTpl.setCategoryIds(catalogIdList);
+		}
+		//处理位置
+		List<Position> positionList=inventoryTpl.getPosition();
+		if(positionList!=null&&positionList.size()>0){
+			List<String> positionIdList =new ArrayList<>();
+			for(Position c : positionList){
+				positionIdList.add(c.getId());
+			}
+			inventoryTpl.setPositionIds(positionIdList);
+		}
+
+		//处理仓库
+		List<Warehouse> warehouseList=inventoryTpl.getWarehouse();
+		if(warehouseList!=null&&warehouseList.size()>0){
+			List<String> warehouseIdList =new ArrayList<>();
+			for(Warehouse c : warehouseList){
+				warehouseIdList.add(c.getId());
+			}
+			inventoryTpl.setWarehouseIds(warehouseIdList);
+		}
+
+		//处理盘点人
+		List<Employee> inventoryList=inventoryTpl.getInventoryUser();
+		if(inventoryList!=null&&inventoryList.size()>0){
+			List<String> inventoryIdList =new ArrayList<>();
+			for(Employee c : inventoryList){
+				inventoryIdList.add(c.getId());
+			}
+			inventoryTpl.setInventoryUserIds(inventoryIdList);
+		}
+
+		//处理管理人
+		List<Employee> managerList=inventoryTpl.getManager();
+		if(managerList!=null&&managerList.size()>0){
+			List<String> managerIdList =new ArrayList<>();
+			for(Employee c : managerList){
+				managerIdList.add(c.getId());
+			}
+			inventoryTpl.setInventoryManagerIds(managerIdList);
+		}
+
+		//处理责任人
+		List<Employee> directorList=inventoryTpl.getDirector();
+		if(directorList!=null&&directorList.size()>0){
+			List<String> directorIdList =new ArrayList<>();
+			for(Employee c : directorList){
+				directorIdList.add(c.getId());
+			}
+			inventoryTpl.setInventoryDirectorIds(directorIdList);
+		}
+		inventoryTpl.setOwnerCode(AssetInventoryOwnerEnum.ASSET_INVENTORY.code());
+
+		inventoryTpl.setCreateTime(new Date());
+		inventoryTpl.setInventoryStatus(AssetInventoryActionStatusEnum.NOT_START.code());
+		return inventoryServiceImpl.insert(inventoryTpl,false);
+
+	}
+
 
 
 
@@ -76,6 +186,7 @@ public class InventoryPlanServiceImpl extends SuperService<InventoryPlan> implem
 		Result r=super.insert(inventoryPlan,throwsException);
 		return r;
 	}
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

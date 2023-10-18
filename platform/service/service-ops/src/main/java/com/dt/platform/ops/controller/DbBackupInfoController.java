@@ -51,7 +51,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 数据库备份接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 17:31:07
+ * @since 2023-10-17 16:14:43
 */
 
 @InDoc
@@ -84,6 +84,7 @@ public class DbBackupInfoController extends SuperController {
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE , value = "存放位置" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -202,6 +203,7 @@ public class DbBackupInfoController extends SuperController {
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE , value = "存放位置" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbBackupInfoVOMeta.PAGE_INDEX , DbBackupInfoVOMeta.PAGE_SIZE , DbBackupInfoVOMeta.SEARCH_FIELD , DbBackupInfoVOMeta.FUZZY_FIELD , DbBackupInfoVOMeta.SEARCH_VALUE , DbBackupInfoVOMeta.DIRTY_FIELDS , DbBackupInfoVOMeta.SORT_FIELD , DbBackupInfoVOMeta.SORT_TYPE , DbBackupInfoVOMeta.DATA_ORIGIN , DbBackupInfoVOMeta.QUERY_LOGIC , DbBackupInfoVOMeta.REQUEST_ACTION , DbBackupInfoVOMeta.IDS } )
@@ -236,6 +238,7 @@ public class DbBackupInfoController extends SuperController {
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE , value = "存放位置" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { DbBackupInfoVOMeta.PAGE_INDEX , DbBackupInfoVOMeta.PAGE_SIZE , DbBackupInfoVOMeta.SEARCH_FIELD , DbBackupInfoVOMeta.FUZZY_FIELD , DbBackupInfoVOMeta.SEARCH_VALUE , DbBackupInfoVOMeta.DIRTY_FIELDS , DbBackupInfoVOMeta.SORT_FIELD , DbBackupInfoVOMeta.SORT_TYPE , DbBackupInfoVOMeta.DATA_ORIGIN , DbBackupInfoVOMeta.QUERY_LOGIC , DbBackupInfoVOMeta.REQUEST_ACTION , DbBackupInfoVOMeta.IDS } )
@@ -315,6 +318,7 @@ public class DbBackupInfoController extends SuperController {
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE , value = "存放位置" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { DbBackupInfoVOMeta.PAGE_INDEX , DbBackupInfoVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = DbBackupInfoServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -350,6 +354,7 @@ public class DbBackupInfoController extends SuperController {
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE , value = "存放位置" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = DbBackupInfoServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

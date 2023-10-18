@@ -3,13 +3,14 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.AssetStatus;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-06 09:44:10
- * @sign 1D802D48D44A1E087454AD80B2690D9C
+ * @since 2023-10-17 16:13:49
+ * @sign E363214C16BFD2A219D733374EBFD0DC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -342,5 +343,40 @@ public class AssetStatusMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetStatus clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetStatus duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSort(this.getSort());
+			inst.setType(this.getType());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

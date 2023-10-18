@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 备份日志
  * <p>备份日志 , 数据表 ops_db_backup_log 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-31 23:12:44
+ * @since 2023-10-17 14:08:34
  * @sign ED0A2147E506B4059E040CCF26F0F0E9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -41,73 +41,73 @@ public class DbBackupLog extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "2")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "716794439409860608")
 	private String id;
 	
 	/**
 	 * UID：UID
 	*/
-	@ApiModelProperty(required = false,value="UID" , notes = "UID" , example = "aaaa")
+	@ApiModelProperty(required = false,value="UID" , notes = "UID")
 	private String uid;
 	
 	/**
 	 * 数据库实例：数据库实例
 	*/
-	@ApiModelProperty(required = false,value="数据库实例" , notes = "数据库实例" , example = "672922128638541824")
+	@ApiModelProperty(required = false,value="数据库实例" , notes = "数据库实例" , example = "ccccc")
 	private String dbId;
 	
 	/**
 	 * IP：IP
 	*/
-	@ApiModelProperty(required = false,value="IP" , notes = "IP" , example = "192.168.1.1")
+	@ApiModelProperty(required = false,value="IP" , notes = "IP" , example = "ccccc")
 	private String ip;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "12")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "ccccc")
 	private String dbName;
 	
 	/**
 	 * 动作：动作
 	*/
-	@ApiModelProperty(required = false,value="动作" , notes = "动作" , example = "finish")
+	@ApiModelProperty(required = false,value="动作" , notes = "动作")
 	private String action;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "success")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态")
 	private String status;
 	
 	/**
 	 * 方式：方式
 	*/
-	@ApiModelProperty(required = false,value="方式" , notes = "方式" , example = "local")
+	@ApiModelProperty(required = false,value="方式" , notes = "方式")
 	private String method;
 	
 	/**
 	 * 结果：结果
 	*/
-	@ApiModelProperty(required = false,value="结果" , notes = "结果" , example = "none")
+	@ApiModelProperty(required = false,value="结果" , notes = "结果")
 	private String result;
 	
 	/**
 	 * 开始时间：开始时间
 	*/
-	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2023-01-02 02:00:00")
+	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2023-06-01 12:00:00")
 	private Date stime;
 	
 	/**
 	 * 结束时间：结束时间
 	*/
-	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间" , example = "2023-01-02 02:00:00")
+	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间" , example = "2023-06-02 12:00:00")
 	private Date etime;
 	
 	/**
 	 * 大小：大小
 	*/
-	@ApiModelProperty(required = false,value="大小" , notes = "大小" , example = "124.00")
+	@ApiModelProperty(required = false,value="大小" , notes = "大小" , example = "0.00")
 	private BigDecimal size;
 	
 	/**
@@ -119,43 +119,43 @@ public class DbBackupLog extends Entity {
 	/**
 	 * 记录时间：记录时间
 	*/
-	@ApiModelProperty(required = false,value="记录时间" , notes = "记录时间" , example = "2023-01-02 02:00:00")
+	@ApiModelProperty(required = false,value="记录时间" , notes = "记录时间")
 	private Date recordTime;
 	
 	/**
 	 * 原始数据：原始数据
 	*/
-	@ApiModelProperty(required = false,value="原始数据" , notes = "原始数据" , example = "2023-01-02 02:00:00|method=local,uid=aaaa,action=finish,status=success,aliasname=123,dbname=12,ip=192.168.1.1,size=124,result=no...")
+	@ApiModelProperty(required = false,value="原始数据" , notes = "原始数据")
 	private String source;
 	
 	/**
 	 * 处理状态：处理状态
 	*/
-	@ApiModelProperty(required = false,value="处理状态" , notes = "处理状态" , example = "not_processed")
+	@ApiModelProperty(required = false,value="处理状态" , notes = "处理状态" , example = "process_sucess")
 	private String processed;
 	
 	/**
 	 * 处理结果：处理结果
 	*/
-	@ApiModelProperty(required = false,value="处理结果" , notes = "处理结果" , example = "处理完成")
+	@ApiModelProperty(required = false,value="处理结果" , notes = "处理结果")
 	private String processResult;
 	
 	/**
 	 * 处理时间：处理时间
 	*/
-	@ApiModelProperty(required = false,value="处理时间" , notes = "处理时间" , example = "2023-01-31 10:14:17")
+	@ApiModelProperty(required = false,value="处理时间" , notes = "处理时间" , example = "2023-06-20 12:00:00")
 	private Date lastProcessTime;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-01 11:25:12")
 	private Date createTime;
 	
 	/**
@@ -167,7 +167,7 @@ public class DbBackupLog extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-01-31 11:11:45")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-06-01 11:26:10")
 	private Date updateTime;
 	
 	/**
@@ -194,7 +194,7 @@ public class DbBackupLog extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "5")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**

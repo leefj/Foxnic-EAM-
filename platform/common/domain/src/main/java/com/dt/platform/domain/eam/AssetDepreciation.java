@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧方案
  * <p>折旧方案 , 数据表 eam_asset_depreciation 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 12:24:36
- * @sign 2167A9512830F2F86763A1931003DE0E
+ * @since 2023-10-18 06:46:25
+ * @sign C28456F89EE12B5B31502E975711E979
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -170,6 +170,12 @@ public class AssetDepreciation extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * 规则编排：规则编排
+	*/
+	@ApiModelProperty(required = false,value="规则编排" , notes = "规则编排")
+	private String flowConf;
 	
 	/**
 	 * 资产分类：资产分类
@@ -626,6 +632,25 @@ public class AssetDepreciation extends Entity {
 	}
 	
 	/**
+	 * 获得 规则编排<br>
+	 * 规则编排
+	 * @return 规则编排
+	*/
+	public String getFlowConf() {
+		return flowConf;
+	}
+	
+	/**
+	 * 设置 规则编排
+	 * @param flowConf 规则编排
+	 * @return 当前对象
+	*/
+	public AssetDepreciation setFlowConf(String flowConf) {
+		this.flowConf=flowConf;
+		return this;
+	}
+	
+	/**
 	 * 获得 资产分类<br>
 	 * 资产分类
 	 * @return 资产分类
@@ -808,6 +833,7 @@ public class AssetDepreciation extends Entity {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPreResidualRate(this.getPreResidualRate());
 		inst.setId(this.getId());
+		inst.setFlowConf(this.getFlowConf());
 		inst.setCategoryId(this.getCategoryId());
 		inst.setStatus(this.getStatus());
 		if(all) {
@@ -893,6 +919,7 @@ public class AssetDepreciation extends Entity {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetDepreciationMeta.DELETE_BY)));
 			this.setPreResidualRate(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationMeta.PRE_RESIDUAL_RATE)));
 			this.setId(DataParser.parse(String.class, map.get(AssetDepreciationMeta.ID)));
+			this.setFlowConf(DataParser.parse(String.class, map.get(AssetDepreciationMeta.FLOW_CONF)));
 			this.setCategoryId(DataParser.parse(String.class, map.get(AssetDepreciationMeta.CATEGORY_ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(AssetDepreciationMeta.STATUS)));
 			// others
@@ -918,6 +945,7 @@ public class AssetDepreciation extends Entity {
 				this.setDeleteBy( (String)map.get(AssetDepreciationMeta.DELETE_BY));
 				this.setPreResidualRate( (BigDecimal)map.get(AssetDepreciationMeta.PRE_RESIDUAL_RATE));
 				this.setId( (String)map.get(AssetDepreciationMeta.ID));
+				this.setFlowConf( (String)map.get(AssetDepreciationMeta.FLOW_CONF));
 				this.setCategoryId( (String)map.get(AssetDepreciationMeta.CATEGORY_ID));
 				this.setStatus( (String)map.get(AssetDepreciationMeta.STATUS));
 				// others
@@ -956,6 +984,7 @@ public class AssetDepreciation extends Entity {
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.DELETE_BY)));
 			this.setPreResidualRate(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationMeta.PRE_RESIDUAL_RATE)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.ID)));
+			this.setFlowConf(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.FLOW_CONF)));
 			this.setCategoryId(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.CATEGORY_ID)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.STATUS)));
 			return true;
@@ -980,6 +1009,7 @@ public class AssetDepreciation extends Entity {
 				this.setDeleteBy( (String)r.getValue(AssetDepreciationMeta.DELETE_BY));
 				this.setPreResidualRate( (BigDecimal)r.getValue(AssetDepreciationMeta.PRE_RESIDUAL_RATE));
 				this.setId( (String)r.getValue(AssetDepreciationMeta.ID));
+				this.setFlowConf( (String)r.getValue(AssetDepreciationMeta.FLOW_CONF));
 				this.setCategoryId( (String)r.getValue(AssetDepreciationMeta.CATEGORY_ID));
 				this.setStatus( (String)r.getValue(AssetDepreciationMeta.STATUS));
 				return true;

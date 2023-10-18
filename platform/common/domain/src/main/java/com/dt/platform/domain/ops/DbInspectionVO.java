@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库巡检VO类型
  * <p>数据库巡检 , 数据表 ops_db_inspection 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-11 09:33:49
+ * @since 2023-10-17 16:14:25
  * @sign 1497464D617C8457AF93ECEA58125280
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

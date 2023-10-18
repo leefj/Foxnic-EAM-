@@ -13,22 +13,22 @@ import javax.servlet.http.HttpServletRequest;
  * 资产字段配置项模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-28 17:53:46
+ * @since 2023-10-17 16:20:49
 */
 
 @Controller("EamAssetAttributeItemPageController")
 @RequestMapping(AssetAttributeItemPageController.prefix)
 public class AssetAttributeItemPageController extends ViewController {
-	
+
 	public static final String prefix="business/eam/asset_attribute_item";
 
 	private AssetAttributeItemServiceProxy proxy;
-	
+
 	/**
-	 * 获得代理对象<br> 
-	 * 1、单体应用时，在应用内部调用；<br> 
-	 * 2、前后端分离时，通过配置，以Rest方式调用后端；<br> 
-	 * 3、微服务时，通过feign调用; <br> 
+	 * 获得代理对象<br>
+	 * 1、单体应用时，在应用内部调用；<br>
+	 * 2、前后端分离时，通过配置，以Rest方式调用后端；<br>
+	 * 3、微服务时，通过feign调用; <br>
 	 * */
 	public AssetAttributeItemServiceProxy proxy() {
 		if(proxy==null) {
@@ -36,13 +36,13 @@ public class AssetAttributeItemPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
 	/**
 	 * 资产字段配置项 功能主页面
 	 */
 	@RequestMapping("/asset_attribute_item_list.html")
 	public String list(Model model,HttpServletRequest request) {
-		return prefix+"/asset_attribute_item_list";
+		return getTemplatePath(prefix,"asset_attribute_item_list");
 	}
 
 	/**
@@ -50,6 +50,6 @@ public class AssetAttributeItemPageController extends ViewController {
 	 */
 	@RequestMapping("/asset_attribute_item_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
-		return prefix+"/asset_attribute_item_form";
+		return getTemplatePath(prefix,"asset_attribute_item_form");
 	}
 }

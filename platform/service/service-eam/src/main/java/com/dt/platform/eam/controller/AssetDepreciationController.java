@@ -73,7 +73,9 @@ public class AssetDepreciationController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT, value = "残值选择", required = false, dataTypeClass = String.class, example = "follow_asset"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.FIRST_DEPRECIATION_METHOD, value = "首次折旧方式", required = false, dataTypeClass = String.class, example = "purchase_next_month"),
-		@ApiImplicitParam(name = AssetDepreciationVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.FLOW_CONF, value = "规则编排", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetDepreciationServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -131,7 +133,9 @@ public class AssetDepreciationController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT, value = "残值选择", required = false, dataTypeClass = String.class, example = "follow_asset"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.FIRST_DEPRECIATION_METHOD, value = "首次折旧方式", required = false, dataTypeClass = String.class, example = "purchase_next_month"),
-		@ApiImplicitParam(name = AssetDepreciationVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.FLOW_CONF, value = "规则编排", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetDepreciationVOMeta.PAGE_INDEX, AssetDepreciationVOMeta.PAGE_SIZE, AssetDepreciationVOMeta.SEARCH_FIELD, AssetDepreciationVOMeta.FUZZY_FIELD, AssetDepreciationVOMeta.SEARCH_VALUE, AssetDepreciationVOMeta.DIRTY_FIELDS, AssetDepreciationVOMeta.SORT_FIELD, AssetDepreciationVOMeta.SORT_TYPE, AssetDepreciationVOMeta.IDS })
     @SentinelResource(value = AssetDepreciationServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -158,7 +162,9 @@ public class AssetDepreciationController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT, value = "残值选择", required = false, dataTypeClass = String.class, example = "follow_asset"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.FIRST_DEPRECIATION_METHOD, value = "首次折旧方式", required = false, dataTypeClass = String.class, example = "purchase_next_month"),
-		@ApiImplicitParam(name = AssetDepreciationVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.FLOW_CONF, value = "规则编排", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDepreciationVOMeta.PAGE_INDEX, AssetDepreciationVOMeta.PAGE_SIZE, AssetDepreciationVOMeta.SEARCH_FIELD, AssetDepreciationVOMeta.FUZZY_FIELD, AssetDepreciationVOMeta.SEARCH_VALUE, AssetDepreciationVOMeta.DIRTY_FIELDS, AssetDepreciationVOMeta.SORT_FIELD, AssetDepreciationVOMeta.SORT_TYPE, AssetDepreciationVOMeta.IDS })
     @SentinelResource(value = AssetDepreciationServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -222,7 +228,9 @@ public class AssetDepreciationController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT, value = "残值选择", required = false, dataTypeClass = String.class, example = "follow_asset"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.FIRST_DEPRECIATION_METHOD, value = "首次折旧方式", required = false, dataTypeClass = String.class, example = "purchase_next_month"),
-		@ApiImplicitParam(name = AssetDepreciationVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.FLOW_CONF, value = "规则编排", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDepreciationVOMeta.PAGE_INDEX, AssetDepreciationVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetDepreciationServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -250,7 +258,9 @@ public class AssetDepreciationController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT, value = "残值选择", required = false, dataTypeClass = String.class, example = "follow_asset"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.FIRST_DEPRECIATION_METHOD, value = "首次折旧方式", required = false, dataTypeClass = String.class, example = "purchase_next_month"),
-		@ApiImplicitParam(name = AssetDepreciationVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.FLOW_CONF, value = "规则编排", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetDepreciationServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
