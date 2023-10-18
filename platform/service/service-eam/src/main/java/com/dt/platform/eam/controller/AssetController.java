@@ -386,7 +386,8 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class)
+		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -732,7 +733,8 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class)
+		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE, AssetVOMeta.SEARCH_FIELD, AssetVOMeta.FUZZY_FIELD, AssetVOMeta.SEARCH_VALUE, AssetVOMeta.SORT_FIELD, AssetVOMeta.SORT_TYPE, AssetVOMeta.IDS })
     @SentinelResource(value = AssetServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -936,7 +938,8 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class)
+		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE, AssetVOMeta.SEARCH_FIELD, AssetVOMeta.FUZZY_FIELD, AssetVOMeta.SEARCH_VALUE, AssetVOMeta.SORT_FIELD, AssetVOMeta.SORT_TYPE, AssetVOMeta.IDS })
     @SentinelResource(value = AssetServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1160,7 +1163,8 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class)
+		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1344,7 +1348,8 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class)
+		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

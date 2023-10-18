@@ -129,7 +129,7 @@ public class AssetAttributeServiceImpl extends SuperService<AssetAttribute> impl
 		AssetAttribute assetAttribute = new AssetAttribute();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetAttribute.setId(id);
-		assetAttribute.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetAttribute.setDeleted(1);
 		assetAttribute.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetAttribute.setDeleteTime(new Date());
 		try {

@@ -84,6 +84,10 @@ public interface InventoryPlanServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+
+    public static final String APPLY_TPL = API_PREFIX + "apply-tpl";
+
+
     /**
      * 添加盘点计划
      */
@@ -137,6 +141,7 @@ public interface InventoryPlanServiceProxy {
      */
     @RequestMapping(InventoryPlanServiceProxy.QUERY_PAGED_LIST)
     Result<PagedList<InventoryPlan>> queryPagedList(@RequestParam(name = "sample") InventoryPlanVO sample);
+
 
     /**
      * 控制器类名

@@ -80,6 +80,10 @@ public class OpsDbInfoBackupGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.BACKUP_RESULT).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.CREATE_TIME).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.NOTES).table().disable(true);
+
+        cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.UPDATE_BY).table().disable(true);
+
+
         cfg.view().field(OpsTables.OPS_DB_BACKUP_INFO.UID).table().disable(true);
         cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(50);
@@ -157,7 +161,8 @@ cfg.view().form().addGroup("备份信息",
                         OpsTables.OPS_DB_BACKUP_INFO.BACKUP_RESULT_CT,
                 }
         );
-
+        cfg.view().list().addToolButton("最后备份","lastbackup","last-backup");
+        cfg.view().list().addToolButton("原始记录","sourceData","source-data");
 
 
         //文件生成覆盖模式

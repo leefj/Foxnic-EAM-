@@ -1,5 +1,6 @@
 package com.dt.platform.generator.module.ops;
 
+import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.OpsTables;
 import com.dt.platform.domain.ops.DbInstance;
 import com.dt.platform.generator.config.Config;
@@ -41,6 +42,7 @@ public class OpsDbInspectionGtr extends BaseCodeGenerator{
 
 
         cfg.view().field(OpsTables.OPS_DB_INSPECTION.NAME).form().validate().required();
+        cfg.view().field(OpsTables.OPS_DB_INSPECTION.UPDATE_BY).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_DB_INSPECTION.RESULT).form().textArea().height(150);
 
@@ -56,7 +58,7 @@ public class OpsDbInspectionGtr extends BaseCodeGenerator{
                         OpsTables.OPS_DB_INSPECTION.RESULT,
                         OpsTables.OPS_DB_INSPECTION.RCD_DATE,
                         OpsTables.OPS_DB_INSPECTION.FILE_ID,
-                        OpsTables.OPS_DB_FAULT_RCD.NOTES,
+                        OpsTables.OPS_DB_INSPECTION.NOTES,
                 }
         );
 

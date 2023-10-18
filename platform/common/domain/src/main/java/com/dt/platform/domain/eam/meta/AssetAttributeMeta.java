@@ -3,13 +3,14 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.AssetAttribute;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:05
- * @sign 4B049EACE36F2858D4347F37D9C6A484
+ * @since 2023-10-17 16:21:47
+ * @sign F91DB40898012DD50C7CFDFDAC6042DD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -510,5 +511,48 @@ public class AssetAttributeMeta {
 			super.setOwner(owner);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetAttribute clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetAttribute duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setOwner(this.getOwner());
+			inst.setComponentType(this.getComponentType());
+			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setLabel(this.getLabel());
+			inst.setValuePath(this.getValuePath());
+			inst.setRequiredModify(this.getRequiredModify());
+			inst.setVersion(this.getVersion());
+			inst.setRequired(this.getRequired());
+			inst.setComponentContent(this.getComponentContent());
+			inst.setLabelNotes(this.getLabelNotes());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setValueType(this.getValueType());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setDimension(this.getDimension());
+			inst.setStatus(this.getStatus());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

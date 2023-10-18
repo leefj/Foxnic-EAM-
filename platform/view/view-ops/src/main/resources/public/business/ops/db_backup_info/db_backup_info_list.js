@@ -1,7 +1,7 @@
 /**
  * 数据库备份 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 17:31:08
+ * @since 2023-10-17 16:14:44
  */
 
 
@@ -345,6 +345,12 @@ function ListPage() {
 					break;
 				case 'batch-del':
 					batchDelete(selected);
+					break;
+				case 'tool-lastbackup':
+					window.pageExt.list.lastbackup && window.pageExt.list.lastbackup(selected,obj);
+					break;
+				case 'tool-source-data':
+					window.pageExt.list.sourceData && window.pageExt.list.sourceData(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();

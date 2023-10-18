@@ -29,6 +29,12 @@ import java.util.Map;
 
 public interface IInventoryPlanService extends  ISimpleIdService<InventoryPlan,String> {
 
+	/**
+	 * 应用模板
+	 * @param id 参数ID
+	 * @return 成功
+	 * */
+	Result applyTpl(String id);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

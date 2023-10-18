@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_ATTRIBUTE;
@@ -8,20 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetAttributeMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 资产字段配置
+ * <p>资产字段配置 , 数据表 eam_asset_attribute 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:05
- * @sign 4B049EACE36F2858D4347F37D9C6A484
+ * @since 2023-10-17 16:21:47
+ * @sign F91DB40898012DD50C7CFDFDAC6042DD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_attribute")
+@ApiModel(description = "资产字段配置 ; 资产字段配置 , 数据表 eam_asset_attribute 的PO类型")
 public class AssetAttribute extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -32,25 +40,25 @@ public class AssetAttribute extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "000b5919-0f8b-11ec-ab08-00163e2e6a36")
 	private String id;
 	
 	/**
 	 * 字段编码：字段编码
 	*/
-	@ApiModelProperty(required = false,value="字段编码" , notes = "字段编码")
+	@ApiModelProperty(required = false,value="字段编码" , notes = "字段编码" , example = "maintainer_name")
 	private String code;
 	
 	/**
 	 * 字段名称：字段名称
 	*/
-	@ApiModelProperty(required = false,value="字段名称" , notes = "字段名称")
+	@ApiModelProperty(required = false,value="字段名称" , notes = "字段名称" , example = "维保厂商")
 	private String label;
 	
 	/**
 	 * 字段值类型：字段值类型
 	*/
-	@ApiModelProperty(required = false,value="字段值类型" , notes = "字段值类型")
+	@ApiModelProperty(required = false,value="字段值类型" , notes = "字段值类型" , example = "string")
 	private String valueType;
 	
 	/**
@@ -62,37 +70,37 @@ public class AssetAttribute extends Entity {
 	/**
 	 * 标签备注：标签备注
 	*/
-	@ApiModelProperty(required = false,value="标签备注" , notes = "标签备注")
+	@ApiModelProperty(required = false,value="标签备注" , notes = "标签备注" , example = "维保厂商")
 	private String labelNotes;
 	
 	/**
 	 * 所属维度：所属维度
 	*/
-	@ApiModelProperty(required = false,value="所属维度" , notes = "所属维度")
+	@ApiModelProperty(required = false,value="所属维度" , notes = "所属维度" , example = "maintainer")
 	private String dimension;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "valid")
 	private String status;
 	
 	/**
 	 * 是否必选：是否必选
 	*/
-	@ApiModelProperty(required = false,value="是否必选" , notes = "是否必选")
+	@ApiModelProperty(required = false,value="是否必选" , notes = "是否必选" , example = "0")
 	private String required;
 	
 	/**
 	 * 是否修改：是否修改
 	*/
-	@ApiModelProperty(required = false,value="是否修改" , notes = "是否修改")
+	@ApiModelProperty(required = false,value="是否修改" , notes = "是否修改" , example = "1")
 	private String requiredModify;
 	
 	/**
 	 * 组件类型：组件类型
 	*/
-	@ApiModelProperty(required = false,value="组件类型" , notes = "组件类型")
+	@ApiModelProperty(required = false,value="组件类型" , notes = "组件类型" , example = "text_input")
 	private String componentType;
 	
 	/**
@@ -128,14 +136,17 @@ public class AssetAttribute extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2021-09-07 06:16:44")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -152,19 +163,19 @@ public class AssetAttribute extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 归属：归属
 	*/
-	@ApiModelProperty(required = false,value="归属" , notes = "归属")
+	@ApiModelProperty(required = false,value="归属" , notes = "归属" , example = "asset")
 	private String owner;
 	
 	/**
@@ -500,12 +511,43 @@ public class AssetAttribute extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetAttribute setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetAttribute setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -634,6 +676,56 @@ public class AssetAttribute extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetAttribute clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetAttribute duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetAttributeMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetAttributeMeta.$$proxy$$();
+		inst.setOwner(this.getOwner());
+		inst.setComponentType(this.getComponentType());
+		inst.setCode(this.getCode());
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setLabel(this.getLabel());
+		inst.setValuePath(this.getValuePath());
+		inst.setRequiredModify(this.getRequiredModify());
+		inst.setVersion(this.getVersion());
+		inst.setRequired(this.getRequired());
+		inst.setComponentContent(this.getComponentContent());
+		inst.setLabelNotes(this.getLabelNotes());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setValueType(this.getValueType());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setDimension(this.getDimension());
+		inst.setStatus(this.getStatus());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetAttribute clone(boolean deep) {
+		return EntityContext.clone(AssetAttribute.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetAttribute
 	 * @param assetAttributeMap 包含实体信息的 Map 对象
 	 * @return AssetAttribute , 转换好的的 AssetAttribute 对象
@@ -641,7 +733,9 @@ public class AssetAttribute extends Entity {
 	@Transient
 	public static AssetAttribute createFrom(Map<String,Object> assetAttributeMap) {
 		if(assetAttributeMap==null) return null;
-		AssetAttribute po = EntityContext.create(AssetAttribute.class, assetAttributeMap);
+		AssetAttribute po = create();
+		EntityContext.copyProperties(po,assetAttributeMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -653,7 +747,9 @@ public class AssetAttribute extends Entity {
 	@Transient
 	public static AssetAttribute createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetAttribute po = EntityContext.create(AssetAttribute.class,pojo);
+		AssetAttribute po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -663,6 +759,138 @@ public class AssetAttribute extends Entity {
 	*/
 	@Transient
 	public static AssetAttribute create() {
-		return EntityContext.create(AssetAttribute.class);
+		return new com.dt.platform.domain.eam.meta.AssetAttributeMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setOwner(DataParser.parse(String.class, map.get(AssetAttributeMeta.OWNER)));
+			this.setComponentType(DataParser.parse(String.class, map.get(AssetAttributeMeta.COMPONENT_TYPE)));
+			this.setCode(DataParser.parse(String.class, map.get(AssetAttributeMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, map.get(AssetAttributeMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetAttributeMeta.UPDATE_TIME)));
+			this.setLabel(DataParser.parse(String.class, map.get(AssetAttributeMeta.LABEL)));
+			this.setValuePath(DataParser.parse(String.class, map.get(AssetAttributeMeta.VALUE_PATH)));
+			this.setRequiredModify(DataParser.parse(String.class, map.get(AssetAttributeMeta.REQUIRED_MODIFY)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetAttributeMeta.VERSION)));
+			this.setRequired(DataParser.parse(String.class, map.get(AssetAttributeMeta.REQUIRED)));
+			this.setComponentContent(DataParser.parse(String.class, map.get(AssetAttributeMeta.COMPONENT_CONTENT)));
+			this.setLabelNotes(DataParser.parse(String.class, map.get(AssetAttributeMeta.LABEL_NOTES)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetAttributeMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetAttributeMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetAttributeMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetAttributeMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetAttributeMeta.DELETE_TIME)));
+			this.setValueType(DataParser.parse(String.class, map.get(AssetAttributeMeta.VALUE_TYPE)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetAttributeMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetAttributeMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetAttributeMeta.ID)));
+			this.setDimension(DataParser.parse(String.class, map.get(AssetAttributeMeta.DIMENSION)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetAttributeMeta.STATUS)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setOwner( (String)map.get(AssetAttributeMeta.OWNER));
+				this.setComponentType( (String)map.get(AssetAttributeMeta.COMPONENT_TYPE));
+				this.setCode( (String)map.get(AssetAttributeMeta.CODE));
+				this.setNotes( (String)map.get(AssetAttributeMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(AssetAttributeMeta.UPDATE_TIME));
+				this.setLabel( (String)map.get(AssetAttributeMeta.LABEL));
+				this.setValuePath( (String)map.get(AssetAttributeMeta.VALUE_PATH));
+				this.setRequiredModify( (String)map.get(AssetAttributeMeta.REQUIRED_MODIFY));
+				this.setVersion( (Integer)map.get(AssetAttributeMeta.VERSION));
+				this.setRequired( (String)map.get(AssetAttributeMeta.REQUIRED));
+				this.setComponentContent( (String)map.get(AssetAttributeMeta.COMPONENT_CONTENT));
+				this.setLabelNotes( (String)map.get(AssetAttributeMeta.LABEL_NOTES));
+				this.setCreateBy( (String)map.get(AssetAttributeMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetAttributeMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetAttributeMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetAttributeMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetAttributeMeta.DELETE_TIME));
+				this.setValueType( (String)map.get(AssetAttributeMeta.VALUE_TYPE));
+				this.setTenantId( (String)map.get(AssetAttributeMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetAttributeMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetAttributeMeta.ID));
+				this.setDimension( (String)map.get(AssetAttributeMeta.DIMENSION));
+				this.setStatus( (String)map.get(AssetAttributeMeta.STATUS));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setOwner(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.OWNER)));
+			this.setComponentType(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.COMPONENT_TYPE)));
+			this.setCode(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetAttributeMeta.UPDATE_TIME)));
+			this.setLabel(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.LABEL)));
+			this.setValuePath(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.VALUE_PATH)));
+			this.setRequiredModify(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.REQUIRED_MODIFY)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetAttributeMeta.VERSION)));
+			this.setRequired(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.REQUIRED)));
+			this.setComponentContent(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.COMPONENT_CONTENT)));
+			this.setLabelNotes(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.LABEL_NOTES)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetAttributeMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetAttributeMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetAttributeMeta.DELETE_TIME)));
+			this.setValueType(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.VALUE_TYPE)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.ID)));
+			this.setDimension(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.DIMENSION)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetAttributeMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setOwner( (String)r.getValue(AssetAttributeMeta.OWNER));
+				this.setComponentType( (String)r.getValue(AssetAttributeMeta.COMPONENT_TYPE));
+				this.setCode( (String)r.getValue(AssetAttributeMeta.CODE));
+				this.setNotes( (String)r.getValue(AssetAttributeMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(AssetAttributeMeta.UPDATE_TIME));
+				this.setLabel( (String)r.getValue(AssetAttributeMeta.LABEL));
+				this.setValuePath( (String)r.getValue(AssetAttributeMeta.VALUE_PATH));
+				this.setRequiredModify( (String)r.getValue(AssetAttributeMeta.REQUIRED_MODIFY));
+				this.setVersion( (Integer)r.getValue(AssetAttributeMeta.VERSION));
+				this.setRequired( (String)r.getValue(AssetAttributeMeta.REQUIRED));
+				this.setComponentContent( (String)r.getValue(AssetAttributeMeta.COMPONENT_CONTENT));
+				this.setLabelNotes( (String)r.getValue(AssetAttributeMeta.LABEL_NOTES));
+				this.setCreateBy( (String)r.getValue(AssetAttributeMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetAttributeMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetAttributeMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetAttributeMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetAttributeMeta.DELETE_TIME));
+				this.setValueType( (String)r.getValue(AssetAttributeMeta.VALUE_TYPE));
+				this.setTenantId( (String)r.getValue(AssetAttributeMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetAttributeMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetAttributeMeta.ID));
+				this.setDimension( (String)r.getValue(AssetAttributeMeta.DIMENSION));
+				this.setStatus( (String)r.getValue(AssetAttributeMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

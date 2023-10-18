@@ -4,7 +4,6 @@ import com.dt.platform.constants.db.OpsTables;
 import com.dt.platform.constants.enums.ops.OpsDbRecoveryTypeEnum;
 import com.dt.platform.domain.ops.DbCapacityRpt;
 import com.dt.platform.domain.ops.DbInstance;
-import com.dt.platform.domain.ops.meta.DbRecoveryRecMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.page.DbCapacityRptPageController;
 import com.dt.platform.proxy.ops.DbCapacityRptServiceProxy;
@@ -31,8 +30,8 @@ public class OpsDbCapGtr extends BaseCodeGenerator{
         cfg.view().search().inputLayout(
                 new Object[]{
 
-                        OpsTables.OPS_DB_RECOVERY_REC.NAME,
-                        OpsTables.OPS_DB_RECOVERY_REC.NOTES,
+                        OpsTables.OPS_DB_CAPACITY_RPT.NAME,
+                        OpsTables.OPS_DB_CAPACITY_RPT.NOTES,
                 }
 
         );
@@ -50,7 +49,7 @@ public class OpsDbCapGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_CAPACITY_RPT.NAME).form().validate().required();
 
         cfg.view().field(OpsTables.OPS_DB_CAPACITY_RPT.ID).table().hidden(true);
-
+        cfg.view().field(OpsTables.OPS_DB_CAPACITY_RPT.UPDATE_BY).table().disable(true);
 
         cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().bottomSpace(60);

@@ -41,7 +41,8 @@ public class AssetDepreciationCalRulePageController extends ViewController {
 	 * 计算方法 功能主页面
 	 */
 	@RequestMapping("/asset_depreciation_cal_rule_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String depreciationId) {
+		model.addAttribute("depreciationId",depreciationId);
 		return prefix+"/asset_depreciation_cal_rule_list";
 	}
 

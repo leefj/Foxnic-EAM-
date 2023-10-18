@@ -157,7 +157,41 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          */
         ending:function() {
 
-        }
+        },
+        calMethod:function (data,obj) {
+
+            var queryString="?depreciationId="+data.id;
+            admin.popupCenter({
+                title: "计算方法",
+                resize: false,
+                offset: [20,null],
+                area: ["85%","85%"],
+                type: 2,
+                id:"eam-asset-depreciation-method-data-win",
+                content: '/business/eam/asset_depreciation_cal_rule/asset_depreciation_cal_rule_list.html' + queryString,
+                finish: function () {
+
+                }
+            });
+
+        },
+        excludeAsset:function (data,obj) {
+            var queryString="?depreciationId="+data.id;
+            admin.popupCenter({
+                title: "计算方法",
+                resize: false,
+                offset: [20,null],
+                area: ["85%","85%"],
+                type: 2,
+                id:"eam-asset-depreciation-asset-data-win",
+                content: '/business/eam/asset_depreciation_exclude/asset_depreciation_exclude_list.html' + queryString,
+                finish: function () {
+
+                }
+            });
+        },
+
+
     }
 
     //表单页的扩展

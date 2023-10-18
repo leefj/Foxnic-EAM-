@@ -187,7 +187,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             return true;
         },
         /**
-         * 表格右侧操作列更多按钮事件
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
@@ -197,7 +196,35 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          */
         ending:function() {
 
-        }
+        },
+        lastbackup:function (data,obj) {
+            admin.popupCenter({
+                title: "最后备份数据",
+                resize: false,
+                offset: [20,null],
+                area: ["85%","85%"],
+                type: 2,
+                id:"ops-db-last-backup-data-win",
+                content: '/business/ops/db_info/db_backup_detail_list.html' ,
+                finish: function () {
+
+                }
+            });
+        },
+        sourceData:function (data,obj) {
+            admin.popupCenter({
+                title: "原始记录",
+                resize: false,
+                offset: [20,null],
+                area: ["85%","85%"],
+                type: 2,
+                id:"ops-db-source-data-data-win",
+                content: '/business/ops/db_backup_log/db_backup_log_list.html' ,
+                finish: function () {
+
+                }
+            });
+        },
     }
 
     //表单页的扩展

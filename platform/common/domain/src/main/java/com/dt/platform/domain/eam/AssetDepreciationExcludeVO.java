@@ -22,8 +22,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧排除VO类型
  * <p>折旧排除 , 数据表 eam_asset_depreciation_exclude 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-28 20:42:05
- * @sign 64616605F89329150DB2B9E4F70204DD
+ * @since 2023-10-18 07:29:33
+ * @sign 96088B37BB7718979B1FF988A23FA9EA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -79,6 +79,24 @@ public class AssetDepreciationExcludeVO extends AssetDepreciationExclude {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -242,6 +260,63 @@ public class AssetDepreciationExcludeVO extends AssetDepreciationExclude {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public AssetDepreciationExcludeVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public AssetDepreciationExcludeVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public AssetDepreciationExcludeVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -341,6 +416,7 @@ public class AssetDepreciationExcludeVO extends AssetDepreciationExclude {
 		if(all) {
 			inst.setAssetCode(this.getAssetCode());
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setAssetModel(this.getAssetModel());
 			inst.setPageSize(this.getPageSize());
@@ -350,7 +426,9 @@ public class AssetDepreciationExcludeVO extends AssetDepreciationExclude {
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setAssetName(this.getAssetName());
+			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
 			inst.setAsset(this.getAsset());
 			inst.setSearchValue(this.getSearchValue());
 		}
@@ -427,6 +505,7 @@ public class AssetDepreciationExcludeVO extends AssetDepreciationExclude {
 			// others
 			this.setAssetCode(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.ASSET_CODE)));
 			this.setSearchField(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.FUZZY_FIELD)));
 			this.setAssetModel(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.ASSET_MODEL)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetDepreciationExcludeVOMeta.PAGE_SIZE)));
@@ -435,6 +514,8 @@ public class AssetDepreciationExcludeVO extends AssetDepreciationExclude {
 			this.setSortType(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.SORT_FIELD)));
 			this.setAssetName(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.ASSET_NAME)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.QUERY_LOGIC)));
 			this.setAsset(DataParser.parse(Asset.class, map.get(AssetDepreciationExcludeVOMeta.ASSET)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.SEARCH_VALUE)));
 			return true;
@@ -455,6 +536,7 @@ public class AssetDepreciationExcludeVO extends AssetDepreciationExclude {
 				// others
 				this.setAssetCode( (String)map.get(AssetDepreciationExcludeVOMeta.ASSET_CODE));
 				this.setSearchField( (String)map.get(AssetDepreciationExcludeVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(AssetDepreciationExcludeVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(AssetDepreciationExcludeVOMeta.FUZZY_FIELD));
 				this.setAssetModel( (String)map.get(AssetDepreciationExcludeVOMeta.ASSET_MODEL));
 				this.setPageSize( (Integer)map.get(AssetDepreciationExcludeVOMeta.PAGE_SIZE));
@@ -463,6 +545,8 @@ public class AssetDepreciationExcludeVO extends AssetDepreciationExclude {
 				this.setSortType( (String)map.get(AssetDepreciationExcludeVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(AssetDepreciationExcludeVOMeta.SORT_FIELD));
 				this.setAssetName( (String)map.get(AssetDepreciationExcludeVOMeta.ASSET_NAME));
+				this.setDataOrigin( (String)map.get(AssetDepreciationExcludeVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(AssetDepreciationExcludeVOMeta.QUERY_LOGIC));
 				this.setAsset( (Asset)map.get(AssetDepreciationExcludeVOMeta.ASSET));
 				this.setSearchValue( (String)map.get(AssetDepreciationExcludeVOMeta.SEARCH_VALUE));
 				return true;

@@ -94,7 +94,8 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_INFO, value = "备份备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.USER_INFO, value = "用户备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.UID, value = "UID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbInfoVOMeta.UID, value = "UID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -214,7 +215,8 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_INFO, value = "备份备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.USER_INFO, value = "用户备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.UID, value = "UID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbInfoVOMeta.UID, value = "UID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { DbInfoVOMeta.PAGE_INDEX, DbInfoVOMeta.PAGE_SIZE, DbInfoVOMeta.SEARCH_FIELD, DbInfoVOMeta.FUZZY_FIELD, DbInfoVOMeta.SEARCH_VALUE, DbInfoVOMeta.DIRTY_FIELDS, DbInfoVOMeta.SORT_FIELD, DbInfoVOMeta.SORT_TYPE, DbInfoVOMeta.IDS })
@@ -256,7 +258,8 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_INFO, value = "备份备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.USER_INFO, value = "用户备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.UID, value = "UID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbInfoVOMeta.UID, value = "UID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { DbInfoVOMeta.PAGE_INDEX, DbInfoVOMeta.PAGE_SIZE, DbInfoVOMeta.SEARCH_FIELD, DbInfoVOMeta.FUZZY_FIELD, DbInfoVOMeta.SEARCH_VALUE, DbInfoVOMeta.DIRTY_FIELDS, DbInfoVOMeta.SORT_FIELD, DbInfoVOMeta.SORT_TYPE, DbInfoVOMeta.IDS })
@@ -335,7 +338,8 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_INFO, value = "备份备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.USER_INFO, value = "用户备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.UID, value = "UID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbInfoVOMeta.UID, value = "UID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { DbInfoVOMeta.PAGE_INDEX, DbInfoVOMeta.PAGE_SIZE })
     @SentinelResource(value = DbInfoServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -421,7 +425,8 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_INFO, value = "备份备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.USER_INFO, value = "用户备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.FILE_IDS, value = "文档", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.UID, value = "UID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbInfoVOMeta.UID, value = "UID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = DbInfoServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

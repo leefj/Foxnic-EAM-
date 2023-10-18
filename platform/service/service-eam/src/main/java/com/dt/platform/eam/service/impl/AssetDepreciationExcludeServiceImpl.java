@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
-
 import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
@@ -39,11 +38,12 @@ import java.util.Map;
  * 折旧排除服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-28 20:42:05
+ * @since 2023-10-18 07:29:33
 */
 
 
 @Service("EamAssetDepreciationExcludeService")
+
 public class AssetDepreciationExcludeServiceImpl extends SuperService<AssetDepreciationExclude> implements IAssetDepreciationExcludeService {
 
 	/**

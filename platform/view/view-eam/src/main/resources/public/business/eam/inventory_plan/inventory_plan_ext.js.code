@@ -1,7 +1,7 @@
 /**
  * 盘点计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-14 21:19:29
+ * @since 2023-10-18 06:54:17
  */
 
 layui.config({
@@ -172,6 +172,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        moreActionMenu (items,data, it){
+            console.log('moreActionMenu',items,data,it);
+            return items;
+        },
+
         viewTpl:function (data){
             console.log('viewTpl',data);
         },

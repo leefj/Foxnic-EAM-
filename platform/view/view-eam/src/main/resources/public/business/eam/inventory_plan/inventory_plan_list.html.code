@@ -2,7 +2,7 @@
 /**
  * 盘点计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-14 21:19:29
+ * @since 2023-10-18 06:54:17
  */
  -->
  <!DOCTYPE html>
@@ -50,12 +50,13 @@
                     </div>
                     <!-- 计划类型 , planType ,typeName=select_box, isHideInSearch=true -->
                     <!-- 模板 , tplId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 计划名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('计划名称')}" class="search-label name-label">计划名称</span><span class="search-colon">:</span></div>
                         <input id="name" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
-                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
                         <input id="notes" class="layui-input search-input" style="width: 140px" type="text" />

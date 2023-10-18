@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 数据库巡检 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-11 09:33:49
+ * @since 2023-10-17 16:14:26
  */
 @FeignClient(value = ServiceNames.OPS, contextId = DbInspectionServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface DbInspectionServiceProxy {

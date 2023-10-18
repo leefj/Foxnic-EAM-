@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_STATUS;
@@ -8,21 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetStatusMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 资产状态
+ * <p>资产状态 , 数据表 eam_asset_status 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-06 09:44:10
- * @sign 1D802D48D44A1E087454AD80B2690D9C
+ * @since 2023-10-17 16:13:49
+ * @sign E363214C16BFD2A219D733374EBFD0DC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_status")
+@ApiModel(description = "资产状态 ; 资产状态 , 数据表 eam_asset_status 的PO类型")
 public class AssetStatus extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -33,31 +40,31 @@ public class AssetStatus extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "608234495723708416")
 	private String id;
 	
 	/**
 	 * 编码：编码
 	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "idle")
 	private String code;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "闲置")
 	private String name;
 	
 	/**
 	 * 类型：类型
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "类型")
+	@ApiModelProperty(required = false,value="类型" , notes = "类型" , example = "system")
 	private String type;
 	
 	/**
 	 * 排序：排序
 	*/
-	@ApiModelProperty(required = false,value="排序" , notes = "排序")
+	@ApiModelProperty(required = false,value="排序" , notes = "排序" , example = "1")
 	private Integer sort;
 	
 	/**
@@ -69,33 +76,34 @@ public class AssetStatus extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = true,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = true,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-08-06 09:46:44")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-12-15 07:52:32")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -113,13 +121,13 @@ public class AssetStatus extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -339,6 +347,7 @@ public class AssetStatus extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetStatus setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -467,6 +476,48 @@ public class AssetStatus extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetStatus clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetStatus duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetStatusMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetStatusMeta.$$proxy$$();
+		inst.setCode(this.getCode());
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setSort(this.getSort());
+		inst.setType(this.getType());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetStatus clone(boolean deep) {
+		return EntityContext.clone(AssetStatus.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetStatus
 	 * @param assetStatusMap 包含实体信息的 Map 对象
 	 * @return AssetStatus , 转换好的的 AssetStatus 对象
@@ -474,7 +525,9 @@ public class AssetStatus extends Entity {
 	@Transient
 	public static AssetStatus createFrom(Map<String,Object> assetStatusMap) {
 		if(assetStatusMap==null) return null;
-		AssetStatus po = EntityContext.create(AssetStatus.class, assetStatusMap);
+		AssetStatus po = create();
+		EntityContext.copyProperties(po,assetStatusMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -486,7 +539,9 @@ public class AssetStatus extends Entity {
 	@Transient
 	public static AssetStatus createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetStatus po = EntityContext.create(AssetStatus.class,pojo);
+		AssetStatus po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -496,6 +551,106 @@ public class AssetStatus extends Entity {
 	*/
 	@Transient
 	public static AssetStatus create() {
-		return EntityContext.create(AssetStatus.class);
+		return new com.dt.platform.domain.eam.meta.AssetStatusMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setCode(DataParser.parse(String.class, map.get(AssetStatusMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, map.get(AssetStatusMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetStatusMeta.UPDATE_TIME)));
+			this.setSort(DataParser.parse(Integer.class, map.get(AssetStatusMeta.SORT)));
+			this.setType(DataParser.parse(String.class, map.get(AssetStatusMeta.TYPE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetStatusMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetStatusMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetStatusMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetStatusMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetStatusMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetStatusMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AssetStatusMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetStatusMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetStatusMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetStatusMeta.ID)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setCode( (String)map.get(AssetStatusMeta.CODE));
+				this.setNotes( (String)map.get(AssetStatusMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(AssetStatusMeta.UPDATE_TIME));
+				this.setSort( (Integer)map.get(AssetStatusMeta.SORT));
+				this.setType( (String)map.get(AssetStatusMeta.TYPE));
+				this.setVersion( (Integer)map.get(AssetStatusMeta.VERSION));
+				this.setCreateBy( (String)map.get(AssetStatusMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetStatusMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetStatusMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetStatusMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetStatusMeta.DELETE_TIME));
+				this.setName( (String)map.get(AssetStatusMeta.NAME));
+				this.setTenantId( (String)map.get(AssetStatusMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetStatusMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetStatusMeta.ID));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setCode(DataParser.parse(String.class, r.getValue(AssetStatusMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetStatusMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetStatusMeta.UPDATE_TIME)));
+			this.setSort(DataParser.parse(Integer.class, r.getValue(AssetStatusMeta.SORT)));
+			this.setType(DataParser.parse(String.class, r.getValue(AssetStatusMeta.TYPE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetStatusMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetStatusMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetStatusMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetStatusMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetStatusMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetStatusMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetStatusMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetStatusMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetStatusMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetStatusMeta.ID)));
+			return true;
+		} else {
+			try {
+				this.setCode( (String)r.getValue(AssetStatusMeta.CODE));
+				this.setNotes( (String)r.getValue(AssetStatusMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(AssetStatusMeta.UPDATE_TIME));
+				this.setSort( (Integer)r.getValue(AssetStatusMeta.SORT));
+				this.setType( (String)r.getValue(AssetStatusMeta.TYPE));
+				this.setVersion( (Integer)r.getValue(AssetStatusMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(AssetStatusMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetStatusMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetStatusMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetStatusMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetStatusMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AssetStatusMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetStatusMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetStatusMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetStatusMeta.ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

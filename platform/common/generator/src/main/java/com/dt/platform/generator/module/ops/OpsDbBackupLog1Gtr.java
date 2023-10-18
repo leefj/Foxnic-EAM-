@@ -48,9 +48,10 @@ public class OpsDbBackupLog1Gtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
-
+        cfg.view().search().rowsDisplay(1);
 
         cfg.view().list().addToolButton("处理数据","processData","process-data","ops_db_backup_log:process");
+
 
         cfg.view().field(OpsTables.OPS_DB_BACKUP_LOG.PROCESSED).form().selectBox().enumType(OpsDbBackupLogProcessedEnum.class);
         cfg.view().field(OpsTables.OPS_DB_BACKUP_LOG.DB_ID).table().hidden();
