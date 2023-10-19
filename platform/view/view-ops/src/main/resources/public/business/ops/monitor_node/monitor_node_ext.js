@@ -182,7 +182,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var index=admin.popupCenter({
                 title: title,
                 resize: false,
-                offset: [top,null],
+                offset: [20,null],
                 area: ["80%","95%"],
                 type: 2,
                 id:"eam-report-form-data-win",

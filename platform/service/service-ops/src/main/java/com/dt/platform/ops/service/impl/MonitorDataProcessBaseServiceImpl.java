@@ -81,8 +81,7 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
 
 
     @Override
-    public Result<JSONArray> queryNodeZabbixAgentData() {
-        Result<JSONArray> result=new Result<>();
+    public JSONArray queryNodeZabbixAgentData() {
         String sql="select \n" +
                 "a.node_ip,\n" +
                 "a.node_name_show,\n" +
@@ -99,7 +98,7 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
                 " node_id,indicator_code)\n" +
                 " )b on  a.id=b.node_id and a.deleted=0\n" +
                 " \n";
-        return result.success(true).data(dao.query(sql).toJSONArrayWithJSONObject());
+        return dao.query(sql).toJSONArrayWithJSONObject();
     }
 
 
@@ -179,7 +178,7 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
     }
 
     @Override
-    public Result<List<MonitorTpl>> queryTplListByNodeId(String nodeId) {
+    public List<MonitorTpl> queryTplListByNodeId(String nodeId) {
 
         String sql="select distinct b.tpl_code from ops_monitor_node a,ops_monitor_node_tpl_item b,ops_monitor_tpl_indicator c\n" +
                 "where a.deleted='0'\n" +
@@ -187,15 +186,13 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
                 "and c.deleted='0'\n" +
                 "and c.status='enable'\n" +
                 "and a.id=b.node_id\n" +
-                "and a.id='"+nodeId+"'\n"+
+                "and a.id=? \n"+
                 "and b.tpl_code=c.monitor_tpl_code \n";
         ConditionExpr expr=new ConditionExpr();
-        expr.and("code in ("+sql+")" );
+        expr.and("code in ("+sql+")" ,nodeId);
         expr.and("status=?","enable");
         List<MonitorTpl> list=monitorTplService.queryList(expr);
-        Result<List<MonitorTpl>> res=new Result<>();
-        res.data(list);
-        return res;
+         return list;
     }
 
     @Override

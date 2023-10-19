@@ -1,3 +1,4 @@
+delete from sys_invoke_log where 1=1;
 -- bpm
 delete from bpm_form_instance where 1=1;
 delete from bpm_form_instance_bill where 1=1;
