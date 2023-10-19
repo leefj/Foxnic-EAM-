@@ -112,19 +112,18 @@
     <div class="layui-card-body" style="">
 
         <div class="search-bar" style="">
-
             <div class="search-input-rows" style="opacity: 0">
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-
+<!--                    <div class="search-unit">-->
+<!--                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('图形模版')}" class="search-label systemId-label">图形模版</span><span class="search-colon">:</span></div>-->
+<!--                        <div id="nodeTpl" th:data="${nodeTplData}" style="width:250px"></div>-->
+<!--                    </div>-->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('图形模版')}" class="search-label systemId-label">图形模版</span><span class="search-colon">:</span></div>
-                        <div id="nodeTpl" th:data="${nodeTplData}" style="width:250px"></div>
-                    </div>
-
-
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('搜索时间')}" class="search-label sTime-label">搜索时间</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:10px">
+<!--                            <span th:text="${lang.translate('搜索时间')}" class="search-label sTime-label">搜索时间</span>-->
+<!--                            <span class="search-colon">:</span>-->
+                        </div>
                         <input type="text" id="sTime-begin" style="width: 150px" lay-verify="datetime" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                         <span class="search-dash">-</span>
                         <input type="text" id="sTime-end"  style="width: 150px"  lay-verify="datetime" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
@@ -132,15 +131,16 @@
                 </div>
             </div>
             <button id="last_data" class="layui-btn icon-btn"><span th:text="${lang.translate('最新数据')}">最新数据</span></button>
+            <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索')}">搜索</span></button>
 
             <!-- 按钮区域 -->
-            <div class="layui-form toolbar search-buttons" style="opacity: 0">
-                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索')}">搜索</span></button>
-            </div>
+<!--            <div class="layui-form toolbar search-buttons" style="opacity: 0">-->
+<!--                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索')}">搜索</span></button>-->
+<!--            </div>-->
         </div>
 
         <div style="margin-top: 42px ">
-            <div id="chartList"></div>
+            <div id="chartList" style="display: flex; flex-wrap: wrap; width: calc(100% + 16px); margin-left: -8px;"></div>
 <!--            <div id="assetStatusPie"  style="width:100%;height:500px;margin-top:20px;padding-top:20px"></div>-->
 <!--            <table class="layui-table" id="data-table" lay-filter="data-table"></table>-->
         </div>
@@ -176,7 +176,7 @@
     var NODE_ID = [[${nodeId}]] ;
 
 </script>
-<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<!--<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>-->
 <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>

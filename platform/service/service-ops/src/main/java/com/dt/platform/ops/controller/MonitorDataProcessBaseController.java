@@ -1,6 +1,8 @@
 package com.dt.platform.ops.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.fastjson.JSONArray;
+import com.dt.platform.domain.ops.MonitorTpl;
 import com.dt.platform.ops.service.IMonitorDataProcessBaseService;
 import com.dt.platform.ops.service.IMonitorDataProcessZabbixAgentService;
 import com.dt.platform.proxy.ops.MonitorDataProcessBaseServiceProxy;
@@ -19,6 +21,8 @@ import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @Api(tags = "基础数据")
 @ApiSort(0)
@@ -35,8 +39,11 @@ public class MonitorDataProcessBaseController extends SuperController {
     @ApiOperationSupport(order=1)
     @SentinelResource(value = MonitorDataProcessBaseServiceProxy.QUERY_NODE_ZABBIX_AGENT_DATA, blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
     @PostMapping(MonitorDataProcessBaseServiceProxy.QUERY_NODE_ZABBIX_AGENT_DATA)
-    public Result queryNodeZabbixAgentData() {
-        return monitorDataProcessBaseService.queryNodeZabbixAgentData();
+    public Result<JSONArray> queryNodeZabbixAgentData() {
+        Result<JSONArray> res=new Result<>();
+        res.data(monitorDataProcessBaseService.queryNodeZabbixAgentData());
+        res.success(true);
+        return res;
     }
 
     /**
@@ -45,8 +52,12 @@ public class MonitorDataProcessBaseController extends SuperController {
     @ApiOperationSupport(order=2)
     @SentinelResource(value = MonitorDataProcessBaseServiceProxy.QUERY_TPL_LIST_BY_NODE_ID, blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
     @PostMapping(MonitorDataProcessBaseServiceProxy.QUERY_TPL_LIST_BY_NODE_ID)
-    public Result queryTplListByNodeId(String nodeId) {
-        return monitorDataProcessBaseService.queryTplListByNodeId(nodeId);
+    public Result<List<MonitorTpl>> queryTplListByNodeId(String nodeId) {
+        Result<List<MonitorTpl>> res=new Result<>();
+        List<MonitorTpl> list=monitorDataProcessBaseService.queryTplListByNodeId(nodeId);
+        res.data(list);
+        res.success(true);
+        return res;
     }
 
 

@@ -7,6 +7,8 @@ update sys_config set value=0 where code='eam.assetSerialNumberIsUnique';
 update sys_config set value=0 where code='eam.assetStatusColumnDisable';
 update sys_config set value='固资系统' where code='system.title';
 update sys_config set value='固资系统' where code='system.login.title';
+-- 我的人事
+update sys_menu set hidden=1 where id='766183428553965568';
 -- 演示
 update sys_menu set hidden=1 where id='610152549789466624';
 -- 设备

@@ -1,3 +1,18 @@
+
+  PARTITION p204501 VALUES LESS THAN (to_days('2045-01-01')),
+  PARTITION p204502 VALUES LESS THAN (to_days('2045-02-01')),
+  PARTITION p204503 VALUES LESS THAN (to_days('2045-03-01')),
+  PARTITION p204504 VALUES LESS THAN (to_days('2045-04-01')),
+  PARTITION p204505 VALUES LESS THAN (to_days('2045-05-01')),
+  PARTITION p204506 VALUES LESS THAN (to_days('2045-06-01')),
+  PARTITION p204507 VALUES LESS THAN (to_days('2045-07-01')),
+  PARTITION p204508 VALUES LESS THAN (to_days('2045-08-01')),
+  PARTITION p204509 VALUES LESS THAN (to_days('2045-09-01')),
+  PARTITION p204510 VALUES LESS THAN (to_days('2045-10-01')),
+  PARTITION p204511 VALUES LESS THAN (to_days('2045-11-01')),
+  PARTITION p204512 VALUES LESS THAN (to_days('2045-12-01')),
+
+  
 select
 (select count(1) from oa_netdisk_file)oa_netdisk_file,
 (select count(1) from eam_maintain_task where deleted=0 and tenant_id is not null) eam_maintain_task,

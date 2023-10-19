@@ -32,7 +32,5 @@ public interface IMonitorStatisticalDataService extends ISuperService<MonitorNod
 
     Result<JSONArray> queryNodeCollectDataTpl(MonitorTpl tpl, String nodeId, String sdate, String edate, String day);
 
-
-
     Result<JSONObject> queryNodeCollectDataGraphByGraph(MonitorTplGraph graph, String nodeId, String sdate, String edate, String day);
 }

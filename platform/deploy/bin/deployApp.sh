@@ -253,6 +253,7 @@ binlog_cache_size=128m
 max_binlog_cache_size=512m
 max_binlog_size=256m
 max_connections=1000
+open_files_limit=100000
 max_connect_errors=2000
 max_allowed_packet=256M
 skip-external-locking

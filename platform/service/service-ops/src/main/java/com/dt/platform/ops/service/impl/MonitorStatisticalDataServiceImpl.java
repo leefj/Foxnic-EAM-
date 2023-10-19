@@ -330,6 +330,7 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
 
     @Override
     public Result<JSONObject> queryNodeCollectDataGraph(String nodeId,String tplCode,String sdate,String edate,String day) {
+
         Result<JSONObject> result=new Result<>();
         JSONObject resultData=new JSONObject();
         MonitorNode monitorNode=monitorNodeService.getById(nodeId);
@@ -339,27 +340,37 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
                 .execute();
         resultData.put("nodeInfo",BeanUtil.toJSONObject(monitorNode));
         JSONArray tplData=new JSONArray();
+        JSONArray arr=new JSONArray();
         if(monitorNode.getMonitorTplList()!=null&&monitorNode.getMonitorTplList().size()>0){
             for(MonitorTpl tpl:monitorNode.getMonitorTplList()){
                 if(!"enable".equals(tpl.getStatus())){
                     continue;
                 }
-                Boolean match=false;
-                //tplCode 存在值,并且匹配
-                if(StringUtil.isBlank(tplCode)) {
-                    match=true;
-                }else{
-                    if(tpl.getCode().equals(tplCode)){
-                        match=true;
-                    }
+//                Boolean match=false;
+//                if(StringUtil.isBlank(tplCode)) {
+//                    match=true;
+//                }else{
+//                    if(tpl.getCode().equals(tplCode)){
+//                        match=true;
+//                    }
+//                }
+//                if(match){
+//                    Result<JSONArray> r=queryNodeCollectDataTpl(tpl,nodeId,sdate,edate,day);
+//                    if(r.isSuccess()){
+//                        tplData.add(r.getData());
+//                    }
+//                }
+//                Result<JSONArray> r=queryNodeCollectDataTpl(tpl,nodeId,sdate,edate,day);
+//                if(r.isSuccess() &&r.getData().size()>0){
+//                    tplData.addAll(r.getData());
+//                }
+                Result<JSONArray> r=queryNodeCollectDataTpl(tpl,nodeId,sdate,edate,day);
+                if(r.isSuccess()){
+                    arr.addAll(r.getData());
                 }
-                if(match){
-                    Result<JSONArray> r=queryNodeCollectDataTpl(tpl,nodeId,sdate,edate,day);
-                    if(r.isSuccess()){
-                        tplData.add(r.getData());
-                    }
-                }
+
             }
+            tplData.add(arr);
             resultData.put("tplData",tplData);
         }
         return result.success(true).data(resultData);
@@ -424,7 +435,6 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
                 graphPidData=dao.query(ds).toJSONArrayWithJSONObject();
             }
         }else if(MonitorTplGraphTypeEnum.LINE_CALCULATION.code().equals(graph.getGraphType())){
-
             if(graph.getGraphItem()!=null&&graph.getGraphItem().size()>0) {
                 for (MonitorTplGraphItem item : graph.getGraphItem()) {
                     String name=item.getName();

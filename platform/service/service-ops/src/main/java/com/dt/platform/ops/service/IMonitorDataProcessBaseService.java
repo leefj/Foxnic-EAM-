@@ -14,15 +14,13 @@ import java.util.List;
 
 public interface IMonitorDataProcessBaseService {
 
-
-
-    Result<JSONArray> queryNodeZabbixAgentData();
+    JSONArray queryNodeZabbixAgentData();
 
     List<MonitorNode> queryNodeListByMonitorMethod(String monitorMethod);
 
     List<MonitorTpl> queryTplListByMonitorMethod(String monitorMethod);
 
-    Result<List<MonitorTpl>> queryTplListByNodeId(String nodeId);
+    List<MonitorTpl> queryTplListByNodeId(String nodeId);
 
     List<MonitorTplIndicator> queryIndicatorList(String nodeId);
 
