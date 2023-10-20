@@ -15,6 +15,8 @@ function ListPage() {
 	const deleteURL=moduleURL+'/delete';
 	const batchDeleteURL=moduleURL+'/delete-by-ids';
 	const getByIdURL=moduleURL+'/get-by-id';
+
+	var FORM="bpm_common_action1";
 	//
 	var dataTable=null;
 	var sort=null;
@@ -259,7 +261,7 @@ function ListPage() {
 						defaultValue=window.pageExt.list.getBpmViewConfig(obj.event);
 					}
 					admin.putTempData('sys-bpm-form-data-form-data-form-action', "create",true);
-					bpm.openProcessView(null,null,false,{"formDefinitionCode":"sys_bpm_common"},refreshTableData,refreshRowData,"bill",defaultValue);
+					bpm.openProcessView(null,null,false,{"formDefinitionCode":FORM},refreshTableData,refreshRowData,"bill",defaultValue);
 					break;
 				case 'batch-del':
 					batchDelete(selected);
@@ -332,10 +334,10 @@ function ListPage() {
 
 			admin.putTempData('sys-bpm-form-data-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				bpm.getProcessInstanceByBill("sys_bpm_common",{ id : data.id },function(p) {
+				bpm.getProcessInstanceByBill(FORM,{ id : data.id },function(p) {
 					if(p) {
 						admin.putTempData('sys-bpm-form-data-form-data-form-action', "edit",true);
-						bpm.openProcessView(p.id,null,false,{"formDefinitionCode":"sys_bpm_common"},refreshTableData,refreshRowData,"bill");
+						bpm.openProcessView(p.id,null,false,{"formDefinitionCode":FORM},refreshTableData,refreshRowData,"bill");
 					} else {
 						if(window.pageExt.list.handleNoProcessBill) {
 							window.pageExt.list.handleNoProcessBill({id : data.id});
@@ -363,7 +365,7 @@ function ListPage() {
 
 				top.layer.confirm(fox.translate('确定要废弃当前流程实例吗？','','cmp:table'), function (i) {
 					top.layer.close(i);
-					bpm.getProcessInstanceByBill("sys_bpm_common",{ id : data.id },function(p) {
+					bpm.getProcessInstanceByBill(FORM,{ id : data.id },function(p) {
 						if(p) {
 							bpm.abandon({processInstanceId:p.id,reason:"无",force:false},function (r){
 								if(r.success) {

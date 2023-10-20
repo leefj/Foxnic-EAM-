@@ -320,6 +320,7 @@ public class BpmFormDataServiceImpl extends SuperService<BpmFormData> implements
 
 	@Override
 	public void joinProcess(List<BpmFormData> bpmFormDataList) {
+		System.out.println("joinPorcess###### "+IBpmFormDataService.FORM_DEFINITION_CODE);
 		BpmAssistant.joinProcess(bpmFormDataList,IBpmFormDataService.FORM_DEFINITION_CODE);
 	}
 
