@@ -94,7 +94,7 @@ public class FormDefServiceImpl extends SuperService<FormDef> implements IFormDe
 		}else if(FormDefStatusEnum.HISTORY.code().equals(def.getStatus())){
 			return ErrorDesc.failureMessage("历史记录，不可重复应用");
 		}else if(FormDefStatusEnum.DRAFT.code().equals(def.getStatus())){
-			dao.execute("update sys_form_def set status=? where status=?",FormDefStatusEnum.HISTORY.code(),FormDefStatusEnum.APPLY.code());
+			dao.execute("update sys_form_def set status=? where status=? and form_id=?",FormDefStatusEnum.HISTORY.code(),FormDefStatusEnum.APPLY.code(),def.getFormId());
 			def.setStatus(FormDefStatusEnum.APPLY.code());
 			super.update(def,SaveMode.NOT_NULL_FIELDS);
 			return ErrorDesc.success();

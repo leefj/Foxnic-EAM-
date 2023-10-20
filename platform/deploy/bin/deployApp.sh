@@ -388,6 +388,7 @@ function installApp(){
 	db_hrm_setting_file=$app_dir/bin/sql/setting_hrm.sql
 	db_oa_setting_file=$app_dir/bin/sql/setting_oa.sql
 	db_licence_file=$app_dir/bin/sql/common_licence.sql
+	db_version_file=$app_dir/bin/sql/setting_version.sql
 	application_tpl_yml=$app_dir/app/application_tpl.yml
 	application_yml=$app_dir/app/application.yml
 	bpm_application_tpl_yml=$app_dir/bpm/application_tpl.yml
@@ -443,6 +444,8 @@ function installApp(){
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_oa_setting_file  2>/dev/null
 	echo "#########start to eam setting data $db_eam_setting_file"
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_eam_setting_file  2>/dev/null
+  echo "#########start to setting version $db_version_file"
+  $MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_version_file  2>/dev/null
   echo "#########start to install licence $db_licence_file"
   $MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_licence_file  2>/dev/null
 	echo "#########finish to application setting data ######### "

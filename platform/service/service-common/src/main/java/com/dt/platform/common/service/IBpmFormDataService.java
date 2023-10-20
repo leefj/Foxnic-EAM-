@@ -35,7 +35,9 @@ public interface IBpmFormDataService extends  ISimpleIdService<BpmFormData,Strin
 	/**
  	  * 表单定义代码
       **/
-	public static final String FORM_DEFINITION_CODE="sys_bpm_common";
+
+	public static final String FORM_DEFINITION_CODE="bpm_common_action1";
+
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param bpmFormData 数据对象

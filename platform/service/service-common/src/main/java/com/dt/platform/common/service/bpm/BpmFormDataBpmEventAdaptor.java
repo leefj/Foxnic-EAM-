@@ -3,14 +3,6 @@ package com.dt.platform.common.service.bpm;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.framework.bpm.BpmEventAdaptor;
-import org.github.foxnic.web.framework.bpm.BpmAssistant;
-import javax.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.github.foxnic.commons.collection.MapUtil;
-import java.util.Arrays;
-
 
 import com.dt.platform.domain.common.BpmFormData;
 import com.dt.platform.common.service.IBpmFormDataService;
