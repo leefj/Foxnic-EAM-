@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -104,36 +105,39 @@ public class GoodsStockGoodsPageController extends ViewController {
 	 */
 	@RequestMapping("/goods_stock_form.html")
 	public String form(Model model,HttpServletRequest request , String id,String ownerCode,String ownerType,String categoryCode) {
-
-
+		List<ZTreeNode> list=new ArrayList<>();
 		model.addAttribute("ownerCode",ownerCode);
 		model.addAttribute("ownerType",ownerType);
-
-		//stock_goods
-		//设置资产分类
-		CatalogVO catalog=new CatalogVO();
 		if(StringUtil.isBlank(categoryCode)){
-			catalog.setCode(AssetPcmCodeEnum.ASSET.code());
-		}else{
-			catalog.setCode(categoryCode);
+			categoryCode="asset,asset_stock_goods,asset_consumables";
 		}
-		Result<List<Catalog>> catalogListResult= CatalogServiceProxy.api().queryList(catalog);
-		String categoryId="";
-		if(catalogListResult.isSuccess()){
-			List<Catalog> catalogList=catalogListResult.getData();
-			if(catalogList.size()>0){
-				categoryId=catalogList.get(0).getId();
-				CatalogVO catalog2=new CatalogVO();
-				catalog2.setParentId(categoryId);
-				catalog2.setIsLoadAllDescendants(1);
-				Result<List<ZTreeNode>> treeResult=CatalogServiceProxy.api().queryNodes(catalog2);
-				model.addAttribute("assetCategoryData",treeResult.getData());
+		String[] categoryCodeArr=categoryCode.split(",");
+		for(int i=0;i<categoryCodeArr.length;i++){
+			if(!StringUtil.isBlank(categoryCode)){
+				CatalogVO catalog=new CatalogVO();
+				catalog.setCode(categoryCodeArr[i]);
+				Result<List<Catalog>> catalogListResult= CatalogServiceProxy.api().queryList(catalog);
+				String categoryId="";
+				if(catalogListResult.isSuccess()){
+					List<Catalog> catalogList=catalogListResult.getData();
+					if(catalogList.size()>0){
+						categoryId=catalogList.get(0).getId();
+						list.addAll(queryZtreeNode(categoryId));
+					}
+				}
 			}
 		}
-
-
+		model.addAttribute("assetCategoryData",list);
 		return prefix+"/goods_stock_form";
 	}
 
+
+	private List<ZTreeNode> queryZtreeNode(String categoryId){
+		CatalogVO catalog2=new CatalogVO();
+		catalog2.setParentId(categoryId);
+		catalog2.setIsLoadAllDescendants(1);
+		Result<List<org.github.foxnic.web.misc.ztree.ZTreeNode>> treeResult=CatalogServiceProxy.api().queryNodes(catalog2);
+		return treeResult.getData();
+	}
 
 }

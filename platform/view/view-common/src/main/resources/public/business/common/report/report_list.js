@@ -1,7 +1,7 @@
 /**
  * 报表列 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 06:55:27
+ * @since 2023-10-24 10:46:16
  */
 
 
@@ -165,9 +165,9 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.catalogId={ inputType:"select_box", value: getSelectedValue("#catalogId","value") ,fillBy:["reportCategory"]  , label:getSelectedValue("#catalogId","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -214,6 +214,37 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 catalogId 下拉字段
+		fox.renderSelectBox({
+			el: "catalogId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("catalogId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "hierarchyName", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("catalogId",{data:data[i],name:data[i].hierarchyName,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].hierarchyName,value:data[i].id});
+					}
+				}
+				return opts;
+			}
+		});
 		//渲染 status 搜索框
 		fox.renderSelectBox({
 			el: "status",
@@ -360,7 +391,10 @@ function ListPage() {
 
 			admin.putTempData('sys-report-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('sys-report-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -369,7 +403,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('sys-report-form-data-form-action', "view",true);
 						showEditForm(data.data);

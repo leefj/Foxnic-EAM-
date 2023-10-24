@@ -42,8 +42,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
 import org.github.foxnic.web.framework.web.SuperController;
+import org.github.foxnic.web.misc.ztree.ZTreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.github.foxnic.commons.collection.CollectorUtil;
@@ -81,6 +83,20 @@ public class AssetDataController extends SuperController {
     @PostMapping(AssetDataServiceProxy.QUERY_PCM_ID_BY_CODE)
     public String queryPcmIdByCode(String code) {
        return assetDataService.queryPcmIdByCode(code);
+    }
+
+    /**
+     * 获取PCM编码ID
+     */
+    @ApiOperation(value = "获取PCM的Nodes")
+    @ApiOperationSupport(order=1)
+    @SentinelResource(value = AssetDataServiceProxy.QUERY_PCM_NODES , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+    @PostMapping(AssetDataServiceProxy.QUERY_PCM_NODES)
+    public Result<List<ZTreeNode>> queryPcmNodes(String code, String parentId) {
+        Result<List<ZTreeNode>> res=new Result<>();
+        res.success(true);
+        res.data(assetDataService.queryPcmNodes(code,parentId));
+        return res;
     }
 
     /**

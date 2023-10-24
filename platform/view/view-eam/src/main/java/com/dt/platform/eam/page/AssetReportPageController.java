@@ -50,7 +50,6 @@ public class AssetReportPageController extends ViewController {
 	 */
 	@RequestMapping("/screen.html")
 	public String screen(Model model,HttpServletRequest request , String id) {
-
 		return prefix+"/screen";
 	}
 
@@ -179,6 +178,16 @@ public class AssetReportPageController extends ViewController {
 		return prefix+"/report_manage_dashboard";
 	}
 
+
+	/**
+	 * 资产dashboard
+	 */
+	@RequestMapping("/asset_dashboard.html")
+	public String assetDashBoard(Model model,HttpServletRequest request , String tenantId,String code) {
+		model.addAttribute("tenantId",tenantId);
+		model.addAttribute("code",code);
+		return prefix+"/asset_dashboard";
+	}
 
 	/**
 	 * 资产对帐表

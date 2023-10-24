@@ -21,6 +21,12 @@
     </properties>
     <dependencies>
 
+        <dependency>
+            <groupId>org.jeecgframework.jimureport</groupId>
+            <artifactId>jimureport-spring-boot-starter</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/cn.afterturn/easypoi-base -->
         <dependency>
             <groupId>cn.afterturn</groupId>

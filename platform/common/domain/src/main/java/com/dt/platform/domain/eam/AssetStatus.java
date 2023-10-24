@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产状态
  * <p>资产状态 , 数据表 eam_asset_status 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 16:13:49
+ * @since 2023-10-24 12:24:16
  * @sign E363214C16BFD2A219D733374EBFD0DC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

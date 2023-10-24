@@ -7,6 +7,7 @@ import com.dt.platform.domain.common.*;
 import com.dt.platform.domain.common.meta.*;
 import com.dt.platform.domain.eam.meta.RepairOrderActMeta;
 import com.github.foxnic.dao.relation.RelationManager;
+import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
 
 public class CommonRelationManager extends RelationManager {
@@ -31,6 +32,25 @@ public class CommonRelationManager extends RelationManager {
         this.setupPayOrder();
         this.setupRefund();
 
+        this.setupDashBoardLayer();
+        this.setupDashBoardLayerEle();
+
+
+    }
+    public void setupDashBoardLayer() {
+        this.property(DashboardLayerMeta.DASHBOARD_LAYER_ELE_PROP)
+                .using(SysTables.SYS_DASHBOARD_LAYER.ID).join(SysTables.SYS_DASHBOARD_LAYER_ELE.LAYER_ID);
+
+        this.property(DashboardLayerMeta.DASHBOARD_LAYER_ELE_VALID_PROP)
+                .using(SysTables.SYS_DASHBOARD_LAYER.ID).join(SysTables.SYS_DASHBOARD_LAYER_ELE.LAYER_ID)
+                .condition("status='enable'");
+    }
+    public void setupDashBoardLayerEle() {
+        this.property(DashboardLayerEleMeta.DASHBOARD_LAYER_PROP)
+                .using(SysTables.SYS_DASHBOARD_LAYER_ELE.LAYER_ID).join(SysTables.SYS_DASHBOARD_LAYER.ID);
+
+        this.property(DashboardLayerEleMeta.REPORT_CHART_PROP)
+                .using(SysTables.SYS_DASHBOARD_LAYER_ELE.SOURCE).join(SysTables.SYS_REPORT.ID);
 
 
     }

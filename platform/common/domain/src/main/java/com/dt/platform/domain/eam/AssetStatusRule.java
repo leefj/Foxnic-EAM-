@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_STATUS_RULE;
@@ -8,21 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetStatusRuleMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 状态规则
+ * <p>状态规则 , 数据表 eam_asset_status_rule 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-07 12:23:17
- * @sign 2D0A9C2FD949170B770CB9BAE4528D2B
+ * @since 2023-10-24 12:26:35
+ * @sign D34D94E31E7BDB76738FF6DF8FDF09CE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_status_rule")
+@ApiModel(description = "状态规则 ; 状态规则 , 数据表 eam_asset_status_rule 的PO类型")
 public class AssetStatusRule extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -33,25 +40,25 @@ public class AssetStatusRule extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1")
 	private String id;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
 	
 	/**
 	 * 操作编码：操作编码
 	*/
-	@ApiModelProperty(required = false,value="操作编码" , notes = "操作编码")
+	@ApiModelProperty(required = false,value="操作编码" , notes = "操作编码" , example = "eam_asset_borrow")
 	private String operCode;
 	
 	/**
 	 * 条件：条件
 	*/
-	@ApiModelProperty(required = false,value="条件" , notes = "条件")
+	@ApiModelProperty(required = false,value="条件" , notes = "条件" , example = "in")
 	private String operCondition;
 	
 	/**
@@ -75,21 +82,22 @@ public class AssetStatusRule extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-12-24 03:05:11")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -107,13 +115,13 @@ public class AssetStatusRule extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -314,6 +322,7 @@ public class AssetStatusRule extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetStatusRule setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -442,6 +451,47 @@ public class AssetStatusRule extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetStatusRule clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetStatusRule duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetStatusRuleMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetStatusRuleMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setOperCode(this.getOperCode());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setStatus(this.getStatus());
+		inst.setOperCondition(this.getOperCondition());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetStatusRule clone(boolean deep) {
+		return EntityContext.clone(AssetStatusRule.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetStatusRule
 	 * @param assetStatusRuleMap 包含实体信息的 Map 对象
 	 * @return AssetStatusRule , 转换好的的 AssetStatusRule 对象
@@ -449,7 +499,9 @@ public class AssetStatusRule extends Entity {
 	@Transient
 	public static AssetStatusRule createFrom(Map<String,Object> assetStatusRuleMap) {
 		if(assetStatusRuleMap==null) return null;
-		AssetStatusRule po = EntityContext.create(AssetStatusRule.class, assetStatusRuleMap);
+		AssetStatusRule po = create();
+		EntityContext.copyProperties(po,assetStatusRuleMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -461,7 +513,9 @@ public class AssetStatusRule extends Entity {
 	@Transient
 	public static AssetStatusRule createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetStatusRule po = EntityContext.create(AssetStatusRule.class,pojo);
+		AssetStatusRule po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -471,6 +525,102 @@ public class AssetStatusRule extends Entity {
 	*/
 	@Transient
 	public static AssetStatusRule create() {
-		return EntityContext.create(AssetStatusRule.class);
+		return new com.dt.platform.domain.eam.meta.AssetStatusRuleMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AssetStatusRuleMeta.NOTES)));
+			this.setOperCode(DataParser.parse(String.class, map.get(AssetStatusRuleMeta.OPER_CODE)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetStatusRuleMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetStatusRuleMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetStatusRuleMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetStatusRuleMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetStatusRuleMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetStatusRuleMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetStatusRuleMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetStatusRuleMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetStatusRuleMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetStatusRuleMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetStatusRuleMeta.STATUS)));
+			this.setOperCondition(DataParser.parse(String.class, map.get(AssetStatusRuleMeta.OPER_CONDITION)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AssetStatusRuleMeta.NOTES));
+				this.setOperCode( (String)map.get(AssetStatusRuleMeta.OPER_CODE));
+				this.setUpdateTime( (Date)map.get(AssetStatusRuleMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssetStatusRuleMeta.VERSION));
+				this.setCreateBy( (String)map.get(AssetStatusRuleMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetStatusRuleMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetStatusRuleMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetStatusRuleMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetStatusRuleMeta.DELETE_TIME));
+				this.setTenantId( (String)map.get(AssetStatusRuleMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetStatusRuleMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetStatusRuleMeta.ID));
+				this.setStatus( (String)map.get(AssetStatusRuleMeta.STATUS));
+				this.setOperCondition( (String)map.get(AssetStatusRuleMeta.OPER_CONDITION));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetStatusRuleMeta.NOTES)));
+			this.setOperCode(DataParser.parse(String.class, r.getValue(AssetStatusRuleMeta.OPER_CODE)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetStatusRuleMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetStatusRuleMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetStatusRuleMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetStatusRuleMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetStatusRuleMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetStatusRuleMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetStatusRuleMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetStatusRuleMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetStatusRuleMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetStatusRuleMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetStatusRuleMeta.STATUS)));
+			this.setOperCondition(DataParser.parse(String.class, r.getValue(AssetStatusRuleMeta.OPER_CONDITION)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AssetStatusRuleMeta.NOTES));
+				this.setOperCode( (String)r.getValue(AssetStatusRuleMeta.OPER_CODE));
+				this.setUpdateTime( (Date)r.getValue(AssetStatusRuleMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssetStatusRuleMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(AssetStatusRuleMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetStatusRuleMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetStatusRuleMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetStatusRuleMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetStatusRuleMeta.DELETE_TIME));
+				this.setTenantId( (String)r.getValue(AssetStatusRuleMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetStatusRuleMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetStatusRuleMeta.ID));
+				this.setStatus( (String)r.getValue(AssetStatusRuleMeta.STATUS));
+				this.setOperCondition( (String)r.getValue(AssetStatusRuleMeta.OPER_CONDITION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

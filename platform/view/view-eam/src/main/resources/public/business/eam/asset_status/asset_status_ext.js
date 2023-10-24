@@ -185,10 +185,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 offset: [20,null],
                 area: ["85%","85%"],
                 type: 2,
-                id:"eam-asset-status-rule-form-data-win",
+                id:"eam-asset-status-rule-list-data-win",
                 content: '/business/eam/asset_status_rule/asset_status_rule_list.html',
                 finish: function () {
-
                 }
             });
         },

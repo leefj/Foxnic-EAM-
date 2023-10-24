@@ -74,6 +74,12 @@ public interface AssetDataServiceProxy {
      */
     public static final String QUERY_PCM_ID_BY_CODE = API_PREFIX + "query-pcm-id-by-code";
 
+
+    /**
+     *   获取PCM编码ID
+     */
+    public static final String QUERY_PCM_NODES = API_PREFIX + "query-pcm-nodes";
+
     @RequestMapping(AssetDataServiceProxy.QUERY_PCM_ID_BY_CODE)
     public String queryPcmIdByCode(String code);
 

@@ -1,38 +1,49 @@
 package com.dt.platform.eam.service.impl;
 
+import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
+
+
 import com.dt.platform.domain.eam.AssetStatusRule;
 import com.dt.platform.domain.eam.AssetStatusRuleVO;
-import com.dt.platform.eam.service.IAssetStatusRuleService;
-import com.github.foxnic.api.error.ErrorDesc;
+import java.util.List;
 import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.sql.meta.DBField;
-import org.github.foxnic.web.framework.dao.DBConfigs;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 import java.lang.reflect.Field;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.api.error.ErrorDesc;
+import com.github.foxnic.dao.excel.ExcelWriter;
+import com.github.foxnic.dao.excel.ValidateResult;
+import com.github.foxnic.dao.excel.ExcelStructure;
+import java.io.InputStream;
+import com.github.foxnic.sql.meta.DBField;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.meta.DBColumnMeta;
+import com.github.foxnic.sql.expr.Select;
+import java.util.ArrayList;
+import com.dt.platform.eam.service.IAssetStatusRuleService;
+import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
  * <p>
- * 状态规则 服务实现
+ * 状态规则服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-07 12:23:17
+ * @since 2023-10-24 12:26:36
 */
 
 
 @Service("EamAssetStatusRuleService")
+
 public class AssetStatusRuleServiceImpl extends SuperService<AssetStatusRule> implements IAssetStatusRuleService {
 
 	/**
@@ -88,7 +99,7 @@ public class AssetStatusRuleServiceImpl extends SuperService<AssetStatusRule> im
 
 	
 	/**
-	 * 按主键删除 状态规则
+	 * 按主键删除状态规则
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -109,7 +120,7 @@ public class AssetStatusRuleServiceImpl extends SuperService<AssetStatusRule> im
 	}
 	
 	/**
-	 * 按主键删除 状态规则
+	 * 按主键删除状态规则
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -169,7 +180,7 @@ public class AssetStatusRuleServiceImpl extends SuperService<AssetStatusRule> im
 
 	
 	/**
-	 * 按主键更新字段 状态规则
+	 * 按主键更新状态规则
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -183,7 +194,7 @@ public class AssetStatusRuleServiceImpl extends SuperService<AssetStatusRule> im
 
 	
 	/**
-	 * 按主键获取 状态规则
+	 * 按主键获取状态规则
 	 *
 	 * @param id 主键
 	 * @return AssetStatusRule 数据对象
@@ -267,9 +278,6 @@ public class AssetStatusRuleServiceImpl extends SuperService<AssetStatusRule> im
 		return false;
 	}
 
-
-
-
 	/**
 	 * 批量检查引用
 	 * @param ids  检查这些ID是否又被外部表引用
@@ -280,7 +288,6 @@ public class AssetStatusRuleServiceImpl extends SuperService<AssetStatusRule> im
 		return MapUtil.asMap(ids,new ReferCause(false));
 		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
-
 
 
 

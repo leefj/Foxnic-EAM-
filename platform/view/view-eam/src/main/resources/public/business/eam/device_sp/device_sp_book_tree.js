@@ -35,7 +35,7 @@ function ListPage() {
 			async: {
 				enable: true,
 				contentType:"application/json",
-				url:moduleURL+"/query-nodes?parentId="+parentId,
+				url:"/service-eam/eam-asset-data/query-pcm-nodes?code=asset,asset_consumables,asset_stock_goods&parentId="+parentId,
 				autoParam:["id=parentId"],
 				otherParam:{isLoadAllDescendants:0},
 				dataFilter: nodeDatafilter

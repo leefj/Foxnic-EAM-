@@ -17,8 +17,10 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.sql.expr.OrderBy;
 import com.github.foxnic.sql.meta.DBField;
+import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.domain.pcm.CatalogAttribute;
 import org.github.foxnic.web.domain.pcm.CatalogData;
+import org.github.foxnic.web.misc.ztree.ZTreeNode;
 
 import java.io.File;
 import java.io.InputStream;
@@ -36,6 +38,9 @@ import java.util.Map;
 
 public interface IAssetDataService extends ISuperService<Asset> {
 
+
+
+	List<ZTreeNode>queryPcmNodes(String codes, String parentId);
 
 	String queryPcmIdByCode(String code);
 
