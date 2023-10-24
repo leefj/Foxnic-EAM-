@@ -24,7 +24,7 @@ import java.util.Map;
  * 资产状态服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 16:13:49
+ * @since 2023-10-24 12:24:16
 */
 
 public interface IAssetStatusService extends  ISimpleIdService<AssetStatus,String> {

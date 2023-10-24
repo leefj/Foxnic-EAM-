@@ -100,7 +100,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         String emplId=SessionUser.getCurrent().getUser().getActivatedEmployeeId();
         String sql="select count(1) cnt from eam_asset_employee_apply where deleted=0 and originator_id='"+emplId+"' and status in ('approval','incomplete')\n" +
                 "union all\n" +
-                "select count(1)  cnt from eam_asset_employee_handover where deleted=0 and  originator_id='"+emplId+"' and status in ('approval','incomplete')\n" +
+                "select count(1)  cnt from eam_asset_employee_handover where deleted=0 and originator_id='"+emplId+"' and status in ('approval','incomplete')\n" +
                 "union all\n" +
                 "select count(1) cnt from eam_asset_employee_loss where deleted=0 and  originator_id='"+emplId+"'  and status in ('approval','incomplete')\n" +
                 "union all\n" +

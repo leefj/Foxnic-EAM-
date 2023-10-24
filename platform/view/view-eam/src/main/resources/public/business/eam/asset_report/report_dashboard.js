@@ -89,10 +89,10 @@ function ListPage() {
                             type: 'pie',    // 设置图表类型为饼图
                             radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
                             label:{
-                              normal:{
-                                  show:true,
-                                  formatter:'{b}:{c}({d}%)'
-                              }
+                                normal:{
+                                    show:true,
+                                    formatter:'{b}:{c}({d}%)'
+                                }
                             },
                             data:assetData.assetStatusPieData
                         }
@@ -124,7 +124,7 @@ function ListPage() {
                         }
                     ]
                 })
-              //位置
+                //位置
                 posAssetPie.setOption({
                     color: defColor,
                     title:{

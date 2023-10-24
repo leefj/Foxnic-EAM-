@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报表列
  * <p>报表列 , 数据表 sys_report 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 06:55:25
+ * @since 2023-10-24 10:46:14
  * @sign 1FA3507F7CDFB8AA4AF8CBAACD1997A8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -52,13 +52,13 @@ public class Report extends Entity {
 	/**
 	 * 分类：分类
 	*/
-	@ApiModelProperty(required = false,value="分类" , notes = "分类" , example = "711932989134602240")
+	@ApiModelProperty(required = false,value="分类" , notes = "分类" , example = "711932953340411904")
 	private String catalogId;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "资产显示")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "案例-资产统计")
 	private String name;
 	
 	/**
@@ -76,7 +76,7 @@ public class Report extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "测试")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "测试案例")
 	private String notes;
 	
 	/**
@@ -118,13 +118,13 @@ public class Report extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-20 09:30:24")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-10-24 10:01:43")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -133,19 +133,19 @@ public class Report extends Entity {
 	/**
 	 * 删除人ID：删除人ID
 	*/
-	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID")
+	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID" , example = "110588348101165911")
 	private String deleteBy;
 	
 	/**
 	 * 删除时间：删除时间
 	*/
-	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间")
+	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2023-10-24 10:01:43")
 	private Date deleteTime;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "11")
+	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "14")
 	private Integer version;
 	
 	/**

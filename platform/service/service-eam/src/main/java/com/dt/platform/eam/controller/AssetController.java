@@ -89,6 +89,7 @@ import com.github.foxnic.api.swagger.ApiParamSupport;
 @RestController("EamAssetController")
 public class AssetController extends SuperController {
 
+
     @Autowired
     private IAssetService assetService;
 

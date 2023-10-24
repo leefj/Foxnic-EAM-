@@ -40,10 +40,22 @@ public class EamAssetStatusGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_STATUS.TYPE).form()
                 .validate().required().form().radioBox().enumType(AssetStatusTypeEnum.class).defaultIndex(1);
 
+        cfg.view().field(EAMTables.EAM_ASSET.UPDATE_BY).table().disable(true);
 
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
 
+
+        cfg.view().formWindow().bottomSpace(50);
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        EAMTables.EAM_ASSET_STATUS.CODE,
+                        EAMTables.EAM_ASSET_STATUS.NAME,
+                        EAMTables.EAM_ASSET_STATUS.TYPE,
+                        EAMTables.EAM_ASSET_STATUS.SORT,
+                        EAMTables.EAM_ASSET_STATUS.NOTES,
+                }
+        );
 
 
         cfg.view().list().addToolButton("状态规则","statusRule","status-rule");

@@ -3,6 +3,7 @@ package com.dt.platform.wrapper;
 import com.dt.platform.framework.PlatformMeta;
 import com.foxnicweb.web.contract.framework.ContractMeta;
 import com.foxnicweb.web.customer.framework.CustomerMeta;
+import com.github.foxnic.commons.log.Logger;
 import org.github.foxnic.web.framework.FoxnicWebMeta;
 import org.github.foxnic.web.framework.starter.BootApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -44,11 +45,14 @@ import org.springframework.context.annotation.ComponentScan;
 		// 合同-Jar引用
 		ContractMeta.SERVICE_CONTRACT_PACKAGE,
 		// 客户-Jar引用
-		CustomerMeta.SERVICE_CUSTOMER_PACKAGE
+		CustomerMeta.SERVICE_CUSTOMER_PACKAGE,
+		"org.jeecg.modules.jmreport",
+
 })
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"org.jeecg.modules.jmreport"})
 public class WrapperAllApp {
 	public static void main(String[] args) {
 		BootApplication.run(WrapperAllApp.class, args);
+		Logger.info("系统启动完成!");
 	}
 }

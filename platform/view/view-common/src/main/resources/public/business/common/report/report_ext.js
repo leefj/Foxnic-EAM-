@@ -238,7 +238,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             $("#route").attr("placeholder","系统自动填充");
 
             $("#code").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#route").attr("disabled","disabled").css("background-color","#e6e6e6");
+            // $("#route").attr("disabled","disabled").css("background-color","#e6e6e6");
 
             console.log('beforeDataFill',data);
         },

@@ -117,6 +117,46 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 
 
     @Override
+    public List<ZTreeNode> queryPcmNodes(String codes,String parentId) {
+
+
+        String[] codeArr=codes.split(",");
+        JSONArray codeArrary=new JSONArray();
+        JSONArray codeIdsArr=new JSONArray();
+
+
+        for(int i=0;i<codeArr.length;i++){
+            codeArrary.add(codeArr[i]);
+            codeIdsArr.add(queryPcmIdByCode(codeArr[i]));
+        }
+
+        List<ZTreeNode> res=new ArrayList<>();
+        CatalogVO query=new CatalogVO();
+        query.setIsLoadAllDescendants(0);
+        query.setParentId(parentId);
+//        query.setSearchField("$composite");
+//        JSONObject searchObj=new JSONObject();
+//        JSONObject codeObj=new JSONObject();
+//        codeObj.put("value",codeArr);
+//        codeObj.put("inputType","select_box");
+//        searchObj.put("code",codeObj);
+//        query.setSearchValue(searchObj.toJSONString());
+        Result<List<ZTreeNode>> queryResult=CatalogServiceProxy.api().queryNodes(query);
+        List<ZTreeNode> queryList=queryResult.getData();
+        if(StringUtil.isBlank(codes)){
+            return queryList;
+        }
+        for(ZTreeNode catalog:queryList){
+            if(codeIdsArr.contains(catalog.getId())){
+                res.add(catalog);
+            }
+        }
+        return res;
+    }
+
+
+
+    @Override
     public String queryPcmIdByCode(String code){
         String res="";
         CatalogVO voGId=new CatalogVO();

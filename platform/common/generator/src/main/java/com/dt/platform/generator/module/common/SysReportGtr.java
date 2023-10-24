@@ -43,9 +43,10 @@ public class SysReportGtr extends BaseCodeGenerator{
         cfg.view().search().inputLayout(
                 new Object[]{
                         SysTables.SYS_REPORT.STATUS,
+                        SysTables.SYS_REPORT.CATALOG_ID,
                         SysTables.SYS_REPORT.NAME,
                         SysTables.SYS_REPORT.CODE,
-                        SysTables.SYS_REPORT.NOTES,
+
                 }
         );
 
@@ -59,8 +60,8 @@ public class SysReportGtr extends BaseCodeGenerator{
         cfg.view().field(SysTables.SYS_REPORT.CREATE_TIME).form().dateInput().type(DatePickerType.datetime);
 
         cfg.view().field(SysTables.SYS_REPORT.REPORT_TPL_DEF_ID).table().disable(true);
-
-        cfg.view().field(SysTables.SYS_REPORT.ROUTE).form().readOnly();
+        cfg.view().field(SysTables.SYS_REPORT.UPDATE_BY).table().disable(true);
+//        cfg.view().field(SysTables.SYS_REPORT.ROUTE).form().readOnly();
 
         cfg.view().field(SysTables.SYS_REPORT.CATALOG_ID)
                 .form().selectBox().queryApi(ReportCategoryServiceProxy.QUERY_PAGED_LIST)
@@ -82,13 +83,14 @@ public class SysReportGtr extends BaseCodeGenerator{
         cfg.view().field(SysTables.SYS_REPORT.REPORT_SOURCE).form().validate().required().form().radioBox().enumType(ReportSourceEnum.class).defaultIndex(0);
 
         cfg.view().field(SysTables.SYS_REPORT.NAME).form().validate().required();
+        cfg.view().field(SysTables.SYS_REPORT.NOTES).form().textArea().height(120);
         cfg.view().field(SysTables.SYS_REPORT.CODE).form().readOnly();
         cfg.view().list().disableBatchDelete();
 
 
-        cfg.view().list().operationColumn().addActionButton("设计","reportDesinger","report-designer-button","sys_report:designer");
-        cfg.view().list().operationColumn().addActionButton("预览","reportView","report-view-button","sys_report:view");
-        cfg.view().list().operationColumn().addActionButton("复制","reportCopy","report-copy","sys_report:copy");
+        cfg.view().list().operationColumn().addActionButton("设计","reportDesinger","report-designer-button");
+        cfg.view().list().operationColumn().addActionButton("预览","reportView","report-view-button");
+        cfg.view().list().operationColumn().addActionButton("复制","reportCopy","report-copy");
 
         //分成分组布局
         cfg.view().formWindow().width(Config.baseFormWidth);
