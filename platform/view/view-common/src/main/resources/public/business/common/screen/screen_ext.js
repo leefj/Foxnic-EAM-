@@ -205,7 +205,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
                 if (r.success) {
                     var res = r.data;
-                    sessionStorage.setItem('GO_CHART_STORAGE_LIST', data.jsonData);
+                    sessionStorage.setItem('GO_CHART_STORAGE_LIST', res.jsonData);
                     window.open("/business/common/screen/goview/dist/index.html#/chart/preview/"+data.id,"_blank")
                 } else {
                     alert('未获得数据');
