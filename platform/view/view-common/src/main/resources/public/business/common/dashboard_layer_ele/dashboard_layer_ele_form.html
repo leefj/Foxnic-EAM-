@@ -56,7 +56,7 @@
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('面板')}">面板</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <div id="layerId" input-type="select" th:data="${'/service-common/sys-dashboard-layer/query-list'}" extraParam="{}"></div>
+                        <div id="layerId" input-type="select" th:data="${layerQueryApi}" extraParam="{}"></div>
                     </div>
                 </div>
             
