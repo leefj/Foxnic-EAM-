@@ -282,6 +282,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("betweenFormSubmitAndClose",result);
             return true;
         },
+        // selectBoxDataTransform:function(){
+        //
+        // },
         /**
          * 数据提交后执行
          * */

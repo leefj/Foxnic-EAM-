@@ -27,6 +27,8 @@ function ListPage() {
 					space="12"
 				}else if(dlayer.colType=="two"){
 					space="6"
+				}else if(dlayer.colType=="three"){
+					space="4"
 				}else if(dlayer.colType=="four"){
 					space="3"
 				}else if(dlayer.colType=="six"){

@@ -13,6 +13,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum DashBoardColTypeEnum implements CodeTextEnum {
 	ONE("one" , "单列"),
 	TWO("two" , "两列"),
+	THREE("three" , "三列"),
 	FOUR("four" , "四列"),
 	SIX("six" , "六列");
 	private String code;

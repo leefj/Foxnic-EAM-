@@ -51,6 +51,7 @@ public class DashboardLayerElePageController extends ViewController {
 	 */
 	@RequestMapping("/dashboard_layer_ele_form.html")
 	public String form(Model model,HttpServletRequest request , String id,String dashBoardId) {
+		model.addAttribute("layerQueryApi","/service-common/sys-dashboard-layer/query-list?dashboardId="+dashBoardId);
 		model.addAttribute("dashBoardId",dashBoardId);
 		return getTemplatePath(prefix,"dashboard_layer_ele_form");
 	}
