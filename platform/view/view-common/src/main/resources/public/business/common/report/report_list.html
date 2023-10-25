@@ -54,7 +54,7 @@
                     <!-- 来源 , reportSource ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 分类 , catalogId ,typeName=select_box, isHideInSearch=false -->
-                    <div class="search-unit">
+                    <div class="search-unit" style="display: none">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('分类')}" class="search-label catalogId-label">分类</span><span class="search-colon">:</span></div>
                         <div id="catalogId" th:data="${'/service-common/sys-report-category/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
@@ -121,6 +121,7 @@
     var RADIO_REPORTSOURCE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.ReportSourceEnum')}]];
     var AUTH_PREFIX="sys_report";
 
+    var CATALOG_ID=null;
 
 </script>
 

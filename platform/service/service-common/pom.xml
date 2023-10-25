@@ -58,28 +58,36 @@
             <version>5.8.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.bstek.ureport</groupId>
-            <artifactId>ureport2-console</artifactId>
-            <version>2.2.9</version>
-        </dependency>
+        <!-- 注意ureport2-console-2.2.9.jar 文件进行修改 -->
+<!--        <link href="${contextPath}/extmodule/ureport_asserts/css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
+<!--        <script type="text/javascript" src="${contextPath}/extmodule/ureport_asserts/venderjs/jquery.min.js"></script>-->
+<!--        <script type="text/javascript" src="${contextPath}/extmodule/ureport_asserts/venderjs/bootstrap.min.js"></script>-->
+<!--        <script type="text/javascript" src="${contextPath}/extmodule/ureport_asserts/venderjs/Chart.bundle.min.js"></script>-->
+<!--        <script type="text/javascript" src="${contextPath}/extmodule/ureport_asserts/venderjs/chartjs-plugin-datalabels.min.js"></script>-->
+<!--        <script type="text/javascript" src="${contextPath}/extmodule/ureport_asserts/venderjs/bootstrap-datetimepicker.js"></script>-->
+<!--        <script type="text/javascript" src="${contextPath}/extmodule/ureport_asserts/js/preview.bundle.js"></script>-->
+       <dependency>
+           <groupId>com.bstek.ureport</groupId>
+           <artifactId>ureport2-console</artifactId>
+           <version>2.2.9</version>
+       </dependency>
 
-    </dependencies>
-    <build>
-        <defaultGoal>compile</defaultGoal>
-        <resources>
-            <resource>
-                <directory>${basedir}/src/main/java</directory>
-                <includes>
-                    <include>**/*.tql</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>${basedir}/src/main/resources</directory>
-                <includes>
-                    <include>**/**</include>
-                </includes>
-            </resource>
-        </resources>
-    </build>
+   </dependencies>
+   <build>
+       <defaultGoal>compile</defaultGoal>
+       <resources>
+           <resource>
+               <directory>${basedir}/src/main/java</directory>
+               <includes>
+                   <include>**/*.tql</include>
+               </includes>
+           </resource>
+           <resource>
+               <directory>${basedir}/src/main/resources</directory>
+               <includes>
+                   <include>**/**</include>
+               </includes>
+           </resource>
+       </resources>
+   </build>
 </project>

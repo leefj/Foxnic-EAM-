@@ -45,6 +45,14 @@ public class ReportPageController extends ViewController {
 		return getTemplatePath(prefix,"report_list");
 	}
 
+
+	@RequestMapping("/report_tree.html")
+	public String listTree(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"report_tree");
+	}
+
+
+
 	@RequestMapping("/report_designer.html")
 	public String designer(Model model,HttpServletRequest request) {
 		return getTemplatePath(prefix,"report_designer");

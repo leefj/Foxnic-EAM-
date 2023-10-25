@@ -82,8 +82,8 @@ function ListPage() {
 				limit: 50,
 				where: ps,
 				cols: [[
-					{ fixed: 'left',type: 'numbers' },
-					{ fixed: 'left',type:'checkbox'}
+					{ fixed: 'left',type: 'numbers' }
+				//	{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'catalogId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分类'), templet: function (d) { return templet('catalogId' ,fox.joinLabel(d.reportCategory,"hierarchyName",',','','catalogId'),d);}}
@@ -91,7 +91,7 @@ function ListPage() {
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'route', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('路径') , templet: function (d) { return templet('route',d.route,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'reportTplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版'), templet: function (d) { return templet('reportTplId' ,fox.joinLabel(d.reportTpl,"fileName",',','','reportTplId'),d);}}
+				//	,{ field: 'reportTplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版'), templet: function (d) { return templet('reportTplId' ,fox.joinLabel(d.reportTpl,"fileName",',','','reportTplId'),d);}}
 					,{ field: 'reportSource', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源'), templet:function (d){ return templet('reportSource',fox.getEnumText(RADIO_REPORTSOURCE_DATA,d.reportSource,'','reportSource'),d);}}
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
@@ -494,11 +494,19 @@ function ListPage() {
 		});
 	};
 
+	function loadListData(id) {
+		CATALOG_ID=id;
+		refreshTableData();
+	};
+
+
+
 	window.module={
 		refreshTableData: refreshTableData,
 		refreshRowData: refreshRowData,
 		getCheckedList: getCheckedList,
-		showEditForm: showEditForm
+		showEditForm: showEditForm,
+		loadListData:loadListData
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();
