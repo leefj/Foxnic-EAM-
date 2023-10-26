@@ -13,8 +13,9 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum DashBoardLayerElTypeEnum implements CodeTextEnum {
 
 
-	CHART("chart" , "图表"),
-	CARD("card" , "卡片");
+	CHART("chart" , "图表组件"),
+	CARD("card" , "卡片组件"),
+	CUST("cust" , "自定义组件");
 	private String code;
 	private String text;
 	private DashBoardLayerElTypeEnum(String code, String text)  {
