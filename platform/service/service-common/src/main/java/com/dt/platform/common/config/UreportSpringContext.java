@@ -18,7 +18,9 @@ public class UreportSpringContext {
     @Bean
     @SuppressWarnings("unchecked")
     public ServletRegistrationBean<Servlet> ureportServlet(){
-        return new ServletRegistrationBean<>(new UReportServlet(),"/ureport/*");
+        ServletRegistrationBean<Servlet> bean=new ServletRegistrationBean<>(new UReportServlet(),"/ureport/*");
+
+        return bean;
     }
 
     @Bean

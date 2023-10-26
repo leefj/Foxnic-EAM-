@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bstek.ureport.console.ServletAction;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -18,20 +19,20 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 public class JmReportServlet extends HttpServlet {
         private static final long serialVersionUID = 533049461276487971L;
         public static final String URL = "/jmreport";
-//        private Map<String, ServletAction> actionMap = new HashMap<String, ServletAction>();
+        private Map<String, ServletAction> actionMap = new HashMap<String, ServletAction>();
 
         @Override
         public void init(ServletConfig config) throws ServletException {
             super.init(config);
             WebApplicationContext applicationContext = getWebApplicationContext(config);
-//            Collection<ServletAction> handlers = applicationContext.getBeansOfType(ServletAction.class).values();
-//            for (ServletAction handler : handlers) {
-//                String url = handler.url();
-//                if (actionMap.containsKey(url)) {
-//                    throw new RuntimeException("Handler [" + url + "] already exist.");
-//                }
-//                actionMap.put(url, handler);
-//            }
+            Collection<ServletAction> handlers = applicationContext.getBeansOfType(ServletAction.class).values();
+            for (ServletAction handler : handlers) {
+                String url = handler.url();
+                if (actionMap.containsKey(url)) {
+                    throw new RuntimeException("Handler [" + url + "] already exist.");
+                }
+                actionMap.put(url, handler);
+            }
         }
 
         protected WebApplicationContext getWebApplicationContext(ServletConfig config){
@@ -40,40 +41,44 @@ public class JmReportServlet extends HttpServlet {
 
         @Override
         protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//            String path = req.getContextPath() + URL;
-//            String uri = req.getRequestURI();
-//            String targetUrl = uri.substring(path.length());
-//            if (targetUrl.length() < 1) {
-//                outContent(resp, "Welcome to use ureport,please specify target url.");
-//                return;
-//            }
-//            int slashPos = targetUrl.indexOf("/", 1);
-//            if (slashPos > -1) {
-//                targetUrl = targetUrl.substring(0, slashPos);
-//            }
-//            ServletAction targetHandler = actionMap.get(targetUrl);
+
+            String path = req.getContextPath() + URL;
+            String uri = req.getRequestURI();
+            System.out.println("path:"+path);
+            System.out.println("uri:"+uri);
+            String targetUrl = uri.substring(path.length());
+            if (targetUrl.length() < 1) {
+                outContent(resp, "Welcome to use jmreport,please specify target url.");
+                return;
+            }
+            int slashPos = targetUrl.indexOf("/", 1);
+            if (slashPos > -1) {
+                targetUrl = targetUrl.substring(0, slashPos);
+            }
+            ServletAction targetHandler = actionMap.get(targetUrl);
 //            if (targetHandler == null) {
-//                outContent(resp, "Handler [" + targetUrl + "] not exist.");
+//                outContent(resp, "JmReport Handler [" + targetUrl + "] not exist.");
 //                return;
 //            }
-//            RequestHolder.setRequest(req);
-//            try{
-//                targetHandler.execute(req, resp);
-//            }catch(Exception ex){
-//                resp.setCharacterEncoding("UTF-8");
-//                PrintWriter pw=resp.getWriter();
-//                Throwable e=buildRootException(ex);
-//                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//                String errorMsg = e.getMessage();
-//                if(StringUtils.isBlank(errorMsg)){
-//                    errorMsg=e.getClass().getName();
-//                }
-//                pw.write(errorMsg);
-//                pw.close();
-//                throw new ServletException(ex);
-//            }finally{
-//                RequestHolder.clean();
-//            }
+
+            RequestHolder.setRequest(req);
+            try{
+                targetHandler.execute(req, resp);
+            }catch(Exception ex){
+                resp.setCharacterEncoding("UTF-8");
+                PrintWriter pw=resp.getWriter();
+                Throwable e=buildRootException(ex);
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                String errorMsg = e.getMessage();
+                if(StringUtils.isBlank(errorMsg)){
+                    errorMsg=e.getClass().getName();
+                }
+                pw.write(errorMsg);
+                pw.close();
+                throw new ServletException(ex);
+            }finally{
+                RequestHolder.clean();
+            }
         }
         private Throwable buildRootException(Throwable throwable){
             if(throwable.getCause()==null){
