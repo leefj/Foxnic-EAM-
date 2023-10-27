@@ -6,11 +6,11 @@
     :key="item.id"
     :style="{
       ...getComponentAttrStyle(item.attr, index),
-      ...getFilterStyle(item.styles),
       ...getTransformStyle(item.styles),
       ...getStatusStyle(item.status),
       ...getPreviewConfigStyle(item.preview),
-      ...getBlendModeStyle(item.styles) as any
+      ...getBlendModeStyle(item.styles) as any,
+      ...getSizeStyle(item.attr)
     }"
   >
     <!-- 分组 -->
@@ -30,7 +30,10 @@
       :chartConfig="item"
       :themeSetting="themeSetting"
       :themeColor="themeColor"
-      :style="{ ...getSizeStyle(item.attr) }"
+      :style="{ 
+        ...getSizeStyle(item.attr),
+        ...getFilterStyle(item.styles)
+      }"
       v-on="useLifeHandler(item)"
     ></component>
   </div>
@@ -74,7 +77,7 @@ const themeColor = computed(() => {
 // 组件渲染结束初始化数据池
 clearMittDataPondMap()
 onMounted(() => {
-  initDataPond(chartEditStore.requestGlobalConfig)
+  initDataPond(useChartEditStore)
 })
 </script>
 

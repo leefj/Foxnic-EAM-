@@ -28,7 +28,7 @@
 <script th:inline="javascript" type="text/javascript">
 
     document.getElementById("mainFrame").style.height = "0px";//最好设置为minHeight
-    var url = "/business/common/screen/goview/dist/index.html#/project/items";
+    var url = "/business/common/screen/dataview/dist/index.html#/project/items";
     $("#mainFrame").attr("src", url);
     startInit('mainFrame', 1000);
     var browserVersion = window.navigator.userAgent.toUpperCase();
@@ -38,8 +38,6 @@
     var isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
     var isIE = (!!window.ActiveXObject || "ActiveXObject" in window);
     var isIE9More = (! -[1,] == false);
-
-
     function reinitIframe(iframeId, minHeight) {
         try {
             var iframe = document.getElementById(iframeId);

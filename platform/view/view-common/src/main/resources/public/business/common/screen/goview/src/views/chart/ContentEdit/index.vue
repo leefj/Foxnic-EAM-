@@ -85,29 +85,18 @@
 <script lang="ts" setup>
 import { onMounted, computed, provide } from 'vue'
 import { chartColors } from '@/settings/chartThemes/index'
-import {MenuEnum, SavePageEnum} from '@/enums/editPageEnum'
+import { MenuEnum } from '@/enums/editPageEnum'
 import { CreateComponentType, CreateComponentGroupType } from '@/packages/index.d'
-import {
-  animationsClass,
-  getFilterStyle,
-  getTransformStyle,
-  getBlendModeStyle,
-  colorCustomMerge,
-  JSONParse,
-  JSONStringify,
-  fetchRouteParamsLocation,
-  setSessionStorage,
-  getLocalStorage
-} from '@/utils'
+import { animationsClass, getFilterStyle, getTransformStyle, getBlendModeStyle, colorCustomMerge,JSONParse,JSONStringify,fetchRouteParamsLocation,setSessionStorage,getLocalStorage } from '@/utils'
 import { useContextMenu } from '@/views/chart/hooks/useContextMenu.hook'
 import { MenuOptionsItemType } from '@/views/chart/hooks/useContextMenu.hook.d'
-import { useChartEditStore} from '@/store/modules/chartEditStore/chartEditStore'
+import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
 import { SCALE_KEY } from '@/views/preview/hooks/useScale.hook'
 import { useLayout } from './hooks/useLayout.hook'
 import { useAddKeyboard } from '../hooks/useKeyboard.hook'
 import { dragHandle, dragoverHandle, mousedownHandleUnStop, useMouseHandle } from './hooks/useDrag.hook'
 import { useComponentStyle, useSizeStyle } from './hooks/useStyle.hook'
-import { EditCanvasTypeEnum } from '@/store/modules/chartEditStore/chartEditStore.d'
+
 import { ContentBox } from '../ContentBox/index'
 import { EditGroup } from './components/EditGroup'
 import { EditRange } from './components/EditRange'
@@ -121,6 +110,7 @@ import {StorageEnum} from "@/enums/storageEnum";
 const chartEditStore = useChartEditStore()
 const { handleContextMenu } = useContextMenu()
 const {  updateComponent } = useSync()
+
 // 编辑时注入scale变量，消除警告
 provide(SCALE_KEY, null)
 
@@ -191,6 +181,7 @@ const rangeStyle = computed(() => {
   }
 })
 
+// 新增
 const projectId=fetchRouteParamsLocation();
 console.log("projectId:"+projectId);
 var listData=sessionStorage.getItem("GO_CHART_STORAGE_LIST")
@@ -211,6 +202,9 @@ if(listData){
     }
   }
 }
+
+
+
 
 // 键盘事件
 onMounted(() => {

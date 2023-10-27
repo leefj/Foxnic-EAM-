@@ -38,15 +38,17 @@ public class ScreenGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(SysTables.SYS_SCREEN.JSON_DATA).table().disable(true);
+        cfg.view().field(SysTables.SYS_SCREEN.UPDATE_BY).table().disable(true);
         cfg.view().field(SysTables.SYS_SCREEN.CODE).form().validate().required();
         cfg.view().field(SysTables.SYS_SCREEN.NAME).form().validate().required();
         cfg.view().field(SysTables.SYS_SCREEN.STATUS).form().radioBox().enumType(ScreenStatusEnum.class);
         cfg.view().field(SysTables.SYS_SCREEN.JSON_DATA).form().textArea().height(500);
 
-        cfg.view().list().operationColumn().addActionButton("设计","screenDesinger","screen-designer-button","sys_screen:designer");
-        cfg.view().list().operationColumn().addActionButton("预览","screenView","screen-view-button","sys_screen:view");
-        cfg.view().list().operationColumn().addActionButton("应用","screenApply","screen-apply","sys_screen:apply");
-        cfg.view().list().operationColumn().addActionButton("复制","screenCopy","screen-copy","sys_screen:copy");
+        cfg.view().list().addToolButton("数据源","dsData","ds-button");
+        cfg.view().list().operationColumn().addActionButton("设计","screenDesinger","screen-designer-button");
+        cfg.view().list().operationColumn().addActionButton("预览","screenView","screen-view-button");
+        cfg.view().list().operationColumn().addActionButton("应用","screenApply","screen-apply");
+        cfg.view().list().operationColumn().addActionButton("复制","screenCopy","screen-copy");
 
 
         cfg.view().formWindow().bottomSpace(250);

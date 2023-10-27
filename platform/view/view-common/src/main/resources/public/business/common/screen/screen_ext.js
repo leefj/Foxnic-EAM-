@@ -193,7 +193,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 if (r.success) {
                     var res = r.data;
                     sessionStorage.setItem('GO_CHART_STORAGE_LIST', res.jsonData);
-                    window.open("/business/common/screen/goview/dist/index.html?id=1#/chart/home/"+data.id,"_blank")
+                    window.open("/business/common/screen/dataview/dist/index.html?id=1#/chart/home/"+data.id,"_blank")
                 } else {
                     alert('未获得数据');
                 }
@@ -206,9 +206,22 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 if (r.success) {
                     var res = r.data;
                     sessionStorage.setItem('GO_CHART_STORAGE_LIST', res.jsonData);
-                    window.open("/business/common/screen/goview/dist/index.html#/chart/preview/"+data.id,"_blank")
+                    window.open("/business/common/screen/dataview/dist/index.html#/chart/preview/"+data.id,"_blank")
                 } else {
                     alert('未获得数据');
+                }
+            });
+        },
+        dsData:function (selected,obj){
+            admin.popupCenter({
+                title: "数据源",
+                resize: false,
+                offset: [20,null],
+                area: ["80%","85%"],
+                type: 2,
+                id:"sys-screen-ds-list-win",
+                content: '/business/common/screen_ds_data/screen_ds_data_list.html',
+                finish: function () {
                 }
             });
         },

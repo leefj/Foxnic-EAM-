@@ -85,42 +85,11 @@ const componentMerge = (newObject: any, sources: any, notComponent = false) => {
   }
 }
 
-
 // 请求处理
 export const useSync = () => {
   const chartEditStore = useChartEditStore()
   const chartHistoryStore = useChartHistoryStore()
   const chartLayoutStore = useChartLayoutStore()
-
-
-  const dataSyncFetch = async () => {
-    // FIX:重新执行dataSyncFetch需清空chartEditStore.componentList,否则会导致图层重复
-    // 切换语言等操作会导致重新执行 dataSyncFetch,此时pinia中并未清空chartEditStore.componentList，导致图层重复
-    // chartEditStore.componentList = []
-    // chartEditStore.setEditCanvas(EditCanvasTypeEnum.SAVE_STATUS, SyncEnum.START)
-    // try {
-    //   const res = await fetchProjectApi({ projectId: fetchRouteParamsLocation() })
-    //   if (res && res.code === ResultEnum.SUCCESS) {
-    //     if (res.data) {
-    //       updateStoreInfo(res.data)
-    //       // 更新全局数据
-    //       await updateComponent(JSONParse(res.data.content))
-    //       return
-    //     }else {
-    //       chartEditStore.setProjectInfo(ProjectInfoEnum.PROJECT_ID, fetchRouteParamsLocation())
-    //     }
-    //     setTimeout(() => {
-    //       chartEditStore.setEditCanvas(EditCanvasTypeEnum.SAVE_STATUS, SyncEnum.SUCCESS)
-    //     }, 1000)
-    //     return
-    //   }
-    //   chartEditStore.setEditCanvas(EditCanvasTypeEnum.SAVE_STATUS, SyncEnum.FAILURE)
-    // } catch (error) {
-    //   chartEditStore.setEditCanvas(EditCanvasTypeEnum.SAVE_STATUS, SyncEnum.FAILURE)
-    //   httpErrorHandle()
-    // }
-  }
-
   /**
    * * 组件动态注册
    * @param projectData 项目数据
@@ -227,9 +196,7 @@ export const useSync = () => {
             chartHistoryStore.clearForwardStack()
           }
         }
-      } else {
-        // 非组件(顺便排除脏数据)
-        if (key !== 'editCanvasConfig' && key !== 'requestGlobalConfig') return
+      } else if (key === ChartEditStoreEnum.EDIT_CANVAS_CONFIG || key === ChartEditStoreEnum.REQUEST_GLOBAL_CONFIG) {
         componentMerge(chartEditStore[key], projectData[key], true)
       }
     }

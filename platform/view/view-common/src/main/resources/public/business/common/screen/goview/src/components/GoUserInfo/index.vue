@@ -71,16 +71,16 @@ const renderUserInfo = () => {
   )
 }
 const options = ref([
-  {
-    label: '我的信息',
-    key: 'info',
-    type: 'render',
-    render: renderUserInfo
-  },
-  {
-    type: 'divider',
-    key: 'd1'
-  },
+//  {
+  //  label: '我的信息',
+   // key: 'info',
+   // type: 'render',
+   // render: renderUserInfo
+  //},
+ // {
+  //  type: 'divider',
+   // key: 'd1'
+  //},
   {
     label: renderLang('global.sys_set'),
     key: 'sysSet',
@@ -90,16 +90,18 @@ const options = ref([
     label: renderLang('global.contact'),
     key: 'contact',
     icon: renderIcon(ChatboxEllipsesIcon)
-  },
-  {
-    type: 'divider',
-    key: 'd3'
-  },
-  {
-    label: renderLang('global.logout'),
-    key: 'logout',
-    icon: renderIcon(LogOutOutlineIcon)
   }
+  //,
+ // {
+  //  type: 'divider',
+  //  key: 'd3'
+ // }
+ // ,
+  //{
+   // label: renderLang('global.logout'),
+    //key: 'logout',
+    //icon: renderIcon(LogOutOutlineIcon)
+ // }
 ])
 
 // 图片渲染错误

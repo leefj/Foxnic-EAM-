@@ -1,0 +1,139 @@
+##################################################################################################################
+1、修改新增同步按钮  view/chart/ContentHeader/headerRightBtn/index.vue
+S1
+import axios from "axios"
+
+import { JSONStringify, JSONParse,renderIcon, goDialog, fetchPathByName, routerTurnByPath, setSessionStorage, getLocalStorage } from '@/utils'
+
+S2
+// 发布
+const sendHandle = () => {
+  const { id } = routerParamsInfo.params;
+  const previewId = typeof id === 'string' ? id : id[0]
+  const storageInfo = chartEditStore.getStorageInfo()
+  const sessionStorageInfo = getLocalStorage(StorageEnum.GO_CHART_STORAGE_LIST) || []
+  var storageInfo2=[{ id: previewId, ...storageInfo }]
+  console.log("previewId:",previewId)
+  console.log("storageInfo2:",storageInfo2)
+  console.log("sessionStorageInfo:",sessionStorageInfo)
+  var storageInfoStr=JSONStringify(storageInfo2);
+  console.log("storageInfoStr:",storageInfoStr);
+  var ps={id:"",jsonData:"[]"};
+  ps.id=previewId;
+  ps.jsonData=storageInfoStr;
+  axios.post('/service-common/sys-screen/update',ps).
+  then( function(res) {
+    var resData=res.data;
+    if(resData.success){
+      try {
+          window['$message'].success("保存成功")
+      } catch(ex) {
+      }
+    }else{
+        window['$message'].error("保存失败")
+    }
+  }).catch(err=>{
+    console.log(err);
+  })
+}
+
+S3
+title: '保存',
+
+##################################################################################################################
+2、禁止修改工作空间标题 view/chart/ContentHeader/headerTitle/index.vue
+S1
+<n-text @click="handleFocus">
+      工作空间
+      <n-button v-show="focus" secondary size="tiny">
+        <span class="title">
+          {{ comTitle }}
+        </span>
+      </n-button>
+    </n-text>
+
+S2
+const focus = {value:false}
+
+##################################################################################################################
+3、隐藏首页index view/chart/ContentHeader/headerLeftBtn/index.vue
+添加v-show="1>2"
+ <n-button v-show="1>2" size="small" quaternary @click="goHomeHandle()">
+      <template #icon>
+        <n-icon :depth="3">
+          <home-icon></home-icon>
+        </n-icon>
+      </template>
+    </n-button>
+
+
+##################################################################################################################
+4、隐藏退出按钮 components/GoUserInfo/index.vue
+不必要的进行隐藏
+S1
+const options = ref([
+//  {
+  //  label: '我的信息',
+   // key: 'info',
+   // type: 'render',
+   // render: renderUserInfo
+  //},
+ // {
+  //  type: 'divider',
+   // key: 'd1'
+  //},
+  {
+    label: renderLang('global.sys_set'),
+    key: 'sysSet',
+    icon: renderIcon(SettingsSharpIcon)
+  },
+  {
+    label: renderLang('global.contact'),
+    key: 'contact',
+    icon: renderIcon(ChatboxEllipsesIcon)
+  }
+ // ,
+  //{
+  //  type: 'divider',
+ //   key: 'd3'
+ // }
+ // ,
+  //{
+   // label: renderLang('global.logout'),
+    //key: 'logout',
+    //icon: renderIcon(LogOutOutlineIcon)
+ // }
+])
+
+
+##################################################################################################################
+5、隐藏退出按钮 views/chart/ContentEdit/inde.vue
+S1
+import { animationsClass, getFilterStyle, getTransformStyle, getBlendModeStyle, colorCustomMerge,JSONParse,JSONStringify,fetchRouteParamsLocation,setSessionStorage,getLocalStorage } from '@/utils'
+import { useSync } from '../hooks/useSync.hook'
+import {StorageEnum} from "@/enums/storageEnum";
+const {  updateComponent } = useSync()
+
+
+// 新增
+S2
+const projectId=fetchRouteParamsLocation();
+console.log("projectId:"+projectId);
+var listData=sessionStorage.getItem("GO_CHART_STORAGE_LIST")
+if(listData){
+  var chartObjList=JSONParse(listData+"")
+  console.log("chartObjList:",chartObjList)
+  if(chartObjList&&chartObjList.length>0){
+    for(var i=0;i<chartObjList.length;i++){
+      var e=chartObjList[i];
+      if(e.id==projectId){
+        if(e.editCanvasConfig){
+          console.log("to update",e);
+          var e2={editCanvasConfig:e.editCanvasConfig,componentList:e.componentList,requestGlobalConfig:e.requestGlobalConfig};
+          updateComponent(e2,true)
+          break;
+        }
+      }
+    }
+  }
+}
