@@ -35,11 +35,11 @@ public class ScreenDesignerPageController extends ViewController {
 		return prefix+"/screenDesingerDashboard";
 	}
 
-	@RequestMapping("/screenDashBoard.html")
-	public String screenDashBoard(Model model,HttpServletRequest request,String id) {
-		model.addAttribute("id",id);
-		return prefix+"/screenDashBoard";
-	}
+//	@RequestMapping("/screenDashBoard.html")
+//	public String screenDashBoard(Model model,HttpServletRequest request,String id) {
+//		model.addAttribute("id",id);
+//		return prefix+"/screenDashBoard";
+//	}
 
 
 

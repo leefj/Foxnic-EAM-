@@ -1,5 +1,8 @@
 package com.dt.platform.common.page;
 
+import com.dt.platform.domain.common.Screen;
+import com.dt.platform.domain.common.ScreenVO;
+import com.github.foxnic.api.transter.Result;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.common.ScreenServiceProxy;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
  * <p>
  * 大屏模版页面控制器
@@ -35,6 +40,21 @@ public class ScreenPageController extends ViewController {
 			proxy=ScreenServiceProxy.api();
 		}
 		return proxy;
+	}
+
+	@RequestMapping("/screenDashBoard.html")
+	public String screenDashBoard(Model model,HttpServletRequest request,String code) {
+		Screen screen=null;
+		ScreenVO screenVO=new ScreenVO();
+		screenVO.setCode(code);
+		Result<List<Screen>> result= ScreenServiceProxy.api().queryList(screenVO);
+		if(result.success()){
+			if(result.getData().size()>0){
+				screen=result.getData().get(0);
+			}
+		}
+		model.addAttribute("screen",screen);
+		return getTemplatePath(prefix,"screenDashBoard");
 	}
 
 	/**
