@@ -46,10 +46,9 @@ import org.springframework.context.annotation.ComponentScan;
 		ContractMeta.SERVICE_CONTRACT_PACKAGE,
 		// 客户-Jar引用
 		CustomerMeta.SERVICE_CUSTOMER_PACKAGE,
-		"org.jeecg.modules.jmreport",
 
 })
-@SpringBootApplication(scanBasePackages = {"org.jeecg.modules.jmreport"})
+@SpringBootApplication
 public class WrapperAllApp {
 	public static void main(String[] args) {
 		BootApplication.run(WrapperAllApp.class, args);
