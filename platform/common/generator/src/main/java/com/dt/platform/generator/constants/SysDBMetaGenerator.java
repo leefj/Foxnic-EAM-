@@ -52,6 +52,7 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_form_data_col")
 					||table.startsWith("sys_demo_test")
 					||table.startsWith("sys_screen")
+					||table.startsWith("sys_screen_ds_data")
 					||table.startsWith("sys_screen_project")
 					||table.startsWith("sys_screen_project_data")
 					||table.startsWith("sys_invoke_log")

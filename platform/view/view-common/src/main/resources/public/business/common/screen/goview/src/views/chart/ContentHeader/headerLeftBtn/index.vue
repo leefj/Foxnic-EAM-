@@ -1,6 +1,6 @@
 <template>
   <n-space class="header-left-btn" :size="25">
-    <n-button size="small" quaternary @click="goHomeHandle()">
+    <n-button v-show="1>2" size="small" quaternary @click="goHomeHandle()">
       <template #icon>
         <n-icon :depth="3">
           <home-icon></home-icon>

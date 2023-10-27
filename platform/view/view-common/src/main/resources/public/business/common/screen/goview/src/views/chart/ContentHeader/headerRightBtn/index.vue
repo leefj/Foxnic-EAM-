@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { JSONStringify, JSONParse, setTitle,renderIcon, goDialog, fetchPathByName, routerTurnByPath, setSessionStorage, getLocalStorage } from '@/utils'
+import { JSONStringify, JSONParse,renderIcon, goDialog, fetchPathByName, routerTurnByPath, setSessionStorage, getLocalStorage } from '@/utils'
 import { PreviewEnum } from '@/enums/pageEnum'
 import { StorageEnum } from '@/enums/storageEnum'
 import { useRoute } from 'vue-router'
@@ -21,11 +21,12 @@ import { icon } from '@/plugins'
 import { cloneDeep } from 'lodash'
 import axios from "axios"
 
-
 const { BrowsersOutlineIcon, SendIcon, AnalyticsIcon } = icon.ionicons5
 const chartEditStore = useChartEditStore()
 
 const routerParamsInfo = useRoute()
+
+
 
 // 预览
 const previewHandle = () => {
@@ -34,7 +35,7 @@ const previewHandle = () => {
   const { id } = routerParamsInfo.params
   // id 标识
   const previewId = typeof id === 'string' ? id : id[0]
-  const storageInfo = chartEditStore.getStorageInfo
+  const storageInfo = chartEditStore.getStorageInfo()
   const sessionStorageInfo = getLocalStorage(StorageEnum.GO_CHART_STORAGE_LIST) || []
 
   if (sessionStorageInfo?.length) {
@@ -54,24 +55,21 @@ const previewHandle = () => {
     setSessionStorage(StorageEnum.GO_CHART_STORAGE_LIST, [{ id: previewId, ...storageInfo }])
   }
   // 跳转
-
   routerTurnByPath(path, [previewId], undefined, true)
 }
 
 // 发布
 const sendHandle = () => {
-
   const { id } = routerParamsInfo.params;
   const previewId = typeof id === 'string' ? id : id[0]
-  console.log("previewId:",previewId)
-
-  const storageInfo = chartEditStore.getStorageInfo
+  const storageInfo = chartEditStore.getStorageInfo()
   const sessionStorageInfo = getLocalStorage(StorageEnum.GO_CHART_STORAGE_LIST) || []
   var storageInfo2=[{ id: previewId, ...storageInfo }]
-  console.log("storageInfo2",storageInfo2)
-  console.log("sessionStorageInfo",sessionStorageInfo)
+  console.log("previewId:",previewId)
+  console.log("storageInfo2:",storageInfo2)
+  console.log("sessionStorageInfo:",sessionStorageInfo)
   var storageInfoStr=JSONStringify(storageInfo2);
-  console.log(storageInfoStr);
+  console.log("storageInfoStr:",storageInfoStr);
   var ps={id:"",jsonData:"[]"};
   ps.id=previewId;
   ps.jsonData=storageInfoStr;

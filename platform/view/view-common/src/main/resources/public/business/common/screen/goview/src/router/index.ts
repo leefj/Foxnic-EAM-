@@ -10,7 +10,7 @@ import modules from '@/router/modules'
 
 const RootRoute: Array<RouteRecordRaw> = [
   {
-    path: '/business/common/screen/goview/dist/',
+    path: '/',
     name: 'Root',
     redirect: PageEnum.BASE_HOME,
     component: Layout,

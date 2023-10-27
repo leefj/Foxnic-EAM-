@@ -4,8 +4,8 @@
       <fish-icon></fish-icon>
     </n-icon>
     <n-text @click="handleFocus">
-      工作空间 -
-      <n-button v-show="!focus" secondary size="tiny">
+      工作空间 
+      <n-button v-show="focus.value" secondary size="tiny">
         <span class="title">
           {{ comTitle }}
         </span>
@@ -13,7 +13,7 @@
     </n-text>
 
     <n-input
-      v-show="focus"
+      v-show="focus.value"
       ref="inputInstRef"
       size="small"
       type="text"
@@ -37,7 +37,7 @@ import { icon } from '@/plugins'
 const { FishIcon } = icon.ionicons5
 const chartEditStore = useChartEditStore()
 
-const focus = ref<boolean>(false)
+const focus = {value:false}
 const inputInstRef = ref(null)
 
 // 根据路由 id 参数获取项目信息
@@ -55,7 +55,8 @@ const comTitle = computed(() => {
   // eslint-disable-next-line vue/no-side-effects-in-computed-properties
   title.value = title.value.replace(/\s/g, '')
   const newTitle = title.value.length ? title.value : '新项目'
-  setTitle(`工作空间-${newTitle}`)
+ // setTitle(`工作空间-${newTitle}`)
+   setTitle(`工作空间`)
   chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.PROJECT_NAME, newTitle)
   return newTitle
 })

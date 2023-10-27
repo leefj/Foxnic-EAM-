@@ -1,14 +1,14 @@
 /**
  * 大屏 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-31 19:06:50
+ * @since 2023-10-27 11:26:26
  */
 
 
 function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
-
+	
 	//模块基础路径
 	const moduleURL="/service-common/sys-screen";
 	const queryURL=moduleURL+'/query-paged-list';
@@ -20,18 +20,18 @@ function ListPage() {
 	var sort=null;
 
 	/**
-	 * 入口函数，初始化
-	 */
+      * 入口函数，初始化
+      */
 	this.init=function(layui) {
 
-		admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
+     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
 		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;
 
 		if(window.pageExt.list.beforeInit) {
 			window.pageExt.list.beforeInit();
 		}
-		//渲染表格
-		renderTable();
+     	//渲染表格
+     	renderTable();
 		//初始化搜索输入框组件
 		initSearchFields();
 		//绑定搜索框事件
@@ -39,21 +39,21 @@ function ListPage() {
 		//绑定按钮事件
 		bindButtonEvent();
 		//绑定行操作按钮事件
-		bindRowOperationEvent();
-	}
+    	bindRowOperationEvent();
+     }
 
 
-	/**
-	 * 渲染表格
-	 */
-	function renderTable() {
+     /**
+      * 渲染表格
+      */
+    function renderTable() {
 		$(window).resize(function() {
 			fox.adjustSearchElement();
 		});
 		fox.adjustSearchElement();
 		//
-		var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
-		$("#table-area").css("margin-top",marginTop+"px");
+		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		 $("#table-area").css("margin-top",marginTop+"px");
 		//
 		function renderTableInternal() {
 
@@ -99,19 +99,19 @@ function ListPage() {
 				},
 				footer : {
 					exportExcel : false ,
-					importExcel : false
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
 			dataTable=fox.renderTable(tableConfig);
 			//绑定排序事件
 			table.on('sort(data-table)', function(obj){
-				refreshTableData(obj.sortField,obj.type);
+			  refreshTableData(obj.sortField,obj.type);
 			});
 			window.pageExt.list.afterTableRender && window.pageExt.list.afterTableRender();
 		}
 		setTimeout(renderTableInternal,1);
-	};
+    };
 
 	/**
 	 * 刷新单号数据
@@ -155,8 +155,8 @@ function ListPage() {
 	}
 
 	/**
-	 * 刷新表格数据
-	 */
+      * 刷新表格数据
+      */
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
@@ -186,8 +186,8 @@ function ListPage() {
 
 
 	/**
-	 * 获得已经选中行的数据,不传入 field 时，返回所有选中的记录，指定 field 时 返回指定的字段集合
-	 */
+	  * 获得已经选中行的数据,不传入 field 时，返回所有选中的记录，指定 field 时 返回指定的字段集合
+	  */
 	function getCheckedList(field) {
 		var checkStatus = table.checkStatus('data-table');
 		var data = checkStatus.data;
@@ -243,15 +243,15 @@ function ListPage() {
 	 */
 	function bindSearchEvent() {
 		//回车键查询
-		$(".search-input").keydown(function(event) {
+        $(".search-input").keydown(function(event) {
 			if(event.keyCode !=13) return;
-			refreshTableData(null,null,true);
-		});
+		  	refreshTableData(null,null,true);
+        });
 
-		// 搜索按钮点击事件
-		$('#search-button').click(function () {
+        // 搜索按钮点击事件
+        $('#search-button').click(function () {
 			refreshTableData(null,null,true);
-		});
+        });
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
@@ -268,7 +268,7 @@ function ListPage() {
 
 	/**
 	 * 绑定按钮事件
-	 */
+	  */
 	function bindButtonEvent() {
 
 		//头工具栏事件
@@ -287,6 +287,9 @@ function ListPage() {
 				case 'batch-del':
 					batchDelete(selected);
 					break;
+				case 'tool-ds-data':
+					window.pageExt.list.dsData && window.pageExt.list.dsData(selected,obj);
+					break;
 				case 'refresh-data':
 					refreshTableData();
 					break;
@@ -297,52 +300,52 @@ function ListPage() {
 
 
 		//添加按钮点击事件
-		function openCreateFrom() {
-			//设置新增是初始化数据
-			var data={};
+        function openCreateFrom() {
+        	//设置新增是初始化数据
+        	var data={};
 			admin.putTempData('sys-screen-form-data-form-action', "create",true);
-			showEditForm(data);
-		};
+            showEditForm(data);
+        };
 
-		//批量删除按钮点击事件
-		function batchDelete(selected) {
+        //批量删除按钮点击事件
+        function batchDelete(selected) {
 
-			if(window.pageExt.list.beforeBatchDelete) {
+        	if(window.pageExt.list.beforeBatchDelete) {
 				var doNext=window.pageExt.list.beforeBatchDelete(selected);
 				if(!doNext) return;
 			}
 
 			var ids=getCheckedList("id");
-			if(ids.length==0) {
+            if(ids.length==0) {
 				top.layer.msg(fox.translate('请选择需要删除的'+'大屏'+"!"));
-				return;
-			}
-			//调用批量删除接口
+            	return;
+            }
+            //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的'+'大屏'+'吗？'), function (i) {
-				top.layer.close(i);
+                top.layer.close(i);
 				admin.post(batchDeleteURL, { ids: ids }, function (data) {
-					if (data.success) {
+                    if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
 							if(!doNext) return;
 						}
 						fox.showMessage(data);
-						refreshTableData();
-					} else {
+                        refreshTableData();
+                    } else {
 						if(data.data>0) {
 							refreshTableData();
 						}
 						fox.showMessage(data);
-					}
-				},{delayLoading:200,elms:[$("#delete-button")]});
+                    }
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
-		}
+        }
 	}
 
-	/**
-	 * 绑定行操作按钮事件
-	 */
-	function bindRowOperationEvent() {
+    /**
+     * 绑定行操作按钮事件
+     */
+    function bindRowOperationEvent() {
 		// 工具条点击事件
 		table.on('tool(data-table)', function (obj) {
 			var data = obj.data;
@@ -355,16 +358,21 @@ function ListPage() {
 
 			admin.putTempData('sys-screen-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('sys-screen-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
-						fox.showMessage(data);
+						 fox.showMessage(data);
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('sys-screen-form-data-form-action', "view",true);
 						showEditForm(data.data);
@@ -409,14 +417,14 @@ function ListPage() {
 			else if (layEvent === 'screen-copy') { // 复制
 				window.pageExt.list.screenCopy(data,this);
 			}
-
+			
 		});
 
-	};
+    };
 
-	/**
-	 * 打开编辑窗口
-	 */
+    /**
+     * 打开编辑窗口
+     */
 	function showEditForm(data) {
 		if(window.pageExt.list.beforeEdit) {
 			var doNext=window.pageExt.list.beforeEdit(data);
