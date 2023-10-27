@@ -26,10 +26,14 @@
 </div>
 <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
 <script th:inline="javascript" type="text/javascript">
+    var screen=[[${screen}]];
+    sessionStorage.setItem('GO_CHART_STORAGE_LIST', screen.jsonData);
+    document.getElementById("mainFrame").style.height = "0px";
 
-
-    document.getElementById("mainFrame").style.height = "0px";//最好设置为minHeight
-    var url = "/business/common/screen/dataview/dist/index.html#/project/items";
+    if(screen==null){
+        alert("未获取大屏信息")
+    }
+    var url = "/business/common/screen/dataview/dist/index.html#/chart/preview/"+screen.id
     $("#mainFrame").attr("src", url);
     startInit('mainFrame', 1000);
     var browserVersion = window.navigator.userAgent.toUpperCase();
@@ -39,8 +43,6 @@
     var isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
     var isIE = (!!window.ActiveXObject || "ActiveXObject" in window);
     var isIE9More = (! -[1,] == false);
-
-
     function reinitIframe(iframeId, minHeight) {
         try {
             var iframe = document.getElementById(iframeId);
@@ -82,7 +84,6 @@
         eval("window.IE9MoreRealHeight" + iframeId + "=0");
         window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
     }
-
 </script>
 </body>
 </html>
