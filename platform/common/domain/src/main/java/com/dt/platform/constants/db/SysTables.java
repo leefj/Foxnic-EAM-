@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-10-27 13:02:00
+ * @since 2023-10-29 11:02:00
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -3798,6 +3798,251 @@ public class SysTables {
 	}
 	
 	/**
+	 * API
+	*/
+	public static class SYS_SCREEN_DS_API extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_screen_ds_api";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 编码
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
+		
+		/**
+		 * 地址
+		*/
+		public static final DBField URL = new DBField(DBDataType.STRING , "url","url","地址","地址",false,false,true);
+		
+		/**
+		 * 请求方式
+		*/
+		public static final DBField REQ_TYPE = new DBField(DBDataType.STRING , "req_type","reqType","请求方式","请求方式",false,false,true);
+		
+		/**
+		 * 参数
+		*/
+		public static final DBField PARAM = new DBField(DBDataType.STRING , "param","param","参数","参数",false,false,true);
+		
+		/**
+		 * 请求头
+		*/
+		public static final DBField HEADER = new DBField(DBDataType.STRING , "header","header","请求头","请求头",false,false,true);
+		
+		/**
+		 * 请求体
+		*/
+		public static final DBField BODY = new DBField(DBDataType.STRING , "body","body","请求体","请求体",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public SYS_SCREEN_DS_API() {
+			this.init($NAME,"API" , ID , NAME , CODE , URL , REQ_TYPE , PARAM , HEADER , BODY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final SYS_SCREEN_DS_API $TABLE=new SYS_SCREEN_DS_API();
+	}
+	
+	/**
+	 * API选择
+	*/
+	public static class SYS_SCREEN_DS_API_S extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_screen_ds_api_s";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * API
+		*/
+		public static final DBField API_ID = new DBField(DBDataType.STRING , "api_id","apiId","API","API",false,false,true);
+		
+		/**
+		 * DS
+		*/
+		public static final DBField DS_DATA_ID = new DBField(DBDataType.STRING , "ds_data_id","dsDataId","DS","DS",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,true);
+		
+		public SYS_SCREEN_DS_API_S() {
+			this.init($NAME,"API选择" , ID , API_ID , DS_DATA_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final SYS_SCREEN_DS_API_S $TABLE=new SYS_SCREEN_DS_API_S();
+	}
+	
+	/**
+	 * 数据分类
+	*/
+	public static class SYS_SCREEN_DS_CATEGORY extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_screen_ds_category";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField CATEGORY_NAME = new DBField(DBDataType.STRING , "category_name","categoryName","名称","名称",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public SYS_SCREEN_DS_CATEGORY() {
+			this.init($NAME,"数据分类" , ID , CATEGORY_NAME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final SYS_SCREEN_DS_CATEGORY $TABLE=new SYS_SCREEN_DS_CATEGORY();
+	}
+	
+	/**
 	 * 数据源
 	*/
 	public static class SYS_SCREEN_DS_DATA extends DBTable {
@@ -3813,11 +4058,6 @@ public class SysTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 数据源
-		*/
-		public static final DBField DS_CODE = new DBField(DBDataType.STRING , "ds_code","dsCode","数据源","数据源",false,false,true);
-		
-		/**
 		 * 编号
 		*/
 		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编号","编号",false,false,true);
@@ -3828,9 +4068,29 @@ public class SysTables {
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
 		
 		/**
-		 * SQL
+		 * 来源
 		*/
-		public static final DBField SQL_TEXT = new DBField(DBDataType.STRING , "sql_text","sqlText","SQL","SQL",false,false,true);
+		public static final DBField SOURCE_CODE = new DBField(DBDataType.STRING , "source_code","sourceCode","来源","来源",false,false,true);
+		
+		/**
+		 * 分类
+		*/
+		public static final DBField CATEGORY_ID = new DBField(DBDataType.STRING , "category_id","categoryId","分类","分类",false,false,true);
+		
+		/**
+		 * 数据库
+		*/
+		public static final DBField DS_CODE = new DBField(DBDataType.STRING , "ds_code","dsCode","数据库","数据库",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField CT_TEXT = new DBField(DBDataType.STRING , "ct_text","ctText","内容","内容",false,false,true);
+		
+		/**
+		 * 转换脚本
+		*/
+		public static final DBField RESULT_ACTION = new DBField(DBDataType.STRING , "result_action","resultAction","转换脚本","转换脚本",false,false,true);
 		
 		/**
 		 * 备注
@@ -3882,9 +4142,109 @@ public class SysTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public SYS_SCREEN_DS_DATA() {
-			this.init($NAME,"数据源" , ID , DS_CODE , CODE , NAME , SQL_TEXT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"数据源" , ID , CODE , NAME , SOURCE_CODE , CATEGORY_ID , DS_CODE , CT_TEXT , RESULT_ACTION , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final SYS_SCREEN_DS_DATA $TABLE=new SYS_SCREEN_DS_DATA();
+	}
+	
+	/**
+	 * 数据库
+	*/
+	public static class SYS_SCREEN_DS_DB extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_screen_ds_db";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 类型,system|user
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","system|user",false,false,true);
+		
+		/**
+		 * 数据库类型
+		*/
+		public static final DBField DS_TYPE = new DBField(DBDataType.STRING , "ds_type","dsType","数据库类型","数据库类型",false,false,true);
+		
+		/**
+		 * 账户
+		*/
+		public static final DBField USER = new DBField(DBDataType.STRING , "user","user","账户","账户",false,false,true);
+		
+		/**
+		 * 密码
+		*/
+		public static final DBField PWD = new DBField(DBDataType.STRING , "pwd","pwd","密码","密码",false,false,true);
+		
+		/**
+		 * uri
+		*/
+		public static final DBField URI = new DBField(DBDataType.STRING , "uri","uri","uri","uri",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public SYS_SCREEN_DS_DB() {
+			this.init($NAME,"数据库" , ID , NAME , TYPE , DS_TYPE , USER , PWD , URI , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final SYS_SCREEN_DS_DB $TABLE=new SYS_SCREEN_DS_DB();
 	}
 	
 	/**

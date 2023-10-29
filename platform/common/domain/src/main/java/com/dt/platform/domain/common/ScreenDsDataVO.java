@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据源VO类型
  * <p>数据源 , 数据表 sys_screen_ds_data 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-27 13:03:14
+ * @since 2023-10-28 08:24:17
  * @sign 7C586718B568CC46789E7D1452EEC4AD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -401,13 +401,15 @@ public class ScreenDsDataVO extends ScreenDsData {
 	@Transient
 	public ScreenDsDataVO duplicate(boolean all) {
 		com.dt.platform.domain.common.meta.ScreenDsDataVOMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.ScreenDsDataVOMeta.$$proxy$$();
-		inst.setSqlText(this.getSqlText());
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
+		inst.setCtText(this.getCtText());
 		inst.setDsCode(this.getDsCode());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
+		inst.setSourceCode(this.getSourceCode());
 		inst.setCreateBy(this.getCreateBy());
+		inst.setResultAction(this.getResultAction());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -416,19 +418,24 @@ public class ScreenDsDataVO extends ScreenDsData {
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setCategoryId(this.getCategoryId());
 		if(all) {
+			inst.setScreenDsDb(this.getScreenDsDb());
 			inst.setSearchField(this.getSearchField());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setScreenDsApi(this.getScreenDsApi());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setScreenDsCategory(this.getScreenDsCategory());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
+			inst.setScreenDsApiIds(this.getScreenDsApiIds());
 		}
 		inst.clearModifies();
 		return inst;
@@ -488,13 +495,15 @@ public class ScreenDsDataVO extends ScreenDsData {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setSqlText(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.SQL_TEXT)));
 			this.setCode(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.NOTES)));
+			this.setCtText(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.CT_TEXT)));
 			this.setDsCode(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.DS_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(ScreenDsDataVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(ScreenDsDataVOMeta.VERSION)));
+			this.setSourceCode(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.SOURCE_CODE)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.CREATE_BY)));
+			this.setResultAction(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.RESULT_ACTION)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(ScreenDsDataVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(ScreenDsDataVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.UPDATE_BY)));
@@ -503,27 +512,32 @@ public class ScreenDsDataVO extends ScreenDsData {
 			this.setTenantId(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.ID)));
+			this.setCategoryId(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.CATEGORY_ID)));
 			// others
+			this.setScreenDsDb(DataParser.parse(ScreenDsDb.class, map.get(ScreenDsDataVOMeta.SCREEN_DS_DB)));
 			this.setSearchField(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.SEARCH_FIELD)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(ScreenDsDataVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.SORT_TYPE)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.FUZZY_FIELD)));
-			this.setSortField(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(ScreenDsDataVOMeta.PAGE_SIZE)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(ScreenDsDataVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.SORT_TYPE)));
+			this.setScreenDsCategory(DataParser.parse(ScreenDsCategory.class, map.get(ScreenDsDataVOMeta.SCREEN_DS_CATEGORY)));
+			this.setSortField(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(ScreenDsDataVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
 			try {
-				this.setSqlText( (String)map.get(ScreenDsDataVOMeta.SQL_TEXT));
 				this.setCode( (String)map.get(ScreenDsDataVOMeta.CODE));
 				this.setNotes( (String)map.get(ScreenDsDataVOMeta.NOTES));
+				this.setCtText( (String)map.get(ScreenDsDataVOMeta.CT_TEXT));
 				this.setDsCode( (String)map.get(ScreenDsDataVOMeta.DS_CODE));
 				this.setUpdateTime( (Date)map.get(ScreenDsDataVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(ScreenDsDataVOMeta.VERSION));
+				this.setSourceCode( (String)map.get(ScreenDsDataVOMeta.SOURCE_CODE));
 				this.setCreateBy( (String)map.get(ScreenDsDataVOMeta.CREATE_BY));
+				this.setResultAction( (String)map.get(ScreenDsDataVOMeta.RESULT_ACTION));
 				this.setDeleted( (Integer)map.get(ScreenDsDataVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(ScreenDsDataVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(ScreenDsDataVOMeta.UPDATE_BY));
@@ -532,14 +546,17 @@ public class ScreenDsDataVO extends ScreenDsData {
 				this.setTenantId( (String)map.get(ScreenDsDataVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(ScreenDsDataVOMeta.DELETE_BY));
 				this.setId( (String)map.get(ScreenDsDataVOMeta.ID));
+				this.setCategoryId( (String)map.get(ScreenDsDataVOMeta.CATEGORY_ID));
 				// others
+				this.setScreenDsDb( (ScreenDsDb)map.get(ScreenDsDataVOMeta.SCREEN_DS_DB));
 				this.setSearchField( (String)map.get(ScreenDsDataVOMeta.SEARCH_FIELD));
-				this.setPageIndex( (Integer)map.get(ScreenDsDataVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(ScreenDsDataVOMeta.SORT_TYPE));
 				this.setRequestAction( (String)map.get(ScreenDsDataVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(ScreenDsDataVOMeta.FUZZY_FIELD));
-				this.setSortField( (String)map.get(ScreenDsDataVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(ScreenDsDataVOMeta.PAGE_SIZE));
+				this.setPageIndex( (Integer)map.get(ScreenDsDataVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(ScreenDsDataVOMeta.SORT_TYPE));
+				this.setScreenDsCategory( (ScreenDsCategory)map.get(ScreenDsDataVOMeta.SCREEN_DS_CATEGORY));
+				this.setSortField( (String)map.get(ScreenDsDataVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(ScreenDsDataVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(ScreenDsDataVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(ScreenDsDataVOMeta.SEARCH_VALUE));
@@ -559,13 +576,15 @@ public class ScreenDsDataVO extends ScreenDsData {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setSqlText(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.SQL_TEXT)));
 			this.setCode(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.NOTES)));
+			this.setCtText(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.CT_TEXT)));
 			this.setDsCode(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.DS_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(ScreenDsDataVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(ScreenDsDataVOMeta.VERSION)));
+			this.setSourceCode(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.SOURCE_CODE)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.CREATE_BY)));
+			this.setResultAction(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.RESULT_ACTION)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(ScreenDsDataVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(ScreenDsDataVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.UPDATE_BY)));
@@ -574,16 +593,19 @@ public class ScreenDsDataVO extends ScreenDsData {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.ID)));
+			this.setCategoryId(DataParser.parse(String.class, r.getValue(ScreenDsDataVOMeta.CATEGORY_ID)));
 			return true;
 		} else {
 			try {
-				this.setSqlText( (String)r.getValue(ScreenDsDataVOMeta.SQL_TEXT));
 				this.setCode( (String)r.getValue(ScreenDsDataVOMeta.CODE));
 				this.setNotes( (String)r.getValue(ScreenDsDataVOMeta.NOTES));
+				this.setCtText( (String)r.getValue(ScreenDsDataVOMeta.CT_TEXT));
 				this.setDsCode( (String)r.getValue(ScreenDsDataVOMeta.DS_CODE));
 				this.setUpdateTime( (Date)r.getValue(ScreenDsDataVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(ScreenDsDataVOMeta.VERSION));
+				this.setSourceCode( (String)r.getValue(ScreenDsDataVOMeta.SOURCE_CODE));
 				this.setCreateBy( (String)r.getValue(ScreenDsDataVOMeta.CREATE_BY));
+				this.setResultAction( (String)r.getValue(ScreenDsDataVOMeta.RESULT_ACTION));
 				this.setDeleted( (Integer)r.getValue(ScreenDsDataVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(ScreenDsDataVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(ScreenDsDataVOMeta.UPDATE_BY));
@@ -592,6 +614,7 @@ public class ScreenDsDataVO extends ScreenDsData {
 				this.setTenantId( (String)r.getValue(ScreenDsDataVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(ScreenDsDataVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(ScreenDsDataVOMeta.ID));
+				this.setCategoryId( (String)r.getValue(ScreenDsDataVOMeta.CATEGORY_ID));
 				return true;
 			} catch (Exception e) {
 				return false;

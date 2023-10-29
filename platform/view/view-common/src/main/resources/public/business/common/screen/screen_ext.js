@@ -225,6 +225,46 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 }
             });
         },
+        dbData:function (selected,obj){
+            admin.popupCenter({
+                title: "数据库源",
+                resize: false,
+                offset: [20,null],
+                area: ["80%","85%"],
+                type: 2,
+                id:"sys-screen-ds-db-list-win",
+                content: '/business/common/screen_ds_db/screen_ds_db_list.html',
+                finish: function () {
+                }
+            });
+        },
+        apiData:function (selected,obj){
+            admin.popupCenter({
+                title: "API源",
+                resize: false,
+                offset: [20,null],
+                area: ["80%","85%"],
+                type: 2,
+                id:"sys-screen-ds-api-list-win",
+                content: '/business/common/screen_ds_api/screen_ds_api_list.html',
+                finish: function () {
+                }
+            });
+        },
+        categoryData:function (selected,obj){
+            admin.popupCenter({
+                title: "分类",
+                resize: false,
+                offset: [20,null],
+                area: ["80%","85%"],
+                type: 2,
+                id:"sys-screen-ds-category-list-win",
+                content: '/business/common/screen_ds_category/screen_ds_category_list.html',
+                finish: function () {
+                }
+            });
+        },
+
         screenApply:function (ps){
             console.log('screenApply',ps);
             var btnClass="screen-apply"

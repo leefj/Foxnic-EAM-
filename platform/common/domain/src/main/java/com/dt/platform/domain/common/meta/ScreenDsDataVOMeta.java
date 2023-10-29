@@ -5,13 +5,16 @@ import com.dt.platform.domain.common.ScreenDsDataVO;
 import java.util.List;
 import com.dt.platform.domain.common.ScreenDsData;
 import java.util.Date;
+import com.dt.platform.domain.common.ScreenDsCategory;
+import com.dt.platform.domain.common.ScreenDsDb;
+import com.dt.platform.domain.common.ScreenDsApi;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-27 13:03:14
+ * @since 2023-10-28 08:24:17
  * @sign 7C586718B568CC46789E7D1452EEC4AD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -149,16 +152,6 @@ public class ScreenDsDataVOMeta extends ScreenDsDataMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
-	 * 数据源 , 类型: java.lang.String
-	*/
-	public static final String DS_CODE="dsCode";
-	
-	/**
-	 * 数据源 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,java.lang.String> DS_CODE_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,DS_CODE, java.lang.String.class, "数据源", "数据源", java.lang.String.class, null);
-	
-	/**
 	 * 编号 , 类型: java.lang.String
 	*/
 	public static final String CODE="code";
@@ -179,14 +172,54 @@ public class ScreenDsDataVOMeta extends ScreenDsDataMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
 	
 	/**
-	 * SQL , 类型: java.lang.String
+	 * 来源 , 类型: java.lang.String
 	*/
-	public static final String SQL_TEXT="sqlText";
+	public static final String SOURCE_CODE="sourceCode";
 	
 	/**
-	 * SQL , 类型: java.lang.String
+	 * 来源 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,java.lang.String> SQL_TEXT_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,SQL_TEXT, java.lang.String.class, "SQL", "SQL", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,java.lang.String> SOURCE_CODE_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,SOURCE_CODE, java.lang.String.class, "来源", "来源", java.lang.String.class, null);
+	
+	/**
+	 * 分类 , 类型: java.lang.String
+	*/
+	public static final String CATEGORY_ID="categoryId";
+	
+	/**
+	 * 分类 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,java.lang.String> CATEGORY_ID_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,CATEGORY_ID, java.lang.String.class, "分类", "分类", java.lang.String.class, null);
+	
+	/**
+	 * 数据库 , 类型: java.lang.String
+	*/
+	public static final String DS_CODE="dsCode";
+	
+	/**
+	 * 数据库 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,java.lang.String> DS_CODE_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,DS_CODE, java.lang.String.class, "数据库", "数据库", java.lang.String.class, null);
+	
+	/**
+	 * 内容 , 类型: java.lang.String
+	*/
+	public static final String CT_TEXT="ctText";
+	
+	/**
+	 * 内容 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,java.lang.String> CT_TEXT_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,CT_TEXT, java.lang.String.class, "内容", "内容", java.lang.String.class, null);
+	
+	/**
+	 * 转换脚本 , 类型: java.lang.String
+	*/
+	public static final String RESULT_ACTION="resultAction";
+	
+	/**
+	 * 转换脚本 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,java.lang.String> RESULT_ACTION_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,RESULT_ACTION, java.lang.String.class, "转换脚本", "转换脚本", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -289,9 +322,49 @@ public class ScreenDsDataVOMeta extends ScreenDsDataMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * screenDsCategory , 类型: com.dt.platform.domain.common.ScreenDsCategory
+	*/
+	public static final String SCREEN_DS_CATEGORY="screenDsCategory";
+	
+	/**
+	 * screenDsCategory , 类型: com.dt.platform.domain.common.ScreenDsCategory
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,com.dt.platform.domain.common.ScreenDsCategory> SCREEN_DS_CATEGORY_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,SCREEN_DS_CATEGORY, com.dt.platform.domain.common.ScreenDsCategory.class, "screenDsCategory", "screenDsCategory", com.dt.platform.domain.common.ScreenDsCategory.class, null);
+	
+	/**
+	 * screenDsDb , 类型: com.dt.platform.domain.common.ScreenDsDb
+	*/
+	public static final String SCREEN_DS_DB="screenDsDb";
+	
+	/**
+	 * screenDsDb , 类型: com.dt.platform.domain.common.ScreenDsDb
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,com.dt.platform.domain.common.ScreenDsDb> SCREEN_DS_DB_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,SCREEN_DS_DB, com.dt.platform.domain.common.ScreenDsDb.class, "screenDsDb", "screenDsDb", com.dt.platform.domain.common.ScreenDsDb.class, null);
+	
+	/**
+	 * screenDsApi , 集合类型: LIST , 类型: com.dt.platform.domain.common.ScreenDsApi
+	*/
+	public static final String SCREEN_DS_API="screenDsApi";
+	
+	/**
+	 * screenDsApi , 集合类型: LIST , 类型: com.dt.platform.domain.common.ScreenDsApi
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,com.dt.platform.domain.common.ScreenDsApi> SCREEN_DS_API_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,SCREEN_DS_API, java.util.List.class, "screenDsApi", "screenDsApi", com.dt.platform.domain.common.ScreenDsApi.class, null);
+	
+	/**
+	 * screenDsApiIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String SCREEN_DS_API_IDS="screenDsApiIds";
+	
+	/**
+	 * screenDsApiIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ScreenDsDataVO,java.lang.String> SCREEN_DS_API_IDS_PROP = new BeanProperty(com.dt.platform.domain.common.ScreenDsDataVO.class ,SCREEN_DS_API_IDS, java.util.List.class, "screenDsApiIds", "screenDsApiIds", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , DS_CODE , CODE , NAME , SQL_TEXT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , SOURCE_CODE , CATEGORY_ID , DS_CODE , CT_TEXT , RESULT_ACTION , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SCREEN_DS_CATEGORY , SCREEN_DS_DB , SCREEN_DS_API , SCREEN_DS_API_IDS };
 	
 	/**
 	 * 代理类
@@ -445,17 +518,6 @@ public class ScreenDsDataVOMeta extends ScreenDsDataMeta {
 		}
 		
 		/**
-		 * 设置 数据源
-		 * @param dsCode 数据源
-		 * @return 当前对象
-		*/
-		public ScreenDsData setDsCode(String dsCode) {
-			super.change(DS_CODE,super.getDsCode(),dsCode);
-			super.setDsCode(dsCode);
-			return this;
-		}
-		
-		/**
 		 * 设置 编号
 		 * @param code 编号
 		 * @return 当前对象
@@ -478,13 +540,57 @@ public class ScreenDsDataVOMeta extends ScreenDsDataMeta {
 		}
 		
 		/**
-		 * 设置 SQL
-		 * @param sqlText SQL
+		 * 设置 来源
+		 * @param sourceCode 来源
 		 * @return 当前对象
 		*/
-		public ScreenDsData setSqlText(String sqlText) {
-			super.change(SQL_TEXT,super.getSqlText(),sqlText);
-			super.setSqlText(sqlText);
+		public ScreenDsData setSourceCode(String sourceCode) {
+			super.change(SOURCE_CODE,super.getSourceCode(),sourceCode);
+			super.setSourceCode(sourceCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 分类
+		 * @param categoryId 分类
+		 * @return 当前对象
+		*/
+		public ScreenDsData setCategoryId(String categoryId) {
+			super.change(CATEGORY_ID,super.getCategoryId(),categoryId);
+			super.setCategoryId(categoryId);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据库
+		 * @param dsCode 数据库
+		 * @return 当前对象
+		*/
+		public ScreenDsData setDsCode(String dsCode) {
+			super.change(DS_CODE,super.getDsCode(),dsCode);
+			super.setDsCode(dsCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 内容
+		 * @param ctText 内容
+		 * @return 当前对象
+		*/
+		public ScreenDsData setCtText(String ctText) {
+			super.change(CT_TEXT,super.getCtText(),ctText);
+			super.setCtText(ctText);
+			return this;
+		}
+		
+		/**
+		 * 设置 转换脚本
+		 * @param resultAction 转换脚本
+		 * @return 当前对象
+		*/
+		public ScreenDsData setResultAction(String resultAction) {
+			super.change(RESULT_ACTION,super.getResultAction(),resultAction);
+			super.setResultAction(resultAction);
 			return this;
 		}
 		
@@ -597,6 +703,50 @@ public class ScreenDsDataVOMeta extends ScreenDsDataMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 screenDsCategory
+		 * @param screenDsCategory screenDsCategory
+		 * @return 当前对象
+		*/
+		public ScreenDsData setScreenDsCategory(ScreenDsCategory screenDsCategory) {
+			super.change(SCREEN_DS_CATEGORY,super.getScreenDsCategory(),screenDsCategory);
+			super.setScreenDsCategory(screenDsCategory);
+			return this;
+		}
+		
+		/**
+		 * 设置 screenDsDb
+		 * @param screenDsDb screenDsDb
+		 * @return 当前对象
+		*/
+		public ScreenDsData setScreenDsDb(ScreenDsDb screenDsDb) {
+			super.change(SCREEN_DS_DB,super.getScreenDsDb(),screenDsDb);
+			super.setScreenDsDb(screenDsDb);
+			return this;
+		}
+		
+		/**
+		 * 设置 screenDsApi
+		 * @param screenDsApi screenDsApi
+		 * @return 当前对象
+		*/
+		public ScreenDsData setScreenDsApi(List<ScreenDsApi> screenDsApi) {
+			super.change(SCREEN_DS_API,super.getScreenDsApi(),screenDsApi);
+			super.setScreenDsApi(screenDsApi);
+			return this;
+		}
+		
+		/**
+		 * 设置 screenDsApiIds
+		 * @param screenDsApiIds screenDsApiIds
+		 * @return 当前对象
+		*/
+		public ScreenDsData setScreenDsApiIds(List<String> screenDsApiIds) {
+			super.change(SCREEN_DS_API_IDS,super.getScreenDsApiIds(),screenDsApiIds);
+			super.setScreenDsApiIds(screenDsApiIds);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -613,13 +763,15 @@ public class ScreenDsDataVOMeta extends ScreenDsDataMeta {
 		@Transient
 		public ScreenDsDataVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setSqlText(this.getSqlText());
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
+			inst.setCtText(this.getCtText());
 			inst.setDsCode(this.getDsCode());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
+			inst.setSourceCode(this.getSourceCode());
 			inst.setCreateBy(this.getCreateBy());
+			inst.setResultAction(this.getResultAction());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
@@ -628,19 +780,24 @@ public class ScreenDsDataVOMeta extends ScreenDsDataMeta {
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setCategoryId(this.getCategoryId());
 			if(all) {
+				inst.setScreenDsDb(this.getScreenDsDb());
 				inst.setSearchField(this.getSearchField());
-				inst.setPageIndex(this.getPageIndex());
-				inst.setSortType(this.getSortType());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setScreenDsApi(this.getScreenDsApi());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setScreenDsCategory(this.getScreenDsCategory());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
+				inst.setScreenDsApiIds(this.getScreenDsApiIds());
 			}
 			inst.clearModifies();
 			return inst;

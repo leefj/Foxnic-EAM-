@@ -1,7 +1,7 @@
 /**
  * 大屏 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-27 11:26:26
+ * @since 2023-10-28 07:56:11
  */
 
 
@@ -286,6 +286,15 @@ function ListPage() {
 					break;
 				case 'batch-del':
 					batchDelete(selected);
+					break;
+				case 'tool-db-data':
+					window.pageExt.list.dbData && window.pageExt.list.dbData(selected,obj);
+					break;
+				case 'tool-api-data':
+					window.pageExt.list.apiData && window.pageExt.list.apiData(selected,obj);
+					break;
+				case 'tool-category-data':
+					window.pageExt.list.categoryData && window.pageExt.list.categoryData(selected,obj);
 					break;
 				case 'tool-ds-data':
 					window.pageExt.list.dsData && window.pageExt.list.dsData(selected,obj);
