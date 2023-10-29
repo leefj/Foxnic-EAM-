@@ -35,7 +35,21 @@ public class CommonRelationManager extends RelationManager {
         this.setupDashBoardLayer();
         this.setupDashBoardLayerEle();
 
+        this.setupScreenDsData();
 
+    }
+
+    public void setupScreenDsData() {
+        this.property(ScreenDsDataMeta.SCREEN_DS_CATEGORY_PROP)
+                .using(SysTables.SYS_SCREEN_DS_DATA.CATEGORY_ID).join(SysTables.SYS_SCREEN_DS_CATEGORY.ID);
+
+        this.property(ScreenDsDataMeta.SCREEN_DS_DB_PROP)
+                .using(SysTables.SYS_SCREEN_DS_DATA.DS_CODE).join(SysTables.SYS_SCREEN_DS_DB.ID);
+
+
+        this.property(ScreenDsDataMeta.SCREEN_DS_API_PROP)
+                .using(SysTables.SYS_SCREEN_DS_DATA.ID).join(SysTables.SYS_SCREEN_DS_API_S.DS_DATA_ID)
+            .using(SysTables.SYS_SCREEN_DS_API_S.API_ID).join(SysTables.SYS_SCREEN_DS_API.ID);
     }
     public void setupDashBoardLayer() {
         this.property(DashboardLayerMeta.DASHBOARD_LAYER_ELE_PROP)

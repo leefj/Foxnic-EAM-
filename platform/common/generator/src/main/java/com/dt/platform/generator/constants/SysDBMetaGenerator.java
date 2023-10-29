@@ -53,6 +53,10 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_demo_test")
 					||table.startsWith("sys_screen")
 					||table.startsWith("sys_screen_ds_data")
+					||table.startsWith("sys_screen_ds_db")
+					||table.startsWith("sys_screen_ds_api")
+					||table.startsWith("sys_screen_ds_category")
+					||table.startsWith("sys_screen_ds_api_s")
 					||table.startsWith("sys_screen_project")
 					||table.startsWith("sys_screen_project_data")
 					||table.startsWith("sys_invoke_log")
@@ -72,7 +76,6 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_dashboard_layer")
 					||table.startsWith("sys_dashboard_layer_ele")
 			)
-
 				return true;
 			return false;
 		});

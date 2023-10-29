@@ -2,7 +2,19 @@ package com.dt.platform.common.service.impl;
 
 import javax.annotation.Resource;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.common.service.IScreenDsApiSService;
+import com.dt.platform.common.service.IScreenDsApiService;
+import com.dt.platform.constants.enums.common.ScreenDbTypeEnum;
+import com.dt.platform.constants.enums.common.ScreenSourceEnum;
+import com.dt.platform.domain.common.*;
+import com.dt.platform.domain.common.meta.CodeRuleMeta;
+import com.dt.platform.domain.common.meta.ScreenDsDataMeta;
+import com.github.foxnic.commons.log.Logger;
+import com.github.foxnic.dao.spec.DAOBuilder;
+import com.github.foxnic.sql.meta.DBType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -10,8 +22,6 @@ import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
 
-import com.dt.platform.domain.common.ScreenDsData;
-import com.dt.platform.domain.common.ScreenDsDataVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -54,6 +64,12 @@ public class ScreenDsDataServiceImpl extends SuperService<ScreenDsData> implemen
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
+	@Autowired
+	private IScreenDsApiService screenDsApiService;
+
+	@Autowired
+	private IScreenDsApiSService screenDsApiSService;
+
 	/**
 	 * 获得 DAO 对象
 	 * */
@@ -76,6 +92,17 @@ public class ScreenDsDataServiceImpl extends SuperService<ScreenDsData> implemen
 	@Override
 	public Result insert(ScreenDsData screenDsData,boolean throwsException) {
 		Result r=super.insert(screenDsData,throwsException);
+		if(r.isSuccess()){
+			List<String> idsList=screenDsData.getScreenDsApiIds();
+			if(idsList!=null){
+				for(int i=0;i<idsList.size();i++){
+					ScreenDsApiS ScreenDsApiS=new ScreenDsApiS();
+					ScreenDsApiS.setDsDataId(screenDsData.getId());
+					ScreenDsApiS.setApiId(idsList.get(i));
+					screenDsApiSService.insert(ScreenDsApiS);
+				}
+			}
+		}
 		return r;
 	}
 
@@ -166,6 +193,18 @@ public class ScreenDsDataServiceImpl extends SuperService<ScreenDsData> implemen
 	@Override
 	public Result update(ScreenDsData screenDsData , SaveMode mode,boolean throwsException) {
 		Result r=super.update(screenDsData , mode , throwsException);
+		if(r.isSuccess()){
+			dao.execute("delete from sys_screen_ds_api_s where ds_data_id=?",screenDsData.getId());
+			List<String> idsList=screenDsData.getScreenDsApiIds();
+			if(idsList!=null){
+				for(int i=0;i<idsList.size();i++){
+					ScreenDsApiS ScreenDsApiS=new ScreenDsApiS();
+					ScreenDsApiS.setDsDataId(screenDsData.getId());
+					ScreenDsApiS.setApiId(idsList.get(i));
+					screenDsApiSService.insert(ScreenDsApiS);
+				}
+			}
+		}
 		return r;
 	}
 
@@ -240,19 +279,104 @@ public class ScreenDsDataServiceImpl extends SuperService<ScreenDsData> implemen
 	}
 
 	@Override
-	public JSONArray queryDataByCode(String code) {
-		JSONArray data=new JSONArray();
+	public Result<JSONObject> queryDataByCode(String code) {
+		Result<JSONObject> res=new Result<>();
 		ScreenDsDataVO vo=new ScreenDsDataVO();
 		vo.setCode(code);
-		ScreenDsData d=this.queryEntity(vo);
-		if(d==null){
-			return data;
+		ScreenDsData obj=this.queryEntity(vo);
+		if(obj==null){
+			return ErrorDesc.failureMessage("当前code不存在");
 		}
-		data=dao.query(d.getSqlText()).toJSONArrayWithJSONObject();
-		return data;
+		dao.fill(obj).with(ScreenDsDataMeta.SCREEN_DS_DB).with(ScreenDsDataMeta.SCREEN_DS_API).execute();
+		if(ScreenSourceEnum.DB.code().equals(obj.getSourceCode())){
+			ScreenDsDb db=obj.getScreenDsDb();
+			if (db==null){
+				return ErrorDesc.failureMessage("未正确选择数据库源");
+			}
+			DAO dataDao=null;
+			if("user".equals(db.getType())){
+				String type="";
+				String driverName="";
+				if(ScreenDbTypeEnum.MYSQL.code().equals(db.getDsType())){
+					type="mysql"; //mysql 5.7
+					driverName="com.mysql.jdbc.Driver";
+				}
+				dataDao=createDAO(type,driverName, db.getUri(), db.getUser(), db.getPwd());
+			}else if("system".equals(db.getType())){
+				dataDao=dao;
+			}
+			JSONObject rObj=new JSONObject();
+			rObj.put("data",dataDao.query(obj.getCtText()).toJSONArrayWithJSONObject());
+			res.data(rObj);
+
+		}else if(ScreenSourceEnum.API.code().equals(obj.getSourceCode())){
+			List<ScreenDsApi> apiList=obj.getScreenDsApi();
+			if(apiList==null||apiList.size()==0){
+				return ErrorDesc.failureMessage("未正确配置API源");
+			}
+			JSONObject rObj=new JSONObject();
+			for(int i=0;i<apiList.size();i++){
+				ScreenDsApi api=apiList.get(i);
+				rObj.put(api.getCode(),screenDsApiService.queryDataById(api.getId()));
+			}
+			res.data(rObj);
+		}
+		res.success(true);
+		return res;
 	}
-
-
+	private DAO createDAO(String type,String driverName, String url, String userName, String passwd) {
+		Logger.info("create dao driver:"+driverName+",jdbc:"+url+",userName:"+userName);
+		DAO newDao=null;
+		DBType dbType=DBType.parseFromURL(url);
+		if("oracle".equals(type)){
+			dbType=DBType.ORACLE;
+		}else if("db2".equals(type)){
+			dbType=DBType.DB2;
+		}else if("mysql".equals(type)){
+			dbType=DBType.MYSQL;
+		}else if("sqlserver".equals(type)){
+			dbType=DBType.SQLSVR;
+		}else if("pg".equals(type)){
+			dbType=DBType.PG;
+		}
+		if(dbType==null){
+			dbType=DBType.parseFromURL(url);
+		}
+		if(dbType==null){
+			dbType=DBType.parseFromDriver(url);
+		}
+		if(dbType==null){
+			Logger.info("dbType is null");
+			return null;
+		}
+		Logger.info("dbType:"+dbType.getDAOType());
+		DruidDataSource dataSource = new DruidDataSource();
+		dataSource.setDriverClassName(driverName);
+		dataSource.setUrl(url);
+		dataSource.setUsername(userName);
+		dataSource.setPassword(passwd);
+		dataSource.setMaxActive(2);
+		dataSource.setPhyMaxUseCount(2L);
+		dataSource.setPhyMaxUseCount(2L);
+		dataSource.setMaxWait(3000L);
+		dataSource.setConnectionErrorRetryAttempts(2);
+		dataSource.setBreakAfterAcquireFailure(true);
+		if(dbType==DBType.ORACLE) {
+			// mysql 关闭，Oracle 建议开启
+			dataSource.setPoolPreparedStatements(true);
+		}
+		DAOBuilder builder=new DAOBuilder();
+		try {
+			newDao=builder.datasource(dataSource).build();
+			newDao.setPrintSQL(true);
+			newDao.setPrintSQLSimple(true);
+			newDao.setPrintSQLCallstack(false);
+			return newDao;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	/**
 	 * 分页查询实体集，字符串使用模糊匹配，非字符串使用精确匹配
 	 *

@@ -1,7 +1,7 @@
 /**
  * 数据源 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-27 13:03:16
+ * @since 2023-10-28 08:24:18
  */
 
 
@@ -85,11 +85,14 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'dsCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据源'), templet:function (d){ return templet('dsCode',fox.getEnumText(RADIO_DSCODE_DATA,d.dsCode,'','dsCode'),d);}}
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编号') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'sourceCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源'), templet:function (d){ return templet('sourceCode',fox.getEnumText(RADIO_SOURCECODE_DATA,d.sourceCode,'','sourceCode'),d);}}
+					,{ field: 'categoryId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分类'), templet: function (d) { return templet('categoryId' ,fox.joinLabel(d.screenDsCategory,"categoryName",',','','categoryId'),d);}}
+					,{ field: 'dsCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库'), templet: function (d) { return templet('dsCode' ,fox.joinLabel(d.screenDsDb,"name",',','','dsCode'),d);}}
+					,{ field: 'resultAction', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('转换脚本') , templet: function (d) { return templet('resultAction',d.resultAction,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'screenDsApiIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('API列表'), templet: function (d) { return templet('screenDsApiIds' ,fox.joinLabel(d.screenDsApi,"name",',','','screenDsApiIds'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -160,9 +163,10 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.dsCode={ inputType:"radio_box", value: getSelectedValue("#dsCode","value"), label:getSelectedValue("#dsCode","nameStr") };
 		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.categoryId={ inputType:"select_box", value: getSelectedValue("#categoryId","value") ,fillBy:["screenDsCategory"]  , label:getSelectedValue("#categoryId","nameStr") };
+		value.dsCode={ inputType:"select_box", value: getSelectedValue("#dsCode","value") ,fillBy:["screenDsDb"]  , label:getSelectedValue("#dsCode","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -209,26 +213,63 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
-		//渲染 dsCode 搜索框
+		//渲染 categoryId 下拉字段
+		fox.renderSelectBox({
+			el: "categoryId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("categoryId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "categoryName", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("categoryId",{data:data[i],name:data[i].categoryName,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].categoryName,value:data[i].id});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 dsCode 下拉字段
 		fox.renderSelectBox({
 			el: "dsCode",
-			size: "small",
 			radio: true,
+			size: "small",
+			filterable: true,
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("dsCode",data.arr,data.change,data.isAdd);
 				},1);
 			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
-			transform:function(data) {
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
 					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("dsCode",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+						opts.push(window.pageExt.list.selectBoxDataTransform("dsCode",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
 					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
 					}
 				}
 				return opts;

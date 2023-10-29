@@ -176,7 +176,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('moreActionMenu',items,data,it);
             return items;
         },
-
         test:function (data){
             console.log('test',data);
             var btnClass="test-button"
@@ -195,8 +194,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     top.layer.msg(r.message, {time: 1000});
                 }
             }, {delayLoading: 1000, elms: [btn]});
-
-
         },
         /**
          * 末尾执行

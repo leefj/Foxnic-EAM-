@@ -2,7 +2,7 @@
 /**
  * 大屏 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-27 11:26:26
+ * @since 2023-10-28 07:56:11
  */
  -->
  <!DOCTYPE html>
@@ -88,7 +88,10 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('sys_screen:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
-        <button id="ds-data"  class="layui-btn icon-btn layui-btn-sm  ds-button " lay-event="tool-ds-data"><span th:text="${lang.translate('数据源','','cmp:table.button')}">数据源</span></button>
+        <button id="db-data"  class="layui-btn icon-btn layui-btn-sm  db-button " lay-event="tool-db-data"><span th:text="${lang.translate('数据库源','','cmp:table.button')}">数据库源</span></button>
+        <button id="api-data"  class="layui-btn icon-btn layui-btn-sm  api-button " lay-event="tool-api-data"><span th:text="${lang.translate('API源','','cmp:table.button')}">API源</span></button>
+        <button id="category-data"  class="layui-btn icon-btn layui-btn-sm  category-button " lay-event="tool-category-data"><span th:text="${lang.translate('数据分类','','cmp:table.button')}">数据分类</span></button>
+        <button id="ds-data"  class="layui-btn icon-btn layui-btn-sm  ds-button " lay-event="tool-ds-data"><span th:text="${lang.translate('数据列表','','cmp:table.button')}">数据列表</span></button>
     </div>
 </script>
 

@@ -3,6 +3,10 @@ package com.dt.platform.generator.module.common;
 import com.dt.platform.common.page.ScreenPageController;
 import com.dt.platform.constants.db.SysTables;
 import com.dt.platform.constants.enums.common.ScreenStatusEnum;
+import com.dt.platform.domain.common.FormDataExt;
+import com.dt.platform.domain.common.ScreenDsApi;
+import com.dt.platform.domain.common.ScreenDsCategory;
+import com.dt.platform.domain.common.ScreenDsDb;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.common.ScreenServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
@@ -15,6 +19,7 @@ public class ScreenGtr extends BaseCodeGenerator {
 
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
+
 
         cfg.view().field(SysTables.SYS_SCREEN.ID).basic().hidden(true);
 
@@ -44,7 +49,12 @@ public class ScreenGtr extends BaseCodeGenerator {
         cfg.view().field(SysTables.SYS_SCREEN.STATUS).form().radioBox().enumType(ScreenStatusEnum.class);
         cfg.view().field(SysTables.SYS_SCREEN.JSON_DATA).form().textArea().height(500);
 
-        cfg.view().list().addToolButton("数据源","dsData","ds-button");
+
+        cfg.view().list().addToolButton("数据库源","dbData","db-button");
+        cfg.view().list().addToolButton("API源","apiData","api-button");
+        cfg.view().list().addToolButton("数据分类","categoryData","category-button");
+        cfg.view().list().addToolButton("数据列表","dsData","ds-button");
+
         cfg.view().list().operationColumn().addActionButton("设计","screenDesinger","screen-designer-button");
         cfg.view().list().operationColumn().addActionButton("预览","screenView","screen-view-button");
         cfg.view().list().operationColumn().addActionButton("应用","screenApply","screen-apply");

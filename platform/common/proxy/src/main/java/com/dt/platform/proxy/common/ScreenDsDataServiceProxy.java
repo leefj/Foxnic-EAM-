@@ -80,18 +80,15 @@ public interface ScreenDsDataServiceProxy {
      */
     public static final String QUERY_LIST = API_PREFIX + "query-list";
 
-
-
     /**
      * 分页查询数据源
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
-
     /**
      * 查询数据源
      */
-    public static final String QUERY_DATA_BY_CODE= API_PREFIX + "query-data-by-code";
+    public static final String QUERY_DATA_BY_CODE = API_PREFIX + "query-data-by-code";
 
     /**
      * 添加数据源
@@ -141,12 +138,11 @@ public interface ScreenDsDataServiceProxy {
     @RequestMapping(ScreenDsDataServiceProxy.QUERY_LIST)
     Result<List<ScreenDsData>> queryList(@RequestParam(name = "sample") ScreenDsDataVO sample);
 
-
     /**
      * 查询数据源
      */
     @RequestMapping(ScreenDsDataServiceProxy.QUERY_DATA_BY_CODE)
-    Result<JSONArray> queryDataByCode(String code);
+    Result<JSONArray> queryDataByCode(@RequestParam(name = "code") String code);
 
     /**
      * 分页查询数据源

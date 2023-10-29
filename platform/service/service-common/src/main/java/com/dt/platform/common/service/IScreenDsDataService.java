@@ -1,6 +1,7 @@
 package com.dt.platform.common.service;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
@@ -228,7 +229,7 @@ public interface IScreenDsDataService extends  ISimpleIdService<ScreenDsData,Str
 	List<ScreenDsData> queryList(ScreenDsData sample,OrderBy orderBy);
 
 
-	JSONArray queryDataByCode(String code);
+	Result<JSONObject> queryDataByCode(String code);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
