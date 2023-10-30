@@ -15,10 +15,13 @@ import com.dt.platform.domain.common.meta.ScreenDsDataMeta;
 import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.spec.DAOBuilder;
 import com.github.foxnic.sql.meta.DBType;
+import com.graphbuilder.math.func.LgFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.commons.collection.MapUtil;
+
+import java.sql.SQLException;
 import java.util.Arrays;
 
 
@@ -308,7 +311,20 @@ public class ScreenDsDataServiceImpl extends SuperService<ScreenDsData> implemen
 			JSONObject rObj=new JSONObject();
 			rObj.put("data",dataDao.query(obj.getCtText()).toJSONArrayWithJSONObject());
 			res.data(rObj);
-
+//			if("user".equals(db.getType())){
+//				try {
+//					if(dataDao.getDataSource().getConnection()!=null){
+//						if (dataDao.getDataSource().getConnection().isClosed()){
+//							Logger.info("already close connect!");
+//						}else{
+//							Logger.info("to close connect!");
+//							dataDao.getDataSource().getConnection().close();
+//						}
+//					}
+//				} catch (SQLException throwables) {
+//					throwables.printStackTrace();
+//				}
+//			}
 		}else if(ScreenSourceEnum.API.code().equals(obj.getSourceCode())){
 			List<ScreenDsApi> apiList=obj.getScreenDsApi();
 			if(apiList==null||apiList.size()==0){
