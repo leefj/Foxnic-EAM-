@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-28 07:56:46
+ * @since 2023-10-30 20:09:04
  */
 
 
@@ -401,9 +401,6 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
-			}
-			else if (layEvent === 'test') { // 测试
-				window.pageExt.list.test(data,this);
 			}
 			
 		});
