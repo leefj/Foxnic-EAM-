@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.commons.network.HttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import java.io.InputStream;
+
 import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
@@ -125,22 +127,28 @@ public class ScreenDsApiServiceImpl extends SuperService<ScreenDsApi> implements
 		String reqType=api.getReqType();
 		String url=api.getUrl();
 		ScreenApiHttpClient client=new ScreenApiHttpClient();
+		Logger.info("url:"+url);
+		Logger.info("param:"+paramMap);
+		Logger.info("header:"+headerMap);
+		String reqRes="none";
 		if("get".equals(reqType)){
 			try {
-				String reqRes=client.get(url,paramMap,headerMap,HttpClient.UTF_8);
-				System.out.println("reqRes:"+reqRes);
+				reqRes=client.get(url,paramMap,headerMap,HttpClient.UTF_8);
+				resObj.put("result",reqRes);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else if("post".equals(reqType)){
 			try {
-				String reqRes="";
 				if("param".equals(postMethod)){
+					Logger.info("post method:post");
 					reqRes=client.post(url,paramMap,headerMap,HttpClient.UTF_8);
 				}else if("json".equals(postMethod)){
 					if(StringUtil.isBlank(body)){
+						Logger.info("post method:post");
 						reqRes=client.post(url,paramMap,headerMap,HttpClient.UTF_8);
 					}else{
+						Logger.info("post method:postMap");
 						reqRes=client.postMap(url,body,headerMap);
 					}
 				}
@@ -149,6 +157,8 @@ public class ScreenDsApiServiceImpl extends SuperService<ScreenDsApi> implements
 				e.printStackTrace();
 			}
 		}
+		Logger.info("reqRes:"+reqRes);
+		resObj.put("result",reqRes);
 		res.data(resObj);
 		return res;
 	}
