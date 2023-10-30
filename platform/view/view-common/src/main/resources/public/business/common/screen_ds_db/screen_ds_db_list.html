@@ -2,7 +2,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-28 07:56:46
+ * @since 2023-10-30 20:09:03
  */
  -->
  <!DOCTYPE html>
@@ -98,7 +98,6 @@
 
     <button th:if="${perm.checkAuth('sys_screen_ds_db:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
-    <button class="layui-btn layui-btn-xs  test-button " lay-event="test" data-id="{{d.id}}"><span th:text="${lang.translate('测试','','cmp:table.ops')}">测试</span></button>
 
 </script>
 

@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 sys_screen_ds_db 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-28 07:56:44
+ * @since 2023-10-30 20:09:02
  * @sign 1DF2C582AEC754E6D4DB593BC81CC9F3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -40,43 +40,43 @@ public class ScreenDsDb extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1")
 	private String id;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "系统当前数据库")
 	private String name;
 	
 	/**
 	 * 类型：system|user
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "system|user")
+	@ApiModelProperty(required = false,value="类型" , notes = "system|user" , example = "system")
 	private String type;
 	
 	/**
 	 * 数据库类型：数据库类型
 	*/
-	@ApiModelProperty(required = false,value="数据库类型" , notes = "数据库类型")
+	@ApiModelProperty(required = false,value="数据库类型" , notes = "数据库类型" , example = "mysql")
 	private String dsType;
 	
 	/**
 	 * 账户：账户
 	*/
-	@ApiModelProperty(required = false,value="账户" , notes = "账户")
+	@ApiModelProperty(required = false,value="账户" , notes = "账户" , example = "null")
 	private String user;
 	
 	/**
 	 * 密码：密码
 	*/
-	@ApiModelProperty(required = false,value="密码" , notes = "密码")
+	@ApiModelProperty(required = false,value="密码" , notes = "密码" , example = "null")
 	private String pwd;
 	
 	/**
 	 * uri：uri
 	*/
-	@ApiModelProperty(required = false,value="uri" , notes = "uri")
+	@ApiModelProperty(required = false,value="uri" , notes = "uri" , example = "null")
 	private String uri;
 	
 	/**
@@ -88,13 +88,13 @@ public class ScreenDsDb extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-10-28 08:19:54")
 	private Date createTime;
 	
 	/**
@@ -112,7 +112,7 @@ public class ScreenDsDb extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -133,13 +133,13 @@ public class ScreenDsDb extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = false,value="version" , notes = "version")
+	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**

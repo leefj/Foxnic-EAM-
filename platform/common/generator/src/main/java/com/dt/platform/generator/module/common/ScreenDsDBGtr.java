@@ -66,7 +66,7 @@ public class ScreenDsDBGtr extends BaseCodeGenerator {
         );
 
 
-        cfg.view().list().operationColumn().addActionButton("测试","test","test-button");
+      //  cfg.view().list().operationColumn().addActionButton("测试","test","test-button");
 
         cfg.view().list().disableBatchDelete();
 

@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库VO类型
  * <p>数据库 , 数据表 sys_screen_ds_db 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-28 07:56:44
+ * @since 2023-10-30 20:09:02
  * @sign AA034C512D92384DF645D153B1AA620D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
