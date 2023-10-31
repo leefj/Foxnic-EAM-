@@ -14,7 +14,15 @@ help(){
   echo "kj_restart=restartJob"
   echo "kt_restart=restartTengine"
   echo "tdb=mysql foxnic"
-  echo "tdb_none=mysql "
+  echo "tdb_none=mysql"
+  echo ""
+  echo "notice:restart all services"
+  echo " step 1:restart db"
+  echo " step 2:restart app"
+  echo " step 3:restart bpm"
+  echo " step 3:restart tengine"
+  echo ""
+  echo ""
   return 0
 }
 checkService(){
@@ -54,7 +62,7 @@ checkService(){
 function menu {
 	clear
 	echo ""
-	echo -e "\t\t\t系统维护界面-v2.0\n"
+	echo -e "\t\t\t系统维护界面-v3.0\n"
 	echo -e "\t1. 启动应用程序"
 	echo -e "\t2. 启动流程引擎"
 	echo -e "\t3. 启动Tengine"
@@ -64,7 +72,7 @@ function menu {
 	echo -e "\t7. 重启应用程序,ka_restart"
 	echo -e "\t8. 重启流程引擎,kb_restart"
 	echo -e "\t9. 重启Tengine,kt_restart"
-	echo -e "\tm. 重启Mysql数据库"
+	echo -e "\tm. 重启MySQL数据库"
 	echo -e "\tx. 重启所有服务"
 	echo -e "\tc. 检查所有服务"
 	echo -e "\th. 帮助"
@@ -73,6 +81,10 @@ function menu {
 	read -n 1 option
 }
 function restartAllService(){
+  stopMysql
+  sleep 2
+  startMysql
+  sleep 6
   cd $app_dir
   echo "";
   sh restartApp.sh
@@ -80,6 +92,7 @@ function restartAllService(){
   sh restartBpm.sh
   echo "";
   sh restartTengine.sh
+  echo "All service restart finish"
   return 0
 }
 function stopMysql(){
