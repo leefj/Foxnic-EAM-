@@ -1,32 +1,33 @@
 #!/bin/sh
-#sh deployRedis.sh /app/app/redis /app/app/redis/redis-5.0.14.tar.gz.1
+#sh deployRedis.sh /app/app /app/app/redis/redis-5.0.14.tar.gz.1
 #port 16379
 ########################################
 cur_dir=$(cd `dirname $0`; pwd)
 appdir=$cur_dir/../redis
 user=root
-port=16379
-soft=$appdir/redis-5.0.14.tar.gz.1
+port=26379
+soft_file=$2
 if [[ -n $1 ]];then
-	appdir=$1
+	rootdir=$1
+	appdir=$rootdir/redis
 fi
-if [[ -n $2 ]];then
-	soft=$2
+if [[ ! -f $soft_file ]];then
+  echo "soft_file not exist,soft:$soft_file"
+  exit 1
 fi
 cd /tmp
-if [[ ! -f $soft ]];then
-	echo "soft is not exist,"
-	exit 1
-fi
 c1=`id $user|wc -l`
 if [[ $c1 -eq 0 ]];then
 	echo "deploy error,user:$user not exist"
 	exit 1
 fi
 yum -y install gcc lsof psmisc unzip telnet net-tools wget
+
 mkdir -p $appdir
 mkdir -p $appdir/{data,logs,etc,run,bin}
 sn=`date +%s`
+cd $appdir
+soft=`ls -rtl |grep redis|grep tar.gz|awk '{print $NF}'`
 mkdir redis_$sn
 cp $soft redis_$sn
 cd redis_$sn
@@ -64,11 +65,13 @@ chmod +x /etc/rc.d/rc.local
 sed -i '/redis/d' /etc/rc.d/rc.local
 sed -i '/never/d' /etc/rc.d/rc.local
 echo "echo never > /sys/kernel/mm/transparent_hugepage/enabled">>/etc/rc.d/rc.local
+echo "sleep 5">>/etc/rc.d/rc.local
 if [[ $user == "root" ]];then
   echo "nohup $appdir/bin/redis-server $appdir/etc/redis.conf &">>/etc/rc.d/rc.local
   nohup $appdir/bin/redis-server $appdir/etc/redis.conf &
 else
   chown -R $user:$user $appdir
+
   echo "su - $user -c \"cd /tmp;nohup $appdir/bin/redis-server $appdir/etc/redis.conf &\"">>/etc/rc.d/rc.local
   su - $user -c "cd /tmp;nohup $appdir/bin/redis-server $appdir/etc/redis.conf &"
 fi

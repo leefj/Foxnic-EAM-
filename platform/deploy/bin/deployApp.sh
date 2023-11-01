@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/08/29"
+modify_date="2023/11/01"
 ####################################################################################
 # run:
 #   sh deployApp.sh
@@ -487,8 +487,12 @@ function installApp(){
 	chmod +x /etc/rc.d/rc.local
 	echo "sleep 15">>/etc/rc.d/rc.local
 	sed -i '/startAll/d' /etc/rc.d/rc.local
+	sed -i '/startApp/d' /etc/rc.d/rc.local
+	sed -i '/startBpm/d' /etc/rc.d/rc.local
 	echo "#to start app">>/etc/rc.d/rc.local
-	echo "cd $app_dir;sh startAll.sh">>/etc/rc.d/rc.local
+	echo "cd $app_dir;sh startApp.sh">>/etc/rc.d/rc.local
+	echo "cd $app_dir;sh startBpm.sh">>/etc/rc.d/rc.local
+	echo "sleep 5">>/etc/rc.d/rc.local
 }
 function stopFirewalld(){
   btcnt=`ps -ef|grep python|grep BT|grep -v grep|wc -l`
@@ -515,21 +519,18 @@ function addCrontabTask(){
   crontab -l
   return 0
 }
+
 function installTengine(){
   cd $app_dir/bin
-  sh deployTengine.sh
-  return 0
-}
-function installNginx(){
-  cd $app_dir/bin
-  sh deployNginx.sh
+  sh deployTengine.sh $base_dir/app $base_dir/app/tengine/tengine-3.0.0.tar.gz.1
   return 0
 }
 function installRedis(){
   cd $app_dir/bin
-  sh deployRedis.sh
+  sh deployRedis.sh $base_dir/app $base_dir/app/redis/redis-5.0.14.tar.gz.1
   return 0
 }
+
 function adjustParameter(){
   #redis
   echo "vm.overcommit_memory = 1 to sysctl.conf"
@@ -571,7 +572,7 @@ echo "start to adjust linux parameter"
 adjustParameter
 total_mem=`free -m|grep Mem|awk '{print $2}'`
 if [[ $total_mem -lt 3500 ]];then
-  echo "your system memory:${total_mem}m,too lower!"
+  echo "your system memory:${total_mem}m,suggest 8GB or more of memory"
   exit 1
 fi
 cd $soft_base_dir
@@ -734,7 +735,8 @@ if [[ $java_soft_remote -eq 1 ]];then
     exit 1
   fi
 fi
-#################################################################### verify soft finish
+
+
 #################################################################### install start
 ## install mysql
 installMysql
@@ -754,15 +756,33 @@ else
 	echo "mysql install success,password:$db_pwd"
 fi
 
-## install app
+# install app
 installApp
-# installApp first,start to install nginx
-#installNginx
+
+# install Redis
+installRedis
+cd $app_dir
+sh restartRedis.sh
+
 # installApp first,start to install Tengine
 installTengine
-# installApp first,start to install redis
-installRedis
-## stop Firewalld
+cd $app_dir
+sh restartTengine.sh
+
+cd $app_dir
+sh restartApp.sh
+sh restartBpm.sh
+
+#重新改rc.d/rc.local
+sed -i '/sleep/d' /etc/rc.d/rc.local
+sed -i '/redis/d' /etc/rc.d/rc.local
+sed -i '/nginx/d' /etc/rc.d/rc.local
+sed -i '/startApp/d' /etc/rc.d/rc.local
+sed -i '/startJob/d' /etc/rc.d/rc.local
+sed -i '/startBpm/d' /etc/rc.d/rc.local
+echo "#to start all">>/etc/rc.d/rc.local
+echo "cd $app_dir;sh startAll.sh">>/etc/rc.d/rc.local
+#################################### stop Firewalld ####################################
 #process firewalld
 which firewall-cmd
 firewall_cmd_r=$?
@@ -772,12 +792,11 @@ if [[ $firewall_cmd_r -eq 0 ]];then
   firewall-cmd --zone=public --add-port=$app_port/tcp --permanent
 fi
 stopFirewalld
-## start app
-cd $app_dir
-sh startAll.sh
-# start to add crontab
+
+####################################  start to add crontab ####################################
 addCrontabTask
-########## setting environment
+
+####################################  setting environment ####################################
 tmpdate=`date`
 echo "$tmpdate,first setup time record!">$base_dir/app/bin/setupApp.log
 echo "#for lank app quick command list:">>~/.bash_profile
@@ -803,6 +822,8 @@ if [[ ! -f "/sbin/k" ]];then
   echo "exit 0">>/sbin/k
   chmod +x /sbin/k
 fi
+
+#################################### output doc  ####################################
 echo "Please wait about 25 seconds,Application is starting.."
 sleep 10
 echo "------------------------------- install result -----------------------------------------"
@@ -817,7 +838,6 @@ echo "Login info password:123456"
 echo "Mysql info port=$db_port"
 echo "Mysql info user=$db_user"
 echo "Mysql info password=$db_pwd"
-
 echo "Quick command list:"
 echo "k:simple maintenance window"
 echo "g:  go to $base_dir/app"
@@ -825,10 +845,8 @@ echo "ga: go to $base_dir/app/app"
 echo "gb: go to $base_dir/app/bpm"
 echo "gj: go to $base_dir/app/job"
 echo "gt: go to $base_dir/app/tengine"
-
 echo "talog: go to view tail app log"
 echo "tblog: go to view tail bpm log"
-
 echo "ka_restart:restartApp"
 echo "kb_restart:restartBpm"
 echo "kj_restart:restartJob"
