@@ -6,6 +6,7 @@
 #	support os version:Redhat 7.9
 #
 #	sh deploy_mysql8_cmd.sh mysql-8.0.35-linux-glibc2.17-x86_64.tar /app P@ssw0rd654321
+# wget https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.34-linux-glibc2.17-x86_64.tar.xz
 ##########################################################################################
 mysqlsoft="mysql-8.0.35-linux-glibc2.17-x86_64.tar"
 mysqldir="/db"
@@ -294,6 +295,7 @@ chown $user:$user $mycnf
 chown $user:$user $mysqldir/mysql
 chown $user:$user $mysqldir/mysql_data
 sed -i '/mysql/d' /etc/rc.d/rc.local
+echo "sleep 5">>/etc/rc.d/rc.local
 echo "su - $user -c \"nohup $mysqldir/mysql/bin/mysqld_safe &\"">> /etc/rc.d/rc.local
 echo "PATH=$mysqldir/mysql/bin:\$PATH:\$HOME/bin">>/root/.bash_profile
 echo "export PATH">>/root/.bash_profile

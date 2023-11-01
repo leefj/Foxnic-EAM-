@@ -10,6 +10,7 @@ echo "to stop Job"
 sh stopJob.sh
 echo "to stop Nginx"
 sh stopNginx.sh
-
+echo "to stop Redis"
+sh stopRedis.sh
 exit 0
 

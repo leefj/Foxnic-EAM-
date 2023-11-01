@@ -2,6 +2,9 @@
 cur_dir=$(cd `dirname $0`; pwd)
 cd $cur_dir
 sleep 1
+echo "to redis App"
+sh startRedis.sh
+sleep 3
 echo "to start App"
 sh startApp.sh
 sleep 1
