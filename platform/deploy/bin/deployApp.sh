@@ -410,7 +410,6 @@ function installApp(){
 	MYSQL_ADMIN=$mysql_dir/mysql/bin/mysqladmin
 	echo "#########start to create database"
 	echo "CREATE DATABASE $db_name DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;" > $db_create_db_file
-	echo "CREATE DATABASE ${db_name}_upgrade DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;" >> $db_create_db_file
 	db_cnt=`$MYSQL -u$db_user -p$db_pwd -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME -e 'show databases;' 2>/dev/null|grep $db_name|wc -l `
 	if [[ $db_cnt -gt 0 ]];then
 	  echo "Error|db:$db_name exist!"
@@ -525,6 +524,7 @@ function installTengine(){
   sh deployTengine.sh $base_dir/app $base_dir/app/tengine/tengine-3.0.0.tar.gz.1
   return 0
 }
+
 function installRedis(){
   cd $app_dir/bin
   sh deployRedis.sh $base_dir/app $base_dir/app/redis/redis-5.0.14.tar.gz.1
@@ -567,14 +567,43 @@ function adjustParameter(){
 }
 ##########################################################################################
 ################################# Install Main Run Start #################################
-#################################################################### download mysql start
+
+## 通过测试安装几个常用的包来判断yum是否正常安装
+yum -y install lsof net-tools traceroute
+lsofCnt=`rpm -qa|grep lsof|wc -l`
+if [[ $lsofCnt -eq 0 ]];then
+  echo "yum configuration is not working properly, please configure it"
+  exit 1
+fi
+ntCnt=`rpm -qa|grep net-tools|wc -l`
+if [[ $ntCnt -eq 0 ]];then
+  echo "yum configuration is not working properly, please configure it"
+  exit 1
+fi
+trCnt=`rpm -qa|grep traceroute|wc -l`
+if [[ $trCnt -eq 0 ]];then
+  echo "yum configuration is not working properly, please configure it"
+  exit 1
+fi
+
+## 检查操作系统
+osname=`uname`
+if [[ $osname == "Linux" ]];then
+  echo "os is right"
+else
+  echo "please use Linux to install,your os is $osname"
+  exit 1
+fi
+
+## 检查内存
 echo "start to adjust linux parameter"
 adjustParameter
 total_mem=`free -m|grep Mem|awk '{print $2}'`
 if [[ $total_mem -lt 3500 ]];then
-  echo "your system memory:${total_mem}m,suggest 8GB or more of memory"
+  echo "your system memory:${total_mem}m,suggest 8GB or more of memory. reason is:host running process include(2 jars,1 mysql,1 tengine,1 redis)"
   exit 1
 fi
+## download mysql start
 cd $soft_base_dir
 # java_soft_md5=913c45332b22860b096217d9952c2ea4
 # mysql_soft_md5=423915249cc67bbfa75223d9753cde77
@@ -781,6 +810,7 @@ sed -i '/startApp/d' /etc/rc.d/rc.local
 sed -i '/startJob/d' /etc/rc.d/rc.local
 sed -i '/startBpm/d' /etc/rc.d/rc.local
 echo "#to start all">>/etc/rc.d/rc.local
+echo "sleep 8">>/etc/rc.d/rc.local
 echo "cd $app_dir;sh startAll.sh">>/etc/rc.d/rc.local
 #################################### stop Firewalld ####################################
 #process firewalld

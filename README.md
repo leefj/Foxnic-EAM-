@@ -111,7 +111,7 @@
 #安装命令
 curl -s 'http://resource.rainbooow.com/deploy.sh'|bash
 或者
-curl -s 'https://gitee.com/lank/eam/raw/2.6.0/platform/deploy/bin/deployApp.sh'|bash
+curl -s 'https://gitee.com/lank/eam/raw/2.8.0/platform/deploy/bin/deployApp.sh'|bash
 ```
 ### 安装包
 - https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.42-linux-glibc2.12-x86_64.tar.gz
