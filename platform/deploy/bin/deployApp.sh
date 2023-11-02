@@ -44,6 +44,7 @@ function qa(){
   echo "2、请检查外部或内部防火墙、网络策略是否开通"
   echo "3、检查端口是否正常，默认应用端口:$app_port,流程引擎端口:$bpm_port 命令：netstat -ant|grep LISTEN"
   echo "4、检查应用日志，看启动是否报错"
+  echo "******* 相关使用手册、维护手册、部署手册见百度网盘,网盘地址在git:https://gitee.com/lank/eam *****"
   return 0
 }
 qa
@@ -572,17 +573,17 @@ function adjustParameter(){
 yum -y install lsof net-tools traceroute
 lsofCnt=`rpm -qa|grep lsof|wc -l`
 if [[ $lsofCnt -eq 0 ]];then
-  echo "yum configuration is not working properly, please configure it"
+  echo "yum configuration is not working properly, please baidu how to configure it"
   exit 1
 fi
 ntCnt=`rpm -qa|grep net-tools|wc -l`
 if [[ $ntCnt -eq 0 ]];then
-  echo "yum configuration is not working properly, please configure it"
+  echo "yum configuration is not working properly, please baidu how to configure it"
   exit 1
 fi
 trCnt=`rpm -qa|grep traceroute|wc -l`
 if [[ $trCnt -eq 0 ]];then
-  echo "yum configuration is not working properly, please configure it"
+  echo "yum configuration is not working properly, please baidu how to configure it"
   exit 1
 fi
 
@@ -591,7 +592,10 @@ osname=`uname`
 if [[ $osname == "Linux" ]];then
   echo "os is right"
 else
-  echo "please use Linux to install,your os is $osname"
+  echo "please use Linux to install,your os is $osname,now support redhat 7.9|6.0CentOS 7.9 or 8.0,other OS not support"
+  echo "now support redhat 7.9,6.0"
+  echo "now support centos 7.9,6.0"
+  echo "other os not support!"
   exit 1
 fi
 
@@ -686,7 +690,7 @@ fi
 which $JAVA>/dev/null
 java_command=$?
 if [[ $java_command -eq 1 ]];then
-	echo "install error,java command:$JAVA not exist";
+	echo "install error,java command:$JAVA not exist,please install java 1.8.200+(just support java 1.8) with yum command";
 	clearTips
 	exit 1
 fi
@@ -733,7 +737,7 @@ fi
 touch $app_soft_name
 app_size=`du -sm $app_soft_name|awk '{print $1}'`
 if [[ $app_size -lt 80 ]];then
-  echo "app soft file maybe not right!"
+  echo "app soft file maybe not right!,you can manually download from http://resource.rainbooow.com/upload/app_release_last.tar.gz"
   exit 1
 fi
 #################################################################### download app finish
@@ -854,7 +858,7 @@ if [[ ! -f "/sbin/k" ]];then
 fi
 
 #################################### output doc  ####################################
-echo "Please wait about 25 seconds,Application is starting.."
+echo "Please wait about 30 seconds,application is starting.."
 sleep 10
 echo "------------------------------- install result -----------------------------------------"
 echo "Install finish."
@@ -882,6 +886,7 @@ echo "kb_restart:restartBpm"
 echo "kj_restart:restartJob"
 echo "kt_restart:restartTengine"
 echo "tdb: go to connect to database"
+echo "******* 相关使用手册、维护手册、部署手册见百度网盘,网盘地址在git:https://gitee.com/lank/eam *****"
 echo "---------------------------------------------- end ---------------------------------------"
 qa
 exit 0
