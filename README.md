@@ -50,7 +50,7 @@
 
 #### 最新编译后的包下载(为开发同步版本，并非发布版本)
 - 1、存储过程:[下载SQL](http://foxnicweb.com/docs/chapters/base/1.1/NextVal.zip)
-- 2、SQL文件:(每日更新):http://eam-demo.rainbooow.com/upload/sql.tar.gz   ( **必须使用 source 命令导入！！！** )
+- 2、SQL文件:(每日更新):自行从一键安装部署中提取  ( **必须使用 source 命令导入！！！** )
 
 
 # 所有文档说明如下
