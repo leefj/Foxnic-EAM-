@@ -48,7 +48,7 @@ spring:
         # 连接池中最多支持多少个活动会话
         maxActive: 128
         # 程序向连接池中请求连接时,超过maxWait的值后，认为本次请求失败，即连接池没有可用连接，单位毫秒，设置-1时表示无限等待
-        maxWait: 3000
+        maxWait: 30000
         # 池中某个连接的空闲时长达到 N 毫秒后, 连接池在下次检查空闲连接时，将回收该连接,要小于防火墙超时设置
         minEvictableIdleTimeMillis: 30000
         # 检查空闲连接的频率，单位毫秒, 非正整数时表示不进行检查程序没有close连接且空闲时长超过 minEvictableIdleTimeMillis,则会执行validationQuery指定的SQL,以保证该程序连接不会池kill掉,其范围不超过minIdle指定的连接个数。

@@ -8,6 +8,6 @@ sh restartBpm.sh
 sleep 1
 sh restartJob.sh
 sleep 1
-sh restartNginx.sh
+sh restartTengine.sh
 exit 0
 
