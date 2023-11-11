@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/11/01"
+modify_date="2023/11/09"
 ####################################################################################
 # run:
 #   sh deployApp.sh
@@ -789,6 +789,7 @@ else
 	echo "mysql install success,password:$db_pwd"
 fi
 
+sleep 5
 # install app
 installApp
 
@@ -814,7 +815,7 @@ sed -i '/startApp/d' /etc/rc.d/rc.local
 sed -i '/startJob/d' /etc/rc.d/rc.local
 sed -i '/startBpm/d' /etc/rc.d/rc.local
 echo "#to start all">>/etc/rc.d/rc.local
-echo "sleep 8">>/etc/rc.d/rc.local
+echo "sleep 10">>/etc/rc.d/rc.local
 echo "cd $app_dir;sh startAll.sh">>/etc/rc.d/rc.local
 #################################### stop Firewalld ####################################
 #process firewalld
