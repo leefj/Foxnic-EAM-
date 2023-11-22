@@ -44,9 +44,9 @@ spring:
         url: bOfoWsTmRXXNZ0PJIvNUhUWY9QIencf1xUgWg3JXN9yF/k9AgCBkYlaJCO9eeeIfvAud7IljFG/Ef+hufdetQJ3V5e5JSuTb+VrqdJ5ErxKKH+bTZKQJX6jFxflT9OmJHm+R8DjDCysaQ9e99Dwh1Dh+ecnc+zs4Fg+Uk/QdAeBGD2wmJLdAn082VpQn4vPIlOEb2y+sUF9r0RJD+jdwfvW8lcX4lTWFBOUaMBMutyVKiUENuttDcgwCl1MDsd3R
         username: tD5wkJAfnCt04A+Y+QN5GA==
         password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
-        #url: jdbc:mysql://127.0.0.1:3306/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
-        #username: app@app_tenant
-        #password: oracle
+#        url: jdbc:mysql://zsy-cloud.tpddns.cn:3308/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
+#        username: root
+#        password: root_pwd
         # 启动程序时，在连接池中初始化多少个连接
         initialSize: 10
         # 连接池中最多支持多少个活动会话

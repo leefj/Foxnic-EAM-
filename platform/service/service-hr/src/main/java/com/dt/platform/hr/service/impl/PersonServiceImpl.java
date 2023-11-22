@@ -139,7 +139,7 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 				RcdSet rs=dao.query(sql);
 				JSONArray arr=new JSONArray();
 				for(int j=0;j<rs.size();j++){
-					JSONObject obj=rs.getRcd(i).toJSONObject();
+					JSONObject obj=rs.getRcd(j).toJSONObject();
 					if("online".equals(obj.getString("nameCol"))){
 						obj.put("name","在职");
 					}else if("offline".equals(obj.getString("nameCol"))){
@@ -157,7 +157,7 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 				RcdSet rs=dao.query(sql);
 				JSONArray arr=new JSONArray();
 				for(int j=0;j<rs.size();j++){
-					JSONObject obj=rs.getRcd(i).toJSONObject();
+					JSONObject obj=rs.getRcd(j).toJSONObject();
 					String educationCode=obj.getString("educationCode");
 					if(StringUtil.isBlank(educationCode)){
 						obj.put("name","未设置");
