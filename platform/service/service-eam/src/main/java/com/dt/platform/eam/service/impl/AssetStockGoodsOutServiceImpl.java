@@ -6,10 +6,7 @@ import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.common.YesNoEnum;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.*;
-import com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta;
-import com.dt.platform.domain.eam.meta.AssetStockGoodsOutMeta;
-import com.dt.platform.domain.eam.meta.GoodsMeta;
-import com.dt.platform.domain.eam.meta.GoodsStockMeta;
+import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.constant.CodeTextEnum;
@@ -77,6 +74,9 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 	@Autowired
 	private IDeviceSpService deviceSpService;
 
+
+	@Autowired
+	private IAssetService assetService;
 
 	@Autowired
 	private IGoodsStockUsageService goodsStockUsageService;
@@ -296,6 +296,58 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 
 	}
 
+
+	@Override
+	public Result selectImportItem(String id, String importType, String billId) {
+		if(StringUtil.isBlank(id)){
+			return ErrorDesc.failureMessage("请选择库存单");
+		}
+		JSONArray idsArr= JSONArray.parseArray(id);
+		if(idsArr==null&&idsArr.size()==0){
+			return ErrorDesc.failureMessage("请选择库存单");
+		}
+		if(AssetImportSourceTypeEnum.STOCK.code().equals(importType)){
+			return importToAsset(idsArr.getString(0),billId);
+		}
+		return ErrorDesc.success();
+
+	}
+
+	private Result importToAsset(String id,String billId){
+		AssetStockGoodsOut out=this.getById(id);
+		this.dao.fill(out).with(AssetStockGoodsOutMeta.GOODS_LIST).execute();
+		List<GoodsStock> list=out.getGoodsList();
+		if(list.size()==0){
+			return ErrorDesc.failureMessage("未找到物品");
+		}
+		dao.execute("delete from eam_asset where bill_id=?",billId);
+		for(int i=0;i<list.size();i++){
+			String goodsId=list.get(i).getGoodsId();
+			GoodsStock gs=goodsStockService.getById(goodsId);
+			if(gs==null){
+				continue;
+			}
+			for(int j=0;j<list.get(i).getStockCurNumber().intValue();j++){
+				Asset asset=new Asset();
+				asset.setAssetCode("自动配置");
+				asset.setOwnerCode(AssetOwnerCodeEnum.ASSET_IMPORT.code());
+				asset.setName(gs.getName());
+				asset.setModel(gs.getModel());
+				asset.setBillId(billId);
+				asset.setPurchaseDate(new Date());
+				asset.setUnit(gs.getUnit());
+				asset.setGoodsId(gs.getId());
+				asset.setCreateTime(new Date());
+				asset.setManufacturerId(gs.getManufacturerId());
+				asset.setAssetStatus(AssetStatusEnum.IDLE.code());
+				asset.setStatus(AssetHandleStatusEnum.INCOMPLETE.code());
+				asset.setSourceId("purchase");
+				asset.setCategoryId(gs.getCategoryId());
+				assetService.insert(asset);
+			}
+		}
+		return ErrorDesc.success();
+	}
 
 	@Override
 	public Result fillToSpPperation(String id) {

@@ -152,6 +152,8 @@ public class EamAssetAllocationGtr extends BaseCodeGenerator {
         cfg.view().form().addJsVariable("BILL_ID","[[${billId}]]","单据ID");
         cfg.view().form().addJsVariable("BILL_TYPE","[[${billType}]]","单据类型");
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","是否需要审批");
+
+
 //        cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");
 //        cfg.view().form().addJsVariable("EMPLOYEE_NAME", "[[${user.getUser().getActivatedEmployeeName()}]]","用户姓名");
 

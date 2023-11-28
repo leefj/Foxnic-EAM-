@@ -70,6 +70,7 @@ public class EamRelationManager extends RelationManager {
         this.setupPurchaseApply();
         this.setupPurchaseCheck();
         this.setupPurchaseOrder();
+        this.setupPurchaseImport();
 
         this.setupInspectionGroup();
         this.setupInspectionPlan();
@@ -136,6 +137,7 @@ public class EamRelationManager extends RelationManager {
         this.setupDeviceSp();
         this.setupDeviceSpRcd();
 
+        this.setupStockImport();
     }
     public void setupDeviceSp() {
         this.property(DeviceSpMeta.WAREHOUSE_PROP)
@@ -1497,7 +1499,61 @@ public class EamRelationManager extends RelationManager {
 
     }
 
+    public void setupStockImport(){
 
+        this.property(StockImportMeta.STOCK_GOODS_OUT_PROP)
+                .using(EAMTables.EAM_STOCK_IMPORT.ORDER_ID).join(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ID);
+
+        this.property(StockImportMeta.OPER_USER_PROP)
+                .using(EAMTables.EAM_STOCK_IMPORT.OPER_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(StockImportMeta.ASSET_LIST_PROP)
+                .using(EAMTables.EAM_STOCK_IMPORT.ID).join(EAMTables.EAM_ASSET.BILL_ID);
+
+        this.property(StockImportMeta.MANAGER_PROP)
+                .using(EAMTables.EAM_STOCK_IMPORT.MANAGER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(StockImportMeta.USE_USER_PROP)
+                .using(EAMTables.EAM_STOCK_IMPORT.USE_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(StockImportMeta.USE_ORGANIZATION_PROP)
+                .using(EAMTables.EAM_STOCK_IMPORT.USE_ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+        this.property(StockImportMeta.OWNER_COMPANY_PROP)
+                .using(EAMTables.EAM_STOCK_IMPORT.OWN_COMPANY_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+        this.property(StockImportMeta.POSITION_PROP)
+                .using(EAMTables.EAM_STOCK_IMPORT.POSITION_ID).join(EAMTables.EAM_POSITION.ID);
+
+    }
+
+    public void setupPurchaseImport(){
+
+        this.property(PurchaseImportMeta.PURCHASE_APPLY_PROP)
+                .using(EAMTables.EAM_PURCHASE_IMPORT.ORDER_ID).join(EAMTables.EAM_PURCHASE_APPLY.ID);
+
+        this.property(PurchaseImportMeta.OPER_USER_PROP)
+                .using(EAMTables.EAM_PURCHASE_IMPORT.OPER_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(PurchaseImportMeta.ASSET_LIST_PROP)
+                .using(EAMTables.EAM_PURCHASE_IMPORT.ID).join(EAMTables.EAM_ASSET.BILL_ID);
+
+        this.property(PurchaseImportMeta.MANAGER_PROP)
+                .using(EAMTables.EAM_PURCHASE_IMPORT.MANAGER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(PurchaseImportMeta.USE_USER_PROP)
+                .using(EAMTables.EAM_PURCHASE_IMPORT.USE_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(PurchaseImportMeta.USE_ORGANIZATION_PROP)
+                .using(EAMTables.EAM_PURCHASE_IMPORT.USE_ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+        this.property(PurchaseImportMeta.OWNER_COMPANY_PROP)
+                .using(EAMTables.EAM_PURCHASE_IMPORT.OWN_COMPANY_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+        this.property(PurchaseImportMeta.POSITION_PROP)
+                .using(EAMTables.EAM_PURCHASE_IMPORT.POSITION_ID).join(EAMTables.EAM_POSITION.ID);
+
+    }
 
     public void setupPurchaseOrder() {
 
@@ -1512,6 +1568,11 @@ public class EamRelationManager extends RelationManager {
 
         this.property(PurchaseOrderMeta.PURCHASE_CHECK_PROP)
                 .using(EAMTables.EAM_PURCHASE_ORDER.CHECK_ID).join(EAMTables.EAM_PURCHASE_CHECK.ID);
+
+
+
+
+
 
     }
 

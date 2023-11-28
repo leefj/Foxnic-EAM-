@@ -1,17 +1,11 @@
 package com.dt.platform.eam.service.impl;
 
 
-import com.dt.platform.constants.enums.eam.AssetApplyCheckStatusEnum;
-import com.dt.platform.constants.enums.eam.AssetHandleConfirmOperationEnum;
-import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
-import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.domain.eam.PurchaseApply;
-import com.dt.platform.domain.eam.PurchaseCheck;
-import com.dt.platform.domain.eam.PurchaseOrder;
-import com.dt.platform.eam.service.IOperateService;
-import com.dt.platform.eam.service.IPurchaseApplyService;
-import com.dt.platform.eam.service.IPurchaseCheckService;
-import com.dt.platform.eam.service.IPurchaseOrderService;
+import com.alibaba.fastjson.JSONArray;
+import com.dt.platform.constants.enums.eam.*;
+import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.PurchaseOrderMeta;
+import com.dt.platform.eam.service.*;
 import com.dt.platform.eam.service.bpm.PurchaseApplyBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
@@ -62,6 +56,8 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 	@Autowired
 	private IPurchaseOrderService purchaseOrderService;
 
+	@Autowired
+	private IAssetService assetService;
 
 	@Autowired
 	private IOperateService operateService;
@@ -72,6 +68,60 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
+	@Override
+	public Result selectImportItem(String id, String importType, String billId) {
+
+		if(StringUtil.isBlank(id)){
+			return ErrorDesc.failureMessage("请选择采购订单");
+		}
+		JSONArray idsArr= JSONArray.parseArray(id);
+		if(idsArr==null&&idsArr.size()==0){
+			return ErrorDesc.failureMessage("请选择采购订单");
+		}
+		if(AssetImportSourceTypeEnum.ASSET.code().equals(importType)){
+			return importToAsset(idsArr.getString(0),billId);
+		}
+		return ErrorDesc.success();
+
+	}
+
+	private Result importToAsset(String id,String billId){
+
+		PurchaseOrder order=new PurchaseOrder();
+		order.setSelectedCode("def");
+		order.setApplyId(id);
+		List<PurchaseOrder> list=purchaseOrderService.queryList(order);
+		if(list.size()==0){
+			return ErrorDesc.failureMessage("未找到采购的物品");
+		}
+		dao.execute("delete from eam_asset where bill_id=?",billId);
+		purchaseOrderService.dao().fill(list).with(PurchaseOrderMeta.GOODS).execute();
+		for(int i=0;i<list.size();i++){
+			GoodsStock gs=list.get(i).getGoods();
+			if(gs==null){
+				continue;
+			}
+			for(int j=0;j<list.get(i).getPurchaseNumber();j++){
+				Asset asset=new Asset();
+				asset.setAssetCode("自动配置");
+				asset.setOwnerCode(AssetOwnerCodeEnum.ASSET_IMPORT.code());
+				asset.setName(gs.getName());
+				asset.setModel(gs.getModel());
+				asset.setBillId(billId);
+				asset.setPurchaseDate(new Date());
+				asset.setUnit(gs.getUnit());
+				asset.setGoodsId(gs.getId());
+				asset.setCreateTime(new Date());
+				asset.setManufacturerId(gs.getManufacturerId());
+				asset.setAssetStatus(AssetStatusEnum.IDLE.code());
+				asset.setStatus(AssetHandleStatusEnum.INCOMPLETE.code());
+				asset.setSourceId("purchase");
+				asset.setCategoryId(gs.getCategoryId());
+				assetService.insert(asset);
+			}
+		}
+		return ErrorDesc.success();
+	}
 	/**
 	 * 处理流程回调
 	 * */
@@ -390,6 +440,20 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 	public PagedList<PurchaseApply> queryPagedList(PurchaseApply sample, int pageSize, int pageIndex) {
 		String dp= AssetOperateEnum.EAM_ASSET_PURCHASE_APPLY.code();
 		return super.queryPagedList(sample, pageSize, pageIndex,dp);
+	}
+
+	@Override
+	public PagedList<PurchaseApply> querySelectPagedListByImport(PurchaseApply sample, int pageSize, int pageIndex) {
+
+		String importType=sample.getImportType();
+		ConditionExpr expr=new ConditionExpr();
+		if(AssetImportSourceTypeEnum.ASSET.code().equals(importType)){
+			sample.setStatus("complete");
+			expr.and("id not in (select id from eam_purchase_import where deleted=0 and status='finish')");
+		}else{
+			expr.and("id=1");
+		}
+		return super.queryPagedList(sample,expr,pageSize, pageIndex);
 	}
 
 	/**

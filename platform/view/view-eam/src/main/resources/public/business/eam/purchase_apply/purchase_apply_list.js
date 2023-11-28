@@ -1,7 +1,7 @@
 /**
  * 采购申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-07 21:23:33
+ * @since 2023-11-26 08:17:34
  */
 
 
@@ -96,6 +96,7 @@ function ListPage() {
 					,{ field: 'checkId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收单') , templet: function (d) { return templet('checkId',d.checkId,d);}  }
 					,{ field: 'assetCheck', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收情况'), templet:function (d){ return templet('assetCheck',fox.getEnumText(RADIO_ASSETCHECK_DATA,d.assetCheck,'','assetCheck'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }

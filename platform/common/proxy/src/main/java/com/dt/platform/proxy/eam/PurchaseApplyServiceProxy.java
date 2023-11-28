@@ -111,6 +111,18 @@ public interface PurchaseApplyServiceProxy extends BpmCallbackController {
     public static final String CHECK = API_PREFIX + "check";
 
     /**
+     * 验收
+     */
+    public static final String QUERY_SELECT_PAGED_LIST_BY_IMPORT = API_PREFIX + "query-select-paged-list-by-import";
+
+    /*
+        获取导入的订单
+    */
+    public static final String SELECT_IMPORT_ITEM = API_PREFIX + "select-import-item";
+
+
+
+    /**
      * 流程事件回调接收接口
      */
     public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";

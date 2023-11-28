@@ -33,6 +33,7 @@ public enum AssetOwnerCodeEnum implements CodeTextEnum {
 	ASSET_CHANGE_EQUIPMENT(CodeModuleEnum.EAM_ASSET_CHANGE_EQUIPMENT.code() , "EAM_资产变更-设备"),
 	ASSET_DEPRECIATION_DATA("asset_depreciation_data" , "资产折旧数据"),
 	ASSET_DATA_SELECTED("asset_data_selected" , "资产选择数据"),
+	ASSET_IMPORT("asset_import" , "资产批量导入"),
 
 
 	ASSET_DATE("asset_data" , "资产数据"),

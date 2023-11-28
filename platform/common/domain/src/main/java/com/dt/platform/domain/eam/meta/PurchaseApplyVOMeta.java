@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-07 21:23:31
+ * @since 2023-11-26 08:17:32
  * @sign 901BAD23D88C64D31FBF0F78680C4544
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -615,9 +615,19 @@ public class PurchaseApplyVOMeta extends PurchaseApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseApplyVO,org.github.foxnic.web.domain.bpm.ProcessInstance> DEFAULT_PROCESS_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseApplyVO.class ,DEFAULT_PROCESS, org.github.foxnic.web.domain.bpm.ProcessInstance.class, "默认流程", "优先取在批的流程", org.github.foxnic.web.domain.bpm.ProcessInstance.class, null);
 	
 	/**
+	 * importType , 类型: java.lang.String
+	*/
+	public static final String IMPORT_TYPE="importType";
+	
+	/**
+	 * importType , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseApplyVO,java.lang.String> IMPORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseApplyVO.class ,IMPORT_TYPE, java.lang.String.class, "importType", "importType", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , BUSINESS_CODE , PROC_ID , NAME , STATUS , APPLY_STATUS , APPLY_ORG_ID , PURCHASE_USER_ID , SUPPLIER_ID , APPLY_CONTENT , APPLY_DATE , EXPECTED_ARRIVAL_DATE , CHECK_ID , ASSET_CHECK , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , UPDATE_BY , CREATE_TIME , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , SUPPLIER , ORIGINATOR , APPLY_ORG , CHANGE_INSTANCE , ORDER_LIST , ORDER_IDS , SELECTED_CODE , PURCHASE_USER , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , BUSINESS_CODE , PROC_ID , NAME , STATUS , APPLY_STATUS , APPLY_ORG_ID , PURCHASE_USER_ID , SUPPLIER_ID , APPLY_CONTENT , APPLY_DATE , EXPECTED_ARRIVAL_DATE , CHECK_ID , ASSET_CHECK , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , UPDATE_BY , CREATE_TIME , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , SUPPLIER , ORIGINATOR , APPLY_ORG , CHANGE_INSTANCE , ORDER_LIST , ORDER_IDS , SELECTED_CODE , PURCHASE_USER , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS , IMPORT_TYPE };
 	
 	/**
 	 * 代理类
@@ -1275,6 +1285,17 @@ public class PurchaseApplyVOMeta extends PurchaseApplyMeta {
 			super.setDefaultProcess(defaultProcess);
 			return this;
 		}
+		
+		/**
+		 * 设置 importType
+		 * @param importType importType
+		 * @return 当前对象
+		*/
+		public PurchaseApply setImportType(String importType) {
+			super.change(IMPORT_TYPE,super.getImportType(),importType);
+			super.setImportType(importType);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1339,6 +1360,7 @@ public class PurchaseApplyVOMeta extends PurchaseApplyMeta {
 				inst.setSelectedCode(this.getSelectedCode());
 				inst.setCurrentProcessList(this.getCurrentProcessList());
 				inst.setDefaultProcess(this.getDefaultProcess());
+				inst.setImportType(this.getImportType());
 				inst.setChangeInstance(this.getChangeInstance());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());

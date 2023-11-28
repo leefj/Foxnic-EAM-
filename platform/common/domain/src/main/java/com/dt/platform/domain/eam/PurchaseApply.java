@@ -30,8 +30,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 采购申请
  * <p>采购申请 , 数据表 eam_purchase_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-07 21:23:31
- * @sign EB3E719E1569B7A0BA7D5B27D6DE69E6
+ * @since 2023-11-26 08:17:32
+ * @sign 11D1E07B19E521005AE4CDCB94353BC2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -328,6 +328,12 @@ public class PurchaseApply extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="默认流程" , notes = "优先取在批的流程")
 	private ProcessInstance defaultProcess;
+	
+	/**
+	 * importType：importType
+	*/
+	@ApiModelProperty(required = false,value="importType" , notes = "importType")
+	private String importType;
 	
 	/**
 	 * 获得 主键<br>
@@ -1296,6 +1302,25 @@ public class PurchaseApply extends Entity {
 		this.defaultProcess=defaultProcess;
 		return this;
 	}
+	
+	/**
+	 * 获得 importType<br>
+	 * importType
+	 * @return importType
+	*/
+	public String getImportType() {
+		return importType;
+	}
+	
+	/**
+	 * 设置 importType
+	 * @param importType importType
+	 * @return 当前对象
+	*/
+	public PurchaseApply setImportType(String importType) {
+		this.importType=importType;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1379,6 +1404,7 @@ public class PurchaseApply extends Entity {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setApplyOrg(this.getApplyOrg());
+			inst.setImportType(this.getImportType());
 			inst.setChangeInstance(this.getChangeInstance());
 			inst.setSupplier(this.getSupplier());
 			inst.setPurchaseUser(this.getPurchaseUser());
@@ -1486,6 +1512,7 @@ public class PurchaseApply extends Entity {
 			this.setStatus(DataParser.parse(String.class, map.get(PurchaseApplyMeta.STATUS)));
 			// others
 			this.setApplyOrg(DataParser.parse(Organization.class, map.get(PurchaseApplyMeta.APPLY_ORG)));
+			this.setImportType(DataParser.parse(String.class, map.get(PurchaseApplyMeta.IMPORT_TYPE)));
 			this.setChangeInstance(DataParser.parse(ChangeInstance.class, map.get(PurchaseApplyMeta.CHANGE_INSTANCE)));
 			this.setSupplier(DataParser.parse(Supplier.class, map.get(PurchaseApplyMeta.SUPPLIER)));
 			this.setPurchaseUser(DataParser.parse(Employee.class, map.get(PurchaseApplyMeta.PURCHASE_USER)));
@@ -1533,6 +1560,7 @@ public class PurchaseApply extends Entity {
 				this.setStatus( (String)map.get(PurchaseApplyMeta.STATUS));
 				// others
 				this.setApplyOrg( (Organization)map.get(PurchaseApplyMeta.APPLY_ORG));
+				this.setImportType( (String)map.get(PurchaseApplyMeta.IMPORT_TYPE));
 				this.setChangeInstance( (ChangeInstance)map.get(PurchaseApplyMeta.CHANGE_INSTANCE));
 				this.setSupplier( (Supplier)map.get(PurchaseApplyMeta.SUPPLIER));
 				this.setPurchaseUser( (Employee)map.get(PurchaseApplyMeta.PURCHASE_USER));

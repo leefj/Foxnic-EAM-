@@ -54,6 +54,14 @@ public class PurchaseApplyPageController extends ViewController {
 		return prefix+"/purchase_apply_list";
 	}
 
+	@RequestMapping("/purchase_apply_sel_list.html")
+	public String selectList(Model model,HttpServletRequest request,String importType,String importId) {
+		model.addAttribute("importType",importType);
+		model.addAttribute("importId",importId);
+		return prefix+"/purchase_apply_sel_list";
+	}
+
+
 	/**
 	 * 采购申请 表单页面
 	 */

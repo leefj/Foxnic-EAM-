@@ -11,6 +11,12 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
+import com.dt.platform.domain.eam.meta.AssetAllocationVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.Organization;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
@@ -18,8 +24,8 @@ import java.util.Map;
  * 资产调拨VO类型
  * <p>资产调拨 , 数据表 eam_asset_allocation 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 19:53:16
- * @sign 511FDE6A19F505B213718CE39C615242
+ * @since 2023-11-27 22:12:36
+ * @sign 1A2059FDFFAFF4DD0226F7AA1EB0C8F0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -75,6 +81,24 @@ public class AssetAllocationVO extends AssetAllocation {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -238,6 +262,63 @@ public class AssetAllocationVO extends AssetAllocation {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public AssetAllocationVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public AssetAllocationVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public AssetAllocationVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -347,6 +428,7 @@ public class AssetAllocationVO extends AssetAllocation {
 		if(all) {
 			inst.setManager(this.getManager());
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setAssetIds(this.getAssetIds());
 			inst.setPageSize(this.getPageSize());
@@ -359,7 +441,9 @@ public class AssetAllocationVO extends AssetAllocation {
 			inst.setInOwnerCompany(this.getInOwnerCompany());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
+			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -409,5 +493,163 @@ public class AssetAllocationVO extends AssetAllocation {
 	@Transient
 	public static AssetAllocationVO create() {
 		return new com.dt.platform.domain.eam.meta.AssetAllocationVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setInOwnCompanyId(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.IN_OWN_COMPANY_ID)));
+			this.setProcId(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.PROC_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetAllocationVOMeta.UPDATE_TIME)));
+			this.setOutOwnCompanyId(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.OUT_OWN_COMPANY_ID)));
+			this.setManagerId(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.MANAGER_ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetAllocationVOMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(AssetAllocationVOMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetAllocationVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetAllocationVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetAllocationVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.ORIGINATOR_ID)));
+			this.setAttach(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.ATTACH)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.STATUS)));
+			// others
+			this.setManager(DataParser.parse(Employee.class, map.get(AssetAllocationVOMeta.MANAGER)));
+			this.setSearchField(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.REQUEST_ACTION)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetAllocationVOMeta.PAGE_SIZE)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetAllocationVOMeta.ORIGINATOR)));
+			this.setOutOwnerCompany(DataParser.parse(Organization.class, map.get(AssetAllocationVOMeta.OUT_OWNER_COMPANY)));
+			this.setOriginatorUserName(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.ORIGINATOR_USER_NAME)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetAllocationVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.SORT_TYPE)));
+			this.setInOwnerCompany(DataParser.parse(Organization.class, map.get(AssetAllocationVOMeta.IN_OWNER_COMPANY)));
+			this.setSortField(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.SORT_FIELD)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.QUERY_LOGIC)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(AssetAllocationVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setInOwnCompanyId( (String)map.get(AssetAllocationVOMeta.IN_OWN_COMPANY_ID));
+				this.setProcId( (String)map.get(AssetAllocationVOMeta.PROC_ID));
+				this.setUpdateTime( (Date)map.get(AssetAllocationVOMeta.UPDATE_TIME));
+				this.setOutOwnCompanyId( (String)map.get(AssetAllocationVOMeta.OUT_OWN_COMPANY_ID));
+				this.setManagerId( (String)map.get(AssetAllocationVOMeta.MANAGER_ID));
+				this.setVersion( (Integer)map.get(AssetAllocationVOMeta.VERSION));
+				this.setSelectedCode( (String)map.get(AssetAllocationVOMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(AssetAllocationVOMeta.CONTENT));
+				this.setBusinessDate( (Date)map.get(AssetAllocationVOMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(AssetAllocationVOMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)map.get(AssetAllocationVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetAllocationVOMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetAllocationVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetAllocationVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetAllocationVOMeta.DELETE_TIME));
+				this.setName( (String)map.get(AssetAllocationVOMeta.NAME));
+				this.setTenantId( (String)map.get(AssetAllocationVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetAllocationVOMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetAllocationVOMeta.ID));
+				this.setOriginatorId( (String)map.get(AssetAllocationVOMeta.ORIGINATOR_ID));
+				this.setAttach( (String)map.get(AssetAllocationVOMeta.ATTACH));
+				this.setStatus( (String)map.get(AssetAllocationVOMeta.STATUS));
+				// others
+				this.setManager( (Employee)map.get(AssetAllocationVOMeta.MANAGER));
+				this.setSearchField( (String)map.get(AssetAllocationVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(AssetAllocationVOMeta.REQUEST_ACTION));
+				this.setFuzzyField( (String)map.get(AssetAllocationVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(AssetAllocationVOMeta.PAGE_SIZE));
+				this.setOriginator( (Employee)map.get(AssetAllocationVOMeta.ORIGINATOR));
+				this.setOutOwnerCompany( (Organization)map.get(AssetAllocationVOMeta.OUT_OWNER_COMPANY));
+				this.setOriginatorUserName( (String)map.get(AssetAllocationVOMeta.ORIGINATOR_USER_NAME));
+				this.setPageIndex( (Integer)map.get(AssetAllocationVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(AssetAllocationVOMeta.SORT_TYPE));
+				this.setInOwnerCompany( (Organization)map.get(AssetAllocationVOMeta.IN_OWNER_COMPANY));
+				this.setSortField( (String)map.get(AssetAllocationVOMeta.SORT_FIELD));
+				this.setDataOrigin( (String)map.get(AssetAllocationVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(AssetAllocationVOMeta.QUERY_LOGIC));
+				this.setSearchValue( (String)map.get(AssetAllocationVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setInOwnCompanyId(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.IN_OWN_COMPANY_ID)));
+			this.setProcId(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.PROC_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetAllocationVOMeta.UPDATE_TIME)));
+			this.setOutOwnCompanyId(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.OUT_OWN_COMPANY_ID)));
+			this.setManagerId(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.MANAGER_ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetAllocationVOMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(AssetAllocationVOMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetAllocationVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetAllocationVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetAllocationVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.ORIGINATOR_ID)));
+			this.setAttach(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.ATTACH)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetAllocationVOMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setInOwnCompanyId( (String)r.getValue(AssetAllocationVOMeta.IN_OWN_COMPANY_ID));
+				this.setProcId( (String)r.getValue(AssetAllocationVOMeta.PROC_ID));
+				this.setUpdateTime( (Date)r.getValue(AssetAllocationVOMeta.UPDATE_TIME));
+				this.setOutOwnCompanyId( (String)r.getValue(AssetAllocationVOMeta.OUT_OWN_COMPANY_ID));
+				this.setManagerId( (String)r.getValue(AssetAllocationVOMeta.MANAGER_ID));
+				this.setVersion( (Integer)r.getValue(AssetAllocationVOMeta.VERSION));
+				this.setSelectedCode( (String)r.getValue(AssetAllocationVOMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(AssetAllocationVOMeta.CONTENT));
+				this.setBusinessDate( (Date)r.getValue(AssetAllocationVOMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(AssetAllocationVOMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)r.getValue(AssetAllocationVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetAllocationVOMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetAllocationVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetAllocationVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetAllocationVOMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AssetAllocationVOMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetAllocationVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetAllocationVOMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetAllocationVOMeta.ID));
+				this.setOriginatorId( (String)r.getValue(AssetAllocationVOMeta.ORIGINATOR_ID));
+				this.setAttach( (String)r.getValue(AssetAllocationVOMeta.ATTACH));
+				this.setStatus( (String)r.getValue(AssetAllocationVOMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -109,6 +109,12 @@ public interface AssetStockGoodsOutServiceProxy {
     public static final String  FILL_TO_SP_OPERATION = API_PREFIX + "fill-to-sp-operation";
 
 
+    /*
+    获取导入的订单
+    */
+    public static final String SELECT_IMPORT_ITEM = API_PREFIX + "select-import-item";
+
+
     /**
      * 添加库存出库
      */

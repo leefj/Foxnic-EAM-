@@ -277,6 +277,16 @@ public class AssetStockGoodsOutController extends SuperController {
     }
 
     /**
+     */
+    @ApiOperation(value = "导入")
+    @ApiOperationSupport(order = 3)
+    @SentinelResource(value = AssetStockGoodsOutServiceProxy.SELECT_IMPORT_ITEM, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetStockGoodsOutServiceProxy.SELECT_IMPORT_ITEM)
+    public Result selectImportItem(String id,String importType,String billId) {
+        return assetStockGoodsOutService.selectImportItem(id,importType,billId);
+    }
+
+    /**
      * 查询库存出库
      */
     @ApiOperation(value = "查询库存出库")
