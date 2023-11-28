@@ -81,9 +81,10 @@
                     </div>
 
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('来源')}" class="search-label sourceId-label">来源</span><span class="search-colon">:</span></div>
-                        <div id="sourceId" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_source'}" style="width:150px"></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('序列号')}" class="search-label serialNumber-label">序列号</span><span class="search-colon">:</span></div>
+                        <input id="serialNumber" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
+
 <!--                    <div class="search-unit">-->
 <!--                        <div class="search-label-div" style=""><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>-->
 <!--                        <input id="name" class="layui-input search-input" style="width: 140px" type="text" />-->
@@ -190,10 +191,9 @@
 
                 <div class="layui-form toolbar search-inputs">
 
-                    <!-- 序列号 , serialNumber ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('序列号')}" class="search-label serialNumber-label">序列号</span><span class="search-colon">:</span></div>
-                        <input id="serialNumber" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('来源')}" class="search-label sourceId-label">来源</span><span class="search-colon">:</span></div>
+                        <div id="sourceId" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_source'}" style="width:150px"></div>
                     </div>
 
                 </div>

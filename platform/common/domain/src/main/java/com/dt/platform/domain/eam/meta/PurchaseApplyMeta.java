@@ -16,8 +16,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-07 21:23:31
- * @sign EB3E719E1569B7A0BA7D5B27D6DE69E6
+ * @since 2023-11-26 08:17:32
+ * @sign 11D1E07B19E521005AE4CDCB94353BC2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -494,9 +494,19 @@ public class PurchaseApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseApply,org.github.foxnic.web.domain.bpm.ProcessInstance> DEFAULT_PROCESS_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseApply.class ,DEFAULT_PROCESS, org.github.foxnic.web.domain.bpm.ProcessInstance.class, "默认流程", "优先取在批的流程", org.github.foxnic.web.domain.bpm.ProcessInstance.class, null);
 	
 	/**
+	 * importType , 类型: java.lang.String
+	*/
+	public static final String IMPORT_TYPE="importType";
+	
+	/**
+	 * importType , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseApply,java.lang.String> IMPORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseApply.class ,IMPORT_TYPE, java.lang.String.class, "importType", "importType", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , NAME , STATUS , APPLY_STATUS , APPLY_ORG_ID , PURCHASE_USER_ID , SUPPLIER_ID , APPLY_CONTENT , APPLY_DATE , EXPECTED_ARRIVAL_DATE , CHECK_ID , ASSET_CHECK , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , UPDATE_BY , CREATE_TIME , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , SUPPLIER , ORIGINATOR , APPLY_ORG , CHANGE_INSTANCE , ORDER_LIST , ORDER_IDS , SELECTED_CODE , PURCHASE_USER , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , NAME , STATUS , APPLY_STATUS , APPLY_ORG_ID , PURCHASE_USER_ID , SUPPLIER_ID , APPLY_CONTENT , APPLY_DATE , EXPECTED_ARRIVAL_DATE , CHECK_ID , ASSET_CHECK , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , UPDATE_BY , CREATE_TIME , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , SUPPLIER , ORIGINATOR , APPLY_ORG , CHANGE_INSTANCE , ORDER_LIST , ORDER_IDS , SELECTED_CODE , PURCHASE_USER , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS , IMPORT_TYPE };
 	
 	/**
 	 * 代理类
@@ -1022,6 +1032,17 @@ public class PurchaseApplyMeta {
 			super.setDefaultProcess(defaultProcess);
 			return this;
 		}
+		
+		/**
+		 * 设置 importType
+		 * @param importType importType
+		 * @return 当前对象
+		*/
+		public PurchaseApply setImportType(String importType) {
+			super.change(IMPORT_TYPE,super.getImportType(),importType);
+			super.setImportType(importType);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1076,6 +1097,7 @@ public class PurchaseApplyMeta {
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setApplyOrg(this.getApplyOrg());
+				inst.setImportType(this.getImportType());
 				inst.setChangeInstance(this.getChangeInstance());
 				inst.setSupplier(this.getSupplier());
 				inst.setPurchaseUser(this.getPurchaseUser());

@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetAllocationMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
@@ -26,7 +28,7 @@ import com.github.foxnic.dao.entity.EntityContext;
  * 资产调拨
  * <p>资产调拨 , 数据表 eam_asset_allocation 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 19:53:16
+ * @since 2023-11-27 22:12:36
  * @sign D3E7E834C9623BF8B05E34907B21AE1C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -43,13 +45,13 @@ public class AssetAllocation extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "604777916768727040")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "687947926055419904")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "AL202207272007279")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "AL202303140803137")
 	private String businessCode;
 	
 	/**
@@ -61,13 +63,13 @@ public class AssetAllocation extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "incomplete")
 	private String status;
 	
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "1212")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "121212")
 	private String name;
 	
 	/**
@@ -79,19 +81,19 @@ public class AssetAllocation extends Entity {
 	/**
 	 * 调入所属公司：调入所属公司
 	*/
-	@ApiModelProperty(required = false,value="调入所属公司" , notes = "调入所属公司" , example = "2")
+	@ApiModelProperty(required = false,value="调入所属公司" , notes = "调入所属公司" , example = "623106698537598976")
 	private String inOwnCompanyId;
 	
 	/**
 	 * 调入管理员：调入管理员
 	*/
-	@ApiModelProperty(required = false,value="调入管理员" , notes = "调入管理员" , example = "569945398324494336")
+	@ApiModelProperty(required = false,value="调入管理员" , notes = "调入管理员" , example = "581798649571311616")
 	private String managerId;
 	
 	/**
 	 * 调拨说明：调拨说明
 	*/
-	@ApiModelProperty(required = false,value="调拨说明" , notes = "调拨说明" , example = "12")
+	@ApiModelProperty(required = false,value="调拨说明" , notes = "调拨说明")
 	private String content;
 	
 	/**
@@ -103,7 +105,7 @@ public class AssetAllocation extends Entity {
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2022-07-27 12:00:00")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-03-14 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -121,19 +123,19 @@ public class AssetAllocation extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-07-27 08:51:32")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-03-14 08:59:27")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-07-27 08:51:35")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
 	private Date updateTime;
 	
 	/**
@@ -160,7 +162,7 @@ public class AssetAllocation extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -172,7 +174,7 @@ public class AssetAllocation extends Entity {
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1658926274000")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1678755476000")
 	private String selectedCode;
 	
 	/**
@@ -943,5 +945,143 @@ public class AssetAllocation extends Entity {
 	@Transient
 	public static AssetAllocation create() {
 		return new com.dt.platform.domain.eam.meta.AssetAllocationMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setInOwnCompanyId(DataParser.parse(String.class, map.get(AssetAllocationMeta.IN_OWN_COMPANY_ID)));
+			this.setProcId(DataParser.parse(String.class, map.get(AssetAllocationMeta.PROC_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetAllocationMeta.UPDATE_TIME)));
+			this.setOutOwnCompanyId(DataParser.parse(String.class, map.get(AssetAllocationMeta.OUT_OWN_COMPANY_ID)));
+			this.setManagerId(DataParser.parse(String.class, map.get(AssetAllocationMeta.MANAGER_ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetAllocationMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetAllocationMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(AssetAllocationMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(AssetAllocationMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetAllocationMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetAllocationMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetAllocationMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetAllocationMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetAllocationMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetAllocationMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AssetAllocationMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetAllocationMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetAllocationMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetAllocationMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetAllocationMeta.ORIGINATOR_ID)));
+			this.setAttach(DataParser.parse(String.class, map.get(AssetAllocationMeta.ATTACH)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetAllocationMeta.STATUS)));
+			// others
+			this.setManager(DataParser.parse(Employee.class, map.get(AssetAllocationMeta.MANAGER)));
+			this.setInOwnerCompany(DataParser.parse(Organization.class, map.get(AssetAllocationMeta.IN_OWNER_COMPANY)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetAllocationMeta.ORIGINATOR)));
+			this.setOutOwnerCompany(DataParser.parse(Organization.class, map.get(AssetAllocationMeta.OUT_OWNER_COMPANY)));
+			this.setOriginatorUserName(DataParser.parse(String.class, map.get(AssetAllocationMeta.ORIGINATOR_USER_NAME)));
+			return true;
+		} else {
+			try {
+				this.setInOwnCompanyId( (String)map.get(AssetAllocationMeta.IN_OWN_COMPANY_ID));
+				this.setProcId( (String)map.get(AssetAllocationMeta.PROC_ID));
+				this.setUpdateTime( (Date)map.get(AssetAllocationMeta.UPDATE_TIME));
+				this.setOutOwnCompanyId( (String)map.get(AssetAllocationMeta.OUT_OWN_COMPANY_ID));
+				this.setManagerId( (String)map.get(AssetAllocationMeta.MANAGER_ID));
+				this.setVersion( (Integer)map.get(AssetAllocationMeta.VERSION));
+				this.setSelectedCode( (String)map.get(AssetAllocationMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(AssetAllocationMeta.CONTENT));
+				this.setBusinessDate( (Date)map.get(AssetAllocationMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(AssetAllocationMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)map.get(AssetAllocationMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetAllocationMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetAllocationMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetAllocationMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetAllocationMeta.DELETE_TIME));
+				this.setName( (String)map.get(AssetAllocationMeta.NAME));
+				this.setTenantId( (String)map.get(AssetAllocationMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetAllocationMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetAllocationMeta.ID));
+				this.setOriginatorId( (String)map.get(AssetAllocationMeta.ORIGINATOR_ID));
+				this.setAttach( (String)map.get(AssetAllocationMeta.ATTACH));
+				this.setStatus( (String)map.get(AssetAllocationMeta.STATUS));
+				// others
+				this.setManager( (Employee)map.get(AssetAllocationMeta.MANAGER));
+				this.setInOwnerCompany( (Organization)map.get(AssetAllocationMeta.IN_OWNER_COMPANY));
+				this.setOriginator( (Employee)map.get(AssetAllocationMeta.ORIGINATOR));
+				this.setOutOwnerCompany( (Organization)map.get(AssetAllocationMeta.OUT_OWNER_COMPANY));
+				this.setOriginatorUserName( (String)map.get(AssetAllocationMeta.ORIGINATOR_USER_NAME));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setInOwnCompanyId(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.IN_OWN_COMPANY_ID)));
+			this.setProcId(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.PROC_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetAllocationMeta.UPDATE_TIME)));
+			this.setOutOwnCompanyId(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.OUT_OWN_COMPANY_ID)));
+			this.setManagerId(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.MANAGER_ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetAllocationMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(AssetAllocationMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetAllocationMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetAllocationMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetAllocationMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.ORIGINATOR_ID)));
+			this.setAttach(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.ATTACH)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetAllocationMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setInOwnCompanyId( (String)r.getValue(AssetAllocationMeta.IN_OWN_COMPANY_ID));
+				this.setProcId( (String)r.getValue(AssetAllocationMeta.PROC_ID));
+				this.setUpdateTime( (Date)r.getValue(AssetAllocationMeta.UPDATE_TIME));
+				this.setOutOwnCompanyId( (String)r.getValue(AssetAllocationMeta.OUT_OWN_COMPANY_ID));
+				this.setManagerId( (String)r.getValue(AssetAllocationMeta.MANAGER_ID));
+				this.setVersion( (Integer)r.getValue(AssetAllocationMeta.VERSION));
+				this.setSelectedCode( (String)r.getValue(AssetAllocationMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(AssetAllocationMeta.CONTENT));
+				this.setBusinessDate( (Date)r.getValue(AssetAllocationMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(AssetAllocationMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)r.getValue(AssetAllocationMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetAllocationMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetAllocationMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetAllocationMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetAllocationMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AssetAllocationMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetAllocationMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetAllocationMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetAllocationMeta.ID));
+				this.setOriginatorId( (String)r.getValue(AssetAllocationMeta.ORIGINATOR_ID));
+				this.setAttach( (String)r.getValue(AssetAllocationMeta.ATTACH));
+				this.setStatus( (String)r.getValue(AssetAllocationMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -40,7 +40,27 @@ public class AssetStockGoodsOutPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+
+	/**
+	 * 库存出库 功能主页面
+	 */
+	@RequestMapping("/out_import_list.html")
+	public String importlist(Model model,HttpServletRequest request,String ownerType,String importType,String importId) {
+		String operCode="";
+		if(AssetStockGoodsTypeEnum.STOCK.code().equals(ownerType)){
+			operCode= AssetOperateEnum.EAM_ASSET_STOCK_GOODS_OUT.code();
+		}else if(AssetStockGoodsTypeEnum.CONSUMABLES.code().equals(ownerType)){
+			operCode=AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_OUT.code();
+		}else if(AssetStockGoodsTypeEnum.PART.code().equals(ownerType)){
+			operCode=AssetOperateEnum.EAM_ASSET_PART_GOODS_OUT.code();
+		}
+		model.addAttribute("ownerType",ownerType);
+		model.addAttribute("operType",operCode);
+		model.addAttribute("importType",importType);
+		model.addAttribute("importId",importId);
+		return prefix+"/out_import_list";
+	}
 	/**
 	 * 库存出库 功能主页面
 	 */

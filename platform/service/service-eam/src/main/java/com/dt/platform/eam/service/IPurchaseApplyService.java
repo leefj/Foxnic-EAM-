@@ -35,10 +35,14 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
 
 public interface IPurchaseApplyService extends ISimpleIdService<PurchaseApply,String> {
 
+
+
 	/**
 	 * 表单定义代码
 	 **/
 	public static final String FORM_DEFINITION_CODE="eam_asset_purchase_apply";
+
+	Result selectImportItem(String id,String importType,String billId);
 
 	/**
 	 * 处理流程回调
@@ -295,6 +299,10 @@ public interface IPurchaseApplyService extends ISimpleIdService<PurchaseApply,St
 	 * @return 查询结果
 	 * */
 	PagedList<PurchaseApply> queryPagedList(PurchaseApply sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
+
+
+	PagedList<PurchaseApply> querySelectPagedListByImport(PurchaseApply sampl,int pageSize,int pageIndex);
+
 
 	/**
 	 * 分页查询实体集

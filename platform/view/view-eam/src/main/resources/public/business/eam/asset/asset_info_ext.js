@@ -42,7 +42,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     window.pageExt.list.downloadAssetTpl(data,null);
                 }else if(menu.code=="excelInsert"){
                     window.pageExt.list.importData(data,null);
+                }else if(menu.code=="purchaseImport"){
+                    //   eam_asset:purchase_import
+                    window.pageExt.list.purchaseImport(data,null);
+                }else if(menu.code=="stockImport"){
+                    window.pageExt.list.stockImport(data,null);
                 }
+
+
             }
             if(menu.id){
                 if(menu.id=="deleteBtn"){
@@ -116,6 +123,38 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         rwm:function(data,it){
             console.log("it");
+        },
+        purchaseImport:function(data){
+            var queryString="?importType=asset"
+            var index=admin.popupCenter({
+                title: "采购单导入",
+                resize: false,
+                offset: [20,null],
+                area: ["95%","95%"],
+                type: 2,
+                id:"eam-asset-purchase-import-data-win",
+                content: '/business/eam/purchase_import/purchase_import_list.html' + queryString,
+                finish: function () {
+
+                }
+            });
+            admin.putTempData('eam-asset-purchase-import-data-popup-index', index);
+        },
+        stockImport:function(data){
+            var queryString="?importType=stock"
+            var index=admin.popupCenter({
+                title: "库存单导入",
+                resize: false,
+                offset: [20,null],
+                area: ["95%","95%"],
+                type: 2,
+                id:"eam-asset-stock-import-data-win",
+                content: '/business/eam/stock_import/stock_import_list.html' + queryString,
+                finish: function () {
+
+                }
+            });
+            admin.putTempData('eam-asset-stock-import-data-popup-index', index);
         },
         importData:function(data){
             admin.putTempData("assetId",data.id,true);

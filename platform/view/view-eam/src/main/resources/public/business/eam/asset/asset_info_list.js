@@ -608,15 +608,19 @@ function ListPage() {
 					if(admin.checkAuth("eam_asset:batch-insert")){
 						exportArr.push({"code":"batchInsert","id":"1","title": fox.translate('在线批量导入') });
 					}
-
 					if(admin.checkAuth("eam_asset:batch-insert")){
-						exportArr.push({"code":"excelInsert","id":"1","title": fox.translate('Excel批量导入') });
+						exportArr.push({"code":"excelInsert","id":"2","title": fox.translate('Excel批量导入') });
 					}
-
+					if(admin.checkAuth("eam_asset:purchase_import")){
+						exportArr.push({"code":"purchaseImport","id":"3","title": fox.translate('采购单导入') });
+					}
+					if(admin.checkAuth("eam_asset:stock_import")){
+						exportArr.push({"code":"stockImport","id":"10","title": fox.translate('库存单导入') });
+					}
 					//eam_asset:import
 					//eam_asset:high-export-data
 					if(admin.checkAuth("eam_asset:high-export-data")){
-						exportArr.push({"code":"highExportData","id":"2","title":  fox.translate('资产数据导出')});
+						exportArr.push({"code":"highExportData","id":"4","title":  fox.translate('资产数据导出')});
 					}
 					// exportArr.push({"code":"downloadAssetTpl","id":"3","title":"下载导入模版"});
 					dropdown.render({

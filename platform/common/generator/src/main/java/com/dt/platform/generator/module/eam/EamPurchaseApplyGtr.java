@@ -41,6 +41,7 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
         cfg.bpm().form("eam_asset_purchase_apply");
         cfg.bpm().integrate(IntegrateMode.FRONT);
 
+        cfg.getPoClassFile().addSimpleProperty(String.class,"importType","importType","importType");
 
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.NAME).basic().search().fuzzySearch();

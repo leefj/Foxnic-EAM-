@@ -76,7 +76,7 @@ public class AssetAllocationController extends SuperController implements BpmCal
      * 添加资产调拨
      */
     @ApiOperation(value = "添加资产调拨")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667967441350656"),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -89,7 +89,8 @@ public class AssetAllocationController extends SuperController implements BpmCal
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetAllocationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetAllocationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAllocationVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetAllocationServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -103,7 +104,7 @@ public class AssetAllocationController extends SuperController implements BpmCal
      * 删除资产调拨
      */
     @ApiOperation(value = "删除资产调拨")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667967441350656")
 	})
     @ApiOperationSupport(order = 2)
@@ -124,7 +125,7 @@ public class AssetAllocationController extends SuperController implements BpmCal
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产调拨")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetAllocationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -139,7 +140,7 @@ public class AssetAllocationController extends SuperController implements BpmCal
      * 更新资产调拨
      */
     @ApiOperation(value = "更新资产调拨")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667967441350656"),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -152,7 +153,8 @@ public class AssetAllocationController extends SuperController implements BpmCal
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetAllocationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetAllocationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAllocationVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetAllocationVOMeta.PAGE_INDEX, AssetAllocationVOMeta.PAGE_SIZE, AssetAllocationVOMeta.SEARCH_FIELD, AssetAllocationVOMeta.FUZZY_FIELD, AssetAllocationVOMeta.SEARCH_VALUE, AssetAllocationVOMeta.SORT_FIELD, AssetAllocationVOMeta.SORT_TYPE, AssetAllocationVOMeta.IDS })
     @SentinelResource(value = AssetAllocationServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -171,7 +173,7 @@ public class AssetAllocationController extends SuperController implements BpmCal
      * 保存资产调拨
      */
     @ApiOperation(value = "保存资产调拨")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667967441350656"),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -184,7 +186,8 @@ public class AssetAllocationController extends SuperController implements BpmCal
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetAllocationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetAllocationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAllocationVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetAllocationVOMeta.PAGE_INDEX, AssetAllocationVOMeta.PAGE_SIZE, AssetAllocationVOMeta.SEARCH_FIELD, AssetAllocationVOMeta.FUZZY_FIELD, AssetAllocationVOMeta.SEARCH_VALUE, AssetAllocationVOMeta.SORT_FIELD, AssetAllocationVOMeta.SORT_TYPE, AssetAllocationVOMeta.IDS })
     @SentinelResource(value = AssetAllocationServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -199,7 +202,7 @@ public class AssetAllocationController extends SuperController implements BpmCal
      * 获取资产调拨
      */
     @ApiOperation(value = "获取资产调拨")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -227,7 +230,7 @@ public class AssetAllocationController extends SuperController implements BpmCal
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产调拨")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetAllocationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -244,7 +247,7 @@ public class AssetAllocationController extends SuperController implements BpmCal
      * 查询资产调拨
      */
     @ApiOperation(value = "查询资产调拨")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667967441350656"),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -257,7 +260,8 @@ public class AssetAllocationController extends SuperController implements BpmCal
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetAllocationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetAllocationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAllocationVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetAllocationVOMeta.PAGE_INDEX, AssetAllocationVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetAllocationServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -273,7 +277,7 @@ public class AssetAllocationController extends SuperController implements BpmCal
      * 分页查询资产调拨
      */
     @ApiOperation(value = "分页查询资产调拨")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667967441350656"),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
@@ -286,7 +290,8 @@ public class AssetAllocationController extends SuperController implements BpmCal
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetAllocationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetAllocationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAllocationVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetAllocationServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -314,7 +319,7 @@ public class AssetAllocationController extends SuperController implements BpmCal
      * 确认
      */
     @ApiOperation(value = "调拨确认")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 13)

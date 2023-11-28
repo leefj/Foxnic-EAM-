@@ -343,6 +343,8 @@ public interface IAssetService extends ISuperService<Asset> {
 	PagedList<Asset> queryPagedList(Asset sample,OrderBy orderBy,int pageSize,int pageIndex);
 
 
+	PagedList<Asset> queryRawPagedList(AssetVO sample);
+
 	PagedList<Asset> queryPagedListBySelected(AssetVO sample,String assetSelectedCode,String assetOwnerId,String dataType);
 
 	PagedList<Asset> queryPagedListBySelect(AssetVO sample,String assetBusinessType,String assetOwnerId,String assetSelectedCode,String assetSearchContent);

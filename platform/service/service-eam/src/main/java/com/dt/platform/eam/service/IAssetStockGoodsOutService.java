@@ -32,6 +32,10 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
 public interface IAssetStockGoodsOutService extends ISuperService<AssetStockGoodsOut> {
 
 
+
+	Result selectImportItem(String id,String importType,String billId);
+
+
 	Result fillToSpPperation(String id);
 
 	/**

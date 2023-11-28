@@ -1859,6 +1859,21 @@ public class AssetController extends SuperController {
         return result;
     }
 
+	/**
+	 * 分页查询资产
+	 */
+	@ApiOperation(value = "分页查询资产")
+	@ApiOperationSupport(order = 10)
+	@SentinelResource(value = AssetServiceProxy.QUERY_RAW_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+	@PostMapping(AssetServiceProxy.QUERY_RAW_PAGED_LIST)
+	public Result<PagedList<Asset>> queryRawPagedList(AssetVO sample) {
+		Result<PagedList<Asset>> result = new Result<>();
+		PagedList<Asset> list = assetService.queryRawPagedList(sample);
+		assetService.joinData(list.getList());
+		result.success(true).data(list);
+		return result;
+	}
+
     /**
      * 批量送审
      */

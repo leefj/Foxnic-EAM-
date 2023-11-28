@@ -75,6 +75,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -1371,6 +1372,11 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		}
 	}
 
+	@Override
+	public PagedList<Asset> queryRawPagedList(AssetVO sample) {
+		return super.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+	}
+
 
 	@Override
 	public PagedList<Asset> queryPagedListBySelect(AssetVO sample,String businessType,String assetOwnerId,String assetSelectData,String assetSearchContent) {
@@ -1489,16 +1495,17 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	@Override
 	public Result checkAssetDataForBusinessAction(String businessType,List<String> assetIds) {
 		Result result=new Result();
+		List<String> assetIds2=assetIds.stream().distinct().collect(Collectors.toList());
 		ConditionExpr queryCondition=new ConditionExpr();
-		queryCondition.andIn("id",assetIds);
+		queryCondition.andIn("id",assetIds2);
 		Result r=conditionAssetBusinessType(businessType,"",queryCondition);
 		if(!r.isSuccess()){
 			return r;
 		}
 		List<Asset> list=queryList(queryCondition);
-		Logger.info("current selected asset size:"+assetIds.size());
+		Logger.info("current selected asset size:"+assetIds2.size());
 		Logger.info("match asset size:"+list.size());
-		if(list.size()!=assetIds.size()){
+		if(list.size()!=assetIds2.size()){
 			return ErrorDesc.failure().message("当前选择的资产中部分状态异常");
 		}
 		return result;

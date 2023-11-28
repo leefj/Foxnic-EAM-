@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 采购申请VO类型
  * <p>采购申请 , 数据表 eam_purchase_apply 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-07 21:23:31
+ * @since 2023-11-26 08:17:32
  * @sign 901BAD23D88C64D31FBF0F78680C4544
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -453,6 +453,7 @@ public class PurchaseApplyVO extends PurchaseApply {
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setCurrentProcessList(this.getCurrentProcessList());
 			inst.setDefaultProcess(this.getDefaultProcess());
+			inst.setImportType(this.getImportType());
 			inst.setChangeInstance(this.getChangeInstance());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
@@ -569,6 +570,7 @@ public class PurchaseApplyVO extends PurchaseApply {
 			this.setOriginator(DataParser.parse(Employee.class, map.get(PurchaseApplyVOMeta.ORIGINATOR)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.SELECTED_CODE)));
 			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(PurchaseApplyVOMeta.DEFAULT_PROCESS)));
+			this.setImportType(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.IMPORT_TYPE)));
 			this.setChangeInstance(DataParser.parse(ChangeInstance.class, map.get(PurchaseApplyVOMeta.CHANGE_INSTANCE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(PurchaseApplyVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.SORT_TYPE)));
@@ -626,6 +628,7 @@ public class PurchaseApplyVO extends PurchaseApply {
 				this.setOriginator( (Employee)map.get(PurchaseApplyVOMeta.ORIGINATOR));
 				this.setSelectedCode( (String)map.get(PurchaseApplyVOMeta.SELECTED_CODE));
 				this.setDefaultProcess( (ProcessInstance)map.get(PurchaseApplyVOMeta.DEFAULT_PROCESS));
+				this.setImportType( (String)map.get(PurchaseApplyVOMeta.IMPORT_TYPE));
 				this.setChangeInstance( (ChangeInstance)map.get(PurchaseApplyVOMeta.CHANGE_INSTANCE));
 				this.setPageIndex( (Integer)map.get(PurchaseApplyVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(PurchaseApplyVOMeta.SORT_TYPE));

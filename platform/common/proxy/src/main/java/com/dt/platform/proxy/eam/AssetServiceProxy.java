@@ -97,6 +97,11 @@ public interface AssetServiceProxy {
     /**
      * 分页查询资产
      */
+    public static final String QUERY_RAW_PAGED_LIST = API_PREFIX + "query-raw-paged-list";
+
+    /**
+     * 分页查询资产
+     */
     public static final String QUERY_PAGED_LIST_BY_SELECT = API_PREFIX + "query-paged-list-by-select";
 
     /**
