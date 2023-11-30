@@ -263,21 +263,22 @@ function PortalPage() {
 	function refreshUserProcessDefinitions(data,el) {
 		var container = $("."+el);
 		container.empty();
-		for (var i=0;i<data.length;i++) {
-
-			var def = data[i];
-			PROCESS_DEFINITIONS[def.id]=def;
-			container.append([
-				'<div class="process-definition-item" id="'+def.id+'">',
-				'	<img src="/service-storage/sys-file/image?id='+def.iconFilePc+'" style="height: 42px;margin-top: 6px;margin-left: 6px">',
-				'	<div style="margin: 8px 10px;">',
-				'		<span class="process-definition-name">'+def.name+'</span><br>',
-				'		<span class="process-definition-desc">'+(def.notes?def.notes:"无")+'</span>',
-				'	</div>',
-				'</div>'
-			].join("\n"));
+		console.log("data:",data);
+		if(data&&data.length>0){
+			for (var i=0;i<data.length;i++) {
+				var def = data[i];
+				PROCESS_DEFINITIONS[def.id]=def;
+				container.append([
+					'<div class="process-definition-item" id="'+def.id+'">',
+					'	<img src="/service-storage/sys-file/image?id='+def.iconFilePc+'" style="height: 42px;margin-top: 6px;margin-left: 6px">',
+					'	<div style="margin: 8px 10px;">',
+					'		<span class="process-definition-name">'+def.name+'</span><br>',
+					'		<span class="process-definition-desc">'+(def.notes?def.notes:"无")+'</span>',
+					'	</div>',
+					'</div>'
+				].join("\n"));
+			}
 		}
-
 		$(".process-definition-item").off("click");
 		$(".process-definition-item").click(function (it) {
 			var id=$(this).attr("id");

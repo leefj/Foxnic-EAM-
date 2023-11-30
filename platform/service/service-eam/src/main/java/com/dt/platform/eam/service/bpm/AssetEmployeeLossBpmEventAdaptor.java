@@ -109,8 +109,6 @@ public class AssetEmployeeLossBpmEventAdaptor extends BpmEventAdaptor<AssetEmplo
 		Logger.info("onNodeEnd result:"+event.getActionResult().getMessage());
 
 
-
-
 		if("END".equals(event.getNodeId())){
 			updateBillStatus(AssetHandleStatusEnum.COMPLETE.code(), event.getBillId());
 		}

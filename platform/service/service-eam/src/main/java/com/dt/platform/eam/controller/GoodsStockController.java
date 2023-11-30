@@ -638,7 +638,6 @@ public class GoodsStockController extends SuperController {
 
 
 
-
 			// 耗材、物品、备件入库动作
 			if (AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_IN.code().equals(operType)
 					|| AssetOperateEnum.EAM_ASSET_STOCK_GOODS_IN.code().equals(operType)
@@ -650,7 +649,10 @@ public class GoodsStockController extends SuperController {
 			}
 
 
-			if (AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_OUT.code().equals(operType)
+			if (AssetOperateEnum.EAM_ASSET_STOCK_GOODS_USE.code().equals(operType)
+					||AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_USE.code().equals(operType)
+					||AssetOperateEnum.EAM_ASSET_PART_GOODS_USE.code().equals(operType)
+					||AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_OUT.code().equals(operType)
 					|| AssetOperateEnum.EAM_ASSET_STOCK_GOODS_OUT.code().equals(operType)
 					|| AssetOperateEnum.EAM_ASSET_PART_GOODS_OUT.code().equals(operType)) {
 				// 直接物品

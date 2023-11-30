@@ -235,13 +235,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     fox.lockForm($("#data-form"),true);
                 }
             }
-
             //iframe
             var ownerId="";
             if(data&&data.id){
                 ownerId=data.id;
             }
-
             if(data.status=="incomplete"){
                 formAction="modify";
             }else{
