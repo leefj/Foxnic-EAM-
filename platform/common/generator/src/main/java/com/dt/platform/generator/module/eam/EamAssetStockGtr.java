@@ -48,8 +48,6 @@ public class EamAssetStockGtr extends BaseCodeGenerator{
 
 
 
-
-
         cfg.view().field(EAMTables.EAM_STOCK.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_STOCK.BUSINESS_CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_STOCK.STOCK_NAME).search().fuzzySearch();

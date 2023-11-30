@@ -53,6 +53,7 @@ public class EamRelationManager extends RelationManager {
         this.setupTplFile();
         this.setupAssetDataChange();
 
+
         this.setupGoods();
         this.setupGoodsStock();
         this.setupAssetStockIn();
@@ -66,6 +67,7 @@ public class EamRelationManager extends RelationManager {
         this.setupAssetStockDeliver();
         this.setupAssetStockGoods();
 
+        this.setupAssetStockUse();
 
         this.setupPurchaseApply();
         this.setupPurchaseCheck();
@@ -139,6 +141,19 @@ public class EamRelationManager extends RelationManager {
 
         this.setupStockImport();
     }
+
+    public void setupAssetStockUse() {
+
+        this.property(AssetStockGoodsUseMeta.ORIGINATOR_PROP)
+                .using(EAMTables.EAM_ASSET_STOCK_GOODS_USE.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(AssetStockGoodsUseMeta.ASSET_STOCK_GOODS_LIST_PROP)
+                .using(EAMTables.EAM_ASSET_STOCK_GOODS_USE.ID).join(EAMTables.EAM_GOODS_STOCK.OWNER_ID)
+             .condition("owner_tmp_id='none'");
+
+    }
+
+
     public void setupDeviceSp() {
         this.property(DeviceSpMeta.WAREHOUSE_PROP)
                 .using(EAMTables.EAM_DEVICE_SP.WAREHOUSE_ID).join(EAMTables.EAM_WAREHOUSE.ID);

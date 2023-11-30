@@ -57,7 +57,7 @@
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs6 form-column" >
+            <div class="layui-col-xs6 form-column"  id="sumAmount">
                     <div class="layui-form-item" >
                         <div class="layui-form-label "><div th:text="${lang.translate('总金额')}">总金额</div></div>
                         <div class="layui-input-block ">
@@ -72,11 +72,11 @@
 
 
 
-        <div class="layui-row form-row" id="random-3065-content">
+        <div class="layui-row form-row" id="random-3065-content" >
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
+            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" id="notesarea">
 
 
                     <div class="layui-form-item" >
@@ -106,7 +106,7 @@
         <!--结束：group循环-->
 
         <div style="height: 8px"></div>
-        <div style="height: 250px"></div>
+        <div style="height: 20px"></div>
 
 
     </form>

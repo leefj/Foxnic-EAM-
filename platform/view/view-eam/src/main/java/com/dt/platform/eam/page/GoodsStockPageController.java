@@ -171,7 +171,9 @@ public class GoodsStockPageController extends ViewController {
 				//类型
 				if(AssetOperateEnum.EAM_ASSET_STOCK_GOODS_IN.code().equals(operType)){
 					ownerCode=AssetStockGoodsOwnerEnum.GOODS.code();
-				}else if(AssetOperateEnum.EAM_ASSET_STOCK_GOODS_OUT.code().equals(operType)
+				}else if(
+						AssetOperateEnum.EAM_ASSET_STOCK_GOODS_OUT.code().equals(operType)
+								||AssetOperateEnum.EAM_ASSET_STOCK_GOODS_USE.code().equals(operType)
 						||AssetOperateEnum.EAM_ASSET_STOCK_GOODS_ADJUST.code().equals(operType)
 						||AssetOperateEnum.EAM_ASSET_STOCK_GOODS_TRANFER.code().equals(operType)){
 					ownerCode=AssetStockGoodsOwnerEnum.REAL_STOCK.code();
@@ -189,6 +191,7 @@ public class GoodsStockPageController extends ViewController {
 				if(AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_IN.code().equals(operType)){
 					ownerCode=AssetStockGoodsOwnerEnum.GOODS.code();
 				}else if(AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_OUT.code().equals(operType)
+						||AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_USE.code().equals(operType)
 						||AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_ADJUST.code().equals(operType)
 						||AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_TRANFER.code().equals(operType)){
 					ownerCode=AssetStockGoodsOwnerEnum.REAL_CONSUMABLES.code();
@@ -206,6 +209,7 @@ public class GoodsStockPageController extends ViewController {
 				if(AssetOperateEnum.EAM_ASSET_PART_GOODS_IN.code().equals(operType)){
 					ownerCode=AssetStockGoodsOwnerEnum.GOODS.code();
 				}else if(AssetOperateEnum.EAM_ASSET_PART_GOODS_OUT.code().equals(operType)
+						||AssetOperateEnum.EAM_ASSET_PART_GOODS_USE.code().equals(operType)
 						||AssetOperateEnum.EAM_ASSET_PART_GOODS_ADJUST.code().equals(operType)
 						||AssetOperateEnum.EAM_ASSET_PART_GOODS_REPAIR_OUT.code().equals(operType)
 						||AssetOperateEnum.EAM_ASSET_PART_GOODS_TRANFER.code().equals(operType)){

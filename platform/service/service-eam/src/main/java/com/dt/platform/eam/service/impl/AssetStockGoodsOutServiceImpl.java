@@ -101,7 +101,7 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 		qE.setSelectedCode(selectedCode);
 		List<GoodsStock> list =goodsStockService.queryList(qE);
 		if(list.size()==0){
-			return ErrorDesc.failureMessage("请选择数据");
+			return ErrorDesc.failureMessage("请选择物品");
 		}
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getStockInNumber().compareTo(new BigDecimal("0"))==1){
@@ -162,7 +162,8 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 			list.get(i).setBusinessCode(assetStockGoodsOut.getBusinessCode());
 			list.get(i).setOwnerCode(assetStockGoodsOut.getOwnerType());
 		}
-		return goodsStockService.saveOwnerData(assetStockGoodsOut.getId(),assetStockGoodsOut.getOwnerType(),list);
+		goodsStockService.saveOwnerData(assetStockGoodsOut.getId(),assetStockGoodsOut.getOwnerType(),list);
+		return r;
 	}
 
 
@@ -266,8 +267,6 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 
 			}
 		}
-
-
 		return ErrorDesc.success();
 	}
 
@@ -483,7 +482,7 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 		qE.setOwnerTmpId(assetStockGoodsOut.getId());
 		List<GoodsStock> list =goodsStockService.queryList(qE);
 		if(list.size()==0){
-			return ErrorDesc.failureMessage("请选择数据");
+			return ErrorDesc.failureMessage("请选择物品");
 		}
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getStockInNumber().compareTo(new BigDecimal("0"))==1){
@@ -505,7 +504,8 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 			list.get(i).setBusinessCode(assetStockGoodsOut.getBusinessCode());
 			list.get(i).setOwnerCode(assetStockGoodsOut.getOwnerType());
 		}
-		return goodsStockService.saveOwnerData(assetStockGoodsOut.getId(),assetStockGoodsOut.getOwnerType(),list);
+		goodsStockService.saveOwnerData(assetStockGoodsOut.getId(),assetStockGoodsOut.getOwnerType(),list);
+		return r;
 
 	}
 
