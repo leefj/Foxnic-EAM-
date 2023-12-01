@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产交接VO类型
  * <p>资产交接 , 数据表 eam_asset_employee_handover 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-01 13:15:36
+ * @since 2023-12-01 20:32:34
  * @sign F7CD68BC3821A76BC5EF3D4A9E71686A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

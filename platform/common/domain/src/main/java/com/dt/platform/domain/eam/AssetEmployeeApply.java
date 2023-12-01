@@ -29,7 +29,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 领用申请
  * <p>领用申请 , 数据表 eam_asset_employee_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-01 13:14:17
+ * @since 2023-12-01 20:32:13
  * @sign 0344236B48B92B5E55AF1F6FC29BF9EE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

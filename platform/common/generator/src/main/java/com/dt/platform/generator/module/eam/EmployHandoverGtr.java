@@ -59,6 +59,8 @@ public class EmployHandoverGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.SELECTED_CODE).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.RECORD_TIME).table().disable(true);
 
+        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.UPDATE_BY).table().disable(true);
+
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.NOTES).form().textArea().height(Config.textAreaHeight);
 //        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.CONTENT).form().validate().required().form().textArea().height(Config.textAreaHeight);

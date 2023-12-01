@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 故障申请单VO类型
  * <p>故障申请单 , 数据表 eam_repair_order 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-01 13:32:07
+ * @since 2023-12-01 20:31:36
  * @sign B246C9A6519ACCA6F8C9E09407F19A01
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

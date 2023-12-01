@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-11-29 07:38:55
+ * @since 2023-12-01 20:34:34
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -10107,7 +10107,7 @@ public class EAMTables {
 	}
 	
 	/**
-	 * 库存领用
+	 * 库存物品领用
 	*/
 	public static class EAM_ASSET_STOCK_GOODS_USE extends DBTable {
 		
@@ -10206,7 +10206,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_ASSET_STOCK_GOODS_USE() {
-			this.init($NAME,"库存领用" , ID , BUSINESS_CODE , STATUS , OWNER_TYPE , NAME , BUSINESS_DATE , CONTENT , ORIGINATOR_ID , ATTACH_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"库存物品领用" , ID , BUSINESS_CODE , STATUS , OWNER_TYPE , NAME , BUSINESS_DATE , CONTENT , ORIGINATOR_ID , ATTACH_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_ASSET_STOCK_GOODS_USE $TABLE=new EAM_ASSET_STOCK_GOODS_USE();
 	}
@@ -19186,9 +19186,9 @@ public class EAMTables {
 		public static final DBField OWN_COMPANY_ID = new DBField(DBDataType.STRING , "own_company_id","ownCompanyId","所属公司","所属公司",false,false,true);
 		
 		/**
-		 * 所属组织
+		 * 使用部门
 		*/
-		public static final DBField USE_ORG_ID = new DBField(DBDataType.STRING , "use_org_id","useOrgId","所属组织","所属组织",false,false,true);
+		public static final DBField USE_ORG_ID = new DBField(DBDataType.STRING , "use_org_id","useOrgId","使用部门","使用部门",false,false,true);
 		
 		/**
 		 * 管理人
@@ -21631,9 +21631,9 @@ public class EAMTables {
 		public static final DBField OWN_COMPANY_ID = new DBField(DBDataType.STRING , "own_company_id","ownCompanyId","所属公司","所属公司",false,false,true);
 		
 		/**
-		 * 所属组织
+		 * 使用部门
 		*/
-		public static final DBField USE_ORG_ID = new DBField(DBDataType.STRING , "use_org_id","useOrgId","所属组织","所属组织",false,false,true);
+		public static final DBField USE_ORG_ID = new DBField(DBDataType.STRING , "use_org_id","useOrgId","使用部门","使用部门",false,false,true);
 		
 		/**
 		 * 管理人

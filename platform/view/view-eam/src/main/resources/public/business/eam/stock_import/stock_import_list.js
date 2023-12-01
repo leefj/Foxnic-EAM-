@@ -1,7 +1,7 @@
 /**
  * 库存导入资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-11-28 21:41:19
+ * @since 2023-12-01 20:35:31
  */
 
 
@@ -90,7 +90,7 @@ function ListPage() {
 					,{ field: 'orderCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('订单编号') , templet: function (d) { return templet('orderCode',d.orderCode,d);}  }
 					,{ field: 'orderName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('订单名称') , templet: function (d) { return templet('orderName',d.orderName,d);}  }
 					,{ field: 'ownCompanyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属公司') , templet: function (d) { return templet('ownCompanyId',fox.getProperty(d,["ownerCompany","fullName"],0,'','ownCompanyId'),d);} }
-					,{ field: 'useOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属组织') , templet: function (d) { return templet('useOrgId',fox.getProperty(d,["useOrganization","fullName"],0,'','useOrgId'),d);} }
+					,{ field: 'useOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用部门') , templet: function (d) { return templet('useOrgId',fox.getProperty(d,["useOrganization","fullName"],0,'','useOrgId'),d);} }
 					,{ field: 'managerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('管理人') , templet: function (d) { return templet('managerId',fox.getProperty(d,["manager","name"],0,'','managerId'),d);} }
 					,{ field: 'useUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用人') , templet: function (d) { return templet('useUserId',fox.getProperty(d,["useUser","name"],0,'','useUserId'),d);} }
 					,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置'), templet: function (d) { return templet('positionId' ,fox.joinLabel(d.position,"hierarchyName",',','','positionId'),d);}}

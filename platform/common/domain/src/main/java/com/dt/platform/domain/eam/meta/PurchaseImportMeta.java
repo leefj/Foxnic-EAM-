@@ -15,8 +15,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-11-28 21:41:30
- * @sign E297C67F66573E7C8DB6E1DD4502281B
+ * @since 2023-12-01 20:35:12
+ * @sign FA39852975123D04B378DAB3E4770E1E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -93,14 +93,14 @@ public class PurchaseImportMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseImport,java.lang.String> OWN_COMPANY_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseImport.class ,OWN_COMPANY_ID, java.lang.String.class, "所属公司", "所属公司", java.lang.String.class, null);
 	
 	/**
-	 * 所属组织 , 类型: java.lang.String
+	 * 使用部门 , 类型: java.lang.String
 	*/
 	public static final String USE_ORG_ID="useOrgId";
 	
 	/**
-	 * 所属组织 , 类型: java.lang.String
+	 * 使用部门 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseImport,java.lang.String> USE_ORG_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseImport.class ,USE_ORG_ID, java.lang.String.class, "所属组织", "所属组织", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseImport,java.lang.String> USE_ORG_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseImport.class ,USE_ORG_ID, java.lang.String.class, "使用部门", "使用部门", java.lang.String.class, null);
 	
 	/**
 	 * 管理人 , 类型: java.lang.String
@@ -463,8 +463,8 @@ public class PurchaseImportMeta {
 		}
 		
 		/**
-		 * 设置 所属组织
-		 * @param useOrgId 所属组织
+		 * 设置 使用部门
+		 * @param useOrgId 使用部门
 		 * @return 当前对象
 		*/
 		public PurchaseImport setUseOrgId(String useOrgId) {
