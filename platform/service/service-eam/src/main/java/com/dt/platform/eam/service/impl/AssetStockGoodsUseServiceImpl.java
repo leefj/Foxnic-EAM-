@@ -1,10 +1,7 @@
 package com.dt.platform.eam.service.impl;
 
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
-import com.dt.platform.constants.enums.eam.AssetHandleConfirmOperationEnum;
-import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
-import com.dt.platform.constants.enums.eam.AssetStockGoodsTypeEnum;
-import com.dt.platform.constants.enums.eam.AssetStockTypeEnum;
+import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta;
 import com.dt.platform.domain.eam.meta.AssetStockGoodsUseMeta;
@@ -424,7 +421,8 @@ public class AssetStockGoodsUseServiceImpl extends SuperService<AssetStockGoodsU
 	 * */
 	@Override
 	public PagedList<AssetStockGoodsUse> queryPagedList(AssetStockGoodsUseVO sample, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, pageSize, pageIndex);
+		String dp= AssetOperateEnum.EAM_ASSET_STOCK_GOODS_USE.code();
+		return super.queryPagedList(sample, pageSize, pageIndex,dp);
 	}
 
 	/**
@@ -438,7 +436,9 @@ public class AssetStockGoodsUseServiceImpl extends SuperService<AssetStockGoodsU
 	 * */
 	@Override
 	public PagedList<AssetStockGoodsUse> queryPagedList(AssetStockGoodsUse sample, ConditionExpr condition, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, condition, pageSize, pageIndex);
+
+		String dp= AssetOperateEnum.EAM_ASSET_STOCK_GOODS_USE.code();
+		return super.queryPagedList(sample, condition, pageSize, pageIndex,dp);
 	}
 
 	/**
