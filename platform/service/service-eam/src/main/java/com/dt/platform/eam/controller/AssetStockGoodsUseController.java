@@ -333,11 +333,7 @@ public class AssetStockGoodsUseController extends SuperController implements Bpm
 		// 填充流程相关的属性
 		List<Employee> originatorList = CollectorUtil.collectList(list, AssetStockGoodsUse::getOriginator);
 		assetStockGoodsUseService.dao().join(originatorList, Person.class);
-
-
 		assetStockGoodsUseService.joinProcess(list);
-
-
 		result.success(true).data(list);
 		return result;
 	}

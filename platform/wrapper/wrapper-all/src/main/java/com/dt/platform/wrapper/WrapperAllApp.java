@@ -46,7 +46,7 @@ import org.springframework.context.annotation.ComponentScan;
 		ContractMeta.SERVICE_CONTRACT_PACKAGE,
 		// 客户-Jar引用
 		CustomerMeta.SERVICE_CUSTOMER_PACKAGE,
-
+		"com.dt.platform.eam.service.bpm"
 })
 @SpringBootApplication
 public class WrapperAllApp {

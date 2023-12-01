@@ -27,8 +27,7 @@ import com.dt.platform.eam.service.IAssetScrapService;
 @Service
 public class AssetScrapBpmEventAdaptor extends BpmEventAdaptor<AssetScrap,IAssetScrapService> {
 
-	@Autowired
-	private IAssetScrapService assetScrapService;
+
 
 
 	public String BPM_TABLE="eam_asset_scrap";
@@ -82,7 +81,7 @@ public class AssetScrapBpmEventAdaptor extends BpmEventAdaptor<AssetScrap,IAsset
 	protected BpmActionResult onNodeEnd(BpmEvent event) {
 		if("END".equals(event.getNodeId())){
 			updateBillStatus(AssetHandleStatusEnum.COMPLETE.code(), event.getBillId());
-			assetScrapService.confirmOperation(event.getBillId());
+			super.service().confirmOperation(event.getBillId());
 		}
 
 		return event.getActionResult();
