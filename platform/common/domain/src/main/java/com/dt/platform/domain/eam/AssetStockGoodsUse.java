@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品领用
  * <p>库存物品领用 , 数据表 eam_asset_stock_goods_use 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-01 13:04:17
+ * @since 2023-12-01 14:09:11
  * @sign 7A79FA10A87338227B091CD513E97D00
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

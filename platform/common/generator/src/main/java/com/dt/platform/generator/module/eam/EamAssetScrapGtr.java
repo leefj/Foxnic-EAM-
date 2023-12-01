@@ -177,6 +177,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
 
         cfg.view().form().addJsVariable("INSTANCE_DATA","[[${instanceData}]]","instanceData");
 
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
 
 
 //        model.addAttribute("billId",id);
