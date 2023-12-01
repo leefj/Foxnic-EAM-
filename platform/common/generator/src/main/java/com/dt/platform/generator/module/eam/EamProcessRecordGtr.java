@@ -44,6 +44,7 @@ public class EamProcessRecordGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_PROCESS_RECORD.PROCESS_USER_ID).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_PROCESS_RECORD.USE_USER_ID).table().disable();
 
+        cfg.view().field(EAMTables.EAM_ASSET_PROCESS_RECORD.NOTES).form().textArea().height(120);
         cfg.view().field(EAMTables.EAM_ASSET_PROCESS_RECORD.PROCESSD_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
 
 
@@ -52,13 +53,25 @@ public class EamProcessRecordGtr extends BaseCodeGenerator{
         cfg.view().formWindow().bottomSpace(100);
         cfg.view().formWindow().width(Config.baseFormWidth);
 
+        cfg.view().formWindow().width(Config.baseFormWidth);;
+        cfg.view().formWindow().bottomSpace(20);
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        EAMTables.EAM_ASSET_PROCESS_RECORD.BUSINESS_CODE,
+                        EAMTables.EAM_ASSET_PROCESS_RECORD.PROCESS_TYPE,
+                        EAMTables.EAM_ASSET_PROCESS_RECORD.CONTENT,
+                        EAMTables.EAM_ASSET_PROCESS_RECORD.NOTES,
+                        EAMTables.EAM_ASSET_PROCESS_RECORD.PROCESSD_TIME,
+                }
+        );
+
 
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.CREATE_IF_NOT_EXISTS) //服务与接口
                 .setControllerAndAgent(WriteMode.CREATE_IF_NOT_EXISTS) //Rest
                 .setPageController(WriteMode.CREATE_IF_NOT_EXISTS) //页面控制器
-                .setFormPage(WriteMode.CREATE_IF_NOT_EXISTS) //表单HTML页
+                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
                 .setListPage(WriteMode.CREATE_IF_NOT_EXISTS)//列表HTML页
                 .setExtendJsFile(WriteMode.CREATE_IF_NOT_EXISTS); //列表HTML页
         cfg.buildAll();

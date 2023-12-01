@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_PROCESS_RECORD;
@@ -8,20 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetProcessRecordMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 资产处理记录
+ * <p>资产处理记录 , 数据表 eam_asset_process_record 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-11-28 11:49:49
- * @sign 3AE4537DD00259AAD662D5D16E96E38B
+ * @since 2023-12-01 22:43:56
+ * @sign 6EDE2FB2DAAC2670B3A9BDE5780FA427
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_process_record")
+@ApiModel(description = "资产处理记录 ; 资产处理记录 , 数据表 eam_asset_process_record 的PO类型")
 public class AssetProcessRecord extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -32,31 +40,31 @@ public class AssetProcessRecord extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "681881175731470336")
 	private String id;
 	
 	/**
-	 * 资产：资产
+	 * 资产名称：资产名称
 	*/
-	@ApiModelProperty(required = false,value="资产" , notes = "资产")
+	@ApiModelProperty(required = false,value="资产名称" , notes = "资产名称" , example = "681881153086423040")
 	private String assetId;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "681881175257513984")
 	private String businessCode;
 	
 	/**
 	 * 操作类型：操作类型
 	*/
-	@ApiModelProperty(required = false,value="操作类型" , notes = "操作类型")
+	@ApiModelProperty(required = false,value="操作类型" , notes = "操作类型" , example = "eam_asset_insert")
 	private String processType;
 	
 	/**
 	 * 操作内容：操作内容
 	*/
-	@ApiModelProperty(required = false,value="操作内容" , notes = "操作内容")
+	@ApiModelProperty(required = false,value="操作内容" , notes = "操作内容" , example = "资产入库")
 	private String content;
 	
 	/**
@@ -80,19 +88,19 @@ public class AssetProcessRecord extends Entity {
 	/**
 	 * 变更时间：变更时间
 	*/
-	@ApiModelProperty(required = false,value="变更时间" , notes = "变更时间")
+	@ApiModelProperty(required = false,value="变更时间" , notes = "变更时间" , example = "2023-02-25 03:12:21")
 	private Date processdTime;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-02-25 03:12:21")
 	private Date createTime;
 	
 	/**
@@ -110,8 +118,11 @@ public class AssetProcessRecord extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -128,7 +139,7 @@ public class AssetProcessRecord extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -151,17 +162,17 @@ public class AssetProcessRecord extends Entity {
 	}
 	
 	/**
-	 * 获得 资产<br>
-	 * 资产
-	 * @return 资产
+	 * 获得 资产名称<br>
+	 * 资产名称
+	 * @return 资产名称
 	*/
 	public String getAssetId() {
 		return assetId;
 	}
 	
 	/**
-	 * 设置 资产
-	 * @param assetId 资产
+	 * 设置 资产名称
+	 * @param assetId 资产名称
 	 * @return 当前对象
 	*/
 	public AssetProcessRecord setAssetId(String assetId) {
@@ -388,12 +399,43 @@ public class AssetProcessRecord extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetProcessRecord setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetProcessRecord setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -484,6 +526,50 @@ public class AssetProcessRecord extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetProcessRecord clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetProcessRecord duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetProcessRecordMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetProcessRecordMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setProcessdTime(this.getProcessdTime());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setContent(this.getContent());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setAssetId(this.getAssetId());
+		inst.setProcessUserId(this.getProcessUserId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setProcessType(this.getProcessType());
+		inst.setUseUserId(this.getUseUserId());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetProcessRecord clone(boolean deep) {
+		return EntityContext.clone(AssetProcessRecord.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetProcessRecord
 	 * @param assetProcessRecordMap 包含实体信息的 Map 对象
 	 * @return AssetProcessRecord , 转换好的的 AssetProcessRecord 对象
@@ -491,7 +577,9 @@ public class AssetProcessRecord extends Entity {
 	@Transient
 	public static AssetProcessRecord createFrom(Map<String,Object> assetProcessRecordMap) {
 		if(assetProcessRecordMap==null) return null;
-		AssetProcessRecord po = EntityContext.create(AssetProcessRecord.class, assetProcessRecordMap);
+		AssetProcessRecord po = create();
+		EntityContext.copyProperties(po,assetProcessRecordMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -503,7 +591,9 @@ public class AssetProcessRecord extends Entity {
 	@Transient
 	public static AssetProcessRecord createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetProcessRecord po = EntityContext.create(AssetProcessRecord.class,pojo);
+		AssetProcessRecord po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -513,6 +603,114 @@ public class AssetProcessRecord extends Entity {
 	*/
 	@Transient
 	public static AssetProcessRecord create() {
-		return EntityContext.create(AssetProcessRecord.class);
+		return new com.dt.platform.domain.eam.meta.AssetProcessRecordMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.NOTES)));
+			this.setProcessdTime(DataParser.parse(Date.class, map.get(AssetProcessRecordMeta.PROCESSD_TIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetProcessRecordMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetProcessRecordMeta.VERSION)));
+			this.setContent(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.CONTENT)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetProcessRecordMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetProcessRecordMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetProcessRecordMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.ASSET_ID)));
+			this.setProcessUserId(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.PROCESS_USER_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.ID)));
+			this.setProcessType(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.PROCESS_TYPE)));
+			this.setUseUserId(DataParser.parse(String.class, map.get(AssetProcessRecordMeta.USE_USER_ID)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AssetProcessRecordMeta.NOTES));
+				this.setProcessdTime( (Date)map.get(AssetProcessRecordMeta.PROCESSD_TIME));
+				this.setUpdateTime( (Date)map.get(AssetProcessRecordMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssetProcessRecordMeta.VERSION));
+				this.setContent( (String)map.get(AssetProcessRecordMeta.CONTENT));
+				this.setBusinessCode( (String)map.get(AssetProcessRecordMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)map.get(AssetProcessRecordMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetProcessRecordMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetProcessRecordMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetProcessRecordMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetProcessRecordMeta.DELETE_TIME));
+				this.setAssetId( (String)map.get(AssetProcessRecordMeta.ASSET_ID));
+				this.setProcessUserId( (String)map.get(AssetProcessRecordMeta.PROCESS_USER_ID));
+				this.setDeleteBy( (String)map.get(AssetProcessRecordMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetProcessRecordMeta.ID));
+				this.setProcessType( (String)map.get(AssetProcessRecordMeta.PROCESS_TYPE));
+				this.setUseUserId( (String)map.get(AssetProcessRecordMeta.USE_USER_ID));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetProcessRecordMeta.NOTES)));
+			this.setProcessdTime(DataParser.parse(Date.class, r.getValue(AssetProcessRecordMeta.PROCESSD_TIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetProcessRecordMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetProcessRecordMeta.VERSION)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AssetProcessRecordMeta.CONTENT)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetProcessRecordMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetProcessRecordMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetProcessRecordMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetProcessRecordMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetProcessRecordMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetProcessRecordMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, r.getValue(AssetProcessRecordMeta.ASSET_ID)));
+			this.setProcessUserId(DataParser.parse(String.class, r.getValue(AssetProcessRecordMeta.PROCESS_USER_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetProcessRecordMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetProcessRecordMeta.ID)));
+			this.setProcessType(DataParser.parse(String.class, r.getValue(AssetProcessRecordMeta.PROCESS_TYPE)));
+			this.setUseUserId(DataParser.parse(String.class, r.getValue(AssetProcessRecordMeta.USE_USER_ID)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AssetProcessRecordMeta.NOTES));
+				this.setProcessdTime( (Date)r.getValue(AssetProcessRecordMeta.PROCESSD_TIME));
+				this.setUpdateTime( (Date)r.getValue(AssetProcessRecordMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssetProcessRecordMeta.VERSION));
+				this.setContent( (String)r.getValue(AssetProcessRecordMeta.CONTENT));
+				this.setBusinessCode( (String)r.getValue(AssetProcessRecordMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)r.getValue(AssetProcessRecordMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetProcessRecordMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetProcessRecordMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetProcessRecordMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetProcessRecordMeta.DELETE_TIME));
+				this.setAssetId( (String)r.getValue(AssetProcessRecordMeta.ASSET_ID));
+				this.setProcessUserId( (String)r.getValue(AssetProcessRecordMeta.PROCESS_USER_ID));
+				this.setDeleteBy( (String)r.getValue(AssetProcessRecordMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetProcessRecordMeta.ID));
+				this.setProcessType( (String)r.getValue(AssetProcessRecordMeta.PROCESS_TYPE));
+				this.setUseUserId( (String)r.getValue(AssetProcessRecordMeta.USE_USER_ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

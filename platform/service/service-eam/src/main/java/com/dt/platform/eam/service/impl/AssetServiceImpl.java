@@ -717,6 +717,16 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		chs.setApprovalOpinion(opinion);
 		if(ApprovalAction.agree.code().equals(approveAction)){
 			chs.setStatus(AssetHandleStatusEnum.COMPLETE.code());
+			AssetProcessRecord rcd=new AssetProcessRecord();
+			rcd.setAssetId(asset.getId());
+			rcd.setProcessType("eam_asset_insert");
+			rcd.setContent("资产入库已完成审批,审批人"+SessionUser.getCurrent().getRealName());
+			rcd.setProcessdTime(new Date());
+			rcd.setUseUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+			rcd.setProcessUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+			rcd.setBusinessCode(IDGenerator.getSnowflakeIdString());
+			rcd.setNotes("单节点审批模式");
+			assetProcessRecordService.insert(rcd,false);
 			//applyChange(asset.getId());
 		}else if(ApprovalAction.reject.code().equals(approveAction)){
 			chs.setStatus(AssetHandleStatusEnum.DENY.code());
