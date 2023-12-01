@@ -184,6 +184,7 @@ public class AssetStockGoodsUseServiceImpl extends SuperService<AssetStockGoodsU
 			AssetStockGoodsUse bill=new AssetStockGoodsUse();
 			bill.setId(id);
 			bill.setStatus(status);
+
 			this.dao.execute("update eam_goods_stock set status=? where owner_id=?",status,bill.getId());
 			//后续需要加盘点
 			computeStockData(id);

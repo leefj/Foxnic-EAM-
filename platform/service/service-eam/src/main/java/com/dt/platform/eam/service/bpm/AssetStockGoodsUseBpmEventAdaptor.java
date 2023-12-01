@@ -29,9 +29,6 @@ public class AssetStockGoodsUseBpmEventAdaptor extends BpmEventAdaptor<AssetStoc
 
 	public String BPM_TABLE="eam_asset_stock_goods_use";
 
-	@Autowired
-	private IAssetStockGoodsUseService assetStockGoodsUseService;
-
 
 	private void updateBillStatus(String status ,String id){
 		this.dao().execute("update "+BPM_TABLE+" set status=? where id=?", status, id);
@@ -79,7 +76,8 @@ public class AssetStockGoodsUseBpmEventAdaptor extends BpmEventAdaptor<AssetStoc
 	protected BpmActionResult onNodeEnd(BpmEvent event) {
 		if("END".equals(event.getNodeId())){
 			updateBillStatus(AssetHandleStatusEnum.COMPLETE.code(), event.getBillId());
-			assetStockGoodsUseService.operateResult(event.getBillId(),"success","complete","操作成功");
+			System.out.println("assetStockGoodsUseService:"+super.service());
+			super.service().operateResult(event.getBillId(),"success","complete","操作成功");
 		}
 		return event.getActionResult();
 	}
