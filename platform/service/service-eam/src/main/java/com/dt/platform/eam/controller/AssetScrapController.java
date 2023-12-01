@@ -91,7 +91,8 @@ public class AssetScrapController extends SuperController implements BpmCallback
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage")
+		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage"),
+		@ApiImplicitParam(name = AssetScrapVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetScrapServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -164,7 +165,8 @@ public class AssetScrapController extends SuperController implements BpmCallback
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage")
+		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage"),
+		@ApiImplicitParam(name = AssetScrapVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetScrapVOMeta.PAGE_INDEX, AssetScrapVOMeta.PAGE_SIZE, AssetScrapVOMeta.SEARCH_FIELD, AssetScrapVOMeta.FUZZY_FIELD, AssetScrapVOMeta.SEARCH_VALUE, AssetScrapVOMeta.SORT_FIELD, AssetScrapVOMeta.SORT_TYPE, AssetScrapVOMeta.IDS })
     @SentinelResource(value = AssetScrapServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -206,7 +208,8 @@ public class AssetScrapController extends SuperController implements BpmCallback
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage")
+		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage"),
+		@ApiImplicitParam(name = AssetScrapVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetScrapVOMeta.PAGE_INDEX, AssetScrapVOMeta.PAGE_SIZE, AssetScrapVOMeta.SEARCH_FIELD, AssetScrapVOMeta.FUZZY_FIELD, AssetScrapVOMeta.SEARCH_VALUE, AssetScrapVOMeta.SORT_FIELD, AssetScrapVOMeta.SORT_TYPE, AssetScrapVOMeta.IDS })
     @SentinelResource(value = AssetScrapServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -325,7 +328,8 @@ public class AssetScrapController extends SuperController implements BpmCallback
 		@ApiImplicitParam(name = AssetScrapVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetScrapVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetScrapVOMeta.PAGE_INDEX, AssetScrapVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetScrapServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -364,7 +368,8 @@ public class AssetScrapController extends SuperController implements BpmCallback
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetScrapVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage")
+		@ApiImplicitParam(name = AssetScrapVOMeta.METHOD, value = "报废方式", required = false, dataTypeClass = String.class, example = "damage"),
+		@ApiImplicitParam(name = AssetScrapVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetScrapServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

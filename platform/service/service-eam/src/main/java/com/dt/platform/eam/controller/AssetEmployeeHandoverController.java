@@ -71,7 +71,7 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 添加资产交接
      */
     @ApiOperation(value = "添加资产交接")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
@@ -83,7 +83,8 @@ public class AssetEmployeeHandoverController extends SuperController implements 
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -98,7 +99,7 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 删除资产交接
      */
     @ApiOperation(value = "删除资产交接")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 2)
@@ -110,9 +111,9 @@ public class AssetEmployeeHandoverController extends SuperController implements 
             return this.validator().getFirstResult();
         }
         // 引用校验
-        ReferCause cause =  assetEmployeeHandoverService.hasRefers(id);
+        ReferCause cause = assetEmployeeHandoverService.hasRefers(id);
         // 判断是否可以删除
-        this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录："+cause.message(),false);
+        this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录：" + cause.message(), false);
         if (this.validator().failure()) {
             return this.validator().getFirstResult();
         }
@@ -125,7 +126,7 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产交接")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -149,9 +150,9 @@ public class AssetEmployeeHandoverController extends SuperController implements 
         // 执行删除
         if (canDeleteIds.isEmpty()) {
             // 如果没有一行可以被删除
-            return ErrorDesc.failure().message("无法删除您选中的数据行：").data(0)
-				.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
-				.messageLevel4Confirm();
+            return ErrorDesc.failure().message("无法删除您选中的数据行：").data(0).addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(), (e) -> {
+                return e.hasRefer();
+            }), ReferCause::message, String.class)).messageLevel4Confirm();
         } else if (canDeleteIds.size() == ids.size()) {
             // 如果全部可以删除
             Result result = assetEmployeeHandoverService.deleteByIdsLogical(canDeleteIds);
@@ -162,9 +163,9 @@ public class AssetEmployeeHandoverController extends SuperController implements 
             if (result.failure()) {
                 return result;
             } else {
-                return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").data(canDeleteIds.size())
-					.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
-					.messageLevel4Confirm();
+                return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").data(canDeleteIds.size()).addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(), (e) -> {
+                    return e.hasRefer();
+                }), ReferCause::message, String.class)).messageLevel4Confirm();
             }
         } else {
             // 理论上，这个分支不存在
@@ -176,7 +177,7 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 更新资产交接
      */
     @ApiOperation(value = "更新资产交接")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
@@ -188,7 +189,8 @@ public class AssetEmployeeHandoverController extends SuperController implements 
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetEmployeeHandoverVOMeta.PAGE_INDEX, AssetEmployeeHandoverVOMeta.PAGE_SIZE, AssetEmployeeHandoverVOMeta.SEARCH_FIELD, AssetEmployeeHandoverVOMeta.FUZZY_FIELD, AssetEmployeeHandoverVOMeta.SEARCH_VALUE, AssetEmployeeHandoverVOMeta.DIRTY_FIELDS, AssetEmployeeHandoverVOMeta.SORT_FIELD, AssetEmployeeHandoverVOMeta.SORT_TYPE, AssetEmployeeHandoverVOMeta.IDS })
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -203,7 +205,7 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 保存资产交接
      */
     @ApiOperation(value = "保存资产交接")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
@@ -215,7 +217,8 @@ public class AssetEmployeeHandoverController extends SuperController implements 
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetEmployeeHandoverVOMeta.PAGE_INDEX, AssetEmployeeHandoverVOMeta.PAGE_SIZE, AssetEmployeeHandoverVOMeta.SEARCH_FIELD, AssetEmployeeHandoverVOMeta.FUZZY_FIELD, AssetEmployeeHandoverVOMeta.SEARCH_VALUE, AssetEmployeeHandoverVOMeta.DIRTY_FIELDS, AssetEmployeeHandoverVOMeta.SORT_FIELD, AssetEmployeeHandoverVOMeta.SORT_TYPE, AssetEmployeeHandoverVOMeta.IDS })
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -230,7 +233,7 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 获取资产交接
      */
     @ApiOperation(value = "获取资产交接")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -252,7 +255,7 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取资产交接")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -269,7 +272,7 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 查询资产交接
      */
     @ApiOperation(value = "查询资产交接")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
@@ -281,7 +284,8 @@ public class AssetEmployeeHandoverController extends SuperController implements 
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetEmployeeHandoverVOMeta.PAGE_INDEX, AssetEmployeeHandoverVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -301,7 +305,7 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 分页查询资产交接
      */
     @ApiOperation(value = "分页查询资产交接")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
@@ -313,7 +317,8 @@ public class AssetEmployeeHandoverController extends SuperController implements 
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

@@ -1,7 +1,7 @@
 /**
  * 领用申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 12:42:46
+ * @since 2023-12-01 13:14:17
  */
 
 layui.config({
@@ -30,6 +30,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+        },
+        /**
+         * 按事件名称移除表格按钮栏的按钮
+         * */
+        removeOperationButtonByEvent(event) {
+            var template=$("#tableOperationTemplate");
+            var content=template.text();
+            content=content.split("\n");
+            var buttons=[]
+            for (let i = 0; i < content.length ; i++) {
+                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
+                    buttons.push(content[i]);
+                }
+            }
+            template.text(buttons.join("\n"))
         },
         /**
          * 表格渲染前调用
@@ -89,6 +104,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
         },
         /**
+         * 单行数据刷新后调用
+         * */
+        afterRefreshRowData: function (data,remote,context) {
+
+        },
+        /**
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
@@ -102,9 +123,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             return queryString;
         },
         /**
-         * 新建流程时返回流程表单需要预填的默认值
+         * 新建流程时返回流程表单需要预填的默认值  act : create/edit
          * */
-        getBpmViewConfig:function () {
+        getBpmViewConfig:function (act) {
             return {
                 title:"这是默认标题",
                 priority:"normal", // priority 的可选值 urgency，normal
@@ -112,7 +133,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 displayTitle:true,  // 是否显示标题与优先级
                 displayPriority:true, // 是否显示优先级
                 displayDraftComment:true, // 是否显示起草节点的流程说明
-                displayApprovalComment:true // 是否显示签字意见
+                displayApprovalComment:true, // 是否显示签字意见
+                displayDraftAttachment:true, // 是否使用起草附件
+                displayApprovalAttachment:true // 是否使用审批附件
             }
         },
         /**
@@ -173,6 +196,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        moreActionMenu (items,data, it){
+            console.log('moreActionMenu',items,data,it);
+            return items;
+        },
+
         /**
          * 末尾执行
          */
@@ -195,7 +223,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 窗口调节前
          * */
-        beforeAdjustPopup:function () {
+        beforeAdjustPopup:function (arg) {
             console.log('beforeAdjustPopup');
             return true;
         },
@@ -212,6 +240,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             // 可根据流程状态、当前审批节点判断和控制表单页面
             processInstance=result.data;
             console.log("processInstance",processInstance)
+            // 非起草状态不允许修改表单
+            if(processInstance && processInstance.approvalStatus!="drafting") {
+                fox.lockForm($("#data-form"),true);
+            }
             // 获得所有待办节点
             var todoNodes=bpm.getTodoNodes(processInstance);
             console.log("todoNodes",todoNodes);
@@ -227,6 +259,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         onProcessInstanceError:function (result) {
             return true;
+        },
+        /**
+         * 根据业务数据产生流程标题，若保持原始标题返回 null 即可
+         * */
+        getProcessTitle:function(formData,processData,result) {
+            return null;
         },
         /**
          * 表单数据填充后

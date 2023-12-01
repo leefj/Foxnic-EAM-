@@ -1,7 +1,7 @@
 /**
- * 库存领用 列表页 JS 脚本
+ * 库存物品领用 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-11-30 22:09:02
+ * @since 2023-12-01 13:04:19
  */
 
 function FormPage() {

@@ -70,7 +70,7 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
      * 添加资产报失
      */
     @ApiOperation(value = "添加资产报失")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "595737460403601408"),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
@@ -80,7 +80,8 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2")
+		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetEmployeeLossServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -95,7 +96,7 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
      * 删除资产报失
      */
     @ApiOperation(value = "删除资产报失")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "595737460403601408")
 	})
     @ApiOperationSupport(order = 2)
@@ -107,9 +108,9 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
             return this.validator().getFirstResult();
         }
         // 引用校验
-        ReferCause cause =  assetEmployeeLossService.hasRefers(id);
+        ReferCause cause = assetEmployeeLossService.hasRefers(id);
         // 判断是否可以删除
-        this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录："+cause.message(),false);
+        this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录：" + cause.message(), false);
         if (this.validator().failure()) {
             return this.validator().getFirstResult();
         }
@@ -122,7 +123,7 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产报失")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -146,9 +147,9 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
         // 执行删除
         if (canDeleteIds.isEmpty()) {
             // 如果没有一行可以被删除
-            return ErrorDesc.failure().message("无法删除您选中的数据行：").data(0)
-				.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
-				.messageLevel4Confirm();
+            return ErrorDesc.failure().message("无法删除您选中的数据行：").data(0).addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(), (e) -> {
+                return e.hasRefer();
+            }), ReferCause::message, String.class)).messageLevel4Confirm();
         } else if (canDeleteIds.size() == ids.size()) {
             // 如果全部可以删除
             Result result = assetEmployeeLossService.deleteByIdsLogical(canDeleteIds);
@@ -159,9 +160,9 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
             if (result.failure()) {
                 return result;
             } else {
-                return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").data(canDeleteIds.size())
-					.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
-					.messageLevel4Confirm();
+                return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").data(canDeleteIds.size()).addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(), (e) -> {
+                    return e.hasRefer();
+                }), ReferCause::message, String.class)).messageLevel4Confirm();
             }
         } else {
             // 理论上，这个分支不存在
@@ -173,7 +174,7 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
      * 更新资产报失
      */
     @ApiOperation(value = "更新资产报失")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "595737460403601408"),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
@@ -183,7 +184,8 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2")
+		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetEmployeeLossVOMeta.PAGE_INDEX, AssetEmployeeLossVOMeta.PAGE_SIZE, AssetEmployeeLossVOMeta.SEARCH_FIELD, AssetEmployeeLossVOMeta.FUZZY_FIELD, AssetEmployeeLossVOMeta.SEARCH_VALUE, AssetEmployeeLossVOMeta.DIRTY_FIELDS, AssetEmployeeLossVOMeta.SORT_FIELD, AssetEmployeeLossVOMeta.SORT_TYPE, AssetEmployeeLossVOMeta.IDS })
     @SentinelResource(value = AssetEmployeeLossServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -198,7 +200,7 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
      * 保存资产报失
      */
     @ApiOperation(value = "保存资产报失")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "595737460403601408"),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
@@ -208,7 +210,8 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2")
+		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetEmployeeLossVOMeta.PAGE_INDEX, AssetEmployeeLossVOMeta.PAGE_SIZE, AssetEmployeeLossVOMeta.SEARCH_FIELD, AssetEmployeeLossVOMeta.FUZZY_FIELD, AssetEmployeeLossVOMeta.SEARCH_VALUE, AssetEmployeeLossVOMeta.DIRTY_FIELDS, AssetEmployeeLossVOMeta.SORT_FIELD, AssetEmployeeLossVOMeta.SORT_TYPE, AssetEmployeeLossVOMeta.IDS })
     @SentinelResource(value = AssetEmployeeLossServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -223,7 +226,7 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
      * 获取资产报失
      */
     @ApiOperation(value = "获取资产报失")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -244,7 +247,7 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取资产报失")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -261,7 +264,7 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
      * 查询资产报失
      */
     @ApiOperation(value = "查询资产报失")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "595737460403601408"),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
@@ -271,7 +274,8 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2")
+		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetEmployeeLossVOMeta.PAGE_INDEX, AssetEmployeeLossVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetEmployeeLossServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -289,7 +293,7 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
      * 分页查询资产报失
      */
     @ApiOperation(value = "分页查询资产报失")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "595737460403601408"),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
@@ -299,7 +303,8 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2")
+		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetEmployeeLossVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetEmployeeLossServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

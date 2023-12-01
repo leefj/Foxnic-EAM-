@@ -11,6 +11,7 @@ import com.dt.platform.constants.enums.eam.RepairOrderStatusEnum;
 import com.dt.platform.domain.eam.AssetItem;
 import com.dt.platform.domain.eam.RepairOrder;
 import com.dt.platform.eam.service.*;
+import com.dt.platform.eam.service.bpm.AssetScrapBpmEventAdaptor;
 import com.dt.platform.eam.service.bpm.RepairOrderBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.error.CommonError;
@@ -591,6 +592,9 @@ public class RepairOrderServiceImpl extends SuperService<RepairOrder> implements
 	 * */
 	public BpmActionResult onProcessCallback(BpmEvent event) {
 		try {
+			if(event!=null&&event.getProcessInstance()!=null&&event.getProcessInstance().getTitle()!=null) {
+				dao.execute("update eam_repair_order set name=? where id=?", event.getProcessInstance().getTitle(), event.getBillId());
+			}
 			return(new RepairOrderBpmEventAdaptor(this)).onProcessCallback(event);
 		} catch (Throwable t) {
 			Logger.exception("流程 "+event.getProcessInstance().getProcessDefinition().getName()+" , code = "+event.getProcessInstance().getProcessDefinition().getCode()+" , node = { name : "+event.getCurrentNode().getNodeName()+" , id : "+event.getCurrentNode().getCamundaNodeId()+"}  回调异常",t);

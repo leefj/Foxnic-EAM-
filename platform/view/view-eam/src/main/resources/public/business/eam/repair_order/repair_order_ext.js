@@ -326,7 +326,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         getBpmViewConfig:function (act) {
             return {
-                title:"故障申请",
+                title:"设备报修申请",
                 priority:"normal", // priority 的可选值 urgency，normal
                 labelWidth:108, // 标签宽度，用于对齐
                 displayTitle:true,  // 是否显示标题与优先级

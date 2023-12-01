@@ -50,7 +50,7 @@ public class EmployRepairGtr extends BaseCodeGenerator {
         cfg.view().field(AssetEmployeeRepairMeta.ORIGINATOR_USER_NAME).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.PICTURE_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.NOTES).form().textArea().height(Config.textAreaHeight);
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.NAME).form().validate().required();
+//        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.CONTENT).form().validate().required().form().textArea().height(Config.textAreaHeight);
 
 
@@ -76,11 +76,11 @@ public class EmployRepairGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
          cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(30);
-        cfg.view().form().addGroup(null,
-                new Object[] {
-                        EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.NAME,
-                }
-        );
+//        cfg.view().form().addGroup(null,
+//                new Object[] {
+//                        EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.NAME,
+//                }
+//        );
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.ORG_ID,

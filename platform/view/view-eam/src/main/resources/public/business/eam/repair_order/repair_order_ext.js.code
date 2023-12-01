@@ -1,7 +1,7 @@
 /**
- * 资产报失 列表页 JS 脚本
+ * 故障申请单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-01 13:15:51
+ * @since 2023-12-01 13:32:08
  */
 
 layui.config({
@@ -18,7 +18,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
 
     //模块基础路径
-    const moduleURL="/service-eam/eam-asset-employee-loss";
+    const moduleURL="/service-eam/eam-repair-order";
 
     var processId=QueryString.get("processId");
     var processInstance=null;
@@ -201,6 +201,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             return items;
         },
 
+        dispatchOrder:function (selected,it){
+            console.log('dispatchOrder',selected,it);
+        },
+        repairOrder:function (data){
+            console.log('repairOrder',data);
+        },
+        confirmData:function (data){
+            console.log('confirmData',data);
+        },
+        downloadBill:function (data){
+            console.log('downloadBill',data);
+        },
         /**
          * 末尾执行
          */
@@ -335,11 +347,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
 
         /**
-         *  加载 资产列表
+         *  加载 设备信息
          */
-        goodsSelectList:function (ifr,win,data) {
+        assetSelectList:function (ifr,win,data) {
             // debugger
-            console.log("goodsSelectList",ifr,data);
+            console.log("assetSelectList",ifr,data);
             //设置 iframe 高度
             ifr.height("400px");
             //设置地址

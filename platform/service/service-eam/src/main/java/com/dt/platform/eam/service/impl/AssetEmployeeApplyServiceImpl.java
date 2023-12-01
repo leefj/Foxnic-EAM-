@@ -6,12 +6,15 @@ import com.dt.platform.domain.eam.AssetEmployeeApply;
 import com.dt.platform.domain.eam.AssetEmployeeApplyVO;
 import com.dt.platform.eam.service.IAssetEmployeeApplyService;
 import com.dt.platform.eam.service.bpm.AssetEmployeeApplyBpmEventAdaptor;
+import com.dt.platform.eam.service.bpm.AssetScrapBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
+import com.github.foxnic.api.error.CommonError;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -346,7 +349,17 @@ public class AssetEmployeeApplyServiceImpl extends SuperService<AssetEmployeeApp
 	 * 处理流程回调
 	 * */
 	public  BpmActionResult onProcessCallback(BpmEvent event) {
-		return (new AssetEmployeeApplyBpmEventAdaptor(this)).onProcessCallback(event);
+		try {
+			if(event!=null&&event.getProcessInstance()!=null&&event.getProcessInstance().getTitle()!=null){
+				dao.execute("update eam_asset_employee_apply set name=? where id=?",event.getProcessInstance().getTitle(),event.getBillId());
+			}
+			return(new AssetEmployeeApplyBpmEventAdaptor(this)).onProcessCallback(event);
+		} catch (Throwable t) {
+			Logger.exception("流程 "+event.getProcessInstance().getProcessDefinition().getName()+" , code = "+event.getProcessInstance().getProcessDefinition().getCode()+" , node = { name : "+event.getCurrentNode().getNodeName()+" , id : "+event.getCurrentNode().getCamundaNodeId()+"}  回调异常",t);
+			BpmActionResult result = new BpmActionResult();
+			result.success(false).code(CommonError.FAILURE).extra().setException(t);
+			return result;
+		}
 	}
 
 	@Override

@@ -477,9 +477,12 @@ public class AssetStockGoodsUseServiceImpl extends SuperService<AssetStockGoodsU
 				System.out.println("onProcessCallback流程:"+event.getCurrentNode().getCamundaNodeId());
 				System.out.println("event.getBillId:"+event.getBillId());
 				if("END".equals(event.getCurrentNode().getCamundaNodeId())){
-				//	operateResult(event.getBillId(),"success","complete","操作成功");
 				}
 			}
+			if(event!=null&&event.getProcessInstance()!=null&&event.getProcessInstance().getTitle()!=null){
+				dao.execute("update eam_asset_stock_goods_use set name=? where id=?",event.getProcessInstance().getTitle(),event.getBillId());
+			}
+
 			return(new AssetStockGoodsUseBpmEventAdaptor(this)).onProcessCallback(event);
 		} catch (Throwable t) {
 			Logger.exception("流程 "+event.getProcessInstance().getProcessDefinition().getName()+" , code = "+event.getProcessInstance().getProcessDefinition().getCode()+" , node = { name : "+event.getCurrentNode().getNodeName()+" , id : "+event.getCurrentNode().getCamundaNodeId()+"}  回调异常",t);

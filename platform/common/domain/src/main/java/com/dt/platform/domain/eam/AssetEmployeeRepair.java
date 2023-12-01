@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_EMPLOYEE_REPAIR;
@@ -8,27 +9,33 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetEmployeeRepairMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 资产报修
+ * <p>资产报修 , 数据表 eam_asset_employee_repair 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 06:31:44
- * @sign 1FD3E8269BAC22BFBF9D5DE3CA3A73FD
+ * @since 2023-12-01 13:16:06
+ * @sign A353DA7E3AEF7A84158F52F914C703EE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_employee_repair")
+@ApiModel(description = "资产报修 ; 资产报修 , 数据表 eam_asset_employee_repair 的PO类型")
 public class AssetEmployeeRepair extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -39,37 +46,37 @@ public class AssetEmployeeRepair extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "710487785596780544")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "EO202305151305399")
 	private String businessCode;
 	
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "approval")
 	private String status;
 	
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "121212")
 	private String name;
 	
 	/**
 	 * 申请部门：申请部门
 	*/
-	@ApiModelProperty(required = false,value="申请部门" , notes = "申请部门")
+	@ApiModelProperty(required = false,value="申请部门" , notes = "申请部门" , example = "2")
 	private String orgId;
 	
 	/**
 	 * 故障原因：故障原因
 	*/
-	@ApiModelProperty(required = false,value="故障原因" , notes = "故障原因")
+	@ApiModelProperty(required = false,value="故障原因" , notes = "故障原因" , example = "121212")
 	private String content;
 	
 	/**
@@ -87,7 +94,7 @@ public class AssetEmployeeRepair extends Entity {
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
 	
 	/**
@@ -99,13 +106,13 @@ public class AssetEmployeeRepair extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-05-15 01:44:48")
 	private Date createTime;
 	
 	/**
@@ -123,9 +130,10 @@ public class AssetEmployeeRepair extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -143,19 +151,19 @@ public class AssetEmployeeRepair extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1684129462000")
 	private String selectedCode;
 	
 	/**
@@ -499,6 +507,7 @@ public class AssetEmployeeRepair extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetEmployeeRepair setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -842,6 +851,63 @@ public class AssetEmployeeRepair extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetEmployeeRepair clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetEmployeeRepair duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetEmployeeRepairMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetEmployeeRepairMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setOrgId(this.getOrgId());
+		inst.setContent(this.getContent());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setRecordTime(this.getRecordTime());
+		inst.setDeleted(this.getDeleted());
+		inst.setPictureId(this.getPictureId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setOrganization(this.getOrganization());
+			inst.setAssetIds(this.getAssetIds());
+			inst.setHistoricProcessList(this.getHistoricProcessList());
+			inst.setOriginator(this.getOriginator());
+			inst.setAssetList(this.getAssetList());
+			inst.setOriginatorUserName(this.getOriginatorUserName());
+			inst.setCurrentProcessList(this.getCurrentProcessList());
+			inst.setDefaultProcess(this.getDefaultProcess());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetEmployeeRepair clone(boolean deep) {
+		return EntityContext.clone(AssetEmployeeRepair.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetEmployeeRepair
 	 * @param assetEmployeeRepairMap 包含实体信息的 Map 对象
 	 * @return AssetEmployeeRepair , 转换好的的 AssetEmployeeRepair 对象
@@ -849,7 +915,9 @@ public class AssetEmployeeRepair extends Entity {
 	@Transient
 	public static AssetEmployeeRepair createFrom(Map<String,Object> assetEmployeeRepairMap) {
 		if(assetEmployeeRepairMap==null) return null;
-		AssetEmployeeRepair po = EntityContext.create(AssetEmployeeRepair.class, assetEmployeeRepairMap);
+		AssetEmployeeRepair po = create();
+		EntityContext.copyProperties(po,assetEmployeeRepairMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -861,7 +929,9 @@ public class AssetEmployeeRepair extends Entity {
 	@Transient
 	public static AssetEmployeeRepair createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetEmployeeRepair po = EntityContext.create(AssetEmployeeRepair.class,pojo);
+		AssetEmployeeRepair po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -871,6 +941,134 @@ public class AssetEmployeeRepair extends Entity {
 	*/
 	@Transient
 	public static AssetEmployeeRepair create() {
-		return EntityContext.create(AssetEmployeeRepair.class);
+		return new com.dt.platform.domain.eam.meta.AssetEmployeeRepairMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetEmployeeRepairMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetEmployeeRepairMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.SELECTED_CODE)));
+			this.setOrgId(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.ORG_ID)));
+			this.setContent(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.CONTENT)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.CREATE_BY)));
+			this.setRecordTime(DataParser.parse(Date.class, map.get(AssetEmployeeRepairMeta.RECORD_TIME)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetEmployeeRepairMeta.DELETED)));
+			this.setPictureId(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.PICTURE_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetEmployeeRepairMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetEmployeeRepairMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.ORIGINATOR_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.STATUS)));
+			// others
+			this.setOrganization(DataParser.parse(Organization.class, map.get(AssetEmployeeRepairMeta.ORGANIZATION)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetEmployeeRepairMeta.ORIGINATOR)));
+			this.setOriginatorUserName(DataParser.parse(String.class, map.get(AssetEmployeeRepairMeta.ORIGINATOR_USER_NAME)));
+			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(AssetEmployeeRepairMeta.DEFAULT_PROCESS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AssetEmployeeRepairMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(AssetEmployeeRepairMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssetEmployeeRepairMeta.VERSION));
+				this.setSelectedCode( (String)map.get(AssetEmployeeRepairMeta.SELECTED_CODE));
+				this.setOrgId( (String)map.get(AssetEmployeeRepairMeta.ORG_ID));
+				this.setContent( (String)map.get(AssetEmployeeRepairMeta.CONTENT));
+				this.setBusinessCode( (String)map.get(AssetEmployeeRepairMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)map.get(AssetEmployeeRepairMeta.CREATE_BY));
+				this.setRecordTime( (Date)map.get(AssetEmployeeRepairMeta.RECORD_TIME));
+				this.setDeleted( (Integer)map.get(AssetEmployeeRepairMeta.DELETED));
+				this.setPictureId( (String)map.get(AssetEmployeeRepairMeta.PICTURE_ID));
+				this.setCreateTime( (Date)map.get(AssetEmployeeRepairMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetEmployeeRepairMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetEmployeeRepairMeta.DELETE_TIME));
+				this.setName( (String)map.get(AssetEmployeeRepairMeta.NAME));
+				this.setTenantId( (String)map.get(AssetEmployeeRepairMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetEmployeeRepairMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetEmployeeRepairMeta.ID));
+				this.setOriginatorId( (String)map.get(AssetEmployeeRepairMeta.ORIGINATOR_ID));
+				this.setStatus( (String)map.get(AssetEmployeeRepairMeta.STATUS));
+				// others
+				this.setOrganization( (Organization)map.get(AssetEmployeeRepairMeta.ORGANIZATION));
+				this.setOriginator( (Employee)map.get(AssetEmployeeRepairMeta.ORIGINATOR));
+				this.setOriginatorUserName( (String)map.get(AssetEmployeeRepairMeta.ORIGINATOR_USER_NAME));
+				this.setDefaultProcess( (ProcessInstance)map.get(AssetEmployeeRepairMeta.DEFAULT_PROCESS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetEmployeeRepairMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetEmployeeRepairMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.SELECTED_CODE)));
+			this.setOrgId(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.ORG_ID)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.CONTENT)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.CREATE_BY)));
+			this.setRecordTime(DataParser.parse(Date.class, r.getValue(AssetEmployeeRepairMeta.RECORD_TIME)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetEmployeeRepairMeta.DELETED)));
+			this.setPictureId(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.PICTURE_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetEmployeeRepairMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetEmployeeRepairMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.ORIGINATOR_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetEmployeeRepairMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AssetEmployeeRepairMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(AssetEmployeeRepairMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssetEmployeeRepairMeta.VERSION));
+				this.setSelectedCode( (String)r.getValue(AssetEmployeeRepairMeta.SELECTED_CODE));
+				this.setOrgId( (String)r.getValue(AssetEmployeeRepairMeta.ORG_ID));
+				this.setContent( (String)r.getValue(AssetEmployeeRepairMeta.CONTENT));
+				this.setBusinessCode( (String)r.getValue(AssetEmployeeRepairMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)r.getValue(AssetEmployeeRepairMeta.CREATE_BY));
+				this.setRecordTime( (Date)r.getValue(AssetEmployeeRepairMeta.RECORD_TIME));
+				this.setDeleted( (Integer)r.getValue(AssetEmployeeRepairMeta.DELETED));
+				this.setPictureId( (String)r.getValue(AssetEmployeeRepairMeta.PICTURE_ID));
+				this.setCreateTime( (Date)r.getValue(AssetEmployeeRepairMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetEmployeeRepairMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetEmployeeRepairMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AssetEmployeeRepairMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetEmployeeRepairMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetEmployeeRepairMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetEmployeeRepairMeta.ID));
+				this.setOriginatorId( (String)r.getValue(AssetEmployeeRepairMeta.ORIGINATOR_ID));
+				this.setStatus( (String)r.getValue(AssetEmployeeRepairMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -262,7 +262,8 @@ public class GoodsStockPageController extends ViewController {
 		model.addAttribute("selectedCode",selectedCode);
 
 		//物品档案
-		model.addAttribute("categoryId", AssetDataServiceProxy.api().queryPcmIdByCode(AssetPcmCodeEnum.ASSET_STOCK_GOODS.code()));
+		//默认选择资产
+		model.addAttribute("categoryId", AssetDataServiceProxy.api().queryPcmIdByCode(AssetPcmCodeEnum.ASSET.code()));
 
 
 		//model.addAttribute("multiple",multiple);
