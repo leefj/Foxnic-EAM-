@@ -2,23 +2,16 @@ package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
-import com.dt.platform.domain.eam.Asset;
-import com.dt.platform.domain.eam.AssetStockGoods;
-import com.dt.platform.domain.eam.AssetStockGoodsUse;
 import com.dt.platform.domain.eam.GoodsStock;
-import com.dt.platform.domain.eam.meta.AssetEmployeeLossMeta;
-import com.dt.platform.eam.page.AssetStockGoodsUsePageController;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.eam.AssetStockGoodsUseServiceProxy;
 import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
-import org.github.foxnic.web.domain.hrm.Organization;
 
-public class AssetGoodsUseGtr extends BaseCodeGenerator {
+public class StockGoodsUseGtr extends BaseCodeGenerator {
 
 
-    public AssetGoodsUseGtr() {
+    public StockGoodsUseGtr() {
         super(EAMTables.EAM_ASSET_STOCK_GOODS_USE.$TABLE,BASIC_DATA_MENU_ID);
     }
 
@@ -48,6 +41,7 @@ public class AssetGoodsUseGtr extends BaseCodeGenerator {
                 new Object[]{
                         EAMTables.EAM_ASSET_STOCK_GOODS_USE.STATUS,
                         EAMTables.EAM_ASSET_STOCK_GOODS_USE.BUSINESS_CODE,
+                        EAMTables.EAM_ASSET_STOCK_GOODS_USE.NAME,
                         EAMTables.EAM_ASSET_STOCK_GOODS_USE.BUSINESS_DATE,
                 }
         );
@@ -74,9 +68,6 @@ public class AssetGoodsUseGtr extends BaseCodeGenerator {
 
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        EAMTables.EAM_ASSET_STOCK_GOODS_USE.NAME
-                },
-                new Object[] {
                         EAMTables.EAM_ASSET_STOCK_GOODS_USE.BUSINESS_DATE
                 }
         );
@@ -85,7 +76,6 @@ public class AssetGoodsUseGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET_STOCK_GOODS_USE.CONTENT,
                 }
         );
-
 
         cfg.view().list().addJsVariable("OPER_TYPE","[[${operType}]]","operType");
         cfg.view().form().addJsVariable("OPER_TYPE","[[${operType}]]","operType");
@@ -114,7 +104,7 @@ public class AssetGoodsUseGtr extends BaseCodeGenerator {
     }
 
     public static void main(String[] args) throws Exception {
-        AssetGoodsUseGtr g=new AssetGoodsUseGtr();
+        StockGoodsUseGtr g=new StockGoodsUseGtr();
         //生成代码
        g.generateCode();
 

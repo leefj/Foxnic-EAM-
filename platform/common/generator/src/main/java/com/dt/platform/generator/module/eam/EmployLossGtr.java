@@ -54,7 +54,7 @@ public class EmployLossGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.RECORD_TIME).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NOTES).form().textArea().height(Config.textAreaHeight);
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NAME).form().validate().required();
+//        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.CONTENT).form().validate().required().form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(AssetEmployeeLossMeta.ORIGINATOR_USER_NAME).table().disable(true);
@@ -85,11 +85,11 @@ public class EmployLossGtr extends BaseCodeGenerator {
          cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(30);
 
-        cfg.view().form().addGroup(null,
-                new Object[] {
-                        EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NAME,
-                }
-        );
+//        cfg.view().form().addGroup(null,
+//                new Object[] {
+//                        EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NAME,
+//                }
+//        );
 
         cfg.view().form().addGroup(null,
 

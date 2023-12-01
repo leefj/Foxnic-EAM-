@@ -124,10 +124,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单页面打开时，追加更多的参数信息
          * */
         makeFormQueryString:function(data,queryString,action) {
-            console.log("111111111111")
-            console.log("data",data)
-            console.log("queryString",queryString)
-            console.log("action",action)
+
             //   admin.putTempData('eam-asset-stock-goods-out-form-ownerType', OWNER_TYPE);
             // admin.putTempData('eam-asset-stock-goods-out-form-operType', OPER_TYPE);
             if(data.id){
@@ -142,7 +139,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         getBpmViewConfig:function (act) {
             return {
-                title:"这是默认标题",
+                title:"物品领用申请",
                 priority:"normal", // priority 的可选值 urgency，normal
                 labelWidth:77, // 标签宽度，用于对齐
                 displayTitle:true,  // 是否显示标题与优先级

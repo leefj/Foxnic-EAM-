@@ -28,7 +28,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
-        cfg.bpm().form("eam_asset_scrap");
+
 
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(DictItem.class,"methodDict","methodDict","methodDict");
@@ -63,7 +63,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.STATUS).search().selectMuliti(true);
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CLEAN_STATUS).form().selectBox().enumType(AssetHandleStatusEnum.class);
 
-        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).form().validate().required();
+
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CONTENT).form().textArea().height(Config.textAreaHeight);
 
 
@@ -145,7 +145,6 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        EAMTables.EAM_ASSET_SCRAP.NAME,
                         EAMTables.EAM_ASSET_SCRAP.METHOD
                 },
                 new Object[] {
@@ -176,7 +175,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.view().list().addJsVariable("TAB_STATUS","[[${tabStatus}]]","tabStatus");
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","是否需要审批");
 
-        cfg.view().list().addJsVariable("INSTANCE_DATA","[[${instanceData}]]","instanceData");
+        cfg.view().form().addJsVariable("INSTANCE_DATA","[[${instanceData}]]","instanceData");
 
 
 

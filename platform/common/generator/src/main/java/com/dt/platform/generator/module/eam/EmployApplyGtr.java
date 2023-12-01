@@ -60,7 +60,7 @@ public class EmployApplyGtr extends BaseCodeGenerator {
         cfg.view().field(AssetEmployeeApplyMeta.ORIGINATOR_USER_NAME).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.NOTES).form().textArea().height(Config.textAreaHeight);
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.NAME).form().validate().required();
+//        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.CONTENT).form().validate().required().form().textArea().height(Config.textAreaHeight);
 
 
@@ -79,12 +79,12 @@ public class EmployApplyGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.STATUS).basic().label("办理状态")
                 .form().selectBox().enumType(AssetHandleStatusEnum.class);
 
-
-        cfg.view().form().addGroup(null,
-                new Object[] {
-                        EAMTables.EAM_ASSET_EMPLOYEE_APPLY.NAME,
-                }
-        );
+//
+//        cfg.view().form().addGroup(null,
+//                new Object[] {
+//                        EAMTables.EAM_ASSET_EMPLOYEE_APPLY.NAME,
+//                }
+//        );
         cfg.view().form().addGroup(null,
 
                 new Object[] {

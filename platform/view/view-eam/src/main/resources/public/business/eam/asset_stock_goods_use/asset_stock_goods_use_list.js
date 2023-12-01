@@ -1,7 +1,7 @@
 /**
- * 库存领用 列表页 JS 脚本
+ * 库存物品领用 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-11-30 22:09:01
+ * @since 2023-12-01 13:04:18
  */
 
 
@@ -162,6 +162,7 @@ function ListPage() {
 		var value = {};
 		value.businessCode={ inputType:"button",value: $("#businessCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
+		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.businessDate={ inputType:"date_input", begin: $("#businessDate-begin").val(), end: $("#businessDate-end").val() ,matchType:"auto" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
@@ -338,11 +339,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'库存领用'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的'+'库存物品领用'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'库存领用'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'库存物品领用'+'吗？'), function (i) {
                 top.layer.close(i);
 				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
@@ -465,7 +466,7 @@ function ListPage() {
 		var area=admin.getTempData('eam-asset-stock-goods-use-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('库存领用');
+		var title = fox.translate('库存物品领用');
 		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
 		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
 		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;

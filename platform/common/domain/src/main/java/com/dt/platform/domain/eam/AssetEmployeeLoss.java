@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_EMPLOYEE_LOSS;
@@ -8,27 +9,33 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetEmployeeLossMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 资产报失
+ * <p>资产报失 , 数据表 eam_asset_employee_loss 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 06:31:39
- * @sign 585FE041FA3E1C566E0FE019D31C3FE3
+ * @since 2023-12-01 13:15:50
+ * @sign C41124A18EE14025F05C7D351031B05B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_employee_loss")
+@ApiModel(description = "资产报失 ; 资产报失 , 数据表 eam_asset_employee_loss 的PO类型")
 public class AssetEmployeeLoss extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -39,31 +46,31 @@ public class AssetEmployeeLoss extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "710492704835895296")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "EO202305151405361")
 	private String businessCode;
 	
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "cancel")
 	private String status;
 	
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "121212")
 	private String name;
 	
 	/**
 	 * 报失原因：报失原因
 	*/
-	@ApiModelProperty(required = false,value="报失原因" , notes = "报失原因")
+	@ApiModelProperty(required = false,value="报失原因" , notes = "报失原因" , example = "adfadfsdf")
 	private String content;
 	
 	/**
@@ -75,7 +82,7 @@ public class AssetEmployeeLoss extends Entity {
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
 	
 	/**
@@ -87,33 +94,34 @@ public class AssetEmployeeLoss extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-05-15 02:04:21")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-16 02:49:44")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -131,25 +139,25 @@ public class AssetEmployeeLoss extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1684219777000")
 	private String selectedCode;
 	
 	/**
 	 * 申请部门：申请部门
 	*/
-	@ApiModelProperty(required = false,value="申请部门" , notes = "申请部门")
+	@ApiModelProperty(required = false,value="申请部门" , notes = "申请部门" , example = "500994919175819264")
 	private String orgId;
 	
 	/**
@@ -455,6 +463,7 @@ public class AssetEmployeeLoss extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetEmployeeLoss setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -817,6 +826,62 @@ public class AssetEmployeeLoss extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetEmployeeLoss clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetEmployeeLoss duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetEmployeeLossMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetEmployeeLossMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setOrgId(this.getOrgId());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setRecordTime(this.getRecordTime());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setOrganization(this.getOrganization());
+			inst.setAssetIds(this.getAssetIds());
+			inst.setHistoricProcessList(this.getHistoricProcessList());
+			inst.setOriginator(this.getOriginator());
+			inst.setAssetList(this.getAssetList());
+			inst.setOriginatorUserName(this.getOriginatorUserName());
+			inst.setCurrentProcessList(this.getCurrentProcessList());
+			inst.setDefaultProcess(this.getDefaultProcess());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetEmployeeLoss clone(boolean deep) {
+		return EntityContext.clone(AssetEmployeeLoss.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetEmployeeLoss
 	 * @param assetEmployeeLossMap 包含实体信息的 Map 对象
 	 * @return AssetEmployeeLoss , 转换好的的 AssetEmployeeLoss 对象
@@ -824,7 +889,9 @@ public class AssetEmployeeLoss extends Entity {
 	@Transient
 	public static AssetEmployeeLoss createFrom(Map<String,Object> assetEmployeeLossMap) {
 		if(assetEmployeeLossMap==null) return null;
-		AssetEmployeeLoss po = EntityContext.create(AssetEmployeeLoss.class, assetEmployeeLossMap);
+		AssetEmployeeLoss po = create();
+		EntityContext.copyProperties(po,assetEmployeeLossMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -836,7 +903,9 @@ public class AssetEmployeeLoss extends Entity {
 	@Transient
 	public static AssetEmployeeLoss createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetEmployeeLoss po = EntityContext.create(AssetEmployeeLoss.class,pojo);
+		AssetEmployeeLoss po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -846,6 +915,130 @@ public class AssetEmployeeLoss extends Entity {
 	*/
 	@Transient
 	public static AssetEmployeeLoss create() {
-		return EntityContext.create(AssetEmployeeLoss.class);
+		return new com.dt.platform.domain.eam.meta.AssetEmployeeLossMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetEmployeeLossMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetEmployeeLossMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.CONTENT)));
+			this.setOrgId(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.ORG_ID)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.CREATE_BY)));
+			this.setRecordTime(DataParser.parse(Date.class, map.get(AssetEmployeeLossMeta.RECORD_TIME)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetEmployeeLossMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetEmployeeLossMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetEmployeeLossMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.ORIGINATOR_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.STATUS)));
+			// others
+			this.setOrganization(DataParser.parse(Organization.class, map.get(AssetEmployeeLossMeta.ORGANIZATION)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetEmployeeLossMeta.ORIGINATOR)));
+			this.setOriginatorUserName(DataParser.parse(String.class, map.get(AssetEmployeeLossMeta.ORIGINATOR_USER_NAME)));
+			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(AssetEmployeeLossMeta.DEFAULT_PROCESS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AssetEmployeeLossMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(AssetEmployeeLossMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssetEmployeeLossMeta.VERSION));
+				this.setSelectedCode( (String)map.get(AssetEmployeeLossMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(AssetEmployeeLossMeta.CONTENT));
+				this.setOrgId( (String)map.get(AssetEmployeeLossMeta.ORG_ID));
+				this.setBusinessCode( (String)map.get(AssetEmployeeLossMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)map.get(AssetEmployeeLossMeta.CREATE_BY));
+				this.setRecordTime( (Date)map.get(AssetEmployeeLossMeta.RECORD_TIME));
+				this.setDeleted( (Integer)map.get(AssetEmployeeLossMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetEmployeeLossMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetEmployeeLossMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetEmployeeLossMeta.DELETE_TIME));
+				this.setName( (String)map.get(AssetEmployeeLossMeta.NAME));
+				this.setTenantId( (String)map.get(AssetEmployeeLossMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetEmployeeLossMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetEmployeeLossMeta.ID));
+				this.setOriginatorId( (String)map.get(AssetEmployeeLossMeta.ORIGINATOR_ID));
+				this.setStatus( (String)map.get(AssetEmployeeLossMeta.STATUS));
+				// others
+				this.setOrganization( (Organization)map.get(AssetEmployeeLossMeta.ORGANIZATION));
+				this.setOriginator( (Employee)map.get(AssetEmployeeLossMeta.ORIGINATOR));
+				this.setOriginatorUserName( (String)map.get(AssetEmployeeLossMeta.ORIGINATOR_USER_NAME));
+				this.setDefaultProcess( (ProcessInstance)map.get(AssetEmployeeLossMeta.DEFAULT_PROCESS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetEmployeeLossMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetEmployeeLossMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.CONTENT)));
+			this.setOrgId(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.ORG_ID)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.BUSINESS_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.CREATE_BY)));
+			this.setRecordTime(DataParser.parse(Date.class, r.getValue(AssetEmployeeLossMeta.RECORD_TIME)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetEmployeeLossMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetEmployeeLossMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetEmployeeLossMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.ORIGINATOR_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetEmployeeLossMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AssetEmployeeLossMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(AssetEmployeeLossMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssetEmployeeLossMeta.VERSION));
+				this.setSelectedCode( (String)r.getValue(AssetEmployeeLossMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(AssetEmployeeLossMeta.CONTENT));
+				this.setOrgId( (String)r.getValue(AssetEmployeeLossMeta.ORG_ID));
+				this.setBusinessCode( (String)r.getValue(AssetEmployeeLossMeta.BUSINESS_CODE));
+				this.setCreateBy( (String)r.getValue(AssetEmployeeLossMeta.CREATE_BY));
+				this.setRecordTime( (Date)r.getValue(AssetEmployeeLossMeta.RECORD_TIME));
+				this.setDeleted( (Integer)r.getValue(AssetEmployeeLossMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetEmployeeLossMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetEmployeeLossMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetEmployeeLossMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AssetEmployeeLossMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetEmployeeLossMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetEmployeeLossMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetEmployeeLossMeta.ID));
+				this.setOriginatorId( (String)r.getValue(AssetEmployeeLossMeta.ORIGINATOR_ID));
+				this.setStatus( (String)r.getValue(AssetEmployeeLossMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

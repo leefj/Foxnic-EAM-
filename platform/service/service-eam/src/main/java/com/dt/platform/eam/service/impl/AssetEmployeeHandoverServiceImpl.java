@@ -7,13 +7,16 @@ import com.dt.platform.domain.eam.AssetEmployeeHandover;
 import com.dt.platform.domain.eam.AssetEmployeeHandoverVO;
 import com.dt.platform.domain.eam.AssetItem;
 import com.dt.platform.eam.service.*;
+import com.dt.platform.eam.service.bpm.AssetEmployeeApplyBpmEventAdaptor;
 import com.dt.platform.eam.service.bpm.AssetEmployeeHandoverBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
+import com.github.foxnic.api.error.CommonError;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -388,7 +391,20 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 	 * 处理流程回调
 	 * */
 	public  BpmActionResult onProcessCallback(BpmEvent event) {
-		return (new AssetEmployeeHandoverBpmEventAdaptor(this)).onProcessCallback(event);
+
+
+		try {
+			if(event!=null&&event.getProcessInstance()!=null&&event.getProcessInstance().getTitle()!=null){
+				dao.execute("update eam_asset_employee_handover set name=? where id=?",event.getProcessInstance().getTitle(),event.getBillId());
+			}
+			return (new AssetEmployeeHandoverBpmEventAdaptor(this)).onProcessCallback(event);
+		} catch (Throwable t) {
+			Logger.exception("流程 "+event.getProcessInstance().getProcessDefinition().getName()+" , code = "+event.getProcessInstance().getProcessDefinition().getCode()+" , node = { name : "+event.getCurrentNode().getNodeName()+" , id : "+event.getCurrentNode().getCamundaNodeId()+"}  回调异常",t);
+			BpmActionResult result = new BpmActionResult();
+			result.success(false).code(CommonError.FAILURE).extra().setException(t);
+			return result;
+		}
+
 	}
 
 	@Override

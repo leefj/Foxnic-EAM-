@@ -60,7 +60,7 @@ public class EmployHandoverGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.RECORD_TIME).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.NOTES).form().textArea().height(Config.textAreaHeight);
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.NAME).form().validate().required();
+//        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.CONTENT).form().validate().required().form().textArea().height(Config.textAreaHeight);
 
 
@@ -87,11 +87,11 @@ public class EmployHandoverGtr extends BaseCodeGenerator {
                 .form().selectBox().enumType(AssetHandleStatusEnum.class);
 
 
-        cfg.view().form().addGroup(null,
-                new Object[] {
-                        EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.NAME,
-                }
-        );
+//        cfg.view().form().addGroup(null,
+//                new Object[] {
+//                        EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.NAME,
+//                }
+//        );
 
         cfg.view().form().addGroup(null,
                 new Object[] {

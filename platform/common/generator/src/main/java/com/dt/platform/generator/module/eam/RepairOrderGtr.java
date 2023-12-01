@@ -109,7 +109,7 @@ public class RepairOrderGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPORT_USER_ID).form().validate().required().form()
                 .button().chooseEmployee(true);
 
-        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.NAME).form().validate().required();
+//        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.PICTURE_ID).form().upload().acceptImageType().maxFileCount(6).buttonLabel("选择图片");
 
         cfg.view().list().addToolButton("派单","dispatchOrder","","eam_repair_order:dispatch");
@@ -162,7 +162,6 @@ public class RepairOrderGtr extends BaseCodeGenerator{
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        EAMTables.EAM_REPAIR_ORDER.NAME,
                         EAMTables.EAM_REPAIR_ORDER.REPORT_ORG_ID ,
                         EAMTables.EAM_REPAIR_ORDER.REPORT_USER_ID,
 

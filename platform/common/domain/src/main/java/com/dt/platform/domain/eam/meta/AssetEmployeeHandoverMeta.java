@@ -8,13 +8,14 @@ import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 06:31:35
- * @sign 5CDF66FF7D329CF68CD5BBCEA33F0D5F
+ * @since 2023-12-01 13:15:36
+ * @sign 91869FDE7C3FBE538686482EB764D67C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -683,5 +684,58 @@ public class AssetEmployeeHandoverMeta {
 			super.setDefaultProcess(defaultProcess);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetEmployeeHandover clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetEmployeeHandover duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setReceiveOrgId(this.getReceiveOrgId());
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setOrgId(this.getOrgId());
+			inst.setContent(this.getContent());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setReceiveUserId(this.getReceiveUserId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setRecordTime(this.getRecordTime());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setReceiveOrganization(this.getReceiveOrganization());
+				inst.setReceiverUser(this.getReceiverUser());
+				inst.setOrganization(this.getOrganization());
+				inst.setAssetIds(this.getAssetIds());
+				inst.setHistoricProcessList(this.getHistoricProcessList());
+				inst.setOriginator(this.getOriginator());
+				inst.setAssetList(this.getAssetList());
+				inst.setOriginatorUserName(this.getOriginatorUserName());
+				inst.setCurrentProcessList(this.getCurrentProcessList());
+				inst.setDefaultProcess(this.getDefaultProcess());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

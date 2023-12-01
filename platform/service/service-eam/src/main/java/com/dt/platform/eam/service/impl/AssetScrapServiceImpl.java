@@ -765,6 +765,9 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 
 	public  BpmActionResult onProcessCallback(BpmEvent event) {
 		try {
+			if(event!=null&&event.getProcessInstance()!=null&&event.getProcessInstance().getTitle()!=null){
+				dao.execute("update eam_asset_scrap set name=? where id=?",event.getProcessInstance().getTitle(),event.getBillId());
+			}
 			return(new AssetScrapBpmEventAdaptor(this)).onProcessCallback(event);
 		} catch (Throwable t) {
 			Logger.exception("流程 "+event.getProcessInstance().getProcessDefinition().getName()+" , code = "+event.getProcessInstance().getProcessDefinition().getCode()+" , node = { name : "+event.getCurrentNode().getNodeName()+" , id : "+event.getCurrentNode().getCamundaNodeId()+"}  回调异常",t);
