@@ -79,7 +79,7 @@ function ListPage() {
 					,{ field: 'processType', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('操作类型'), templet:function (d){ return templet('processType',fox.getEnumText(SELECT_PROCESSTYPE_DATA,d.processType),d);}}
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('操作内容') , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'processdTime', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('变更时间'), templet: function (d) { return templet('processdTime',fox.dateFormat(d.processdTime,"yyyy-MM-dd HH:mm:ss"),d); }}
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('操作备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:true, sort: true, title: fox.translate('创建时间'), templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],

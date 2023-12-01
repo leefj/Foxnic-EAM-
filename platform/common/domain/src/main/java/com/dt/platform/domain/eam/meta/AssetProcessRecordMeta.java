@@ -3,13 +3,14 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.AssetProcessRecord;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2021-11-28 11:49:49
- * @sign 3AE4537DD00259AAD662D5D16E96E38B
+ * @since 2023-12-01 22:43:56
+ * @sign 6EDE2FB2DAAC2670B3A9BDE5780FA427
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -26,14 +27,14 @@ public class AssetProcessRecordMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetProcessRecord,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetProcessRecord.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
-	 * 资产 , 类型: java.lang.String
+	 * 资产名称 , 类型: java.lang.String
 	*/
 	public static final String ASSET_ID="assetId";
 	
 	/**
-	 * 资产 , 类型: java.lang.String
+	 * 资产名称 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetProcessRecord,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetProcessRecord.class ,ASSET_ID, java.lang.String.class, "资产", "资产", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetProcessRecord,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetProcessRecord.class ,ASSET_ID, java.lang.String.class, "资产名称", "资产名称", java.lang.String.class, null);
 	
 	/**
 	 * 业务编号 , 类型: java.lang.String
@@ -210,8 +211,8 @@ public class AssetProcessRecordMeta {
 		}
 		
 		/**
-		 * 设置 资产
-		 * @param assetId 资产
+		 * 设置 资产名称
+		 * @param assetId 资产名称
 		 * @return 当前对象
 		*/
 		public AssetProcessRecord setAssetId(String assetId) {
@@ -384,5 +385,42 @@ public class AssetProcessRecordMeta {
 			super.setVersion(version);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetProcessRecord clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetProcessRecord duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setProcessdTime(this.getProcessdTime());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setContent(this.getContent());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setAssetId(this.getAssetId());
+			inst.setProcessUserId(this.getProcessUserId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setProcessType(this.getProcessType());
+			inst.setUseUserId(this.getUseUserId());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

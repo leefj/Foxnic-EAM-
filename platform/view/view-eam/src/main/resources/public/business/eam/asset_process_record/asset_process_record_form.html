@@ -46,12 +46,7 @@
                         </div>
                     </div>
 
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产')}">资产</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="assetId" id="assetId" name="assetId" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产') }" type="text" class="layui-input"  />
-                        </div>
-                    </div>
+
 
                                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('业务编号')}">业务编号</div></div>
@@ -78,13 +73,12 @@
                 </div>
 
 
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" type="text" class="layui-input"  />
-                        </div>
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('操作备注')}">操作备注</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
-
+                </div>
 
                     <div class="layui-form-item" style="display: none">
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('变更人')}">变更人</div></div>

@@ -110,7 +110,7 @@ public class AssetProcessRecordServiceImpl extends SuperService<AssetProcessReco
 		AssetProcessRecord assetProcessRecord = new AssetProcessRecord();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetProcessRecord.setId(id);
-		assetProcessRecord.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetProcessRecord.setDeleted(1);
 		assetProcessRecord.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetProcessRecord.setDeleteTime(new Date());
 		try {

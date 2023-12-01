@@ -99,6 +99,7 @@ delete from eam_asset_stock_goods_detail  where 1=1  ;
 delete from eam_asset_stock_goods_in  where 1=1   ;
 delete from eam_asset_stock_goods_out  where 1=1   ;
 delete from eam_asset_stock_goods_tranfer  where 1=1   ;
+delete from eam_asset_stock_goods_use  where 1=1   ;
 delete from eam_goods_stock_usage  where 1=1;
 delete from eam_goods_stock where owner_code<>'goods';
 -- inventory
