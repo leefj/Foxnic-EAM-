@@ -67,7 +67,7 @@ public class StockImportController extends SuperController {
 		@ApiImplicitParam(name = StockImportVOMeta.ORDER_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.OWN_COMPANY_ID, value = "所属公司", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = StockImportVOMeta.USE_ORG_ID, value = "所属组织", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = StockImportVOMeta.USE_ORG_ID, value = "使用部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.MANAGER_ID, value = "管理人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.USE_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.POSITION_ID, value = "存放位置", required = false, dataTypeClass = String.class),
@@ -177,7 +177,7 @@ public class StockImportController extends SuperController {
 		@ApiImplicitParam(name = StockImportVOMeta.ORDER_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.OWN_COMPANY_ID, value = "所属公司", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = StockImportVOMeta.USE_ORG_ID, value = "所属组织", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = StockImportVOMeta.USE_ORG_ID, value = "使用部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.MANAGER_ID, value = "管理人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.USE_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.POSITION_ID, value = "存放位置", required = false, dataTypeClass = String.class),
@@ -209,7 +209,7 @@ public class StockImportController extends SuperController {
 		@ApiImplicitParam(name = StockImportVOMeta.ORDER_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.OWN_COMPANY_ID, value = "所属公司", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = StockImportVOMeta.USE_ORG_ID, value = "所属组织", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = StockImportVOMeta.USE_ORG_ID, value = "使用部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.MANAGER_ID, value = "管理人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.USE_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.POSITION_ID, value = "存放位置", required = false, dataTypeClass = String.class),
@@ -278,7 +278,7 @@ public class StockImportController extends SuperController {
 		@ApiImplicitParam(name = StockImportVOMeta.ORDER_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.OWN_COMPANY_ID, value = "所属公司", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = StockImportVOMeta.USE_ORG_ID, value = "所属组织", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = StockImportVOMeta.USE_ORG_ID, value = "使用部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.MANAGER_ID, value = "管理人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.USE_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.POSITION_ID, value = "存放位置", required = false, dataTypeClass = String.class),
@@ -311,7 +311,7 @@ public class StockImportController extends SuperController {
 		@ApiImplicitParam(name = StockImportVOMeta.ORDER_CODE, value = "订单编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.ORDER_NAME, value = "订单名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.OWN_COMPANY_ID, value = "所属公司", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = StockImportVOMeta.USE_ORG_ID, value = "所属组织", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = StockImportVOMeta.USE_ORG_ID, value = "使用部门", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.MANAGER_ID, value = "管理人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.USE_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = StockImportVOMeta.POSITION_ID, value = "存放位置", required = false, dataTypeClass = String.class),
@@ -339,7 +339,7 @@ public class StockImportController extends SuperController {
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = StockImportServiceProxy.LOAD_ASSET, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(StockImportServiceProxy.LOAD_ASSET)
-    public Result roadAsset(String id) {
+    public Result loadAsset(String id) {
         Result result = stockImportService.loadAsset(id);
         return result;
     }

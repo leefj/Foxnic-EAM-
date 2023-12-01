@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存导入资产VO类型
  * <p>库存导入资产 , 数据表 eam_stock_import 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-11-28 21:41:17
+ * @since 2023-12-01 20:35:29
  * @sign E04154305FED710D37506752839F9191
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

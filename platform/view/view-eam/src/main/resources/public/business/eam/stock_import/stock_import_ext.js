@@ -361,7 +361,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         fillData:function (data,input,button) {
             console.log("fillData",data,input,button);
-            fill.selectedCode=timestamp;
+            data.selectedCode=timestamp;
             admin.post(moduleURL+"/fill", data, function (r) {
                 if (r.success) {
                     fox.showMessage(r);

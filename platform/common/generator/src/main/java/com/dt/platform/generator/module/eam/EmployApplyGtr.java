@@ -58,6 +58,8 @@ public class EmployApplyGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.RECORD_TIME).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.APPLY_COUNT).table().disable(true);
         cfg.view().field(AssetEmployeeApplyMeta.ORIGINATOR_USER_NAME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.UPDATE_BY).table().disable(true);
+
 
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.NOTES).form().textArea().height(Config.textAreaHeight);
 //        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.NAME).form().validate().required();

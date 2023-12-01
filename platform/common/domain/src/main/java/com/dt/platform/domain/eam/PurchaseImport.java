@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 采购单导入资产
  * <p>采购单导入资产 , 数据表 eam_purchase_import 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-11-28 21:41:30
- * @sign E297C67F66573E7C8DB6E1DD4502281B
+ * @since 2023-12-01 20:35:12
+ * @sign FA39852975123D04B378DAB3E4770E1E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -85,9 +85,9 @@ public class PurchaseImport extends Entity {
 	private String ownCompanyId;
 	
 	/**
-	 * 所属组织：所属组织
+	 * 使用部门：使用部门
 	*/
-	@ApiModelProperty(required = false,value="所属组织" , notes = "所属组织")
+	@ApiModelProperty(required = false,value="使用部门" , notes = "使用部门")
 	private String useOrgId;
 	
 	/**
@@ -389,17 +389,17 @@ public class PurchaseImport extends Entity {
 	}
 	
 	/**
-	 * 获得 所属组织<br>
-	 * 所属组织
-	 * @return 所属组织
+	 * 获得 使用部门<br>
+	 * 使用部门
+	 * @return 使用部门
 	*/
 	public String getUseOrgId() {
 		return useOrgId;
 	}
 	
 	/**
-	 * 设置 所属组织
-	 * @param useOrgId 所属组织
+	 * 设置 使用部门
+	 * @param useOrgId 使用部门
 	 * @return 当前对象
 	*/
 	public PurchaseImport setUseOrgId(String useOrgId) {

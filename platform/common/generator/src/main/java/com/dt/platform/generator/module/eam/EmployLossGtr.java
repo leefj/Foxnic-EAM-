@@ -52,6 +52,8 @@ public class EmployLossGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NOTES).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.SELECTED_CODE).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.RECORD_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.UPDATE_BY).table().disable(true);
+
 
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NOTES).form().textArea().height(Config.textAreaHeight);
 //        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NAME).form().validate().required();

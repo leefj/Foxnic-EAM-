@@ -64,6 +64,7 @@ public class RepairOrderGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.ASSET_ID).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPAIR_COST).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.ORIGINATOR_ID).table().disable();
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.UPDATE_BY).table().disable(true);
 
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.CONTENT).search()
