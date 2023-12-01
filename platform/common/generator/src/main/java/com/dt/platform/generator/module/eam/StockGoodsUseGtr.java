@@ -86,6 +86,10 @@ public class StockGoodsUseGtr extends BaseCodeGenerator {
         cfg.view().list().addJsVariable("OWNER_TYPE","[[${ownerType}]]","ownerType");
         cfg.view().form().addJsVariable("OWNER_TYPE","[[${ownerType}]]","ownerType");
 
+
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
+
+
         cfg.view().form().addPage("物品列表","goodsSelectList");
         cfg.view().search().inputWidth(Config.searchInputWidth);
 

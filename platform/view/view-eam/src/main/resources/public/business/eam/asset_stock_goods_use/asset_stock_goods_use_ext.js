@@ -17,10 +17,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
 
+    var bpmFunction=layui.bpmFunction;
+
     //模块基础路径
     const moduleURL="/service-eam/eam-asset-stock-goods-use";
     var timestamp = Date.parse(new Date());
     var formAction=admin.getTempData('eam-asset-stock-goods-use-form-data-form-action');
+
+
 
     var processId=QueryString.get("processId");
     var processInstance=null;
@@ -105,7 +109,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-
+            console.log(data);
+            for(var i=0;i<data.length;i++){
+               bpmFunction.columnBpmOpenButtonStatus(data[i]);
+            }
         },
         /**
          * 单行数据刷新后调用

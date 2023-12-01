@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产报废VO类型
  * <p>资产报废 , 数据表 eam_asset_scrap 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-01 13:09:54
+ * @since 2023-12-01 14:09:29
  * @sign C914A8DEB0C0974A724E1E878028E6EF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
