@@ -23,7 +23,7 @@ public class SwaggerConfig4Oa extends BasicSwaggerConfig {
     }
 
 
-    @Bean("DcApiDocket")
+    @Bean("OaApiDocket")
     public Docket createRestApi() {
         return super.createRestApi();
     }
