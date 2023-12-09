@@ -27,7 +27,6 @@ public class SwaggerConfig4Kn extends BasicSwaggerConfig {
     public Docket createRestApi() {
         return super.createRestApi();
     }
-
     protected ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("知识库")
