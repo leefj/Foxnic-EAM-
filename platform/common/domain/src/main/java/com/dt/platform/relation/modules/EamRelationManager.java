@@ -19,12 +19,12 @@ public class EamRelationManager extends RelationManager {
     protected void config() {
 
 //定制
-        this.setupCustRepairItem();
-        this.setupCustRepairApply();
-        this.setupCustInspectItem();
-        this.setupCustInspectTask();
-        this.setupCustInspectPlan();
-        this.setupCustInspectTpl();
+//        this.setupCustRepairItem();
+//        this.setupCustRepairApply();
+//        this.setupCustInspectItem();
+//        this.setupCustInspectTask();
+//        this.setupCustInspectPlan();
+//        this.setupCustInspectTpl();
 
 //通用
         this.setupRelations();
@@ -220,91 +220,91 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_RFID_LABEL.OPER_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
     }
 
-    public void setupCustInspectTpl() {
-                  this.property(CCustInspectTplMeta.ASSET_LIST_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_TPL.ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.OWNER_ID)
-                .using(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
-
-    }
-
-
-    public void setupCustInspectItem() {
-        this.property(CCustInspectItemMeta.INSPECT_USER_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_ITEM.INSPECT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
-        this.property(CCustInspectItemMeta.ASSET_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_ITEM.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
-
-    }
-    public void setupCustInspectTask() {
-        this.property(CCustInspectTaskMeta.CUST_INSPECT_TPL_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL.ID);
-
-        this.property(CCustInspectTaskMeta.LEADER_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.INSPECT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
-        this.property(CCustInspectTaskMeta.MEMBER_LIST_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.ID).join(EAMTables.EAM_C_CUST_INSPECT_USER_S.OWNER_ID)
-                .using(EAMTables.EAM_C_CUST_INSPECT_USER_S.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
-        this.property(CCustInspectTaskMeta.CUST_INSPECT_ITEM_LIST_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.ID).join(EAMTables.EAM_C_CUST_INSPECT_ITEM.OWNER_ID);
-
-        this.property(CCustInspectTaskMeta.ASSET_IN_TPL_LIST_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.OWNER_ID)
-                .using(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+//    public void setupCustInspectTpl() {
+//                  this.property(CCustInspectTplMeta.ASSET_LIST_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_TPL.ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.OWNER_ID)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+//
+//    }
 
 
-    }
+//    public void setupCustInspectItem() {
+//        this.property(CCustInspectItemMeta.INSPECT_USER_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_ITEM.INSPECT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+//
+//        this.property(CCustInspectItemMeta.ASSET_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_ITEM.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+//
+//    }
+//    public void setupCustInspectTask() {
+//        this.property(CCustInspectTaskMeta.CUST_INSPECT_TPL_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL.ID);
+//
+//        this.property(CCustInspectTaskMeta.LEADER_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.INSPECT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+//
+//        this.property(CCustInspectTaskMeta.MEMBER_LIST_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.ID).join(EAMTables.EAM_C_CUST_INSPECT_USER_S.OWNER_ID)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_USER_S.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+//
+//        this.property(CCustInspectTaskMeta.CUST_INSPECT_ITEM_LIST_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.ID).join(EAMTables.EAM_C_CUST_INSPECT_ITEM.OWNER_ID);
+//
+//        this.property(CCustInspectTaskMeta.ASSET_IN_TPL_LIST_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.OWNER_ID)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+//
+//
+//    }
 
-    public void setupCustInspectPlan() {
+//    public void setupCustInspectPlan() {
+//
+//        this.property(CCustInspectPlanMeta.ASSET_IN_TPL_LIST_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.OWNER_ID)
+//          .using(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+//
+//        this.property(CCustInspectPlanMeta.CUST_INSPECT_TPL_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL.ID);
+//
+//        this.property(CCustInspectPlanMeta.LEADER_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.INSPECT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+//
+//        this.property(CCustInspectPlanMeta.MEMBER_LIST_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.ID).join(EAMTables.EAM_C_CUST_INSPECT_USER_S.OWNER_ID)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_USER_S.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+//
+//        this.property(CCustInspectPlanMeta.CUST_INSPECT_ITEM_LIST_PROP)
+//                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.ID).join(EAMTables.EAM_C_CUST_INSPECT_ITEM.OWNER_ID);
+//
+//
+//    }
 
-        this.property(CCustInspectPlanMeta.ASSET_IN_TPL_LIST_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.OWNER_ID)
-          .using(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+//    public void setupCustRepairApply() {
+//
+//        this.property(CCustRepairApplyMeta.REPAIR_TYPE_PROP)
+//                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.TYPE).join(EAMTables.EAM_C_CUST_REPAIR_TYPE.ID);
+//
+//        this.property(CCustRepairApplyMeta.REPORT_USER_PROP)
+//                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.REPORT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+//
+//        this.property(CCustRepairApplyMeta.PROCESS_USER_PROP)
+//                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.PROCESS_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+//
+//        this.property(CCustRepairApplyMeta.REPIAR_ITEM_DATA_PROP)
+//                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.ID).join(EAMTables.EAM_C_CUST_REPIAR_ITEM.REPAIR_ID);
+//
+//        this.property(CCustRepairApplyMeta.ASSET_LIST_PROP)
+//                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.ID).join(EAMTables.EAM_ASSET_ITEM.HANDLE_ID)
+//           .using(EAMTables.EAM_ASSET_ITEM.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+//
+//    }
 
-        this.property(CCustInspectPlanMeta.CUST_INSPECT_TPL_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL.ID);
-
-        this.property(CCustInspectPlanMeta.LEADER_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.INSPECT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
-        this.property(CCustInspectPlanMeta.MEMBER_LIST_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.ID).join(EAMTables.EAM_C_CUST_INSPECT_USER_S.OWNER_ID)
-                .using(EAMTables.EAM_C_CUST_INSPECT_USER_S.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
-        this.property(CCustInspectPlanMeta.CUST_INSPECT_ITEM_LIST_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.ID).join(EAMTables.EAM_C_CUST_INSPECT_ITEM.OWNER_ID);
-
-
-    }
-
-    public void setupCustRepairApply() {
-
-        this.property(CCustRepairApplyMeta.REPAIR_TYPE_PROP)
-                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.TYPE).join(EAMTables.EAM_C_CUST_REPAIR_TYPE.ID);
-
-        this.property(CCustRepairApplyMeta.REPORT_USER_PROP)
-                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.REPORT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
-        this.property(CCustRepairApplyMeta.PROCESS_USER_PROP)
-                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.PROCESS_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
-        this.property(CCustRepairApplyMeta.REPIAR_ITEM_DATA_PROP)
-                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.ID).join(EAMTables.EAM_C_CUST_REPIAR_ITEM.REPAIR_ID);
-
-        this.property(CCustRepairApplyMeta.ASSET_LIST_PROP)
-                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.ID).join(EAMTables.EAM_ASSET_ITEM.HANDLE_ID)
-           .using(EAMTables.EAM_ASSET_ITEM.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
-
-    }
-
-    public void setupCustRepairItem() {
-        this.property(CCustRepiarItemMeta.PROCESS_USER_PROP)
-                .using(EAMTables.EAM_C_CUST_REPIAR_ITEM.PROCESS_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
-
-    }
+//    public void setupCustRepairItem() {
+//        this.property(CCustRepiarItemMeta.PROCESS_USER_PROP)
+//                .using(EAMTables.EAM_C_CUST_REPIAR_ITEM.PROCESS_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+//
+//
+//    }
 
     public void setupAssetBorrowReturn() {
 
