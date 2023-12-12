@@ -113,7 +113,7 @@ public interface InspectionPlanServiceProxy {
     /**
      * 执行计划
      */
-    @RequestMapping(CCustInspectPlanServiceProxy.EXECUTE)
+    @RequestMapping(InspectionPlanServiceProxy.EXECUTE)
     Result execute();
 
 
