@@ -114,7 +114,9 @@ public class GoodsStockController extends SuperController {
 		@ApiImplicitParam(name = GoodsStockVOMeta.GOODS_STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = GoodsStockVOMeta.ASSET_CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.REAL_STOCK_ID, value = "库存数据", required = false, dataTypeClass = String.class),
-	 	@ApiImplicitParam(name = GoodsStockVOMeta.INTER_OPER_TYPE, value = "操作类型", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = GoodsStockVOMeta.INTER_OPER_TYPE, value = "操作类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.PID, value = "父级物品", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = GoodsStockServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -199,7 +201,9 @@ public class GoodsStockController extends SuperController {
 		@ApiImplicitParam(name = GoodsStockVOMeta.GOODS_STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = GoodsStockVOMeta.ASSET_CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.REAL_STOCK_ID, value = "库存数据", required = false, dataTypeClass = String.class),
-	 	@ApiImplicitParam(name = GoodsStockVOMeta.INTER_OPER_TYPE, value = "操作类型", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = GoodsStockVOMeta.INTER_OPER_TYPE, value = "操作类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.PID, value = "父级物品", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { GoodsStockVOMeta.PAGE_INDEX, GoodsStockVOMeta.PAGE_SIZE, GoodsStockVOMeta.SEARCH_FIELD, GoodsStockVOMeta.FUZZY_FIELD, GoodsStockVOMeta.SEARCH_VALUE, GoodsStockVOMeta.DIRTY_FIELDS, GoodsStockVOMeta.SORT_FIELD, GoodsStockVOMeta.SORT_TYPE, GoodsStockVOMeta.IDS })
     @SentinelResource(value = GoodsStockServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -253,7 +257,9 @@ public class GoodsStockController extends SuperController {
 		@ApiImplicitParam(name = GoodsStockVOMeta.GOODS_STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = GoodsStockVOMeta.ASSET_CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.REAL_STOCK_ID, value = "库存数据", required = false, dataTypeClass = String.class),
-		 @ApiImplicitParam(name = GoodsStockVOMeta.INTER_OPER_TYPE, value = "操作类型", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = GoodsStockVOMeta.INTER_OPER_TYPE, value = "操作类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.PID, value = "父级物品", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { GoodsStockVOMeta.PAGE_INDEX, GoodsStockVOMeta.PAGE_SIZE, GoodsStockVOMeta.SEARCH_FIELD, GoodsStockVOMeta.FUZZY_FIELD, GoodsStockVOMeta.SEARCH_VALUE, GoodsStockVOMeta.DIRTY_FIELDS, GoodsStockVOMeta.SORT_FIELD, GoodsStockVOMeta.SORT_TYPE, GoodsStockVOMeta.IDS })
     @SentinelResource(value = GoodsStockServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -278,7 +284,7 @@ public class GoodsStockController extends SuperController {
         Result<GoodsStock> result = new Result<>();
         GoodsStock goodsStock = goodsStockService.getById(id);
         // join 关联的对象
-        goodsStockService.dao().fill(goodsStock).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(goodsStock).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
         result.success(true).data(goodsStock);
         return result;
     }
@@ -344,7 +350,9 @@ public class GoodsStockController extends SuperController {
 		@ApiImplicitParam(name = GoodsStockVOMeta.GOODS_STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = GoodsStockVOMeta.ASSET_CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.REAL_STOCK_ID, value = "库存数据", required = false, dataTypeClass = String.class),
-		 @ApiImplicitParam(name = GoodsStockVOMeta.INTER_OPER_TYPE, value = "操作类型", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = GoodsStockVOMeta.INTER_OPER_TYPE, value = "操作类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.PID, value = "父级物品", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { GoodsStockVOMeta.PAGE_INDEX, GoodsStockVOMeta.PAGE_SIZE })
     @SentinelResource(value = GoodsStockServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -401,12 +409,12 @@ public class GoodsStockController extends SuperController {
     @SentinelResource(value = GoodsStockServiceProxy.QUERY_IN_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsStockServiceProxy.QUERY_IN_PAGED_LIST)
     public Result<PagedList<GoodsStock>> queryInPagedList(GoodsStockVO sample) {
-		sample.setInterOperType("in");
-		sample.setStatus("complete");
+        sample.setInterOperType("in");
+        sample.setStatus("complete");
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
         result.success(true).data(list);
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
@@ -458,12 +466,12 @@ public class GoodsStockController extends SuperController {
     @SentinelResource(value = GoodsStockServiceProxy.QUERY_OUT_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsStockServiceProxy.QUERY_OUT_PAGED_LIST)
     public Result<PagedList<GoodsStock>> queryOutPagedList(GoodsStockVO sample) {
-		sample.setInterOperType("out");
-		sample.setStatus("complete");
+        sample.setInterOperType("out");
+        sample.setStatus("complete");
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
         result.success(true).data(list);
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
@@ -513,7 +521,9 @@ public class GoodsStockController extends SuperController {
 		@ApiImplicitParam(name = GoodsStockVOMeta.GOODS_STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = GoodsStockVOMeta.ASSET_CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.REAL_STOCK_ID, value = "库存数据", required = false, dataTypeClass = String.class),
-		 @ApiImplicitParam(name = GoodsStockVOMeta.INTER_OPER_TYPE, value = "操作类型", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = GoodsStockVOMeta.INTER_OPER_TYPE, value = "操作类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.PID, value = "父级物品", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = GoodsStockServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -532,10 +542,17 @@ public class GoodsStockController extends SuperController {
         }
         list = goodsStockService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
-        result.success(true).data(list);
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
+
+		List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);
+		goodsStockService.dao().join(managerList, Person.class);
+
+		result.success(true).data(list);
+
+
         return result;
     }
 
@@ -546,9 +563,13 @@ public class GoodsStockController extends SuperController {
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedListBySelected(sample, operType, dataType);
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
+
+		List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);
+		goodsStockService.dao().join(managerList, Person.class);
+
         result.success(true).data(list);
         return result;
     }
@@ -560,30 +581,36 @@ public class GoodsStockController extends SuperController {
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedListBySelect(sample, assetSearcbContent);
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
+
+		List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);
+		goodsStockService.dao().join(managerList, Person.class);
         result.success(true).data(list);
         return result;
     }
 
-	/**
-	 * 分页查询使用情况
-	 */
-	@ApiOperation(value = "分页查询使用情况")
-	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
-	@SentinelResource(value = GoodsStockServiceProxy.QUERY_PAGED_LIST_FOR_ABNORMAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(GoodsStockServiceProxy.QUERY_PAGED_LIST_FOR_ABNORMAL)
-	public Result<PagedList<GoodsStock>> queryPagedListForAbnormal(GoodsStockVO sample) {
-		Result<PagedList<GoodsStock>> result = new Result<>();
-		PagedList<GoodsStock> list =goodsStockService.queryPagedListForAbnormal(sample,sample.getPageSize(),sample.getPageIndex());
-		// join 关联的对象
-		goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
-		List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
-		goodsStockService.dao().join(originatorList, Person.class);
-		result.success(true).data(list);
-		return result;
-	}
+    /**
+     * 分页查询使用情况
+     */
+    @ApiOperation(value = "分页查询使用情况")
+    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = GoodsStockServiceProxy.QUERY_PAGED_LIST_FOR_ABNORMAL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(GoodsStockServiceProxy.QUERY_PAGED_LIST_FOR_ABNORMAL)
+    public Result<PagedList<GoodsStock>> queryPagedListForAbnormal(GoodsStockVO sample) {
+        Result<PagedList<GoodsStock>> result = new Result<>();
+        PagedList<GoodsStock> list = goodsStockService.queryPagedListForAbnormal(sample, sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
+        goodsStockService.dao().join(originatorList, Person.class);
+
+		List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);
+		goodsStockService.dao().join(managerList, Person.class);
+        result.success(true).data(list);
+        return result;
+    }
 
     @ApiOperationSupport(order = 10)
     @SentinelResource(value = GoodsStockServiceProxy.QUERY_MIN_STOCK_WARN, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -619,7 +646,6 @@ public class GoodsStockController extends SuperController {
     @SentinelResource(value = GoodsStockServiceProxy.SAVE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsStockServiceProxy.SAVE_BY_IDS)
     public Result saveByIds(List<String> ids, String selectedCode, String ownerTmpId, String ownerType, String operType) {
-
         for (String id : ids) {
             GoodsStockVO e = new GoodsStockVO();
             GoodsStock goods = goodsStockService.getById(id);
@@ -629,71 +655,43 @@ public class GoodsStockController extends SuperController {
             e.setRealStockId(id);
             e.setNotes("");
             e.setSelectedCode(selectedCode);
-
-
             if (goods != null) {
                 e.setWarehouseId(goods.getWarehouseId());
-				e.setGoodsId(goods.getGoodsId());
+                e.setGoodsId(goods.getGoodsId());
             }
-
-
-
-			// 耗材、物品、备件入库动作
-			if (AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_IN.code().equals(operType)
-					|| AssetOperateEnum.EAM_ASSET_STOCK_GOODS_IN.code().equals(operType)
-					|| AssetOperateEnum.EAM_ASSET_PART_GOODS_IN.code().equals(operType)) {
-				// 直接物品
-				e.setInterOperType("in");
-				e.setGoodsId(id);
-				e.setCategoryId(goods.getCategoryId());
-			}
-
-
-			if (AssetOperateEnum.EAM_ASSET_STOCK_GOODS_USE.code().equals(operType)
-					||AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_USE.code().equals(operType)
-					||AssetOperateEnum.EAM_ASSET_PART_GOODS_USE.code().equals(operType)
-					||AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_OUT.code().equals(operType)
-					|| AssetOperateEnum.EAM_ASSET_STOCK_GOODS_OUT.code().equals(operType)
-					|| AssetOperateEnum.EAM_ASSET_PART_GOODS_OUT.code().equals(operType)) {
-				// 直接物品
-				e.setInterOperType("out"); // 获取的是库存数据,再次查询获取物品
-
-			}
-
-			if (AssetOperateEnum.EAM_ASSET_PART_GOODS_REPAIR_OUT.code().equals(operType)
-				 ) {
-				// 直接物品
-				e.setInterOperType("repair_out"); // 获取的是库存数据,再次查询获取物品
-
-			}
-
-			if (AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_ADJUST.code().equals(operType)
-					|| AssetOperateEnum.EAM_ASSET_STOCK_GOODS_ADJUST.code().equals(operType)
-					|| AssetOperateEnum.EAM_ASSET_PART_GOODS_ADJUST.code().equals(operType)) {
-				// 直接物品
-				e.setInterOperType("adjust");
-				// 获取的是库存数据,再次查询获取物品
-
-			}
-
-			if (AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_TRANFER.code().equals(operType)
-					|| AssetOperateEnum.EAM_ASSET_STOCK_GOODS_TRANFER.code().equals(operType)
-					|| AssetOperateEnum.EAM_ASSET_PART_GOODS_TRANFER.code().equals(operType)) {
-				// 直接物品
-				e.setInterOperType("tranfer");
-
-			}
-
+            // 耗材、物品、备件入库动作
+            if (AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_IN.code().equals(operType) || AssetOperateEnum.EAM_ASSET_STOCK_GOODS_IN.code().equals(operType) || AssetOperateEnum.EAM_ASSET_PART_GOODS_IN.code().equals(operType)) {
+                // 直接物品
+                e.setInterOperType("in");
+                e.setGoodsId(id);
+                e.setCategoryId(goods.getCategoryId());
+            }
+            if (AssetOperateEnum.EAM_ASSET_STOCK_GOODS_USE.code().equals(operType) || AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_USE.code().equals(operType) || AssetOperateEnum.EAM_ASSET_PART_GOODS_USE.code().equals(operType) || AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_OUT.code().equals(operType) || AssetOperateEnum.EAM_ASSET_STOCK_GOODS_OUT.code().equals(operType) || AssetOperateEnum.EAM_ASSET_PART_GOODS_OUT.code().equals(operType)) {
+                // 直接物品
+                // 获取的是库存数据,再次查询获取物品
+                e.setInterOperType("out");
+            }
+            if (AssetOperateEnum.EAM_ASSET_PART_GOODS_REPAIR_OUT.code().equals(operType)) {
+                // 直接物品
+                // 获取的是库存数据,再次查询获取物品
+                e.setInterOperType("repair_out");
+            }
+            if (AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_ADJUST.code().equals(operType) || AssetOperateEnum.EAM_ASSET_STOCK_GOODS_ADJUST.code().equals(operType) || AssetOperateEnum.EAM_ASSET_PART_GOODS_ADJUST.code().equals(operType)) {
+                // 直接物品
+                e.setInterOperType("adjust");
+                // 获取的是库存数据,再次查询获取物品
+            }
+            if (AssetOperateEnum.EAM_ASSET_CONSUMABLES_GOODS_TRANFER.code().equals(operType) || AssetOperateEnum.EAM_ASSET_STOCK_GOODS_TRANFER.code().equals(operType) || AssetOperateEnum.EAM_ASSET_PART_GOODS_TRANFER.code().equals(operType)) {
+                // 直接物品
+                e.setInterOperType("tranfer");
+            }
             if (!StringUtil.isBlank(ownerTmpId)) {
                 e.setOwnerTmpId(ownerTmpId);
             }
-
             goodsStockService.insert(e, false);
         }
         return ErrorDesc.success();
     }
-
-
 
     @ApiOperation(value = "组织资产数据")
     @ApiOperationSupport(order = 1)

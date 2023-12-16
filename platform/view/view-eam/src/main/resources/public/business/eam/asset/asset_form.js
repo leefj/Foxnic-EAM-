@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 16:09:45
+ * @since 2023-12-16 22:29:07
  */
 
 function FormPage() {
@@ -421,7 +421,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "goodsStockId",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("库存物品",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("物品档案",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,

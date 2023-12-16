@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 16:09:44
+ * @since 2023-12-16 22:29:06
  */
 
 
@@ -87,7 +87,7 @@ function ListPage() {
 					,{ field: 'categoryId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产分类'), templet: function (d) { return templet('categoryId' ,fox.joinLabel(d.category,"name",',','','categoryId'),d);}}
 					,{ field: 'categoryCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分类编码') , templet: function (d) { return templet('categoryCode',d.categoryCode,d);}  }
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
-					,{ field: 'procId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('流程') , templet: function (d) { return templet('procId',d.procId,d);}  }
+					,{ field: 'procId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('流程ID') , templet: function (d) { return templet('procId',d.procId,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('办理状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'batchCode', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('批次编码') , templet: function (d) { return templet('batchCode',d.batchCode,d);}  }
 					,{ field: 'ownerCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('归属') , templet: function (d) { return templet('ownerCode',d.ownerCode,d);}  }
@@ -109,7 +109,7 @@ function ListPage() {
 					,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置'), templet: function (d) { return templet('positionId' ,fox.joinLabel(d.position,"hierarchyName",',','','positionId'),d);}}
 					,{ field: 'positionDetail', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('详细位置') , templet: function (d) { return templet('positionDetail',d.positionDetail,d);}  }
 					,{ field: 'warehouseId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName",',','','warehouseId'),d);}}
-					,{ field: 'goodsStockId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('库存物品'), templet: function (d) { return templet('goodsStockId' ,fox.joinLabel(d.goodsStock,"name",',','','goodsStockId'),d);}}
+					,{ field: 'goodsStockId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品档案'), templet: function (d) { return templet('goodsStockId' ,fox.joinLabel(d.goodsStock,"name",',','','goodsStockId'),d);}}
 					,{ field: 'sourceId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源'), templet: function (d) { return templet('sourceId' ,fox.joinLabel(d.source,"label",',','','sourceId'),d);}}
 					,{ field: 'assetNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产数量') , templet: function (d) { return templet('assetNumber',d.assetNumber,d);}  }
 					,{ field: 'remainNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('剩余数量') , templet: function (d) { return templet('remainNumber',d.remainNumber,d);}  }

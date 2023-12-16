@@ -76,12 +76,19 @@ public class EamAssetsGtr extends BaseCodeGenerator {
        // cfg.getPoClassFile().addSimpleProperty(Rack.class,"rack","机柜","机柜");
         cfg.getPoClassFile().addSimpleProperty(AssetRack.class,"rack","机柜","机柜");
         cfg.getPoClassFile().addSimpleProperty(ChangeInstance.class,"changeInstance","变更实例","变更实例");
-        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goodsStock","库存物品","库存物品");
+
         cfg.getPoClassFile().addSimpleProperty(AssetRegion.class,"region","存放区域","存放区域");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"financialOptionDict","财务选项","财务选项");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"expenseItemDict","费用项目","费用项目");
         cfg.getPoClassFile().addSimpleProperty(AssetCollection.class,"assetCollection","assetCollection","assetCollection");
         cfg.getPoClassFile().addSimpleProperty(AssetBorrow.class,"assetBorrow","assetBorrow","assetBorrow");
+
+
+        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goodsStock","库存物品","库存物品");
+        //资产中的配件清单
+        cfg.getPoClassFile().addListProperty(Asset.class,"partAssetList","partAssetList","partAssetList");
+        //库存物品中的配件清单
+        cfg.getPoClassFile().addListProperty(Asset.class,"partGoodsStockList","partGoodsStockList","partGoodsStockList");
 
 
         cfg.view().field(EAMTables.EAM_ASSET.NAME).search().fuzzySearch();
@@ -312,9 +319,10 @@ public class EamAssetsGtr extends BaseCodeGenerator {
                 .valueField(PositionMeta.ID).textField( PositionMeta.HIERARCHY_NAME).fillWith(AssetMeta.POSITION).muliti(false);
 
         cfg.view().field(EAMTables.EAM_ASSET.GOODS_STOCK_ID)
-                .basic().label("库存物品")
+                .basic().label("物品档案")
                 .form().selectBox().queryApi(GoodsStockServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(GoodsStockMeta.ID).textField( GoodsStockMeta.NAME).fillWith(AssetMeta.GOODS_STOCK).muliti(false);
+
 
 
         cfg.view().field(EAMTables.EAM_ASSET.LABEL3).form().textArea().height(Config.textAreaHeight);

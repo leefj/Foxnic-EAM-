@@ -34,8 +34,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 16:09:42
- * @sign BC42AB7EAB245547ABEA996E77EF55E0
+ * @since 2023-12-16 22:29:04
+ * @sign CD20B9D05B688CE168460D87D0B48095
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -73,9 +73,9 @@ public class Asset extends Entity {
 	private String businessCode;
 	
 	/**
-	 * 流程：流程
+	 * 流程ID：流程ID
 	*/
-	@ApiModelProperty(required = false,value="流程" , notes = "流程")
+	@ApiModelProperty(required = false,value="流程ID" , notes = "流程ID")
 	private String procId;
 	
 	/**
@@ -940,12 +940,6 @@ public class Asset extends Entity {
 	private ChangeInstance changeInstance;
 	
 	/**
-	 * 库存物品：库存物品
-	*/
-	@ApiModelProperty(required = false,value="库存物品" , notes = "库存物品")
-	private GoodsStock goodsStock;
-	
-	/**
 	 * 存放区域：存放区域
 	*/
 	@ApiModelProperty(required = false,value="存放区域" , notes = "存放区域")
@@ -974,6 +968,24 @@ public class Asset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="assetBorrow" , notes = "assetBorrow")
 	private AssetBorrow assetBorrow;
+	
+	/**
+	 * 库存物品：库存物品
+	*/
+	@ApiModelProperty(required = false,value="库存物品" , notes = "库存物品")
+	private GoodsStock goodsStock;
+	
+	/**
+	 * partAssetList：partAssetList
+	*/
+	@ApiModelProperty(required = false,value="partAssetList" , notes = "partAssetList")
+	private List<Asset> partAssetList;
+	
+	/**
+	 * partGoodsStockList：partGoodsStockList
+	*/
+	@ApiModelProperty(required = false,value="partGoodsStockList" , notes = "partGoodsStockList")
+	private List<Asset> partGoodsStockList;
 	
 	/**
 	 * 获得 主键<br>
@@ -1052,17 +1064,17 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 流程<br>
-	 * 流程
-	 * @return 流程
+	 * 获得 流程ID<br>
+	 * 流程ID
+	 * @return 流程ID
 	*/
 	public String getProcId() {
 		return procId;
 	}
 	
 	/**
-	 * 设置 流程
-	 * @param procId 流程
+	 * 设置 流程ID
+	 * @param procId 流程ID
 	 * @return 当前对象
 	*/
 	public Asset setProcId(String procId) {
@@ -3842,25 +3854,6 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 库存物品<br>
-	 * 库存物品
-	 * @return 库存物品
-	*/
-	public GoodsStock getGoodsStock() {
-		return goodsStock;
-	}
-	
-	/**
-	 * 设置 库存物品
-	 * @param goodsStock 库存物品
-	 * @return 当前对象
-	*/
-	public Asset setGoodsStock(GoodsStock goodsStock) {
-		this.goodsStock=goodsStock;
-		return this;
-	}
-	
-	/**
 	 * 获得 存放区域<br>
 	 * 存放区域
 	 * @return 存放区域
@@ -3952,6 +3945,85 @@ public class Asset extends Entity {
 	*/
 	public Asset setAssetBorrow(AssetBorrow assetBorrow) {
 		this.assetBorrow=assetBorrow;
+		return this;
+	}
+	
+	/**
+	 * 获得 库存物品<br>
+	 * 库存物品
+	 * @return 库存物品
+	*/
+	public GoodsStock getGoodsStock() {
+		return goodsStock;
+	}
+	
+	/**
+	 * 设置 库存物品
+	 * @param goodsStock 库存物品
+	 * @return 当前对象
+	*/
+	public Asset setGoodsStock(GoodsStock goodsStock) {
+		this.goodsStock=goodsStock;
+		return this;
+	}
+	
+	/**
+	 * 获得 partAssetList<br>
+	 * partAssetList
+	 * @return partAssetList
+	*/
+	public List<Asset> getPartAssetList() {
+		return partAssetList;
+	}
+	
+	/**
+	 * 设置 partAssetList
+	 * @param partAssetList partAssetList
+	 * @return 当前对象
+	*/
+	public Asset setPartAssetList(List<Asset> partAssetList) {
+		this.partAssetList=partAssetList;
+		return this;
+	}
+	
+	/**
+	 * 添加 partAssetList
+	 * @param partAsset partAssetList
+	 * @return 当前对象
+	*/
+	public Asset addPartAsset(Asset... partAsset) {
+		if(this.partAssetList==null) partAssetList=new ArrayList<>();
+		this.partAssetList.addAll(Arrays.asList(partAsset));
+		return this;
+	}
+	
+	/**
+	 * 获得 partGoodsStockList<br>
+	 * partGoodsStockList
+	 * @return partGoodsStockList
+	*/
+	public List<Asset> getPartGoodsStockList() {
+		return partGoodsStockList;
+	}
+	
+	/**
+	 * 设置 partGoodsStockList
+	 * @param partGoodsStockList partGoodsStockList
+	 * @return 当前对象
+	*/
+	public Asset setPartGoodsStockList(List<Asset> partGoodsStockList) {
+		this.partGoodsStockList=partGoodsStockList;
+		return this;
+	}
+	
+	/**
+	 * 添加 partGoodsStockList
+	 * @param partGoodsStock partGoodsStockList
+	 * @return 当前对象
+	*/
+	public Asset addPartGoodsStock(Asset... partGoodsStock) {
+		if(this.partGoodsStockList==null) partGoodsStockList=new ArrayList<>();
+		this.partGoodsStockList.addAll(Arrays.asList(partGoodsStock));
 		return this;
 	}
 
@@ -4142,8 +4214,10 @@ public class Asset extends Entity {
 			inst.setManager(this.getManager());
 			inst.setWarehouse(this.getWarehouse());
 			inst.setPcmData(this.getPcmData());
+			inst.setPartAssetList(this.getPartAssetList());
 			inst.setGoodsStock(this.getGoodsStock());
 			inst.setUseOrganization(this.getUseOrganization());
+			inst.setPartGoodsStockList(this.getPartGoodsStockList());
 			inst.setAssetCollection(this.getAssetCollection());
 			inst.setChangeInstance(this.getChangeInstance());
 			inst.setExtData(this.getExtData());

@@ -23,17 +23,17 @@ import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.AssetStatus;
 import com.dt.platform.domain.eam.AssetRack;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
-import com.dt.platform.domain.eam.GoodsStock;
 import com.dt.platform.domain.eam.AssetRegion;
 import com.dt.platform.domain.eam.AssetCollection;
 import com.dt.platform.domain.eam.AssetBorrow;
+import com.dt.platform.domain.eam.GoodsStock;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 16:09:42
+ * @since 2023-12-16 22:29:04
  * @sign 740673009F6EFF378B232C887D6576FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -201,14 +201,14 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,BUSINESS_CODE, java.lang.String.class, "业务编号", "业务编号", java.lang.String.class, null);
 	
 	/**
-	 * 流程 , 类型: java.lang.String
+	 * 流程ID , 类型: java.lang.String
 	*/
 	public static final String PROC_ID="procId";
 	
 	/**
-	 * 流程 , 类型: java.lang.String
+	 * 流程ID , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> PROC_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,PROC_ID, java.lang.String.class, "流程", "流程", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> PROC_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,PROC_ID, java.lang.String.class, "流程ID", "流程ID", java.lang.String.class, null);
 	
 	/**
 	 * 办理状态 , 类型: java.lang.String
@@ -1641,16 +1641,6 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,org.github.foxnic.web.domain.changes.ChangeInstance> CHANGE_INSTANCE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,CHANGE_INSTANCE, org.github.foxnic.web.domain.changes.ChangeInstance.class, "变更实例", "变更实例", org.github.foxnic.web.domain.changes.ChangeInstance.class, null);
 	
 	/**
-	 * 库存物品 , 类型: com.dt.platform.domain.eam.GoodsStock
-	*/
-	public static final String GOODS_STOCK="goodsStock";
-	
-	/**
-	 * 库存物品 , 类型: com.dt.platform.domain.eam.GoodsStock
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,com.dt.platform.domain.eam.GoodsStock> GOODS_STOCK_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,GOODS_STOCK, com.dt.platform.domain.eam.GoodsStock.class, "库存物品", "库存物品", com.dt.platform.domain.eam.GoodsStock.class, null);
-	
-	/**
 	 * 存放区域 , 类型: com.dt.platform.domain.eam.AssetRegion
 	*/
 	public static final String REGION="region";
@@ -1701,9 +1691,39 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,com.dt.platform.domain.eam.AssetBorrow> ASSET_BORROW_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,ASSET_BORROW, com.dt.platform.domain.eam.AssetBorrow.class, "assetBorrow", "assetBorrow", com.dt.platform.domain.eam.AssetBorrow.class, null);
 	
 	/**
+	 * 库存物品 , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final String GOODS_STOCK="goodsStock";
+	
+	/**
+	 * 库存物品 , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,com.dt.platform.domain.eam.GoodsStock> GOODS_STOCK_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,GOODS_STOCK, com.dt.platform.domain.eam.GoodsStock.class, "库存物品", "库存物品", com.dt.platform.domain.eam.GoodsStock.class, null);
+	
+	/**
+	 * partAssetList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String PART_ASSET_LIST="partAssetList";
+	
+	/**
+	 * partAssetList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,com.dt.platform.domain.eam.Asset> PART_ASSET_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,PART_ASSET_LIST, java.util.List.class, "partAssetList", "partAssetList", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
+	 * partGoodsStockList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String PART_GOODS_STOCK_LIST="partGoodsStockList";
+	
+	/**
+	 * partGoodsStockList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,com.dt.platform.domain.eam.Asset> PART_GOODS_STOCK_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,PART_GOODS_STOCK_LIST, java.util.List.class, "partGoodsStockList", "partGoodsStockList", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , DEPRECIATION_ID , DEPRECIATION_OPER_TIME , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL3 , LABEL5 , LABEL4 , LABEL2 , BILL_ID , LONGITUDE , DIMENSION , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , CATALOG_CODE_VALUE , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , ASSET_COLLECTION , ASSET_BORROW };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , DEPRECIATION_ID , DEPRECIATION_OPER_TIME , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL3 , LABEL5 , LABEL4 , LABEL2 , BILL_ID , LONGITUDE , DIMENSION , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , CATALOG_CODE_VALUE , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , REGION , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , ASSET_COLLECTION , ASSET_BORROW , GOODS_STOCK , PART_ASSET_LIST , PART_GOODS_STOCK_LIST };
 	
 	/**
 	 * 代理类
@@ -1890,8 +1910,8 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 流程
-		 * @param procId 流程
+		 * 设置 流程ID
+		 * @param procId 流程ID
 		 * @return 当前对象
 		*/
 		public Asset setProcId(String procId) {
@@ -3474,17 +3494,6 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 库存物品
-		 * @param goodsStock 库存物品
-		 * @return 当前对象
-		*/
-		public Asset setGoodsStock(GoodsStock goodsStock) {
-			super.change(GOODS_STOCK,super.getGoodsStock(),goodsStock);
-			super.setGoodsStock(goodsStock);
-			return this;
-		}
-		
-		/**
 		 * 设置 存放区域
 		 * @param region 存放区域
 		 * @return 当前对象
@@ -3536,6 +3545,39 @@ public class AssetVOMeta extends AssetMeta {
 		public Asset setAssetBorrow(AssetBorrow assetBorrow) {
 			super.change(ASSET_BORROW,super.getAssetBorrow(),assetBorrow);
 			super.setAssetBorrow(assetBorrow);
+			return this;
+		}
+		
+		/**
+		 * 设置 库存物品
+		 * @param goodsStock 库存物品
+		 * @return 当前对象
+		*/
+		public Asset setGoodsStock(GoodsStock goodsStock) {
+			super.change(GOODS_STOCK,super.getGoodsStock(),goodsStock);
+			super.setGoodsStock(goodsStock);
+			return this;
+		}
+		
+		/**
+		 * 设置 partAssetList
+		 * @param partAssetList partAssetList
+		 * @return 当前对象
+		*/
+		public Asset setPartAssetList(List<Asset> partAssetList) {
+			super.change(PART_ASSET_LIST,super.getPartAssetList(),partAssetList);
+			super.setPartAssetList(partAssetList);
+			return this;
+		}
+		
+		/**
+		 * 设置 partGoodsStockList
+		 * @param partGoodsStockList partGoodsStockList
+		 * @return 当前对象
+		*/
+		public Asset setPartGoodsStockList(List<Asset> partGoodsStockList) {
+			super.change(PART_GOODS_STOCK_LIST,super.getPartGoodsStockList(),partGoodsStockList);
+			super.setPartGoodsStockList(partGoodsStockList);
 			return this;
 		}
 
@@ -3705,8 +3747,10 @@ public class AssetVOMeta extends AssetMeta {
 				inst.setRequestAction(this.getRequestAction());
 				inst.setWarehouse(this.getWarehouse());
 				inst.setPcmData(this.getPcmData());
+				inst.setPartAssetList(this.getPartAssetList());
 				inst.setGoodsStock(this.getGoodsStock());
 				inst.setUseOrganization(this.getUseOrganization());
+				inst.setPartGoodsStockList(this.getPartGoodsStockList());
 				inst.setAssetCollection(this.getAssetCollection());
 				inst.setChangeInstance(this.getChangeInstance());
 				inst.setPageIndex(this.getPageIndex());
