@@ -15,8 +15,11 @@ import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.eam.meta.GoodsStockMeta;
@@ -28,8 +31,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品
  * <p>库存物品 , 数据表 eam_goods_stock 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-29 09:35:56
- * @sign 073B337016A04956D6FC537816CFC3B8
+ * @since 2023-12-16 22:49:59
+ * @sign D035975DDE8DE6A681A26C0BC8A77F54
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -93,7 +96,7 @@ public class GoodsStock extends Entity {
 	/**
 	 * 档案分类：档案分类
 	*/
-	@ApiModelProperty(required = false,value="档案分类" , notes = "档案分类" , example = "572876484268523520")
+	@ApiModelProperty(required = false,value="档案分类" , notes = "档案分类" , example = "591603932308963328")
 	private String categoryId;
 	
 	/**
@@ -111,19 +114,19 @@ public class GoodsStock extends Entity {
 	/**
 	 * 规格型号：规格型号
 	*/
-	@ApiModelProperty(required = false,value="规格型号" , notes = "规格型号" , example = "服务器设备备件")
+	@ApiModelProperty(required = false,value="规格型号" , notes = "规格型号" , example = "CPUPO-CT")
 	private String model;
 	
 	/**
 	 * 物品编码：物品编码
 	*/
-	@ApiModelProperty(required = false,value="物品编码" , notes = "物品编码" , example = "服务器设备备件")
+	@ApiModelProperty(required = false,value="物品编码" , notes = "物品编码" , example = "SE0001")
 	private String code;
 	
 	/**
 	 * 物品条码：物品条码
 	*/
-	@ApiModelProperty(required = false,value="物品条码" , notes = "物品条码" , example = "服务器设备备件")
+	@ApiModelProperty(required = false,value="物品条码" , notes = "物品条码" , example = "SE0001")
 	private String barCode;
 	
 	/**
@@ -147,7 +150,7 @@ public class GoodsStock extends Entity {
 	/**
 	 * 计量单位：计量单位
 	*/
-	@ApiModelProperty(required = false,value="计量单位" , notes = "计量单位" , example = "12")
+	@ApiModelProperty(required = false,value="计量单位" , notes = "计量单位" , example = "个")
 	private String unit;
 	
 	/**
@@ -159,7 +162,7 @@ public class GoodsStock extends Entity {
 	/**
 	 * 安全库存上限：安全库存上限
 	*/
-	@ApiModelProperty(required = false,value="安全库存上限" , notes = "安全库存上限" , example = "1")
+	@ApiModelProperty(required = false,value="安全库存上限" , notes = "安全库存上限" , example = "500")
 	private BigDecimal stockMax;
 	
 	/**
@@ -177,7 +180,7 @@ public class GoodsStock extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "档案备注")
 	private String notes;
 	
 	/**
@@ -265,6 +268,12 @@ public class GoodsStock extends Entity {
 	private String originatorId;
 	
 	/**
+	 * 父级物品：父级物品
+	*/
+	@ApiModelProperty(required = false,value="父级物品" , notes = "父级物品")
+	private String pid;
+	
+	/**
 	 * 选择：选择
 	*/
 	@ApiModelProperty(required = false,value="选择" , notes = "选择")
@@ -297,7 +306,7 @@ public class GoodsStock extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-28 02:21:44")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-11-28 09:48:22")
 	private Date updateTime;
 	
 	/**
@@ -324,7 +333,7 @@ public class GoodsStock extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "7")
 	private Integer version;
 	
 	/**
@@ -458,6 +467,18 @@ public class GoodsStock extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="库存备注" , notes = "库存备注")
 	private String goodsStockNotes;
+	
+	/**
+	 * parentGoodsStock：parentGoodsStock
+	*/
+	@ApiModelProperty(required = false,value="parentGoodsStock" , notes = "parentGoodsStock")
+	private GoodsStock parentGoodsStock;
+	
+	/**
+	 * subGoodsStockList：subGoodsStockList
+	*/
+	@ApiModelProperty(required = false,value="subGoodsStockList" , notes = "subGoodsStockList")
+	private List<GoodsStock> subGoodsStockList;
 	
 	/**
 	 * 获得 主键<br>
@@ -1163,6 +1184,25 @@ public class GoodsStock extends Entity {
 	}
 	
 	/**
+	 * 获得 父级物品<br>
+	 * 父级物品
+	 * @return 父级物品
+	*/
+	public String getPid() {
+		return pid;
+	}
+	
+	/**
+	 * 设置 父级物品
+	 * @param pid 父级物品
+	 * @return 当前对象
+	*/
+	public GoodsStock setPid(String pid) {
+		this.pid=pid;
+		return this;
+	}
+	
+	/**
 	 * 获得 选择<br>
 	 * 选择
 	 * @return 选择
@@ -1800,6 +1840,55 @@ public class GoodsStock extends Entity {
 		this.goodsStockNotes=goodsStockNotes;
 		return this;
 	}
+	
+	/**
+	 * 获得 parentGoodsStock<br>
+	 * parentGoodsStock
+	 * @return parentGoodsStock
+	*/
+	public GoodsStock getParentGoodsStock() {
+		return parentGoodsStock;
+	}
+	
+	/**
+	 * 设置 parentGoodsStock
+	 * @param parentGoodsStock parentGoodsStock
+	 * @return 当前对象
+	*/
+	public GoodsStock setParentGoodsStock(GoodsStock parentGoodsStock) {
+		this.parentGoodsStock=parentGoodsStock;
+		return this;
+	}
+	
+	/**
+	 * 获得 subGoodsStockList<br>
+	 * subGoodsStockList
+	 * @return subGoodsStockList
+	*/
+	public List<GoodsStock> getSubGoodsStockList() {
+		return subGoodsStockList;
+	}
+	
+	/**
+	 * 设置 subGoodsStockList
+	 * @param subGoodsStockList subGoodsStockList
+	 * @return 当前对象
+	*/
+	public GoodsStock setSubGoodsStockList(List<GoodsStock> subGoodsStockList) {
+		this.subGoodsStockList=subGoodsStockList;
+		return this;
+	}
+	
+	/**
+	 * 添加 subGoodsStockList
+	 * @param subGoodsStock subGoodsStockList
+	 * @return 当前对象
+	*/
+	public GoodsStock addSubGoodsStock(GoodsStock... subGoodsStock) {
+		if(this.subGoodsStockList==null) subGoodsStockList=new ArrayList<>();
+		this.subGoodsStockList.addAll(Arrays.asList(subGoodsStock));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1848,22 +1937,34 @@ public class GoodsStock extends Entity {
 		inst.setOwnerType(this.getOwnerType());
 		inst.setSourceId(this.getSourceId());
 		inst.setInterOperType(this.getInterOperType());
-		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
 		inst.setStockSecurity(this.getStockSecurity());
-		inst.setOwnerCode(this.getOwnerCode());
 		inst.setOwnerTmpId(this.getOwnerTmpId());
-		inst.setGoodsId(this.getGoodsId());
+		inst.setPid(this.getPid());
 		inst.setOwnerId(this.getOwnerId());
-		inst.setSelectedCode(this.getSelectedCode());
 		inst.setBusinessCode(this.getBusinessCode());
+		inst.setModel(this.getModel());
+		inst.setId(this.getId());
+		inst.setUnitPrice(this.getUnitPrice());
+		inst.setVersion(this.getVersion());
+		inst.setBarCode(this.getBarCode());
+		inst.setUnit(this.getUnit());
+		inst.setOwnCompanyId(this.getOwnCompanyId());
+		inst.setWarehouseId(this.getWarehouseId());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setBrandId(this.getBrandId());
+		inst.setAssetCategoryId(this.getAssetCategoryId());
+		inst.setName(this.getName());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setStatus(this.getStatus());
+		inst.setCode(this.getCode());
+		inst.setOwnerCode(this.getOwnerCode());
+		inst.setGoodsId(this.getGoodsId());
+		inst.setSelectedCode(this.getSelectedCode());
 		inst.setStockMin(this.getStockMin());
 		inst.setPictureId(this.getPictureId());
 		inst.setUpdateBy(this.getUpdateBy());
-		inst.setModel(this.getModel());
-		inst.setId(this.getId());
 		inst.setOriginatorId(this.getOriginatorId());
-		inst.setUnitPrice(this.getUnitPrice());
 		inst.setSupplierName(this.getSupplierName());
 		inst.setStockInNumber(this.getStockInNumber());
 		inst.setAmount(this.getAmount());
@@ -1874,25 +1975,14 @@ public class GoodsStock extends Entity {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setManagerId(this.getManagerId());
 		inst.setStorageDate(this.getStorageDate());
-		inst.setVersion(this.getVersion());
-		inst.setBarCode(this.getBarCode());
-		inst.setUnit(this.getUnit());
-		inst.setOwnCompanyId(this.getOwnCompanyId());
 		inst.setStockCurNumber(this.getStockCurNumber());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setRealStockId(this.getRealStockId());
 		inst.setDeleted(this.getDeleted());
 		inst.setGoodsStatus(this.getGoodsStatus());
-		inst.setWarehouseId(this.getWarehouseId());
 		inst.setCreateTime(this.getCreateTime());
-		inst.setDeleteTime(this.getDeleteTime());
-		inst.setBrandId(this.getBrandId());
-		inst.setAssetCategoryId(this.getAssetCategoryId());
-		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
-		inst.setDeleteBy(this.getDeleteBy());
 		inst.setCategoryId(this.getCategoryId());
-		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setOwnerCompany(this.getOwnerCompany());
 			inst.setGoodsStockSecurity(this.getGoodsStockSecurity());
@@ -1902,12 +1992,14 @@ public class GoodsStock extends Entity {
 			inst.setOriginator(this.getOriginator());
 			inst.setGoodsModel(this.getGoodsModel());
 			inst.setGoodsStockMin(this.getGoodsStockMin());
+			inst.setParentGoodsStock(this.getParentGoodsStock());
 			inst.setWarehouse(this.getWarehouse());
 			inst.setRealGoods(this.getRealGoods());
 			inst.setManufacturer(this.getManufacturer());
 			inst.setGoodsBarCode(this.getGoodsBarCode());
 			inst.setUseOrganization(this.getUseOrganization());
 			inst.setGoodsCategoryName(this.getGoodsCategoryName());
+			inst.setSubGoodsStockList(this.getSubGoodsStockList());
 			inst.setGoodsStockNotes(this.getGoodsStockNotes());
 			inst.setGoodsUnit(this.getGoodsUnit());
 			inst.setGoodsCode(this.getGoodsCode());
@@ -1977,22 +2069,34 @@ public class GoodsStock extends Entity {
 			this.setOwnerType(DataParser.parse(String.class, map.get(GoodsStockMeta.OWNER_TYPE)));
 			this.setSourceId(DataParser.parse(String.class, map.get(GoodsStockMeta.SOURCE_ID)));
 			this.setInterOperType(DataParser.parse(String.class, map.get(GoodsStockMeta.INTER_OPER_TYPE)));
-			this.setCode(DataParser.parse(String.class, map.get(GoodsStockMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(GoodsStockMeta.NOTES)));
 			this.setStockSecurity(DataParser.parse(BigDecimal.class, map.get(GoodsStockMeta.STOCK_SECURITY)));
-			this.setOwnerCode(DataParser.parse(String.class, map.get(GoodsStockMeta.OWNER_CODE)));
 			this.setOwnerTmpId(DataParser.parse(String.class, map.get(GoodsStockMeta.OWNER_TMP_ID)));
-			this.setGoodsId(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_ID)));
+			this.setPid(DataParser.parse(String.class, map.get(GoodsStockMeta.PID)));
 			this.setOwnerId(DataParser.parse(String.class, map.get(GoodsStockMeta.OWNER_ID)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(GoodsStockMeta.SELECTED_CODE)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(GoodsStockMeta.BUSINESS_CODE)));
+			this.setModel(DataParser.parse(String.class, map.get(GoodsStockMeta.MODEL)));
+			this.setId(DataParser.parse(String.class, map.get(GoodsStockMeta.ID)));
+			this.setUnitPrice(DataParser.parse(BigDecimal.class, map.get(GoodsStockMeta.UNIT_PRICE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(GoodsStockMeta.VERSION)));
+			this.setBarCode(DataParser.parse(String.class, map.get(GoodsStockMeta.BAR_CODE)));
+			this.setUnit(DataParser.parse(String.class, map.get(GoodsStockMeta.UNIT)));
+			this.setOwnCompanyId(DataParser.parse(String.class, map.get(GoodsStockMeta.OWN_COMPANY_ID)));
+			this.setWarehouseId(DataParser.parse(String.class, map.get(GoodsStockMeta.WAREHOUSE_ID)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(GoodsStockMeta.DELETE_TIME)));
+			this.setBrandId(DataParser.parse(String.class, map.get(GoodsStockMeta.BRAND_ID)));
+			this.setAssetCategoryId(DataParser.parse(String.class, map.get(GoodsStockMeta.ASSET_CATEGORY_ID)));
+			this.setName(DataParser.parse(String.class, map.get(GoodsStockMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(GoodsStockMeta.DELETE_BY)));
+			this.setStatus(DataParser.parse(String.class, map.get(GoodsStockMeta.STATUS)));
+			this.setCode(DataParser.parse(String.class, map.get(GoodsStockMeta.CODE)));
+			this.setOwnerCode(DataParser.parse(String.class, map.get(GoodsStockMeta.OWNER_CODE)));
+			this.setGoodsId(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(GoodsStockMeta.SELECTED_CODE)));
 			this.setStockMin(DataParser.parse(BigDecimal.class, map.get(GoodsStockMeta.STOCK_MIN)));
 			this.setPictureId(DataParser.parse(String.class, map.get(GoodsStockMeta.PICTURE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(GoodsStockMeta.UPDATE_BY)));
-			this.setModel(DataParser.parse(String.class, map.get(GoodsStockMeta.MODEL)));
-			this.setId(DataParser.parse(String.class, map.get(GoodsStockMeta.ID)));
 			this.setOriginatorId(DataParser.parse(String.class, map.get(GoodsStockMeta.ORIGINATOR_ID)));
-			this.setUnitPrice(DataParser.parse(BigDecimal.class, map.get(GoodsStockMeta.UNIT_PRICE)));
 			this.setSupplierName(DataParser.parse(String.class, map.get(GoodsStockMeta.SUPPLIER_NAME)));
 			this.setStockInNumber(DataParser.parse(BigDecimal.class, map.get(GoodsStockMeta.STOCK_IN_NUMBER)));
 			this.setAmount(DataParser.parse(BigDecimal.class, map.get(GoodsStockMeta.AMOUNT)));
@@ -2003,25 +2107,14 @@ public class GoodsStock extends Entity {
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(GoodsStockMeta.UPDATE_TIME)));
 			this.setManagerId(DataParser.parse(String.class, map.get(GoodsStockMeta.MANAGER_ID)));
 			this.setStorageDate(DataParser.parse(Date.class, map.get(GoodsStockMeta.STORAGE_DATE)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(GoodsStockMeta.VERSION)));
-			this.setBarCode(DataParser.parse(String.class, map.get(GoodsStockMeta.BAR_CODE)));
-			this.setUnit(DataParser.parse(String.class, map.get(GoodsStockMeta.UNIT)));
-			this.setOwnCompanyId(DataParser.parse(String.class, map.get(GoodsStockMeta.OWN_COMPANY_ID)));
 			this.setStockCurNumber(DataParser.parse(BigDecimal.class, map.get(GoodsStockMeta.STOCK_CUR_NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(GoodsStockMeta.CREATE_BY)));
 			this.setRealStockId(DataParser.parse(String.class, map.get(GoodsStockMeta.REAL_STOCK_ID)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(GoodsStockMeta.DELETED)));
 			this.setGoodsStatus(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STATUS)));
-			this.setWarehouseId(DataParser.parse(String.class, map.get(GoodsStockMeta.WAREHOUSE_ID)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(GoodsStockMeta.CREATE_TIME)));
-			this.setDeleteTime(DataParser.parse(Date.class, map.get(GoodsStockMeta.DELETE_TIME)));
-			this.setBrandId(DataParser.parse(String.class, map.get(GoodsStockMeta.BRAND_ID)));
-			this.setAssetCategoryId(DataParser.parse(String.class, map.get(GoodsStockMeta.ASSET_CATEGORY_ID)));
-			this.setName(DataParser.parse(String.class, map.get(GoodsStockMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(GoodsStockMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, map.get(GoodsStockMeta.DELETE_BY)));
 			this.setCategoryId(DataParser.parse(String.class, map.get(GoodsStockMeta.CATEGORY_ID)));
-			this.setStatus(DataParser.parse(String.class, map.get(GoodsStockMeta.STATUS)));
 			// others
 			this.setOwnerCompany(DataParser.parse(Organization.class, map.get(GoodsStockMeta.OWNER_COMPANY)));
 			this.setGoodsStockSecurity(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_SECURITY)));
@@ -2031,6 +2124,7 @@ public class GoodsStock extends Entity {
 			this.setOriginator(DataParser.parse(Employee.class, map.get(GoodsStockMeta.ORIGINATOR)));
 			this.setGoodsModel(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_MODEL)));
 			this.setGoodsStockMin(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_MIN)));
+			this.setParentGoodsStock(DataParser.parse(GoodsStock.class, map.get(GoodsStockMeta.PARENT_GOODS_STOCK)));
 			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(GoodsStockMeta.WAREHOUSE)));
 			this.setRealGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockMeta.REAL_GOODS)));
 			this.setManufacturer(DataParser.parse(Manufacturer.class, map.get(GoodsStockMeta.MANUFACTURER)));
@@ -2050,22 +2144,34 @@ public class GoodsStock extends Entity {
 				this.setOwnerType( (String)map.get(GoodsStockMeta.OWNER_TYPE));
 				this.setSourceId( (String)map.get(GoodsStockMeta.SOURCE_ID));
 				this.setInterOperType( (String)map.get(GoodsStockMeta.INTER_OPER_TYPE));
-				this.setCode( (String)map.get(GoodsStockMeta.CODE));
 				this.setNotes( (String)map.get(GoodsStockMeta.NOTES));
 				this.setStockSecurity( (BigDecimal)map.get(GoodsStockMeta.STOCK_SECURITY));
-				this.setOwnerCode( (String)map.get(GoodsStockMeta.OWNER_CODE));
 				this.setOwnerTmpId( (String)map.get(GoodsStockMeta.OWNER_TMP_ID));
-				this.setGoodsId( (String)map.get(GoodsStockMeta.GOODS_ID));
+				this.setPid( (String)map.get(GoodsStockMeta.PID));
 				this.setOwnerId( (String)map.get(GoodsStockMeta.OWNER_ID));
-				this.setSelectedCode( (String)map.get(GoodsStockMeta.SELECTED_CODE));
 				this.setBusinessCode( (String)map.get(GoodsStockMeta.BUSINESS_CODE));
+				this.setModel( (String)map.get(GoodsStockMeta.MODEL));
+				this.setId( (String)map.get(GoodsStockMeta.ID));
+				this.setUnitPrice( (BigDecimal)map.get(GoodsStockMeta.UNIT_PRICE));
+				this.setVersion( (Integer)map.get(GoodsStockMeta.VERSION));
+				this.setBarCode( (String)map.get(GoodsStockMeta.BAR_CODE));
+				this.setUnit( (String)map.get(GoodsStockMeta.UNIT));
+				this.setOwnCompanyId( (String)map.get(GoodsStockMeta.OWN_COMPANY_ID));
+				this.setWarehouseId( (String)map.get(GoodsStockMeta.WAREHOUSE_ID));
+				this.setDeleteTime( (Date)map.get(GoodsStockMeta.DELETE_TIME));
+				this.setBrandId( (String)map.get(GoodsStockMeta.BRAND_ID));
+				this.setAssetCategoryId( (String)map.get(GoodsStockMeta.ASSET_CATEGORY_ID));
+				this.setName( (String)map.get(GoodsStockMeta.NAME));
+				this.setDeleteBy( (String)map.get(GoodsStockMeta.DELETE_BY));
+				this.setStatus( (String)map.get(GoodsStockMeta.STATUS));
+				this.setCode( (String)map.get(GoodsStockMeta.CODE));
+				this.setOwnerCode( (String)map.get(GoodsStockMeta.OWNER_CODE));
+				this.setGoodsId( (String)map.get(GoodsStockMeta.GOODS_ID));
+				this.setSelectedCode( (String)map.get(GoodsStockMeta.SELECTED_CODE));
 				this.setStockMin( (BigDecimal)map.get(GoodsStockMeta.STOCK_MIN));
 				this.setPictureId( (String)map.get(GoodsStockMeta.PICTURE_ID));
 				this.setUpdateBy( (String)map.get(GoodsStockMeta.UPDATE_BY));
-				this.setModel( (String)map.get(GoodsStockMeta.MODEL));
-				this.setId( (String)map.get(GoodsStockMeta.ID));
 				this.setOriginatorId( (String)map.get(GoodsStockMeta.ORIGINATOR_ID));
-				this.setUnitPrice( (BigDecimal)map.get(GoodsStockMeta.UNIT_PRICE));
 				this.setSupplierName( (String)map.get(GoodsStockMeta.SUPPLIER_NAME));
 				this.setStockInNumber( (BigDecimal)map.get(GoodsStockMeta.STOCK_IN_NUMBER));
 				this.setAmount( (BigDecimal)map.get(GoodsStockMeta.AMOUNT));
@@ -2076,25 +2182,14 @@ public class GoodsStock extends Entity {
 				this.setUpdateTime( (Date)map.get(GoodsStockMeta.UPDATE_TIME));
 				this.setManagerId( (String)map.get(GoodsStockMeta.MANAGER_ID));
 				this.setStorageDate( (Date)map.get(GoodsStockMeta.STORAGE_DATE));
-				this.setVersion( (Integer)map.get(GoodsStockMeta.VERSION));
-				this.setBarCode( (String)map.get(GoodsStockMeta.BAR_CODE));
-				this.setUnit( (String)map.get(GoodsStockMeta.UNIT));
-				this.setOwnCompanyId( (String)map.get(GoodsStockMeta.OWN_COMPANY_ID));
 				this.setStockCurNumber( (BigDecimal)map.get(GoodsStockMeta.STOCK_CUR_NUMBER));
 				this.setCreateBy( (String)map.get(GoodsStockMeta.CREATE_BY));
 				this.setRealStockId( (String)map.get(GoodsStockMeta.REAL_STOCK_ID));
 				this.setDeleted( (Integer)map.get(GoodsStockMeta.DELETED));
 				this.setGoodsStatus( (String)map.get(GoodsStockMeta.GOODS_STATUS));
-				this.setWarehouseId( (String)map.get(GoodsStockMeta.WAREHOUSE_ID));
 				this.setCreateTime( (Date)map.get(GoodsStockMeta.CREATE_TIME));
-				this.setDeleteTime( (Date)map.get(GoodsStockMeta.DELETE_TIME));
-				this.setBrandId( (String)map.get(GoodsStockMeta.BRAND_ID));
-				this.setAssetCategoryId( (String)map.get(GoodsStockMeta.ASSET_CATEGORY_ID));
-				this.setName( (String)map.get(GoodsStockMeta.NAME));
 				this.setTenantId( (String)map.get(GoodsStockMeta.TENANT_ID));
-				this.setDeleteBy( (String)map.get(GoodsStockMeta.DELETE_BY));
 				this.setCategoryId( (String)map.get(GoodsStockMeta.CATEGORY_ID));
-				this.setStatus( (String)map.get(GoodsStockMeta.STATUS));
 				// others
 				this.setOwnerCompany( (Organization)map.get(GoodsStockMeta.OWNER_COMPANY));
 				this.setGoodsStockSecurity( (String)map.get(GoodsStockMeta.GOODS_STOCK_SECURITY));
@@ -2104,6 +2199,7 @@ public class GoodsStock extends Entity {
 				this.setOriginator( (Employee)map.get(GoodsStockMeta.ORIGINATOR));
 				this.setGoodsModel( (String)map.get(GoodsStockMeta.GOODS_MODEL));
 				this.setGoodsStockMin( (String)map.get(GoodsStockMeta.GOODS_STOCK_MIN));
+				this.setParentGoodsStock( (GoodsStock)map.get(GoodsStockMeta.PARENT_GOODS_STOCK));
 				this.setWarehouse( (Warehouse)map.get(GoodsStockMeta.WAREHOUSE));
 				this.setRealGoods( (GoodsStock)map.get(GoodsStockMeta.REAL_GOODS));
 				this.setManufacturer( (Manufacturer)map.get(GoodsStockMeta.MANUFACTURER));
@@ -2136,22 +2232,34 @@ public class GoodsStock extends Entity {
 			this.setOwnerType(DataParser.parse(String.class, r.getValue(GoodsStockMeta.OWNER_TYPE)));
 			this.setSourceId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.SOURCE_ID)));
 			this.setInterOperType(DataParser.parse(String.class, r.getValue(GoodsStockMeta.INTER_OPER_TYPE)));
-			this.setCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(GoodsStockMeta.NOTES)));
 			this.setStockSecurity(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockMeta.STOCK_SECURITY)));
-			this.setOwnerCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.OWNER_CODE)));
 			this.setOwnerTmpId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.OWNER_TMP_ID)));
-			this.setGoodsId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.GOODS_ID)));
+			this.setPid(DataParser.parse(String.class, r.getValue(GoodsStockMeta.PID)));
 			this.setOwnerId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.OWNER_ID)));
-			this.setSelectedCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.SELECTED_CODE)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.BUSINESS_CODE)));
+			this.setModel(DataParser.parse(String.class, r.getValue(GoodsStockMeta.MODEL)));
+			this.setId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.ID)));
+			this.setUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockMeta.UNIT_PRICE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(GoodsStockMeta.VERSION)));
+			this.setBarCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.BAR_CODE)));
+			this.setUnit(DataParser.parse(String.class, r.getValue(GoodsStockMeta.UNIT)));
+			this.setOwnCompanyId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.OWN_COMPANY_ID)));
+			this.setWarehouseId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.WAREHOUSE_ID)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(GoodsStockMeta.DELETE_TIME)));
+			this.setBrandId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.BRAND_ID)));
+			this.setAssetCategoryId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.ASSET_CATEGORY_ID)));
+			this.setName(DataParser.parse(String.class, r.getValue(GoodsStockMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(GoodsStockMeta.DELETE_BY)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(GoodsStockMeta.STATUS)));
+			this.setCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.CODE)));
+			this.setOwnerCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.OWNER_CODE)));
+			this.setGoodsId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.GOODS_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.SELECTED_CODE)));
 			this.setStockMin(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockMeta.STOCK_MIN)));
 			this.setPictureId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.PICTURE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(GoodsStockMeta.UPDATE_BY)));
-			this.setModel(DataParser.parse(String.class, r.getValue(GoodsStockMeta.MODEL)));
-			this.setId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.ID)));
 			this.setOriginatorId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.ORIGINATOR_ID)));
-			this.setUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockMeta.UNIT_PRICE)));
 			this.setSupplierName(DataParser.parse(String.class, r.getValue(GoodsStockMeta.SUPPLIER_NAME)));
 			this.setStockInNumber(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockMeta.STOCK_IN_NUMBER)));
 			this.setAmount(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockMeta.AMOUNT)));
@@ -2162,47 +2270,48 @@ public class GoodsStock extends Entity {
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(GoodsStockMeta.UPDATE_TIME)));
 			this.setManagerId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.MANAGER_ID)));
 			this.setStorageDate(DataParser.parse(Date.class, r.getValue(GoodsStockMeta.STORAGE_DATE)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(GoodsStockMeta.VERSION)));
-			this.setBarCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.BAR_CODE)));
-			this.setUnit(DataParser.parse(String.class, r.getValue(GoodsStockMeta.UNIT)));
-			this.setOwnCompanyId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.OWN_COMPANY_ID)));
 			this.setStockCurNumber(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockMeta.STOCK_CUR_NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(GoodsStockMeta.CREATE_BY)));
 			this.setRealStockId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.REAL_STOCK_ID)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(GoodsStockMeta.DELETED)));
 			this.setGoodsStatus(DataParser.parse(String.class, r.getValue(GoodsStockMeta.GOODS_STATUS)));
-			this.setWarehouseId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.WAREHOUSE_ID)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(GoodsStockMeta.CREATE_TIME)));
-			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(GoodsStockMeta.DELETE_TIME)));
-			this.setBrandId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.BRAND_ID)));
-			this.setAssetCategoryId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.ASSET_CATEGORY_ID)));
-			this.setName(DataParser.parse(String.class, r.getValue(GoodsStockMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, r.getValue(GoodsStockMeta.DELETE_BY)));
 			this.setCategoryId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.CATEGORY_ID)));
-			this.setStatus(DataParser.parse(String.class, r.getValue(GoodsStockMeta.STATUS)));
 			return true;
 		} else {
 			try {
 				this.setOwnerType( (String)r.getValue(GoodsStockMeta.OWNER_TYPE));
 				this.setSourceId( (String)r.getValue(GoodsStockMeta.SOURCE_ID));
 				this.setInterOperType( (String)r.getValue(GoodsStockMeta.INTER_OPER_TYPE));
-				this.setCode( (String)r.getValue(GoodsStockMeta.CODE));
 				this.setNotes( (String)r.getValue(GoodsStockMeta.NOTES));
 				this.setStockSecurity( (BigDecimal)r.getValue(GoodsStockMeta.STOCK_SECURITY));
-				this.setOwnerCode( (String)r.getValue(GoodsStockMeta.OWNER_CODE));
 				this.setOwnerTmpId( (String)r.getValue(GoodsStockMeta.OWNER_TMP_ID));
-				this.setGoodsId( (String)r.getValue(GoodsStockMeta.GOODS_ID));
+				this.setPid( (String)r.getValue(GoodsStockMeta.PID));
 				this.setOwnerId( (String)r.getValue(GoodsStockMeta.OWNER_ID));
-				this.setSelectedCode( (String)r.getValue(GoodsStockMeta.SELECTED_CODE));
 				this.setBusinessCode( (String)r.getValue(GoodsStockMeta.BUSINESS_CODE));
+				this.setModel( (String)r.getValue(GoodsStockMeta.MODEL));
+				this.setId( (String)r.getValue(GoodsStockMeta.ID));
+				this.setUnitPrice( (BigDecimal)r.getValue(GoodsStockMeta.UNIT_PRICE));
+				this.setVersion( (Integer)r.getValue(GoodsStockMeta.VERSION));
+				this.setBarCode( (String)r.getValue(GoodsStockMeta.BAR_CODE));
+				this.setUnit( (String)r.getValue(GoodsStockMeta.UNIT));
+				this.setOwnCompanyId( (String)r.getValue(GoodsStockMeta.OWN_COMPANY_ID));
+				this.setWarehouseId( (String)r.getValue(GoodsStockMeta.WAREHOUSE_ID));
+				this.setDeleteTime( (Date)r.getValue(GoodsStockMeta.DELETE_TIME));
+				this.setBrandId( (String)r.getValue(GoodsStockMeta.BRAND_ID));
+				this.setAssetCategoryId( (String)r.getValue(GoodsStockMeta.ASSET_CATEGORY_ID));
+				this.setName( (String)r.getValue(GoodsStockMeta.NAME));
+				this.setDeleteBy( (String)r.getValue(GoodsStockMeta.DELETE_BY));
+				this.setStatus( (String)r.getValue(GoodsStockMeta.STATUS));
+				this.setCode( (String)r.getValue(GoodsStockMeta.CODE));
+				this.setOwnerCode( (String)r.getValue(GoodsStockMeta.OWNER_CODE));
+				this.setGoodsId( (String)r.getValue(GoodsStockMeta.GOODS_ID));
+				this.setSelectedCode( (String)r.getValue(GoodsStockMeta.SELECTED_CODE));
 				this.setStockMin( (BigDecimal)r.getValue(GoodsStockMeta.STOCK_MIN));
 				this.setPictureId( (String)r.getValue(GoodsStockMeta.PICTURE_ID));
 				this.setUpdateBy( (String)r.getValue(GoodsStockMeta.UPDATE_BY));
-				this.setModel( (String)r.getValue(GoodsStockMeta.MODEL));
-				this.setId( (String)r.getValue(GoodsStockMeta.ID));
 				this.setOriginatorId( (String)r.getValue(GoodsStockMeta.ORIGINATOR_ID));
-				this.setUnitPrice( (BigDecimal)r.getValue(GoodsStockMeta.UNIT_PRICE));
 				this.setSupplierName( (String)r.getValue(GoodsStockMeta.SUPPLIER_NAME));
 				this.setStockInNumber( (BigDecimal)r.getValue(GoodsStockMeta.STOCK_IN_NUMBER));
 				this.setAmount( (BigDecimal)r.getValue(GoodsStockMeta.AMOUNT));
@@ -2213,25 +2322,14 @@ public class GoodsStock extends Entity {
 				this.setUpdateTime( (Date)r.getValue(GoodsStockMeta.UPDATE_TIME));
 				this.setManagerId( (String)r.getValue(GoodsStockMeta.MANAGER_ID));
 				this.setStorageDate( (Date)r.getValue(GoodsStockMeta.STORAGE_DATE));
-				this.setVersion( (Integer)r.getValue(GoodsStockMeta.VERSION));
-				this.setBarCode( (String)r.getValue(GoodsStockMeta.BAR_CODE));
-				this.setUnit( (String)r.getValue(GoodsStockMeta.UNIT));
-				this.setOwnCompanyId( (String)r.getValue(GoodsStockMeta.OWN_COMPANY_ID));
 				this.setStockCurNumber( (BigDecimal)r.getValue(GoodsStockMeta.STOCK_CUR_NUMBER));
 				this.setCreateBy( (String)r.getValue(GoodsStockMeta.CREATE_BY));
 				this.setRealStockId( (String)r.getValue(GoodsStockMeta.REAL_STOCK_ID));
 				this.setDeleted( (Integer)r.getValue(GoodsStockMeta.DELETED));
 				this.setGoodsStatus( (String)r.getValue(GoodsStockMeta.GOODS_STATUS));
-				this.setWarehouseId( (String)r.getValue(GoodsStockMeta.WAREHOUSE_ID));
 				this.setCreateTime( (Date)r.getValue(GoodsStockMeta.CREATE_TIME));
-				this.setDeleteTime( (Date)r.getValue(GoodsStockMeta.DELETE_TIME));
-				this.setBrandId( (String)r.getValue(GoodsStockMeta.BRAND_ID));
-				this.setAssetCategoryId( (String)r.getValue(GoodsStockMeta.ASSET_CATEGORY_ID));
-				this.setName( (String)r.getValue(GoodsStockMeta.NAME));
 				this.setTenantId( (String)r.getValue(GoodsStockMeta.TENANT_ID));
-				this.setDeleteBy( (String)r.getValue(GoodsStockMeta.DELETE_BY));
 				this.setCategoryId( (String)r.getValue(GoodsStockMeta.CATEGORY_ID));
-				this.setStatus( (String)r.getValue(GoodsStockMeta.STATUS));
 				return true;
 			} catch (Exception e) {
 				return false;

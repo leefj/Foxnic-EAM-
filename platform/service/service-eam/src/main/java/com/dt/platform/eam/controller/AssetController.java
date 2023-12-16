@@ -89,7 +89,6 @@ import com.github.foxnic.api.swagger.ApiParamSupport;
 @RestController("EamAssetController")
 public class AssetController extends SuperController {
 
-
     @Autowired
     private IAssetService assetService;
 
@@ -114,7 +113,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.CATEGORY_ID, value = "资产分类", required = true, dataTypeClass = String.class, example = "486917781384597505"),
 		@ApiImplicitParam(name = AssetVOMeta.CATEGORY_CODE, value = "分类编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.PROC_ID, value = "流程ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.BATCH_CODE, value = "批次编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_CODE, value = "资产编号", required = false, dataTypeClass = String.class),
@@ -461,7 +460,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.CATEGORY_ID, value = "资产分类", required = true, dataTypeClass = String.class, example = "486917781384597505"),
 		@ApiImplicitParam(name = AssetVOMeta.CATEGORY_CODE, value = "分类编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.PROC_ID, value = "流程ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.BATCH_CODE, value = "批次编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_CODE, value = "资产编号", required = false, dataTypeClass = String.class),
@@ -776,7 +775,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486917781384597505"),
 		@ApiImplicitParam(name = AssetVOMeta.CATEGORY_CODE, value = "分类编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.PROC_ID, value = "流程ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.BATCH_CODE, value = "批次编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
@@ -1001,7 +1000,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486917781384597505"),
 		@ApiImplicitParam(name = AssetVOMeta.CATEGORY_CODE, value = "分类编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.PROC_ID, value = "流程ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.BATCH_CODE, value = "批次编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
@@ -1186,7 +1185,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486917781384597505"),
 		@ApiImplicitParam(name = AssetVOMeta.CATEGORY_CODE, value = "分类编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.PROC_ID, value = "流程ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.BATCH_CODE, value = "批次编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
@@ -1859,20 +1858,20 @@ public class AssetController extends SuperController {
         return result;
     }
 
-	/**
-	 * 分页查询资产
-	 */
-	@ApiOperation(value = "分页查询资产")
-	@ApiOperationSupport(order = 10)
-	@SentinelResource(value = AssetServiceProxy.QUERY_RAW_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-	@PostMapping(AssetServiceProxy.QUERY_RAW_PAGED_LIST)
-	public Result<PagedList<Asset>> queryRawPagedList(AssetVO sample) {
-		Result<PagedList<Asset>> result = new Result<>();
-		PagedList<Asset> list = assetService.queryRawPagedList(sample);
-		assetService.joinData(list.getList());
-		result.success(true).data(list);
-		return result;
-	}
+    /**
+     * 分页查询资产
+     */
+    @ApiOperation(value = "分页查询资产")
+    @ApiOperationSupport(order = 10)
+    @SentinelResource(value = AssetServiceProxy.QUERY_RAW_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetServiceProxy.QUERY_RAW_PAGED_LIST)
+    public Result<PagedList<Asset>> queryRawPagedList(AssetVO sample) {
+        Result<PagedList<Asset>> result = new Result<>();
+        PagedList<Asset> list = assetService.queryRawPagedList(sample);
+        assetService.joinData(list.getList());
+        result.success(true).data(list);
+        return result;
+    }
 
     /**
      * 批量送审

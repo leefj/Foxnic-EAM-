@@ -89,6 +89,14 @@
                         </div>
                     </div>
 
+                <!-- select_box : 父级物品 ,  pid  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('父级物品')}">父级物品</div></div>
+                    <div class="layui-input-block ">
+                        <div id="pid" input-type="select" th:data="${'/service-eam/eam-goods-stock/query-paged-list?ownerCode=goods'}" extraParam="{}"></div>
+                    </div>
+                </div>
+
                 <!--结束：栏次内字段循环-->
             </div>
              <!--开始：column 循环-->

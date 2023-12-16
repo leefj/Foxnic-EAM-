@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-12-01 20:34:34
+ * @since 2023-12-16 22:01:55
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -6682,9 +6682,9 @@ public class EAMTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 资产
+		 * 资产名称
 		*/
-		public static final DBField ASSET_ID = new DBField(DBDataType.STRING , "asset_id","assetId","资产","资产",false,false,true);
+		public static final DBField ASSET_ID = new DBField(DBDataType.STRING , "asset_id","assetId","资产名称","资产名称",false,false,true);
 		
 		/**
 		 * 业务编号
@@ -14427,6 +14427,11 @@ public class EAMTables {
 		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","制单人","制单人",false,false,true);
 		
 		/**
+		 * 父级物品
+		*/
+		public static final DBField PID = new DBField(DBDataType.STRING , "pid","pid","父级物品","父级物品",false,false,true);
+		
+		/**
 		 * 选择
 		*/
 		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择","选择",false,false,true);
@@ -14481,7 +14486,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_GOODS_STOCK() {
-			this.init($NAME,"库存物品" , ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"库存物品" , ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , PID , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_GOODS_STOCK $TABLE=new EAM_GOODS_STOCK();
 	}

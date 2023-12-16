@@ -44,6 +44,8 @@ public class StockGoodsGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsCode","物品编码","物品编码");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsBarCode","物品条码","物品条码");
 
+
+
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.STOCK_BATCH_CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.NOTES).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.BUSINESS_CODE).search().fuzzySearch();

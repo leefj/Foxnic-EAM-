@@ -290,9 +290,8 @@ delete from hrm_employee where id not in (select employee_id from sys_user_tenan
 delete from hrm_person where id not in (select person_id from hrm_employee);
 -- clear hr
 delete from hr_person where deleted=1;
-delete from hr_person_contract where deleted=1;
-delete from sys_user_import where deleted=1;
-
+delete from hr_person_contract where 1=1;
+delete from sys_user_import where 1=1;
 -- check data
 -- select * from sys_user a,sys_user_tenant b,hrm_employee c,hrm_person d,hrm_employee_position f where a.id=b.user_id and b.employee_id=c.id and c.person_id=d.id and f.employee_id=c.id
 delete from sys_user where deleted=1;
@@ -317,12 +316,36 @@ delete from sys_role_menu where menu_id not in (select id from sys_menu);
 delete from sys_menu_resource where menu_id not in (select id from sys_menu);
 delete from sys_menu_resource where resource_id not in (select id from sys_resourze);
 -- netdisk
-delete from oa_netdisk_file where deleted=1;
-delete from oa_netdisk_folder where deleted=1;
-delete from oa_netdisk_origin_file where deleted=1;
-delete from oa_netdisk_recycle where deleted=1;
-delete from oa_netdisk_share_me where deleted=1;
-delete from oa_netdisk_virtual_fd where deleted=1;
-delete from oa_netdisk_my_share where deleted=1;
-delete from oa_netdisk_my_favorite where deleted=1;
+delete from oa_netdisk_file where 1=1;
+delete from oa_netdisk_folder where 1=1;
+delete from oa_netdisk_origin_file where 1=1;
+delete from oa_netdisk_recycle where 1=1;
+delete from oa_netdisk_share_me where 1=1;
+delete from oa_netdisk_virtual_fd where 1=1;
+delete from oa_netdisk_my_share where 1=1;
+delete from oa_netdisk_my_favorite where 1=1;
+-- delete
+update sys_user set portrait_id ='T001_image_head' where 1=1;
+-- select * from sys_user a,sys_user_tenant b,hrm_employee c,hrm_person d,hrm_employee_position f where a.id=b.user_id and b.employee_id=c.id and c.person_id=d.id and f.employee_id=c.id
+delete from sys_user where deleted=1;
+delete from sys_user_tenant where deleted=1;
+delete from hrm_employee where deleted=1;
+delete from hrm_person where deleted=1;
+delete from sys_role_user where deleted=1;
+delete from hrm_employee_position where deleted=1;
+delete from hrm_position where deleted=1;
+-- user
+update sys_user set portrait_id='T001_image_head';
+delete from sys_user_tenant where user_id not in (select id from sys_user);
+delete from hrm_employee where id not in ( select employee_id from sys_user_tenant);
+delete from hrm_person where id not in (select person_id from hrm_employee);
+delete from sys_role_user where user_id not in (select id from sys_user);
+delete from hrm_employee_position where employee_id not in (select id from hrm_employee);
+-- menu
+delete from sys_role where deleted=1;
+delete from sys_menu where deleted=1;
+delete from sys_role_menu where role_id not in (select id from sys_role);
+delete from sys_role_menu where menu_id not in (select id from sys_menu);
+delete from sys_menu_resource where menu_id not in (select id from sys_menu);
+delete from sys_menu_resource where resource_id not in (select id from sys_resourze);
 commit;

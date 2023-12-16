@@ -48,10 +48,11 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockSecurity","物品条码","物品条码");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockNotes","库存备注","库存备注");
 
+        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"parentGoodsStock","parentGoodsStock","parentGoodsStock");
+        cfg.getPoClassFile().addListProperty(GoodsStock.class,"subGoodsStockList","subGoodsStockList","subGoodsStockList");
 
 
-
-
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.PID).table().disable();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.OWNER_ID).table().disable();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.OWNER_TMP_ID).table().disable();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.SOURCE_ID).table().disable();

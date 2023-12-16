@@ -48,8 +48,8 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockSecurity","物品条码","物品条码");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockNotes","库存备注","库存备注");
 
-
-
+        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"parentGoodsStock","parentGoodsStock","parentGoodsStock");
+        cfg.getPoClassFile().addListProperty(GoodsStock.class,"subGoodsStockList","subGoodsStockList","subGoodsStockList");
 
         cfg.view().field(GoodsStockMeta.GOODS_MODEL).table().disable();
         cfg.view().field(GoodsStockMeta.GOODS_NAME).table().disable();
@@ -102,6 +102,7 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.ORIGINATOR_ID).table().disable();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.STORAGE_DATE).table().disable();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.AMOUNT).table().disable();
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.PID).table().disable();
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.STATUS).table().disable();
         cfg.view().search().inputLayout(
@@ -174,7 +175,10 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
                 .form().selectBox().queryApi(GoodsStockServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(GoodsStockMeta.ID).textField( GoodsStockMeta.NAME).fillWith(GoodsStockMeta.GOODS).muliti(false);
 
-
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.PID)
+                .basic().label("父级物品")
+                .form().selectBox().queryApi(GoodsStockServiceProxy.QUERY_PAGED_LIST+"?ownerCode=goods").paging(true).filter(true).toolbar(false)
+                .valueField(GoodsStockMeta.ID).textField(GoodsStockMeta.NAME).fillWith(GoodsStockMeta.PARENT_GOODS_STOCK).muliti(false);
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.CATEGORY_ID)
                 .basic().label("分类")
@@ -265,6 +269,7 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
                 }, new Object[] {
                         EAMTables.EAM_GOODS_STOCK.CODE,
                         EAMTables.EAM_GOODS_STOCK.BAR_CODE,
+                        EAMTables.EAM_GOODS_STOCK.PID,
                 },
                 new Object[] {
                         EAMTables.EAM_GOODS_STOCK.MANUFACTURER_ID,
@@ -286,6 +291,7 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().form().addPage("subGoods","subGoods","子设备");
 
         cfg.view().form().addGroup(null,
                 new Object[] {
