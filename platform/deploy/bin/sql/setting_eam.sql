@@ -71,8 +71,6 @@ update sys_menu set hidden=1 where id='765908751092809728';
 update sys_menu set hidden=1 where id='530779933585178624';
 -- 系统监控
 update sys_menu set hidden=1 where id='724547250738429952';
--- 系统运维
-update sys_menu set hidden=1 where id='463397133957988354';
 -- 采购管理
 update sys_menu set hidden=1 where id='566986193363795968';
 -- 资产入库

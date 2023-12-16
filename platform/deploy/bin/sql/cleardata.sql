@@ -117,14 +117,8 @@ delete from eam_maintain_project where tenant_id='T001';
 delete from eam_maintain_project_select where 1=1;
 delete from eam_maintain_task where tenant_id='T001';
 delete from eam_maintain_task_project where 1=1;
--- cust inspect repair
-delete from eam_c_cust_inspect_item where 1=1 ;
-delete from eam_c_cust_inspect_plan where 1=1 ;
-delete from eam_c_cust_inspect_task where 1=1 ;
-delete from eam_c_cust_inspect_tpl where 1=1 ;
-delete from eam_c_cust_inspect_tpl_asset where 1=1 ;
-delete from eam_c_cust_repair_apply where 1=1 ;
-delete from eam_c_cust_repiar_item where 1=1 ;
+delete from eam_purchase_import where 1=1;
+delete from eam_stock_import where 1=1;
 -- repair
 -- delete from eam_repair_category where tenant_id='T001';
 -- delete from eam_repair_category_tpl where tenant_id='T001';
@@ -322,4 +316,13 @@ delete from sys_role_menu where role_id not in (select id from sys_role);
 delete from sys_role_menu where menu_id not in (select id from sys_menu);
 delete from sys_menu_resource where menu_id not in (select id from sys_menu);
 delete from sys_menu_resource where resource_id not in (select id from sys_resourze);
+-- netdisk
+delete from oa_netdisk_file where deleted=1;
+delete from oa_netdisk_folder where deleted=1;
+delete from oa_netdisk_origin_file where deleted=1;
+delete from oa_netdisk_recycle where deleted=1;
+delete from oa_netdisk_share_me where deleted=1;
+delete from oa_netdisk_virtual_fd where deleted=1;
+delete from oa_netdisk_my_share where deleted=1;
+delete from oa_netdisk_my_favorite where deleted=1;
 commit;
