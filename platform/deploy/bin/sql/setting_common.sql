@@ -21,7 +21,7 @@ update sys_menu set hidden=1 where id='694545227850973184';
 -- 资产字段配置，开发人员使用
 update sys_menu set hidden=1 where id='487568362436558848';
 update sys_menu set hidden=1 where id='487559533120454656';
--- 版本切换
-update sys_menu set hidden=1 where id='578624635919138816';
+-- 流程门户
+update sys_menu set hidden=1 where id='577783476611198976';
 
 
