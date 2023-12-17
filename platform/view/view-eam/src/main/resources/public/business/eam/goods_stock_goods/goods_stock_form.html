@@ -82,18 +82,18 @@
                         </div>
                     </div>
 
-                                    <div class="layui-form-item" >
+                     <div class="layui-form-item" >
                         <div class="layui-form-label "><div th:text="${lang.translate('物品条码')}">物品条码</div><div class="layui-required">*</div></div>
                         <div class="layui-input-block ">
                             <input lay-filter="barCode" id="barCode" name="barCode" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('物品条码') }" type="text" class="layui-input"    lay-verify="|required"  />
                         </div>
                     </div>
 
-                <!-- select_box : 父级物品 ,  pid  -->
+                <!-- select_box : 父级物品 ,  parentGoodsStockIds  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('父级物品')}">父级物品</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('父级档案')}">父级档案</div></div>
                     <div class="layui-input-block ">
-                        <div id="pid" input-type="select" th:data="${'/service-eam/eam-goods-stock/query-paged-list?ownerCode=goods'}" extraParam="{}"></div>
+                        <div id="parentGoodsStockIds" input-type="select" th:data="${'/service-eam/eam-goods-stock/query-paged-list?ownerCode=goods'}" extraParam="{}"></div>
                     </div>
                 </div>
 
@@ -203,6 +203,16 @@
         </div>
          <!--开始：group 循环-->
 
+        <!--开始：group 循环-->
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="relGoods-fieldset">
+            <legend>关联设备配件档案</legend>
+        </fieldset>
+        <div class="layui-row form-row" style="text-align: center;" id="relGoods-content">
+            <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
+                <iframe id="relGoods-iframe" js-fn="relGoods" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+            </div>
+        </div>
+        <!--开始：group 循环-->
 
 
         <div class="layui-row form-row" id="random-3854-content">

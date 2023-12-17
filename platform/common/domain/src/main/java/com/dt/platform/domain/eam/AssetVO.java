@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产VO类型
  * <p>资产 , 数据表 eam_asset 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-16 22:29:04
+ * @since 2023-12-17 21:41:59
  * @sign 740673009F6EFF378B232C887D6576FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -764,7 +764,7 @@ public class AssetVO extends Asset {
 			this.setSearchField(DataParser.parse(String.class, map.get(AssetVOMeta.SEARCH_FIELD)));
 			this.setCategoryFinance(DataParser.parse(CategoryFinance.class, map.get(AssetVOMeta.CATEGORY_FINANCE)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetVOMeta.FUZZY_FIELD)));
-			this.setGoods(DataParser.parse(Goods.class, map.get(AssetVOMeta.GOODS)));
+			this.setGoods(DataParser.parse(GoodsStock.class, map.get(AssetVOMeta.GOODS)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetVOMeta.PAGE_SIZE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetVOMeta.ORIGINATOR)));
 			this.setSource(DataParser.parse(DictItem.class, map.get(AssetVOMeta.SOURCE)));
@@ -930,7 +930,7 @@ public class AssetVO extends Asset {
 				this.setSearchField( (String)map.get(AssetVOMeta.SEARCH_FIELD));
 				this.setCategoryFinance( (CategoryFinance)map.get(AssetVOMeta.CATEGORY_FINANCE));
 				this.setFuzzyField( (String)map.get(AssetVOMeta.FUZZY_FIELD));
-				this.setGoods( (Goods)map.get(AssetVOMeta.GOODS));
+				this.setGoods( (GoodsStock)map.get(AssetVOMeta.GOODS));
 				this.setPageSize( (Integer)map.get(AssetVOMeta.PAGE_SIZE));
 				this.setOriginator( (Employee)map.get(AssetVOMeta.ORIGINATOR));
 				this.setSource( (DictItem)map.get(AssetVOMeta.SOURCE));

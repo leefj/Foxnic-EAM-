@@ -127,7 +127,7 @@
 <div  th:fragment="goods_id" class="layui-form-item" >
     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate(item.attribute.label)}"></div><div th:if="${item.required} == 1" class="layui-required">*</div></div>
     <div class="layui-input-block layui-input-block-c1">
-        <div id="goodsId" input-type="select" th:data="${'/service-eam/eam-goods/query-list'}"></div>
+        <div id="goodsId" input-type="select" th:data="${'/service-eam/eam-goods-stock/query-paged-list?ownerCode=goods'}" extraParam="{}"></div>
     </div>
 </div>
 

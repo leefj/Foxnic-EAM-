@@ -1,7 +1,7 @@
 /**
  * 库存出库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-30 12:39:27
+ * @since 2023-12-17 20:55:09
  */
 
 function FormPage() {
@@ -496,7 +496,7 @@ function FormPage() {
 			};
 			fox.chooseOrgNode(useOwnCompanyIdDialogOptions);
 		});
-		// 请选择公司对话框
+		// 请选择组织节点对话框
 		$("#useOrganizationId-button").click(function(){
 			var useOrganizationIdDialogOptions={
 				field:"useOrganizationId",
@@ -507,7 +507,7 @@ function FormPage() {
 				autoWidth:false,
 				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
 				root: "",
-				targetType:"com",
+				targetType:"org",
 				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
 				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
 			};

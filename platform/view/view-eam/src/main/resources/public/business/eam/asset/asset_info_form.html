@@ -39,7 +39,7 @@
                     <li id="maintainer-tab"  th:text="${lang.translate('维保信息')}">维保信息</li>
                     <li id="financial-tab" th:text="${lang.translate('财务信息')}"> 财务信息</li>
                     <li id="equipment-tab" > <div th:text="${lang.translate('设备信息')}">设备信息</div></li>
-                    <li id="part-tab" > <div th:text="${lang.translate('关联备件')}">关联备件</div></li>
+                    <li id="partRcd-tab" > <div th:text="${lang.translate('备品配件')}">备品配件</div></li>
                     <li id="repairRcd-tab" > <div th:text="${lang.translate('维修记录')}">维修记录</div></li>
                     <li id="maintainRcd-tab" > <div th:text="${lang.translate('保养记录')}">保养记录</div></li>
                     <li id="insepectionRcd-tab" > <div th:text="${lang.translate('巡检记录')}">巡检记录</div></li>
@@ -160,8 +160,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="layui-tab-item" id="part-tab-ct">
 
+                    <div  class="layui-tab-item" id="partRcd-tab-ct">
+                        <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
+                            <iframe id="partRcdList" js-fn="partRcdList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+                        </div>
                     </div>
 
                     <div  class="layui-tab-item" id="repairRcd-tab-ct">

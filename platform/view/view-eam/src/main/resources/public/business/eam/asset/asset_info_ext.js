@@ -456,6 +456,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+
+            if(field=="goodsId"){
+                var res="";
+                if(r.goods){
+                    res=r.goods.name+"【"+r.goods.model+"】-【"+r.goods.code+"】";
+                }
+                return res;
+            }
+
             if(value==null) return "";
             return value;
         },
@@ -653,10 +663,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单初始化前调用
          * */
         beforeInit:function () {
-            if($("#part-tab")){
-                $("#part-tab").remove();
-                $("#part-tab-ct").remove();
-            }
+            // if($("#part-tab")){
+            //     $("#part-tab").remove();
+            //     $("#part-tab-ct").remove();
+            // }
             if(formAction=="view"){
                 console.log(1);
             }else{
@@ -675,6 +685,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 if($("#insepectionRcd-tab")){
                     $("#insepectionRcd-tab").remove();
                     $("#insepectionRcd-tab-ct").remove();
+                }
+                if($("#partRcd-tab")){
+                    $("#partRcd-tab").remove();
+                    $("#partRcd-tab-ct").remove();
                 }
             }
             if(!ASSET_CODE_AUTO_CREATE){
@@ -831,6 +845,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             ifr.height("450px");
             var queryString="?assetId="+data.id;
             win.location='/business/eam/repair_rcd/repair_rcd_list.html' + queryString;
+        },
+        partRcdList:function (ifr,win,data) {
+            ifr.height("450px");
+            var queryString="?assetId="+data.id+"&ownerCode=part&ownerType=part";
+            win.location='/business/eam/goods_stock_goods/asset_part_goods_list.html' + queryString;
         },
         /**
          * 末尾执行

@@ -49,6 +49,8 @@ public class GoodsStockPageController extends ViewController {
 		return proxy;
 	}
 
+
+
 	@RequestMapping("/stock_for_abnormal_list.html")
 	public String abnormalList(Model model,HttpServletRequest request,String ownerCode) {
 		model.addAttribute("ownerCode",ownerCode);
@@ -158,11 +160,24 @@ public class GoodsStockPageController extends ViewController {
 	private String getOwnerCodeByOperType(String operType,String ownerType,String pageAction){
 		String ownerCode="";
 
+		//选择档案采购
 		if("eam_asset_stock_goods_select".equals(operType)){
 			ownerCode=AssetStockGoodsOwnerEnum.GOODS.code();
 		}
 
+		//采购选择
+		if("eam_asset_stock_goods_purchase_select".equals(operType)){
+			ownerCode=AssetStockGoodsOwnerEnum.GOODS.code();
+		}
 
+		//选择子设备
+		if("eam_asset_stock_goods_sub_select".equals(operType)){
+			ownerCode=AssetStockGoodsOwnerEnum.GOODS.code();
+		}
+
+
+
+		//选择具体的物品
 		if(AssetStockGoodsTypeEnum.STOCK.code().equals(ownerType)){
 			//库存
 			if(PAGE_ACTION_SELECTED.equals(pageAction)){

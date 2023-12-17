@@ -107,7 +107,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	@Autowired
 	private IAssetProcessRecordService assetProcessRecordService;
 
-
+	@Autowired
+	private IGoodsStockService goodsStockService;
 	/**
 	 * 注入DAO对象
 	 * */
@@ -329,7 +330,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			String before="-";
 			String after="-";
 
-
 			if(AssetAttributeValueTypeEnum.ENUM.code().equals(valueType)){
 				if("asset_status".equals(key)){
 					if(!StringUtil.isBlank(assetJsonBefore.getString(rkey))){
@@ -428,6 +428,46 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		data.put("update",ups);
 		data.put("change",ins);
 		return data;
+	}
+
+	@Override
+	public PagedList<Asset> queryAssetSubAssetPagedList(String assetId, int pageSize, int pageIndex) {
+		Asset asset=this.getById(assetId);
+		if(asset==null){
+			return new PagedList<Asset>(new ArrayList<Asset>(),0,0,0,0);
+		}
+		String goodsId=asset.getGoodsId();
+		if(StringUtil.isBlank(goodsId)){
+			return new PagedList<Asset>(new ArrayList<Asset>(),0,0,0,0);
+		}
+		Asset qAsset=new Asset();
+		qAsset.setOwnerCode("asset");
+		qAsset.setStatus("complete");
+		ConditionExpr expr=new ConditionExpr();
+		expr.and("goods_id in (select goods_id from eam_goods_stock_related where parent_goods_id=? and deleted=0 and select_code='def')",goodsId);
+		return super.queryPagedList(qAsset,expr,pageSize,pageIndex);
+	}
+
+	@Override
+	public PagedList<GoodsStock> queryAssetSubGoodsStockPagedList(String assetId, String ownerCode, int pageSize, int pageIndex) {
+		Asset asset=this.getById(assetId);
+		if(asset==null){
+			return new PagedList<GoodsStock>(new ArrayList<GoodsStock>(),0,0,0,0);
+		}
+		String goodsId=asset.getGoodsId();
+		if(StringUtil.isBlank(goodsId)){
+			return new PagedList<GoodsStock>(new ArrayList<GoodsStock>(),0,0,0,0);
+		}
+		GoodsStock qGoodsStock=new GoodsStock();
+		if("part".equals(ownerCode)){
+			qGoodsStock.setOwnerCode("real_part");
+			qGoodsStock.setOwnerType("part");
+		}else{
+			qGoodsStock.setOwnerCode(ownerCode);
+		}
+		ConditionExpr expr=new ConditionExpr();
+		expr.and("goods_id in (select goods_id from eam_goods_stock_related where parent_goods_id=? and deleted=0 and select_code='def')",goodsId);
+		return goodsStockService.queryPagedList(qGoodsStock,expr,pageSize,pageIndex);
 	}
 
 	@Override

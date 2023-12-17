@@ -19,7 +19,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //模块基础路径
     const moduleURL="/service-eam/eam-goods-stock";
-
+    var timestamp = Date.parse(new Date());
+    var formAction=admin.getTempData('eam-goods-stock-form-data-form-action');
     //列表页的扩展
     var list={
         /**
@@ -90,6 +91,55 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+            if(field=="parentGoodsStockIds"){
+                var res="";
+                if(r.parentGoodsStockList&&r.parentGoodsStockList.length>0){
+                    var num=r.parentGoodsStockList.length;
+                    if(num>5){
+                        num=5
+                    }
+                    for(var i=0;i<num;i++){
+                        if(i==0){
+                            res=r.parentGoodsStockList[i].name+"【"+r.parentGoodsStockList[i].model+"】-【"+r.parentGoodsStockList[i].code+"】";
+                        }else{
+                            var obj=","+r.parentGoodsStockList[i].name+"【"+r.parentGoodsStockList[i].model+"】-【"+r.parentGoodsStockList[i].code+"】";
+                            res=res+obj
+                        }
+                    }
+                    if(num>5){
+                        res=res+"..."
+                    }
+                   value=res;
+                }
+                return value;
+            }
+
+            if(field=="subGoodsStockIds"){
+                var res="";
+                if(r.subGoodsStockList&&r.subGoodsStockList.length>0){
+                    var num=r.subGoodsStockList.length;
+                    if(num>5){
+                        num=5
+                    }
+                    for(var i=0;i<num;i++){
+                        if(i==0){
+                            res=r.subGoodsStockList[i].name+"【"+r.subGoodsStockList[i].model+"】-【"+r.subGoodsStockList[i].code+"】";
+                        }else{
+                            var obj=","+r.subGoodsStockList[i].name+"【"+r.subGoodsStockList[i].model+"】-【"+r.subGoodsStockList[i].code+"】";
+                            res=res+obj
+                        }
+                    }
+                    if(num>5){
+                        res=res+"..."
+                    }
+                    value=res;
+                }
+                return value;
+            }
+
+            if(field==""){
+
+            }
             if(value==null) return "";
             return value;
         },
@@ -212,9 +262,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 当下拉框别选择后触发
          * */
-        onSelectBoxChanged:function(id,selected,changes,isAdd) {
-            console.log('onSelectBoxChanged',id,selected,changes,isAdd);
-        },
+
         /**
          * 当日期选择组件选择后触发
          * */
@@ -225,8 +273,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
         beforeSubmit:function (data) {
-
             data.ownerCode="goods"
+            data.selectedCode=timestamp;
             console.log("######beforeSubmit",data);
             return true;
         },
@@ -242,6 +290,43 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterSubmit:function (param,result) {
             console.log("afterSubmitt",param,result);
+        },
+        /**
+         *  加载 关联设备配件
+         */
+        relGoods:function (ifr,win,data) {
+            // debugger
+            console.log("relGoods",ifr,data);
+            //设置 iframe 高度
+            var parentGoodsStockId="";
+            var pageType=formAction
+            if(data&&data.id){
+                parentGoodsStockId=data.id
+            }else{
+                parentGoodsStockId=timestamp;
+            }
+            ifr.height("400px");
+            var q="?pageType="+pageType+"&ownerId="+parentGoodsStockId+"&selectedCode="+timestamp;
+            //设置地址
+            win.location="/business/eam/goods_stock_goods/selected_rel_goods_stock.html"+q
+        },
+        onSelectBoxChanged:function(id,selected,changes,isAdd) {
+            console.log('onSelectBoxChanged',id,selected,changes,isAdd);
+
+        },
+        selectBoxDataTransform:function(id,obj,item,data,i){
+            console.log("selectBoxDataTransform");
+            console.log("id ",id)
+            console.log("data[i] ",item)
+            console.log("data ",data)
+
+            console.log("i ",i)
+          //  opts.push(window.pageExt.form.selectBoxDataTransform("parentGoodsStockIds",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+            if(id=="parentGoodsStockIds"){
+                obj.name=item.name+"【"+item.model+"】-【"+item.code+"】";
+            }
+            console.log("obj ",obj)
+            return obj;
         },
 
         /**

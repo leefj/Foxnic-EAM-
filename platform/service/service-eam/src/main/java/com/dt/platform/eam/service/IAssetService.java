@@ -4,8 +4,7 @@ package com.dt.platform.eam.service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
-import com.dt.platform.domain.eam.AssetBorrow;
-import com.dt.platform.domain.eam.AssetExtData;
+import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.AssetBorrowMeta;
 import com.dt.platform.proxy.eam.AssetBorrowServiceProxy;
 import com.github.foxnic.api.constant.CodeTextEnum;
@@ -14,8 +13,6 @@ import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.entity.Entity;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.eam.Asset;
-import com.dt.platform.domain.eam.AssetVO;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -45,6 +42,9 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
 
 public interface IAssetService extends ISuperService<Asset> {
 
+	PagedList<Asset> queryAssetSubAssetPagedList(String assetId,int pageSize,int pageIndex);
+
+	PagedList<GoodsStock> queryAssetSubGoodsStockPagedList(String assetId,String ownerCode,int pageSize,int pageIndex);
 
 	Result generateAssetCode(String codeRule, JSONObject ctl,String defaultAssetCode);
 

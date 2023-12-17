@@ -29,7 +29,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存出库
  * <p>库存出库 , 数据表 eam_asset_stock_goods_out 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-30 12:39:24
+ * @since 2023-12-17 20:55:07
  * @sign 9BF80F353E02E3127BA00D71226A22FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -46,13 +46,13 @@ public class AssetStockGoodsOut extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "737608197237374976")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "788870719801917440")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "PO202351290951230")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "PO202350172050836")
 	private String businessCode;
 	
 	/**
@@ -76,7 +76,7 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "121212")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "1212")
 	private String name;
 	
 	/**
@@ -88,25 +88,25 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 领用公司：领用公司
 	*/
-	@ApiModelProperty(required = false,value="领用公司" , notes = "领用公司" , example = "500994919175819264")
+	@ApiModelProperty(required = false,value="领用公司" , notes = "领用公司" , example = "2")
 	private String useOwnCompanyId;
 	
 	/**
 	 * 领用部门：领用部门
 	*/
-	@ApiModelProperty(required = false,value="领用部门" , notes = "领用部门" , example = "500994919175819264")
+	@ApiModelProperty(required = false,value="领用部门" , notes = "领用部门" , example = "2")
 	private String useOrganizationId;
 	
 	/**
 	 * 领用人员：领用人员
 	*/
-	@ApiModelProperty(required = false,value="领用人员" , notes = "领用人员")
+	@ApiModelProperty(required = false,value="领用人员" , notes = "领用人员" , example = "617107674672136192")
 	private String useUserId;
 	
 	/**
 	 * 仓库：仓库
 	*/
-	@ApiModelProperty(required = false,value="仓库" , notes = "仓库" , example = "558599376914612224")
+	@ApiModelProperty(required = false,value="仓库" , notes = "仓库" , example = "558599358870716416")
 	private String warehouseId;
 	
 	/**
@@ -118,13 +118,13 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 出库日期：出库日期
 	*/
-	@ApiModelProperty(required = false,value="出库日期" , notes = "出库日期" , example = "2023-07-29 12:00:00")
+	@ApiModelProperty(required = false,value="出库日期" , notes = "出库日期" , example = "2023-12-17 12:00:00")
 	private Date collectionDate;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-07-29 12:00:00")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-12-17 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -142,7 +142,7 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 清单台账：清单台账
 	*/
-	@ApiModelProperty(required = false,value="清单台账" , notes = "清单台账")
+	@ApiModelProperty(required = false,value="清单台账" , notes = "清单台账" , example = "no")
 	private String toBook;
 	
 	/**
@@ -160,7 +160,7 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-29 09:51:38")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-12-17 08:50:36")
 	private Date createTime;
 	
 	/**
@@ -172,7 +172,7 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-29 09:51:44")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-12-17 08:50:39")
 	private Date updateTime;
 	
 	/**
@@ -211,7 +211,7 @@ public class AssetStockGoodsOut extends Entity {
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1690595460000")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1702817362000")
 	private String selectedCode;
 	
 	/**

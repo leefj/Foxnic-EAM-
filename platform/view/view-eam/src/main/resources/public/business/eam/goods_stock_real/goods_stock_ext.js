@@ -90,6 +90,30 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="goodsParentGoodsStockIds"){
+                var res="";
+                if(r.goodsParentGoodsStockList&&r.goodsParentGoodsStockList.length>0){
+                    var num=r.goodsParentGoodsStockList.length;
+                    if(num>5){
+                        num=5
+                    }
+                    for(var i=0;i<num;i++){
+                        if(i==0){
+                            res=r.goodsParentGoodsStockList[i].name+"【"+r.goodsParentGoodsStockList[i].model+"】-【"+r.goodsParentGoodsStockList[i].code+"】";
+                        }else{
+                            var obj=","+r.goodsParentGoodsStockList[i].name+"【"+r.goodsParentGoodsStockList[i].model+"】-【"+r.goodsParentGoodsStockList[i].code+"】";
+                            res=res+obj
+                        }
+                    }
+                    if(num>5){
+                        res=res+"..."
+                    }
+                    value=res;
+                }
+                return value;
+            }
+
             if(value==null) return "";
             return value;
         },
