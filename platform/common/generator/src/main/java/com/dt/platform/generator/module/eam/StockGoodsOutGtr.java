@@ -138,7 +138,7 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_OWN_COMPANY_ID).table().fillBy("useOwnerCompany","fullName");
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_ORGANIZATION_ID)
-                .form().validate().required().form().button().chooseCompany(true);
+                .form().validate().required().form().button().chooseOrganization(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_ORGANIZATION_ID).table().fillBy("useOrganization","fullName");
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.STATUS).basic().label("办理状态")

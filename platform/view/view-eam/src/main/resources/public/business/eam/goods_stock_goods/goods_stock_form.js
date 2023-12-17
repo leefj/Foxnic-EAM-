@@ -136,17 +136,17 @@ function FormPage() {
 				return opts;
 			}
 		});
-		//渲染 pid 下拉字段
+		//渲染 parentGoodsStockIds 下拉字段
 		fox.renderSelectBox({
-			el: "pid",
-			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("父级物品",'','cmp:form'),
+			el: "parentGoodsStockIds",
+			radio: false,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("父级档案",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
 			on: function(data){
 				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("pid",data.arr,data.change,data.isAdd);
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("parentGoodsStockIds",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
@@ -164,7 +164,7 @@ function FormPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
 					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("pid",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+						opts.push(window.pageExt.form.selectBoxDataTransform("parentGoodsStockIds",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
 					}
@@ -553,7 +553,8 @@ function FormPage() {
 			//设置  品牌 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#brandId",formData.brand);
 
-			fox.setSelectValue4QueryApi("#pid",formData.parentGoodsStock);
+			//设置  父级物品 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#parentGoodsStockIds",formData.parentGoodsStockList);
 
 			setTimeout(function(){
 				if(categorySelect){
@@ -624,7 +625,8 @@ function FormPage() {
 		//获取 品牌 下拉框的值
 		data["brandId"]=fox.getSelectedValue("brandId",false);
 
-		data["pid"]=fox.getSelectedValue("pid",false);
+		//获取 父级物品 下拉框的值
+		data["parentGoodsStockIds"]=fox.getSelectedValue("parentGoodsStockIds",true);
 
 		return data;
 	}

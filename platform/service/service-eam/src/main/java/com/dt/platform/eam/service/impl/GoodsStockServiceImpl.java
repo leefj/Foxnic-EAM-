@@ -4,12 +4,10 @@ package com.dt.platform.eam.service.impl;
 import com.alibaba.csp.sentinel.util.StringUtil;
 import com.dt.platform.constants.enums.eam.AssetStockGoodsOwnerEnum;
 import com.dt.platform.constants.enums.eam.AssetStockGoodsTypeEnum;
-import com.dt.platform.domain.eam.GoodsStock;
-import com.dt.platform.domain.eam.GoodsStockUsage;
-import com.dt.platform.domain.eam.GoodsStockUsageVO;
-import com.dt.platform.domain.eam.GoodsStockVO;
+import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.GoodsMeta;
 import com.dt.platform.domain.eam.meta.GoodsStockMeta;
+import com.dt.platform.eam.service.IGoodsStockRelatedService;
 import com.dt.platform.eam.service.IGoodsStockService;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
@@ -31,6 +29,7 @@ import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.framework.dao.DBConfigs;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -51,7 +50,8 @@ import java.util.*;
 @Service("EamGoodsStockService")
 public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements IGoodsStockService {
 
-
+	@Autowired
+	private IGoodsStockRelatedService goodsStockRelatedService;
 
 	/**
 	 * 注入DAO对象
@@ -81,6 +81,27 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 	@Override
 	public Result insert(GoodsStock goodsStock,boolean throwsException) {
 		Result r=super.insert(goodsStock,throwsException);
+		if(r.isSuccess()){
+			String ownerCode=goodsStock.getOwnerCode();
+			//物品档案的处理逻辑
+			if("goods".equals(ownerCode)){
+				//处理子设备
+				dao.execute("update eam_goods_stock_related set select_code=?,parent_goods_id=? where parent_goods_id=? and select_code=?","def",goodsStock.getId(),goodsStock.getSelectedCode(),goodsStock.getSelectedCode());
+
+				//处理父设备
+				dao.execute("delete from eam_goods_stock_related where goods_id=?",goodsStock.getId());
+				List<String> ids=goodsStock.getParentGoodsStockIds();
+				if(ids!=null){
+					for(int i=0;i<ids.size();i++){
+						GoodsStockRelated rel=new GoodsStockRelated();
+						rel.setParentGoodsId(ids.get(i));
+						rel.setGoodsId(goodsStock.getId());
+						rel.setSelectCode("def");
+						goodsStockRelatedService.insert(rel,false);
+					}
+				}
+			}
+		}
 		return r;
 	}
 
@@ -390,6 +411,29 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 	@Override
 	public Result update(GoodsStock goodsStock , SaveMode mode,boolean throwsException) {
 		Result r=super.update(goodsStock , mode , throwsException);
+		if(r.isSuccess()){
+			//物品档案的处理逻辑
+			String ownerCode=goodsStock.getOwnerCode();
+			if("goods".equals(ownerCode)){
+				//处理子设备
+				dao.execute("delete from eam_goods_stock_related where parent_goods_id=? and select_code='def'",goodsStock.getId(),goodsStock.getSelectedCode());
+				dao.execute("update eam_goods_stock_related set select_code='def' where parent_goods_id=? and select_code=?",goodsStock.getId(),goodsStock.getSelectedCode());
+
+				//处理父设备
+				dao.execute("delete from eam_goods_stock_related where goods_id=?",goodsStock.getId());
+				List<String> ids=goodsStock.getParentGoodsStockIds();
+				if(ids!=null){
+					for(int i=0;i<ids.size();i++){
+						GoodsStockRelated rel=new GoodsStockRelated();
+						rel.setParentGoodsId(ids.get(i));
+						rel.setGoodsId(goodsStock.getId());
+						rel.setSelectCode("def");
+						goodsStockRelatedService.insert(rel,false);
+					}
+				}
+			}
+
+		}
 		return r;
 	}
 

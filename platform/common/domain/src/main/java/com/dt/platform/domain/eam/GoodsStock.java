@@ -31,8 +31,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品
  * <p>库存物品 , 数据表 eam_goods_stock 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-16 22:49:59
- * @sign D035975DDE8DE6A681A26C0BC8A77F54
+ * @since 2023-12-17 22:08:16
+ * @sign 1B1DFC6512D8616E440B1A2E39444542
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -96,7 +96,7 @@ public class GoodsStock extends Entity {
 	/**
 	 * 档案分类：档案分类
 	*/
-	@ApiModelProperty(required = false,value="档案分类" , notes = "档案分类" , example = "591603932308963328")
+	@ApiModelProperty(required = false,value="档案分类" , notes = "档案分类" , example = "591603433010626560")
 	private String categoryId;
 	
 	/**
@@ -108,25 +108,25 @@ public class GoodsStock extends Entity {
 	/**
 	 * 物品名称：物品名称
 	*/
-	@ApiModelProperty(required = false,value="物品名称" , notes = "物品名称" , example = "服务器设备备件")
+	@ApiModelProperty(required = false,value="物品名称" , notes = "物品名称" , example = "笔记本DELL")
 	private String name;
 	
 	/**
 	 * 规格型号：规格型号
 	*/
-	@ApiModelProperty(required = false,value="规格型号" , notes = "规格型号" , example = "CPUPO-CT")
+	@ApiModelProperty(required = false,value="规格型号" , notes = "规格型号" , example = "720P")
 	private String model;
 	
 	/**
 	 * 物品编码：物品编码
 	*/
-	@ApiModelProperty(required = false,value="物品编码" , notes = "物品编码" , example = "SE0001")
+	@ApiModelProperty(required = false,value="物品编码" , notes = "物品编码" , example = "BJB_001")
 	private String code;
 	
 	/**
 	 * 物品条码：物品条码
 	*/
-	@ApiModelProperty(required = false,value="物品条码" , notes = "物品条码" , example = "SE0001")
+	@ApiModelProperty(required = false,value="物品条码" , notes = "物品条码" , example = "BJB_001")
 	private String barCode;
 	
 	/**
@@ -276,7 +276,7 @@ public class GoodsStock extends Entity {
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1702808701000")
 	private String selectedCode;
 	
 	/**
@@ -306,7 +306,7 @@ public class GoodsStock extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-11-28 09:48:22")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-12-17 06:25:32")
 	private Date updateTime;
 	
 	/**
@@ -333,7 +333,7 @@ public class GoodsStock extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "7")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "8")
 	private Integer version;
 	
 	/**
@@ -469,16 +469,34 @@ public class GoodsStock extends Entity {
 	private String goodsStockNotes;
 	
 	/**
-	 * parentGoodsStock：parentGoodsStock
+	 * parentGoodsStockList：parentGoodsStockList
 	*/
-	@ApiModelProperty(required = false,value="parentGoodsStock" , notes = "parentGoodsStock")
-	private GoodsStock parentGoodsStock;
+	@ApiModelProperty(required = false,value="parentGoodsStockList" , notes = "parentGoodsStockList")
+	private List<GoodsStock> parentGoodsStockList;
+	
+	/**
+	 * parentGoodsStockIds：parentGoodsStockIds
+	*/
+	@ApiModelProperty(required = false,value="parentGoodsStockIds" , notes = "parentGoodsStockIds")
+	private List<String> parentGoodsStockIds;
 	
 	/**
 	 * subGoodsStockList：subGoodsStockList
 	*/
 	@ApiModelProperty(required = false,value="subGoodsStockList" , notes = "subGoodsStockList")
 	private List<GoodsStock> subGoodsStockList;
+	
+	/**
+	 * subGoodsStockIds：subGoodsStockIds
+	*/
+	@ApiModelProperty(required = false,value="subGoodsStockIds" , notes = "subGoodsStockIds")
+	private List<String> subGoodsStockIds;
+	
+	/**
+	 * goodsParentGoodsStockList：goodsParentGoodsStockList
+	*/
+	@ApiModelProperty(required = false,value="goodsParentGoodsStockList" , notes = "goodsParentGoodsStockList")
+	private List<GoodsStock> goodsParentGoodsStockList;
 	
 	/**
 	 * 获得 主键<br>
@@ -1842,21 +1860,62 @@ public class GoodsStock extends Entity {
 	}
 	
 	/**
-	 * 获得 parentGoodsStock<br>
-	 * parentGoodsStock
-	 * @return parentGoodsStock
+	 * 获得 parentGoodsStockList<br>
+	 * parentGoodsStockList
+	 * @return parentGoodsStockList
 	*/
-	public GoodsStock getParentGoodsStock() {
-		return parentGoodsStock;
+	public List<GoodsStock> getParentGoodsStockList() {
+		return parentGoodsStockList;
 	}
 	
 	/**
-	 * 设置 parentGoodsStock
-	 * @param parentGoodsStock parentGoodsStock
+	 * 设置 parentGoodsStockList
+	 * @param parentGoodsStockList parentGoodsStockList
 	 * @return 当前对象
 	*/
-	public GoodsStock setParentGoodsStock(GoodsStock parentGoodsStock) {
-		this.parentGoodsStock=parentGoodsStock;
+	public GoodsStock setParentGoodsStockList(List<GoodsStock> parentGoodsStockList) {
+		this.parentGoodsStockList=parentGoodsStockList;
+		return this;
+	}
+	
+	/**
+	 * 添加 parentGoodsStockList
+	 * @param parentGoodsStock parentGoodsStockList
+	 * @return 当前对象
+	*/
+	public GoodsStock addParentGoodsStock(GoodsStock... parentGoodsStock) {
+		if(this.parentGoodsStockList==null) parentGoodsStockList=new ArrayList<>();
+		this.parentGoodsStockList.addAll(Arrays.asList(parentGoodsStock));
+		return this;
+	}
+	
+	/**
+	 * 获得 parentGoodsStockIds<br>
+	 * parentGoodsStockIds
+	 * @return parentGoodsStockIds
+	*/
+	public List<String> getParentGoodsStockIds() {
+		return parentGoodsStockIds;
+	}
+	
+	/**
+	 * 设置 parentGoodsStockIds
+	 * @param parentGoodsStockIds parentGoodsStockIds
+	 * @return 当前对象
+	*/
+	public GoodsStock setParentGoodsStockIds(List<String> parentGoodsStockIds) {
+		this.parentGoodsStockIds=parentGoodsStockIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 parentGoodsStockIds
+	 * @param parentGoodsStockId parentGoodsStockIds
+	 * @return 当前对象
+	*/
+	public GoodsStock addParentGoodsStockId(String... parentGoodsStockId) {
+		if(this.parentGoodsStockIds==null) parentGoodsStockIds=new ArrayList<>();
+		this.parentGoodsStockIds.addAll(Arrays.asList(parentGoodsStockId));
 		return this;
 	}
 	
@@ -1887,6 +1946,66 @@ public class GoodsStock extends Entity {
 	public GoodsStock addSubGoodsStock(GoodsStock... subGoodsStock) {
 		if(this.subGoodsStockList==null) subGoodsStockList=new ArrayList<>();
 		this.subGoodsStockList.addAll(Arrays.asList(subGoodsStock));
+		return this;
+	}
+	
+	/**
+	 * 获得 subGoodsStockIds<br>
+	 * subGoodsStockIds
+	 * @return subGoodsStockIds
+	*/
+	public List<String> getSubGoodsStockIds() {
+		return subGoodsStockIds;
+	}
+	
+	/**
+	 * 设置 subGoodsStockIds
+	 * @param subGoodsStockIds subGoodsStockIds
+	 * @return 当前对象
+	*/
+	public GoodsStock setSubGoodsStockIds(List<String> subGoodsStockIds) {
+		this.subGoodsStockIds=subGoodsStockIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 subGoodsStockIds
+	 * @param subGoodsStockId subGoodsStockIds
+	 * @return 当前对象
+	*/
+	public GoodsStock addSubGoodsStockId(String... subGoodsStockId) {
+		if(this.subGoodsStockIds==null) subGoodsStockIds=new ArrayList<>();
+		this.subGoodsStockIds.addAll(Arrays.asList(subGoodsStockId));
+		return this;
+	}
+	
+	/**
+	 * 获得 goodsParentGoodsStockList<br>
+	 * goodsParentGoodsStockList
+	 * @return goodsParentGoodsStockList
+	*/
+	public List<GoodsStock> getGoodsParentGoodsStockList() {
+		return goodsParentGoodsStockList;
+	}
+	
+	/**
+	 * 设置 goodsParentGoodsStockList
+	 * @param goodsParentGoodsStockList goodsParentGoodsStockList
+	 * @return 当前对象
+	*/
+	public GoodsStock setGoodsParentGoodsStockList(List<GoodsStock> goodsParentGoodsStockList) {
+		this.goodsParentGoodsStockList=goodsParentGoodsStockList;
+		return this;
+	}
+	
+	/**
+	 * 添加 goodsParentGoodsStockList
+	 * @param goodsParentGoodsStock goodsParentGoodsStockList
+	 * @return 当前对象
+	*/
+	public GoodsStock addGoodsParentGoodsStock(GoodsStock... goodsParentGoodsStock) {
+		if(this.goodsParentGoodsStockList==null) goodsParentGoodsStockList=new ArrayList<>();
+		this.goodsParentGoodsStockList.addAll(Arrays.asList(goodsParentGoodsStock));
 		return this;
 	}
 
@@ -1986,27 +2105,30 @@ public class GoodsStock extends Entity {
 		if(all) {
 			inst.setOwnerCompany(this.getOwnerCompany());
 			inst.setGoodsStockSecurity(this.getGoodsStockSecurity());
-			inst.setManager(this.getManager());
 			inst.setGoods(this.getGoods());
+			inst.setParentGoodsStockList(this.getParentGoodsStockList());
 			inst.setSource(this.getSource());
 			inst.setOriginator(this.getOriginator());
 			inst.setGoodsModel(this.getGoodsModel());
-			inst.setGoodsStockMin(this.getGoodsStockMin());
-			inst.setParentGoodsStock(this.getParentGoodsStock());
-			inst.setWarehouse(this.getWarehouse());
-			inst.setRealGoods(this.getRealGoods());
+			inst.setParentGoodsStockIds(this.getParentGoodsStockIds());
 			inst.setManufacturer(this.getManufacturer());
 			inst.setGoodsBarCode(this.getGoodsBarCode());
-			inst.setUseOrganization(this.getUseOrganization());
-			inst.setGoodsCategoryName(this.getGoodsCategoryName());
+			inst.setSubGoodsStockIds(this.getSubGoodsStockIds());
 			inst.setSubGoodsStockList(this.getSubGoodsStockList());
-			inst.setGoodsStockNotes(this.getGoodsStockNotes());
 			inst.setGoodsUnit(this.getGoodsUnit());
-			inst.setGoodsCode(this.getGoodsCode());
-			inst.setCategory(this.getCategory());
 			inst.setBrand(this.getBrand());
 			inst.setGoodsName(this.getGoodsName());
 			inst.setGoodsStockMax(this.getGoodsStockMax());
+			inst.setManager(this.getManager());
+			inst.setGoodsParentGoodsStockList(this.getGoodsParentGoodsStockList());
+			inst.setGoodsStockMin(this.getGoodsStockMin());
+			inst.setWarehouse(this.getWarehouse());
+			inst.setRealGoods(this.getRealGoods());
+			inst.setUseOrganization(this.getUseOrganization());
+			inst.setGoodsCategoryName(this.getGoodsCategoryName());
+			inst.setGoodsStockNotes(this.getGoodsStockNotes());
+			inst.setGoodsCode(this.getGoodsCode());
+			inst.setCategory(this.getCategory());
 		}
 		inst.clearModifies();
 		return inst;
@@ -2118,26 +2240,25 @@ public class GoodsStock extends Entity {
 			// others
 			this.setOwnerCompany(DataParser.parse(Organization.class, map.get(GoodsStockMeta.OWNER_COMPANY)));
 			this.setGoodsStockSecurity(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_SECURITY)));
-			this.setManager(DataParser.parse(Employee.class, map.get(GoodsStockMeta.MANAGER)));
 			this.setGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockMeta.GOODS)));
 			this.setSource(DataParser.parse(DictItem.class, map.get(GoodsStockMeta.SOURCE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(GoodsStockMeta.ORIGINATOR)));
 			this.setGoodsModel(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_MODEL)));
-			this.setGoodsStockMin(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_MIN)));
-			this.setParentGoodsStock(DataParser.parse(GoodsStock.class, map.get(GoodsStockMeta.PARENT_GOODS_STOCK)));
-			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(GoodsStockMeta.WAREHOUSE)));
-			this.setRealGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockMeta.REAL_GOODS)));
 			this.setManufacturer(DataParser.parse(Manufacturer.class, map.get(GoodsStockMeta.MANUFACTURER)));
 			this.setGoodsBarCode(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_BAR_CODE)));
-			this.setUseOrganization(DataParser.parse(Organization.class, map.get(GoodsStockMeta.USE_ORGANIZATION)));
-			this.setGoodsCategoryName(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_CATEGORY_NAME)));
-			this.setGoodsStockNotes(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_NOTES)));
 			this.setGoodsUnit(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_UNIT)));
-			this.setGoodsCode(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_CODE)));
-			this.setCategory(DataParser.parse(Catalog.class, map.get(GoodsStockMeta.CATEGORY)));
 			this.setBrand(DataParser.parse(Brand.class, map.get(GoodsStockMeta.BRAND)));
 			this.setGoodsName(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_NAME)));
 			this.setGoodsStockMax(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_MAX)));
+			this.setManager(DataParser.parse(Employee.class, map.get(GoodsStockMeta.MANAGER)));
+			this.setGoodsStockMin(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_MIN)));
+			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(GoodsStockMeta.WAREHOUSE)));
+			this.setRealGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockMeta.REAL_GOODS)));
+			this.setUseOrganization(DataParser.parse(Organization.class, map.get(GoodsStockMeta.USE_ORGANIZATION)));
+			this.setGoodsCategoryName(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_CATEGORY_NAME)));
+			this.setGoodsStockNotes(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_NOTES)));
+			this.setGoodsCode(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_CODE)));
+			this.setCategory(DataParser.parse(Catalog.class, map.get(GoodsStockMeta.CATEGORY)));
 			return true;
 		} else {
 			try {
@@ -2193,26 +2314,25 @@ public class GoodsStock extends Entity {
 				// others
 				this.setOwnerCompany( (Organization)map.get(GoodsStockMeta.OWNER_COMPANY));
 				this.setGoodsStockSecurity( (String)map.get(GoodsStockMeta.GOODS_STOCK_SECURITY));
-				this.setManager( (Employee)map.get(GoodsStockMeta.MANAGER));
 				this.setGoods( (GoodsStock)map.get(GoodsStockMeta.GOODS));
 				this.setSource( (DictItem)map.get(GoodsStockMeta.SOURCE));
 				this.setOriginator( (Employee)map.get(GoodsStockMeta.ORIGINATOR));
 				this.setGoodsModel( (String)map.get(GoodsStockMeta.GOODS_MODEL));
-				this.setGoodsStockMin( (String)map.get(GoodsStockMeta.GOODS_STOCK_MIN));
-				this.setParentGoodsStock( (GoodsStock)map.get(GoodsStockMeta.PARENT_GOODS_STOCK));
-				this.setWarehouse( (Warehouse)map.get(GoodsStockMeta.WAREHOUSE));
-				this.setRealGoods( (GoodsStock)map.get(GoodsStockMeta.REAL_GOODS));
 				this.setManufacturer( (Manufacturer)map.get(GoodsStockMeta.MANUFACTURER));
 				this.setGoodsBarCode( (String)map.get(GoodsStockMeta.GOODS_BAR_CODE));
-				this.setUseOrganization( (Organization)map.get(GoodsStockMeta.USE_ORGANIZATION));
-				this.setGoodsCategoryName( (String)map.get(GoodsStockMeta.GOODS_CATEGORY_NAME));
-				this.setGoodsStockNotes( (String)map.get(GoodsStockMeta.GOODS_STOCK_NOTES));
 				this.setGoodsUnit( (String)map.get(GoodsStockMeta.GOODS_UNIT));
-				this.setGoodsCode( (String)map.get(GoodsStockMeta.GOODS_CODE));
-				this.setCategory( (Catalog)map.get(GoodsStockMeta.CATEGORY));
 				this.setBrand( (Brand)map.get(GoodsStockMeta.BRAND));
 				this.setGoodsName( (String)map.get(GoodsStockMeta.GOODS_NAME));
 				this.setGoodsStockMax( (String)map.get(GoodsStockMeta.GOODS_STOCK_MAX));
+				this.setManager( (Employee)map.get(GoodsStockMeta.MANAGER));
+				this.setGoodsStockMin( (String)map.get(GoodsStockMeta.GOODS_STOCK_MIN));
+				this.setWarehouse( (Warehouse)map.get(GoodsStockMeta.WAREHOUSE));
+				this.setRealGoods( (GoodsStock)map.get(GoodsStockMeta.REAL_GOODS));
+				this.setUseOrganization( (Organization)map.get(GoodsStockMeta.USE_ORGANIZATION));
+				this.setGoodsCategoryName( (String)map.get(GoodsStockMeta.GOODS_CATEGORY_NAME));
+				this.setGoodsStockNotes( (String)map.get(GoodsStockMeta.GOODS_STOCK_NOTES));
+				this.setGoodsCode( (String)map.get(GoodsStockMeta.GOODS_CODE));
+				this.setCategory( (Catalog)map.get(GoodsStockMeta.CATEGORY));
 				return true;
 			} catch (Exception e) {
 				return false;

@@ -48,11 +48,23 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockSecurity","物品条码","物品条码");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockNotes","库存备注","库存备注");
 
-        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"parentGoodsStock","parentGoodsStock","parentGoodsStock");
+        cfg.getPoClassFile().addListProperty(GoodsStock.class,"parentGoodsStockList","parentGoodsStockList","parentGoodsStockList");
+        cfg.getPoClassFile().addListProperty(String.class,"parentGoodsStockIds","parentGoodsStockIds","parentGoodsStockIds");
+
         cfg.getPoClassFile().addListProperty(GoodsStock.class,"subGoodsStockList","subGoodsStockList","subGoodsStockList");
+        cfg.getPoClassFile().addListProperty(String.class,"subGoodsStockIds","subGoodsStockIds","subGoodsStockIds");
+
+        //物品父级档案
+        cfg.getPoClassFile().addListProperty(GoodsStock.class,"goodsParentGoodsStockList","goodsParentGoodsStockList","goodsParentGoodsStockList");
 
 
-        cfg.view().field(EAMTables.EAM_GOODS_STOCK.PID).table().disable();
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.PID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.UPDATE_BY).table().disable(true);
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.UPDATE_TIME).table().disable(true);
+        cfg.view().field(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).table().disable(true);
+        cfg.view().field(GoodsStockMeta.PARENT_GOODS_STOCK_IDS).table().disable(true);
+        cfg.view().field(GoodsStockMeta.SUB_GOODS_STOCK_LIST).table().disable(true);
+
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.OWNER_ID).table().disable();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.OWNER_TMP_ID).table().disable();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.SOURCE_ID).table().disable();

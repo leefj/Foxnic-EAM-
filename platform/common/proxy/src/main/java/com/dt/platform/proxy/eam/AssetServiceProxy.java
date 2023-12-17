@@ -2,6 +2,7 @@ package com.dt.platform.proxy.eam;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.domain.eam.GoodsStock;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
@@ -178,6 +179,13 @@ public interface AssetServiceProxy {
      * 查询QUERY_INTERNAL_CONTROL_LABEL数据
      */
     public static final String QUERY_INTERNAL_CONTROL_LABEL_DATA = API_PREFIX + "query-internal-control-label-data";
+
+    //从资产池中查询备件
+    public static final String QUERY_ASSET_SUB_ASSET_PAGED_LIST = API_PREFIX + "query-asset-sub-asset-paged-list";
+
+    //从库存中查询备件
+    public static final String QUERY_ASSET_SUB_GOODS_STOCK_PAGED_LIST = API_PREFIX + "query-asset-sub-goods-stock-paged-list";
+
 
     /**
      * 盘点员工是否有资产

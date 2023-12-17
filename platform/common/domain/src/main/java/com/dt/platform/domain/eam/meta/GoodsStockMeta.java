@@ -18,8 +18,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-16 22:49:59
- * @sign D035975DDE8DE6A681A26C0BC8A77F54
+ * @since 2023-12-17 22:08:16
+ * @sign 1B1DFC6512D8616E440B1A2E39444542
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -726,14 +726,24 @@ public class GoodsStockMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> GOODS_STOCK_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,GOODS_STOCK_NOTES, java.lang.String.class, "库存备注", "库存备注", java.lang.String.class, null);
 	
 	/**
-	 * parentGoodsStock , 类型: com.dt.platform.domain.eam.GoodsStock
+	 * parentGoodsStockList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.GoodsStock
 	*/
-	public static final String PARENT_GOODS_STOCK="parentGoodsStock";
+	public static final String PARENT_GOODS_STOCK_LIST="parentGoodsStockList";
 	
 	/**
-	 * parentGoodsStock , 类型: com.dt.platform.domain.eam.GoodsStock
+	 * parentGoodsStockList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.GoodsStock
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,com.dt.platform.domain.eam.GoodsStock> PARENT_GOODS_STOCK_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,PARENT_GOODS_STOCK, com.dt.platform.domain.eam.GoodsStock.class, "parentGoodsStock", "parentGoodsStock", com.dt.platform.domain.eam.GoodsStock.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,com.dt.platform.domain.eam.GoodsStock> PARENT_GOODS_STOCK_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,PARENT_GOODS_STOCK_LIST, java.util.List.class, "parentGoodsStockList", "parentGoodsStockList", com.dt.platform.domain.eam.GoodsStock.class, null);
+	
+	/**
+	 * parentGoodsStockIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String PARENT_GOODS_STOCK_IDS="parentGoodsStockIds";
+	
+	/**
+	 * parentGoodsStockIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> PARENT_GOODS_STOCK_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,PARENT_GOODS_STOCK_IDS, java.util.List.class, "parentGoodsStockIds", "parentGoodsStockIds", java.lang.String.class, null);
 	
 	/**
 	 * subGoodsStockList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.GoodsStock
@@ -746,9 +756,29 @@ public class GoodsStockMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,com.dt.platform.domain.eam.GoodsStock> SUB_GOODS_STOCK_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,SUB_GOODS_STOCK_LIST, java.util.List.class, "subGoodsStockList", "subGoodsStockList", com.dt.platform.domain.eam.GoodsStock.class, null);
 	
 	/**
+	 * subGoodsStockIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String SUB_GOODS_STOCK_IDS="subGoodsStockIds";
+	
+	/**
+	 * subGoodsStockIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> SUB_GOODS_STOCK_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,SUB_GOODS_STOCK_IDS, java.util.List.class, "subGoodsStockIds", "subGoodsStockIds", java.lang.String.class, null);
+	
+	/**
+	 * goodsParentGoodsStockList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final String GOODS_PARENT_GOODS_STOCK_LIST="goodsParentGoodsStockList";
+	
+	/**
+	 * goodsParentGoodsStockList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,com.dt.platform.domain.eam.GoodsStock> GOODS_PARENT_GOODS_STOCK_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,GOODS_PARENT_GOODS_STOCK_LIST, java.util.List.class, "goodsParentGoodsStockList", "goodsParentGoodsStockList", com.dt.platform.domain.eam.GoodsStock.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , PID , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , MANUFACTURER , BRAND , GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , REAL_GOODS , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES , PARENT_GOODS_STOCK , SUB_GOODS_STOCK_LIST };
+	public static final String[] $PROPS={ ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , PID , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , MANUFACTURER , BRAND , GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , REAL_GOODS , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES , PARENT_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_IDS , SUB_GOODS_STOCK_LIST , SUB_GOODS_STOCK_IDS , GOODS_PARENT_GOODS_STOCK_LIST };
 	
 	/**
 	 * 代理类
@@ -1529,13 +1559,24 @@ public class GoodsStockMeta {
 		}
 		
 		/**
-		 * 设置 parentGoodsStock
-		 * @param parentGoodsStock parentGoodsStock
+		 * 设置 parentGoodsStockList
+		 * @param parentGoodsStockList parentGoodsStockList
 		 * @return 当前对象
 		*/
-		public GoodsStock setParentGoodsStock(GoodsStock parentGoodsStock) {
-			super.change(PARENT_GOODS_STOCK,super.getParentGoodsStock(),parentGoodsStock);
-			super.setParentGoodsStock(parentGoodsStock);
+		public GoodsStock setParentGoodsStockList(List<GoodsStock> parentGoodsStockList) {
+			super.change(PARENT_GOODS_STOCK_LIST,super.getParentGoodsStockList(),parentGoodsStockList);
+			super.setParentGoodsStockList(parentGoodsStockList);
+			return this;
+		}
+		
+		/**
+		 * 设置 parentGoodsStockIds
+		 * @param parentGoodsStockIds parentGoodsStockIds
+		 * @return 当前对象
+		*/
+		public GoodsStock setParentGoodsStockIds(List<String> parentGoodsStockIds) {
+			super.change(PARENT_GOODS_STOCK_IDS,super.getParentGoodsStockIds(),parentGoodsStockIds);
+			super.setParentGoodsStockIds(parentGoodsStockIds);
 			return this;
 		}
 		
@@ -1547,6 +1588,28 @@ public class GoodsStockMeta {
 		public GoodsStock setSubGoodsStockList(List<GoodsStock> subGoodsStockList) {
 			super.change(SUB_GOODS_STOCK_LIST,super.getSubGoodsStockList(),subGoodsStockList);
 			super.setSubGoodsStockList(subGoodsStockList);
+			return this;
+		}
+		
+		/**
+		 * 设置 subGoodsStockIds
+		 * @param subGoodsStockIds subGoodsStockIds
+		 * @return 当前对象
+		*/
+		public GoodsStock setSubGoodsStockIds(List<String> subGoodsStockIds) {
+			super.change(SUB_GOODS_STOCK_IDS,super.getSubGoodsStockIds(),subGoodsStockIds);
+			super.setSubGoodsStockIds(subGoodsStockIds);
+			return this;
+		}
+		
+		/**
+		 * 设置 goodsParentGoodsStockList
+		 * @param goodsParentGoodsStockList goodsParentGoodsStockList
+		 * @return 当前对象
+		*/
+		public GoodsStock setGoodsParentGoodsStockList(List<GoodsStock> goodsParentGoodsStockList) {
+			super.change(GOODS_PARENT_GOODS_STOCK_LIST,super.getGoodsParentGoodsStockList(),goodsParentGoodsStockList);
+			super.setGoodsParentGoodsStockList(goodsParentGoodsStockList);
 			return this;
 		}
 
@@ -1617,27 +1680,30 @@ public class GoodsStockMeta {
 			if(all) {
 				inst.setOwnerCompany(this.getOwnerCompany());
 				inst.setGoodsStockSecurity(this.getGoodsStockSecurity());
-				inst.setManager(this.getManager());
 				inst.setGoods(this.getGoods());
+				inst.setParentGoodsStockList(this.getParentGoodsStockList());
 				inst.setSource(this.getSource());
 				inst.setOriginator(this.getOriginator());
 				inst.setGoodsModel(this.getGoodsModel());
-				inst.setGoodsStockMin(this.getGoodsStockMin());
-				inst.setParentGoodsStock(this.getParentGoodsStock());
-				inst.setWarehouse(this.getWarehouse());
-				inst.setRealGoods(this.getRealGoods());
+				inst.setParentGoodsStockIds(this.getParentGoodsStockIds());
 				inst.setManufacturer(this.getManufacturer());
 				inst.setGoodsBarCode(this.getGoodsBarCode());
-				inst.setUseOrganization(this.getUseOrganization());
-				inst.setGoodsCategoryName(this.getGoodsCategoryName());
+				inst.setSubGoodsStockIds(this.getSubGoodsStockIds());
 				inst.setSubGoodsStockList(this.getSubGoodsStockList());
-				inst.setGoodsStockNotes(this.getGoodsStockNotes());
 				inst.setGoodsUnit(this.getGoodsUnit());
-				inst.setGoodsCode(this.getGoodsCode());
-				inst.setCategory(this.getCategory());
 				inst.setBrand(this.getBrand());
 				inst.setGoodsName(this.getGoodsName());
 				inst.setGoodsStockMax(this.getGoodsStockMax());
+				inst.setManager(this.getManager());
+				inst.setGoodsParentGoodsStockList(this.getGoodsParentGoodsStockList());
+				inst.setGoodsStockMin(this.getGoodsStockMin());
+				inst.setWarehouse(this.getWarehouse());
+				inst.setRealGoods(this.getRealGoods());
+				inst.setUseOrganization(this.getUseOrganization());
+				inst.setGoodsCategoryName(this.getGoodsCategoryName());
+				inst.setGoodsStockNotes(this.getGoodsStockNotes());
+				inst.setGoodsCode(this.getGoodsCode());
+				inst.setCategory(this.getCategory());
 			}
 			inst.clearModifies();
 			return inst;

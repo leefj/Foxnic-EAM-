@@ -1405,13 +1405,22 @@ public class EamRelationManager extends RelationManager {
 
     private void setupGoodsStock(){
 
-        // 关联子级
+        // 关联子级档案
         this.property(GoodsStockMeta.SUB_GOODS_STOCK_LIST_PROP)
-                .using(EAMTables.EAM_GOODS_STOCK.ID).join(EAMTables.EAM_GOODS_STOCK.PID);
+                .using(EAMTables.EAM_GOODS_STOCK.ID).join(EAMTables.EAM_GOODS_STOCK_RELATED.PARENT_GOODS_ID).condition("select_code='def'")
+                .using(EAMTables.EAM_GOODS_STOCK_RELATED.GOODS_ID).join(EAMTables.EAM_GOODS_STOCK.ID);
 
-        // 关联父级
-        this.property(GoodsStockMeta.PARENT_GOODS_STOCK_PROP)
-                .using(EAMTables.EAM_GOODS_STOCK.PID).join(EAMTables.EAM_GOODS_STOCK.ID);
+        // 关联父级档案
+        this.property(GoodsStockMeta.PARENT_GOODS_STOCK_LIST_PROP)
+                .using(EAMTables.EAM_GOODS_STOCK.ID).join(EAMTables.EAM_GOODS_STOCK_RELATED.GOODS_ID).condition("select_code='def'")
+               .using(EAMTables.EAM_GOODS_STOCK_RELATED.PARENT_GOODS_ID).join(EAMTables.EAM_GOODS_STOCK.ID);
+
+        //物品分级档案
+        this.property(GoodsStockMeta.GOODS_PARENT_GOODS_STOCK_LIST_PROP)
+                .using(EAMTables.EAM_GOODS_STOCK.GOODS_ID).join(EAMTables.EAM_GOODS_STOCK_RELATED.GOODS_ID).condition("select_code='def'")
+                .using(EAMTables.EAM_GOODS_STOCK_RELATED.PARENT_GOODS_ID).join(EAMTables.EAM_GOODS_STOCK.ID);
+
+
 
         // 关联品牌
         this.property(GoodsStockMeta.BRAND_PROP)
@@ -2303,8 +2312,7 @@ public class EamRelationManager extends RelationManager {
     }
     public void setupAsset() {
 
-        this.property(AssetMeta.GOODS_STOCK_PROP)
-                .using(EAMTables.EAM_ASSET.GOODS_STOCK_ID).join(EAMTables.EAM_GOODS_STOCK.ID);
+
 
 
         this.property(AssetMeta.PART_ASSET_LIST_PROP)
@@ -2379,9 +2387,13 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_ASSET.RACK_ID).join(EAMTables.EAM_ASSET_RACK.ID);
 
 
+        // 不在使用
+        this.property(AssetMeta.GOODS_STOCK_PROP)
+                .using(EAMTables.EAM_ASSET.GOODS_STOCK_ID).join(EAMTables.EAM_GOODS_STOCK.ID);
+
         // 关联物品档案
         this.property(AssetMeta.GOODS_PROP)
-                .using(EAMTables.EAM_ASSET.GOODS_ID).join(EAMTables.EAM_GOODS.ID);
+                .using(EAMTables.EAM_ASSET.GOODS_ID).join(EAMTables.EAM_GOODS_STOCK.ID);
 
 
         // 关联供应商

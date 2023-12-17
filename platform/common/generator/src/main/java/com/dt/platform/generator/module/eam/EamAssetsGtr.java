@@ -56,7 +56,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addSimpleProperty(String.class, "catalogCodeValue","catalogCodeValue","catalogCodeValue");
 
-        cfg.getPoClassFile().addSimpleProperty(Goods.class,"goods","物品档案","物品档案");
+
         cfg.getPoClassFile().addSimpleProperty(Manufacturer.class,"manufacturer","生产厂商","生产厂商");
         cfg.getPoClassFile().addSimpleProperty(Warehouse.class,"warehouse","仓库","仓库");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"useUser","使用人员","使用人员");
@@ -84,6 +84,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(AssetBorrow.class,"assetBorrow","assetBorrow","assetBorrow");
 
 
+        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goods","物品档案","物品档案");
         cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goodsStock","库存物品","库存物品");
         //资产中的配件清单
         cfg.getPoClassFile().addListProperty(Asset.class,"partAssetList","partAssetList","partAssetList");
@@ -298,8 +299,8 @@ public class EamAssetsGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET.GOODS_ID)
                 .basic().label("物品档案")
-                .form().selectBox().queryApi(GoodsServiceProxy.QUERY_LIST).paging(true).filter(true).toolbar(false)
-                .valueField(GoodsMeta.ID).textField(GoodsMeta.NAME).fillWith(AssetMeta.GOODS).muliti(false);
+                .form().selectBox().queryApi(GoodsStockServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
+                .valueField(GoodsStockMeta.ID).textField(GoodsStockMeta.NAME).fillWith(AssetMeta.GOODS).muliti(false);
 
 
         cfg.view().field(EAMTables.EAM_ASSET.SUPPLIER_ID)

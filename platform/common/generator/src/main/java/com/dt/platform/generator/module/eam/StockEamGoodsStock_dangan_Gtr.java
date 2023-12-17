@@ -48,8 +48,22 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockSecurity","物品条码","物品条码");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockNotes","库存备注","库存备注");
 
-        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"parentGoodsStock","parentGoodsStock","parentGoodsStock");
+        cfg.getPoClassFile().addListProperty(GoodsStock.class,"parentGoodsStockList","parentGoodsStockList","parentGoodsStockList");
+        cfg.getPoClassFile().addListProperty(String.class,"parentGoodsStockIds","parentGoodsStockIds","parentGoodsStockIds");
+
         cfg.getPoClassFile().addListProperty(GoodsStock.class,"subGoodsStockList","subGoodsStockList","subGoodsStockList");
+        cfg.getPoClassFile().addListProperty(String.class,"subGoodsStockIds","subGoodsStockIds","subGoodsStockIds");
+
+        //物品父级档案
+        cfg.getPoClassFile().addListProperty(GoodsStock.class,"goodsParentGoodsStockList","goodsParentGoodsStockList","goodsParentGoodsStockList");
+
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.PID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.UPDATE_BY).table().disable(true);
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.UPDATE_TIME).table().disable(true);
+        cfg.view().field(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).table().disable(true);
+        cfg.view().field(GoodsStockMeta.GOODS_PARENT_GOODS_STOCK_LIST).table().disable(true);
+      //  cfg.view().field(GoodsStockMeta.PARENT_GOODS_STOCK_IDS).table().disable(true);
+        cfg.view().field(GoodsStockMeta.SUB_GOODS_STOCK_LIST).table().disable(true);
 
         cfg.view().field(GoodsStockMeta.GOODS_MODEL).table().disable();
         cfg.view().field(GoodsStockMeta.GOODS_NAME).table().disable();
@@ -57,11 +71,10 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
         cfg.view().field(GoodsStockMeta.GOODS_UNIT).table().disable();
         cfg.view().field(GoodsStockMeta.GOODS_CODE).table().disable();
         cfg.view().field(GoodsStockMeta.GOODS_BAR_CODE).table().disable();
-        cfg.view().field(EAMTables.EAM_GOODS_STOCK.REAL_STOCK_ID).table().disable();
         cfg.view().field(GoodsStockMeta.GOODS_STOCK_MAX).table().disable();
         cfg.view().field(GoodsStockMeta.GOODS_STOCK_MIN).table().disable();
         cfg.view().field(GoodsStockMeta.GOODS_STOCK_SECURITY).table().disable();
-
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.REAL_STOCK_ID).table().disable();
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.NAME).basic().label("物品名称").search().fuzzySearch();
@@ -102,7 +115,7 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.ORIGINATOR_ID).table().disable();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.STORAGE_DATE).table().disable();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.AMOUNT).table().disable();
-        cfg.view().field(EAMTables.EAM_GOODS_STOCK.PID).table().disable();
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.PID).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.STATUS).table().disable();
         cfg.view().search().inputLayout(
@@ -175,10 +188,17 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
                 .form().selectBox().queryApi(GoodsStockServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(GoodsStockMeta.ID).textField( GoodsStockMeta.NAME).fillWith(GoodsStockMeta.GOODS).muliti(false);
 
-        cfg.view().field(EAMTables.EAM_GOODS_STOCK.PID)
+        cfg.view().field(GoodsStockMeta.PARENT_GOODS_STOCK_IDS)
                 .basic().label("父级物品")
                 .form().selectBox().queryApi(GoodsStockServiceProxy.QUERY_PAGED_LIST+"?ownerCode=goods").paging(true).filter(true).toolbar(false)
-                .valueField(GoodsStockMeta.ID).textField(GoodsStockMeta.NAME).fillWith(GoodsStockMeta.PARENT_GOODS_STOCK).muliti(false);
+                .valueField(GoodsStockMeta.ID).textField(GoodsStockMeta.NAME).fillWith(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).muliti(true);
+
+        cfg.view().field(GoodsStockMeta.SUB_GOODS_STOCK_IDS)
+                .basic().label("关联物品")
+                .form().selectBox().queryApi(GoodsStockServiceProxy.QUERY_PAGED_LIST+"?ownerCode=goods").paging(true).filter(true).toolbar(false)
+                .valueField(GoodsStockMeta.ID).textField(GoodsStockMeta.NAME).fillWith(GoodsStockMeta.SUB_GOODS_STOCK_LIST).muliti(true);
+
+
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.CATEGORY_ID)
                 .basic().label("分类")
@@ -269,7 +289,7 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
                 }, new Object[] {
                         EAMTables.EAM_GOODS_STOCK.CODE,
                         EAMTables.EAM_GOODS_STOCK.BAR_CODE,
-                        EAMTables.EAM_GOODS_STOCK.PID,
+                        GoodsStockMeta.PARENT_GOODS_STOCK_IDS
                 },
                 new Object[] {
                         EAMTables.EAM_GOODS_STOCK.MANUFACTURER_ID,
@@ -291,7 +311,7 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
                 }
         );
 
-        cfg.view().form().addPage("subGoods","subGoods","子设备");
+        cfg.view().form().addPage("relGoods","关联设备配件档案","relGoods");
 
         cfg.view().form().addGroup(null,
                 new Object[] {
@@ -312,7 +332,7 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
                 .setListPage(WriteMode.WRITE_TEMP_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
+                .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         //生成代码
         cfg.buildAll();
     }

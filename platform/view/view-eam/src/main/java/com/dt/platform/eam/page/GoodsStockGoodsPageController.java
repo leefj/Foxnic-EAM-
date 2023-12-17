@@ -54,6 +54,25 @@ public class GoodsStockGoodsPageController extends ViewController {
 
 
 
+
+	//物品档案子设备
+	@RequestMapping("/selected_rel_goods_stock.html")
+	public String selectedSubGoodsStock(Model model,HttpServletRequest request,String pageType,String ownerId,String selectedCode) {
+		model.addAttribute("pageType",pageType);
+		model.addAttribute("ownerId",ownerId);
+		model.addAttribute("selectedCode",selectedCode);
+
+		return prefix+"/selected_rel_goods_stock";
+	}
+
+	@RequestMapping("/asset_part_goods_list.html")
+	public String selectedSubGoodsStock(Model model,HttpServletRequest request,String assetId,String ownerCode) {
+		model.addAttribute("assetId",assetId);
+		model.addAttribute("ownerCode",ownerCode);
+		return prefix+"/asset_part_goods_list";
+	}
+
+
 	/**
 	 * 库存物品 功能主页面
 	 */

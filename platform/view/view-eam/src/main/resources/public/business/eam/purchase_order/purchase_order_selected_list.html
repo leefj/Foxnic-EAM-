@@ -43,10 +43,10 @@
                     <!-- 业务编码 , businessCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 物品编码 , code ,typeName=text_input, isHideInSearch=true -->
                     <!-- 物品名称 , name ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('物品名称')}" class="search-label name-label">物品名称</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
-                    </div>
+<!--                    <div class="search-unit">-->
+<!--                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('物品名称')}" class="search-label name-label">物品名称</span><span class="search-colon">:</span></div>-->
+<!--                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />-->
+<!--                    </div>-->
                     <!-- 物品档案 , goodsId ,typeName=button, isHideInSearch=true -->
                     <!-- 物品类型 , goodsType ,typeName=select_box, isHideInSearch=true -->
                     <!-- 存放类型 , storageType ,typeName=select_box, isHideInSearch=true -->
@@ -64,12 +64,12 @@
 
 
             <!-- 按钮区域 -->
-            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
-                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
-            </div>
+<!--            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">-->
+<!--                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>-->
+<!--            </div>-->
         </div>
 
-        <div id="table-area" style="margin-top: 42px ">
+        <div id="table-area" style="margin-top: 21px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 

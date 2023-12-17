@@ -422,10 +422,39 @@ function FormPage() {
 			}
 		});
 		//渲染 goodsId 下拉字段
+		// fox.renderSelectBox({
+		// 	el: "goodsId",
+		// 	radio: true,
+		// 	filterable: true,
+		// 	//转换数据
+		// 	searchField: "name", //请自行调整用于搜索的字段名称
+		// 	extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+		// 	transform: function(data) {
+		// 		//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+		// 		var defaultValues=[],defaultIndexs=[];
+		// 		if(action=="create") {
+		// 			  defaultValues="".split(",");
+		// 			  defaultIndexs="".split(",");
+		// 		}
+		// 		var opts=[];
+		// 		if(!data) return opts;
+		// 		for (var i = 0; i < data.length; i++) {
+		// 			if(!data[i]) continue;
+		// 			opts.push({name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+		// 		}
+		// 		return opts;
+		// 	}
+		// });
 		fox.renderSelectBox({
 			el: "goodsId",
 			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("物品档案",'','cmp:form'),
 			filterable: true,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+
+			},
 			//转换数据
 			searchField: "name", //请自行调整用于搜索的字段名称
 			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
@@ -433,14 +462,15 @@ function FormPage() {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var defaultValues=[],defaultIndexs=[];
 				if(action=="create") {
-					  defaultValues="".split(",");
-					  defaultIndexs="".split(",");
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
 				}
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					var name=data[i].name+"【"+data[i].model+"】-【"+data[i].code+"】";
+					opts.push({data:data[i],name:name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
 				}
 				return opts;
 			}
@@ -1095,8 +1125,11 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#suggestMaintenanceMethod",formData.suggestMaintenanceMethodData);
 
 
-			//设置  物品档案 设置下拉框勾选
+			// //设置  物品档案 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#goodsId",formData.goods);
+
+
+
 			//设置  厂商 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#manufacturerId",formData.manufacturer);
 			//设置  位置 设置下拉框勾选
@@ -1208,7 +1241,7 @@ function FormPage() {
 
 		//获取 物品档案 下拉框的值
 		if(xmSelect.get('#goodsId', true)){
-			data["goodsId"]=fox.getSelectedValue("goodsId",false);
+			data["goodsId"]=fox.getSelectedValue("goodsId",true);
 		}
 
 

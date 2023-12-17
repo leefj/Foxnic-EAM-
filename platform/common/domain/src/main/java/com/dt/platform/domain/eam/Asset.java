@@ -34,8 +34,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-16 22:29:04
- * @sign CD20B9D05B688CE168460D87D0B48095
+ * @since 2023-12-17 21:41:59
+ * @sign F4526C75FDE1B25AF5B7A087710234CF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -51,13 +51,13 @@ public class Asset extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "681881153086423040")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "788823013070995456")
 	private String id;
 	
 	/**
 	 * 资产分类：资产分类
 	*/
-	@ApiModelProperty(required = false,value="资产分类" , notes = "资产分类" , example = "486918029091803137")
+	@ApiModelProperty(required = false,value="资产分类" , notes = "资产分类" , example = "742464900030267392")
 	private String categoryId;
 	
 	/**
@@ -99,13 +99,13 @@ public class Asset extends Entity {
 	/**
 	 * 资产编号：资产编号
 	*/
-	@ApiModelProperty(required = false,value="资产编号" , notes = "资产编号" , example = "AS16217")
+	@ApiModelProperty(required = false,value="资产编号" , notes = "资产编号" , example = "AS2023121716293")
 	private String assetCode;
 	
 	/**
 	 * 资产状态：资产状态
 	*/
-	@ApiModelProperty(required = false,value="资产状态" , notes = "资产状态" , example = "repair")
+	@ApiModelProperty(required = false,value="资产状态" , notes = "资产状态" , example = "using")
 	private String assetStatus;
 	
 	/**
@@ -123,13 +123,13 @@ public class Asset extends Entity {
 	/**
 	 * 标准物品档案：标准物品档案
 	*/
-	@ApiModelProperty(required = false,value="标准物品档案" , notes = "标准物品档案")
+	@ApiModelProperty(required = false,value="标准物品档案" , notes = "标准物品档案" , example = "788840639096684544")
 	private String goodsId;
 	
 	/**
 	 * 标准型号资产名称：标准型号资产名称
 	*/
-	@ApiModelProperty(required = false,value="标准型号资产名称" , notes = "标准型号资产名称" , example = "服务器")
+	@ApiModelProperty(required = false,value="标准型号资产名称" , notes = "标准型号资产名称" , example = "121212")
 	private String name;
 	
 	/**
@@ -141,7 +141,7 @@ public class Asset extends Entity {
 	/**
 	 * 标准型号规格型号：标准型号规格型号
 	*/
-	@ApiModelProperty(required = false,value="标准型号规格型号" , notes = "标准型号规格型号" , example = "型号")
+	@ApiModelProperty(required = false,value="标准型号规格型号" , notes = "标准型号规格型号")
 	private String model;
 	
 	/**
@@ -171,7 +171,7 @@ public class Asset extends Entity {
 	/**
 	 * 序列号：序列号
 	*/
-	@ApiModelProperty(required = false,value="序列号" , notes = "序列号" , example = "sn")
+	@ApiModelProperty(required = false,value="序列号" , notes = "序列号")
 	private String serialNumber;
 	
 	/**
@@ -207,13 +207,13 @@ public class Asset extends Entity {
 	/**
 	 * 存放位置：存放位置
 	*/
-	@ApiModelProperty(required = false,value="存放位置" , notes = "存放位置" , example = "616018653535535104")
+	@ApiModelProperty(required = false,value="存放位置" , notes = "存放位置")
 	private String positionId;
 	
 	/**
 	 * 详细位置：详细位置
 	*/
-	@ApiModelProperty(required = false,value="详细位置" , notes = "详细位置" , example = "detail")
+	@ApiModelProperty(required = false,value="详细位置" , notes = "详细位置")
 	private String positionDetail;
 	
 	/**
@@ -231,7 +231,7 @@ public class Asset extends Entity {
 	/**
 	 * 来源：来源
 	*/
-	@ApiModelProperty(required = false,value="来源" , notes = "来源" , example = "give")
+	@ApiModelProperty(required = false,value="来源" , notes = "来源")
 	private String sourceId;
 	
 	/**
@@ -249,7 +249,7 @@ public class Asset extends Entity {
 	/**
 	 * 采购日期：采购日期
 	*/
-	@ApiModelProperty(required = false,value="采购日期" , notes = "采购日期" , example = "2023-08-09 12:00:00")
+	@ApiModelProperty(required = false,value="采购日期" , notes = "采购日期")
 	private Date purchaseDate;
 	
 	/**
@@ -261,13 +261,13 @@ public class Asset extends Entity {
 	/**
 	 * 入账日期：入账日期
 	*/
-	@ApiModelProperty(required = false,value="入账日期" , notes = "入账日期" , example = "2023-02-25 12:00:00")
+	@ApiModelProperty(required = false,value="入账日期" , notes = "入账日期" , example = "2023-12-17 12:00:00")
 	private Date registerDate;
 	
 	/**
 	 * RFID标签：RFID标签
 	*/
-	@ApiModelProperty(required = false,value="RFID标签" , notes = "RFID标签" , example = "1212")
+	@ApiModelProperty(required = false,value="RFID标签" , notes = "RFID标签")
 	private String rfid;
 	
 	/**
@@ -285,7 +285,7 @@ public class Asset extends Entity {
 	/**
 	 * 用途：用途
 	*/
-	@ApiModelProperty(required = false,value="用途" , notes = "用途" , example = "用途")
+	@ApiModelProperty(required = false,value="用途" , notes = "用途")
 	private String purpose;
 	
 	/**
@@ -423,13 +423,13 @@ public class Asset extends Entity {
 	/**
 	 * 资产原值：(未税)
 	*/
-	@ApiModelProperty(required = false,value="资产原值" , notes = "(未税)" , example = "0.00")
+	@ApiModelProperty(required = false,value="资产原值" , notes = "(未税)")
 	private BigDecimal originalUnitPrice;
 	
 	/**
 	 * 资产净值：(当前)
 	*/
-	@ApiModelProperty(required = false,value="资产净值" , notes = "(当前)" , example = "0.00")
+	@ApiModelProperty(required = false,value="资产净值" , notes = "(当前)")
 	private BigDecimal navPrice;
 	
 	/**
@@ -465,7 +465,7 @@ public class Asset extends Entity {
 	/**
 	 * 税额：税额
 	*/
-	@ApiModelProperty(required = false,value="税额" , notes = "税额" , example = "0.00")
+	@ApiModelProperty(required = false,value="税额" , notes = "税额")
 	private BigDecimal taxAmountRate;
 	
 	/**
@@ -519,7 +519,7 @@ public class Asset extends Entity {
 	/**
 	 * 设备IP：设备IP
 	*/
-	@ApiModelProperty(required = false,value="设备IP" , notes = "设备IP" , example = "192.12345")
+	@ApiModelProperty(required = false,value="设备IP" , notes = "设备IP")
 	private String equipmentIp;
 	
 	/**
@@ -555,7 +555,7 @@ public class Asset extends Entity {
 	/**
 	 * 设备运行环境：设备运行环境
 	*/
-	@ApiModelProperty(required = false,value="设备运行环境" , notes = "设备运行环境" , example = "office")
+	@ApiModelProperty(required = false,value="设备运行环境" , notes = "设备运行环境")
 	private String equipmentEnvironmentCode;
 	
 	/**
@@ -567,19 +567,19 @@ public class Asset extends Entity {
 	/**
 	 * 设备机柜：设备机柜
 	*/
-	@ApiModelProperty(required = false,value="设备机柜" , notes = "设备机柜" , example = "681879779636412416")
+	@ApiModelProperty(required = false,value="设备机柜" , notes = "设备机柜")
 	private String rackId;
 	
 	/**
 	 * 设备机柜上位置：设备机柜上位置
 	*/
-	@ApiModelProperty(required = false,value="设备机柜上位置" , notes = "设备机柜上位置" , example = "3")
+	@ApiModelProperty(required = false,value="设备机柜上位置" , notes = "设备机柜上位置")
 	private Integer rackUpNumber;
 	
 	/**
 	 * 设备机柜下位置：设备机柜下位置
 	*/
-	@ApiModelProperty(required = false,value="设备机柜下位置" , notes = "设备机柜下位置" , example = "11")
+	@ApiModelProperty(required = false,value="设备机柜下位置" , notes = "设备机柜下位置")
 	private Integer rackDownNumber;
 	
 	/**
@@ -663,7 +663,7 @@ public class Asset extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-02-25 03:12:16")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-12-17 05:41:02")
 	private Date createTime;
 	
 	/**
@@ -675,7 +675,7 @@ public class Asset extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-30 10:32:36")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-12-17 06:56:52")
 	private Date updateTime;
 	
 	/**
@@ -702,7 +702,7 @@ public class Asset extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "8")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "2")
 	private Integer version;
 	
 	/**
@@ -824,12 +824,6 @@ public class Asset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="catalogCodeValue" , notes = "catalogCodeValue")
 	private String catalogCodeValue;
-	
-	/**
-	 * 物品档案：物品档案
-	*/
-	@ApiModelProperty(required = false,value="物品档案" , notes = "物品档案")
-	private Goods goods;
 	
 	/**
 	 * 生产厂商：生产厂商
@@ -968,6 +962,12 @@ public class Asset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="assetBorrow" , notes = "assetBorrow")
 	private AssetBorrow assetBorrow;
+	
+	/**
+	 * 物品档案：物品档案
+	*/
+	@ApiModelProperty(required = false,value="物品档案" , notes = "物品档案")
+	private GoodsStock goods;
 	
 	/**
 	 * 库存物品：库存物品
@@ -3493,25 +3493,6 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 物品档案<br>
-	 * 物品档案
-	 * @return 物品档案
-	*/
-	public Goods getGoods() {
-		return goods;
-	}
-	
-	/**
-	 * 设置 物品档案
-	 * @param goods 物品档案
-	 * @return 当前对象
-	*/
-	public Asset setGoods(Goods goods) {
-		this.goods=goods;
-		return this;
-	}
-	
-	/**
 	 * 获得 生产厂商<br>
 	 * 生产厂商
 	 * @return 生产厂商
@@ -3945,6 +3926,25 @@ public class Asset extends Entity {
 	*/
 	public Asset setAssetBorrow(AssetBorrow assetBorrow) {
 		this.assetBorrow=assetBorrow;
+		return this;
+	}
+	
+	/**
+	 * 获得 物品档案<br>
+	 * 物品档案
+	 * @return 物品档案
+	*/
+	public GoodsStock getGoods() {
+		return goods;
+	}
+	
+	/**
+	 * 设置 物品档案
+	 * @param goods 物品档案
+	 * @return 当前对象
+	*/
+	public Asset setGoods(GoodsStock goods) {
+		this.goods=goods;
 		return this;
 	}
 	
@@ -4414,7 +4414,7 @@ public class Asset extends Entity {
 			this.setSuggestMaintenanceMethodData(DataParser.parse(DictItem.class, map.get(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA)));
 			this.setSafetyLevel(DataParser.parse(DictItem.class, map.get(AssetMeta.SAFETY_LEVEL)));
 			this.setCategoryFinance(DataParser.parse(CategoryFinance.class, map.get(AssetMeta.CATEGORY_FINANCE)));
-			this.setGoods(DataParser.parse(Goods.class, map.get(AssetMeta.GOODS)));
+			this.setGoods(DataParser.parse(GoodsStock.class, map.get(AssetMeta.GOODS)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetMeta.ORIGINATOR)));
 			this.setSource(DataParser.parse(DictItem.class, map.get(AssetMeta.SOURCE)));
 			this.setFinancialOptionDict(DataParser.parse(DictItem.class, map.get(AssetMeta.FINANCIAL_OPTION_DICT)));
@@ -4570,7 +4570,7 @@ public class Asset extends Entity {
 				this.setSuggestMaintenanceMethodData( (DictItem)map.get(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA));
 				this.setSafetyLevel( (DictItem)map.get(AssetMeta.SAFETY_LEVEL));
 				this.setCategoryFinance( (CategoryFinance)map.get(AssetMeta.CATEGORY_FINANCE));
-				this.setGoods( (Goods)map.get(AssetMeta.GOODS));
+				this.setGoods( (GoodsStock)map.get(AssetMeta.GOODS));
 				this.setOriginator( (Employee)map.get(AssetMeta.ORIGINATOR));
 				this.setSource( (DictItem)map.get(AssetMeta.SOURCE));
 				this.setFinancialOptionDict( (DictItem)map.get(AssetMeta.FINANCIAL_OPTION_DICT));

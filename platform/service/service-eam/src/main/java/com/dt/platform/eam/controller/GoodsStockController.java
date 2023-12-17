@@ -9,6 +9,7 @@ import com.dt.platform.constants.enums.eam.AssetStockGoodsOwnerEnum;
 import com.dt.platform.constants.enums.eam.AssetStockTypeEnum;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.GoodsStockUsageVOMeta;
+import com.dt.platform.eam.service.IGoodsStockRelatedService;
 import com.dt.platform.proxy.eam.AssetReportServiceProxy;
 import com.dt.platform.proxy.eam.GoodsStockUsageServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
@@ -71,7 +72,10 @@ public class GoodsStockController extends SuperController {
     @Autowired
     private IGoodsStockService goodsStockService;
 
-    /**
+	@Autowired
+	private IGoodsStockRelatedService goodsStockRelatedService;
+
+	/**
      * 添加库存物品
      */
     @ApiOperation(value = "添加库存物品")
@@ -284,7 +288,7 @@ public class GoodsStockController extends SuperController {
         Result<GoodsStock> result = new Result<>();
         GoodsStock goodsStock = goodsStockService.getById(id);
         // join 关联的对象
-        goodsStockService.dao().fill(goodsStock).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(goodsStock).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         result.success(true).data(goodsStock);
         return result;
     }
@@ -414,7 +418,7 @@ public class GoodsStockController extends SuperController {
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         result.success(true).data(list);
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
@@ -471,7 +475,7 @@ public class GoodsStockController extends SuperController {
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         result.success(true).data(list);
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
@@ -542,7 +546,7 @@ public class GoodsStockController extends SuperController {
         }
         list = goodsStockService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.GOODS_PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
 
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
@@ -563,7 +567,7 @@ public class GoodsStockController extends SuperController {
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedListBySelected(sample, operType, dataType);
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
 
@@ -581,7 +585,7 @@ public class GoodsStockController extends SuperController {
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedListBySelect(sample, assetSearcbContent);
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
 
@@ -602,7 +606,7 @@ public class GoodsStockController extends SuperController {
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedListForAbnormal(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsMeta.CATEGORY).with(GoodsStockMeta.BRAND).with(GoodsMeta.MANUFACTURER).execute();
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
 
@@ -646,6 +650,19 @@ public class GoodsStockController extends SuperController {
     @SentinelResource(value = GoodsStockServiceProxy.SAVE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsStockServiceProxy.SAVE_BY_IDS)
     public Result saveByIds(List<String> ids, String selectedCode, String ownerTmpId, String ownerType, String operType) {
+
+    	if(ids==null||ids.size()==0){
+    		return ErrorDesc.failureMessage("请选择数据");
+		}
+
+
+    	//子设备选择处理逻辑
+    	if("eam_asset_stock_goods_sub_select".equals(operType)){
+			goodsStockRelatedService.selectSaveIds(ownerTmpId,ids,selectedCode);
+			return ErrorDesc.success();
+		}
+
+    	//其他处理逻辑
         for (String id : ids) {
             GoodsStockVO e = new GoodsStockVO();
             GoodsStock goods = goodsStockService.getById(id);

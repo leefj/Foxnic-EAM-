@@ -90,6 +90,38 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+            if(field=="parentGoodsStockIds"){
+                var res="";
+                if(r.parentGoodsStockList&&r.parentGoodsStockList.length>0){
+                    for(var i=0;i<r.parentGoodsStockList.length;i++){
+                        if(i==0){
+                            res=r.parentGoodsStockList[i].name+"【"+r.parentGoodsStockList[i].model+"】-【"+r.parentGoodsStockList[i].code+"】";
+                        }else{
+                            var obj=","+r.parentGoodsStockList[i].name+"【"+r.parentGoodsStockList[i].model+"】-【"+r.parentGoodsStockList[i].code+"】";
+                            res=res+obj
+                        }
+                    }
+                    value=res;
+                }
+                return value;
+            }
+
+            if(field=="subGoodsStockIds"){
+                var res="";
+                if(r.subGoodsStockList&&r.subGoodsStockList.length>0){
+                    for(var i=0;i<r.subGoodsStockList.length;i++){
+                        if(i==0){
+                            res=r.subGoodsStockList[i].name+"【"+r.subGoodsStockList[i].model+"】-【"+r.subGoodsStockList[i].code+"】";
+                        }else{
+                            var obj=","+r.subGoodsStockList[i].name+"【"+r.subGoodsStockList[i].model+"】-【"+r.subGoodsStockList[i].code+"】";
+                            res=res+obj
+                        }
+                    }
+                    value=res;
+                }
+                return value;
+            }
+
             if(value==null) return "";
             return value;
         },

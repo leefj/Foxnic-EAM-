@@ -292,7 +292,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var ownerType="stock"
             var ownerCode="stock"
             var ownerTmpId="ownerTmpId";
-            var operType="eam_asset_stock_goods_select"
+            var operType="eam_asset_stock_goods_purchase_select"
             var pageType="create";
             admin.putTempData('eam-goods-stock-form-data-form-action', "create",true);
             var queryString="?ownerType="+ownerType+"&selectedCode="+SELECTED_CODE+"&ownerCode="+ownerCode+"&ownerTmpId="+ownerTmpId+"&operType="+operType+"&pageType="+pageType;

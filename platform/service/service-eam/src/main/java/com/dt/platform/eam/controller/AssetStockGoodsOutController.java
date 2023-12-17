@@ -100,7 +100,8 @@ public class AssetStockGoodsOutController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetStockGoodsOutServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -175,7 +176,8 @@ public class AssetStockGoodsOutController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetStockGoodsOutVOMeta.PAGE_INDEX, AssetStockGoodsOutVOMeta.PAGE_SIZE, AssetStockGoodsOutVOMeta.SEARCH_FIELD, AssetStockGoodsOutVOMeta.FUZZY_FIELD, AssetStockGoodsOutVOMeta.SEARCH_VALUE, AssetStockGoodsOutVOMeta.DIRTY_FIELDS, AssetStockGoodsOutVOMeta.SORT_FIELD, AssetStockGoodsOutVOMeta.SORT_TYPE, AssetStockGoodsOutVOMeta.IDS })
     @SentinelResource(value = AssetStockGoodsOutServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -219,7 +221,8 @@ public class AssetStockGoodsOutController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStockGoodsOutVOMeta.PAGE_INDEX, AssetStockGoodsOutVOMeta.PAGE_SIZE, AssetStockGoodsOutVOMeta.SEARCH_FIELD, AssetStockGoodsOutVOMeta.FUZZY_FIELD, AssetStockGoodsOutVOMeta.SEARCH_VALUE, AssetStockGoodsOutVOMeta.DIRTY_FIELDS, AssetStockGoodsOutVOMeta.SORT_FIELD, AssetStockGoodsOutVOMeta.SORT_TYPE, AssetStockGoodsOutVOMeta.IDS })
     @SentinelResource(value = AssetStockGoodsOutServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -282,8 +285,8 @@ public class AssetStockGoodsOutController extends SuperController {
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetStockGoodsOutServiceProxy.SELECT_IMPORT_ITEM, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockGoodsOutServiceProxy.SELECT_IMPORT_ITEM)
-    public Result selectImportItem(String id,String importType,String billId) {
-        return assetStockGoodsOutService.selectImportItem(id,importType,billId);
+    public Result selectImportItem(String id, String importType, String billId) {
+        return assetStockGoodsOutService.selectImportItem(id, importType, billId);
     }
 
     /**
@@ -319,7 +322,8 @@ public class AssetStockGoodsOutController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStockGoodsOutVOMeta.PAGE_INDEX, AssetStockGoodsOutVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetStockGoodsOutServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -364,7 +368,8 @@ public class AssetStockGoodsOutController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.TO_BOOK, value = "清单台账", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetStockGoodsOutServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -396,21 +401,19 @@ public class AssetStockGoodsOutController extends SuperController {
         return assetStockGoodsOutService.confirmOperation(id);
     }
 
-
     /**
      * 确认
      */
     @ApiOperation(value = "确认")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
-    })
+		@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 13)
     @SentinelResource(value = AssetStockGoodsOutServiceProxy.FILL_TO_SP_OPERATION, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(AssetStockGoodsOutServiceProxy.FILL_TO_SP_OPERATION)
     public Result fillToSpPperation(String id) {
         return assetStockGoodsOutService.fillToSpPperation(id);
     }
-
 
     /**
      * 导出 Excel
