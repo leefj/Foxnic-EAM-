@@ -91,6 +91,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         templet:function (field,value,r) {
 
+            if(field=="goodsId"){
+                var res="";
+                if(r.goods){
+                    res=r.goods.name+"【"+r.goods.model+"】-【"+r.goods.code+"】";
+                }
+                return res;
+            }
+
             if(field=="goodsParentGoodsStockIds"){
                 var res="";
                 if(r.goodsParentGoodsStockList&&r.goodsParentGoodsStockList.length>0){

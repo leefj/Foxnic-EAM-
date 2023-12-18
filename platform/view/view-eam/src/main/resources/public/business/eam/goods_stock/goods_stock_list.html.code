@@ -2,7 +2,7 @@
 /**
  * 库存物品 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 09:40:49
+ * @since 2023-12-18 13:29:33
  */
  -->
  <!DOCTYPE html>
@@ -73,7 +73,9 @@
                     <!-- 库存数据 , realStockId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 制单人 , originatorId ,typeName=button, isHideInSearch=true -->
                     <!-- 序列 , sn ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 父级物品 , pid ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 父级 , pid ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 位置 , positionId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 位置详请 , positionDetail ,typeName=text_input, isHideInSearch=true -->
                     <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 操作类型 , interOperType ,typeName=text_input, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->

@@ -1,7 +1,7 @@
 /**
  * 库存物品 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 09:40:49
+ * @since 2023-12-18 13:29:33
  */
 
 
@@ -100,6 +100,8 @@ function ListPage() {
 					,{ field: 'stockMax', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('安全库存上限') , templet: function (d) { return templet('stockMax',d.stockMax,d);}  }
 					,{ field: 'stockSecurity', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('安全库存') , templet: function (d) { return templet('stockSecurity',d.stockSecurity,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置') , templet: function (d) { return templet('positionId',d.positionId,d);}  }
+					,{ field: 'positionDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置详请') , templet: function (d) { return templet('positionDetail',d.positionDetail,d);}  }
 					,{ field: 'interOperType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('操作类型') , templet: function (d) { return templet('interOperType',d.interOperType,d);}  }
 					,{ field: 'parentGoodsStockIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('父级物品'), templet: function (d) { return templet('parentGoodsStockIds' ,fox.joinLabel(d.parentGoodsStockList,"name",',','','parentGoodsStockIds'),d);}}
 					,{ field: 'subGoodsStockIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('关联物品'), templet: function (d) { return templet('subGoodsStockIds' ,fox.joinLabel(d.subGoodsStockList,"name",',','','subGoodsStockIds'),d);}}

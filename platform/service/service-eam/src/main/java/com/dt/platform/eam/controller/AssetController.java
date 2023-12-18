@@ -1888,9 +1888,10 @@ public class AssetController extends SuperController {
 	@ApiOperationSupport(order = 10)
 	@SentinelResource(value = AssetServiceProxy.QUERY_ASSET_SUB_GOODS_STOCK_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
 	@PostMapping(AssetServiceProxy.QUERY_ASSET_SUB_GOODS_STOCK_PAGED_LIST)
-	public Result<PagedList<GoodsStock>> queryAssetSubGoodsStockPagedList(AssetVO sample) {
+	public Result<PagedList<GoodsStock>> queryAssetSubGoodsStockPagedList(GoodsStockVO sample) {
+		//sample中的id为资产ID
 		Result<PagedList<GoodsStock>> result = new Result<>();
-		PagedList<GoodsStock> list = assetService.queryAssetSubGoodsStockPagedList(sample.getId(),sample.getOwnerCode(),sample.getPageSize(),sample.getPageIndex());
+		PagedList<GoodsStock> list = assetService.queryAssetSubGoodsStockPagedList(sample,sample.getId(),sample.getOwnerCode(),sample.getPageSize(),sample.getPageIndex());
 		// join 关联的对象
 		assetService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
 

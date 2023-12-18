@@ -27,7 +27,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品VO类型
  * <p>库存物品 , 数据表 eam_goods_stock 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 09:40:48
+ * @since 2023-12-18 13:29:31
  * @sign 87176F150B412C151E8EC61D5D9C451A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -448,11 +448,13 @@ public class GoodsStockVO extends GoodsStock {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setManagerId(this.getManagerId());
 		inst.setStorageDate(this.getStorageDate());
+		inst.setPositionDetail(this.getPositionDetail());
 		inst.setStockCurNumber(this.getStockCurNumber());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setRealStockId(this.getRealStockId());
 		inst.setDeleted(this.getDeleted());
 		inst.setGoodsStatus(this.getGoodsStatus());
+		inst.setPositionId(this.getPositionId());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setTenantId(this.getTenantId());
 		inst.setCategoryId(this.getCategoryId());
@@ -596,11 +598,13 @@ public class GoodsStockVO extends GoodsStock {
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(GoodsStockVOMeta.UPDATE_TIME)));
 			this.setManagerId(DataParser.parse(String.class, map.get(GoodsStockVOMeta.MANAGER_ID)));
 			this.setStorageDate(DataParser.parse(Date.class, map.get(GoodsStockVOMeta.STORAGE_DATE)));
+			this.setPositionDetail(DataParser.parse(String.class, map.get(GoodsStockVOMeta.POSITION_DETAIL)));
 			this.setStockCurNumber(DataParser.parse(BigDecimal.class, map.get(GoodsStockVOMeta.STOCK_CUR_NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(GoodsStockVOMeta.CREATE_BY)));
 			this.setRealStockId(DataParser.parse(String.class, map.get(GoodsStockVOMeta.REAL_STOCK_ID)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(GoodsStockVOMeta.DELETED)));
 			this.setGoodsStatus(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_STATUS)));
+			this.setPositionId(DataParser.parse(String.class, map.get(GoodsStockVOMeta.POSITION_ID)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(GoodsStockVOMeta.CREATE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(GoodsStockVOMeta.TENANT_ID)));
 			this.setCategoryId(DataParser.parse(String.class, map.get(GoodsStockVOMeta.CATEGORY_ID)));
@@ -681,11 +685,13 @@ public class GoodsStockVO extends GoodsStock {
 				this.setUpdateTime( (Date)map.get(GoodsStockVOMeta.UPDATE_TIME));
 				this.setManagerId( (String)map.get(GoodsStockVOMeta.MANAGER_ID));
 				this.setStorageDate( (Date)map.get(GoodsStockVOMeta.STORAGE_DATE));
+				this.setPositionDetail( (String)map.get(GoodsStockVOMeta.POSITION_DETAIL));
 				this.setStockCurNumber( (BigDecimal)map.get(GoodsStockVOMeta.STOCK_CUR_NUMBER));
 				this.setCreateBy( (String)map.get(GoodsStockVOMeta.CREATE_BY));
 				this.setRealStockId( (String)map.get(GoodsStockVOMeta.REAL_STOCK_ID));
 				this.setDeleted( (Integer)map.get(GoodsStockVOMeta.DELETED));
 				this.setGoodsStatus( (String)map.get(GoodsStockVOMeta.GOODS_STATUS));
+				this.setPositionId( (String)map.get(GoodsStockVOMeta.POSITION_ID));
 				this.setCreateTime( (Date)map.get(GoodsStockVOMeta.CREATE_TIME));
 				this.setTenantId( (String)map.get(GoodsStockVOMeta.TENANT_ID));
 				this.setCategoryId( (String)map.get(GoodsStockVOMeta.CATEGORY_ID));
@@ -779,11 +785,13 @@ public class GoodsStockVO extends GoodsStock {
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(GoodsStockVOMeta.UPDATE_TIME)));
 			this.setManagerId(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.MANAGER_ID)));
 			this.setStorageDate(DataParser.parse(Date.class, r.getValue(GoodsStockVOMeta.STORAGE_DATE)));
+			this.setPositionDetail(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.POSITION_DETAIL)));
 			this.setStockCurNumber(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockVOMeta.STOCK_CUR_NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.CREATE_BY)));
 			this.setRealStockId(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.REAL_STOCK_ID)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(GoodsStockVOMeta.DELETED)));
 			this.setGoodsStatus(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.GOODS_STATUS)));
+			this.setPositionId(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.POSITION_ID)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(GoodsStockVOMeta.CREATE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.TENANT_ID)));
 			this.setCategoryId(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.CATEGORY_ID)));
@@ -832,11 +840,13 @@ public class GoodsStockVO extends GoodsStock {
 				this.setUpdateTime( (Date)r.getValue(GoodsStockVOMeta.UPDATE_TIME));
 				this.setManagerId( (String)r.getValue(GoodsStockVOMeta.MANAGER_ID));
 				this.setStorageDate( (Date)r.getValue(GoodsStockVOMeta.STORAGE_DATE));
+				this.setPositionDetail( (String)r.getValue(GoodsStockVOMeta.POSITION_DETAIL));
 				this.setStockCurNumber( (BigDecimal)r.getValue(GoodsStockVOMeta.STOCK_CUR_NUMBER));
 				this.setCreateBy( (String)r.getValue(GoodsStockVOMeta.CREATE_BY));
 				this.setRealStockId( (String)r.getValue(GoodsStockVOMeta.REAL_STOCK_ID));
 				this.setDeleted( (Integer)r.getValue(GoodsStockVOMeta.DELETED));
 				this.setGoodsStatus( (String)r.getValue(GoodsStockVOMeta.GOODS_STATUS));
+				this.setPositionId( (String)r.getValue(GoodsStockVOMeta.POSITION_ID));
 				this.setCreateTime( (Date)r.getValue(GoodsStockVOMeta.CREATE_TIME));
 				this.setTenantId( (String)r.getValue(GoodsStockVOMeta.TENANT_ID));
 				this.setCategoryId( (String)r.getValue(GoodsStockVOMeta.CATEGORY_ID));

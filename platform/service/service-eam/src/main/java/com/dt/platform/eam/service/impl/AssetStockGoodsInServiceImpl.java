@@ -158,6 +158,7 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 		Result r=super.insert(assetStockGoodsIn,throwsException);
 		if(r.isSuccess()){
 			for(int i=0;i<list.size();i++){
+
 				list.get(i).setBatchCode(assetStockGoodsIn.getBatchCode());
 				list.get(i).setOwnCompanyId(assetStockGoodsIn.getOwnCompanyId());
 				list.get(i).setSupplierName(assetStockGoodsIn.getSupplierName());

@@ -18,8 +18,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 09:40:48
- * @sign 0BA809E3BF3F1589D2AC4F875DCE3B1C
+ * @since 2023-12-18 13:29:31
+ * @sign 84A128D7E213F6DFC735B297205B35BE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -406,14 +406,34 @@ public class GoodsStockMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> SN_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,SN, java.lang.String.class, "序列", "序列", java.lang.String.class, null);
 	
 	/**
-	 * 父级物品 , 类型: java.lang.String
+	 * 父级 , 类型: java.lang.String
 	*/
 	public static final String PID="pid";
 	
 	/**
-	 * 父级物品 , 类型: java.lang.String
+	 * 父级 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> PID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,PID, java.lang.String.class, "父级物品", "父级物品", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> PID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,PID, java.lang.String.class, "父级", "父级", java.lang.String.class, null);
+	
+	/**
+	 * 位置 , 类型: java.lang.String
+	*/
+	public static final String POSITION_ID="positionId";
+	
+	/**
+	 * 位置 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> POSITION_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,POSITION_ID, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
+	
+	/**
+	 * 位置详请 , 类型: java.lang.String
+	*/
+	public static final String POSITION_DETAIL="positionDetail";
+	
+	/**
+	 * 位置详请 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> POSITION_DETAIL_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,POSITION_DETAIL, java.lang.String.class, "位置详请", "位置详请", java.lang.String.class, null);
 	
 	/**
 	 * 选择 , 类型: java.lang.String
@@ -788,7 +808,7 @@ public class GoodsStockMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SN , PID , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , MANUFACTURER , BRAND , GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , REAL_GOODS , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES , PARENT_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_IDS , SUB_GOODS_STOCK_LIST , SUB_GOODS_STOCK_IDS , GOODS_PARENT_GOODS_STOCK_LIST };
+	public static final String[] $PROPS={ ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SN , PID , POSITION_ID , POSITION_DETAIL , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , MANUFACTURER , BRAND , GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , REAL_GOODS , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES , PARENT_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_IDS , SUB_GOODS_STOCK_LIST , SUB_GOODS_STOCK_IDS , GOODS_PARENT_GOODS_STOCK_LIST };
 	
 	/**
 	 * 代理类
@@ -1217,13 +1237,35 @@ public class GoodsStockMeta {
 		}
 		
 		/**
-		 * 设置 父级物品
-		 * @param pid 父级物品
+		 * 设置 父级
+		 * @param pid 父级
 		 * @return 当前对象
 		*/
 		public GoodsStock setPid(String pid) {
 			super.change(PID,super.getPid(),pid);
 			super.setPid(pid);
+			return this;
+		}
+		
+		/**
+		 * 设置 位置
+		 * @param positionId 位置
+		 * @return 当前对象
+		*/
+		public GoodsStock setPositionId(String positionId) {
+			super.change(POSITION_ID,super.getPositionId(),positionId);
+			super.setPositionId(positionId);
+			return this;
+		}
+		
+		/**
+		 * 设置 位置详请
+		 * @param positionDetail 位置详请
+		 * @return 当前对象
+		*/
+		public GoodsStock setPositionDetail(String positionDetail) {
+			super.change(POSITION_DETAIL,super.getPositionDetail(),positionDetail);
+			super.setPositionDetail(positionDetail);
 			return this;
 		}
 		
@@ -1691,11 +1733,13 @@ public class GoodsStockMeta {
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setManagerId(this.getManagerId());
 			inst.setStorageDate(this.getStorageDate());
+			inst.setPositionDetail(this.getPositionDetail());
 			inst.setStockCurNumber(this.getStockCurNumber());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setRealStockId(this.getRealStockId());
 			inst.setDeleted(this.getDeleted());
 			inst.setGoodsStatus(this.getGoodsStatus());
+			inst.setPositionId(this.getPositionId());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setTenantId(this.getTenantId());
 			inst.setCategoryId(this.getCategoryId());
