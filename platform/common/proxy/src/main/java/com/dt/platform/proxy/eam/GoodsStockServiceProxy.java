@@ -122,6 +122,8 @@ public interface GoodsStockServiceProxy {
 
     public static final String QUERY_PAGED_LIST_FOR_ABNORMAL = API_PREFIX + "query-paged-list-for-abnormal";
 
+    public static final String DIRECT_UPDATE = API_PREFIX + "direct-update";
+
     /**
      * 添加库存物品
      */

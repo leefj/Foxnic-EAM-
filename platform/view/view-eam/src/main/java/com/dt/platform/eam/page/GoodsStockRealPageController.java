@@ -40,7 +40,14 @@ public class GoodsStockRealPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+	@RequestMapping("/stock_real_form.html")
+	public String bookForm(Model model,HttpServletRequest request,String ownerCode,String id) {
+		model.addAttribute("ownerCode", ownerCode);
+		model.addAttribute("id", id);
+		return prefix+"/stock_real_form";
+	}
+
 	/**
 	 * 库存物品 功能主页面
 	 */

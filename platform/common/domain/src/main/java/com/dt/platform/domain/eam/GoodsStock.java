@@ -31,8 +31,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品
  * <p>库存物品 , 数据表 eam_goods_stock 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 09:40:48
- * @sign 0BA809E3BF3F1589D2AC4F875DCE3B1C
+ * @since 2023-12-18 13:29:31
+ * @sign 84A128D7E213F6DFC735B297205B35BE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -274,10 +274,22 @@ public class GoodsStock extends Entity {
 	private String sn;
 	
 	/**
-	 * 父级物品：父级物品
+	 * 父级：父级
 	*/
-	@ApiModelProperty(required = false,value="父级物品" , notes = "父级物品")
+	@ApiModelProperty(required = false,value="父级" , notes = "父级")
 	private String pid;
+	
+	/**
+	 * 位置：位置
+	*/
+	@ApiModelProperty(required = false,value="位置" , notes = "位置")
+	private String positionId;
+	
+	/**
+	 * 位置详请：位置详请
+	*/
+	@ApiModelProperty(required = false,value="位置详请" , notes = "位置详请")
+	private String positionDetail;
 	
 	/**
 	 * 选择：选择
@@ -1227,21 +1239,59 @@ public class GoodsStock extends Entity {
 	}
 	
 	/**
-	 * 获得 父级物品<br>
-	 * 父级物品
-	 * @return 父级物品
+	 * 获得 父级<br>
+	 * 父级
+	 * @return 父级
 	*/
 	public String getPid() {
 		return pid;
 	}
 	
 	/**
-	 * 设置 父级物品
-	 * @param pid 父级物品
+	 * 设置 父级
+	 * @param pid 父级
 	 * @return 当前对象
 	*/
 	public GoodsStock setPid(String pid) {
 		this.pid=pid;
+		return this;
+	}
+	
+	/**
+	 * 获得 位置<br>
+	 * 位置
+	 * @return 位置
+	*/
+	public String getPositionId() {
+		return positionId;
+	}
+	
+	/**
+	 * 设置 位置
+	 * @param positionId 位置
+	 * @return 当前对象
+	*/
+	public GoodsStock setPositionId(String positionId) {
+		this.positionId=positionId;
+		return this;
+	}
+	
+	/**
+	 * 获得 位置详请<br>
+	 * 位置详请
+	 * @return 位置详请
+	*/
+	public String getPositionDetail() {
+		return positionDetail;
+	}
+	
+	/**
+	 * 设置 位置详请
+	 * @param positionDetail 位置详请
+	 * @return 当前对象
+	*/
+	public GoodsStock setPositionDetail(String positionDetail) {
+		this.positionDetail=positionDetail;
 		return this;
 	}
 	
@@ -2120,11 +2170,13 @@ public class GoodsStock extends Entity {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setManagerId(this.getManagerId());
 		inst.setStorageDate(this.getStorageDate());
+		inst.setPositionDetail(this.getPositionDetail());
 		inst.setStockCurNumber(this.getStockCurNumber());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setRealStockId(this.getRealStockId());
 		inst.setDeleted(this.getDeleted());
 		inst.setGoodsStatus(this.getGoodsStatus());
+		inst.setPositionId(this.getPositionId());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setTenantId(this.getTenantId());
 		inst.setCategoryId(this.getCategoryId());
@@ -2256,11 +2308,13 @@ public class GoodsStock extends Entity {
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(GoodsStockMeta.UPDATE_TIME)));
 			this.setManagerId(DataParser.parse(String.class, map.get(GoodsStockMeta.MANAGER_ID)));
 			this.setStorageDate(DataParser.parse(Date.class, map.get(GoodsStockMeta.STORAGE_DATE)));
+			this.setPositionDetail(DataParser.parse(String.class, map.get(GoodsStockMeta.POSITION_DETAIL)));
 			this.setStockCurNumber(DataParser.parse(BigDecimal.class, map.get(GoodsStockMeta.STOCK_CUR_NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(GoodsStockMeta.CREATE_BY)));
 			this.setRealStockId(DataParser.parse(String.class, map.get(GoodsStockMeta.REAL_STOCK_ID)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(GoodsStockMeta.DELETED)));
 			this.setGoodsStatus(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STATUS)));
+			this.setPositionId(DataParser.parse(String.class, map.get(GoodsStockMeta.POSITION_ID)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(GoodsStockMeta.CREATE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(GoodsStockMeta.TENANT_ID)));
 			this.setCategoryId(DataParser.parse(String.class, map.get(GoodsStockMeta.CATEGORY_ID)));
@@ -2331,11 +2385,13 @@ public class GoodsStock extends Entity {
 				this.setUpdateTime( (Date)map.get(GoodsStockMeta.UPDATE_TIME));
 				this.setManagerId( (String)map.get(GoodsStockMeta.MANAGER_ID));
 				this.setStorageDate( (Date)map.get(GoodsStockMeta.STORAGE_DATE));
+				this.setPositionDetail( (String)map.get(GoodsStockMeta.POSITION_DETAIL));
 				this.setStockCurNumber( (BigDecimal)map.get(GoodsStockMeta.STOCK_CUR_NUMBER));
 				this.setCreateBy( (String)map.get(GoodsStockMeta.CREATE_BY));
 				this.setRealStockId( (String)map.get(GoodsStockMeta.REAL_STOCK_ID));
 				this.setDeleted( (Integer)map.get(GoodsStockMeta.DELETED));
 				this.setGoodsStatus( (String)map.get(GoodsStockMeta.GOODS_STATUS));
+				this.setPositionId( (String)map.get(GoodsStockMeta.POSITION_ID));
 				this.setCreateTime( (Date)map.get(GoodsStockMeta.CREATE_TIME));
 				this.setTenantId( (String)map.get(GoodsStockMeta.TENANT_ID));
 				this.setCategoryId( (String)map.get(GoodsStockMeta.CATEGORY_ID));
@@ -2419,11 +2475,13 @@ public class GoodsStock extends Entity {
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(GoodsStockMeta.UPDATE_TIME)));
 			this.setManagerId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.MANAGER_ID)));
 			this.setStorageDate(DataParser.parse(Date.class, r.getValue(GoodsStockMeta.STORAGE_DATE)));
+			this.setPositionDetail(DataParser.parse(String.class, r.getValue(GoodsStockMeta.POSITION_DETAIL)));
 			this.setStockCurNumber(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockMeta.STOCK_CUR_NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(GoodsStockMeta.CREATE_BY)));
 			this.setRealStockId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.REAL_STOCK_ID)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(GoodsStockMeta.DELETED)));
 			this.setGoodsStatus(DataParser.parse(String.class, r.getValue(GoodsStockMeta.GOODS_STATUS)));
+			this.setPositionId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.POSITION_ID)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(GoodsStockMeta.CREATE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.TENANT_ID)));
 			this.setCategoryId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.CATEGORY_ID)));
@@ -2472,11 +2530,13 @@ public class GoodsStock extends Entity {
 				this.setUpdateTime( (Date)r.getValue(GoodsStockMeta.UPDATE_TIME));
 				this.setManagerId( (String)r.getValue(GoodsStockMeta.MANAGER_ID));
 				this.setStorageDate( (Date)r.getValue(GoodsStockMeta.STORAGE_DATE));
+				this.setPositionDetail( (String)r.getValue(GoodsStockMeta.POSITION_DETAIL));
 				this.setStockCurNumber( (BigDecimal)r.getValue(GoodsStockMeta.STOCK_CUR_NUMBER));
 				this.setCreateBy( (String)r.getValue(GoodsStockMeta.CREATE_BY));
 				this.setRealStockId( (String)r.getValue(GoodsStockMeta.REAL_STOCK_ID));
 				this.setDeleted( (Integer)r.getValue(GoodsStockMeta.DELETED));
 				this.setGoodsStatus( (String)r.getValue(GoodsStockMeta.GOODS_STATUS));
+				this.setPositionId( (String)r.getValue(GoodsStockMeta.POSITION_ID));
 				this.setCreateTime( (Date)r.getValue(GoodsStockMeta.CREATE_TIME));
 				this.setTenantId( (String)r.getValue(GoodsStockMeta.TENANT_ID));
 				this.setCategoryId( (String)r.getValue(GoodsStockMeta.CATEGORY_ID));

@@ -44,7 +44,7 @@ public interface IAssetService extends ISuperService<Asset> {
 
 	PagedList<Asset> queryAssetSubAssetPagedList(String assetId,int pageSize,int pageIndex);
 
-	PagedList<GoodsStock> queryAssetSubGoodsStockPagedList(String assetId,String ownerCode,int pageSize,int pageIndex);
+	PagedList<GoodsStock> queryAssetSubGoodsStockPagedList(GoodsStockVO goodsStockVO,String assetId,String ownerCode,int pageSize,int pageIndex);
 
 	Result generateAssetCode(String codeRule, JSONObject ctl,String defaultAssetCode);
 

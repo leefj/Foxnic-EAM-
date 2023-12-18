@@ -449,7 +449,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	}
 
 	@Override
-	public PagedList<GoodsStock> queryAssetSubGoodsStockPagedList(String assetId, String ownerCode, int pageSize, int pageIndex) {
+	public PagedList<GoodsStock> queryAssetSubGoodsStockPagedList(GoodsStockVO goodsStockVO,String assetId, String ownerCode, int pageSize, int pageIndex) {
 		Asset asset=this.getById(assetId);
 		if(asset==null){
 			return new PagedList<GoodsStock>(new ArrayList<GoodsStock>(),0,0,0,0);
@@ -458,7 +458,16 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		if(StringUtil.isBlank(goodsId)){
 			return new PagedList<GoodsStock>(new ArrayList<GoodsStock>(),0,0,0,0);
 		}
-		GoodsStock qGoodsStock=new GoodsStock();
+		GoodsStockVO qGoodsStock=new GoodsStockVO();
+		qGoodsStock.setWarehouseId(goodsStockVO.getWarehouseId());
+		qGoodsStock.setSn(goodsStockVO.getSn());
+		qGoodsStock.setNotes(goodsStockVO.getNotes());
+		qGoodsStock.setCompositeParameter(goodsStockVO.getCompositeParameter());
+		qGoodsStock.setPositionDetail(goodsStockVO.getPositionDetail());
+		qGoodsStock.setFuzzyField(goodsStockVO.getFuzzyField());
+		qGoodsStock.setDirtyFields(goodsStockVO.getDirtyFields());
+		qGoodsStock.setSearchField(goodsStockVO.getSearchField());
+		qGoodsStock.setSearchValue(goodsStockVO.getSearchValue());
 		if("part".equals(ownerCode)){
 			qGoodsStock.setOwnerCode("real_part");
 			qGoodsStock.setOwnerType("part");

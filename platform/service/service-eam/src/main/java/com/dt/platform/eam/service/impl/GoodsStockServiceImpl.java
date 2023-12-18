@@ -9,6 +9,7 @@ import com.dt.platform.domain.eam.meta.GoodsMeta;
 import com.dt.platform.domain.eam.meta.GoodsStockMeta;
 import com.dt.platform.eam.service.IGoodsStockRelatedService;
 import com.dt.platform.eam.service.IGoodsStockService;
+import com.dt.platform.eam.service.IGoodsStockUsageService;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
@@ -29,6 +30,7 @@ import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.framework.dao.DBConfigs;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +55,9 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 	@Autowired
 	private IGoodsStockRelatedService goodsStockRelatedService;
 
+
+	@Autowired
+	private IGoodsStockUsageService goodsStockUsageService;
 	/**
 	 * 注入DAO对象
 	 * */
@@ -147,6 +152,36 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 				.execute();
 		List<Employee> originatorList= CollectorUtil.collectList(list, GoodsStock::getOriginator);
 		this.dao().join(originatorList, Person.class);
+	}
+
+	/*直接修改库存中的数据*/
+	@Override
+	public Result<GoodsStock> directUpdate(GoodsStock sample) {
+		//目前支持的方式
+		GoodsStock sourceData=this.getById(sample.getId());
+		if(sourceData==null){
+			return ErrorDesc.failureMessage("不存在当前物品");
+		}
+		GoodsStock data=new GoodsStock();
+		data.setId(sample.getId());
+		data.setStockCurNumber(sample.getStockCurNumber());
+		data.setNotes(sample.getNotes());
+		data.setSn(sample.getSn());
+		data.setPositionDetail(sample.getPositionDetail());
+		super.update(data,SaveMode.NOT_NULL_FIELDS,false);
+
+		GoodsStockUsage usage=new GoodsStockUsage();
+		usage.setOper("manual");
+		usage.setBillCode(IDGenerator.getSnowflakeIdString());
+		usage.setRecTime(new Date());
+		usage.setOperUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+		usage.setOperUserName(SessionUser.getCurrent().getRealName());
+		usage.setOwnerId(sample.getId());
+		usage.setOperNumber("1");
+		usage.setLabel("直接修改");
+		usage.setContent("库存数量从"+sourceData.getStockCurNumber()+"修改至"+data.getStockCurNumber());
+		goodsStockUsageService.insert(usage,false);
+		return ErrorDesc.success();
 	}
 
 	@Override
@@ -248,6 +283,7 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 				if(list.size()>0){
 					for(int i=0;i<list.size();i++){
 						GoodsStock e=list.get(i);
+
 						e.setId(null);
 						e.setOwnerCode(AssetStockGoodsOwnerEnum.DATA_SELECTED.code());
 						e.setOwnerId("none");

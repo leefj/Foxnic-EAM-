@@ -59,6 +59,7 @@ public class GoodsStockPageController extends ViewController {
 
 
 
+
 	@RequestMapping("/stock_book_tree.html")
 	public String treeList(Model model,HttpServletRequest request,String ownerCode,String ownerType) {
 		model.addAttribute("ownerCode",ownerCode);
