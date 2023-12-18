@@ -75,7 +75,7 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.OWNER_TYPE).table().disable();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.CREATE_TIME).table().disable();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.SELECTED_CODE).table().disable();
-
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.SN).table().disable(true);
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.REAL_STOCK_ID).table().disable();
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.STATUS).table().disable();

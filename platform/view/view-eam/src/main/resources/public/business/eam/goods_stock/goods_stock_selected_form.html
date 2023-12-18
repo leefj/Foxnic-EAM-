@@ -74,26 +74,24 @@
 
         <div class="layui-row form-row" id="random-3065-content" >
 
-             <!--开始：column 循环-->
+
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" id="notesarea">
-
-
-                    <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
+            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" id="snarea">
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('序列')}">序列</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                        <textarea lay-filter="sn" id="sn" name="sn" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('序列') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
 
 
-
-                <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('图片')}">图片</div></div>
-                    <div class="layui-upload layui-input-block ">
-                        <input input-type="upload" id="pictureId"  name="pictureId" lay-filter="pictureId" style="display: none">
-                        <button type="button" class="layui-btn" id="pictureId-button" th:text="${lang.translate('选择附件')}">选择附件</button>
-                        <div class="layui-upload-list" id="pictureId-file-list"></div>
+                <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" id="notesarea">
+                    <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
 

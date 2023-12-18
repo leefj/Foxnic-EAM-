@@ -377,6 +377,8 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 					sp.setName(rGood.getName());
 					sp.setGoodId(rGood.getId());
 					sp.setModel(rGood.getModel());
+					sp.setSn(rGood.getSn());
+					sp.setNotes(rGood.getNotes());
 					sp.setInsertTime(new Date());
 					sp.setSourceDesc("来源为库存备件出库,单据号:"+billData.getBusinessCode());
 					deviceSpService.insert(sp);
@@ -478,6 +480,7 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 	 * */
 	@Override
 	public Result update(AssetStockGoodsOut assetStockGoodsOut , SaveMode mode,boolean throwsException) {
+		AssetStockGoodsOut bill=this.getById(assetStockGoodsOut.getId());
 		GoodsStock qE=new GoodsStock();
 		qE.setOwnerTmpId(assetStockGoodsOut.getId());
 		List<GoodsStock> list =goodsStockService.queryList(qE);
@@ -501,7 +504,7 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 		Result r=super.update(assetStockGoodsOut , mode , throwsException);
 		for(int i=0;i<list.size();i++){
 			list.get(i).setWarehouseId(assetStockGoodsOut.getWarehouseId());
-			list.get(i).setBusinessCode(assetStockGoodsOut.getBusinessCode());
+			list.get(i).setBusinessCode(bill.getBusinessCode());
 			list.get(i).setOwnerCode(assetStockGoodsOut.getOwnerType());
 		}
 		goodsStockService.saveOwnerData(assetStockGoodsOut.getId(),assetStockGoodsOut.getOwnerType(),list);

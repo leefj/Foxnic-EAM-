@@ -316,6 +316,7 @@ public class AssetStockGoodsUseServiceImpl extends SuperService<AssetStockGoodsU
 	 * */
 	@Override
 	public Result update(AssetStockGoodsUse assetStockGoodsUse , SaveMode mode,boolean throwsException) {
+		AssetStockGoodsUse bill=getById(assetStockGoodsUse.getId());
 		GoodsStock qE=new GoodsStock();
 		qE.setOwnerTmpId(assetStockGoodsUse.getId());
 		List<GoodsStock> list =goodsStockService.queryList(qE);
@@ -333,7 +334,7 @@ public class AssetStockGoodsUseServiceImpl extends SuperService<AssetStockGoodsU
 		Result r=super.update(assetStockGoodsUse , mode , throwsException);
 		for(int i=0;i<list.size();i++){
 
-			list.get(i).setBusinessCode(assetStockGoodsUse.getBusinessCode());
+			list.get(i).setBusinessCode(bill.getBusinessCode());
 			list.get(i).setOwnerCode(assetStockGoodsUse.getOwnerType());
 		}
 		goodsStockService.saveOwnerData(assetStockGoodsUse.getId(),assetStockGoodsUse.getOwnerType(),list);

@@ -97,7 +97,7 @@ function ListPage() {
 					,{ field: 'stockSecurity', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('安全库存') , templet: function (d) { return templet('stockSecurity',d.stockSecurity,d);}  }
 					,{ field: 'parentGoodsStockIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('父级档案'), templet: function (d) { return templet('parentGoodsStockIds' ,fox.joinLabel(d.parentGoodsStockList,"name",',','','parentGoodsStockIds'),d);}}
 					,{ field: 'subGoodsStockIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('子级档案'), templet: function (d) { return templet('subGoodsStockIds' ,fox.joinLabel(d.subGoodsStockList,"name",',','','subGoodsStockIds'),d);}}
-					//	,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+						,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],

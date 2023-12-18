@@ -114,6 +114,7 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 
 
 	//type:create,edit
+	//更新数据库
 	@Override
 	public Result saveOwnerData(String oid,String ownerType,List<GoodsStock> list){
 		this.dao.execute("delete from eam_goods_stock where owner_id=?",oid);

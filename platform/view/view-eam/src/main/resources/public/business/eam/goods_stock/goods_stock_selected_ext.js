@@ -180,7 +180,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
             $("#sumAmount").hide();
-            $("#notesarea").hide();
+           
 
         },
         /**

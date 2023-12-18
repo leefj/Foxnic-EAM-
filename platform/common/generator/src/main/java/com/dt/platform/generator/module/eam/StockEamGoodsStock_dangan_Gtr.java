@@ -60,6 +60,7 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.PID).table().disable(true);
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.UPDATE_BY).table().disable(true);
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.UPDATE_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.SN).table().disable(true);
         cfg.view().field(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).table().disable(true);
         cfg.view().field(GoodsStockMeta.GOODS_PARENT_GOODS_STOCK_LIST).table().disable(true);
       //  cfg.view().field(GoodsStockMeta.PARENT_GOODS_STOCK_IDS).table().disable(true);
