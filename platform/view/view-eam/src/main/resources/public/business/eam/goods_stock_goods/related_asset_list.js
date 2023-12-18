@@ -131,7 +131,7 @@ function ListPage() {
 				ps.sortType=sort.type;
 			}
 		}
-		ps.useUserId=EMPLOYEE_ID;
+		//ps.useUserId=EMPLOYEE_ID;
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {

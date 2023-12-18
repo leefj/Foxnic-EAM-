@@ -91,6 +91,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 		 * */
 		templet:function (field,value,r) {
 
+			if(field=="ownerCode"){
+				if(value=="real_part"){
+					return "备品备件"
+				}else if(value=="real_stock"){
+					return "库存物品"
+				}else{
+					return value;
+				}
+			}
 			if(field=="goodsId"){
 				var res="";
 				if(r.goods){
