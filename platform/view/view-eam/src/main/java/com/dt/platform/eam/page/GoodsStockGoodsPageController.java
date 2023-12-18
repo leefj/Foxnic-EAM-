@@ -1,6 +1,7 @@
 package com.dt.platform.eam.page;
 
 import com.dt.platform.constants.enums.eam.AssetAttributeItemOwnerEnum;
+import com.dt.platform.constants.enums.eam.AssetOwnerCodeEnum;
 import com.dt.platform.constants.enums.eam.AssetPcmCodeEnum;
 import com.dt.platform.domain.eam.AssetAttributeItem;
 import com.dt.platform.proxy.eam.AssetAttributeItemServiceProxy;
@@ -52,6 +53,27 @@ public class GoodsStockGoodsPageController extends ViewController {
 		return proxy;
 	}
 
+	//物品档案子设备
+	@RequestMapping("/related_stock_list.html")
+	public String relatedStockList(Model model,HttpServletRequest request,String goodsId,String ownerCode) {
+		model.addAttribute("goodsId",goodsId);
+		model.addAttribute("ownerCode",ownerCode);
+		return prefix+"/related_stock_list";
+	}
+
+
+	@RequestMapping("/related_asset_list.html")
+	public String relatedAssetList(Model model,HttpServletRequest request,String goodsId) {
+		model.addAttribute("goodsId",goodsId);
+		String itemOwner=AssetAttributeItemOwnerEnum.ASSET_BILL.code();
+		Result<HashMap<String,List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(itemOwner,null);
+		if(result.isSuccess()){
+			HashMap<String,List<AssetAttributeItem>> data = result.getData();
+			List<AssetAttributeItem> list=data.get("attributeListData");
+			model.addAttribute("attributeListData",list);
+		}
+		return prefix+"/related_asset_list";
+	}
 
 
 

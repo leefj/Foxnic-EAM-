@@ -1,22 +1,16 @@
 package com.dt.platform.eam.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 import com.alibaba.csp.sentinel.util.StringUtil;
-import com.alibaba.fastjson.JSONArray;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.constants.enums.eam.AssetStockGoodsOwnerEnum;
-import com.dt.platform.constants.enums.eam.AssetStockTypeEnum;
 import com.dt.platform.domain.eam.*;
-import com.dt.platform.domain.eam.meta.GoodsStockUsageVOMeta;
 import com.dt.platform.eam.service.IGoodsStockRelatedService;
-import com.dt.platform.proxy.eam.AssetReportServiceProxy;
-import com.dt.platform.proxy.eam.GoodsStockUsageServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.dao.data.Rcd;
+import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.domain.hrm.Person;
-import com.github.foxnic.commons.collection.CollectorUtil;
-import com.github.foxnic.dao.entity.ReferCause;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,17 +28,14 @@ import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.springboot.web.DownloadUtil;
 import com.github.foxnic.dao.data.PagedList;
-import java.util.Date;
-import java.sql.Timestamp;
+
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.commons.io.StreamUtil;
-import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.eam.meta.GoodsStockMeta;
 import java.math.BigDecimal;
-import org.github.foxnic.web.domain.hrm.Organization;
-import org.github.foxnic.web.domain.system.DictItem;
+
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.meta.GoodsMeta;
 import io.swagger.annotations.Api;
@@ -53,7 +44,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiImplicitParam;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.dt.platform.eam.service.IGoodsStockService;
 import com.github.foxnic.api.swagger.ApiParamSupport;
 
@@ -620,6 +610,45 @@ public class GoodsStockController extends SuperController {
         goodsStockService.dao().join(originatorList, Person.class);
         List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);
         goodsStockService.dao().join(managerList, Person.class);
+
+
+        //获取关连的资产，关连的库存及备件数量
+		List<String> idsList = CollectorUtil.collectList(list, GoodsStock::getId);
+		if(idsList!=null&&idsList.size()>0){
+			String str="('1'";
+			for(int i=0;i<idsList.size();i++){
+				str=str+",'"+idsList.get(i)+"'";
+			}
+			str=str+")";
+			String sql1="select goods_id,count(1) cnt from eam_asset where status='complete' and goods_id in "+str+" and deleted=0 and owner_code='asset' group by goods_id";
+			String sql2="select goods_id,sum(stock_cur_number) cnt from eam_goods_stock where goods_id in "+str+" and deleted=0 and owner_code in ('real_part','real_stock') group by goods_id";
+			RcdSet assetRs=goodsStockService.dao().query(sql1);
+			RcdSet stockRs=goodsStockService.dao().query(sql2);
+			HashMap<String, Integer> map1= (HashMap<String, Integer>) assetRs.getValueMap("goods_id",String.class,"cnt",Integer.class);
+			HashMap<String, Integer> map2= (HashMap<String, Integer>) stockRs.getValueMap("goods_id",String.class,"cnt",Integer.class);
+			System.out.println(map1);
+			System.out.println(map2);
+			for(int i=0;i<list.getList().size();i++){
+				String goodsId=list.getList().get(i).getId();
+				if(!StringUtil.isBlank(goodsId)    ){
+					if(map1.containsKey(goodsId)){
+						list.getList().get(i).setRelatedAssetCount(map1.get(goodsId));
+					}else{
+						list.getList().get(i).setRelatedAssetCount(0);
+					}
+					if(map2.containsKey(goodsId)){
+						list.getList().get(i).setRelatedGoodsStockCount(map2.get(goodsId));
+					}else{
+						list.getList().get(i).setRelatedGoodsStockCount(0);
+					}
+				}else{
+					list.getList().get(i).setRelatedAssetCount(0);
+					list.getList().get(i).setRelatedGoodsStockCount(0);
+				}
+			}
+		}
+
+
         result.success(true).data(list);
         return result;
     }

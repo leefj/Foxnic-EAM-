@@ -1470,6 +1470,10 @@ public class EamRelationManager extends RelationManager {
         this.property(GoodsStockMeta.REAL_GOODS_PROP)
                 .using(EAMTables.EAM_GOODS_STOCK.REAL_STOCK_ID).join(EAMTables.EAM_GOODS_STOCK.ID);
 
+
+
+
+
     }
     public void setupAssetStockGoods(){
         // 关联来源

@@ -220,7 +220,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 return html
             }
 
-
             if(value==null) return "";
             return value;
         },

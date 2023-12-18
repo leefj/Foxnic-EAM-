@@ -31,8 +31,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品
  * <p>库存物品 , 数据表 eam_goods_stock 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 13:29:31
- * @sign 84A128D7E213F6DFC735B297205B35BE
+ * @since 2023-12-18 16:56:51
+ * @sign C30DA1C90B42074C1A6ABEFD1B4D85C2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -485,6 +485,30 @@ public class GoodsStock extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="库存备注" , notes = "库存备注")
 	private String goodsStockNotes;
+	
+	/**
+	 * relatedAssetCount：relatedAssetCount
+	*/
+	@ApiModelProperty(required = false,value="relatedAssetCount" , notes = "relatedAssetCount")
+	private Integer relatedAssetCount;
+	
+	/**
+	 * relatedGoodsStockCount：relatedGoodsStockCount
+	*/
+	@ApiModelProperty(required = false,value="relatedGoodsStockCount" , notes = "relatedGoodsStockCount")
+	private Integer relatedGoodsStockCount;
+	
+	/**
+	 * relatedAssetList：relatedAssetList
+	*/
+	@ApiModelProperty(required = false,value="relatedAssetList" , notes = "relatedAssetList")
+	private List<Asset> relatedAssetList;
+	
+	/**
+	 * relatedGoodsStockList：relatedGoodsStockList
+	*/
+	@ApiModelProperty(required = false,value="relatedGoodsStockList" , notes = "relatedGoodsStockList")
+	private List<GoodsStock> relatedGoodsStockList;
 	
 	/**
 	 * parentGoodsStockList：parentGoodsStockList
@@ -1935,6 +1959,104 @@ public class GoodsStock extends Entity {
 	}
 	
 	/**
+	 * 获得 relatedAssetCount<br>
+	 * relatedAssetCount
+	 * @return relatedAssetCount
+	*/
+	public Integer getRelatedAssetCount() {
+		return relatedAssetCount;
+	}
+	
+	/**
+	 * 设置 relatedAssetCount
+	 * @param relatedAssetCount relatedAssetCount
+	 * @return 当前对象
+	*/
+	public GoodsStock setRelatedAssetCount(Integer relatedAssetCount) {
+		this.relatedAssetCount=relatedAssetCount;
+		return this;
+	}
+	
+	/**
+	 * 获得 relatedGoodsStockCount<br>
+	 * relatedGoodsStockCount
+	 * @return relatedGoodsStockCount
+	*/
+	public Integer getRelatedGoodsStockCount() {
+		return relatedGoodsStockCount;
+	}
+	
+	/**
+	 * 设置 relatedGoodsStockCount
+	 * @param relatedGoodsStockCount relatedGoodsStockCount
+	 * @return 当前对象
+	*/
+	public GoodsStock setRelatedGoodsStockCount(Integer relatedGoodsStockCount) {
+		this.relatedGoodsStockCount=relatedGoodsStockCount;
+		return this;
+	}
+	
+	/**
+	 * 获得 relatedAssetList<br>
+	 * relatedAssetList
+	 * @return relatedAssetList
+	*/
+	public List<Asset> getRelatedAssetList() {
+		return relatedAssetList;
+	}
+	
+	/**
+	 * 设置 relatedAssetList
+	 * @param relatedAssetList relatedAssetList
+	 * @return 当前对象
+	*/
+	public GoodsStock setRelatedAssetList(List<Asset> relatedAssetList) {
+		this.relatedAssetList=relatedAssetList;
+		return this;
+	}
+	
+	/**
+	 * 添加 relatedAssetList
+	 * @param relatedAsset relatedAssetList
+	 * @return 当前对象
+	*/
+	public GoodsStock addRelatedAsset(Asset... relatedAsset) {
+		if(this.relatedAssetList==null) relatedAssetList=new ArrayList<>();
+		this.relatedAssetList.addAll(Arrays.asList(relatedAsset));
+		return this;
+	}
+	
+	/**
+	 * 获得 relatedGoodsStockList<br>
+	 * relatedGoodsStockList
+	 * @return relatedGoodsStockList
+	*/
+	public List<GoodsStock> getRelatedGoodsStockList() {
+		return relatedGoodsStockList;
+	}
+	
+	/**
+	 * 设置 relatedGoodsStockList
+	 * @param relatedGoodsStockList relatedGoodsStockList
+	 * @return 当前对象
+	*/
+	public GoodsStock setRelatedGoodsStockList(List<GoodsStock> relatedGoodsStockList) {
+		this.relatedGoodsStockList=relatedGoodsStockList;
+		return this;
+	}
+	
+	/**
+	 * 添加 relatedGoodsStockList
+	 * @param relatedGoodsStock relatedGoodsStockList
+	 * @return 当前对象
+	*/
+	public GoodsStock addRelatedGoodsStock(GoodsStock... relatedGoodsStock) {
+		if(this.relatedGoodsStockList==null) relatedGoodsStockList=new ArrayList<>();
+		this.relatedGoodsStockList.addAll(Arrays.asList(relatedGoodsStock));
+		return this;
+	}
+	
+	/**
 	 * 获得 parentGoodsStockList<br>
 	 * parentGoodsStockList
 	 * @return parentGoodsStockList
@@ -2183,6 +2305,7 @@ public class GoodsStock extends Entity {
 		if(all) {
 			inst.setOwnerCompany(this.getOwnerCompany());
 			inst.setGoodsStockSecurity(this.getGoodsStockSecurity());
+			inst.setRelatedAssetCount(this.getRelatedAssetCount());
 			inst.setGoods(this.getGoods());
 			inst.setParentGoodsStockList(this.getParentGoodsStockList());
 			inst.setSource(this.getSource());
@@ -2197,14 +2320,17 @@ public class GoodsStock extends Entity {
 			inst.setBrand(this.getBrand());
 			inst.setGoodsName(this.getGoodsName());
 			inst.setGoodsStockMax(this.getGoodsStockMax());
+			inst.setRelatedGoodsStockList(this.getRelatedGoodsStockList());
 			inst.setManager(this.getManager());
 			inst.setGoodsParentGoodsStockList(this.getGoodsParentGoodsStockList());
+			inst.setRelatedGoodsStockCount(this.getRelatedGoodsStockCount());
 			inst.setGoodsStockMin(this.getGoodsStockMin());
 			inst.setWarehouse(this.getWarehouse());
 			inst.setRealGoods(this.getRealGoods());
 			inst.setUseOrganization(this.getUseOrganization());
 			inst.setGoodsCategoryName(this.getGoodsCategoryName());
 			inst.setGoodsStockNotes(this.getGoodsStockNotes());
+			inst.setRelatedAssetList(this.getRelatedAssetList());
 			inst.setGoodsCode(this.getGoodsCode());
 			inst.setCategory(this.getCategory());
 		}
@@ -2321,6 +2447,7 @@ public class GoodsStock extends Entity {
 			// others
 			this.setOwnerCompany(DataParser.parse(Organization.class, map.get(GoodsStockMeta.OWNER_COMPANY)));
 			this.setGoodsStockSecurity(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_SECURITY)));
+			this.setRelatedAssetCount(DataParser.parse(Integer.class, map.get(GoodsStockMeta.RELATED_ASSET_COUNT)));
 			this.setGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockMeta.GOODS)));
 			this.setSource(DataParser.parse(DictItem.class, map.get(GoodsStockMeta.SOURCE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(GoodsStockMeta.ORIGINATOR)));
@@ -2332,6 +2459,7 @@ public class GoodsStock extends Entity {
 			this.setGoodsName(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_NAME)));
 			this.setGoodsStockMax(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_MAX)));
 			this.setManager(DataParser.parse(Employee.class, map.get(GoodsStockMeta.MANAGER)));
+			this.setRelatedGoodsStockCount(DataParser.parse(Integer.class, map.get(GoodsStockMeta.RELATED_GOODS_STOCK_COUNT)));
 			this.setGoodsStockMin(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_MIN)));
 			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(GoodsStockMeta.WAREHOUSE)));
 			this.setRealGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockMeta.REAL_GOODS)));
@@ -2398,6 +2526,7 @@ public class GoodsStock extends Entity {
 				// others
 				this.setOwnerCompany( (Organization)map.get(GoodsStockMeta.OWNER_COMPANY));
 				this.setGoodsStockSecurity( (String)map.get(GoodsStockMeta.GOODS_STOCK_SECURITY));
+				this.setRelatedAssetCount( (Integer)map.get(GoodsStockMeta.RELATED_ASSET_COUNT));
 				this.setGoods( (GoodsStock)map.get(GoodsStockMeta.GOODS));
 				this.setSource( (DictItem)map.get(GoodsStockMeta.SOURCE));
 				this.setOriginator( (Employee)map.get(GoodsStockMeta.ORIGINATOR));
@@ -2409,6 +2538,7 @@ public class GoodsStock extends Entity {
 				this.setGoodsName( (String)map.get(GoodsStockMeta.GOODS_NAME));
 				this.setGoodsStockMax( (String)map.get(GoodsStockMeta.GOODS_STOCK_MAX));
 				this.setManager( (Employee)map.get(GoodsStockMeta.MANAGER));
+				this.setRelatedGoodsStockCount( (Integer)map.get(GoodsStockMeta.RELATED_GOODS_STOCK_COUNT));
 				this.setGoodsStockMin( (String)map.get(GoodsStockMeta.GOODS_STOCK_MIN));
 				this.setWarehouse( (Warehouse)map.get(GoodsStockMeta.WAREHOUSE));
 				this.setRealGoods( (GoodsStock)map.get(GoodsStockMeta.REAL_GOODS));
