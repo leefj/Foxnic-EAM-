@@ -27,7 +27,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品VO类型
  * <p>库存物品 , 数据表 eam_goods_stock 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 13:29:31
+ * @since 2023-12-18 16:56:51
  * @sign 87176F150B412C151E8EC61D5D9C451A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -462,6 +462,7 @@ public class GoodsStockVO extends GoodsStock {
 			inst.setOwnerCompany(this.getOwnerCompany());
 			inst.setGoodsStockSecurity(this.getGoodsStockSecurity());
 			inst.setSearchField(this.getSearchField());
+			inst.setRelatedAssetCount(this.getRelatedAssetCount());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setGoods(this.getGoods());
 			inst.setPageSize(this.getPageSize());
@@ -482,9 +483,11 @@ public class GoodsStockVO extends GoodsStock {
 			inst.setBrand(this.getBrand());
 			inst.setGoodsName(this.getGoodsName());
 			inst.setGoodsStockMax(this.getGoodsStockMax());
+			inst.setRelatedGoodsStockList(this.getRelatedGoodsStockList());
 			inst.setManager(this.getManager());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setGoodsParentGoodsStockList(this.getGoodsParentGoodsStockList());
+			inst.setRelatedGoodsStockCount(this.getRelatedGoodsStockCount());
 			inst.setGoodsStockMin(this.getGoodsStockMin());
 			inst.setWarehouse(this.getWarehouse());
 			inst.setRealGoods(this.getRealGoods());
@@ -493,6 +496,7 @@ public class GoodsStockVO extends GoodsStock {
 			inst.setSortType(this.getSortType());
 			inst.setGoodsCategoryName(this.getGoodsCategoryName());
 			inst.setGoodsStockNotes(this.getGoodsStockNotes());
+			inst.setRelatedAssetList(this.getRelatedAssetList());
 			inst.setIds(this.getIds());
 			inst.setGoodsCode(this.getGoodsCode());
 			inst.setCategory(this.getCategory());
@@ -612,6 +616,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setOwnerCompany(DataParser.parse(Organization.class, map.get(GoodsStockVOMeta.OWNER_COMPANY)));
 			this.setGoodsStockSecurity(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_STOCK_SECURITY)));
 			this.setSearchField(DataParser.parse(String.class, map.get(GoodsStockVOMeta.SEARCH_FIELD)));
+			this.setRelatedAssetCount(DataParser.parse(Integer.class, map.get(GoodsStockVOMeta.RELATED_ASSET_COUNT)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(GoodsStockVOMeta.FUZZY_FIELD)));
 			this.setGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockVOMeta.GOODS)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(GoodsStockVOMeta.PAGE_SIZE)));
@@ -629,6 +634,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setGoodsStockMax(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_STOCK_MAX)));
 			this.setManager(DataParser.parse(Employee.class, map.get(GoodsStockVOMeta.MANAGER)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(GoodsStockVOMeta.REQUEST_ACTION)));
+			this.setRelatedGoodsStockCount(DataParser.parse(Integer.class, map.get(GoodsStockVOMeta.RELATED_GOODS_STOCK_COUNT)));
 			this.setGoodsStockMin(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_STOCK_MIN)));
 			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(GoodsStockVOMeta.WAREHOUSE)));
 			this.setRealGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockVOMeta.REAL_GOODS)));
@@ -699,6 +705,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setOwnerCompany( (Organization)map.get(GoodsStockVOMeta.OWNER_COMPANY));
 				this.setGoodsStockSecurity( (String)map.get(GoodsStockVOMeta.GOODS_STOCK_SECURITY));
 				this.setSearchField( (String)map.get(GoodsStockVOMeta.SEARCH_FIELD));
+				this.setRelatedAssetCount( (Integer)map.get(GoodsStockVOMeta.RELATED_ASSET_COUNT));
 				this.setFuzzyField( (String)map.get(GoodsStockVOMeta.FUZZY_FIELD));
 				this.setGoods( (GoodsStock)map.get(GoodsStockVOMeta.GOODS));
 				this.setPageSize( (Integer)map.get(GoodsStockVOMeta.PAGE_SIZE));
@@ -716,6 +723,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setGoodsStockMax( (String)map.get(GoodsStockVOMeta.GOODS_STOCK_MAX));
 				this.setManager( (Employee)map.get(GoodsStockVOMeta.MANAGER));
 				this.setRequestAction( (String)map.get(GoodsStockVOMeta.REQUEST_ACTION));
+				this.setRelatedGoodsStockCount( (Integer)map.get(GoodsStockVOMeta.RELATED_GOODS_STOCK_COUNT));
 				this.setGoodsStockMin( (String)map.get(GoodsStockVOMeta.GOODS_STOCK_MIN));
 				this.setWarehouse( (Warehouse)map.get(GoodsStockVOMeta.WAREHOUSE));
 				this.setRealGoods( (GoodsStock)map.get(GoodsStockVOMeta.REAL_GOODS));

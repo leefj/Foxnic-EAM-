@@ -34,7 +34,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            cfg.cellMinWidth=160;;
+            cfg.cellMinWidth=160;
+            var cols=cfg.cols[0];
+            for(var i=0;i<cols.length;i++){
+                if(cols[i]&&cols[i].field=="relatedAssetCount"){
+                    cfg.cols[0][i].event="eventRelatedAssetCount"
+                   // break;
+                }
+                if(cols[i]&&cols[i].field=="relatedGoodsStockCount"){
+                    cfg.cols[0][i].event="eventRelatedGoodsStockCount"
+                   // break;
+                }
+            }
         },
         /**
          * 表格渲染后调用
@@ -91,6 +102,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="relatedGoodsStockCount"){
+                var html="<span style='color: #0052cc!important'>"+value+" </span>"
+                return html
+            }
+
+            if(field=="relatedAssetCount"){
+                var html="<span style='color: #0052cc!important'>"+value+" </span>"
+                return html
+            }
+
+
             if(field=="parentGoodsStockIds"){
                 var res="";
                 if(r.parentGoodsStockList&&r.parentGoodsStockList.length>0){
@@ -197,8 +220,44 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 列表操作栏按钮事件前调用，如果返回 false 则不执行后续代码
          * */
+        viewRelatedAsset:function(data){
+            var q="?goodsId="+data.id;
+            admin.popupCenter({
+                title: "关联资产",
+                resize: false,
+                offset: [2,null],
+                area: ["90%","90%"],
+                type: 2,
+                id:"eam-goods-asset-list-data-win",
+                content: '/business/eam/goods_stock_goods/related_asset_list.html'+q,
+                finish: function () {
+                }
+            });
+        },
+        viewRelatedStock:function(data){
+            var q="?goodsId="+data.id;
+            admin.popupCenter({
+                title: "关联库存",
+                resize: false,
+                offset: [2,null],
+                area: ["90%","90%"],
+                type: 2,
+                id:"eam-goods-stock-list-data-win",
+                content: '/business/eam/goods_stock_goods/related_stock_list.html'+q,
+                finish: function () {
+                }
+            });
+        },
         beforeRowOperationEvent:function (data,obj) {
             console.log('beforeRowOperationEvent',data,obj);
+            if(obj.event&&obj.event=="eventRelatedAssetCount"){
+                window.pageExt.list.viewRelatedAsset(data);
+            }
+
+            if(obj.event&&obj.event=="eventRelatedGoodsStockCount"){
+                window.pageExt.list.viewRelatedStock(data);
+            }
+
             return true;
         },
         /**
@@ -211,7 +270,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 末尾执行
          */
         ending:function() {
-
+            table.on('row(data-table)',function(obj){
+                console.log('row(data-table)');
+            });
         }
     }
 
@@ -319,7 +380,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("id ",id)
             console.log("data[i] ",item)
             console.log("data ",data)
-
             console.log("i ",i)
           //  opts.push(window.pageExt.form.selectBoxDataTransform("parentGoodsStockIds",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
             if(id=="parentGoodsStockIds"){

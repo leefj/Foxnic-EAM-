@@ -11,6 +11,7 @@ import org.github.foxnic.web.domain.hrm.Organization;
 import com.dt.platform.domain.eam.Warehouse;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.dt.platform.domain.eam.Asset;
 import java.util.List;
 import javax.persistence.Transient;
 
@@ -18,8 +19,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 13:29:31
- * @sign 84A128D7E213F6DFC735B297205B35BE
+ * @since 2023-12-18 16:56:51
+ * @sign C30DA1C90B42074C1A6ABEFD1B4D85C2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -756,6 +757,46 @@ public class GoodsStockMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> GOODS_STOCK_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,GOODS_STOCK_NOTES, java.lang.String.class, "库存备注", "库存备注", java.lang.String.class, null);
 	
 	/**
+	 * relatedAssetCount , 类型: java.lang.Integer
+	*/
+	public static final String RELATED_ASSET_COUNT="relatedAssetCount";
+	
+	/**
+	 * relatedAssetCount , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.Integer> RELATED_ASSET_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,RELATED_ASSET_COUNT, java.lang.Integer.class, "relatedAssetCount", "relatedAssetCount", java.lang.Integer.class, null);
+	
+	/**
+	 * relatedGoodsStockCount , 类型: java.lang.Integer
+	*/
+	public static final String RELATED_GOODS_STOCK_COUNT="relatedGoodsStockCount";
+	
+	/**
+	 * relatedGoodsStockCount , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.Integer> RELATED_GOODS_STOCK_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,RELATED_GOODS_STOCK_COUNT, java.lang.Integer.class, "relatedGoodsStockCount", "relatedGoodsStockCount", java.lang.Integer.class, null);
+	
+	/**
+	 * relatedAssetList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String RELATED_ASSET_LIST="relatedAssetList";
+	
+	/**
+	 * relatedAssetList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,com.dt.platform.domain.eam.Asset> RELATED_ASSET_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,RELATED_ASSET_LIST, java.util.List.class, "relatedAssetList", "relatedAssetList", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
+	 * relatedGoodsStockList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final String RELATED_GOODS_STOCK_LIST="relatedGoodsStockList";
+	
+	/**
+	 * relatedGoodsStockList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,com.dt.platform.domain.eam.GoodsStock> RELATED_GOODS_STOCK_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,RELATED_GOODS_STOCK_LIST, java.util.List.class, "relatedGoodsStockList", "relatedGoodsStockList", com.dt.platform.domain.eam.GoodsStock.class, null);
+	
+	/**
 	 * parentGoodsStockList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.GoodsStock
 	*/
 	public static final String PARENT_GOODS_STOCK_LIST="parentGoodsStockList";
@@ -808,7 +849,7 @@ public class GoodsStockMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SN , PID , POSITION_ID , POSITION_DETAIL , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , MANUFACTURER , BRAND , GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , REAL_GOODS , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES , PARENT_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_IDS , SUB_GOODS_STOCK_LIST , SUB_GOODS_STOCK_IDS , GOODS_PARENT_GOODS_STOCK_LIST };
+	public static final String[] $PROPS={ ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SN , PID , POSITION_ID , POSITION_DETAIL , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , MANUFACTURER , BRAND , GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , REAL_GOODS , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES , RELATED_ASSET_COUNT , RELATED_GOODS_STOCK_COUNT , RELATED_ASSET_LIST , RELATED_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_IDS , SUB_GOODS_STOCK_LIST , SUB_GOODS_STOCK_IDS , GOODS_PARENT_GOODS_STOCK_LIST };
 	
 	/**
 	 * 代理类
@@ -1622,6 +1663,50 @@ public class GoodsStockMeta {
 		}
 		
 		/**
+		 * 设置 relatedAssetCount
+		 * @param relatedAssetCount relatedAssetCount
+		 * @return 当前对象
+		*/
+		public GoodsStock setRelatedAssetCount(Integer relatedAssetCount) {
+			super.change(RELATED_ASSET_COUNT,super.getRelatedAssetCount(),relatedAssetCount);
+			super.setRelatedAssetCount(relatedAssetCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 relatedGoodsStockCount
+		 * @param relatedGoodsStockCount relatedGoodsStockCount
+		 * @return 当前对象
+		*/
+		public GoodsStock setRelatedGoodsStockCount(Integer relatedGoodsStockCount) {
+			super.change(RELATED_GOODS_STOCK_COUNT,super.getRelatedGoodsStockCount(),relatedGoodsStockCount);
+			super.setRelatedGoodsStockCount(relatedGoodsStockCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 relatedAssetList
+		 * @param relatedAssetList relatedAssetList
+		 * @return 当前对象
+		*/
+		public GoodsStock setRelatedAssetList(List<Asset> relatedAssetList) {
+			super.change(RELATED_ASSET_LIST,super.getRelatedAssetList(),relatedAssetList);
+			super.setRelatedAssetList(relatedAssetList);
+			return this;
+		}
+		
+		/**
+		 * 设置 relatedGoodsStockList
+		 * @param relatedGoodsStockList relatedGoodsStockList
+		 * @return 当前对象
+		*/
+		public GoodsStock setRelatedGoodsStockList(List<GoodsStock> relatedGoodsStockList) {
+			super.change(RELATED_GOODS_STOCK_LIST,super.getRelatedGoodsStockList(),relatedGoodsStockList);
+			super.setRelatedGoodsStockList(relatedGoodsStockList);
+			return this;
+		}
+		
+		/**
 		 * 设置 parentGoodsStockList
 		 * @param parentGoodsStockList parentGoodsStockList
 		 * @return 当前对象
@@ -1746,6 +1831,7 @@ public class GoodsStockMeta {
 			if(all) {
 				inst.setOwnerCompany(this.getOwnerCompany());
 				inst.setGoodsStockSecurity(this.getGoodsStockSecurity());
+				inst.setRelatedAssetCount(this.getRelatedAssetCount());
 				inst.setGoods(this.getGoods());
 				inst.setParentGoodsStockList(this.getParentGoodsStockList());
 				inst.setSource(this.getSource());
@@ -1760,14 +1846,17 @@ public class GoodsStockMeta {
 				inst.setBrand(this.getBrand());
 				inst.setGoodsName(this.getGoodsName());
 				inst.setGoodsStockMax(this.getGoodsStockMax());
+				inst.setRelatedGoodsStockList(this.getRelatedGoodsStockList());
 				inst.setManager(this.getManager());
 				inst.setGoodsParentGoodsStockList(this.getGoodsParentGoodsStockList());
+				inst.setRelatedGoodsStockCount(this.getRelatedGoodsStockCount());
 				inst.setGoodsStockMin(this.getGoodsStockMin());
 				inst.setWarehouse(this.getWarehouse());
 				inst.setRealGoods(this.getRealGoods());
 				inst.setUseOrganization(this.getUseOrganization());
 				inst.setGoodsCategoryName(this.getGoodsCategoryName());
 				inst.setGoodsStockNotes(this.getGoodsStockNotes());
+				inst.setRelatedAssetList(this.getRelatedAssetList());
 				inst.setGoodsCode(this.getGoodsCode());
 				inst.setCategory(this.getCategory());
 			}
