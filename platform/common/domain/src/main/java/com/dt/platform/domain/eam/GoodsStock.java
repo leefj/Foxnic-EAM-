@@ -31,8 +31,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品
  * <p>库存物品 , 数据表 eam_goods_stock 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-17 22:08:16
- * @sign 1B1DFC6512D8616E440B1A2E39444542
+ * @since 2023-12-18 09:40:48
+ * @sign 0BA809E3BF3F1589D2AC4F875DCE3B1C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -266,6 +266,12 @@ public class GoodsStock extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
 	private String originatorId;
+	
+	/**
+	 * 序列：序列
+	*/
+	@ApiModelProperty(required = false,value="序列" , notes = "序列")
+	private String sn;
 	
 	/**
 	 * 父级物品：父级物品
@@ -1202,6 +1208,25 @@ public class GoodsStock extends Entity {
 	}
 	
 	/**
+	 * 获得 序列<br>
+	 * 序列
+	 * @return 序列
+	*/
+	public String getSn() {
+		return sn;
+	}
+	
+	/**
+	 * 设置 序列
+	 * @param sn 序列
+	 * @return 当前对象
+	*/
+	public GoodsStock setSn(String sn) {
+		this.sn=sn;
+		return this;
+	}
+	
+	/**
 	 * 获得 父级物品<br>
 	 * 父级物品
 	 * @return 父级物品
@@ -2084,6 +2109,7 @@ public class GoodsStock extends Entity {
 		inst.setPictureId(this.getPictureId());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setOriginatorId(this.getOriginatorId());
+		inst.setSn(this.getSn());
 		inst.setSupplierName(this.getSupplierName());
 		inst.setStockInNumber(this.getStockInNumber());
 		inst.setAmount(this.getAmount());
@@ -2219,6 +2245,7 @@ public class GoodsStock extends Entity {
 			this.setPictureId(DataParser.parse(String.class, map.get(GoodsStockMeta.PICTURE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(GoodsStockMeta.UPDATE_BY)));
 			this.setOriginatorId(DataParser.parse(String.class, map.get(GoodsStockMeta.ORIGINATOR_ID)));
+			this.setSn(DataParser.parse(String.class, map.get(GoodsStockMeta.SN)));
 			this.setSupplierName(DataParser.parse(String.class, map.get(GoodsStockMeta.SUPPLIER_NAME)));
 			this.setStockInNumber(DataParser.parse(BigDecimal.class, map.get(GoodsStockMeta.STOCK_IN_NUMBER)));
 			this.setAmount(DataParser.parse(BigDecimal.class, map.get(GoodsStockMeta.AMOUNT)));
@@ -2293,6 +2320,7 @@ public class GoodsStock extends Entity {
 				this.setPictureId( (String)map.get(GoodsStockMeta.PICTURE_ID));
 				this.setUpdateBy( (String)map.get(GoodsStockMeta.UPDATE_BY));
 				this.setOriginatorId( (String)map.get(GoodsStockMeta.ORIGINATOR_ID));
+				this.setSn( (String)map.get(GoodsStockMeta.SN));
 				this.setSupplierName( (String)map.get(GoodsStockMeta.SUPPLIER_NAME));
 				this.setStockInNumber( (BigDecimal)map.get(GoodsStockMeta.STOCK_IN_NUMBER));
 				this.setAmount( (BigDecimal)map.get(GoodsStockMeta.AMOUNT));
@@ -2380,6 +2408,7 @@ public class GoodsStock extends Entity {
 			this.setPictureId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.PICTURE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(GoodsStockMeta.UPDATE_BY)));
 			this.setOriginatorId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.ORIGINATOR_ID)));
+			this.setSn(DataParser.parse(String.class, r.getValue(GoodsStockMeta.SN)));
 			this.setSupplierName(DataParser.parse(String.class, r.getValue(GoodsStockMeta.SUPPLIER_NAME)));
 			this.setStockInNumber(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockMeta.STOCK_IN_NUMBER)));
 			this.setAmount(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockMeta.AMOUNT)));
@@ -2432,6 +2461,7 @@ public class GoodsStock extends Entity {
 				this.setPictureId( (String)r.getValue(GoodsStockMeta.PICTURE_ID));
 				this.setUpdateBy( (String)r.getValue(GoodsStockMeta.UPDATE_BY));
 				this.setOriginatorId( (String)r.getValue(GoodsStockMeta.ORIGINATOR_ID));
+				this.setSn( (String)r.getValue(GoodsStockMeta.SN));
 				this.setSupplierName( (String)r.getValue(GoodsStockMeta.SUPPLIER_NAME));
 				this.setStockInNumber( (BigDecimal)r.getValue(GoodsStockMeta.STOCK_IN_NUMBER));
 				this.setAmount( (BigDecimal)r.getValue(GoodsStockMeta.AMOUNT));

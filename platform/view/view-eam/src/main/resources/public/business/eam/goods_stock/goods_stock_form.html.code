@@ -2,7 +2,7 @@
 /**
  * 库存物品 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-17 22:08:18
+ * @since 2023-12-18 09:40:50
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-5777-content">
+        <div class="layui-row form-row" id="random-7971-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -124,7 +124,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-6800-content">
+        <div class="layui-row form-row" id="random-9676-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -203,7 +203,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-1479-content">
+        <div class="layui-row form-row" id="random-9849-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->

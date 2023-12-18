@@ -430,7 +430,7 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 	 * */
 	@Override
 	public Result update(AssetStockGoodsTranfer assetStockGoodsTranfer , SaveMode mode,boolean throwsException) {
-
+		AssetStockGoodsTranfer bill=getById(assetStockGoodsTranfer.getId());
 		GoodsStock qE=new GoodsStock();
 		qE.setOwnerTmpId(assetStockGoodsTranfer.getId());
 		List<GoodsStock> list = goodsStockService.queryList(qE);
@@ -455,8 +455,8 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 		for(int i=0;i<list.size();i++){
 			//调出库存多--->调入库存(单)
 			list.get(i).setWarehouseId(assetStockGoodsTranfer.getWarehouseOutId());
-			list.get(i).setBusinessCode(assetStockGoodsTranfer.getBusinessCode());
-			list.get(i).setOwnerCode(assetStockGoodsTranfer.getOwnerType());
+			list.get(i).setBusinessCode(bill.getBusinessCode());
+			list.get(i).setOwnerCode(bill.getOwnerType());
 		}
 		return goodsStockService.saveOwnerData(assetStockGoodsTranfer.getId(),assetStockGoodsTranfer.getOwnerType(),list);
 

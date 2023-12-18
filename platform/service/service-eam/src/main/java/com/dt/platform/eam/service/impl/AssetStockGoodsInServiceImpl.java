@@ -267,7 +267,8 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 				String goodsId=goods.get(i).getGoodsId();
 				String stockInNumber=goods.get(i).getStockInNumber()+"";
 				String warehouseId=goods.get(i).getWarehouseId();
-
+				String notes=goods.get(i).getNotes();
+				String sn=goods.get(i).getSn();
 				if(StringUtil.isBlank(goodsId)||StringUtil.isBlank(warehouseId)){
 					Logger.info("goodsId or warehouseId is empty");
 				}else{
@@ -286,6 +287,8 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 						ins.set("warehouse_id",warehouseId);
 						ins.set("goods_id",goodsId);
 						ins.set("category_id",goods.get(i).getCategoryId());
+						ins.set("notes",notes);
+						ins.set("sn",sn);
 						this.dao.execute(ins);
 					}else{
 						//增量修改物品数据
@@ -422,6 +425,7 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 	@Override
 	public Result update(AssetStockGoodsIn assetStockGoodsIn , SaveMode mode,boolean throwsException) {
 
+		AssetStockGoodsIn bill=this.getById(assetStockGoodsIn.getId());
 		GoodsStock qE=new GoodsStock();
 		qE.setOwnerTmpId(assetStockGoodsIn.getId());
 		List<GoodsStock> list =goodsStockService.queryList(qE);
@@ -446,10 +450,10 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 			list.get(i).setManagerId(assetStockGoodsIn.getManagerId());
 			list.get(i).setStatus(assetStockGoodsIn.getStatus());
 			list.get(i).setStorageDate(new Date());
-			list.get(i).setBusinessCode(assetStockGoodsIn.getBusinessCode());
+			list.get(i).setBusinessCode(bill.getBusinessCode());
 			list.get(i).setOwnerCode(assetStockGoodsIn.getOwnerType());
-
 		}
+		//重新更新表
 		return goodsStockService.saveOwnerData(assetStockGoodsIn.getId(),assetStockGoodsIn.getOwnerType(),list);
 
 	}

@@ -34,7 +34,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-17 21:41:59
+ * @since 2023-12-18 09:37:38
  * @sign F4526C75FDE1B25AF5B7A087710234CF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

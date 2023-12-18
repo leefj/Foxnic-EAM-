@@ -27,7 +27,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品VO类型
  * <p>库存物品 , 数据表 eam_goods_stock 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-17 22:08:16
+ * @since 2023-12-18 09:40:48
  * @sign 87176F150B412C151E8EC61D5D9C451A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -437,6 +437,7 @@ public class GoodsStockVO extends GoodsStock {
 		inst.setPictureId(this.getPictureId());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setOriginatorId(this.getOriginatorId());
+		inst.setSn(this.getSn());
 		inst.setSupplierName(this.getSupplierName());
 		inst.setStockInNumber(this.getStockInNumber());
 		inst.setAmount(this.getAmount());
@@ -584,6 +585,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setPictureId(DataParser.parse(String.class, map.get(GoodsStockVOMeta.PICTURE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(GoodsStockVOMeta.UPDATE_BY)));
 			this.setOriginatorId(DataParser.parse(String.class, map.get(GoodsStockVOMeta.ORIGINATOR_ID)));
+			this.setSn(DataParser.parse(String.class, map.get(GoodsStockVOMeta.SN)));
 			this.setSupplierName(DataParser.parse(String.class, map.get(GoodsStockVOMeta.SUPPLIER_NAME)));
 			this.setStockInNumber(DataParser.parse(BigDecimal.class, map.get(GoodsStockVOMeta.STOCK_IN_NUMBER)));
 			this.setAmount(DataParser.parse(BigDecimal.class, map.get(GoodsStockVOMeta.AMOUNT)));
@@ -668,6 +670,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setPictureId( (String)map.get(GoodsStockVOMeta.PICTURE_ID));
 				this.setUpdateBy( (String)map.get(GoodsStockVOMeta.UPDATE_BY));
 				this.setOriginatorId( (String)map.get(GoodsStockVOMeta.ORIGINATOR_ID));
+				this.setSn( (String)map.get(GoodsStockVOMeta.SN));
 				this.setSupplierName( (String)map.get(GoodsStockVOMeta.SUPPLIER_NAME));
 				this.setStockInNumber( (BigDecimal)map.get(GoodsStockVOMeta.STOCK_IN_NUMBER));
 				this.setAmount( (BigDecimal)map.get(GoodsStockVOMeta.AMOUNT));
@@ -765,6 +768,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setPictureId(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.PICTURE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.UPDATE_BY)));
 			this.setOriginatorId(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.ORIGINATOR_ID)));
+			this.setSn(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.SN)));
 			this.setSupplierName(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.SUPPLIER_NAME)));
 			this.setStockInNumber(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockVOMeta.STOCK_IN_NUMBER)));
 			this.setAmount(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockVOMeta.AMOUNT)));
@@ -817,6 +821,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setPictureId( (String)r.getValue(GoodsStockVOMeta.PICTURE_ID));
 				this.setUpdateBy( (String)r.getValue(GoodsStockVOMeta.UPDATE_BY));
 				this.setOriginatorId( (String)r.getValue(GoodsStockVOMeta.ORIGINATOR_ID));
+				this.setSn( (String)r.getValue(GoodsStockVOMeta.SN));
 				this.setSupplierName( (String)r.getValue(GoodsStockVOMeta.SUPPLIER_NAME));
 				this.setStockInNumber( (BigDecimal)r.getValue(GoodsStockVOMeta.STOCK_IN_NUMBER));
 				this.setAmount( (BigDecimal)r.getValue(GoodsStockVOMeta.AMOUNT));
