@@ -98,6 +98,12 @@ public interface AssetReportServiceProxy {
 	public static final String QUERY_INSPECT_DATA = API_PREFIX + "query-inspect-data";
 
 	/**
+	 * 资产未关联档案
+	 */
+	public static final String ASSET_NOT_GOODS = API_PREFIX + "asset-not-goods";
+
+
+	/**
 	 * 控制器类名
 	 * */
 	public static final String CONTROLLER_CLASS_NAME="com.dt.platform.eam.controller.AssetReportController";

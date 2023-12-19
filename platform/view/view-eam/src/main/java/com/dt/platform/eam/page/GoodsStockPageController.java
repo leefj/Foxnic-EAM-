@@ -63,7 +63,6 @@ public class GoodsStockPageController extends ViewController {
 	@RequestMapping("/stock_book_tree.html")
 	public String treeList(Model model,HttpServletRequest request,String ownerCode,String ownerType) {
 		model.addAttribute("ownerCode",ownerCode);
-
 		Result<HashMap<String, List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(AssetAttributeItemOwnerEnum.ASSET_STOCK_GOODS.code(),null);
 		if(result.isSuccess()){
 			HashMap<String,List<AssetAttributeItem>> data = result.getData();
