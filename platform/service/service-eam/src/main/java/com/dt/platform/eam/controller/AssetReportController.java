@@ -10,6 +10,7 @@ import com.dt.platform.eam.service.IAssetService;
 import com.dt.platform.proxy.eam.AssetReportServiceProxy;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.Api;
@@ -151,6 +152,23 @@ public class AssetReportController extends SuperController {
         return result;
     }
 
+
+
+
+    @ApiOperation(value = "资产未关联档案")
+    @ApiOperationSupport(order=9)
+    @SentinelResource(value = AssetReportServiceProxy.ASSET_NOT_GOODS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+    @PostMapping(AssetReportServiceProxy.ASSET_NOT_GOODS)
+    public Result<PagedList<Asset>> assetNotGoods(AssetVO sample) {
+        sample.setGoodsId(null);
+        Result<PagedList<Asset>> result = new Result<>();
+        ConditionExpr expr=new ConditionExpr();
+        expr.and("goods_id is null ");
+        PagedList<Asset> list=assetService.queryPagedList(sample,expr,sample.getPageSize(),sample.getPageIndex());
+        assetService.joinData(list.getList());
+        result.success(true).data(list);
+        return result;
+    }
 
 
 

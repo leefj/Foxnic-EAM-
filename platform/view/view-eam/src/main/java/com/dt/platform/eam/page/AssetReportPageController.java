@@ -1,10 +1,12 @@
 package com.dt.platform.eam.page;
 
 import com.dt.platform.constants.enums.eam.AssetAttributeItemOwnerEnum;
+import com.dt.platform.constants.enums.eam.AssetOwnerCodeEnum;
 import com.dt.platform.domain.eam.AssetAttributeItem;
 import com.dt.platform.proxy.eam.AssetAttributeItemServiceProxy;
 import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +44,24 @@ public class AssetReportPageController extends ViewController {
 			proxy=AssetServiceProxy.api();
 		}
 		return proxy;
+	}
+
+
+
+
+	/**
+	 * 资产未关联档案
+	 */
+	@RequestMapping("/asset_not_goods.html")
+	public String assetNotGoods(Model model,HttpServletRequest request) {
+		String itemOwner=AssetAttributeItemOwnerEnum.ASSET_BILL.code();
+		Result<HashMap<String,List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(itemOwner,null);
+		if(result.isSuccess()){
+			HashMap<String,List<AssetAttributeItem>> data = result.getData();
+			List<AssetAttributeItem> list=data.get("attributeListData");
+			model.addAttribute("attributeListData",list);
+		}
+		return prefix+"/asset_not_goods";
 	}
 
 
