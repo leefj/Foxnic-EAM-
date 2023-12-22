@@ -1,3 +1,7 @@
 ###########121.43.103.102###########
-mkdir:cannotcreatedirectory‘/app/app/backup’:Permissiondenied
-backupdir/app/app/backup/dbnotexist
+setdbname:foxnic
+starttobackup,dbname:foxnic,file:/app/app/backup/db/foxnic_backup_20231219_20_23_31.tar.gz
+mysqldump:[Warning]Usingapasswordonthecommandlineinterfacecanbeinsecure.
+./db.sql
+backupfinish
+/app/app/backup/db/db.sql
