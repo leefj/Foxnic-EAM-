@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/11/09"
+modify_date="2023/12/21"
 ####################################################################################
 # run:
 #   sh deployApp.sh
@@ -15,7 +15,7 @@ modify_date="2023/11/09"
 #   rm -rf /app/java
 #   rm -rf /app/db
 #   rm -rf /app/app
-#   ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
+#   ps -ef|grep java  |grep -v grep |awk '{print $2}'|xargs kill -9
 #   ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
 #   ps -ef|grep nginx |grep -v grep |awk '{print $2}'|xargs kill -9
 #   ps -ef|grep redis |grep -v grep |awk '{print $2}'|xargs kill -9
@@ -40,10 +40,11 @@ modify_date="2023/11/09"
 ################################################################  config
 function qa(){
   echo "如果正常脚本执行后，应用无法访问或一键安装脚本无法进行"
-  echo "1、请检查yum是否正确配置。"
-  echo "2、请检查外部或内部防火墙、网络策略是否开通"
-  echo "3、检查端口是否正常，默认应用端口:$app_port,流程引擎端口:$bpm_port 命令：netstat -ant|grep LISTEN"
-  echo "4、检查应用日志，看启动是否报错"
+  echo "1、仅支持Redhat、CentOS 7.9 8.0版本。"
+  echo "2、请检查yum是否正确配置。"
+  echo "3、请检查外部或内部防火墙、网络策略是否开通"
+  echo "4、检查端口是否正常，默认应用端口:$app_port,流程引擎端口:$bpm_port 命令：netstat -ant|grep LISTEN"
+  echo "5、检查应用日志，看启动是否报错"
   echo "******* 相关使用手册、维护手册、部署手册见百度网盘,网盘地址在git:https://gitee.com/lank/eam *****"
   return 0
 }
@@ -85,6 +86,15 @@ mysql_dir="$base_dir/db"
 JAVA=$java_dir/java/bin/java
 MYSQL_HOME=$mysql_dir/mysql
 MYSQL=$mysql_dir/mysql/bin/mysql
+
+which yum>/dev/null
+yumRes=$?
+if [[ $yumRes -ne 0 ]];then
+	echo "install check error,yum command not exist,please install it first!"
+	qa
+	exit 1
+fi
+
 ################################################################ verify command,netstat
 yum -y install nc libaio unzip zip telnet net-tools wget java numactl
 yum -y install glibc-*
@@ -887,24 +897,18 @@ echo "kb_restart:restartBpm"
 echo "kj_restart:restartJob"
 echo "kt_restart:restartTengine"
 echo "tdb: go to connect to database"
-echo "******* 相关使用手册、维护手册、部署手册见百度网盘,网盘地址在git:https://gitee.com/lank/eam *****"
+echo "** 项目源代码地址:https://gitee.com/lank/eam"
+echo "** 相关使用手册、维护手册、部署手册等在百度网盘，链接: https://pan.baidu.com/s/1d6Yvszugq2fdGNEsW8ijmQ 提取码: lm6i  "
 echo "---------------------------------------------- end ---------------------------------------"
 qa
 exit 0
-#################################################################### install finish
-##########################################################################################
-##########################################################################################
-##########################################################################################
-##########################################################################################
-##########################################################################################
-##########################################################################################
-##########################################################################################
+#install finish
 ##########################################################################################
 ##########################################################################################
 rm -rf /app/java
 rm -rf /app/db
 rm -rf /app/app
-ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
+ps -ef|grep java  |grep -v grep |awk '{print $2}'|xargs kill -9
 ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
 ps -ef|grep nginx |grep -v grep |awk '{print $2}'|xargs kill -9
 ps -ef|grep redis |grep -v grep |awk '{print $2}'|xargs kill -9
