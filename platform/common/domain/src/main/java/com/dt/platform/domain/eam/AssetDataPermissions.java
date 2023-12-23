@@ -29,7 +29,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产数据权限
  * <p>资产数据权限 , 数据表 eam_asset_data_permissions 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-26 07:51:03
+ * @since 2023-12-23 09:55:55
  * @sign CB43B0BCB8C2479D0971F2F596B639D8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -58,7 +58,7 @@ public class AssetDataPermissions extends Entity {
 	/**
 	 * 权限状态：权限状态
 	*/
-	@ApiModelProperty(required = false,value="权限状态" , notes = "权限状态" , example = "disable")
+	@ApiModelProperty(required = false,value="权限状态" , notes = "权限状态" , example = "enable")
 	private String status;
 	
 	/**
@@ -160,7 +160,7 @@ public class AssetDataPermissions extends Entity {
 	/**
 	 * 仓库：仓库
 	*/
-	@ApiModelProperty(required = false,value="仓库" , notes = "仓库")
+	@ApiModelProperty(required = false,value="仓库" , notes = "仓库" , example = "disable")
 	private String warehouseAuthorityEnable;
 	
 	/**
@@ -178,7 +178,7 @@ public class AssetDataPermissions extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
 	
 	/**
@@ -202,7 +202,7 @@ public class AssetDataPermissions extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-03-20 06:32:23")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-12-23 07:50:37")
 	private Date updateTime;
 	
 	/**
@@ -229,7 +229,7 @@ public class AssetDataPermissions extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "45")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "50")
 	private Integer version;
 	
 	/**

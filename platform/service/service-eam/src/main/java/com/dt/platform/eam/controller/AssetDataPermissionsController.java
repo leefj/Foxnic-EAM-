@@ -1,6 +1,15 @@
 package com.dt.platform.eam.controller;
 
 import java.util.*;
+
+import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.ops.meta.PersonMeta;
+import com.github.foxnic.dao.data.RcdSet;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.domain.hrm.meta.EmployeeMeta;
+import org.github.foxnic.web.domain.system.BusiRole;
+import org.github.foxnic.web.domain.system.meta.BusiRoleMeta;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,41 +24,27 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 
 import com.dt.platform.proxy.eam.AssetDataPermissionsServiceProxy;
 import com.dt.platform.domain.eam.meta.AssetDataPermissionsVOMeta;
-import com.dt.platform.domain.eam.AssetDataPermissions;
-import com.dt.platform.domain.eam.AssetDataPermissionsVO;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.springboot.web.DownloadUtil;
 import com.github.foxnic.dao.data.PagedList;
-import java.util.Date;
-import java.sql.Timestamp;
 import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.commons.io.StreamUtil;
+
 import java.util.Map;
-import com.github.foxnic.dao.excel.ValidateResult;
-import java.io.InputStream;
+
 import com.dt.platform.domain.eam.meta.AssetDataPermissionsMeta;
-import org.github.foxnic.web.domain.system.BusiRole;
-import org.github.foxnic.web.domain.pcm.Catalog;
-import org.github.foxnic.web.domain.hrm.Organization;
-import com.dt.platform.domain.eam.Position;
-import com.dt.platform.domain.eam.Warehouse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiImplicitParam;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.dt.platform.eam.service.IAssetDataPermissionsService;
-import com.github.foxnic.api.validate.annotations.NotNull;
 
 /**
  * <p>
  * 资产数据权限接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-26 07:51:05
+ * @since 2023-12-23 08:57:24
 */
 
 @InDoc
@@ -67,7 +62,7 @@ public class AssetDataPermissionsController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "523894324979568640"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "资产全局数据角色_管理员"),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.STATUS , value = "权限状态" , required = false , dataTypeClass=String.class , example = "disable"),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.STATUS , value = "权限状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.OWNER_CODE , value = "归属" , required = false , dataTypeClass=String.class , example = "asset"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.CODE , value = "权限编码" , required = false , dataTypeClass=String.class , example = "data_perm_1"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.ROLE_CODE , value = "业务角色" , required = false , dataTypeClass=String.class , example = "eam_data_perm_default_1"),
@@ -84,10 +79,11 @@ public class AssetDataPermissionsController extends SuperController {
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.CATALOG_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.POSITION_AUTHORITY_ENABLE , value = "位置权限状态" , required = false , dataTypeClass=String.class , example = "disable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.POSITION_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_AUTHORITY_ENABLE , value = "仓库" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_AUTHORITY_ENABLE , value = "仓库" , required = false , dataTypeClass=String.class , example = "disable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.PRIORITY , value = "优先级" , required = false , dataTypeClass=Integer.class , example = "100"),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "备注"),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -191,7 +187,7 @@ public class AssetDataPermissionsController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "523894324979568640"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "资产全局数据角色_管理员"),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.STATUS , value = "权限状态" , required = false , dataTypeClass=String.class , example = "disable"),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.STATUS , value = "权限状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.OWNER_CODE , value = "归属" , required = false , dataTypeClass=String.class , example = "asset"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.CODE , value = "权限编码" , required = false , dataTypeClass=String.class , example = "data_perm_1"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.ROLE_CODE , value = "业务角色" , required = false , dataTypeClass=String.class , example = "eam_data_perm_default_1"),
@@ -208,10 +204,11 @@ public class AssetDataPermissionsController extends SuperController {
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.CATALOG_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.POSITION_AUTHORITY_ENABLE , value = "位置权限状态" , required = false , dataTypeClass=String.class , example = "disable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.POSITION_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_AUTHORITY_ENABLE , value = "仓库" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_AUTHORITY_ENABLE , value = "仓库" , required = false , dataTypeClass=String.class , example = "disable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.PRIORITY , value = "优先级" , required = false , dataTypeClass=Integer.class , example = "100"),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "备注"),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { AssetDataPermissionsVOMeta.PAGE_INDEX , AssetDataPermissionsVOMeta.PAGE_SIZE , AssetDataPermissionsVOMeta.SEARCH_FIELD , AssetDataPermissionsVOMeta.FUZZY_FIELD , AssetDataPermissionsVOMeta.SEARCH_VALUE , AssetDataPermissionsVOMeta.DIRTY_FIELDS , AssetDataPermissionsVOMeta.SORT_FIELD , AssetDataPermissionsVOMeta.SORT_TYPE , AssetDataPermissionsVOMeta.DATA_ORIGIN , AssetDataPermissionsVOMeta.QUERY_LOGIC , AssetDataPermissionsVOMeta.REQUEST_ACTION , AssetDataPermissionsVOMeta.IDS } )
@@ -231,7 +228,7 @@ public class AssetDataPermissionsController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "523894324979568640"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "资产全局数据角色_管理员"),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.STATUS , value = "权限状态" , required = false , dataTypeClass=String.class , example = "disable"),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.STATUS , value = "权限状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.OWNER_CODE , value = "归属" , required = false , dataTypeClass=String.class , example = "asset"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.CODE , value = "权限编码" , required = false , dataTypeClass=String.class , example = "data_perm_1"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.ROLE_CODE , value = "业务角色" , required = false , dataTypeClass=String.class , example = "eam_data_perm_default_1"),
@@ -248,10 +245,11 @@ public class AssetDataPermissionsController extends SuperController {
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.CATALOG_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.POSITION_AUTHORITY_ENABLE , value = "位置权限状态" , required = false , dataTypeClass=String.class , example = "disable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.POSITION_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_AUTHORITY_ENABLE , value = "仓库" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_AUTHORITY_ENABLE , value = "仓库" , required = false , dataTypeClass=String.class , example = "disable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.PRIORITY , value = "优先级" , required = false , dataTypeClass=Integer.class , example = "100"),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "备注"),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { AssetDataPermissionsVOMeta.PAGE_INDEX , AssetDataPermissionsVOMeta.PAGE_SIZE , AssetDataPermissionsVOMeta.SEARCH_FIELD , AssetDataPermissionsVOMeta.FUZZY_FIELD , AssetDataPermissionsVOMeta.SEARCH_VALUE , AssetDataPermissionsVOMeta.DIRTY_FIELDS , AssetDataPermissionsVOMeta.SORT_FIELD , AssetDataPermissionsVOMeta.SORT_TYPE , AssetDataPermissionsVOMeta.DATA_ORIGIN , AssetDataPermissionsVOMeta.QUERY_LOGIC , AssetDataPermissionsVOMeta.REQUEST_ACTION , AssetDataPermissionsVOMeta.IDS } )
@@ -319,7 +317,7 @@ public class AssetDataPermissionsController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "523894324979568640"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "资产全局数据角色_管理员"),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.STATUS , value = "权限状态" , required = false , dataTypeClass=String.class , example = "disable"),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.STATUS , value = "权限状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.OWNER_CODE , value = "归属" , required = false , dataTypeClass=String.class , example = "asset"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.CODE , value = "权限编码" , required = false , dataTypeClass=String.class , example = "data_perm_1"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.ROLE_CODE , value = "业务角色" , required = false , dataTypeClass=String.class , example = "eam_data_perm_default_1"),
@@ -336,10 +334,11 @@ public class AssetDataPermissionsController extends SuperController {
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.CATALOG_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.POSITION_AUTHORITY_ENABLE , value = "位置权限状态" , required = false , dataTypeClass=String.class , example = "disable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.POSITION_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_AUTHORITY_ENABLE , value = "仓库" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_AUTHORITY_ENABLE , value = "仓库" , required = false , dataTypeClass=String.class , example = "disable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.PRIORITY , value = "优先级" , required = false , dataTypeClass=Integer.class , example = "100"),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "备注"),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { AssetDataPermissionsVOMeta.PAGE_INDEX , AssetDataPermissionsVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = AssetDataPermissionsServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -360,7 +359,7 @@ public class AssetDataPermissionsController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "523894324979568640"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "资产全局数据角色_管理员"),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.STATUS , value = "权限状态" , required = false , dataTypeClass=String.class , example = "disable"),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.STATUS , value = "权限状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.OWNER_CODE , value = "归属" , required = false , dataTypeClass=String.class , example = "asset"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.CODE , value = "权限编码" , required = false , dataTypeClass=String.class , example = "data_perm_1"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.ROLE_CODE , value = "业务角色" , required = false , dataTypeClass=String.class , example = "eam_data_perm_default_1"),
@@ -377,10 +376,11 @@ public class AssetDataPermissionsController extends SuperController {
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.CATALOG_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.POSITION_AUTHORITY_ENABLE , value = "位置权限状态" , required = false , dataTypeClass=String.class , example = "disable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.POSITION_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_AUTHORITY_ENABLE , value = "仓库" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_AUTHORITY_ENABLE , value = "仓库" , required = false , dataTypeClass=String.class , example = "disable"),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.PRIORITY , value = "优先级" , required = false , dataTypeClass=Integer.class , example = "100"),
-		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "备注"),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = AssetDataPermissionsServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -403,6 +403,80 @@ public class AssetDataPermissionsController extends SuperController {
 	}
 
 
+	@ApiOperation(value = "查询数据权限影响用户")
+	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = AssetDataPermissionsServiceProxy.QUERY_USER_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AssetDataPermissionsServiceProxy.QUERY_USER_BY_ID)
+	public Result<List<Employee>> queryUserById(String id) {
+		Result<List<Employee>> res=new Result<>();
+		AssetDataPermissions dp=assetDataPermissionsService.getById(id);
+		assetDataPermissionsService.dao().fill(dp)
+				.with(AssetDataPermissionsMeta.BUSI_ROLE)
+				.execute();
+		BusiRole dpRole=dp.getBusiRole();
+		assetDataPermissionsService.dao().fill(dpRole)
+				.with(BusiRoleMeta.EMPLOYEES)
+				.execute();
+
+		List<Employee> list=dpRole.getEmployees();
+		if(list!=null&&list.size()>0){
+			assetDataPermissionsService.dao().fill(list)
+				.with(EmployeeMeta.PERSON)
+					.execute();
+		}
+		res.success(true);
+		res.data(list);
+		return res;
+	}
+
+
+	@ApiOperation(value = "查询多个角色")
+	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = AssetDataPermissionsServiceProxy.QUERY_USER_IN_MULTIPLE_ROLES , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AssetDataPermissionsServiceProxy.QUERY_USER_IN_MULTIPLE_ROLES)
+	public Result<List<DpEmployee>> queryUserInMulRoles() {
+		Result<List<DpEmployee>> res=new Result<>();
+		String sql="select c.member_id,b.*,d.badge from eam_asset_data_permissions a,sys_busi_role b,sys_busi_role_member c,hrm_employee d where a.role_code=b.code\n" +
+				"and b.id=c.role_id and c.member_type='employee' \n" +
+				"and b.deleted=0 and a.deleted=0\n" +
+				"and d.id=c.member_id "+
+				"and c.member_id in (\n" +
+				"select id from (\n" +
+				"select c.member_id id,count(1) cnt from eam_asset_data_permissions a,sys_busi_role b,sys_busi_role_member c where a.role_code=b.code\n" +
+				"and b.id=c.role_id and c.member_type='employee' \n" +
+				"and b.deleted=0 and a.deleted=0 group by 1) end where cnt>1\n" +
+				")";
+		RcdSet rs=assetDataPermissionsService.dao().query(sql);
+		HashMap<String,DpEmployee> map=new HashMap<>();
+		for(int i=0;i<rs.size();i++){
+			String memberId=rs.getRcd(i).getString("member_id");
+			String roleName=rs.getRcd(i).getString("name");
+			if(map.containsKey(memberId)){
+				map.get(memberId).setDpRole(map.get(memberId).getDpRole()+","+roleName);
+			}else{
+				DpEmployee dpE=new DpEmployee();
+				dpE.setId(memberId);
+				dpE.setBadge(rs.getRcd(i).getString("badge"));
+				dpE.setDpRole(roleName);
+				map.put(memberId,dpE);
+			}
+		}
+		List<DpEmployee> list=new ArrayList<>();
+		if(rs.size()>0){
+			Iterator<Map.Entry<String, DpEmployee>> iterator = map.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Map.Entry<String, DpEmployee> entry = iterator.next();
+				list.add(entry.getValue());
+				//System.out.println("key:" + entry.getKey() + ", value:" + entry.getValue());
+			}
+			assetDataPermissionsService.dao().fill(list)
+					.with(EmployeeMeta.PERSON)
+					.execute();
+		}
+		res.success(true);
+		res.data(list);
+	 	return res;
+	}
 
 
 

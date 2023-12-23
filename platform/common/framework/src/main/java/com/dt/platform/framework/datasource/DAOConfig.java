@@ -5,6 +5,7 @@ import com.dt.platform.domain.eam.meta.AssetDataPermissionsMeta;
 import com.dt.platform.relation.PlatformRelationManager;
 import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.cache.CacheProperties;
+import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.dao.dataperm.DataPermManager;
 import com.github.foxnic.dao.spec.DAO;
@@ -100,6 +101,24 @@ public class DAOConfig {
 
 		DataPermManager dataPermManager=new DataPermManager();
 
+		dataPermManager.registerGlobalContextGetter(String.class,"ownerCompanyId",()->{
+			SessionUser user=(SessionUser)dao.getDBTreaty().getSubject();
+			String userOrgHierarchy=user.getPrimaryOrganizationHierarchy();
+
+			String orgId=user.getPrimaryOrganizationId();
+			System.out.println("orgId:"+orgId);
+			System.out.println("userOrgHierarchy:"+userOrgHierarchy);
+			Rcd rs= dao.queryRecord("select 1 from hrm_organization where type='com' and id=? and deleted=0",orgId);
+			if(rs!=null){
+				return orgId;
+			}
+			String parentId=user.getPrimaryOrganization().getParentId();
+			Rcd rs2= dao.queryRecord("select 1 from hrm_organization where type='com' and id=? and deleted=0",parentId);
+			if(rs2!=null){
+				return parentId;
+			}
+			return "none";
+		});
 		//资产管理全局数据权限
 		dataPermManager.registerGlobalContextGetter(AssetDataPermissions.class,"assetDataPermissions",()->{
 			AssetDataPermissions dp=null;
@@ -134,6 +153,8 @@ public class DAOConfig {
 			}
 			return dp;
 		});
+
+
 		return dataPermManager;
 	}
 
@@ -172,7 +193,6 @@ public class DAOConfig {
 				SessionUser user=SessionUser.getCurrent();
 				return  user;
 			});
-
 			dbTreaty.setLoginUserIdHandler(()->{
 				SessionUser user=SessionUser.getCurrent();
 				if(user==null) return null;

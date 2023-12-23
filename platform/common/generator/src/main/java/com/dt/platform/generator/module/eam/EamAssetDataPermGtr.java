@@ -65,6 +65,8 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ROLE_CODE).search();
 
+        cfg.view().list().disableBatchDelete();
+
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_ASSET_DATA_PERMISSIONS.NAME,
@@ -95,6 +97,9 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
                 .label("业务角色").selectBox().queryApi(BusiRoleServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(BusiRoleMeta.CODE).textField(BusiRoleMeta.NAME).fillWith(AssetDataPermissionsMeta.BUSI_ROLE).muliti(false);
 
+
+        cfg.view().list().operationColumn().addActionButton("人员明细","personDetail");
+        cfg.view().list().addToolButton("多角色","inMultipleRoles","in-mul-roles");
 
         cfg.view().field(AssetDataPermissionsMeta.POSITION_IDS)
                 .basic().label("存放位置")
@@ -225,12 +230,12 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
                 .setListPage(WriteMode.WRITE_TEMP_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
+                .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         cfg.buildAll();
     }
 

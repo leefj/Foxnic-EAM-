@@ -1,6 +1,5 @@
 package com.dt.platform.generator.module.ops;
 
-import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.generator.config.Config;
 import com.github.foxnic.generator.config.WriteMode;
 import com.dt.platform.constants.db.OpsTables;

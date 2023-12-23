@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 14:00:55
+ * @since 2023-12-23 08:13:17
  * @sign CEF8A3CEDE2F11EE6CAC540E8DEC1EE1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -45,13 +45,13 @@ public class DbInfo extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "683357164307218432")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "790853605002313728")
 	private String id;
 	
 	/**
 	 * 主机：主机
 	*/
-	@ApiModelProperty(required = false,value="主机" , notes = "主机" , example = "695309698194210816")
+	@ApiModelProperty(required = false,value="主机" , notes = "主机")
 	private String hostId;
 	
 	/**
@@ -63,7 +63,7 @@ public class DbInfo extends Entity {
 	/**
 	 * 数据库名：数据库名
 	*/
-	@ApiModelProperty(required = false,value="数据库名" , notes = "数据库名" , example = "121212")
+	@ApiModelProperty(required = false,value="数据库名" , notes = "数据库名" , example = "12345")
 	private String name;
 	
 	/**
@@ -75,7 +75,7 @@ public class DbInfo extends Entity {
 	/**
 	 * 备份状态：备份状态
 	*/
-	@ApiModelProperty(required = false,value="备份状态" , notes = "备份状态" , example = "backup")
+	@ApiModelProperty(required = false,value="备份状态" , notes = "备份状态" , example = "unknow")
 	private String backupStatus;
 	
 	/**
@@ -201,7 +201,7 @@ public class DbInfo extends Entity {
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1683165413000")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1703290181000")
 	private String selectedCode;
 	
 	/**
@@ -213,19 +213,19 @@ public class DbInfo extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-03-01 04:57:24")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-12-23 08:09:53")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-04 09:57:00")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
 	private Date updateTime;
 	
 	/**
@@ -252,7 +252,7 @@ public class DbInfo extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**

@@ -82,6 +82,8 @@ public class AssetDepreciationGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.UPDATE_BY).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.CREATE_TIME).table().disable(true);
 
+
+        cfg.view().list().disableBatchDelete();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.CODE).form().validate().required().form().selectBox().enumType(AssetDepreciationCodeEnum.class);
 
 

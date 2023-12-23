@@ -1,7 +1,7 @@
 /**
  * 资产数据权限 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-26 07:51:06
+ * @since 2023-12-23 09:56:05
  */
 
 function FormPage() {
@@ -129,6 +129,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "ownerCode",
 			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("归属",'','cmp:form'),
 			filterable: false,
 			layVerify: 'required',
 			layVerType: 'msg',
@@ -161,6 +162,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "roleCode",
 			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("业务角色",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -268,6 +270,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "positionIds",
 			radio: false,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("存放位置",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -303,6 +306,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "warehouseIds",
 			radio: false,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("仓库位置",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -338,6 +342,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "categoryIds",
 			radio: false,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("资产分类",'','cmp:form'),
 			filterable: false,
 			on: function(data){
 				setTimeout(function () {
@@ -443,15 +448,16 @@ function FormPage() {
 		//渐显效果
 		fm.css("opacity","0.0");
         fm.css("display","");
-        setTimeout(function (){
-            fm.animate({
-                opacity:'1.0'
-            },100,null,function (){
+		setTimeout(function (){
+			fm.animate({
+				opacity:'1.0'
+			},100,null,function (){
 				fm.css("opacity","1.0");});
-        },1);
+		},1);
+
 
         //禁用编辑
-		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+		if(action=="view" || (action=="edit" && disableModify) || (action=="create" && disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")
@@ -573,6 +579,7 @@ function FormPage() {
 				inputEl:$("#organizationIds"),
 				buttonEl:$(this),
 				single:false,
+				autoWidth:false,
 				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
 				root: "",
 				targetType:"org",
@@ -589,6 +596,7 @@ function FormPage() {
 				inputEl:$("#ownOrganizationIds"),
 				buttonEl:$(this),
 				single:false,
+				autoWidth:false,
 				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
 				root: "",
 				targetType:"com",

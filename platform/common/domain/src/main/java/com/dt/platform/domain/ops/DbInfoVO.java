@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库VO类型
  * <p>数据库 , 数据表 ops_db_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 14:00:55
+ * @since 2023-12-23 08:13:17
  * @sign 072C5A86F75E9E21D5871FA491A60284
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
