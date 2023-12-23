@@ -24,7 +24,7 @@ import java.util.Map;
  * 资产数据权限服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-26 07:51:03
+ * @since 2023-12-23 08:57:22
 */
 
 public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDataPermissions,String> {

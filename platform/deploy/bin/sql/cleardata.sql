@@ -327,6 +327,7 @@ delete from hrm_person where deleted=1;
 delete from sys_role_user where deleted=1;
 delete from hrm_employee_position where deleted=1;
 delete from hrm_position where deleted=1;
+delete from hrm_position where org_id not in (select id from hrm_organization);
 -- user
 update sys_user set portrait_id='T001_image_head';
 delete from sys_user_tenant where user_id not in (select id from sys_user);

@@ -2,7 +2,7 @@
 /**
  * 资产数据权限 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-26 07:51:05
+ * @since 2023-12-23 09:56:02
  */
  -->
  <!DOCTYPE html>
@@ -42,8 +42,8 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 权限状态 , status ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 归属 , ownerCode ,typeName=select_box, isHideInSearch=true -->
@@ -64,6 +64,7 @@
                     <!-- 备注 , warehouseNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 优先级 , priority ,typeName=number_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 存放位置 , positionIds ,typeName=select_box, isHideInSearch=true -->
                     <!-- 仓库位置 , warehouseIds ,typeName=select_box, isHideInSearch=true -->
                     <!-- 资产分类 , categoryIds ,typeName=select_box, isHideInSearch=true -->
@@ -71,13 +72,13 @@
                     <!-- 所属组织 , ownOrganizationIds ,typeName=button, isHideInSearch=true -->
                     <!-- 权限编码 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('权限编码')}" class="search-label code-label">权限编码</span><span class="search-colon">:</span></div>
-                        <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('权限编码')}" class="search-label code-label">权限编码</span><span class="search-colon">:</span></div>
+                        <input id="code" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 业务角色 , roleCode ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('业务角色')}" class="search-label roleCode-label">业务角色</span><span class="search-colon">:</span></div>
-                        <div id="roleCode" th:data="${'/service-system/sys-busi-role/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                        <div id="roleCode" th:data="${'/service-system/sys-busi-role/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
 
 
@@ -107,7 +108,7 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('eam_asset_data_permissions:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
-        <button th:if="${perm.checkAuth('eam_asset_data_permissions:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除','','cmp:table.button')}">删除</span></button>
+        <button id="in-multiple-roles"  class="layui-btn icon-btn layui-btn-sm  in-mul-roles " lay-event="tool-in-multiple-roles"><span th:text="${lang.translate('多角色','','cmp:table.button')}">多角色</span></button>
     </div>
 </script>
 
@@ -120,6 +121,7 @@
 
     <button th:if="${perm.checkAuth('eam_asset_data_permissions:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
+    <button class="layui-btn layui-btn-xs " lay-event="person-detail" data-id="{{d.id}}"><span th:text="${lang.translate('人员明细','','cmp:table.ops')}">人员明细</span></button>
 
 </script>
 

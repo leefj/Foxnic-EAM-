@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 资产数据权限 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-26 07:51:05
+ * @since 2023-12-23 08:57:24
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetDataPermissionsServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetDataPermissionsServiceProxy {
@@ -84,6 +84,9 @@ public interface AssetDataPermissionsServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+    public static final String QUERY_USER_BY_ID= API_PREFIX + "query-user-by-id";
+
+    public static final String QUERY_USER_IN_MULTIPLE_ROLES= API_PREFIX + "query-user-in-multiple-roles";
     /**
      * 添加资产数据权限
      */

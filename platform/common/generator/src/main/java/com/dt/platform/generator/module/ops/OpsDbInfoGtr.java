@@ -117,7 +117,7 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).form().textInput();
 
-        cfg.view().field(DbInfoMeta.OTHER_ENV_INFO_COUNT).basic().label("其他环境数量").table().disable(false);
+        cfg.view().field(DbInfoMeta.OTHER_ENV_INFO_COUNT).basic().label("其他环境数量").table().disable(true);
 
         cfg.view().field(OpsTables.OPS_DB_INFO.DATA_LOC).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.FILE_IDS).table().disable(true);

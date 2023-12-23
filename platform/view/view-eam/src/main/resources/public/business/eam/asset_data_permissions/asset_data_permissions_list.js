@@ -281,6 +281,9 @@ function ListPage() {
 				case 'batch-del':
 					batchDelete(selected);
 					break;
+				case 'tool-in-multiple-roles':
+					window.pageExt.list.inMultipleRoles && window.pageExt.list.inMultipleRoles(selected,obj);
+					break;
 				case 'refresh-data':
 					refreshTableData();
 					break;
@@ -387,6 +390,9 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'person-detail') { // 人员明细
+				window.pageExt.list.personDetail(data,this);
 			}
 
 		});

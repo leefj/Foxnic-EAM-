@@ -435,7 +435,7 @@ public class DbInfoController extends SuperController {
         Result<PagedList<DbInfo>> result = new Result<>();
         PagedList<DbInfo> list = dbInfoService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        dbInfoService.dao().fill(list).with(DbInfoMeta.OTHER_ENV_INFO_LIST).with(DbInfoMeta.CIPHERTEXT_BOX_DATA).with(DbInfoMeta.HOST).with(DbInfoMeta.HOST).with(DbInfoMeta.TYPE).with(DbInfoMeta.DEPLOY_MODE_DICT).with(DbInfoMeta.LABEL_LIST).with(DbInfoMeta.DATA_LOC_DATA).execute();
+        dbInfoService.dao().fill(list).with(DbInfoMeta.CIPHERTEXT_BOX_DATA).with(DbInfoMeta.HOST).with(DbInfoMeta.HOST).with(DbInfoMeta.TYPE).with(DbInfoMeta.DEPLOY_MODE_DICT).with(DbInfoMeta.LABEL_LIST).with(DbInfoMeta.DATA_LOC_DATA).execute();
         boolean hasPriv = false;
         if (ciphertextBoxService.userEnDePermByBoxType("database_instance")) {
             hasPriv = true;

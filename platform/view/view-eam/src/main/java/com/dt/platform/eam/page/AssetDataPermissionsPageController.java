@@ -44,7 +44,19 @@ public class AssetDataPermissionsPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+	@RequestMapping("/dp_employee_list.html")
+	public String dp_employee_list(Model model,HttpServletRequest request,String id) {
+		model.addAttribute("id",id);
+		return prefix+"/dp_employee_list";
+	}
+
+	@RequestMapping("/dp_employee_role_list.html")
+	public String dp_employee_role_list(Model model,HttpServletRequest request) {
+		return prefix+"/dp_employee_role_list";
+	}
+
+
 	/**
 	 * 资产数据权限 功能主页面
 	 */
@@ -52,8 +64,6 @@ public class AssetDataPermissionsPageController extends ViewController {
 	public String list(Model model,HttpServletRequest request,String categoryCode) {
 
 		model.addAttribute("categoryCode",categoryCode);
-
-
 		return prefix+"/asset_data_permissions_list";
 	}
 
