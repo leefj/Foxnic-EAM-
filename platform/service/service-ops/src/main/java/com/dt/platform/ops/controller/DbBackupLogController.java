@@ -69,14 +69,16 @@ public class DbBackupLogController extends SuperController {
 		@ApiImplicitParam(name = DbBackupLogVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), // @ApiImplicitParam(name = DbBackupLogVOMeta.RTIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
+    @ApiImplicitParam(name = DbBackupLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.SOURCE, value = "原始数据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESSED, value = "处理状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESS_RESULT, value = "处理结果", required = false, dataTypeClass = String.class), // @ApiImplicitParam(name = DbBackupLogVOMeta.RTIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
-    @ApiImplicitParam(name = DbBackupLogVOMeta.LAST_PROCESS_TIME, value = "处理时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESS_RESULT, value = "处理结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.LAST_PROCESS_TIME, value = "处理时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = DbBackupLogVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.RETENTION, value = "备份保留", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -181,14 +183,16 @@ public class DbBackupLogController extends SuperController {
 		@ApiImplicitParam(name = DbBackupLogVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), // @ApiImplicitParam(name = DbBackupLogVOMeta.RTIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
+    @ApiImplicitParam(name = DbBackupLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.SOURCE, value = "原始数据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESSED, value = "处理状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESS_RESULT, value = "处理结果", required = false, dataTypeClass = String.class), // @ApiImplicitParam(name = DbBackupLogVOMeta.RTIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
-    @ApiImplicitParam(name = DbBackupLogVOMeta.LAST_PROCESS_TIME, value = "处理时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESS_RESULT, value = "处理结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.LAST_PROCESS_TIME, value = "处理时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = DbBackupLogVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.RETENTION, value = "备份保留", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { DbBackupLogVOMeta.PAGE_INDEX, DbBackupLogVOMeta.PAGE_SIZE, DbBackupLogVOMeta.SEARCH_FIELD, DbBackupLogVOMeta.FUZZY_FIELD, DbBackupLogVOMeta.SEARCH_VALUE, DbBackupLogVOMeta.DIRTY_FIELDS, DbBackupLogVOMeta.SORT_FIELD, DbBackupLogVOMeta.SORT_TYPE, DbBackupLogVOMeta.DATA_ORIGIN, DbBackupLogVOMeta.QUERY_LOGIC, DbBackupLogVOMeta.IDS })
@@ -215,14 +219,16 @@ public class DbBackupLogController extends SuperController {
 		@ApiImplicitParam(name = DbBackupLogVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), // @ApiImplicitParam(name = DbBackupLogVOMeta.RTIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
+    @ApiImplicitParam(name = DbBackupLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.SOURCE, value = "原始数据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESSED, value = "处理状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESS_RESULT, value = "处理结果", required = false, dataTypeClass = String.class), // @ApiImplicitParam(name = DbBackupLogVOMeta.RTIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
-    @ApiImplicitParam(name = DbBackupLogVOMeta.LAST_PROCESS_TIME, value = "处理时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESS_RESULT, value = "处理结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.LAST_PROCESS_TIME, value = "处理时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = DbBackupLogVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.RETENTION, value = "备份保留", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { DbBackupLogVOMeta.PAGE_INDEX, DbBackupLogVOMeta.PAGE_SIZE, DbBackupLogVOMeta.SEARCH_FIELD, DbBackupLogVOMeta.FUZZY_FIELD, DbBackupLogVOMeta.SEARCH_VALUE, DbBackupLogVOMeta.DIRTY_FIELDS, DbBackupLogVOMeta.SORT_FIELD, DbBackupLogVOMeta.SORT_TYPE, DbBackupLogVOMeta.DATA_ORIGIN, DbBackupLogVOMeta.QUERY_LOGIC, DbBackupLogVOMeta.IDS })
@@ -295,14 +301,16 @@ public class DbBackupLogController extends SuperController {
 		@ApiImplicitParam(name = DbBackupLogVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), // @ApiImplicitParam(name = DbBackupLogVOMeta.RTIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
+    @ApiImplicitParam(name = DbBackupLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.SOURCE, value = "原始数据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESSED, value = "处理状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESS_RESULT, value = "处理结果", required = false, dataTypeClass = String.class), // @ApiImplicitParam(name = DbBackupLogVOMeta.RTIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
-    @ApiImplicitParam(name = DbBackupLogVOMeta.LAST_PROCESS_TIME, value = "处理时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESS_RESULT, value = "处理结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.LAST_PROCESS_TIME, value = "处理时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = DbBackupLogVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.RETENTION, value = "备份保留", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { DbBackupLogVOMeta.PAGE_INDEX, DbBackupLogVOMeta.PAGE_SIZE })
     @SentinelResource(value = DbBackupLogServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -330,14 +338,16 @@ public class DbBackupLogController extends SuperController {
 		@ApiImplicitParam(name = DbBackupLogVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), // @ApiImplicitParam(name = DbBackupLogVOMeta.RTIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
+    @ApiImplicitParam(name = DbBackupLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.SOURCE, value = "原始数据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESSED, value = "处理状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESS_RESULT, value = "处理结果", required = false, dataTypeClass = String.class), // @ApiImplicitParam(name = DbBackupLogVOMeta.RTIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
-    @ApiImplicitParam(name = DbBackupLogVOMeta.LAST_PROCESS_TIME, value = "处理时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.PROCESS_RESULT, value = "处理结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.LAST_PROCESS_TIME, value = "处理时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = DbBackupLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = ""),
-		@ApiImplicitParam(name = DbBackupLogVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = DbBackupLogVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.RETENTION, value = "备份保留", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupLogVOMeta.STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = DbBackupLogServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

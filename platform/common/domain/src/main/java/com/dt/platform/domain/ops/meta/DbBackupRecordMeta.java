@@ -14,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 16:56:55
- * @sign 378F4439B671FF9307F8E2A3234389F7
+ * @since 2023-12-26 12:29:45
+ * @sign 1DD9CF818DF0002F42EDFB3FD5A6CC68
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -120,6 +120,26 @@ public class DbBackupRecordMeta {
 	 * 备份大小 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupRecord,java.math.BigDecimal> BACKUP_SIZE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupRecord.class ,BACKUP_SIZE, java.math.BigDecimal.class, "备份大小", "备份大小", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 备份策略 , 类型: java.lang.String
+	*/
+	public static final String STRATEGY="strategy";
+	
+	/**
+	 * 备份策略 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupRecord,java.lang.String> STRATEGY_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupRecord.class ,STRATEGY, java.lang.String.class, "备份策略", "备份策略", java.lang.String.class, null);
+	
+	/**
+	 * 备份保留 , 类型: java.lang.String
+	*/
+	public static final String RETENTION="retention";
+	
+	/**
+	 * 备份保留 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupRecord,java.lang.String> RETENTION_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupRecord.class ,RETENTION, java.lang.String.class, "备份保留", "备份保留", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -254,7 +274,7 @@ public class DbBackupRecordMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , DB_ID , DB_BK_ID , DB_NAME , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_RESULT_CT , BACKUP_STIME , BACKUP_ETIME , BACKUP_SIZE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , HOST , DB , BACKUP_INFO , DB_TYPE };
+	public static final String[] $PROPS={ ID , DB_ID , DB_BK_ID , DB_NAME , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_RESULT_CT , BACKUP_STIME , BACKUP_ETIME , BACKUP_SIZE , STRATEGY , RETENTION , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , HOST , DB , BACKUP_INFO , DB_TYPE };
 	
 	/**
 	 * 代理类
@@ -371,6 +391,28 @@ public class DbBackupRecordMeta {
 		public DbBackupRecord setBackupSize(BigDecimal backupSize) {
 			super.change(BACKUP_SIZE,super.getBackupSize(),backupSize);
 			super.setBackupSize(backupSize);
+			return this;
+		}
+		
+		/**
+		 * 设置 备份策略
+		 * @param strategy 备份策略
+		 * @return 当前对象
+		*/
+		public DbBackupRecord setStrategy(String strategy) {
+			super.change(STRATEGY,super.getStrategy(),strategy);
+			super.setStrategy(strategy);
+			return this;
+		}
+		
+		/**
+		 * 设置 备份保留
+		 * @param retention 备份保留
+		 * @return 当前对象
+		*/
+		public DbBackupRecord setRetention(String retention) {
+			super.change(RETENTION,super.getRetention(),retention);
+			super.setRetention(retention);
 			return this;
 		}
 		
@@ -547,7 +589,9 @@ public class DbBackupRecordMeta {
 			inst.setDbId(this.getDbId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setStrategy(this.getStrategy());
 			inst.setBackupResultCt(this.getBackupResultCt());
+			inst.setRetention(this.getRetention());
 			inst.setBackupResult(this.getBackupResult());
 			inst.setBackupSource(this.getBackupSource());
 			inst.setBackupEtime(this.getBackupEtime());

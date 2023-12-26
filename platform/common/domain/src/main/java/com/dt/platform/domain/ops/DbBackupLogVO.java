@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 备份日志VO类型
  * <p>备份日志 , 数据表 ops_db_backup_log 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 14:08:35
+ * @since 2023-12-26 12:29:34
  * @sign 460CFCC843ECB45196DA2F0114BD5440
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -413,6 +413,7 @@ public class DbBackupLogVO extends DbBackupLog {
 		inst.setDbId(this.getDbId());
 		inst.setAction(this.getAction());
 		inst.setId(this.getId());
+		inst.setRetention(this.getRetention());
 		inst.setMethod(this.getMethod());
 		inst.setIp(this.getIp());
 		inst.setProcessResult(this.getProcessResult());
@@ -427,6 +428,7 @@ public class DbBackupLogVO extends DbBackupLog {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setEtime(this.getEtime());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setStrategy(this.getStrategy());
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
@@ -511,6 +513,7 @@ public class DbBackupLogVO extends DbBackupLog {
 			this.setDbId(DataParser.parse(String.class, map.get(DbBackupLogVOMeta.DB_ID)));
 			this.setAction(DataParser.parse(String.class, map.get(DbBackupLogVOMeta.ACTION)));
 			this.setId(DataParser.parse(String.class, map.get(DbBackupLogVOMeta.ID)));
+			this.setRetention(DataParser.parse(String.class, map.get(DbBackupLogVOMeta.RETENTION)));
 			this.setMethod(DataParser.parse(String.class, map.get(DbBackupLogVOMeta.METHOD)));
 			this.setIp(DataParser.parse(String.class, map.get(DbBackupLogVOMeta.IP)));
 			this.setProcessResult(DataParser.parse(String.class, map.get(DbBackupLogVOMeta.PROCESS_RESULT)));
@@ -525,6 +528,7 @@ public class DbBackupLogVO extends DbBackupLog {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(DbBackupLogVOMeta.DELETE_TIME)));
 			this.setEtime(DataParser.parse(Date.class, map.get(DbBackupLogVOMeta.ETIME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(DbBackupLogVOMeta.DELETE_BY)));
+			this.setStrategy(DataParser.parse(String.class, map.get(DbBackupLogVOMeta.STRATEGY)));
 			this.setStatus(DataParser.parse(String.class, map.get(DbBackupLogVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(DbBackupLogVOMeta.SEARCH_FIELD)));
@@ -551,6 +555,7 @@ public class DbBackupLogVO extends DbBackupLog {
 				this.setDbId( (String)map.get(DbBackupLogVOMeta.DB_ID));
 				this.setAction( (String)map.get(DbBackupLogVOMeta.ACTION));
 				this.setId( (String)map.get(DbBackupLogVOMeta.ID));
+				this.setRetention( (String)map.get(DbBackupLogVOMeta.RETENTION));
 				this.setMethod( (String)map.get(DbBackupLogVOMeta.METHOD));
 				this.setIp( (String)map.get(DbBackupLogVOMeta.IP));
 				this.setProcessResult( (String)map.get(DbBackupLogVOMeta.PROCESS_RESULT));
@@ -565,6 +570,7 @@ public class DbBackupLogVO extends DbBackupLog {
 				this.setDeleteTime( (Date)map.get(DbBackupLogVOMeta.DELETE_TIME));
 				this.setEtime( (Date)map.get(DbBackupLogVOMeta.ETIME));
 				this.setDeleteBy( (String)map.get(DbBackupLogVOMeta.DELETE_BY));
+				this.setStrategy( (String)map.get(DbBackupLogVOMeta.STRATEGY));
 				this.setStatus( (String)map.get(DbBackupLogVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(DbBackupLogVOMeta.SEARCH_FIELD));
@@ -604,6 +610,7 @@ public class DbBackupLogVO extends DbBackupLog {
 			this.setDbId(DataParser.parse(String.class, r.getValue(DbBackupLogVOMeta.DB_ID)));
 			this.setAction(DataParser.parse(String.class, r.getValue(DbBackupLogVOMeta.ACTION)));
 			this.setId(DataParser.parse(String.class, r.getValue(DbBackupLogVOMeta.ID)));
+			this.setRetention(DataParser.parse(String.class, r.getValue(DbBackupLogVOMeta.RETENTION)));
 			this.setMethod(DataParser.parse(String.class, r.getValue(DbBackupLogVOMeta.METHOD)));
 			this.setIp(DataParser.parse(String.class, r.getValue(DbBackupLogVOMeta.IP)));
 			this.setProcessResult(DataParser.parse(String.class, r.getValue(DbBackupLogVOMeta.PROCESS_RESULT)));
@@ -618,6 +625,7 @@ public class DbBackupLogVO extends DbBackupLog {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(DbBackupLogVOMeta.DELETE_TIME)));
 			this.setEtime(DataParser.parse(Date.class, r.getValue(DbBackupLogVOMeta.ETIME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(DbBackupLogVOMeta.DELETE_BY)));
+			this.setStrategy(DataParser.parse(String.class, r.getValue(DbBackupLogVOMeta.STRATEGY)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(DbBackupLogVOMeta.STATUS)));
 			return true;
 		} else {
@@ -633,6 +641,7 @@ public class DbBackupLogVO extends DbBackupLog {
 				this.setDbId( (String)r.getValue(DbBackupLogVOMeta.DB_ID));
 				this.setAction( (String)r.getValue(DbBackupLogVOMeta.ACTION));
 				this.setId( (String)r.getValue(DbBackupLogVOMeta.ID));
+				this.setRetention( (String)r.getValue(DbBackupLogVOMeta.RETENTION));
 				this.setMethod( (String)r.getValue(DbBackupLogVOMeta.METHOD));
 				this.setIp( (String)r.getValue(DbBackupLogVOMeta.IP));
 				this.setProcessResult( (String)r.getValue(DbBackupLogVOMeta.PROCESS_RESULT));
@@ -647,6 +656,7 @@ public class DbBackupLogVO extends DbBackupLog {
 				this.setDeleteTime( (Date)r.getValue(DbBackupLogVOMeta.DELETE_TIME));
 				this.setEtime( (Date)r.getValue(DbBackupLogVOMeta.ETIME));
 				this.setDeleteBy( (String)r.getValue(DbBackupLogVOMeta.DELETE_BY));
+				this.setStrategy( (String)r.getValue(DbBackupLogVOMeta.STRATEGY));
 				this.setStatus( (String)r.getValue(DbBackupLogVOMeta.STATUS));
 				return true;
 			} catch (Exception e) {

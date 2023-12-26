@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_DB_BACKUP_RECORD;
@@ -9,22 +10,27 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import java.math.BigDecimal;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.DbBackupRecordMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 备份记录
+ * 数据库备份记录
+ * <p>数据库备份记录 , 数据表 ops_db_backup_record 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 16:56:55
- * @sign 378F4439B671FF9307F8E2A3234389F7
+ * @since 2023-12-26 12:29:45
+ * @sign 1DD9CF818DF0002F42EDFB3FD5A6CC68
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_db_backup_record")
+@ApiModel(description = "数据库备份记录 ; 数据库备份记录 , 数据表 ops_db_backup_record 的PO类型")
 public class DbBackupRecord extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -93,6 +99,18 @@ public class DbBackupRecord extends Entity {
 	private BigDecimal backupSize;
 	
 	/**
+	 * 备份策略：备份策略
+	*/
+	@ApiModelProperty(required = false,value="备份策略" , notes = "备份策略")
+	private String strategy;
+	
+	/**
+	 * 备份保留：备份保留
+	*/
+	@ApiModelProperty(required = false,value="备份保留" , notes = "备份保留")
+	private String retention;
+	
+	/**
 	 * 备注：备注
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注")
@@ -128,6 +146,7 @@ public class DbBackupRecord extends Entity {
 	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -359,6 +378,44 @@ public class DbBackupRecord extends Entity {
 	*/
 	public DbBackupRecord setBackupSize(BigDecimal backupSize) {
 		this.backupSize=backupSize;
+		return this;
+	}
+	
+	/**
+	 * 获得 备份策略<br>
+	 * 备份策略
+	 * @return 备份策略
+	*/
+	public String getStrategy() {
+		return strategy;
+	}
+	
+	/**
+	 * 设置 备份策略
+	 * @param strategy 备份策略
+	 * @return 当前对象
+	*/
+	public DbBackupRecord setStrategy(String strategy) {
+		this.strategy=strategy;
+		return this;
+	}
+	
+	/**
+	 * 获得 备份保留<br>
+	 * 备份保留
+	 * @return 备份保留
+	*/
+	public String getRetention() {
+		return retention;
+	}
+	
+	/**
+	 * 设置 备份保留
+	 * @param retention 备份保留
+	 * @return 当前对象
+	*/
+	public DbBackupRecord setRetention(String retention) {
+		this.retention=retention;
 		return this;
 	}
 	
@@ -699,7 +756,9 @@ public class DbBackupRecord extends Entity {
 		inst.setDbId(this.getDbId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setStrategy(this.getStrategy());
 		inst.setBackupResultCt(this.getBackupResultCt());
+		inst.setRetention(this.getRetention());
 		inst.setBackupResult(this.getBackupResult());
 		inst.setBackupSource(this.getBackupSource());
 		inst.setBackupEtime(this.getBackupEtime());
@@ -756,5 +815,137 @@ public class DbBackupRecord extends Entity {
 	@Transient
 	public static DbBackupRecord create() {
 		return new com.dt.platform.domain.ops.meta.DbBackupRecordMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(DbBackupRecordMeta.NOTES)));
+			this.setDbName(DataParser.parse(String.class, map.get(DbBackupRecordMeta.DB_NAME)));
+			this.setBackupStime(DataParser.parse(Date.class, map.get(DbBackupRecordMeta.BACKUP_STIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbBackupRecordMeta.UPDATE_TIME)));
+			this.setDbBkId(DataParser.parse(String.class, map.get(DbBackupRecordMeta.DB_BK_ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(DbBackupRecordMeta.VERSION)));
+			this.setBackupSize(DataParser.parse(BigDecimal.class, map.get(DbBackupRecordMeta.BACKUP_SIZE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(DbBackupRecordMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(DbBackupRecordMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(DbBackupRecordMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(DbBackupRecordMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(DbBackupRecordMeta.DELETE_TIME)));
+			this.setDbId(DataParser.parse(String.class, map.get(DbBackupRecordMeta.DB_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(DbBackupRecordMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(DbBackupRecordMeta.ID)));
+			this.setStrategy(DataParser.parse(String.class, map.get(DbBackupRecordMeta.STRATEGY)));
+			this.setBackupResultCt(DataParser.parse(String.class, map.get(DbBackupRecordMeta.BACKUP_RESULT_CT)));
+			this.setRetention(DataParser.parse(String.class, map.get(DbBackupRecordMeta.RETENTION)));
+			this.setBackupResult(DataParser.parse(String.class, map.get(DbBackupRecordMeta.BACKUP_RESULT)));
+			this.setBackupSource(DataParser.parse(String.class, map.get(DbBackupRecordMeta.BACKUP_SOURCE)));
+			this.setBackupEtime(DataParser.parse(Date.class, map.get(DbBackupRecordMeta.BACKUP_ETIME)));
+			// others
+			this.setHost(DataParser.parse(Host.class, map.get(DbBackupRecordMeta.HOST)));
+			this.setDbType(DataParser.parse(ServiceInfo.class, map.get(DbBackupRecordMeta.DB_TYPE)));
+			this.setDb(DataParser.parse(DbInfo.class, map.get(DbBackupRecordMeta.DB)));
+			this.setBackupInfo(DataParser.parse(DbBackupInfo.class, map.get(DbBackupRecordMeta.BACKUP_INFO)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(DbBackupRecordMeta.NOTES));
+				this.setDbName( (String)map.get(DbBackupRecordMeta.DB_NAME));
+				this.setBackupStime( (Date)map.get(DbBackupRecordMeta.BACKUP_STIME));
+				this.setUpdateTime( (Date)map.get(DbBackupRecordMeta.UPDATE_TIME));
+				this.setDbBkId( (String)map.get(DbBackupRecordMeta.DB_BK_ID));
+				this.setVersion( (Integer)map.get(DbBackupRecordMeta.VERSION));
+				this.setBackupSize( (BigDecimal)map.get(DbBackupRecordMeta.BACKUP_SIZE));
+				this.setCreateBy( (String)map.get(DbBackupRecordMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(DbBackupRecordMeta.DELETED));
+				this.setCreateTime( (Date)map.get(DbBackupRecordMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(DbBackupRecordMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(DbBackupRecordMeta.DELETE_TIME));
+				this.setDbId( (String)map.get(DbBackupRecordMeta.DB_ID));
+				this.setDeleteBy( (String)map.get(DbBackupRecordMeta.DELETE_BY));
+				this.setId( (String)map.get(DbBackupRecordMeta.ID));
+				this.setStrategy( (String)map.get(DbBackupRecordMeta.STRATEGY));
+				this.setBackupResultCt( (String)map.get(DbBackupRecordMeta.BACKUP_RESULT_CT));
+				this.setRetention( (String)map.get(DbBackupRecordMeta.RETENTION));
+				this.setBackupResult( (String)map.get(DbBackupRecordMeta.BACKUP_RESULT));
+				this.setBackupSource( (String)map.get(DbBackupRecordMeta.BACKUP_SOURCE));
+				this.setBackupEtime( (Date)map.get(DbBackupRecordMeta.BACKUP_ETIME));
+				// others
+				this.setHost( (Host)map.get(DbBackupRecordMeta.HOST));
+				this.setDbType( (ServiceInfo)map.get(DbBackupRecordMeta.DB_TYPE));
+				this.setDb( (DbInfo)map.get(DbBackupRecordMeta.DB));
+				this.setBackupInfo( (DbBackupInfo)map.get(DbBackupRecordMeta.BACKUP_INFO));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.NOTES)));
+			this.setDbName(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.DB_NAME)));
+			this.setBackupStime(DataParser.parse(Date.class, r.getValue(DbBackupRecordMeta.BACKUP_STIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbBackupRecordMeta.UPDATE_TIME)));
+			this.setDbBkId(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.DB_BK_ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(DbBackupRecordMeta.VERSION)));
+			this.setBackupSize(DataParser.parse(BigDecimal.class, r.getValue(DbBackupRecordMeta.BACKUP_SIZE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(DbBackupRecordMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(DbBackupRecordMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(DbBackupRecordMeta.DELETE_TIME)));
+			this.setDbId(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.DB_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.ID)));
+			this.setStrategy(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.STRATEGY)));
+			this.setBackupResultCt(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.BACKUP_RESULT_CT)));
+			this.setRetention(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.RETENTION)));
+			this.setBackupResult(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.BACKUP_RESULT)));
+			this.setBackupSource(DataParser.parse(String.class, r.getValue(DbBackupRecordMeta.BACKUP_SOURCE)));
+			this.setBackupEtime(DataParser.parse(Date.class, r.getValue(DbBackupRecordMeta.BACKUP_ETIME)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(DbBackupRecordMeta.NOTES));
+				this.setDbName( (String)r.getValue(DbBackupRecordMeta.DB_NAME));
+				this.setBackupStime( (Date)r.getValue(DbBackupRecordMeta.BACKUP_STIME));
+				this.setUpdateTime( (Date)r.getValue(DbBackupRecordMeta.UPDATE_TIME));
+				this.setDbBkId( (String)r.getValue(DbBackupRecordMeta.DB_BK_ID));
+				this.setVersion( (Integer)r.getValue(DbBackupRecordMeta.VERSION));
+				this.setBackupSize( (BigDecimal)r.getValue(DbBackupRecordMeta.BACKUP_SIZE));
+				this.setCreateBy( (String)r.getValue(DbBackupRecordMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(DbBackupRecordMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(DbBackupRecordMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(DbBackupRecordMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(DbBackupRecordMeta.DELETE_TIME));
+				this.setDbId( (String)r.getValue(DbBackupRecordMeta.DB_ID));
+				this.setDeleteBy( (String)r.getValue(DbBackupRecordMeta.DELETE_BY));
+				this.setId( (String)r.getValue(DbBackupRecordMeta.ID));
+				this.setStrategy( (String)r.getValue(DbBackupRecordMeta.STRATEGY));
+				this.setBackupResultCt( (String)r.getValue(DbBackupRecordMeta.BACKUP_RESULT_CT));
+				this.setRetention( (String)r.getValue(DbBackupRecordMeta.RETENTION));
+				this.setBackupResult( (String)r.getValue(DbBackupRecordMeta.BACKUP_RESULT));
+				this.setBackupSource( (String)r.getValue(DbBackupRecordMeta.BACKUP_SOURCE));
+				this.setBackupEtime( (Date)r.getValue(DbBackupRecordMeta.BACKUP_ETIME));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

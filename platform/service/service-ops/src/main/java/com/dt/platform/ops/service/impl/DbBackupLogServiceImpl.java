@@ -173,6 +173,12 @@ public class DbBackupLogServiceImpl extends SuperService<DbBackupLog> implements
 						dbId=rs.getRcd(0).getString("database_id");
 						obj.setDbId(dbBkId);
 
+					}else if(key.equals("notes")){
+						obj.setNotes(value);
+					}else if(key.equals("strategy")){
+						obj.setStrategy(value);
+					}else if(key.equals("retention")){
+						obj.setRetention(value);
 					}else if(key.equals("ip")){
 						obj.setIp(value);
 					}else if(key.equals("action")){
@@ -221,16 +227,34 @@ public class DbBackupLogServiceImpl extends SuperService<DbBackupLog> implements
 			bkRecord.setBackupStime(obj.getStime());
 			bkRecord.setBackupEtime(obj.getEtime());
 			bkRecord.setBackupSize(obj.getSize());
+			bkRecord.setStrategy(obj.getStrategy());
+			bkRecord.setRetention(obj.getRetention());
+			bkRecord.setNotes(obj.getNotes());
 			dbBackupRecordService.insert(bkRecord,false);
 
 			//更新备份状态
+			RcdSet rs=dao.query("select * from ops_db_backup_info where deleted=0 and uid=?",obj.getUid());
+			if(rs==null){
+				Logger.info("未找到当前备份配置,UID:"+obj.getUid());
+			}
+			if(rs.size()>1){
+				Logger.info("存在超过两个相同UID备份配置,UID:"+obj.getUid());
+			}
+
 			DbBackupInfo info=new DbBackupInfo();
-			info.setId(dbId);
+			info.setId(rs.getRcd(0).getString("id"));
 			info.setBackupSize(obj.getSize());
 			info.setBackupTime(obj.getStime());
-			info.setBackupSource(obj.getSource());
+			//info.setBackupSource(obj.getSource());
 			info.setName(obj.getDbName());
 			info.setBackupResultCt(obj.getResult());
+			//更新备份策略及备份时间
+			if(obj.getStrategy()!=null&&obj.getStrategy().length()>5){
+				info.setBackupStrategy(obj.getStrategy());
+			}
+			if(obj.getRetention()!=null&&obj.getRetention().length()>1){
+				info.setBackupDatakeep(obj.getRetention());
+			}
 			dbBackupInfoService.update(info,SaveMode.NOT_NULL_FIELDS);
 		}
 

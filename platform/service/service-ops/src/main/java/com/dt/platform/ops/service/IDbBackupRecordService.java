@@ -1,5 +1,6 @@
 package com.dt.platform.ops.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 备份记录 服务接口
+ * 数据库备份记录服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 16:56:55
+ * @since 2023-12-26 12:29:45
 */
 
 public interface IDbBackupRecordService extends  ISimpleIdService<DbBackupRecord,String> {
@@ -55,7 +56,7 @@ public interface IDbBackupRecordService extends  ISimpleIdService<DbBackupRecord
 
 		
 	/**
-	 * 按主键删除 备份记录
+	 * 按主键删除数据库备份记录
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IDbBackupRecordService extends  ISimpleIdService<DbBackupRecord
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 备份记录
+	 * 按主键删除数据库备份记录
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IDbBackupRecordService extends  ISimpleIdService<DbBackupRecord
 
 		
 	/**
-	 * 按主键更新字段 备份记录
+	 * 按主键更新数据库备份记录
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IDbBackupRecordService extends  ISimpleIdService<DbBackupRecord
 
 		
 	/**
-	 * 按主键获取 备份记录
+	 * 按主键获取数据库备份记录
 	 *
 	 * @param id 主键
 	 * @return DbBackupRecord 数据对象

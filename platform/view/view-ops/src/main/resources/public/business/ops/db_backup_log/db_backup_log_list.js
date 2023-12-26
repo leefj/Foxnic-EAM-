@@ -1,7 +1,7 @@
 /**
  * 备份日志 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 14:08:36
+ * @since 2023-12-26 12:29:36
  */
 
 
@@ -96,6 +96,8 @@ function ListPage() {
 					,{ field: 'stime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('stime',fox.dateFormat(d.stime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'etime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('etime',fox.dateFormat(d.etime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'size', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('大小') , templet: function (d) { return templet('size',d.size,d);}  }
+					,{ field: 'strategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份策略') , templet: function (d) { return templet('strategy',d.strategy,d);}  }
+					,{ field: 'retention', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份保留') , templet: function (d) { return templet('retention',d.retention,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'recordTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('记录时间') ,templet: function (d) { return templet('recordTime',fox.dateFormat(d.recordTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'source', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('原始数据') , templet: function (d) { return templet('source',d.source,d);}  }
