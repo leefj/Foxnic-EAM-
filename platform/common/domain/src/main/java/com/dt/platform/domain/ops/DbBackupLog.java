@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 备份日志
  * <p>备份日志 , 数据表 ops_db_backup_log 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 14:08:34
- * @sign ED0A2147E506B4059E040CCF26F0F0E9
+ * @since 2023-12-26 12:29:34
+ * @sign DA5F8A835039356FB41EB55D9F767274
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,31 +41,31 @@ public class DbBackupLog extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "716794439409860608")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "792002960027549696")
 	private String id;
 	
 	/**
 	 * UID：UID
 	*/
-	@ApiModelProperty(required = false,value="UID" , notes = "UID")
+	@ApiModelProperty(required = false,value="UID" , notes = "UID" , example = "12")
 	private String uid;
 	
 	/**
 	 * 数据库实例：数据库实例
 	*/
-	@ApiModelProperty(required = false,value="数据库实例" , notes = "数据库实例" , example = "ccccc")
+	@ApiModelProperty(required = false,value="数据库实例" , notes = "数据库实例" , example = "121221")
 	private String dbId;
 	
 	/**
 	 * IP：IP
 	*/
-	@ApiModelProperty(required = false,value="IP" , notes = "IP" , example = "ccccc")
+	@ApiModelProperty(required = false,value="IP" , notes = "IP")
 	private String ip;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "ccccc")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称")
 	private String dbName;
 	
 	/**
@@ -95,13 +95,13 @@ public class DbBackupLog extends Entity {
 	/**
 	 * 开始时间：开始时间
 	*/
-	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2023-06-01 12:00:00")
+	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间")
 	private Date stime;
 	
 	/**
 	 * 结束时间：结束时间
 	*/
-	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间" , example = "2023-06-02 12:00:00")
+	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间")
 	private Date etime;
 	
 	/**
@@ -109,6 +109,18 @@ public class DbBackupLog extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="大小" , notes = "大小" , example = "0.00")
 	private BigDecimal size;
+	
+	/**
+	 * 备份策略：备份策略
+	*/
+	@ApiModelProperty(required = false,value="备份策略" , notes = "备份策略")
+	private String strategy;
+	
+	/**
+	 * 备份保留：备份保留
+	*/
+	@ApiModelProperty(required = false,value="备份保留" , notes = "备份保留")
+	private String retention;
 	
 	/**
 	 * 备注：备注
@@ -131,7 +143,7 @@ public class DbBackupLog extends Entity {
 	/**
 	 * 处理状态：处理状态
 	*/
-	@ApiModelProperty(required = false,value="处理状态" , notes = "处理状态" , example = "process_sucess")
+	@ApiModelProperty(required = false,value="处理状态" , notes = "处理状态")
 	private String processed;
 	
 	/**
@@ -143,7 +155,7 @@ public class DbBackupLog extends Entity {
 	/**
 	 * 处理时间：处理时间
 	*/
-	@ApiModelProperty(required = false,value="处理时间" , notes = "处理时间" , example = "2023-06-20 12:00:00")
+	@ApiModelProperty(required = false,value="处理时间" , notes = "处理时间")
 	private Date lastProcessTime;
 	
 	/**
@@ -155,19 +167,19 @@ public class DbBackupLog extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-01 11:25:12")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-12-26 12:17:00")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-06-01 11:26:10")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
 	private Date updateTime;
 	
 	/**
@@ -194,7 +206,7 @@ public class DbBackupLog extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -422,6 +434,44 @@ public class DbBackupLog extends Entity {
 	*/
 	public DbBackupLog setSize(BigDecimal size) {
 		this.size=size;
+		return this;
+	}
+	
+	/**
+	 * 获得 备份策略<br>
+	 * 备份策略
+	 * @return 备份策略
+	*/
+	public String getStrategy() {
+		return strategy;
+	}
+	
+	/**
+	 * 设置 备份策略
+	 * @param strategy 备份策略
+	 * @return 当前对象
+	*/
+	public DbBackupLog setStrategy(String strategy) {
+		this.strategy=strategy;
+		return this;
+	}
+	
+	/**
+	 * 获得 备份保留<br>
+	 * 备份保留
+	 * @return 备份保留
+	*/
+	public String getRetention() {
+		return retention;
+	}
+	
+	/**
+	 * 设置 备份保留
+	 * @param retention 备份保留
+	 * @return 当前对象
+	*/
+	public DbBackupLog setRetention(String retention) {
+		this.retention=retention;
 		return this;
 	}
 	
@@ -777,6 +827,7 @@ public class DbBackupLog extends Entity {
 		inst.setDbId(this.getDbId());
 		inst.setAction(this.getAction());
 		inst.setId(this.getId());
+		inst.setRetention(this.getRetention());
 		inst.setMethod(this.getMethod());
 		inst.setIp(this.getIp());
 		inst.setProcessResult(this.getProcessResult());
@@ -791,6 +842,7 @@ public class DbBackupLog extends Entity {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setEtime(this.getEtime());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setStrategy(this.getStrategy());
 		inst.setStatus(this.getStatus());
 		inst.clearModifies();
 		return inst;
@@ -861,6 +913,7 @@ public class DbBackupLog extends Entity {
 			this.setDbId(DataParser.parse(String.class, map.get(DbBackupLogMeta.DB_ID)));
 			this.setAction(DataParser.parse(String.class, map.get(DbBackupLogMeta.ACTION)));
 			this.setId(DataParser.parse(String.class, map.get(DbBackupLogMeta.ID)));
+			this.setRetention(DataParser.parse(String.class, map.get(DbBackupLogMeta.RETENTION)));
 			this.setMethod(DataParser.parse(String.class, map.get(DbBackupLogMeta.METHOD)));
 			this.setIp(DataParser.parse(String.class, map.get(DbBackupLogMeta.IP)));
 			this.setProcessResult(DataParser.parse(String.class, map.get(DbBackupLogMeta.PROCESS_RESULT)));
@@ -875,6 +928,7 @@ public class DbBackupLog extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(DbBackupLogMeta.DELETE_TIME)));
 			this.setEtime(DataParser.parse(Date.class, map.get(DbBackupLogMeta.ETIME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(DbBackupLogMeta.DELETE_BY)));
+			this.setStrategy(DataParser.parse(String.class, map.get(DbBackupLogMeta.STRATEGY)));
 			this.setStatus(DataParser.parse(String.class, map.get(DbBackupLogMeta.STATUS)));
 			// others
 			return true;
@@ -891,6 +945,7 @@ public class DbBackupLog extends Entity {
 				this.setDbId( (String)map.get(DbBackupLogMeta.DB_ID));
 				this.setAction( (String)map.get(DbBackupLogMeta.ACTION));
 				this.setId( (String)map.get(DbBackupLogMeta.ID));
+				this.setRetention( (String)map.get(DbBackupLogMeta.RETENTION));
 				this.setMethod( (String)map.get(DbBackupLogMeta.METHOD));
 				this.setIp( (String)map.get(DbBackupLogMeta.IP));
 				this.setProcessResult( (String)map.get(DbBackupLogMeta.PROCESS_RESULT));
@@ -905,6 +960,7 @@ public class DbBackupLog extends Entity {
 				this.setDeleteTime( (Date)map.get(DbBackupLogMeta.DELETE_TIME));
 				this.setEtime( (Date)map.get(DbBackupLogMeta.ETIME));
 				this.setDeleteBy( (String)map.get(DbBackupLogMeta.DELETE_BY));
+				this.setStrategy( (String)map.get(DbBackupLogMeta.STRATEGY));
 				this.setStatus( (String)map.get(DbBackupLogMeta.STATUS));
 				// others
 				return true;
@@ -934,6 +990,7 @@ public class DbBackupLog extends Entity {
 			this.setDbId(DataParser.parse(String.class, r.getValue(DbBackupLogMeta.DB_ID)));
 			this.setAction(DataParser.parse(String.class, r.getValue(DbBackupLogMeta.ACTION)));
 			this.setId(DataParser.parse(String.class, r.getValue(DbBackupLogMeta.ID)));
+			this.setRetention(DataParser.parse(String.class, r.getValue(DbBackupLogMeta.RETENTION)));
 			this.setMethod(DataParser.parse(String.class, r.getValue(DbBackupLogMeta.METHOD)));
 			this.setIp(DataParser.parse(String.class, r.getValue(DbBackupLogMeta.IP)));
 			this.setProcessResult(DataParser.parse(String.class, r.getValue(DbBackupLogMeta.PROCESS_RESULT)));
@@ -948,6 +1005,7 @@ public class DbBackupLog extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(DbBackupLogMeta.DELETE_TIME)));
 			this.setEtime(DataParser.parse(Date.class, r.getValue(DbBackupLogMeta.ETIME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(DbBackupLogMeta.DELETE_BY)));
+			this.setStrategy(DataParser.parse(String.class, r.getValue(DbBackupLogMeta.STRATEGY)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(DbBackupLogMeta.STATUS)));
 			return true;
 		} else {
@@ -963,6 +1021,7 @@ public class DbBackupLog extends Entity {
 				this.setDbId( (String)r.getValue(DbBackupLogMeta.DB_ID));
 				this.setAction( (String)r.getValue(DbBackupLogMeta.ACTION));
 				this.setId( (String)r.getValue(DbBackupLogMeta.ID));
+				this.setRetention( (String)r.getValue(DbBackupLogMeta.RETENTION));
 				this.setMethod( (String)r.getValue(DbBackupLogMeta.METHOD));
 				this.setIp( (String)r.getValue(DbBackupLogMeta.IP));
 				this.setProcessResult( (String)r.getValue(DbBackupLogMeta.PROCESS_RESULT));
@@ -977,6 +1036,7 @@ public class DbBackupLog extends Entity {
 				this.setDeleteTime( (Date)r.getValue(DbBackupLogMeta.DELETE_TIME));
 				this.setEtime( (Date)r.getValue(DbBackupLogMeta.ETIME));
 				this.setDeleteBy( (String)r.getValue(DbBackupLogMeta.DELETE_BY));
+				this.setStrategy( (String)r.getValue(DbBackupLogMeta.STRATEGY));
 				this.setStatus( (String)r.getValue(DbBackupLogMeta.STATUS));
 				return true;
 			} catch (Exception e) {

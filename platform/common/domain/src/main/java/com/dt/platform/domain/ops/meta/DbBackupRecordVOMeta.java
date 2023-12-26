@@ -16,8 +16,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 16:56:55
- * @sign 8A6990C940EA5736615A2DFC8C05A48F
+ * @since 2023-12-26 12:29:45
+ * @sign 798FCB60A7BA0C5F5F1DE270617FFB78
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -102,6 +102,36 @@ public class DbBackupRecordVOMeta extends DbBackupRecordMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupRecordVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupRecordVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupRecordVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupRecordVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupRecordVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupRecordVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupRecordVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupRecordVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -212,6 +242,26 @@ public class DbBackupRecordVOMeta extends DbBackupRecordMeta {
 	 * 备份大小 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupRecordVO,java.math.BigDecimal> BACKUP_SIZE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupRecordVO.class ,BACKUP_SIZE, java.math.BigDecimal.class, "备份大小", "备份大小", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 备份策略 , 类型: java.lang.String
+	*/
+	public static final String STRATEGY="strategy";
+	
+	/**
+	 * 备份策略 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupRecordVO,java.lang.String> STRATEGY_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupRecordVO.class ,STRATEGY, java.lang.String.class, "备份策略", "备份策略", java.lang.String.class, null);
+	
+	/**
+	 * 备份保留 , 类型: java.lang.String
+	*/
+	public static final String RETENTION="retention";
+	
+	/**
+	 * 备份保留 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupRecordVO,java.lang.String> RETENTION_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupRecordVO.class ,RETENTION, java.lang.String.class, "备份保留", "备份保留", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -346,7 +396,7 @@ public class DbBackupRecordVOMeta extends DbBackupRecordMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , DB_ID , DB_BK_ID , DB_NAME , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_RESULT_CT , BACKUP_STIME , BACKUP_ETIME , BACKUP_SIZE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , HOST , DB , BACKUP_INFO , DB_TYPE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , DB_ID , DB_BK_ID , DB_NAME , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_RESULT_CT , BACKUP_STIME , BACKUP_ETIME , BACKUP_SIZE , STRATEGY , RETENTION , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , HOST , DB , BACKUP_INFO , DB_TYPE };
 	
 	/**
 	 * 代理类
@@ -441,6 +491,39 @@ public class DbBackupRecordVOMeta extends DbBackupRecordMeta {
 		public DbBackupRecordVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public DbBackupRecordVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public DbBackupRecordVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public DbBackupRecordVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
 			return this;
 		}
 		
@@ -562,6 +645,28 @@ public class DbBackupRecordVOMeta extends DbBackupRecordMeta {
 		public DbBackupRecord setBackupSize(BigDecimal backupSize) {
 			super.change(BACKUP_SIZE,super.getBackupSize(),backupSize);
 			super.setBackupSize(backupSize);
+			return this;
+		}
+		
+		/**
+		 * 设置 备份策略
+		 * @param strategy 备份策略
+		 * @return 当前对象
+		*/
+		public DbBackupRecord setStrategy(String strategy) {
+			super.change(STRATEGY,super.getStrategy(),strategy);
+			super.setStrategy(strategy);
+			return this;
+		}
+		
+		/**
+		 * 设置 备份保留
+		 * @param retention 备份保留
+		 * @return 当前对象
+		*/
+		public DbBackupRecord setRetention(String retention) {
+			super.change(RETENTION,super.getRetention(),retention);
+			super.setRetention(retention);
 			return this;
 		}
 		
@@ -738,12 +843,15 @@ public class DbBackupRecordVOMeta extends DbBackupRecordMeta {
 			inst.setDbId(this.getDbId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setStrategy(this.getStrategy());
 			inst.setBackupResultCt(this.getBackupResultCt());
+			inst.setRetention(this.getRetention());
 			inst.setBackupResult(this.getBackupResult());
 			inst.setBackupSource(this.getBackupSource());
 			inst.setBackupEtime(this.getBackupEtime());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
 				inst.setDbType(this.getDbType());
@@ -752,7 +860,9 @@ public class DbBackupRecordVOMeta extends DbBackupRecordMeta {
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setHost(this.getHost());
+				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
 				inst.setDb(this.getDb());
 				inst.setBackupInfo(this.getBackupInfo());

@@ -10,8 +10,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 14:08:35
- * @sign ED0A2147E506B4059E040CCF26F0F0E9
+ * @since 2023-12-26 12:29:34
+ * @sign DA5F8A835039356FB41EB55D9F767274
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -136,6 +136,26 @@ public class DbBackupLogMeta {
 	 * 大小 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupLog,java.math.BigDecimal> SIZE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupLog.class ,SIZE, java.math.BigDecimal.class, "大小", "大小", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 备份策略 , 类型: java.lang.String
+	*/
+	public static final String STRATEGY="strategy";
+	
+	/**
+	 * 备份策略 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupLog,java.lang.String> STRATEGY_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupLog.class ,STRATEGY, java.lang.String.class, "备份策略", "备份策略", java.lang.String.class, null);
+	
+	/**
+	 * 备份保留 , 类型: java.lang.String
+	*/
+	public static final String RETENTION="retention";
+	
+	/**
+	 * 备份保留 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupLog,java.lang.String> RETENTION_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupLog.class ,RETENTION, java.lang.String.class, "备份保留", "备份保留", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -280,7 +300,7 @@ public class DbBackupLogMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , UID , DB_ID , IP , DB_NAME , ACTION , STATUS , METHOD , RESULT , STIME , ETIME , SIZE , NOTES , RECORD_TIME , SOURCE , PROCESSED , PROCESS_RESULT , LAST_PROCESS_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ ID , UID , DB_ID , IP , DB_NAME , ACTION , STATUS , METHOD , RESULT , STIME , ETIME , SIZE , STRATEGY , RETENTION , NOTES , RECORD_TIME , SOURCE , PROCESSED , PROCESS_RESULT , LAST_PROCESS_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -419,6 +439,28 @@ public class DbBackupLogMeta {
 		public DbBackupLog setSize(BigDecimal size) {
 			super.change(SIZE,super.getSize(),size);
 			super.setSize(size);
+			return this;
+		}
+		
+		/**
+		 * 设置 备份策略
+		 * @param strategy 备份策略
+		 * @return 当前对象
+		*/
+		public DbBackupLog setStrategy(String strategy) {
+			super.change(STRATEGY,super.getStrategy(),strategy);
+			super.setStrategy(strategy);
+			return this;
+		}
+		
+		/**
+		 * 设置 备份保留
+		 * @param retention 备份保留
+		 * @return 当前对象
+		*/
+		public DbBackupLog setRetention(String retention) {
+			super.change(RETENTION,super.getRetention(),retention);
+			super.setRetention(retention);
 			return this;
 		}
 		
@@ -602,6 +644,7 @@ public class DbBackupLogMeta {
 			inst.setDbId(this.getDbId());
 			inst.setAction(this.getAction());
 			inst.setId(this.getId());
+			inst.setRetention(this.getRetention());
 			inst.setMethod(this.getMethod());
 			inst.setIp(this.getIp());
 			inst.setProcessResult(this.getProcessResult());
@@ -616,6 +659,7 @@ public class DbBackupLogMeta {
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setEtime(this.getEtime());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setStrategy(this.getStrategy());
 			inst.setStatus(this.getStatus());
 			inst.clearModifies();
 			return inst;

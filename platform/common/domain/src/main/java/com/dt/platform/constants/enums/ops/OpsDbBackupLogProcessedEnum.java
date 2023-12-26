@@ -14,7 +14,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum OpsDbBackupLogProcessedEnum implements CodeTextEnum {
 
 
-    PROCESS_SUCCESS("process_sucess" , "成功成功"),
+    PROCESS_SUCCESS("process_sucess" , "处理成功"),
     PROCESS_FAILED("process_failed" , "处理失败"),
     NOT_PROCESSED("not_processed" , "未处理");
 

@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-10-17 13:49:58
+ * @since 2023-12-26 12:28:49
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -3871,6 +3871,16 @@ public class OpsTables {
 		public static final DBField SIZE = new DBField(DBDataType.DECIMAL , "size","size","大小","大小",false,false,true);
 		
 		/**
+		 * 备份策略
+		*/
+		public static final DBField STRATEGY = new DBField(DBDataType.STRING , "strategy","strategy","备份策略","备份策略",false,false,true);
+		
+		/**
+		 * 备份保留
+		*/
+		public static final DBField RETENTION = new DBField(DBDataType.STRING , "retention","retention","备份保留","备份保留",false,false,true);
+		
+		/**
 		 * 备注
 		*/
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
@@ -3940,7 +3950,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_BACKUP_LOG() {
-			this.init($NAME,"备份日志" , ID , UID , DB_ID , IP , DB_NAME , ACTION , STATUS , METHOD , RESULT , STIME , ETIME , SIZE , NOTES , RECORD_TIME , SOURCE , PROCESSED , PROCESS_RESULT , LAST_PROCESS_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"备份日志" , ID , UID , DB_ID , IP , DB_NAME , ACTION , STATUS , METHOD , RESULT , STIME , ETIME , SIZE , STRATEGY , RETENTION , NOTES , RECORD_TIME , SOURCE , PROCESSED , PROCESS_RESULT , LAST_PROCESS_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_BACKUP_LOG $TABLE=new OPS_DB_BACKUP_LOG();
 	}
@@ -4006,6 +4016,16 @@ public class OpsTables {
 		public static final DBField BACKUP_SIZE = new DBField(DBDataType.DECIMAL , "backup_size","backupSize","备份大小","备份大小",false,false,true);
 		
 		/**
+		 * 备份策略
+		*/
+		public static final DBField STRATEGY = new DBField(DBDataType.STRING , "strategy","strategy","备份策略","备份策略",false,false,true);
+		
+		/**
+		 * 备份保留
+		*/
+		public static final DBField RETENTION = new DBField(DBDataType.STRING , "retention","retention","备份保留","备份保留",false,false,true);
+		
+		/**
 		 * 备注
 		*/
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
@@ -4050,7 +4070,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_BACKUP_RECORD() {
-			this.init($NAME,"数据库备份记录" , ID , DB_ID , DB_BK_ID , DB_NAME , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_RESULT_CT , BACKUP_STIME , BACKUP_ETIME , BACKUP_SIZE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"数据库备份记录" , ID , DB_ID , DB_BK_ID , DB_NAME , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_RESULT_CT , BACKUP_STIME , BACKUP_ETIME , BACKUP_SIZE , STRATEGY , RETENTION , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_BACKUP_RECORD $TABLE=new OPS_DB_BACKUP_RECORD();
 	}
@@ -7557,7 +7577,7 @@ public class OpsTables {
 	}
 	
 	/**
-	 * 节点数值
+	 * 监控值
 	*/
 	public static class OPS_MONITOR_NODE_VALUE extends DBTable {
 		
@@ -7929,7 +7949,7 @@ public class OpsTables {
 		/**
 		 * 记录时间
 		*/
-		public static final DBField RECORD_TIME = new DBField(DBDataType.DATE , "record_time","recordTime","记录时间","记录时间",false,false,true);
+		public static final DBField RECORD_TIME = new DBField(DBDataType.DATE , "record_time","recordTime","记录时间","记录时间",true,false,false);
 		
 		/**
 		 * 创建人ID
@@ -7972,7 +7992,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","版本","版本",false,false,false);
 		
 		public OPS_MONITOR_NODE_VALUE() {
-			this.init($NAME,"节点数值" , ID , NODE_ID , MONITOR_TPL_CODE , RESULT_STATUS , RESULT_MESSAGE , INDICATOR_CODE , HOSTNAME , OS_DATETIME , BOOTTIME , OS_VERION , ARCH , CPU_NUMBER , CPU_FREE , CPU_SYS , CPU_USER , CPU_WAIT , CPU_IDLE , CPU_USED , OS_LOAD , OS_LOAD5 , OS_LOAD15 , NETWORK_FLOW_UP , NETWORK_FLOW_DOWN , PROCESS_CNT , P_MEMORY_SIZE , V_MEMORY_SIZE , P_MEMORY_USED , V_MEMORY_USED , DB_STATUS , DB_SIZE , DB_CONNECT_NUMBER , NODE_VERSION , INFO , LABEL1 , LABEL2 , LABEL3 , CODE1 , CODE2 , CODE3 , VALUE_NUMBER1 , VALUE_NUMBER2 , VALUE_NUMBER3 , VALUE_NUMBER4 , VALUE_NUMBER5 , VALUE_NUMBER6 , VALUE_STR1 , VALUE_STR2 , VALUE_STR3 , VALUE_BSTR1 , VALUE_INT1 , VALUE_INT2 , VALUE_INT3 , LIST_LABEL1 , LIST_LABEL2 , LIST_LABEL3 , LIST_CODE1 , LIST_CODE2 , LIST_CODE3 , LIST_VALUE_NUMBER1 , LIST_VALUE_NUMBER2 , LIST_VALUE_NUMBER3 , LIST_VALUE_NUMBER4 , LIST_VALUE_NUMBER5 , LIST_VALUE_NUMBER6 , LIST_VALUE_STR1 , LIST_VALUE_STR2 , LIST_VALUE_STR3 , LIST_VALUE_INT1 , LIST_VALUE_INT2 , LIST_VALUE_INT3 , UID , IS_CONNECTED , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"监控值" , ID , NODE_ID , MONITOR_TPL_CODE , RESULT_STATUS , RESULT_MESSAGE , INDICATOR_CODE , HOSTNAME , OS_DATETIME , BOOTTIME , OS_VERION , ARCH , CPU_NUMBER , CPU_FREE , CPU_SYS , CPU_USER , CPU_WAIT , CPU_IDLE , CPU_USED , OS_LOAD , OS_LOAD5 , OS_LOAD15 , NETWORK_FLOW_UP , NETWORK_FLOW_DOWN , PROCESS_CNT , P_MEMORY_SIZE , V_MEMORY_SIZE , P_MEMORY_USED , V_MEMORY_USED , DB_STATUS , DB_SIZE , DB_CONNECT_NUMBER , NODE_VERSION , INFO , LABEL1 , LABEL2 , LABEL3 , CODE1 , CODE2 , CODE3 , VALUE_NUMBER1 , VALUE_NUMBER2 , VALUE_NUMBER3 , VALUE_NUMBER4 , VALUE_NUMBER5 , VALUE_NUMBER6 , VALUE_STR1 , VALUE_STR2 , VALUE_STR3 , VALUE_BSTR1 , VALUE_INT1 , VALUE_INT2 , VALUE_INT3 , LIST_LABEL1 , LIST_LABEL2 , LIST_LABEL3 , LIST_CODE1 , LIST_CODE2 , LIST_CODE3 , LIST_VALUE_NUMBER1 , LIST_VALUE_NUMBER2 , LIST_VALUE_NUMBER3 , LIST_VALUE_NUMBER4 , LIST_VALUE_NUMBER5 , LIST_VALUE_NUMBER6 , LIST_VALUE_STR1 , LIST_VALUE_STR2 , LIST_VALUE_STR3 , LIST_VALUE_INT1 , LIST_VALUE_INT2 , LIST_VALUE_INT3 , UID , IS_CONNECTED , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_MONITOR_NODE_VALUE $TABLE=new OPS_MONITOR_NODE_VALUE();
 	}
