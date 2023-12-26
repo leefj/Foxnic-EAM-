@@ -99,7 +99,7 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
 
 
         cfg.view().list().operationColumn().addActionButton("人员明细","personDetail");
-        cfg.view().list().addToolButton("多角色","inMultipleRoles","in-mul-roles");
+        cfg.view().list().addToolButton("多角色人员","inMultipleRoles","in-mul-roles");
 
         cfg.view().field(AssetDataPermissionsMeta.POSITION_IDS)
                 .basic().label("存放位置")

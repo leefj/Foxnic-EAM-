@@ -103,7 +103,7 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('eam_asset_data_permissions:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>
-        <button id="in-multiple-roles"  class="layui-btn icon-btn layui-btn-sm  in-mul-roles " lay-event="tool-in-multiple-roles"><span th:text="${lang.translate('多角色','','cmp:table.button')}">多角色</span></button>
+        <button id="in-multiple-roles"  class="layui-btn icon-btn layui-btn-sm  in-mul-roles " lay-event="tool-in-multiple-roles"><span th:text="${lang.translate('多角色人员','','cmp:table.button')}">多角色人员</span></button>
 
     </div>
 </script>

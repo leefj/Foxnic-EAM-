@@ -71,7 +71,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox' }
 				 	,{ field: 'badge', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('工号') , templet: function (d) { return templet('badge',d.badge,d);}  }
-					,{ field: 'name', align:"",fixed:false,  hide:false, sort: true, title: fox.translate('姓名') , templet: function (d) { return templet('name',fox.getProperty(d,["person","name"]),d);} }
+					,{ field: 'name', align:"",fixed:false,  hide:false, sort: true, title: fox.translate('姓名') , templet: function (d) { return templet('name',d.name,d);} }
 					,{ field: 'dpRole', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('角色') , templet: function (d) { return templet('dpRole',d.dpRole,d);}  }
 		//			,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
@@ -179,6 +179,7 @@ function ListPage() {
 			refreshTableData(null,null,true);
 		});
 
+
 		// 搜索按钮点击事件
 		$('#search-button').click(function () {
 			refreshTableData(null,null,true);
@@ -219,11 +220,7 @@ function ListPage() {
 					break;
 			};
 		});
-
-
-
 	}
-
 	/**
 	 * 绑定行操作按钮事件
 	 */
