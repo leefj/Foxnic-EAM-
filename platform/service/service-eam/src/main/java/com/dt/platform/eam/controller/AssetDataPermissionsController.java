@@ -436,7 +436,7 @@ public class AssetDataPermissionsController extends SuperController {
 	@PostMapping(AssetDataPermissionsServiceProxy.QUERY_USER_IN_MULTIPLE_ROLES)
 	public Result<List<DpEmployee>> queryUserInMulRoles() {
 		Result<List<DpEmployee>> res=new Result<>();
-		String sql="select c.member_id,b.*,d.badge from eam_asset_data_permissions a,sys_busi_role b,sys_busi_role_member c,hrm_employee d where a.role_code=b.code\n" +
+		String sql="select (select name from hrm_person where id=d.person_id) user_name,c.member_id,b.*,d.badge from eam_asset_data_permissions a,sys_busi_role b,sys_busi_role_member c,hrm_employee d where a.role_code=b.code\n" +
 				"and b.id=c.role_id and c.member_type='employee' \n" +
 				"and b.deleted=0 and a.deleted=0\n" +
 				"and d.id=c.member_id "+
@@ -457,6 +457,7 @@ public class AssetDataPermissionsController extends SuperController {
 				DpEmployee dpE=new DpEmployee();
 				dpE.setId(memberId);
 				dpE.setBadge(rs.getRcd(i).getString("badge"));
+				dpE.setName(rs.getRcd(i).getString("user_name"));
 				dpE.setDpRole(roleName);
 				map.put(memberId,dpE);
 			}
@@ -469,9 +470,9 @@ public class AssetDataPermissionsController extends SuperController {
 				list.add(entry.getValue());
 				//System.out.println("key:" + entry.getKey() + ", value:" + entry.getValue());
 			}
-			assetDataPermissionsService.dao().fill(list)
-					.with(EmployeeMeta.PERSON)
-					.execute();
+//			assetDataPermissionsService.dao().fill(list)
+//					.with(EmployeeMeta.PERSON)
+//					.execute();
 		}
 		res.success(true);
 		res.data(list);

@@ -1353,7 +1353,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		}
 
 		AssetStatusRule assetStatusRule=assetStatusRuleService.queryEntity(AssetStatusRule.create().setOperCode(businessType).setStatus(StatusEnableEnum.ENABLE.code()));
-		if(assetStatusRule!=null){
+		if(businessType!=null&&assetStatusRule!=null){
 			String condition=assetStatusRule.getOperCondition();
 			String tenantId=SessionUser.getCurrent().getActivatedTenantId();
 			if(AssetStatusRuleConditionEnum.NOT_IN.code().equals(condition)){
@@ -1451,10 +1451,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 //				sample.setCategoryId(assetDataService.queryPcmIdByCode(AssetPcmCodeEnum.ASSET.code()));
 //			}
 //		}
-
-
-
-
 		String tabalias=this.tableAlias();
 		System.out.println("tableAlias:"+tabalias);
 		this.tableAlias();
