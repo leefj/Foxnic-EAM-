@@ -29,17 +29,23 @@
 
     document.getElementById("mainFrame").style.height = "0px";//最好设置为minHeight
     var url = [[${path}]];
-    $("#mainFrame").attr("src", url);
-    startInit('mainFrame', 560);
-    var browserVersion = window.navigator.userAgent.toUpperCase();
-    var isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
-    var isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
-    var isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
-    var isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
-    var isIE = (!!window.ActiveXObject || "ActiveXObject" in window);
-    var isIE9More = (! -[1,] == false);
-
-
+    var ip = [[${ip}]];
+    var message = [[${message}]];
+    var result = [[${result}]];
+    var id = [[${id}]];
+    if(result=="0"){
+        $("#mainFrame").attr("src", url);
+        startInit('mainFrame', 560);
+        var browserVersion = window.navigator.userAgent.toUpperCase();
+        var isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
+        var isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
+        var isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
+        var isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
+        var isIE = (!!window.ActiveXObject || "ActiveXObject" in window);
+        var isIE9More = (! -[1,] == false);
+    }else{
+        alert(message);
+    }
     function reinitIframe(iframeId, minHeight) {
         try {
             var iframe = document.getElementById(iframeId);

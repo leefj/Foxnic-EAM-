@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-10-29 11:02:00
+ * @since 2023-12-28 19:52:03
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -3525,6 +3525,86 @@ public class SysTables {
 			this.init($NAME,"报表列表" , ID , CODE , CATALOG_ID , NAME , STATUS , ROUTE , NOTES , REPORT_TPL_ID , REPORT_TPL_DEF_ID , REPORT_SOURCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final SYS_REPORT $TABLE=new SYS_REPORT();
+	}
+	
+	/**
+	 * 报表ACL
+	*/
+	public static class SYS_REPORT_ACL extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "sys_report_acl";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 报表
+		*/
+		public static final DBField REPORT_ID = new DBField(DBDataType.STRING , "report_id","reportId","报表","报表",false,false,true);
+		
+		/**
+		 * IP
+		*/
+		public static final DBField IP = new DBField(DBDataType.STRING , "ip","ip","IP","IP",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public SYS_REPORT_ACL() {
+			this.init($NAME,"报表ACL" , ID , REPORT_ID , IP , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final SYS_REPORT_ACL $TABLE=new SYS_REPORT_ACL();
 	}
 	
 	/**
