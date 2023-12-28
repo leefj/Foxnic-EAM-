@@ -1,13 +1,19 @@
 package com.dt.platform.common.page;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.domain.common.Report;
+import com.dt.platform.domain.common.ReportAclVO;
+import com.dt.platform.domain.common.ReportVO;
+import com.dt.platform.proxy.common.ReportAclServiceProxy;
+import com.dt.platform.proxy.common.ReportServiceProxy;
+import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import org.github.foxnic.web.constants.enums.SystemConfigEnum;
 import org.github.foxnic.web.constants.enums.system.SSOConstants;
 import org.github.foxnic.web.constants.enums.system.SSOResponseFormat;
 import org.github.foxnic.web.constants.enums.system.VersionType;
 import org.github.foxnic.web.framework.view.controller.ViewController;
-import org.github.foxnic.web.proxy.oauth.UserServiceProxy;
 import org.github.foxnic.web.proxy.system.ConfigServiceProxy;
 import org.github.foxnic.web.proxy.utils.SystemConfigProxyUtil;
 import org.github.foxnic.web.session.SessionUser;
@@ -15,7 +21,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller("CommonPageController")
 @RequestMapping(CommonPageController.prefix)
@@ -23,6 +32,9 @@ public class CommonPageController extends ViewController {
 
 
 	public static final String prefix="business/common/common";
+
+
+
 
 	/**
 	 * 主页面
@@ -42,10 +54,114 @@ public class CommonPageController extends ViewController {
 
 		return prefix+"back_to_portal.html";
 	}
+	public static String getClientIP(HttpServletRequest request) {
+		String ipAddress = request.getHeader("X-Forwarded-For");
+		if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+			ipAddress = request.getHeader("Proxy-Client-IP");
+		}
+		if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+			ipAddress = request.getHeader("WL-Proxy-Client-IP");
+		}
+		if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+			ipAddress = request.getHeader("HTTP_CLIENT_IP");
+		}
+		if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+			ipAddress = request.getHeader("HTTP_X_FORWARDED_FOR");
+		}
+		if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+			ipAddress = request.getRemoteAddr();
+		}
+		return ipAddress;
+	}
+
+	@RequestMapping("/iframe_acl.html")
+	public String iframeAcl(Model model,HttpServletRequest request,String code) {
+		//code优先
+		String result="0";
+		String message="";
+		String route="";
+		String id="none";
+		String ip="none";
+		if(StringUtil.isBlank(code)){
+			ReportVO vo=new ReportVO();
+			vo.setCode(code);
+			Result<List<Report>> res= ReportServiceProxy.api().queryList(vo);
+			if(res.isSuccess()){
+				List<Report> list=new ArrayList<>();
+				if(list.size()==0){
+					result="1";
+					message="当前使用code寻找，没有找到对应的访问路径";
+				}else if(list.size()>1){
+					result="1";
+					message="当前使用code寻找，存在相同的访问路径";
+				}
+				route=list.get(0).getRoute();
+				id=list.get(0).getId();
+				ip=getClientIP(request);
+			}
+		}else{
+		}
+		Logger.info("route:"+route+",ip:"+ip);
+		model.addAttribute("message",message);
+		model.addAttribute("result",result);
+		model.addAttribute("path",route);
+		model.addAttribute("code",code);
+		model.addAttribute("ip",ip);
+		model.addAttribute("id",id);
+		return prefix+"/iframe_acl";
+	}
 
 	@RequestMapping("/iframe.html")
-	public String iframe(Model model,HttpServletRequest request,String path) {
-		model.addAttribute("path",path);
+	public String iframe(Model model,HttpServletRequest request,String code,String path) {
+		String result="0";
+		String message="";
+		String route="";
+		String id="";
+		String ip="";
+		ip=getClientIP(request);
+		if(!StringUtil.isBlank(code)){
+			ReportVO vo=new ReportVO();
+			vo.setCode(code);
+			Result<List<Report>> res= ReportServiceProxy.api().queryList(vo);
+			if(res.isSuccess()){
+				List<Report> list=res.getData();
+				if(list.size()==0){
+					result="1";
+					message="当前使用code寻找，没有找到对应的访问路径";
+				}else if(list.size()>1){
+					result="1";
+					message="当前使用code寻找，存在相同的访问路径";
+				}else{
+					route=list.get(0).getRoute();
+					id=list.get(0).getId();
+					ip=getClientIP(request);
+					ReportAclVO aclVo=new ReportAclVO();
+					aclVo.setReportId(id);
+					if(ReportAclServiceProxy.api().queryList(aclVo).data().size()>0){
+						//如果存在ACL,则必须匹配
+						ReportAclVO aclIpVo=new ReportAclVO();
+						aclVo.setReportId(id);
+						aclVo.setIp(ip);
+						if(ReportAclServiceProxy.api().queryList(aclVo).data().size()==0){
+							result="1";
+							message="当前Ip:"+ip+"没有权限访问";
+							route="none";
+						}
+					}
+				}
+			}
+		}else{
+			route=path;
+			result="0";
+			message="可以访问";
+		}
+		Logger.info("route:"+route+",ip:"+ip);
+		model.addAttribute("message",message);
+		model.addAttribute("result",result);
+		model.addAttribute("path",route);
+		model.addAttribute("ip",ip);
+		model.addAttribute("id",id);
+		model.addAttribute("code",code);
 		return prefix+"/iframe";
 	}
 
