@@ -35,7 +35,7 @@ spring:
         #driver-class-name: com.mysql.cj.jdbc.Driver
         # 5.x
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://127.0.0.1:APP_DB_PORT/APP_DB_NAME?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
+        url: jdbc:mysql://127.0.0.1:APP_DB_PORT/APP_DB_NAME?autoReconnectForPools=true&socketTimeout=1800000&connectTimeout=30000&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true&tinyInt1isBit=false
         username: APP_DB_USERNAME
         password: APP_DB_PASSWORD
         #        url: jdbc:mysql://121.43.103.102:3306/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
