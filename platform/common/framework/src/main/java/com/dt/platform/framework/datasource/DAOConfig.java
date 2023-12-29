@@ -49,6 +49,7 @@ public class DAOConfig {
 	@Primary
 	public DAO primaryDAO (
             @Qualifier(DatasourceConfig.PRIMARY_DATA_SOURCE_NAME) DataSource dataSource) {
+
 		try {
 			if(printSQL==null) printSQL=false;
 

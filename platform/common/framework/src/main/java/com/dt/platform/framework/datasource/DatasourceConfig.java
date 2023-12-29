@@ -27,6 +27,7 @@ public class DatasourceConfig {
 	@Primary
 	public DataSourceTransactionManager primaryTransactionManager(
 			@Qualifier(PRIMARY_DATA_SOURCE_NAME) DataSource dataSource) {
+
 		return new DataSourceTransactionManager(dataSource);
 	}
 
