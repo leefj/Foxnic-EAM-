@@ -42,16 +42,19 @@ spring:
         # 5.x
         #driver-class-name: com.mysql.jdbc.Driver
         #&socketTimeout=3000000
-        url: bOfoWsTmRXXNZ0PJIvNUhUWY9QIencf1xUgWg3JXN9yF/k9AgCBkYlaJCO9eeeIfvAud7IljFG/Ef+hufdetQJ3V5e5JSuTb+VrqdJ5ErxKKH+bTZKQJX6jFxflT9OmJHm+R8DjDCysaQ9e99Dwh1Dh+ecnc+zs4Fg+Uk/QdAeBGD2wmJLdAn082VpQn4vPIlOEb2y+sUF9r0RJD+jdwfvW8lcX4lTWFBOUaMBMutyVKiUENuttDcgwCl1MDsd3R
+        url: bOfoWsTmRXXNZ0PJIvNUhUWY9QIencf1xUgWg3JXN9yFsl3meApl+JI/YsPmrmrjKj5omytE6kA2n0reP4uRPA26r3NJyVKMevbr0GohnbCG71bfrkAzU4olIDjlDw+c+skqRkBbYTLNZdrNEEWGdiemKxgCcfaQCiAiSlNS7YYC0OxoXN7a35nMng2URpZslkU2K1uiCFBx/xvjebwtJWChSKd+sYjK/P2zKRIgNTWdaxkJKb8aurSsg5Lc37R042hAtBQMqU2nlydvJHOjvKDiMZjxsq1eURFw/xiCSTG7AZkejM28etaPDkA+as6Rnfd46VoINscBOFuceFqHcogM0jXxoGx2J3kZwxDH0kk=
         username: tD5wkJAfnCt04A+Y+QN5GA==
         password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
+#        url: jdbc:mysql://db.dev.xyjm.store:3306/foxnic?autoReconnectForPools=true&socketTimeout=1800000&connectTimeout=30000&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true&tinyInt1isBit=false
 #        url: jdbc:mysql://zsy-cloud.tpddns.cn:3308/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
 #        username: root
 #        password: root_pwd
         # 启动程序时，在连接池中初始化多少个连接
-        initialSize: 10
+        initialSize: 20
+        # 回收空闲连接时，将保证至少有minIdle个连接.
+        minIdle: 20
         # 连接池中最多支持多少个活动会话
-        maxActive: 128
+        maxActive: 300
         # 程序向连接池中请求连接时,超过maxWait的值后，认为本次请求失败，即连接池没有可用连接，单位毫秒，设置-1时表示无限等待
         maxWait: 60000
         # 池中某个连接的空闲时长达到 N 毫秒后, 连接池在下次检查空闲连接时，将回收该连接,要小于防火墙超时设置
@@ -63,8 +66,6 @@ spring:
         # 配置间隔多久启动一次DestroyThread，对连接池内连接进行一次检测，单位是毫秒
         timeBetweenEvictionRunsMillis: 60000
         #keepAliveBetweenTimeMillis: 3600000
-        # 回收空闲连接时，将保证至少有minIdle个连接.
-        minIdle: 10
         # 要求程序从池中get到连接后, N 秒后必须close,否则druid 会强制回收该连接,不管该连接中是活动还是空闲。
         # 建议设置为false。设置为True时，会执行连接泄露检查：
         removeAbandoned: false
