@@ -32,6 +32,7 @@ public class UreportDataSource implements BuildinDatasource {
     @Override
     public Connection getConnection() {
         try {
+
             return dataSource.getConnection();
 
         } catch (SQLException e) {
