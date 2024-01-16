@@ -21,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 检查项组服务接口
+ * 检查模版服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-05 13:58:57
+ * @since 2024-01-13 13:02:53
 */
 
 public interface ICheckGroupService extends  ISimpleIdService<CheckGroup,String> {
@@ -56,7 +56,7 @@ public interface ICheckGroupService extends  ISimpleIdService<CheckGroup,String>
 
 		
 	/**
-	 * 按主键删除检查项组
+	 * 按主键删除检查模版
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -64,7 +64,7 @@ public interface ICheckGroupService extends  ISimpleIdService<CheckGroup,String>
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除检查项组
+	 * 按主键删除检查模版
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -87,7 +87,7 @@ public interface ICheckGroupService extends  ISimpleIdService<CheckGroup,String>
 
 		
 	/**
-	 * 按主键更新检查项组
+	 * 按主键更新检查模版
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -157,7 +157,7 @@ public interface ICheckGroupService extends  ISimpleIdService<CheckGroup,String>
 
 		
 	/**
-	 * 按主键获取检查项组
+	 * 按主键获取检查模版
 	 *
 	 * @param id 主键
 	 * @return CheckGroup 数据对象

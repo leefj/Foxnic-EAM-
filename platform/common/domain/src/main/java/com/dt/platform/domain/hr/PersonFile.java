@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员档案
  * <p>人员档案 , 数据表 hr_person_file 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 08:59:14
+ * @since 2024-01-14 15:09:14
  * @sign 4148727D70AE8690D98C9FF9A8452ECD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -40,19 +40,19 @@ public class PersonFile extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "717288555616927744")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
 	
 	/**
 	 * 档案编号：档案编号
 	*/
-	@ApiModelProperty(required = false,value="档案编号" , notes = "档案编号" , example = "1212")
+	@ApiModelProperty(required = false,value="档案编号" , notes = "档案编号")
 	private String code;
 	
 	/**
 	 * 档案状态：档案状态
 	*/
-	@ApiModelProperty(required = false,value="档案状态" , notes = "档案状态" , example = "using")
+	@ApiModelProperty(required = false,value="档案状态" , notes = "档案状态")
 	private String status;
 	
 	/**
@@ -64,7 +64,7 @@ public class PersonFile extends Entity {
 	/**
 	 * 是否新建档：是否新建档
 	*/
-	@ApiModelProperty(required = false,value="是否新建档" , notes = "是否新建档" , example = "yes")
+	@ApiModelProperty(required = false,value="是否新建档" , notes = "是否新建档")
 	private String ifNew;
 	
 	/**
@@ -76,13 +76,13 @@ public class PersonFile extends Entity {
 	/**
 	 * 档案保管地：档案保管地
 	*/
-	@ApiModelProperty(required = false,value="档案保管地" , notes = "档案保管地" , example = "12")
+	@ApiModelProperty(required = false,value="档案保管地" , notes = "档案保管地")
 	private String saveLoc;
 	
 	/**
 	 * 参加工作时间：参加工作时间
 	*/
-	@ApiModelProperty(required = false,value="参加工作时间" , notes = "参加工作时间" , example = "2023-00-08")
+	@ApiModelProperty(required = false,value="参加工作时间" , notes = "参加工作时间")
 	private String workStartDate;
 	
 	/**
@@ -94,19 +94,19 @@ public class PersonFile extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String note;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-03 08:08:38")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
 	private Date createTime;
 	
 	/**
@@ -124,7 +124,7 @@ public class PersonFile extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -145,13 +145,13 @@ public class PersonFile extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户")
 	private String tenantId;
 	
 	/**

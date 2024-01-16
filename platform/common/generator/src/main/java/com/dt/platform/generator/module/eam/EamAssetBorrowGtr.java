@@ -97,6 +97,8 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
         cfg.view().field(AssetBorrowMeta.ORIGINATOR_USER_NAME).table().disable(true);
         cfg.view().field(AssetBorrowMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
                 .form().fillBy("originator","name");
+
+
         cfg.view().field(EAMTables.EAM_ASSET_BORROW.ORIGINATOR_ID).table().fillBy("originator","name");
 
         cfg.view().field(EAMTables.EAM_ASSET_BORROW.BORROWER_ID).table().fillBy("borrower","name");

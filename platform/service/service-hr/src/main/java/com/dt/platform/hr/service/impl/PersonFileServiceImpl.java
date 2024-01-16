@@ -39,7 +39,7 @@ import java.util.Map;
  * </p>
  * @author 金杰 , maillank@qq.com
  * @since 2023-06-03 08:44:58
-*/
+ */
 
 
 @Service("HrPersonFileService")
@@ -49,7 +49,7 @@ public class PersonFileServiceImpl extends SuperService<PersonFile> implements I
 	/**
 	 * 注入DAO对象
 	 * */
-	@Resource(name=DBConfigs.PRIMARY_DAO) 
+	@Resource(name=DBConfigs.PRIMARY_DAO)
 	private DAO dao=null;
 
 	/**
@@ -97,7 +97,7 @@ public class PersonFileServiceImpl extends SuperService<PersonFile> implements I
 		return super.insertList(personFileList);
 	}
 
-	
+
 	/**
 	 * 按主键删除人员档案
 	 *
@@ -118,7 +118,7 @@ public class PersonFileServiceImpl extends SuperService<PersonFile> implements I
 			return r;
 		}
 	}
-	
+
 	/**
 	 * 按主键删除人员档案
 	 *
@@ -178,7 +178,7 @@ public class PersonFileServiceImpl extends SuperService<PersonFile> implements I
 		return super.updateList(personFileList , mode);
 	}
 
-	
+
 	/**
 	 * 按主键更新人员档案
 	 *
@@ -192,7 +192,7 @@ public class PersonFileServiceImpl extends SuperService<PersonFile> implements I
 		return suc>0;
 	}
 
-	
+
 	/**
 	 * 按主键获取人员档案
 	 *

@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 11:12:21
+ * @since 2024-01-16 10:30:11
  */
 
 
@@ -113,6 +113,7 @@ function ListPage() {
 					,{ field: 'contractFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('合同结束时间') ,templet: function (d) { return templet('contractFinishDate',fox.dateFormat(d.contractFinishDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'note', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('note',d.note,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -552,7 +553,10 @@ function ListPage() {
 
 			admin.putTempData('hr-person-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-person-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -561,7 +565,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-person-form-data-form-action', "view",true);
 						showEditForm(data.data);
@@ -593,6 +599,9 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'person-detail') { // 详情
+				window.pageExt.list.personDetail(data,this);
 			}
 			else if (layEvent === 'person-cont') { // 合同
 				window.pageExt.list.personCont(data,this);

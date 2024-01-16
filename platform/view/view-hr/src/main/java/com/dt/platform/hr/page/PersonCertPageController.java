@@ -36,6 +36,7 @@ public class PersonCertPageController extends ViewController {
 		}
 		return proxy;
 	}
+
 	
 	/**
 	 * 人员证书 功能主页面

@@ -28,6 +28,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+            var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+            operHtml=operHtml.replace(/lay-event="view"/i, "style=\"display:none\"")
+            document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+            var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+            toolHtml=toolHtml.replace(/lay-event="batch-del"/i, "style=\"display:none\"")
+            document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
         },
         /**
          * 按事件名称移除表格按钮栏的按钮
@@ -218,8 +226,19 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 }
             });
         },
-
-
+        personDetail:function (data, it){
+            admin.popupCenter({
+                title: "人员信息",
+                resize: false,
+                offset: [10,null],
+                area: ["90%","90%"],
+                type: 2,
+                id:"hr-person-detail-data-win",
+                content: '/business/hr/person/person_info.html?role=admin&personId='+data.id,
+                finish: function () {
+                }
+            });
+        },
         /**
          * 表格右侧操作列更多按钮事件
          * */

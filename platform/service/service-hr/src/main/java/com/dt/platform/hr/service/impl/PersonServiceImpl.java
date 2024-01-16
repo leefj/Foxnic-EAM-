@@ -112,10 +112,29 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 			person.setJobNumber(IDGenerator.getSnowflakeIdString());
 		}
 		Result r=super.insert(person,throwsException);
+
 		return r;
 	}
 
 
+	@Override
+	public String queryPersonIdByEmployeeId(String employeeId) {
+		Rcd rs=dao.queryRecord("select * from hr_person where deleted=0 and employee_id=?",employeeId);
+		if(rs==null){
+			return null;
+		}else{
+			return rs.getString("id");
+		}
+	}
+
+	@Override
+	public String queryOperParameterValue(String code) {
+		Rcd rs=dao.queryRecord("select * from sys_config where deleted=0 and code=? and type='ENUM' and type_desc='org.github.foxnic.web.constants.enums.system.YesNo'",code);
+		if(rs==null){
+			return "0";
+		}
+		return rs.getString("value");
+	}
 
 	@Override
 	public Result<JSONObject> queryReportData(String labels) {
@@ -294,12 +313,21 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 			person.setJobNumber(employee.getBadge());
 		}
 
-
 		if(StringUtil.isBlank(person.getJobNumber())){
 			person.setJobNumber(IDGenerator.getSnowflakeIdString());
 		}
 
 		Result r=super.update(person , mode , throwsException);
+		if(r.isSuccess()){
+			String pId="";
+			if(!StringUtil.isBlank(person.getEmployeeId())){
+				pId=person.getEmployeeId();
+			}
+			dao.execute("update hr_person_certificate set employee_id=? where person_id=?",pId,person.getId());
+			dao.execute("update hr_person_education set employee_id=? where person_id=?",pId,person.getId());
+			dao.execute("update hr_person_social_relation set employee_id=? where person_id=?",pId,person.getId());
+			dao.execute("update hr_person_education set employee_id=? where person_id=?",pId,person.getId());
+		}
 		return r;
 	}
 

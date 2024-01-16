@@ -84,13 +84,25 @@ public interface PersonServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
-
     public static final String EMPLOYEE_FILE_NOT_QUERY_PAGED_LIST = API_PREFIX + "employee-file-not-query-paged-list";
 
     /**
      * 查询人员报表数据
      */
     public static final String QUERY_REPORT_DATA = API_PREFIX + "query-report-data";
+
+    public static final String QUERY_OPER_PARAMETER_VALUE = API_PREFIX + "query-oper-parameter-value";
+
+    public static final String QUERY_PERSON_ID_BY_EMPLOYEE_ID = API_PREFIX + "query-person-id-by-employee-id";
+
+    @RequestMapping(PersonServiceProxy.QUERY_PERSON_ID_BY_EMPLOYEE_ID)
+    String queryPersonIdByEmployeeId(@RequestParam(name = "employeeId") String employeeId);
+
+    /**
+     * 查询参数
+     */
+    @RequestMapping(PersonServiceProxy.QUERY_OPER_PARAMETER_VALUE)
+    String queryOperParameterValue(@RequestParam(name = "code") String code);
 
     /**
      * 添加人员信息

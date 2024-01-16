@@ -1,7 +1,7 @@
 /**
- * 检查项组 列表页 JS 脚本
+ * 检查模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-05 13:58:58
+ * @since 2024-01-13 13:02:55
  */
 
 
@@ -88,6 +88,7 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -285,11 +286,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'检查项组'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的'+'检查模版'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'检查项组'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'检查模版'+'吗？'), function (i) {
                 top.layer.close(i);
 				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
@@ -356,7 +357,7 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'检查项组'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此'+'检查模版'+'吗？'), function (i) {
 					top.layer.close(i);
 					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
@@ -396,7 +397,7 @@ function ListPage() {
 		var area=admin.getTempData('eam-check-group-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('检查项组');
+		var title = fox.translate('检查模版');
 		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
 		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
 		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;

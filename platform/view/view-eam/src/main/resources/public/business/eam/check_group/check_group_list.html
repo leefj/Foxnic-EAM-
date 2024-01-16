@@ -1,8 +1,8 @@
 <!--
 /**
- * 检查项组 列表页 JS 脚本
+ * 检查模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-05 13:58:58
+ * @since 2024-01-13 13:02:55
  */
  -->
  <!DOCTYPE html>
@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
     <meta name="referrer" content="no-referrer">
-    <title th:text="${lang.translate('检查项组')}">检查项组</title>
+    <title th:text="${lang.translate('检查模版')}">检查模版</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -46,6 +46,7 @@
                         <input id="name" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
                     <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
 
 
                 </div>
