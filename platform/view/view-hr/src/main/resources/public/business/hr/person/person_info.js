@@ -60,21 +60,6 @@ function ListPage() {
 		};
 
 
-		// admin.request("/service-oa/oa-netdisk-resource-limit/get-my-resource",{},function(r) {
-		// 	if(r.success) {
-		// 		var str=r.data.currentSizeValue+"/"+r.data.capacitySizeValue
-		// 		$("#capStr").html(str);
-		// 		if(r.data.currentSizeB<0){
-		// 			r.data.currentSizeB=0;
-		// 		}
-		// 		var pct=((r.data.currentSizeB/(1024*1024) )/r.data.capacitySizeM )*100;
-		// 		var rpct=pct.toFixed(2);
-		// 		$("#capPct").width(rpct+"%");
-		// 		$("#cap").show();
-		// 	} else {
-		// 	}
-		// });
-
 
 		var d= [
 				{
@@ -171,7 +156,21 @@ function ListPage() {
 				"parentId": "1",
 				"showValue": "show",
 				"sortValue": 300,
-			},
+			},{
+				"code": "salary",
+				"compositeParameter": null,
+				"createBy": null,
+				"createTime": null,
+				"deleteBy": null,
+				"deleteTime": null,
+				"deleted": 0,
+				"iconCode": "icon_share",
+				"id": "200",
+				"name": "薪酬信息",
+				"parentId": "1",
+				"showValue": "show",
+				"sortValue": 300,
+			}
 
 
 		]
@@ -188,6 +187,7 @@ function ListPage() {
 		$("#personCertificate").hide();
 		$("#personWork").hide();
 		$("#personEducation").hide();
+		$("#personSalary").hide();
 
 
 		setTimeout(function(){
@@ -203,17 +203,22 @@ function ListPage() {
 			$("#personCertificate").height(fullHeight-6);
 			$("#personWork").height(fullHeight-6);
 			$("#personEducation").height(fullHeight-6);
+			$("#personSalary").height(fullHeight-6);
+
 
 		},20);
 
 	}
+
+
+
 	var editingNode=null;
 	function onNodeClick(event, treeId, treeNode) {
 		console.log("onNodeClick",treeNode);
 		if(treeNode==null) return;
 		editingNode=treeNode;
 
-		console.log($("#myFav"))
+
 		if(treeNode&&treeNode.code){
 			if(treeNode.code=="baseInfo"){
 				$("#personCertificate").hide();
@@ -221,9 +226,10 @@ function ListPage() {
 				$("#personEducation").hide();
 				$("#baseInfo").hide();
 				$("#personSocialRelation").hide();
+				$("#personSalary").hide();
+
 
 				$("#baseInfo").show();
-				console.log("baseInfo2",$("#baseInfo"))
 				$("#baseInfo")[0].contentWindow.module.loadContent();
 
 			}else if(treeNode.code=="personSocialRelation"){
@@ -233,6 +239,7 @@ function ListPage() {
 				$("#personEducation").hide();
 				$("#baseInfo").hide();
 				$("#personSocialRelation").hide();
+				$("#personSalary").hide();
 
 				$("#personSocialRelation").show();
 				console.log("$(\"#personSocialRelation\")" ,$("#personSocialRelation"))
@@ -243,6 +250,7 @@ function ListPage() {
 				$("#personEducation").hide();
 				$("#baseInfo").hide();
 				$("#personSocialRelation").hide();
+				$("#personSalary").hide();
 
 				$("#personCertificate").show();
 				$("#personCertificate")[0].contentWindow.module.refreshTableData();
@@ -252,6 +260,7 @@ function ListPage() {
 				$("#personEducation").hide();
 				$("#baseInfo").hide();
 				$("#personSocialRelation").hide();
+				$("#personSalary").hide();
 
 				$("#personWork").show();
 				$("#personWork")[0].contentWindow.module.refreshTableData();
@@ -261,10 +270,22 @@ function ListPage() {
 				$("#personEducation").hide();
 				$("#baseInfo").hide();
 				$("#personSocialRelation").hide();
+				$("#personSalary").hide();
 
 				$("#personEducation").show();
 				$("#personEducation")[0].contentWindow.module.refreshTableData();
+			}else if(treeNode.code=="salary"){
+				$("#personCertificate").hide();
+				$("#personWork").hide();
+				$("#personEducation").hide();
+				$("#baseInfo").hide();
+				$("#personSocialRelation").hide();
+				$("#personSalary").hide();
+
+				$("#personSalary").show();
+				$("#personSalary")[0].contentWindow.module.refreshTableData();
 			}
+
 		}
 
 

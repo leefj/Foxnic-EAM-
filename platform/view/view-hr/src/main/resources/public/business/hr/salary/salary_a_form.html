@@ -1,0 +1,461 @@
+<!--
+/**
+ * 人员薪酬 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2023-06-06 17:58:40
+ */
+ -->
+ <!DOCTYPE html>
+<html style="background-color: #FFFFFF;">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+	<title th:text="${lang.translate('人员薪酬')}">人员薪酬</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}"/>
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="">
+<div class="form-container" >
+
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="opacity:0">
+
+        <input name="id" id="id"  type="hidden"/>
+
+         <!--开始：group 循环-->
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0178-fieldset">
+            <legend>基本工资</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-0178-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- number_input : 基本工资 ,  baseSalary  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('基本工资')}">基本工资</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="baseSalary" id="baseSalary" name="baseSalary" th:placeholder="${ lang.translate('请输入'+'基本工资') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- number_input : 岗位工资 ,  postSalary  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('岗位工资')}">岗位工资</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="postSalary" id="postSalary" name="postSalary" th:placeholder="${ lang.translate('请输入'+'岗位工资') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- number_input : 工龄工资 ,  workingYearsSalary  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('工龄工资')}">工龄工资</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="workingYearsSalary" id="workingYearsSalary" name="workingYearsSalary" th:placeholder="${ lang.translate('请输入'+'工龄工资') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5001-fieldset">
+            <legend>各类补贴</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-5001-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- number_input : 固定补贴 ,  fixedSalary  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('固定补贴')}">固定补贴</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="fixedSalary" id="fixedSalary" name="fixedSalary" th:placeholder="${ lang.translate('请输入'+'固定补贴') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 通讯补贴 ,  communicationSalary  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('通讯补贴')}">通讯补贴</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="communicationSalary" id="communicationSalary" name="communicationSalary" th:placeholder="${ lang.translate('请输入'+'通讯补贴') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 住房补贴 ,  housingSalary  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('住房补贴')}">住房补贴</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="housingSalary" id="housingSalary" name="housingSalary" th:placeholder="${ lang.translate('请输入'+'住房补贴') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- number_input : 绩效补贴 ,  achievementSalary  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('绩效补贴')}">绩效补贴</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="achievementSalary" id="achievementSalary" name="achievementSalary" th:placeholder="${ lang.translate('请输入'+'绩效补贴') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 交通补贴 ,  trafficSalary  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('交通补贴')}">交通补贴</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="trafficSalary" id="trafficSalary" name="trafficSalary" th:placeholder="${ lang.translate('请输入'+'交通补贴') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 提成工资 ,  commissionSalary  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('提成工资')}">提成工资</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="commissionSalary" id="commissionSalary" name="commissionSalary" th:placeholder="${ lang.translate('请输入'+'提成工资') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- number_input : 加班补贴 ,  overtimeSalary  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('加班补贴')}">加班补贴</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="overtimeSalary" id="overtimeSalary" name="overtimeSalary" th:placeholder="${ lang.translate('请输入'+'加班补贴') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 其他补贴 ,  otherSalary  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('其他补贴')}">其他补贴</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="otherSalary" id="otherSalary" name="otherSalary" th:placeholder="${ lang.translate('请输入'+'其他补贴') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-8432-fieldset">
+            <legend>福利基数</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-8432-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- number_input : 住房公积金基数 ,  welfareZfgjjBase  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('住房公积金基数')}">住房公积金基数</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfareZfgjjBase" id="welfareZfgjjBase" name="welfareZfgjjBase" th:placeholder="${ lang.translate('请输入'+'住房公积金基数') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 医疗保险基数 ,  welfaerYrbxBase  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('医疗保险基数')}">医疗保险基数</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerYrbxBase" id="welfaerYrbxBase" name="welfaerYrbxBase" th:placeholder="${ lang.translate('请输入'+'医疗保险基数') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 工伤保险基数 ,  welfaerGsbxBase  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('工伤保险基数')}">工伤保险基数</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerGsbxBase" id="welfaerGsbxBase" name="welfaerGsbxBase" th:placeholder="${ lang.translate('请输入'+'工伤保险基数') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 养老保险基数 ,  welfaerYlbxBase  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('养老保险基数')}">养老保险基数</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerYlbxBase" id="welfaerYlbxBase" name="welfaerYlbxBase" th:placeholder="${ lang.translate('请输入'+'养老保险基数') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 生育保险基数 ,  welfaerSybxBase  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('生育保险基数')}">生育保险基数</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerSybxBase" id="welfaerSybxBase" name="welfaerSybxBase" th:placeholder="${ lang.translate('请输入'+'生育保险基数') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 失业保险基数 ,  welfaerSyebxBase  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('失业保险基数')}">失业保险基数</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerSyebxBase" id="welfaerSyebxBase" name="welfaerSyebxBase" th:placeholder="${ lang.translate('请输入'+'失业保险基数') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- number_input : 住房公积金个人 ,  welfareZfgjjPerson  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('住房公积金个人')}">住房公积金个人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfareZfgjjPerson" id="welfareZfgjjPerson" name="welfareZfgjjPerson" th:placeholder="${ lang.translate('请输入'+'住房公积金个人') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 医疗保险个人 ,  welfaerYrbxPerson  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('医疗保险个人')}">医疗保险个人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerYrbxPerson" id="welfaerYrbxPerson" name="welfaerYrbxPerson" th:placeholder="${ lang.translate('请输入'+'医疗保险个人') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 工伤保险个人 ,  welfaerGsbxPerson  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('工伤保险个人')}">工伤保险个人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerGsbxPerson" id="welfaerGsbxPerson" name="welfaerGsbxPerson" th:placeholder="${ lang.translate('请输入'+'工伤保险个人') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 养老保险个人 ,  welfaerYlbxPerson  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('养老保险个人')}">养老保险个人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerYlbxPerson" id="welfaerYlbxPerson" name="welfaerYlbxPerson" th:placeholder="${ lang.translate('请输入'+'养老保险个人') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 生育保险个人 ,  welfaerSybxPerson  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('生育保险个人')}">生育保险个人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerSybxPerson" id="welfaerSybxPerson" name="welfaerSybxPerson" th:placeholder="${ lang.translate('请输入'+'生育保险个人') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 失业保险个人 ,  welfaerSyebxPerson  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('失业保险个人')}">失业保险个人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerSyebxPerson" id="welfaerSyebxPerson" name="welfaerSyebxPerson" th:placeholder="${ lang.translate('请输入'+'失业保险个人') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- number_input : 住房公积金公司 ,  welfareZfgjjCompany  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('住房公积金公司')}">住房公积金公司</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfareZfgjjCompany" id="welfareZfgjjCompany" name="welfareZfgjjCompany" th:placeholder="${ lang.translate('请输入'+'住房公积金公司') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 医疗保险公司 ,  welfaerYrbxCompany  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('医疗保险公司')}">医疗保险公司</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerYrbxCompany" id="welfaerYrbxCompany" name="welfaerYrbxCompany" th:placeholder="${ lang.translate('请输入'+'医疗保险公司') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 工伤保险公司 ,  welfaerGsbxCompany  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('工伤保险公司')}">工伤保险公司</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerGsbxCompany" id="welfaerGsbxCompany" name="welfaerGsbxCompany" th:placeholder="${ lang.translate('请输入'+'工伤保险公司') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 养老保险公司 ,  welfaerYlbxCompany  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('养老保险公司')}">养老保险公司</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerYlbxCompany" id="welfaerYlbxCompany" name="welfaerYlbxCompany" th:placeholder="${ lang.translate('请输入'+'养老保险公司') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 生育保险公司 ,  welfaerSybxCompany  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('生育保险公司')}">生育保险公司</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerSybxCompany" id="welfaerSybxCompany" name="welfaerSybxCompany" th:placeholder="${ lang.translate('请输入'+'生育保险公司') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 失业保险公司 ,  welfaerSyebxCompany  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('失业保险公司')}">失业保险公司</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="welfaerSyebxCompany" id="welfaerSyebxCompany" name="welfaerSyebxCompany" th:placeholder="${ lang.translate('请输入'+'失业保险公司') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-8284-fieldset">
+            <legend>个税减免</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-8284-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- number_input : 大病医疗 ,  personalTaxDbyl  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('大病医疗')}">大病医疗</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="personalTaxDbyl" id="personalTaxDbyl" name="personalTaxDbyl" th:placeholder="${ lang.translate('请输入'+'大病医疗') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 幼儿照护 ,  personalTaxErzh  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('幼儿照护')}">幼儿照护</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="personalTaxErzh" id="personalTaxErzh" name="personalTaxErzh" th:placeholder="${ lang.translate('请输入'+'幼儿照护') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 继续教育 ,  personalTaxJxjy  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('继续教育')}">继续教育</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="personalTaxJxjy" id="personalTaxJxjy" name="personalTaxJxjy" th:placeholder="${ lang.translate('请输入'+'继续教育') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- number_input : 赡养老人 ,  personalTaxSylr  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('赡养老人')}">赡养老人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="personalTaxSylr" id="personalTaxSylr" name="personalTaxSylr" th:placeholder="${ lang.translate('请输入'+'赡养老人') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 住房贷款 ,  personalTaxZfdk  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('住房贷款')}">住房贷款</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="personalTaxZfdk" id="personalTaxZfdk" name="personalTaxZfdk" th:placeholder="${ lang.translate('请输入'+'住房贷款') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- number_input : 住房租金 ,  personalTaxZfzj  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('住房租金')}">住房租金</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="personalTaxZfzj" id="personalTaxZfzj" name="personalTaxZfzj" th:placeholder="${ lang.translate('请输入'+'住房租金') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 子女教育 ,  personalTaxZnjy  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('子女教育')}">子女教育</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="personalTaxZnjy" id="personalTaxZnjy" name="personalTaxZnjy" th:placeholder="${ lang.translate('请输入'+'子女教育') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+        <!--结束：group循环-->
+
+        <div style="height: 8px"></div>
+        <div style="height: 80px"></div>
+
+
+    </form>
+
+</div>
+<div class="model-form-footer">
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
+    var VALIDATE_CONFIG={};
+    var AUTH_PREFIX="hr_salary_2";
+
+
+    var ID = [[${id}]] ;
+
+
+
+</script>
+
+
+
+<script th:src="'/business/hr/salary/salary_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/hr/salary/salary_a_form.js?'+${cacheKey}"></script>
+
+</body>
+</html>

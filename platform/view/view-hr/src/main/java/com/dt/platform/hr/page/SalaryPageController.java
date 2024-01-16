@@ -1,5 +1,11 @@
 package com.dt.platform.hr.page;
 
+import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.Salary;
+import com.dt.platform.domain.hr.SalaryVO;
+import com.dt.platform.proxy.hr.PersonServiceProxy;
+import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.hr.SalaryServiceProxy;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
  * <p>
  * 人员薪酬模版页面控制器
@@ -70,5 +78,27 @@ public class SalaryPageController extends ViewController {
 	@RequestMapping("/salary_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
 		return getTemplatePath(prefix,"/salary_form");
+	}
+
+	/**
+	 * 人员薪酬 表单页面
+	 */
+	@RequestMapping("/salary_a_form.html")
+	public String aform(Model model,HttpServletRequest request,String id,String personId) {
+		String tId=id;
+		if(!StringUtil.isBlank(personId)){
+			SalaryVO q=new SalaryVO();
+			q.setPersonId(personId);
+			Result<List<Salary>> res=SalaryServiceProxy.api().queryList(q);
+			if(res.isSuccess()){
+				if(res.getData().size()>0){
+					tId=res.getData().get(0).getId();
+				}
+			}
+		}else{
+			tId=id;
+		}
+		model.addAttribute("id",tId);
+		return getTemplatePath(prefix,"/salary_a_form");
 	}
 }

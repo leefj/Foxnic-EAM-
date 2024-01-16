@@ -137,7 +137,9 @@ public class PersonPageController extends ViewController {
 		String personWorkUrl="/business/hr/person_work_experience/person_work_experience_a_list.html?role="+role+"&personId="+personId;
 		String personEducationUrl="/business/hr/person_education/person_education_a_list.html?role="+role+"&personId="+personId;
 		String baseInfoUrl="/business/hr/person/person_a_form.html?role="+role+"&personId="+personId;
+		String salaryUrl="/business/hr/salary/salary_a_form.html?role="+role+"&personId="+personId;
 
+		model.addAttribute("salaryUrl",salaryUrl);
 		model.addAttribute("baseInfoUrl",baseInfoUrl);
 		model.addAttribute("personEducationUrl",personEducationUrl);
 		model.addAttribute("personWorkUrl",personWorkUrl);
