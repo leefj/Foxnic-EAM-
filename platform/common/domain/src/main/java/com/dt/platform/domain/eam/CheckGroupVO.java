@@ -19,15 +19,15 @@ import com.github.foxnic.sql.data.ExprRcd;
 
 
 /**
- * 检查项组VO类型
- * <p>检查项组 , 数据表 eam_check_group 的通用VO类型</p>
+ * 检查模版VO类型
+ * <p>检查模版 , 数据表 eam_check_group 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-05 13:58:57
- * @sign 618428F46E1E60530D6B73848E4BC25F
+ * @since 2024-01-13 13:02:53
+ * @sign E14F656AD7D74559163A1F03980C5303
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-@ApiModel(description = "检查项组VO类型 ; 检查项组 , 数据表 eam_check_group 的通用VO类型" , parent = CheckGroup.class)
+@ApiModel(description = "检查模版VO类型 ; 检查模版 , 数据表 eam_check_group 的通用VO类型" , parent = CheckGroup.class)
 public class CheckGroupVO extends CheckGroup {
 
 	private static final long serialVersionUID = 1L;

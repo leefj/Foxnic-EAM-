@@ -3,6 +3,7 @@ package com.dt.platform.hr.page;
 import com.dt.platform.domain.hr.Person;
 import com.dt.platform.domain.hr.PersonVO;
 import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
 import org.github.foxnic.web.session.SessionUser;
@@ -101,4 +102,49 @@ public class PersonPageController extends ViewController {
 	public String form(Model model,HttpServletRequest request , String id) {
 		return getTemplatePath(prefix,"person_form");
 	}
+
+	/**
+	 * 人员信息 表单页面
+	 */
+	@RequestMapping("/person_a_form.html")
+	public String aform(Model model,HttpServletRequest request , String personId,String role) {
+		model.addAttribute("role",role);
+		model.addAttribute("personId",personId);
+		return getTemplatePath(prefix,"person_a_form");
+	}
+
+	/**
+	 * 人员信息 表单页面
+	 */
+	@RequestMapping("/person_info.html")
+	public String infoForm(Model model,HttpServletRequest request,String role,String personId) {
+		//role view,admin
+		if("self".equals(personId)){
+			role="view";
+			model.addAttribute("employeeId",SessionUser.getCurrent().getActivatedCompanyId());
+			personId=PersonServiceProxy.api().queryPersonIdByEmployeeId(SessionUser.getCurrent().getActivatedEmployeeId());
+			if(StringUtil.isBlank(personId)){
+				personId="";
+			}
+			model.addAttribute("personId",personId);
+		}else if("".equals(role)){
+			model.addAttribute("personId",personId);
+		}
+
+		model.addAttribute("role",role);
+		String personSocialRelationUrl="/business/hr/person_social_relation/person_social_relation_a_list.html?role="+role+"&personId="+personId;
+		String personCertificateUrl="/business/hr/person_certificate/person_certificate_a_list.html?role="+role+"&personId="+personId;
+		String personWorkUrl="/business/hr/person_work_experience/person_work_experience_a_list.html?role="+role+"&personId="+personId;
+		String personEducationUrl="/business/hr/person_education/person_education_a_list.html?role="+role+"&personId="+personId;
+		String baseInfoUrl="/business/hr/person/person_a_form.html?role="+role+"&personId="+personId;
+
+		model.addAttribute("baseInfoUrl",baseInfoUrl);
+		model.addAttribute("personEducationUrl",personEducationUrl);
+		model.addAttribute("personWorkUrl",personWorkUrl);
+		model.addAttribute("personCertificateUrl",personCertificateUrl);
+		model.addAttribute("personSocialRelationUrl",personSocialRelationUrl);
+		return getTemplatePath(prefix,"person_info");
+	}
+
 }
+

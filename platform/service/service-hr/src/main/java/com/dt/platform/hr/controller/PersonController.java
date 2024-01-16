@@ -1,7 +1,6 @@
 package com.dt.platform.hr.controller;
 
 import java.util.*;
-
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.hr.EmployeeStatusEnum;
 import com.dt.platform.domain.eam.AssetCollection;
@@ -122,7 +121,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_TPL_ID, value = "薪酬模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_PAY_OUT, value = "是否发放", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -269,7 +269,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_TPL_ID, value = "薪酬模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_PAY_OUT, value = "是否发放", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE, PersonVOMeta.SEARCH_FIELD, PersonVOMeta.FUZZY_FIELD, PersonVOMeta.SEARCH_VALUE, PersonVOMeta.DIRTY_FIELDS, PersonVOMeta.SORT_FIELD, PersonVOMeta.SORT_TYPE, PersonVOMeta.DATA_ORIGIN, PersonVOMeta.QUERY_LOGIC, PersonVOMeta.REQUEST_ACTION, PersonVOMeta.IDS })
@@ -338,7 +339,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_TPL_ID, value = "薪酬模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_PAY_OUT, value = "是否发放", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE, PersonVOMeta.SEARCH_FIELD, PersonVOMeta.FUZZY_FIELD, PersonVOMeta.SEARCH_VALUE, PersonVOMeta.DIRTY_FIELDS, PersonVOMeta.SORT_FIELD, PersonVOMeta.SORT_TYPE, PersonVOMeta.DATA_ORIGIN, PersonVOMeta.QUERY_LOGIC, PersonVOMeta.REQUEST_ACTION, PersonVOMeta.IDS })
@@ -368,16 +370,27 @@ public class PersonController extends SuperController {
         return result;
     }
 
-	/**
-	 * 获取人员报表数据
-	 */
-	@ApiOperation(value = "获取人员报表数据")
-	@ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
-	@SentinelResource(value = PersonServiceProxy.QUERY_REPORT_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-	@PostMapping(PersonServiceProxy.QUERY_REPORT_DATA)
-	public Result<JSONObject> queryReportData(String labels) {
-		return personService.queryReportData(labels);
-	}
+    /**
+     * 获取人员ID
+     */
+    @ApiOperation(value = "获取人员ID")
+    @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonServiceProxy.QUERY_PERSON_ID_BY_EMPLOYEE_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonServiceProxy.QUERY_PERSON_ID_BY_EMPLOYEE_ID)
+    public String queryPersonIdByEmployeeId(String employeeId) {
+        return personService.queryPersonIdByEmployeeId(employeeId);
+    }
+
+    /**
+     * 获取人员报表数据
+     */
+    @ApiOperation(value = "获取人员报表数据")
+    @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonServiceProxy.QUERY_REPORT_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonServiceProxy.QUERY_REPORT_DATA)
+    public Result<JSONObject> queryReportData(String labels) {
+        return personService.queryReportData(labels);
+    }
 
     /**
      * 批量获取人员信息 <br>
@@ -455,7 +468,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_TPL_ID, value = "薪酬模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_PAY_OUT, value = "是否发放", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE })
     @SentinelResource(value = PersonServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -525,7 +539,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_TPL_ID, value = "薪酬模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_PAY_OUT, value = "是否发放", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = PersonServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -535,13 +550,18 @@ public class PersonController extends SuperController {
         PagedList<Person> list = personService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         personService.dao().fill(list).with("employee").with(PersonMeta.SALARY).with(PersonMeta.BANK).with(PersonMeta.SALARY_TPL).with(PersonMeta.POSITION).with(PersonMeta.PROFESSIONAL_LEVEL).with(PersonMeta.RANK).with(PersonMeta.EMPLOYEE_IDENTITY).with(PersonMeta.EDUCATION_DATA).with(PersonMeta.BLOOD_TYPE_DICT).with(PersonMeta.SEX_DICT).with(PersonMeta.MARITAL_STATUS_DICT).with(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT).with(PersonMeta.POLITIC_COUNTENANCE_DATA).execute();
-
-
-		 List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
-		personService.dao().join(employee, org.github.foxnic.web.domain.hrm.Person.class);
-
+        List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
+        personService.dao().join(employee, org.github.foxnic.web.domain.hrm.Person.class);
         result.success(true).data(list);
         return result;
+    }
+
+    @ApiOperation(value = "查询参数")
+    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonServiceProxy.QUERY_OPER_PARAMETER_VALUE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonServiceProxy.QUERY_OPER_PARAMETER_VALUE)
+    public String queryOperParameterValue(String code) {
+        return personService.queryOperParameterValue(code);
     }
 
     /**
@@ -605,18 +625,17 @@ public class PersonController extends SuperController {
     @SentinelResource(value = PersonServiceProxy.EMPLOYEE_FILE_NOT_QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.EMPLOYEE_FILE_NOT_QUERY_PAGED_LIST)
     public Result<PagedList<Person>> queryPagedList2(PersonVO sample) {
-
-		String empId= SessionUser.getCurrent().getActivatedEmployeeId();
-		String personId="none";
-		PersonVO vo=new PersonVO();
-		vo.setEmployeeId(empId);
-		List<Person> personList=personService.queryList(vo);
-		if(personList.size()>1){
-			return ErrorDesc.failureMessage("员工配置重复");
-		}else if(personList.size()==1){
-			personId=personList.get(0).getId();
-		}
-		sample.setId(personId);
+        String empId = SessionUser.getCurrent().getActivatedEmployeeId();
+        String personId = "none";
+        PersonVO vo = new PersonVO();
+        vo.setEmployeeId(empId);
+        List<Person> personList = personService.queryList(vo);
+        if (personList.size() > 1) {
+            return ErrorDesc.failureMessage("员工配置重复");
+        } else if (personList.size() == 1) {
+            personId = personList.get(0).getId();
+        }
+        sample.setId(personId);
         Result<PagedList<Person>> result = new Result<>();
         ConditionExpr expr = new ConditionExpr();
         expr.and("id not in (select user_id from hr_person_file where deleted=0 and status='using')");
@@ -624,8 +643,8 @@ public class PersonController extends SuperController {
         PagedList<Person> list = personService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         personService.dao().fill(list).with("employee").with(PersonMeta.SALARY).with(PersonMeta.BANK).with(PersonMeta.SALARY_TPL).with(PersonMeta.POSITION).with(PersonMeta.PROFESSIONAL_LEVEL).with(PersonMeta.RANK).with(PersonMeta.EMPLOYEE_IDENTITY).with(PersonMeta.EDUCATION_DATA).with(PersonMeta.BLOOD_TYPE_DICT).with(PersonMeta.SEX_DICT).with(PersonMeta.MARITAL_STATUS_DICT).with(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT).with(PersonMeta.POLITIC_COUNTENANCE_DATA).execute();
-		List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
-		personService.dao().join(employee, org.github.foxnic.web.domain.hrm.Person.class);
+        List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
+        personService.dao().join(employee, org.github.foxnic.web.domain.hrm.Person.class);
         result.success(true).data(list);
         return result;
     }

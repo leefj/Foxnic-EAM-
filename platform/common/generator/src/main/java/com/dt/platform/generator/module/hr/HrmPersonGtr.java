@@ -240,7 +240,7 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                 fillWith(PersonMeta.POLITIC_COUNTENANCE_DATA).muliti(false);
 
         cfg.view().field(HrTables.HR_PERSON.EMPLOYEE_STATUS).form().validate().required().form().radioBox().enumType(EmployeeStatusEnum.class).defaultIndex(0);
-
+        cfg.view().list().operationColumn().addActionButton("详情","personDetail","person-detail");
         cfg.view().list().operationColumn().addActionButton("合同","personCont","person-cont","hr_person:cont");
         cfg.view().list().operationColumn().addActionButton("薪酬","personSal","person-sal","hr_person:sal");
 

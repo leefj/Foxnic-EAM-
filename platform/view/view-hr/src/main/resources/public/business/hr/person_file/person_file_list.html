@@ -2,7 +2,7 @@
 /**
  * 人员档案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 08:59:15
+ * @since 2024-01-14 15:09:15
  */
  -->
  <!DOCTYPE html>
@@ -42,31 +42,32 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 人员 , userId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('人员')}" class="search-label userId-label">人员</span><span class="search-colon">:</span></div>
-                        <div id="userId" th:data="${'/service-hr/hr-person/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('人员')}" class="search-label userId-label">人员</span><span class="search-colon">:</span></div>
+                        <div id="userId" th:data="${'/service-hr/hr-person/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 来源 , source ,typeName=text_input, isHideInSearch=true -->
                     <!-- 档案保管地 , saveLoc ,typeName=text_input, isHideInSearch=true -->
                     <!-- 附件 , file ,typeName=upload, isHideInSearch=true -->
                     <!-- 备注 , note ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 档案状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('档案状态')}" class="search-label status-label">档案状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('档案状态')}" class="search-label status-label">档案状态</span><span class="search-colon">:</span></div>
 
 
-                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.PersonFileStatusEnum')}" style="width:150px"></div>
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.PersonFileStatusEnum')}" style="width:180px"></div>
                     </div>
                     <!-- 是否新建档 , ifNew ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('是否新建档')}" class="search-label ifNew-label">是否新建档</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('是否新建档')}" class="search-label ifNew-label">是否新建档</span><span class="search-colon">:</span></div>
 
 
-                        <div id="ifNew" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.PersonFileNewEnum')}" style="width:150px"></div>
+                        <div id="ifNew" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.PersonFileNewEnum')}" style="width:180px"></div>
                     </div>
                     <!-- 档案编号 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('档案编号')}" class="search-label code-label">档案编号</span><span class="search-colon">:</span></div>
-                        <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('档案编号')}" class="search-label code-label">档案编号</span><span class="search-colon">:</span></div>
+                        <input id="code" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -75,13 +76,13 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 创建时间 , createTime ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('创建时间')}" class="search-label createTime-label">创建时间</span><span class="search-colon">:</span></div>
-                            <input type="text" id="createTime"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('请选择')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('创建时间')}" class="search-label createTime-label">创建时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="createTime"  style="width: 180px"  lay-verify="date" th:placeholder="${lang.translate('请选择')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
                     <!-- 参加工作时间 , workStartDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('参加工作时间')}" class="search-label workStartDate-label">参加工作时间</span><span class="search-colon">:</span></div>
-                            <input type="text" id="workStartDate"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('请选择')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('参加工作时间')}" class="search-label workStartDate-label">参加工作时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="workStartDate"  style="width: 180px"  lay-verify="date" th:placeholder="${lang.translate('请选择')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
 
 

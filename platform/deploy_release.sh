@@ -1,12 +1,9 @@
 #!/bin/sh
-
 cd /Users/lankl/IdeaProjects/eam/platform
 MVN=/Users/lankl/.m2/wrapper/dists/apache-maven-3.5.3-bin/2c22a6s60afpuloj4v181qvild/apache-maven-3.5.3/bin/mvn
 $MVN clean
 $MVN install
-
 version=2.7.0.6
-
 # 本地打包
 release_dir="/tmp/app_deploy"
 method="local"
@@ -37,7 +34,6 @@ echo "release_dir:$release_dir"
 cd $release_dir
 cp -r $deploy_dir/* .
 
-
 # process app.jar
 echo "$release_dir/app/lib/"
 mkdir -p $release_dir/app/lib/
@@ -56,9 +52,7 @@ if [[ $method == "local" ]];then
   open .
 fi
 
-
 #upload
-
 exit 0
 
 

@@ -10,10 +10,10 @@ import com.dt.platform.proxy.eam.CheckGroupServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 检查项组模版页面控制器
+ * 检查模版模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-05 13:58:57
+ * @since 2024-01-13 13:02:54
 */
 
 @Controller("EamCheckGroupPageController")
@@ -38,7 +38,7 @@ public class CheckGroupPageController extends ViewController {
 	}
 
 	/**
-	 * 检查项组 功能主页面
+	 * 检查模版 功能主页面
 	 */
 	@RequestMapping("/check_group_list.html")
 	public String list(Model model,HttpServletRequest request) {
@@ -46,7 +46,7 @@ public class CheckGroupPageController extends ViewController {
 	}
 
 	/**
-	 * 检查项组 表单页面
+	 * 检查模版 表单页面
 	 */
 	@RequestMapping("/check_group_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {

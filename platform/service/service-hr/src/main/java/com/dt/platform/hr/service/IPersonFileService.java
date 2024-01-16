@@ -25,7 +25,7 @@ import java.util.Map;
  * </p>
  * @author 金杰 , maillank@qq.com
  * @since 2023-06-03 08:44:58
-*/
+ */
 
 public interface IPersonFileService extends  ISimpleIdService<PersonFile,String> {
 
@@ -54,7 +54,7 @@ public interface IPersonFileService extends  ISimpleIdService<PersonFile,String>
 	Result insertList(List<PersonFile> personFileList);
 
 
-		
+
 	/**
 	 * 按主键删除人员档案
 	 *
@@ -62,7 +62,7 @@ public interface IPersonFileService extends  ISimpleIdService<PersonFile,String>
 	 * @return 删除是否成功
 	 */
 	Result deleteByIdPhysical(String id);
-	
+
 	/**
 	 * 按主键删除人员档案
 	 *
@@ -85,7 +85,7 @@ public interface IPersonFileService extends  ISimpleIdService<PersonFile,String>
 	 * */
 	<T> Result deleteByIdsLogical(List<T> ids);
 
-		
+
 	/**
 	 * 按主键更新人员档案
 	 *
@@ -155,7 +155,7 @@ public interface IPersonFileService extends  ISimpleIdService<PersonFile,String>
 	 * */
 	boolean checkExists(PersonFile personFile,DBField... field);
 
-		
+
 	/**
 	 * 按主键获取人员档案
 	 *
@@ -281,7 +281,7 @@ public interface IPersonFileService extends  ISimpleIdService<PersonFile,String>
 	 * */
 	PagedList<PersonFile> queryPagedList(PersonFile sample,OrderBy orderBy,int pageSize,int pageIndex);
 
- 	/**
+	/**
 	 * 查询指定字段的数据清单
 	 * @param <T> 元素类型
 	 * @param field 字段

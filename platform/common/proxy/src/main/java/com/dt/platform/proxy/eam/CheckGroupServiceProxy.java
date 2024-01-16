@@ -16,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * 检查项组 控制器服务代理
+ * 检查模版 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-05 13:58:57
+ * @since 2024-01-13 13:02:54
  */
 @FeignClient(value = ServiceNames.EAM, contextId = CheckGroupServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface CheckGroupServiceProxy {
@@ -40,100 +40,100 @@ public interface CheckGroupServiceProxy {
     public static final String API_PREFIX = "/" + API_BASIC_PATH + "/" + API_CONTEXT_PATH + "/";
 
     /**
-     * 添加检查项组
+     * 添加检查模版
      */
     public static final String INSERT = API_PREFIX + "insert";
 
     /**
-     * 删除检查项组
+     * 删除检查模版
      */
     public static final String DELETE = API_PREFIX + "delete";
 
     /**
-     * 批量删除检查项组
+     * 批量删除检查模版
      */
     public static final String DELETE_BY_IDS = API_PREFIX + "delete-by-ids";
 
     /**
-     * 更新检查项组
+     * 更新检查模版
      */
     public static final String UPDATE = API_PREFIX + "update";
 
     /**
-     * 保存检查项组
+     * 保存检查模版
      */
     public static final String SAVE = API_PREFIX + "save";
 
     /**
-     * 获取单个检查项组
+     * 获取单个检查模版
      */
     public static final String GET_BY_ID = API_PREFIX + "get-by-id";
 
     /**
-     * 获取多个检查项组
+     * 获取多个检查模版
      */
     public static final String GET_BY_IDS = API_PREFIX + "get-by-ids";
 
     /**
-     * 查询检查项组
+     * 查询检查模版
      */
     public static final String QUERY_LIST = API_PREFIX + "query-list";
 
     /**
-     * 分页查询检查项组
+     * 分页查询检查模版
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
-     * 添加检查项组
+     * 添加检查模版
      */
     @RequestMapping(CheckGroupServiceProxy.INSERT)
     Result insert(@RequestParam(name = "checkGroupVO") CheckGroupVO checkGroupVO);
 
     /**
-     * 删除检查项组
+     * 删除检查模版
      */
     @RequestMapping(CheckGroupServiceProxy.DELETE)
     Result deleteById(@RequestParam(name = "id") String id);
 
     /**
-     * 批量删除检查项组
+     * 批量删除检查模版
      */
     @RequestMapping(CheckGroupServiceProxy.DELETE_BY_IDS)
     Result deleteByIds(@RequestParam(name = "ids") List<String> ids);
 
     /**
-     * 更新检查项组
+     * 更新检查模版
      */
     @RequestMapping(CheckGroupServiceProxy.UPDATE)
     Result update(@RequestParam(name = "checkGroupVO") CheckGroupVO checkGroupVO);
 
     /**
-     * 更新检查项组
+     * 更新检查模版
      */
     @RequestMapping(CheckGroupServiceProxy.SAVE)
     Result save(@RequestParam(name = "checkGroupVO") CheckGroupVO checkGroupVO);
 
     /**
-     * 获取检查项组
+     * 获取检查模版
      */
     @RequestMapping(CheckGroupServiceProxy.GET_BY_ID)
     Result<CheckGroup> getById(@RequestParam(name = "id") String id);
 
     /**
-     * 获取多个检查项组
+     * 获取多个检查模版
      */
     @RequestMapping(CheckGroupServiceProxy.GET_BY_IDS)
     Result<List<CheckGroup>> getByIds(@RequestParam(name = "ids") List<String> ids);
 
     /**
-     * 查询检查项组
+     * 查询检查模版
      */
     @RequestMapping(CheckGroupServiceProxy.QUERY_LIST)
     Result<List<CheckGroup>> queryList(@RequestParam(name = "sample") CheckGroupVO sample);
 
     /**
-     * 分页查询检查项组
+     * 分页查询检查模版
      */
     @RequestMapping(CheckGroupServiceProxy.QUERY_PAGED_LIST)
     Result<PagedList<CheckGroup>> queryPagedList(@RequestParam(name = "sample") CheckGroupVO sample);

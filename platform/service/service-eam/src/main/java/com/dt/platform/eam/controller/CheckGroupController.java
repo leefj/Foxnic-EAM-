@@ -42,14 +42,14 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 
 /**
  * <p>
- * 检查项组接口控制器
+ * 检查模版接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-05 13:58:57
+ * @since 2024-01-13 13:02:54
 */
 
 @InDoc
-@Api(tags = "检查项组")
+@Api(tags = "检查模版")
 @RestController("EamCheckGroupController")
 public class CheckGroupController extends SuperController {
 
@@ -57,13 +57,14 @@ public class CheckGroupController extends SuperController {
 	private ICheckGroupService checkGroupService;
 
 	/**
-	 * 添加检查项组
+	 * 添加检查模版
 	*/
-	@ApiOperation(value = "添加检查项组")
+	@ApiOperation(value = "添加检查模版")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CheckGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "728920300598591488"),
 		@ApiImplicitParam(name = CheckGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "检查组"),
 		@ApiImplicitParam(name = CheckGroupVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CheckGroupVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -78,9 +79,9 @@ public class CheckGroupController extends SuperController {
 
 
 	/**
-	 * 删除检查项组
+	 * 删除检查模版
 	*/
-	@ApiOperation(value = "删除检查项组")
+	@ApiOperation(value = "删除检查模版")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CheckGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "728920300598591488")
 	})
@@ -106,10 +107,10 @@ public class CheckGroupController extends SuperController {
 
 
 	/**
-	 * 批量删除检查项组 <br>
+	 * 批量删除检查模版 <br>
 	 * 联合主键时，请自行调整实现
 	*/
-	@ApiOperation(value = "批量删除检查项组")
+	@ApiOperation(value = "批量删除检查模版")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CheckGroupVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 	})
@@ -161,13 +162,14 @@ public class CheckGroupController extends SuperController {
 	}
 
 	/**
-	 * 更新检查项组
+	 * 更新检查模版
 	*/
-	@ApiOperation(value = "更新检查项组")
+	@ApiOperation(value = "更新检查模版")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CheckGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "728920300598591488"),
 		@ApiImplicitParam(name = CheckGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "检查组"),
 		@ApiImplicitParam(name = CheckGroupVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CheckGroupVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { CheckGroupVOMeta.PAGE_INDEX , CheckGroupVOMeta.PAGE_SIZE , CheckGroupVOMeta.SEARCH_FIELD , CheckGroupVOMeta.FUZZY_FIELD , CheckGroupVOMeta.SEARCH_VALUE , CheckGroupVOMeta.DIRTY_FIELDS , CheckGroupVOMeta.SORT_FIELD , CheckGroupVOMeta.SORT_TYPE , CheckGroupVOMeta.DATA_ORIGIN , CheckGroupVOMeta.QUERY_LOGIC , CheckGroupVOMeta.REQUEST_ACTION , CheckGroupVOMeta.IDS } )
@@ -181,13 +183,14 @@ public class CheckGroupController extends SuperController {
 
 
 	/**
-	 * 保存检查项组
+	 * 保存检查模版
 	*/
-	@ApiOperation(value = "保存检查项组")
+	@ApiOperation(value = "保存检查模版")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CheckGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "728920300598591488"),
 		@ApiImplicitParam(name = CheckGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "检查组"),
 		@ApiImplicitParam(name = CheckGroupVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CheckGroupVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { CheckGroupVOMeta.PAGE_INDEX , CheckGroupVOMeta.PAGE_SIZE , CheckGroupVOMeta.SEARCH_FIELD , CheckGroupVOMeta.FUZZY_FIELD , CheckGroupVOMeta.SEARCH_VALUE , CheckGroupVOMeta.DIRTY_FIELDS , CheckGroupVOMeta.SORT_FIELD , CheckGroupVOMeta.SORT_TYPE , CheckGroupVOMeta.DATA_ORIGIN , CheckGroupVOMeta.QUERY_LOGIC , CheckGroupVOMeta.REQUEST_ACTION , CheckGroupVOMeta.IDS } )
@@ -201,9 +204,9 @@ public class CheckGroupController extends SuperController {
 
 
 	/**
-	 * 获取检查项组
+	 * 获取检查模版
 	*/
-	@ApiOperation(value = "获取检查项组")
+	@ApiOperation(value = "获取检查模版")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CheckGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 	})
@@ -220,10 +223,10 @@ public class CheckGroupController extends SuperController {
 
 
 	/**
-	 * 批量获取检查项组 <br>
+	 * 批量获取检查模版 <br>
 	 * 联合主键时，请自行调整实现
 	*/
-		@ApiOperation(value = "批量获取检查项组")
+		@ApiOperation(value = "批量获取检查模版")
 		@ApiImplicitParams({
 				@ApiImplicitParam(name = CheckGroupVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 		})
@@ -240,13 +243,14 @@ public class CheckGroupController extends SuperController {
 
 
 	/**
-	 * 查询检查项组
+	 * 查询检查模版
 	*/
-	@ApiOperation(value = "查询检查项组")
+	@ApiOperation(value = "查询检查模版")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CheckGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "728920300598591488"),
 		@ApiImplicitParam(name = CheckGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "检查组"),
 		@ApiImplicitParam(name = CheckGroupVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CheckGroupVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { CheckGroupVOMeta.PAGE_INDEX , CheckGroupVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = CheckGroupServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -261,13 +265,14 @@ public class CheckGroupController extends SuperController {
 
 
 	/**
-	 * 分页查询检查项组
+	 * 分页查询检查模版
 	*/
-	@ApiOperation(value = "分页查询检查项组")
+	@ApiOperation(value = "分页查询检查模版")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CheckGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "728920300598591488"),
 		@ApiImplicitParam(name = CheckGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "检查组"),
 		@ApiImplicitParam(name = CheckGroupVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CheckGroupVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = CheckGroupServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

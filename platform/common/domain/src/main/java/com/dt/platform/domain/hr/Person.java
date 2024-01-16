@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息
  * <p>人员信息 , 数据表 hr_person 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 11:12:19
+ * @since 2024-01-16 10:30:09
  * @sign C62F017803FF6F620D4C32D6878FDC61
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -45,19 +45,19 @@ public class Person extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "717036378466025472")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "799379402461806592")
 	private String id;
 	
 	/**
 	 * 工号：工号
 	*/
-	@ApiModelProperty(required = false,value="工号" , notes = "工号")
+	@ApiModelProperty(required = false,value="工号" , notes = "工号" , example = "15728000002")
 	private String jobNumber;
 	
 	/**
 	 * 姓名：姓名
 	*/
-	@ApiModelProperty(required = false,value="姓名" , notes = "姓名" , example = "12")
+	@ApiModelProperty(required = false,value="姓名" , notes = "姓名" , example = "测试大屏1")
 	private String name;
 	
 	/**
@@ -69,7 +69,7 @@ public class Person extends Entity {
 	/**
 	 * 出生日期：出生日期
 	*/
-	@ApiModelProperty(required = false,value="出生日期" , notes = "出生日期")
+	@ApiModelProperty(required = false,value="出生日期" , notes = "出生日期" , example = "2024-01-09 12:00:00")
 	private Date birthday;
 	
 	/**
@@ -117,7 +117,7 @@ public class Person extends Entity {
 	/**
 	 * 联系方式：联系方式
 	*/
-	@ApiModelProperty(required = false,value="联系方式" , notes = "联系方式")
+	@ApiModelProperty(required = false,value="联系方式" , notes = "联系方式" , example = "121")
 	private String contactInformation;
 	
 	/**
@@ -153,7 +153,7 @@ public class Person extends Entity {
 	/**
 	 * 学历：学历
 	*/
-	@ApiModelProperty(required = false,value="学历" , notes = "学历")
+	@ApiModelProperty(required = false,value="学历" , notes = "学历" , example = "postgraduate")
 	private String educationCode;
 	
 	/**
@@ -297,25 +297,25 @@ public class Person extends Entity {
 	/**
 	 * 工资卡开户行：工资卡开户行
 	*/
-	@ApiModelProperty(required = false,value="工资卡开户行" , notes = "工资卡开户行")
+	@ApiModelProperty(required = false,value="工资卡开户行" , notes = "工资卡开户行" , example = "zgyh")
 	private String payrollCardBankCode;
 	
 	/**
 	 * 工资卡帐号：工资卡帐号
 	*/
-	@ApiModelProperty(required = false,value="工资卡帐号" , notes = "工资卡帐号")
+	@ApiModelProperty(required = false,value="工资卡帐号" , notes = "工资卡帐号" , example = "121212")
 	private String payrollCard;
 	
 	/**
 	 * 薪酬模版：薪酬模版
 	*/
-	@ApiModelProperty(required = false,value="薪酬模版" , notes = "薪酬模版")
+	@ApiModelProperty(required = false,value="薪酬模版" , notes = "薪酬模版" , example = "717722780455403520")
 	private String salaryTplId;
 	
 	/**
 	 * 是否发放：是否发放
 	*/
-	@ApiModelProperty(required = false,value="是否发放" , notes = "是否发放")
+	@ApiModelProperty(required = false,value="是否发放" , notes = "是否发放" , example = "0")
 	private String salaryPayOut;
 	
 	/**
@@ -333,7 +333,7 @@ public class Person extends Entity {
 	/**
 	 * 员工：员工
 	*/
-	@ApiModelProperty(required = false,value="员工" , notes = "员工" , example = "581798649571311616")
+	@ApiModelProperty(required = false,value="员工" , notes = "员工" , example = "E001")
 	private String employeeId;
 	
 	/**
@@ -375,7 +375,7 @@ public class Person extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-02 03:26:35")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-01-15 08:48:21")
 	private Date createTime;
 	
 	/**
@@ -387,7 +387,7 @@ public class Person extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-06-02 03:43:48")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-16 10:23:02")
 	private Date updateTime;
 	
 	/**
@@ -414,7 +414,7 @@ public class Person extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "5")
 	private Integer version;
 	
 	/**

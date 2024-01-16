@@ -1,7 +1,10 @@
 package com.dt.platform.relation.modules;
 
 import com.dt.platform.constants.db.HrTables;
+import com.dt.platform.domain.hr.Person;
 import com.dt.platform.domain.hr.PersonAttendanceRec;
+import com.dt.platform.domain.hr.PersonCertificate;
+import com.dt.platform.domain.hr.PersonEducation;
 import com.dt.platform.domain.hr.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
@@ -13,38 +16,75 @@ public class HrmRelationManager extends RelationManager {
 		this.setupRelations();
 		this.setupProperties();
 		this.setupPosition();
-
 		this.setupPersonContract();
 		this.setupCert();
-
 		this.setupPerson();
 		this.setupPersonFile();
-
 		this.setupSalary();
 		this.setupSalaryDetail();
 		this.setupSalaryAction();
-
 		this.setupRecruitPersonRec();
-
 		this.setupPersonAttendanceRec();
+		this.setupPersonCert();
+		this.setupPersonEducation();
+		this.setupPersonSocialRelation();
+		this.setupPersonWork();
+
 	}
 
+	public void setupPersonCert() {
+		this.property(PersonCertificateMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_CERTIFICATE.EMPLOYEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(PersonCertificateMeta.USER_PROP)
+				.using(HrTables.HR_PERSON_CERTIFICATE.PERSON_ID).join(HrTables.HR_PERSON.ID);
+	}
+
+	public void setupPersonEducation() {
+		this.property(PersonEducationMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_EDUCATION.EMPLOYEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+		this.property(PersonEducationMeta.EDUCATION_INFO_PROP)
+				.using(HrTables.HR_PERSON_EDUCATION.EDUCATION).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_person_education'");
+
+		this.property(PersonEducationMeta.USER_PROP)
+				.using(HrTables.HR_PERSON_EDUCATION.PERSON_ID).join(HrTables.HR_PERSON.ID);
+	}
+
+	public void setupPersonSocialRelation() {
+		this.property(PersonSocialRelationMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_SOCIAL_RELATION.EMPLOYEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+		this.property(PersonSocialRelationMeta.SOCIAL_RELATION_TYPE_PROP)
+				.using(HrTables.HR_PERSON_SOCIAL_RELATION.REL_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_social_relation_type'");
+		this.property(PersonSocialRelationMeta.SOCIAL_RELATION_PROP)
+				.using(HrTables.HR_PERSON_SOCIAL_RELATION.REL).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_social_relation'");
+		this.property(PersonSocialRelationMeta.USER_PROP)
+				.using(HrTables.HR_PERSON_SOCIAL_RELATION.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+
+	}
+	public void setupPersonWork() {
+		this.property(PersonWorkExperienceMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_WORK_EXPERIENCE.EMPLOYEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(PersonWorkExperienceMeta.USER_PROP)
+				.using(HrTables.HR_PERSON_WORK_EXPERIENCE.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+	}
 
 	public void setupProperties() {
-
 	}
 	
 	private void setupRelations() {
-
 	}
 
 	private void setupPersonAttendanceRec() {
 		this.property(PersonAttendanceRecMeta.PERSON_PROP)
 				.using(HrTables.HR_PERSON_ATTENDANCE_REC.PERSON_ID).join(HrTables.HR_PERSON.ID);
-
 		this.property(PersonAttendanceRecMeta.EMPLOYEE_PROP)
 				.using(HrTables.HR_PERSON_ATTENDANCE_REC.EMPLOYEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
 	}
 
 	private void setupRecruitPersonRec() {
@@ -53,18 +93,13 @@ public class HrmRelationManager extends RelationManager {
 	}
 
 	private void setupSalaryAction() {
-
-
 		this.property(SalaryActionMeta.SALARY_TPL_PROP)
 				.using(HrTables.HR_SALARY_ACTION.TPL_ID).join(HrTables.HR_SALARY_TPL.ID);
-
 		this.property(SalaryActionMeta.PERSON_LIST_PROP)
 				.using(HrTables.HR_SALARY_ACTION.TPL_ID).join(HrTables.HR_SALARY_TPL.ID)
 				.using(HrTables.HR_SALARY_TPL.ID).join(HrTables.HR_PERSON.SALARY_TPL_ID);
-
 		this.property(SalaryActionMeta.SALARY_MONTH_PROP)
 				.using(HrTables.HR_SALARY_ACTION.ACTION_MONTH).join(HrTables.HR_SALARY_MONTH.CODE);
-
 	}
 
 	private void setupPersonFile() {

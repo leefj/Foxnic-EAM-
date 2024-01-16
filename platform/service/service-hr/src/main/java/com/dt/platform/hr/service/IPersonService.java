@@ -28,7 +28,11 @@ import java.util.Map;
  * @since 2023-06-03 06:53:01
 */
 
-public interface IPersonService extends  ISimpleIdService<Person,String> {
+public interface IPersonService extends ISimpleIdService<Person,String> {
+
+	String queryPersonIdByEmployeeId(String employeeId);
+
+	String queryOperParameterValue(String code);
 
 	Result<JSONObject> queryReportData(String labels);
 

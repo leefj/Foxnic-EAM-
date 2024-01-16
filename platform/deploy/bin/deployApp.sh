@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/12/21"
+modify_date="2024/01/12"
 ####################################################################################
 # run:
 #   sh deployApp.sh
@@ -90,7 +90,13 @@ MYSQL=$mysql_dir/mysql/bin/mysql
 which yum>/dev/null
 yumRes=$?
 if [[ $yumRes -ne 0 ]];then
-	echo "install check error,yum command not exist,please install it first!"
+  echo ""
+  echo ""
+  echo ""
+	echo "!!! install check error,yum command not exist,please install it first!"
+	echo ""
+  echo ""
+  echo ""
 	qa
 	exit 1
 fi
@@ -107,23 +113,47 @@ echo "start to verify command"
 which netstat>/dev/null
 netstatRes=$?
 if [[ $netstatRes -ne 0 ]];then
-	echo "install check error,netstat command not exist,please install it first!"
+  echo ""
+  echo ""
+  echo ""
+	echo "!!!install check error,netstat command not exist,please install it first!"
+	echo ""
+  echo ""
+  echo ""
 	exit 1
 fi
 ################################################################ check port
 db_port_cnt=`netstat -ant|grep LISTEN|grep ":$db_port"|wc -l`
 if [[ $db_port_cnt -ne 0 ]];then
+	echo ""
+  echo ""
+  echo ""
 	echo "install check error,db_port:$db_port already in use."
+	echo ""
+  echo ""
+  echo ""
 	exit 1
 fi
 app_port_cnt=`netstat -ant|grep LISTEN|grep ":$app_port"|wc -l`
 if [[ $app_port_cnt -ne 0 ]];then
+	echo ""
+  echo ""
+  echo ""
 	echo "install check error,app_port:$app_port already in use."
+	echo ""
+  echo ""
+  echo ""
 	exit 1
 fi
 bpm_port_cnt=`netstat -ant|grep LISTEN|grep ":$bpm_port"|wc -l`
 if [[ $bpm_port_cnt -ne 0 ]];then
+	echo ""
+  echo ""
+  echo ""
 	echo "install check error,bpm_port:$bpm_port already in use."
+	echo ""
+  echo ""
+  echo ""
 	exit 1
 fi
 ################################################################ Install Function
@@ -408,7 +438,13 @@ function installApp(){
 	job_application_yml=$app_dir/job/application.yml
 	if [[ ! -f "$db_sql_file" ]];then
 	  echo "Error|db sql file:$db_sql_file not exist"
+    echo ""
+    echo ""
+    echo ""
 	  echo "deploy failed!"
+    echo ""
+    echo ""
+    echo ""
 	  exit 1
 	fi
 	if [[ ! -f "$db_procedure_file" ]];then
@@ -827,6 +863,7 @@ sed -i '/startBpm/d' /etc/rc.d/rc.local
 echo "#to start all">>/etc/rc.d/rc.local
 echo "sleep 10">>/etc/rc.d/rc.local
 echo "cd $app_dir;sh startAll.sh">>/etc/rc.d/rc.local
+echo "#add application start finish">>/etc/rc.d/rc.local
 #################################### stop Firewalld ####################################
 #process firewalld
 which firewall-cmd

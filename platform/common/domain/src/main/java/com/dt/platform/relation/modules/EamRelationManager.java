@@ -140,6 +140,15 @@ public class EamRelationManager extends RelationManager {
         this.setupDeviceSpRcd();
 
         this.setupStockImport();
+
+        this.setupAssetWorkOrder();
+
+    }
+
+    public void setupAssetWorkOrder() {
+        this.property(WorkOrderMeta.ORIGINATOR_PROP)
+                .using(EAMTables.EAM_WORK_ORDER.RCD_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
     }
 
     public void setupAssetStockUse() {
