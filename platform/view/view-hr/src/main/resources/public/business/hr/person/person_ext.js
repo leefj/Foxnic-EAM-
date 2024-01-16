@@ -229,9 +229,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         personDetail:function (data, it){
             admin.popupCenter({
                 title: "人员信息",
-                resize: false,
-                offset: [10,null],
-                area: ["90%","90%"],
+                resize: true,
+                offset: [15,null],
+                area: ["85%","90%"],
                 type: 2,
                 id:"hr-person-detail-data-win",
                 content: '/business/hr/person/person_info.html?role=admin&personId='+data.id,

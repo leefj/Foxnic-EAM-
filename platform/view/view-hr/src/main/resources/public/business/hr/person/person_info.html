@@ -458,7 +458,7 @@
 </head>
 
 <body>
-<div class="top-container">
+<div class="top-container" >
     <div class="left-tree">
         <div class="layui-form toolbar" id="toolbar">
         </div>
@@ -470,7 +470,7 @@
         <div class="layui-tab-item layui-show" type="emp">
             <iframe style="display: none" id="baseInfo"
                     th:src="${baseInfoUrl}"  frameborder=0
-                    width="100%" height="600"></iframe>
+                    width="100%"></iframe>
             <iframe id="personCertificate" th:src="${personCertificateUrl}" frameborder=0
                     width="100%"></iframe>
             <iframe style="display: none" id="personWork" th:src="${personWorkUrl}"
@@ -479,7 +479,8 @@
                     frameborder=0 width="100%"></iframe>
             <iframe style="display: none" id="personSocialRelation"  th:src="${personSocialRelationUrl}"
                     frameborder=0 width="100%"></iframe>
-
+            <iframe style="display: none" id="personSalary" th:src="${salaryUrl}"
+                    frameborder=0 width="100%"></iframe>
         </div>
     </div>
 </div>

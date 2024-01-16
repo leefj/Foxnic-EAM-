@@ -45,6 +45,7 @@ function qa(){
   echo "3、请检查外部或内部防火墙、网络策略是否开通"
   echo "4、检查端口是否正常，默认应用端口:$app_port,流程引擎端口:$bpm_port 命令：netstat -ant|grep LISTEN"
   echo "5、检查应用日志，看启动是否报错"
+  echo "6、可能配置较低，启动需要的时间,请稍后在访问下"
   echo "******* 相关使用手册、维护手册、部署手册见百度网盘,网盘地址在git:https://gitee.com/lank/eam *****"
   return 0
 }
