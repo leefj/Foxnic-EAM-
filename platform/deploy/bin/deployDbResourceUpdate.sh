@@ -64,18 +64,28 @@ echo "delete from sys_menu_resource where 1=1;"                                 
 echo "insert into sys_menu_resource select * from $db_update_name.sys_menu_resource;"             >>$updateSql
 echo "update sys_menu a set hidden=1 where a.id in (select id from sys_menu_$t where hidden=1);"  >>$updateSql
 echo "update sys_resourze set access_type='LOGIN';">>$updateSql
+echo "update sys_config set value=now() where code='system.cachekey'"                             >>$updateSql
 echo "update resource sql list:">>$logfile
 cat $updateSql>>$logfile
 echo "start to load update.sql">>$logfile
 sh $app_dir/bin/runSql.sh $updateSql $db_name
 echo "restart app">>$logfile
 sh $app_dir/restartApp.sh
+echo "start to setting modify data";
+customerCnt=`cat $app_dir/bin/app.conf|grep CUSTOMER_NAME|tail -1|wc -l`
+if [[ $customerCnt -eq 1 ]];then
+  customerName=`cat $app_dir/bin/app.conf|grep CUSTOMER_NAME|tail -1|awk -F '=' '{print $NF}'`
+  if [[ $customerName == "DH" ]];then
+      echo "customer name:$customerName,will execute below sql"
+      customerSql=$app_dir/bin/sql/c_dh_clear.sql
+      sh $app_dir/bin/runSql.sh $customerSql $db_name
+  fi
+fi
 echo "########### update finish #########"
 echo "########### update finish #########">>$logfile
 echo "">>$logfile
 echo ""
 exit 0
-
 select * from information_schema.tables where  table_schema='foxnic' order by table_rows desc
 delete from sys_job_log where 1=1;
 delete from ddelete from sys_licence_free_full;

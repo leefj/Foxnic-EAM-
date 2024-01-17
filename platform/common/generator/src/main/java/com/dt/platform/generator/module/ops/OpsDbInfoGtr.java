@@ -122,7 +122,7 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_INFO.DATA_LOC).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.FILE_IDS).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.DB_SIZE).table().disable(true);
-        cfg.view().field(OpsTables.OPS_DB_INFO.DB_PORT).table().disable(true);
+
         cfg.view().field(OpsTables.OPS_DB_INFO.LOG_METHOD).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.UID).table().disable(true);
 

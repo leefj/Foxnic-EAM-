@@ -38,6 +38,8 @@ modify_date="2024/01/12"
 #echo "gpgcheck=0"            >>local.repo
 #yum clean all
 ################################################################  config
+#value:eam,full
+app_range=eam
 function qa(){
   echo "如果正常脚本执行后，应用无法访问或一键安装脚本无法进行"
   echo "1、仅支持Redhat、CentOS 7.9 8.0版本。"
@@ -485,16 +487,18 @@ function installApp(){
 	echo "#########start to clear data $db_clear_data_file"
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_clear_data_file  2>/dev/null
 	echo "#########start to application setting data conf system value:$conf_system ######### "
-	echo "#########start to app setting data $db_common_setting_file"
-	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_common_setting_file  2>/dev/null
-	echo "#########start to oa setting data $db_oa_setting_file"
-	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_oa_setting_file  2>/dev/null
-	echo "#########start to eam setting data $db_eam_setting_file"
-	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_eam_setting_file  2>/dev/null
   echo "#########start to setting version $db_version_file"
   $MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_version_file  2>/dev/null
   echo "#########start to install licence $db_licence_file"
   $MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_licence_file  2>/dev/null
+	echo "#########start to app setting data $db_common_setting_file"
+	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_common_setting_file  2>/dev/null
+	if [[ $app_range == "eam" ]];then
+    echo "#########start to oa setting data $db_oa_setting_file"
+    $MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_oa_setting_file  2>/dev/null
+    echo "#########start to eam setting data $db_eam_setting_file"
+    $MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_eam_setting_file  2>/dev/null
+	fi
 	echo "#########finish to application setting data ######### "
 	echo "#########other setting licence, resource grant, mysqldump loc"
 	setting_file="/tmp/setting_file.sql"
@@ -504,7 +508,6 @@ function installApp(){
 	echo "update sys_resourze set access_type='LOGIN' where 1=1;">>$setting_file
 	echo "update sys_config set value='$base_dir/db/mysql/bin/mysqldump' where id='system.tool.mysqldump';">>$setting_file
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $setting_file  2>/dev/null
-
 	echo "#########start to create application.yml from $application_tpl_yml"
 	cat $application_tpl_yml>$application_yml
 	sed -i "s@APP_UPLOAD_DIR@$app_upload_dir@g"     $application_yml

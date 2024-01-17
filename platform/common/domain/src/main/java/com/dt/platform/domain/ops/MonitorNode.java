@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 节点
  * <p>节点 , 数据表 ops_monitor_node 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-13 20:26:59
+ * @since 2024-01-17 14:28:38
  * @sign 911616E72A3DB035CB99FE22EBE210DA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -43,49 +43,49 @@ public class MonitorNode extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
 	
 	/**
 	 * IP：IP
 	*/
-	@ApiModelProperty(required = false,value="IP" , notes = "IP" , example = "121.43.103.102:d1")
+	@ApiModelProperty(required = false,value="IP" , notes = "IP")
 	private String nodeIp;
 	
 	/**
 	 * 可见主机名：可见主机名
 	*/
-	@ApiModelProperty(required = false,value="可见主机名" , notes = "可见主机名" , example = "121.43.103.10222")
+	@ApiModelProperty(required = false,value="可见主机名" , notes = "可见主机名")
 	private String nodeNameShow;
 	
 	/**
 	 * 父节点：父节点
 	*/
-	@ApiModelProperty(required = false,value="父节点" , notes = "父节点" , example = "0")
+	@ApiModelProperty(required = false,value="父节点" , notes = "父节点")
 	private String pid;
 	
 	/**
 	 * 类型：类型
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "类型" , example = "os")
+	@ApiModelProperty(required = false,value="类型" , notes = "类型")
 	private String type;
 	
 	/**
 	 * 子类型：子类型
 	*/
-	@ApiModelProperty(required = false,value="子类型" , notes = "子类型" , example = "Redhat")
+	@ApiModelProperty(required = false,value="子类型" , notes = "子类型")
 	private String subType;
 	
 	/**
 	 * 节点分组：节点分组
 	*/
-	@ApiModelProperty(required = false,value="节点分组" , notes = "节点分组" , example = "543027032871665664")
+	@ApiModelProperty(required = false,value="节点分组" , notes = "节点分组")
 	private String groupId;
 	
 	/**
 	 * 主机名：主机名
 	*/
-	@ApiModelProperty(required = false,value="主机名" , notes = "主机名" , example = "192.168.1.1")
+	@ApiModelProperty(required = false,value="主机名" , notes = "主机名")
 	private String nodeName;
 	
 	/**
@@ -97,43 +97,43 @@ public class MonitorNode extends Entity {
 	/**
 	 * 是否启用：是否启用
 	*/
-	@ApiModelProperty(required = false,value="是否启用" , notes = "是否启用" , example = "disabled")
+	@ApiModelProperty(required = false,value="是否启用" , notes = "是否启用")
 	private String nodeEnabled;
 	
 	/**
 	 * 监控状态：监控状态
 	*/
-	@ApiModelProperty(required = false,value="监控状态" , notes = "监控状态" , example = "online")
+	@ApiModelProperty(required = false,value="监控状态" , notes = "监控状态")
 	private String status;
 	
 	/**
 	 * 凭证：SSH)
 	*/
-	@ApiModelProperty(required = false,value="凭证" , notes = "SSH)" , example = "1")
+	@ApiModelProperty(required = false,value="凭证" , notes = "SSH)")
 	private String sshVoucherId;
 	
 	/**
 	 * SSH端口：SSH端口
 	*/
-	@ApiModelProperty(required = false,value="SSH端口" , notes = "SSH端口" , example = "22")
+	@ApiModelProperty(required = false,value="SSH端口" , notes = "SSH端口")
 	private Integer sshPort;
 	
 	/**
 	 * Agent端口：Agent端口
 	*/
-	@ApiModelProperty(required = false,value="Agent端口" , notes = "Agent端口" , example = "10052")
+	@ApiModelProperty(required = false,value="Agent端口" , notes = "Agent端口")
 	private Integer agentPort;
 	
 	/**
 	 * Zabbix代理端口：Zabbix代理端口
 	*/
-	@ApiModelProperty(required = false,value="Zabbix代理端口" , notes = "Zabbix代理端口" , example = "10050")
+	@ApiModelProperty(required = false,value="Zabbix代理端口" , notes = "Zabbix代理端口")
 	private Integer zabbixAgentPort;
 	
 	/**
 	 * Snmp端口：Snmp端口
 	*/
-	@ApiModelProperty(required = false,value="Snmp端口" , notes = "Snmp端口" , example = "12345")
+	@ApiModelProperty(required = false,value="Snmp端口" , notes = "Snmp端口")
 	private Integer snmpPort;
 	
 	/**
@@ -151,13 +151,13 @@ public class MonitorNode extends Entity {
 	/**
 	 * Jmx端口：Jmx端口
 	*/
-	@ApiModelProperty(required = false,value="Jmx端口" , notes = "Jmx端口" , example = "12345")
+	@ApiModelProperty(required = false,value="Jmx端口" , notes = "Jmx端口")
 	private Integer jmxPort;
 	
 	/**
 	 * Impi端口：Impi端口
 	*/
-	@ApiModelProperty(required = false,value="Impi端口" , notes = "Impi端口" , example = "623")
+	@ApiModelProperty(required = false,value="Impi端口" , notes = "Impi端口")
 	private Integer impiPort;
 	
 	/**
@@ -169,7 +169,7 @@ public class MonitorNode extends Entity {
 	/**
 	 * 变量：变量
 	*/
-	@ApiModelProperty(required = false,value="变量" , notes = "变量" , example = "{}")
+	@ApiModelProperty(required = false,value="变量" , notes = "变量")
 	private String var;
 	
 	/**
@@ -193,19 +193,19 @@ public class MonitorNode extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-02-09 08:42:06")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -226,7 +226,7 @@ public class MonitorNode extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "6")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本")
 	private Integer version;
 	
 	/**

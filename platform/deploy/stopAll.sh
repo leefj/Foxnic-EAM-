@@ -1,7 +1,6 @@
 #!/bin/sh
 cur_dir=$(cd `dirname $0`; pwd)
 cd $cur_dir
-
 echo "to stop App"
 sh stopApp.sh
 echo "to stop Bpm"
