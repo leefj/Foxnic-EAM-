@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 节点VO类型
  * <p>节点 , 数据表 ops_monitor_node 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-13 20:26:59
+ * @since 2024-01-17 14:28:38
  * @sign 05DF7270C512DCD4908D3A955CF15039
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

@@ -92,7 +92,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.AGENT_PORT).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.ZABBIX_AGENT_PORT).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.JMX_PORT).table().disable(true);
-        cfg.view().field(OpsTables.OPS_MONITOR_NODE.JDBC_URL).table().disable(true);
+
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.SSH_PORT).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.SSH_VOUCHER_ID).table().disable(true);
 

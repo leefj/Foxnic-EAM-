@@ -55,10 +55,8 @@ checkService(){
     echo "mysql is not running"
   fi
   echo ""
-
   return 0
 }
-
 function menu {
 	clear
 	echo ""

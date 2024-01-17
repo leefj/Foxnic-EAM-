@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-23 08:13:19
+ * @since 2024-01-17 14:39:01
  */
 
 
@@ -98,6 +98,7 @@ function ListPage() {
 					,{ field: 'userUseInfo', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('使用情况') , templet: function (d) { return templet('userUseInfo',d.userUseInfo,d);}  }
 					,{ field: 'userInfo', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('用户备注') , templet: function (d) { return templet('userInfo',d.userInfo,d);}  }
 					,{ field: 'voucherStr', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('凭证信息') , templet: function (d) { return templet('voucherStr',d.voucherStr,d);}  }
+					,{ field: 'dbPort', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('服务端口') , templet: function (d) { return templet('dbPort',d.dbPort,d);}  }
 					,{ field: 'backupStrategy', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('本地备份策略') , templet: function (d) { return templet('backupStrategy',d.backupStrategy,d);}  }
 					,{ field: 'toolStrategy', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('工具备份策略') , templet: function (d) { return templet('toolStrategy',d.toolStrategy,d);}  }
 					,{ field: 'disasterRecoveryStrategy', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('灾备策略') , templet: function (d) { return templet('disasterRecoveryStrategy',d.disasterRecoveryStrategy,d);}  }

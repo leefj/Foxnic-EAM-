@@ -11,6 +11,7 @@ import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -471,6 +472,7 @@ public class GoodsStockController extends SuperController {
     public Result<PagedList<GoodsStock>> queryInPagedList(GoodsStockVO sample) {
         sample.setInterOperType("in");
         sample.setStatus("complete");
+		sample.setOwnerTmpId("none");
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
@@ -528,6 +530,8 @@ public class GoodsStockController extends SuperController {
     public Result<PagedList<GoodsStock>> queryOutPagedList(GoodsStockVO sample) {
         sample.setInterOperType("out");
         sample.setStatus("complete");
+		sample.setOwnerTmpId("none");
+
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
