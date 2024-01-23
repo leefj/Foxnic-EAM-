@@ -1,6 +1,15 @@
 package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.constants.enums.hr.PersonBillStatusEnum;
+import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.PersonTransferRcd;
+import com.dt.platform.hr.service.IPersonService;
+import com.dt.platform.hr.service.IPersonTransferRcdService;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -38,13 +47,21 @@ import java.util.Map;
  * 员工调动服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:34:45
+ * @since 2024-01-23 20:08:38
 */
 
 
 @Service("HrPersonTransferService")
 
 public class PersonTransferServiceImpl extends SuperService<PersonTransfer> implements IPersonTransferService {
+
+
+	@Autowired
+	private IPersonTransferRcdService personTransferRcdService;
+
+
+	@Autowired
+	private IPersonService personService;
 
 	/**
 	 * 注入DAO对象
@@ -73,8 +90,78 @@ public class PersonTransferServiceImpl extends SuperService<PersonTransfer> impl
 	 */
 	@Override
 	public Result insert(PersonTransfer personTransfer,boolean throwsException) {
+		if(StringUtil.isBlank(personTransfer.getBusinessCode())){
+			personTransfer.setBusinessCode(IDGenerator.getSnowflakeIdString());
+		}
+		personTransfer.setOperUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+		personTransfer.setStatus(PersonBillStatusEnum.DRAFT.code());
+		List<String> idsList=personTransfer.getPersonIds();
+		if(personTransfer.getPersonIds()==null||personTransfer.getPersonIds().size()==0){
+			return ErrorDesc.failureMessage("请选择人员");
+		}
 		Result r=super.insert(personTransfer,throwsException);
+		if(r.isSuccess()){
+			for(int i=0;i<idsList.size();i++){
+				PersonTransferRcd rcd=new PersonTransferRcd();
+				rcd.setStatus(PersonBillStatusEnum.DRAFT.code());
+				rcd.setPersonId(idsList.get(i));
+				rcd.setTransferId(personTransfer.getId());
+				rcd.setOperUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+				personTransferRcdService.insert(rcd,false);
+			}
+		}
 		return r;
+	}
+
+	@Override
+	public Result sure(String id) {
+		PersonTransfer personTransfer=this.getById(id);
+		if(PersonBillStatusEnum.DRAFT.code().equals(personTransfer.getStatus())){
+			personTransfer.setStatus(PersonBillStatusEnum.FINISH.code());
+			super.update(personTransfer,SaveMode.NOT_NULL_FIELDS,false);
+			PersonTransferRcd query=new PersonTransferRcd();
+			query.setTransferId(personTransfer.getId());
+			List<PersonTransferRcd> rcdList=personTransferRcdService.queryList(query);
+			for(int i=0;i<rcdList.size();i++){
+				PersonTransferRcd r=rcdList.get(i);
+				r.setStatus(PersonBillStatusEnum.FINISH.code());
+				r.setOperUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+				r.setOperTime(new Date());
+				r.setContent(personTransfer.getContent());
+				r.setTransferDate(personTransfer.getTransferDate());
+				personTransferRcdService.update(r,SaveMode.NOT_NULL_FIELDS,false);
+				//修改人员
+				if(StringUtil.isBlank(personTransfer.getOrgId())&&StringUtil.isBlank(personTransfer.getPositionCode())){
+					Logger.info("不需要修改");
+				}else{
+					Person person=new Person();
+					person.setUpdateTime(new Date());
+					person.setId(PersonTransferRcd.create().getPersonId());
+					if(!StringUtil.isBlank(personTransfer.getOrgId())){
+						person.setOrgId(personTransfer.getOrgId());
+					}
+					if(!StringUtil.isBlank(personTransfer.getPositionCode())){
+						person.setPositionCode(personTransfer.getPositionCode());
+					}
+					personService.update(person,SaveMode.NOT_NULL_FIELDS,false);
+				}
+			}
+		}else{
+			return ErrorDesc.failureMessage("当前状态不能进行修改");
+		}
+		return ErrorDesc.success();
+	}
+
+	@Override
+	public Result cancel(String id) {
+		PersonTransfer personTransfer=this.getById(id);
+		if(PersonBillStatusEnum.DRAFT.code().equals(personTransfer.getStatus())){
+			personTransfer.setStatus(PersonBillStatusEnum.CANCEL.code());
+			super.update(personTransfer,SaveMode.NOT_NULL_FIELDS,false);
+		}else{
+			return ErrorDesc.failureMessage("当前状态不能进行修改");
+		}
+		return ErrorDesc.success();
 	}
 
 	/**
@@ -164,6 +251,20 @@ public class PersonTransferServiceImpl extends SuperService<PersonTransfer> impl
 	@Override
 	public Result update(PersonTransfer personTransfer , SaveMode mode,boolean throwsException) {
 		Result r=super.update(personTransfer , mode , throwsException);
+		List<String> idsList=personTransfer.getPersonIds();
+		if(personTransfer.getPersonIds()==null||personTransfer.getPersonIds().size()==0){
+			return ErrorDesc.failureMessage("请选择人员");
+		}
+		if(r.isSuccess()){
+			dao.execute("delete from hr_person_transfer_rcd where transfer_id=?",personTransfer.getId());
+			for(int i=0;i<idsList.size();i++){
+				PersonTransferRcd rcd=new PersonTransferRcd();
+				rcd.setStatus(PersonBillStatusEnum.DRAFT.code());
+				rcd.setPersonId(idsList.get(i));
+				rcd.setTransferId(personTransfer.getId());
+				personTransferRcdService.insert(rcd,false);
+			}
+		}
 		return r;
 	}
 

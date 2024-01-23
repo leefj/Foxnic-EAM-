@@ -1,7 +1,7 @@
 /**
  * 员工调动 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:34:46
+ * @since 2024-01-23 20:44:24
  */
 
 
@@ -92,8 +92,8 @@ function ListPage() {
 					,{ field: 'orgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('部门') , templet: function (d) { return templet('orgId',fox.getProperty(d,["organization","fullName"],0,'','orgId'),d);} }
 					,{ field: 'positionCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('岗位'), templet: function (d) { return templet('positionCode' ,fox.joinLabel(d.position,"name",',','','positionCode'),d);}}
 					,{ field: 'note', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('note',d.note,d);}  }
-					,{ field: 'operUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('操作人') , templet: function (d) { return templet('operUserId',d.operUserId,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'personIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('人员'), templet: function (d) { return templet('personIds' ,fox.joinLabel(d.personList,"name",',','','personIds'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

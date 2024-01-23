@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 员工调动 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:34:45
+ * @since 2024-01-23 20:08:38
  */
 @FeignClient(value = ServiceNames.HR, contextId = PersonTransferServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface PersonTransferServiceProxy {
@@ -83,6 +83,10 @@ public interface PersonTransferServiceProxy {
      * 分页查询员工调动
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
+
+    public static final String ACTION_CANCEL =API_PREFIX+ "action-cancel";
+
+    public static final String ACTION_SURE =API_PREFIX+ "action-sure";
 
     /**
      * 添加员工调动

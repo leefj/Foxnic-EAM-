@@ -10,9 +10,12 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.hr.meta.PersonTransferMeta;
@@ -24,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 员工调动
  * <p>员工调动 , 数据表 hr_person_transfer 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:34:44
- * @sign 2FCC16686528C5A673918EB2D934955E
+ * @since 2024-01-23 20:44:23
+ * @sign 31ABD7D567CBEA893175F77379392F44
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,7 +44,7 @@ public class PersonTransfer extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "801816370407800832")
 	private String id;
 	
 	/**
@@ -59,19 +62,19 @@ public class PersonTransfer extends Entity {
 	/**
 	 * 调动日期：调动日期
 	*/
-	@ApiModelProperty(required = false,value="调动日期" , notes = "调动日期")
+	@ApiModelProperty(required = false,value="调动日期" , notes = "调动日期" , example = "2024-01-10 12:00:00")
 	private Date transferDate;
 	
 	/**
 	 * 原因：原因
 	*/
-	@ApiModelProperty(required = false,value="原因" , notes = "原因")
+	@ApiModelProperty(required = false,value="原因" , notes = "原因" , example = "12")
 	private String content;
 	
 	/**
 	 * 部门：部门
 	*/
-	@ApiModelProperty(required = false,value="部门" , notes = "部门")
+	@ApiModelProperty(required = false,value="部门" , notes = "部门" , example = "788871090188320766")
 	private String orgId;
 	
 	/**
@@ -89,7 +92,7 @@ public class PersonTransfer extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "121212")
 	private String note;
 	
 	/**
@@ -101,13 +104,13 @@ public class PersonTransfer extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-01-22 02:12:00")
 	private Date createTime;
 	
 	/**
@@ -125,7 +128,7 @@ public class PersonTransfer extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -146,14 +149,26 @@ public class PersonTransfer extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * personList：personList
+	*/
+	@ApiModelProperty(required = false,value="personList" , notes = "personList")
+	private List<Person> personList;
+	
+	/**
+	 * personIds：personIds
+	*/
+	@ApiModelProperty(required = false,value="personIds" , notes = "personIds")
+	private List<String> personIds;
 	
 	/**
 	 * position：position
@@ -560,6 +575,66 @@ public class PersonTransfer extends Entity {
 	}
 	
 	/**
+	 * 获得 personList<br>
+	 * personList
+	 * @return personList
+	*/
+	public List<Person> getPersonList() {
+		return personList;
+	}
+	
+	/**
+	 * 设置 personList
+	 * @param personList personList
+	 * @return 当前对象
+	*/
+	public PersonTransfer setPersonList(List<Person> personList) {
+		this.personList=personList;
+		return this;
+	}
+	
+	/**
+	 * 添加 personList
+	 * @param person personList
+	 * @return 当前对象
+	*/
+	public PersonTransfer addPerson(Person... person) {
+		if(this.personList==null) personList=new ArrayList<>();
+		this.personList.addAll(Arrays.asList(person));
+		return this;
+	}
+	
+	/**
+	 * 获得 personIds<br>
+	 * personIds
+	 * @return personIds
+	*/
+	public List<String> getPersonIds() {
+		return personIds;
+	}
+	
+	/**
+	 * 设置 personIds
+	 * @param personIds personIds
+	 * @return 当前对象
+	*/
+	public PersonTransfer setPersonIds(List<String> personIds) {
+		this.personIds=personIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 personIds
+	 * @param personId personIds
+	 * @return 当前对象
+	*/
+	public PersonTransfer addPersonId(String... personId) {
+		if(this.personIds==null) personIds=new ArrayList<>();
+		this.personIds.addAll(Arrays.asList(personId));
+		return this;
+	}
+	
+	/**
 	 * 获得 position<br>
 	 * position
 	 * @return position
@@ -661,7 +736,9 @@ public class PersonTransfer extends Entity {
 		inst.setId(this.getId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setPersonList(this.getPersonList());
 			inst.setOrganization(this.getOrganization());
+			inst.setPersonIds(this.getPersonIds());
 			inst.setPosition(this.getPosition());
 		}
 		inst.clearModifies();

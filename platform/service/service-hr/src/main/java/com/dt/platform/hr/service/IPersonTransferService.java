@@ -24,12 +24,15 @@ import java.util.Map;
  * 员工调动服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:34:44
+ * @since 2024-01-23 20:08:38
 */
 
 public interface IPersonTransferService extends  ISimpleIdService<PersonTransfer,String> {
 
 
+	Result sure(String id);
+
+	Result cancel(String id);
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param personTransfer 数据对象

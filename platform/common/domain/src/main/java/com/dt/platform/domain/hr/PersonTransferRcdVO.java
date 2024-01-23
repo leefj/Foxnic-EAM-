@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 员工调动记录VO类型
  * <p>员工调动记录 , 数据表 hr_person_transfer_rcd 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:35:13
+ * @since 2024-01-23 20:23:44
  * @sign D02A476A30DF2974404E480EEB5E15EF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -416,6 +416,7 @@ public class PersonTransferRcdVO extends PersonTransferRcd {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPersonId(this.getPersonId());
 		inst.setId(this.getId());
+		inst.setStatus(this.getStatus());
 		inst.setOperTime(this.getOperTime());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
@@ -505,6 +506,7 @@ public class PersonTransferRcdVO extends PersonTransferRcd {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(PersonTransferRcdVOMeta.DELETE_BY)));
 			this.setPersonId(DataParser.parse(String.class, map.get(PersonTransferRcdVOMeta.PERSON_ID)));
 			this.setId(DataParser.parse(String.class, map.get(PersonTransferRcdVOMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(PersonTransferRcdVOMeta.STATUS)));
 			this.setOperTime(DataParser.parse(Date.class, map.get(PersonTransferRcdVOMeta.OPER_TIME)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(PersonTransferRcdVOMeta.SEARCH_FIELD)));
@@ -536,6 +538,7 @@ public class PersonTransferRcdVO extends PersonTransferRcd {
 				this.setDeleteBy( (String)map.get(PersonTransferRcdVOMeta.DELETE_BY));
 				this.setPersonId( (String)map.get(PersonTransferRcdVOMeta.PERSON_ID));
 				this.setId( (String)map.get(PersonTransferRcdVOMeta.ID));
+				this.setStatus( (String)map.get(PersonTransferRcdVOMeta.STATUS));
 				this.setOperTime( (Date)map.get(PersonTransferRcdVOMeta.OPER_TIME));
 				// others
 				this.setSearchField( (String)map.get(PersonTransferRcdVOMeta.SEARCH_FIELD));
@@ -580,6 +583,7 @@ public class PersonTransferRcdVO extends PersonTransferRcd {
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(PersonTransferRcdVOMeta.DELETE_BY)));
 			this.setPersonId(DataParser.parse(String.class, r.getValue(PersonTransferRcdVOMeta.PERSON_ID)));
 			this.setId(DataParser.parse(String.class, r.getValue(PersonTransferRcdVOMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(PersonTransferRcdVOMeta.STATUS)));
 			this.setOperTime(DataParser.parse(Date.class, r.getValue(PersonTransferRcdVOMeta.OPER_TIME)));
 			return true;
 		} else {
@@ -599,6 +603,7 @@ public class PersonTransferRcdVO extends PersonTransferRcd {
 				this.setDeleteBy( (String)r.getValue(PersonTransferRcdVOMeta.DELETE_BY));
 				this.setPersonId( (String)r.getValue(PersonTransferRcdVOMeta.PERSON_ID));
 				this.setId( (String)r.getValue(PersonTransferRcdVOMeta.ID));
+				this.setStatus( (String)r.getValue(PersonTransferRcdVOMeta.STATUS));
 				this.setOperTime( (Date)r.getValue(PersonTransferRcdVOMeta.OPER_TIME));
 				return true;
 			} catch (Exception e) {

@@ -1,7 +1,7 @@
 /**
  * 员工调动 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:34:45
+ * @since 2024-01-23 20:08:39
  */
 
 layui.config({
@@ -100,6 +100,23 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterQuery : function (data) {
 
+            for (var i = 0; i < data.length; i++) {
+                //如果审批中或审批通过的不允许编辑
+                if(data[i].status=="draft") {
+                    console.log("none");
+                }else if(data[i].status=="finish"){
+                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.transfer-sure').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.transfer-cancel').filter("[data-id='" + data[i].id + "']"), true);
+                }else if(data[i].status=="cancel"){
+                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.transfer-sure').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.transfer-cancel').filter("[data-id='" + data[i].id + "']"), true);
+                }
+            }
+
         },
         /**
          * 单行数据刷新后调用
@@ -178,10 +195,40 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
 
         actionSure:function (data){
-            console.log('actionSure',data);
+            var ps={};
+            ps.id=data.id;
+            var btnClass="transfer-sure"
+            var btn=$('.'+btnClass).filter("[data-id='" +data.id + "']");
+            var api=moduleURL+"/action-sure";
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        top.layer.msg(r.message, {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        top.layer.msg(r.message, {time: 1000});
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
         },
         actionCancel:function (data){
-            console.log('actionCancel',data);
+            var ps={};
+            ps.id=data.id;
+            var btnClass="transfer-cancel"
+            var btn=$('.'+btnClass).filter("[data-id='" +data.id + "']");
+            var api=moduleURL+"/action-cancel";
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        top.layer.msg(r.message, {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        top.layer.msg(r.message, {time: 1000});
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
         },
         /**
          * 末尾执行

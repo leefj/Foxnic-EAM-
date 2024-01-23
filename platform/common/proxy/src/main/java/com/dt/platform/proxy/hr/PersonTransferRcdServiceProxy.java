@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 员工调动记录 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:35:13
+ * @since 2024-01-23 20:23:44
  */
 @FeignClient(value = ServiceNames.HR, contextId = PersonTransferRcdServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface PersonTransferRcdServiceProxy {
@@ -83,6 +83,8 @@ public interface PersonTransferRcdServiceProxy {
      * 分页查询员工调动记录
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
+
+
 
     /**
      * 添加员工调动记录

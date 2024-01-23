@@ -30,6 +30,7 @@ import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.hr.meta.PersonTransferMeta;
+import com.dt.platform.domain.hr.Person;
 import com.dt.platform.domain.hr.Position;
 import org.github.foxnic.web.domain.hrm.Organization;
 import io.swagger.annotations.Api;
@@ -46,7 +47,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 员工调动接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:34:45
+ * @since 2024-01-23 20:08:38
 */
 
 @InDoc
@@ -62,15 +63,15 @@ public class PersonTransferController extends SuperController {
 	*/
 	@ApiOperation(value = "添加员工调动")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonTransferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "801816370407800832"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.BUSINESS_CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.TRANSFER_DATE , value = "调动日期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.CONTENT , value = "原因" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.ORG_ID , value = "部门" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.TRANSFER_DATE , value = "调动日期" , required = false , dataTypeClass=Date.class , example = "2024-01-10 12:00:00"),
+		@ApiImplicitParam(name = PersonTransferVOMeta.CONTENT , value = "原因" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = PersonTransferVOMeta.ORG_ID , value = "部门" , required = false , dataTypeClass=String.class , example = "788871090188320766"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.POSITION_CODE , value = "岗位" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.FILE_IDS , value = "附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.OPER_USER_ID , value = "操作人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
@@ -91,7 +92,7 @@ public class PersonTransferController extends SuperController {
 	*/
 	@ApiOperation(value = "删除员工调动")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonTransferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = PersonTransferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "801816370407800832")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = PersonTransferServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -174,15 +175,15 @@ public class PersonTransferController extends SuperController {
 	*/
 	@ApiOperation(value = "更新员工调动")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonTransferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "801816370407800832"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.BUSINESS_CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.TRANSFER_DATE , value = "调动日期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.CONTENT , value = "原因" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.ORG_ID , value = "部门" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.TRANSFER_DATE , value = "调动日期" , required = false , dataTypeClass=Date.class , example = "2024-01-10 12:00:00"),
+		@ApiImplicitParam(name = PersonTransferVOMeta.CONTENT , value = "原因" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = PersonTransferVOMeta.ORG_ID , value = "部门" , required = false , dataTypeClass=String.class , example = "788871090188320766"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.POSITION_CODE , value = "岗位" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.FILE_IDS , value = "附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.OPER_USER_ID , value = "操作人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
@@ -202,15 +203,15 @@ public class PersonTransferController extends SuperController {
 	*/
 	@ApiOperation(value = "保存员工调动")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonTransferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "801816370407800832"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.BUSINESS_CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.TRANSFER_DATE , value = "调动日期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.CONTENT , value = "原因" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.ORG_ID , value = "部门" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.TRANSFER_DATE , value = "调动日期" , required = false , dataTypeClass=Date.class , example = "2024-01-10 12:00:00"),
+		@ApiImplicitParam(name = PersonTransferVOMeta.CONTENT , value = "原因" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = PersonTransferVOMeta.ORG_ID , value = "部门" , required = false , dataTypeClass=String.class , example = "788871090188320766"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.POSITION_CODE , value = "岗位" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.FILE_IDS , value = "附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.OPER_USER_ID , value = "操作人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
@@ -242,12 +243,30 @@ public class PersonTransferController extends SuperController {
 		// join 关联的对象
 		personTransferService.dao().fill(personTransfer)
 			.with("organization")
+			.with(PersonTransferMeta.PERSON_LIST)
 			.with(PersonTransferMeta.POSITION)
 			.execute();
 		result.success(true).data(personTransfer);
 		return result;
 	}
 
+
+
+	@ApiOperation(value = "确认")
+	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = PersonTransferServiceProxy.ACTION_SURE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(PersonTransferServiceProxy.ACTION_SURE)
+	public Result sure(String id) {
+		return personTransferService.sure(id);
+	}
+
+	@ApiOperation(value = "取消")
+	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = PersonTransferServiceProxy.ACTION_CANCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(PersonTransferServiceProxy.ACTION_CANCEL)
+	public Result cancel(String id) {
+		return personTransferService.cancel(id);
+	}
 
 	/**
 	 * 批量获取员工调动 <br>
@@ -274,15 +293,15 @@ public class PersonTransferController extends SuperController {
 	*/
 	@ApiOperation(value = "查询员工调动")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonTransferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "801816370407800832"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.BUSINESS_CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.TRANSFER_DATE , value = "调动日期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.CONTENT , value = "原因" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.ORG_ID , value = "部门" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.TRANSFER_DATE , value = "调动日期" , required = false , dataTypeClass=Date.class , example = "2024-01-10 12:00:00"),
+		@ApiImplicitParam(name = PersonTransferVOMeta.CONTENT , value = "原因" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = PersonTransferVOMeta.ORG_ID , value = "部门" , required = false , dataTypeClass=String.class , example = "788871090188320766"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.POSITION_CODE , value = "岗位" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.FILE_IDS , value = "附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.OPER_USER_ID , value = "操作人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
@@ -303,15 +322,15 @@ public class PersonTransferController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询员工调动")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonTransferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "801816370407800832"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.BUSINESS_CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.TRANSFER_DATE , value = "调动日期" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.CONTENT , value = "原因" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.ORG_ID , value = "部门" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.TRANSFER_DATE , value = "调动日期" , required = false , dataTypeClass=Date.class , example = "2024-01-10 12:00:00"),
+		@ApiImplicitParam(name = PersonTransferVOMeta.CONTENT , value = "原因" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = PersonTransferVOMeta.ORG_ID , value = "部门" , required = false , dataTypeClass=String.class , example = "788871090188320766"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.POSITION_CODE , value = "岗位" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.FILE_IDS , value = "附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonTransferVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class , example = "121212"),
 		@ApiImplicitParam(name = PersonTransferVOMeta.OPER_USER_ID , value = "操作人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
@@ -325,6 +344,7 @@ public class PersonTransferController extends SuperController {
 		// join 关联的对象
 		personTransferService.dao().fill(list)
 			.with("organization")
+			.with(PersonTransferMeta.PERSON_LIST)
 			.with(PersonTransferMeta.POSITION)
 			.execute();
 		result.success(true).data(list);

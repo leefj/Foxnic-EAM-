@@ -2,7 +2,7 @@
 /**
  * 员工调动 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:34:46
+ * @since 2024-01-23 20:44:25
  */
  -->
  <!DOCTYPE html>
@@ -38,11 +38,11 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-5949-content">
+        <div class="layui-row form-row" id="random-2944-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs12 form-column" >
+            <div class="layui-col-xs6 form-column" >
 
                 <!-- date_input : 调动日期 ,  transferDate  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
@@ -51,7 +51,32 @@
                         <input input-type="date" lay-filter="transferDate" id="transferDate" name="transferDate"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'调动日期') }" type="text" class="layui-input"    lay-verify="|required"   />
                     </div>
                 </div>
-            
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                <!-- select_box : 人员 ,  personIds  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('人员')}">人员</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="personIds" input-type="select" th:data="${'/service-hr/hr-person/query-paged-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <div class="layui-row form-row" id="random-1560-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
+
                 <!-- text_area : 原因 ,  content  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('原因')}">原因</div><div class="layui-required">*</div></div>
@@ -82,11 +107,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0327-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6283-fieldset">
             <legend>调动信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-0327-content">
+        <div class="layui-row form-row" id="random-6283-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -134,7 +159,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.PersonBillStatusEnum')}]];
-    var VALIDATE_CONFIG={"transferDate":{"date":true,"labelInForm":"调动日期","inputType":"date_input","required":true},"content":{"labelInForm":"原因","inputType":"text_area","required":true}};
+    var VALIDATE_CONFIG={"personIds":{"labelInForm":"人员","inputType":"select_box","required":true},"transferDate":{"date":true,"labelInForm":"调动日期","inputType":"date_input","required":true},"content":{"labelInForm":"原因","inputType":"text_area","required":true}};
     var AUTH_PREFIX="hr_person_transfer";
 
 

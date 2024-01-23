@@ -2,7 +2,7 @@
 /**
  * 员工调动记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:35:14
+ * @since 2024-01-23 20:23:45
  */
  -->
  <!DOCTYPE html>
@@ -40,6 +40,7 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 状态 , status ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 调动单 , transferId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 员工 , personId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 内容 , content ,typeName=text_input, isHideInSearch=false -->
@@ -104,6 +105,7 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.PersonBillStatusEnum')}]];
     var AUTH_PREFIX="hr_person_transfer_rcd";
 
     // personId

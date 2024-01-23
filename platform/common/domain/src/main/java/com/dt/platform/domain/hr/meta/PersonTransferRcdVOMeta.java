@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:35:13
+ * @since 2024-01-23 20:23:44
  * @sign D02A476A30DF2974404E480EEB5E15EF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -148,6 +148,16 @@ public class PersonTransferRcdVOMeta extends PersonTransferRcdMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonTransferRcdVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonTransferRcdVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 状态 , 类型: java.lang.String
+	*/
+	public static final String STATUS="status";
+	
+	/**
+	 * 状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonTransferRcdVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonTransferRcdVO.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
 	
 	/**
 	 * 调动单 , 类型: java.lang.String
@@ -312,7 +322,7 @@ public class PersonTransferRcdVOMeta extends PersonTransferRcdMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TRANSFER_ID , PERSON_ID , CONTENT , TRANSFER_DATE , NOTE , OPER_USER_ID , OPER_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , PERSON };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , STATUS , TRANSFER_ID , PERSON_ID , CONTENT , TRANSFER_DATE , NOTE , OPER_USER_ID , OPER_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , PERSON };
 	
 	/**
 	 * 代理类
@@ -462,6 +472,17 @@ public class PersonTransferRcdVOMeta extends PersonTransferRcdMeta {
 		public PersonTransferRcd setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 状态
+		 * @param status 状态
+		 * @return 当前对象
+		*/
+		public PersonTransferRcd setStatus(String status) {
+			super.change(STATUS,super.getStatus(),status);
+			super.setStatus(status);
 			return this;
 		}
 		
@@ -671,6 +692,7 @@ public class PersonTransferRcdVOMeta extends PersonTransferRcdMeta {
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setPersonId(this.getPersonId());
 			inst.setId(this.getId());
+			inst.setStatus(this.getStatus());
 			inst.setOperTime(this.getOperTime());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
