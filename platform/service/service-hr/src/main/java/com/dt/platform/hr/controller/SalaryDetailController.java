@@ -1,13 +1,24 @@
 package com.dt.platform.hr.controller;
 
+import java.io.*;
+import java.net.URLEncoder;
 import java.util.*;
-
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
 import com.alibaba.csp.sentinel.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.hr.PersonVO;
 import com.dt.platform.domain.hr.meta.SalaryActionVOMeta;
 import com.dt.platform.hr.service.IPersonService;
 import com.dt.platform.hr.service.ISalaryService;
+import com.dt.platform.proxy.common.TplFileServiceProxy;
+import com.dt.platform.proxy.eam.AssetBillServiceProxy;
+import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.commons.log.Logger;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +46,6 @@ import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.commons.io.StreamUtil;
 import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
-import java.io.InputStream;
 import com.dt.platform.domain.hr.meta.SalaryDetailMeta;
 import java.math.BigDecimal;
 import com.dt.platform.domain.hr.Person;
@@ -67,14 +77,13 @@ public class SalaryDetailController extends SuperController {
     @Autowired
     private ISalaryDetailService salaryDetailService;
 
-
 	@Autowired
 	private ISalaryService salaryService;
 
 	@Autowired
 	private IPersonService personService;
 
-    /**
+	/**
      * 添加薪酬明细
      */
     @ApiOperation(value = "添加薪酬明细")
@@ -93,7 +102,7 @@ public class SalaryDetailController extends SuperController {
 		@ApiImplicitParam(name = SalaryDetailVOMeta.TRAFFIC_SALARY, value = "交通补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.HOUSING_SALARY, value = "住房补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.COMMISSION_SALARY, value = "提成工资", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = SalaryDetailVOMeta.HIGH_TEMPERATURE_SALARY, value = "高温补贴", required = false, dataTypeClass = BigDecimal.class),
+
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_BASE, value = "住房公积金基数", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_PERSON, value = "住房公积金个人", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_COMPANY, value = "住房公积金公司", required = false, dataTypeClass = BigDecimal.class),
@@ -246,7 +255,7 @@ public class SalaryDetailController extends SuperController {
 		@ApiImplicitParam(name = SalaryDetailVOMeta.TRAFFIC_SALARY, value = "交通补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.HOUSING_SALARY, value = "住房补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.COMMISSION_SALARY, value = "提成工资", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = SalaryDetailVOMeta.HIGH_TEMPERATURE_SALARY, value = "高温补贴", required = false, dataTypeClass = BigDecimal.class),
+
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_BASE, value = "住房公积金基数", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_PERSON, value = "住房公积金个人", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_COMPANY, value = "住房公积金公司", required = false, dataTypeClass = BigDecimal.class),
@@ -321,7 +330,7 @@ public class SalaryDetailController extends SuperController {
 		@ApiImplicitParam(name = SalaryDetailVOMeta.TRAFFIC_SALARY, value = "交通补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.HOUSING_SALARY, value = "住房补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.COMMISSION_SALARY, value = "提成工资", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = SalaryDetailVOMeta.HIGH_TEMPERATURE_SALARY, value = "高温补贴", required = false, dataTypeClass = BigDecimal.class),
+
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_BASE, value = "住房公积金基数", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_PERSON, value = "住房公积金个人", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_COMPANY, value = "住房公积金公司", required = false, dataTypeClass = BigDecimal.class),
@@ -475,7 +484,7 @@ public class SalaryDetailController extends SuperController {
 		@ApiImplicitParam(name = SalaryDetailVOMeta.TRAFFIC_SALARY, value = "交通补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.HOUSING_SALARY, value = "住房补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.COMMISSION_SALARY, value = "提成工资", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = SalaryDetailVOMeta.HIGH_TEMPERATURE_SALARY, value = "高温补贴", required = false, dataTypeClass = BigDecimal.class),
+
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_BASE, value = "住房公积金基数", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_PERSON, value = "住房公积金个人", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_COMPANY, value = "住房公积金公司", required = false, dataTypeClass = BigDecimal.class),
@@ -551,7 +560,7 @@ public class SalaryDetailController extends SuperController {
 		@ApiImplicitParam(name = SalaryDetailVOMeta.TRAFFIC_SALARY, value = "交通补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.HOUSING_SALARY, value = "住房补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.COMMISSION_SALARY, value = "提成工资", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = SalaryDetailVOMeta.HIGH_TEMPERATURE_SALARY, value = "高温补贴", required = false, dataTypeClass = BigDecimal.class),
+	//	@ApiImplicitParam(name = SalaryDetailVOMeta.HIGH_TEMPERATURE_SALARY, value = "高温补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_BASE, value = "住房公积金基数", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_PERSON, value = "住房公积金个人", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_COMPANY, value = "住房公积金公司", required = false, dataTypeClass = BigDecimal.class),
@@ -626,7 +635,7 @@ public class SalaryDetailController extends SuperController {
 		@ApiImplicitParam(name = SalaryDetailVOMeta.TRAFFIC_SALARY, value = "交通补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.HOUSING_SALARY, value = "住房补贴", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.COMMISSION_SALARY, value = "提成工资", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = SalaryDetailVOMeta.HIGH_TEMPERATURE_SALARY, value = "高温补贴", required = false, dataTypeClass = BigDecimal.class),
+
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_BASE, value = "住房公积金基数", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_PERSON, value = "住房公积金个人", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_COMPANY, value = "住房公积金公司", required = false, dataTypeClass = BigDecimal.class),
@@ -684,8 +693,7 @@ public class SalaryDetailController extends SuperController {
 			personId = personList.get(0).getId();
 		}
 		sample.setPersonId(personId);
-
-
+		sample.setStatus("finish");
         PagedList<SalaryDetail> list = salaryDetailService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         salaryDetailService.dao().fill(list).with("person").execute();
@@ -709,8 +717,7 @@ public class SalaryDetailController extends SuperController {
 			@ApiImplicitParam(name = SalaryDetailVOMeta.TRAFFIC_SALARY, value = "交通补贴", required = false, dataTypeClass = BigDecimal.class),
 			@ApiImplicitParam(name = SalaryDetailVOMeta.HOUSING_SALARY, value = "住房补贴", required = false, dataTypeClass = BigDecimal.class),
 			@ApiImplicitParam(name = SalaryDetailVOMeta.COMMISSION_SALARY, value = "提成工资", required = false, dataTypeClass = BigDecimal.class),
-			@ApiImplicitParam(name = SalaryDetailVOMeta.HIGH_TEMPERATURE_SALARY, value = "高温补贴", required = false, dataTypeClass = BigDecimal.class),
-			@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_BASE, value = "住房公积金基数", required = false, dataTypeClass = BigDecimal.class),
+		 	@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_BASE, value = "住房公积金基数", required = false, dataTypeClass = BigDecimal.class),
 			@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_PERSON, value = "住房公积金个人", required = false, dataTypeClass = BigDecimal.class),
 			@ApiImplicitParam(name = SalaryDetailVOMeta.WELFARE_ZFGJJ_COMPANY, value = "住房公积金公司", required = false, dataTypeClass = BigDecimal.class),
 			@ApiImplicitParam(name = SalaryDetailVOMeta.WELFAER_YLBX_BASE, value = "养老保险基数", required = false, dataTypeClass = BigDecimal.class),
@@ -765,18 +772,59 @@ public class SalaryDetailController extends SuperController {
 		result.success(true).data(list);
 		return result;
 	}
+	public File saveTempFile(InputStream is, String fileName){
+		int BYTESIZE=1024;
+		String path = System.getProperty("java.io.tmpdir");
+		File temp = new File(path +File.separator+ fileName);
+		BufferedInputStream bis = null;
+		BufferedOutputStream bos = null;
+		try{
+			bis = new BufferedInputStream(is);
+			bos = new BufferedOutputStream(new FileOutputStream(temp));                            //把文件流转为文件，保存在临时目录
+			int len = 0;
+			byte[] buf = new byte[10*BYTESIZE];                                                    //缓冲区
+			while((len=bis.read(buf)) != -1){
+				bos.write(buf, 0, len);
+			}
+			bos.flush();
+		}catch(IOException e){
+			e.printStackTrace();
+		}finally{
+			try {
+				if(bos!=null) bos.close();
+				if(bis!=null) bis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return temp;
+	}
+
 	/**
 	 * 导出 Excel
 	 * */
 	@SentinelResource(value = SalaryDetailServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@RequestMapping(SalaryDetailServiceProxy.EXPORT_EXCEL)
-	public void exportExcel(SalaryDetailVO  sample,HttpServletResponse response) throws Exception {
-
+	public void exportExcel(SalaryDetailVO  sample,HttpServletResponse response,String code) throws Exception {
+		code="hr_person_salary_detail";
+		InputStream inputstream = salaryDetailService.buildExcelTemplate(code);
 		try{
-			//生成 Excel 数据
-			ExcelWriter ew=salaryDetailService.exportExcel(sample);
-			//下载
-			DownloadUtil.writeToOutput(response,ew.getWorkBook(),ew.getWorkBookName());
+			File f = saveTempFile(inputstream, "tmp_hr_salary_detail_.xls");
+			SalaryDetailVO q=new SalaryDetailVO();
+			q.setActionId(sample.getActionId());
+			List<SalaryDetail> list= salaryDetailService.queryList(q);
+			List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
+			for(int i=0;i<list.size();i++){
+				SalaryDetail item=list.get(i);
+				Map<String, Object> assetMap= BeanUtil.toMap(item);
+				listMap.add(assetMap);
+			}
+			Map<String,Object> map=new HashMap<>();
+			map.put("dataList", listMap);
+			TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
+			templateExportParams.setScanAllsheet(true);
+			Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
+			DownloadUtil.writeToOutput(response, workbook, "人员薪酬.xls");
 		} catch (Exception e) {
 			DownloadUtil.writeDownloadError(response,e);
 		}
@@ -788,7 +836,6 @@ public class SalaryDetailController extends SuperController {
 	@SentinelResource(value = SalaryDetailServiceProxy.EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@RequestMapping(SalaryDetailServiceProxy.EXPORT_EXCEL_TEMPLATE)
 	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
-
 		try{
 			//生成 Excel 模版
 			ExcelWriter ew=salaryDetailService.exportExcelTemplate();
@@ -801,8 +848,9 @@ public class SalaryDetailController extends SuperController {
 
 	@SentinelResource(value = SalaryDetailServiceProxy.IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(SalaryDetailServiceProxy.IMPORT_EXCEL)
-	public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
+	public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response,String code) throws Exception {
 
+		code="hr_person_salary_detail";
 		//获得上传的文件
 		Map<String, MultipartFile> map = request.getFileMap();
 		InputStream input=null;
@@ -815,12 +863,20 @@ public class SalaryDetailController extends SuperController {
 			return ErrorDesc.failure().message("缺少上传的文件");
 		}
 
-		List<ValidateResult> errors=salaryDetailService.importExcel(input,0,true);
-		if(errors==null || errors.isEmpty()) {
+		List<ValidateResult> errors = salaryDetailService.importExcel(input, 0, code);
+		if (errors == null || errors.isEmpty()) {
 			return ErrorDesc.success();
 		} else {
-			return ErrorDesc.failure().message("导入失败").data(errors);
+			Logger.info("import Result:");
+			String msg = "导入失败";
+			for (int i = 0; i < errors.size(); i++) {
+				Logger.info(i + ":" + errors.get(i).message);
+				msg = errors.get(i).message;
+			}
+			return ErrorDesc.failure().message(msg).data(errors);
 		}
+
+
 	}
 
 

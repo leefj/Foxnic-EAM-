@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬发放
  * <p>薪酬发放 , 数据表 hr_salary_action 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 09:03:48
+ * @since 2024-01-21 21:46:28
  * @sign 0E5BAFB6ED23255502CFF315F80F4615
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -43,43 +43,43 @@ public class SalaryAction extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "717755396189585408")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "801523704080105472")
 	private String id;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "wait")
 	private String status;
 	
 	/**
 	 * 标签：标签
 	*/
-	@ApiModelProperty(required = false,value="标签" , notes = "标签")
+	@ApiModelProperty(required = false,value="标签" , notes = "标签" , example = "salary")
 	private String label;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "123")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "1212")
 	private String name;
 	
 	/**
 	 * 月份：月份
 	*/
-	@ApiModelProperty(required = false,value="月份" , notes = "月份")
+	@ApiModelProperty(required = false,value="月份" , notes = "月份" , example = "2028-09")
 	private String actionMonth;
 	
 	/**
 	 * 模版：模版
 	*/
-	@ApiModelProperty(required = false,value="模版" , notes = "模版")
+	@ApiModelProperty(required = false,value="模版" , notes = "模版" , example = "717722780455403520")
 	private String tplId;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "jj")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "121212")
 	private String notes;
 	
 	/**
@@ -91,25 +91,25 @@ public class SalaryAction extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-04 03:03:42")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-01-21 06:49:03")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-06-05 09:03:25")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -118,19 +118,19 @@ public class SalaryAction extends Entity {
 	/**
 	 * 删除人ID：删除人ID
 	*/
-	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID")
 	private String deleteBy;
 	
 	/**
 	 * 删除时间：删除时间
 	*/
-	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2023-06-05 09:03:25")
+	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间")
 	private Date deleteTime;
 	
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "2")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "1")
 	private Integer version;
 	
 	/**

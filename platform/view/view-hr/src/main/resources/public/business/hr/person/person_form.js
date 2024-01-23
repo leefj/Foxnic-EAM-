@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-16 10:30:12
+ * @since 2024-01-22 08:19:07
  */
 
 function FormPage() {
@@ -945,6 +945,23 @@ function FormPage() {
 
 	    form.on('submit(submit-button)', verifyAndSaveForm);
 
+		// 请选择组织节点对话框
+		$("#orgId-button").click(function(){
+			var orgIdDialogOptions={
+				field:"orgId",
+				formData:getFormData(),
+				inputEl:$("#orgId"),
+				buttonEl:$(this),
+				single:true,
+				autoWidth:false,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"org",
+				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
+			};
+			fox.chooseOrgNode(orgIdDialogOptions);
+		});
 		// 请选择人员对话框
 		$("#employeeId-button").click(function(){
 				var employeeIdDialogOptions={

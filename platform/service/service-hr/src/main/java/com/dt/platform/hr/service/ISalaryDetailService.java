@@ -31,6 +31,9 @@ import java.util.Map;
 public interface ISalaryDetailService extends  ISimpleIdService<SalaryDetail,String> {
 
 
+	InputStream buildExcelTemplate(String code);
+
+	public ExcelStructure buildExcelStructure(InputStream dataInputStream,String code);
 
 
 	Result<JSONObject> queryStatisticalDataByActionId(String actionId);
@@ -333,7 +336,7 @@ public interface ISalaryDetailService extends  ISimpleIdService<SalaryDetail,Str
 	 * 导入 Excel 数据
 	 * @return  错误信息，成功时返回 null
 	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
+	List<ValidateResult> importExcel(InputStream input,int sheetIndex,String code);
 
 
 

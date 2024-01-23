@@ -16,6 +16,7 @@ public enum SalaryActionStatusEnum implements CodeTextEnum {
 	DRAFT("draft" , "草稿"),
 	ACTING("acting" , "生成中"),
 	WAIT("wait" , "未发放"),
+
 	FINISH("finish" , "已发放");
 
 	private String code;

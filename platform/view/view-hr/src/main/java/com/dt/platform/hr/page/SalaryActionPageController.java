@@ -40,10 +40,17 @@ public class SalaryActionPageController extends ViewController {
 	}
 
 
+
 	@RequestMapping("/person_list.html")
 	public String personList(Model model,HttpServletRequest request,String tplId) {
 		model.addAttribute("tplId",tplId);
 		return getTemplatePath(prefix,"/person_list");
+	}
+
+	@RequestMapping("/salary_import_form.html")
+	public String importForm(Model model,HttpServletRequest request,String tplId) {
+
+		return getTemplatePath(prefix,"/salary_import_form");
 	}
 
 	@RequestMapping("/salary_detail_list2.html")

@@ -172,6 +172,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        salaryExport:function(selected,obj){
+
+        },
+        salaryImport:function(selected,obj){
+
+        },
         /**
          * 末尾执行
          */

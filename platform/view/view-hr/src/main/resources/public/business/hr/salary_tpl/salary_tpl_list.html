@@ -2,7 +2,7 @@
 /**
  * 薪酬模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-04 13:53:40
+ * @since 2024-01-22 15:21:28
  */
  -->
  <!DOCTYPE html>
@@ -42,14 +42,17 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 编号 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('编号')}" class="search-label code-label">编号</span><span class="search-colon">:</span></div>
-                        <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('编号')}" class="search-label code-label">编号</span><span class="search-colon">:</span></div>
+                        <input id="code" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
-                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 计算公式 , method ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 计算公式 , methodScript ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -79,7 +82,6 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('hr_salary_tpl:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
-        <button th:if="${perm.checkAuth('hr_salary_tpl:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除','','cmp:table.button')}">删除</span></button>
     </div>
 </script>
 
@@ -92,7 +94,7 @@
 
     <button th:if="${perm.checkAuth('hr_salary_tpl:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
-    <button th:if="${perm.checkAuth('hr_salary_tpl:detail')}"class="layui-btn layui-btn-xs  person-detail " lay-event="detail" data-id="{{d.id}}"><span th:text="${lang.translate('明细','','cmp:table.ops')}">明细</span></button>
+    <button class="layui-btn layui-btn-xs  person-detail " lay-event="detail" data-id="{{d.id}}"><span th:text="${lang.translate('人员','','cmp:table.ops')}">人员</span></button>
 
 </script>
 

@@ -44,6 +44,9 @@ public class SalalyActionGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+
+
+
         cfg.getPoClassFile().addSimpleProperty(SalaryTpl.class,"salaryTpl","salaryTpl","salaryTpl");
         cfg.getPoClassFile().addSimpleProperty(SalaryMonth.class,"salaryMonth","salaryMonth","salaryMonth");
         cfg.getPoClassFile().addListProperty(Person.class,"personList","personList","personList");
@@ -86,7 +89,7 @@ public class SalalyActionGtr extends BaseCodeGenerator {
 
         cfg.view().list().disableBatchDelete();
         cfg.view().list().operationColumn().addActionButton("生成数据","createData","create-data","hr_salary_action:data");
-        cfg.view().list().operationColumn().addActionButton("员工明细","detail","person-detail","hr_salary_action:detail");
+        cfg.view().list().operationColumn().addActionButton("员工","detail","person-detail","hr_salary_action:detail");
         cfg.view().list().operationColumn().addActionButton("薪酬列表","salaryDetail","person-salary-detail","hr_salary_action:salary");
 
 

@@ -16,6 +16,7 @@ import com.dt.platform.hr.page.PersonPageController;
 import com.dt.platform.proxy.hr.*;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.system.meta.DictItemMeta;
 import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
@@ -29,6 +30,8 @@ public class HrmPersonGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
+        cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","所在部门","所在部门");
+
         cfg.getPoClassFile().addSimpleProperty(Position.class,"position","position","position");
         cfg.getPoClassFile().addSimpleProperty(Rank.class,"rank","rank","rank");
         cfg.getPoClassFile().addSimpleProperty(ProfessionalLevel.class,"professionalLevel","professionalLevel","professionalLevel");
@@ -39,13 +42,12 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"educationData","educationData","educationData");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"politicCountenanceData","politicCountenanceData","politicCountenanceData");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"employeeIdentity","employeeIdentity","employeeIdentity");
-
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"bank","bank","bank");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"employee","employee","employee");
         cfg.getPoClassFile().addListProperty(PersonCert.class,"personCertList","personCertList","personCertList");
-
         cfg.getPoClassFile().addSimpleProperty(Salary.class,"salary","salary","salary");
         cfg.getPoClassFile().addSimpleProperty(SalaryTpl.class,"salaryTpl","salaryTpl","salaryTpl");
+
 
         cfg.view().field(HrTables.HR_PERSON.ID).basic().hidden(true);
         cfg.view().field(HrTables.HR_PERSON.NAME).search().fuzzySearch();
@@ -78,6 +80,7 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON.IDENTITY_CARD,
                 },
                 new Object[]{
+
                         HrTables.HR_PERSON.EMPLOYMENT_DATE,
                         HrTables.HR_PERSON.CONTRACT_START_DATE,
                 }
@@ -117,6 +120,9 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON.PAYROLL_CARD_BANK_CODE).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.PERSON_PICTURE_ID).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.FILE_ID).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON.UPDATE_BY).form().table().disable(true);
+
+
         cfg.view().field(HrTables.HR_PERSON.BIRTHDAY).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_PERSON.EMPLOYMENT_CONFIRM_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_PERSON.EMPLOYMENT_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
@@ -124,6 +130,12 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON.JOIN_PART_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_PERSON.FIRST_EMPLOYMENT_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_PERSON.LEAVE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+
+
+
+        cfg.view().field(HrTables.HR_PERSON.ORG_ID)
+                .form().button().chooseOrganization(true);
+        cfg.view().field(HrTables.HR_PERSON.ORG_ID).table().fillBy("organization","fullName");
 
 
         cfg.view().field(HrTables.HR_PERSON.JOB_NUMBER).form().readOnly();

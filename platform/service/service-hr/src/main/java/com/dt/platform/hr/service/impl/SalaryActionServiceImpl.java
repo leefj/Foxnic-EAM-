@@ -12,6 +12,7 @@ import com.dt.platform.domain.hr.meta.PersonMeta;
 import com.dt.platform.domain.hr.meta.SalaryActionMeta;
 import com.dt.platform.hr.service.ISalaryCtlService;
 import com.dt.platform.hr.service.ISalaryDetailService;
+import com.dt.platform.hr.service.ISalaryTplService;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,9 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 	@Autowired
 	private ISalaryDetailService salaryDetailService;
 
+	@Autowired
+	private ISalaryTplService salaryTplService;
+
 
 	@Autowired
 	private ISalaryCtlService salaryCtlService;
@@ -104,7 +108,7 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 		SalaryAction act=this.getById(id);
 		this.dao.execute("update hr_salary_action set status=? where id=?",SalaryActionStatusEnum.ACTING.code(),id);
 		if(act.getStatus().equals(SalaryActionStatusEnum.FINISH.code())){
-			return ErrorDesc.failureMessage("当前状态无法生成数据");
+			return ErrorDesc.failureMessage ("当前状态无法生成数据");
 		}
 		this.dao().fill(act).with(SalaryActionMeta.PERSON_LIST).with(SalaryActionMeta.SALARY_TPL)
 				.with(SalaryActionMeta.SALARY_MONTH).execute();
@@ -115,6 +119,11 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 			return ErrorDesc.failureMessage("当前没有需要发薪酬的人员");
 		}
 		dao.execute("delete from hr_salary_detail where action_id=?",id);
+
+
+
+
+
 		//开始填充薪酬基本数据
 		for(Person person:personList){
 			if(StatusYNEnum.YES.code().equals(person.getSalaryPayOut())){
@@ -138,6 +147,7 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 		if(person.getBank()==null){
 			this.dao().fill(person).with(PersonMeta.BANK).execute();
 		}
+
 		Salary salary=person.getSalary();
 		dao.execute("delete from hr_salary_detail where action_id=? and person_id=?",act.getId(),person.getId());
 		SalaryDetail detailTmp=new SalaryDetail();
@@ -157,12 +167,12 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 			salaryDetailService.update(detail,SaveMode.NOT_NULL_FIELDS,true);
 			return ErrorDesc.success();
 		}else{
-			detail.setStatus(SalaryPersonDetailStatusEnum.INVALID.code());
+			detail.setStatus(SalaryPersonDetailStatusEnum.NOT_PROCESS.code());
 			detail.setBank(person.getBank().getLabel());
 			detail.setBankAccount(person.getPayrollCard());
-			if(StringUtil.isBlank(detail.getBankAccount()) ||detail.getBankAccount().length()<10){
+			if(StringUtil.isBlank(detail.getBankAccount()) ||detail.getBankAccount().length()<6){
 				detail.setStatus(SalaryPersonDetailStatusEnum.ABNORMAL.code());
-				detail.setOperMsg("没有获得银行卡账户信息");
+				detail.setOperMsg("银行卡账户信息错误");
 				salaryDetailService.update(detail,SaveMode.NOT_NULL_FIELDS,true);
 				return ErrorDesc.success();
 			}
@@ -175,10 +185,13 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 			salaryDetailService.update(detail,SaveMode.NOT_NULL_FIELDS,true);
 			return ErrorDesc.success();
 		}else{
-			detail.setStatus(SalaryPersonDetailStatusEnum.INVALID.code());
+			detail.setStatus(SalaryPersonDetailStatusEnum.NOT_PROCESS.code());
 		}
 
+
 		//填充薪酬数据
+		detail.setCreateTime(new Date());
+		detail.setUpdateTime(new Date());
 		detail.setBaseSalary(salary.getBaseSalary());
 		detail.setPostSalary(salary.getPostSalary());
 		detail.setWorkingYearsSalary(salary.getWorkingYearsSalary());
@@ -218,6 +231,10 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 		detail.setPersonalTaxZnjy(salary.getPersonalTaxZnjy());
 
 
+		//获取模版计算公式
+		SalaryTpl tpl=act.getSalaryTpl();
+		String tplAclScript=tpl.getMethodScript();
+
 		////////////抵扣基数
 		SalaryCtl parDkjs=salaryCtlService.getById(SalaryControllerParameterEnum.SALARY_PT_DKJS.code());
 		if(parDkjs==null){
@@ -247,6 +264,12 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 				}
 			}
 		}
+
+		//此处计算动态薪酬，例如绩效、考勤、加班、奖励、惩处，提成等、略
+
+
+
+
 		//月收入,税前 所有工资+补贴
 		System.out.println("detail.getDeductGh()"+detail.getDeductGh());
 		BigDecimal salaryForTotalAmount=new BigDecimal("0.00").add(detail.getBaseSalary())
@@ -265,8 +288,6 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 				.subtract(detail.getDeductKq())
 				.subtract(detail.getDeductOther())
 				.subtract(detail.getDeductPersonalTaxRed());
-
-
 		//抵扣 7项
 		BigDecimal salaryForPersonalTaxTotal=new BigDecimal("0.00").add(detail.getPersonalTaxDbyl())
 				.add(detail.getPersonalTaxErzh())
@@ -275,7 +296,6 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 				.add(detail.getPersonalTaxZfzj())
 				.add(detail.getPersonalTaxZnjy())
 				.add(detail.getPersonalTaxSylr());
-
 
 		//所有五险一金个人部分汇总
 		BigDecimal welfaerPersonTotalAmount=new BigDecimal("0.00").add(detail.getPersonalTaxDbyl())

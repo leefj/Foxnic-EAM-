@@ -198,6 +198,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('beforeRowOperationEvent',data,obj);
             return true;
         },
+        salaryExport:function(selected,obj){
+            var value = {};
+            var ps={searchField: "$composite", searchValue: JSON.stringify(value)};
+            var downloadUrl="/service-hr/hr-salary-detail/export-excel";
+            ps.actionId=ACTION_ID;
+            fox.submit(downloadUrl,ps,"post",function(){
+                console.log("execute finish");
+            });
+        },
+        salaryImport:function(selected,obj){
+
+            var index = admin.popupCenter({
+                title: "数据导入",
+                resize: false,
+                id: 'assetDataImport',
+                area: ["60%", "50%"],
+                type: 2,
+                content: '/business/hr/salary_action/salary_import_form.html',
+            });
+        },
         /**
          * 表格右侧操作列更多按钮事件
          * */

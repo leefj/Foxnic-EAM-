@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-04 13:53:39
- * @sign 01FB5973B21CDCFFD697551D3BDCD514
+ * @since 2024-01-22 15:21:27
+ * @sign 1AC962C9C08085CE8AE6BDB045B92D2C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,6 +45,26 @@ public class SalaryTplMeta {
 	 * 名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTpl,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTpl.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
+	
+	/**
+	 * 计算公式 , 类型: java.lang.String
+	*/
+	public static final String METHOD="method";
+	
+	/**
+	 * 计算公式 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTpl,java.lang.String> METHOD_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTpl.class ,METHOD, java.lang.String.class, "计算公式", "计算公式", java.lang.String.class, null);
+	
+	/**
+	 * 计算公式 , 类型: java.lang.String
+	*/
+	public static final String METHOD_SCRIPT="methodScript";
+	
+	/**
+	 * 计算公式 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTpl,java.lang.String> METHOD_SCRIPT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTpl.class ,METHOD_SCRIPT, java.lang.String.class, "计算公式", "计算公式", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -149,7 +169,7 @@ public class SalaryTplMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , CODE , NAME , METHOD , METHOD_SCRIPT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -189,6 +209,28 @@ public class SalaryTplMeta {
 		public SalaryTpl setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 计算公式
+		 * @param method 计算公式
+		 * @return 当前对象
+		*/
+		public SalaryTpl setMethod(String method) {
+			super.change(METHOD,super.getMethod(),method);
+			super.setMethod(method);
+			return this;
+		}
+		
+		/**
+		 * 设置 计算公式
+		 * @param methodScript 计算公式
+		 * @return 当前对象
+		*/
+		public SalaryTpl setMethodScript(String methodScript) {
+			super.change(METHOD_SCRIPT,super.getMethodScript(),methodScript);
+			super.setMethodScript(methodScript);
 			return this;
 		}
 		
@@ -317,8 +359,10 @@ public class SalaryTplMeta {
 		@Transient
 		public SalaryTpl duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setMethodScript(this.getMethodScript());
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
+			inst.setMethod(this.getMethod());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());

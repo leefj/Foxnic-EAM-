@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬明细
  * <p>薪酬明细 , 数据表 hr_salary_detail 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 10:23:09
- * @sign 51D413B6F42B7459B755A52E2AD2EC85
+ * @since 2024-01-23 08:35:28
+ * @sign 11B01B2403B5F0F033C75C77A55B4DD8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,43 +41,43 @@ public class SalaryDetail extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "718116561965023232")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "801908606055219200")
 	private String id;
 	
 	/**
 	 * 姓名：姓名
 	*/
-	@ApiModelProperty(required = false,value="姓名" , notes = "姓名" , example = "管理员11")
+	@ApiModelProperty(required = false,value="姓名" , notes = "姓名" , example = "人员3")
 	private String userName;
 	
 	/**
 	 * 月份：月份
 	*/
-	@ApiModelProperty(required = false,value="月份" , notes = "月份" , example = "2028-09")
+	@ApiModelProperty(required = false,value="月份" , notes = "月份" , example = "2024-11")
 	private String actionMonth;
 	
 	/**
 	 * 人员：人员
 	*/
-	@ApiModelProperty(required = false,value="人员" , notes = "人员" , example = "717723409223516161")
+	@ApiModelProperty(required = false,value="人员" , notes = "人员" , example = "799379402461806592")
 	private String personId;
 	
 	/**
 	 * 工号：工号
 	*/
-	@ApiModelProperty(required = false,value="工号" , notes = "工号" , example = "717723409223516160")
+	@ApiModelProperty(required = false,value="工号" , notes = "工号" , example = "15728000002")
 	private String jobNumber;
 	
 	/**
-	 * 银行：银行
+	 * 银行名称：银行名称
 	*/
-	@ApiModelProperty(required = false,value="银行" , notes = "银行" , example = "中国银行")
+	@ApiModelProperty(required = false,value="银行名称" , notes = "银行名称" , example = "中国银行")
 	private String bank;
 	
 	/**
-	 * 账户账户：账户账户
+	 * 银行账户：银行账户
 	*/
-	@ApiModelProperty(required = false,value="账户账户" , notes = "账户账户" , example = "23456765432")
+	@ApiModelProperty(required = false,value="银行账户" , notes = "银行账户" , example = "123456789098765")
 	private String bankAccount;
 	
 	/**
@@ -89,212 +89,110 @@ public class SalaryDetail extends Entity {
 	/**
 	 * 动作：动作
 	*/
-	@ApiModelProperty(required = false,value="动作" , notes = "动作" , example = "718073819419377664")
+	@ApiModelProperty(required = false,value="动作" , notes = "动作" , example = "801525037134774272")
 	private String actionId;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "valid")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "not_process")
 	private String status;
 	
 	/**
 	 * 合计金额：合计金额
 	*/
-	@ApiModelProperty(required = false,value="合计金额" , notes = "合计金额" , example = "0.00")
+	@ApiModelProperty(required = false,value="合计金额" , notes = "合计金额" , example = "18020.00")
 	private BigDecimal totalAmount;
 	
 	/**
 	 * 应发金额：应发金额
 	*/
-	@ApiModelProperty(required = false,value="应发金额" , notes = "应发金额" , example = "0.00")
+	@ApiModelProperty(required = false,value="应发金额" , notes = "应发金额" , example = "18020.00")
 	private BigDecimal payAmount;
 	
 	/**
 	 * 实发金额：实发金额
 	*/
-	@ApiModelProperty(required = false,value="实发金额" , notes = "实发金额" , example = "0.00")
+	@ApiModelProperty(required = false,value="实发金额" , notes = "实发金额" , example = "17948.00")
 	private BigDecimal issuedAmount;
 	
 	/**
 	 * 基本工资：基本工资
 	*/
-	@ApiModelProperty(required = false,value="基本工资" , notes = "基本工资" , example = "5000.00")
+	@ApiModelProperty(required = false,value="基本工资" , notes = "基本工资" , example = "15000.00")
 	private BigDecimal baseSalary;
 	
 	/**
 	 * 岗位工资：岗位工资
 	*/
-	@ApiModelProperty(required = false,value="岗位工资" , notes = "岗位工资" , example = "1000.00")
+	@ApiModelProperty(required = false,value="岗位工资" , notes = "岗位工资" , example = "2000.00")
 	private BigDecimal postSalary;
 	
 	/**
 	 * 工龄工资：工龄工资
 	*/
-	@ApiModelProperty(required = false,value="工龄工资" , notes = "工龄工资" , example = "2000.00")
+	@ApiModelProperty(required = false,value="工龄工资" , notes = "工龄工资" , example = "1000.00")
 	private BigDecimal workingYearsSalary;
 	
 	/**
 	 * 固定补贴：固定补贴
 	*/
-	@ApiModelProperty(required = false,value="固定补贴" , notes = "固定补贴" , example = "200.00")
+	@ApiModelProperty(required = false,value="固定补贴" , notes = "固定补贴" , example = "20.00")
 	private BigDecimal fixedSalary;
 	
 	/**
 	 * 绩效补贴：绩效补贴
 	*/
-	@ApiModelProperty(required = false,value="绩效补贴" , notes = "绩效补贴" , example = "50.00")
+	@ApiModelProperty(required = false,value="绩效补贴" , notes = "绩效补贴" , example = "0.00")
 	private BigDecimal achievementSalary;
 	
 	/**
 	 * 加班补贴：加班补贴
 	*/
-	@ApiModelProperty(required = false,value="加班补贴" , notes = "加班补贴" , example = "800.00")
+	@ApiModelProperty(required = false,value="加班补贴" , notes = "加班补贴" , example = "0.00")
 	private BigDecimal overtimeSalary;
-	
-	/**
-	 * 其他补贴：其他补贴
-	*/
-	@ApiModelProperty(required = false,value="其他补贴" , notes = "其他补贴" , example = "900.00")
-	private BigDecimal otherSalary;
 	
 	/**
 	 * 通讯补贴：通讯补贴
 	*/
-	@ApiModelProperty(required = false,value="通讯补贴" , notes = "通讯补贴" , example = "100.00")
+	@ApiModelProperty(required = false,value="通讯补贴" , notes = "通讯补贴" , example = "0.00")
 	private BigDecimal communicationSalary;
 	
 	/**
 	 * 交通补贴：交通补贴
 	*/
-	@ApiModelProperty(required = false,value="交通补贴" , notes = "交通补贴" , example = "60.00")
+	@ApiModelProperty(required = false,value="交通补贴" , notes = "交通补贴" , example = "0.00")
 	private BigDecimal trafficSalary;
 	
 	/**
 	 * 住房补贴：住房补贴
 	*/
-	@ApiModelProperty(required = false,value="住房补贴" , notes = "住房补贴" , example = "1000.00")
+	@ApiModelProperty(required = false,value="住房补贴" , notes = "住房补贴" , example = "0.00")
 	private BigDecimal housingSalary;
-	
-	/**
-	 * 提成工资：提成工资
-	*/
-	@ApiModelProperty(required = false,value="提成工资" , notes = "提成工资" , example = "70.00")
-	private BigDecimal commissionSalary;
 	
 	/**
 	 * 高温补贴：高温补贴
 	*/
-	@ApiModelProperty(required = false,value="高温补贴" , notes = "高温补贴" , example = "300.00")
+	@ApiModelProperty(required = false,value="高温补贴" , notes = "高温补贴")
 	private BigDecimal highTemperatureSalary;
 	
 	/**
-	 * 住房公积金基数：住房公积金基数
+	 * 其他补贴：其他补贴
 	*/
-	@ApiModelProperty(required = false,value="住房公积金基数" , notes = "住房公积金基数" , example = "15320.00")
-	private BigDecimal welfareZfgjjBase;
+	@ApiModelProperty(required = false,value="其他补贴" , notes = "其他补贴" , example = "0.00")
+	private BigDecimal otherSalary;
 	
 	/**
-	 * 住房公积金个人：住房公积金个人
+	 * 提成工资：提成工资
 	*/
-	@ApiModelProperty(required = false,value="住房公积金个人" , notes = "住房公积金个人" , example = "345.00")
-	private BigDecimal welfareZfgjjPerson;
+	@ApiModelProperty(required = false,value="提成工资" , notes = "提成工资" , example = "0.00")
+	private BigDecimal commissionSalary;
 	
 	/**
-	 * 住房公积金公司：住房公积金公司
+	 * 处罚金额：处罚金额
 	*/
-	@ApiModelProperty(required = false,value="住房公积金公司" , notes = "住房公积金公司" , example = "600.00")
-	private BigDecimal welfareZfgjjCompany;
-	
-	/**
-	 * 养老保险基数：养老保险基数
-	*/
-	@ApiModelProperty(required = false,value="养老保险基数" , notes = "养老保险基数" , example = "345.00")
-	private BigDecimal welfaerYlbxBase;
-	
-	/**
-	 * 养老保险个人：养老保险个人
-	*/
-	@ApiModelProperty(required = false,value="养老保险个人" , notes = "养老保险个人" , example = "345.00")
-	private BigDecimal welfaerYlbxPerson;
-	
-	/**
-	 * 养老保险公司：养老保险公司
-	*/
-	@ApiModelProperty(required = false,value="养老保险公司" , notes = "养老保险公司" , example = "600.00")
-	private BigDecimal welfaerYlbxCompany;
-	
-	/**
-	 * 工伤保险基数：工伤保险基数
-	*/
-	@ApiModelProperty(required = false,value="工伤保险基数" , notes = "工伤保险基数" , example = "15320.00")
-	private BigDecimal welfaerGsbxBase;
-	
-	/**
-	 * 工伤保险个人：工伤保险个人
-	*/
-	@ApiModelProperty(required = false,value="工伤保险个人" , notes = "工伤保险个人" , example = "345.00")
-	private BigDecimal welfaerGsbxPerson;
-	
-	/**
-	 * 工伤保险公司：工伤保险公司
-	*/
-	@ApiModelProperty(required = false,value="工伤保险公司" , notes = "工伤保险公司" , example = "600.00")
-	private BigDecimal welfaerGsbxCompany;
-	
-	/**
-	 * 医疗保险基数：医疗保险基数
-	*/
-	@ApiModelProperty(required = false,value="医疗保险基数" , notes = "医疗保险基数" , example = "15320.00")
-	private BigDecimal welfaerYrbxBase;
-	
-	/**
-	 * 医疗保险个人：医疗保险个人
-	*/
-	@ApiModelProperty(required = false,value="医疗保险个人" , notes = "医疗保险个人" , example = "345.00")
-	private BigDecimal welfaerYrbxPerson;
-	
-	/**
-	 * 医疗保险公司：医疗保险公司
-	*/
-	@ApiModelProperty(required = false,value="医疗保险公司" , notes = "医疗保险公司" , example = "600.00")
-	private BigDecimal welfaerYrbxCompany;
-	
-	/**
-	 * 生育保险基数：生育保险基数
-	*/
-	@ApiModelProperty(required = false,value="生育保险基数" , notes = "生育保险基数" , example = "15320.00")
-	private BigDecimal welfaerSybxBase;
-	
-	/**
-	 * 生育保险个人：生育保险个人
-	*/
-	@ApiModelProperty(required = false,value="生育保险个人" , notes = "生育保险个人" , example = "345.00")
-	private BigDecimal welfaerSybxPerson;
-	
-	/**
-	 * 生育保险公司：生育保险公司
-	*/
-	@ApiModelProperty(required = false,value="生育保险公司" , notes = "生育保险公司" , example = "600.00")
-	private BigDecimal welfaerSybxCompany;
-	
-	/**
-	 * 失业保险基数：失业保险基数
-	*/
-	@ApiModelProperty(required = false,value="失业保险基数" , notes = "失业保险基数" , example = "15320.00")
-	private BigDecimal welfaerSyebxBase;
-	
-	/**
-	 * 失业保险个人：失业保险个人
-	*/
-	@ApiModelProperty(required = false,value="失业保险个人" , notes = "失业保险个人" , example = "345.00")
-	private BigDecimal welfaerSyebxPerson;
-	
-	/**
-	 * 失业保险公司：失业保险公司
-	*/
-	@ApiModelProperty(required = false,value="失业保险公司" , notes = "失业保险公司" , example = "600.00")
-	private BigDecimal welfaerSyebxCompany;
+	@ApiModelProperty(required = false,value="处罚金额" , notes = "处罚金额" , example = "0.00")
+	private BigDecimal punishSalary;
 	
 	/**
 	 * 扣除考勤：扣除考勤
@@ -321,27 +219,153 @@ public class SalaryDetail extends Entity {
 	private BigDecimal deductPersonalTaxRed;
 	
 	/**
+	 * 个人所得税：个人所得税
+	*/
+	@ApiModelProperty(required = false,value="个人所得税" , notes = "个人所得税" , example = "0.00")
+	private BigDecimal ptGrsds;
+	
+	/**
+	 * 抵扣基数：抵扣基数
+	*/
+	@ApiModelProperty(required = false,value="抵扣基数" , notes = "抵扣基数" , example = "5000.00")
+	private BigDecimal ptDkjs;
+	
+	/**
+	 * 税率：税率
+	*/
+	@ApiModelProperty(required = false,value="税率" , notes = "税率" , example = "3.00")
+	private BigDecimal ptSlPct;
+	
+	/**
+	 * 住房公积金基数：住房公积金基数
+	*/
+	@ApiModelProperty(required = false,value="住房公积金基数" , notes = "住房公积金基数" , example = "0.00")
+	private BigDecimal welfareZfgjjBase;
+	
+	/**
+	 * 住房公积金个人：住房公积金个人
+	*/
+	@ApiModelProperty(required = false,value="住房公积金个人" , notes = "住房公积金个人" , example = "12.00")
+	private BigDecimal welfareZfgjjPerson;
+	
+	/**
+	 * 住房公积金公司：住房公积金公司
+	*/
+	@ApiModelProperty(required = false,value="住房公积金公司" , notes = "住房公积金公司" , example = "12.00")
+	private BigDecimal welfareZfgjjCompany;
+	
+	/**
+	 * 养老保险基数：养老保险基数
+	*/
+	@ApiModelProperty(required = false,value="养老保险基数" , notes = "养老保险基数" , example = "12.00")
+	private BigDecimal welfaerYlbxBase;
+	
+	/**
+	 * 养老保险个人：养老保险个人
+	*/
+	@ApiModelProperty(required = false,value="养老保险个人" , notes = "养老保险个人" , example = "12.00")
+	private BigDecimal welfaerYlbxPerson;
+	
+	/**
+	 * 养老保险公司：养老保险公司
+	*/
+	@ApiModelProperty(required = false,value="养老保险公司" , notes = "养老保险公司" , example = "12.00")
+	private BigDecimal welfaerYlbxCompany;
+	
+	/**
+	 * 工伤保险基数：工伤保险基数
+	*/
+	@ApiModelProperty(required = false,value="工伤保险基数" , notes = "工伤保险基数" , example = "0.00")
+	private BigDecimal welfaerGsbxBase;
+	
+	/**
+	 * 工伤保险个人：工伤保险个人
+	*/
+	@ApiModelProperty(required = false,value="工伤保险个人" , notes = "工伤保险个人" , example = "12.00")
+	private BigDecimal welfaerGsbxPerson;
+	
+	/**
+	 * 工伤保险公司：工伤保险公司
+	*/
+	@ApiModelProperty(required = false,value="工伤保险公司" , notes = "工伤保险公司" , example = "12.00")
+	private BigDecimal welfaerGsbxCompany;
+	
+	/**
+	 * 医疗保险基数：医疗保险基数
+	*/
+	@ApiModelProperty(required = false,value="医疗保险基数" , notes = "医疗保险基数" , example = "0.00")
+	private BigDecimal welfaerYrbxBase;
+	
+	/**
+	 * 医疗保险个人：医疗保险个人
+	*/
+	@ApiModelProperty(required = false,value="医疗保险个人" , notes = "医疗保险个人" , example = "12.00")
+	private BigDecimal welfaerYrbxPerson;
+	
+	/**
+	 * 医疗保险公司：医疗保险公司
+	*/
+	@ApiModelProperty(required = false,value="医疗保险公司" , notes = "医疗保险公司" , example = "12.00")
+	private BigDecimal welfaerYrbxCompany;
+	
+	/**
+	 * 生育保险基数：生育保险基数
+	*/
+	@ApiModelProperty(required = false,value="生育保险基数" , notes = "生育保险基数" , example = "0.00")
+	private BigDecimal welfaerSybxBase;
+	
+	/**
+	 * 生育保险个人：生育保险个人
+	*/
+	@ApiModelProperty(required = false,value="生育保险个人" , notes = "生育保险个人" , example = "12.00")
+	private BigDecimal welfaerSybxPerson;
+	
+	/**
+	 * 生育保险公司：生育保险公司
+	*/
+	@ApiModelProperty(required = false,value="生育保险公司" , notes = "生育保险公司" , example = "12.00")
+	private BigDecimal welfaerSybxCompany;
+	
+	/**
+	 * 失业保险基数：失业保险基数
+	*/
+	@ApiModelProperty(required = false,value="失业保险基数" , notes = "失业保险基数" , example = "0.00")
+	private BigDecimal welfaerSyebxBase;
+	
+	/**
+	 * 失业保险个人：失业保险个人
+	*/
+	@ApiModelProperty(required = false,value="失业保险个人" , notes = "失业保险个人" , example = "12.00")
+	private BigDecimal welfaerSyebxPerson;
+	
+	/**
+	 * 失业保险公司：失业保险公司
+	*/
+	@ApiModelProperty(required = false,value="失业保险公司" , notes = "失业保险公司" , example = "12.00")
+	private BigDecimal welfaerSyebxCompany;
+	
+	/**
 	 * 子女教育：子女教育
 	*/
-	@ApiModelProperty(required = false,value="子女教育" , notes = "子女教育" , example = "2000.00")
+	@ApiModelProperty(required = false,value="子女教育" , notes = "子女教育" , example = "0.00")
 	private BigDecimal personalTaxZnjy;
 	
 	/**
 	 * 继续教育：继续教育
 	*/
-	@ApiModelProperty(required = false,value="继续教育" , notes = "继续教育" , example = "0.00")
+	@ApiModelProperty(required = false,value="继续教育" , notes = "继续教育" , example = "20000.00")
 	private BigDecimal personalTaxJxjy;
 	
 	/**
 	 * 大病医疗：大病医疗
 	*/
-	@ApiModelProperty(required = false,value="大病医疗" , notes = "大病医疗" , example = "2000.00")
+	@ApiModelProperty(required = false,value="大病医疗" , notes = "大病医疗" , example = "0.00")
 	private BigDecimal personalTaxDbyl;
 	
 	/**
 	 * 住房贷款：住房贷款
 	*/
-	@ApiModelProperty(required = false,value="住房贷款" , notes = "住房贷款" , example = "1000.00")
+	@ApiModelProperty(required = false,value="住房贷款" , notes = "住房贷款" , example = "0.00")
 	private BigDecimal personalTaxZfdk;
 	
 	/**
@@ -361,24 +385,6 @@ public class SalaryDetail extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="幼儿照护" , notes = "幼儿照护" , example = "0.00")
 	private BigDecimal personalTaxErzh;
-	
-	/**
-	 * 个人所得税：个人所得税
-	*/
-	@ApiModelProperty(required = false,value="个人所得税" , notes = "个人所得税" , example = "0.00")
-	private BigDecimal ptGrsds;
-	
-	/**
-	 * 抵扣基数：抵扣基数
-	*/
-	@ApiModelProperty(required = false,value="抵扣基数" , notes = "抵扣基数" , example = "5000.00")
-	private BigDecimal ptDkjs;
-	
-	/**
-	 * 税率：税率
-	*/
-	@ApiModelProperty(required = false,value="税率" , notes = "税率" , example = "0.00")
-	private BigDecimal ptSlPct;
 	
 	/**
 	 * 生效时间：生效时间
@@ -407,19 +413,19 @@ public class SalaryDetail extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-06-05 02:58:50")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-01-22 08:18:30")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-22 09:17:55")
 	private Date updateTime;
 	
 	/**
@@ -446,7 +452,7 @@ public class SalaryDetail extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "1")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "2")
 	private Integer version;
 	
 	/**
@@ -581,17 +587,17 @@ public class SalaryDetail extends Entity {
 	}
 	
 	/**
-	 * 获得 银行<br>
-	 * 银行
-	 * @return 银行
+	 * 获得 银行名称<br>
+	 * 银行名称
+	 * @return 银行名称
 	*/
 	public String getBank() {
 		return bank;
 	}
 	
 	/**
-	 * 设置 银行
-	 * @param bank 银行
+	 * 设置 银行名称
+	 * @param bank 银行名称
 	 * @return 当前对象
 	*/
 	public SalaryDetail setBank(String bank) {
@@ -600,17 +606,17 @@ public class SalaryDetail extends Entity {
 	}
 	
 	/**
-	 * 获得 账户账户<br>
-	 * 账户账户
-	 * @return 账户账户
+	 * 获得 银行账户<br>
+	 * 银行账户
+	 * @return 银行账户
 	*/
 	public String getBankAccount() {
 		return bankAccount;
 	}
 	
 	/**
-	 * 设置 账户账户
-	 * @param bankAccount 账户账户
+	 * 设置 银行账户
+	 * @param bankAccount 银行账户
 	 * @return 当前对象
 	*/
 	public SalaryDetail setBankAccount(String bankAccount) {
@@ -847,25 +853,6 @@ public class SalaryDetail extends Entity {
 	}
 	
 	/**
-	 * 获得 其他补贴<br>
-	 * 其他补贴
-	 * @return 其他补贴
-	*/
-	public BigDecimal getOtherSalary() {
-		return otherSalary;
-	}
-	
-	/**
-	 * 设置 其他补贴
-	 * @param otherSalary 其他补贴
-	 * @return 当前对象
-	*/
-	public SalaryDetail setOtherSalary(BigDecimal otherSalary) {
-		this.otherSalary=otherSalary;
-		return this;
-	}
-	
-	/**
 	 * 获得 通讯补贴<br>
 	 * 通讯补贴
 	 * @return 通讯补贴
@@ -923,6 +910,44 @@ public class SalaryDetail extends Entity {
 	}
 	
 	/**
+	 * 获得 高温补贴<br>
+	 * 高温补贴
+	 * @return 高温补贴
+	*/
+	public BigDecimal getHighTemperatureSalary() {
+		return highTemperatureSalary;
+	}
+	
+	/**
+	 * 设置 高温补贴
+	 * @param highTemperatureSalary 高温补贴
+	 * @return 当前对象
+	*/
+	public SalaryDetail setHighTemperatureSalary(BigDecimal highTemperatureSalary) {
+		this.highTemperatureSalary=highTemperatureSalary;
+		return this;
+	}
+	
+	/**
+	 * 获得 其他补贴<br>
+	 * 其他补贴
+	 * @return 其他补贴
+	*/
+	public BigDecimal getOtherSalary() {
+		return otherSalary;
+	}
+	
+	/**
+	 * 设置 其他补贴
+	 * @param otherSalary 其他补贴
+	 * @return 当前对象
+	*/
+	public SalaryDetail setOtherSalary(BigDecimal otherSalary) {
+		this.otherSalary=otherSalary;
+		return this;
+	}
+	
+	/**
 	 * 获得 提成工资<br>
 	 * 提成工资
 	 * @return 提成工资
@@ -942,21 +967,154 @@ public class SalaryDetail extends Entity {
 	}
 	
 	/**
-	 * 获得 高温补贴<br>
-	 * 高温补贴
-	 * @return 高温补贴
+	 * 获得 处罚金额<br>
+	 * 处罚金额
+	 * @return 处罚金额
 	*/
-	public BigDecimal getHighTemperatureSalary() {
-		return highTemperatureSalary;
+	public BigDecimal getPunishSalary() {
+		return punishSalary;
 	}
 	
 	/**
-	 * 设置 高温补贴
-	 * @param highTemperatureSalary 高温补贴
+	 * 设置 处罚金额
+	 * @param punishSalary 处罚金额
 	 * @return 当前对象
 	*/
-	public SalaryDetail setHighTemperatureSalary(BigDecimal highTemperatureSalary) {
-		this.highTemperatureSalary=highTemperatureSalary;
+	public SalaryDetail setPunishSalary(BigDecimal punishSalary) {
+		this.punishSalary=punishSalary;
+		return this;
+	}
+	
+	/**
+	 * 获得 扣除考勤<br>
+	 * 扣除考勤
+	 * @return 扣除考勤
+	*/
+	public BigDecimal getDeductKq() {
+		return deductKq;
+	}
+	
+	/**
+	 * 设置 扣除考勤
+	 * @param deductKq 扣除考勤
+	 * @return 当前对象
+	*/
+	public SalaryDetail setDeductKq(BigDecimal deductKq) {
+		this.deductKq=deductKq;
+		return this;
+	}
+	
+	/**
+	 * 获得 扣除工会<br>
+	 * 扣除工会
+	 * @return 扣除工会
+	*/
+	public BigDecimal getDeductGh() {
+		return deductGh;
+	}
+	
+	/**
+	 * 设置 扣除工会
+	 * @param deductGh 扣除工会
+	 * @return 当前对象
+	*/
+	public SalaryDetail setDeductGh(BigDecimal deductGh) {
+		this.deductGh=deductGh;
+		return this;
+	}
+	
+	/**
+	 * 获得 扣除其他<br>
+	 * 扣除其他
+	 * @return 扣除其他
+	*/
+	public BigDecimal getDeductOther() {
+		return deductOther;
+	}
+	
+	/**
+	 * 设置 扣除其他
+	 * @param deductOther 扣除其他
+	 * @return 当前对象
+	*/
+	public SalaryDetail setDeductOther(BigDecimal deductOther) {
+		this.deductOther=deductOther;
+		return this;
+	}
+	
+	/**
+	 * 获得 个税抵扣<br>
+	 * 个税抵扣
+	 * @return 个税抵扣
+	*/
+	public BigDecimal getDeductPersonalTaxRed() {
+		return deductPersonalTaxRed;
+	}
+	
+	/**
+	 * 设置 个税抵扣
+	 * @param deductPersonalTaxRed 个税抵扣
+	 * @return 当前对象
+	*/
+	public SalaryDetail setDeductPersonalTaxRed(BigDecimal deductPersonalTaxRed) {
+		this.deductPersonalTaxRed=deductPersonalTaxRed;
+		return this;
+	}
+	
+	/**
+	 * 获得 个人所得税<br>
+	 * 个人所得税
+	 * @return 个人所得税
+	*/
+	public BigDecimal getPtGrsds() {
+		return ptGrsds;
+	}
+	
+	/**
+	 * 设置 个人所得税
+	 * @param ptGrsds 个人所得税
+	 * @return 当前对象
+	*/
+	public SalaryDetail setPtGrsds(BigDecimal ptGrsds) {
+		this.ptGrsds=ptGrsds;
+		return this;
+	}
+	
+	/**
+	 * 获得 抵扣基数<br>
+	 * 抵扣基数
+	 * @return 抵扣基数
+	*/
+	public BigDecimal getPtDkjs() {
+		return ptDkjs;
+	}
+	
+	/**
+	 * 设置 抵扣基数
+	 * @param ptDkjs 抵扣基数
+	 * @return 当前对象
+	*/
+	public SalaryDetail setPtDkjs(BigDecimal ptDkjs) {
+		this.ptDkjs=ptDkjs;
+		return this;
+	}
+	
+	/**
+	 * 获得 税率<br>
+	 * 税率
+	 * @return 税率
+	*/
+	public BigDecimal getPtSlPct() {
+		return ptSlPct;
+	}
+	
+	/**
+	 * 设置 税率
+	 * @param ptSlPct 税率
+	 * @return 当前对象
+	*/
+	public SalaryDetail setPtSlPct(BigDecimal ptSlPct) {
+		this.ptSlPct=ptSlPct;
 		return this;
 	}
 	
@@ -1303,82 +1461,6 @@ public class SalaryDetail extends Entity {
 	}
 	
 	/**
-	 * 获得 扣除考勤<br>
-	 * 扣除考勤
-	 * @return 扣除考勤
-	*/
-	public BigDecimal getDeductKq() {
-		return deductKq;
-	}
-	
-	/**
-	 * 设置 扣除考勤
-	 * @param deductKq 扣除考勤
-	 * @return 当前对象
-	*/
-	public SalaryDetail setDeductKq(BigDecimal deductKq) {
-		this.deductKq=deductKq;
-		return this;
-	}
-	
-	/**
-	 * 获得 扣除工会<br>
-	 * 扣除工会
-	 * @return 扣除工会
-	*/
-	public BigDecimal getDeductGh() {
-		return deductGh;
-	}
-	
-	/**
-	 * 设置 扣除工会
-	 * @param deductGh 扣除工会
-	 * @return 当前对象
-	*/
-	public SalaryDetail setDeductGh(BigDecimal deductGh) {
-		this.deductGh=deductGh;
-		return this;
-	}
-	
-	/**
-	 * 获得 扣除其他<br>
-	 * 扣除其他
-	 * @return 扣除其他
-	*/
-	public BigDecimal getDeductOther() {
-		return deductOther;
-	}
-	
-	/**
-	 * 设置 扣除其他
-	 * @param deductOther 扣除其他
-	 * @return 当前对象
-	*/
-	public SalaryDetail setDeductOther(BigDecimal deductOther) {
-		this.deductOther=deductOther;
-		return this;
-	}
-	
-	/**
-	 * 获得 个税抵扣<br>
-	 * 个税抵扣
-	 * @return 个税抵扣
-	*/
-	public BigDecimal getDeductPersonalTaxRed() {
-		return deductPersonalTaxRed;
-	}
-	
-	/**
-	 * 设置 个税抵扣
-	 * @param deductPersonalTaxRed 个税抵扣
-	 * @return 当前对象
-	*/
-	public SalaryDetail setDeductPersonalTaxRed(BigDecimal deductPersonalTaxRed) {
-		this.deductPersonalTaxRed=deductPersonalTaxRed;
-		return this;
-	}
-	
-	/**
 	 * 获得 子女教育<br>
 	 * 子女教育
 	 * @return 子女教育
@@ -1508,63 +1590,6 @@ public class SalaryDetail extends Entity {
 	*/
 	public SalaryDetail setPersonalTaxErzh(BigDecimal personalTaxErzh) {
 		this.personalTaxErzh=personalTaxErzh;
-		return this;
-	}
-	
-	/**
-	 * 获得 个人所得税<br>
-	 * 个人所得税
-	 * @return 个人所得税
-	*/
-	public BigDecimal getPtGrsds() {
-		return ptGrsds;
-	}
-	
-	/**
-	 * 设置 个人所得税
-	 * @param ptGrsds 个人所得税
-	 * @return 当前对象
-	*/
-	public SalaryDetail setPtGrsds(BigDecimal ptGrsds) {
-		this.ptGrsds=ptGrsds;
-		return this;
-	}
-	
-	/**
-	 * 获得 抵扣基数<br>
-	 * 抵扣基数
-	 * @return 抵扣基数
-	*/
-	public BigDecimal getPtDkjs() {
-		return ptDkjs;
-	}
-	
-	/**
-	 * 设置 抵扣基数
-	 * @param ptDkjs 抵扣基数
-	 * @return 当前对象
-	*/
-	public SalaryDetail setPtDkjs(BigDecimal ptDkjs) {
-		this.ptDkjs=ptDkjs;
-		return this;
-	}
-	
-	/**
-	 * 获得 税率<br>
-	 * 税率
-	 * @return 税率
-	*/
-	public BigDecimal getPtSlPct() {
-		return ptSlPct;
-	}
-	
-	/**
-	 * 设置 税率
-	 * @param ptSlPct 税率
-	 * @return 当前对象
-	*/
-	public SalaryDetail setPtSlPct(BigDecimal ptSlPct) {
-		this.ptSlPct=ptSlPct;
 		return this;
 	}
 	
@@ -1970,8 +1995,8 @@ public class SalaryDetail extends Entity {
 		inst.setNotes(this.getNotes());
 		inst.setWelfareZfgjjBase(this.getWelfareZfgjjBase());
 		inst.setDeductKq(this.getDeductKq());
-		inst.setWelfareZfgjjPerson(this.getWelfareZfgjjPerson());
 		inst.setDeductGh(this.getDeductGh());
+		inst.setWelfareZfgjjPerson(this.getWelfareZfgjjPerson());
 		inst.setActionMonth(this.getActionMonth());
 		inst.setWelfaerYlbxCompany(this.getWelfaerYlbxCompany());
 		inst.setPersonalTaxErzh(this.getPersonalTaxErzh());
@@ -2008,6 +2033,7 @@ public class SalaryDetail extends Entity {
 		inst.setPersonalTaxZfdk(this.getPersonalTaxZfdk());
 		inst.setWelfaerSyebxPerson(this.getWelfaerSyebxPerson());
 		inst.setWelfaerSybxPerson(this.getWelfaerSybxPerson());
+		inst.setPunishSalary(this.getPunishSalary());
 		inst.setWelfaerYlbxBase(this.getWelfaerYlbxBase());
 		inst.setBaseSalary(this.getBaseSalary());
 		inst.setPersonalTaxSylr(this.getPersonalTaxSylr());
@@ -2104,8 +2130,8 @@ public class SalaryDetail extends Entity {
 			this.setNotes(DataParser.parse(String.class, map.get(SalaryDetailMeta.NOTES)));
 			this.setWelfareZfgjjBase(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.WELFARE_ZFGJJ_BASE)));
 			this.setDeductKq(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.DEDUCT_KQ)));
-			this.setWelfareZfgjjPerson(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.WELFARE_ZFGJJ_PERSON)));
 			this.setDeductGh(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.DEDUCT_GH)));
+			this.setWelfareZfgjjPerson(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.WELFARE_ZFGJJ_PERSON)));
 			this.setActionMonth(DataParser.parse(String.class, map.get(SalaryDetailMeta.ACTION_MONTH)));
 			this.setWelfaerYlbxCompany(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.WELFAER_YLBX_COMPANY)));
 			this.setPersonalTaxErzh(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.PERSONAL_TAX_ERZH)));
@@ -2142,6 +2168,7 @@ public class SalaryDetail extends Entity {
 			this.setPersonalTaxZfdk(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.PERSONAL_TAX_ZFDK)));
 			this.setWelfaerSyebxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.WELFAER_SYEBX_PERSON)));
 			this.setWelfaerSybxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.WELFAER_SYBX_PERSON)));
+			this.setPunishSalary(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.PUNISH_SALARY)));
 			this.setWelfaerYlbxBase(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.WELFAER_YLBX_BASE)));
 			this.setBaseSalary(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.BASE_SALARY)));
 			this.setPersonalTaxSylr(DataParser.parse(BigDecimal.class, map.get(SalaryDetailMeta.PERSONAL_TAX_SYLR)));
@@ -2182,8 +2209,8 @@ public class SalaryDetail extends Entity {
 				this.setNotes( (String)map.get(SalaryDetailMeta.NOTES));
 				this.setWelfareZfgjjBase( (BigDecimal)map.get(SalaryDetailMeta.WELFARE_ZFGJJ_BASE));
 				this.setDeductKq( (BigDecimal)map.get(SalaryDetailMeta.DEDUCT_KQ));
-				this.setWelfareZfgjjPerson( (BigDecimal)map.get(SalaryDetailMeta.WELFARE_ZFGJJ_PERSON));
 				this.setDeductGh( (BigDecimal)map.get(SalaryDetailMeta.DEDUCT_GH));
+				this.setWelfareZfgjjPerson( (BigDecimal)map.get(SalaryDetailMeta.WELFARE_ZFGJJ_PERSON));
 				this.setActionMonth( (String)map.get(SalaryDetailMeta.ACTION_MONTH));
 				this.setWelfaerYlbxCompany( (BigDecimal)map.get(SalaryDetailMeta.WELFAER_YLBX_COMPANY));
 				this.setPersonalTaxErzh( (BigDecimal)map.get(SalaryDetailMeta.PERSONAL_TAX_ERZH));
@@ -2220,6 +2247,7 @@ public class SalaryDetail extends Entity {
 				this.setPersonalTaxZfdk( (BigDecimal)map.get(SalaryDetailMeta.PERSONAL_TAX_ZFDK));
 				this.setWelfaerSyebxPerson( (BigDecimal)map.get(SalaryDetailMeta.WELFAER_SYEBX_PERSON));
 				this.setWelfaerSybxPerson( (BigDecimal)map.get(SalaryDetailMeta.WELFAER_SYBX_PERSON));
+				this.setPunishSalary( (BigDecimal)map.get(SalaryDetailMeta.PUNISH_SALARY));
 				this.setWelfaerYlbxBase( (BigDecimal)map.get(SalaryDetailMeta.WELFAER_YLBX_BASE));
 				this.setBaseSalary( (BigDecimal)map.get(SalaryDetailMeta.BASE_SALARY));
 				this.setPersonalTaxSylr( (BigDecimal)map.get(SalaryDetailMeta.PERSONAL_TAX_SYLR));
@@ -2273,8 +2301,8 @@ public class SalaryDetail extends Entity {
 			this.setNotes(DataParser.parse(String.class, r.getValue(SalaryDetailMeta.NOTES)));
 			this.setWelfareZfgjjBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.WELFARE_ZFGJJ_BASE)));
 			this.setDeductKq(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.DEDUCT_KQ)));
-			this.setWelfareZfgjjPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.WELFARE_ZFGJJ_PERSON)));
 			this.setDeductGh(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.DEDUCT_GH)));
+			this.setWelfareZfgjjPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.WELFARE_ZFGJJ_PERSON)));
 			this.setActionMonth(DataParser.parse(String.class, r.getValue(SalaryDetailMeta.ACTION_MONTH)));
 			this.setWelfaerYlbxCompany(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.WELFAER_YLBX_COMPANY)));
 			this.setPersonalTaxErzh(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.PERSONAL_TAX_ERZH)));
@@ -2311,6 +2339,7 @@ public class SalaryDetail extends Entity {
 			this.setPersonalTaxZfdk(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.PERSONAL_TAX_ZFDK)));
 			this.setWelfaerSyebxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.WELFAER_SYEBX_PERSON)));
 			this.setWelfaerSybxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.WELFAER_SYBX_PERSON)));
+			this.setPunishSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.PUNISH_SALARY)));
 			this.setWelfaerYlbxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.WELFAER_YLBX_BASE)));
 			this.setBaseSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.BASE_SALARY)));
 			this.setPersonalTaxSylr(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailMeta.PERSONAL_TAX_SYLR)));
@@ -2345,8 +2374,8 @@ public class SalaryDetail extends Entity {
 				this.setNotes( (String)r.getValue(SalaryDetailMeta.NOTES));
 				this.setWelfareZfgjjBase( (BigDecimal)r.getValue(SalaryDetailMeta.WELFARE_ZFGJJ_BASE));
 				this.setDeductKq( (BigDecimal)r.getValue(SalaryDetailMeta.DEDUCT_KQ));
-				this.setWelfareZfgjjPerson( (BigDecimal)r.getValue(SalaryDetailMeta.WELFARE_ZFGJJ_PERSON));
 				this.setDeductGh( (BigDecimal)r.getValue(SalaryDetailMeta.DEDUCT_GH));
+				this.setWelfareZfgjjPerson( (BigDecimal)r.getValue(SalaryDetailMeta.WELFARE_ZFGJJ_PERSON));
 				this.setActionMonth( (String)r.getValue(SalaryDetailMeta.ACTION_MONTH));
 				this.setWelfaerYlbxCompany( (BigDecimal)r.getValue(SalaryDetailMeta.WELFAER_YLBX_COMPANY));
 				this.setPersonalTaxErzh( (BigDecimal)r.getValue(SalaryDetailMeta.PERSONAL_TAX_ERZH));
@@ -2383,6 +2412,7 @@ public class SalaryDetail extends Entity {
 				this.setPersonalTaxZfdk( (BigDecimal)r.getValue(SalaryDetailMeta.PERSONAL_TAX_ZFDK));
 				this.setWelfaerSyebxPerson( (BigDecimal)r.getValue(SalaryDetailMeta.WELFAER_SYEBX_PERSON));
 				this.setWelfaerSybxPerson( (BigDecimal)r.getValue(SalaryDetailMeta.WELFAER_SYBX_PERSON));
+				this.setPunishSalary( (BigDecimal)r.getValue(SalaryDetailMeta.PUNISH_SALARY));
 				this.setWelfaerYlbxBase( (BigDecimal)r.getValue(SalaryDetailMeta.WELFAER_YLBX_BASE));
 				this.setBaseSalary( (BigDecimal)r.getValue(SalaryDetailMeta.BASE_SALARY));
 				this.setPersonalTaxSylr( (BigDecimal)r.getValue(SalaryDetailMeta.PERSONAL_TAX_SYLR));

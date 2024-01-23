@@ -2082,9 +2082,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	public ExcelStructure buildExcelStructure(InputStream dataInputStream,String code) {
 		InputStream inputStream= TplFileServiceProxy.api().getTplFileStreamByCode(code);
 		ExcelStructure es=new ExcelStructure();
-	//	es.setDataColumnBegin(0);
 		es.setDataRowBegin(2);
-
 		Short lastNum=0;
 		//从模板获取属性
 		Workbook workbook;

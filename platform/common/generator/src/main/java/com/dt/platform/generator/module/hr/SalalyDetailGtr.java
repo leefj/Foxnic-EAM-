@@ -46,10 +46,7 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(SalaryAction.class,"salaryAction","salaryAction","salaryAction");
         cfg.getPoClassFile().addSimpleProperty(String.class,"extBank","extBank","extBank");
         cfg.getPoClassFile().addSimpleProperty(String.class,"extBankAccount","extBankAccount","extBankAccount");
-
-
         cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
-
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
@@ -59,9 +56,6 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
         cfg.view().search().rowsDisplay(1);
         cfg.view().formWindow().width("95%");;
         cfg.view().formWindow().bottomSpace(80);
-
-
-
 
 
         cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFARE_ZFGJJ_BASE).form().numberInput().decimal().defaultValue(0.00).scale(2);
@@ -125,6 +119,9 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
 
         cfg.view().field(HrTables.HR_SALARY_DETAIL.ACTION_ID).table().disable(true);;
         cfg.view().field(HrTables.HR_SALARY_DETAIL.TPL_ID).table().disable(true);
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.CREATE_TIME).table().disable(false);
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.CREATE_BY).table().disable(true);
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.UPDATE_BY).table().disable(true);
 
         cfg.view().field(HrTables.HR_SALARY_DETAIL.PERSON_ID).table().hidden();
         cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_GSBX_BASE).table().hidden();
@@ -316,8 +313,8 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
         cfg.view().list().operationColumn().addActionButton("重置","resetData","person-reset-data","hr_salary_detail:reset");
         cfg.view().list().addToolButton("生效","validData","person-valid-data","hr_salary_detail:valid");
-        cfg.view().list().addToolButton("导出","exportData","person-export-data","hr_salary_detail:data-export");
-        cfg.view().list().addToolButton("导入","importData","person-import-data","hr_salary_detail:data-import");
+        cfg.view().list().addToolButton("导出","salaryExport","person-export-data");
+        cfg.view().list().addToolButton("导入","salaryImport","person-import-data");
 
 
         //文件生成覆盖模式

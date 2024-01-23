@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 10:23:09
- * @sign 51D413B6F42B7459B755A52E2AD2EC85
+ * @since 2024-01-23 08:35:28
+ * @sign 11B01B2403B5F0F033C75C77A55B4DD8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -71,24 +71,24 @@ public class SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.lang.String> JOB_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,JOB_NUMBER, java.lang.String.class, "工号", "工号", java.lang.String.class, null);
 	
 	/**
-	 * 银行 , 类型: java.lang.String
+	 * 银行名称 , 类型: java.lang.String
 	*/
 	public static final String BANK="bank";
 	
 	/**
-	 * 银行 , 类型: java.lang.String
+	 * 银行名称 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.lang.String> BANK_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,BANK, java.lang.String.class, "银行", "银行", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.lang.String> BANK_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,BANK, java.lang.String.class, "银行名称", "银行名称", java.lang.String.class, null);
 	
 	/**
-	 * 账户账户 , 类型: java.lang.String
+	 * 银行账户 , 类型: java.lang.String
 	*/
 	public static final String BANK_ACCOUNT="bankAccount";
 	
 	/**
-	 * 账户账户 , 类型: java.lang.String
+	 * 银行账户 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.lang.String> BANK_ACCOUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,BANK_ACCOUNT, java.lang.String.class, "账户账户", "账户账户", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.lang.String> BANK_ACCOUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,BANK_ACCOUNT, java.lang.String.class, "银行账户", "银行账户", java.lang.String.class, null);
 	
 	/**
 	 * 模版 , 类型: java.lang.String
@@ -211,16 +211,6 @@ public class SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> OVERTIME_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,OVERTIME_SALARY, java.math.BigDecimal.class, "加班补贴", "加班补贴", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 其他补贴 , 类型: java.math.BigDecimal
-	*/
-	public static final String OTHER_SALARY="otherSalary";
-	
-	/**
-	 * 其他补贴 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> OTHER_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,OTHER_SALARY, java.math.BigDecimal.class, "其他补贴", "其他补贴", java.math.BigDecimal.class, null);
-	
-	/**
 	 * 通讯补贴 , 类型: java.math.BigDecimal
 	*/
 	public static final String COMMUNICATION_SALARY="communicationSalary";
@@ -251,6 +241,26 @@ public class SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> HOUSING_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,HOUSING_SALARY, java.math.BigDecimal.class, "住房补贴", "住房补贴", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 高温补贴 , 类型: java.math.BigDecimal
+	*/
+	public static final String HIGH_TEMPERATURE_SALARY="highTemperatureSalary";
+	
+	/**
+	 * 高温补贴 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> HIGH_TEMPERATURE_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,HIGH_TEMPERATURE_SALARY, java.math.BigDecimal.class, "高温补贴", "高温补贴", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 其他补贴 , 类型: java.math.BigDecimal
+	*/
+	public static final String OTHER_SALARY="otherSalary";
+	
+	/**
+	 * 其他补贴 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> OTHER_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,OTHER_SALARY, java.math.BigDecimal.class, "其他补贴", "其他补贴", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 提成工资 , 类型: java.math.BigDecimal
 	*/
 	public static final String COMMISSION_SALARY="commissionSalary";
@@ -261,14 +271,84 @@ public class SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> COMMISSION_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,COMMISSION_SALARY, java.math.BigDecimal.class, "提成工资", "提成工资", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 高温补贴 , 类型: java.math.BigDecimal
+	 * 处罚金额 , 类型: java.math.BigDecimal
 	*/
-	public static final String HIGH_TEMPERATURE_SALARY="highTemperatureSalary";
+	public static final String PUNISH_SALARY="punishSalary";
 	
 	/**
-	 * 高温补贴 , 类型: java.math.BigDecimal
+	 * 处罚金额 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> HIGH_TEMPERATURE_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,HIGH_TEMPERATURE_SALARY, java.math.BigDecimal.class, "高温补贴", "高温补贴", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> PUNISH_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,PUNISH_SALARY, java.math.BigDecimal.class, "处罚金额", "处罚金额", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 扣除考勤 , 类型: java.math.BigDecimal
+	*/
+	public static final String DEDUCT_KQ="deductKq";
+	
+	/**
+	 * 扣除考勤 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> DEDUCT_KQ_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,DEDUCT_KQ, java.math.BigDecimal.class, "扣除考勤", "扣除考勤", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 扣除工会 , 类型: java.math.BigDecimal
+	*/
+	public static final String DEDUCT_GH="deductGh";
+	
+	/**
+	 * 扣除工会 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> DEDUCT_GH_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,DEDUCT_GH, java.math.BigDecimal.class, "扣除工会", "扣除工会", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 扣除其他 , 类型: java.math.BigDecimal
+	*/
+	public static final String DEDUCT_OTHER="deductOther";
+	
+	/**
+	 * 扣除其他 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> DEDUCT_OTHER_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,DEDUCT_OTHER, java.math.BigDecimal.class, "扣除其他", "扣除其他", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 个税抵扣 , 类型: java.math.BigDecimal
+	*/
+	public static final String DEDUCT_PERSONAL_TAX_RED="deductPersonalTaxRed";
+	
+	/**
+	 * 个税抵扣 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> DEDUCT_PERSONAL_TAX_RED_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,DEDUCT_PERSONAL_TAX_RED, java.math.BigDecimal.class, "个税抵扣", "个税抵扣", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 个人所得税 , 类型: java.math.BigDecimal
+	*/
+	public static final String PT_GRSDS="ptGrsds";
+	
+	/**
+	 * 个人所得税 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> PT_GRSDS_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,PT_GRSDS, java.math.BigDecimal.class, "个人所得税", "个人所得税", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 抵扣基数 , 类型: java.math.BigDecimal
+	*/
+	public static final String PT_DKJS="ptDkjs";
+	
+	/**
+	 * 抵扣基数 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> PT_DKJS_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,PT_DKJS, java.math.BigDecimal.class, "抵扣基数", "抵扣基数", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 税率 , 类型: java.math.BigDecimal
+	*/
+	public static final String PT_SL_PCT="ptSlPct";
+	
+	/**
+	 * 税率 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> PT_SL_PCT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,PT_SL_PCT, java.math.BigDecimal.class, "税率", "税率", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 住房公积金基数 , 类型: java.math.BigDecimal
@@ -451,46 +531,6 @@ public class SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> WELFAER_SYEBX_COMPANY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,WELFAER_SYEBX_COMPANY, java.math.BigDecimal.class, "失业保险公司", "失业保险公司", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 扣除考勤 , 类型: java.math.BigDecimal
-	*/
-	public static final String DEDUCT_KQ="deductKq";
-	
-	/**
-	 * 扣除考勤 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> DEDUCT_KQ_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,DEDUCT_KQ, java.math.BigDecimal.class, "扣除考勤", "扣除考勤", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 扣除工会 , 类型: java.math.BigDecimal
-	*/
-	public static final String DEDUCT_GH="deductGh";
-	
-	/**
-	 * 扣除工会 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> DEDUCT_GH_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,DEDUCT_GH, java.math.BigDecimal.class, "扣除工会", "扣除工会", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 扣除其他 , 类型: java.math.BigDecimal
-	*/
-	public static final String DEDUCT_OTHER="deductOther";
-	
-	/**
-	 * 扣除其他 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> DEDUCT_OTHER_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,DEDUCT_OTHER, java.math.BigDecimal.class, "扣除其他", "扣除其他", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 个税抵扣 , 类型: java.math.BigDecimal
-	*/
-	public static final String DEDUCT_PERSONAL_TAX_RED="deductPersonalTaxRed";
-	
-	/**
-	 * 个税抵扣 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> DEDUCT_PERSONAL_TAX_RED_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,DEDUCT_PERSONAL_TAX_RED, java.math.BigDecimal.class, "个税抵扣", "个税抵扣", java.math.BigDecimal.class, null);
-	
-	/**
 	 * 子女教育 , 类型: java.math.BigDecimal
 	*/
 	public static final String PERSONAL_TAX_ZNJY="personalTaxZnjy";
@@ -559,36 +599,6 @@ public class SalaryDetailMeta {
 	 * 幼儿照护 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> PERSONAL_TAX_ERZH_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,PERSONAL_TAX_ERZH, java.math.BigDecimal.class, "幼儿照护", "幼儿照护", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 个人所得税 , 类型: java.math.BigDecimal
-	*/
-	public static final String PT_GRSDS="ptGrsds";
-	
-	/**
-	 * 个人所得税 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> PT_GRSDS_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,PT_GRSDS, java.math.BigDecimal.class, "个人所得税", "个人所得税", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 抵扣基数 , 类型: java.math.BigDecimal
-	*/
-	public static final String PT_DKJS="ptDkjs";
-	
-	/**
-	 * 抵扣基数 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> PT_DKJS_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,PT_DKJS, java.math.BigDecimal.class, "抵扣基数", "抵扣基数", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 税率 , 类型: java.math.BigDecimal
-	*/
-	public static final String PT_SL_PCT="ptSlPct";
-	
-	/**
-	 * 税率 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> PT_SL_PCT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,PT_SL_PCT, java.math.BigDecimal.class, "税率", "税率", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 生效时间 , 类型: java.util.Date
@@ -763,7 +773,7 @@ public class SalaryDetailMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , USER_NAME , ACTION_MONTH , PERSON_ID , JOB_NUMBER , BANK , BANK_ACCOUNT , TPL_ID , ACTION_ID , STATUS , TOTAL_AMOUNT , PAY_AMOUNT , ISSUED_AMOUNT , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , OTHER_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , COMMISSION_SALARY , HIGH_TEMPERATURE_SALARY , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , DEDUCT_KQ , DEDUCT_GH , DEDUCT_OTHER , DEDUCT_PERSONAL_TAX_RED , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , PT_GRSDS , PT_DKJS , PT_SL_PCT , EFFECT_TIME , NOTES , OPER_MSG , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL , SALARY_ACTION , EXT_BANK , EXT_BANK_ACCOUNT , PERSON };
+	public static final String[] $PROPS={ ID , USER_NAME , ACTION_MONTH , PERSON_ID , JOB_NUMBER , BANK , BANK_ACCOUNT , TPL_ID , ACTION_ID , STATUS , TOTAL_AMOUNT , PAY_AMOUNT , ISSUED_AMOUNT , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , HIGH_TEMPERATURE_SALARY , OTHER_SALARY , COMMISSION_SALARY , PUNISH_SALARY , DEDUCT_KQ , DEDUCT_GH , DEDUCT_OTHER , DEDUCT_PERSONAL_TAX_RED , PT_GRSDS , PT_DKJS , PT_SL_PCT , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , EFFECT_TIME , NOTES , OPER_MSG , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL , SALARY_ACTION , EXT_BANK , EXT_BANK_ACCOUNT , PERSON };
 	
 	/**
 	 * 代理类
@@ -829,8 +839,8 @@ public class SalaryDetailMeta {
 		}
 		
 		/**
-		 * 设置 银行
-		 * @param bank 银行
+		 * 设置 银行名称
+		 * @param bank 银行名称
 		 * @return 当前对象
 		*/
 		public SalaryDetail setBank(String bank) {
@@ -840,8 +850,8 @@ public class SalaryDetailMeta {
 		}
 		
 		/**
-		 * 设置 账户账户
-		 * @param bankAccount 账户账户
+		 * 设置 银行账户
+		 * @param bankAccount 银行账户
 		 * @return 当前对象
 		*/
 		public SalaryDetail setBankAccount(String bankAccount) {
@@ -983,17 +993,6 @@ public class SalaryDetailMeta {
 		}
 		
 		/**
-		 * 设置 其他补贴
-		 * @param otherSalary 其他补贴
-		 * @return 当前对象
-		*/
-		public SalaryDetail setOtherSalary(BigDecimal otherSalary) {
-			super.change(OTHER_SALARY,super.getOtherSalary(),otherSalary);
-			super.setOtherSalary(otherSalary);
-			return this;
-		}
-		
-		/**
 		 * 设置 通讯补贴
 		 * @param communicationSalary 通讯补贴
 		 * @return 当前对象
@@ -1027,6 +1026,28 @@ public class SalaryDetailMeta {
 		}
 		
 		/**
+		 * 设置 高温补贴
+		 * @param highTemperatureSalary 高温补贴
+		 * @return 当前对象
+		*/
+		public SalaryDetail setHighTemperatureSalary(BigDecimal highTemperatureSalary) {
+			super.change(HIGH_TEMPERATURE_SALARY,super.getHighTemperatureSalary(),highTemperatureSalary);
+			super.setHighTemperatureSalary(highTemperatureSalary);
+			return this;
+		}
+		
+		/**
+		 * 设置 其他补贴
+		 * @param otherSalary 其他补贴
+		 * @return 当前对象
+		*/
+		public SalaryDetail setOtherSalary(BigDecimal otherSalary) {
+			super.change(OTHER_SALARY,super.getOtherSalary(),otherSalary);
+			super.setOtherSalary(otherSalary);
+			return this;
+		}
+		
+		/**
 		 * 设置 提成工资
 		 * @param commissionSalary 提成工资
 		 * @return 当前对象
@@ -1038,13 +1059,90 @@ public class SalaryDetailMeta {
 		}
 		
 		/**
-		 * 设置 高温补贴
-		 * @param highTemperatureSalary 高温补贴
+		 * 设置 处罚金额
+		 * @param punishSalary 处罚金额
 		 * @return 当前对象
 		*/
-		public SalaryDetail setHighTemperatureSalary(BigDecimal highTemperatureSalary) {
-			super.change(HIGH_TEMPERATURE_SALARY,super.getHighTemperatureSalary(),highTemperatureSalary);
-			super.setHighTemperatureSalary(highTemperatureSalary);
+		public SalaryDetail setPunishSalary(BigDecimal punishSalary) {
+			super.change(PUNISH_SALARY,super.getPunishSalary(),punishSalary);
+			super.setPunishSalary(punishSalary);
+			return this;
+		}
+		
+		/**
+		 * 设置 扣除考勤
+		 * @param deductKq 扣除考勤
+		 * @return 当前对象
+		*/
+		public SalaryDetail setDeductKq(BigDecimal deductKq) {
+			super.change(DEDUCT_KQ,super.getDeductKq(),deductKq);
+			super.setDeductKq(deductKq);
+			return this;
+		}
+		
+		/**
+		 * 设置 扣除工会
+		 * @param deductGh 扣除工会
+		 * @return 当前对象
+		*/
+		public SalaryDetail setDeductGh(BigDecimal deductGh) {
+			super.change(DEDUCT_GH,super.getDeductGh(),deductGh);
+			super.setDeductGh(deductGh);
+			return this;
+		}
+		
+		/**
+		 * 设置 扣除其他
+		 * @param deductOther 扣除其他
+		 * @return 当前对象
+		*/
+		public SalaryDetail setDeductOther(BigDecimal deductOther) {
+			super.change(DEDUCT_OTHER,super.getDeductOther(),deductOther);
+			super.setDeductOther(deductOther);
+			return this;
+		}
+		
+		/**
+		 * 设置 个税抵扣
+		 * @param deductPersonalTaxRed 个税抵扣
+		 * @return 当前对象
+		*/
+		public SalaryDetail setDeductPersonalTaxRed(BigDecimal deductPersonalTaxRed) {
+			super.change(DEDUCT_PERSONAL_TAX_RED,super.getDeductPersonalTaxRed(),deductPersonalTaxRed);
+			super.setDeductPersonalTaxRed(deductPersonalTaxRed);
+			return this;
+		}
+		
+		/**
+		 * 设置 个人所得税
+		 * @param ptGrsds 个人所得税
+		 * @return 当前对象
+		*/
+		public SalaryDetail setPtGrsds(BigDecimal ptGrsds) {
+			super.change(PT_GRSDS,super.getPtGrsds(),ptGrsds);
+			super.setPtGrsds(ptGrsds);
+			return this;
+		}
+		
+		/**
+		 * 设置 抵扣基数
+		 * @param ptDkjs 抵扣基数
+		 * @return 当前对象
+		*/
+		public SalaryDetail setPtDkjs(BigDecimal ptDkjs) {
+			super.change(PT_DKJS,super.getPtDkjs(),ptDkjs);
+			super.setPtDkjs(ptDkjs);
+			return this;
+		}
+		
+		/**
+		 * 设置 税率
+		 * @param ptSlPct 税率
+		 * @return 当前对象
+		*/
+		public SalaryDetail setPtSlPct(BigDecimal ptSlPct) {
+			super.change(PT_SL_PCT,super.getPtSlPct(),ptSlPct);
+			super.setPtSlPct(ptSlPct);
 			return this;
 		}
 		
@@ -1247,50 +1345,6 @@ public class SalaryDetailMeta {
 		}
 		
 		/**
-		 * 设置 扣除考勤
-		 * @param deductKq 扣除考勤
-		 * @return 当前对象
-		*/
-		public SalaryDetail setDeductKq(BigDecimal deductKq) {
-			super.change(DEDUCT_KQ,super.getDeductKq(),deductKq);
-			super.setDeductKq(deductKq);
-			return this;
-		}
-		
-		/**
-		 * 设置 扣除工会
-		 * @param deductGh 扣除工会
-		 * @return 当前对象
-		*/
-		public SalaryDetail setDeductGh(BigDecimal deductGh) {
-			super.change(DEDUCT_GH,super.getDeductGh(),deductGh);
-			super.setDeductGh(deductGh);
-			return this;
-		}
-		
-		/**
-		 * 设置 扣除其他
-		 * @param deductOther 扣除其他
-		 * @return 当前对象
-		*/
-		public SalaryDetail setDeductOther(BigDecimal deductOther) {
-			super.change(DEDUCT_OTHER,super.getDeductOther(),deductOther);
-			super.setDeductOther(deductOther);
-			return this;
-		}
-		
-		/**
-		 * 设置 个税抵扣
-		 * @param deductPersonalTaxRed 个税抵扣
-		 * @return 当前对象
-		*/
-		public SalaryDetail setDeductPersonalTaxRed(BigDecimal deductPersonalTaxRed) {
-			super.change(DEDUCT_PERSONAL_TAX_RED,super.getDeductPersonalTaxRed(),deductPersonalTaxRed);
-			super.setDeductPersonalTaxRed(deductPersonalTaxRed);
-			return this;
-		}
-		
-		/**
 		 * 设置 子女教育
 		 * @param personalTaxZnjy 子女教育
 		 * @return 当前对象
@@ -1364,39 +1418,6 @@ public class SalaryDetailMeta {
 		public SalaryDetail setPersonalTaxErzh(BigDecimal personalTaxErzh) {
 			super.change(PERSONAL_TAX_ERZH,super.getPersonalTaxErzh(),personalTaxErzh);
 			super.setPersonalTaxErzh(personalTaxErzh);
-			return this;
-		}
-		
-		/**
-		 * 设置 个人所得税
-		 * @param ptGrsds 个人所得税
-		 * @return 当前对象
-		*/
-		public SalaryDetail setPtGrsds(BigDecimal ptGrsds) {
-			super.change(PT_GRSDS,super.getPtGrsds(),ptGrsds);
-			super.setPtGrsds(ptGrsds);
-			return this;
-		}
-		
-		/**
-		 * 设置 抵扣基数
-		 * @param ptDkjs 抵扣基数
-		 * @return 当前对象
-		*/
-		public SalaryDetail setPtDkjs(BigDecimal ptDkjs) {
-			super.change(PT_DKJS,super.getPtDkjs(),ptDkjs);
-			super.setPtDkjs(ptDkjs);
-			return this;
-		}
-		
-		/**
-		 * 设置 税率
-		 * @param ptSlPct 税率
-		 * @return 当前对象
-		*/
-		public SalaryDetail setPtSlPct(BigDecimal ptSlPct) {
-			super.change(PT_SL_PCT,super.getPtSlPct(),ptSlPct);
-			super.setPtSlPct(ptSlPct);
 			return this;
 		}
 		
@@ -1606,8 +1627,8 @@ public class SalaryDetailMeta {
 			inst.setNotes(this.getNotes());
 			inst.setWelfareZfgjjBase(this.getWelfareZfgjjBase());
 			inst.setDeductKq(this.getDeductKq());
-			inst.setWelfareZfgjjPerson(this.getWelfareZfgjjPerson());
 			inst.setDeductGh(this.getDeductGh());
+			inst.setWelfareZfgjjPerson(this.getWelfareZfgjjPerson());
 			inst.setActionMonth(this.getActionMonth());
 			inst.setWelfaerYlbxCompany(this.getWelfaerYlbxCompany());
 			inst.setPersonalTaxErzh(this.getPersonalTaxErzh());
@@ -1644,6 +1665,7 @@ public class SalaryDetailMeta {
 			inst.setPersonalTaxZfdk(this.getPersonalTaxZfdk());
 			inst.setWelfaerSyebxPerson(this.getWelfaerSyebxPerson());
 			inst.setWelfaerSybxPerson(this.getWelfaerSybxPerson());
+			inst.setPunishSalary(this.getPunishSalary());
 			inst.setWelfaerYlbxBase(this.getWelfaerYlbxBase());
 			inst.setBaseSalary(this.getBaseSalary());
 			inst.setPersonalTaxSylr(this.getPersonalTaxSylr());

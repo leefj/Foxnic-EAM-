@@ -1,7 +1,7 @@
 /**
  * 薪酬发放 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 09:03:49
+ * @since 2024-01-21 21:46:29
  */
 
 
@@ -92,6 +92,7 @@ function ListPage() {
 					,{ field: 'tplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版'), templet: function (d) { return templet('tplId' ,fox.joinLabel(d.salaryTpl,"name",',','','tplId'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -420,7 +421,10 @@ function ListPage() {
 
 			admin.putTempData('hr-salary-action-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-salary-action-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -429,7 +433,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-salary-action-form-data-form-action', "view",true);
 						showEditForm(data.data);
@@ -465,7 +471,7 @@ function ListPage() {
 			else if (layEvent === 'create-data') { // 生成数据
 				window.pageExt.list.createData(data,this);
 			}
-			else if (layEvent === 'detail') { // 明细
+			else if (layEvent === 'detail') { // 员工
 				window.pageExt.list.detail(data,this);
 			}
 			else if (layEvent === 'salary-detail') { // 薪酬列表
