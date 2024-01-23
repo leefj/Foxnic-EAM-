@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 员工调动记录
  * <p>员工调动记录 , 数据表 hr_person_transfer_rcd 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:35:13
- * @sign F614C060D702F71EF332C72C6C9B3CEA
+ * @since 2024-01-23 20:23:44
+ * @sign 82C2C332BE27A2AFE34E8C2B1F6DBC0C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -42,6 +42,12 @@ public class PersonTransferRcd extends Entity {
 	@Id
 	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
+	
+	/**
+	 * 状态：状态
+	*/
+	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	private String status;
 	
 	/**
 	 * 调动单：调动单
@@ -158,6 +164,25 @@ public class PersonTransferRcd extends Entity {
 	*/
 	public PersonTransferRcd setId(String id) {
 		this.id=id;
+		return this;
+	}
+	
+	/**
+	 * 获得 状态<br>
+	 * 状态
+	 * @return 状态
+	*/
+	public String getStatus() {
+		return status;
+	}
+	
+	/**
+	 * 设置 状态
+	 * @param status 状态
+	 * @return 当前对象
+	*/
+	public PersonTransferRcd setStatus(String status) {
+		this.status=status;
 		return this;
 	}
 	
@@ -555,6 +580,7 @@ public class PersonTransferRcd extends Entity {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPersonId(this.getPersonId());
 		inst.setId(this.getId());
+		inst.setStatus(this.getStatus());
 		inst.setOperTime(this.getOperTime());
 		if(all) {
 			inst.setPerson(this.getPerson());
@@ -632,6 +658,7 @@ public class PersonTransferRcd extends Entity {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(PersonTransferRcdMeta.DELETE_BY)));
 			this.setPersonId(DataParser.parse(String.class, map.get(PersonTransferRcdMeta.PERSON_ID)));
 			this.setId(DataParser.parse(String.class, map.get(PersonTransferRcdMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(PersonTransferRcdMeta.STATUS)));
 			this.setOperTime(DataParser.parse(Date.class, map.get(PersonTransferRcdMeta.OPER_TIME)));
 			// others
 			this.setPerson(DataParser.parse(Person.class, map.get(PersonTransferRcdMeta.PERSON)));
@@ -653,6 +680,7 @@ public class PersonTransferRcd extends Entity {
 				this.setDeleteBy( (String)map.get(PersonTransferRcdMeta.DELETE_BY));
 				this.setPersonId( (String)map.get(PersonTransferRcdMeta.PERSON_ID));
 				this.setId( (String)map.get(PersonTransferRcdMeta.ID));
+				this.setStatus( (String)map.get(PersonTransferRcdMeta.STATUS));
 				this.setOperTime( (Date)map.get(PersonTransferRcdMeta.OPER_TIME));
 				// others
 				this.setPerson( (Person)map.get(PersonTransferRcdMeta.PERSON));
@@ -687,6 +715,7 @@ public class PersonTransferRcd extends Entity {
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(PersonTransferRcdMeta.DELETE_BY)));
 			this.setPersonId(DataParser.parse(String.class, r.getValue(PersonTransferRcdMeta.PERSON_ID)));
 			this.setId(DataParser.parse(String.class, r.getValue(PersonTransferRcdMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(PersonTransferRcdMeta.STATUS)));
 			this.setOperTime(DataParser.parse(Date.class, r.getValue(PersonTransferRcdMeta.OPER_TIME)));
 			return true;
 		} else {
@@ -706,6 +735,7 @@ public class PersonTransferRcd extends Entity {
 				this.setDeleteBy( (String)r.getValue(PersonTransferRcdMeta.DELETE_BY));
 				this.setPersonId( (String)r.getValue(PersonTransferRcdMeta.PERSON_ID));
 				this.setId( (String)r.getValue(PersonTransferRcdMeta.ID));
+				this.setStatus( (String)r.getValue(PersonTransferRcdMeta.STATUS));
 				this.setOperTime( (Date)r.getValue(PersonTransferRcdMeta.OPER_TIME));
 				return true;
 			} catch (Exception e) {

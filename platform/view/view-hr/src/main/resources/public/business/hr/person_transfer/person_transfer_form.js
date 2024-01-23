@@ -1,7 +1,7 @@
 /**
  * 员工调动 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:34:47
+ * @since 2024-01-23 20:44:25
  */
 
 function FormPage() {
@@ -194,6 +194,44 @@ function FormPage() {
 				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterRemove",elId:elId,index:index,upload:upload});
 			}
 	    });
+		//渲染 personIds 下拉字段
+		fox.renderSelectBox({
+			el: "personIds",
+			radio: false,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("人员",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("personIds",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("personIds",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 	}
 
 	/**
@@ -259,6 +297,8 @@ function FormPage() {
 
 			//设置  岗位 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#positionCode",formData.position);
+			//设置  人员 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#personIds",formData.personList);
 
 			//处理fillBy
 
@@ -323,6 +363,8 @@ function FormPage() {
 
 		//获取 岗位 下拉框的值
 		data["positionCode"]=fox.getSelectedValue("positionCode",false);
+		//获取 人员 下拉框的值
+		data["personIds"]=fox.getSelectedValue("personIds",true);
 
 		return data;
 	}

@@ -27,8 +27,6 @@ public class HrmRelationManager extends RelationManager {
 		this.setupPersonSocialRelation();
 		this.setupPersonWork();
 		this.setupPersonScore();
-
-
 		this.setupPersonTransferRcd();
 		this.setupPersonTransfer();
 		this.setupPersonResignation();
@@ -38,11 +36,14 @@ public class HrmRelationManager extends RelationManager {
 	public void setupPersonTransferRcd() {
 		this.property(PersonTransferRcdMeta.PERSON_PROP)
 				.using(HrTables.HR_PERSON_TRANSFER_RCD.PERSON_ID).join(HrTables.HR_PERSON.ID);
-
-
 	}
 
 	public void setupPersonTransfer() {
+
+		this.property(PersonTransferMeta.PERSON_LIST_PROP)
+				.using(HrTables.HR_PERSON_TRANSFER.ID).join(HrTables.HR_PERSON_TRANSFER_RCD.TRANSFER_ID)
+				.using(HrTables.HR_PERSON_TRANSFER_RCD.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
 		this.property(PersonTransferMeta.ORGANIZATION_PROP)
 				.using(HrTables.HR_PERSON_TRANSFER.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
 

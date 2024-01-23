@@ -4,8 +4,10 @@ package com.dt.platform.generator.module.hr;
 import com.dt.platform.constants.db.HrTables;
 import com.dt.platform.constants.enums.common.StatusYNEnum;
 import com.dt.platform.constants.enums.hr.EmployeeStatusEnum;
+import com.dt.platform.constants.enums.hr.PersonBillStatusEnum;
 import com.dt.platform.domain.hr.*;
 import com.dt.platform.domain.hr.meta.*;
+import com.dt.platform.domain.ops.MonitorTpl;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.hr.page.PersonTransferRcdPageController;
 import com.dt.platform.proxy.hr.*;
@@ -30,6 +32,9 @@ public class HrmPersonTranferRcdGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
 
 
+
+
+
         cfg.view().field(HrTables.HR_PERSON_TRANSFER_RCD.TRANSFER_DATE).search().range();
 
 
@@ -49,6 +54,8 @@ public class HrmPersonTranferRcdGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON_TRANSFER_RCD.OPER_TIME).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_TRANSFER_RCD.UPDATE_BY).form().table().disable(true);
 
+
+        cfg.view().field(HrTables.HR_PERSON_TRANSFER_RCD.STATUS).form().radioBox().enumType(PersonBillStatusEnum.class).defaultIndex(0);
 
         cfg.view().field(HrTables.HR_PERSON_TRANSFER_RCD.PERSON_ID).table().fillBy("person","name");
 

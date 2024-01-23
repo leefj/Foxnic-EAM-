@@ -45,7 +45,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 员工调动记录接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:35:13
+ * @since 2024-01-23 20:23:44
 */
 
 @InDoc
@@ -62,6 +62,7 @@ public class PersonTransferRcdController extends SuperController {
 	@ApiOperation(value = "添加员工调动记录")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferRcdVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.TRANSFER_ID , value = "调动单" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.PERSON_ID , value = "员工" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
@@ -172,6 +173,7 @@ public class PersonTransferRcdController extends SuperController {
 	@ApiOperation(value = "更新员工调动记录")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferRcdVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.TRANSFER_ID , value = "调动单" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.PERSON_ID , value = "员工" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
@@ -198,6 +200,7 @@ public class PersonTransferRcdController extends SuperController {
 	@ApiOperation(value = "保存员工调动记录")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferRcdVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.TRANSFER_ID , value = "调动单" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.PERSON_ID , value = "员工" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
@@ -267,6 +270,7 @@ public class PersonTransferRcdController extends SuperController {
 	@ApiOperation(value = "查询员工调动记录")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferRcdVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.TRANSFER_ID , value = "调动单" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.PERSON_ID , value = "员工" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
@@ -294,6 +298,7 @@ public class PersonTransferRcdController extends SuperController {
 	@ApiOperation(value = "分页查询员工调动记录")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PersonTransferRcdVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.TRANSFER_ID , value = "调动单" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.PERSON_ID , value = "员工" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = PersonTransferRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),

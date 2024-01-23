@@ -38,7 +38,7 @@ import java.util.Map;
  * 员工调动记录服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:35:13
+ * @since 2024-01-23 20:23:44
 */
 
 
@@ -73,6 +73,8 @@ public class PersonTransferRcdServiceImpl extends SuperService<PersonTransferRcd
 	 */
 	@Override
 	public Result insert(PersonTransferRcd personTransferRcd,boolean throwsException) {
+
+
 		Result r=super.insert(personTransferRcd,throwsException);
 		return r;
 	}

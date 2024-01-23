@@ -5,6 +5,7 @@ import com.dt.platform.domain.hr.PersonTransferVO;
 import java.util.List;
 import com.dt.platform.domain.hr.PersonTransfer;
 import java.util.Date;
+import com.dt.platform.domain.hr.Person;
 import com.dt.platform.domain.hr.Position;
 import org.github.foxnic.web.domain.hrm.Organization;
 import javax.persistence.Transient;
@@ -13,7 +14,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:34:44
+ * @since 2024-01-23 20:44:23
  * @sign D3786FE5CCABB3A22E6BD6A2B8776AE6
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -331,6 +332,26 @@ public class PersonTransferVOMeta extends PersonTransferMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonTransferVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonTransferVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * personList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final String PERSON_LIST="personList";
+	
+	/**
+	 * personList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonTransferVO,com.dt.platform.domain.hr.Person> PERSON_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonTransferVO.class ,PERSON_LIST, java.util.List.class, "personList", "personList", com.dt.platform.domain.hr.Person.class, null);
+	
+	/**
+	 * personIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String PERSON_IDS="personIds";
+	
+	/**
+	 * personIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonTransferVO,java.lang.String> PERSON_IDS_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonTransferVO.class ,PERSON_IDS, java.util.List.class, "personIds", "personIds", java.lang.String.class, null);
+	
+	/**
 	 * position , 类型: com.dt.platform.domain.hr.Position
 	*/
 	public static final String POSITION="position";
@@ -353,7 +374,7 @@ public class PersonTransferVOMeta extends PersonTransferMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , BUSINESS_CODE , STATUS , TRANSFER_DATE , CONTENT , ORG_ID , POSITION_CODE , FILE_IDS , NOTE , OPER_USER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION , ORGANIZATION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , BUSINESS_CODE , STATUS , TRANSFER_DATE , CONTENT , ORG_ID , POSITION_CODE , FILE_IDS , NOTE , OPER_USER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON_LIST , PERSON_IDS , POSITION , ORGANIZATION };
 	
 	/**
 	 * 代理类
@@ -705,6 +726,28 @@ public class PersonTransferVOMeta extends PersonTransferMeta {
 		}
 		
 		/**
+		 * 设置 personList
+		 * @param personList personList
+		 * @return 当前对象
+		*/
+		public PersonTransfer setPersonList(List<Person> personList) {
+			super.change(PERSON_LIST,super.getPersonList(),personList);
+			super.setPersonList(personList);
+			return this;
+		}
+		
+		/**
+		 * 设置 personIds
+		 * @param personIds personIds
+		 * @return 当前对象
+		*/
+		public PersonTransfer setPersonIds(List<String> personIds) {
+			super.change(PERSON_IDS,super.getPersonIds(),personIds);
+			super.setPersonIds(personIds);
+			return this;
+		}
+		
+		/**
 		 * 设置 position
 		 * @param position position
 		 * @return 当前对象
@@ -761,6 +804,7 @@ public class PersonTransferVOMeta extends PersonTransferMeta {
 			inst.setId(this.getId());
 			inst.setStatus(this.getStatus());
 			if(all) {
+				inst.setPersonList(this.getPersonList());
 				inst.setSearchField(this.getSearchField());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
@@ -772,6 +816,7 @@ public class PersonTransferVOMeta extends PersonTransferMeta {
 				inst.setSortField(this.getSortField());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
+				inst.setPersonIds(this.getPersonIds());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setPosition(this.getPosition());
 				inst.setSearchValue(this.getSearchValue());

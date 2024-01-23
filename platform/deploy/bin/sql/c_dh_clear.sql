@@ -14,6 +14,8 @@ delete from sys_menu where hierarchy like '%616265395568902144%';
 delete from sys_menu where hierarchy like '%616256885288337408%';
 -- 会议
 delete from sys_menu where hierarchy like '%616256779512184832%';
+-- 人员报表
+delete from sys_menu where hierarchy like '%801757091264987136%';
 -- 人事 系统配置
 delete from sys_menu where hierarchy like '%662204540778446848%';
 -- 协同 系统配置

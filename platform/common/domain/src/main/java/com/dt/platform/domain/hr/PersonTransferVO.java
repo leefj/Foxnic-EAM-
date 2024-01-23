@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 员工调动VO类型
  * <p>员工调动 , 数据表 hr_person_transfer 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 09:34:44
+ * @since 2024-01-23 20:44:23
  * @sign D3786FE5CCABB3A22E6BD6A2B8776AE6
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -422,6 +422,7 @@ public class PersonTransferVO extends PersonTransfer {
 		inst.setId(this.getId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setPersonList(this.getPersonList());
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
@@ -431,6 +432,7 @@ public class PersonTransferVO extends PersonTransfer {
 			inst.setOrganization(this.getOrganization());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
+			inst.setPersonIds(this.getPersonIds());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
