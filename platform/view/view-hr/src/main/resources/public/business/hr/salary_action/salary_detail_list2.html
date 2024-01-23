@@ -109,6 +109,8 @@
 <div class="layui-fluid">
     <div class="layui-row layui-col-space10">
         <div class="layui-row layui-col-space10">
+
+
             <div class="layui-col-md2">
                 <div class="panel layui-bg-number banner hh" >
                     <div class="panel-body">
@@ -117,7 +119,7 @@
                             <h5>当前模版人数</h5>
                         </div>
                         <div class="panel-content">
-                            <h1 id="total_pserson_cnt" class="no-margins hm">0</h1>
+                            <h1 id="total_person_cnt" class="no-margins hm">0</h1>
                             <small>当前选择的模版人数-人员薪酬不需要发放</small>
                         </div>
                     </div>
@@ -134,6 +136,21 @@
                         <div class="panel-content">
                             <h1 id="person_abnormal_cnt" class="no-margins hm">0</h1>
                             <small>计算状态异常人数</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md2">
+                <div class="panel layui-bg-number banner hh" >
+                    <div class="panel-body">
+                        <div class="panel-title ht">
+                            <span class="label pull-right layui-bg-blue">实时</span>
+                            <h5>未参与本次发薪人数</h5>
+                        </div>
+                        <div class="panel-content">
+                            <h1 id="total_not_include_cnt" class="no-margins hm" style="color: red">0</h1>
+                            <small>模版中未参与本次发薪人数正常为0，如果不为0请确认</small>
                         </div>
                     </div>
                 </div>
@@ -247,8 +264,10 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button id="valid-data"  th:if="${perm.checkAuth('hr_salary_detail:valid')}"class="layui-btn icon-btn layui-btn-sm  person-valid-data " lay-event="tool-valid-data"><span th:text="${lang.translate('生效','','cmp:table.button')}">生效</span></button>
-        <button id="export-data"  th:if="${perm.checkAuth('hr_salary_detail:data-export')}"class="layui-btn icon-btn layui-btn-sm  person-export-data " lay-event="tool-export-data"><span th:text="${lang.translate('导出','','cmp:table.button')}">导出</span></button>
-        <button id="import-data"  th:if="${perm.checkAuth('hr_salary_detail:data-import')}"class="layui-btn icon-btn layui-btn-sm  person-import-data " lay-event="tool-import-data"><span th:text="${lang.translate('导入','','cmp:table.button')}">导入</span></button>
+
+        <button id="salary-export"  class="layui-btn icon-btn layui-btn-sm  person-export-data " lay-event="tool-salary-export"><span th:text="${lang.translate('导出','','cmp:table.button')}">导出</span></button>
+        <button id="salary-import"  class="layui-btn icon-btn layui-btn-sm  person-import-data " lay-event="tool-salary-import"><span th:text="${lang.translate('导入','','cmp:table.button')}">导入</span></button>
+
     </div>
 </script>
 

@@ -16,6 +16,7 @@ import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.Organization;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -24,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息VO类型
  * <p>人员信息 , 数据表 hr_person 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-16 10:30:09
+ * @since 2024-01-22 08:19:05
  * @sign C03987DE16DA5CA6377AAE324A7C092C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -406,6 +407,7 @@ public class PersonVO extends Person {
 		inst.setRankCode(this.getRankCode());
 		inst.setEmergencyContactNo(this.getEmergencyContactNo());
 		inst.setEmploymentConfirmDate(this.getEmploymentConfirmDate());
+		inst.setScore(this.getScore());
 		inst.setNativePlaceCode(this.getNativePlaceCode());
 		inst.setMajor(this.getMajor());
 		inst.setComputerLevel(this.getComputerLevel());
@@ -490,6 +492,7 @@ public class PersonVO extends Person {
 			inst.setSalaryTpl(this.getSalaryTpl());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
+			inst.setOrganization(this.getOrganization());
 			inst.setIds(this.getIds());
 			inst.setPosition(this.getPosition());
 			inst.setSexDict(this.getSexDict());
@@ -556,6 +559,7 @@ public class PersonVO extends Person {
 			this.setRankCode(DataParser.parse(String.class, map.get(PersonVOMeta.RANK_CODE)));
 			this.setEmergencyContactNo(DataParser.parse(String.class, map.get(PersonVOMeta.EMERGENCY_CONTACT_NO)));
 			this.setEmploymentConfirmDate(DataParser.parse(Date.class, map.get(PersonVOMeta.EMPLOYMENT_CONFIRM_DATE)));
+			this.setScore(DataParser.parse(Integer.class, map.get(PersonVOMeta.SCORE)));
 			this.setNativePlaceCode(DataParser.parse(String.class, map.get(PersonVOMeta.NATIVE_PLACE_CODE)));
 			this.setMajor(DataParser.parse(String.class, map.get(PersonVOMeta.MAJOR)));
 			this.setComputerLevel(DataParser.parse(String.class, map.get(PersonVOMeta.COMPUTER_LEVEL)));
@@ -638,6 +642,7 @@ public class PersonVO extends Person {
 			this.setSalaryTpl(DataParser.parse(SalaryTpl.class, map.get(PersonVOMeta.SALARY_TPL)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(PersonVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(PersonVOMeta.SORT_TYPE)));
+			this.setOrganization(DataParser.parse(Organization.class, map.get(PersonVOMeta.ORGANIZATION)));
 			this.setPosition(DataParser.parse(Position.class, map.get(PersonVOMeta.POSITION)));
 			this.setSexDict(DataParser.parse(DictItem.class, map.get(PersonVOMeta.SEX_DICT)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(PersonVOMeta.SEARCH_VALUE)));
@@ -647,6 +652,7 @@ public class PersonVO extends Person {
 				this.setRankCode( (String)map.get(PersonVOMeta.RANK_CODE));
 				this.setEmergencyContactNo( (String)map.get(PersonVOMeta.EMERGENCY_CONTACT_NO));
 				this.setEmploymentConfirmDate( (Date)map.get(PersonVOMeta.EMPLOYMENT_CONFIRM_DATE));
+				this.setScore( (Integer)map.get(PersonVOMeta.SCORE));
 				this.setNativePlaceCode( (String)map.get(PersonVOMeta.NATIVE_PLACE_CODE));
 				this.setMajor( (String)map.get(PersonVOMeta.MAJOR));
 				this.setComputerLevel( (String)map.get(PersonVOMeta.COMPUTER_LEVEL));
@@ -729,6 +735,7 @@ public class PersonVO extends Person {
 				this.setSalaryTpl( (SalaryTpl)map.get(PersonVOMeta.SALARY_TPL));
 				this.setPageIndex( (Integer)map.get(PersonVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(PersonVOMeta.SORT_TYPE));
+				this.setOrganization( (Organization)map.get(PersonVOMeta.ORGANIZATION));
 				this.setPosition( (Position)map.get(PersonVOMeta.POSITION));
 				this.setSexDict( (DictItem)map.get(PersonVOMeta.SEX_DICT));
 				this.setSearchValue( (String)map.get(PersonVOMeta.SEARCH_VALUE));
@@ -751,6 +758,7 @@ public class PersonVO extends Person {
 			this.setRankCode(DataParser.parse(String.class, r.getValue(PersonVOMeta.RANK_CODE)));
 			this.setEmergencyContactNo(DataParser.parse(String.class, r.getValue(PersonVOMeta.EMERGENCY_CONTACT_NO)));
 			this.setEmploymentConfirmDate(DataParser.parse(Date.class, r.getValue(PersonVOMeta.EMPLOYMENT_CONFIRM_DATE)));
+			this.setScore(DataParser.parse(Integer.class, r.getValue(PersonVOMeta.SCORE)));
 			this.setNativePlaceCode(DataParser.parse(String.class, r.getValue(PersonVOMeta.NATIVE_PLACE_CODE)));
 			this.setMajor(DataParser.parse(String.class, r.getValue(PersonVOMeta.MAJOR)));
 			this.setComputerLevel(DataParser.parse(String.class, r.getValue(PersonVOMeta.COMPUTER_LEVEL)));
@@ -817,6 +825,7 @@ public class PersonVO extends Person {
 				this.setRankCode( (String)r.getValue(PersonVOMeta.RANK_CODE));
 				this.setEmergencyContactNo( (String)r.getValue(PersonVOMeta.EMERGENCY_CONTACT_NO));
 				this.setEmploymentConfirmDate( (Date)r.getValue(PersonVOMeta.EMPLOYMENT_CONFIRM_DATE));
+				this.setScore( (Integer)r.getValue(PersonVOMeta.SCORE));
 				this.setNativePlaceCode( (String)r.getValue(PersonVOMeta.NATIVE_PLACE_CODE));
 				this.setMajor( (String)r.getValue(PersonVOMeta.MAJOR));
 				this.setComputerLevel( (String)r.getValue(PersonVOMeta.COMPUTER_LEVEL));

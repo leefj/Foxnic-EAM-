@@ -95,6 +95,8 @@ public interface PersonServiceProxy {
 
     public static final String QUERY_PERSON_ID_BY_EMPLOYEE_ID = API_PREFIX + "query-person-id-by-employee-id";
 
+    public static final String QUERY_PERSON_NOT_SALARY = API_PREFIX + "query-person-not-salary";
+
     @RequestMapping(PersonServiceProxy.QUERY_PERSON_ID_BY_EMPLOYEE_ID)
     String queryPersonIdByEmployeeId(@RequestParam(name = "employeeId") String employeeId);
 

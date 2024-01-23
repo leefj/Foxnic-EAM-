@@ -44,6 +44,13 @@ public class PersonPageController extends ViewController {
 		return proxy;
 	}
 
+
+	@RequestMapping("/person_not_salary_list.html")
+	public String salary(Model model,HttpServletRequest request,String code) {
+		return getTemplatePath(prefix,"person_not_salary_list");
+	}
+
+
 	/**
 	 * 人员信息 功能主页面
 	 */

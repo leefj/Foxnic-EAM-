@@ -2,7 +2,7 @@
 /**
  * 薪酬发放 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 09:03:49
+ * @since 2024-01-21 21:46:29
  */
  -->
  <!DOCTYPE html>
@@ -42,27 +42,28 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
 
 
-                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.SalaryActionStatusEnum')}" style="width:150px"></div>
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.SalaryActionStatusEnum')}" style="width:180px"></div>
                     </div>
                     <!-- 标签 , label ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 模版 , tplId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('模版')}" class="search-label tplId-label">模版</span><span class="search-colon">:</span></div>
-                        <div id="tplId" th:data="${'/service-hr/hr-salary-tpl/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('模版')}" class="search-label tplId-label">模版</span><span class="search-colon">:</span></div>
+                        <div id="tplId" th:data="${'/service-hr/hr-salary-tpl/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 月份 , actionMonth ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('月份')}" class="search-label actionMonth-label">月份</span><span class="search-colon">:</span></div>
-                         <input id="actionMonth" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('月份')}" class="search-label actionMonth-label">月份</span><span class="search-colon">:</span></div>
+                         <input id="actionMonth" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -105,7 +106,7 @@
     <button th:if="${perm.checkAuth('hr_salary_action:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
     <button th:if="${perm.checkAuth('hr_salary_action:data')}"class="layui-btn layui-btn-xs  create-data " lay-event="create-data" data-id="{{d.id}}"><span th:text="${lang.translate('生成数据','','cmp:table.ops')}">生成数据</span></button>
-    <button th:if="${perm.checkAuth('hr_salary_action:detail')}"class="layui-btn layui-btn-xs  person-detail " lay-event="detail" data-id="{{d.id}}"><span th:text="${lang.translate('明细','','cmp:table.ops')}">明细</span></button>
+    <button th:if="${perm.checkAuth('hr_salary_action:detail')}"class="layui-btn layui-btn-xs  person-detail " lay-event="detail" data-id="{{d.id}}"><span th:text="${lang.translate('员工','','cmp:table.ops')}">员工</span></button>
     <button th:if="${perm.checkAuth('hr_salary_action:salary')}"class="layui-btn layui-btn-xs  person-salary-detail " lay-event="salary-detail" data-id="{{d.id}}"><span th:text="${lang.translate('薪酬列表','','cmp:table.ops')}">薪酬列表</span></button>
 
 </script>

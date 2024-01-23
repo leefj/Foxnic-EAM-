@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬模版
  * <p>薪酬模版 , 数据表 hr_salary_tpl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-04 13:53:39
- * @sign 01FB5973B21CDCFFD697551D3BDCD514
+ * @since 2024-01-22 15:21:27
+ * @sign 1AC962C9C08085CE8AE6BDB045B92D2C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -54,6 +54,18 @@ public class SalaryTpl extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "全员人员")
 	private String name;
+	
+	/**
+	 * 计算公式：计算公式
+	*/
+	@ApiModelProperty(required = false,value="计算公式" , notes = "计算公式")
+	private String method;
+	
+	/**
+	 * 计算公式：计算公式
+	*/
+	@ApiModelProperty(required = false,value="计算公式" , notes = "计算公式")
+	private String methodScript;
 	
 	/**
 	 * 备注：备注
@@ -172,6 +184,44 @@ public class SalaryTpl extends Entity {
 	*/
 	public SalaryTpl setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 计算公式<br>
+	 * 计算公式
+	 * @return 计算公式
+	*/
+	public String getMethod() {
+		return method;
+	}
+	
+	/**
+	 * 设置 计算公式
+	 * @param method 计算公式
+	 * @return 当前对象
+	*/
+	public SalaryTpl setMethod(String method) {
+		this.method=method;
+		return this;
+	}
+	
+	/**
+	 * 获得 计算公式<br>
+	 * 计算公式
+	 * @return 计算公式
+	*/
+	public String getMethodScript() {
+		return methodScript;
+	}
+	
+	/**
+	 * 设置 计算公式
+	 * @param methodScript 计算公式
+	 * @return 当前对象
+	*/
+	public SalaryTpl setMethodScript(String methodScript) {
+		this.methodScript=methodScript;
 		return this;
 	}
 	
@@ -440,8 +490,10 @@ public class SalaryTpl extends Entity {
 	@Transient
 	public SalaryTpl duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.SalaryTplMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.SalaryTplMeta.$$proxy$$();
+		inst.setMethodScript(this.getMethodScript());
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
+		inst.setMethod(this.getMethod());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
@@ -511,8 +563,10 @@ public class SalaryTpl extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setMethodScript(DataParser.parse(String.class, map.get(SalaryTplMeta.METHOD_SCRIPT)));
 			this.setCode(DataParser.parse(String.class, map.get(SalaryTplMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(SalaryTplMeta.NOTES)));
+			this.setMethod(DataParser.parse(String.class, map.get(SalaryTplMeta.METHOD)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(SalaryTplMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(SalaryTplMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(SalaryTplMeta.CREATE_BY)));
@@ -528,8 +582,10 @@ public class SalaryTpl extends Entity {
 			return true;
 		} else {
 			try {
+				this.setMethodScript( (String)map.get(SalaryTplMeta.METHOD_SCRIPT));
 				this.setCode( (String)map.get(SalaryTplMeta.CODE));
 				this.setNotes( (String)map.get(SalaryTplMeta.NOTES));
+				this.setMethod( (String)map.get(SalaryTplMeta.METHOD));
 				this.setUpdateTime( (Date)map.get(SalaryTplMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(SalaryTplMeta.VERSION));
 				this.setCreateBy( (String)map.get(SalaryTplMeta.CREATE_BY));
@@ -558,8 +614,10 @@ public class SalaryTpl extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setMethodScript(DataParser.parse(String.class, r.getValue(SalaryTplMeta.METHOD_SCRIPT)));
 			this.setCode(DataParser.parse(String.class, r.getValue(SalaryTplMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(SalaryTplMeta.NOTES)));
+			this.setMethod(DataParser.parse(String.class, r.getValue(SalaryTplMeta.METHOD)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(SalaryTplMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(SalaryTplMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(SalaryTplMeta.CREATE_BY)));
@@ -574,8 +632,10 @@ public class SalaryTpl extends Entity {
 			return true;
 		} else {
 			try {
+				this.setMethodScript( (String)r.getValue(SalaryTplMeta.METHOD_SCRIPT));
 				this.setCode( (String)r.getValue(SalaryTplMeta.CODE));
 				this.setNotes( (String)r.getValue(SalaryTplMeta.NOTES));
+				this.setMethod( (String)r.getValue(SalaryTplMeta.METHOD));
 				this.setUpdateTime( (Date)r.getValue(SalaryTplMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(SalaryTplMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(SalaryTplMeta.CREATE_BY));

@@ -13,9 +13,12 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum SalaryPersonDetailStatusEnum implements CodeTextEnum {
 
-	INVALID("invalid" , "未生效"),
+	NOT_PROCESS("not_process" , "未处理"),
 
-	VALID("valid" , "已生效"),
+	PROCESSING("processing" , "处理中"),
+
+	FINISH("finish" , "完成"),
+
 	ABNORMAL("abnormal" , "异常");
 
 	private String code;

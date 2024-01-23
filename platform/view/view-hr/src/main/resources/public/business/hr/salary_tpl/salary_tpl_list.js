@@ -1,7 +1,7 @@
 /**
  * 薪酬模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-04 13:53:40
+ * @since 2024-01-22 15:21:28
  */
 
 
@@ -87,8 +87,10 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编号') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'method', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计算公式') , templet: function (d) { return templet('method',d.method,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -328,7 +330,10 @@ function ListPage() {
 
 			admin.putTempData('hr-salary-tpl-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-salary-tpl-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -337,7 +342,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-salary-tpl-form-data-form-action', "view",true);
 						showEditForm(data.data);
@@ -370,7 +377,7 @@ function ListPage() {
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			else if (layEvent === 'detail') { // 明细
+			else if (layEvent === 'detail') { // 人员
 				window.pageExt.list.detail(data,this);
 			}
 			
@@ -405,7 +412,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["65%",height+"px"],
+			area: ["90%",height+"px"],
 			type: 2,
 			id:"hr-salary-tpl-form-data-win",
 			content: '/business/hr/salary_tpl/salary_tpl_form.html' + (queryString?("?"+queryString):""),

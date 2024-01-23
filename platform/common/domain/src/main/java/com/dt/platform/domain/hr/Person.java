@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
 import java.util.List;
@@ -28,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息
  * <p>人员信息 , 数据表 hr_person 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-16 10:30:09
- * @sign C62F017803FF6F620D4C32D6878FDC61
+ * @since 2024-01-22 08:19:05
+ * @sign CA6B8DF6989294F71B456B63A5C4A63C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -361,6 +362,12 @@ public class Person extends Entity {
 	private Date contractFinishDate;
 	
 	/**
+	 * 积分：积分
+	*/
+	@ApiModelProperty(required = false,value="积分" , notes = "积分")
+	private Integer score;
+	
+	/**
 	 * 备注：备注
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注")
@@ -387,7 +394,7 @@ public class Person extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-16 10:23:02")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-21 08:36:29")
 	private Date updateTime;
 	
 	/**
@@ -414,7 +421,7 @@ public class Person extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "5")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "6")
 	private Integer version;
 	
 	/**
@@ -422,6 +429,12 @@ public class Person extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * 所在部门：所在部门
+	*/
+	@ApiModelProperty(required = false,value="所在部门" , notes = "所在部门")
+	private Organization organization;
 	
 	/**
 	 * position：position
@@ -1521,6 +1534,25 @@ public class Person extends Entity {
 	}
 	
 	/**
+	 * 获得 积分<br>
+	 * 积分
+	 * @return 积分
+	*/
+	public Integer getScore() {
+		return score;
+	}
+	
+	/**
+	 * 设置 积分
+	 * @param score 积分
+	 * @return 当前对象
+	*/
+	public Person setScore(Integer score) {
+		this.score=score;
+		return this;
+	}
+	
+	/**
 	 * 获得 备注<br>
 	 * 备注
 	 * @return 备注
@@ -1738,6 +1770,25 @@ public class Person extends Entity {
 	*/
 	public Person setTenantId(String tenantId) {
 		this.tenantId=tenantId;
+		return this;
+	}
+	
+	/**
+	 * 获得 所在部门<br>
+	 * 所在部门
+	 * @return 所在部门
+	*/
+	public Organization getOrganization() {
+		return organization;
+	}
+	
+	/**
+	 * 设置 所在部门
+	 * @param organization 所在部门
+	 * @return 当前对象
+	*/
+	public Person setOrganization(Organization organization) {
+		this.organization=organization;
 		return this;
 	}
 	
@@ -2084,6 +2135,7 @@ public class Person extends Entity {
 		inst.setRankCode(this.getRankCode());
 		inst.setEmergencyContactNo(this.getEmergencyContactNo());
 		inst.setEmploymentConfirmDate(this.getEmploymentConfirmDate());
+		inst.setScore(this.getScore());
 		inst.setNativePlaceCode(this.getNativePlaceCode());
 		inst.setMajor(this.getMajor());
 		inst.setComputerLevel(this.getComputerLevel());
@@ -2156,6 +2208,7 @@ public class Person extends Entity {
 			inst.setBank(this.getBank());
 			inst.setPersonCertList(this.getPersonCertList());
 			inst.setSalaryTpl(this.getSalaryTpl());
+			inst.setOrganization(this.getOrganization());
 			inst.setRank(this.getRank());
 			inst.setPosition(this.getPosition());
 			inst.setSexDict(this.getSexDict());
@@ -2222,6 +2275,7 @@ public class Person extends Entity {
 			this.setRankCode(DataParser.parse(String.class, map.get(PersonMeta.RANK_CODE)));
 			this.setEmergencyContactNo(DataParser.parse(String.class, map.get(PersonMeta.EMERGENCY_CONTACT_NO)));
 			this.setEmploymentConfirmDate(DataParser.parse(Date.class, map.get(PersonMeta.EMPLOYMENT_CONFIRM_DATE)));
+			this.setScore(DataParser.parse(Integer.class, map.get(PersonMeta.SCORE)));
 			this.setNativePlaceCode(DataParser.parse(String.class, map.get(PersonMeta.NATIVE_PLACE_CODE)));
 			this.setMajor(DataParser.parse(String.class, map.get(PersonMeta.MAJOR)));
 			this.setComputerLevel(DataParser.parse(String.class, map.get(PersonMeta.COMPUTER_LEVEL)));
@@ -2293,6 +2347,7 @@ public class Person extends Entity {
 			this.setBloodTypeDict(DataParser.parse(DictItem.class, map.get(PersonMeta.BLOOD_TYPE_DICT)));
 			this.setBank(DataParser.parse(DictItem.class, map.get(PersonMeta.BANK)));
 			this.setSalaryTpl(DataParser.parse(SalaryTpl.class, map.get(PersonMeta.SALARY_TPL)));
+			this.setOrganization(DataParser.parse(Organization.class, map.get(PersonMeta.ORGANIZATION)));
 			this.setRank(DataParser.parse(Rank.class, map.get(PersonMeta.RANK)));
 			this.setPosition(DataParser.parse(Position.class, map.get(PersonMeta.POSITION)));
 			this.setSexDict(DataParser.parse(DictItem.class, map.get(PersonMeta.SEX_DICT)));
@@ -2303,6 +2358,7 @@ public class Person extends Entity {
 				this.setRankCode( (String)map.get(PersonMeta.RANK_CODE));
 				this.setEmergencyContactNo( (String)map.get(PersonMeta.EMERGENCY_CONTACT_NO));
 				this.setEmploymentConfirmDate( (Date)map.get(PersonMeta.EMPLOYMENT_CONFIRM_DATE));
+				this.setScore( (Integer)map.get(PersonMeta.SCORE));
 				this.setNativePlaceCode( (String)map.get(PersonMeta.NATIVE_PLACE_CODE));
 				this.setMajor( (String)map.get(PersonMeta.MAJOR));
 				this.setComputerLevel( (String)map.get(PersonMeta.COMPUTER_LEVEL));
@@ -2374,6 +2430,7 @@ public class Person extends Entity {
 				this.setBloodTypeDict( (DictItem)map.get(PersonMeta.BLOOD_TYPE_DICT));
 				this.setBank( (DictItem)map.get(PersonMeta.BANK));
 				this.setSalaryTpl( (SalaryTpl)map.get(PersonMeta.SALARY_TPL));
+				this.setOrganization( (Organization)map.get(PersonMeta.ORGANIZATION));
 				this.setRank( (Rank)map.get(PersonMeta.RANK));
 				this.setPosition( (Position)map.get(PersonMeta.POSITION));
 				this.setSexDict( (DictItem)map.get(PersonMeta.SEX_DICT));
@@ -2397,6 +2454,7 @@ public class Person extends Entity {
 			this.setRankCode(DataParser.parse(String.class, r.getValue(PersonMeta.RANK_CODE)));
 			this.setEmergencyContactNo(DataParser.parse(String.class, r.getValue(PersonMeta.EMERGENCY_CONTACT_NO)));
 			this.setEmploymentConfirmDate(DataParser.parse(Date.class, r.getValue(PersonMeta.EMPLOYMENT_CONFIRM_DATE)));
+			this.setScore(DataParser.parse(Integer.class, r.getValue(PersonMeta.SCORE)));
 			this.setNativePlaceCode(DataParser.parse(String.class, r.getValue(PersonMeta.NATIVE_PLACE_CODE)));
 			this.setMajor(DataParser.parse(String.class, r.getValue(PersonMeta.MAJOR)));
 			this.setComputerLevel(DataParser.parse(String.class, r.getValue(PersonMeta.COMPUTER_LEVEL)));
@@ -2463,6 +2521,7 @@ public class Person extends Entity {
 				this.setRankCode( (String)r.getValue(PersonMeta.RANK_CODE));
 				this.setEmergencyContactNo( (String)r.getValue(PersonMeta.EMERGENCY_CONTACT_NO));
 				this.setEmploymentConfirmDate( (Date)r.getValue(PersonMeta.EMPLOYMENT_CONFIRM_DATE));
+				this.setScore( (Integer)r.getValue(PersonMeta.SCORE));
 				this.setNativePlaceCode( (String)r.getValue(PersonMeta.NATIVE_PLACE_CODE));
 				this.setMajor( (String)r.getValue(PersonMeta.MAJOR));
 				this.setComputerLevel( (String)r.getValue(PersonMeta.COMPUTER_LEVEL));

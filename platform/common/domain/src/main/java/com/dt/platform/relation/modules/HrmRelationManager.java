@@ -1,10 +1,7 @@
 package com.dt.platform.relation.modules;
 
 import com.dt.platform.constants.db.HrTables;
-import com.dt.platform.domain.hr.Person;
-import com.dt.platform.domain.hr.PersonAttendanceRec;
-import com.dt.platform.domain.hr.PersonCertificate;
-import com.dt.platform.domain.hr.PersonEducation;
+import com.dt.platform.domain.hr.*;
 import com.dt.platform.domain.hr.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
@@ -29,9 +26,42 @@ public class HrmRelationManager extends RelationManager {
 		this.setupPersonEducation();
 		this.setupPersonSocialRelation();
 		this.setupPersonWork();
+		this.setupPersonScore();
+
+
+		this.setupPersonTransferRcd();
+		this.setupPersonTransfer();
+		this.setupPersonResignation();
 
 	}
 
+	public void setupPersonTransferRcd() {
+		this.property(PersonTransferRcdMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_TRANSFER_RCD.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+
+	}
+
+	public void setupPersonTransfer() {
+		this.property(PersonTransferMeta.ORGANIZATION_PROP)
+				.using(HrTables.HR_PERSON_TRANSFER.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+		this.property(PersonTransferMeta.POSITION_PROP)
+				.using(HrTables.HR_PERSON_TRANSFER.POSITION_CODE).join(HrTables.HR_POSITION.ID);
+
+	}
+
+
+	public void setupPersonResignation() {
+		this.property(PersonResignationMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_RESIGNATION.PERSON_ID).join(HrTables.HR_PERSON.ID);
+	}
+
+
+	public void setupPersonScore() {
+		this.property(PersonScoreMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_SCORE.PERSON_ID).join(HrTables.HR_PERSON.ID);
+	}
 	public void setupPersonCert() {
 		this.property(PersonCertificateMeta.PERSON_PROP)
 				.using(HrTables.HR_PERSON_CERTIFICATE.EMPLOYEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
@@ -90,6 +120,7 @@ public class HrmRelationManager extends RelationManager {
 	private void setupRecruitPersonRec() {
 		this.property(RecruitPersonRecMeta.RECRUIT_POST_REC_PROP)
 				.using(HrTables.HR_RECRUIT_PERSON_REC.POST_ID).join(HrTables.HR_RECRUIT_POST_REC.ID);
+
 	}
 
 	private void setupSalaryAction() {
@@ -171,6 +202,9 @@ public class HrmRelationManager extends RelationManager {
 	}
 
 	private void setupPerson() {
+
+		this.property(PersonMeta.ORGANIZATION_PROP)
+				.using(HrTables.HR_PERSON.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
 
 		this.property(PersonMeta.SALARY_TPL_PROP)
 				.using(HrTables.HR_PERSON.SALARY_TPL_ID).join(HrTables.HR_SALARY_TPL.ID);

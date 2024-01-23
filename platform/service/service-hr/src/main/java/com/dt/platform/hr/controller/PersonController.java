@@ -122,7 +122,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_TPL_ID, value = "薪酬模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_PAY_OUT, value = "是否发放", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -270,7 +271,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_TPL_ID, value = "薪酬模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_PAY_OUT, value = "是否发放", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE, PersonVOMeta.SEARCH_FIELD, PersonVOMeta.FUZZY_FIELD, PersonVOMeta.SEARCH_VALUE, PersonVOMeta.DIRTY_FIELDS, PersonVOMeta.SORT_FIELD, PersonVOMeta.SORT_TYPE, PersonVOMeta.DATA_ORIGIN, PersonVOMeta.QUERY_LOGIC, PersonVOMeta.REQUEST_ACTION, PersonVOMeta.IDS })
@@ -340,7 +342,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_TPL_ID, value = "薪酬模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_PAY_OUT, value = "是否发放", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE, PersonVOMeta.SEARCH_FIELD, PersonVOMeta.FUZZY_FIELD, PersonVOMeta.SEARCH_VALUE, PersonVOMeta.DIRTY_FIELDS, PersonVOMeta.SORT_FIELD, PersonVOMeta.SORT_TYPE, PersonVOMeta.DATA_ORIGIN, PersonVOMeta.QUERY_LOGIC, PersonVOMeta.REQUEST_ACTION, PersonVOMeta.IDS })
@@ -469,7 +472,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_TPL_ID, value = "薪酬模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_PAY_OUT, value = "是否发放", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE })
     @SentinelResource(value = PersonServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -540,7 +544,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_TPL_ID, value = "薪酬模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_PAY_OUT, value = "是否发放", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = PersonServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -562,6 +567,80 @@ public class PersonController extends SuperController {
     @PostMapping(PersonServiceProxy.QUERY_OPER_PARAMETER_VALUE)
     public String queryOperParameterValue(String code) {
         return personService.queryOperParameterValue(code);
+    }
+
+    @ApiOperation(value = "分页查询人员信息")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "717036378466025472"),
+		@ApiImplicitParam(name = PersonVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = PersonVOMeta.SEX_CODE, value = "性别", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.BIRTHDAY, value = "出生日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.NATIVE_PLACE_CODE, value = "籍贯", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NATION_CODE, value = "民族", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.MARITAL_STATUS, value = "婚姻状况", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_STATUS, value = "员工状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_IDENTITY_STATUS, value = "员工标记", required = false, dataTypeClass = String.class, example = "formal"),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TYPE_CODE, value = "人员类型", required = false, dataTypeClass = String.class, example = "contract_worker"),
+		@ApiImplicitParam(name = PersonVOMeta.IDENTITY_CARD, value = "身份证", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMAIL, value = "电子邮件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT, value = "紧急联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT_NO, value = "紧急人电话", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.HOME_ADDRESS, value = "家庭地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.WEIXIN_ID, value = "微信号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EDUCATION_CODE, value = "学历", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.GRADUATION_SCHOOL, value = "毕业院校", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.MAJOR, value = "所学专业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.GRADUATION_DATE, value = "毕业时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE, value = "所学外语", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE_LEVEL, value = "外语证书", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.COMPUTER_ABILITY, value = "计算机能力", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.COMPUTER_LEVEL, value = "计算机等级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.POLITIC_COUNTENANCE_CODE, value = "政治面貌", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.JOIN_PART_DATE, value = "入党时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.BLOOD_TYPE, value = "血型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.BODY_HEIGHT, value = "身高", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PersonVOMeta.BODY_WEIGHT, value = "体重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_DATE, value = "入职日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_CONFIRM_DATE, value = "转正日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FIRST_EMPLOYMENT_DATE, value = "初次日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FIRST_WORK_DATE, value = "参加工作时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.ORG_ID, value = "员工部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.POSITION_CODE, value = "员工岗位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TITLE_CODE, value = "员工职称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.RANK_CODE, value = "员工职级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.WORK_KIND_CODE, value = "员工工种", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.LEAVE_DATE, value = "离职日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.LEAVE_RESON, value = "离职原因", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD_BANK_CODE, value = "工资卡开户行", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD, value = "工资卡帐号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PERSON_PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_ID, value = "员工", required = false, dataTypeClass = String.class, example = "581798649571311616"),
+		@ApiImplicitParam(name = PersonVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.CONTRACT_DURATION, value = "合同周期", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.CONTRACT_START_DATE, value = "合同开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.CONTRACT_FINISH_DATE, value = "合同结束时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.SALARY_TPL_ID, value = "薪酬模版", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.SALARY_PAY_OUT, value = "是否发放", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+	})
+    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonServiceProxy.QUERY_PERSON_NOT_SALARY, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonServiceProxy.QUERY_PERSON_NOT_SALARY)
+    public Result<PagedList<Person>> queryNotSalaryPagedList(PersonVO sample) {
+        Result<PagedList<Person>> result = new Result<>();
+        ConditionExpr expr = new ConditionExpr();
+        expr.and("salary_tpl_id not in (select id from hr_salary_tpl where deleted=0)");
+        PagedList<Person> list = personService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        personService.dao().fill(list).with("employee").with(PersonMeta.SALARY).with(PersonMeta.BANK).with(PersonMeta.SALARY_TPL).with(PersonMeta.POSITION).with(PersonMeta.PROFESSIONAL_LEVEL).with(PersonMeta.RANK).with(PersonMeta.EMPLOYEE_IDENTITY).with(PersonMeta.EDUCATION_DATA).with(PersonMeta.BLOOD_TYPE_DICT).with(PersonMeta.SEX_DICT).with(PersonMeta.MARITAL_STATUS_DICT).with(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT).with(PersonMeta.POLITIC_COUNTENANCE_DATA).execute();
+        List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
+        personService.dao().join(employee, org.github.foxnic.web.domain.hrm.Person.class);
+        result.success(true).data(list);
+        return result;
     }
 
     /**

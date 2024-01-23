@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬模版VO类型
  * <p>薪酬模版 , 数据表 hr_salary_tpl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-04 13:53:39
+ * @since 2024-01-22 15:21:27
  * @sign E9A4577E510BAAF3C8CD5EBD445BE499
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -401,8 +401,10 @@ public class SalaryTplVO extends SalaryTpl {
 	@Transient
 	public SalaryTplVO duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.SalaryTplVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.SalaryTplVOMeta.$$proxy$$();
+		inst.setMethodScript(this.getMethodScript());
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
+		inst.setMethod(this.getMethod());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
@@ -486,8 +488,10 @@ public class SalaryTplVO extends SalaryTpl {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setMethodScript(DataParser.parse(String.class, map.get(SalaryTplVOMeta.METHOD_SCRIPT)));
 			this.setCode(DataParser.parse(String.class, map.get(SalaryTplVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(SalaryTplVOMeta.NOTES)));
+			this.setMethod(DataParser.parse(String.class, map.get(SalaryTplVOMeta.METHOD)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(SalaryTplVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(SalaryTplVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(SalaryTplVOMeta.CREATE_BY)));
@@ -513,8 +517,10 @@ public class SalaryTplVO extends SalaryTpl {
 			return true;
 		} else {
 			try {
+				this.setMethodScript( (String)map.get(SalaryTplVOMeta.METHOD_SCRIPT));
 				this.setCode( (String)map.get(SalaryTplVOMeta.CODE));
 				this.setNotes( (String)map.get(SalaryTplVOMeta.NOTES));
+				this.setMethod( (String)map.get(SalaryTplVOMeta.METHOD));
 				this.setUpdateTime( (Date)map.get(SalaryTplVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(SalaryTplVOMeta.VERSION));
 				this.setCreateBy( (String)map.get(SalaryTplVOMeta.CREATE_BY));
@@ -553,8 +559,10 @@ public class SalaryTplVO extends SalaryTpl {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setMethodScript(DataParser.parse(String.class, r.getValue(SalaryTplVOMeta.METHOD_SCRIPT)));
 			this.setCode(DataParser.parse(String.class, r.getValue(SalaryTplVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(SalaryTplVOMeta.NOTES)));
+			this.setMethod(DataParser.parse(String.class, r.getValue(SalaryTplVOMeta.METHOD)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(SalaryTplVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(SalaryTplVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(SalaryTplVOMeta.CREATE_BY)));
@@ -569,8 +577,10 @@ public class SalaryTplVO extends SalaryTpl {
 			return true;
 		} else {
 			try {
+				this.setMethodScript( (String)r.getValue(SalaryTplVOMeta.METHOD_SCRIPT));
 				this.setCode( (String)r.getValue(SalaryTplVOMeta.CODE));
 				this.setNotes( (String)r.getValue(SalaryTplVOMeta.NOTES));
+				this.setMethod( (String)r.getValue(SalaryTplVOMeta.METHOD));
 				this.setUpdateTime( (Date)r.getValue(SalaryTplVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(SalaryTplVOMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(SalaryTplVOMeta.CREATE_BY));

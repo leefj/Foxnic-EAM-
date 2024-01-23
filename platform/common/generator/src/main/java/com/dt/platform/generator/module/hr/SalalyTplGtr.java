@@ -27,24 +27,33 @@ public class SalalyTplGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().list().disableBatchDelete();
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+
+        cfg.view().field(HrTables.HR_SALARY_TPL.METHOD_SCRIPT).form().table().disable(true);
+
+
         cfg.view().field(HrTables.HR_SALARY_TPL.CODE).form().validate().required();
         cfg.view().field(HrTables.HR_SALARY_TPL.NAME).form().validate().required();
+        cfg.view().field(HrTables.HR_SALARY_TPL.METHOD_SCRIPT).form().textArea().height(350);
+        cfg.view().field(HrTables.HR_SALARY_TPL.NOTES).form().textArea().height(80);
+        cfg.view().list().operationColumn().addActionButton("人员","detail","person-detail");
+        //cfg.view().list().operationColumn().addActionButton("计算方式","salaryConfig","salary-config");
 
 
-        cfg.view().list().operationColumn().addActionButton("明细","detail","person-detail","hr_salary_tpl:detail");
 
-        cfg.view().formWindow().width("65%");;
-        cfg.view().formWindow().bottomSpace(20);
+        cfg.view().formWindow().width("90%");;
+        cfg.view().formWindow().bottomSpace(80);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         HrTables.HR_SALARY_TPL.CODE,
                         HrTables.HR_SALARY_TPL.NAME,
+                        HrTables.HR_SALARY_TPL.METHOD_SCRIPT,
                         HrTables.HR_SALARY_TPL.NOTES,
                 }
         );

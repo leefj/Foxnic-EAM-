@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-04 13:53:39
+ * @since 2024-01-22 15:21:27
  * @sign E9A4577E510BAAF3C8CD5EBD445BE499
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -169,6 +169,26 @@ public class SalaryTplVOMeta extends SalaryTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplVO.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
 	
 	/**
+	 * 计算公式 , 类型: java.lang.String
+	*/
+	public static final String METHOD="method";
+	
+	/**
+	 * 计算公式 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplVO,java.lang.String> METHOD_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplVO.class ,METHOD, java.lang.String.class, "计算公式", "计算公式", java.lang.String.class, null);
+	
+	/**
+	 * 计算公式 , 类型: java.lang.String
+	*/
+	public static final String METHOD_SCRIPT="methodScript";
+	
+	/**
+	 * 计算公式 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplVO,java.lang.String> METHOD_SCRIPT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplVO.class ,METHOD_SCRIPT, java.lang.String.class, "计算公式", "计算公式", java.lang.String.class, null);
+	
+	/**
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final String NOTES="notes";
@@ -271,7 +291,7 @@ public class SalaryTplVOMeta extends SalaryTplMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , METHOD , METHOD_SCRIPT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -447,6 +467,28 @@ public class SalaryTplVOMeta extends SalaryTplMeta {
 		}
 		
 		/**
+		 * 设置 计算公式
+		 * @param method 计算公式
+		 * @return 当前对象
+		*/
+		public SalaryTpl setMethod(String method) {
+			super.change(METHOD,super.getMethod(),method);
+			super.setMethod(method);
+			return this;
+		}
+		
+		/**
+		 * 设置 计算公式
+		 * @param methodScript 计算公式
+		 * @return 当前对象
+		*/
+		public SalaryTpl setMethodScript(String methodScript) {
+			super.change(METHOD_SCRIPT,super.getMethodScript(),methodScript);
+			super.setMethodScript(methodScript);
+			return this;
+		}
+		
+		/**
 		 * 设置 备注
 		 * @param notes 备注
 		 * @return 当前对象
@@ -571,8 +613,10 @@ public class SalaryTplVOMeta extends SalaryTplMeta {
 		@Transient
 		public SalaryTplVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setMethodScript(this.getMethodScript());
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
+			inst.setMethod(this.getMethod());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());

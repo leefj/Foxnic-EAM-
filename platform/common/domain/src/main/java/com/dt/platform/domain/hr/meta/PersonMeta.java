@@ -3,6 +3,7 @@ package com.dt.platform.domain.hr.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.hr.Person;
 import java.util.Date;
+import org.github.foxnic.web.domain.hrm.Organization;
 import com.dt.platform.domain.hr.Position;
 import com.dt.platform.domain.hr.Rank;
 import com.dt.platform.domain.hr.ProfessionalLevel;
@@ -18,8 +19,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-16 10:30:09
- * @sign C62F017803FF6F620D4C32D6878FDC61
+ * @since 2024-01-22 08:19:05
+ * @sign CA6B8DF6989294F71B456B63A5C4A63C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -556,6 +557,16 @@ public class PersonMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.util.Date> CONTRACT_FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,CONTRACT_FINISH_DATE, java.util.Date.class, "合同结束时间", "合同结束时间", java.util.Date.class, null);
 	
 	/**
+	 * 积分 , 类型: java.lang.Integer
+	*/
+	public static final String SCORE="score";
+	
+	/**
+	 * 积分 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.Integer> SCORE_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,SCORE, java.lang.Integer.class, "积分", "积分", java.lang.Integer.class, null);
+	
+	/**
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final String NOTE="note";
@@ -654,6 +665,16 @@ public class PersonMeta {
 	 * 租户 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
+	
+	/**
+	 * 所在部门 , 类型: org.github.foxnic.web.domain.hrm.Organization
+	*/
+	public static final String ORGANIZATION="organization";
+	
+	/**
+	 * 所在部门 , 类型: org.github.foxnic.web.domain.hrm.Organization
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.hrm.Organization> ORGANIZATION_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,ORGANIZATION, org.github.foxnic.web.domain.hrm.Organization.class, "所在部门", "所在部门", org.github.foxnic.web.domain.hrm.Organization.class, null);
 	
 	/**
 	 * position , 类型: com.dt.platform.domain.hr.Position
@@ -808,7 +829,7 @@ public class PersonMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_IDENTITY_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , SALARY_TPL_ID , SALARY_PAY_OUT , SALARY_NOTES , PERSON_PICTURE_ID , EMPLOYEE_ID , FILE_ID , CONTRACT_DURATION , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION , RANK , PROFESSIONAL_LEVEL , BLOOD_TYPE_DICT , SEX_DICT , MARITAL_STATUS_DICT , EMPLOYEE_OWNER_TYPE_DICT , EDUCATION_DATA , POLITIC_COUNTENANCE_DATA , EMPLOYEE_IDENTITY , BANK , EMPLOYEE , PERSON_CERT_LIST , SALARY , SALARY_TPL };
+	public static final String[] $PROPS={ ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_IDENTITY_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , SALARY_TPL_ID , SALARY_PAY_OUT , SALARY_NOTES , PERSON_PICTURE_ID , EMPLOYEE_ID , FILE_ID , CONTRACT_DURATION , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , SCORE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORGANIZATION , POSITION , RANK , PROFESSIONAL_LEVEL , BLOOD_TYPE_DICT , SEX_DICT , MARITAL_STATUS_DICT , EMPLOYEE_OWNER_TYPE_DICT , EDUCATION_DATA , POLITIC_COUNTENANCE_DATA , EMPLOYEE_IDENTITY , BANK , EMPLOYEE , PERSON_CERT_LIST , SALARY , SALARY_TPL };
 	
 	/**
 	 * 代理类
@@ -1402,6 +1423,17 @@ public class PersonMeta {
 		}
 		
 		/**
+		 * 设置 积分
+		 * @param score 积分
+		 * @return 当前对象
+		*/
+		public Person setScore(Integer score) {
+			super.change(SCORE,super.getScore(),score);
+			super.setScore(score);
+			return this;
+		}
+		
+		/**
 		 * 设置 备注
 		 * @param note 备注
 		 * @return 当前对象
@@ -1508,6 +1540,17 @@ public class PersonMeta {
 		public Person setTenantId(String tenantId) {
 			super.change(TENANT_ID,super.getTenantId(),tenantId);
 			super.setTenantId(tenantId);
+			return this;
+		}
+		
+		/**
+		 * 设置 所在部门
+		 * @param organization 所在部门
+		 * @return 当前对象
+		*/
+		public Person setOrganization(Organization organization) {
+			super.change(ORGANIZATION,super.getOrganization(),organization);
+			super.setOrganization(organization);
 			return this;
 		}
 		
@@ -1694,6 +1737,7 @@ public class PersonMeta {
 			inst.setRankCode(this.getRankCode());
 			inst.setEmergencyContactNo(this.getEmergencyContactNo());
 			inst.setEmploymentConfirmDate(this.getEmploymentConfirmDate());
+			inst.setScore(this.getScore());
 			inst.setNativePlaceCode(this.getNativePlaceCode());
 			inst.setMajor(this.getMajor());
 			inst.setComputerLevel(this.getComputerLevel());
@@ -1766,6 +1810,7 @@ public class PersonMeta {
 				inst.setBank(this.getBank());
 				inst.setPersonCertList(this.getPersonCertList());
 				inst.setSalaryTpl(this.getSalaryTpl());
+				inst.setOrganization(this.getOrganization());
 				inst.setRank(this.getRank());
 				inst.setPosition(this.getPosition());
 				inst.setSexDict(this.getSexDict());

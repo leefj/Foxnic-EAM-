@@ -50,10 +50,12 @@ function ListPage() {
 		admin.post("/service-hr/hr-salary-detail/query-statistical-data-by-action-id", {actionId:ACTION_ID} , function (r) {
 			if (r.success) {
 				var bannerData=r.data;
-				$("#total_pserson_cnt").html(bannerData.totalPsersonCnt);
+				$("#total_person_cnt").html(bannerData.totalPersonCnt);
 				$("#person_abnormal_cnt").html(bannerData.personAbnormalCnt);
 				$("#issued_amount_sum").html(bannerData.issuedAmountSum);
 				$("#total_amount_sum").html(bannerData.totalAmountSum);
+				//配置为未发薪酬，如果离职人员不需要在参与发薪酬，请配置成不发薪酬
+				$("#total_not_include_cnt").html(bannerData.totalNotIncludeCnt);
 			} else {
 				fox.showMessage(data);
 			}
@@ -377,11 +379,11 @@ function ListPage() {
 				case 'tool-valid-data':
 					window.pageExt.list.validData && window.pageExt.list.validData(selected,obj);
 					break;
-				case 'tool-export-data':
-					window.pageExt.list.exportData && window.pageExt.list.exportData(selected,obj);
+				case 'tool-salary-export':
+					window.pageExt.list.salaryExport && window.pageExt.list.salaryExport(selected,obj);
 					break;
-				case 'tool-import-data':
-					window.pageExt.list.importData && window.pageExt.list.importData(selected,obj);
+				case 'tool-salary-import':
+					window.pageExt.list.salaryImport && window.pageExt.list.salaryImport(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();

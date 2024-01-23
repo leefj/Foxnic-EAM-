@@ -2,7 +2,7 @@
 /**
  * 薪酬明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 10:23:11
+ * @since 2024-01-23 08:35:29
  */
  -->
  <!DOCTYPE html>
@@ -37,11 +37,11 @@
 
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0541-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0007-fieldset">
             <legend>人员信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-0541-content">
+        <div class="layui-row form-row" id="random-0007-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -68,19 +68,19 @@
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-                <!-- text_input : 银行 ,  bank -->
+                <!-- text_input : 银行名称 ,  bank -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('银行')}">银行</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('银行名称')}">银行名称</div></div>
                     <div class="layui-input-block ">
-                        <input  readonly lay-filter="bank" id="bank" name="bank" th:placeholder="${ lang.translate('请输入'+'银行') }" type="text" class="layui-input"  />
+                        <input  readonly lay-filter="bank" id="bank" name="bank" th:placeholder="${ lang.translate('请输入'+'银行名称') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             
-                <!-- text_input : 账户账户 ,  bankAccount -->
+                <!-- text_input : 银行账户 ,  bankAccount -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('账户账户')}">账户账户</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('银行账户')}">银行账户</div></div>
                     <div class="layui-input-block ">
-                        <input  readonly lay-filter="bankAccount" id="bankAccount" name="bankAccount" th:placeholder="${ lang.translate('请输入'+'账户账户') }" type="text" class="layui-input"  />
+                        <input  readonly lay-filter="bankAccount" id="bankAccount" name="bankAccount" th:placeholder="${ lang.translate('请输入'+'银行账户') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -89,11 +89,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3921-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0075-fieldset">
             <legend>操作信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-3921-content">
+        <div class="layui-row form-row" id="random-0075-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -146,11 +146,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5641-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7619-fieldset">
             <legend>基本工资</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-5641-content">
+        <div class="layui-row form-row" id="random-7619-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -195,11 +195,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1173-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-8194-fieldset">
             <legend>各类补贴</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-1173-content">
+        <div class="layui-row form-row" id="random-8194-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -271,14 +271,6 @@
                     </div>
                 </div>
             
-                <!-- number_input : 高温补贴 ,  highTemperatureSalary  -->
-                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('高温补贴')}">高温补贴</div></div>
-                    <div class="layui-input-block ">
-                        <input lay-filter="highTemperatureSalary" id="highTemperatureSalary" name="highTemperatureSalary" th:placeholder="${ lang.translate('请输入'+'高温补贴') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
-                    </div>
-                </div>
-            
                 <!-- number_input : 其他补贴 ,  otherSalary  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('其他补贴')}">其他补贴</div></div>
@@ -292,11 +284,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6979-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1624-fieldset">
             <legend>福利基数</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-6979-content">
+        <div class="layui-row form-row" id="random-1624-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -461,11 +453,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-8569-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0047-fieldset">
             <legend>应扣项目</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-8569-content">
+        <div class="layui-row form-row" id="random-0047-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -523,11 +515,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-8279-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6424-fieldset">
             <legend>个税减免</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-8279-content">
+        <div class="layui-row form-row" id="random-6424-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -604,11 +596,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5300-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5840-fieldset">
             <legend>个人所得税</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-5300-content">
+        <div class="layui-row form-row" id="random-5840-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -653,11 +645,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2797-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7664-fieldset">
             <legend>小计</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-2797-content">
+        <div class="layui-row form-row" id="random-7664-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
