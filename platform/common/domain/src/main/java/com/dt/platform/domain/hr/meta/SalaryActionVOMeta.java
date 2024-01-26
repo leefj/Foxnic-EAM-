@@ -5,6 +5,7 @@ import com.dt.platform.domain.hr.SalaryActionVO;
 import java.util.List;
 import com.dt.platform.domain.hr.SalaryAction;
 import java.util.Date;
+import com.dt.platform.domain.hr.SalaryDetail;
 import com.dt.platform.domain.hr.SalaryTpl;
 import com.dt.platform.domain.hr.SalaryMonth;
 import com.dt.platform.domain.hr.Person;
@@ -14,7 +15,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-21 21:46:28
+ * @since 2024-01-26 22:31:54
  * @sign D2833AFDC8E870D34CD2E6393C7E0ED7
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -182,6 +183,26 @@ public class SalaryActionVOMeta extends SalaryActionMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryActionVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryActionVO.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
 	
 	/**
+	 * 开始日期 , 类型: java.util.Date
+	*/
+	public static final String START="start";
+	
+	/**
+	 * 开始日期 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryActionVO,java.util.Date> START_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryActionVO.class ,START, java.util.Date.class, "开始日期", "开始日期", java.util.Date.class, null);
+	
+	/**
+	 * 结束日期 , 类型: java.util.Date
+	*/
+	public static final String END="end";
+	
+	/**
+	 * 结束日期 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryActionVO,java.util.Date> END_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryActionVO.class ,END, java.util.Date.class, "结束日期", "结束日期", java.util.Date.class, null);
+	
+	/**
 	 * 月份 , 类型: java.lang.String
 	*/
 	public static final String ACTION_MONTH="actionMonth";
@@ -302,6 +323,16 @@ public class SalaryActionVOMeta extends SalaryActionMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryActionVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryActionVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * SalaryDetailList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryDetail
+	*/
+	public static final String SALARY_DETAIL_LIST="SalaryDetailList";
+	
+	/**
+	 * SalaryDetailList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryDetail
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryActionVO,com.dt.platform.domain.hr.SalaryDetail> SALARY_DETAIL_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryActionVO.class ,SALARY_DETAIL_LIST, java.util.List.class, "SalaryDetailList", "SalaryDetailList", com.dt.platform.domain.hr.SalaryDetail.class, null);
+	
+	/**
 	 * salaryTpl , 类型: com.dt.platform.domain.hr.SalaryTpl
 	*/
 	public static final String SALARY_TPL="salaryTpl";
@@ -334,7 +365,7 @@ public class SalaryActionVOMeta extends SalaryActionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , STATUS , LABEL , NAME , ACTION_MONTH , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL , SALARY_MONTH , PERSON_LIST };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , STATUS , LABEL , NAME , START , END , ACTION_MONTH , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_DETAIL_LIST , SALARY_TPL , SALARY_MONTH , PERSON_LIST };
 	
 	/**
 	 * 代理类
@@ -521,6 +552,28 @@ public class SalaryActionVOMeta extends SalaryActionMeta {
 		}
 		
 		/**
+		 * 设置 开始日期
+		 * @param start 开始日期
+		 * @return 当前对象
+		*/
+		public SalaryAction setStart(Date start) {
+			super.change(START,super.getStart(),start);
+			super.setStart(start);
+			return this;
+		}
+		
+		/**
+		 * 设置 结束日期
+		 * @param end 结束日期
+		 * @return 当前对象
+		*/
+		public SalaryAction setEnd(Date end) {
+			super.change(END,super.getEnd(),end);
+			super.setEnd(end);
+			return this;
+		}
+		
+		/**
 		 * 设置 月份
 		 * @param actionMonth 月份
 		 * @return 当前对象
@@ -653,6 +706,17 @@ public class SalaryActionVOMeta extends SalaryActionMeta {
 		}
 		
 		/**
+		 * 设置 SalaryDetailList
+		 * @param SalaryDetailList SalaryDetailList
+		 * @return 当前对象
+		*/
+		public SalaryAction setSalaryDetailList(List<SalaryDetail> SalaryDetailList) {
+			super.change(SALARY_DETAIL_LIST,super.getSalaryDetailList(),SalaryDetailList);
+			super.setSalaryDetailList(SalaryDetailList);
+			return this;
+		}
+		
+		/**
 		 * 设置 salaryTpl
 		 * @param salaryTpl salaryTpl
 		 * @return 当前对象
@@ -701,6 +765,7 @@ public class SalaryActionVOMeta extends SalaryActionMeta {
 		public SalaryActionVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
+			inst.setStart(this.getStart());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setLabel(this.getLabel());
 			inst.setActionMonth(this.getActionMonth());
@@ -713,6 +778,7 @@ public class SalaryActionVOMeta extends SalaryActionMeta {
 			inst.setName(this.getName());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setEnd(this.getEnd());
 			inst.setId(this.getId());
 			inst.setTplId(this.getTplId());
 			inst.setStatus(this.getStatus());
@@ -731,6 +797,7 @@ public class SalaryActionVOMeta extends SalaryActionMeta {
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
+				inst.setSalaryDetailList(this.getSalaryDetailList());
 				inst.setSearchValue(this.getSearchValue());
 			}
 			inst.clearModifies();

@@ -14,6 +14,7 @@ import java.util.Map;
 import com.dt.platform.domain.hr.meta.SalaryTplVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
+import java.math.BigDecimal;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -22,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬模版VO类型
  * <p>薪酬模版 , 数据表 hr_salary_tpl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 15:21:27
+ * @since 2024-01-26 23:28:02
  * @sign E9A4577E510BAAF3C8CD5EBD445BE499
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -401,10 +402,12 @@ public class SalaryTplVO extends SalaryTpl {
 	@Transient
 	public SalaryTplVO duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.SalaryTplVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.SalaryTplVOMeta.$$proxy$$();
+		inst.setStartMDay(this.getStartMDay());
 		inst.setMethodScript(this.getMethodScript());
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
 		inst.setMethod(this.getMethod());
+		inst.setEndMDay(this.getEndMDay());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
@@ -417,17 +420,22 @@ public class SalaryTplVO extends SalaryTpl {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
+			inst.setPersonList(this.getPersonList());
 			inst.setSearchField(this.getSearchField());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setConfNonConversionRatio(this.getConfNonConversionRatio());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setSalaryTplItem(this.getSalaryTplItem());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setValidSalaryTplItem(this.getValidSalaryTplItem());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setSalaryDetailList(this.getSalaryDetailList());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -488,10 +496,12 @@ public class SalaryTplVO extends SalaryTpl {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setStartMDay(DataParser.parse(Integer.class, map.get(SalaryTplVOMeta.START_M_DAY)));
 			this.setMethodScript(DataParser.parse(String.class, map.get(SalaryTplVOMeta.METHOD_SCRIPT)));
 			this.setCode(DataParser.parse(String.class, map.get(SalaryTplVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(SalaryTplVOMeta.NOTES)));
 			this.setMethod(DataParser.parse(String.class, map.get(SalaryTplVOMeta.METHOD)));
+			this.setEndMDay(DataParser.parse(Integer.class, map.get(SalaryTplVOMeta.END_M_DAY)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(SalaryTplVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(SalaryTplVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(SalaryTplVOMeta.CREATE_BY)));
@@ -505,22 +515,25 @@ public class SalaryTplVO extends SalaryTpl {
 			this.setId(DataParser.parse(String.class, map.get(SalaryTplVOMeta.ID)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(SalaryTplVOMeta.SEARCH_FIELD)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(SalaryTplVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(SalaryTplVOMeta.SORT_TYPE)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(SalaryTplVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(SalaryTplVOMeta.FUZZY_FIELD)));
-			this.setSortField(DataParser.parse(String.class, map.get(SalaryTplVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(SalaryTplVOMeta.PAGE_SIZE)));
+			this.setConfNonConversionRatio(DataParser.parse(BigDecimal.class, map.get(SalaryTplVOMeta.CONF_NON_CONVERSION_RATIO)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(SalaryTplVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(SalaryTplVOMeta.SORT_TYPE)));
+			this.setSortField(DataParser.parse(String.class, map.get(SalaryTplVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(SalaryTplVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(SalaryTplVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(SalaryTplVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
 			try {
+				this.setStartMDay( (Integer)map.get(SalaryTplVOMeta.START_M_DAY));
 				this.setMethodScript( (String)map.get(SalaryTplVOMeta.METHOD_SCRIPT));
 				this.setCode( (String)map.get(SalaryTplVOMeta.CODE));
 				this.setNotes( (String)map.get(SalaryTplVOMeta.NOTES));
 				this.setMethod( (String)map.get(SalaryTplVOMeta.METHOD));
+				this.setEndMDay( (Integer)map.get(SalaryTplVOMeta.END_M_DAY));
 				this.setUpdateTime( (Date)map.get(SalaryTplVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(SalaryTplVOMeta.VERSION));
 				this.setCreateBy( (String)map.get(SalaryTplVOMeta.CREATE_BY));
@@ -534,12 +547,13 @@ public class SalaryTplVO extends SalaryTpl {
 				this.setId( (String)map.get(SalaryTplVOMeta.ID));
 				// others
 				this.setSearchField( (String)map.get(SalaryTplVOMeta.SEARCH_FIELD));
-				this.setPageIndex( (Integer)map.get(SalaryTplVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(SalaryTplVOMeta.SORT_TYPE));
 				this.setRequestAction( (String)map.get(SalaryTplVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(SalaryTplVOMeta.FUZZY_FIELD));
-				this.setSortField( (String)map.get(SalaryTplVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(SalaryTplVOMeta.PAGE_SIZE));
+				this.setConfNonConversionRatio( (BigDecimal)map.get(SalaryTplVOMeta.CONF_NON_CONVERSION_RATIO));
+				this.setPageIndex( (Integer)map.get(SalaryTplVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(SalaryTplVOMeta.SORT_TYPE));
+				this.setSortField( (String)map.get(SalaryTplVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(SalaryTplVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(SalaryTplVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(SalaryTplVOMeta.SEARCH_VALUE));
@@ -559,10 +573,12 @@ public class SalaryTplVO extends SalaryTpl {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setStartMDay(DataParser.parse(Integer.class, r.getValue(SalaryTplVOMeta.START_M_DAY)));
 			this.setMethodScript(DataParser.parse(String.class, r.getValue(SalaryTplVOMeta.METHOD_SCRIPT)));
 			this.setCode(DataParser.parse(String.class, r.getValue(SalaryTplVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(SalaryTplVOMeta.NOTES)));
 			this.setMethod(DataParser.parse(String.class, r.getValue(SalaryTplVOMeta.METHOD)));
+			this.setEndMDay(DataParser.parse(Integer.class, r.getValue(SalaryTplVOMeta.END_M_DAY)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(SalaryTplVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(SalaryTplVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(SalaryTplVOMeta.CREATE_BY)));
@@ -577,10 +593,12 @@ public class SalaryTplVO extends SalaryTpl {
 			return true;
 		} else {
 			try {
+				this.setStartMDay( (Integer)r.getValue(SalaryTplVOMeta.START_M_DAY));
 				this.setMethodScript( (String)r.getValue(SalaryTplVOMeta.METHOD_SCRIPT));
 				this.setCode( (String)r.getValue(SalaryTplVOMeta.CODE));
 				this.setNotes( (String)r.getValue(SalaryTplVOMeta.NOTES));
 				this.setMethod( (String)r.getValue(SalaryTplVOMeta.METHOD));
+				this.setEndMDay( (Integer)r.getValue(SalaryTplVOMeta.END_M_DAY));
 				this.setUpdateTime( (Date)r.getValue(SalaryTplVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(SalaryTplVOMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(SalaryTplVOMeta.CREATE_BY));

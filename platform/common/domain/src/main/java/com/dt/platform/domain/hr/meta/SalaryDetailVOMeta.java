@@ -9,13 +9,14 @@ import java.util.Date;
 import com.dt.platform.domain.hr.SalaryTpl;
 import com.dt.platform.domain.hr.SalaryAction;
 import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.Salary;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-23 08:35:28
+ * @since 2024-01-26 23:26:24
  * @sign D3B310DBE8753898C4401D627A0D58FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -893,9 +894,19 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,com.dt.platform.domain.hr.Person> PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,PERSON, com.dt.platform.domain.hr.Person.class, "person", "person", com.dt.platform.domain.hr.Person.class, null);
 	
 	/**
+	 * personSalary , 类型: com.dt.platform.domain.hr.Salary
+	*/
+	public static final String PERSON_SALARY="personSalary";
+	
+	/**
+	 * personSalary , 类型: com.dt.platform.domain.hr.Salary
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,com.dt.platform.domain.hr.Salary> PERSON_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,PERSON_SALARY, com.dt.platform.domain.hr.Salary.class, "personSalary", "personSalary", com.dt.platform.domain.hr.Salary.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , USER_NAME , ACTION_MONTH , PERSON_ID , JOB_NUMBER , BANK , BANK_ACCOUNT , TPL_ID , ACTION_ID , STATUS , TOTAL_AMOUNT , PAY_AMOUNT , ISSUED_AMOUNT , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , HIGH_TEMPERATURE_SALARY , OTHER_SALARY , COMMISSION_SALARY , PUNISH_SALARY , DEDUCT_KQ , DEDUCT_GH , DEDUCT_OTHER , DEDUCT_PERSONAL_TAX_RED , PT_GRSDS , PT_DKJS , PT_SL_PCT , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , EFFECT_TIME , NOTES , OPER_MSG , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL , SALARY_ACTION , EXT_BANK , EXT_BANK_ACCOUNT , PERSON };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , USER_NAME , ACTION_MONTH , PERSON_ID , JOB_NUMBER , BANK , BANK_ACCOUNT , TPL_ID , ACTION_ID , STATUS , TOTAL_AMOUNT , PAY_AMOUNT , ISSUED_AMOUNT , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , HIGH_TEMPERATURE_SALARY , OTHER_SALARY , COMMISSION_SALARY , PUNISH_SALARY , DEDUCT_KQ , DEDUCT_GH , DEDUCT_OTHER , DEDUCT_PERSONAL_TAX_RED , PT_GRSDS , PT_DKJS , PT_SL_PCT , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , EFFECT_TIME , NOTES , OPER_MSG , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL , SALARY_ACTION , EXT_BANK , EXT_BANK_ACCOUNT , PERSON , PERSON_SALARY };
 	
 	/**
 	 * 代理类
@@ -1861,6 +1872,17 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 			super.setPerson(person);
 			return this;
 		}
+		
+		/**
+		 * 设置 personSalary
+		 * @param personSalary personSalary
+		 * @return 当前对象
+		*/
+		public SalaryDetail setPersonSalary(Salary personSalary) {
+			super.change(PERSON_SALARY,super.getPersonSalary(),personSalary);
+			super.setPersonSalary(personSalary);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1965,6 +1987,7 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
+				inst.setPersonSalary(this.getPersonSalary());
 			}
 			inst.clearModifies();
 			return inst;

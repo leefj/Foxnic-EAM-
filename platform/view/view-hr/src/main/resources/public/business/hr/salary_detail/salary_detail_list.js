@@ -1,7 +1,7 @@
 /**
  * 薪酬明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-23 08:35:29
+ * @since 2024-01-26 23:26:26
  */
 
 
@@ -356,6 +356,9 @@ function ListPage() {
 					break;
 				case 'tool-valid-data':
 					window.pageExt.list.validData && window.pageExt.list.validData(selected,obj);
+					break;
+				case 'tool-calculate-data':
+					window.pageExt.list.calculateData && window.pageExt.list.calculateData(selected,obj);
 					break;
 				case 'tool-salary-export':
 					window.pageExt.list.salaryExport && window.pageExt.list.salaryExport(selected,obj);

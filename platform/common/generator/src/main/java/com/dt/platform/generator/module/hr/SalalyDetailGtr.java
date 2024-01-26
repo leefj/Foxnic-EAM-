@@ -5,10 +5,7 @@ import com.dt.platform.constants.db.HrTables;
 import com.dt.platform.constants.enums.common.StatusYNEnum;
 import com.dt.platform.constants.enums.common.ValidStatusEnum;
 import com.dt.platform.constants.enums.hr.SalaryPersonDetailStatusEnum;
-import com.dt.platform.domain.hr.Person;
-import com.dt.platform.domain.hr.SalaryAction;
-import com.dt.platform.domain.hr.SalaryDetail;
-import com.dt.platform.domain.hr.SalaryTpl;
+import com.dt.platform.domain.hr.*;
 import com.dt.platform.domain.hr.meta.PersonMeta;
 import com.dt.platform.domain.hr.meta.SalaryDetailMeta;
 import com.dt.platform.domain.hr.meta.SalaryMeta;
@@ -18,6 +15,8 @@ import com.dt.platform.hr.page.SalaryDetailPageController;
 import com.dt.platform.hr.page.SalaryPageController;
 import com.dt.platform.proxy.hr.*;
 import com.github.foxnic.generator.config.WriteMode;
+
+import java.math.BigDecimal;
 
 
 public class SalalyDetailGtr extends BaseCodeGenerator {
@@ -42,11 +41,14 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
                         HrTables.HR_SALARY_DETAIL.OPER_MSG,
                 }
         );
+
+
         cfg.getPoClassFile().addSimpleProperty(SalaryTpl.class,"salaryTpl","salaryTpl","salaryTpl");
         cfg.getPoClassFile().addSimpleProperty(SalaryAction.class,"salaryAction","salaryAction","salaryAction");
         cfg.getPoClassFile().addSimpleProperty(String.class,"extBank","extBank","extBank");
         cfg.getPoClassFile().addSimpleProperty(String.class,"extBankAccount","extBankAccount","extBankAccount");
         cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
+        cfg.getPoClassFile().addSimpleProperty(Salary.class,"personSalary","personSalary","personSalary");
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
@@ -313,8 +315,11 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
         cfg.view().list().operationColumn().addActionButton("重置","resetData","person-reset-data","hr_salary_detail:reset");
         cfg.view().list().addToolButton("生效","validData","person-valid-data","hr_salary_detail:valid");
+        cfg.view().list().addToolButton("计算","calculateData","person-calculate-data");
+
         cfg.view().list().addToolButton("导出","salaryExport","person-export-data");
         cfg.view().list().addToolButton("导入","salaryImport","person-import-data");
+
 
 
         //文件生成覆盖模式

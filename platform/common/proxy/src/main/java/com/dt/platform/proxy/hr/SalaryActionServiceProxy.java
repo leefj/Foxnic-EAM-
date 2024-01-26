@@ -90,6 +90,9 @@ public interface SalaryActionServiceProxy {
      */
     public static final String CREATE_DATA = API_PREFIX + "create-data";
 
+
+    public static final String CALCULATE = API_PREFIX + "calculate";
+
     /**
      * 添加薪酬发放
      */

@@ -14,6 +14,7 @@ import java.util.Map;
 import com.dt.platform.domain.hr.meta.SalaryColumnVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
+import java.math.BigDecimal;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -22,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬字段VO类型
  * <p>薪酬字段 , 数据表 hr_salary_column 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 14:09:25
+ * @since 2024-01-26 15:51:03
  * @sign 51BE07C3F0960FFBDD8249AF1DA0EECB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -405,6 +406,7 @@ public class SalaryColumnVO extends SalaryColumn {
 		inst.setNotes(this.getNotes());
 		inst.setColCode(this.getColCode());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setColValue(this.getColValue());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -494,6 +496,7 @@ public class SalaryColumnVO extends SalaryColumn {
 			this.setNotes(DataParser.parse(String.class, map.get(SalaryColumnVOMeta.NOTES)));
 			this.setColCode(DataParser.parse(String.class, map.get(SalaryColumnVOMeta.COL_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(SalaryColumnVOMeta.UPDATE_TIME)));
+			this.setColValue(DataParser.parse(BigDecimal.class, map.get(SalaryColumnVOMeta.COL_VALUE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(SalaryColumnVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(SalaryColumnVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(SalaryColumnVOMeta.DELETED)));
@@ -525,6 +528,7 @@ public class SalaryColumnVO extends SalaryColumn {
 				this.setNotes( (String)map.get(SalaryColumnVOMeta.NOTES));
 				this.setColCode( (String)map.get(SalaryColumnVOMeta.COL_CODE));
 				this.setUpdateTime( (Date)map.get(SalaryColumnVOMeta.UPDATE_TIME));
+				this.setColValue( (BigDecimal)map.get(SalaryColumnVOMeta.COL_VALUE));
 				this.setVersion( (Integer)map.get(SalaryColumnVOMeta.VERSION));
 				this.setCreateBy( (String)map.get(SalaryColumnVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(SalaryColumnVOMeta.DELETED));
@@ -569,6 +573,7 @@ public class SalaryColumnVO extends SalaryColumn {
 			this.setNotes(DataParser.parse(String.class, r.getValue(SalaryColumnVOMeta.NOTES)));
 			this.setColCode(DataParser.parse(String.class, r.getValue(SalaryColumnVOMeta.COL_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(SalaryColumnVOMeta.UPDATE_TIME)));
+			this.setColValue(DataParser.parse(BigDecimal.class, r.getValue(SalaryColumnVOMeta.COL_VALUE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(SalaryColumnVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(SalaryColumnVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(SalaryColumnVOMeta.DELETED)));
@@ -589,6 +594,7 @@ public class SalaryColumnVO extends SalaryColumn {
 				this.setNotes( (String)r.getValue(SalaryColumnVOMeta.NOTES));
 				this.setColCode( (String)r.getValue(SalaryColumnVOMeta.COL_CODE));
 				this.setUpdateTime( (Date)r.getValue(SalaryColumnVOMeta.UPDATE_TIME));
+				this.setColValue( (BigDecimal)r.getValue(SalaryColumnVOMeta.COL_VALUE));
 				this.setVersion( (Integer)r.getValue(SalaryColumnVOMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(SalaryColumnVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(SalaryColumnVOMeta.DELETED));

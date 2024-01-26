@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬明细VO类型
  * <p>薪酬明细 , 数据表 hr_salary_detail 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-23 08:35:28
+ * @since 2024-01-26 23:26:24
  * @sign D3B310DBE8753898C4401D627A0D58FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -490,6 +490,7 @@ public class SalaryDetailVO extends SalaryDetail {
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
+			inst.setPersonSalary(this.getPersonSalary());
 		}
 		inst.clearModifies();
 		return inst;
@@ -635,6 +636,7 @@ public class SalaryDetailVO extends SalaryDetail {
 			this.setDataOrigin(DataParser.parse(String.class, map.get(SalaryDetailVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(SalaryDetailVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(SalaryDetailVOMeta.SEARCH_VALUE)));
+			this.setPersonSalary(DataParser.parse(Salary.class, map.get(SalaryDetailVOMeta.PERSON_SALARY)));
 			return true;
 		} else {
 			try {
@@ -724,6 +726,7 @@ public class SalaryDetailVO extends SalaryDetail {
 				this.setDataOrigin( (String)map.get(SalaryDetailVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(SalaryDetailVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(SalaryDetailVOMeta.SEARCH_VALUE));
+				this.setPersonSalary( (Salary)map.get(SalaryDetailVOMeta.PERSON_SALARY));
 				return true;
 			} catch (Exception e) {
 				return false;

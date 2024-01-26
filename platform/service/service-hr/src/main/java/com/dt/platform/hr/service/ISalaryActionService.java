@@ -31,6 +31,8 @@ import java.util.Map;
 public interface ISalaryActionService extends  ISimpleIdService<SalaryAction,String> {
 
 
+	public Result calculate(String id);
+
 	Result createPersonData(Person person, SalaryAction act);
 
 	Result createData(String id);

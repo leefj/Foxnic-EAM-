@@ -376,6 +376,9 @@ function ListPage() {
 				case 'batch-del':
 					batchDelete(selected);
 					break;
+				case 'tool-calculate-data':
+					window.pageExt.list.calculateData && window.pageExt.list.calculateData(selected,obj);
+					break;
 				case 'tool-valid-data':
 					window.pageExt.list.validData && window.pageExt.list.validData(selected,obj);
 					break;

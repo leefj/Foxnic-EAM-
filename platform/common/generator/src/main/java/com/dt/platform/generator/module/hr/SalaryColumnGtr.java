@@ -41,12 +41,15 @@ public class SalaryColumnGtr extends BaseCodeGenerator {
 
         cfg.view().field(HrTables.HR_SALARY_COLUMN.UPDATE_BY).form().table().disable(true);
         cfg.view().field(HrTables.HR_SALARY_COLUMN.CAL_METHOD).form().table().disable(true);
+        cfg.view().field(HrTables.HR_SALARY_COLUMN.CAL_METHOD).form().table().disable(true);
         cfg.view().field(HrTables.HR_SALARY_COLUMN.COL_CODE).form().validate().required();
         cfg.view().field(HrTables.HR_SALARY_COLUMN.COL_NAME).form().validate().required();
         cfg.view().field(HrTables.HR_SALARY_COLUMN.DS_SOURCE).form().validate().required();
         cfg.view().field(HrTables.HR_SALARY_COLUMN.NOTES).form().textArea().height(120);
         cfg.view().field(HrTables.HR_SALARY_COLUMN.COL_TYPE).form().validate().required().form().radioBox().enumType(SalaryColumnTypeEnum.class).defaultIndex(0);
         cfg.view().field(HrTables.HR_SALARY_COLUMN.BUSI_TYPE).form().validate().required().form().radioBox().enumType(SalaryBusinessTypeEnum.class).defaultIndex(0);
+        cfg.view().field(HrTables.HR_SALARY_COLUMN.COL_VALUE).form().validate().required().form().numberInput().decimal().scale(2).defaultValue(0.00);
+
 
         cfg.view().formWindow().width("75%");;
         cfg.view().formWindow().bottomSpace(80);
@@ -55,6 +58,7 @@ public class SalaryColumnGtr extends BaseCodeGenerator {
                         HrTables.HR_SALARY_COLUMN.COL_CODE,
                         HrTables.HR_SALARY_COLUMN.COL_NAME,
                         HrTables.HR_SALARY_COLUMN.COL_TYPE,
+                        HrTables.HR_SALARY_COLUMN.COL_VALUE,
                         HrTables.HR_SALARY_COLUMN.DS_SOURCE,
                         HrTables.HR_SALARY_COLUMN.BUSI_TYPE,
                         HrTables.HR_SALARY_COLUMN.NOTES,
@@ -82,7 +86,7 @@ public class SalaryColumnGtr extends BaseCodeGenerator {
        // System.out.println("############"+g.getTablePrefix());
         //g.removeByBatchId("470160949404237824");
       //  //生成菜单
-       g.generateMenu(SalaryColumnServiceProxy.class, SalaryColumnPageController.class);
+       //g.generateMenu(SalaryColumnServiceProxy.class, SalaryColumnPageController.class);
 
 
     }

@@ -30,6 +30,9 @@ import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.hr.meta.SalaryTplMeta;
+import com.dt.platform.domain.hr.SalaryTplItem;
+import com.dt.platform.domain.hr.SalaryDetail;
+import com.dt.platform.domain.hr.Person;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -44,7 +47,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 薪酬模版接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 15:21:27
+ * @since 2024-01-26 22:29:54
 */
 
 @InDoc
@@ -63,6 +66,8 @@ public class SalaryTplController extends SuperController {
 		@ApiImplicitParam(name = SalaryTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717722780455403520"),
 		@ApiImplicitParam(name = SalaryTplVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "all"),
 		@ApiImplicitParam(name = SalaryTplVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "全员人员"),
+		@ApiImplicitParam(name = SalaryTplVOMeta.START_M_DAY , value = "开始上月" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = SalaryTplVOMeta.END_M_DAY , value = "结束本月" , required = false , dataTypeClass=Integer.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.METHOD , value = "计算公式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.METHOD_SCRIPT , value = "计算公式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "全员人员"),
@@ -171,6 +176,8 @@ public class SalaryTplController extends SuperController {
 		@ApiImplicitParam(name = SalaryTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717722780455403520"),
 		@ApiImplicitParam(name = SalaryTplVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "all"),
 		@ApiImplicitParam(name = SalaryTplVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "全员人员"),
+		@ApiImplicitParam(name = SalaryTplVOMeta.START_M_DAY , value = "开始上月" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = SalaryTplVOMeta.END_M_DAY , value = "结束本月" , required = false , dataTypeClass=Integer.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.METHOD , value = "计算公式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.METHOD_SCRIPT , value = "计算公式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "全员人员"),
@@ -195,6 +202,8 @@ public class SalaryTplController extends SuperController {
 		@ApiImplicitParam(name = SalaryTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717722780455403520"),
 		@ApiImplicitParam(name = SalaryTplVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "all"),
 		@ApiImplicitParam(name = SalaryTplVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "全员人员"),
+		@ApiImplicitParam(name = SalaryTplVOMeta.START_M_DAY , value = "开始上月" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = SalaryTplVOMeta.END_M_DAY , value = "结束本月" , required = false , dataTypeClass=Integer.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.METHOD , value = "计算公式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.METHOD_SCRIPT , value = "计算公式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "全员人员"),
@@ -258,6 +267,8 @@ public class SalaryTplController extends SuperController {
 		@ApiImplicitParam(name = SalaryTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717722780455403520"),
 		@ApiImplicitParam(name = SalaryTplVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "all"),
 		@ApiImplicitParam(name = SalaryTplVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "全员人员"),
+		@ApiImplicitParam(name = SalaryTplVOMeta.START_M_DAY , value = "开始上月" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = SalaryTplVOMeta.END_M_DAY , value = "结束本月" , required = false , dataTypeClass=Integer.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.METHOD , value = "计算公式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.METHOD_SCRIPT , value = "计算公式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "全员人员"),
@@ -283,6 +294,8 @@ public class SalaryTplController extends SuperController {
 		@ApiImplicitParam(name = SalaryTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717722780455403520"),
 		@ApiImplicitParam(name = SalaryTplVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "all"),
 		@ApiImplicitParam(name = SalaryTplVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "全员人员"),
+		@ApiImplicitParam(name = SalaryTplVOMeta.START_M_DAY , value = "开始上月" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = SalaryTplVOMeta.END_M_DAY , value = "结束本月" , required = false , dataTypeClass=Integer.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.METHOD , value = "计算公式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.METHOD_SCRIPT , value = "计算公式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SalaryTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "全员人员"),

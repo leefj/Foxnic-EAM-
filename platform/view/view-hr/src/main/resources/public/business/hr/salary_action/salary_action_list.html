@@ -2,7 +2,7 @@
 /**
  * 薪酬发放 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-21 21:46:29
+ * @since 2024-01-26 22:31:55
  */
  -->
  <!DOCTYPE html>
@@ -48,6 +48,8 @@
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.SalaryActionStatusEnum')}" style="width:180px"></div>
                     </div>
                     <!-- 标签 , label ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 开始日期 , start ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 结束日期 , end ,typeName=date_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 模版 , tplId ,typeName=select_box, isHideInSearch=false -->

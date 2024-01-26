@@ -5,6 +5,7 @@ import com.dt.platform.constants.db.HrTables;
 import com.dt.platform.constants.enums.hr.SalaryActionLabelEnum;
 import com.dt.platform.constants.enums.hr.SalaryActionStatusEnum;
 import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.SalaryDetail;
 import com.dt.platform.domain.hr.SalaryMonth;
 import com.dt.platform.domain.hr.SalaryTpl;
 import com.dt.platform.domain.hr.meta.SalaryActionMeta;
@@ -23,6 +24,14 @@ public class SalalyActionGtr extends BaseCodeGenerator {
 
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
+
+
+        cfg.getPoClassFile().addListProperty(SalaryDetail.class,"SalaryDetailList","SalaryDetailList","SalaryDetailList");
+
+
+        cfg.getPoClassFile().addSimpleProperty(SalaryTpl.class,"salaryTpl","salaryTpl","salaryTpl");
+        cfg.getPoClassFile().addSimpleProperty(SalaryMonth.class,"salaryMonth","salaryMonth","salaryMonth");
+        cfg.getPoClassFile().addListProperty(Person.class,"personList","personList","personList");
 
 
         cfg.view().field(HrTables.HR_SALARY.ID).basic().hidden(true);
@@ -47,9 +56,7 @@ public class SalalyActionGtr extends BaseCodeGenerator {
 
 
 
-        cfg.getPoClassFile().addSimpleProperty(SalaryTpl.class,"salaryTpl","salaryTpl","salaryTpl");
-        cfg.getPoClassFile().addSimpleProperty(SalaryMonth.class,"salaryMonth","salaryMonth","salaryMonth");
-        cfg.getPoClassFile().addListProperty(Person.class,"personList","personList","personList");
+
 
 
         cfg.view().field(HrTables.HR_SALARY_ACTION.STATUS).form().radioBox().enumType(SalaryActionStatusEnum.class);

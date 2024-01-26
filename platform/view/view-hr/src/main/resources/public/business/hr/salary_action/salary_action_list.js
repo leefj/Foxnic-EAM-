@@ -1,7 +1,7 @@
 /**
  * 薪酬发放 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-21 21:46:29
+ * @since 2024-01-26 22:31:56
  */
 
 
@@ -88,6 +88,8 @@ function ListPage() {
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'label', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签'), templet:function (d){ return templet('label',fox.getEnumText(RADIO_LABEL_DATA,d.label,'','label'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'start', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始日期') ,templet: function (d) { return templet('start',fox.dateFormat(d.start,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'end', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束日期') ,templet: function (d) { return templet('end',fox.dateFormat(d.end,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'actionMonth', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('月份'), templet: function (d) { return templet('actionMonth' ,fox.joinLabel(d.salaryMonth,"name",',','','actionMonth'),d);}}
 					,{ field: 'tplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版'), templet: function (d) { return templet('tplId' ,fox.joinLabel(d.salaryTpl,"name",',','','tplId'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }

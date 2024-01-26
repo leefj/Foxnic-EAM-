@@ -17,6 +17,8 @@ public enum SalaryPersonDetailStatusEnum implements CodeTextEnum {
 
 	PROCESSING("processing" , "处理中"),
 
+	CAL_FINISH("cal_finish" , "计算完成"),
+
 	FINISH("finish" , "完成"),
 
 	ABNORMAL("abnormal" , "异常");
