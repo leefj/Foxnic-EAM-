@@ -2,7 +2,7 @@
 /**
  * 薪酬明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-23 08:35:29
+ * @since 2024-01-26 23:26:25
  */
  -->
  <!DOCTYPE html>
@@ -151,6 +151,7 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button id="valid-data"  th:if="${perm.checkAuth('hr_salary_detail:valid')}"class="layui-btn icon-btn layui-btn-sm  person-valid-data " lay-event="tool-valid-data"><span th:text="${lang.translate('生效','','cmp:table.button')}">生效</span></button>
+        <button id="calculate-data"  class="layui-btn icon-btn layui-btn-sm  person-calculate-data " lay-event="tool-calculate-data"><span th:text="${lang.translate('计算','','cmp:table.button')}">计算</span></button>
         <button id="salary-export"  class="layui-btn icon-btn layui-btn-sm  person-export-data " lay-event="tool-salary-export"><span th:text="${lang.translate('导出','','cmp:table.button')}">导出</span></button>
         <button id="salary-import"  class="layui-btn icon-btn layui-btn-sm  person-import-data " lay-event="tool-salary-import"><span th:text="${lang.translate('导入','','cmp:table.button')}">导入</span></button>
     </div>

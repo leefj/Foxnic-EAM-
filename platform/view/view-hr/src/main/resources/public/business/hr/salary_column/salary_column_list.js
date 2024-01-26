@@ -1,7 +1,7 @@
 /**
  * 薪酬字段 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 14:09:27
+ * @since 2024-01-26 15:51:05
  */
 
 
@@ -88,6 +88,7 @@ function ListPage() {
 					,{ field: 'colCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('字段') , templet: function (d) { return templet('colCode',d.colCode,d);}  }
 					,{ field: 'colName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('colName',d.colName,d);}  }
 					,{ field: 'colType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('类型'), templet:function (d){ return templet('colType',fox.getEnumText(RADIO_COLTYPE_DATA,d.colType,'','colType'),d);}}
+					,{ field: 'colValue', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('值') , templet: function (d) { return templet('colValue',d.colValue,d);}  }
 					,{ field: 'dsSource', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据来源') , templet: function (d) { return templet('dsSource',d.dsSource,d);}  }
 					,{ field: 'busiType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务分类'), templet:function (d){ return templet('busiType',fox.getEnumText(RADIO_BUSITYPE_DATA,d.busiType,'','busiType'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }

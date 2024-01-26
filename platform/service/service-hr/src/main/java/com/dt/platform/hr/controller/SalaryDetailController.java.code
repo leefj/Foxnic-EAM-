@@ -38,6 +38,7 @@ import java.math.BigDecimal;
 import com.dt.platform.domain.hr.SalaryTpl;
 import com.dt.platform.domain.hr.SalaryAction;
 import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.Salary;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -52,7 +53,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 薪酬明细接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-23 08:35:28
+ * @since 2024-01-26 23:26:24
 */
 
 @InDoc

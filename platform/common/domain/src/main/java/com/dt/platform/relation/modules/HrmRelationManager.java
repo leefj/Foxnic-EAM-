@@ -19,6 +19,8 @@ public class HrmRelationManager extends RelationManager {
 		this.setupPersonFile();
 		this.setupSalary();
 		this.setupSalaryDetail();
+		this.setupSalaryTpl();
+		this.setupSalaryTplItem();
 		this.setupSalaryAction();
 		this.setupRecruitPersonRec();
 		this.setupPersonAttendanceRec();
@@ -32,6 +34,22 @@ public class HrmRelationManager extends RelationManager {
 		this.setupPersonResignation();
 
 	}
+	public void setupSalaryTpl() {
+
+
+		this.property(SalaryTplMeta.SALARY_TPL_ITEM_PROP)
+				.using(HrTables.HR_SALARY_TPL.ID).join(HrTables.HR_SALARY_TPL_ITEM.TPL_ID);
+
+		this.property(SalaryTplMeta.VALID_SALARY_TPL_ITEM_PROP)
+				.using(HrTables.HR_SALARY_TPL.ID).join(HrTables.HR_SALARY_TPL_ITEM.TPL_ID)
+				.condition("status='enable'");
+	}
+
+	public void setupSalaryTplItem() {
+		this.property(SalaryTplItemMeta.SALARY_COLUMN_PROP)
+				.using(HrTables.HR_SALARY_TPL_ITEM.CODE).join(HrTables.HR_SALARY_COLUMN.COL_CODE);
+	}
+
 
 	public void setupPersonTransferRcd() {
 		this.property(PersonTransferRcdMeta.PERSON_PROP)
@@ -125,10 +143,17 @@ public class HrmRelationManager extends RelationManager {
 	}
 
 	private void setupSalaryAction() {
+
+		this.property(SalaryActionMeta.SALARY_DETAIL_LIST_PROP)
+				.using(HrTables.HR_SALARY_ACTION.ID).join(HrTables.HR_SALARY_DETAIL.ACTION_ID);
+
+
 		this.property(SalaryActionMeta.SALARY_TPL_PROP)
 				.using(HrTables.HR_SALARY_ACTION.TPL_ID).join(HrTables.HR_SALARY_TPL.ID);
+
 		this.property(SalaryActionMeta.PERSON_LIST_PROP)
 				.using(HrTables.HR_SALARY_ACTION.TPL_ID).join(HrTables.HR_SALARY_TPL.ID)
+
 				.using(HrTables.HR_SALARY_TPL.ID).join(HrTables.HR_PERSON.SALARY_TPL_ID);
 		this.property(SalaryActionMeta.SALARY_MONTH_PROP)
 				.using(HrTables.HR_SALARY_ACTION.ACTION_MONTH).join(HrTables.HR_SALARY_MONTH.CODE);
@@ -167,6 +192,10 @@ public class HrmRelationManager extends RelationManager {
 
 
 	private void setupSalaryDetail() {
+
+		this.property(SalaryDetailMeta.PERSON_SALARY_PROP)
+				.using(HrTables.HR_SALARY_DETAIL.PERSON_ID).join(HrTables.HR_SALARY.PERSON_ID);
+
 		this.property(SalaryDetailMeta.PERSON_PROP)
 				.using(HrTables.HR_SALARY_DETAIL.PERSON_ID).join(HrTables.HR_PERSON.ID);
 

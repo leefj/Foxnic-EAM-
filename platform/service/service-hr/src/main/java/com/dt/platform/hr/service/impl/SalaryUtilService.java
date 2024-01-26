@@ -11,7 +11,7 @@ import java.util.*;
 
 
 @Service("SalaryCalUtilService")
-public class SalaryCalUtilService {
+public class SalaryUtilService {
 
 
     /**

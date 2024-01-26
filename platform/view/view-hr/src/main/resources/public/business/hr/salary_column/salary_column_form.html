@@ -2,7 +2,7 @@
 /**
  * 薪酬字段 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 14:09:27
+ * @since 2024-01-26 15:51:05
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-8583-content">
+        <div class="layui-row form-row" id="random-4643-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -65,6 +65,14 @@
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('类型')}">类型</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block layui-input-block-c1">
                         <input input-type="radio" type="radio" name="colType" lay-filter="colType" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.hr.SalaryColumnTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
+                    </div>
+                </div>
+            
+                <!-- number_input : 值 ,  colValue  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('值')}">值</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="colValue" id="colValue" name="colValue" th:placeholder="${ lang.translate('请输入'+'值') }" type="text" class="layui-input"    lay-verify="|required"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2"  value="0.0" />
                     </div>
                 </div>
             
@@ -118,7 +126,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_COLTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.SalaryColumnTypeEnum')}]];
     var RADIO_BUSITYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.SalaryBusinessTypeEnum')}]];
-    var VALIDATE_CONFIG={"colName":{"labelInForm":"名称","inputType":"text_input","required":true},"colType":{"labelInForm":"类型","inputType":"radio_box","required":true},"colCode":{"labelInForm":"字段","inputType":"text_input","required":true},"busiType":{"labelInForm":"业务分类","inputType":"radio_box","required":true},"dsSource":{"labelInForm":"数据来源","inputType":"text_input","required":true}};
+    var VALIDATE_CONFIG={"colName":{"labelInForm":"名称","inputType":"text_input","required":true},"colType":{"labelInForm":"类型","inputType":"radio_box","required":true},"colCode":{"labelInForm":"字段","inputType":"text_input","required":true},"busiType":{"labelInForm":"业务分类","inputType":"radio_box","required":true},"colValue":{"labelInForm":"值","inputType":"number_input","required":true},"dsSource":{"labelInForm":"数据来源","inputType":"text_input","required":true}};
     var AUTH_PREFIX="hr_salary_column";
 
 

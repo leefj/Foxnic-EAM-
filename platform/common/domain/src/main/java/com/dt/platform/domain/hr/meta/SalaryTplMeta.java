@@ -3,14 +3,19 @@ package com.dt.platform.domain.hr.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.hr.SalaryTpl;
 import java.util.Date;
+import com.dt.platform.domain.hr.SalaryTplItem;
+import java.util.List;
+import com.dt.platform.domain.hr.SalaryDetail;
+import com.dt.platform.domain.hr.Person;
+import java.math.BigDecimal;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 15:21:27
- * @sign 1AC962C9C08085CE8AE6BDB045B92D2C
+ * @since 2024-01-26 23:28:02
+ * @sign 7E3EAB0796CCD05DCE48ECADCC07C6DD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,6 +50,26 @@ public class SalaryTplMeta {
 	 * 名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTpl,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTpl.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
+	
+	/**
+	 * 开始上月 , 类型: java.lang.Integer
+	*/
+	public static final String START_M_DAY="startMDay";
+	
+	/**
+	 * 开始上月 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTpl,java.lang.Integer> START_M_DAY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTpl.class ,START_M_DAY, java.lang.Integer.class, "开始上月", "开始上月", java.lang.Integer.class, null);
+	
+	/**
+	 * 结束本月 , 类型: java.lang.Integer
+	*/
+	public static final String END_M_DAY="endMDay";
+	
+	/**
+	 * 结束本月 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTpl,java.lang.Integer> END_M_DAY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTpl.class ,END_M_DAY, java.lang.Integer.class, "结束本月", "结束本月", java.lang.Integer.class, null);
 	
 	/**
 	 * 计算公式 , 类型: java.lang.String
@@ -167,9 +192,59 @@ public class SalaryTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTpl,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTpl.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * salaryTplItem , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryTplItem
+	*/
+	public static final String SALARY_TPL_ITEM="salaryTplItem";
+	
+	/**
+	 * salaryTplItem , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryTplItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTpl,com.dt.platform.domain.hr.SalaryTplItem> SALARY_TPL_ITEM_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTpl.class ,SALARY_TPL_ITEM, java.util.List.class, "salaryTplItem", "salaryTplItem", com.dt.platform.domain.hr.SalaryTplItem.class, null);
+	
+	/**
+	 * validSalaryTplItem , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryTplItem
+	*/
+	public static final String VALID_SALARY_TPL_ITEM="validSalaryTplItem";
+	
+	/**
+	 * validSalaryTplItem , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryTplItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTpl,com.dt.platform.domain.hr.SalaryTplItem> VALID_SALARY_TPL_ITEM_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTpl.class ,VALID_SALARY_TPL_ITEM, java.util.List.class, "validSalaryTplItem", "validSalaryTplItem", com.dt.platform.domain.hr.SalaryTplItem.class, null);
+	
+	/**
+	 * SalaryDetailList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryDetail
+	*/
+	public static final String SALARY_DETAIL_LIST="SalaryDetailList";
+	
+	/**
+	 * SalaryDetailList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryDetail
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTpl,com.dt.platform.domain.hr.SalaryDetail> SALARY_DETAIL_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTpl.class ,SALARY_DETAIL_LIST, java.util.List.class, "SalaryDetailList", "SalaryDetailList", com.dt.platform.domain.hr.SalaryDetail.class, null);
+	
+	/**
+	 * personList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final String PERSON_LIST="personList";
+	
+	/**
+	 * personList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTpl,com.dt.platform.domain.hr.Person> PERSON_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTpl.class ,PERSON_LIST, java.util.List.class, "personList", "personList", com.dt.platform.domain.hr.Person.class, null);
+	
+	/**
+	 * confNonConversionRatio , 类型: java.math.BigDecimal
+	*/
+	public static final String CONF_NON_CONVERSION_RATIO="confNonConversionRatio";
+	
+	/**
+	 * confNonConversionRatio , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTpl,java.math.BigDecimal> CONF_NON_CONVERSION_RATIO_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTpl.class ,CONF_NON_CONVERSION_RATIO, java.math.BigDecimal.class, "confNonConversionRatio", "confNonConversionRatio", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , NAME , METHOD , METHOD_SCRIPT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , CODE , NAME , START_M_DAY , END_M_DAY , METHOD , METHOD_SCRIPT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL_ITEM , VALID_SALARY_TPL_ITEM , SALARY_DETAIL_LIST , PERSON_LIST , CONF_NON_CONVERSION_RATIO };
 	
 	/**
 	 * 代理类
@@ -209,6 +284,28 @@ public class SalaryTplMeta {
 		public SalaryTpl setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 开始上月
+		 * @param startMDay 开始上月
+		 * @return 当前对象
+		*/
+		public SalaryTpl setStartMDay(Integer startMDay) {
+			super.change(START_M_DAY,super.getStartMDay(),startMDay);
+			super.setStartMDay(startMDay);
+			return this;
+		}
+		
+		/**
+		 * 设置 结束本月
+		 * @param endMDay 结束本月
+		 * @return 当前对象
+		*/
+		public SalaryTpl setEndMDay(Integer endMDay) {
+			super.change(END_M_DAY,super.getEndMDay(),endMDay);
+			super.setEndMDay(endMDay);
 			return this;
 		}
 		
@@ -343,6 +440,61 @@ public class SalaryTplMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 salaryTplItem
+		 * @param salaryTplItem salaryTplItem
+		 * @return 当前对象
+		*/
+		public SalaryTpl setSalaryTplItem(List<SalaryTplItem> salaryTplItem) {
+			super.change(SALARY_TPL_ITEM,super.getSalaryTplItem(),salaryTplItem);
+			super.setSalaryTplItem(salaryTplItem);
+			return this;
+		}
+		
+		/**
+		 * 设置 validSalaryTplItem
+		 * @param validSalaryTplItem validSalaryTplItem
+		 * @return 当前对象
+		*/
+		public SalaryTpl setValidSalaryTplItem(List<SalaryTplItem> validSalaryTplItem) {
+			super.change(VALID_SALARY_TPL_ITEM,super.getValidSalaryTplItem(),validSalaryTplItem);
+			super.setValidSalaryTplItem(validSalaryTplItem);
+			return this;
+		}
+		
+		/**
+		 * 设置 SalaryDetailList
+		 * @param SalaryDetailList SalaryDetailList
+		 * @return 当前对象
+		*/
+		public SalaryTpl setSalaryDetailList(List<SalaryDetail> SalaryDetailList) {
+			super.change(SALARY_DETAIL_LIST,super.getSalaryDetailList(),SalaryDetailList);
+			super.setSalaryDetailList(SalaryDetailList);
+			return this;
+		}
+		
+		/**
+		 * 设置 personList
+		 * @param personList personList
+		 * @return 当前对象
+		*/
+		public SalaryTpl setPersonList(List<Person> personList) {
+			super.change(PERSON_LIST,super.getPersonList(),personList);
+			super.setPersonList(personList);
+			return this;
+		}
+		
+		/**
+		 * 设置 confNonConversionRatio
+		 * @param confNonConversionRatio confNonConversionRatio
+		 * @return 当前对象
+		*/
+		public SalaryTpl setConfNonConversionRatio(BigDecimal confNonConversionRatio) {
+			super.change(CONF_NON_CONVERSION_RATIO,super.getConfNonConversionRatio(),confNonConversionRatio);
+			super.setConfNonConversionRatio(confNonConversionRatio);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -359,10 +511,12 @@ public class SalaryTplMeta {
 		@Transient
 		public SalaryTpl duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setStartMDay(this.getStartMDay());
 			inst.setMethodScript(this.getMethodScript());
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
 			inst.setMethod(this.getMethod());
+			inst.setEndMDay(this.getEndMDay());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
@@ -374,6 +528,13 @@ public class SalaryTplMeta {
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			if(all) {
+				inst.setPersonList(this.getPersonList());
+				inst.setSalaryTplItem(this.getSalaryTplItem());
+				inst.setValidSalaryTplItem(this.getValidSalaryTplItem());
+				inst.setConfNonConversionRatio(this.getConfNonConversionRatio());
+				inst.setSalaryDetailList(this.getSalaryDetailList());
+			}
 			inst.clearModifies();
 			return inst;
 		}

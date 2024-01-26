@@ -1,7 +1,7 @@
 /**
  * 薪酬模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 15:21:28
+ * @since 2024-01-26 23:28:04
  */
 
 
@@ -87,7 +87,8 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编号') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'method', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计算公式') , templet: function (d) { return templet('method',d.method,d);}  }
+					,{ field: 'startMDay', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('开始上月') , templet: function (d) { return templet('startMDay',d.startMDay,d);}  }
+					,{ field: 'endMDay', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('结束本月') , templet: function (d) { return templet('endMDay',d.endMDay,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
@@ -376,6 +377,9 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'rule') { // 计算规则
+				window.pageExt.list.rule(data,this);
 			}
 			else if (layEvent === 'detail') { // 人员
 				window.pageExt.list.detail(data,this);

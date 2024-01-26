@@ -26,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬发放
  * <p>薪酬发放 , 数据表 hr_salary_action 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-21 21:46:28
- * @sign 0E5BAFB6ED23255502CFF315F80F4615
+ * @since 2024-01-26 22:31:54
+ * @sign 45E1DD732738934194F705101E4108B9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -49,7 +49,7 @@ public class SalaryAction extends Entity {
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "wait")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "finish")
 	private String status;
 	
 	/**
@@ -63,6 +63,18 @@ public class SalaryAction extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "1212")
 	private String name;
+	
+	/**
+	 * 开始日期：开始日期
+	*/
+	@ApiModelProperty(required = false,value="开始日期" , notes = "开始日期")
+	private Date start;
+	
+	/**
+	 * 结束日期：结束日期
+	*/
+	@ApiModelProperty(required = false,value="结束日期" , notes = "结束日期")
+	private Date end;
 	
 	/**
 	 * 月份：月份
@@ -138,6 +150,12 @@ public class SalaryAction extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * SalaryDetailList：SalaryDetailList
+	*/
+	@ApiModelProperty(required = false,value="SalaryDetailList" , notes = "SalaryDetailList")
+	private List<SalaryDetail> SalaryDetailList;
 	
 	/**
 	 * salaryTpl：salaryTpl
@@ -230,6 +248,44 @@ public class SalaryAction extends Entity {
 	*/
 	public SalaryAction setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 开始日期<br>
+	 * 开始日期
+	 * @return 开始日期
+	*/
+	public Date getStart() {
+		return start;
+	}
+	
+	/**
+	 * 设置 开始日期
+	 * @param start 开始日期
+	 * @return 当前对象
+	*/
+	public SalaryAction setStart(Date start) {
+		this.start=start;
+		return this;
+	}
+	
+	/**
+	 * 获得 结束日期<br>
+	 * 结束日期
+	 * @return 结束日期
+	*/
+	public Date getEnd() {
+		return end;
+	}
+	
+	/**
+	 * 设置 结束日期
+	 * @param end 结束日期
+	 * @return 当前对象
+	*/
+	public SalaryAction setEnd(Date end) {
+		this.end=end;
 		return this;
 	}
 	
@@ -493,6 +549,36 @@ public class SalaryAction extends Entity {
 	}
 	
 	/**
+	 * 获得 SalaryDetailList<br>
+	 * SalaryDetailList
+	 * @return SalaryDetailList
+	*/
+	public List<SalaryDetail> getSalaryDetailList() {
+		return SalaryDetailList;
+	}
+	
+	/**
+	 * 设置 SalaryDetailList
+	 * @param SalaryDetailList SalaryDetailList
+	 * @return 当前对象
+	*/
+	public SalaryAction setSalaryDetailList(List<SalaryDetail> SalaryDetailList) {
+		this.SalaryDetailList=SalaryDetailList;
+		return this;
+	}
+	
+	/**
+	 * 添加 SalaryDetailList
+	 * @param SalaryDetail SalaryDetailList
+	 * @return 当前对象
+	*/
+	public SalaryAction addSalaryDetail(SalaryDetail... SalaryDetail) {
+		if(this.SalaryDetailList==null) SalaryDetailList=new ArrayList<>();
+		this.SalaryDetailList.addAll(Arrays.asList(SalaryDetail));
+		return this;
+	}
+	
+	/**
 	 * 获得 salaryTpl<br>
 	 * salaryTpl
 	 * @return salaryTpl
@@ -605,6 +691,7 @@ public class SalaryAction extends Entity {
 	public SalaryAction duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.SalaryActionMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.SalaryActionMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
+		inst.setStart(this.getStart());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setLabel(this.getLabel());
 		inst.setActionMonth(this.getActionMonth());
@@ -617,6 +704,7 @@ public class SalaryAction extends Entity {
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setEnd(this.getEnd());
 		inst.setId(this.getId());
 		inst.setTplId(this.getTplId());
 		inst.setStatus(this.getStatus());
@@ -624,6 +712,7 @@ public class SalaryAction extends Entity {
 			inst.setSalaryTpl(this.getSalaryTpl());
 			inst.setPersonList(this.getPersonList());
 			inst.setSalaryMonth(this.getSalaryMonth());
+			inst.setSalaryDetailList(this.getSalaryDetailList());
 		}
 		inst.clearModifies();
 		return inst;
@@ -684,6 +773,7 @@ public class SalaryAction extends Entity {
 		if(map==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(SalaryActionMeta.NOTES)));
+			this.setStart(DataParser.parse(Date.class, map.get(SalaryActionMeta.START)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(SalaryActionMeta.UPDATE_TIME)));
 			this.setLabel(DataParser.parse(String.class, map.get(SalaryActionMeta.LABEL)));
 			this.setActionMonth(DataParser.parse(String.class, map.get(SalaryActionMeta.ACTION_MONTH)));
@@ -696,6 +786,7 @@ public class SalaryAction extends Entity {
 			this.setName(DataParser.parse(String.class, map.get(SalaryActionMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(SalaryActionMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(SalaryActionMeta.DELETE_BY)));
+			this.setEnd(DataParser.parse(Date.class, map.get(SalaryActionMeta.END)));
 			this.setId(DataParser.parse(String.class, map.get(SalaryActionMeta.ID)));
 			this.setTplId(DataParser.parse(String.class, map.get(SalaryActionMeta.TPL_ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(SalaryActionMeta.STATUS)));
@@ -706,6 +797,7 @@ public class SalaryAction extends Entity {
 		} else {
 			try {
 				this.setNotes( (String)map.get(SalaryActionMeta.NOTES));
+				this.setStart( (Date)map.get(SalaryActionMeta.START));
 				this.setUpdateTime( (Date)map.get(SalaryActionMeta.UPDATE_TIME));
 				this.setLabel( (String)map.get(SalaryActionMeta.LABEL));
 				this.setActionMonth( (String)map.get(SalaryActionMeta.ACTION_MONTH));
@@ -718,6 +810,7 @@ public class SalaryAction extends Entity {
 				this.setName( (String)map.get(SalaryActionMeta.NAME));
 				this.setTenantId( (String)map.get(SalaryActionMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(SalaryActionMeta.DELETE_BY));
+				this.setEnd( (Date)map.get(SalaryActionMeta.END));
 				this.setId( (String)map.get(SalaryActionMeta.ID));
 				this.setTplId( (String)map.get(SalaryActionMeta.TPL_ID));
 				this.setStatus( (String)map.get(SalaryActionMeta.STATUS));
@@ -741,6 +834,7 @@ public class SalaryAction extends Entity {
 		if(r==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(SalaryActionMeta.NOTES)));
+			this.setStart(DataParser.parse(Date.class, r.getValue(SalaryActionMeta.START)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(SalaryActionMeta.UPDATE_TIME)));
 			this.setLabel(DataParser.parse(String.class, r.getValue(SalaryActionMeta.LABEL)));
 			this.setActionMonth(DataParser.parse(String.class, r.getValue(SalaryActionMeta.ACTION_MONTH)));
@@ -753,6 +847,7 @@ public class SalaryAction extends Entity {
 			this.setName(DataParser.parse(String.class, r.getValue(SalaryActionMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(SalaryActionMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(SalaryActionMeta.DELETE_BY)));
+			this.setEnd(DataParser.parse(Date.class, r.getValue(SalaryActionMeta.END)));
 			this.setId(DataParser.parse(String.class, r.getValue(SalaryActionMeta.ID)));
 			this.setTplId(DataParser.parse(String.class, r.getValue(SalaryActionMeta.TPL_ID)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(SalaryActionMeta.STATUS)));
@@ -760,6 +855,7 @@ public class SalaryAction extends Entity {
 		} else {
 			try {
 				this.setNotes( (String)r.getValue(SalaryActionMeta.NOTES));
+				this.setStart( (Date)r.getValue(SalaryActionMeta.START));
 				this.setUpdateTime( (Date)r.getValue(SalaryActionMeta.UPDATE_TIME));
 				this.setLabel( (String)r.getValue(SalaryActionMeta.LABEL));
 				this.setActionMonth( (String)r.getValue(SalaryActionMeta.ACTION_MONTH));
@@ -772,6 +868,7 @@ public class SalaryAction extends Entity {
 				this.setName( (String)r.getValue(SalaryActionMeta.NAME));
 				this.setTenantId( (String)r.getValue(SalaryActionMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(SalaryActionMeta.DELETE_BY));
+				this.setEnd( (Date)r.getValue(SalaryActionMeta.END));
 				this.setId( (String)r.getValue(SalaryActionMeta.ID));
 				this.setTplId( (String)r.getValue(SalaryActionMeta.TPL_ID));
 				this.setStatus( (String)r.getValue(SalaryActionMeta.STATUS));

@@ -3,18 +3,19 @@ package com.dt.platform.domain.hr.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.hr.SalaryAction;
 import java.util.Date;
+import com.dt.platform.domain.hr.SalaryDetail;
+import java.util.List;
 import com.dt.platform.domain.hr.SalaryTpl;
 import com.dt.platform.domain.hr.SalaryMonth;
 import com.dt.platform.domain.hr.Person;
-import java.util.List;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-21 21:46:28
- * @sign 0E5BAFB6ED23255502CFF315F80F4615
+ * @since 2024-01-26 22:31:54
+ * @sign 45E1DD732738934194F705101E4108B9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -59,6 +60,26 @@ public class SalaryActionMeta {
 	 * 名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryAction,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryAction.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
+	
+	/**
+	 * 开始日期 , 类型: java.util.Date
+	*/
+	public static final String START="start";
+	
+	/**
+	 * 开始日期 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryAction,java.util.Date> START_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryAction.class ,START, java.util.Date.class, "开始日期", "开始日期", java.util.Date.class, null);
+	
+	/**
+	 * 结束日期 , 类型: java.util.Date
+	*/
+	public static final String END="end";
+	
+	/**
+	 * 结束日期 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryAction,java.util.Date> END_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryAction.class ,END, java.util.Date.class, "结束日期", "结束日期", java.util.Date.class, null);
 	
 	/**
 	 * 月份 , 类型: java.lang.String
@@ -181,6 +202,16 @@ public class SalaryActionMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryAction,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryAction.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * SalaryDetailList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryDetail
+	*/
+	public static final String SALARY_DETAIL_LIST="SalaryDetailList";
+	
+	/**
+	 * SalaryDetailList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryDetail
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryAction,com.dt.platform.domain.hr.SalaryDetail> SALARY_DETAIL_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryAction.class ,SALARY_DETAIL_LIST, java.util.List.class, "SalaryDetailList", "SalaryDetailList", com.dt.platform.domain.hr.SalaryDetail.class, null);
+	
+	/**
 	 * salaryTpl , 类型: com.dt.platform.domain.hr.SalaryTpl
 	*/
 	public static final String SALARY_TPL="salaryTpl";
@@ -213,7 +244,7 @@ public class SalaryActionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , STATUS , LABEL , NAME , ACTION_MONTH , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL , SALARY_MONTH , PERSON_LIST };
+	public static final String[] $PROPS={ ID , STATUS , LABEL , NAME , START , END , ACTION_MONTH , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_DETAIL_LIST , SALARY_TPL , SALARY_MONTH , PERSON_LIST };
 	
 	/**
 	 * 代理类
@@ -264,6 +295,28 @@ public class SalaryActionMeta {
 		public SalaryAction setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 开始日期
+		 * @param start 开始日期
+		 * @return 当前对象
+		*/
+		public SalaryAction setStart(Date start) {
+			super.change(START,super.getStart(),start);
+			super.setStart(start);
+			return this;
+		}
+		
+		/**
+		 * 设置 结束日期
+		 * @param end 结束日期
+		 * @return 当前对象
+		*/
+		public SalaryAction setEnd(Date end) {
+			super.change(END,super.getEnd(),end);
+			super.setEnd(end);
 			return this;
 		}
 		
@@ -400,6 +453,17 @@ public class SalaryActionMeta {
 		}
 		
 		/**
+		 * 设置 SalaryDetailList
+		 * @param SalaryDetailList SalaryDetailList
+		 * @return 当前对象
+		*/
+		public SalaryAction setSalaryDetailList(List<SalaryDetail> SalaryDetailList) {
+			super.change(SALARY_DETAIL_LIST,super.getSalaryDetailList(),SalaryDetailList);
+			super.setSalaryDetailList(SalaryDetailList);
+			return this;
+		}
+		
+		/**
 		 * 设置 salaryTpl
 		 * @param salaryTpl salaryTpl
 		 * @return 当前对象
@@ -448,6 +512,7 @@ public class SalaryActionMeta {
 		public SalaryAction duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
+			inst.setStart(this.getStart());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setLabel(this.getLabel());
 			inst.setActionMonth(this.getActionMonth());
@@ -460,6 +525,7 @@ public class SalaryActionMeta {
 			inst.setName(this.getName());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setEnd(this.getEnd());
 			inst.setId(this.getId());
 			inst.setTplId(this.getTplId());
 			inst.setStatus(this.getStatus());
@@ -467,6 +533,7 @@ public class SalaryActionMeta {
 				inst.setSalaryTpl(this.getSalaryTpl());
 				inst.setPersonList(this.getPersonList());
 				inst.setSalaryMonth(this.getSalaryMonth());
+				inst.setSalaryDetailList(this.getSalaryDetailList());
 			}
 			inst.clearModifies();
 			return inst;

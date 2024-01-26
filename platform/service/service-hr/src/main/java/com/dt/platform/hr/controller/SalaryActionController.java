@@ -67,7 +67,9 @@ public class SalaryActionController extends SuperController {
 		@ApiImplicitParam(name = SalaryActionVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = SalaryActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "jj"),
 		@ApiImplicitParam(name = SalaryActionVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = SalaryActionVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SalaryActionVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryActionVOMeta.START, value = "开始日期", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = SalaryActionVOMeta.END, value = "结束日期", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -168,7 +170,9 @@ public class SalaryActionController extends SuperController {
 		@ApiImplicitParam(name = SalaryActionVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = SalaryActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "jj"),
 		@ApiImplicitParam(name = SalaryActionVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = SalaryActionVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SalaryActionVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryActionVOMeta.START, value = "开始日期", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = SalaryActionVOMeta.END, value = "结束日期", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { SalaryActionVOMeta.PAGE_INDEX, SalaryActionVOMeta.PAGE_SIZE, SalaryActionVOMeta.SEARCH_FIELD, SalaryActionVOMeta.FUZZY_FIELD, SalaryActionVOMeta.SEARCH_VALUE, SalaryActionVOMeta.DIRTY_FIELDS, SalaryActionVOMeta.SORT_FIELD, SalaryActionVOMeta.SORT_TYPE, SalaryActionVOMeta.DATA_ORIGIN, SalaryActionVOMeta.QUERY_LOGIC, SalaryActionVOMeta.REQUEST_ACTION, SalaryActionVOMeta.IDS })
@@ -191,7 +195,9 @@ public class SalaryActionController extends SuperController {
 		@ApiImplicitParam(name = SalaryActionVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = SalaryActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "jj"),
 		@ApiImplicitParam(name = SalaryActionVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = SalaryActionVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SalaryActionVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryActionVOMeta.START, value = "开始日期", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = SalaryActionVOMeta.END, value = "结束日期", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { SalaryActionVOMeta.PAGE_INDEX, SalaryActionVOMeta.PAGE_SIZE, SalaryActionVOMeta.SEARCH_FIELD, SalaryActionVOMeta.FUZZY_FIELD, SalaryActionVOMeta.SEARCH_VALUE, SalaryActionVOMeta.DIRTY_FIELDS, SalaryActionVOMeta.SORT_FIELD, SalaryActionVOMeta.SORT_TYPE, SalaryActionVOMeta.DATA_ORIGIN, SalaryActionVOMeta.QUERY_LOGIC, SalaryActionVOMeta.REQUEST_ACTION, SalaryActionVOMeta.IDS })
@@ -219,6 +225,20 @@ public class SalaryActionController extends SuperController {
         salaryActionService.dao().fill(salaryAction).with(SalaryActionMeta.SALARY_TPL).with(SalaryActionMeta.SALARY_MONTH).execute();
         result.success(true).data(salaryAction);
         return result;
+    }
+
+    /**
+     * 获取薪酬发放
+     */
+    @ApiOperation(value = "获取薪酬发放")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = SalaryActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
+    @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = SalaryActionServiceProxy.CALCULATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(SalaryActionServiceProxy.CALCULATE)
+    public Result calculate(String id) {
+        return salaryActionService.calculate(id);
     }
 
     /**
@@ -265,7 +285,9 @@ public class SalaryActionController extends SuperController {
 		@ApiImplicitParam(name = SalaryActionVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = SalaryActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "jj"),
 		@ApiImplicitParam(name = SalaryActionVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = SalaryActionVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SalaryActionVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryActionVOMeta.START, value = "开始日期", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = SalaryActionVOMeta.END, value = "结束日期", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { SalaryActionVOMeta.PAGE_INDEX, SalaryActionVOMeta.PAGE_SIZE })
     @SentinelResource(value = SalaryActionServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -289,7 +311,9 @@ public class SalaryActionController extends SuperController {
 		@ApiImplicitParam(name = SalaryActionVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = SalaryActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "jj"),
 		@ApiImplicitParam(name = SalaryActionVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = SalaryActionVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SalaryActionVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryActionVOMeta.START, value = "开始日期", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = SalaryActionVOMeta.END, value = "结束日期", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = SalaryActionServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

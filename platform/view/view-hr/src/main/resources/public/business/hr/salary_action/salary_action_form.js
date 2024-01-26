@@ -1,7 +1,7 @@
 /**
  * 薪酬发放 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-21 21:46:29
+ * @since 2024-01-26 22:31:56
  */
 
 function FormPage() {
@@ -131,6 +131,24 @@ function FormPage() {
 				checked.push($(this).val());
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("label",data,checked);
+		});
+		laydate.render({
+			elem: '#start',
+			type:"date",
+			format:"yyyy-MM-dd HH:mm:ss",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("start",value, date, endDate);
+			}
+		});
+		laydate.render({
+			elem: '#end',
+			type:"date",
+			format:"yyyy-MM-dd HH:mm:ss",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("end",value, date, endDate);
+			}
 		});
 		//渲染 actionMonth 下拉字段
 		fox.renderSelectBox({

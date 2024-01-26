@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬发放VO类型
  * <p>薪酬发放 , 数据表 hr_salary_action 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-21 21:46:28
+ * @since 2024-01-26 22:31:54
  * @sign D2833AFDC8E870D34CD2E6393C7E0ED7
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -402,6 +402,7 @@ public class SalaryActionVO extends SalaryAction {
 	public SalaryActionVO duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.SalaryActionVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.SalaryActionVOMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
+		inst.setStart(this.getStart());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setLabel(this.getLabel());
 		inst.setActionMonth(this.getActionMonth());
@@ -414,6 +415,7 @@ public class SalaryActionVO extends SalaryAction {
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setEnd(this.getEnd());
 		inst.setId(this.getId());
 		inst.setTplId(this.getTplId());
 		inst.setStatus(this.getStatus());
@@ -432,6 +434,7 @@ public class SalaryActionVO extends SalaryAction {
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setSalaryDetailList(this.getSalaryDetailList());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -493,6 +496,7 @@ public class SalaryActionVO extends SalaryAction {
 		if(map==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(SalaryActionVOMeta.NOTES)));
+			this.setStart(DataParser.parse(Date.class, map.get(SalaryActionVOMeta.START)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(SalaryActionVOMeta.UPDATE_TIME)));
 			this.setLabel(DataParser.parse(String.class, map.get(SalaryActionVOMeta.LABEL)));
 			this.setActionMonth(DataParser.parse(String.class, map.get(SalaryActionVOMeta.ACTION_MONTH)));
@@ -505,6 +509,7 @@ public class SalaryActionVO extends SalaryAction {
 			this.setName(DataParser.parse(String.class, map.get(SalaryActionVOMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(SalaryActionVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(SalaryActionVOMeta.DELETE_BY)));
+			this.setEnd(DataParser.parse(Date.class, map.get(SalaryActionVOMeta.END)));
 			this.setId(DataParser.parse(String.class, map.get(SalaryActionVOMeta.ID)));
 			this.setTplId(DataParser.parse(String.class, map.get(SalaryActionVOMeta.TPL_ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(SalaryActionVOMeta.STATUS)));
@@ -525,6 +530,7 @@ public class SalaryActionVO extends SalaryAction {
 		} else {
 			try {
 				this.setNotes( (String)map.get(SalaryActionVOMeta.NOTES));
+				this.setStart( (Date)map.get(SalaryActionVOMeta.START));
 				this.setUpdateTime( (Date)map.get(SalaryActionVOMeta.UPDATE_TIME));
 				this.setLabel( (String)map.get(SalaryActionVOMeta.LABEL));
 				this.setActionMonth( (String)map.get(SalaryActionVOMeta.ACTION_MONTH));
@@ -537,6 +543,7 @@ public class SalaryActionVO extends SalaryAction {
 				this.setName( (String)map.get(SalaryActionVOMeta.NAME));
 				this.setTenantId( (String)map.get(SalaryActionVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(SalaryActionVOMeta.DELETE_BY));
+				this.setEnd( (Date)map.get(SalaryActionVOMeta.END));
 				this.setId( (String)map.get(SalaryActionVOMeta.ID));
 				this.setTplId( (String)map.get(SalaryActionVOMeta.TPL_ID));
 				this.setStatus( (String)map.get(SalaryActionVOMeta.STATUS));
@@ -570,6 +577,7 @@ public class SalaryActionVO extends SalaryAction {
 		if(r==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.NOTES)));
+			this.setStart(DataParser.parse(Date.class, r.getValue(SalaryActionVOMeta.START)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(SalaryActionVOMeta.UPDATE_TIME)));
 			this.setLabel(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.LABEL)));
 			this.setActionMonth(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.ACTION_MONTH)));
@@ -582,6 +590,7 @@ public class SalaryActionVO extends SalaryAction {
 			this.setName(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.DELETE_BY)));
+			this.setEnd(DataParser.parse(Date.class, r.getValue(SalaryActionVOMeta.END)));
 			this.setId(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.ID)));
 			this.setTplId(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.TPL_ID)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.STATUS)));
@@ -589,6 +598,7 @@ public class SalaryActionVO extends SalaryAction {
 		} else {
 			try {
 				this.setNotes( (String)r.getValue(SalaryActionVOMeta.NOTES));
+				this.setStart( (Date)r.getValue(SalaryActionVOMeta.START));
 				this.setUpdateTime( (Date)r.getValue(SalaryActionVOMeta.UPDATE_TIME));
 				this.setLabel( (String)r.getValue(SalaryActionVOMeta.LABEL));
 				this.setActionMonth( (String)r.getValue(SalaryActionVOMeta.ACTION_MONTH));
@@ -601,6 +611,7 @@ public class SalaryActionVO extends SalaryAction {
 				this.setName( (String)r.getValue(SalaryActionVOMeta.NAME));
 				this.setTenantId( (String)r.getValue(SalaryActionVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(SalaryActionVOMeta.DELETE_BY));
+				this.setEnd( (Date)r.getValue(SalaryActionVOMeta.END));
 				this.setId( (String)r.getValue(SalaryActionVOMeta.ID));
 				this.setTplId( (String)r.getValue(SalaryActionVOMeta.TPL_ID));
 				this.setStatus( (String)r.getValue(SalaryActionVOMeta.STATUS));

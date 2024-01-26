@@ -38,6 +38,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 operHtml=operHtml.replace(/lay-event="tool-valid-data"/i, "style=\"display:none\"")
                 operHtml=operHtml.replace(/lay-event="tool-export-data"/i, "style=\"display:none\"")
                 operHtml=operHtml.replace(/lay-event="tool-import-data"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="tool-calculate-data"/i, "style=\"display:none\"")
                 document.getElementById("toolbarTemplate").innerHTML=operHtml;
 
 
@@ -242,9 +243,28 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     }
                 }, {delayLoading: 1000, elms: [btn]});
             });
-
-
         },
+
+
+        calculateData:function (selected, obj){
+            var btnClass="person-calculate-data";
+            var btn=$('.'+btnClass);
+            var pt={};
+            pt.id=ACTION_ID;
+            var api="/service-hr/hr-salary-action/calculate"
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, pt, function (r) {
+                    if (r.success) {
+                        top.layer.msg("操作成功", {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        top.layer.msg(r.message, {time: 1000});
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+        },
+
         validData:function (selected, obj){
             var btnClass="person-valid-data";
             var btn=$('.'+btnClass);

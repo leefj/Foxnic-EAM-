@@ -2,7 +2,7 @@
 /**
  * 薪酬模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 15:21:28
+ * @since 2024-01-26 23:28:04
  */
  -->
  <!DOCTYPE html>
@@ -45,6 +45,8 @@
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('编号')}" class="search-label code-label">编号</span><span class="search-colon">:</span></div>
                         <input id="code" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
+                    <!-- 开始上月 , startMDay ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 结束本月 , endMDay ,typeName=number_input, isHideInSearch=true -->
                     <!-- 计算公式 , method ,typeName=text_area, isHideInSearch=true -->
                     <!-- 计算公式 , methodScript ,typeName=text_area, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
@@ -94,6 +96,7 @@
 
     <button th:if="${perm.checkAuth('hr_salary_tpl:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
+    <button class="layui-btn layui-btn-xs  salary-rule " lay-event="rule" data-id="{{d.id}}"><span th:text="${lang.translate('计算规则','','cmp:table.ops')}">计算规则</span></button>
     <button class="layui-btn layui-btn-xs  person-detail " lay-event="detail" data-id="{{d.id}}"><span th:text="${lang.translate('人员','','cmp:table.ops')}">人员</span></button>
 
 </script>

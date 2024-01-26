@@ -4,6 +4,7 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.hr.SalaryColumnVO;
 import java.util.List;
 import com.dt.platform.domain.hr.SalaryColumn;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
 
@@ -11,7 +12,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 14:09:25
+ * @since 2024-01-26 15:51:04
  * @sign 51BE07C3F0960FFBDD8249AF1DA0EECB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -179,6 +180,16 @@ public class SalaryColumnVOMeta extends SalaryColumnMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryColumnVO,java.lang.String> COL_TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryColumnVO.class ,COL_TYPE, java.lang.String.class, "类型", "实体,表字段,常量", java.lang.String.class, null);
 	
 	/**
+	 * 值 , 类型: java.math.BigDecimal
+	*/
+	public static final String COL_VALUE="colValue";
+	
+	/**
+	 * 值 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryColumnVO,java.math.BigDecimal> COL_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryColumnVO.class ,COL_VALUE, java.math.BigDecimal.class, "值", "值", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 数据来源 , 类型: java.lang.String
 	*/
 	public static final String DS_SOURCE="dsSource";
@@ -311,7 +322,7 @@ public class SalaryColumnVOMeta extends SalaryColumnMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , COL_CODE , COL_NAME , COL_TYPE , DS_SOURCE , CAL_METHOD , BUSI_TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , COL_CODE , COL_NAME , COL_TYPE , COL_VALUE , DS_SOURCE , CAL_METHOD , BUSI_TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -498,6 +509,17 @@ public class SalaryColumnVOMeta extends SalaryColumnMeta {
 		}
 		
 		/**
+		 * 设置 值
+		 * @param colValue 值
+		 * @return 当前对象
+		*/
+		public SalaryColumn setColValue(BigDecimal colValue) {
+			super.change(COL_VALUE,super.getColValue(),colValue);
+			super.setColValue(colValue);
+			return this;
+		}
+		
+		/**
 		 * 设置 数据来源
 		 * @param dsSource 数据来源
 		 * @return 当前对象
@@ -659,6 +681,7 @@ public class SalaryColumnVOMeta extends SalaryColumnMeta {
 			inst.setNotes(this.getNotes());
 			inst.setColCode(this.getColCode());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setColValue(this.getColValue());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());

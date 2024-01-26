@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬明细
  * <p>薪酬明细 , 数据表 hr_salary_detail 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-23 08:35:28
- * @sign 11B01B2403B5F0F033C75C77A55B4DD8
+ * @since 2024-01-26 23:26:24
+ * @sign 8257C35F406794B09E0E76B347946407
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -490,6 +490,12 @@ public class SalaryDetail extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="person" , notes = "person")
 	private Person person;
+	
+	/**
+	 * personSalary：personSalary
+	*/
+	@ApiModelProperty(required = false,value="personSalary" , notes = "personSalary")
+	private Salary personSalary;
 	
 	/**
 	 * 获得 主键<br>
@@ -1946,6 +1952,25 @@ public class SalaryDetail extends Entity {
 		this.person=person;
 		return this;
 	}
+	
+	/**
+	 * 获得 personSalary<br>
+	 * personSalary
+	 * @return personSalary
+	*/
+	public Salary getPersonSalary() {
+		return personSalary;
+	}
+	
+	/**
+	 * 设置 personSalary
+	 * @param personSalary personSalary
+	 * @return 当前对象
+	*/
+	public SalaryDetail setPersonSalary(Salary personSalary) {
+		this.personSalary=personSalary;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -2067,6 +2092,7 @@ public class SalaryDetail extends Entity {
 			inst.setExtBankAccount(this.getExtBankAccount());
 			inst.setPerson(this.getPerson());
 			inst.setSalaryAction(this.getSalaryAction());
+			inst.setPersonSalary(this.getPersonSalary());
 		}
 		inst.clearModifies();
 		return inst;
@@ -2202,6 +2228,7 @@ public class SalaryDetail extends Entity {
 			this.setExtBankAccount(DataParser.parse(String.class, map.get(SalaryDetailMeta.EXT_BANK_ACCOUNT)));
 			this.setPerson(DataParser.parse(Person.class, map.get(SalaryDetailMeta.PERSON)));
 			this.setSalaryAction(DataParser.parse(SalaryAction.class, map.get(SalaryDetailMeta.SALARY_ACTION)));
+			this.setPersonSalary(DataParser.parse(Salary.class, map.get(SalaryDetailMeta.PERSON_SALARY)));
 			return true;
 		} else {
 			try {
@@ -2281,6 +2308,7 @@ public class SalaryDetail extends Entity {
 				this.setExtBankAccount( (String)map.get(SalaryDetailMeta.EXT_BANK_ACCOUNT));
 				this.setPerson( (Person)map.get(SalaryDetailMeta.PERSON));
 				this.setSalaryAction( (SalaryAction)map.get(SalaryDetailMeta.SALARY_ACTION));
+				this.setPersonSalary( (Salary)map.get(SalaryDetailMeta.PERSON_SALARY));
 				return true;
 			} catch (Exception e) {
 				return false;

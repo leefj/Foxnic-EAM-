@@ -7,6 +7,7 @@ import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.HrTables.HR_SALARY_COLUMN;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
@@ -23,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬字段
  * <p>薪酬字段 , 数据表 hr_salary_column 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 14:09:25
- * @sign 8CFBCCD665B72F40068AFA492AB44F3A
+ * @since 2024-01-26 15:51:03
+ * @sign FE169EE20105409A92444448B43AC13A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,31 +41,37 @@ public class SalaryColumn extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "801820025651462144")
 	private String id;
 	
 	/**
 	 * 字段：字段
 	*/
-	@ApiModelProperty(required = false,value="字段" , notes = "字段")
+	@ApiModelProperty(required = false,value="字段" , notes = "字段" , example = "baseSalary")
 	private String colCode;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "基本工资")
 	private String colName;
 	
 	/**
 	 * 类型：实体,表字段,常量
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "实体,表字段,常量")
+	@ApiModelProperty(required = false,value="类型" , notes = "实体,表字段,常量" , example = "constant")
 	private String colType;
+	
+	/**
+	 * 值：值
+	*/
+	@ApiModelProperty(required = false,value="值" , notes = "值")
+	private BigDecimal colValue;
 	
 	/**
 	 * 数据来源：数据来源
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "数据来源")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "数据来源" , example = "salary")
 	private String dsSource;
 	
 	/**
@@ -76,7 +83,7 @@ public class SalaryColumn extends Entity {
 	/**
 	 * 业务分类：业务分类
 	*/
-	@ApiModelProperty(required = false,value="业务分类" , notes = "业务分类")
+	@ApiModelProperty(required = false,value="业务分类" , notes = "业务分类" , example = "base")
 	private String busiType;
 	
 	/**
@@ -88,31 +95,31 @@ public class SalaryColumn extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-01-22 02:26:31")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-22 02:27:56")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -133,13 +140,13 @@ public class SalaryColumn extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -215,6 +222,25 @@ public class SalaryColumn extends Entity {
 	*/
 	public SalaryColumn setColType(String colType) {
 		this.colType=colType;
+		return this;
+	}
+	
+	/**
+	 * 获得 值<br>
+	 * 值
+	 * @return 值
+	*/
+	public BigDecimal getColValue() {
+		return colValue;
+	}
+	
+	/**
+	 * 设置 值
+	 * @param colValue 值
+	 * @return 当前对象
+	*/
+	public SalaryColumn setColValue(BigDecimal colValue) {
+		this.colValue=colValue;
 		return this;
 	}
 	
@@ -544,6 +570,7 @@ public class SalaryColumn extends Entity {
 		inst.setNotes(this.getNotes());
 		inst.setColCode(this.getColCode());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setColValue(this.getColValue());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -619,6 +646,7 @@ public class SalaryColumn extends Entity {
 			this.setNotes(DataParser.parse(String.class, map.get(SalaryColumnMeta.NOTES)));
 			this.setColCode(DataParser.parse(String.class, map.get(SalaryColumnMeta.COL_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(SalaryColumnMeta.UPDATE_TIME)));
+			this.setColValue(DataParser.parse(BigDecimal.class, map.get(SalaryColumnMeta.COL_VALUE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(SalaryColumnMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(SalaryColumnMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(SalaryColumnMeta.DELETED)));
@@ -640,6 +668,7 @@ public class SalaryColumn extends Entity {
 				this.setNotes( (String)map.get(SalaryColumnMeta.NOTES));
 				this.setColCode( (String)map.get(SalaryColumnMeta.COL_CODE));
 				this.setUpdateTime( (Date)map.get(SalaryColumnMeta.UPDATE_TIME));
+				this.setColValue( (BigDecimal)map.get(SalaryColumnMeta.COL_VALUE));
 				this.setVersion( (Integer)map.get(SalaryColumnMeta.VERSION));
 				this.setCreateBy( (String)map.get(SalaryColumnMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(SalaryColumnMeta.DELETED));
@@ -674,6 +703,7 @@ public class SalaryColumn extends Entity {
 			this.setNotes(DataParser.parse(String.class, r.getValue(SalaryColumnMeta.NOTES)));
 			this.setColCode(DataParser.parse(String.class, r.getValue(SalaryColumnMeta.COL_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(SalaryColumnMeta.UPDATE_TIME)));
+			this.setColValue(DataParser.parse(BigDecimal.class, r.getValue(SalaryColumnMeta.COL_VALUE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(SalaryColumnMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(SalaryColumnMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(SalaryColumnMeta.DELETED)));
@@ -694,6 +724,7 @@ public class SalaryColumn extends Entity {
 				this.setNotes( (String)r.getValue(SalaryColumnMeta.NOTES));
 				this.setColCode( (String)r.getValue(SalaryColumnMeta.COL_CODE));
 				this.setUpdateTime( (Date)r.getValue(SalaryColumnMeta.UPDATE_TIME));
+				this.setColValue( (BigDecimal)r.getValue(SalaryColumnMeta.COL_VALUE));
 				this.setVersion( (Integer)r.getValue(SalaryColumnMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(SalaryColumnMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(SalaryColumnMeta.DELETED));
