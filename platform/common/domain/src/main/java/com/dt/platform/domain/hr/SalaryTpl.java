@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬模版
  * <p>薪酬模版 , 数据表 hr_salary_tpl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-26 23:28:02
- * @sign 7E3EAB0796CCD05DCE48ECADCC07C6DD
+ * @since 2024-01-28 01:12:48
+ * @sign 56908A983DF9EAFB279FB1E32AC2789F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -62,13 +62,13 @@ public class SalaryTpl extends Entity {
 	/**
 	 * 开始上月：开始上月
 	*/
-	@ApiModelProperty(required = false,value="开始上月" , notes = "开始上月")
+	@ApiModelProperty(required = false,value="开始上月" , notes = "开始上月" , example = "1")
 	private Integer startMDay;
 	
 	/**
 	 * 结束本月：结束本月
 	*/
-	@ApiModelProperty(required = false,value="结束本月" , notes = "结束本月")
+	@ApiModelProperty(required = false,value="结束本月" , notes = "结束本月" , example = "2")
 	private Integer endMDay;
 	
 	/**
@@ -110,7 +110,7 @@ public class SalaryTpl extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-06-04 01:25:23")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-27 03:02:32")
 	private Date updateTime;
 	
 	/**
@@ -137,7 +137,7 @@ public class SalaryTpl extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "4")
 	private Integer version;
 	
 	/**
@@ -159,22 +159,28 @@ public class SalaryTpl extends Entity {
 	private List<SalaryTplItem> validSalaryTplItem;
 	
 	/**
-	 * SalaryDetailList：SalaryDetailList
+	 * salaryCtl：salaryCtl
 	*/
-	@ApiModelProperty(required = false,value="SalaryDetailList" , notes = "SalaryDetailList")
-	private List<SalaryDetail> SalaryDetailList;
+	@ApiModelProperty(required = false,value="salaryCtl" , notes = "salaryCtl")
+	private SalaryCtl salaryCtl;
 	
 	/**
-	 * personList：personList
+	 * salaryIncomeTaxList：salaryIncomeTaxList
 	*/
-	@ApiModelProperty(required = false,value="personList" , notes = "personList")
-	private List<Person> personList;
+	@ApiModelProperty(required = false,value="salaryIncomeTaxList" , notes = "salaryIncomeTaxList")
+	private List<SalaryIncomeTax> salaryIncomeTaxList;
 	
 	/**
 	 * confNonConversionRatio：confNonConversionRatio
 	*/
 	@ApiModelProperty(required = false,value="confNonConversionRatio" , notes = "confNonConversionRatio")
 	private BigDecimal confNonConversionRatio;
+	
+	/**
+	 * confCurMonth：confCurMonth
+	*/
+	@ApiModelProperty(required = false,value="confCurMonth" , notes = "confCurMonth")
+	private String confCurMonth;
 	
 	/**
 	 * 获得 主键<br>
@@ -591,62 +597,51 @@ public class SalaryTpl extends Entity {
 	}
 	
 	/**
-	 * 获得 SalaryDetailList<br>
-	 * SalaryDetailList
-	 * @return SalaryDetailList
+	 * 获得 salaryCtl<br>
+	 * salaryCtl
+	 * @return salaryCtl
 	*/
-	public List<SalaryDetail> getSalaryDetailList() {
-		return SalaryDetailList;
+	public SalaryCtl getSalaryCtl() {
+		return salaryCtl;
 	}
 	
 	/**
-	 * 设置 SalaryDetailList
-	 * @param SalaryDetailList SalaryDetailList
+	 * 设置 salaryCtl
+	 * @param salaryCtl salaryCtl
 	 * @return 当前对象
 	*/
-	public SalaryTpl setSalaryDetailList(List<SalaryDetail> SalaryDetailList) {
-		this.SalaryDetailList=SalaryDetailList;
+	public SalaryTpl setSalaryCtl(SalaryCtl salaryCtl) {
+		this.salaryCtl=salaryCtl;
 		return this;
 	}
 	
 	/**
-	 * 添加 SalaryDetailList
-	 * @param SalaryDetail SalaryDetailList
+	 * 获得 salaryIncomeTaxList<br>
+	 * salaryIncomeTaxList
+	 * @return salaryIncomeTaxList
+	*/
+	public List<SalaryIncomeTax> getSalaryIncomeTaxList() {
+		return salaryIncomeTaxList;
+	}
+	
+	/**
+	 * 设置 salaryIncomeTaxList
+	 * @param salaryIncomeTaxList salaryIncomeTaxList
 	 * @return 当前对象
 	*/
-	public SalaryTpl addSalaryDetail(SalaryDetail... SalaryDetail) {
-		if(this.SalaryDetailList==null) SalaryDetailList=new ArrayList<>();
-		this.SalaryDetailList.addAll(Arrays.asList(SalaryDetail));
+	public SalaryTpl setSalaryIncomeTaxList(List<SalaryIncomeTax> salaryIncomeTaxList) {
+		this.salaryIncomeTaxList=salaryIncomeTaxList;
 		return this;
 	}
 	
 	/**
-	 * 获得 personList<br>
-	 * personList
-	 * @return personList
-	*/
-	public List<Person> getPersonList() {
-		return personList;
-	}
-	
-	/**
-	 * 设置 personList
-	 * @param personList personList
+	 * 添加 salaryIncomeTaxList
+	 * @param salaryIncomeTax salaryIncomeTaxList
 	 * @return 当前对象
 	*/
-	public SalaryTpl setPersonList(List<Person> personList) {
-		this.personList=personList;
-		return this;
-	}
-	
-	/**
-	 * 添加 personList
-	 * @param person personList
-	 * @return 当前对象
-	*/
-	public SalaryTpl addPerson(Person... person) {
-		if(this.personList==null) personList=new ArrayList<>();
-		this.personList.addAll(Arrays.asList(person));
+	public SalaryTpl addSalaryIncomeTax(SalaryIncomeTax... salaryIncomeTax) {
+		if(this.salaryIncomeTaxList==null) salaryIncomeTaxList=new ArrayList<>();
+		this.salaryIncomeTaxList.addAll(Arrays.asList(salaryIncomeTax));
 		return this;
 	}
 	
@@ -666,6 +661,25 @@ public class SalaryTpl extends Entity {
 	*/
 	public SalaryTpl setConfNonConversionRatio(BigDecimal confNonConversionRatio) {
 		this.confNonConversionRatio=confNonConversionRatio;
+		return this;
+	}
+	
+	/**
+	 * 获得 confCurMonth<br>
+	 * confCurMonth
+	 * @return confCurMonth
+	*/
+	public String getConfCurMonth() {
+		return confCurMonth;
+	}
+	
+	/**
+	 * 设置 confCurMonth
+	 * @param confCurMonth confCurMonth
+	 * @return 当前对象
+	*/
+	public SalaryTpl setConfCurMonth(String confCurMonth) {
+		this.confCurMonth=confCurMonth;
 		return this;
 	}
 
@@ -731,11 +745,12 @@ public class SalaryTpl extends Entity {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
-			inst.setPersonList(this.getPersonList());
+			inst.setSalaryCtl(this.getSalaryCtl());
+			inst.setConfCurMonth(this.getConfCurMonth());
 			inst.setSalaryTplItem(this.getSalaryTplItem());
+			inst.setSalaryIncomeTaxList(this.getSalaryIncomeTaxList());
 			inst.setValidSalaryTplItem(this.getValidSalaryTplItem());
 			inst.setConfNonConversionRatio(this.getConfNonConversionRatio());
-			inst.setSalaryDetailList(this.getSalaryDetailList());
 		}
 		inst.clearModifies();
 		return inst;
@@ -813,6 +828,8 @@ public class SalaryTpl extends Entity {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(SalaryTplMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(SalaryTplMeta.ID)));
 			// others
+			this.setSalaryCtl(DataParser.parse(SalaryCtl.class, map.get(SalaryTplMeta.SALARY_CTL)));
+			this.setConfCurMonth(DataParser.parse(String.class, map.get(SalaryTplMeta.CONF_CUR_MONTH)));
 			this.setConfNonConversionRatio(DataParser.parse(BigDecimal.class, map.get(SalaryTplMeta.CONF_NON_CONVERSION_RATIO)));
 			return true;
 		} else {
@@ -835,6 +852,8 @@ public class SalaryTpl extends Entity {
 				this.setDeleteBy( (String)map.get(SalaryTplMeta.DELETE_BY));
 				this.setId( (String)map.get(SalaryTplMeta.ID));
 				// others
+				this.setSalaryCtl( (SalaryCtl)map.get(SalaryTplMeta.SALARY_CTL));
+				this.setConfCurMonth( (String)map.get(SalaryTplMeta.CONF_CUR_MONTH));
 				this.setConfNonConversionRatio( (BigDecimal)map.get(SalaryTplMeta.CONF_NON_CONVERSION_RATIO));
 				return true;
 			} catch (Exception e) {

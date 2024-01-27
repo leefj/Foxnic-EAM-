@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 计算项目VO类型
  * <p>计算项目 , 数据表 hr_salary_tpl_item 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-26 23:13:12
+ * @since 2024-01-27 21:03:55
  * @sign BF0A4B51A4CD7294AEF107586B523788
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -425,6 +425,7 @@ public class SalaryTplItemVO extends SalaryTplItem {
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
+			inst.setSalaryColumnCode(this.getSalaryColumnCode());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
@@ -517,6 +518,7 @@ public class SalaryTplItemVO extends SalaryTplItem {
 			this.setRequestAction(DataParser.parse(String.class, map.get(SalaryTplItemVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(SalaryTplItemVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(SalaryTplItemVOMeta.PAGE_SIZE)));
+			this.setSalaryColumnCode(DataParser.parse(String.class, map.get(SalaryTplItemVOMeta.SALARY_COLUMN_CODE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(SalaryTplItemVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(SalaryTplItemVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(SalaryTplItemVOMeta.SORT_FIELD)));
@@ -551,6 +553,7 @@ public class SalaryTplItemVO extends SalaryTplItem {
 				this.setRequestAction( (String)map.get(SalaryTplItemVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(SalaryTplItemVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(SalaryTplItemVOMeta.PAGE_SIZE));
+				this.setSalaryColumnCode( (String)map.get(SalaryTplItemVOMeta.SALARY_COLUMN_CODE));
 				this.setPageIndex( (Integer)map.get(SalaryTplItemVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(SalaryTplItemVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(SalaryTplItemVOMeta.SORT_FIELD));

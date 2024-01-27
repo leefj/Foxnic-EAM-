@@ -6,8 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetDataExportColumnEnum;
 import com.dt.platform.constants.enums.hr.SalaryActionStatusEnum;
 import com.dt.platform.constants.enums.hr.SalaryPersonDetailStatusEnum;
-import com.dt.platform.domain.hr.Person;
-import com.dt.platform.domain.hr.SalaryAction;
+import com.dt.platform.domain.hr.*;
 import com.dt.platform.domain.hr.meta.SalaryDetailMeta;
 import com.dt.platform.hr.common.ResetOnCloseInputStream;
 import com.dt.platform.hr.service.ISalaryActionService;
@@ -35,8 +34,6 @@ import java.io.BufferedInputStream;
 import java.util.*;
 
 
-import com.dt.platform.domain.hr.SalaryDetail;
-import com.dt.platform.domain.hr.SalaryDetailVO;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.entity.SuperService;
@@ -68,6 +65,9 @@ public class SalaryDetailServiceImpl extends SuperService<SalaryDetail> implemen
 
 	@Autowired
 	private ISalaryActionService salaryActionService;
+
+	@Autowired
+	private ISalaryDetailService salaryDetailService;
 
 	/**
 	 * 注入DAO对象
@@ -118,7 +118,7 @@ public class SalaryDetailServiceImpl extends SuperService<SalaryDetail> implemen
 
 	@Override
 	public Result valid(String actionId) {
-		if(dao.query("select 1 from hr_salary_detail where action_id=? and deleted=0 and status<>'not_process'",actionId).size()>0){
+		if(dao.query("select 1 from hr_salary_detail where action_id=? and deleted=0 and status in ('not_process')",actionId).size()>0){
 			return ErrorDesc.failureMessage("当前薪酬状态有异常，无法进行更新操作");
 		}
 
@@ -142,7 +142,25 @@ public class SalaryDetailServiceImpl extends SuperService<SalaryDetail> implemen
 				.with(SalaryDetailMeta.SALARY_ACTION).execute();
 		Person person =detail.getPerson();
 		SalaryAction act =detail.getSalaryAction();
-		return salaryActionService.createPersonData(person,act);
+
+		Result r=salaryActionService.createPersonData(person,act);
+		if(!r.isSuccess()){
+			return r;
+		}
+
+		//进行计算
+		SalaryTpl tpl=act.getSalaryTpl();
+		String curMonth=act.getActionMonth().split("-")[1];
+		tpl.setConfCurMonth(curMonth);
+		SalaryDetail salaryQuery=new SalaryDetail();
+		String personId=detail.getPersonId();
+		String actionId=detail.getActionId();
+		salaryQuery.setPersonId(personId);
+		salaryQuery.setActionId(actionId);
+		SalaryDetail salary=salaryDetailService.queryEntity(salaryQuery);
+		this.dao().fill(salary).with(SalaryDetailMeta.PERSON).with(SalaryDetailMeta.PERSON_SALARY).execute();
+		salaryActionService.fillTpl(tpl);
+		return salaryActionService.calculatePerson(salary,tpl);
 	}
 
 	/**

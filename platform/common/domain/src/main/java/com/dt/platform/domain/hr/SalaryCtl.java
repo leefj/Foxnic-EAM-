@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬控制
  * <p>薪酬控制 , 数据表 hr_salary_ctl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 10:15:33
- * @sign 4AD2424713E187366348D5C611373103
+ * @since 2024-01-27 18:33:33
+ * @sign 18568B51DF1F010C9C60053650E60715
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,25 +41,25 @@ public class SalaryCtl extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "high_temperature_salary")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "deduction_base")
 	private String id;
 	
 	/**
 	 * 编号：编号
 	*/
-	@ApiModelProperty(required = false,value="编号" , notes = "编号" , example = "high_temperature_salary")
+	@ApiModelProperty(required = false,value="编号" , notes = "编号" , example = "deduction_base")
 	private String code;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "高温补贴月份")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "抵扣基数")
 	private String name;
 	
 	/**
 	 * 类型：类型
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "类型" , example = "type_str")
+	@ApiModelProperty(required = false,value="类型" , notes = "类型" , example = "type_double")
 	private String type;
 	
 	/**
@@ -71,13 +71,13 @@ public class SalaryCtl extends Entity {
 	/**
 	 * 字符串数值：字符串数值
 	*/
-	@ApiModelProperty(required = false,value="字符串数值" , notes = "字符串数值" , example = "[\"07\",\"08\",\"09\"]")
+	@ApiModelProperty(required = false,value="字符串数值" , notes = "字符串数值")
 	private String valueStr;
 	
 	/**
 	 * 浮点数值：浮点数值
 	*/
-	@ApiModelProperty(required = false,value="浮点数值" , notes = "浮点数值" , example = "0.00")
+	@ApiModelProperty(required = false,value="浮点数值" , notes = "浮点数值" , example = "5000.00")
 	private BigDecimal valueD;
 	
 	/**
@@ -107,7 +107,7 @@ public class SalaryCtl extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-06-05 10:12:36")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-27 02:58:30")
 	private Date updateTime;
 	
 	/**
@@ -142,6 +142,60 @@ public class SalaryCtl extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * deductionBase：deductionBase
+	*/
+	@ApiModelProperty(required = false,value="deductionBase" , notes = "deductionBase")
+	private BigDecimal deductionBase;
+	
+	/**
+	 * nonConversionRatio：nonConversionRatio
+	*/
+	@ApiModelProperty(required = false,value="nonConversionRatio" , notes = "nonConversionRatio")
+	private BigDecimal nonConversionRatio;
+	
+	/**
+	 * isHighTemperatureMonth：isHighTemperatureMonth
+	*/
+	@ApiModelProperty(required = false,value="isHighTemperatureMonth" , notes = "isHighTemperatureMonth")
+	private String isHighTemperatureMonth;
+	
+	/**
+	 * welfareZfgjjPerson：welfareZfgjjPerson
+	*/
+	@ApiModelProperty(required = false,value="welfareZfgjjPerson" , notes = "welfareZfgjjPerson")
+	private BigDecimal welfareZfgjjPerson;
+	
+	/**
+	 * welfaerYlbxPerson：welfaerYlbxPerson
+	*/
+	@ApiModelProperty(required = false,value="welfaerYlbxPerson" , notes = "welfaerYlbxPerson")
+	private BigDecimal welfaerYlbxPerson;
+	
+	/**
+	 * welfaeryrbxPerson：welfaeryrbxPerson
+	*/
+	@ApiModelProperty(required = false,value="welfaeryrbxPerson" , notes = "welfaeryrbxPerson")
+	private BigDecimal welfaeryrbxPerson;
+	
+	/**
+	 * welfaerSyebxPerson：welfaerSyebxPerson
+	*/
+	@ApiModelProperty(required = false,value="welfaerSyebxPerson" , notes = "welfaerSyebxPerson")
+	private BigDecimal welfaerSyebxPerson;
+	
+	/**
+	 * welfaerGsbxPerson：welfaerGsbxPerson
+	*/
+	@ApiModelProperty(required = false,value="welfaerGsbxPerson" , notes = "welfaerGsbxPerson")
+	private BigDecimal welfaerGsbxPerson;
+	
+	/**
+	 * welfaerSybxPerson：welfaerSybxPerson
+	*/
+	@ApiModelProperty(required = false,value="welfaerSybxPerson" , notes = "welfaerSybxPerson")
+	private BigDecimal welfaerSybxPerson;
 	
 	/**
 	 * 获得 主键<br>
@@ -496,6 +550,177 @@ public class SalaryCtl extends Entity {
 		this.tenantId=tenantId;
 		return this;
 	}
+	
+	/**
+	 * 获得 deductionBase<br>
+	 * deductionBase
+	 * @return deductionBase
+	*/
+	public BigDecimal getDeductionBase() {
+		return deductionBase;
+	}
+	
+	/**
+	 * 设置 deductionBase
+	 * @param deductionBase deductionBase
+	 * @return 当前对象
+	*/
+	public SalaryCtl setDeductionBase(BigDecimal deductionBase) {
+		this.deductionBase=deductionBase;
+		return this;
+	}
+	
+	/**
+	 * 获得 nonConversionRatio<br>
+	 * nonConversionRatio
+	 * @return nonConversionRatio
+	*/
+	public BigDecimal getNonConversionRatio() {
+		return nonConversionRatio;
+	}
+	
+	/**
+	 * 设置 nonConversionRatio
+	 * @param nonConversionRatio nonConversionRatio
+	 * @return 当前对象
+	*/
+	public SalaryCtl setNonConversionRatio(BigDecimal nonConversionRatio) {
+		this.nonConversionRatio=nonConversionRatio;
+		return this;
+	}
+	
+	/**
+	 * 获得 isHighTemperatureMonth<br>
+	 * isHighTemperatureMonth
+	 * @return isHighTemperatureMonth
+	*/
+	public String getIsHighTemperatureMonth() {
+		return isHighTemperatureMonth;
+	}
+	
+	/**
+	 * 设置 isHighTemperatureMonth
+	 * @param isHighTemperatureMonth isHighTemperatureMonth
+	 * @return 当前对象
+	*/
+	public SalaryCtl setIsHighTemperatureMonth(String isHighTemperatureMonth) {
+		this.isHighTemperatureMonth=isHighTemperatureMonth;
+		return this;
+	}
+	
+	/**
+	 * 获得 welfareZfgjjPerson<br>
+	 * welfareZfgjjPerson
+	 * @return welfareZfgjjPerson
+	*/
+	public BigDecimal getWelfareZfgjjPerson() {
+		return welfareZfgjjPerson;
+	}
+	
+	/**
+	 * 设置 welfareZfgjjPerson
+	 * @param welfareZfgjjPerson welfareZfgjjPerson
+	 * @return 当前对象
+	*/
+	public SalaryCtl setWelfareZfgjjPerson(BigDecimal welfareZfgjjPerson) {
+		this.welfareZfgjjPerson=welfareZfgjjPerson;
+		return this;
+	}
+	
+	/**
+	 * 获得 welfaerYlbxPerson<br>
+	 * welfaerYlbxPerson
+	 * @return welfaerYlbxPerson
+	*/
+	public BigDecimal getWelfaerYlbxPerson() {
+		return welfaerYlbxPerson;
+	}
+	
+	/**
+	 * 设置 welfaerYlbxPerson
+	 * @param welfaerYlbxPerson welfaerYlbxPerson
+	 * @return 当前对象
+	*/
+	public SalaryCtl setWelfaerYlbxPerson(BigDecimal welfaerYlbxPerson) {
+		this.welfaerYlbxPerson=welfaerYlbxPerson;
+		return this;
+	}
+	
+	/**
+	 * 获得 welfaeryrbxPerson<br>
+	 * welfaeryrbxPerson
+	 * @return welfaeryrbxPerson
+	*/
+	public BigDecimal getWelfaeryrbxPerson() {
+		return welfaeryrbxPerson;
+	}
+	
+	/**
+	 * 设置 welfaeryrbxPerson
+	 * @param welfaeryrbxPerson welfaeryrbxPerson
+	 * @return 当前对象
+	*/
+	public SalaryCtl setWelfaeryrbxPerson(BigDecimal welfaeryrbxPerson) {
+		this.welfaeryrbxPerson=welfaeryrbxPerson;
+		return this;
+	}
+	
+	/**
+	 * 获得 welfaerSyebxPerson<br>
+	 * welfaerSyebxPerson
+	 * @return welfaerSyebxPerson
+	*/
+	public BigDecimal getWelfaerSyebxPerson() {
+		return welfaerSyebxPerson;
+	}
+	
+	/**
+	 * 设置 welfaerSyebxPerson
+	 * @param welfaerSyebxPerson welfaerSyebxPerson
+	 * @return 当前对象
+	*/
+	public SalaryCtl setWelfaerSyebxPerson(BigDecimal welfaerSyebxPerson) {
+		this.welfaerSyebxPerson=welfaerSyebxPerson;
+		return this;
+	}
+	
+	/**
+	 * 获得 welfaerGsbxPerson<br>
+	 * welfaerGsbxPerson
+	 * @return welfaerGsbxPerson
+	*/
+	public BigDecimal getWelfaerGsbxPerson() {
+		return welfaerGsbxPerson;
+	}
+	
+	/**
+	 * 设置 welfaerGsbxPerson
+	 * @param welfaerGsbxPerson welfaerGsbxPerson
+	 * @return 当前对象
+	*/
+	public SalaryCtl setWelfaerGsbxPerson(BigDecimal welfaerGsbxPerson) {
+		this.welfaerGsbxPerson=welfaerGsbxPerson;
+		return this;
+	}
+	
+	/**
+	 * 获得 welfaerSybxPerson<br>
+	 * welfaerSybxPerson
+	 * @return welfaerSybxPerson
+	*/
+	public BigDecimal getWelfaerSybxPerson() {
+		return welfaerSybxPerson;
+	}
+	
+	/**
+	 * 设置 welfaerSybxPerson
+	 * @param welfaerSybxPerson welfaerSybxPerson
+	 * @return 当前对象
+	*/
+	public SalaryCtl setWelfaerSybxPerson(BigDecimal welfaerSybxPerson) {
+		this.welfaerSybxPerson=welfaerSybxPerson;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -558,6 +783,17 @@ public class SalaryCtl extends Entity {
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		if(all) {
+			inst.setIsHighTemperatureMonth(this.getIsHighTemperatureMonth());
+			inst.setWelfaerSyebxPerson(this.getWelfaerSyebxPerson());
+			inst.setWelfaerSybxPerson(this.getWelfaerSybxPerson());
+			inst.setNonConversionRatio(this.getNonConversionRatio());
+			inst.setWelfaerGsbxPerson(this.getWelfaerGsbxPerson());
+			inst.setDeductionBase(this.getDeductionBase());
+			inst.setWelfaeryrbxPerson(this.getWelfaeryrbxPerson());
+			inst.setWelfaerYlbxPerson(this.getWelfaerYlbxPerson());
+			inst.setWelfareZfgjjPerson(this.getWelfareZfgjjPerson());
+		}
 		inst.clearModifies();
 		return inst;
 	}
@@ -634,6 +870,15 @@ public class SalaryCtl extends Entity {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(SalaryCtlMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(SalaryCtlMeta.ID)));
 			// others
+			this.setIsHighTemperatureMonth(DataParser.parse(String.class, map.get(SalaryCtlMeta.IS_HIGH_TEMPERATURE_MONTH)));
+			this.setWelfaerSyebxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryCtlMeta.WELFAER_SYEBX_PERSON)));
+			this.setWelfaerSybxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryCtlMeta.WELFAER_SYBX_PERSON)));
+			this.setNonConversionRatio(DataParser.parse(BigDecimal.class, map.get(SalaryCtlMeta.NON_CONVERSION_RATIO)));
+			this.setWelfaerGsbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryCtlMeta.WELFAER_GSBX_PERSON)));
+			this.setDeductionBase(DataParser.parse(BigDecimal.class, map.get(SalaryCtlMeta.DEDUCTION_BASE)));
+			this.setWelfaeryrbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryCtlMeta.WELFAERYRBX_PERSON)));
+			this.setWelfaerYlbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryCtlMeta.WELFAER_YLBX_PERSON)));
+			this.setWelfareZfgjjPerson(DataParser.parse(BigDecimal.class, map.get(SalaryCtlMeta.WELFARE_ZFGJJ_PERSON)));
 			return true;
 		} else {
 			try {
@@ -655,6 +900,15 @@ public class SalaryCtl extends Entity {
 				this.setDeleteBy( (String)map.get(SalaryCtlMeta.DELETE_BY));
 				this.setId( (String)map.get(SalaryCtlMeta.ID));
 				// others
+				this.setIsHighTemperatureMonth( (String)map.get(SalaryCtlMeta.IS_HIGH_TEMPERATURE_MONTH));
+				this.setWelfaerSyebxPerson( (BigDecimal)map.get(SalaryCtlMeta.WELFAER_SYEBX_PERSON));
+				this.setWelfaerSybxPerson( (BigDecimal)map.get(SalaryCtlMeta.WELFAER_SYBX_PERSON));
+				this.setNonConversionRatio( (BigDecimal)map.get(SalaryCtlMeta.NON_CONVERSION_RATIO));
+				this.setWelfaerGsbxPerson( (BigDecimal)map.get(SalaryCtlMeta.WELFAER_GSBX_PERSON));
+				this.setDeductionBase( (BigDecimal)map.get(SalaryCtlMeta.DEDUCTION_BASE));
+				this.setWelfaeryrbxPerson( (BigDecimal)map.get(SalaryCtlMeta.WELFAERYRBX_PERSON));
+				this.setWelfaerYlbxPerson( (BigDecimal)map.get(SalaryCtlMeta.WELFAER_YLBX_PERSON));
+				this.setWelfareZfgjjPerson( (BigDecimal)map.get(SalaryCtlMeta.WELFARE_ZFGJJ_PERSON));
 				return true;
 			} catch (Exception e) {
 				return false;

@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-26 23:13:12
+ * @since 2024-01-27 21:03:55
  * @sign BF0A4B51A4CD7294AEF107586B523788
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -150,6 +150,16 @@ public class SalaryTplItemVOMeta extends SalaryTplItemMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplItemVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplItemVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
+	 * 计算顺序 , 类型: java.lang.Integer
+	*/
+	public static final String SORT="sort";
+	
+	/**
+	 * 计算顺序 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplItemVO,java.lang.Integer> SORT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplItemVO.class ,SORT, java.lang.Integer.class, "计算顺序", "计算顺序", java.lang.Integer.class, null);
+	
+	/**
 	 * 模版 , 类型: java.lang.String
 	*/
 	public static final String TPL_ID="tplId";
@@ -218,16 +228,6 @@ public class SalaryTplItemVOMeta extends SalaryTplItemMeta {
 	 * 包含公式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplItemVO,java.lang.String> INCLUDE_EXPRESSION_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplItemVO.class ,INCLUDE_EXPRESSION, java.lang.String.class, "包含公式", "包含公式", java.lang.String.class, null);
-	
-	/**
-	 * 排序 , 类型: java.lang.Integer
-	*/
-	public static final String SORT="sort";
-	
-	/**
-	 * 排序 , 类型: java.lang.Integer
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplItemVO,java.lang.Integer> SORT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplItemVO.class ,SORT, java.lang.Integer.class, "排序", "排序", java.lang.Integer.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -340,9 +340,19 @@ public class SalaryTplItemVOMeta extends SalaryTplItemMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplItemVO,com.dt.platform.domain.hr.SalaryColumn> SALARY_COLUMN_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplItemVO.class ,SALARY_COLUMN, com.dt.platform.domain.hr.SalaryColumn.class, "salaryColumn", "salaryColumn", com.dt.platform.domain.hr.SalaryColumn.class, null);
 	
 	/**
+	 * salaryColumnCode , 类型: java.lang.String
+	*/
+	public static final String SALARY_COLUMN_CODE="salaryColumnCode";
+	
+	/**
+	 * salaryColumnCode , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplItemVO,java.lang.String> SALARY_COLUMN_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplItemVO.class ,SALARY_COLUMN_CODE, java.lang.String.class, "salaryColumnCode", "salaryColumnCode", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TPL_ID , CODE , NAME , STATUS , EXPRESSION_VALUE , EXPRESSION_SHOW , INCLUDE_EXPRESSION , SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_COLUMN };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , SORT , TPL_ID , CODE , NAME , STATUS , EXPRESSION_VALUE , EXPRESSION_SHOW , INCLUDE_EXPRESSION , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_COLUMN , SALARY_COLUMN_CODE };
 	
 	/**
 	 * 代理类
@@ -496,6 +506,17 @@ public class SalaryTplItemVOMeta extends SalaryTplItemMeta {
 		}
 		
 		/**
+		 * 设置 计算顺序
+		 * @param sort 计算顺序
+		 * @return 当前对象
+		*/
+		public SalaryTplItem setSort(Integer sort) {
+			super.change(SORT,super.getSort(),sort);
+			super.setSort(sort);
+			return this;
+		}
+		
+		/**
 		 * 设置 模版
 		 * @param tplId 模版
 		 * @return 当前对象
@@ -569,17 +590,6 @@ public class SalaryTplItemVOMeta extends SalaryTplItemMeta {
 		public SalaryTplItem setIncludeExpression(String includeExpression) {
 			super.change(INCLUDE_EXPRESSION,super.getIncludeExpression(),includeExpression);
 			super.setIncludeExpression(includeExpression);
-			return this;
-		}
-		
-		/**
-		 * 设置 排序
-		 * @param sort 排序
-		 * @return 当前对象
-		*/
-		public SalaryTplItem setSort(Integer sort) {
-			super.change(SORT,super.getSort(),sort);
-			super.setSort(sort);
 			return this;
 		}
 		
@@ -703,6 +713,17 @@ public class SalaryTplItemVOMeta extends SalaryTplItemMeta {
 			super.setSalaryColumn(salaryColumn);
 			return this;
 		}
+		
+		/**
+		 * 设置 salaryColumnCode
+		 * @param salaryColumnCode salaryColumnCode
+		 * @return 当前对象
+		*/
+		public SalaryTplItem setSalaryColumnCode(String salaryColumnCode) {
+			super.change(SALARY_COLUMN_CODE,super.getSalaryColumnCode(),salaryColumnCode);
+			super.setSalaryColumnCode(salaryColumnCode);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -743,6 +764,7 @@ public class SalaryTplItemVOMeta extends SalaryTplItemMeta {
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
+				inst.setSalaryColumnCode(this.getSalaryColumnCode());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());

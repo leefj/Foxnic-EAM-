@@ -1,7 +1,7 @@
 /**
  * 薪酬发放 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-26 22:31:56
+ * @since 2024-01-27 21:41:03
  */
 
 function FormPage() {
@@ -135,7 +135,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#start',
 			type:"date",
-			format:"yyyy-MM-dd HH:mm:ss",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("start",value, date, endDate);
@@ -144,7 +144,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#end',
 			type:"date",
-			format:"yyyy-MM-dd HH:mm:ss",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("end",value, date, endDate);
@@ -277,6 +277,14 @@ function FormPage() {
 
 
 
+			//设置 开始日期 显示复选框勾选
+			if(formData["start"]) {
+				$("#start").val(fox.dateFormat(formData["start"],"yyyy-MM-dd"));
+			}
+			//设置 结束日期 显示复选框勾选
+			if(formData["end"]) {
+				$("#end").val(fox.dateFormat(formData["end"],"yyyy-MM-dd"));
+			}
 
 
 			//设置  月份 设置下拉框勾选

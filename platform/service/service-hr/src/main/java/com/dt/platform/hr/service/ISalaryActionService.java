@@ -1,13 +1,12 @@
 package com.dt.platform.hr.service;
 
-import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.*;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.hr.SalaryAction;
-import com.dt.platform.domain.hr.SalaryActionVO;
+
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -30,6 +29,9 @@ import java.util.Map;
 
 public interface ISalaryActionService extends  ISimpleIdService<SalaryAction,String> {
 
+	public Result fillTpl(SalaryTpl tpl);
+
+	public Result calculatePerson(SalaryDetail salary, SalaryTpl tpl);
 
 	public Result calculate(String id);
 

@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 薪酬控制 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 10:15:34
+ * @since 2024-01-27 18:33:34
  */
 @FeignClient(value = ServiceNames.HR, contextId = SalaryCtlServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface SalaryCtlServiceProxy {

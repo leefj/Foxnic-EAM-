@@ -2,10 +2,7 @@ package com.dt.platform.generator.module.hr;
 
 
 import com.dt.platform.constants.db.HrTables;
-import com.dt.platform.domain.hr.Person;
-import com.dt.platform.domain.hr.Salary;
-import com.dt.platform.domain.hr.SalaryDetail;
-import com.dt.platform.domain.hr.SalaryTplItem;
+import com.dt.platform.domain.hr.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.hr.page.SalaryTplPageController;
 import com.dt.platform.proxy.hr.SalaryTplServiceProxy;
@@ -25,10 +22,12 @@ public class SalalyTplGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addListProperty(SalaryTplItem.class,"salaryTplItem","salaryTplItem","salaryTplItem");
         cfg.getPoClassFile().addListProperty(SalaryTplItem.class,"validSalaryTplItem","validSalaryTplItem","validSalaryTplItem");
-        cfg.getPoClassFile().addListProperty(SalaryDetail.class,"SalaryDetailList","SalaryDetailList","SalaryDetailList");
-        cfg.getPoClassFile().addListProperty(Person.class,"personList","personList","personList");
-        cfg.getPoClassFile().addSimpleProperty(BigDecimal.class,"confNonConversionRatio","confNonConversionRatio","confNonConversionRatio");
 
+        cfg.getPoClassFile().addSimpleProperty(SalaryCtl.class,"salaryCtl","salaryCtl","salaryCtl");
+        cfg.getPoClassFile().addListProperty(SalaryIncomeTax.class,"salaryIncomeTaxList","salaryIncomeTaxList","salaryIncomeTaxList");
+
+        cfg.getPoClassFile().addSimpleProperty(BigDecimal.class,"confNonConversionRatio","confNonConversionRatio","confNonConversionRatio");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"confCurMonth","confCurMonth","confCurMonth");
 
         cfg.view().field(HrTables.HR_SALARY.ID).basic().hidden(true);
         cfg.view().field(HrTables.HR_SALARY_TPL.CODE).search().fuzzySearch();

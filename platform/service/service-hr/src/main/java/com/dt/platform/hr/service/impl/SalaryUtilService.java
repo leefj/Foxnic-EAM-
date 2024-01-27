@@ -1,5 +1,8 @@
 package com.dt.platform.hr.service.impl;
 
+import com.dt.platform.domain.hr.SalaryCtl;
+import com.dt.platform.domain.hr.SalaryDetail;
+import com.dt.platform.domain.hr.SalaryIncomeTax;
 import com.github.foxnic.commons.log.Logger;
 import org.apache.commons.jexl3.*;
 import org.springframework.stereotype.Service;
@@ -14,24 +17,38 @@ import java.util.*;
 public class SalaryUtilService {
 
 
-    /**
-     * 月份是否一样
-     * @param date1 日期1 2022-01
-     * @param date2 日期2 2022-01
-     * @return 1 相等,
-     *         0 不相等
-     * */
-    public String equalMonth(Date date1, Date date2){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
-        String d1 = sdf.format(date1);
-        String d2 = sdf.format(date2);
-        if(d1.equals(d2)){
-            return "1";
-        }else{
-            return "0";
+
+    public BigDecimal calIncomeTaxPctValue(BigDecimal total, List<SalaryIncomeTax> taxList){
+        Logger.info("total:"+total.toString());
+        BigDecimal res=new BigDecimal("0.03");
+        for(SalaryIncomeTax tax:taxList){
+            //total<tax
+            if(total.compareTo(tax.getEnd())==-1){
+                res=tax.getTax();
+                break;
+            }
         }
+        return res;
     }
 
+    public BigDecimal calIncomeTaxValue(BigDecimal total, List<SalaryIncomeTax> taxList){
+        SalaryIncomeTax pct=null;
+        for(SalaryIncomeTax tax:taxList){
+            //total<tax
+            if(total.compareTo(tax.getEnd())==-1){
+                pct=tax;
+                break;
+            }
+
+        }
+        Logger.info("total:"+total.toString());
+        Logger.info("pct:"+pct.getTax());
+        BigDecimal res=total.multiply(pct.getTax()).subtract(pct.getQuickDeduct());
+        //四舍五入模式
+        return res.setScale(2,BigDecimal.ROUND_HALF_UP);
+    }
+
+    //四舍五入模式
     public BigDecimal roundHalfUp(Object value, int scale){
         Logger.info("class type:"+value.getClass());
         if(value.getClass().equals(BigDecimal.class)){
@@ -94,85 +111,6 @@ public class SalaryUtilService {
         }else{
             return value-1;
         }
-    }
-
-
-    /**
-     * date1-date2
-     * @param businessDate 日期1 2022-01
-     * @param startDate 日期2 2022-01
-     * @param life 1
-     * @return 返回相减的月份
-     * */
-    public int usedLifeByAccountingPeriodForFinish(Date startDate,Date businessDate,int life){
-        SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(startDate);
-        calendar.add(Calendar.MONTH,life);
-        Date lastDate = calendar.getTime();
-        String lastYear = sdfy.format(lastDate);
-        String businessYear = sdfy.format(businessDate);
-        String startYear = sdfy.format(startDate);
-        int hd=0;
-        if(businessYear.equals(startYear)){
-            //计算月份-验收月份
-            Calendar cal1 = Calendar.getInstance();
-            cal1.setTime(startDate);
-            int month1 = cal1.get(Calendar.MONTH) + 1;
-            Calendar cal2 = Calendar.getInstance();
-            cal2.setTime(businessDate);
-            int month2 = cal2.get(Calendar.MONTH) + 1;
-            hd= (month2-month1);
-        }else {
-            if(Integer.parseInt(businessYear) <= Integer.parseInt(lastYear) ) {
-                Calendar cal2 = Calendar.getInstance();
-                cal2.setTime(businessDate);
-                hd = cal2.get(Calendar.MONTH) + 1;
-            }else{
-                hd=0;
-            }
-        }
-        if(hd-1<0){
-            return 0;
-        }else{
-            return hd-1;
-        }
-    }
-
-    public int usedLifeByAccountingPeriodForFinish2(Date startDate,Date businessDate,int life){
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(startDate);
-        calendar.add(Calendar.MONTH,life);
-        Date lastDate = calendar.getTime();
-
-        SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-        String d1y = sdfy.format(lastDate);
-        String d2y = sdfy.format(businessDate);
-        if(d1y.equals(d2y)){
-            return 1;
-        }else{
-            return 0;
-        }
-    }
-
-
-    /**
-     * date1-date2
-     * @param date1 日期1 2022-01
-     * @param date2 日期2 2022-01
-     * @return 返回相减的月份
-     * */
-    public String subtractMonth(Date date1, Date date2){
-        Calendar cal1 = Calendar.getInstance();
-        cal1.setTime(date1);
-        int year1 = cal1.get(Calendar.YEAR) ;
-        int month1 = cal1.get(Calendar.MONTH) + 1;
-
-        Calendar cal2 = Calendar.getInstance();
-        cal2.setTime(date2);
-        int year2 = cal2.get(Calendar.YEAR) ;
-        int month2 = cal2.get(Calendar.MONTH) + 1;
-        return (year1-year2)*12+(month1-month2)+"";
     }
 
 

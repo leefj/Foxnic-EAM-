@@ -49,6 +49,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
+            cfg.limit=300;
             console.log("list:beforeTableRender",cfg);
         },
         /**
