@@ -6,8 +6,8 @@ import java.util.List;
 import com.dt.platform.domain.hr.SalaryTpl;
 import java.util.Date;
 import com.dt.platform.domain.hr.SalaryTplItem;
-import com.dt.platform.domain.hr.SalaryDetail;
-import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.SalaryCtl;
+import com.dt.platform.domain.hr.SalaryIncomeTax;
 import java.math.BigDecimal;
 import javax.persistence.Transient;
 
@@ -15,7 +15,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-26 23:28:02
+ * @since 2024-01-28 01:12:48
  * @sign E9A4577E510BAAF3C8CD5EBD445BE499
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -333,24 +333,24 @@ public class SalaryTplVOMeta extends SalaryTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplVO,com.dt.platform.domain.hr.SalaryTplItem> VALID_SALARY_TPL_ITEM_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplVO.class ,VALID_SALARY_TPL_ITEM, java.util.List.class, "validSalaryTplItem", "validSalaryTplItem", com.dt.platform.domain.hr.SalaryTplItem.class, null);
 	
 	/**
-	 * SalaryDetailList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryDetail
+	 * salaryCtl , 类型: com.dt.platform.domain.hr.SalaryCtl
 	*/
-	public static final String SALARY_DETAIL_LIST="SalaryDetailList";
+	public static final String SALARY_CTL="salaryCtl";
 	
 	/**
-	 * SalaryDetailList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryDetail
+	 * salaryCtl , 类型: com.dt.platform.domain.hr.SalaryCtl
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplVO,com.dt.platform.domain.hr.SalaryDetail> SALARY_DETAIL_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplVO.class ,SALARY_DETAIL_LIST, java.util.List.class, "SalaryDetailList", "SalaryDetailList", com.dt.platform.domain.hr.SalaryDetail.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplVO,com.dt.platform.domain.hr.SalaryCtl> SALARY_CTL_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplVO.class ,SALARY_CTL, com.dt.platform.domain.hr.SalaryCtl.class, "salaryCtl", "salaryCtl", com.dt.platform.domain.hr.SalaryCtl.class, null);
 	
 	/**
-	 * personList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.Person
+	 * salaryIncomeTaxList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryIncomeTax
 	*/
-	public static final String PERSON_LIST="personList";
+	public static final String SALARY_INCOME_TAX_LIST="salaryIncomeTaxList";
 	
 	/**
-	 * personList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.Person
+	 * salaryIncomeTaxList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.SalaryIncomeTax
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplVO,com.dt.platform.domain.hr.Person> PERSON_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplVO.class ,PERSON_LIST, java.util.List.class, "personList", "personList", com.dt.platform.domain.hr.Person.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplVO,com.dt.platform.domain.hr.SalaryIncomeTax> SALARY_INCOME_TAX_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplVO.class ,SALARY_INCOME_TAX_LIST, java.util.List.class, "salaryIncomeTaxList", "salaryIncomeTaxList", com.dt.platform.domain.hr.SalaryIncomeTax.class, null);
 	
 	/**
 	 * confNonConversionRatio , 类型: java.math.BigDecimal
@@ -363,9 +363,19 @@ public class SalaryTplVOMeta extends SalaryTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplVO,java.math.BigDecimal> CONF_NON_CONVERSION_RATIO_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplVO.class ,CONF_NON_CONVERSION_RATIO, java.math.BigDecimal.class, "confNonConversionRatio", "confNonConversionRatio", java.math.BigDecimal.class, null);
 	
 	/**
+	 * confCurMonth , 类型: java.lang.String
+	*/
+	public static final String CONF_CUR_MONTH="confCurMonth";
+	
+	/**
+	 * confCurMonth , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryTplVO,java.lang.String> CONF_CUR_MONTH_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryTplVO.class ,CONF_CUR_MONTH, java.lang.String.class, "confCurMonth", "confCurMonth", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , START_M_DAY , END_M_DAY , METHOD , METHOD_SCRIPT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL_ITEM , VALID_SALARY_TPL_ITEM , SALARY_DETAIL_LIST , PERSON_LIST , CONF_NON_CONVERSION_RATIO };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , START_M_DAY , END_M_DAY , METHOD , METHOD_SCRIPT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL_ITEM , VALID_SALARY_TPL_ITEM , SALARY_CTL , SALARY_INCOME_TAX_LIST , CONF_NON_CONVERSION_RATIO , CONF_CUR_MONTH };
 	
 	/**
 	 * 代理类
@@ -717,24 +727,24 @@ public class SalaryTplVOMeta extends SalaryTplMeta {
 		}
 		
 		/**
-		 * 设置 SalaryDetailList
-		 * @param SalaryDetailList SalaryDetailList
+		 * 设置 salaryCtl
+		 * @param salaryCtl salaryCtl
 		 * @return 当前对象
 		*/
-		public SalaryTpl setSalaryDetailList(List<SalaryDetail> SalaryDetailList) {
-			super.change(SALARY_DETAIL_LIST,super.getSalaryDetailList(),SalaryDetailList);
-			super.setSalaryDetailList(SalaryDetailList);
+		public SalaryTpl setSalaryCtl(SalaryCtl salaryCtl) {
+			super.change(SALARY_CTL,super.getSalaryCtl(),salaryCtl);
+			super.setSalaryCtl(salaryCtl);
 			return this;
 		}
 		
 		/**
-		 * 设置 personList
-		 * @param personList personList
+		 * 设置 salaryIncomeTaxList
+		 * @param salaryIncomeTaxList salaryIncomeTaxList
 		 * @return 当前对象
 		*/
-		public SalaryTpl setPersonList(List<Person> personList) {
-			super.change(PERSON_LIST,super.getPersonList(),personList);
-			super.setPersonList(personList);
+		public SalaryTpl setSalaryIncomeTaxList(List<SalaryIncomeTax> salaryIncomeTaxList) {
+			super.change(SALARY_INCOME_TAX_LIST,super.getSalaryIncomeTaxList(),salaryIncomeTaxList);
+			super.setSalaryIncomeTaxList(salaryIncomeTaxList);
 			return this;
 		}
 		
@@ -746,6 +756,17 @@ public class SalaryTplVOMeta extends SalaryTplMeta {
 		public SalaryTpl setConfNonConversionRatio(BigDecimal confNonConversionRatio) {
 			super.change(CONF_NON_CONVERSION_RATIO,super.getConfNonConversionRatio(),confNonConversionRatio);
 			super.setConfNonConversionRatio(confNonConversionRatio);
+			return this;
+		}
+		
+		/**
+		 * 设置 confCurMonth
+		 * @param confCurMonth confCurMonth
+		 * @return 当前对象
+		*/
+		public SalaryTpl setConfCurMonth(String confCurMonth) {
+			super.change(CONF_CUR_MONTH,super.getConfCurMonth(),confCurMonth);
+			super.setConfCurMonth(confCurMonth);
 			return this;
 		}
 
@@ -782,22 +803,23 @@ public class SalaryTplVOMeta extends SalaryTplMeta {
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
 			if(all) {
-				inst.setPersonList(this.getPersonList());
 				inst.setSearchField(this.getSearchField());
+				inst.setSalaryCtl(this.getSalaryCtl());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
 				inst.setConfNonConversionRatio(this.getConfNonConversionRatio());
+				inst.setConfCurMonth(this.getConfCurMonth());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setSalaryTplItem(this.getSalaryTplItem());
+				inst.setSalaryIncomeTaxList(this.getSalaryIncomeTaxList());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setValidSalaryTplItem(this.getValidSalaryTplItem());
-				inst.setSalaryDetailList(this.getSalaryDetailList());
 				inst.setSearchValue(this.getSearchValue());
 			}
 			inst.clearModifies();

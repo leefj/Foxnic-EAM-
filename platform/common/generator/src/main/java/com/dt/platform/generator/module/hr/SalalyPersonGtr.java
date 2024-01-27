@@ -40,8 +40,6 @@ public class SalalyPersonGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-     //   cfg.view().field(HrTables.HR_SALARY.STATUS).form().validate().required().form().radioBox().enumType(StatusYNEnum.class).defaultIndex(0);
-
 
         cfg.view().field(HrTables.HR_SALARY.WELFARE_ZFGJJ_BASE).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY.WELFAER_YRBX_BASE).form().numberInput().decimal().defaultValue(0.00).scale(2);
@@ -58,10 +56,10 @@ public class SalalyPersonGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_SALARY.WELFAER_GSBX_COMPANY).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY.WELFAER_YLBX_COMPANY).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY.WELFAER_SYBX_COMPANY).form().numberInput().decimal().defaultValue(0.00).scale(2);
-
         cfg.view().field(HrTables.HR_SALARY.WELFAER_SYEBX_COMPANY).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY.WELFAER_SYEBX_BASE).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY.WELFAER_SYEBX_PERSON).form().numberInput().decimal().defaultValue(0.00).scale(2);
+
 
         cfg.view().field(HrTables.HR_SALARY.FIXED_SALARY).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY.COMMUNICATION_SALARY).form().numberInput().decimal().defaultValue(0.00).scale(2);
@@ -73,11 +71,9 @@ public class SalalyPersonGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_SALARY.HIGH_TEMPERATURE_SALARY).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY.OTHER_SALARY).form().numberInput().decimal().defaultValue(0.00).scale(2);
 
-
         cfg.view().field(HrTables.HR_SALARY.BASE_SALARY).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY.POST_SALARY).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY.WORKING_YEARS_SALARY).form().numberInput().decimal().defaultValue(0.00).scale(2);
-
         cfg.view().field(HrTables.HR_SALARY.PERSONAL_TAX_DBYL).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY.PERSONAL_TAX_ERZH).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY.PERSONAL_TAX_JXJY).form().numberInput().decimal().defaultValue(0.00).scale(2);

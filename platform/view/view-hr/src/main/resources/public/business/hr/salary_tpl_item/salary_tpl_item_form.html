@@ -2,7 +2,7 @@
 /**
  * 计算项目 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-26 23:13:14
+ * @since 2024-01-27 21:03:57
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-8466-content">
+        <div class="layui-row form-row" id="random-8488-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -65,19 +65,19 @@
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-                <!-- text_input : 名称 ,  name -->
-                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
-                    <div class="layui-input-block ">
-                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'名称') }" type="text" class="layui-input"    lay-verify="|required"  />
-                    </div>
-                </div>
-            
                 <!-- radio_box : 状态 ,  status  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
                         <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
+                    </div>
+                </div>
+            
+                <!-- number_input : 计算顺序 ,  sort  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('计算顺序')}">计算顺序</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="sort" id="sort" name="sort" th:placeholder="${ lang.translate('请输入'+'计算顺序') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -87,7 +87,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-7791-content">
+        <div class="layui-row form-row" id="random-6721-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -106,14 +106,6 @@
                     <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block ">
                         <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 80px" ></textarea>
-                    </div>
-                </div>
-            
-                <!-- number_input : 排序 ,  sort  -->
-                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('排序')}">排序</div></div>
-                    <div class="layui-input-block ">
-                        <input lay-filter="sort" id="sort" name="sort" th:placeholder="${ lang.translate('请输入'+'排序') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -143,7 +135,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var RADIO_INCLUDEEXPRESSION_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.SalaryTplIncludeExpressEnum')}]];
-    var VALIDATE_CONFIG={"code":{"labelInForm":"编码","inputType":"select_box","required":true},"includeExpression":{"labelInForm":"包含公式","inputType":"radio_box","required":true},"name":{"labelInForm":"名称","inputType":"text_input","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true}};
+    var VALIDATE_CONFIG={"code":{"labelInForm":"编码","inputType":"select_box","required":true},"includeExpression":{"labelInForm":"包含公式","inputType":"radio_box","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true}};
     var AUTH_PREFIX="hr_salary_tpl_item";
 
     // tplId

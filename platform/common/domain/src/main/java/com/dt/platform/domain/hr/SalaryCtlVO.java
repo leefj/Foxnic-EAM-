@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬控制VO类型
  * <p>薪酬控制 , 数据表 hr_salary_ctl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 10:15:33
+ * @since 2024-01-27 18:33:33
  * @sign 09ED909ABB4C48697F0329BC544B3E26
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -420,14 +420,23 @@ public class SalaryCtlVO extends SalaryCtl {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
+			inst.setIsHighTemperatureMonth(this.getIsHighTemperatureMonth());
+			inst.setWelfaerSyebxPerson(this.getWelfaerSyebxPerson());
+			inst.setWelfaerSybxPerson(this.getWelfaerSybxPerson());
+			inst.setNonConversionRatio(this.getNonConversionRatio());
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setDeductionBase(this.getDeductionBase());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setWelfareZfgjjPerson(this.getWelfareZfgjjPerson());
+			inst.setWelfaerGsbxPerson(this.getWelfaerGsbxPerson());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setRequestAction(this.getRequestAction());
-			inst.setFuzzyField(this.getFuzzyField());
+			inst.setWelfaeryrbxPerson(this.getWelfaeryrbxPerson());
+			inst.setWelfaerYlbxPerson(this.getWelfaerYlbxPerson());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
@@ -509,13 +518,22 @@ public class SalaryCtlVO extends SalaryCtl {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.ID)));
 			// others
+			this.setIsHighTemperatureMonth(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.IS_HIGH_TEMPERATURE_MONTH)));
+			this.setWelfaerSyebxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryCtlVOMeta.WELFAER_SYEBX_PERSON)));
+			this.setWelfaerSybxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryCtlVOMeta.WELFAER_SYBX_PERSON)));
+			this.setNonConversionRatio(DataParser.parse(BigDecimal.class, map.get(SalaryCtlVOMeta.NON_CONVERSION_RATIO)));
 			this.setSearchField(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.REQUEST_ACTION)));
+			this.setDeductionBase(DataParser.parse(BigDecimal.class, map.get(SalaryCtlVOMeta.DEDUCTION_BASE)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(SalaryCtlVOMeta.PAGE_SIZE)));
+			this.setWelfareZfgjjPerson(DataParser.parse(BigDecimal.class, map.get(SalaryCtlVOMeta.WELFARE_ZFGJJ_PERSON)));
+			this.setWelfaerGsbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryCtlVOMeta.WELFAER_GSBX_PERSON)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(SalaryCtlVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.SORT_TYPE)));
-			this.setRequestAction(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.REQUEST_ACTION)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.FUZZY_FIELD)));
+			this.setWelfaeryrbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryCtlVOMeta.WELFAERYRBX_PERSON)));
+			this.setWelfaerYlbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryCtlVOMeta.WELFAER_YLBX_PERSON)));
 			this.setSortField(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.SORT_FIELD)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(SalaryCtlVOMeta.PAGE_SIZE)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(SalaryCtlVOMeta.SEARCH_VALUE)));
@@ -540,13 +558,22 @@ public class SalaryCtlVO extends SalaryCtl {
 				this.setDeleteBy( (String)map.get(SalaryCtlVOMeta.DELETE_BY));
 				this.setId( (String)map.get(SalaryCtlVOMeta.ID));
 				// others
+				this.setIsHighTemperatureMonth( (String)map.get(SalaryCtlVOMeta.IS_HIGH_TEMPERATURE_MONTH));
+				this.setWelfaerSyebxPerson( (BigDecimal)map.get(SalaryCtlVOMeta.WELFAER_SYEBX_PERSON));
+				this.setWelfaerSybxPerson( (BigDecimal)map.get(SalaryCtlVOMeta.WELFAER_SYBX_PERSON));
+				this.setNonConversionRatio( (BigDecimal)map.get(SalaryCtlVOMeta.NON_CONVERSION_RATIO));
 				this.setSearchField( (String)map.get(SalaryCtlVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(SalaryCtlVOMeta.REQUEST_ACTION));
+				this.setDeductionBase( (BigDecimal)map.get(SalaryCtlVOMeta.DEDUCTION_BASE));
+				this.setFuzzyField( (String)map.get(SalaryCtlVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(SalaryCtlVOMeta.PAGE_SIZE));
+				this.setWelfareZfgjjPerson( (BigDecimal)map.get(SalaryCtlVOMeta.WELFARE_ZFGJJ_PERSON));
+				this.setWelfaerGsbxPerson( (BigDecimal)map.get(SalaryCtlVOMeta.WELFAER_GSBX_PERSON));
 				this.setPageIndex( (Integer)map.get(SalaryCtlVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(SalaryCtlVOMeta.SORT_TYPE));
-				this.setRequestAction( (String)map.get(SalaryCtlVOMeta.REQUEST_ACTION));
-				this.setFuzzyField( (String)map.get(SalaryCtlVOMeta.FUZZY_FIELD));
+				this.setWelfaeryrbxPerson( (BigDecimal)map.get(SalaryCtlVOMeta.WELFAERYRBX_PERSON));
+				this.setWelfaerYlbxPerson( (BigDecimal)map.get(SalaryCtlVOMeta.WELFAER_YLBX_PERSON));
 				this.setSortField( (String)map.get(SalaryCtlVOMeta.SORT_FIELD));
-				this.setPageSize( (Integer)map.get(SalaryCtlVOMeta.PAGE_SIZE));
 				this.setDataOrigin( (String)map.get(SalaryCtlVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(SalaryCtlVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(SalaryCtlVOMeta.SEARCH_VALUE));

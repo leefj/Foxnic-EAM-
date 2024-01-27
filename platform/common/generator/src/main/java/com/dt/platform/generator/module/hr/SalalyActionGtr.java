@@ -14,6 +14,7 @@ import com.dt.platform.domain.hr.meta.SalaryTplMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.hr.SalaryMonthServiceProxy;
 import com.dt.platform.proxy.hr.SalaryTplServiceProxy;
+import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 
 
@@ -38,6 +39,7 @@ public class SalalyActionGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_SALARY_ACTION.STATUS).search().fuzzySearch();
         cfg.view().field(HrTables.HR_SALARY_ACTION.NAME).search().fuzzySearch();
         cfg.view().field(HrTables.HR_SALARY_ACTION.ACTION_MONTH).search().fuzzySearch();
+        cfg.view().field(HrTables.HR_SALARY_ACTION.START).search().range();
         cfg.view().search().inputLayout(
                 new Object[]{
                         HrTables.HR_SALARY_ACTION.STATUS,
@@ -56,14 +58,14 @@ public class SalalyActionGtr extends BaseCodeGenerator {
 
 
 
-
-
-
         cfg.view().field(HrTables.HR_SALARY_ACTION.STATUS).form().radioBox().enumType(SalaryActionStatusEnum.class);
         cfg.view().field(HrTables.HR_SALARY_ACTION.LABEL).form().radioBox().enumType(SalaryActionLabelEnum.class).defaultIndex(0);
         cfg.view().field(HrTables.HR_SALARY_ACTION.NAME).form().validate().required();
         cfg.view().field(HrTables.HR_SALARY_ACTION.NOTES).form().textArea().height(150);
 
+        cfg.view().field(HrTables.HR_SALARY_ACTION.START).form().validate().required().form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
+        cfg.view().field(HrTables.HR_SALARY_ACTION.END).form().validate().required().form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
+        cfg.view().field(HrTables.HR_SALARY_ACTION.LABEL).form().radioBox().enumType(SalaryActionLabelEnum.class).defaultIndex(0);
 
 
 
@@ -87,9 +89,18 @@ public class SalalyActionGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         HrTables.HR_SALARY_ACTION.NAME,
-                        HrTables.HR_SALARY_ACTION.LABEL,
+                        HrTables.HR_SALARY_ACTION.START,
                         HrTables.HR_SALARY_ACTION.TPL_ID,
+                },
+                new Object[] {
+                        HrTables.HR_SALARY_ACTION.LABEL,
+                        HrTables.HR_SALARY_ACTION.END,
                         HrTables.HR_SALARY_ACTION.ACTION_MONTH,
+                }
+        );
+
+        cfg.view().form().addGroup(null,
+                new Object[] {
                         HrTables.HR_SALARY_ACTION.NOTES,
                 }
         );

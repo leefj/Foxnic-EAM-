@@ -30,6 +30,9 @@ public class SalalyTplItemGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addSimpleProperty(SalaryColumn.class,"salaryColumn","salaryColumn","salaryColumn");
 
+        cfg.getPoClassFile().addSimpleProperty(String.class,"salaryColumnCode","salaryColumnCode","salaryColumnCode");
+
+
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.ID).basic().hidden(true);
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.CODE).search().fuzzySearch();
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.NAME).search().fuzzySearch();
@@ -47,16 +50,23 @@ public class SalalyTplItemGtr extends BaseCodeGenerator {
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.TPL_ID).form().table().disable(true);
+
+        cfg.view().field(SalaryTplItemMeta.SALARY_COLUMN_CODE).basic().label("字段编码").form().table().disable(false);
+        cfg.view().field(SalaryTplItemMeta.SALARY_COLUMN_CODE).table().fillBy("salaryColumn","colCode");
+
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.EXPRESSION_SHOW).form().table().disable(true);
 
+
+
       //  cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.CODE).form().validate().required().form().validate().form().selectBox().enumType(SalaryTplItemCodeEnum.class).muliti(false);
-        cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.NAME).form().validate().required();
+
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.EXPRESSION_VALUE).form().textArea().height(80);
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.EXPRESSION_SHOW).form().textArea().height(80);
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.STATUS).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.INCLUDE_EXPRESSION).form().validate().required().form().radioBox().enumType(SalaryTplIncludeExpressEnum.class).defaultIndex(1);
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.NOTES).form().textArea().height(80);
 
+        cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.NAME).table().disable(true);
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.CREATE_TIME).table().disable(true);
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.CREATE_BY).table().disable(true);
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.UPDATE_BY).table().disable(true);
@@ -65,7 +75,7 @@ public class SalalyTplItemGtr extends BaseCodeGenerator {
 
         cfg.view().field(HrTables.HR_SALARY_TPL_ITEM.CODE)
                 .form().validate().required().form().selectBox().queryApi(SalaryColumnServiceProxy.QUERY_LIST)
-                .paging(false).filter(false).toolbar(false)
+                .paging(false).filter(true).toolbar(false)
                 .valueField(SalaryColumnMeta.COL_CODE).
                 textField(SalaryColumnMeta.COL_NAME).
                 fillWith(SalaryTplItemMeta.SALARY_COLUMN).muliti(false);
@@ -78,15 +88,15 @@ public class SalalyTplItemGtr extends BaseCodeGenerator {
                         HrTables.HR_SALARY_TPL_ITEM.INCLUDE_EXPRESSION
                 },
                 new Object[] {
-                        HrTables.HR_SALARY_TPL_ITEM.NAME,
                         HrTables.HR_SALARY_TPL_ITEM.STATUS,
+                        HrTables.HR_SALARY_TPL_ITEM.SORT
                 }
         );
         cfg.view().form().addGroup(null,
                 new Object[] {
                         HrTables.HR_SALARY_TPL_ITEM.EXPRESSION_VALUE,
                         HrTables.HR_SALARY_TPL_ITEM.NOTES,
-                        HrTables.HR_SALARY_TPL_ITEM.SORT
+
                 }
         );
 

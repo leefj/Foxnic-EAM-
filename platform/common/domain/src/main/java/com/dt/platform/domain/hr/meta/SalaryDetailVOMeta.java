@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-26 23:26:24
+ * @since 2024-01-28 01:39:17
  * @sign D3B310DBE8753898C4401D627A0D58FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -244,14 +244,14 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
 	
 	/**
-	 * 合计金额 , 类型: java.math.BigDecimal
+	 * 工资 , 类型: java.math.BigDecimal
 	*/
 	public static final String TOTAL_AMOUNT="totalAmount";
 	
 	/**
-	 * 合计金额 , 类型: java.math.BigDecimal
+	 * 工资 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> TOTAL_AMOUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,TOTAL_AMOUNT, java.math.BigDecimal.class, "合计金额", "合计金额", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> TOTAL_AMOUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,TOTAL_AMOUNT, java.math.BigDecimal.class, "工资", "工资", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 应发金额 , 类型: java.math.BigDecimal
@@ -264,14 +264,14 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> PAY_AMOUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,PAY_AMOUNT, java.math.BigDecimal.class, "应发金额", "应发金额", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 实发金额 , 类型: java.math.BigDecimal
+	 * 实发金额 , 员工 , 类型: java.math.BigDecimal
 	*/
 	public static final String ISSUED_AMOUNT="issuedAmount";
 	
 	/**
-	 * 实发金额 , 类型: java.math.BigDecimal
+	 * 实发金额 , 员工 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> ISSUED_AMOUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,ISSUED_AMOUNT, java.math.BigDecimal.class, "实发金额", "实发金额", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> ISSUED_AMOUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,ISSUED_AMOUNT, java.math.BigDecimal.class, "实发金额", "员工", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 基本工资 , 类型: java.math.BigDecimal
@@ -404,6 +404,16 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> PUNISH_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,PUNISH_SALARY, java.math.BigDecimal.class, "处罚金额", "处罚金额", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 每日工资 , 类型: java.math.BigDecimal
+	*/
+	public static final String DAY_SALARY="daySalary";
+	
+	/**
+	 * 每日工资 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> DAY_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,DAY_SALARY, java.math.BigDecimal.class, "每日工资", "每日工资", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 扣除考勤 , 类型: java.math.BigDecimal
 	*/
 	public static final String DEDUCT_KQ="deductKq";
@@ -464,6 +474,46 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> PT_DKJS_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,PT_DKJS, java.math.BigDecimal.class, "抵扣基数", "抵扣基数", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 加班时长 , 类型: java.math.BigDecimal
+	*/
+	public static final String WORK_OVERTIME_H_CNT="workOvertimeHCnt";
+	
+	/**
+	 * 加班时长 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WORK_OVERTIME_H_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WORK_OVERTIME_H_CNT, java.math.BigDecimal.class, "加班时长", "加班时长", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 迟到次数 , 类型: java.math.BigDecimal
+	*/
+	public static final String LATE_CNT="lateCnt";
+	
+	/**
+	 * 迟到次数 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> LATE_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,LATE_CNT, java.math.BigDecimal.class, "迟到次数", "迟到次数", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 事假天数 , 类型: java.math.BigDecimal
+	*/
+	public static final String PERSONAL_LEAVE_CNT="personalLeaveCnt";
+	
+	/**
+	 * 事假天数 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> PERSONAL_LEAVE_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,PERSONAL_LEAVE_CNT, java.math.BigDecimal.class, "事假天数", "事假天数", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 工作天数 , 类型: java.math.BigDecimal
+	*/
+	public static final String WORK_DAY_CNT="workDayCnt";
+	
+	/**
+	 * 工作天数 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WORK_DAY_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WORK_DAY_CNT, java.math.BigDecimal.class, "工作天数", "工作天数", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 税率 , 类型: java.math.BigDecimal
 	*/
 	public static final String PT_SL_PCT="ptSlPct";
@@ -504,6 +554,16 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFARE_ZFGJJ_COMPANY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFARE_ZFGJJ_COMPANY, java.math.BigDecimal.class, "住房公积金公司", "住房公积金公司", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 住房缴费 , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFARE_ZFGJJ_VALUE="welfareZfgjjValue";
+	
+	/**
+	 * 住房缴费 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFARE_ZFGJJ_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFARE_ZFGJJ_VALUE, java.math.BigDecimal.class, "住房缴费", "住房缴费", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 养老保险基数 , 类型: java.math.BigDecimal
 	*/
 	public static final String WELFAER_YLBX_BASE="welfaerYlbxBase";
@@ -532,6 +592,16 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	 * 养老保险公司 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFAER_YLBX_COMPANY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFAER_YLBX_COMPANY, java.math.BigDecimal.class, "养老保险公司", "养老保险公司", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 养老缴费 , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_YLBX_VALUE="welfaerYlbxValue";
+	
+	/**
+	 * 养老缴费 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFAER_YLBX_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFAER_YLBX_VALUE, java.math.BigDecimal.class, "养老缴费", "养老缴费", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 工伤保险基数 , 类型: java.math.BigDecimal
@@ -564,6 +634,16 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFAER_GSBX_COMPANY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFAER_GSBX_COMPANY, java.math.BigDecimal.class, "工伤保险公司", "工伤保险公司", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 工伤缴费 , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_GSBX_VALUE="welfaerGsbxValue";
+	
+	/**
+	 * 工伤缴费 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFAER_GSBX_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFAER_GSBX_VALUE, java.math.BigDecimal.class, "工伤缴费", "工伤缴费", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 医疗保险基数 , 类型: java.math.BigDecimal
 	*/
 	public static final String WELFAER_YRBX_BASE="welfaerYrbxBase";
@@ -592,6 +672,16 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	 * 医疗保险公司 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFAER_YRBX_COMPANY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFAER_YRBX_COMPANY, java.math.BigDecimal.class, "医疗保险公司", "医疗保险公司", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 医疗缴费 , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_YRBX_VALUE="welfaerYrbxValue";
+	
+	/**
+	 * 医疗缴费 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFAER_YRBX_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFAER_YRBX_VALUE, java.math.BigDecimal.class, "医疗缴费", "医疗缴费", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 生育保险基数 , 类型: java.math.BigDecimal
@@ -624,6 +714,16 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFAER_SYBX_COMPANY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFAER_SYBX_COMPANY, java.math.BigDecimal.class, "生育保险公司", "生育保险公司", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 生育缴费 , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_SYBX_VALUE="welfaerSybxValue";
+	
+	/**
+	 * 生育缴费 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFAER_SYBX_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFAER_SYBX_VALUE, java.math.BigDecimal.class, "生育缴费", "生育缴费", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 失业保险基数 , 类型: java.math.BigDecimal
 	*/
 	public static final String WELFAER_SYEBX_BASE="welfaerSyebxBase";
@@ -652,6 +752,26 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	 * 失业保险公司 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFAER_SYEBX_COMPANY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFAER_SYEBX_COMPANY, java.math.BigDecimal.class, "失业保险公司", "失业保险公司", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 失业缴费 , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_SYEBX_VALUE="welfaerSyebxValue";
+	
+	/**
+	 * 失业缴费 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFAER_SYEBX_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFAER_SYEBX_VALUE, java.math.BigDecimal.class, "失业缴费", "失业缴费", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 个人缴费总计 , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_PERSON_VALUE_TOTAL="welfaerPersonValueTotal";
+	
+	/**
+	 * 个人缴费总计 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> WELFAER_PERSON_VALUE_TOTAL_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,WELFAER_PERSON_VALUE_TOTAL, java.math.BigDecimal.class, "个人缴费总计", "个人缴费总计", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 子女教育 , 类型: java.math.BigDecimal
@@ -722,6 +842,16 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	 * 幼儿照护 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> PERSONAL_TAX_ERZH_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,PERSONAL_TAX_ERZH, java.math.BigDecimal.class, "幼儿照护", "幼儿照护", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 专项扣除总计 , 类型: java.math.BigDecimal
+	*/
+	public static final String PERSONAL_TAX_TOTAL="personalTaxTotal";
+	
+	/**
+	 * 专项扣除总计 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetailVO,java.math.BigDecimal> PERSONAL_TAX_TOTAL_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetailVO.class ,PERSONAL_TAX_TOTAL, java.math.BigDecimal.class, "专项扣除总计", "专项扣除总计", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 生效时间 , 类型: java.util.Date
@@ -906,7 +1036,7 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , USER_NAME , ACTION_MONTH , PERSON_ID , JOB_NUMBER , BANK , BANK_ACCOUNT , TPL_ID , ACTION_ID , STATUS , TOTAL_AMOUNT , PAY_AMOUNT , ISSUED_AMOUNT , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , HIGH_TEMPERATURE_SALARY , OTHER_SALARY , COMMISSION_SALARY , PUNISH_SALARY , DEDUCT_KQ , DEDUCT_GH , DEDUCT_OTHER , DEDUCT_PERSONAL_TAX_RED , PT_GRSDS , PT_DKJS , PT_SL_PCT , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , EFFECT_TIME , NOTES , OPER_MSG , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL , SALARY_ACTION , EXT_BANK , EXT_BANK_ACCOUNT , PERSON , PERSON_SALARY };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , USER_NAME , ACTION_MONTH , PERSON_ID , JOB_NUMBER , BANK , BANK_ACCOUNT , TPL_ID , ACTION_ID , STATUS , TOTAL_AMOUNT , PAY_AMOUNT , ISSUED_AMOUNT , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , HIGH_TEMPERATURE_SALARY , OTHER_SALARY , COMMISSION_SALARY , PUNISH_SALARY , DAY_SALARY , DEDUCT_KQ , DEDUCT_GH , DEDUCT_OTHER , DEDUCT_PERSONAL_TAX_RED , PT_GRSDS , PT_DKJS , WORK_OVERTIME_H_CNT , LATE_CNT , PERSONAL_LEAVE_CNT , WORK_DAY_CNT , PT_SL_PCT , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFARE_ZFGJJ_VALUE , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_YLBX_VALUE , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_GSBX_VALUE , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_YRBX_VALUE , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYBX_VALUE , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , WELFAER_SYEBX_VALUE , WELFAER_PERSON_VALUE_TOTAL , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , PERSONAL_TAX_TOTAL , EFFECT_TIME , NOTES , OPER_MSG , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL , SALARY_ACTION , EXT_BANK , EXT_BANK_ACCOUNT , PERSON , PERSON_SALARY };
 	
 	/**
 	 * 代理类
@@ -1159,8 +1289,8 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 		}
 		
 		/**
-		 * 设置 合计金额
-		 * @param totalAmount 合计金额
+		 * 设置 工资
+		 * @param totalAmount 工资
 		 * @return 当前对象
 		*/
 		public SalaryDetail setTotalAmount(BigDecimal totalAmount) {
@@ -1335,6 +1465,17 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 		}
 		
 		/**
+		 * 设置 每日工资
+		 * @param daySalary 每日工资
+		 * @return 当前对象
+		*/
+		public SalaryDetail setDaySalary(BigDecimal daySalary) {
+			super.change(DAY_SALARY,super.getDaySalary(),daySalary);
+			super.setDaySalary(daySalary);
+			return this;
+		}
+		
+		/**
 		 * 设置 扣除考勤
 		 * @param deductKq 扣除考勤
 		 * @return 当前对象
@@ -1401,6 +1542,50 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 		}
 		
 		/**
+		 * 设置 加班时长
+		 * @param workOvertimeHCnt 加班时长
+		 * @return 当前对象
+		*/
+		public SalaryDetail setWorkOvertimeHCnt(BigDecimal workOvertimeHCnt) {
+			super.change(WORK_OVERTIME_H_CNT,super.getWorkOvertimeHCnt(),workOvertimeHCnt);
+			super.setWorkOvertimeHCnt(workOvertimeHCnt);
+			return this;
+		}
+		
+		/**
+		 * 设置 迟到次数
+		 * @param lateCnt 迟到次数
+		 * @return 当前对象
+		*/
+		public SalaryDetail setLateCnt(BigDecimal lateCnt) {
+			super.change(LATE_CNT,super.getLateCnt(),lateCnt);
+			super.setLateCnt(lateCnt);
+			return this;
+		}
+		
+		/**
+		 * 设置 事假天数
+		 * @param personalLeaveCnt 事假天数
+		 * @return 当前对象
+		*/
+		public SalaryDetail setPersonalLeaveCnt(BigDecimal personalLeaveCnt) {
+			super.change(PERSONAL_LEAVE_CNT,super.getPersonalLeaveCnt(),personalLeaveCnt);
+			super.setPersonalLeaveCnt(personalLeaveCnt);
+			return this;
+		}
+		
+		/**
+		 * 设置 工作天数
+		 * @param workDayCnt 工作天数
+		 * @return 当前对象
+		*/
+		public SalaryDetail setWorkDayCnt(BigDecimal workDayCnt) {
+			super.change(WORK_DAY_CNT,super.getWorkDayCnt(),workDayCnt);
+			super.setWorkDayCnt(workDayCnt);
+			return this;
+		}
+		
+		/**
 		 * 设置 税率
 		 * @param ptSlPct 税率
 		 * @return 当前对象
@@ -1445,6 +1630,17 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 		}
 		
 		/**
+		 * 设置 住房缴费
+		 * @param welfareZfgjjValue 住房缴费
+		 * @return 当前对象
+		*/
+		public SalaryDetail setWelfareZfgjjValue(BigDecimal welfareZfgjjValue) {
+			super.change(WELFARE_ZFGJJ_VALUE,super.getWelfareZfgjjValue(),welfareZfgjjValue);
+			super.setWelfareZfgjjValue(welfareZfgjjValue);
+			return this;
+		}
+		
+		/**
 		 * 设置 养老保险基数
 		 * @param welfaerYlbxBase 养老保险基数
 		 * @return 当前对象
@@ -1474,6 +1670,17 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 		public SalaryDetail setWelfaerYlbxCompany(BigDecimal welfaerYlbxCompany) {
 			super.change(WELFAER_YLBX_COMPANY,super.getWelfaerYlbxCompany(),welfaerYlbxCompany);
 			super.setWelfaerYlbxCompany(welfaerYlbxCompany);
+			return this;
+		}
+		
+		/**
+		 * 设置 养老缴费
+		 * @param welfaerYlbxValue 养老缴费
+		 * @return 当前对象
+		*/
+		public SalaryDetail setWelfaerYlbxValue(BigDecimal welfaerYlbxValue) {
+			super.change(WELFAER_YLBX_VALUE,super.getWelfaerYlbxValue(),welfaerYlbxValue);
+			super.setWelfaerYlbxValue(welfaerYlbxValue);
 			return this;
 		}
 		
@@ -1511,6 +1718,17 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 		}
 		
 		/**
+		 * 设置 工伤缴费
+		 * @param welfaerGsbxValue 工伤缴费
+		 * @return 当前对象
+		*/
+		public SalaryDetail setWelfaerGsbxValue(BigDecimal welfaerGsbxValue) {
+			super.change(WELFAER_GSBX_VALUE,super.getWelfaerGsbxValue(),welfaerGsbxValue);
+			super.setWelfaerGsbxValue(welfaerGsbxValue);
+			return this;
+		}
+		
+		/**
 		 * 设置 医疗保险基数
 		 * @param welfaerYrbxBase 医疗保险基数
 		 * @return 当前对象
@@ -1540,6 +1758,17 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 		public SalaryDetail setWelfaerYrbxCompany(BigDecimal welfaerYrbxCompany) {
 			super.change(WELFAER_YRBX_COMPANY,super.getWelfaerYrbxCompany(),welfaerYrbxCompany);
 			super.setWelfaerYrbxCompany(welfaerYrbxCompany);
+			return this;
+		}
+		
+		/**
+		 * 设置 医疗缴费
+		 * @param welfaerYrbxValue 医疗缴费
+		 * @return 当前对象
+		*/
+		public SalaryDetail setWelfaerYrbxValue(BigDecimal welfaerYrbxValue) {
+			super.change(WELFAER_YRBX_VALUE,super.getWelfaerYrbxValue(),welfaerYrbxValue);
+			super.setWelfaerYrbxValue(welfaerYrbxValue);
 			return this;
 		}
 		
@@ -1577,6 +1806,17 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 		}
 		
 		/**
+		 * 设置 生育缴费
+		 * @param welfaerSybxValue 生育缴费
+		 * @return 当前对象
+		*/
+		public SalaryDetail setWelfaerSybxValue(BigDecimal welfaerSybxValue) {
+			super.change(WELFAER_SYBX_VALUE,super.getWelfaerSybxValue(),welfaerSybxValue);
+			super.setWelfaerSybxValue(welfaerSybxValue);
+			return this;
+		}
+		
+		/**
 		 * 设置 失业保险基数
 		 * @param welfaerSyebxBase 失业保险基数
 		 * @return 当前对象
@@ -1606,6 +1846,28 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 		public SalaryDetail setWelfaerSyebxCompany(BigDecimal welfaerSyebxCompany) {
 			super.change(WELFAER_SYEBX_COMPANY,super.getWelfaerSyebxCompany(),welfaerSyebxCompany);
 			super.setWelfaerSyebxCompany(welfaerSyebxCompany);
+			return this;
+		}
+		
+		/**
+		 * 设置 失业缴费
+		 * @param welfaerSyebxValue 失业缴费
+		 * @return 当前对象
+		*/
+		public SalaryDetail setWelfaerSyebxValue(BigDecimal welfaerSyebxValue) {
+			super.change(WELFAER_SYEBX_VALUE,super.getWelfaerSyebxValue(),welfaerSyebxValue);
+			super.setWelfaerSyebxValue(welfaerSyebxValue);
+			return this;
+		}
+		
+		/**
+		 * 设置 个人缴费总计
+		 * @param welfaerPersonValueTotal 个人缴费总计
+		 * @return 当前对象
+		*/
+		public SalaryDetail setWelfaerPersonValueTotal(BigDecimal welfaerPersonValueTotal) {
+			super.change(WELFAER_PERSON_VALUE_TOTAL,super.getWelfaerPersonValueTotal(),welfaerPersonValueTotal);
+			super.setWelfaerPersonValueTotal(welfaerPersonValueTotal);
 			return this;
 		}
 		
@@ -1683,6 +1945,17 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 		public SalaryDetail setPersonalTaxErzh(BigDecimal personalTaxErzh) {
 			super.change(PERSONAL_TAX_ERZH,super.getPersonalTaxErzh(),personalTaxErzh);
 			super.setPersonalTaxErzh(personalTaxErzh);
+			return this;
+		}
+		
+		/**
+		 * 设置 专项扣除总计
+		 * @param personalTaxTotal 专项扣除总计
+		 * @return 当前对象
+		*/
+		public SalaryDetail setPersonalTaxTotal(BigDecimal personalTaxTotal) {
+			super.change(PERSONAL_TAX_TOTAL,super.getPersonalTaxTotal(),personalTaxTotal);
+			super.setPersonalTaxTotal(personalTaxTotal);
 			return this;
 		}
 		
@@ -1900,12 +2173,16 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 		public SalaryDetailVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setHighTemperatureSalary(this.getHighTemperatureSalary());
+			inst.setPersonalTaxTotal(this.getPersonalTaxTotal());
+			inst.setWorkOvertimeHCnt(this.getWorkOvertimeHCnt());
 			inst.setNotes(this.getNotes());
 			inst.setWelfareZfgjjBase(this.getWelfareZfgjjBase());
 			inst.setDeductKq(this.getDeductKq());
+			inst.setWelfaerPersonValueTotal(this.getWelfaerPersonValueTotal());
 			inst.setDeductGh(this.getDeductGh());
 			inst.setWelfareZfgjjPerson(this.getWelfareZfgjjPerson());
 			inst.setActionMonth(this.getActionMonth());
+			inst.setDaySalary(this.getDaySalary());
 			inst.setWelfaerYlbxCompany(this.getWelfaerYlbxCompany());
 			inst.setPersonalTaxErzh(this.getPersonalTaxErzh());
 			inst.setBank(this.getBank());
@@ -1913,10 +2190,13 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 			inst.setPayAmount(this.getPayAmount());
 			inst.setCommunicationSalary(this.getCommunicationSalary());
 			inst.setPtDkjs(this.getPtDkjs());
+			inst.setWelfaerSyebxValue(this.getWelfaerSyebxValue());
 			inst.setPtGrsds(this.getPtGrsds());
 			inst.setFixedSalary(this.getFixedSalary());
 			inst.setId(this.getId());
+			inst.setWelfaerYlbxValue(this.getWelfaerYlbxValue());
 			inst.setTrafficSalary(this.getTrafficSalary());
+			inst.setWelfareZfgjjValue(this.getWelfareZfgjjValue());
 			inst.setWelfaerYrbxCompany(this.getWelfaerYrbxCompany());
 			inst.setBankAccount(this.getBankAccount());
 			inst.setIssuedAmount(this.getIssuedAmount());
@@ -1937,6 +2217,7 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 			inst.setDeductPersonalTaxRed(this.getDeductPersonalTaxRed());
 			inst.setCommissionSalary(this.getCommissionSalary());
 			inst.setJobNumber(this.getJobNumber());
+			inst.setWelfaerGsbxValue(this.getWelfaerGsbxValue());
 			inst.setStatus(this.getStatus());
 			inst.setPersonalTaxZfdk(this.getPersonalTaxZfdk());
 			inst.setWelfaerSyebxPerson(this.getWelfaerSyebxPerson());
@@ -1950,7 +2231,9 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 			inst.setWelfaerGsbxPerson(this.getWelfaerGsbxPerson());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setWelfaerYlbxPerson(this.getWelfaerYlbxPerson());
+			inst.setWelfaerYrbxValue(this.getWelfaerYrbxValue());
 			inst.setWelfareZfgjjCompany(this.getWelfareZfgjjCompany());
+			inst.setLateCnt(this.getLateCnt());
 			inst.setWelfaerGsbxCompany(this.getWelfaerGsbxCompany());
 			inst.setWelfaerSyebxCompany(this.getWelfaerSyebxCompany());
 			inst.setHousingSalary(this.getHousingSalary());
@@ -1962,13 +2245,16 @@ public class SalaryDetailVOMeta extends SalaryDetailMeta {
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setPersonalTaxDbyl(this.getPersonalTaxDbyl());
 			inst.setUserName(this.getUserName());
+			inst.setPersonalLeaveCnt(this.getPersonalLeaveCnt());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeductOther(this.getDeductOther());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
+			inst.setWorkDayCnt(this.getWorkDayCnt());
 			inst.setTenantId(this.getTenantId());
 			inst.setPostSalary(this.getPostSalary());
 			inst.setOvertimeSalary(this.getOvertimeSalary());
+			inst.setWelfaerSybxValue(this.getWelfaerSybxValue());
 			if(all) {
 				inst.setExtBank(this.getExtBank());
 				inst.setSearchField(this.getSearchField());

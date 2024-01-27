@@ -1,7 +1,7 @@
 /**
  * 计算项目 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-26 23:13:14
+ * @since 2024-01-27 21:03:56
  */
 
 
@@ -85,13 +85,13 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'sort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('计算顺序') , templet: function (d) { return templet('sort',d.sort,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码'), templet: function (d) { return templet('code' ,fox.joinLabel(d.salaryColumn,"colName",',','','code'),d);}}
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'expressionValue', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('公式') , templet: function (d) { return templet('expressionValue',d.expressionValue,d);}  }
 					,{ field: 'includeExpression', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('包含公式'), templet:function (d){ return templet('includeExpression',fox.getEnumText(RADIO_INCLUDEEXPRESSION_DATA,d.includeExpression,'','includeExpression'),d);}}
-					,{ field: 'sort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('排序') , templet: function (d) { return templet('sort',d.sort,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'salaryColumnCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('字段编码') , templet: function (d) { return templet('salaryColumnCode',fox.getProperty(d,["salaryColumn","colCode"],0,'','salaryColumnCode'),d);} }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

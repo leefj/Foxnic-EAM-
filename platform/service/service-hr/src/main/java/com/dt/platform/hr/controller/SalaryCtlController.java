@@ -45,7 +45,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 薪酬控制接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 10:15:34
+ * @since 2024-01-27 18:33:34
 */
 
 @InDoc
@@ -61,14 +61,15 @@ public class SalaryCtlController extends SuperController {
 	*/
 	@ApiOperation(value = "添加薪酬控制")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = SalaryCtlVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "high_temperature_salary"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "high_temperature_salary"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "高温补贴月份"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "type_str"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "deduction_base"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "deduction_base"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "抵扣基数"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "type_double"),
 		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_EN , value = "是否参与" , required = false , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_STR , value = "字符串数值" , required = false , dataTypeClass=String.class , example = "[\"07\",\"08\",\"09\"]"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_D , value = "浮点数值" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_STR , value = "字符串数值" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_D , value = "浮点数值" , required = false , dataTypeClass=BigDecimal.class , example = "5000.00"),
 		@ApiImplicitParam(name = SalaryCtlVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -87,7 +88,7 @@ public class SalaryCtlController extends SuperController {
 	*/
 	@ApiOperation(value = "删除薪酬控制")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = SalaryCtlVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "high_temperature_salary")
+		@ApiImplicitParam(name = SalaryCtlVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "deduction_base")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = SalaryCtlServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -170,14 +171,15 @@ public class SalaryCtlController extends SuperController {
 	*/
 	@ApiOperation(value = "更新薪酬控制")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = SalaryCtlVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "high_temperature_salary"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "high_temperature_salary"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "高温补贴月份"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "type_str"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "deduction_base"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "deduction_base"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "抵扣基数"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "type_double"),
 		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_EN , value = "是否参与" , required = false , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_STR , value = "字符串数值" , required = false , dataTypeClass=String.class , example = "[\"07\",\"08\",\"09\"]"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_D , value = "浮点数值" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_STR , value = "字符串数值" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_D , value = "浮点数值" , required = false , dataTypeClass=BigDecimal.class , example = "5000.00"),
 		@ApiImplicitParam(name = SalaryCtlVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { SalaryCtlVOMeta.PAGE_INDEX , SalaryCtlVOMeta.PAGE_SIZE , SalaryCtlVOMeta.SEARCH_FIELD , SalaryCtlVOMeta.FUZZY_FIELD , SalaryCtlVOMeta.SEARCH_VALUE , SalaryCtlVOMeta.DIRTY_FIELDS , SalaryCtlVOMeta.SORT_FIELD , SalaryCtlVOMeta.SORT_TYPE , SalaryCtlVOMeta.DATA_ORIGIN , SalaryCtlVOMeta.QUERY_LOGIC , SalaryCtlVOMeta.REQUEST_ACTION , SalaryCtlVOMeta.IDS } )
@@ -195,14 +197,15 @@ public class SalaryCtlController extends SuperController {
 	*/
 	@ApiOperation(value = "保存薪酬控制")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = SalaryCtlVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "high_temperature_salary"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "high_temperature_salary"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "高温补贴月份"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "type_str"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "deduction_base"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "deduction_base"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "抵扣基数"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "type_double"),
 		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_EN , value = "是否参与" , required = false , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_STR , value = "字符串数值" , required = false , dataTypeClass=String.class , example = "[\"07\",\"08\",\"09\"]"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_D , value = "浮点数值" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_STR , value = "字符串数值" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_D , value = "浮点数值" , required = false , dataTypeClass=BigDecimal.class , example = "5000.00"),
 		@ApiImplicitParam(name = SalaryCtlVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { SalaryCtlVOMeta.PAGE_INDEX , SalaryCtlVOMeta.PAGE_SIZE , SalaryCtlVOMeta.SEARCH_FIELD , SalaryCtlVOMeta.FUZZY_FIELD , SalaryCtlVOMeta.SEARCH_VALUE , SalaryCtlVOMeta.DIRTY_FIELDS , SalaryCtlVOMeta.SORT_FIELD , SalaryCtlVOMeta.SORT_TYPE , SalaryCtlVOMeta.DATA_ORIGIN , SalaryCtlVOMeta.QUERY_LOGIC , SalaryCtlVOMeta.REQUEST_ACTION , SalaryCtlVOMeta.IDS } )
@@ -259,14 +262,15 @@ public class SalaryCtlController extends SuperController {
 	*/
 	@ApiOperation(value = "查询薪酬控制")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = SalaryCtlVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "high_temperature_salary"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "high_temperature_salary"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "高温补贴月份"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "type_str"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "deduction_base"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "deduction_base"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "抵扣基数"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "type_double"),
 		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_EN , value = "是否参与" , required = false , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_STR , value = "字符串数值" , required = false , dataTypeClass=String.class , example = "[\"07\",\"08\",\"09\"]"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_D , value = "浮点数值" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_STR , value = "字符串数值" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_D , value = "浮点数值" , required = false , dataTypeClass=BigDecimal.class , example = "5000.00"),
 		@ApiImplicitParam(name = SalaryCtlVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { SalaryCtlVOMeta.PAGE_INDEX , SalaryCtlVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = SalaryCtlServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -285,14 +289,15 @@ public class SalaryCtlController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询薪酬控制")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = SalaryCtlVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "high_temperature_salary"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "high_temperature_salary"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "高温补贴月份"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "type_str"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "deduction_base"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "deduction_base"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "抵扣基数"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "type_double"),
 		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_EN , value = "是否参与" , required = false , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_STR , value = "字符串数值" , required = false , dataTypeClass=String.class , example = "[\"07\",\"08\",\"09\"]"),
-		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_D , value = "浮点数值" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_STR , value = "字符串数值" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.VALUE_D , value = "浮点数值" , required = false , dataTypeClass=BigDecimal.class , example = "5000.00"),
 		@ApiImplicitParam(name = SalaryCtlVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SalaryCtlVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class , example = "110588348101165911"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = SalaryCtlServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

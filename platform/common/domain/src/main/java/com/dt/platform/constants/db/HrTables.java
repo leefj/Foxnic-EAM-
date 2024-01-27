@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-01-26 15:44:18
+ * @since 2024-01-28 01:38:17
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -4512,9 +4512,9 @@ public class HrTables {
 		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
 		
 		/**
-		 * 合计金额
+		 * 工资
 		*/
-		public static final DBField TOTAL_AMOUNT = new DBField(DBDataType.DECIMAL , "total_amount","totalAmount","合计金额","合计金额",false,false,true);
+		public static final DBField TOTAL_AMOUNT = new DBField(DBDataType.DECIMAL , "total_amount","totalAmount","工资","工资",false,false,true);
 		
 		/**
 		 * 应发金额
@@ -4522,9 +4522,9 @@ public class HrTables {
 		public static final DBField PAY_AMOUNT = new DBField(DBDataType.DECIMAL , "pay_amount","payAmount","应发金额","应发金额",false,false,true);
 		
 		/**
-		 * 实发金额
+		 * 实发金额,员工
 		*/
-		public static final DBField ISSUED_AMOUNT = new DBField(DBDataType.DECIMAL , "issued_amount","issuedAmount","实发金额","实发金额",false,false,true);
+		public static final DBField ISSUED_AMOUNT = new DBField(DBDataType.DECIMAL , "issued_amount","issuedAmount","实发金额","员工",false,false,true);
 		
 		/**
 		 * 基本工资
@@ -4592,6 +4592,11 @@ public class HrTables {
 		public static final DBField PUNISH_SALARY = new DBField(DBDataType.DECIMAL , "punish_salary","punishSalary","处罚金额","处罚金额",false,false,true);
 		
 		/**
+		 * 每日工资
+		*/
+		public static final DBField DAY_SALARY = new DBField(DBDataType.DECIMAL , "day_salary","daySalary","每日工资","每日工资",false,false,true);
+		
+		/**
 		 * 扣除考勤
 		*/
 		public static final DBField DEDUCT_KQ = new DBField(DBDataType.DECIMAL , "deduct_kq","deductKq","扣除考勤","扣除考勤",false,false,true);
@@ -4622,6 +4627,26 @@ public class HrTables {
 		public static final DBField PT_DKJS = new DBField(DBDataType.DECIMAL , "pt_dkjs","ptDkjs","抵扣基数","抵扣基数",false,false,true);
 		
 		/**
+		 * 加班时长
+		*/
+		public static final DBField WORK_OVERTIME_H_CNT = new DBField(DBDataType.DECIMAL , "work_overtime_h_cnt","workOvertimeHCnt","加班时长","加班时长",false,false,true);
+		
+		/**
+		 * 迟到次数
+		*/
+		public static final DBField LATE_CNT = new DBField(DBDataType.DECIMAL , "late_cnt","lateCnt","迟到次数","迟到次数",false,false,true);
+		
+		/**
+		 * 事假天数
+		*/
+		public static final DBField PERSONAL_LEAVE_CNT = new DBField(DBDataType.DECIMAL , "personal_leave_cnt","personalLeaveCnt","事假天数","事假天数",false,false,true);
+		
+		/**
+		 * 工作天数
+		*/
+		public static final DBField WORK_DAY_CNT = new DBField(DBDataType.DECIMAL , "work_day_cnt","workDayCnt","工作天数","工作天数",false,false,true);
+		
+		/**
 		 * 税率
 		*/
 		public static final DBField PT_SL_PCT = new DBField(DBDataType.DECIMAL , "pt_sl_pct","ptSlPct","税率","税率",false,false,true);
@@ -4642,6 +4667,11 @@ public class HrTables {
 		public static final DBField WELFARE_ZFGJJ_COMPANY = new DBField(DBDataType.DECIMAL , "welfare_zfgjj_company","welfareZfgjjCompany","住房公积金公司","住房公积金公司",false,false,true);
 		
 		/**
+		 * 住房缴费
+		*/
+		public static final DBField WELFARE_ZFGJJ_VALUE = new DBField(DBDataType.DECIMAL , "welfare_zfgjj_value","welfareZfgjjValue","住房缴费","住房缴费",false,false,true);
+		
+		/**
 		 * 养老保险基数
 		*/
 		public static final DBField WELFAER_YLBX_BASE = new DBField(DBDataType.DECIMAL , "welfaer_ylbx_base","welfaerYlbxBase","养老保险基数","养老保险基数",false,false,true);
@@ -4655,6 +4685,11 @@ public class HrTables {
 		 * 养老保险公司
 		*/
 		public static final DBField WELFAER_YLBX_COMPANY = new DBField(DBDataType.DECIMAL , "welfaer_ylbx_company","welfaerYlbxCompany","养老保险公司","养老保险公司",false,false,true);
+		
+		/**
+		 * 养老缴费
+		*/
+		public static final DBField WELFAER_YLBX_VALUE = new DBField(DBDataType.DECIMAL , "welfaer_ylbx_value","welfaerYlbxValue","养老缴费","养老缴费",false,false,true);
 		
 		/**
 		 * 工伤保险基数
@@ -4672,6 +4707,11 @@ public class HrTables {
 		public static final DBField WELFAER_GSBX_COMPANY = new DBField(DBDataType.DECIMAL , "welfaer_gsbx_company","welfaerGsbxCompany","工伤保险公司","工伤保险公司",false,false,true);
 		
 		/**
+		 * 工伤缴费
+		*/
+		public static final DBField WELFAER_GSBX_VALUE = new DBField(DBDataType.DECIMAL , "welfaer_gsbx_value","welfaerGsbxValue","工伤缴费","工伤缴费",false,false,true);
+		
+		/**
 		 * 医疗保险基数
 		*/
 		public static final DBField WELFAER_YRBX_BASE = new DBField(DBDataType.DECIMAL , "welfaer_yrbx_base","welfaerYrbxBase","医疗保险基数","医疗保险基数",false,false,true);
@@ -4685,6 +4725,11 @@ public class HrTables {
 		 * 医疗保险公司
 		*/
 		public static final DBField WELFAER_YRBX_COMPANY = new DBField(DBDataType.DECIMAL , "welfaer_yrbx_company","welfaerYrbxCompany","医疗保险公司","医疗保险公司",false,false,true);
+		
+		/**
+		 * 医疗缴费
+		*/
+		public static final DBField WELFAER_YRBX_VALUE = new DBField(DBDataType.DECIMAL , "welfaer_yrbx_value","welfaerYrbxValue","医疗缴费","医疗缴费",false,false,true);
 		
 		/**
 		 * 生育保险基数
@@ -4702,6 +4747,11 @@ public class HrTables {
 		public static final DBField WELFAER_SYBX_COMPANY = new DBField(DBDataType.DECIMAL , "welfaer_sybx_company","welfaerSybxCompany","生育保险公司","生育保险公司",false,false,true);
 		
 		/**
+		 * 生育缴费
+		*/
+		public static final DBField WELFAER_SYBX_VALUE = new DBField(DBDataType.DECIMAL , "welfaer_sybx_value","welfaerSybxValue","生育缴费","生育缴费",false,false,true);
+		
+		/**
 		 * 失业保险基数
 		*/
 		public static final DBField WELFAER_SYEBX_BASE = new DBField(DBDataType.DECIMAL , "welfaer_syebx_base","welfaerSyebxBase","失业保险基数","失业保险基数",false,false,true);
@@ -4715,6 +4765,16 @@ public class HrTables {
 		 * 失业保险公司
 		*/
 		public static final DBField WELFAER_SYEBX_COMPANY = new DBField(DBDataType.DECIMAL , "welfaer_syebx_company","welfaerSyebxCompany","失业保险公司","失业保险公司",false,false,true);
+		
+		/**
+		 * 失业缴费
+		*/
+		public static final DBField WELFAER_SYEBX_VALUE = new DBField(DBDataType.DECIMAL , "welfaer_syebx_value","welfaerSyebxValue","失业缴费","失业缴费",false,false,true);
+		
+		/**
+		 * 个人缴费总计
+		*/
+		public static final DBField WELFAER_PERSON_VALUE_TOTAL = new DBField(DBDataType.DECIMAL , "welfaer_person_value_total","welfaerPersonValueTotal","个人缴费总计","个人缴费总计",false,false,true);
 		
 		/**
 		 * 子女教育
@@ -4750,6 +4810,11 @@ public class HrTables {
 		 * 幼儿照护
 		*/
 		public static final DBField PERSONAL_TAX_ERZH = new DBField(DBDataType.DECIMAL , "personal_tax_erzh","personalTaxErzh","幼儿照护","幼儿照护",false,false,true);
+		
+		/**
+		 * 专项扣除总计
+		*/
+		public static final DBField PERSONAL_TAX_TOTAL = new DBField(DBDataType.DECIMAL , "personal_tax_total","personalTaxTotal","专项扣除总计","专项扣除总计",false,false,true);
 		
 		/**
 		 * 生效时间
@@ -4812,7 +4877,7 @@ public class HrTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public HR_SALARY_DETAIL() {
-			this.init($NAME,"薪酬明细" , ID , USER_NAME , ACTION_MONTH , PERSON_ID , JOB_NUMBER , BANK , BANK_ACCOUNT , TPL_ID , ACTION_ID , STATUS , TOTAL_AMOUNT , PAY_AMOUNT , ISSUED_AMOUNT , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , HIGH_TEMPERATURE_SALARY , OTHER_SALARY , COMMISSION_SALARY , PUNISH_SALARY , DEDUCT_KQ , DEDUCT_GH , DEDUCT_OTHER , DEDUCT_PERSONAL_TAX_RED , PT_GRSDS , PT_DKJS , PT_SL_PCT , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , EFFECT_TIME , NOTES , OPER_MSG , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"薪酬明细" , ID , USER_NAME , ACTION_MONTH , PERSON_ID , JOB_NUMBER , BANK , BANK_ACCOUNT , TPL_ID , ACTION_ID , STATUS , TOTAL_AMOUNT , PAY_AMOUNT , ISSUED_AMOUNT , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , HIGH_TEMPERATURE_SALARY , OTHER_SALARY , COMMISSION_SALARY , PUNISH_SALARY , DAY_SALARY , DEDUCT_KQ , DEDUCT_GH , DEDUCT_OTHER , DEDUCT_PERSONAL_TAX_RED , PT_GRSDS , PT_DKJS , WORK_OVERTIME_H_CNT , LATE_CNT , PERSONAL_LEAVE_CNT , WORK_DAY_CNT , PT_SL_PCT , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFARE_ZFGJJ_VALUE , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_YLBX_VALUE , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_GSBX_VALUE , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_YRBX_VALUE , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYBX_VALUE , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , WELFAER_SYEBX_VALUE , WELFAER_PERSON_VALUE_TOTAL , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , PERSONAL_TAX_TOTAL , EFFECT_TIME , NOTES , OPER_MSG , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final HR_SALARY_DETAIL $TABLE=new HR_SALARY_DETAIL();
 	}
@@ -5343,6 +5408,11 @@ public class HrTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
+		 * 计算顺序
+		*/
+		public static final DBField SORT = new DBField(DBDataType.INTEGER , "sort","sort","计算顺序","计算顺序",false,false,true);
+		
+		/**
 		 * 模版
 		*/
 		public static final DBField TPL_ID = new DBField(DBDataType.STRING , "tpl_id","tplId","模版","模版",false,false,true);
@@ -5376,11 +5446,6 @@ public class HrTables {
 		 * 包含公式
 		*/
 		public static final DBField INCLUDE_EXPRESSION = new DBField(DBDataType.STRING , "include_expression","includeExpression","包含公式","包含公式",false,false,true);
-		
-		/**
-		 * 排序
-		*/
-		public static final DBField SORT = new DBField(DBDataType.INTEGER , "sort","sort","排序","排序",false,false,true);
 		
 		/**
 		 * 备注
@@ -5432,7 +5497,7 @@ public class HrTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public HR_SALARY_TPL_ITEM() {
-			this.init($NAME,"计算项目" , ID , TPL_ID , CODE , NAME , STATUS , EXPRESSION_VALUE , EXPRESSION_SHOW , INCLUDE_EXPRESSION , SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"计算项目" , ID , SORT , TPL_ID , CODE , NAME , STATUS , EXPRESSION_VALUE , EXPRESSION_SHOW , INCLUDE_EXPRESSION , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final HR_SALARY_TPL_ITEM $TABLE=new HR_SALARY_TPL_ITEM();
 	}

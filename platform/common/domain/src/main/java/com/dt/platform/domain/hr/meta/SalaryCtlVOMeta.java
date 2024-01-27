@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 10:15:33
+ * @since 2024-01-27 18:33:33
  * @sign 09ED909ABB4C48697F0329BC544B3E26
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -310,9 +310,99 @@ public class SalaryCtlVOMeta extends SalaryCtlMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryCtlVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryCtlVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * deductionBase , 类型: java.math.BigDecimal
+	*/
+	public static final String DEDUCTION_BASE="deductionBase";
+	
+	/**
+	 * deductionBase , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryCtlVO,java.math.BigDecimal> DEDUCTION_BASE_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryCtlVO.class ,DEDUCTION_BASE, java.math.BigDecimal.class, "deductionBase", "deductionBase", java.math.BigDecimal.class, null);
+	
+	/**
+	 * nonConversionRatio , 类型: java.math.BigDecimal
+	*/
+	public static final String NON_CONVERSION_RATIO="nonConversionRatio";
+	
+	/**
+	 * nonConversionRatio , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryCtlVO,java.math.BigDecimal> NON_CONVERSION_RATIO_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryCtlVO.class ,NON_CONVERSION_RATIO, java.math.BigDecimal.class, "nonConversionRatio", "nonConversionRatio", java.math.BigDecimal.class, null);
+	
+	/**
+	 * isHighTemperatureMonth , 类型: java.lang.String
+	*/
+	public static final String IS_HIGH_TEMPERATURE_MONTH="isHighTemperatureMonth";
+	
+	/**
+	 * isHighTemperatureMonth , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryCtlVO,java.lang.String> IS_HIGH_TEMPERATURE_MONTH_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryCtlVO.class ,IS_HIGH_TEMPERATURE_MONTH, java.lang.String.class, "isHighTemperatureMonth", "isHighTemperatureMonth", java.lang.String.class, null);
+	
+	/**
+	 * welfareZfgjjPerson , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFARE_ZFGJJ_PERSON="welfareZfgjjPerson";
+	
+	/**
+	 * welfareZfgjjPerson , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryCtlVO,java.math.BigDecimal> WELFARE_ZFGJJ_PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryCtlVO.class ,WELFARE_ZFGJJ_PERSON, java.math.BigDecimal.class, "welfareZfgjjPerson", "welfareZfgjjPerson", java.math.BigDecimal.class, null);
+	
+	/**
+	 * welfaerYlbxPerson , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_YLBX_PERSON="welfaerYlbxPerson";
+	
+	/**
+	 * welfaerYlbxPerson , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryCtlVO,java.math.BigDecimal> WELFAER_YLBX_PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryCtlVO.class ,WELFAER_YLBX_PERSON, java.math.BigDecimal.class, "welfaerYlbxPerson", "welfaerYlbxPerson", java.math.BigDecimal.class, null);
+	
+	/**
+	 * welfaeryrbxPerson , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAERYRBX_PERSON="welfaeryrbxPerson";
+	
+	/**
+	 * welfaeryrbxPerson , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryCtlVO,java.math.BigDecimal> WELFAERYRBX_PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryCtlVO.class ,WELFAERYRBX_PERSON, java.math.BigDecimal.class, "welfaeryrbxPerson", "welfaeryrbxPerson", java.math.BigDecimal.class, null);
+	
+	/**
+	 * welfaerSyebxPerson , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_SYEBX_PERSON="welfaerSyebxPerson";
+	
+	/**
+	 * welfaerSyebxPerson , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryCtlVO,java.math.BigDecimal> WELFAER_SYEBX_PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryCtlVO.class ,WELFAER_SYEBX_PERSON, java.math.BigDecimal.class, "welfaerSyebxPerson", "welfaerSyebxPerson", java.math.BigDecimal.class, null);
+	
+	/**
+	 * welfaerGsbxPerson , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_GSBX_PERSON="welfaerGsbxPerson";
+	
+	/**
+	 * welfaerGsbxPerson , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryCtlVO,java.math.BigDecimal> WELFAER_GSBX_PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryCtlVO.class ,WELFAER_GSBX_PERSON, java.math.BigDecimal.class, "welfaerGsbxPerson", "welfaerGsbxPerson", java.math.BigDecimal.class, null);
+	
+	/**
+	 * welfaerSybxPerson , 类型: java.math.BigDecimal
+	*/
+	public static final String WELFAER_SYBX_PERSON="welfaerSybxPerson";
+	
+	/**
+	 * welfaerSybxPerson , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryCtlVO,java.math.BigDecimal> WELFAER_SYBX_PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryCtlVO.class ,WELFAER_SYBX_PERSON, java.math.BigDecimal.class, "welfaerSybxPerson", "welfaerSybxPerson", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , TYPE , VALUE_EN , VALUE_STR , VALUE_D , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , TYPE , VALUE_EN , VALUE_STR , VALUE_D , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , DEDUCTION_BASE , NON_CONVERSION_RATIO , IS_HIGH_TEMPERATURE_MONTH , WELFARE_ZFGJJ_PERSON , WELFAER_YLBX_PERSON , WELFAERYRBX_PERSON , WELFAER_SYEBX_PERSON , WELFAER_GSBX_PERSON , WELFAER_SYBX_PERSON };
 	
 	/**
 	 * 代理类
@@ -640,6 +730,105 @@ public class SalaryCtlVOMeta extends SalaryCtlMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 deductionBase
+		 * @param deductionBase deductionBase
+		 * @return 当前对象
+		*/
+		public SalaryCtl setDeductionBase(BigDecimal deductionBase) {
+			super.change(DEDUCTION_BASE,super.getDeductionBase(),deductionBase);
+			super.setDeductionBase(deductionBase);
+			return this;
+		}
+		
+		/**
+		 * 设置 nonConversionRatio
+		 * @param nonConversionRatio nonConversionRatio
+		 * @return 当前对象
+		*/
+		public SalaryCtl setNonConversionRatio(BigDecimal nonConversionRatio) {
+			super.change(NON_CONVERSION_RATIO,super.getNonConversionRatio(),nonConversionRatio);
+			super.setNonConversionRatio(nonConversionRatio);
+			return this;
+		}
+		
+		/**
+		 * 设置 isHighTemperatureMonth
+		 * @param isHighTemperatureMonth isHighTemperatureMonth
+		 * @return 当前对象
+		*/
+		public SalaryCtl setIsHighTemperatureMonth(String isHighTemperatureMonth) {
+			super.change(IS_HIGH_TEMPERATURE_MONTH,super.getIsHighTemperatureMonth(),isHighTemperatureMonth);
+			super.setIsHighTemperatureMonth(isHighTemperatureMonth);
+			return this;
+		}
+		
+		/**
+		 * 设置 welfareZfgjjPerson
+		 * @param welfareZfgjjPerson welfareZfgjjPerson
+		 * @return 当前对象
+		*/
+		public SalaryCtl setWelfareZfgjjPerson(BigDecimal welfareZfgjjPerson) {
+			super.change(WELFARE_ZFGJJ_PERSON,super.getWelfareZfgjjPerson(),welfareZfgjjPerson);
+			super.setWelfareZfgjjPerson(welfareZfgjjPerson);
+			return this;
+		}
+		
+		/**
+		 * 设置 welfaerYlbxPerson
+		 * @param welfaerYlbxPerson welfaerYlbxPerson
+		 * @return 当前对象
+		*/
+		public SalaryCtl setWelfaerYlbxPerson(BigDecimal welfaerYlbxPerson) {
+			super.change(WELFAER_YLBX_PERSON,super.getWelfaerYlbxPerson(),welfaerYlbxPerson);
+			super.setWelfaerYlbxPerson(welfaerYlbxPerson);
+			return this;
+		}
+		
+		/**
+		 * 设置 welfaeryrbxPerson
+		 * @param welfaeryrbxPerson welfaeryrbxPerson
+		 * @return 当前对象
+		*/
+		public SalaryCtl setWelfaeryrbxPerson(BigDecimal welfaeryrbxPerson) {
+			super.change(WELFAERYRBX_PERSON,super.getWelfaeryrbxPerson(),welfaeryrbxPerson);
+			super.setWelfaeryrbxPerson(welfaeryrbxPerson);
+			return this;
+		}
+		
+		/**
+		 * 设置 welfaerSyebxPerson
+		 * @param welfaerSyebxPerson welfaerSyebxPerson
+		 * @return 当前对象
+		*/
+		public SalaryCtl setWelfaerSyebxPerson(BigDecimal welfaerSyebxPerson) {
+			super.change(WELFAER_SYEBX_PERSON,super.getWelfaerSyebxPerson(),welfaerSyebxPerson);
+			super.setWelfaerSyebxPerson(welfaerSyebxPerson);
+			return this;
+		}
+		
+		/**
+		 * 设置 welfaerGsbxPerson
+		 * @param welfaerGsbxPerson welfaerGsbxPerson
+		 * @return 当前对象
+		*/
+		public SalaryCtl setWelfaerGsbxPerson(BigDecimal welfaerGsbxPerson) {
+			super.change(WELFAER_GSBX_PERSON,super.getWelfaerGsbxPerson(),welfaerGsbxPerson);
+			super.setWelfaerGsbxPerson(welfaerGsbxPerson);
+			return this;
+		}
+		
+		/**
+		 * 设置 welfaerSybxPerson
+		 * @param welfaerSybxPerson welfaerSybxPerson
+		 * @return 当前对象
+		*/
+		public SalaryCtl setWelfaerSybxPerson(BigDecimal welfaerSybxPerson) {
+			super.change(WELFAER_SYBX_PERSON,super.getWelfaerSybxPerson(),welfaerSybxPerson);
+			super.setWelfaerSybxPerson(welfaerSybxPerson);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -674,14 +863,23 @@ public class SalaryCtlVOMeta extends SalaryCtlMeta {
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
 			if(all) {
+				inst.setIsHighTemperatureMonth(this.getIsHighTemperatureMonth());
+				inst.setWelfaerSyebxPerson(this.getWelfaerSyebxPerson());
+				inst.setWelfaerSybxPerson(this.getWelfaerSybxPerson());
 				inst.setSearchField(this.getSearchField());
+				inst.setNonConversionRatio(this.getNonConversionRatio());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setDeductionBase(this.getDeductionBase());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setWelfareZfgjjPerson(this.getWelfareZfgjjPerson());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setRequestAction(this.getRequestAction());
-				inst.setFuzzyField(this.getFuzzyField());
+				inst.setWelfaerGsbxPerson(this.getWelfaerGsbxPerson());
+				inst.setWelfaeryrbxPerson(this.getWelfaeryrbxPerson());
+				inst.setWelfaerYlbxPerson(this.getWelfaerYlbxPerson());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());

@@ -1,7 +1,7 @@
 /**
  * 计算项目 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-26 23:13:15
+ * @since 2024-01-27 21:03:57
  */
 
 function FormPage() {
@@ -123,7 +123,7 @@ function FormPage() {
 			el: "code",
 			radio: true,
 			tips: fox.translate("请选择",'','cmp:form')+fox.translate("编码",'','cmp:form'),
-			filterable: false,
+			filterable: true,
 			layVerify: 'required',
 			layVerType: 'msg',
 			on: function(data){
@@ -132,6 +132,8 @@ function FormPage() {
 				},1);
 			},
 			//转换数据
+			searchField: "colName", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var defaultValues=[],defaultIndexs=[];

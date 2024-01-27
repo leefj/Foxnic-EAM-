@@ -119,11 +119,15 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_SALARY_DETAIL.PT_GRSDS).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY_DETAIL.PT_SL_PCT).form().numberInput().decimal().defaultValue(0.00).scale(2);
 
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.TOTAL_AMOUNT).table().disable(true);;
         cfg.view().field(HrTables.HR_SALARY_DETAIL.ACTION_ID).table().disable(true);;
         cfg.view().field(HrTables.HR_SALARY_DETAIL.TPL_ID).table().disable(true);
         cfg.view().field(HrTables.HR_SALARY_DETAIL.CREATE_TIME).table().disable(false);
         cfg.view().field(HrTables.HR_SALARY_DETAIL.CREATE_BY).table().disable(true);
         cfg.view().field(HrTables.HR_SALARY_DETAIL.UPDATE_BY).table().disable(true);
+
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.PERSONAL_TAX_TOTAL).table().disable(true);
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_PERSON_VALUE_TOTAL).table().disable(true);
 
         cfg.view().field(HrTables.HR_SALARY_DETAIL.PERSON_ID).table().hidden();
         cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_GSBX_BASE).table().hidden();
@@ -132,6 +136,22 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_YLBX_BASE).table().hidden();
         cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_YRBX_BASE).table().hidden();
         cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFARE_ZFGJJ_BASE).table().hidden();
+
+
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_GSBX_COMPANY).table().hidden();
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_SYBX_COMPANY).table().hidden();
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_SYEBX_COMPANY).table().hidden();
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_YLBX_COMPANY).table().hidden();
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_YRBX_COMPANY).table().hidden();
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFARE_ZFGJJ_COMPANY).table().hidden();
+
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_GSBX_PERSON).table().hidden();
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_SYBX_PERSON).table().hidden();
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_SYEBX_PERSON).table().hidden();
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_YLBX_PERSON).table().hidden();
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_YRBX_PERSON).table().hidden();
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFARE_ZFGJJ_PERSON).table().hidden();
+
 
         cfg.view().field(HrTables.HR_SALARY_DETAIL.PERSONAL_TAX_DBYL).table().hidden();
         cfg.view().field(HrTables.HR_SALARY_DETAIL.PERSONAL_TAX_ERZH).table().hidden();
@@ -258,6 +278,14 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
                         HrTables.HR_SALARY_DETAIL.WELFAER_YLBX_COMPANY,
                         HrTables.HR_SALARY_DETAIL.WELFAER_SYBX_COMPANY,
                         HrTables.HR_SALARY_DETAIL.WELFAER_SYEBX_COMPANY
+                },
+                new Object[]{
+                        HrTables.HR_SALARY_DETAIL.WELFARE_ZFGJJ_VALUE,
+                        HrTables.HR_SALARY_DETAIL.WELFAER_YRBX_VALUE,
+                        HrTables.HR_SALARY_DETAIL.WELFAER_GSBX_VALUE,
+                        HrTables.HR_SALARY_DETAIL.WELFAER_YLBX_VALUE,
+                        HrTables.HR_SALARY_DETAIL.WELFAER_SYBX_VALUE,
+                        HrTables.HR_SALARY_DETAIL.WELFAER_SYEBX_VALUE
                 }
         );
         cfg.view().form().addGroup("应扣项目",
@@ -301,9 +329,7 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
                 }
         );
         cfg.view().form().addGroup("小计",
-                new Object[] {
-                        HrTables.HR_SALARY_DETAIL.TOTAL_AMOUNT,
-                },
+
                 new Object[]{
                         HrTables.HR_SALARY_DETAIL.PAY_AMOUNT,
                 },

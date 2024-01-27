@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 计算项目
  * <p>计算项目 , 数据表 hr_salary_tpl_item 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-26 23:13:12
- * @sign D70722FB093FE113652AFE02476DB6A6
+ * @since 2024-01-27 21:03:55
+ * @sign 5B7A3F4D05F16B560014A4D9F5AC5B1C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,13 +40,19 @@ public class SalaryTplItem extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "803298713005981696")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "803380200090894336")
 	private String id;
+	
+	/**
+	 * 计算顺序：计算顺序
+	*/
+	@ApiModelProperty(required = false,value="计算顺序" , notes = "计算顺序" , example = "10")
+	private Integer sort;
 	
 	/**
 	 * 模版：模版
 	*/
-	@ApiModelProperty(required = false,value="模版" , notes = "模版")
+	@ApiModelProperty(required = false,value="模版" , notes = "模版" , example = "717722780455403520")
 	private String tplId;
 	
 	/**
@@ -58,7 +64,7 @@ public class SalaryTplItem extends Entity {
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "基本工资")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称")
 	private String name;
 	
 	/**
@@ -70,31 +76,25 @@ public class SalaryTplItem extends Entity {
 	/**
 	 * 公式：公式
 	*/
-	@ApiModelProperty(required = false,value="公式" , notes = "公式")
+	@ApiModelProperty(required = false,value="公式" , notes = "公式" , example = "salary.baseSalary")
 	private String expressionValue;
 	
 	/**
 	 * 公式：公式
 	*/
-	@ApiModelProperty(required = false,value="公式" , notes = "公式" , example = "12")
+	@ApiModelProperty(required = false,value="公式" , notes = "公式")
 	private String expressionShow;
 	
 	/**
 	 * 包含公式：包含公式
 	*/
-	@ApiModelProperty(required = false,value="包含公式" , notes = "包含公式" , example = "no")
+	@ApiModelProperty(required = false,value="包含公式" , notes = "包含公式" , example = "yes")
 	private String includeExpression;
-	
-	/**
-	 * 排序：排序
-	*/
-	@ApiModelProperty(required = false,value="排序" , notes = "排序" , example = "1")
-	private Integer sort;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "1")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
 	
 	/**
@@ -106,7 +106,7 @@ public class SalaryTplItem extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-01-26 04:22:18")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-01-26 09:46:06")
 	private Date createTime;
 	
 	/**
@@ -118,7 +118,7 @@ public class SalaryTplItem extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-26 08:16:13")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-27 11:56:11")
 	private Date updateTime;
 	
 	/**
@@ -145,7 +145,7 @@ public class SalaryTplItem extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "5")
 	private Integer version;
 	
 	/**
@@ -159,6 +159,12 @@ public class SalaryTplItem extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="salaryColumn" , notes = "salaryColumn")
 	private SalaryColumn salaryColumn;
+	
+	/**
+	 * salaryColumnCode：salaryColumnCode
+	*/
+	@ApiModelProperty(required = false,value="salaryColumnCode" , notes = "salaryColumnCode")
+	private String salaryColumnCode;
 	
 	/**
 	 * 获得 主键<br>
@@ -176,6 +182,25 @@ public class SalaryTplItem extends Entity {
 	*/
 	public SalaryTplItem setId(String id) {
 		this.id=id;
+		return this;
+	}
+	
+	/**
+	 * 获得 计算顺序<br>
+	 * 计算顺序
+	 * @return 计算顺序
+	*/
+	public Integer getSort() {
+		return sort;
+	}
+	
+	/**
+	 * 设置 计算顺序
+	 * @param sort 计算顺序
+	 * @return 当前对象
+	*/
+	public SalaryTplItem setSort(Integer sort) {
+		this.sort=sort;
 		return this;
 	}
 	
@@ -309,25 +334,6 @@ public class SalaryTplItem extends Entity {
 	*/
 	public SalaryTplItem setIncludeExpression(String includeExpression) {
 		this.includeExpression=includeExpression;
-		return this;
-	}
-	
-	/**
-	 * 获得 排序<br>
-	 * 排序
-	 * @return 排序
-	*/
-	public Integer getSort() {
-		return sort;
-	}
-	
-	/**
-	 * 设置 排序
-	 * @param sort 排序
-	 * @return 当前对象
-	*/
-	public SalaryTplItem setSort(Integer sort) {
-		this.sort=sort;
 		return this;
 	}
 	
@@ -570,6 +576,25 @@ public class SalaryTplItem extends Entity {
 		this.salaryColumn=salaryColumn;
 		return this;
 	}
+	
+	/**
+	 * 获得 salaryColumnCode<br>
+	 * salaryColumnCode
+	 * @return salaryColumnCode
+	*/
+	public String getSalaryColumnCode() {
+		return salaryColumnCode;
+	}
+	
+	/**
+	 * 设置 salaryColumnCode
+	 * @param salaryColumnCode salaryColumnCode
+	 * @return 当前对象
+	*/
+	public SalaryTplItem setSalaryColumnCode(String salaryColumnCode) {
+		this.salaryColumnCode=salaryColumnCode;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -635,6 +660,7 @@ public class SalaryTplItem extends Entity {
 		inst.setTplId(this.getTplId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setSalaryColumnCode(this.getSalaryColumnCode());
 			inst.setSalaryColumn(this.getSalaryColumn());
 		}
 		inst.clearModifies();
@@ -715,6 +741,7 @@ public class SalaryTplItem extends Entity {
 			this.setTplId(DataParser.parse(String.class, map.get(SalaryTplItemMeta.TPL_ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(SalaryTplItemMeta.STATUS)));
 			// others
+			this.setSalaryColumnCode(DataParser.parse(String.class, map.get(SalaryTplItemMeta.SALARY_COLUMN_CODE)));
 			this.setSalaryColumn(DataParser.parse(SalaryColumn.class, map.get(SalaryTplItemMeta.SALARY_COLUMN)));
 			return true;
 		} else {
@@ -739,6 +766,7 @@ public class SalaryTplItem extends Entity {
 				this.setTplId( (String)map.get(SalaryTplItemMeta.TPL_ID));
 				this.setStatus( (String)map.get(SalaryTplItemMeta.STATUS));
 				// others
+				this.setSalaryColumnCode( (String)map.get(SalaryTplItemMeta.SALARY_COLUMN_CODE));
 				this.setSalaryColumn( (SalaryColumn)map.get(SalaryTplItemMeta.SALARY_COLUMN));
 				return true;
 			} catch (Exception e) {

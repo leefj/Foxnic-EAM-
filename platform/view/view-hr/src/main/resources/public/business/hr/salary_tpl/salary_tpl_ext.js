@@ -197,7 +197,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 title: "计算规则",
                 resize: false,
                 offset: [20,null],
-                area: ["90%","95%"],
+                area: ["95%","95%"],
                 type: 2,
                 id:"hr-tpl_item-data-win",
                 content: '/business/hr/salary_tpl_item/salary_tpl_item_list.html?tplId='+data.id,

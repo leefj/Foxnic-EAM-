@@ -4,10 +4,13 @@ package com.dt.platform.generator.module.hr;
 import com.dt.platform.constants.db.HrTables;
 import com.dt.platform.constants.enums.common.StatusYNEnum;
 import com.dt.platform.constants.enums.hr.SalaryTypeEnum;
+import com.dt.platform.domain.hr.Person;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.hr.page.SalaryCtlPageController;
 import com.dt.platform.proxy.hr.SalaryCtlServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
+
+import java.math.BigDecimal;
 
 
 public class SalalyCtlGtr extends BaseCodeGenerator {
@@ -17,6 +20,19 @@ public class SalalyCtlGtr extends BaseCodeGenerator {
 
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
+
+
+        cfg.getPoClassFile().addSimpleProperty(BigDecimal.class,"deductionBase","deductionBase","deductionBase");
+        cfg.getPoClassFile().addSimpleProperty(BigDecimal.class,"nonConversionRatio","nonConversionRatio","nonConversionRatio");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"isHighTemperatureMonth","isHighTemperatureMonth","isHighTemperatureMonth");
+
+        cfg.getPoClassFile().addSimpleProperty(BigDecimal.class,"welfareZfgjjPerson","welfareZfgjjPerson","welfareZfgjjPerson");
+        cfg.getPoClassFile().addSimpleProperty(BigDecimal.class,"welfareZfgjjPerson","welfareZfgjjPerson","welfareZfgjjPerson");
+        cfg.getPoClassFile().addSimpleProperty(BigDecimal.class,"welfaerYlbxPerson","welfaerYlbxPerson","welfaerYlbxPerson");
+        cfg.getPoClassFile().addSimpleProperty(BigDecimal.class,"welfaeryrbxPerson","welfaeryrbxPerson","welfaeryrbxPerson");
+        cfg.getPoClassFile().addSimpleProperty(BigDecimal.class,"welfaerSyebxPerson","welfaerSyebxPerson","welfaerSyebxPerson");
+        cfg.getPoClassFile().addSimpleProperty(BigDecimal.class,"welfaerGsbxPerson","welfaerGsbxPerson","welfaerGsbxPerson");
+        cfg.getPoClassFile().addSimpleProperty(BigDecimal.class,"welfaerSybxPerson","welfaerSybxPerson","welfaerSybxPerson");
 
 
         cfg.view().field(HrTables.HR_SALARY_CTL.ID).basic().hidden(true);
@@ -36,8 +52,10 @@ public class SalalyCtlGtr extends BaseCodeGenerator {
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
 
-        cfg.view().field(HrTables.HR_SALARY_TPL.CODE).form().validate().required();
+
+        cfg.view().field(HrTables.HR_SALARY_CTL.CODE).form().validate().required();
         cfg.view().field(HrTables.HR_SALARY_CTL.NAME).form().validate().required();
+        cfg.view().field(HrTables.HR_SALARY_CTL.VALUE_D).form().validate().required().form().numberInput().decimal().scale(2).defaultValue(0.00);
 
         //只有当枚举生效
         cfg.view().field(HrTables.HR_SALARY_CTL.VALUE_EN).form().radioBox().enumType(StatusYNEnum.class);

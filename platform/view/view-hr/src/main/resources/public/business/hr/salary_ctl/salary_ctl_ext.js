@@ -1,7 +1,7 @@
 /**
  * 薪酬控制 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 10:15:34
+ * @since 2024-01-27 18:33:34
  */
 
 layui.config({
@@ -49,7 +49,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            cfg.cellMinWidth=160;;
+            console.log("list:beforeTableRender",cfg);
         },
         /**
          * 表格渲染后调用
@@ -172,6 +172,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        moreActionMenu (items,data, it){
+            console.log('moreActionMenu',items,data,it);
+            return items;
+        },
+
         /**
          * 末尾执行
          */

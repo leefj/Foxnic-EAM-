@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬模版VO类型
  * <p>薪酬模版 , 数据表 hr_salary_tpl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-26 23:28:02
+ * @since 2024-01-28 01:12:48
  * @sign E9A4577E510BAAF3C8CD5EBD445BE499
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -420,22 +420,23 @@ public class SalaryTplVO extends SalaryTpl {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
-			inst.setPersonList(this.getPersonList());
+			inst.setSalaryCtl(this.getSalaryCtl());
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setConfNonConversionRatio(this.getConfNonConversionRatio());
+			inst.setConfCurMonth(this.getConfCurMonth());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setSalaryTplItem(this.getSalaryTplItem());
+			inst.setSalaryIncomeTaxList(this.getSalaryIncomeTaxList());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setValidSalaryTplItem(this.getValidSalaryTplItem());
 			inst.setQueryLogic(this.getQueryLogic());
-			inst.setSalaryDetailList(this.getSalaryDetailList());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -514,11 +515,13 @@ public class SalaryTplVO extends SalaryTpl {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(SalaryTplVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(SalaryTplVOMeta.ID)));
 			// others
+			this.setSalaryCtl(DataParser.parse(SalaryCtl.class, map.get(SalaryTplVOMeta.SALARY_CTL)));
 			this.setSearchField(DataParser.parse(String.class, map.get(SalaryTplVOMeta.SEARCH_FIELD)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(SalaryTplVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(SalaryTplVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(SalaryTplVOMeta.PAGE_SIZE)));
 			this.setConfNonConversionRatio(DataParser.parse(BigDecimal.class, map.get(SalaryTplVOMeta.CONF_NON_CONVERSION_RATIO)));
+			this.setConfCurMonth(DataParser.parse(String.class, map.get(SalaryTplVOMeta.CONF_CUR_MONTH)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(SalaryTplVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(SalaryTplVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(SalaryTplVOMeta.SORT_FIELD)));
@@ -546,11 +549,13 @@ public class SalaryTplVO extends SalaryTpl {
 				this.setDeleteBy( (String)map.get(SalaryTplVOMeta.DELETE_BY));
 				this.setId( (String)map.get(SalaryTplVOMeta.ID));
 				// others
+				this.setSalaryCtl( (SalaryCtl)map.get(SalaryTplVOMeta.SALARY_CTL));
 				this.setSearchField( (String)map.get(SalaryTplVOMeta.SEARCH_FIELD));
 				this.setRequestAction( (String)map.get(SalaryTplVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(SalaryTplVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(SalaryTplVOMeta.PAGE_SIZE));
 				this.setConfNonConversionRatio( (BigDecimal)map.get(SalaryTplVOMeta.CONF_NON_CONVERSION_RATIO));
+				this.setConfCurMonth( (String)map.get(SalaryTplVOMeta.CONF_CUR_MONTH));
 				this.setPageIndex( (Integer)map.get(SalaryTplVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(SalaryTplVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(SalaryTplVOMeta.SORT_FIELD));
