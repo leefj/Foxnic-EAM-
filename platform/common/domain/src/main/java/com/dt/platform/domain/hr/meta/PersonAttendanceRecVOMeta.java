@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-10 11:07:59
+ * @since 2024-02-02 08:44:35
  * @sign 2F63C86D650F5342457B80AC5AAE63B3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -182,14 +182,14 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.lang.String> JOB_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,JOB_NUMBER, java.lang.String.class, "工号", "工号", java.lang.String.class, null);
 	
 	/**
-	 * 加班 , 天) , 类型: java.math.BigDecimal
+	 * 加班 , 小时) , 类型: java.math.BigDecimal
 	*/
 	public static final String JB_CNT="jbCnt";
 	
 	/**
-	 * 加班 , 天) , 类型: java.math.BigDecimal
+	 * 加班 , 小时) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.math.BigDecimal> JB_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,JB_CNT, java.math.BigDecimal.class, "加班", "天)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.math.BigDecimal> JB_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,JB_CNT, java.math.BigDecimal.class, "加班", "小时)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 年假 , 天) , 类型: java.math.BigDecimal
@@ -252,6 +252,16 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.util.Date> REC_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,REC_TIME, java.util.Date.class, "记录时间", "记录时间", java.util.Date.class, null);
 	
 	/**
+	 * 批次号 , 类型: java.lang.String
+	*/
+	public static final String BATCH_CODE="batchCode";
+	
+	/**
+	 * 批次号 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.lang.String> BATCH_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,BATCH_CODE, java.lang.String.class, "批次号", "批次号", java.lang.String.class, null);
+	
+	/**
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final String NOTES="notes";
@@ -260,6 +270,16 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 来源 , 类型: java.lang.String
+	*/
+	public static final String SOURCE="source";
+	
+	/**
+	 * 来源 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonAttendanceRecVO,java.lang.String> SOURCE_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonAttendanceRecVO.class ,SOURCE, java.lang.String.class, "来源", "来源", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -374,7 +394,7 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , EMPLOYEE_ID , PERSON_ID , JOB_NUMBER , JB_CNT , NJ_CNT , SJ_CNT , BJ_CNT , CC_CNT , OTHER_CNT , REC_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON , EMPLOYEE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , EMPLOYEE_ID , PERSON_ID , JOB_NUMBER , JB_CNT , NJ_CNT , SJ_CNT , BJ_CNT , CC_CNT , OTHER_CNT , REC_TIME , BATCH_CODE , NOTES , SOURCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON , EMPLOYEE };
 	
 	/**
 	 * 代理类
@@ -638,6 +658,17 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 		}
 		
 		/**
+		 * 设置 批次号
+		 * @param batchCode 批次号
+		 * @return 当前对象
+		*/
+		public PersonAttendanceRec setBatchCode(String batchCode) {
+			super.change(BATCH_CODE,super.getBatchCode(),batchCode);
+			super.setBatchCode(batchCode);
+			return this;
+		}
+		
+		/**
 		 * 设置 备注
 		 * @param notes 备注
 		 * @return 当前对象
@@ -645,6 +676,17 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 		public PersonAttendanceRec setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 来源
+		 * @param source 来源
+		 * @return 当前对象
+		*/
+		public PersonAttendanceRec setSource(String source) {
+			super.change(SOURCE,super.getSource(),source);
+			super.setSource(source);
 			return this;
 		}
 		
@@ -786,10 +828,12 @@ public class PersonAttendanceRecVOMeta extends PersonAttendanceRecMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
 			inst.setRecTime(this.getRecTime());
+			inst.setBatchCode(this.getBatchCode());
 			inst.setCcCnt(this.getCcCnt());
 			inst.setOtherCnt(this.getOtherCnt());
 			inst.setEmployeeId(this.getEmployeeId());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSource(this.getSource());
 			inst.setVersion(this.getVersion());
 			inst.setJbCnt(this.getJbCnt());
 			inst.setNjCnt(this.getNjCnt());

@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬明细VO类型
  * <p>薪酬明细 , 数据表 hr_salary_detail 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-28 01:39:17
+ * @since 2024-02-06 18:23:19
  * @sign D3B310DBE8753898C4401D627A0D58FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -432,7 +432,9 @@ public class SalaryDetailVO extends SalaryDetail {
 		inst.setIssuedAmount(this.getIssuedAmount());
 		inst.setWelfaerSybxBase(this.getWelfaerSybxBase());
 		inst.setWelfaerGsbxBase(this.getWelfaerGsbxBase());
+		inst.setPersonalStatus(this.getPersonalStatus());
 		inst.setWelfaerSybxCompany(this.getWelfaerSybxCompany());
+		inst.setUnitTimeSalary(this.getUnitTimeSalary());
 		inst.setWelfaerYrbxBase(this.getWelfaerYrbxBase());
 		inst.setWelfaerSyebxBase(this.getWelfaerSyebxBase());
 		inst.setVersion(this.getVersion());
@@ -451,11 +453,14 @@ public class SalaryDetailVO extends SalaryDetail {
 		inst.setStatus(this.getStatus());
 		inst.setPersonalTaxZfdk(this.getPersonalTaxZfdk());
 		inst.setWelfaerSyebxPerson(this.getWelfaerSyebxPerson());
+		inst.setJxpjLevel(this.getJxpjLevel());
 		inst.setWelfaerSybxPerson(this.getWelfaerSybxPerson());
+		inst.setBusinessTripsCnt(this.getBusinessTripsCnt());
 		inst.setPunishSalary(this.getPunishSalary());
 		inst.setWelfaerYlbxBase(this.getWelfaerYlbxBase());
 		inst.setBaseSalary(this.getBaseSalary());
 		inst.setPersonalTaxSylr(this.getPersonalTaxSylr());
+		inst.setOrgId(this.getOrgId());
 		inst.setPersonalTaxZnjy(this.getPersonalTaxZnjy());
 		inst.setPtSlPct(this.getPtSlPct());
 		inst.setWelfaerGsbxPerson(this.getWelfaerGsbxPerson());
@@ -470,6 +475,7 @@ public class SalaryDetailVO extends SalaryDetail {
 		inst.setWelfaerYrbxPerson(this.getWelfaerYrbxPerson());
 		inst.setOperMsg(this.getOperMsg());
 		inst.setPersonalTaxZfzj(this.getPersonalTaxZfzj());
+		inst.setBatchCode(this.getBatchCode());
 		inst.setWorkingYearsSalary(this.getWorkingYearsSalary());
 		inst.setAchievementSalary(this.getAchievementSalary());
 		inst.setUpdateTime(this.getUpdateTime());
@@ -481,6 +487,8 @@ public class SalaryDetailVO extends SalaryDetail {
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setWorkDayCnt(this.getWorkDayCnt());
+		inst.setAnnualLeaveCnt(this.getAnnualLeaveCnt());
+		inst.setUnitNumberSalary(this.getUnitNumberSalary());
 		inst.setTenantId(this.getTenantId());
 		inst.setPostSalary(this.getPostSalary());
 		inst.setOvertimeSalary(this.getOvertimeSalary());
@@ -593,7 +601,9 @@ public class SalaryDetailVO extends SalaryDetail {
 			this.setIssuedAmount(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.ISSUED_AMOUNT)));
 			this.setWelfaerSybxBase(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.WELFAER_SYBX_BASE)));
 			this.setWelfaerGsbxBase(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.WELFAER_GSBX_BASE)));
+			this.setPersonalStatus(DataParser.parse(String.class, map.get(SalaryDetailVOMeta.PERSONAL_STATUS)));
 			this.setWelfaerSybxCompany(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.WELFAER_SYBX_COMPANY)));
+			this.setUnitTimeSalary(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.UNIT_TIME_SALARY)));
 			this.setWelfaerYrbxBase(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.WELFAER_YRBX_BASE)));
 			this.setWelfaerSyebxBase(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.WELFAER_SYEBX_BASE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(SalaryDetailVOMeta.VERSION)));
@@ -612,11 +622,14 @@ public class SalaryDetailVO extends SalaryDetail {
 			this.setStatus(DataParser.parse(String.class, map.get(SalaryDetailVOMeta.STATUS)));
 			this.setPersonalTaxZfdk(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.PERSONAL_TAX_ZFDK)));
 			this.setWelfaerSyebxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.WELFAER_SYEBX_PERSON)));
+			this.setJxpjLevel(DataParser.parse(String.class, map.get(SalaryDetailVOMeta.JXPJ_LEVEL)));
 			this.setWelfaerSybxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.WELFAER_SYBX_PERSON)));
+			this.setBusinessTripsCnt(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.BUSINESS_TRIPS_CNT)));
 			this.setPunishSalary(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.PUNISH_SALARY)));
 			this.setWelfaerYlbxBase(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.WELFAER_YLBX_BASE)));
 			this.setBaseSalary(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.BASE_SALARY)));
 			this.setPersonalTaxSylr(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.PERSONAL_TAX_SYLR)));
+			this.setOrgId(DataParser.parse(String.class, map.get(SalaryDetailVOMeta.ORG_ID)));
 			this.setPersonalTaxZnjy(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.PERSONAL_TAX_ZNJY)));
 			this.setPtSlPct(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.PT_SL_PCT)));
 			this.setWelfaerGsbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.WELFAER_GSBX_PERSON)));
@@ -631,6 +644,7 @@ public class SalaryDetailVO extends SalaryDetail {
 			this.setWelfaerYrbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.WELFAER_YRBX_PERSON)));
 			this.setOperMsg(DataParser.parse(String.class, map.get(SalaryDetailVOMeta.OPER_MSG)));
 			this.setPersonalTaxZfzj(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.PERSONAL_TAX_ZFZJ)));
+			this.setBatchCode(DataParser.parse(String.class, map.get(SalaryDetailVOMeta.BATCH_CODE)));
 			this.setWorkingYearsSalary(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.WORKING_YEARS_SALARY)));
 			this.setAchievementSalary(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.ACHIEVEMENT_SALARY)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(SalaryDetailVOMeta.UPDATE_TIME)));
@@ -642,6 +656,8 @@ public class SalaryDetailVO extends SalaryDetail {
 			this.setDeleted(DataParser.parse(Integer.class, map.get(SalaryDetailVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(SalaryDetailVOMeta.CREATE_TIME)));
 			this.setWorkDayCnt(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.WORK_DAY_CNT)));
+			this.setAnnualLeaveCnt(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.ANNUAL_LEAVE_CNT)));
+			this.setUnitNumberSalary(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.UNIT_NUMBER_SALARY)));
 			this.setTenantId(DataParser.parse(String.class, map.get(SalaryDetailVOMeta.TENANT_ID)));
 			this.setPostSalary(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.POST_SALARY)));
 			this.setOvertimeSalary(DataParser.parse(BigDecimal.class, map.get(SalaryDetailVOMeta.OVERTIME_SALARY)));
@@ -696,7 +712,9 @@ public class SalaryDetailVO extends SalaryDetail {
 				this.setIssuedAmount( (BigDecimal)map.get(SalaryDetailVOMeta.ISSUED_AMOUNT));
 				this.setWelfaerSybxBase( (BigDecimal)map.get(SalaryDetailVOMeta.WELFAER_SYBX_BASE));
 				this.setWelfaerGsbxBase( (BigDecimal)map.get(SalaryDetailVOMeta.WELFAER_GSBX_BASE));
+				this.setPersonalStatus( (String)map.get(SalaryDetailVOMeta.PERSONAL_STATUS));
 				this.setWelfaerSybxCompany( (BigDecimal)map.get(SalaryDetailVOMeta.WELFAER_SYBX_COMPANY));
+				this.setUnitTimeSalary( (BigDecimal)map.get(SalaryDetailVOMeta.UNIT_TIME_SALARY));
 				this.setWelfaerYrbxBase( (BigDecimal)map.get(SalaryDetailVOMeta.WELFAER_YRBX_BASE));
 				this.setWelfaerSyebxBase( (BigDecimal)map.get(SalaryDetailVOMeta.WELFAER_SYEBX_BASE));
 				this.setVersion( (Integer)map.get(SalaryDetailVOMeta.VERSION));
@@ -715,11 +733,14 @@ public class SalaryDetailVO extends SalaryDetail {
 				this.setStatus( (String)map.get(SalaryDetailVOMeta.STATUS));
 				this.setPersonalTaxZfdk( (BigDecimal)map.get(SalaryDetailVOMeta.PERSONAL_TAX_ZFDK));
 				this.setWelfaerSyebxPerson( (BigDecimal)map.get(SalaryDetailVOMeta.WELFAER_SYEBX_PERSON));
+				this.setJxpjLevel( (String)map.get(SalaryDetailVOMeta.JXPJ_LEVEL));
 				this.setWelfaerSybxPerson( (BigDecimal)map.get(SalaryDetailVOMeta.WELFAER_SYBX_PERSON));
+				this.setBusinessTripsCnt( (BigDecimal)map.get(SalaryDetailVOMeta.BUSINESS_TRIPS_CNT));
 				this.setPunishSalary( (BigDecimal)map.get(SalaryDetailVOMeta.PUNISH_SALARY));
 				this.setWelfaerYlbxBase( (BigDecimal)map.get(SalaryDetailVOMeta.WELFAER_YLBX_BASE));
 				this.setBaseSalary( (BigDecimal)map.get(SalaryDetailVOMeta.BASE_SALARY));
 				this.setPersonalTaxSylr( (BigDecimal)map.get(SalaryDetailVOMeta.PERSONAL_TAX_SYLR));
+				this.setOrgId( (String)map.get(SalaryDetailVOMeta.ORG_ID));
 				this.setPersonalTaxZnjy( (BigDecimal)map.get(SalaryDetailVOMeta.PERSONAL_TAX_ZNJY));
 				this.setPtSlPct( (BigDecimal)map.get(SalaryDetailVOMeta.PT_SL_PCT));
 				this.setWelfaerGsbxPerson( (BigDecimal)map.get(SalaryDetailVOMeta.WELFAER_GSBX_PERSON));
@@ -734,6 +755,7 @@ public class SalaryDetailVO extends SalaryDetail {
 				this.setWelfaerYrbxPerson( (BigDecimal)map.get(SalaryDetailVOMeta.WELFAER_YRBX_PERSON));
 				this.setOperMsg( (String)map.get(SalaryDetailVOMeta.OPER_MSG));
 				this.setPersonalTaxZfzj( (BigDecimal)map.get(SalaryDetailVOMeta.PERSONAL_TAX_ZFZJ));
+				this.setBatchCode( (String)map.get(SalaryDetailVOMeta.BATCH_CODE));
 				this.setWorkingYearsSalary( (BigDecimal)map.get(SalaryDetailVOMeta.WORKING_YEARS_SALARY));
 				this.setAchievementSalary( (BigDecimal)map.get(SalaryDetailVOMeta.ACHIEVEMENT_SALARY));
 				this.setUpdateTime( (Date)map.get(SalaryDetailVOMeta.UPDATE_TIME));
@@ -745,6 +767,8 @@ public class SalaryDetailVO extends SalaryDetail {
 				this.setDeleted( (Integer)map.get(SalaryDetailVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(SalaryDetailVOMeta.CREATE_TIME));
 				this.setWorkDayCnt( (BigDecimal)map.get(SalaryDetailVOMeta.WORK_DAY_CNT));
+				this.setAnnualLeaveCnt( (BigDecimal)map.get(SalaryDetailVOMeta.ANNUAL_LEAVE_CNT));
+				this.setUnitNumberSalary( (BigDecimal)map.get(SalaryDetailVOMeta.UNIT_NUMBER_SALARY));
 				this.setTenantId( (String)map.get(SalaryDetailVOMeta.TENANT_ID));
 				this.setPostSalary( (BigDecimal)map.get(SalaryDetailVOMeta.POST_SALARY));
 				this.setOvertimeSalary( (BigDecimal)map.get(SalaryDetailVOMeta.OVERTIME_SALARY));
@@ -812,7 +836,9 @@ public class SalaryDetailVO extends SalaryDetail {
 			this.setIssuedAmount(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.ISSUED_AMOUNT)));
 			this.setWelfaerSybxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.WELFAER_SYBX_BASE)));
 			this.setWelfaerGsbxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.WELFAER_GSBX_BASE)));
+			this.setPersonalStatus(DataParser.parse(String.class, r.getValue(SalaryDetailVOMeta.PERSONAL_STATUS)));
 			this.setWelfaerSybxCompany(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.WELFAER_SYBX_COMPANY)));
+			this.setUnitTimeSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.UNIT_TIME_SALARY)));
 			this.setWelfaerYrbxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.WELFAER_YRBX_BASE)));
 			this.setWelfaerSyebxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.WELFAER_SYEBX_BASE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(SalaryDetailVOMeta.VERSION)));
@@ -831,11 +857,14 @@ public class SalaryDetailVO extends SalaryDetail {
 			this.setStatus(DataParser.parse(String.class, r.getValue(SalaryDetailVOMeta.STATUS)));
 			this.setPersonalTaxZfdk(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.PERSONAL_TAX_ZFDK)));
 			this.setWelfaerSyebxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.WELFAER_SYEBX_PERSON)));
+			this.setJxpjLevel(DataParser.parse(String.class, r.getValue(SalaryDetailVOMeta.JXPJ_LEVEL)));
 			this.setWelfaerSybxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.WELFAER_SYBX_PERSON)));
+			this.setBusinessTripsCnt(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.BUSINESS_TRIPS_CNT)));
 			this.setPunishSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.PUNISH_SALARY)));
 			this.setWelfaerYlbxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.WELFAER_YLBX_BASE)));
 			this.setBaseSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.BASE_SALARY)));
 			this.setPersonalTaxSylr(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.PERSONAL_TAX_SYLR)));
+			this.setOrgId(DataParser.parse(String.class, r.getValue(SalaryDetailVOMeta.ORG_ID)));
 			this.setPersonalTaxZnjy(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.PERSONAL_TAX_ZNJY)));
 			this.setPtSlPct(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.PT_SL_PCT)));
 			this.setWelfaerGsbxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.WELFAER_GSBX_PERSON)));
@@ -850,6 +879,7 @@ public class SalaryDetailVO extends SalaryDetail {
 			this.setWelfaerYrbxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.WELFAER_YRBX_PERSON)));
 			this.setOperMsg(DataParser.parse(String.class, r.getValue(SalaryDetailVOMeta.OPER_MSG)));
 			this.setPersonalTaxZfzj(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.PERSONAL_TAX_ZFZJ)));
+			this.setBatchCode(DataParser.parse(String.class, r.getValue(SalaryDetailVOMeta.BATCH_CODE)));
 			this.setWorkingYearsSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.WORKING_YEARS_SALARY)));
 			this.setAchievementSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.ACHIEVEMENT_SALARY)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(SalaryDetailVOMeta.UPDATE_TIME)));
@@ -861,6 +891,8 @@ public class SalaryDetailVO extends SalaryDetail {
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(SalaryDetailVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(SalaryDetailVOMeta.CREATE_TIME)));
 			this.setWorkDayCnt(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.WORK_DAY_CNT)));
+			this.setAnnualLeaveCnt(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.ANNUAL_LEAVE_CNT)));
+			this.setUnitNumberSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.UNIT_NUMBER_SALARY)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(SalaryDetailVOMeta.TENANT_ID)));
 			this.setPostSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.POST_SALARY)));
 			this.setOvertimeSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryDetailVOMeta.OVERTIME_SALARY)));
@@ -898,7 +930,9 @@ public class SalaryDetailVO extends SalaryDetail {
 				this.setIssuedAmount( (BigDecimal)r.getValue(SalaryDetailVOMeta.ISSUED_AMOUNT));
 				this.setWelfaerSybxBase( (BigDecimal)r.getValue(SalaryDetailVOMeta.WELFAER_SYBX_BASE));
 				this.setWelfaerGsbxBase( (BigDecimal)r.getValue(SalaryDetailVOMeta.WELFAER_GSBX_BASE));
+				this.setPersonalStatus( (String)r.getValue(SalaryDetailVOMeta.PERSONAL_STATUS));
 				this.setWelfaerSybxCompany( (BigDecimal)r.getValue(SalaryDetailVOMeta.WELFAER_SYBX_COMPANY));
+				this.setUnitTimeSalary( (BigDecimal)r.getValue(SalaryDetailVOMeta.UNIT_TIME_SALARY));
 				this.setWelfaerYrbxBase( (BigDecimal)r.getValue(SalaryDetailVOMeta.WELFAER_YRBX_BASE));
 				this.setWelfaerSyebxBase( (BigDecimal)r.getValue(SalaryDetailVOMeta.WELFAER_SYEBX_BASE));
 				this.setVersion( (Integer)r.getValue(SalaryDetailVOMeta.VERSION));
@@ -917,11 +951,14 @@ public class SalaryDetailVO extends SalaryDetail {
 				this.setStatus( (String)r.getValue(SalaryDetailVOMeta.STATUS));
 				this.setPersonalTaxZfdk( (BigDecimal)r.getValue(SalaryDetailVOMeta.PERSONAL_TAX_ZFDK));
 				this.setWelfaerSyebxPerson( (BigDecimal)r.getValue(SalaryDetailVOMeta.WELFAER_SYEBX_PERSON));
+				this.setJxpjLevel( (String)r.getValue(SalaryDetailVOMeta.JXPJ_LEVEL));
 				this.setWelfaerSybxPerson( (BigDecimal)r.getValue(SalaryDetailVOMeta.WELFAER_SYBX_PERSON));
+				this.setBusinessTripsCnt( (BigDecimal)r.getValue(SalaryDetailVOMeta.BUSINESS_TRIPS_CNT));
 				this.setPunishSalary( (BigDecimal)r.getValue(SalaryDetailVOMeta.PUNISH_SALARY));
 				this.setWelfaerYlbxBase( (BigDecimal)r.getValue(SalaryDetailVOMeta.WELFAER_YLBX_BASE));
 				this.setBaseSalary( (BigDecimal)r.getValue(SalaryDetailVOMeta.BASE_SALARY));
 				this.setPersonalTaxSylr( (BigDecimal)r.getValue(SalaryDetailVOMeta.PERSONAL_TAX_SYLR));
+				this.setOrgId( (String)r.getValue(SalaryDetailVOMeta.ORG_ID));
 				this.setPersonalTaxZnjy( (BigDecimal)r.getValue(SalaryDetailVOMeta.PERSONAL_TAX_ZNJY));
 				this.setPtSlPct( (BigDecimal)r.getValue(SalaryDetailVOMeta.PT_SL_PCT));
 				this.setWelfaerGsbxPerson( (BigDecimal)r.getValue(SalaryDetailVOMeta.WELFAER_GSBX_PERSON));
@@ -936,6 +973,7 @@ public class SalaryDetailVO extends SalaryDetail {
 				this.setWelfaerYrbxPerson( (BigDecimal)r.getValue(SalaryDetailVOMeta.WELFAER_YRBX_PERSON));
 				this.setOperMsg( (String)r.getValue(SalaryDetailVOMeta.OPER_MSG));
 				this.setPersonalTaxZfzj( (BigDecimal)r.getValue(SalaryDetailVOMeta.PERSONAL_TAX_ZFZJ));
+				this.setBatchCode( (String)r.getValue(SalaryDetailVOMeta.BATCH_CODE));
 				this.setWorkingYearsSalary( (BigDecimal)r.getValue(SalaryDetailVOMeta.WORKING_YEARS_SALARY));
 				this.setAchievementSalary( (BigDecimal)r.getValue(SalaryDetailVOMeta.ACHIEVEMENT_SALARY));
 				this.setUpdateTime( (Date)r.getValue(SalaryDetailVOMeta.UPDATE_TIME));
@@ -947,6 +985,8 @@ public class SalaryDetailVO extends SalaryDetail {
 				this.setDeleted( (Integer)r.getValue(SalaryDetailVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(SalaryDetailVOMeta.CREATE_TIME));
 				this.setWorkDayCnt( (BigDecimal)r.getValue(SalaryDetailVOMeta.WORK_DAY_CNT));
+				this.setAnnualLeaveCnt( (BigDecimal)r.getValue(SalaryDetailVOMeta.ANNUAL_LEAVE_CNT));
+				this.setUnitNumberSalary( (BigDecimal)r.getValue(SalaryDetailVOMeta.UNIT_NUMBER_SALARY));
 				this.setTenantId( (String)r.getValue(SalaryDetailVOMeta.TENANT_ID));
 				this.setPostSalary( (BigDecimal)r.getValue(SalaryDetailVOMeta.POST_SALARY));
 				this.setOvertimeSalary( (BigDecimal)r.getValue(SalaryDetailVOMeta.OVERTIME_SALARY));

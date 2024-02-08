@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.commons.collection.MapUtil;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -96,6 +97,7 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 		return r;
 	}
 
+
 	@Override
 	public Result createData(String id) {
 		SalaryAction act=this.getById(id);
@@ -105,7 +107,6 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 		}
 		this.dao().fill(act).with(SalaryActionMeta.PERSON_LIST).with(SalaryActionMeta.SALARY_TPL)
 				.with(SalaryActionMeta.SALARY_MONTH).execute();
-
 
 		if(StringUtil.isBlank(act.getSalaryTpl())){
 			return ErrorDesc.failureMessage ("未配置薪酬模版");
@@ -132,6 +133,7 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 		}
 		dao.execute("delete from hr_salary_detail where action_id=?",id);
 
+
 		//开始填充薪酬基本数据
 		for(Person person:personList){
 			if(StatusYNEnum.YES.code().equals(person.getSalaryPayOut())){
@@ -143,6 +145,8 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 				Logger.info("当前账户发放薪酬禁用，用户ID:"+person.getId()+",姓名:"+person.getName());
 			}
 		}
+
+
 		this.dao.execute("update hr_salary_action set status=? where id=?",SalaryActionStatusEnum.WAIT.code(),id);
 		return ErrorDesc.success();
 	}
@@ -239,6 +243,7 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 	}
 
 
+	/*生成个人工资条目*/
 	public Result createPersonData(Person person,SalaryAction act){
 		if(person.getSalary()==null){
 			this.dao().fill(person).with(PersonMeta.SALARY).execute();
@@ -286,6 +291,41 @@ public class SalaryActionServiceImpl extends SuperService<SalaryAction> implemen
 		detail.setCreateTime(new Date());
 		detail.setUpdateTime(new Date());
 		salaryDetailService.update(detail,SaveMode.NOT_NULL_FIELDS,true);
+
+		//填充考勤数据
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String sStr=sdf.format(act.getStart());
+		String eStr=sdf.format(act.getEnd());
+		String kqSql="update hr_salary_detail a,\n" +
+				"(select person_id,sum(jb_cnt)jb_cnt_t,sum(nj_cnt)nj_cnt_t,sum(sj_cnt)sj_cnt_t,sum(bj_cnt)bj_cnt_t,sum(cc_cnt)cc_cnt_t,sum(other_cnt)other_cnt_t from hr_person_attendance_rec where  rec_time>=str_to_date('"+sStr+"', '%Y-%m-%d') and rec_time<str_to_date('"+eStr+"', '%Y-%m-%d') group by person_id) b\n" +
+				"set a.work_overtime_h_cnt=b.jb_cnt_t\n" +
+				",a.business_trips_cnt=b.cc_cnt_t \n" +
+				",a.personal_leave_cnt=b.sj_cnt_t \n" +
+				",a.annual_leave_cnt=b.nj_cnt_t \n" +
+				"where a.person_id=b.person_id\n" +
+				"and a.action_id=?";
+		dao.execute(kqSql,act.getId());
+		//提成工资
+		String tcSql="update hr_salary_detail a,\n" +
+				"(select person_id,sum(commission_salary) value from hr_salary_project_commission_rcd where rcd_date>=str_to_date('"+sStr+"', '%Y-%m-%d') and rcd_date<str_to_date('"+eStr+"', '%Y-%m-%d') group by person_id) b\n" +
+				"set a.commission_salary=b.value\n" +
+				"where a.person_id=b.person_id\n"+
+				"and a.action_id=?";
+		dao.execute(tcSql,act.getId());
+		//计件工资
+		String jjSql="update hr_salary_detail a,\n" +
+				"(select person_id,sum(total_price) value from hr_salary_project_unit_rcd where rcd_date>=str_to_date('"+sStr+"', '%Y-%m-%d') and rcd_date<str_to_date('"+eStr+"', '%Y-%m-%d') group by person_id) b\n" +
+				"set a.unit_number_salary=b.value\n" +
+				"where a.person_id=b.person_id\n"+
+		        "and a.action_id=?";
+		dao.execute(jjSql,act.getId());
+		//计时工资
+		String jsSql="update hr_salary_detail a,\n" +
+				"(select person_id,sum(total_price) value from hr_salary_project_time_rcd where rcd_date>=str_to_date('"+sStr+"', '%Y-%m-%d') and rcd_date<str_to_date('"+eStr+"', '%Y-%m-%d') group by person_id) b\n" +
+				"set a.unit_time_salary=b.value\n" +
+				"where a.person_id=b.person_id\n"+
+				"and a.action_id=?";
+		dao.execute(jsSql,act.getId());
 		return ErrorDesc.success();
 	}
 

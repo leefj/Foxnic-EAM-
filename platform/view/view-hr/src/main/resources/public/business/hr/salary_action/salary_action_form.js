@@ -1,7 +1,7 @@
 /**
  * 薪酬发放 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-27 21:41:03
+ * @since 2024-01-28 11:51:22
  */
 
 function FormPage() {
@@ -225,6 +225,13 @@ function FormPage() {
 				}
 				return opts;
 			}
+		});
+		form.on('radio(withTpl)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=withTpl]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("withTpl",data,checked);
 		});
 	}
 

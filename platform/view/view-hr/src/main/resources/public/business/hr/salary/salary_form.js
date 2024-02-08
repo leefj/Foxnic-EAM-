@@ -1,7 +1,7 @@
 /**
  * 人员薪酬 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 17:58:40
+ * @since 2024-02-06 19:11:01
  */
 
 function FormPage() {
@@ -118,6 +118,51 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 personId 下拉字段
+		fox.renderSelectBox({
+			el: "personId",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("人员",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("personId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("personId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+		form.on('radio(personalStatus)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=personalStatus]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("personalStatus",data,checked);
+		});
 	}
 
 	/**
@@ -299,23 +344,6 @@ function FormPage() {
 
 	    form.on('submit(submit-button)', verifyAndSaveForm);
 
-		// 请选择人员对话框
-		$("#personId-button").click(function(){
-				var personIdDialogOptions={
-				field:"personId",
-				formData:getFormData(),
-				inputEl:$("#personId"),
-				buttonEl:$(this),
-				single:true,
-				autoWidth:false,
-				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
-				root: "",
-				targetType:"emp",
-				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
-				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
-			};
-			fox.chooseEmployee(personIdDialogOptions);
-		});
 
 	    //关闭窗口
 	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('hr-salary-form-data-win',this); });

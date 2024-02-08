@@ -2,7 +2,7 @@
 /**
  * 人员考勤 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-10 11:08:00
+ * @since 2024-02-02 08:44:36
  */
  -->
  <!DOCTYPE html>
@@ -43,8 +43,8 @@
                     <!-- 员工 , employeeId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 人员 , personId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('人员')}" class="search-label personId-label">人员</span><span class="search-colon">:</span></div>
-                        <div id="personId" th:data="${'/service-hr/hr-person/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('人员')}" class="search-label personId-label">人员</span><span class="search-colon">:</span></div>
+                        <div id="personId" th:data="${'/service-hr/hr-person/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 加班(天) , jbCnt ,typeName=number_input, isHideInSearch=true -->
                     <!-- 年假(天) , njCnt ,typeName=number_input, isHideInSearch=true -->
@@ -53,17 +53,29 @@
                     <!-- 出差(天) , ccCnt ,typeName=number_input, isHideInSearch=true -->
                     <!-- 其他(天) , otherCnt ,typeName=number_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 来源 , source ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 工号 , jobNumber ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('工号')}" class="search-label jobNumber-label">工号</span><span class="search-colon">:</span></div>
-                        <input id="jobNumber" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('工号')}" class="search-label jobNumber-label">工号</span><span class="search-colon">:</span></div>
+                        <input id="jobNumber" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 记录时间 , recTime ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('记录时间')}" class="search-label recTime-label">记录时间</span><span class="search-colon">:</span></div>
-                            <input type="text" id="recTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('记录时间')}" class="search-label recTime-label">记录时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="recTime-begin" style="width: 180px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
-                            <input type="text" id="recTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                            <input type="text" id="recTime-end"  style="width: 180px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 批次号 , batchCode ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('批次号')}" class="search-label batchCode-label">批次号</span><span class="search-colon">:</span></div>
+                        <input id="batchCode" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -74,6 +86,7 @@
             <!-- 按钮区域 -->
             <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
                 <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多','','cmp:table.search')}">更多</span></button>
             </div>
         </div>
 
@@ -94,6 +107,8 @@
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('hr_person_attendance_rec:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
         <button th:if="${perm.checkAuth('hr_person_attendance_rec:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除','','cmp:table.button')}">删除</span></button>
+        <button id="import-data"  class="layui-btn icon-btn layui-btn-sm  import-data " lay-event="tool-import-data"><span th:text="${lang.translate('导入','','cmp:table.button')}">导入</span></button>
+        <button id="export-data"  class="layui-btn icon-btn layui-btn-sm  export-data " lay-event="tool-export-data"><span th:text="${lang.translate('导出','','cmp:table.button')}">导出</span></button>
     </div>
 </script>
 

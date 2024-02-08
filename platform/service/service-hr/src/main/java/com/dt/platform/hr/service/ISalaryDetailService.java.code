@@ -24,7 +24,7 @@ import java.util.Map;
  * 薪酬明细服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-28 01:39:17
+ * @since 2024-02-06 18:23:19
 */
 
 public interface ISalaryDetailService extends  ISimpleIdService<SalaryDetail,String> {

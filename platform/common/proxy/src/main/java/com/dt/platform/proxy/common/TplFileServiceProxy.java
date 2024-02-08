@@ -6,6 +6,8 @@ import org.github.foxnic.web.proxy.FeignConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.common.TplFile;
 import com.dt.platform.domain.common.TplFileVO;
+
+import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
@@ -102,6 +104,9 @@ public interface TplFileServiceProxy {
      * 返回模板文件流
      */
     public static final String GET_TPL_FILE_STREAM_BY_CODE = API_PREFIX + "get-tpl-file-stream-by-code";
+
+    public static final String SAVE_TEMP_FILE = API_PREFIX + "save-temp-file";
+    File saveTempFile(InputStream is, String fileName);
 
     /**
      * 返回模板文件流

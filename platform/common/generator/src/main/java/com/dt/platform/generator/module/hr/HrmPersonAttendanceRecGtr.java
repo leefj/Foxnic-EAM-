@@ -31,6 +31,8 @@ public class HrmPersonAttendanceRecGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"employee","employee","employee");
+
+
         cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.ID).basic().hidden(true);
 //        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.USER_NAME).search().fuzzySearch();
         cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.JOB_NUMBER).search().fuzzySearch();
@@ -43,6 +45,9 @@ public class HrmPersonAttendanceRecGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON_ATTENDANCE_REC.PERSON_ID,
                         HrTables.HR_PERSON_ATTENDANCE_REC.JOB_NUMBER,
                         HrTables.HR_PERSON_ATTENDANCE_REC.REC_TIME,
+                },
+                new Object[]{
+                        HrTables.HR_PERSON_ATTENDANCE_REC.BATCH_CODE
                 }
         );
 
@@ -103,6 +108,10 @@ public class HrmPersonAttendanceRecGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON_ATTENDANCE_REC.NOTES,
                 }
         );
+
+
+        cfg.view().list().addToolButton("导入","importData","import-data");
+        cfg.view().list().addToolButton("导出","exportData","export-data");
 
 
         cfg.view().list().excel(true,true);

@@ -32,8 +32,51 @@ public class HrmRelationManager extends RelationManager {
 		this.setupPersonTransferRcd();
 		this.setupPersonTransfer();
 		this.setupPersonResignation();
+		this.setupPersonProjectCommissionRcd();
+		this.setupPersonProjectTimeRcd();
+		this.setupPersonProjectUnitRcd();
+		this.setupPersonBusiInsure();
+	}
+
+	public void setupPersonBusiInsure() {
+
+		this.property(PersonBusiInsureMeta.PERSON_BUSI_INSURE_TYPE_PROP)
+				.using(HrTables.HR_PERSON_BUSI_INSURE.TYPE_CODE).join(HrTables.HR_PERSON_BUSI_INSURE_TYPE.CODE);
+
+		this.property(PersonBusiInsureMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_BUSI_INSURE.PERSON_ID).join(HrTables.HR_PERSON.ID);
+	}
+
+	public void setupPersonProjectUnitRcd() {
+		this.property(SalaryProjectUnitRcdMeta.PERSON_PROP)
+				.using(HrTables.HR_SALARY_PROJECT_UNIT_RCD.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+		this.property(SalaryProjectUnitRcdMeta.PROJECT_PROP)
+				.using(HrTables.HR_SALARY_PROJECT_UNIT_RCD.PROJECT_CODE).join(HrTables.HR_SALARY_PROJECT_UNIT.CODE);
 
 	}
+
+	public void setupPersonProjectTimeRcd() {
+
+		this.property(SalaryProjectTimeRcdMeta.PERSON_PROP)
+				.using(HrTables.HR_SALARY_PROJECT_TIME_RCD.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+		this.property(SalaryProjectTimeRcdMeta.PROJECT_PROP)
+				.using(HrTables.HR_SALARY_PROJECT_TIME_RCD.PROJECT_CODE).join(HrTables.HR_SALARY_PROJECT_TIME.CODE);
+
+	}
+
+	public void setupPersonProjectCommissionRcd() {
+
+		this.property(SalaryProjectCommissionRcdMeta.PERSON_PROP)
+				.using(HrTables.HR_SALARY_PROJECT_COMMISSION_RCD.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+		this.property(SalaryProjectCommissionRcdMeta.PROJECT_PROP)
+				.using(HrTables.HR_SALARY_PROJECT_COMMISSION_RCD.PROJECT_CODE).join(HrTables.HR_SALARY_PROJECT_COMMISSION.CODE);
+
+	}
+
+
 	public void setupSalaryTpl() {
 
 

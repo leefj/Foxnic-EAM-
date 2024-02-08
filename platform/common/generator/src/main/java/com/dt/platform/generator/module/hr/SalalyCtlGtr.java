@@ -53,6 +53,11 @@ public class SalalyCtlGtr extends BaseCodeGenerator {
 
 
 
+
+        cfg.view().field(HrTables.HR_SALARY_CTL.CREATE_BY).table().disable(true);
+        cfg.view().field(HrTables.HR_SALARY_CTL.UPDATE_BY).table().disable(true);
+
+
         cfg.view().field(HrTables.HR_SALARY_CTL.CODE).form().validate().required();
         cfg.view().field(HrTables.HR_SALARY_CTL.NAME).form().validate().required();
         cfg.view().field(HrTables.HR_SALARY_CTL.VALUE_D).form().validate().required().form().numberInput().decimal().scale(2).defaultValue(0.00);

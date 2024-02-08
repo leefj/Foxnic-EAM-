@@ -1,7 +1,7 @@
 /**
  * 薪酬发放 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-27 21:41:03
+ * @since 2024-01-28 11:51:21
  */
 
 
@@ -92,9 +92,9 @@ function ListPage() {
 					,{ field: 'end', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束日期') ,templet: function (d) { return templet('end',fox.dateFormat(d.end,"yyyy-MM-dd"),d); }  }
 					,{ field: 'actionMonth', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('月份'), templet: function (d) { return templet('actionMonth' ,fox.joinLabel(d.salaryMonth,"name",',','','actionMonth'),d);}}
 					,{ field: 'tplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版'), templet: function (d) { return templet('tplId' ,fox.joinLabel(d.salaryTpl,"name",',','','tplId'),d);}}
+					,{ field: 'withTpl', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('跟随模版'), templet:function (d){ return templet('withTpl',fox.getEnumText(RADIO_WITHTPL_DATA,d.withTpl,'','withTpl'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

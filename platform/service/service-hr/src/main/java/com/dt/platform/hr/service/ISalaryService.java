@@ -29,6 +29,10 @@ import java.util.Map;
 
 public interface ISalaryService extends  ISimpleIdService<Salary,String> {
 
+	InputStream buildExcelTemplate(String code);
+
+	public ExcelStructure buildExcelStructure(InputStream dataInputStream,String code);
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -303,7 +307,26 @@ public interface ISalaryService extends  ISimpleIdService<Salary,String> {
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
 
+	/**
+	 * 导出 Excel
+	 * */
+	ExcelWriter exportExcel(Salary sample);
+	/**
+	 * 构建 Excel 结构
+	 * @param  isForExport 是否用于数据导出
+	 * @return   ExcelStructure
+	 * */
+	ExcelStructure buildExcelStructure(boolean isForExport);
+	/**
+	 * 导出用于数据导入的 Excel 模版
+	 * */
+	ExcelWriter  exportExcelTemplate();
 
+	/**
+	 * 导入 Excel 数据
+	 * @return  错误信息，成功时返回 null
+	 * */
+	List<ValidateResult> importExcel(InputStream input,int sheetIndex,String code);
 
 
 }

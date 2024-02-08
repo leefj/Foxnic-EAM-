@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.hr;
 
 
 import com.dt.platform.constants.db.HrTables;
+import com.dt.platform.constants.enums.common.YesNoEnum;
 import com.dt.platform.constants.enums.hr.SalaryActionLabelEnum;
 import com.dt.platform.constants.enums.hr.SalaryActionStatusEnum;
 import com.dt.platform.domain.hr.Person;
@@ -28,8 +29,6 @@ public class SalalyActionGtr extends BaseCodeGenerator {
 
 
         cfg.getPoClassFile().addListProperty(SalaryDetail.class,"SalaryDetailList","SalaryDetailList","SalaryDetailList");
-
-
         cfg.getPoClassFile().addSimpleProperty(SalaryTpl.class,"salaryTpl","salaryTpl","salaryTpl");
         cfg.getPoClassFile().addSimpleProperty(SalaryMonth.class,"salaryMonth","salaryMonth","salaryMonth");
         cfg.getPoClassFile().addListProperty(Person.class,"personList","personList","personList");
@@ -58,6 +57,9 @@ public class SalalyActionGtr extends BaseCodeGenerator {
 
 
 
+        cfg.view().field(HrTables.HR_SALARY_ACTION.CREATE_BY).table().disable(true);
+        cfg.view().field(HrTables.HR_SALARY_ACTION.UPDATE_BY).table().disable(true);
+
         cfg.view().field(HrTables.HR_SALARY_ACTION.STATUS).form().radioBox().enumType(SalaryActionStatusEnum.class);
         cfg.view().field(HrTables.HR_SALARY_ACTION.LABEL).form().radioBox().enumType(SalaryActionLabelEnum.class).defaultIndex(0);
         cfg.view().field(HrTables.HR_SALARY_ACTION.NAME).form().validate().required();
@@ -67,7 +69,7 @@ public class SalalyActionGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_SALARY_ACTION.END).form().validate().required().form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
         cfg.view().field(HrTables.HR_SALARY_ACTION.LABEL).form().radioBox().enumType(SalaryActionLabelEnum.class).defaultIndex(0);
 
-
+        cfg.view().field(HrTables.HR_SALARY_ACTION.WITH_TPL).form().validate().required().form().radioBox().enumType(YesNoEnum.class).defaultIndex(1);
 
         cfg.view().field(HrTables.HR_SALARY_ACTION.TPL_ID)
                 .form().validate().required().form().selectBox().queryApi(SalaryTplServiceProxy.QUERY_PAGED_LIST)
@@ -91,6 +93,7 @@ public class SalalyActionGtr extends BaseCodeGenerator {
                         HrTables.HR_SALARY_ACTION.NAME,
                         HrTables.HR_SALARY_ACTION.START,
                         HrTables.HR_SALARY_ACTION.TPL_ID,
+                        HrTables.HR_SALARY_ACTION.WITH_TPL
                 },
                 new Object[] {
                         HrTables.HR_SALARY_ACTION.LABEL,

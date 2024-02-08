@@ -1,11 +1,29 @@
 package com.dt.platform.hr.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.*;
-import com.dt.platform.domain.hr.PersonVO;
+
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.constants.enums.eam.AssetDataExportColumnEnum;
+import com.dt.platform.constants.enums.eam.AssetEquipmentStatusEnum;
+import com.dt.platform.domain.hr.*;
+import com.dt.platform.domain.hr.meta.SalaryProjectUnitRcdMeta;
 import com.dt.platform.hr.service.IPersonService;
+import com.dt.platform.proxy.common.TplFileServiceProxy;
+import com.dt.platform.proxy.hr.SalaryProjectUnitRcdServiceProxy;
+import com.github.foxnic.api.constant.CodeTextEnum;
+import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
+import com.github.foxnic.commons.reflect.EnumUtil;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.github.foxnic.web.session.SessionUser;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +35,6 @@ import com.github.foxnic.api.swagger.ApiParamSupport;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.dt.platform.proxy.hr.SalaryServiceProxy;
 import com.dt.platform.domain.hr.meta.SalaryVOMeta;
-import com.dt.platform.domain.hr.Salary;
-import com.dt.platform.domain.hr.SalaryVO;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.excel.ExcelWriter;
@@ -33,7 +49,7 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.hr.meta.SalaryMeta;
 import java.math.BigDecimal;
-import com.dt.platform.domain.hr.Person;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -42,6 +58,10 @@ import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.dt.platform.hr.service.ISalaryService;
 import com.github.foxnic.api.validate.annotations.NotNull;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <p>
@@ -109,7 +129,16 @@ public class SalaryController extends SuperController {
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFZJ, value = "住房租金", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_SYLR, value = "赡养老人", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ERZH, value = "幼儿照护", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = SalaryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SalaryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_STATUS, value = "企业专项扣除", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZNJY_NOTES, value = "子女教育备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_JXJY_NOTES, value = "继续教育备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_DBYL_NOTES, value = "大病医疗备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFDK_NOTES, value = "住房贷款备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFZJ_NOTES, value = "住房租金备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_SYLR_NOTES, value = "赡养老人备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ERZH_NOTES, value = "幼儿照护备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -246,7 +275,16 @@ public class SalaryController extends SuperController {
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFZJ, value = "住房租金", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_SYLR, value = "赡养老人", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ERZH, value = "幼儿照护", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = SalaryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SalaryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_STATUS, value = "企业专项扣除", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZNJY_NOTES, value = "子女教育备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_JXJY_NOTES, value = "继续教育备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_DBYL_NOTES, value = "大病医疗备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFDK_NOTES, value = "住房贷款备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFZJ_NOTES, value = "住房租金备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_SYLR_NOTES, value = "赡养老人备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ERZH_NOTES, value = "幼儿照护备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { SalaryVOMeta.PAGE_INDEX, SalaryVOMeta.PAGE_SIZE, SalaryVOMeta.SEARCH_FIELD, SalaryVOMeta.FUZZY_FIELD, SalaryVOMeta.SEARCH_VALUE, SalaryVOMeta.DIRTY_FIELDS, SalaryVOMeta.SORT_FIELD, SalaryVOMeta.SORT_TYPE, SalaryVOMeta.DATA_ORIGIN, SalaryVOMeta.QUERY_LOGIC, SalaryVOMeta.REQUEST_ACTION, SalaryVOMeta.IDS })
@@ -305,7 +343,16 @@ public class SalaryController extends SuperController {
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFZJ, value = "住房租金", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_SYLR, value = "赡养老人", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ERZH, value = "幼儿照护", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = SalaryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SalaryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_STATUS, value = "企业专项扣除", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZNJY_NOTES, value = "子女教育备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_JXJY_NOTES, value = "继续教育备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_DBYL_NOTES, value = "大病医疗备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFDK_NOTES, value = "住房贷款备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFZJ_NOTES, value = "住房租金备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_SYLR_NOTES, value = "赡养老人备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ERZH_NOTES, value = "幼儿照护备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { SalaryVOMeta.PAGE_INDEX, SalaryVOMeta.PAGE_SIZE, SalaryVOMeta.SEARCH_FIELD, SalaryVOMeta.FUZZY_FIELD, SalaryVOMeta.SEARCH_VALUE, SalaryVOMeta.DIRTY_FIELDS, SalaryVOMeta.SORT_FIELD, SalaryVOMeta.SORT_TYPE, SalaryVOMeta.DATA_ORIGIN, SalaryVOMeta.QUERY_LOGIC, SalaryVOMeta.REQUEST_ACTION, SalaryVOMeta.IDS })
@@ -455,7 +502,16 @@ public class SalaryController extends SuperController {
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFZJ, value = "住房租金", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_SYLR, value = "赡养老人", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ERZH, value = "幼儿照护", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = SalaryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SalaryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_STATUS, value = "企业专项扣除", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZNJY_NOTES, value = "子女教育备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_JXJY_NOTES, value = "继续教育备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_DBYL_NOTES, value = "大病医疗备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFDK_NOTES, value = "住房贷款备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFZJ_NOTES, value = "住房租金备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_SYLR_NOTES, value = "赡养老人备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ERZH_NOTES, value = "幼儿照护备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { SalaryVOMeta.PAGE_INDEX, SalaryVOMeta.PAGE_SIZE })
     @SentinelResource(value = SalaryServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -515,7 +571,16 @@ public class SalaryController extends SuperController {
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFZJ, value = "住房租金", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_SYLR, value = "赡养老人", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ERZH, value = "幼儿照护", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = SalaryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = SalaryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_STATUS, value = "企业专项扣除", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZNJY_NOTES, value = "子女教育备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_JXJY_NOTES, value = "继续教育备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_DBYL_NOTES, value = "大病医疗备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFDK_NOTES, value = "住房贷款备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ZFZJ_NOTES, value = "住房租金备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_SYLR_NOTES, value = "赡养老人备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.PERSONAL_TAX_ERZH_NOTES, value = "幼儿照护备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SalaryVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = SalaryServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -600,4 +665,90 @@ public class SalaryController extends SuperController {
         result.success(true).data(list);
         return result;
     }
+
+	/**
+	 * 导出 Excel
+	 * */
+	@SentinelResource(value = SalaryServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@RequestMapping(SalaryServiceProxy.EXPORT_EXCEL)
+	public void exportExcel(SalaryVO sample, HttpServletResponse response, String code) throws Exception {
+		InputStream inputstream = salaryService.buildExcelTemplate(code);
+		try{
+			File f =  TplFileServiceProxy.api().saveTempFile(inputstream, "tmp_"+code+".xls");
+			SalaryVO q=new SalaryVO();
+			List<Salary> list= salaryService.queryList(sample);
+			salaryService.dao().fill(list).with(SalaryProjectUnitRcdMeta.PERSON).execute();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
+			for(int i=0;i<list.size();i++){
+				Salary item=list.get(i);
+				Map<String, Object> assetMap= BeanUtil.toMap(item);
+				if(!StringUtil.isBlank(item.getPerson())){
+					assetMap.put("userName",item.getPerson().getName());
+				}
+				if(!StringUtil.isBlank(item.getPerson())){
+					assetMap.put("jobNumber",item.getPerson().getJobNumber());
+				}
+				//设备状态
+				CodeTextEnum personalStatus= EnumUtil.parseByCode(StatusEnableEnum.class,item.getPersonalStatus());
+				assetMap.put("personalStatusName",personalStatus==null?"":personalStatus.text());
+				listMap.add(assetMap);
+			}
+			Map<String,Object> map=new HashMap<>();
+			map.put("dataList", listMap);
+			TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
+			templateExportParams.setScanAllsheet(true);
+			Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
+			DownloadUtil.writeToOutput(response, workbook, "薪酬信息.xls");
+		} catch (Exception e) {
+			DownloadUtil.writeDownloadError(response,e);
+		}
+	}
+
+	/**
+	 * 导出 Excel 模板
+	 * */
+	@SentinelResource(value = SalaryServiceProxy.EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@RequestMapping(SalaryServiceProxy.EXPORT_EXCEL_TEMPLATE)
+	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
+		try{
+			//生成 Excel 模版
+			ExcelWriter ew=salaryService.exportExcelTemplate();
+			//下载
+			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
+		} catch (Exception e) {
+			DownloadUtil.writeDownloadError(response,e);
+		}
+	}
+
+	@SentinelResource(value = SalaryServiceProxy.IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(SalaryServiceProxy.IMPORT_EXCEL)
+	public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response, String code) throws Exception {
+
+		//获得上传的文件
+		Map<String, MultipartFile> map = request.getFileMap();
+		InputStream input=null;
+		for (MultipartFile mf : map.values()) {
+			input=StreamUtil.bytes2input(mf.getBytes());
+			break;
+		}
+
+		if(input==null) {
+			return ErrorDesc.failure().message("缺少上传的文件");
+		}
+
+		List<ValidateResult> errors = salaryService.importExcel(input, 0, code);
+		if (errors == null || errors.isEmpty()) {
+			return ErrorDesc.success();
+		} else {
+			Logger.info("import Result:");
+			String msg = "导入失败";
+			for (int i = 0; i < errors.size(); i++) {
+				Logger.info(i + ":" + errors.get(i).message);
+				msg = errors.get(i).message;
+			}
+			return ErrorDesc.failure().message(msg).data(errors);
+		}
+	}
+
 }

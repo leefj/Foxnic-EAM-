@@ -23,6 +23,9 @@
             <artifactId>domain</artifactId>
             <version>${platform.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
+
+
         <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>proxy</artifactId>

@@ -1,5 +1,6 @@
 -- EAM
 delete from sys_file where id like 'T001_eam_%';
+delete from sys_file where id like 'T001_hr_%';
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_1','eam_asset_repair.docx','/tpl/T001/eam_asset_repair.docx',10000,'application/octet-stream','docx');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_2','eam_asset_borrow.docx','/tpl/T001/eam_asset_borrow.docx',10000,'application/octet-stream','docx');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_3','eam_asset_collection.docx','/tpl/T001/eam_asset_collection.docx',10000,'application/octet-stream','docx');
@@ -31,6 +32,19 @@ insert into sys_file(id,file_name,location,size,media_type,file_type)values('T00
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_29','eam_asset_borrow_return.docx','/tpl/T001/eam_asset_borrow_return.docx',10000,'application/octet-stream','docx');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_30','eam_asset_download_depreciation_report.xls','/tpl/T001/eam_asset_download_depreciation_report.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_1','hr_person_salary_detail.xls','/tpl/T001/hr_person_salary_detail.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_2','hr_salary_commission.xls','/tpl/T001/hr_salary_commission.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_3','hr_salary_time.xls','/tpl/T001/hr_salary_time.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_4','hr_salary_unit.xls','/tpl/T001/hr_salary_unit.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_5','hr_person_personal_tax.xls','/tpl/T001/hr_person_personal_tax.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_6','hr_person_welfaer.xls','/tpl/T001/hr_person_welfaer.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_7','hr_person_attendance_rcd.xls','/tpl/T001/hr_person_attendance_rcd.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_8','hr_person_info.xls','/tpl/T001/hr_person_info.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_9','hr_person_busi_insure.xls','/tpl/T001/hr_person_busi_insure.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_10','hr_person_welfaer_s.xls','/tpl/T001/hr_person_welfaer_s.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_11','hr_person_welfaer_g.xls','/tpl/T001/hr_person_welfaer_g.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_12','hr_person_kh_score.xls','/tpl/T001/hr_person_kh_score.xls',10000,'application/octet-stream','xls');
+
+
 
 delete from sys_tpl_file where tenant_id='T001' and type in ('eam_bill_docx','eam_asset_excel','hr_excel');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_1','eam_bill_docx','资产报修','eam_download_asset_repair_bill','T001_eam_1','T001');
@@ -64,7 +78,17 @@ insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_28
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_29','eam_bill_docx','资产归还','eam_download_asset_borrow_return_bill','T001_eam_29','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_30','eam_asset_excel','资产折旧','eam_asset_download_depreciation_report','T001_eam_30','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_1','hr_excel','人员薪酬','hr_person_salary_detail','T001_hr_1','T001');
-
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_2','hr_excel','提成','hr_salary_commission','T001_hr_2','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_3','hr_excel','计时','hr_salary_time','T001_hr_3','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_4','hr_excel','计件','hr_salary_unit','T001_hr_4','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_5','hr_excel','专项抵扣','hr_person_personal_tax','T001_hr_5','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_6','hr_excel','福利信息','hr_person_welfaer','T001_hr_6','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_7','hr_excel','考勤记录','hr_person_attendance_rcd','T001_hr_7','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_8','hr_excel','个人信息','hr_person_info','T001_hr_8','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_9','hr_excel','商业保险','hr_person_busi_insure','T001_hr_9','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_10','hr_excel','社保','hr_person_welfaer_s','T001_hr_10','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_11','hr_excel','公积金','hr_person_welfaer_g','T001_hr_11','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_12','hr_excel','考核评分','hr_person_kh_score','T001_hr_12','T001');
 -- OPS
 delete from sys_file where id like 'T001_ops_%';
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_1','ops_download_host.xls','/tpl/T001/ops_download_host.xls',10000,'application/octet-stream','xls');

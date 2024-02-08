@@ -2,17 +2,12 @@ package com.dt.platform.generator.module.hr;
 
 
 import com.dt.platform.constants.db.HrTables;
-import com.dt.platform.constants.enums.common.StatusYNEnum;
-import com.dt.platform.constants.enums.hr.SalaryTypeEnum;
-import com.dt.platform.domain.hr.SalaryProjectTime;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.hr.page.SalaryProjectTimePageController;
-import com.dt.platform.proxy.hr.SalaryProjectTimeServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 
 
-public class SalalyProjectTime extends BaseCodeGenerator {
-    public SalalyProjectTime() {
+public class SalalyProjectTimeGtr extends BaseCodeGenerator {
+    public SalalyProjectTimeGtr() {
         super(HrTables.HR_SALARY_PROJECT_TIME.$TABLE,"662315275764367360");
     }
 
@@ -48,6 +43,7 @@ public class SalalyProjectTime extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_SALARY_PROJECT_TIME.UPDATE_BY).table().disable(true);
         cfg.view().field(HrTables.HR_SALARY_PROJECT_TIME.UPDATE_TIME).table().disable(true);
 
+
         cfg.view().formWindow().width("65%");;
         cfg.view().formWindow().bottomSpace(50);
         cfg.view().form().addGroup(null,
@@ -72,7 +68,7 @@ public class SalalyProjectTime extends BaseCodeGenerator {
     }
 
     public static void main(String[] args) throws Exception {
-        SalalyProjectTime g=new SalalyProjectTime();
+        SalalyProjectTimeGtr g=new SalalyProjectTimeGtr();
         //生成代码
         g.generateCode();
 

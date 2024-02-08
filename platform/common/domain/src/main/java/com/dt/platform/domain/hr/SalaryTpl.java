@@ -27,7 +27,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬模版
  * <p>薪酬模版 , 数据表 hr_salary_tpl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-28 01:12:48
+ * @since 2024-02-06 07:47:24
  * @sign 56908A983DF9EAFB279FB1E32AC2789F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

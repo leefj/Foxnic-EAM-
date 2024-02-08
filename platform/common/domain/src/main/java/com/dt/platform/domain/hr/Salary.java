@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员薪酬
  * <p>人员薪酬 , 数据表 hr_salary 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 17:58:38
- * @sign 947A8D3013ED43D6B1BE3D4C9F9CAC36
+ * @since 2024-02-06 19:10:58
+ * @sign 2F58227427C3224F4514A05461CDD842
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -255,10 +255,22 @@ public class Salary extends Entity {
 	private BigDecimal duductOther;
 	
 	/**
+	 * 企业专项扣除：企业专项扣除
+	*/
+	@ApiModelProperty(required = false,value="企业专项扣除" , notes = "企业专项扣除")
+	private String personalStatus;
+	
+	/**
 	 * 子女教育：子女教育
 	*/
 	@ApiModelProperty(required = false,value="子女教育" , notes = "子女教育" , example = "2000.00")
 	private BigDecimal personalTaxZnjy;
+	
+	/**
+	 * 子女教育备注：子女教育备注
+	*/
+	@ApiModelProperty(required = false,value="子女教育备注" , notes = "子女教育备注")
+	private String personalTaxZnjyNotes;
 	
 	/**
 	 * 继续教育：继续教育
@@ -267,10 +279,22 @@ public class Salary extends Entity {
 	private BigDecimal personalTaxJxjy;
 	
 	/**
+	 * 继续教育备注：继续教育备注
+	*/
+	@ApiModelProperty(required = false,value="继续教育备注" , notes = "继续教育备注")
+	private String personalTaxJxjyNotes;
+	
+	/**
 	 * 大病医疗：大病医疗
 	*/
 	@ApiModelProperty(required = false,value="大病医疗" , notes = "大病医疗" , example = "2000.00")
 	private BigDecimal personalTaxDbyl;
+	
+	/**
+	 * 大病医疗备注：大病医疗备注
+	*/
+	@ApiModelProperty(required = false,value="大病医疗备注" , notes = "大病医疗备注")
+	private String personalTaxDbylNotes;
 	
 	/**
 	 * 住房贷款：住房贷款
@@ -279,10 +303,22 @@ public class Salary extends Entity {
 	private BigDecimal personalTaxZfdk;
 	
 	/**
+	 * 住房贷款备注：住房贷款备注
+	*/
+	@ApiModelProperty(required = false,value="住房贷款备注" , notes = "住房贷款备注")
+	private String personalTaxZfdkNotes;
+	
+	/**
 	 * 住房租金：住房租金
 	*/
 	@ApiModelProperty(required = false,value="住房租金" , notes = "住房租金" , example = "0.00")
 	private BigDecimal personalTaxZfzj;
+	
+	/**
+	 * 住房租金备注：住房租金备注
+	*/
+	@ApiModelProperty(required = false,value="住房租金备注" , notes = "住房租金备注")
+	private String personalTaxZfzjNotes;
 	
 	/**
 	 * 赡养老人：赡养老人
@@ -291,10 +327,22 @@ public class Salary extends Entity {
 	private BigDecimal personalTaxSylr;
 	
 	/**
+	 * 赡养老人备注：赡养老人备注
+	*/
+	@ApiModelProperty(required = false,value="赡养老人备注" , notes = "赡养老人备注")
+	private String personalTaxSylrNotes;
+	
+	/**
 	 * 幼儿照护：幼儿照护
 	*/
 	@ApiModelProperty(required = false,value="幼儿照护" , notes = "幼儿照护" , example = "0.00")
 	private BigDecimal personalTaxErzh;
+	
+	/**
+	 * 幼儿照护备注：幼儿照护备注
+	*/
+	@ApiModelProperty(required = false,value="幼儿照护备注" , notes = "幼儿照护备注")
+	private String personalTaxErzhNotes;
 	
 	/**
 	 * 备注：备注
@@ -364,6 +412,18 @@ public class Salary extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="person" , notes = "person")
 	private Person person;
+	
+	/**
+	 * personJobNumber：personJobNumber
+	*/
+	@ApiModelProperty(required = false,value="personJobNumber" , notes = "personJobNumber")
+	private String personJobNumber;
+	
+	/**
+	 * personCardNumber：personCardNumber
+	*/
+	@ApiModelProperty(required = false,value="personCardNumber" , notes = "personCardNumber")
+	private String personCardNumber;
 	
 	/**
 	 * 获得 主键<br>
@@ -1050,6 +1110,25 @@ public class Salary extends Entity {
 	}
 	
 	/**
+	 * 获得 企业专项扣除<br>
+	 * 企业专项扣除
+	 * @return 企业专项扣除
+	*/
+	public String getPersonalStatus() {
+		return personalStatus;
+	}
+	
+	/**
+	 * 设置 企业专项扣除
+	 * @param personalStatus 企业专项扣除
+	 * @return 当前对象
+	*/
+	public Salary setPersonalStatus(String personalStatus) {
+		this.personalStatus=personalStatus;
+		return this;
+	}
+	
+	/**
 	 * 获得 子女教育<br>
 	 * 子女教育
 	 * @return 子女教育
@@ -1065,6 +1144,25 @@ public class Salary extends Entity {
 	*/
 	public Salary setPersonalTaxZnjy(BigDecimal personalTaxZnjy) {
 		this.personalTaxZnjy=personalTaxZnjy;
+		return this;
+	}
+	
+	/**
+	 * 获得 子女教育备注<br>
+	 * 子女教育备注
+	 * @return 子女教育备注
+	*/
+	public String getPersonalTaxZnjyNotes() {
+		return personalTaxZnjyNotes;
+	}
+	
+	/**
+	 * 设置 子女教育备注
+	 * @param personalTaxZnjyNotes 子女教育备注
+	 * @return 当前对象
+	*/
+	public Salary setPersonalTaxZnjyNotes(String personalTaxZnjyNotes) {
+		this.personalTaxZnjyNotes=personalTaxZnjyNotes;
 		return this;
 	}
 	
@@ -1088,6 +1186,25 @@ public class Salary extends Entity {
 	}
 	
 	/**
+	 * 获得 继续教育备注<br>
+	 * 继续教育备注
+	 * @return 继续教育备注
+	*/
+	public String getPersonalTaxJxjyNotes() {
+		return personalTaxJxjyNotes;
+	}
+	
+	/**
+	 * 设置 继续教育备注
+	 * @param personalTaxJxjyNotes 继续教育备注
+	 * @return 当前对象
+	*/
+	public Salary setPersonalTaxJxjyNotes(String personalTaxJxjyNotes) {
+		this.personalTaxJxjyNotes=personalTaxJxjyNotes;
+		return this;
+	}
+	
+	/**
 	 * 获得 大病医疗<br>
 	 * 大病医疗
 	 * @return 大病医疗
@@ -1103,6 +1220,25 @@ public class Salary extends Entity {
 	*/
 	public Salary setPersonalTaxDbyl(BigDecimal personalTaxDbyl) {
 		this.personalTaxDbyl=personalTaxDbyl;
+		return this;
+	}
+	
+	/**
+	 * 获得 大病医疗备注<br>
+	 * 大病医疗备注
+	 * @return 大病医疗备注
+	*/
+	public String getPersonalTaxDbylNotes() {
+		return personalTaxDbylNotes;
+	}
+	
+	/**
+	 * 设置 大病医疗备注
+	 * @param personalTaxDbylNotes 大病医疗备注
+	 * @return 当前对象
+	*/
+	public Salary setPersonalTaxDbylNotes(String personalTaxDbylNotes) {
+		this.personalTaxDbylNotes=personalTaxDbylNotes;
 		return this;
 	}
 	
@@ -1126,6 +1262,25 @@ public class Salary extends Entity {
 	}
 	
 	/**
+	 * 获得 住房贷款备注<br>
+	 * 住房贷款备注
+	 * @return 住房贷款备注
+	*/
+	public String getPersonalTaxZfdkNotes() {
+		return personalTaxZfdkNotes;
+	}
+	
+	/**
+	 * 设置 住房贷款备注
+	 * @param personalTaxZfdkNotes 住房贷款备注
+	 * @return 当前对象
+	*/
+	public Salary setPersonalTaxZfdkNotes(String personalTaxZfdkNotes) {
+		this.personalTaxZfdkNotes=personalTaxZfdkNotes;
+		return this;
+	}
+	
+	/**
 	 * 获得 住房租金<br>
 	 * 住房租金
 	 * @return 住房租金
@@ -1141,6 +1296,25 @@ public class Salary extends Entity {
 	*/
 	public Salary setPersonalTaxZfzj(BigDecimal personalTaxZfzj) {
 		this.personalTaxZfzj=personalTaxZfzj;
+		return this;
+	}
+	
+	/**
+	 * 获得 住房租金备注<br>
+	 * 住房租金备注
+	 * @return 住房租金备注
+	*/
+	public String getPersonalTaxZfzjNotes() {
+		return personalTaxZfzjNotes;
+	}
+	
+	/**
+	 * 设置 住房租金备注
+	 * @param personalTaxZfzjNotes 住房租金备注
+	 * @return 当前对象
+	*/
+	public Salary setPersonalTaxZfzjNotes(String personalTaxZfzjNotes) {
+		this.personalTaxZfzjNotes=personalTaxZfzjNotes;
 		return this;
 	}
 	
@@ -1164,6 +1338,25 @@ public class Salary extends Entity {
 	}
 	
 	/**
+	 * 获得 赡养老人备注<br>
+	 * 赡养老人备注
+	 * @return 赡养老人备注
+	*/
+	public String getPersonalTaxSylrNotes() {
+		return personalTaxSylrNotes;
+	}
+	
+	/**
+	 * 设置 赡养老人备注
+	 * @param personalTaxSylrNotes 赡养老人备注
+	 * @return 当前对象
+	*/
+	public Salary setPersonalTaxSylrNotes(String personalTaxSylrNotes) {
+		this.personalTaxSylrNotes=personalTaxSylrNotes;
+		return this;
+	}
+	
+	/**
 	 * 获得 幼儿照护<br>
 	 * 幼儿照护
 	 * @return 幼儿照护
@@ -1179,6 +1372,25 @@ public class Salary extends Entity {
 	*/
 	public Salary setPersonalTaxErzh(BigDecimal personalTaxErzh) {
 		this.personalTaxErzh=personalTaxErzh;
+		return this;
+	}
+	
+	/**
+	 * 获得 幼儿照护备注<br>
+	 * 幼儿照护备注
+	 * @return 幼儿照护备注
+	*/
+	public String getPersonalTaxErzhNotes() {
+		return personalTaxErzhNotes;
+	}
+	
+	/**
+	 * 设置 幼儿照护备注
+	 * @param personalTaxErzhNotes 幼儿照护备注
+	 * @return 当前对象
+	*/
+	public Salary setPersonalTaxErzhNotes(String personalTaxErzhNotes) {
+		this.personalTaxErzhNotes=personalTaxErzhNotes;
 		return this;
 	}
 	
@@ -1421,6 +1633,44 @@ public class Salary extends Entity {
 		this.person=person;
 		return this;
 	}
+	
+	/**
+	 * 获得 personJobNumber<br>
+	 * personJobNumber
+	 * @return personJobNumber
+	*/
+	public String getPersonJobNumber() {
+		return personJobNumber;
+	}
+	
+	/**
+	 * 设置 personJobNumber
+	 * @param personJobNumber personJobNumber
+	 * @return 当前对象
+	*/
+	public Salary setPersonJobNumber(String personJobNumber) {
+		this.personJobNumber=personJobNumber;
+		return this;
+	}
+	
+	/**
+	 * 获得 personCardNumber<br>
+	 * personCardNumber
+	 * @return personCardNumber
+	*/
+	public String getPersonCardNumber() {
+		return personCardNumber;
+	}
+	
+	/**
+	 * 设置 personCardNumber
+	 * @param personCardNumber personCardNumber
+	 * @return 当前对象
+	*/
+	public Salary setPersonCardNumber(String personCardNumber) {
+		this.personCardNumber=personCardNumber;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1472,6 +1722,7 @@ public class Salary extends Entity {
 		inst.setDeductKq(this.getDeductKq());
 		inst.setWelfareZfgjjPerson(this.getWelfareZfgjjPerson());
 		inst.setDeductGh(this.getDeductGh());
+		inst.setPersonalTaxZfdkNotes(this.getPersonalTaxZfdkNotes());
 		inst.setWelfaerYlbxCompany(this.getWelfaerYlbxCompany());
 		inst.setPersonalTaxErzh(this.getPersonalTaxErzh());
 		inst.setPersonalTaxJxjy(this.getPersonalTaxJxjy());
@@ -1482,15 +1733,18 @@ public class Salary extends Entity {
 		inst.setWelfaerYrbxCompany(this.getWelfaerYrbxCompany());
 		inst.setWelfaerSybxBase(this.getWelfaerSybxBase());
 		inst.setWelfaerGsbxBase(this.getWelfaerGsbxBase());
+		inst.setPersonalStatus(this.getPersonalStatus());
 		inst.setWelfaerSybxCompany(this.getWelfaerSybxCompany());
 		inst.setWelfaerYrbxBase(this.getWelfaerYrbxBase());
 		inst.setWelfaerSyebxBase(this.getWelfaerSyebxBase());
 		inst.setVersion(this.getVersion());
+		inst.setPersonalTaxErzhNotes(this.getPersonalTaxErzhNotes());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPersonId(this.getPersonId());
 		inst.setOtherSalary(this.getOtherSalary());
 		inst.setDeductPersonalTaxRed(this.getDeductPersonalTaxRed());
+		inst.setPersonalTaxJxjyNotes(this.getPersonalTaxJxjyNotes());
 		inst.setCommissionSalary(this.getCommissionSalary());
 		inst.setPersonalTaxZfdk(this.getPersonalTaxZfdk());
 		inst.setWelfaerSyebxPerson(this.getWelfaerSyebxPerson());
@@ -1499,13 +1753,17 @@ public class Salary extends Entity {
 		inst.setBaseSalary(this.getBaseSalary());
 		inst.setPersonalTaxSylr(this.getPersonalTaxSylr());
 		inst.setPersonalTaxZnjy(this.getPersonalTaxZnjy());
+		inst.setPersonalTaxZnjyNotes(this.getPersonalTaxZnjyNotes());
 		inst.setWelfaerGsbxPerson(this.getWelfaerGsbxPerson());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setWelfaerYlbxPerson(this.getWelfaerYlbxPerson());
 		inst.setWelfareZfgjjCompany(this.getWelfareZfgjjCompany());
+		inst.setPersonalTaxDbylNotes(this.getPersonalTaxDbylNotes());
+		inst.setPersonalTaxZfzjNotes(this.getPersonalTaxZfzjNotes());
 		inst.setWelfaerGsbxCompany(this.getWelfaerGsbxCompany());
 		inst.setWelfaerSyebxCompany(this.getWelfaerSyebxCompany());
 		inst.setHousingSalary(this.getHousingSalary());
+		inst.setPersonalTaxSylrNotes(this.getPersonalTaxSylrNotes());
 		inst.setWelfaerYrbxPerson(this.getWelfaerYrbxPerson());
 		inst.setPersonalTaxZfzj(this.getPersonalTaxZfzj());
 		inst.setWorkingYearsSalary(this.getWorkingYearsSalary());
@@ -1521,6 +1779,8 @@ public class Salary extends Entity {
 		inst.setOvertimeSalary(this.getOvertimeSalary());
 		if(all) {
 			inst.setPerson(this.getPerson());
+			inst.setPersonCardNumber(this.getPersonCardNumber());
+			inst.setPersonJobNumber(this.getPersonJobNumber());
 		}
 		inst.clearModifies();
 		return inst;
@@ -1586,6 +1846,7 @@ public class Salary extends Entity {
 			this.setDeductKq(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.DEDUCT_KQ)));
 			this.setWelfareZfgjjPerson(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFARE_ZFGJJ_PERSON)));
 			this.setDeductGh(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.DEDUCT_GH)));
+			this.setPersonalTaxZfdkNotes(DataParser.parse(String.class, map.get(SalaryMeta.PERSONAL_TAX_ZFDK_NOTES)));
 			this.setWelfaerYlbxCompany(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_YLBX_COMPANY)));
 			this.setPersonalTaxErzh(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.PERSONAL_TAX_ERZH)));
 			this.setPersonalTaxJxjy(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.PERSONAL_TAX_JXJY)));
@@ -1596,15 +1857,18 @@ public class Salary extends Entity {
 			this.setWelfaerYrbxCompany(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_YRBX_COMPANY)));
 			this.setWelfaerSybxBase(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_SYBX_BASE)));
 			this.setWelfaerGsbxBase(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_GSBX_BASE)));
+			this.setPersonalStatus(DataParser.parse(String.class, map.get(SalaryMeta.PERSONAL_STATUS)));
 			this.setWelfaerSybxCompany(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_SYBX_COMPANY)));
 			this.setWelfaerYrbxBase(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_YRBX_BASE)));
 			this.setWelfaerSyebxBase(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_SYEBX_BASE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(SalaryMeta.VERSION)));
+			this.setPersonalTaxErzhNotes(DataParser.parse(String.class, map.get(SalaryMeta.PERSONAL_TAX_ERZH_NOTES)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(SalaryMeta.DELETE_TIME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(SalaryMeta.DELETE_BY)));
 			this.setPersonId(DataParser.parse(String.class, map.get(SalaryMeta.PERSON_ID)));
 			this.setOtherSalary(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.OTHER_SALARY)));
 			this.setDeductPersonalTaxRed(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.DEDUCT_PERSONAL_TAX_RED)));
+			this.setPersonalTaxJxjyNotes(DataParser.parse(String.class, map.get(SalaryMeta.PERSONAL_TAX_JXJY_NOTES)));
 			this.setCommissionSalary(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.COMMISSION_SALARY)));
 			this.setPersonalTaxZfdk(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.PERSONAL_TAX_ZFDK)));
 			this.setWelfaerSyebxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_SYEBX_PERSON)));
@@ -1613,13 +1877,17 @@ public class Salary extends Entity {
 			this.setBaseSalary(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.BASE_SALARY)));
 			this.setPersonalTaxSylr(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.PERSONAL_TAX_SYLR)));
 			this.setPersonalTaxZnjy(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.PERSONAL_TAX_ZNJY)));
+			this.setPersonalTaxZnjyNotes(DataParser.parse(String.class, map.get(SalaryMeta.PERSONAL_TAX_ZNJY_NOTES)));
 			this.setWelfaerGsbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_GSBX_PERSON)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(SalaryMeta.UPDATE_BY)));
 			this.setWelfaerYlbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_YLBX_PERSON)));
 			this.setWelfareZfgjjCompany(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFARE_ZFGJJ_COMPANY)));
+			this.setPersonalTaxDbylNotes(DataParser.parse(String.class, map.get(SalaryMeta.PERSONAL_TAX_DBYL_NOTES)));
+			this.setPersonalTaxZfzjNotes(DataParser.parse(String.class, map.get(SalaryMeta.PERSONAL_TAX_ZFZJ_NOTES)));
 			this.setWelfaerGsbxCompany(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_GSBX_COMPANY)));
 			this.setWelfaerSyebxCompany(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_SYEBX_COMPANY)));
 			this.setHousingSalary(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.HOUSING_SALARY)));
+			this.setPersonalTaxSylrNotes(DataParser.parse(String.class, map.get(SalaryMeta.PERSONAL_TAX_SYLR_NOTES)));
 			this.setWelfaerYrbxPerson(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WELFAER_YRBX_PERSON)));
 			this.setPersonalTaxZfzj(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.PERSONAL_TAX_ZFZJ)));
 			this.setWorkingYearsSalary(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.WORKING_YEARS_SALARY)));
@@ -1635,6 +1903,8 @@ public class Salary extends Entity {
 			this.setOvertimeSalary(DataParser.parse(BigDecimal.class, map.get(SalaryMeta.OVERTIME_SALARY)));
 			// others
 			this.setPerson(DataParser.parse(Person.class, map.get(SalaryMeta.PERSON)));
+			this.setPersonCardNumber(DataParser.parse(String.class, map.get(SalaryMeta.PERSON_CARD_NUMBER)));
+			this.setPersonJobNumber(DataParser.parse(String.class, map.get(SalaryMeta.PERSON_JOB_NUMBER)));
 			return true;
 		} else {
 			try {
@@ -1644,6 +1914,7 @@ public class Salary extends Entity {
 				this.setDeductKq( (BigDecimal)map.get(SalaryMeta.DEDUCT_KQ));
 				this.setWelfareZfgjjPerson( (BigDecimal)map.get(SalaryMeta.WELFARE_ZFGJJ_PERSON));
 				this.setDeductGh( (BigDecimal)map.get(SalaryMeta.DEDUCT_GH));
+				this.setPersonalTaxZfdkNotes( (String)map.get(SalaryMeta.PERSONAL_TAX_ZFDK_NOTES));
 				this.setWelfaerYlbxCompany( (BigDecimal)map.get(SalaryMeta.WELFAER_YLBX_COMPANY));
 				this.setPersonalTaxErzh( (BigDecimal)map.get(SalaryMeta.PERSONAL_TAX_ERZH));
 				this.setPersonalTaxJxjy( (BigDecimal)map.get(SalaryMeta.PERSONAL_TAX_JXJY));
@@ -1654,15 +1925,18 @@ public class Salary extends Entity {
 				this.setWelfaerYrbxCompany( (BigDecimal)map.get(SalaryMeta.WELFAER_YRBX_COMPANY));
 				this.setWelfaerSybxBase( (BigDecimal)map.get(SalaryMeta.WELFAER_SYBX_BASE));
 				this.setWelfaerGsbxBase( (BigDecimal)map.get(SalaryMeta.WELFAER_GSBX_BASE));
+				this.setPersonalStatus( (String)map.get(SalaryMeta.PERSONAL_STATUS));
 				this.setWelfaerSybxCompany( (BigDecimal)map.get(SalaryMeta.WELFAER_SYBX_COMPANY));
 				this.setWelfaerYrbxBase( (BigDecimal)map.get(SalaryMeta.WELFAER_YRBX_BASE));
 				this.setWelfaerSyebxBase( (BigDecimal)map.get(SalaryMeta.WELFAER_SYEBX_BASE));
 				this.setVersion( (Integer)map.get(SalaryMeta.VERSION));
+				this.setPersonalTaxErzhNotes( (String)map.get(SalaryMeta.PERSONAL_TAX_ERZH_NOTES));
 				this.setDeleteTime( (Date)map.get(SalaryMeta.DELETE_TIME));
 				this.setDeleteBy( (String)map.get(SalaryMeta.DELETE_BY));
 				this.setPersonId( (String)map.get(SalaryMeta.PERSON_ID));
 				this.setOtherSalary( (BigDecimal)map.get(SalaryMeta.OTHER_SALARY));
 				this.setDeductPersonalTaxRed( (BigDecimal)map.get(SalaryMeta.DEDUCT_PERSONAL_TAX_RED));
+				this.setPersonalTaxJxjyNotes( (String)map.get(SalaryMeta.PERSONAL_TAX_JXJY_NOTES));
 				this.setCommissionSalary( (BigDecimal)map.get(SalaryMeta.COMMISSION_SALARY));
 				this.setPersonalTaxZfdk( (BigDecimal)map.get(SalaryMeta.PERSONAL_TAX_ZFDK));
 				this.setWelfaerSyebxPerson( (BigDecimal)map.get(SalaryMeta.WELFAER_SYEBX_PERSON));
@@ -1671,13 +1945,17 @@ public class Salary extends Entity {
 				this.setBaseSalary( (BigDecimal)map.get(SalaryMeta.BASE_SALARY));
 				this.setPersonalTaxSylr( (BigDecimal)map.get(SalaryMeta.PERSONAL_TAX_SYLR));
 				this.setPersonalTaxZnjy( (BigDecimal)map.get(SalaryMeta.PERSONAL_TAX_ZNJY));
+				this.setPersonalTaxZnjyNotes( (String)map.get(SalaryMeta.PERSONAL_TAX_ZNJY_NOTES));
 				this.setWelfaerGsbxPerson( (BigDecimal)map.get(SalaryMeta.WELFAER_GSBX_PERSON));
 				this.setUpdateBy( (String)map.get(SalaryMeta.UPDATE_BY));
 				this.setWelfaerYlbxPerson( (BigDecimal)map.get(SalaryMeta.WELFAER_YLBX_PERSON));
 				this.setWelfareZfgjjCompany( (BigDecimal)map.get(SalaryMeta.WELFARE_ZFGJJ_COMPANY));
+				this.setPersonalTaxDbylNotes( (String)map.get(SalaryMeta.PERSONAL_TAX_DBYL_NOTES));
+				this.setPersonalTaxZfzjNotes( (String)map.get(SalaryMeta.PERSONAL_TAX_ZFZJ_NOTES));
 				this.setWelfaerGsbxCompany( (BigDecimal)map.get(SalaryMeta.WELFAER_GSBX_COMPANY));
 				this.setWelfaerSyebxCompany( (BigDecimal)map.get(SalaryMeta.WELFAER_SYEBX_COMPANY));
 				this.setHousingSalary( (BigDecimal)map.get(SalaryMeta.HOUSING_SALARY));
+				this.setPersonalTaxSylrNotes( (String)map.get(SalaryMeta.PERSONAL_TAX_SYLR_NOTES));
 				this.setWelfaerYrbxPerson( (BigDecimal)map.get(SalaryMeta.WELFAER_YRBX_PERSON));
 				this.setPersonalTaxZfzj( (BigDecimal)map.get(SalaryMeta.PERSONAL_TAX_ZFZJ));
 				this.setWorkingYearsSalary( (BigDecimal)map.get(SalaryMeta.WORKING_YEARS_SALARY));
@@ -1693,6 +1971,8 @@ public class Salary extends Entity {
 				this.setOvertimeSalary( (BigDecimal)map.get(SalaryMeta.OVERTIME_SALARY));
 				// others
 				this.setPerson( (Person)map.get(SalaryMeta.PERSON));
+				this.setPersonCardNumber( (String)map.get(SalaryMeta.PERSON_CARD_NUMBER));
+				this.setPersonJobNumber( (String)map.get(SalaryMeta.PERSON_JOB_NUMBER));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -1715,6 +1995,7 @@ public class Salary extends Entity {
 			this.setDeductKq(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.DEDUCT_KQ)));
 			this.setWelfareZfgjjPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFARE_ZFGJJ_PERSON)));
 			this.setDeductGh(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.DEDUCT_GH)));
+			this.setPersonalTaxZfdkNotes(DataParser.parse(String.class, r.getValue(SalaryMeta.PERSONAL_TAX_ZFDK_NOTES)));
 			this.setWelfaerYlbxCompany(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_YLBX_COMPANY)));
 			this.setPersonalTaxErzh(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.PERSONAL_TAX_ERZH)));
 			this.setPersonalTaxJxjy(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.PERSONAL_TAX_JXJY)));
@@ -1725,15 +2006,18 @@ public class Salary extends Entity {
 			this.setWelfaerYrbxCompany(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_YRBX_COMPANY)));
 			this.setWelfaerSybxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_SYBX_BASE)));
 			this.setWelfaerGsbxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_GSBX_BASE)));
+			this.setPersonalStatus(DataParser.parse(String.class, r.getValue(SalaryMeta.PERSONAL_STATUS)));
 			this.setWelfaerSybxCompany(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_SYBX_COMPANY)));
 			this.setWelfaerYrbxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_YRBX_BASE)));
 			this.setWelfaerSyebxBase(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_SYEBX_BASE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(SalaryMeta.VERSION)));
+			this.setPersonalTaxErzhNotes(DataParser.parse(String.class, r.getValue(SalaryMeta.PERSONAL_TAX_ERZH_NOTES)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(SalaryMeta.DELETE_TIME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(SalaryMeta.DELETE_BY)));
 			this.setPersonId(DataParser.parse(String.class, r.getValue(SalaryMeta.PERSON_ID)));
 			this.setOtherSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.OTHER_SALARY)));
 			this.setDeductPersonalTaxRed(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.DEDUCT_PERSONAL_TAX_RED)));
+			this.setPersonalTaxJxjyNotes(DataParser.parse(String.class, r.getValue(SalaryMeta.PERSONAL_TAX_JXJY_NOTES)));
 			this.setCommissionSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.COMMISSION_SALARY)));
 			this.setPersonalTaxZfdk(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.PERSONAL_TAX_ZFDK)));
 			this.setWelfaerSyebxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_SYEBX_PERSON)));
@@ -1742,13 +2026,17 @@ public class Salary extends Entity {
 			this.setBaseSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.BASE_SALARY)));
 			this.setPersonalTaxSylr(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.PERSONAL_TAX_SYLR)));
 			this.setPersonalTaxZnjy(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.PERSONAL_TAX_ZNJY)));
+			this.setPersonalTaxZnjyNotes(DataParser.parse(String.class, r.getValue(SalaryMeta.PERSONAL_TAX_ZNJY_NOTES)));
 			this.setWelfaerGsbxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_GSBX_PERSON)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(SalaryMeta.UPDATE_BY)));
 			this.setWelfaerYlbxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_YLBX_PERSON)));
 			this.setWelfareZfgjjCompany(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFARE_ZFGJJ_COMPANY)));
+			this.setPersonalTaxDbylNotes(DataParser.parse(String.class, r.getValue(SalaryMeta.PERSONAL_TAX_DBYL_NOTES)));
+			this.setPersonalTaxZfzjNotes(DataParser.parse(String.class, r.getValue(SalaryMeta.PERSONAL_TAX_ZFZJ_NOTES)));
 			this.setWelfaerGsbxCompany(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_GSBX_COMPANY)));
 			this.setWelfaerSyebxCompany(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_SYEBX_COMPANY)));
 			this.setHousingSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.HOUSING_SALARY)));
+			this.setPersonalTaxSylrNotes(DataParser.parse(String.class, r.getValue(SalaryMeta.PERSONAL_TAX_SYLR_NOTES)));
 			this.setWelfaerYrbxPerson(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WELFAER_YRBX_PERSON)));
 			this.setPersonalTaxZfzj(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.PERSONAL_TAX_ZFZJ)));
 			this.setWorkingYearsSalary(DataParser.parse(BigDecimal.class, r.getValue(SalaryMeta.WORKING_YEARS_SALARY)));
@@ -1771,6 +2059,7 @@ public class Salary extends Entity {
 				this.setDeductKq( (BigDecimal)r.getValue(SalaryMeta.DEDUCT_KQ));
 				this.setWelfareZfgjjPerson( (BigDecimal)r.getValue(SalaryMeta.WELFARE_ZFGJJ_PERSON));
 				this.setDeductGh( (BigDecimal)r.getValue(SalaryMeta.DEDUCT_GH));
+				this.setPersonalTaxZfdkNotes( (String)r.getValue(SalaryMeta.PERSONAL_TAX_ZFDK_NOTES));
 				this.setWelfaerYlbxCompany( (BigDecimal)r.getValue(SalaryMeta.WELFAER_YLBX_COMPANY));
 				this.setPersonalTaxErzh( (BigDecimal)r.getValue(SalaryMeta.PERSONAL_TAX_ERZH));
 				this.setPersonalTaxJxjy( (BigDecimal)r.getValue(SalaryMeta.PERSONAL_TAX_JXJY));
@@ -1781,15 +2070,18 @@ public class Salary extends Entity {
 				this.setWelfaerYrbxCompany( (BigDecimal)r.getValue(SalaryMeta.WELFAER_YRBX_COMPANY));
 				this.setWelfaerSybxBase( (BigDecimal)r.getValue(SalaryMeta.WELFAER_SYBX_BASE));
 				this.setWelfaerGsbxBase( (BigDecimal)r.getValue(SalaryMeta.WELFAER_GSBX_BASE));
+				this.setPersonalStatus( (String)r.getValue(SalaryMeta.PERSONAL_STATUS));
 				this.setWelfaerSybxCompany( (BigDecimal)r.getValue(SalaryMeta.WELFAER_SYBX_COMPANY));
 				this.setWelfaerYrbxBase( (BigDecimal)r.getValue(SalaryMeta.WELFAER_YRBX_BASE));
 				this.setWelfaerSyebxBase( (BigDecimal)r.getValue(SalaryMeta.WELFAER_SYEBX_BASE));
 				this.setVersion( (Integer)r.getValue(SalaryMeta.VERSION));
+				this.setPersonalTaxErzhNotes( (String)r.getValue(SalaryMeta.PERSONAL_TAX_ERZH_NOTES));
 				this.setDeleteTime( (Date)r.getValue(SalaryMeta.DELETE_TIME));
 				this.setDeleteBy( (String)r.getValue(SalaryMeta.DELETE_BY));
 				this.setPersonId( (String)r.getValue(SalaryMeta.PERSON_ID));
 				this.setOtherSalary( (BigDecimal)r.getValue(SalaryMeta.OTHER_SALARY));
 				this.setDeductPersonalTaxRed( (BigDecimal)r.getValue(SalaryMeta.DEDUCT_PERSONAL_TAX_RED));
+				this.setPersonalTaxJxjyNotes( (String)r.getValue(SalaryMeta.PERSONAL_TAX_JXJY_NOTES));
 				this.setCommissionSalary( (BigDecimal)r.getValue(SalaryMeta.COMMISSION_SALARY));
 				this.setPersonalTaxZfdk( (BigDecimal)r.getValue(SalaryMeta.PERSONAL_TAX_ZFDK));
 				this.setWelfaerSyebxPerson( (BigDecimal)r.getValue(SalaryMeta.WELFAER_SYEBX_PERSON));
@@ -1798,13 +2090,17 @@ public class Salary extends Entity {
 				this.setBaseSalary( (BigDecimal)r.getValue(SalaryMeta.BASE_SALARY));
 				this.setPersonalTaxSylr( (BigDecimal)r.getValue(SalaryMeta.PERSONAL_TAX_SYLR));
 				this.setPersonalTaxZnjy( (BigDecimal)r.getValue(SalaryMeta.PERSONAL_TAX_ZNJY));
+				this.setPersonalTaxZnjyNotes( (String)r.getValue(SalaryMeta.PERSONAL_TAX_ZNJY_NOTES));
 				this.setWelfaerGsbxPerson( (BigDecimal)r.getValue(SalaryMeta.WELFAER_GSBX_PERSON));
 				this.setUpdateBy( (String)r.getValue(SalaryMeta.UPDATE_BY));
 				this.setWelfaerYlbxPerson( (BigDecimal)r.getValue(SalaryMeta.WELFAER_YLBX_PERSON));
 				this.setWelfareZfgjjCompany( (BigDecimal)r.getValue(SalaryMeta.WELFARE_ZFGJJ_COMPANY));
+				this.setPersonalTaxDbylNotes( (String)r.getValue(SalaryMeta.PERSONAL_TAX_DBYL_NOTES));
+				this.setPersonalTaxZfzjNotes( (String)r.getValue(SalaryMeta.PERSONAL_TAX_ZFZJ_NOTES));
 				this.setWelfaerGsbxCompany( (BigDecimal)r.getValue(SalaryMeta.WELFAER_GSBX_COMPANY));
 				this.setWelfaerSyebxCompany( (BigDecimal)r.getValue(SalaryMeta.WELFAER_SYEBX_COMPANY));
 				this.setHousingSalary( (BigDecimal)r.getValue(SalaryMeta.HOUSING_SALARY));
+				this.setPersonalTaxSylrNotes( (String)r.getValue(SalaryMeta.PERSONAL_TAX_SYLR_NOTES));
 				this.setWelfaerYrbxPerson( (BigDecimal)r.getValue(SalaryMeta.WELFAER_YRBX_PERSON));
 				this.setPersonalTaxZfzj( (BigDecimal)r.getValue(SalaryMeta.PERSONAL_TAX_ZFZJ));
 				this.setWorkingYearsSalary( (BigDecimal)r.getValue(SalaryMeta.WORKING_YEARS_SALARY));

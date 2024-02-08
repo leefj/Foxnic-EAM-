@@ -1,7 +1,7 @@
 /**
  * 人员考勤 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-10 11:08:01
+ * @since 2024-02-02 08:44:37
  */
 
 
@@ -94,8 +94,11 @@ function ListPage() {
 					,{ field: 'ccCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('出差(天)') , templet: function (d) { return templet('ccCnt',d.ccCnt,d);}  }
 					,{ field: 'otherCnt', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('其他(天)') , templet: function (d) { return templet('otherCnt',d.otherCnt,d);}  }
 					,{ field: 'recTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('记录时间') ,templet: function (d) { return templet('recTime',fox.dateFormat(d.recTime,"yyyy-MM-dd"),d); }  }
+					,{ field: 'batchCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('批次号') , templet: function (d) { return templet('batchCode',d.batchCode,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'source', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源') , templet: function (d) { return templet('source',d.source,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -180,6 +183,7 @@ function ListPage() {
 		value.personId={ inputType:"select_box", value: getSelectedValue("#personId","value") ,fillBy:["person"]  , label:getSelectedValue("#personId","nameStr") };
 		value.jobNumber={ inputType:"button",value: $("#jobNumber").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.recTime={ inputType:"date_input", begin: $("#recTime-begin").val(), end: $("#recTime-end").val() ,matchType:"auto" };
+		value.batchCode={ inputType:"button",value: $("#batchCode").val()};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -328,6 +332,12 @@ function ListPage() {
 				case 'batch-del':
 					batchDelete(selected);
 					break;
+				case 'tool-import-data':
+					window.pageExt.list.importData && window.pageExt.list.importData(selected,obj);
+					break;
+				case 'tool-export-data':
+					window.pageExt.list.exportData && window.pageExt.list.exportData(selected,obj);
+					break;
 				case 'refresh-data':
 					refreshTableData();
 					break;
@@ -396,7 +406,10 @@ function ListPage() {
 
 			admin.putTempData('hr-person-attendance-rec-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-person-attendance-rec-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -405,7 +418,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-person-attendance-rec-form-data-form-action', "view",true);
 						showEditForm(data.data);

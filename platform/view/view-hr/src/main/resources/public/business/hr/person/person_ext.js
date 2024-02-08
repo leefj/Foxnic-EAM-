@@ -239,6 +239,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 }
             });
         },
+        exportData:function(selected,obj){
+            var value = {};
+            var ps={searchField: "$composite", searchValue: JSON.stringify(value)};
+            var downloadUrl=moduleURL+"/export-excel";
+            ps.code="hr_person";
+            fox.submit(downloadUrl,ps,"post",function(){
+                console.log("execute finish");
+            });
+        },
+        importData:function(selected,obj){
+            var q="?code=hr_person&importApi="+moduleURL+"/import-excel";
+            var index = admin.popupCenter({
+                title: "数据导入",
+                resize: false,
+                id: 'assetDataImport',
+                area: ["60%", "50%"],
+                type: 2,
+                content: '/business/common/tpl_file/import_form.html'+q,
+            });
+        },
         /**
          * 表格右侧操作列更多按钮事件
          * */

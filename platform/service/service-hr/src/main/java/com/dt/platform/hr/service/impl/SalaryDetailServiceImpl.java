@@ -31,6 +31,7 @@ import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.commons.collection.MapUtil;
 
 import java.io.BufferedInputStream;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -143,15 +144,61 @@ public class SalaryDetailServiceImpl extends SuperService<SalaryDetail> implemen
 		Person person =detail.getPerson();
 		SalaryAction act =detail.getSalaryAction();
 
+		//重建个人数据
 		Result r=salaryActionService.createPersonData(person,act);
 		if(!r.isSuccess()){
 			return r;
 		}
 
-		//进行计算
-		SalaryTpl tpl=act.getSalaryTpl();
+		//填充考勤数据
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String sStr=sdf.format(act.getStart());
+		String eStr=sdf.format(act.getEnd());
+		String kqSql="update hr_salary_detail a,\n" +
+				"(select person_id,sum(jb_cnt)jb_cnt_t,sum(nj_cnt)nj_cnt_t,sum(sj_cnt)sj_cnt_t,sum(bj_cnt)bj_cnt_t,sum(cc_cnt)cc_cnt_t,sum(other_cnt)other_cnt_t from hr_person_attendance_rec where  rec_time>=str_to_date('"+sStr+"', '%Y-%m-%d') and rec_time<str_to_date('"+eStr+"', '%Y-%m-%d') group by person_id) b\n" +
+				"set a.work_overtime_h_cnt=b.jb_cnt_t\n" +
+				",a.business_trips_cnt=b.cc_cnt_t \n" +
+				",a.personal_leave_cnt=b.sj_cnt_t \n" +
+				",a.annual_leave_cnt=b.nj_cnt_t \n" +
+				"where a.person_id=b.person_id\n" +
+				"and a.action_id=?\n"+
+				"and a.person_id=?";
+		dao.execute(kqSql,act.getId(),detail.getPersonId());
+
+		//填充绩效数据，略
+		//提成工资
+		String tcSql="update hr_salary_detail a,\n" +
+				"(select person_id,sum(commission_salary) value from hr_salary_project_commission_rcd where rcd_date>=str_to_date('"+sStr+"', '%Y-%m-%d') and rcd_date<str_to_date('"+eStr+"', '%Y-%m-%d') group by person_id) b\n" +
+				"set a.commission_salary=b.value\n" +
+				"where a.person_id=b.person_id\n"+
+				"and a.action_id=?\n"+
+				"and a.person_id=?";
+		dao.execute(tcSql,act.getId(),detail.getPersonId());
+		//计件工资
+		String jjSql="update hr_salary_detail a,\n" +
+				"(select person_id,sum(total_price) value from hr_salary_project_unit_rcd where rcd_date>=str_to_date('"+sStr+"', '%Y-%m-%d') and rcd_date<str_to_date('"+eStr+"', '%Y-%m-%d') group by person_id) b\n" +
+				"set a.unit_number_salary=b.value\n" +
+				"where a.person_id=b.person_id\n"+
+				"and a.action_id=?\n"+
+				"and a.person_id=?";
+		dao.execute(jjSql,act.getId(),detail.getPersonId());
+		//计时工资
+		String jsSql="update hr_salary_detail a,\n" +
+				"(select person_id,sum(total_price) value from hr_salary_project_time_rcd where rcd_date>=str_to_date('"+sStr+"', '%Y-%m-%d') and rcd_date<str_to_date('"+eStr+"', '%Y-%m-%d') group by person_id) b\n" +
+				"set a.unit_time_salary=b.value\n" +
+				"where a.person_id=b.person_id\n"+
+				"and a.action_id=?\n"+
+				"and a.person_id=?";
+		dao.execute(jsSql,act.getId(),detail.getPersonId());
+
+
+		//填充模版,模版不能从action中获取
+		SalaryTpl tpl=detail.getSalaryTpl();
 		String curMonth=act.getActionMonth().split("-")[1];
 		tpl.setConfCurMonth(curMonth);
+		salaryActionService.fillTpl(tpl);
+
+		//进行计算
 		SalaryDetail salaryQuery=new SalaryDetail();
 		String personId=detail.getPersonId();
 		String actionId=detail.getActionId();
@@ -159,7 +206,6 @@ public class SalaryDetailServiceImpl extends SuperService<SalaryDetail> implemen
 		salaryQuery.setActionId(actionId);
 		SalaryDetail salary=salaryDetailService.queryEntity(salaryQuery);
 		this.dao().fill(salary).with(SalaryDetailMeta.PERSON).with(SalaryDetailMeta.PERSON_SALARY).execute();
-		salaryActionService.fillTpl(tpl);
 		return salaryActionService.calculatePerson(salary,tpl);
 	}
 
