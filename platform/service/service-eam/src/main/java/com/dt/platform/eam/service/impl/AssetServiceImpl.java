@@ -41,6 +41,7 @@ import com.github.foxnic.dao.sql.SQLBuilder;
 import com.github.foxnic.sql.expr.*;
 import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.sql.treaty.DBTreaty;
+import com.google.common.collect.Lists;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -1822,21 +1823,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				if(errors.size()==0){
 					Logger.info("执行的数据量:"+sqls.size());
 					if(sqls.size()>500){
-						List<SQL> sqlList=new ArrayList<>();
-						List<List<SQL>> groupList=new ArrayList<>();
-						int batchCnt=0;
-						for(SQL item:sqlList){
-							sqlList.add(item);
-							if(batchCnt>250){
-								groupList.add(sqlList);
-								sqlList=new ArrayList<>();
-								batchCnt=0;
-							}
-							batchCnt++;
-						}
-						if(sqlList.size()>0){
-							groupList.add(sqlList);
-						}
+						List<List<SQL>> groupList= Lists.partition(sqls, 250);
 						SimpleJoinForkTask<List<SQL> ,int[]> task=new SimpleJoinForkTask<>(groupList,2);
 						List<int[]> rvs2=task.execute(els->{
 							Logger.info(Thread.currentThread().getName());
