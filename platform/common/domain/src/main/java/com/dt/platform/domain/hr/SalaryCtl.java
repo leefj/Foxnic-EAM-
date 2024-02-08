@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬控制
  * <p>薪酬控制 , 数据表 hr_salary_ctl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-27 18:33:33
+ * @since 2024-01-28 11:52:20
  * @sign 18568B51DF1F010C9C60053650E60715
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

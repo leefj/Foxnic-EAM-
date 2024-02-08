@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员考勤VO类型
  * <p>人员考勤 , 数据表 hr_person_attendance_rec 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-10 11:07:59
+ * @since 2024-02-02 08:44:35
  * @sign 2F63C86D650F5342457B80AC5AAE63B3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -405,10 +405,12 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 		com.dt.platform.domain.hr.meta.PersonAttendanceRecVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.PersonAttendanceRecVOMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
 		inst.setRecTime(this.getRecTime());
+		inst.setBatchCode(this.getBatchCode());
 		inst.setCcCnt(this.getCcCnt());
 		inst.setOtherCnt(this.getOtherCnt());
 		inst.setEmployeeId(this.getEmployeeId());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setSource(this.getSource());
 		inst.setVersion(this.getVersion());
 		inst.setJbCnt(this.getJbCnt());
 		inst.setNjCnt(this.getNjCnt());
@@ -500,10 +502,12 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(PersonAttendanceRecVOMeta.NOTES)));
 			this.setRecTime(DataParser.parse(Date.class, map.get(PersonAttendanceRecVOMeta.REC_TIME)));
+			this.setBatchCode(DataParser.parse(String.class, map.get(PersonAttendanceRecVOMeta.BATCH_CODE)));
 			this.setCcCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecVOMeta.CC_CNT)));
 			this.setOtherCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecVOMeta.OTHER_CNT)));
 			this.setEmployeeId(DataParser.parse(String.class, map.get(PersonAttendanceRecVOMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(PersonAttendanceRecVOMeta.UPDATE_TIME)));
+			this.setSource(DataParser.parse(String.class, map.get(PersonAttendanceRecVOMeta.SOURCE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(PersonAttendanceRecVOMeta.VERSION)));
 			this.setJbCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecVOMeta.JB_CNT)));
 			this.setNjCnt(DataParser.parse(BigDecimal.class, map.get(PersonAttendanceRecVOMeta.NJ_CNT)));
@@ -537,10 +541,12 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 			try {
 				this.setNotes( (String)map.get(PersonAttendanceRecVOMeta.NOTES));
 				this.setRecTime( (Date)map.get(PersonAttendanceRecVOMeta.REC_TIME));
+				this.setBatchCode( (String)map.get(PersonAttendanceRecVOMeta.BATCH_CODE));
 				this.setCcCnt( (BigDecimal)map.get(PersonAttendanceRecVOMeta.CC_CNT));
 				this.setOtherCnt( (BigDecimal)map.get(PersonAttendanceRecVOMeta.OTHER_CNT));
 				this.setEmployeeId( (String)map.get(PersonAttendanceRecVOMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)map.get(PersonAttendanceRecVOMeta.UPDATE_TIME));
+				this.setSource( (String)map.get(PersonAttendanceRecVOMeta.SOURCE));
 				this.setVersion( (Integer)map.get(PersonAttendanceRecVOMeta.VERSION));
 				this.setJbCnt( (BigDecimal)map.get(PersonAttendanceRecVOMeta.JB_CNT));
 				this.setNjCnt( (BigDecimal)map.get(PersonAttendanceRecVOMeta.NJ_CNT));
@@ -587,10 +593,12 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(PersonAttendanceRecVOMeta.NOTES)));
 			this.setRecTime(DataParser.parse(Date.class, r.getValue(PersonAttendanceRecVOMeta.REC_TIME)));
+			this.setBatchCode(DataParser.parse(String.class, r.getValue(PersonAttendanceRecVOMeta.BATCH_CODE)));
 			this.setCcCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecVOMeta.CC_CNT)));
 			this.setOtherCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecVOMeta.OTHER_CNT)));
 			this.setEmployeeId(DataParser.parse(String.class, r.getValue(PersonAttendanceRecVOMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PersonAttendanceRecVOMeta.UPDATE_TIME)));
+			this.setSource(DataParser.parse(String.class, r.getValue(PersonAttendanceRecVOMeta.SOURCE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(PersonAttendanceRecVOMeta.VERSION)));
 			this.setJbCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecVOMeta.JB_CNT)));
 			this.setNjCnt(DataParser.parse(BigDecimal.class, r.getValue(PersonAttendanceRecVOMeta.NJ_CNT)));
@@ -611,10 +619,12 @@ public class PersonAttendanceRecVO extends PersonAttendanceRec {
 			try {
 				this.setNotes( (String)r.getValue(PersonAttendanceRecVOMeta.NOTES));
 				this.setRecTime( (Date)r.getValue(PersonAttendanceRecVOMeta.REC_TIME));
+				this.setBatchCode( (String)r.getValue(PersonAttendanceRecVOMeta.BATCH_CODE));
 				this.setCcCnt( (BigDecimal)r.getValue(PersonAttendanceRecVOMeta.CC_CNT));
 				this.setOtherCnt( (BigDecimal)r.getValue(PersonAttendanceRecVOMeta.OTHER_CNT));
 				this.setEmployeeId( (String)r.getValue(PersonAttendanceRecVOMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)r.getValue(PersonAttendanceRecVOMeta.UPDATE_TIME));
+				this.setSource( (String)r.getValue(PersonAttendanceRecVOMeta.SOURCE));
 				this.setVersion( (Integer)r.getValue(PersonAttendanceRecVOMeta.VERSION));
 				this.setJbCnt( (BigDecimal)r.getValue(PersonAttendanceRecVOMeta.JB_CNT));
 				this.setNjCnt( (BigDecimal)r.getValue(PersonAttendanceRecVOMeta.NJ_CNT));

@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 17:58:38
+ * @since 2024-02-06 19:10:58
  * @sign E138E7272BF556128C11A273377D877E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -501,6 +501,16 @@ public class SalaryVOMeta extends SalaryMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.math.BigDecimal> DUDUCT_OTHER_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,DUDUCT_OTHER, java.math.BigDecimal.class, "扣除其他", "扣除其他", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 企业专项扣除 , 类型: java.lang.String
+	*/
+	public static final String PERSONAL_STATUS="personalStatus";
+	
+	/**
+	 * 企业专项扣除 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> PERSONAL_STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_STATUS, java.lang.String.class, "企业专项扣除", "企业专项扣除", java.lang.String.class, null);
+	
+	/**
 	 * 子女教育 , 类型: java.math.BigDecimal
 	*/
 	public static final String PERSONAL_TAX_ZNJY="personalTaxZnjy";
@@ -509,6 +519,16 @@ public class SalaryVOMeta extends SalaryMeta {
 	 * 子女教育 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.math.BigDecimal> PERSONAL_TAX_ZNJY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_ZNJY, java.math.BigDecimal.class, "子女教育", "子女教育", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 子女教育备注 , 类型: java.lang.String
+	*/
+	public static final String PERSONAL_TAX_ZNJY_NOTES="personalTaxZnjyNotes";
+	
+	/**
+	 * 子女教育备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> PERSONAL_TAX_ZNJY_NOTES_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_ZNJY_NOTES, java.lang.String.class, "子女教育备注", "子女教育备注", java.lang.String.class, null);
 	
 	/**
 	 * 继续教育 , 类型: java.math.BigDecimal
@@ -521,6 +541,16 @@ public class SalaryVOMeta extends SalaryMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.math.BigDecimal> PERSONAL_TAX_JXJY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_JXJY, java.math.BigDecimal.class, "继续教育", "继续教育", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 继续教育备注 , 类型: java.lang.String
+	*/
+	public static final String PERSONAL_TAX_JXJY_NOTES="personalTaxJxjyNotes";
+	
+	/**
+	 * 继续教育备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> PERSONAL_TAX_JXJY_NOTES_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_JXJY_NOTES, java.lang.String.class, "继续教育备注", "继续教育备注", java.lang.String.class, null);
+	
+	/**
 	 * 大病医疗 , 类型: java.math.BigDecimal
 	*/
 	public static final String PERSONAL_TAX_DBYL="personalTaxDbyl";
@@ -529,6 +559,16 @@ public class SalaryVOMeta extends SalaryMeta {
 	 * 大病医疗 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.math.BigDecimal> PERSONAL_TAX_DBYL_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_DBYL, java.math.BigDecimal.class, "大病医疗", "大病医疗", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 大病医疗备注 , 类型: java.lang.String
+	*/
+	public static final String PERSONAL_TAX_DBYL_NOTES="personalTaxDbylNotes";
+	
+	/**
+	 * 大病医疗备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> PERSONAL_TAX_DBYL_NOTES_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_DBYL_NOTES, java.lang.String.class, "大病医疗备注", "大病医疗备注", java.lang.String.class, null);
 	
 	/**
 	 * 住房贷款 , 类型: java.math.BigDecimal
@@ -541,6 +581,16 @@ public class SalaryVOMeta extends SalaryMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.math.BigDecimal> PERSONAL_TAX_ZFDK_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_ZFDK, java.math.BigDecimal.class, "住房贷款", "住房贷款", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 住房贷款备注 , 类型: java.lang.String
+	*/
+	public static final String PERSONAL_TAX_ZFDK_NOTES="personalTaxZfdkNotes";
+	
+	/**
+	 * 住房贷款备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> PERSONAL_TAX_ZFDK_NOTES_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_ZFDK_NOTES, java.lang.String.class, "住房贷款备注", "住房贷款备注", java.lang.String.class, null);
+	
+	/**
 	 * 住房租金 , 类型: java.math.BigDecimal
 	*/
 	public static final String PERSONAL_TAX_ZFZJ="personalTaxZfzj";
@@ -549,6 +599,16 @@ public class SalaryVOMeta extends SalaryMeta {
 	 * 住房租金 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.math.BigDecimal> PERSONAL_TAX_ZFZJ_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_ZFZJ, java.math.BigDecimal.class, "住房租金", "住房租金", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 住房租金备注 , 类型: java.lang.String
+	*/
+	public static final String PERSONAL_TAX_ZFZJ_NOTES="personalTaxZfzjNotes";
+	
+	/**
+	 * 住房租金备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> PERSONAL_TAX_ZFZJ_NOTES_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_ZFZJ_NOTES, java.lang.String.class, "住房租金备注", "住房租金备注", java.lang.String.class, null);
 	
 	/**
 	 * 赡养老人 , 类型: java.math.BigDecimal
@@ -561,6 +621,16 @@ public class SalaryVOMeta extends SalaryMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.math.BigDecimal> PERSONAL_TAX_SYLR_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_SYLR, java.math.BigDecimal.class, "赡养老人", "赡养老人", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 赡养老人备注 , 类型: java.lang.String
+	*/
+	public static final String PERSONAL_TAX_SYLR_NOTES="personalTaxSylrNotes";
+	
+	/**
+	 * 赡养老人备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> PERSONAL_TAX_SYLR_NOTES_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_SYLR_NOTES, java.lang.String.class, "赡养老人备注", "赡养老人备注", java.lang.String.class, null);
+	
+	/**
 	 * 幼儿照护 , 类型: java.math.BigDecimal
 	*/
 	public static final String PERSONAL_TAX_ERZH="personalTaxErzh";
@@ -569,6 +639,16 @@ public class SalaryVOMeta extends SalaryMeta {
 	 * 幼儿照护 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.math.BigDecimal> PERSONAL_TAX_ERZH_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_ERZH, java.math.BigDecimal.class, "幼儿照护", "幼儿照护", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 幼儿照护备注 , 类型: java.lang.String
+	*/
+	public static final String PERSONAL_TAX_ERZH_NOTES="personalTaxErzhNotes";
+	
+	/**
+	 * 幼儿照护备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> PERSONAL_TAX_ERZH_NOTES_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSONAL_TAX_ERZH_NOTES, java.lang.String.class, "幼儿照护备注", "幼儿照护备注", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -681,9 +761,29 @@ public class SalaryVOMeta extends SalaryMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,com.dt.platform.domain.hr.Person> PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSON, com.dt.platform.domain.hr.Person.class, "person", "person", com.dt.platform.domain.hr.Person.class, null);
 	
 	/**
+	 * personJobNumber , 类型: java.lang.String
+	*/
+	public static final String PERSON_JOB_NUMBER="personJobNumber";
+	
+	/**
+	 * personJobNumber , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> PERSON_JOB_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSON_JOB_NUMBER, java.lang.String.class, "personJobNumber", "personJobNumber", java.lang.String.class, null);
+	
+	/**
+	 * personCardNumber , 类型: java.lang.String
+	*/
+	public static final String PERSON_CARD_NUMBER="personCardNumber";
+	
+	/**
+	 * personCardNumber , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryVO,java.lang.String> PERSON_CARD_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryVO.class ,PERSON_CARD_NUMBER, java.lang.String.class, "personCardNumber", "personCardNumber", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PERSON_ID , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , OTHER_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , COMMISSION_SALARY , HIGH_TEMPERATURE_SALARY , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , DEDUCT_PERSONAL_TAX_RED , DEDUCT_KQ , DEDUCT_GH , DUDUCT_OTHER , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PERSON_ID , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , OTHER_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , COMMISSION_SALARY , HIGH_TEMPERATURE_SALARY , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , DEDUCT_PERSONAL_TAX_RED , DEDUCT_KQ , DEDUCT_GH , DUDUCT_OTHER , PERSONAL_STATUS , PERSONAL_TAX_ZNJY , PERSONAL_TAX_ZNJY_NOTES , PERSONAL_TAX_JXJY , PERSONAL_TAX_JXJY_NOTES , PERSONAL_TAX_DBYL , PERSONAL_TAX_DBYL_NOTES , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFDK_NOTES , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_ZFZJ_NOTES , PERSONAL_TAX_SYLR , PERSONAL_TAX_SYLR_NOTES , PERSONAL_TAX_ERZH , PERSONAL_TAX_ERZH_NOTES , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON , PERSON_JOB_NUMBER , PERSON_CARD_NUMBER };
 	
 	/**
 	 * 代理类
@@ -1222,6 +1322,17 @@ public class SalaryVOMeta extends SalaryMeta {
 		}
 		
 		/**
+		 * 设置 企业专项扣除
+		 * @param personalStatus 企业专项扣除
+		 * @return 当前对象
+		*/
+		public Salary setPersonalStatus(String personalStatus) {
+			super.change(PERSONAL_STATUS,super.getPersonalStatus(),personalStatus);
+			super.setPersonalStatus(personalStatus);
+			return this;
+		}
+		
+		/**
 		 * 设置 子女教育
 		 * @param personalTaxZnjy 子女教育
 		 * @return 当前对象
@@ -1229,6 +1340,17 @@ public class SalaryVOMeta extends SalaryMeta {
 		public Salary setPersonalTaxZnjy(BigDecimal personalTaxZnjy) {
 			super.change(PERSONAL_TAX_ZNJY,super.getPersonalTaxZnjy(),personalTaxZnjy);
 			super.setPersonalTaxZnjy(personalTaxZnjy);
+			return this;
+		}
+		
+		/**
+		 * 设置 子女教育备注
+		 * @param personalTaxZnjyNotes 子女教育备注
+		 * @return 当前对象
+		*/
+		public Salary setPersonalTaxZnjyNotes(String personalTaxZnjyNotes) {
+			super.change(PERSONAL_TAX_ZNJY_NOTES,super.getPersonalTaxZnjyNotes(),personalTaxZnjyNotes);
+			super.setPersonalTaxZnjyNotes(personalTaxZnjyNotes);
 			return this;
 		}
 		
@@ -1244,6 +1366,17 @@ public class SalaryVOMeta extends SalaryMeta {
 		}
 		
 		/**
+		 * 设置 继续教育备注
+		 * @param personalTaxJxjyNotes 继续教育备注
+		 * @return 当前对象
+		*/
+		public Salary setPersonalTaxJxjyNotes(String personalTaxJxjyNotes) {
+			super.change(PERSONAL_TAX_JXJY_NOTES,super.getPersonalTaxJxjyNotes(),personalTaxJxjyNotes);
+			super.setPersonalTaxJxjyNotes(personalTaxJxjyNotes);
+			return this;
+		}
+		
+		/**
 		 * 设置 大病医疗
 		 * @param personalTaxDbyl 大病医疗
 		 * @return 当前对象
@@ -1251,6 +1384,17 @@ public class SalaryVOMeta extends SalaryMeta {
 		public Salary setPersonalTaxDbyl(BigDecimal personalTaxDbyl) {
 			super.change(PERSONAL_TAX_DBYL,super.getPersonalTaxDbyl(),personalTaxDbyl);
 			super.setPersonalTaxDbyl(personalTaxDbyl);
+			return this;
+		}
+		
+		/**
+		 * 设置 大病医疗备注
+		 * @param personalTaxDbylNotes 大病医疗备注
+		 * @return 当前对象
+		*/
+		public Salary setPersonalTaxDbylNotes(String personalTaxDbylNotes) {
+			super.change(PERSONAL_TAX_DBYL_NOTES,super.getPersonalTaxDbylNotes(),personalTaxDbylNotes);
+			super.setPersonalTaxDbylNotes(personalTaxDbylNotes);
 			return this;
 		}
 		
@@ -1266,6 +1410,17 @@ public class SalaryVOMeta extends SalaryMeta {
 		}
 		
 		/**
+		 * 设置 住房贷款备注
+		 * @param personalTaxZfdkNotes 住房贷款备注
+		 * @return 当前对象
+		*/
+		public Salary setPersonalTaxZfdkNotes(String personalTaxZfdkNotes) {
+			super.change(PERSONAL_TAX_ZFDK_NOTES,super.getPersonalTaxZfdkNotes(),personalTaxZfdkNotes);
+			super.setPersonalTaxZfdkNotes(personalTaxZfdkNotes);
+			return this;
+		}
+		
+		/**
 		 * 设置 住房租金
 		 * @param personalTaxZfzj 住房租金
 		 * @return 当前对象
@@ -1273,6 +1428,17 @@ public class SalaryVOMeta extends SalaryMeta {
 		public Salary setPersonalTaxZfzj(BigDecimal personalTaxZfzj) {
 			super.change(PERSONAL_TAX_ZFZJ,super.getPersonalTaxZfzj(),personalTaxZfzj);
 			super.setPersonalTaxZfzj(personalTaxZfzj);
+			return this;
+		}
+		
+		/**
+		 * 设置 住房租金备注
+		 * @param personalTaxZfzjNotes 住房租金备注
+		 * @return 当前对象
+		*/
+		public Salary setPersonalTaxZfzjNotes(String personalTaxZfzjNotes) {
+			super.change(PERSONAL_TAX_ZFZJ_NOTES,super.getPersonalTaxZfzjNotes(),personalTaxZfzjNotes);
+			super.setPersonalTaxZfzjNotes(personalTaxZfzjNotes);
 			return this;
 		}
 		
@@ -1288,6 +1454,17 @@ public class SalaryVOMeta extends SalaryMeta {
 		}
 		
 		/**
+		 * 设置 赡养老人备注
+		 * @param personalTaxSylrNotes 赡养老人备注
+		 * @return 当前对象
+		*/
+		public Salary setPersonalTaxSylrNotes(String personalTaxSylrNotes) {
+			super.change(PERSONAL_TAX_SYLR_NOTES,super.getPersonalTaxSylrNotes(),personalTaxSylrNotes);
+			super.setPersonalTaxSylrNotes(personalTaxSylrNotes);
+			return this;
+		}
+		
+		/**
 		 * 设置 幼儿照护
 		 * @param personalTaxErzh 幼儿照护
 		 * @return 当前对象
@@ -1295,6 +1472,17 @@ public class SalaryVOMeta extends SalaryMeta {
 		public Salary setPersonalTaxErzh(BigDecimal personalTaxErzh) {
 			super.change(PERSONAL_TAX_ERZH,super.getPersonalTaxErzh(),personalTaxErzh);
 			super.setPersonalTaxErzh(personalTaxErzh);
+			return this;
+		}
+		
+		/**
+		 * 设置 幼儿照护备注
+		 * @param personalTaxErzhNotes 幼儿照护备注
+		 * @return 当前对象
+		*/
+		public Salary setPersonalTaxErzhNotes(String personalTaxErzhNotes) {
+			super.change(PERSONAL_TAX_ERZH_NOTES,super.getPersonalTaxErzhNotes(),personalTaxErzhNotes);
+			super.setPersonalTaxErzhNotes(personalTaxErzhNotes);
 			return this;
 		}
 		
@@ -1418,6 +1606,28 @@ public class SalaryVOMeta extends SalaryMeta {
 			super.setPerson(person);
 			return this;
 		}
+		
+		/**
+		 * 设置 personJobNumber
+		 * @param personJobNumber personJobNumber
+		 * @return 当前对象
+		*/
+		public Salary setPersonJobNumber(String personJobNumber) {
+			super.change(PERSON_JOB_NUMBER,super.getPersonJobNumber(),personJobNumber);
+			super.setPersonJobNumber(personJobNumber);
+			return this;
+		}
+		
+		/**
+		 * 设置 personCardNumber
+		 * @param personCardNumber personCardNumber
+		 * @return 当前对象
+		*/
+		public Salary setPersonCardNumber(String personCardNumber) {
+			super.change(PERSON_CARD_NUMBER,super.getPersonCardNumber(),personCardNumber);
+			super.setPersonCardNumber(personCardNumber);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1440,6 +1650,7 @@ public class SalaryVOMeta extends SalaryMeta {
 			inst.setDeductKq(this.getDeductKq());
 			inst.setWelfareZfgjjPerson(this.getWelfareZfgjjPerson());
 			inst.setDeductGh(this.getDeductGh());
+			inst.setPersonalTaxZfdkNotes(this.getPersonalTaxZfdkNotes());
 			inst.setWelfaerYlbxCompany(this.getWelfaerYlbxCompany());
 			inst.setPersonalTaxErzh(this.getPersonalTaxErzh());
 			inst.setPersonalTaxJxjy(this.getPersonalTaxJxjy());
@@ -1450,15 +1661,18 @@ public class SalaryVOMeta extends SalaryMeta {
 			inst.setWelfaerYrbxCompany(this.getWelfaerYrbxCompany());
 			inst.setWelfaerSybxBase(this.getWelfaerSybxBase());
 			inst.setWelfaerGsbxBase(this.getWelfaerGsbxBase());
+			inst.setPersonalStatus(this.getPersonalStatus());
 			inst.setWelfaerSybxCompany(this.getWelfaerSybxCompany());
 			inst.setWelfaerYrbxBase(this.getWelfaerYrbxBase());
 			inst.setWelfaerSyebxBase(this.getWelfaerSyebxBase());
 			inst.setVersion(this.getVersion());
+			inst.setPersonalTaxErzhNotes(this.getPersonalTaxErzhNotes());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setPersonId(this.getPersonId());
 			inst.setOtherSalary(this.getOtherSalary());
 			inst.setDeductPersonalTaxRed(this.getDeductPersonalTaxRed());
+			inst.setPersonalTaxJxjyNotes(this.getPersonalTaxJxjyNotes());
 			inst.setCommissionSalary(this.getCommissionSalary());
 			inst.setPersonalTaxZfdk(this.getPersonalTaxZfdk());
 			inst.setWelfaerSyebxPerson(this.getWelfaerSyebxPerson());
@@ -1467,13 +1681,17 @@ public class SalaryVOMeta extends SalaryMeta {
 			inst.setBaseSalary(this.getBaseSalary());
 			inst.setPersonalTaxSylr(this.getPersonalTaxSylr());
 			inst.setPersonalTaxZnjy(this.getPersonalTaxZnjy());
+			inst.setPersonalTaxZnjyNotes(this.getPersonalTaxZnjyNotes());
 			inst.setWelfaerGsbxPerson(this.getWelfaerGsbxPerson());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setWelfaerYlbxPerson(this.getWelfaerYlbxPerson());
 			inst.setWelfareZfgjjCompany(this.getWelfareZfgjjCompany());
+			inst.setPersonalTaxDbylNotes(this.getPersonalTaxDbylNotes());
+			inst.setPersonalTaxZfzjNotes(this.getPersonalTaxZfzjNotes());
 			inst.setWelfaerGsbxCompany(this.getWelfaerGsbxCompany());
 			inst.setWelfaerSyebxCompany(this.getWelfaerSyebxCompany());
 			inst.setHousingSalary(this.getHousingSalary());
+			inst.setPersonalTaxSylrNotes(this.getPersonalTaxSylrNotes());
 			inst.setWelfaerYrbxPerson(this.getWelfaerYrbxPerson());
 			inst.setPersonalTaxZfzj(this.getPersonalTaxZfzj());
 			inst.setWorkingYearsSalary(this.getWorkingYearsSalary());
@@ -1491,6 +1709,7 @@ public class SalaryVOMeta extends SalaryMeta {
 				inst.setSearchField(this.getSearchField());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPersonCardNumber(this.getPersonCardNumber());
 				inst.setPageSize(this.getPageSize());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
@@ -1499,6 +1718,7 @@ public class SalaryVOMeta extends SalaryMeta {
 				inst.setSortField(this.getSortField());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
+				inst.setPersonJobNumber(this.getPersonJobNumber());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
 			}

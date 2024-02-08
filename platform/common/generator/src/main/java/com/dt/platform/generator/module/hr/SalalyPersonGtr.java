@@ -1,13 +1,20 @@
 package com.dt.platform.generator.module.hr;
 
 
+import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.HrTables;
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.common.StatusYNEnum;
 import com.dt.platform.constants.enums.common.ValidStatusEnum;
 import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.meta.PersonBusiInsureMeta;
+import com.dt.platform.domain.hr.meta.PersonContractMeta;
+import com.dt.platform.domain.hr.meta.PersonMeta;
+import com.dt.platform.domain.hr.meta.SalaryMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.hr.page.SalaryPageController;
 import com.dt.platform.hr.page.SalaryTplPersonPageController;
+import com.dt.platform.proxy.hr.PersonServiceProxy;
 import com.dt.platform.proxy.hr.SalaryServiceProxy;
 import com.dt.platform.proxy.hr.SalaryTplPersonServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
@@ -28,11 +35,18 @@ public class SalalyPersonGtr extends BaseCodeGenerator {
         cfg.view().search().inputLayout(
                 new Object[]{
                         HrTables.HR_SALARY.PERSON_ID,
+                        HrTables.HR_SALARY.PERSONAL_STATUS,
                         HrTables.HR_SALARY.NOTES,
                 }
         );
 
         cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"personJobNumber","personJobNumber","personJobNumber");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"personCardNumber","personCardNumber","personCardNumber");
+        cfg.view().field(SalaryMeta.PERSON_JOB_NUMBER).basic().label("工号").table().fillBy("person","jobNumber");
+        cfg.view().field(SalaryMeta.PERSON_CARD_NUMBER).basic().label("身份证").table().fillBy("person","identityCard");
+        cfg.view().field(SalaryMeta.PERSON_CARD_NUMBER).basic().label("卡号").form().readOnly().table().disable(false);
+        cfg.view().field(SalaryMeta.PERSON_JOB_NUMBER).basic().label("工号").form().readOnly().table().disable(false);
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
@@ -82,12 +96,23 @@ public class SalalyPersonGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_SALARY.PERSONAL_TAX_ZFZJ).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY.PERSONAL_TAX_ZNJY).form().numberInput().decimal().defaultValue(0.00).scale(2);
 
+        cfg.view().field(HrTables.HR_SALARY.PERSONAL_STATUS).form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
+       // cfg.view().field(HrTables.HR_SALARY.HIGH_TEMPERATURE_SALARY).table().disable(true);
+        cfg.view().field(HrTables.HR_SALARY.COMMISSION_SALARY).table().disable(true);
 
-        cfg.view().field(HrTables.HR_SALARY.HIGH_TEMPERATURE_SALARY).table().disable(true);
 
-        cfg.view().field(HrTables.HR_SALARY.PERSON_ID).table().fillBy("person","name");
-        cfg.view().field(HrTables.HR_SALARY.PERSON_ID).form()
-                .button().chooseEmployee(true);
+        cfg.view().field(HrTables.HR_SALARY.PERSON_ID).form().validate().required().form()
+                .form().validate().required().form().selectBox().queryApi(PersonServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(true).toolbar(false)
+                .valueField(PersonMeta.ID).
+                textField(PersonMeta.NAME).
+                fillWith(SalaryMeta.PERSON).muliti(false);
+
+
+
+//        cfg.view().field(HrTables.HR_SALARY.PERSON_ID).table().fillBy("person","name");
+//        cfg.view().field(HrTables.HR_SALARY.PERSON_ID).form()
+//                .button().chooseEmployee(true);
 
         cfg.view().search().rowsDisplay(1);
         cfg.view().formWindow().width("80%");;
@@ -123,7 +148,6 @@ public class SalalyPersonGtr extends BaseCodeGenerator {
                 new Object[]{
                         HrTables.HR_SALARY.ACHIEVEMENT_SALARY,
                         HrTables.HR_SALARY.TRAFFIC_SALARY,
-                        HrTables.HR_SALARY.COMMISSION_SALARY
                 },
                 new Object[]{
                         HrTables.HR_SALARY.OVERTIME_SALARY,
@@ -159,21 +183,31 @@ public class SalalyPersonGtr extends BaseCodeGenerator {
         );
 
 
+        cfg.view().form().addGroup("个人专项扣除",
+                new Object[] {
+                        HrTables.HR_SALARY.PERSONAL_STATUS
+                });
 
-        cfg.view().form().addGroup("个税减免",
+        cfg.view().form().addGroup(null,
                 new Object[] {
                         HrTables.HR_SALARY.PERSONAL_TAX_DBYL,
                         HrTables.HR_SALARY.PERSONAL_TAX_ERZH,
                         HrTables.HR_SALARY.PERSONAL_TAX_JXJY,
-                },
-                new Object[]{
                         HrTables.HR_SALARY.PERSONAL_TAX_SYLR,
                         HrTables.HR_SALARY.PERSONAL_TAX_ZFDK,
-                },
-                new Object[]{
                         HrTables.HR_SALARY.PERSONAL_TAX_ZFZJ,
                         HrTables.HR_SALARY.PERSONAL_TAX_ZNJY,
+                },
+                new Object[]{
+                        HrTables.HR_SALARY.PERSONAL_TAX_DBYL_NOTES,
+                        HrTables.HR_SALARY.PERSONAL_TAX_ERZH_NOTES,
+                        HrTables.HR_SALARY.PERSONAL_TAX_JXJY_NOTES,
+                        HrTables.HR_SALARY.PERSONAL_TAX_SYLR_NOTES,
+                        HrTables.HR_SALARY.PERSONAL_TAX_ZFDK_NOTES,
+                        HrTables.HR_SALARY.PERSONAL_TAX_ZFZJ_NOTES,
+                        HrTables.HR_SALARY.PERSONAL_TAX_ZNJY_NOTES,
                 }
+
         );
 
 

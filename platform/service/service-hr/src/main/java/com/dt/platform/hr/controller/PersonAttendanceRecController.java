@@ -67,15 +67,18 @@ public class PersonAttendanceRecController extends SuperController {
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.EMPLOYEE_ID, value = "员工", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.PERSON_ID, value = "人员", required = false, dataTypeClass = String.class),
-	 @ApiImplicitParam(name = PersonAttendanceRecVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.JB_CNT, value = "加班", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.NJ_CNT, value = "年假", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.SJ_CNT, value = "事假", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.OTHER_CNT, value = "其他假", required = false, dataTypeClass = BigDecimal.class),
-		 @ApiImplicitParam(name = PersonAttendanceRecVOMeta.REC_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.REC_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.BJ_CNT, value = "病假", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.CC_CNT, value = "出差", required = false, dataTypeClass = BigDecimal.class, example = "0.00")
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.CC_CNT, value = "出差", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -172,15 +175,18 @@ public class PersonAttendanceRecController extends SuperController {
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.EMPLOYEE_ID, value = "员工", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.PERSON_ID, value = "人员", required = false, dataTypeClass = String.class),
-	 	@ApiImplicitParam(name = PersonAttendanceRecVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.JB_CNT, value = "加班", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.NJ_CNT, value = "年假", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.SJ_CNT, value = "事假", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.OTHER_CNT, value = "其他假", required = false, dataTypeClass = BigDecimal.class),
-		 @ApiImplicitParam(name = PersonAttendanceRecVOMeta.REC_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.REC_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.BJ_CNT, value = "病假", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.CC_CNT, value = "出差", required = false, dataTypeClass = BigDecimal.class, example = "0.00")
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.CC_CNT, value = "出差", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { PersonAttendanceRecVOMeta.PAGE_INDEX, PersonAttendanceRecVOMeta.PAGE_SIZE, PersonAttendanceRecVOMeta.SEARCH_FIELD, PersonAttendanceRecVOMeta.FUZZY_FIELD, PersonAttendanceRecVOMeta.SEARCH_VALUE, PersonAttendanceRecVOMeta.DIRTY_FIELDS, PersonAttendanceRecVOMeta.SORT_FIELD, PersonAttendanceRecVOMeta.SORT_TYPE, PersonAttendanceRecVOMeta.DATA_ORIGIN, PersonAttendanceRecVOMeta.QUERY_LOGIC, PersonAttendanceRecVOMeta.REQUEST_ACTION, PersonAttendanceRecVOMeta.IDS })
@@ -199,15 +205,18 @@ public class PersonAttendanceRecController extends SuperController {
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.EMPLOYEE_ID, value = "员工", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.PERSON_ID, value = "人员", required = false, dataTypeClass = String.class),
-		 @ApiImplicitParam(name = PersonAttendanceRecVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.JB_CNT, value = "加班", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.NJ_CNT, value = "年假", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.SJ_CNT, value = "事假", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.OTHER_CNT, value = "其他假", required = false, dataTypeClass = BigDecimal.class),
-		 @ApiImplicitParam(name = PersonAttendanceRecVOMeta.REC_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.REC_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.BJ_CNT, value = "病假", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.CC_CNT, value = "出差", required = false, dataTypeClass = BigDecimal.class, example = "0.00")
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.CC_CNT, value = "出差", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { PersonAttendanceRecVOMeta.PAGE_INDEX, PersonAttendanceRecVOMeta.PAGE_SIZE, PersonAttendanceRecVOMeta.SEARCH_FIELD, PersonAttendanceRecVOMeta.FUZZY_FIELD, PersonAttendanceRecVOMeta.SEARCH_VALUE, PersonAttendanceRecVOMeta.DIRTY_FIELDS, PersonAttendanceRecVOMeta.SORT_FIELD, PersonAttendanceRecVOMeta.SORT_TYPE, PersonAttendanceRecVOMeta.DATA_ORIGIN, PersonAttendanceRecVOMeta.QUERY_LOGIC, PersonAttendanceRecVOMeta.REQUEST_ACTION, PersonAttendanceRecVOMeta.IDS })
@@ -263,15 +272,18 @@ public class PersonAttendanceRecController extends SuperController {
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.EMPLOYEE_ID, value = "员工", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.PERSON_ID, value = "人员", required = false, dataTypeClass = String.class),
-	 	@ApiImplicitParam(name = PersonAttendanceRecVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.JB_CNT, value = "加班", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.NJ_CNT, value = "年假", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.SJ_CNT, value = "事假", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.OTHER_CNT, value = "其他假", required = false, dataTypeClass = BigDecimal.class),
-		 @ApiImplicitParam(name = PersonAttendanceRecVOMeta.REC_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.REC_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.BJ_CNT, value = "病假", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.CC_CNT, value = "出差", required = false, dataTypeClass = BigDecimal.class, example = "0.00")
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.CC_CNT, value = "出差", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { PersonAttendanceRecVOMeta.PAGE_INDEX, PersonAttendanceRecVOMeta.PAGE_SIZE })
     @SentinelResource(value = PersonAttendanceRecServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -291,15 +303,18 @@ public class PersonAttendanceRecController extends SuperController {
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.EMPLOYEE_ID, value = "员工", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.PERSON_ID, value = "人员", required = false, dataTypeClass = String.class),
-	 @ApiImplicitParam(name = PersonAttendanceRecVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.JB_CNT, value = "加班", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.NJ_CNT, value = "年假", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.SJ_CNT, value = "事假", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.OTHER_CNT, value = "其他假", required = false, dataTypeClass = BigDecimal.class),
-		 @ApiImplicitParam(name = PersonAttendanceRecVOMeta.REC_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.REC_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.BJ_CNT, value = "病假", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.CC_CNT, value = "出差", required = false, dataTypeClass = BigDecimal.class, example = "0.00")
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.CC_CNT, value = "出差", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonAttendanceRecVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = PersonAttendanceRecServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

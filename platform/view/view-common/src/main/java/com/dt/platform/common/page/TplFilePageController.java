@@ -45,6 +45,16 @@ public class TplFilePageController extends ViewController {
 		return prefix+"/tpl_file_list";
 	}
 
+	@RequestMapping("/import_form.html")
+	public String importForm(Model model,HttpServletRequest request,String code,String importApi,String exportTplApi) {
+		model.addAttribute("importApi",importApi);
+		model.addAttribute("exportTplApi",exportTplApi);
+		model.addAttribute("code",code);
+		return prefix+"/import_form";
+	}
+
+
+
 	/**
 	 * 模板文件 表单页面
 	 */

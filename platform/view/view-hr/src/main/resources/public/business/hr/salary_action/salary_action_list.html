@@ -2,7 +2,7 @@
 /**
  * 薪酬发放 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-27 21:41:02
+ * @since 2024-01-28 11:51:20
  */
  -->
  <!DOCTYPE html>
@@ -50,6 +50,7 @@
                     <!-- 标签 , label ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 开始日期 , start ,typeName=date_input, isHideInSearch=true -->
                     <!-- 结束日期 , end ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 跟随模版 , withTpl ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 模版 , tplId ,typeName=select_box, isHideInSearch=false -->
@@ -118,6 +119,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.SalaryActionStatusEnum')}]];
     var RADIO_LABEL_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.SalaryActionLabelEnum')}]];
+    var RADIO_WITHTPL_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
     var AUTH_PREFIX="hr_salary_action";
 
 

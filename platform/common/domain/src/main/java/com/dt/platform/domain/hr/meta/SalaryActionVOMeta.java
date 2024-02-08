@@ -15,7 +15,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-27 21:41:01
+ * @since 2024-01-28 11:51:19
  * @sign D2833AFDC8E870D34CD2E6393C7E0ED7
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -223,6 +223,16 @@ public class SalaryActionVOMeta extends SalaryActionMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryActionVO,java.lang.String> TPL_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryActionVO.class ,TPL_ID, java.lang.String.class, "模版", "模版", java.lang.String.class, null);
 	
 	/**
+	 * 跟随模版 , 类型: java.lang.String
+	*/
+	public static final String WITH_TPL="withTpl";
+	
+	/**
+	 * 跟随模版 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryActionVO,java.lang.String> WITH_TPL_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryActionVO.class ,WITH_TPL, java.lang.String.class, "跟随模版", "跟随模版", java.lang.String.class, null);
+	
+	/**
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final String NOTES="notes";
@@ -365,7 +375,7 @@ public class SalaryActionVOMeta extends SalaryActionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , STATUS , LABEL , NAME , START , END , ACTION_MONTH , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_DETAIL_LIST , SALARY_TPL , SALARY_MONTH , PERSON_LIST };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , STATUS , LABEL , NAME , START , END , ACTION_MONTH , TPL_ID , WITH_TPL , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_DETAIL_LIST , SALARY_TPL , SALARY_MONTH , PERSON_LIST };
 	
 	/**
 	 * 代理类
@@ -596,6 +606,17 @@ public class SalaryActionVOMeta extends SalaryActionMeta {
 		}
 		
 		/**
+		 * 设置 跟随模版
+		 * @param withTpl 跟随模版
+		 * @return 当前对象
+		*/
+		public SalaryAction setWithTpl(String withTpl) {
+			super.change(WITH_TPL,super.getWithTpl(),withTpl);
+			super.setWithTpl(withTpl);
+			return this;
+		}
+		
+		/**
 		 * 设置 备注
 		 * @param notes 备注
 		 * @return 当前对象
@@ -770,6 +791,7 @@ public class SalaryActionVOMeta extends SalaryActionMeta {
 			inst.setLabel(this.getLabel());
 			inst.setActionMonth(this.getActionMonth());
 			inst.setVersion(this.getVersion());
+			inst.setWithTpl(this.getWithTpl());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());

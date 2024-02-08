@@ -1,7 +1,7 @@
 /**
  * 薪酬明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-28 01:39:19
+ * @since 2024-02-06 18:23:21
  */
 
 function FormPage() {
@@ -232,6 +232,13 @@ function FormPage() {
 				checked.push($(this).val());
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
+		form.on('radio(personalStatus)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=personalStatus]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("personalStatus",data,checked);
 		});
 		laydate.render({
 			elem: '#effectTime',

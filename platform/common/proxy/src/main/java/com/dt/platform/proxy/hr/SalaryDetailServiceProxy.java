@@ -110,13 +110,14 @@ public interface SalaryDetailServiceProxy {
     public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
+     */
+    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
+    /**
      * 生效
      */
     public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
 
-    /**
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
+
 
     public static final String QUERY_STATISTICAL_DATA_BY_ACTION_ID = API_PREFIX + "query-statistical-data-by-action-id";
 

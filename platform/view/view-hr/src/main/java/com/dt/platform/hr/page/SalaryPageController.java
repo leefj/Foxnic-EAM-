@@ -67,18 +67,69 @@ public class SalaryPageController extends ViewController {
 	/**
 	 * 人员薪酬 功能主页面
 	 */
-	@RequestMapping("/salary_list.html")
-	public String list(Model model,HttpServletRequest request) {
-		return getTemplatePath(prefix,"/salary_list");
+	@RequestMapping("/salary_person_list.html")
+	public String personlist(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"/salary_person_list");
 	}
 
 	/**
 	 * 人员薪酬 表单页面
 	 */
-	@RequestMapping("/salary_form.html")
-	public String form(Model model,HttpServletRequest request , String id) {
-		return getTemplatePath(prefix,"/salary_form");
+	@RequestMapping("/salary_person_form.html")
+	public String personform(Model model,HttpServletRequest request , String id) {
+		return getTemplatePath(prefix,"/salary_person_form");
 	}
+
+	/**
+	 * 人员薪酬 功能主页面
+	 */
+	@RequestMapping("/salary_51_list.html")
+	public String person51list(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"/salary_51_list");
+	}
+
+	/**
+	 * 人员薪酬 表单页面
+	 */
+	@RequestMapping("/salary_51_form.html")
+	public String person51form(Model model,HttpServletRequest request , String id) {
+		return getTemplatePath(prefix,"/salary_51_form");
+	}
+
+
+	/**
+	 * 人员薪酬 功能主页面
+	 */
+	@RequestMapping("/salary_welfaer_s_list.html")
+	public String welfaerlist(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"/salary_welfaer_s_list");
+	}
+
+	/**
+	 * 人员薪酬 表单页面
+	 */
+	@RequestMapping("/salary_welfaer_s_form.html")
+	public String welfaerform(Model model,HttpServletRequest request , String id) {
+		return getTemplatePath(prefix,"/salary_welfaer_s_form");
+	}
+
+	/**
+	 * 人员薪酬 功能主页面
+	 */
+	@RequestMapping("/salary_welfaer_gjj_list.html")
+	public String welfaerlistGjj(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"/salary_welfaer_gjj_list");
+	}
+
+
+	/**
+	 * 人员薪酬 表单页面
+	 */
+	@RequestMapping("/salary_welfaer_gjj_form.html")
+	public String welfaerformGjj(Model model,HttpServletRequest request , String id) {
+		return getTemplatePath(prefix,"/salary_welfaer_gjj_form");
+	}
+
 
 	/**
 	 * 人员薪酬 表单页面

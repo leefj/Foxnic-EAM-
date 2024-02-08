@@ -45,8 +45,8 @@ public class HrmAttendanceRecordGtr extends BaseCodeGenerator {
                 }
         );
 
-
-
+        cfg.view().list().addToolButton("导入","importData","import-data");
+        cfg.view().list().addToolButton("导出","exportData","export-data");
 
         //文件生成覆盖模式
         cfg.overrides()

@@ -3,15 +3,11 @@ package com.dt.platform.generator.module.hr;
 
 import com.dt.platform.constants.db.HrTables;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.hr.page.SalaryProjectTimePageController;
-import com.dt.platform.hr.page.SalaryProjectUnitPageController;
-import com.dt.platform.proxy.hr.SalaryProjectTimeServiceProxy;
-import com.dt.platform.proxy.hr.SalaryProjectUnitServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 
 
-public class SalalyProjectUnit extends BaseCodeGenerator {
-    public SalalyProjectUnit() {
+public class SalalyProjectUnitGtr extends BaseCodeGenerator {
+    public SalalyProjectUnitGtr() {
         super(HrTables.HR_SALARY_PROJECT_UNIT.$TABLE,"662315275764367360");
     }
 
@@ -71,7 +67,7 @@ public class SalalyProjectUnit extends BaseCodeGenerator {
     }
 
     public static void main(String[] args) throws Exception {
-        SalalyProjectUnit g=new SalalyProjectUnit();
+        SalalyProjectUnitGtr g=new SalalyProjectUnitGtr();
         //生成代码
         g.generateCode();
 

@@ -2,14 +2,12 @@ package com.dt.platform.generator.module.hr;
 
 
 import com.dt.platform.constants.db.HrTables;
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.common.StatusYNEnum;
 import com.dt.platform.constants.enums.common.ValidStatusEnum;
 import com.dt.platform.constants.enums.hr.SalaryPersonDetailStatusEnum;
 import com.dt.platform.domain.hr.*;
-import com.dt.platform.domain.hr.meta.PersonMeta;
-import com.dt.platform.domain.hr.meta.SalaryDetailMeta;
-import com.dt.platform.domain.hr.meta.SalaryMeta;
-import com.dt.platform.domain.hr.meta.SalaryTplMeta;
+import com.dt.platform.domain.hr.meta.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.hr.page.SalaryDetailPageController;
 import com.dt.platform.hr.page.SalaryPageController;
@@ -38,7 +36,10 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
                         HrTables.HR_SALARY_DETAIL.ACTION_MONTH,
                         HrTables.HR_SALARY_DETAIL.USER_NAME,
                         HrTables.HR_SALARY_DETAIL.JOB_NUMBER,
-                        HrTables.HR_SALARY_DETAIL.OPER_MSG,
+                },
+                new Object[]{
+                        HrTables.HR_SALARY_DETAIL.PERSONAL_STATUS,
+                        HrTables.HR_SALARY_DETAIL.BATCH_CODE,
                 }
         );
 
@@ -59,6 +60,8 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
         cfg.view().formWindow().width("95%");;
         cfg.view().formWindow().bottomSpace(80);
 
+        cfg.view().field(PersonBusiInsureMeta.PERSON_CARD_NUMBER).basic().label("卡号").form().table().disable(false);
+        cfg.view().field(PersonBusiInsureMeta.PERSON_JOB_NUMBER).basic().label("工号").form().table().disable(false);
 
         cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFARE_ZFGJJ_BASE).form().numberInput().decimal().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_SALARY_DETAIL.WELFAER_YRBX_BASE).form().numberInput().decimal().defaultValue(0.00).scale(2);
@@ -176,6 +179,7 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
 
         cfg.view().field(HrTables.HR_SALARY_DETAIL.STATUS).form().radioBox().enumType(SalaryPersonDetailStatusEnum.class).defaultIndex(0);
 
+        cfg.view().field(HrTables.HR_SALARY_DETAIL.PERSONAL_STATUS).form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(HrTables.HR_SALARY_DETAIL.TPL_ID)
                 .form().selectBox().queryApi(SalaryTplServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
@@ -302,7 +306,7 @@ public class SalalyDetailGtr extends BaseCodeGenerator {
                         HrTables.HR_SALARY_DETAIL.DEDUCT_PERSONAL_TAX_RED
                 }
         );
-        cfg.view().form().addGroup("个税减免",
+        cfg.view().form().addGroup("个人专项扣除",
                 new Object[] {
                         HrTables.HR_SALARY_DETAIL.PERSONAL_TAX_DBYL,
                         HrTables.HR_SALARY_DETAIL.PERSONAL_TAX_ERZH,

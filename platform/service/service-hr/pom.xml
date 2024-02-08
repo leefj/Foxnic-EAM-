@@ -27,6 +27,12 @@
             <version>3.2.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.31</version>
+        </dependency>
+
         <!-- -引入模板引擎 https://mvnrepository.com/artifact/com.deepoove/poi-tl -->
         <dependency>
             <groupId>com.deepoove</groupId>

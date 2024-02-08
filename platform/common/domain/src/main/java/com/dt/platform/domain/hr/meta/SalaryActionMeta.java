@@ -14,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-27 21:41:01
- * @sign 45E1DD732738934194F705101E4108B9
+ * @since 2024-01-28 11:51:19
+ * @sign 0E6B7E2EE7118202FC6A92C23E8769F2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -100,6 +100,16 @@ public class SalaryActionMeta {
 	 * 模版 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryAction,java.lang.String> TPL_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryAction.class ,TPL_ID, java.lang.String.class, "模版", "模版", java.lang.String.class, null);
+	
+	/**
+	 * 跟随模版 , 类型: java.lang.String
+	*/
+	public static final String WITH_TPL="withTpl";
+	
+	/**
+	 * 跟随模版 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryAction,java.lang.String> WITH_TPL_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryAction.class ,WITH_TPL, java.lang.String.class, "跟随模版", "跟随模版", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -244,7 +254,7 @@ public class SalaryActionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , STATUS , LABEL , NAME , START , END , ACTION_MONTH , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_DETAIL_LIST , SALARY_TPL , SALARY_MONTH , PERSON_LIST };
+	public static final String[] $PROPS={ ID , STATUS , LABEL , NAME , START , END , ACTION_MONTH , TPL_ID , WITH_TPL , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_DETAIL_LIST , SALARY_TPL , SALARY_MONTH , PERSON_LIST };
 	
 	/**
 	 * 代理类
@@ -339,6 +349,17 @@ public class SalaryActionMeta {
 		public SalaryAction setTplId(String tplId) {
 			super.change(TPL_ID,super.getTplId(),tplId);
 			super.setTplId(tplId);
+			return this;
+		}
+		
+		/**
+		 * 设置 跟随模版
+		 * @param withTpl 跟随模版
+		 * @return 当前对象
+		*/
+		public SalaryAction setWithTpl(String withTpl) {
+			super.change(WITH_TPL,super.getWithTpl(),withTpl);
+			super.setWithTpl(withTpl);
 			return this;
 		}
 		
@@ -517,6 +538,7 @@ public class SalaryActionMeta {
 			inst.setLabel(this.getLabel());
 			inst.setActionMonth(this.getActionMonth());
 			inst.setVersion(this.getVersion());
+			inst.setWithTpl(this.getWithTpl());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());

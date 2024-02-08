@@ -102,6 +102,19 @@ public interface SalaryServiceProxy {
     public static final String GET_BY_PERSON_ID = API_PREFIX + "get-by-person-id";
 
     /**
+     * 生效
+     */
+    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
+
+    /**
+     */
+    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
+    /**
+     * 生效
+     */
+    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
+
+    /**
      * 添加人员薪酬
      */
     @RequestMapping(SalaryServiceProxy.INSERT)

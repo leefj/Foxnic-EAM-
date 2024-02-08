@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息
  * <p>人员信息 , 数据表 hr_person 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 08:19:05
- * @sign CA6B8DF6989294F71B456B63A5C4A63C
+ * @since 2024-02-02 07:35:52
+ * @sign 8EA77FF5D472C2C10AE447308B7D173E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -58,7 +58,7 @@ public class Person extends Entity {
 	/**
 	 * 姓名：姓名
 	*/
-	@ApiModelProperty(required = false,value="姓名" , notes = "姓名" , example = "测试大屏1")
+	@ApiModelProperty(required = false,value="姓名" , notes = "姓名" , example = "人员3")
 	private String name;
 	
 	/**
@@ -304,7 +304,7 @@ public class Person extends Entity {
 	/**
 	 * 工资卡帐号：工资卡帐号
 	*/
-	@ApiModelProperty(required = false,value="工资卡帐号" , notes = "工资卡帐号" , example = "121212")
+	@ApiModelProperty(required = false,value="工资卡帐号" , notes = "工资卡帐号" , example = "123456789098765")
 	private String payrollCard;
 	
 	/**
@@ -316,7 +316,7 @@ public class Person extends Entity {
 	/**
 	 * 是否发放：是否发放
 	*/
-	@ApiModelProperty(required = false,value="是否发放" , notes = "是否发放" , example = "0")
+	@ApiModelProperty(required = false,value="是否发放" , notes = "是否发放" , example = "1")
 	private String salaryPayOut;
 	
 	/**
@@ -368,6 +368,12 @@ public class Person extends Entity {
 	private Integer score;
 	
 	/**
+	 * 批次号：批次号
+	*/
+	@ApiModelProperty(required = false,value="批次号" , notes = "批次号")
+	private String batchCode;
+	
+	/**
 	 * 备注：备注
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注")
@@ -394,7 +400,7 @@ public class Person extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-21 08:36:29")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-22 04:09:58")
 	private Date updateTime;
 	
 	/**
@@ -421,7 +427,7 @@ public class Person extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "6")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "10")
 	private Integer version;
 	
 	/**
@@ -1553,6 +1559,25 @@ public class Person extends Entity {
 	}
 	
 	/**
+	 * 获得 批次号<br>
+	 * 批次号
+	 * @return 批次号
+	*/
+	public String getBatchCode() {
+		return batchCode;
+	}
+	
+	/**
+	 * 设置 批次号
+	 * @param batchCode 批次号
+	 * @return 当前对象
+	*/
+	public Person setBatchCode(String batchCode) {
+		this.batchCode=batchCode;
+		return this;
+	}
+	
+	/**
 	 * 获得 备注<br>
 	 * 备注
 	 * @return 备注
@@ -2179,6 +2204,7 @@ public class Person extends Entity {
 		inst.setFirstWorkDate(this.getFirstWorkDate());
 		inst.setPayrollCard(this.getPayrollCard());
 		inst.setWeixinId(this.getWeixinId());
+		inst.setBatchCode(this.getBatchCode());
 		inst.setEmployeeId(this.getEmployeeId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setJoinPartDate(this.getJoinPartDate());
@@ -2319,6 +2345,7 @@ public class Person extends Entity {
 			this.setFirstWorkDate(DataParser.parse(Date.class, map.get(PersonMeta.FIRST_WORK_DATE)));
 			this.setPayrollCard(DataParser.parse(String.class, map.get(PersonMeta.PAYROLL_CARD)));
 			this.setWeixinId(DataParser.parse(String.class, map.get(PersonMeta.WEIXIN_ID)));
+			this.setBatchCode(DataParser.parse(String.class, map.get(PersonMeta.BATCH_CODE)));
 			this.setEmployeeId(DataParser.parse(String.class, map.get(PersonMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(PersonMeta.UPDATE_TIME)));
 			this.setJoinPartDate(DataParser.parse(Date.class, map.get(PersonMeta.JOIN_PART_DATE)));
@@ -2402,6 +2429,7 @@ public class Person extends Entity {
 				this.setFirstWorkDate( (Date)map.get(PersonMeta.FIRST_WORK_DATE));
 				this.setPayrollCard( (String)map.get(PersonMeta.PAYROLL_CARD));
 				this.setWeixinId( (String)map.get(PersonMeta.WEIXIN_ID));
+				this.setBatchCode( (String)map.get(PersonMeta.BATCH_CODE));
 				this.setEmployeeId( (String)map.get(PersonMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)map.get(PersonMeta.UPDATE_TIME));
 				this.setJoinPartDate( (Date)map.get(PersonMeta.JOIN_PART_DATE));
@@ -2498,6 +2526,7 @@ public class Person extends Entity {
 			this.setFirstWorkDate(DataParser.parse(Date.class, r.getValue(PersonMeta.FIRST_WORK_DATE)));
 			this.setPayrollCard(DataParser.parse(String.class, r.getValue(PersonMeta.PAYROLL_CARD)));
 			this.setWeixinId(DataParser.parse(String.class, r.getValue(PersonMeta.WEIXIN_ID)));
+			this.setBatchCode(DataParser.parse(String.class, r.getValue(PersonMeta.BATCH_CODE)));
 			this.setEmployeeId(DataParser.parse(String.class, r.getValue(PersonMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PersonMeta.UPDATE_TIME)));
 			this.setJoinPartDate(DataParser.parse(Date.class, r.getValue(PersonMeta.JOIN_PART_DATE)));
@@ -2565,6 +2594,7 @@ public class Person extends Entity {
 				this.setFirstWorkDate( (Date)r.getValue(PersonMeta.FIRST_WORK_DATE));
 				this.setPayrollCard( (String)r.getValue(PersonMeta.PAYROLL_CARD));
 				this.setWeixinId( (String)r.getValue(PersonMeta.WEIXIN_ID));
+				this.setBatchCode( (String)r.getValue(PersonMeta.BATCH_CODE));
 				this.setEmployeeId( (String)r.getValue(PersonMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)r.getValue(PersonMeta.UPDATE_TIME));
 				this.setJoinPartDate( (Date)r.getValue(PersonMeta.JOIN_PART_DATE));

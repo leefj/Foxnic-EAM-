@@ -46,6 +46,9 @@ public class SalalyTplGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().field(HrTables.HR_SALARY_TPL.UPDATE_BY).form().table().disable(true);
+        cfg.view().field(HrTables.HR_SALARY_TPL.UPDATE_TIME).form().table().disable(true);
+        cfg.view().field(HrTables.HR_SALARY_TPL.METHOD).form().table().disable(true);
         cfg.view().field(HrTables.HR_SALARY_TPL.METHOD).form().table().disable(true);
         cfg.view().field(HrTables.HR_SALARY_TPL.METHOD_SCRIPT).form().table().disable(true);
         cfg.view().field(HrTables.HR_SALARY_TPL.CODE).form().validate().required();

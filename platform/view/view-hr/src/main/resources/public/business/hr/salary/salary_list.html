@@ -2,7 +2,7 @@
 /**
  * 人员薪酬 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-06 17:58:39
+ * @since 2024-02-06 19:10:59
  */
  -->
  <!DOCTYPE html>
@@ -40,11 +40,10 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 人员 , personId ,typeName=button, isHideInSearch=false -->
+                    <!-- 人员 , personId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('人员')}" class="search-label personId-label">人员</span><span class="search-colon">:</span></div>
-                            <input lay-filter="personId" id="personId" name="personId"  type="hidden" class="layui-input"   />
-                            <button id="personId-button" type="button" action-type="emp-dialog" class="layui-btn layui-btn-primary   " style="width: 150px"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('人员')}" class="search-label personId-label">人员</span><span class="search-colon">:</span></div>
+                        <div id="personId" th:data="${'/service-hr/hr-person/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 基本工资 , baseSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 岗位工资 , postSalary ,typeName=number_input, isHideInSearch=true -->
@@ -81,16 +80,33 @@
                     <!-- 扣除工会 , deductGh ,typeName=number_input, isHideInSearch=true -->
                     <!-- 扣除其他 , duductOther ,typeName=number_input, isHideInSearch=true -->
                     <!-- 子女教育 , personalTaxZnjy ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 子女教育备注 , personalTaxZnjyNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 继续教育 , personalTaxJxjy ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 继续教育备注 , personalTaxJxjyNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 大病医疗 , personalTaxDbyl ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 大病医疗备注 , personalTaxDbylNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 住房贷款 , personalTaxZfdk ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 住房贷款备注 , personalTaxZfdkNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 住房租金 , personalTaxZfzj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 住房租金备注 , personalTaxZfzjNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 赡养老人 , personalTaxSylr ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 赡养老人备注 , personalTaxSylrNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 幼儿照护 , personalTaxErzh ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 幼儿照护备注 , personalTaxErzhNotes ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 工号 , personJobNumber ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 卡号 , personCardNumber ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 企业专项扣除 , personalStatus ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('企业专项扣除')}" class="search-label personalStatus-label">企业专项扣除</span><span class="search-colon">:</span></div>
+
+
+                        <div id="personalStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:180px"></div>
+                    </div>
                     <!-- 备注 , notes ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
-                        <input id="notes" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
+                        <input id="notes" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -139,6 +155,7 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var RADIO_PERSONALSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var AUTH_PREFIX="hr_salary";
 
 

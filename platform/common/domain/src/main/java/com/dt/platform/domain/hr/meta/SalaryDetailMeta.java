@@ -14,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-28 01:39:17
- * @sign 3F1647D88666EDFB2E2FED9F8D82210F
+ * @since 2024-02-06 18:23:19
+ * @sign 9AEEFEF79A44FC43CC191912C6CC4801
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -70,6 +70,16 @@ public class SalaryDetailMeta {
 	 * 工号 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.lang.String> JOB_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,JOB_NUMBER, java.lang.String.class, "工号", "工号", java.lang.String.class, null);
+	
+	/**
+	 * 部门 , 类型: java.lang.String
+	*/
+	public static final String ORG_ID="orgId";
+	
+	/**
+	 * 部门 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.lang.String> ORG_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,ORG_ID, java.lang.String.class, "部门", "部门", java.lang.String.class, null);
 	
 	/**
 	 * 银行名称 , 类型: java.lang.String
@@ -272,6 +282,26 @@ public class SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> COMMISSION_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,COMMISSION_SALARY, java.math.BigDecimal.class, "提成工资", "提成工资", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 计时工资 , 类型: java.math.BigDecimal
+	*/
+	public static final String UNIT_TIME_SALARY="unitTimeSalary";
+	
+	/**
+	 * 计时工资 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> UNIT_TIME_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,UNIT_TIME_SALARY, java.math.BigDecimal.class, "计时工资", "计时工资", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 计件工资 , 类型: java.math.BigDecimal
+	*/
+	public static final String UNIT_NUMBER_SALARY="unitNumberSalary";
+	
+	/**
+	 * 计件工资 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> UNIT_NUMBER_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,UNIT_NUMBER_SALARY, java.math.BigDecimal.class, "计件工资", "计件工资", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 处罚金额 , 类型: java.math.BigDecimal
 	*/
 	public static final String PUNISH_SALARY="punishSalary";
@@ -352,6 +382,16 @@ public class SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> PT_DKJS_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,PT_DKJS, java.math.BigDecimal.class, "抵扣基数", "抵扣基数", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 绩效评级 , 类型: java.lang.String
+	*/
+	public static final String JXPJ_LEVEL="jxpjLevel";
+	
+	/**
+	 * 绩效评级 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.lang.String> JXPJ_LEVEL_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,JXPJ_LEVEL, java.lang.String.class, "绩效评级", "绩效评级", java.lang.String.class, null);
+	
+	/**
 	 * 加班时长 , 类型: java.math.BigDecimal
 	*/
 	public static final String WORK_OVERTIME_H_CNT="workOvertimeHCnt";
@@ -372,6 +412,16 @@ public class SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> LATE_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,LATE_CNT, java.math.BigDecimal.class, "迟到次数", "迟到次数", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 出差次数 , 类型: java.math.BigDecimal
+	*/
+	public static final String BUSINESS_TRIPS_CNT="businessTripsCnt";
+	
+	/**
+	 * 出差次数 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> BUSINESS_TRIPS_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,BUSINESS_TRIPS_CNT, java.math.BigDecimal.class, "出差次数", "出差次数", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 事假天数 , 类型: java.math.BigDecimal
 	*/
 	public static final String PERSONAL_LEAVE_CNT="personalLeaveCnt";
@@ -380,6 +430,16 @@ public class SalaryDetailMeta {
 	 * 事假天数 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> PERSONAL_LEAVE_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,PERSONAL_LEAVE_CNT, java.math.BigDecimal.class, "事假天数", "事假天数", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 年假天数 , 类型: java.math.BigDecimal
+	*/
+	public static final String ANNUAL_LEAVE_CNT="annualLeaveCnt";
+	
+	/**
+	 * 年假天数 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> ANNUAL_LEAVE_CNT_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,ANNUAL_LEAVE_CNT, java.math.BigDecimal.class, "年假天数", "年假天数", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 工作天数 , 类型: java.math.BigDecimal
@@ -652,6 +712,16 @@ public class SalaryDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.math.BigDecimal> WELFAER_PERSON_VALUE_TOTAL_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,WELFAER_PERSON_VALUE_TOTAL, java.math.BigDecimal.class, "个人缴费总计", "个人缴费总计", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 专项抵扣启用 , 类型: java.lang.String
+	*/
+	public static final String PERSONAL_STATUS="personalStatus";
+	
+	/**
+	 * 专项抵扣启用 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.lang.String> PERSONAL_STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,PERSONAL_STATUS, java.lang.String.class, "专项抵扣启用", "专项抵扣启用", java.lang.String.class, null);
+	
+	/**
 	 * 子女教育 , 类型: java.math.BigDecimal
 	*/
 	public static final String PERSONAL_TAX_ZNJY="personalTaxZnjy";
@@ -750,6 +820,16 @@ public class SalaryDetailMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 批次号 , 类型: java.lang.String
+	*/
+	public static final String BATCH_CODE="batchCode";
+	
+	/**
+	 * 批次号 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.SalaryDetail,java.lang.String> BATCH_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.SalaryDetail.class ,BATCH_CODE, java.lang.String.class, "批次号", "批次号", java.lang.String.class, null);
 	
 	/**
 	 * 操作说明 , 类型: java.lang.String
@@ -914,7 +994,7 @@ public class SalaryDetailMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , USER_NAME , ACTION_MONTH , PERSON_ID , JOB_NUMBER , BANK , BANK_ACCOUNT , TPL_ID , ACTION_ID , STATUS , TOTAL_AMOUNT , PAY_AMOUNT , ISSUED_AMOUNT , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , HIGH_TEMPERATURE_SALARY , OTHER_SALARY , COMMISSION_SALARY , PUNISH_SALARY , DAY_SALARY , DEDUCT_KQ , DEDUCT_GH , DEDUCT_OTHER , DEDUCT_PERSONAL_TAX_RED , PT_GRSDS , PT_DKJS , WORK_OVERTIME_H_CNT , LATE_CNT , PERSONAL_LEAVE_CNT , WORK_DAY_CNT , PT_SL_PCT , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFARE_ZFGJJ_VALUE , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_YLBX_VALUE , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_GSBX_VALUE , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_YRBX_VALUE , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYBX_VALUE , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , WELFAER_SYEBX_VALUE , WELFAER_PERSON_VALUE_TOTAL , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , PERSONAL_TAX_TOTAL , EFFECT_TIME , NOTES , OPER_MSG , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL , SALARY_ACTION , EXT_BANK , EXT_BANK_ACCOUNT , PERSON , PERSON_SALARY };
+	public static final String[] $PROPS={ ID , USER_NAME , ACTION_MONTH , PERSON_ID , JOB_NUMBER , ORG_ID , BANK , BANK_ACCOUNT , TPL_ID , ACTION_ID , STATUS , TOTAL_AMOUNT , PAY_AMOUNT , ISSUED_AMOUNT , BASE_SALARY , POST_SALARY , WORKING_YEARS_SALARY , FIXED_SALARY , ACHIEVEMENT_SALARY , OVERTIME_SALARY , COMMUNICATION_SALARY , TRAFFIC_SALARY , HOUSING_SALARY , HIGH_TEMPERATURE_SALARY , OTHER_SALARY , COMMISSION_SALARY , UNIT_TIME_SALARY , UNIT_NUMBER_SALARY , PUNISH_SALARY , DAY_SALARY , DEDUCT_KQ , DEDUCT_GH , DEDUCT_OTHER , DEDUCT_PERSONAL_TAX_RED , PT_GRSDS , PT_DKJS , JXPJ_LEVEL , WORK_OVERTIME_H_CNT , LATE_CNT , BUSINESS_TRIPS_CNT , PERSONAL_LEAVE_CNT , ANNUAL_LEAVE_CNT , WORK_DAY_CNT , PT_SL_PCT , WELFARE_ZFGJJ_BASE , WELFARE_ZFGJJ_PERSON , WELFARE_ZFGJJ_COMPANY , WELFARE_ZFGJJ_VALUE , WELFAER_YLBX_BASE , WELFAER_YLBX_PERSON , WELFAER_YLBX_COMPANY , WELFAER_YLBX_VALUE , WELFAER_GSBX_BASE , WELFAER_GSBX_PERSON , WELFAER_GSBX_COMPANY , WELFAER_GSBX_VALUE , WELFAER_YRBX_BASE , WELFAER_YRBX_PERSON , WELFAER_YRBX_COMPANY , WELFAER_YRBX_VALUE , WELFAER_SYBX_BASE , WELFAER_SYBX_PERSON , WELFAER_SYBX_COMPANY , WELFAER_SYBX_VALUE , WELFAER_SYEBX_BASE , WELFAER_SYEBX_PERSON , WELFAER_SYEBX_COMPANY , WELFAER_SYEBX_VALUE , WELFAER_PERSON_VALUE_TOTAL , PERSONAL_STATUS , PERSONAL_TAX_ZNJY , PERSONAL_TAX_JXJY , PERSONAL_TAX_DBYL , PERSONAL_TAX_ZFDK , PERSONAL_TAX_ZFZJ , PERSONAL_TAX_SYLR , PERSONAL_TAX_ERZH , PERSONAL_TAX_TOTAL , EFFECT_TIME , NOTES , BATCH_CODE , OPER_MSG , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SALARY_TPL , SALARY_ACTION , EXT_BANK , EXT_BANK_ACCOUNT , PERSON , PERSON_SALARY };
 	
 	/**
 	 * 代理类
@@ -976,6 +1056,17 @@ public class SalaryDetailMeta {
 		public SalaryDetail setJobNumber(String jobNumber) {
 			super.change(JOB_NUMBER,super.getJobNumber(),jobNumber);
 			super.setJobNumber(jobNumber);
+			return this;
+		}
+		
+		/**
+		 * 设置 部门
+		 * @param orgId 部门
+		 * @return 当前对象
+		*/
+		public SalaryDetail setOrgId(String orgId) {
+			super.change(ORG_ID,super.getOrgId(),orgId);
+			super.setOrgId(orgId);
 			return this;
 		}
 		
@@ -1200,6 +1291,28 @@ public class SalaryDetailMeta {
 		}
 		
 		/**
+		 * 设置 计时工资
+		 * @param unitTimeSalary 计时工资
+		 * @return 当前对象
+		*/
+		public SalaryDetail setUnitTimeSalary(BigDecimal unitTimeSalary) {
+			super.change(UNIT_TIME_SALARY,super.getUnitTimeSalary(),unitTimeSalary);
+			super.setUnitTimeSalary(unitTimeSalary);
+			return this;
+		}
+		
+		/**
+		 * 设置 计件工资
+		 * @param unitNumberSalary 计件工资
+		 * @return 当前对象
+		*/
+		public SalaryDetail setUnitNumberSalary(BigDecimal unitNumberSalary) {
+			super.change(UNIT_NUMBER_SALARY,super.getUnitNumberSalary(),unitNumberSalary);
+			super.setUnitNumberSalary(unitNumberSalary);
+			return this;
+		}
+		
+		/**
 		 * 设置 处罚金额
 		 * @param punishSalary 处罚金额
 		 * @return 当前对象
@@ -1288,6 +1401,17 @@ public class SalaryDetailMeta {
 		}
 		
 		/**
+		 * 设置 绩效评级
+		 * @param jxpjLevel 绩效评级
+		 * @return 当前对象
+		*/
+		public SalaryDetail setJxpjLevel(String jxpjLevel) {
+			super.change(JXPJ_LEVEL,super.getJxpjLevel(),jxpjLevel);
+			super.setJxpjLevel(jxpjLevel);
+			return this;
+		}
+		
+		/**
 		 * 设置 加班时长
 		 * @param workOvertimeHCnt 加班时长
 		 * @return 当前对象
@@ -1310,6 +1434,17 @@ public class SalaryDetailMeta {
 		}
 		
 		/**
+		 * 设置 出差次数
+		 * @param businessTripsCnt 出差次数
+		 * @return 当前对象
+		*/
+		public SalaryDetail setBusinessTripsCnt(BigDecimal businessTripsCnt) {
+			super.change(BUSINESS_TRIPS_CNT,super.getBusinessTripsCnt(),businessTripsCnt);
+			super.setBusinessTripsCnt(businessTripsCnt);
+			return this;
+		}
+		
+		/**
 		 * 设置 事假天数
 		 * @param personalLeaveCnt 事假天数
 		 * @return 当前对象
@@ -1317,6 +1452,17 @@ public class SalaryDetailMeta {
 		public SalaryDetail setPersonalLeaveCnt(BigDecimal personalLeaveCnt) {
 			super.change(PERSONAL_LEAVE_CNT,super.getPersonalLeaveCnt(),personalLeaveCnt);
 			super.setPersonalLeaveCnt(personalLeaveCnt);
+			return this;
+		}
+		
+		/**
+		 * 设置 年假天数
+		 * @param annualLeaveCnt 年假天数
+		 * @return 当前对象
+		*/
+		public SalaryDetail setAnnualLeaveCnt(BigDecimal annualLeaveCnt) {
+			super.change(ANNUAL_LEAVE_CNT,super.getAnnualLeaveCnt(),annualLeaveCnt);
+			super.setAnnualLeaveCnt(annualLeaveCnt);
 			return this;
 		}
 		
@@ -1618,6 +1764,17 @@ public class SalaryDetailMeta {
 		}
 		
 		/**
+		 * 设置 专项抵扣启用
+		 * @param personalStatus 专项抵扣启用
+		 * @return 当前对象
+		*/
+		public SalaryDetail setPersonalStatus(String personalStatus) {
+			super.change(PERSONAL_STATUS,super.getPersonalStatus(),personalStatus);
+			super.setPersonalStatus(personalStatus);
+			return this;
+		}
+		
+		/**
 		 * 设置 子女教育
 		 * @param personalTaxZnjy 子女教育
 		 * @return 当前对象
@@ -1724,6 +1881,17 @@ public class SalaryDetailMeta {
 		public SalaryDetail setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 批次号
+		 * @param batchCode 批次号
+		 * @return 当前对象
+		*/
+		public SalaryDetail setBatchCode(String batchCode) {
+			super.change(BATCH_CODE,super.getBatchCode(),batchCode);
+			super.setBatchCode(batchCode);
 			return this;
 		}
 		
@@ -1948,7 +2116,9 @@ public class SalaryDetailMeta {
 			inst.setIssuedAmount(this.getIssuedAmount());
 			inst.setWelfaerSybxBase(this.getWelfaerSybxBase());
 			inst.setWelfaerGsbxBase(this.getWelfaerGsbxBase());
+			inst.setPersonalStatus(this.getPersonalStatus());
 			inst.setWelfaerSybxCompany(this.getWelfaerSybxCompany());
+			inst.setUnitTimeSalary(this.getUnitTimeSalary());
 			inst.setWelfaerYrbxBase(this.getWelfaerYrbxBase());
 			inst.setWelfaerSyebxBase(this.getWelfaerSyebxBase());
 			inst.setVersion(this.getVersion());
@@ -1967,11 +2137,14 @@ public class SalaryDetailMeta {
 			inst.setStatus(this.getStatus());
 			inst.setPersonalTaxZfdk(this.getPersonalTaxZfdk());
 			inst.setWelfaerSyebxPerson(this.getWelfaerSyebxPerson());
+			inst.setJxpjLevel(this.getJxpjLevel());
 			inst.setWelfaerSybxPerson(this.getWelfaerSybxPerson());
+			inst.setBusinessTripsCnt(this.getBusinessTripsCnt());
 			inst.setPunishSalary(this.getPunishSalary());
 			inst.setWelfaerYlbxBase(this.getWelfaerYlbxBase());
 			inst.setBaseSalary(this.getBaseSalary());
 			inst.setPersonalTaxSylr(this.getPersonalTaxSylr());
+			inst.setOrgId(this.getOrgId());
 			inst.setPersonalTaxZnjy(this.getPersonalTaxZnjy());
 			inst.setPtSlPct(this.getPtSlPct());
 			inst.setWelfaerGsbxPerson(this.getWelfaerGsbxPerson());
@@ -1986,6 +2159,7 @@ public class SalaryDetailMeta {
 			inst.setWelfaerYrbxPerson(this.getWelfaerYrbxPerson());
 			inst.setOperMsg(this.getOperMsg());
 			inst.setPersonalTaxZfzj(this.getPersonalTaxZfzj());
+			inst.setBatchCode(this.getBatchCode());
 			inst.setWorkingYearsSalary(this.getWorkingYearsSalary());
 			inst.setAchievementSalary(this.getAchievementSalary());
 			inst.setUpdateTime(this.getUpdateTime());
@@ -1997,6 +2171,8 @@ public class SalaryDetailMeta {
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setWorkDayCnt(this.getWorkDayCnt());
+			inst.setAnnualLeaveCnt(this.getAnnualLeaveCnt());
+			inst.setUnitNumberSalary(this.getUnitNumberSalary());
 			inst.setTenantId(this.getTenantId());
 			inst.setPostSalary(this.getPostSalary());
 			inst.setOvertimeSalary(this.getOvertimeSalary());

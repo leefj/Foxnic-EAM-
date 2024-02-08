@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息VO类型
  * <p>人员信息 , 数据表 hr_person 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-22 08:19:05
+ * @since 2024-02-02 07:35:52
  * @sign C03987DE16DA5CA6377AAE324A7C092C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -451,6 +451,7 @@ public class PersonVO extends Person {
 		inst.setFirstWorkDate(this.getFirstWorkDate());
 		inst.setPayrollCard(this.getPayrollCard());
 		inst.setWeixinId(this.getWeixinId());
+		inst.setBatchCode(this.getBatchCode());
 		inst.setEmployeeId(this.getEmployeeId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setJoinPartDate(this.getJoinPartDate());
@@ -603,6 +604,7 @@ public class PersonVO extends Person {
 			this.setFirstWorkDate(DataParser.parse(Date.class, map.get(PersonVOMeta.FIRST_WORK_DATE)));
 			this.setPayrollCard(DataParser.parse(String.class, map.get(PersonVOMeta.PAYROLL_CARD)));
 			this.setWeixinId(DataParser.parse(String.class, map.get(PersonVOMeta.WEIXIN_ID)));
+			this.setBatchCode(DataParser.parse(String.class, map.get(PersonVOMeta.BATCH_CODE)));
 			this.setEmployeeId(DataParser.parse(String.class, map.get(PersonVOMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(PersonVOMeta.UPDATE_TIME)));
 			this.setJoinPartDate(DataParser.parse(Date.class, map.get(PersonVOMeta.JOIN_PART_DATE)));
@@ -696,6 +698,7 @@ public class PersonVO extends Person {
 				this.setFirstWorkDate( (Date)map.get(PersonVOMeta.FIRST_WORK_DATE));
 				this.setPayrollCard( (String)map.get(PersonVOMeta.PAYROLL_CARD));
 				this.setWeixinId( (String)map.get(PersonVOMeta.WEIXIN_ID));
+				this.setBatchCode( (String)map.get(PersonVOMeta.BATCH_CODE));
 				this.setEmployeeId( (String)map.get(PersonVOMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)map.get(PersonVOMeta.UPDATE_TIME));
 				this.setJoinPartDate( (Date)map.get(PersonVOMeta.JOIN_PART_DATE));
@@ -802,6 +805,7 @@ public class PersonVO extends Person {
 			this.setFirstWorkDate(DataParser.parse(Date.class, r.getValue(PersonVOMeta.FIRST_WORK_DATE)));
 			this.setPayrollCard(DataParser.parse(String.class, r.getValue(PersonVOMeta.PAYROLL_CARD)));
 			this.setWeixinId(DataParser.parse(String.class, r.getValue(PersonVOMeta.WEIXIN_ID)));
+			this.setBatchCode(DataParser.parse(String.class, r.getValue(PersonVOMeta.BATCH_CODE)));
 			this.setEmployeeId(DataParser.parse(String.class, r.getValue(PersonVOMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PersonVOMeta.UPDATE_TIME)));
 			this.setJoinPartDate(DataParser.parse(Date.class, r.getValue(PersonVOMeta.JOIN_PART_DATE)));
@@ -869,6 +873,7 @@ public class PersonVO extends Person {
 				this.setFirstWorkDate( (Date)r.getValue(PersonVOMeta.FIRST_WORK_DATE));
 				this.setPayrollCard( (String)r.getValue(PersonVOMeta.PAYROLL_CARD));
 				this.setWeixinId( (String)r.getValue(PersonVOMeta.WEIXIN_ID));
+				this.setBatchCode( (String)r.getValue(PersonVOMeta.BATCH_CODE));
 				this.setEmployeeId( (String)r.getValue(PersonVOMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)r.getValue(PersonVOMeta.UPDATE_TIME));
 				this.setJoinPartDate( (Date)r.getValue(PersonVOMeta.JOIN_PART_DATE));

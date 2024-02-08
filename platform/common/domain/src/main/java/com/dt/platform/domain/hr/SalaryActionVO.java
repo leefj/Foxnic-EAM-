@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬发放VO类型
  * <p>薪酬发放 , 数据表 hr_salary_action 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-27 21:41:01
+ * @since 2024-01-28 11:51:19
  * @sign D2833AFDC8E870D34CD2E6393C7E0ED7
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -407,6 +407,7 @@ public class SalaryActionVO extends SalaryAction {
 		inst.setLabel(this.getLabel());
 		inst.setActionMonth(this.getActionMonth());
 		inst.setVersion(this.getVersion());
+		inst.setWithTpl(this.getWithTpl());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
@@ -501,6 +502,7 @@ public class SalaryActionVO extends SalaryAction {
 			this.setLabel(DataParser.parse(String.class, map.get(SalaryActionVOMeta.LABEL)));
 			this.setActionMonth(DataParser.parse(String.class, map.get(SalaryActionVOMeta.ACTION_MONTH)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(SalaryActionVOMeta.VERSION)));
+			this.setWithTpl(DataParser.parse(String.class, map.get(SalaryActionVOMeta.WITH_TPL)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(SalaryActionVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(SalaryActionVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(SalaryActionVOMeta.CREATE_TIME)));
@@ -535,6 +537,7 @@ public class SalaryActionVO extends SalaryAction {
 				this.setLabel( (String)map.get(SalaryActionVOMeta.LABEL));
 				this.setActionMonth( (String)map.get(SalaryActionVOMeta.ACTION_MONTH));
 				this.setVersion( (Integer)map.get(SalaryActionVOMeta.VERSION));
+				this.setWithTpl( (String)map.get(SalaryActionVOMeta.WITH_TPL));
 				this.setCreateBy( (String)map.get(SalaryActionVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(SalaryActionVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(SalaryActionVOMeta.CREATE_TIME));
@@ -582,6 +585,7 @@ public class SalaryActionVO extends SalaryAction {
 			this.setLabel(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.LABEL)));
 			this.setActionMonth(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.ACTION_MONTH)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(SalaryActionVOMeta.VERSION)));
+			this.setWithTpl(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.WITH_TPL)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(SalaryActionVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(SalaryActionVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(SalaryActionVOMeta.CREATE_TIME)));
@@ -603,6 +607,7 @@ public class SalaryActionVO extends SalaryAction {
 				this.setLabel( (String)r.getValue(SalaryActionVOMeta.LABEL));
 				this.setActionMonth( (String)r.getValue(SalaryActionVOMeta.ACTION_MONTH));
 				this.setVersion( (Integer)r.getValue(SalaryActionVOMeta.VERSION));
+				this.setWithTpl( (String)r.getValue(SalaryActionVOMeta.WITH_TPL));
 				this.setCreateBy( (String)r.getValue(SalaryActionVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(SalaryActionVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(SalaryActionVOMeta.CREATE_TIME));

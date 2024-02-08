@@ -2,7 +2,7 @@
 /**
  * 薪酬明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-28 01:39:18
+ * @since 2024-02-06 18:23:20
  */
  -->
  <!DOCTYPE html>
@@ -41,6 +41,7 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 人员 , personId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 部门 , orgId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 银行名称 , bank ,typeName=text_input, isHideInSearch=true -->
                     <!-- 银行账户 , bankAccount ,typeName=text_input, isHideInSearch=true -->
                     <!-- 模版 , tplId ,typeName=select_box, isHideInSearch=true -->
@@ -67,6 +68,8 @@
                     <!-- 高温补贴 , highTemperatureSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 其他补贴 , otherSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 提成工资 , commissionSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 计时工资 , unitTimeSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 计件工资 , unitNumberSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 处罚金额 , punishSalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 每日工资 , daySalary ,typeName=number_input, isHideInSearch=true -->
                     <!-- 扣除考勤 , deductKq ,typeName=number_input, isHideInSearch=true -->
@@ -75,9 +78,12 @@
                     <!-- 个税抵扣 , deductPersonalTaxRed ,typeName=number_input, isHideInSearch=true -->
                     <!-- 个人所得税 , ptGrsds ,typeName=number_input, isHideInSearch=true -->
                     <!-- 抵扣基数 , ptDkjs ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 绩效评级 , jxpjLevel ,typeName=text_input, isHideInSearch=true -->
                     <!-- 加班时长 , workOvertimeHCnt ,typeName=number_input, isHideInSearch=true -->
                     <!-- 迟到次数 , lateCnt ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 出差次数 , businessTripsCnt ,typeName=number_input, isHideInSearch=true -->
                     <!-- 事假天数 , personalLeaveCnt ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 年假天数 , annualLeaveCnt ,typeName=number_input, isHideInSearch=true -->
                     <!-- 工作天数 , workDayCnt ,typeName=number_input, isHideInSearch=true -->
                     <!-- 税率 , ptSlPct ,typeName=number_input, isHideInSearch=true -->
                     <!-- 住房公积金基数 , welfareZfgjjBase ,typeName=number_input, isHideInSearch=true -->
@@ -115,7 +121,10 @@
                     <!-- 专项扣除总计 , personalTaxTotal ,typeName=number_input, isHideInSearch=true -->
                     <!-- 生效时间 , effectTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 操作说明 , operMsg ,typeName=text_area, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 卡号 , personCardNumber ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 工号 , personJobNumber ,typeName=text_input, isHideInSearch=true -->
                     <!-- 月份 , actionMonth ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('月份')}" class="search-label actionMonth-label">月份</span><span class="search-colon">:</span></div>
@@ -131,10 +140,22 @@
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('工号')}" class="search-label jobNumber-label">工号</span><span class="search-colon">:</span></div>
                         <input id="jobNumber" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
-                    <!-- 操作说明 , operMsg ,typeName=text_area, isHideInSearch=false -->
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 专项抵扣启用 , personalStatus ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('操作说明')}" class="search-label operMsg-label">操作说明</span><span class="search-colon">:</span></div>
-                        <input id="operMsg" class="layui-input search-input" style="width: 180px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('专项抵扣启用')}" class="search-label personalStatus-label">专项抵扣启用</span><span class="search-colon">:</span></div>
+
+
+                        <div id="personalStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:180px"></div>
+                    </div>
+                    <!-- 批次号 , batchCode ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('批次号')}" class="search-label batchCode-label">批次号</span><span class="search-colon">:</span></div>
+                        <input id="batchCode" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -145,6 +166,7 @@
             <!-- 按钮区域 -->
             <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
                 <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多','','cmp:table.search')}">更多</span></button>
             </div>
         </div>
 
@@ -187,6 +209,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.SalaryPersonDetailStatusEnum')}]];
+    var RADIO_PERSONALSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var AUTH_PREFIX="hr_salary_detail";
 
 

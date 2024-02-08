@@ -2,7 +2,7 @@
 /**
  * 薪酬发放 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-27 21:41:03
+ * @since 2024-01-28 11:51:21
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-9345-content">
+        <div class="layui-row form-row" id="random-2285-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -65,6 +65,14 @@
                     <div class="layui-form-label "><div th:text="${lang.translate('模版')}">模版</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
                         <div id="tplId" input-type="select" th:data="${'/service-hr/hr-salary-tpl/query-paged-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- radio_box : 跟随模版 ,  withTpl  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('跟随模版')}">跟随模版</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="withTpl" lay-filter="withTpl" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==1)}">
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -103,7 +111,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-3660-content">
+        <div class="layui-row form-row" id="random-9587-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -143,7 +151,8 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.SalaryActionStatusEnum')}]];
     var RADIO_LABEL_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.SalaryActionLabelEnum')}]];
-    var VALIDATE_CONFIG={"name":{"labelInForm":"名称","inputType":"text_input","required":true},"start":{"date":true,"labelInForm":"开始日期","inputType":"date_input","required":true},"end":{"date":true,"labelInForm":"结束日期","inputType":"date_input","required":true},"actionMonth":{"labelInForm":"月份","inputType":"select_box","required":true},"tplId":{"labelInForm":"模版","inputType":"select_box","required":true}};
+    var RADIO_WITHTPL_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
+    var VALIDATE_CONFIG={"name":{"labelInForm":"名称","inputType":"text_input","required":true},"start":{"date":true,"labelInForm":"开始日期","inputType":"date_input","required":true},"end":{"date":true,"labelInForm":"结束日期","inputType":"date_input","required":true},"actionMonth":{"labelInForm":"月份","inputType":"select_box","required":true},"tplId":{"labelInForm":"模版","inputType":"select_box","required":true},"withTpl":{"labelInForm":"跟随模版","inputType":"radio_box","required":true}};
     var AUTH_PREFIX="hr_salary_action";
 
 

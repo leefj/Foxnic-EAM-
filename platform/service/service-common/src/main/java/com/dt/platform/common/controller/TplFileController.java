@@ -1,5 +1,6 @@
 package com.dt.platform.common.controller;
 
+import java.io.*;
 import java.util.List;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -28,7 +29,6 @@ import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.commons.io.StreamUtil;
 import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
-import java.io.InputStream;
 import com.dt.platform.domain.common.meta.TplFileMeta;
 import com.dt.platform.domain.common.CodeRegister;
 import io.swagger.annotations.Api;
@@ -275,6 +275,37 @@ public class TplFileController extends SuperController {
         // 下载
         DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
     }
+
+    @SentinelResource(value = TplFileServiceProxy.SAVE_TEMP_FILE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(TplFileServiceProxy.SAVE_TEMP_FILE)
+    public File saveTempFile(InputStream is, String fileName){
+        int BYTESIZE=1024;
+        String path = System.getProperty("java.io.tmpdir");
+        File temp = new File(path +File.separator+ fileName);
+        BufferedInputStream bis = null;
+        BufferedOutputStream bos = null;
+        try{
+            bis = new BufferedInputStream(is);
+            bos = new BufferedOutputStream(new FileOutputStream(temp));                            //把文件流转为文件，保存在临时目录
+            int len = 0;
+            byte[] buf = new byte[10*BYTESIZE];                                                    //缓冲区
+            while((len=bis.read(buf)) != -1){
+                bos.write(buf, 0, len);
+            }
+            bos.flush();
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally{
+            try {
+                if(bos!=null) bos.close();
+                if(bis!=null) bis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return temp;
+    }
+
 
     @SentinelResource(value = TplFileServiceProxy.IMPORT_EXCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(TplFileServiceProxy.IMPORT_EXCEL)

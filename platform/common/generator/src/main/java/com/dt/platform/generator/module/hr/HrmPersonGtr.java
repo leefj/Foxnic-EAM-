@@ -64,8 +64,6 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON.EMPLOYEE_IDENTITY_STATUS,
                         HrTables.HR_PERSON.JOB_NUMBER,
                         HrTables.HR_PERSON.SALARY_TPL_ID
-                        ,
-
                 },
                 new Object[]{
                         HrTables.HR_PERSON.NAME,
@@ -80,7 +78,7 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON.IDENTITY_CARD,
                 },
                 new Object[]{
-
+                     //   HrTables.HR_PERSON.BAT,
                         HrTables.HR_PERSON.EMPLOYMENT_DATE,
                         HrTables.HR_PERSON.CONTRACT_START_DATE,
                 }
@@ -348,6 +346,9 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                 }
         );
 
+
+        cfg.view().list().addToolButton("导入","importData","import-data");
+        cfg.view().list().addToolButton("导出","exportData","export-data");
 
         //文件生成覆盖模式
         cfg.overrides()

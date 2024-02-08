@@ -42,12 +42,13 @@ modify_date="2024/01/23"
 app_range=eam
 function qa(){
   echo "如果正常脚本执行后，应用无法访问或一键安装脚本无法进行"
-  echo "1、仅支持Redhat、CentOS 7.9 8.0版本。"
-  echo "2、请检查yum是否正确配置。"
-  echo "3、请检查外部或内部防火墙、网络策略是否开通"
-  echo "4、检查端口是否正常，默认应用端口:$app_port,流程引擎端口:$bpm_port 命令：netstat -ant|grep LISTEN"
+  echo "1、仅在支Redhat、CentOS 7.9、8.0版本版本上测试过，其他同源应该也能部署，类似ubtuntu、arm版本linux无法使用本脚本一键安装"
+  echo "2、请检查yum是否正确配置，一键安装必须确保yum能支持使用"
+  echo "3、请检查外部或内部防火墙、网络策略是否开通，需要下载mysql、应用安装包，如不方便开通，可以使用离线方式一键安装，自行参考网盘中的文档"
+  echo "4、检查端口是否正常，没有已在使用，默认应用端口:$app_port,流程引擎端口:$bpm_port 命令：netstat -ant|grep LISTEN"
   echo "5、检查应用日志，看启动是否报错"
   echo "6、可能配置较低，启动需要的时间,请稍后在访问下"
+  echo "7、服务端口冲突，相同的服务已在运行，处理后才能重新安装"
   echo "******* 相关使用手册、维护手册、部署手册见百度网盘,网盘地址在git:https://gitee.com/lank/eam *****"
   return 0
 }
@@ -96,7 +97,7 @@ if [[ $yumRes -ne 0 ]];then
   echo ""
   echo ""
   echo ""
-	echo "!!! install check error,yum command not exist,please install it first!"
+	echo "!!! install check error,yum command not exist,please install it first!，请检查yum运行是否正常，安装前请先确保yum必须正常能使用。"
 	echo ""
   echo ""
   echo ""
@@ -119,10 +120,11 @@ if [[ $netstatRes -ne 0 ]];then
   echo ""
   echo ""
   echo ""
-	echo "!!!install check error,netstat command not exist,please install it first!"
+	echo "！！！install check error,netstat command not exist,please install it first，缺少相关netstat等相关命令,请检查yum运行是否正常。"
 	echo ""
   echo ""
   echo ""
+	qa
 	exit 1
 fi
 ################################################################ check port
@@ -131,10 +133,11 @@ if [[ $db_port_cnt -ne 0 ]];then
 	echo ""
   echo ""
   echo ""
-	echo "install check error,db_port:$db_port already in use."
+	echo "！！！install check error,db_port:$db_port already in use，相关的服务已在运行，请先处理。"
 	echo ""
   echo ""
   echo ""
+	qa
 	exit 1
 fi
 app_port_cnt=`netstat -ant|grep LISTEN|grep ":$app_port"|wc -l`
@@ -142,10 +145,11 @@ if [[ $app_port_cnt -ne 0 ]];then
 	echo ""
   echo ""
   echo ""
-	echo "install check error,app_port:$app_port already in use."
+	echo "！！！install check error,app_port:$app_port already in use，相关的服务已在运行，请先处理。"
 	echo ""
   echo ""
   echo ""
+  qa
 	exit 1
 fi
 bpm_port_cnt=`netstat -ant|grep LISTEN|grep ":$bpm_port"|wc -l`
@@ -153,10 +157,11 @@ if [[ $bpm_port_cnt -ne 0 ]];then
 	echo ""
   echo ""
   echo ""
-	echo "install check error,bpm_port:$bpm_port already in use."
+	echo "！！！install check error,bpm_port:$bpm_port already in use，相关的服务已在运行，请先处理。"
 	echo ""
   echo ""
   echo ""
+	qa
 	exit 1
 fi
 ################################################################ Install Function
@@ -623,17 +628,20 @@ function adjustParameter(){
 yum -y install lsof net-tools traceroute
 lsofCnt=`rpm -qa|grep lsof|wc -l`
 if [[ $lsofCnt -eq 0 ]];then
-  echo "yum configuration is not working properly, please baidu how to configure it"
+  echo "！！！yum configuration is not working properly, please baidu how to configure it，必须确保yum能正常使用"
+  qa
   exit 1
 fi
 ntCnt=`rpm -qa|grep net-tools|wc -l`
 if [[ $ntCnt -eq 0 ]];then
-  echo "yum configuration is not working properly, please baidu how to configure it"
+  echo "！！！yum configuration is not working properly, please baidu how to configure it，必须确保yum能正常使用"
+  qa
   exit 1
 fi
 trCnt=`rpm -qa|grep traceroute|wc -l`
 if [[ $trCnt -eq 0 ]];then
-  echo "yum configuration is not working properly, please baidu how to configure it"
+  echo "！！！yum configuration is not working properly, please baidu how to configure it，必须确保yum能正常使用"
+  qa
   exit 1
 fi
 
@@ -646,6 +654,7 @@ else
   echo "now support redhat 7.9,6.0"
   echo "now support centos 7.9,6.0"
   echo "other os not support!"
+  qa
   exit 1
 fi
 
@@ -654,7 +663,8 @@ echo "start to adjust linux parameter"
 adjustParameter
 total_mem=`free -m|grep Mem|awk '{print $2}'`
 if [[ $total_mem -lt 3500 ]];then
-  echo "your system memory:${total_mem}m,suggest 8GB or more of memory. reason is:host running process include(2 jars,1 mysql,1 tengine,1 redis)"
+  echo "！！！your system memory:${total_mem}m,suggest 8GB or more of memory. reason is:host running process include(2 jars,1 mysql,1 tengine,1 redis)，内存太低了"
+  qa
   exit 1
 fi
 ## download mysql start
@@ -740,8 +750,9 @@ fi
 which $JAVA>/dev/null
 java_command=$?
 if [[ $java_command -eq 1 ]];then
-	echo "install error,java command:$JAVA not exist,please install java 1.8.200+(just support java 1.8) with yum command";
+	echo "！！！install error,java command:$JAVA not exist,please install java 1.8.200+(just support java 1.8) with yum command，java没有识别";
 	clearTips
+	qa
 	exit 1
 fi
 #################################################################### download java finish
@@ -787,7 +798,8 @@ fi
 touch $app_soft_name
 app_size=`du -sm $app_soft_name|awk '{print $1}'`
 if [[ $app_size -lt 80 ]];then
-  echo "app soft file maybe not right!,you can manually download from http://resource.rainbooow.com/upload/app_release_last.tar.gz"
+  echo "app soft file maybe not right!,you can manually download from http://resource.rainbooow.com/upload/app_release_last.tar.gz，应用安装包没有识别"
+  qa
   exit 1
 fi
 #################################################################### download app finish
@@ -796,16 +808,18 @@ fi
 verifySoft $app_soft
 app_soft_VR=$?
 if [[ $app_soft_VR -eq 1 ]];then
-	echo "install error,app_soft:$app_soft not exist";
+	echo "install error,app_soft:$app_soft not exist，安装位置不能创建";
 	clearTips
+	qa
 	exit 1
 fi
 #verify mysql
 verifySoft $mysql_soft
 mysql_soft_VR=$?
 if [[ $mysql_soft_VR -eq 1 ]];then
-	echo "install error,mysql_soft:$mysql_soft not exist";
+	echo "install error,mysql_soft:$mysql_soft not exist，mysql软件包未识别";
 	clearTips
+	qa
 	exit 1
 fi
 #verify java
@@ -813,8 +827,9 @@ if [[ $java_soft_remote -eq 1 ]];then
   verifySoft $java_soft
   java_soft_VR=$?
   if [[ $java_soft_VR -eq 1 ]];then
-    echo "install error,java_soft:$java_soft not exist";
+    echo "install error,java_soft:$java_soft not exist，安装java失败";
     clearTips
+    qa
     exit 1
   fi
 fi
@@ -826,14 +841,16 @@ installMysql
 which $MYSQL>/dev/null
 mysql_command=$?
 if [[ $mysql_command -eq 1 ]];then
-	echo "install error,mysql command:$MYSQL not exist,mysql server install error.";
+	echo "install error,mysql command:$MYSQL not exist,mysql server install error，安装mysql失败";
 	clearTips
+	qa
 	exit 1
 fi
 db_port_cnt=`netstat -ant|grep LISTEN|grep ":$db_port"|wc -l`
 if [[ $db_port_cnt -eq 0 ]];then
-	echo "install check error,db_port:$db_port not exist,mysql server may not running."
+	echo "install check error,db_port:$db_port not exist,mysql server may not running，安装mysql失败"
 	clearTips
+	qa
 	exit 1
 else
 	echo "mysql install success,password:$db_pwd"
@@ -942,6 +959,7 @@ echo "** 项目源代码地址:https://gitee.com/lank/eam"
 echo "** 相关使用手册、维护手册、部署手册等在百度网盘，链接: https://pan.baidu.com/s/1d6Yvszugq2fdGNEsW8ijmQ 提取码: lm6i  "
 echo "---------------------------------------------- end ---------------------------------------"
 qa
+
 exit 0
 #install finish
 ##########################################################################################

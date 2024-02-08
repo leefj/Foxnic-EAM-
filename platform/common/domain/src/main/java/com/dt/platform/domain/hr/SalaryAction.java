@@ -26,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 薪酬发放
  * <p>薪酬发放 , 数据表 hr_salary_action 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-27 21:41:01
- * @sign 45E1DD732738934194F705101E4108B9
+ * @since 2024-01-28 11:51:19
+ * @sign 0E6B7E2EE7118202FC6A92C23E8769F2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -87,6 +87,12 @@ public class SalaryAction extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="模版" , notes = "模版" , example = "717722780455403520")
 	private String tplId;
+	
+	/**
+	 * 跟随模版：跟随模版
+	*/
+	@ApiModelProperty(required = false,value="跟随模版" , notes = "跟随模版")
+	private String withTpl;
 	
 	/**
 	 * 备注：备注
@@ -324,6 +330,25 @@ public class SalaryAction extends Entity {
 	*/
 	public SalaryAction setTplId(String tplId) {
 		this.tplId=tplId;
+		return this;
+	}
+	
+	/**
+	 * 获得 跟随模版<br>
+	 * 跟随模版
+	 * @return 跟随模版
+	*/
+	public String getWithTpl() {
+		return withTpl;
+	}
+	
+	/**
+	 * 设置 跟随模版
+	 * @param withTpl 跟随模版
+	 * @return 当前对象
+	*/
+	public SalaryAction setWithTpl(String withTpl) {
+		this.withTpl=withTpl;
 		return this;
 	}
 	
@@ -696,6 +721,7 @@ public class SalaryAction extends Entity {
 		inst.setLabel(this.getLabel());
 		inst.setActionMonth(this.getActionMonth());
 		inst.setVersion(this.getVersion());
+		inst.setWithTpl(this.getWithTpl());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
@@ -778,6 +804,7 @@ public class SalaryAction extends Entity {
 			this.setLabel(DataParser.parse(String.class, map.get(SalaryActionMeta.LABEL)));
 			this.setActionMonth(DataParser.parse(String.class, map.get(SalaryActionMeta.ACTION_MONTH)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(SalaryActionMeta.VERSION)));
+			this.setWithTpl(DataParser.parse(String.class, map.get(SalaryActionMeta.WITH_TPL)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(SalaryActionMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(SalaryActionMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(SalaryActionMeta.CREATE_TIME)));
@@ -802,6 +829,7 @@ public class SalaryAction extends Entity {
 				this.setLabel( (String)map.get(SalaryActionMeta.LABEL));
 				this.setActionMonth( (String)map.get(SalaryActionMeta.ACTION_MONTH));
 				this.setVersion( (Integer)map.get(SalaryActionMeta.VERSION));
+				this.setWithTpl( (String)map.get(SalaryActionMeta.WITH_TPL));
 				this.setCreateBy( (String)map.get(SalaryActionMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(SalaryActionMeta.DELETED));
 				this.setCreateTime( (Date)map.get(SalaryActionMeta.CREATE_TIME));
@@ -839,6 +867,7 @@ public class SalaryAction extends Entity {
 			this.setLabel(DataParser.parse(String.class, r.getValue(SalaryActionMeta.LABEL)));
 			this.setActionMonth(DataParser.parse(String.class, r.getValue(SalaryActionMeta.ACTION_MONTH)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(SalaryActionMeta.VERSION)));
+			this.setWithTpl(DataParser.parse(String.class, r.getValue(SalaryActionMeta.WITH_TPL)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(SalaryActionMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(SalaryActionMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(SalaryActionMeta.CREATE_TIME)));
@@ -860,6 +889,7 @@ public class SalaryAction extends Entity {
 				this.setLabel( (String)r.getValue(SalaryActionMeta.LABEL));
 				this.setActionMonth( (String)r.getValue(SalaryActionMeta.ACTION_MONTH));
 				this.setVersion( (Integer)r.getValue(SalaryActionMeta.VERSION));
+				this.setWithTpl( (String)r.getValue(SalaryActionMeta.WITH_TPL));
 				this.setCreateBy( (String)r.getValue(SalaryActionMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(SalaryActionMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(SalaryActionMeta.CREATE_TIME));
