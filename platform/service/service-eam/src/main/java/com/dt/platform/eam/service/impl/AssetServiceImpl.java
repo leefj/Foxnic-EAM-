@@ -10,6 +10,7 @@ import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.*;
+import com.dt.platform.constants.enums.hr.PersonDataExportColumnEnum;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.eam.common.ResetOnCloseInputStream;

@@ -1,9 +1,9 @@
 package com.dt.platform.hr.controller;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
 import com.alibaba.fastjson.JSONObject;
@@ -55,7 +55,6 @@ import com.dt.platform.hr.service.IPersonService;
 import com.github.foxnic.api.validate.annotations.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -134,7 +133,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
 		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.YEAR_DAYS, value = "年假天数", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -284,7 +284,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
 		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.YEAR_DAYS, value = "年假天数", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE, PersonVOMeta.SEARCH_FIELD, PersonVOMeta.FUZZY_FIELD, PersonVOMeta.SEARCH_VALUE, PersonVOMeta.DIRTY_FIELDS, PersonVOMeta.SORT_FIELD, PersonVOMeta.SORT_TYPE, PersonVOMeta.DATA_ORIGIN, PersonVOMeta.QUERY_LOGIC, PersonVOMeta.REQUEST_ACTION, PersonVOMeta.IDS })
@@ -356,7 +357,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
 		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.YEAR_DAYS, value = "年假天数", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE, PersonVOMeta.SEARCH_FIELD, PersonVOMeta.FUZZY_FIELD, PersonVOMeta.SEARCH_VALUE, PersonVOMeta.DIRTY_FIELDS, PersonVOMeta.SORT_FIELD, PersonVOMeta.SORT_TYPE, PersonVOMeta.DATA_ORIGIN, PersonVOMeta.QUERY_LOGIC, PersonVOMeta.REQUEST_ACTION, PersonVOMeta.IDS })
@@ -487,7 +489,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
 		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.YEAR_DAYS, value = "年假天数", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE })
     @SentinelResource(value = PersonServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -560,7 +563,8 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SALARY_NOTES, value = "薪酬备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
 		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.YEAR_DAYS, value = "年假天数", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = PersonServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -570,7 +574,8 @@ public class PersonController extends SuperController {
         PagedList<Person> list = personService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         personService.dao().fill(list).with("employee").with(PersonMeta.SALARY).with(PersonMeta.BANK).with(PersonMeta.SALARY_TPL).with(PersonMeta.POSITION).with(PersonMeta.PROFESSIONAL_LEVEL).with(PersonMeta.RANK).with(PersonMeta.EMPLOYEE_IDENTITY).with(PersonMeta.EDUCATION_DATA).with(PersonMeta.BLOOD_TYPE_DICT).with(PersonMeta.SEX_DICT).with(PersonMeta.MARITAL_STATUS_DICT).with(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT).with(PersonMeta.POLITIC_COUNTENANCE_DATA).execute();
-        List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
+
+		List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
         personService.dao().join(employee, org.github.foxnic.web.domain.hrm.Person.class);
         result.success(true).data(list);
         return result;
@@ -643,12 +648,80 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
-    @SentinelResource(value = PersonServiceProxy.QUERY_PERSON_NOT_SALARY, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-    @PostMapping(PersonServiceProxy.QUERY_PERSON_NOT_SALARY)
-    public Result<PagedList<Person>> queryNotSalaryPagedList(PersonVO sample) {
+    @SentinelResource(value = PersonServiceProxy.JOBNUMBER_DIFF_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonServiceProxy.JOBNUMBER_DIFF_LIST)
+    public Result<PagedList<Person>> jobnumber_diff_list(PersonVO sample) {
+        Result<PagedList<Person>> result = new Result<>();
+        ConditionExpr expr = new ConditionExpr();
+        expr.and("job_number in (select a.job_number from hr_person a,hrm_employee b where a.employee_id=b.id and a.job_number<>b.badge)");
+        PagedList<Person> list = personService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        personService.dao().fill(list).with("employee").with(PersonMeta.SALARY).with(PersonMeta.BANK).with(PersonMeta.SALARY_TPL).with(PersonMeta.POSITION).with(PersonMeta.PROFESSIONAL_LEVEL).with(PersonMeta.RANK).with(PersonMeta.EMPLOYEE_IDENTITY).with(PersonMeta.EDUCATION_DATA).with(PersonMeta.BLOOD_TYPE_DICT).with(PersonMeta.SEX_DICT).with(PersonMeta.MARITAL_STATUS_DICT).with(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT).with(PersonMeta.POLITIC_COUNTENANCE_DATA).execute();
+        List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
+        personService.dao().join(employee, org.github.foxnic.web.domain.hrm.Person.class);
+        result.success(true).data(list);
+        return result;
+    }
+
+    @ApiOperation(value = "分页查询人员信息")
+    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonServiceProxy.PERSON_ACCOUNT_REPEAT_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonServiceProxy.PERSON_ACCOUNT_REPEAT_LIST)
+    public Result<PagedList<Person>> person_account_repeat_list(PersonVO sample) {
+        Result<PagedList<Person>> result = new Result<>();
+        ConditionExpr expr = new ConditionExpr();
+        expr.and("employee_id not in (select employee_id from (select employee_id,count(1) cnt from hr_person a where deleted=0 and employee_id is not null group by employee_id having cnt>1) ti)");
+        PagedList<Person> list = personService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        personService.dao().fill(list).with("employee").with(PersonMeta.SALARY).with(PersonMeta.BANK).with(PersonMeta.SALARY_TPL).with(PersonMeta.POSITION).with(PersonMeta.PROFESSIONAL_LEVEL).with(PersonMeta.RANK).with(PersonMeta.EMPLOYEE_IDENTITY).with(PersonMeta.EDUCATION_DATA).with(PersonMeta.BLOOD_TYPE_DICT).with(PersonMeta.SEX_DICT).with(PersonMeta.MARITAL_STATUS_DICT).with(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT).with(PersonMeta.POLITIC_COUNTENANCE_DATA).execute();
+        List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
+        personService.dao().join(employee, org.github.foxnic.web.domain.hrm.Person.class);
+        result.success(true).data(list);
+        return result;
+    }
+
+    @ApiOperation(value = "分页查询人员信息")
+    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonServiceProxy.PERSON_JN_REPEAT_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonServiceProxy.PERSON_JN_REPEAT_LIST)
+    public Result<PagedList<Person>> person_jn_repeat_list(PersonVO sample) {
+        Result<PagedList<Person>> result = new Result<>();
+        ConditionExpr expr = new ConditionExpr();
+        expr.and("job_number in ( select job_number from (select job_number,count(1) cnt from hr_person where deleted=0 group by job_number having cnt>1) ti )");
+        PagedList<Person> list = personService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        personService.dao().fill(list).with("employee").with(PersonMeta.SALARY).with(PersonMeta.BANK).with(PersonMeta.SALARY_TPL).with(PersonMeta.POSITION).with(PersonMeta.PROFESSIONAL_LEVEL).with(PersonMeta.RANK).with(PersonMeta.EMPLOYEE_IDENTITY).with(PersonMeta.EDUCATION_DATA).with(PersonMeta.BLOOD_TYPE_DICT).with(PersonMeta.SEX_DICT).with(PersonMeta.MARITAL_STATUS_DICT).with(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT).with(PersonMeta.POLITIC_COUNTENANCE_DATA).execute();
+        List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
+        personService.dao().join(employee, org.github.foxnic.web.domain.hrm.Person.class);
+        result.success(true).data(list);
+        return result;
+    }
+
+    @ApiOperation(value = "分页查询人员信息")
+    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonServiceProxy.PERSON_NO_SALARY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonServiceProxy.PERSON_NO_SALARY_LIST)
+    public Result<PagedList<Person>> person_no_salary_list(PersonVO sample) {
         Result<PagedList<Person>> result = new Result<>();
         ConditionExpr expr = new ConditionExpr();
         expr.and("salary_tpl_id not in (select id from hr_salary_tpl where deleted=0)");
+        PagedList<Person> list = personService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        personService.dao().fill(list).with("employee").with(PersonMeta.SALARY).with(PersonMeta.BANK).with(PersonMeta.SALARY_TPL).with(PersonMeta.POSITION).with(PersonMeta.PROFESSIONAL_LEVEL).with(PersonMeta.RANK).with(PersonMeta.EMPLOYEE_IDENTITY).with(PersonMeta.EDUCATION_DATA).with(PersonMeta.BLOOD_TYPE_DICT).with(PersonMeta.SEX_DICT).with(PersonMeta.MARITAL_STATUS_DICT).with(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT).with(PersonMeta.POLITIC_COUNTENANCE_DATA).execute();
+        List<Employee> employee = CollectorUtil.collectList(list, Person::getEmployee);
+        personService.dao().join(employee, org.github.foxnic.web.domain.hrm.Person.class);
+        result.success(true).data(list);
+        return result;
+    }
+
+    @ApiOperation(value = "分页查询人员信息")
+    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonServiceProxy.PERSON_NOT_ACCOUNT_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonServiceProxy.PERSON_NOT_ACCOUNT_LIST)
+    public Result<PagedList<Person>> person_not_account_list(PersonVO sample) {
+        Result<PagedList<Person>> result = new Result<>();
+        ConditionExpr expr = new ConditionExpr();
+        expr.and("employee_id is null ");
         PagedList<Person> list = personService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         personService.dao().fill(list).with("employee").with(PersonMeta.SALARY).with(PersonMeta.BANK).with(PersonMeta.SALARY_TPL).with(PersonMeta.POSITION).with(PersonMeta.PROFESSIONAL_LEVEL).with(PersonMeta.RANK).with(PersonMeta.EMPLOYEE_IDENTITY).with(PersonMeta.EDUCATION_DATA).with(PersonMeta.BLOOD_TYPE_DICT).with(PersonMeta.SEX_DICT).with(PersonMeta.MARITAL_STATUS_DICT).with(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT).with(PersonMeta.POLITIC_COUNTENANCE_DATA).execute();
@@ -743,71 +816,68 @@ public class PersonController extends SuperController {
         return result;
     }
 
-	/**
-	 * 导出 Excel
-	 * */
-	@SentinelResource(value = PersonServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(PersonServiceProxy.EXPORT_EXCEL)
-	public void exportExcel(PersonVO sample, HttpServletResponse response, String code) throws Exception {
-		InputStream inputstream = personService.buildExcelTemplate(code);
-		try{
-			File f =  TplFileServiceProxy.api().saveTempFile(inputstream, "tmp_"+code+".xls");
-			PersonVO q=new PersonVO();
-			List<Person> list= personService.queryList(sample);
-			personService.dao().fill(list).with(SalaryProjectUnitRcdMeta.PERSON).execute();
-			Map<String,Object> map=personService.queryPersonMap(list);
-			TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
-			templateExportParams.setScanAllsheet(true);
-			Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
-			DownloadUtil.writeToOutput(response, workbook, "人员信息.xls");
-		} catch (Exception e) {
-			DownloadUtil.writeDownloadError(response,e);
-		}
-	}
+    /**
+     * 导出 Excel
+     */
+    @SentinelResource(value = PersonServiceProxy.EXPORT_EXCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(PersonServiceProxy.EXPORT_EXCEL)
+    public void exportExcel(PersonVO sample, HttpServletResponse response, String code) throws Exception {
+        InputStream inputstream = personService.buildExcelTemplate(code);
+        try {
+            File f = TplFileServiceProxy.api().saveTempFile(inputstream, "tmp_" + code + ".xls");
+            PersonVO q = new PersonVO();
+            List<Person> list = personService.queryList(sample);
+            personService.dao().fill(list).with("employee").with(PersonMeta.SALARY).with(PersonMeta.BANK).with(PersonMeta.SALARY_TPL).with(PersonMeta.POSITION).with(PersonMeta.PROFESSIONAL_LEVEL).with(PersonMeta.RANK).with(PersonMeta.EMPLOYEE_IDENTITY).with(PersonMeta.EDUCATION_DATA).with(PersonMeta.BLOOD_TYPE_DICT).with(PersonMeta.SEX_DICT).with(PersonMeta.MARITAL_STATUS_DICT).with(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT).with(PersonMeta.POLITIC_COUNTENANCE_DATA).execute();
+            Map<String, Object> map = personService.queryPersonMap(list);
+            TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
+            templateExportParams.setScanAllsheet(true);
+            Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
+            DownloadUtil.writeToOutput(response, workbook, "人员信息.xls");
+        } catch (Exception e) {
+            DownloadUtil.writeDownloadError(response, e);
+        }
+    }
 
-	/**
-	 * 导出 Excel 模板
-	 * */
-	@SentinelResource(value = PersonServiceProxy.EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(PersonServiceProxy.EXPORT_EXCEL_TEMPLATE)
-	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
-		try{
-			//生成 Excel 模版
-			ExcelWriter ew=personService.exportExcelTemplate();
-			//下载
-			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
-		} catch (Exception e) {
-			DownloadUtil.writeDownloadError(response,e);
-		}
-	}
+    /**
+     * 导出 Excel 模板
+     */
+    @SentinelResource(value = PersonServiceProxy.EXPORT_EXCEL_TEMPLATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(PersonServiceProxy.EXPORT_EXCEL_TEMPLATE)
+    public void exportExcelTemplate(HttpServletResponse response) throws Exception {
+        try {
+            // 生成 Excel 模版
+            ExcelWriter ew = personService.exportExcelTemplate();
+            // 下载
+            DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
+        } catch (Exception e) {
+            DownloadUtil.writeDownloadError(response, e);
+        }
+    }
 
-	@SentinelResource(value = PersonServiceProxy.IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(PersonServiceProxy.IMPORT_EXCEL)
-	public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response, String code) throws Exception {
-
-		//获得上传的文件
-		Map<String, MultipartFile> map = request.getFileMap();
-		InputStream input=null;
-		for (MultipartFile mf : map.values()) {
-			input=StreamUtil.bytes2input(mf.getBytes());
-			break;
-		}
-
-		if(input==null) {
-			return ErrorDesc.failure().message("缺少上传的文件");
-		}
-
-		List<ValidateResult> errors = personService.importExcel(input, 0, code);
-		if (errors == null || errors.isEmpty()) {
-			return ErrorDesc.success();
-		} else {
-			Logger.info("import Result:");
-			String msg = "导入失败";
-			for (int i = 0; i < errors.size(); i++) {
-				Logger.info(i + ":" + errors.get(i).message);
-				msg = errors.get(i).message;
-			}
-			return ErrorDesc.failure().message(msg).data(errors);
-		}
-	}
+    @SentinelResource(value = PersonServiceProxy.IMPORT_EXCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonServiceProxy.IMPORT_EXCEL)
+    public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response, String code) throws Exception {
+        // 获得上传的文件
+        Map<String, MultipartFile> map = request.getFileMap();
+        InputStream input = null;
+        for (MultipartFile mf : map.values()) {
+            input = StreamUtil.bytes2input(mf.getBytes());
+            break;
+        }
+        if (input == null) {
+            return ErrorDesc.failure().message("缺少上传的文件");
+        }
+        List<ValidateResult> errors = personService.importExcel(input, 0, code);
+        if (errors == null || errors.isEmpty()) {
+            return ErrorDesc.success();
+        } else {
+            Logger.info("import Result:");
+            String msg = "导入失败";
+            for (int i = 0; i < errors.size(); i++) {
+                Logger.info(i + ":" + errors.get(i).message);
+                msg = errors.get(i).message;
+            }
+            return ErrorDesc.failure().message(msg).data(errors);
+        }
+    }
 }

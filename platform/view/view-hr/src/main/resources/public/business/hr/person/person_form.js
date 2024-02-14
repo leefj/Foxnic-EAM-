@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-02 07:35:54
+ * @since 2024-02-14 12:42:11
  */
 
 function FormPage() {
@@ -299,7 +299,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#graduationDate',
 			type:"date",
-			format:"yyyy-MM-dd HH:mm:ss",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("graduationDate",value, date, endDate);
@@ -742,6 +742,10 @@ function FormPage() {
 			//设置 出生日期 显示复选框勾选
 			if(formData["birthday"]) {
 				$("#birthday").val(fox.dateFormat(formData["birthday"],"yyyy-MM-dd"));
+			}
+			//设置 毕业时间 显示复选框勾选
+			if(formData["graduationDate"]) {
+				$("#graduationDate").val(fox.dateFormat(formData["graduationDate"],"yyyy-MM-dd"));
 			}
 			//设置 入党时间 显示复选框勾选
 			if(formData["joinPartDate"]) {

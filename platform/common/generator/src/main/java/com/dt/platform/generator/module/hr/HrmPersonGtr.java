@@ -30,7 +30,7 @@ public class HrmPersonGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
-        cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","所在部门","所在部门");
+
 
         cfg.getPoClassFile().addSimpleProperty(Position.class,"position","position","position");
         cfg.getPoClassFile().addSimpleProperty(Rank.class,"rank","rank","rank");
@@ -47,7 +47,7 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(PersonCert.class,"personCertList","personCertList","personCertList");
         cfg.getPoClassFile().addSimpleProperty(Salary.class,"salary","salary","salary");
         cfg.getPoClassFile().addSimpleProperty(SalaryTpl.class,"salaryTpl","salaryTpl","salaryTpl");
-
+        cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","organization","organization");
 
         cfg.view().field(HrTables.HR_PERSON.ID).basic().hidden(true);
         cfg.view().field(HrTables.HR_PERSON.NAME).search().fuzzySearch();
@@ -63,7 +63,8 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON.EMPLOYEE_STATUS,
                         HrTables.HR_PERSON.EMPLOYEE_IDENTITY_STATUS,
                         HrTables.HR_PERSON.JOB_NUMBER,
-                        HrTables.HR_PERSON.SALARY_TPL_ID
+                        HrTables.HR_PERSON.SALARY_TPL_ID,
+
                 },
                 new Object[]{
                         HrTables.HR_PERSON.NAME,
@@ -128,11 +129,12 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON.JOIN_PART_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_PERSON.FIRST_EMPLOYMENT_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_PERSON.LEAVE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+        cfg.view().field(HrTables.HR_PERSON.GRADUATION_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
 
 
         cfg.view().field(HrTables.HR_PERSON.ORG_ID)
-                .form().button().chooseOrganization(true);
+                .form().validate().required().form().button().chooseOrganization(true);
         cfg.view().field(HrTables.HR_PERSON.ORG_ID).table().fillBy("organization","fullName");
 
 
@@ -270,6 +272,7 @@ public class HrmPersonGtr extends BaseCodeGenerator {
 
                 },
                 new Object[] {
+                        HrTables.HR_PERSON.ORG_ID,
                         HrTables.HR_PERSON.EMPLOYEE_TYPE_CODE,
                         HrTables.HR_PERSON.BIRTHDAY,
                         HrTables.HR_PERSON.NATION_CODE,
@@ -285,9 +288,6 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON.CONTACT_INFORMATION,
                         HrTables.HR_PERSON.EMERGENCY_CONTACT,
                         HrTables.HR_PERSON.HOME_ADDRESS,
-                        HrTables.HR_PERSON.EDUCATION_CODE,
-                        HrTables.HR_PERSON.FOREIGN_LANGUAGE,
-                        HrTables.HR_PERSON.COMPUTER_ABILITY,
                         HrTables.HR_PERSON.POLITIC_COUNTENANCE_CODE,
                         HrTables.HR_PERSON.BLOOD_TYPE,
                         HrTables.HR_PERSON.BODY_WEIGHT,
@@ -296,18 +296,29 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON.EMAIL,
                         HrTables.HR_PERSON.EMERGENCY_CONTACT_NO,
                         HrTables.HR_PERSON.WEIXIN_ID,
+                        HrTables.HR_PERSON.JOIN_PART_DATE,
+                        HrTables.HR_PERSON.BODY_HEIGHT,
+                }
+        );
+
+        cfg.view().form().addGroup("学业信息",
+                new Object[] {
+                        HrTables.HR_PERSON.EDUCATION_CODE,
+                        HrTables.HR_PERSON.MAJOR,
+                        HrTables.HR_PERSON.FOREIGN_LANGUAGE,
+                        HrTables.HR_PERSON.COMPUTER_ABILITY,
+                },
+                new Object[] {
                         HrTables.HR_PERSON.GRADUATION_SCHOOL,
                         HrTables.HR_PERSON.FOREIGN_LANGUAGE_LEVEL,
                         HrTables.HR_PERSON.COMPUTER_LEVEL,
-                        HrTables.HR_PERSON.JOIN_PART_DATE,
-                        HrTables.HR_PERSON.BODY_HEIGHT,
+                        HrTables.HR_PERSON.GRADUATION_DATE
                 }
         );
         cfg.view().form().addGroup("工作信息",
                 new Object[] {
                         HrTables.HR_PERSON.EMPLOYMENT_DATE,
                         HrTables.HR_PERSON.EMPLOYMENT_CONFIRM_DATE,
-//                        HrTables.HR_PERSON.ORG_ID,
                         HrTables.HR_PERSON.POSITION_CODE,
                         HrTables.HR_PERSON.LEAVE_DATE
                 },

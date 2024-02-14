@@ -12,8 +12,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:12:25
- * @sign 184B2A0DAE2C10151B6C2A05A0CBAE4C
+ * @since 2024-02-09 20:32:46
+ * @sign 33536843712ACE81E173E95A28D10538
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -100,14 +100,14 @@ public class PositionVOMeta extends PositionMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PositionVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.PositionVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
 	*/
 	public static final String DATA_ORIGIN="dataOrigin";
 	
 	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PositionVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.hr.PositionVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端按来源执行不同的逻辑", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.PositionVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.hr.PositionVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
@@ -118,6 +118,16 @@ public class PositionVOMeta extends PositionMeta {
 	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.PositionVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.hr.PositionVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PositionVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.hr.PositionVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -158,6 +168,16 @@ public class PositionVOMeta extends PositionMeta {
 	 * 类型 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.PositionVO,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.PositionVO.class ,TYPE, java.lang.String.class, "类型", "类型", java.lang.String.class, null);
+	
+	/**
+	 * 工作职责 , 类型: java.lang.String
+	*/
+	public static final String JOB_CONTENT="jobContent";
+	
+	/**
+	 * 工作职责 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PositionVO,java.lang.String> JOB_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.hr.PositionVO.class ,JOB_CONTENT, java.lang.String.class, "工作职责", "工作职责", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -272,7 +292,7 @@ public class PositionVOMeta extends PositionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , NAME , TYPE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION_TYPE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , TYPE , JOB_CONTENT , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION_TYPE };
 	
 	/**
 	 * 代理类
@@ -393,6 +413,17 @@ public class PositionVOMeta extends PositionMeta {
 		}
 		
 		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public PositionVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
+			return this;
+		}
+		
+		/**
 		 * 设置 主键清单
 		 * @param ids 主键清单
 		 * @return 当前对象
@@ -433,6 +464,17 @@ public class PositionVOMeta extends PositionMeta {
 		public Position setType(String type) {
 			super.change(TYPE,super.getType(),type);
 			super.setType(type);
+			return this;
+		}
+		
+		/**
+		 * 设置 工作职责
+		 * @param jobContent 工作职责
+		 * @return 当前对象
+		*/
+		public Position setJobContent(String jobContent) {
+			super.change(JOB_CONTENT,super.getJobContent(),jobContent);
+			super.setJobContent(jobContent);
 			return this;
 		}
 		
@@ -574,6 +616,7 @@ public class PositionVOMeta extends PositionMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNote(this.getNote());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setJobContent(this.getJobContent());
 			inst.setType(this.getType());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
@@ -588,12 +631,13 @@ public class PositionVOMeta extends PositionMeta {
 			if(all) {
 				inst.setSearchField(this.getSearchField());
 				inst.setPositionType(this.getPositionType());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setFuzzyField(this.getFuzzyField());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());

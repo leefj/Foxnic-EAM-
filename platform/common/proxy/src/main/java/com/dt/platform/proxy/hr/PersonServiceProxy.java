@@ -95,7 +95,17 @@ public interface PersonServiceProxy {
 
     public static final String QUERY_PERSON_ID_BY_EMPLOYEE_ID = API_PREFIX + "query-person-id-by-employee-id";
 
-    public static final String QUERY_PERSON_NOT_SALARY = API_PREFIX + "query-person-not-salary";
+
+    public static final String JOBNUMBER_DIFF_LIST = API_PREFIX + "jobnumber-diff-list";
+
+    public static final String PERSON_ACCOUNT_REPEAT_LIST = API_PREFIX + "person-account-repeat-list";
+
+    public static final String PERSON_JN_REPEAT_LIST = API_PREFIX + "person-jn-repeat-list";
+
+    public static final String PERSON_NO_SALARY_LIST = API_PREFIX + "person-no-salary-list";
+
+    public static final String PERSON_NOT_ACCOUNT_LIST = API_PREFIX + "person-not-account-list";
+
 
     /**
      * 生效
