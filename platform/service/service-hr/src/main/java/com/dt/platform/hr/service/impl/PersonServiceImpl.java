@@ -4,10 +4,21 @@ import javax.annotation.Resource;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.constants.enums.common.StatusYNEnum;
+import com.dt.platform.constants.enums.common.YesNoEnum;
 import com.dt.platform.constants.enums.eam.AssetDataExportColumnEnum;
+import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
+import com.dt.platform.constants.enums.eam.AssetStatusEnum;
+import com.dt.platform.constants.enums.hr.EmployeeStatusEnum;
+import com.dt.platform.constants.enums.hr.PersonDataExportColumnEnum;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.Warehouse;
+import com.dt.platform.domain.eam.meta.AssetMeta;
+import com.dt.platform.domain.hr.*;
 import com.dt.platform.hr.common.ResetOnCloseInputStream;
+import com.dt.platform.hr.service.*;
 import com.dt.platform.proxy.common.TplFileServiceProxy;
+import com.github.foxnic.api.constant.CodeTextEnum;
 import com.github.foxnic.commons.bean.BeanNameUtil;
 import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.lang.StringUtil;
@@ -22,7 +33,13 @@ import com.github.foxnic.sql.expr.*;
 import com.github.foxnic.sql.treaty.DBTreaty;
 import org.apache.poi.ss.usermodel.*;
 import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.OrganizationVO;
+import org.github.foxnic.web.domain.system.DictItem;
+import org.github.foxnic.web.domain.system.DictItemVO;
+import org.github.foxnic.web.misc.ztree.ZTreeNode;
 import org.github.foxnic.web.proxy.hrm.EmployeeServiceProxy;
+import org.github.foxnic.web.proxy.hrm.OrganizationServiceProxy;
+import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,8 +52,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-import com.dt.platform.domain.hr.Person;
-import com.dt.platform.domain.hr.PersonVO;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.entity.SuperService;
@@ -49,7 +64,6 @@ import java.io.InputStream;
 import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
-import com.dt.platform.hr.service.IPersonService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 
 /**
@@ -67,13 +81,24 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 
 
 
+	@Autowired
+	private ISalaryTplService salaryTplService;
 
+	@Autowired
+	private IPositionService positionService;
+
+	@Autowired
+	private IRankService rankService;
+
+	@Autowired
+	private IProfessionalLevelService professionalLevelService;
 
 	/**
 	 * 注入DAO对象
 	 * */
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
+
 
 	/**
 	 * 获得 DAO 对象
@@ -87,40 +112,48 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 		return IDGenerator.getSnowflakeIdString();
 	}
 
-
-	@Override
-	public Map<String, Object> queryPersonMap(List<Person> list) {
-
-
-		long start = System.currentTimeMillis();
-		Map<String,Object> map=new HashMap<>();
-
-//		HashMap<String,String> orgMap=queryOrganizationNodes("");
-//		HashMap<String,String> categoryMap=queryAssetCategoryNodes("");
-
-		List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
-		for(int i=0;i<list.size();i++) {
-			Person item = list.get(i);
-			Map<String, Object> itemMap= BeanUtil.toMap(item);
-			//枚举
-
-
-			//数据字典
-
-
-			//下拉框
-
-
-			listMap.add(itemMap);
-
+	public HashMap<String,String> queryOrganizationNodes(String type){
+		//id name
+		HashMap<String,String> map=new HashMap<String,String>();
+		OrganizationVO vo=new OrganizationVO();
+		vo.setIsLoadAllDescendants(1);
+		if(!StringUtil.isBlank(type)){
+			//   vo.setTargetType(type);
 		}
-
-		long finish = System.currentTimeMillis();
-		long cost=(finish-start)/1000L;
-		Logger.info("queryAssetMap execute cost:"+cost);
-		map.put("dataList", listMap);
+		vo.setTenantId(SessionUser.getCurrent().getActivatedTenantId());
+		Result r= OrganizationServiceProxy.api().queryNodesFlatten(vo);
+		if(r.isSuccess()){
+			List<ZTreeNode> list= (List<ZTreeNode> )r.getData();
+			for( ZTreeNode node:list){
+				if("com".equals(type)){
+					if("com".equals(node.getType())){
+						Logger.info("add");
+					}else{
+						continue;
+					}
+				}else if("org".equals(type)){
+					if("com".equals(node.getType()) || "dept".equals(node.getType())){
+						Logger.info("add");
+					}else{
+						continue;
+					}
+				}
+				String path="";
+				for(int j=0;j<node.getNamePathArray().size();j++){
+					if(j==0){
+						path=node.getNamePathArray().get(j);
+					}else{
+						path=path+"/"+node.getNamePathArray().get(j);
+					}
+				}
+				Logger.info("node:"+node.getId()+",path:"+path+"type:"+node.getType());
+				map.put(node.getId(),path);
+			}
+		}
 		return map;
 	}
+
+
 
 
 	/**
@@ -192,70 +225,268 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 		}
 		return inputStream;
 	}
+
+	@Override
+	public Map<String, Object> queryPersonMap(List<Person> list) {
+		long start = System.currentTimeMillis();
+		Map<String,Object> map=new HashMap<>();
+		HashMap<String,String> orgMap=queryOrganizationNodes("");
+		List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
+		for(int i=0;i<list.size();i++) {
+			Person item = list.get(i);
+			Map<String, Object> itemMap= BeanUtil.toMap(item);
+			//枚举
+			CodeTextEnum vStatus= EnumUtil.parseByCode(StatusYNEnum.class,item.getSalaryPayOut());
+			itemMap.put("salaryPayOutName",vStatus==null?"":vStatus.text());
+			CodeTextEnum employeeStatus= EnumUtil.parseByCode(EmployeeStatusEnum.class,item.getEmployeeStatus());
+			itemMap.put("employeeStatusName",employeeStatus==null?"":employeeStatus.text());
+			//数据字典
+			if(item.getBloodTypeDict()!=null){
+				itemMap.put("bloodTypeName",item.getBloodTypeDict().getLabel());
+			}
+			if(item.getSexDict()!=null){
+				itemMap.put("sexCodeName",item.getSexDict().getLabel());
+			}
+			if(item.getMaritalStatusDict()!=null){
+				itemMap.put("maritalStatusName",item.getMaritalStatusDict().getLabel());
+			}
+			if(item.getEmployeeIdentity()!=null){
+				itemMap.put("employeeIdentityStatusName",item.getEmployeeIdentity().getLabel());
+			}
+			if(item.getEmployeeOwnerTypeDict()!=null){
+				itemMap.put("employeeOwnerTypeName",item.getEmployeeOwnerTypeDict().getLabel());
+			}
+			if(item.getEducationData()!=null){
+				itemMap.put("educationCodeName",item.getEducationData().getLabel());
+			}
+			if(item.getBank()!=null){
+				itemMap.put("payrollCardBankCodeName",item.getBank().getLabel());
+			}
+			if(item.getBank()!=null){
+				itemMap.put("payrollCardBankCodeName",item.getBank().getLabel());
+			}
+			if(item.getPoliticCountenanceData()!=null){
+				itemMap.put("politicCountenanceCodeName",item.getPoliticCountenanceData().getLabel());
+			}
+			if(item.getEmployeeIdentity()!=null){
+				itemMap.put("identityCardName",item.getEmployeeIdentity().getLabel());
+			}
+			//下拉框
+			if(item.getPosition()!=null){
+				itemMap.put("positionCodeName",item.getPosition().getName());
+			}
+			if(item.getSalaryTpl()!=null){
+				itemMap.put("salaryTplName",item.getSalaryTpl().getName());
+			}
+			if(item.getOrgId()!=null){
+				String orgName=orgMap.get(item.getOrgId());
+				itemMap.put("orgName",orgName);
+			}
+			if(item.getOrganization()!=null){
+				itemMap.put("organizationName",item.getOrganization().getFullName());
+			}
+			if(item.getRank()!=null){
+				itemMap.put("rankCodeName",item.getRank().getCode());
+			}
+			if(item.getProfessionalLevel()!=null){
+				itemMap.put("employeeTitleCodeName",item.getProfessionalLevel().getName());
+			}
+			listMap.add(itemMap);
+		}
+		long finish = System.currentTimeMillis();
+		long cost=(finish-start)/1000L;
+		Logger.info("queryAssetMap execute cost:"+cost);
+		map.put("dataList", listMap);
+		return map;
+	}
+
+
+
+	public String queryMapKeyByValue(HashMap<String,String> map, String value){
+		String key = null;
+		//Map,HashMap并没有实现Iteratable接口.不能用于增强for循环.
+		for(String getKey: map.keySet()){
+			if(map.get(getKey).equals(value)){
+				key = getKey;
+				return key;
+			}
+		}
+		return key;
+	}
+
+	public HashMap<String,String> queryDictItemDataByDictCode(String dictCode){
+		HashMap<String,String> map=new HashMap<>();
+		DictItemVO vo=new DictItemVO();
+		vo.setDictCode(dictCode);
+		Result<List<DictItem>> result= DictItemServiceProxy.api().queryList(vo);
+		if(result.isSuccess()){
+			List<DictItem> list=result.getData();
+			for(int i=0;i<list.size();i++){
+				Logger.info(dictCode+" put data:"+list.get(i).getCode()+","+list.get(i).getLabel());
+				map.put(list.get(i).getCode(),list.get(i).getLabel());
+			}
+		}else{
+		}
+		return map;
+	}
+
+
 	public List<ValidateResult> importData(RcdSet rs) {
+		HashMap<String,String> orgMap=queryOrganizationNodes("");
+
+		HashMap<String,HashMap<String,String>> dictDataMap=new HashMap<>();
+		dictDataMap.put("hr_employee_owner_type",queryDictItemDataByDictCode("hr_employee_owner_type"));
+		dictDataMap.put("hr_politic_countenance",queryDictItemDataByDictCode("hr_politic_countenance"));
+		dictDataMap.put("hr_employee_identity_status",queryDictItemDataByDictCode("hr_employee_identity_status"));
+		dictDataMap.put("hr_education",queryDictItemDataByDictCode("hr_education"));
+		dictDataMap.put("hr_blood_type",queryDictItemDataByDictCode("hr_blood_type"));
+		dictDataMap.put("sex",queryDictItemDataByDictCode("sex"));
+		dictDataMap.put("hr_bank_list",queryDictItemDataByDictCode("hr_bank_list"));
+		dictDataMap.put("hr_marital_status",queryDictItemDataByDictCode("hr_marital_status"));
+
+		HashMap<String,String> dictColumns=new HashMap<>();
+		dictColumns.put("employeeTypeCode","hr_employee_owner_type,员工类型");
+		dictColumns.put("politicCountenanceCode","hr_politic_countenance,政治面貌");
+		dictColumns.put("employeeIdentityStatus","hr_employee_identity_status,员工标记");
+		dictColumns.put("educationCode","hr_education,学历");
+		dictColumns.put("bloodType","hr_blood_type,血型");
+		dictColumns.put("sexCode","sex,性别");
+		dictColumns.put("payrollCardBankCode","hr_bank_list,银行");
+		dictColumns.put("maritalStatus","hr_marital_status,婚姻状态");
+
+
 		List<ValidateResult> errors=new ArrayList<>();
 		DBTableMeta tm=dao().getTableMeta(this.table());
 		DBTreaty dbTreaty= dao().getDBTreaty();
 		List<SQL> upsList=new ArrayList<>();
 		List<SQL> insList=new ArrayList<>();
+		HashMap<String,String> jobNumberMap=new HashMap<>();
 		HashMap<String, Rcd> personMap=new HashMap<>();
+
+
 		for(int i=0;i<rs.getRcdList().size();i++){
 			Rcd r=rs.getRcd(i);
 			String id=r.getString("id");
 
-			String rcdDate=r.getString("rcd_date_name");
-			Date rDate=null;
-			if(StringUtil.isBlank(rcdDate)){
-				errors.add(new ValidateResult(null,(i+1),"日期为空"));
-				break;
-			}
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			try {
-				rDate= dateFormat.parse(rcdDate);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
 
-			if(StringUtil.isBlank(id)){
-				//insert
-				String jobNumber=r.getString("job_number");
-				if(StringUtil.isBlank(jobNumber)){
-					errors.add(new ValidateResult(null,(i+1),"工号:"+jobNumber+",为空"));
+			String orgId="org_id";
+			String valueOrg=r.getString(orgId);
+			if(!StringUtil.isBlank(valueOrg)){
+				if(orgMap.containsValue(valueOrg.trim())){
+					String key= queryMapKeyByValue(orgMap,valueOrg);
+					r.setValue(valueOrg,key);
+				}else{
+					//返回报错
+					errors.add(new ValidateResult(null,(i+1),"组织节点未匹配到:"+valueOrg));
 					break;
 				}
-				String personId="";
-				if(personMap.containsKey(jobNumber)){
-					Rcd person=personMap.get(jobNumber);
-					personId=person.getString("id");
-				}else{
-					RcdSet rcdset=this.dao.query("select * from hr_person where deleted=0 and job_number=?",jobNumber);
-					if(rcdset.size()==0){
-						errors.add(new ValidateResult(null,(i+1),"工号:"+jobNumber+",未来找到"));
-						break;
-					}
-					if(rcdset.size()>1){
-						errors.add(new ValidateResult(null,(i+1),"工号:"+jobNumber+",重复"));
-						break;
-					}
-					Rcd person=rcdset.getRcd(0);
-					personMap.put(jobNumber,person);
-					personId=person.getString("id");
+			}
 
+			//处理字典
+			for(String key:dictColumns.keySet()){
+				String keyValue=dictColumns.get(key);
+				String[] keyValueArr=keyValue.split(",");
+				String dict=keyValueArr[0];
+				String notes=keyValueArr[1];
+				HashMap<String,String> map=dictDataMap.get(dict);
+				String col=BeanNameUtil.instance().depart(key);
+				String valueCol=r.getString(col);
+				Logger.info("col:"+col+",valueCol:"+valueCol);
+				if(!StringUtil.isBlank(valueCol)){
+					if(map.containsValue(valueCol)){
+						r.setValue(col,queryMapKeyByValue(map,valueCol));
+					}else{
+						errors.add(new ValidateResult(null,(i+1),notes+":"+valueCol));
+						break;
+					}
 				}
+			}
+
+
+			//处理枚举
+			String salaryPayOut=r.getString("salary_pay_out");
+			if(!StringUtil.isBlank(salaryPayOut)){
+				CodeTextEnum value=EnumUtil.parseByText(StatusYNEnum.class,salaryPayOut);
+				if(StringUtil.isBlank(value)){
+					errors.add(new ValidateResult(null,(i+1),"薪酬发放为空"));
+					break;
+				}else{
+					r.setValue("salary_pay_out",value.code());
+				}
+			}
+
+			String employeeStatus=r.getString("employee_status");
+			if(!StringUtil.isBlank(employeeStatus)){
+				CodeTextEnum value=EnumUtil.parseByText(EmployeeStatusEnum.class,employeeStatus);
+				if(StringUtil.isBlank(value)){
+					errors.add(new ValidateResult(null,(i+1),"员工状态为空"));
+					break;
+				}else{
+					r.setValue("employee_status",value.code());
+				}
+			}
+
+
+
+
+			//处理下拉框
+			String salaryTpl=r.getString("salary_tpl_id");
+			if(!StringUtil.isBlank(salaryTpl)){
+				SalaryTpl tpl = salaryTplService.queryEntity(SalaryTpl.create().setName(salaryTpl));
+				if(tpl==null){
+					errors.add(new ValidateResult(null,(i+1),"薪酬模版不存在,模版名称:"+salaryTpl));
+					break;
+				}else{
+					r.setValue("salary_tpl_id",tpl.getId());
+				}
+			}
+
+			String position=r.getString("position_code");
+			if(!StringUtil.isBlank(position)){
+				Position tpl = positionService.queryEntity(Position.create().setName(position));
+				if(tpl==null){
+					errors.add(new ValidateResult(null,(i+1),"position不存在,名称:"+position));
+					break;
+				}else{
+					r.setValue("position_code",tpl.getId());
+				}
+			}
+
+			String rank=r.getString("rank_code");
+			if(!StringUtil.isBlank(position)){
+				Rank tpl = rankService.queryEntity(Rank.create().setCode(rank));
+				if(tpl==null){
+					errors.add(new ValidateResult(null,(i+1),"rank不存在,名称:"+rank));
+					break;
+				}else{
+					r.setValue("rank_code",tpl.getId());
+				}
+			}
+
+			String titleCode=r.getString("employee_title_code");
+			if(!StringUtil.isBlank(titleCode)){
+				ProfessionalLevel tpl = professionalLevelService.queryEntity(ProfessionalLevel.create().setName(titleCode));
+				if(tpl==null){
+					errors.add(new ValidateResult(null,(i+1),"titleCode不存在,名称:"+titleCode));
+					break;
+				}else{
+					r.setValue("employee_title_code",tpl.getId());
+				}
+			}
+
+
+			if(StringUtil.isBlank(id)){
 				Insert insert = SQLBuilder.buildInsert(r,this.table(),this.dao(), true);
 				insert.set(dbTreaty.getUpdateTimeField(),new Date());
 				insert.set(dbTreaty.getUpdateUserIdField(),dbTreaty.getLoginUserId());
-				insert.set("rcd_date",rDate);
 				insert.set("id",IDGenerator.getSnowflakeIdString());
 				insert.set("tenant_id", SessionUser.getCurrent().getActivatedTenantId());
-				insert.set("person_id",personId);
 				insList.add(insert);
 			}else{
 				//update
 				Update update= SQLBuilder.buildUpdate(r,SaveMode.ALL_FIELDS,this.table(),this.dao());
 				update.set(dbTreaty.getUpdateTimeField(),new Date());
 				update.set(dbTreaty.getUpdateUserIdField(),dbTreaty.getLoginUserId());
-				update.set("rcd_date",rDate);
 				upsList.add(update);
 			}
 		}
@@ -300,9 +531,9 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 							||AssetDataExportColumnEnum.STATUS_NAME.code().equals(asset_column)){
 						continue;
 					}
-					rAssetColumn= EnumUtil.parseByCode(AssetDataExportColumnEnum.class,asset_column)==null?
+					rAssetColumn= EnumUtil.parseByCode(PersonDataExportColumnEnum.class,asset_column)==null?
 							BeanNameUtil.instance().depart(asset_column):
-							EnumUtil.parseByCode(AssetDataExportColumnEnum.class,asset_column).text();
+							EnumUtil.parseByCode(PersonDataExportColumnEnum.class,asset_column).text();
 					Logger.info("asset_column:"+asset_column+",rAssetColumn:"+rAssetColumn);
 					charIndex= ExcelUtil.toExcel26(i);
 					Logger.info("cell:"+charIndex+","+secondRow.getCell(i)  +","+ firstRow.getCell(i)+","+asset_column+","+rAssetColumn);
@@ -613,7 +844,14 @@ public class PersonServiceImpl extends SuperService<Person> implements IPersonSe
 	 * */
 	@Override
 	public PagedList<Person> queryPagedList(PersonVO sample, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, pageSize, pageIndex);
+
+		ConditionExpr expr=new ConditionExpr();
+		expr.and("1=1");
+		if(!StringUtil.isBlank(sample.getOrgId())) {
+			expr.and("org_id in (select id from hrm_organization where deleted=0 and type in ('com','dept') and (concat('/',hierarchy) like '%/"+sample.getOrgId()+"/%' or id=?))",sample.getOrgId());
+			sample.setOrgId(null);
+		}
+		return super.queryPagedList(sample, expr,pageSize, pageIndex);
 	}
 
 	/**

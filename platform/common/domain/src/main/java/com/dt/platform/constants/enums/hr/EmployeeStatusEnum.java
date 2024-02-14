@@ -15,6 +15,7 @@ public enum EmployeeStatusEnum implements CodeTextEnum {
 
 	ONLINE("online" , "在职"),
 	OFFLINE("offline" , "离职"),
+	RETIRED("retired" , "退休"),
 	NON_EMPLOYEE("non_employee" , "非员工")
 	;
 	private String code;

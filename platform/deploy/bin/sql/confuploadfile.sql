@@ -38,11 +38,12 @@ insert into sys_file(id,file_name,location,size,media_type,file_type)values('T00
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_5','hr_person_personal_tax.xls','/tpl/T001/hr_person_personal_tax.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_6','hr_person_welfaer.xls','/tpl/T001/hr_person_welfaer.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_7','hr_person_attendance_rcd.xls','/tpl/T001/hr_person_attendance_rcd.xls',10000,'application/octet-stream','xls');
-insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_8','hr_person_info.xls','/tpl/T001/hr_person_info.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_8','hr_person.xls','/tpl/T001/hr_person.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_9','hr_person_busi_insure.xls','/tpl/T001/hr_person_busi_insure.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_10','hr_person_welfaer_s.xls','/tpl/T001/hr_person_welfaer_s.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_11','hr_person_welfaer_g.xls','/tpl/T001/hr_person_welfaer_g.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_12','hr_person_kh_score.xls','/tpl/T001/hr_person_kh_score.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_13','hr_person_salary_base.xls','/tpl/T001/hr_person_salary_base.xls',10000,'application/octet-stream','xls');
 
 
 
@@ -84,11 +85,12 @@ insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_4',
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_5','hr_excel','专项抵扣','hr_person_personal_tax','T001_hr_5','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_6','hr_excel','福利信息','hr_person_welfaer','T001_hr_6','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_7','hr_excel','考勤记录','hr_person_attendance_rcd','T001_hr_7','T001');
-insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_8','hr_excel','个人信息','hr_person_info','T001_hr_8','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_8','hr_excel','个人信息','hr_person','T001_hr_8','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_9','hr_excel','商业保险','hr_person_busi_insure','T001_hr_9','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_10','hr_excel','社保','hr_person_welfaer_s','T001_hr_10','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_11','hr_excel','公积金','hr_person_welfaer_g','T001_hr_11','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_12','hr_excel','考核评分','hr_person_kh_score','T001_hr_12','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_13','hr_excel','员工薪酬','hr_person_salary_base','T001_hr_13','T001');
 -- OPS
 delete from sys_file where id like 'T001_ops_%';
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_1','ops_download_host.xls','/tpl/T001/ops_download_host.xls',10000,'application/octet-stream','xls');

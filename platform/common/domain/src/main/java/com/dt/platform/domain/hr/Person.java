@@ -8,12 +8,13 @@ import com.dt.platform.constants.db.HrTables.HR_PERSON;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
+import java.math.BigDecimal;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
-import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
 import java.util.List;
+import org.github.foxnic.web.domain.hrm.Organization;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
@@ -29,8 +30,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息
  * <p>人员信息 , 数据表 hr_person 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-02 07:35:52
- * @sign 8EA77FF5D472C2C10AE447308B7D173E
+ * @since 2024-02-14 12:42:07
+ * @sign 5B44FEB6CEED7E1BEB66BF6B6473BDE7
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -368,6 +369,12 @@ public class Person extends Entity {
 	private Integer score;
 	
 	/**
+	 * 年假天数：年假天数
+	*/
+	@ApiModelProperty(required = false,value="年假天数" , notes = "年假天数")
+	private BigDecimal yearDays;
+	
+	/**
 	 * 批次号：批次号
 	*/
 	@ApiModelProperty(required = false,value="批次号" , notes = "批次号")
@@ -435,12 +442,6 @@ public class Person extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
-	
-	/**
-	 * 所在部门：所在部门
-	*/
-	@ApiModelProperty(required = false,value="所在部门" , notes = "所在部门")
-	private Organization organization;
 	
 	/**
 	 * position：position
@@ -531,6 +532,12 @@ public class Person extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="salaryTpl" , notes = "salaryTpl")
 	private SalaryTpl salaryTpl;
+	
+	/**
+	 * organization：organization
+	*/
+	@ApiModelProperty(required = false,value="organization" , notes = "organization")
+	private Organization organization;
 	
 	/**
 	 * 获得 主键<br>
@@ -1559,6 +1566,25 @@ public class Person extends Entity {
 	}
 	
 	/**
+	 * 获得 年假天数<br>
+	 * 年假天数
+	 * @return 年假天数
+	*/
+	public BigDecimal getYearDays() {
+		return yearDays;
+	}
+	
+	/**
+	 * 设置 年假天数
+	 * @param yearDays 年假天数
+	 * @return 当前对象
+	*/
+	public Person setYearDays(BigDecimal yearDays) {
+		this.yearDays=yearDays;
+		return this;
+	}
+	
+	/**
 	 * 获得 批次号<br>
 	 * 批次号
 	 * @return 批次号
@@ -1795,25 +1821,6 @@ public class Person extends Entity {
 	*/
 	public Person setTenantId(String tenantId) {
 		this.tenantId=tenantId;
-		return this;
-	}
-	
-	/**
-	 * 获得 所在部门<br>
-	 * 所在部门
-	 * @return 所在部门
-	*/
-	public Organization getOrganization() {
-		return organization;
-	}
-	
-	/**
-	 * 设置 所在部门
-	 * @param organization 所在部门
-	 * @return 当前对象
-	*/
-	public Person setOrganization(Organization organization) {
-		this.organization=organization;
 		return this;
 	}
 	
@@ -2112,6 +2119,25 @@ public class Person extends Entity {
 		this.salaryTpl=salaryTpl;
 		return this;
 	}
+	
+	/**
+	 * 获得 organization<br>
+	 * organization
+	 * @return organization
+	*/
+	public Organization getOrganization() {
+		return organization;
+	}
+	
+	/**
+	 * 设置 organization
+	 * @param organization organization
+	 * @return 当前对象
+	*/
+	public Person setOrganization(Organization organization) {
+		this.organization=organization;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -2158,6 +2184,7 @@ public class Person extends Entity {
 	public Person duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.PersonMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.PersonMeta.$$proxy$$();
 		inst.setRankCode(this.getRankCode());
+		inst.setYearDays(this.getYearDays());
 		inst.setEmergencyContactNo(this.getEmergencyContactNo());
 		inst.setEmploymentConfirmDate(this.getEmploymentConfirmDate());
 		inst.setScore(this.getScore());
@@ -2299,6 +2326,7 @@ public class Person extends Entity {
 		if(map==null) return false;
 		if(cast) {
 			this.setRankCode(DataParser.parse(String.class, map.get(PersonMeta.RANK_CODE)));
+			this.setYearDays(DataParser.parse(BigDecimal.class, map.get(PersonMeta.YEAR_DAYS)));
 			this.setEmergencyContactNo(DataParser.parse(String.class, map.get(PersonMeta.EMERGENCY_CONTACT_NO)));
 			this.setEmploymentConfirmDate(DataParser.parse(Date.class, map.get(PersonMeta.EMPLOYMENT_CONFIRM_DATE)));
 			this.setScore(DataParser.parse(Integer.class, map.get(PersonMeta.SCORE)));
@@ -2383,6 +2411,7 @@ public class Person extends Entity {
 		} else {
 			try {
 				this.setRankCode( (String)map.get(PersonMeta.RANK_CODE));
+				this.setYearDays( (BigDecimal)map.get(PersonMeta.YEAR_DAYS));
 				this.setEmergencyContactNo( (String)map.get(PersonMeta.EMERGENCY_CONTACT_NO));
 				this.setEmploymentConfirmDate( (Date)map.get(PersonMeta.EMPLOYMENT_CONFIRM_DATE));
 				this.setScore( (Integer)map.get(PersonMeta.SCORE));
@@ -2480,6 +2509,7 @@ public class Person extends Entity {
 		if(r==null) return false;
 		if(cast) {
 			this.setRankCode(DataParser.parse(String.class, r.getValue(PersonMeta.RANK_CODE)));
+			this.setYearDays(DataParser.parse(BigDecimal.class, r.getValue(PersonMeta.YEAR_DAYS)));
 			this.setEmergencyContactNo(DataParser.parse(String.class, r.getValue(PersonMeta.EMERGENCY_CONTACT_NO)));
 			this.setEmploymentConfirmDate(DataParser.parse(Date.class, r.getValue(PersonMeta.EMPLOYMENT_CONFIRM_DATE)));
 			this.setScore(DataParser.parse(Integer.class, r.getValue(PersonMeta.SCORE)));
@@ -2548,6 +2578,7 @@ public class Person extends Entity {
 		} else {
 			try {
 				this.setRankCode( (String)r.getValue(PersonMeta.RANK_CODE));
+				this.setYearDays( (BigDecimal)r.getValue(PersonMeta.YEAR_DAYS));
 				this.setEmergencyContactNo( (String)r.getValue(PersonMeta.EMERGENCY_CONTACT_NO));
 				this.setEmploymentConfirmDate( (Date)r.getValue(PersonMeta.EMPLOYMENT_CONFIRM_DATE));
 				this.setScore( (Integer)r.getValue(PersonMeta.SCORE));

@@ -18,6 +18,7 @@ function ListPage() {
 	//
 	var dataTable=null;
 	var sort=null;
+	var searchContent_orgId;
 
 	/**
       * 入口函数，初始化
@@ -91,7 +92,9 @@ function ListPage() {
 					,{ field: 'employeeIdentityStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工标记'), templet: function (d) { return templet('employeeIdentityStatus' ,fox.joinLabel(d.employeeIdentity,"label",',','','employeeIdentityStatus'),d);}}
 					,{ field: 'employeeTypeCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员类型'), templet: function (d) { return templet('employeeTypeCode' ,fox.joinLabel(d.employeeOwnerTypeDict,"label",',','','employeeTypeCode'),d);}}
 					,{ field: 'employmentDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('入职日期') ,templet: function (d) { return templet('employmentDate',fox.dateFormat(d.employmentDate,"yyyy-MM-dd"),d); }  }
-				 	,{ field: 'orgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工部门') , templet: function (d) { return templet('orgId',d.orgId,d);}  }
+					,{ field: 'orgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工部门') , templet: function (d) { return templet('orgId',fox.getProperty(d,["organization","fullName"],0,'','orgId'),d);} }
+
+				//	,{ field: 'orgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工部门') , templet: function (d) { return templet('orgId',d.orgId,d);}  }
 					,{ field: 'positionCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工岗位'), templet: function (d) { return templet('positionCode' ,fox.joinLabel(d.position,"name",',','','positionCode'),d);}}
 				  	,{ field: 'note', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('note',d.note,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
@@ -189,6 +192,14 @@ function ListPage() {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
 			} 		}
+
+
+		if(searchContent_orgId){
+			if(value.orgId){
+				delete value.orgId ;
+			}
+			ps.orgId=searchContent_orgId;
+		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -495,6 +506,10 @@ function ListPage() {
 
     };
 
+	function searchOrg(orgId){
+		searchContent_orgId=orgId;
+		refreshTableData()
+	}
     /**
      * 打开编辑窗口
      */
@@ -518,6 +533,9 @@ function ListPage() {
 		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
 		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
 
+
+
+
 		admin.popupCenter({
 			title: title,
 			resize: false,
@@ -538,6 +556,7 @@ function ListPage() {
 	};
 
 	window.module={
+		searchOrg:searchOrg,
 		refreshTableData: refreshTableData,
 		refreshRowData: refreshRowData,
 		getCheckedList: getCheckedList,

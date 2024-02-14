@@ -121,6 +121,58 @@ public class PersonPageController extends ViewController {
 	}
 
 	/**
+	 * 人员信息 功能主页面
+	 */
+	@RequestMapping("/warn/jobnumber_diff_list.html")
+	public String jobnumber_diff_list(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"warn/jobnumber_diff_list");
+	}
+
+
+	/**
+	 * 人员信息 功能主页面
+	 */
+	@RequestMapping("/warn/person_jn_repeat_list.html")
+	public String person_jn_repeat_list(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"warn/person_jn_repeat_list");
+	}
+
+	/**
+	 * 人员信息 功能主页面
+	 */
+	@RequestMapping("/warn/person_not_account_list.html")
+	public String person_not_account_list(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"warn/person_not_account_list");
+	}
+
+	/**
+	 * 人员信息 功能主页面
+	 */
+	@RequestMapping("/warn/person_no_salary_list.html")
+	public String person_no_salary_list(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"warn/person_no_salary_list");
+	}
+
+	/**
+	 * 人员信息 功能主页面
+	 */
+	@RequestMapping("/warn/person_account_repeat_list.html")
+	public String person_account_repeat_list(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"warn/person_account_repeat_list");
+	}
+
+	/**
+	 * 人员信息 功能主页面
+	 */
+	@RequestMapping("/person_book_list.html")
+	public String person_book_list(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"person_book_list");
+	}
+
+
+
+
+	/**
 	 * 人员信息 表单页面
 	 */
 	@RequestMapping("/person_info.html")

@@ -64,7 +64,6 @@ public class HrmPersonResignationGtr extends BaseCodeGenerator {
         );
 
         cfg.view().list().disableBatchDelete();
-
         cfg.view().list().addJsVariable("PERSON_ID",   "[[${personId}]]","personId");
         //文件生成覆盖模式
         cfg.overrides()

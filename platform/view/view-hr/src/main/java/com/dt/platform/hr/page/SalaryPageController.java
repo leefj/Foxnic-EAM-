@@ -72,6 +72,15 @@ public class SalaryPageController extends ViewController {
 		return getTemplatePath(prefix,"/salary_person_list");
 	}
 
+
+	/**
+	 * 人员薪酬 表单页面
+	 */
+	@RequestMapping("/salary_form.html")
+	public String form(Model model,HttpServletRequest request , String id) {
+		return getTemplatePath(prefix,"/salary_form");
+	}
+
 	/**
 	 * 人员薪酬 表单页面
 	 */
@@ -94,6 +103,22 @@ public class SalaryPageController extends ViewController {
 	@RequestMapping("/salary_51_form.html")
 	public String person51form(Model model,HttpServletRequest request , String id) {
 		return getTemplatePath(prefix,"/salary_51_form");
+	}
+
+	/**
+	 * 人员薪酬 功能主页面
+	 */
+	@RequestMapping("/salary_base_list.html")
+	public String personBaselist(Model model,HttpServletRequest request) {
+		return getTemplatePath(prefix,"/salary_base_list");
+	}
+
+	/**
+	 * 人员薪酬 表单页面
+	 */
+	@RequestMapping("/salary_base_form.html")
+	public String personBaseform(Model model,HttpServletRequest request , String id) {
+		return getTemplatePath(prefix,"/salary_base_form");
 	}
 
 

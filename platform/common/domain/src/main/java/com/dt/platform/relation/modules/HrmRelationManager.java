@@ -29,13 +29,70 @@ public class HrmRelationManager extends RelationManager {
 		this.setupPersonSocialRelation();
 		this.setupPersonWork();
 		this.setupPersonScore();
-		this.setupPersonTransferRcd();
-		this.setupPersonTransfer();
 		this.setupPersonResignation();
 		this.setupPersonProjectCommissionRcd();
 		this.setupPersonProjectTimeRcd();
 		this.setupPersonProjectUnitRcd();
 		this.setupPersonBusiInsure();
+		this.setupScoreTplItem();
+		this.setupScoreTpl();
+		this.setupPersonTransferRcd();
+
+		this.setupPersonTransfer();
+		this.setupPersonLeave();
+		this.setupPersonConfirmApply();
+		this.setupAbsenceApply();
+		this.setupAbsenceOfficeBusinessApply();
+
+		this.setupAttendanceYearDay();
+	}
+
+	public void setupAttendanceYearDay() {
+		this.property(AttendanceYearDayMeta.PERSON_PROP)
+				.using(HrTables.HR_ATTENDANCE_YEAR_DAY.PERSON_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+	}
+
+	public void setupPersonLeave() {
+		this.property(PersonLeaveMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_LEAVE.PERSON_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(PersonLeaveMeta.HANDOVER_PROP)
+				.using(HrTables.HR_PERSON_LEAVE.HANDOVER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+	}
+	public void setupPersonConfirmApply() {
+		this.property(PersonConfirmApplyMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_CONFIRM_APPLY.PERSON_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+	}
+	public void setupAbsenceApply() {
+		this.property(PersonAbsenceApplyMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_ABSENCE_APPLY.PERSON_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(PersonAbsenceApplyMeta.ATTENDANCE_TYPE_PROP)
+				.using(HrTables.HR_PERSON_ABSENCE_APPLY.APPLY_TYPE).join(HrTables.HR_ATTENDANCE_TYPE.CODE);
+
+
+	}
+
+	public void setupAbsenceOfficeBusinessApply() {
+
+		this.property(PersonOfficialBusinessMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_OFFICIAL_BUSINESS.PERSON_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+	}
+
+
+	public void setupScoreTpl() {
+		this.property(ScoreTplMeta.SCORE_TPL_ITEM_LIST_PROP)
+				.using(HrTables.HR_SCORE_TPL.ID).join(HrTables.HR_SCORE_TPL_ITEM.TPL_ID);
+
+	}
+
+	public void setupScoreTplItem() {
+
+		this.property(ScoreTplItemMeta.SCORE_INDICATOR_PROP)
+				.using(HrTables.HR_SCORE_TPL_ITEM.GROUP_ID).join(HrTables.HR_SCORE_INDICATOR.ID);
+
 	}
 
 	public void setupPersonBusiInsure() {
@@ -330,6 +387,8 @@ public class HrmRelationManager extends RelationManager {
 
 		this.property(PersonMeta.EMPLOYEE_PROP)
 				.using(HrTables.HR_PERSON.EMPLOYEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
 
 	}
 

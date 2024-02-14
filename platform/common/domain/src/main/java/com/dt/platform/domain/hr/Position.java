@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 工作岗位
  * <p>工作岗位 , 数据表 hr_position 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:12:25
- * @sign 280BECC8E56B4A5DF7AE0B5EEDB5F658
+ * @since 2024-02-09 20:32:46
+ * @sign D8D7FB012BED1CF317969147225AA479
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -54,6 +54,12 @@ public class Position extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="类型" , notes = "类型" , example = "660564350964072448")
 	private String type;
+	
+	/**
+	 * 工作职责：工作职责
+	*/
+	@ApiModelProperty(required = false,value="工作职责" , notes = "工作职责")
+	private String jobContent;
 	
 	/**
 	 * 备注：备注
@@ -178,6 +184,25 @@ public class Position extends Entity {
 	*/
 	public Position setType(String type) {
 		this.type=type;
+		return this;
+	}
+	
+	/**
+	 * 获得 工作职责<br>
+	 * 工作职责
+	 * @return 工作职责
+	*/
+	public String getJobContent() {
+		return jobContent;
+	}
+	
+	/**
+	 * 设置 工作职责
+	 * @param jobContent 工作职责
+	 * @return 当前对象
+	*/
+	public Position setJobContent(String jobContent) {
+		this.jobContent=jobContent;
 		return this;
 	}
 	
@@ -467,6 +492,7 @@ public class Position extends Entity {
 		com.dt.platform.domain.hr.meta.PositionMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.PositionMeta.$$proxy$$();
 		inst.setNote(this.getNote());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setJobContent(this.getJobContent());
 		inst.setType(this.getType());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
@@ -541,6 +567,7 @@ public class Position extends Entity {
 		if(cast) {
 			this.setNote(DataParser.parse(String.class, map.get(PositionMeta.NOTE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(PositionMeta.UPDATE_TIME)));
+			this.setJobContent(DataParser.parse(String.class, map.get(PositionMeta.JOB_CONTENT)));
 			this.setType(DataParser.parse(String.class, map.get(PositionMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(PositionMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(PositionMeta.CREATE_BY)));
@@ -559,6 +586,7 @@ public class Position extends Entity {
 			try {
 				this.setNote( (String)map.get(PositionMeta.NOTE));
 				this.setUpdateTime( (Date)map.get(PositionMeta.UPDATE_TIME));
+				this.setJobContent( (String)map.get(PositionMeta.JOB_CONTENT));
 				this.setType( (String)map.get(PositionMeta.TYPE));
 				this.setVersion( (Integer)map.get(PositionMeta.VERSION));
 				this.setCreateBy( (String)map.get(PositionMeta.CREATE_BY));
@@ -590,6 +618,7 @@ public class Position extends Entity {
 		if(cast) {
 			this.setNote(DataParser.parse(String.class, r.getValue(PositionMeta.NOTE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PositionMeta.UPDATE_TIME)));
+			this.setJobContent(DataParser.parse(String.class, r.getValue(PositionMeta.JOB_CONTENT)));
 			this.setType(DataParser.parse(String.class, r.getValue(PositionMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(PositionMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(PositionMeta.CREATE_BY)));
@@ -606,6 +635,7 @@ public class Position extends Entity {
 			try {
 				this.setNote( (String)r.getValue(PositionMeta.NOTE));
 				this.setUpdateTime( (Date)r.getValue(PositionMeta.UPDATE_TIME));
+				this.setJobContent( (String)r.getValue(PositionMeta.JOB_CONTENT));
 				this.setType( (String)r.getValue(PositionMeta.TYPE));
 				this.setVersion( (Integer)r.getValue(PositionMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(PositionMeta.CREATE_BY));

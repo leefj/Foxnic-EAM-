@@ -102,8 +102,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 param.employeeStatus="online";
             }else if(CODE=="depart"){
                 param.employeeStatus="offline";
+            }else if(CODE=="retired"){
+                param.employeeStatus="retired";
             }else{
-                param.employeeStatus="none";
+              //  param.employeeStatus="none";
             }
             return true;
         },

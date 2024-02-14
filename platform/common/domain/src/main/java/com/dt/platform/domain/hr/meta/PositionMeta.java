@@ -10,8 +10,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:12:25
- * @sign 280BECC8E56B4A5DF7AE0B5EEDB5F658
+ * @since 2024-02-09 20:32:46
+ * @sign D8D7FB012BED1CF317969147225AA479
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -46,6 +46,16 @@ public class PositionMeta {
 	 * 类型 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.Position,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.Position.class ,TYPE, java.lang.String.class, "类型", "类型", java.lang.String.class, null);
+	
+	/**
+	 * 工作职责 , 类型: java.lang.String
+	*/
+	public static final String JOB_CONTENT="jobContent";
+	
+	/**
+	 * 工作职责 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Position,java.lang.String> JOB_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.hr.Position.class ,JOB_CONTENT, java.lang.String.class, "工作职责", "工作职责", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -160,7 +170,7 @@ public class PositionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , TYPE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION_TYPE };
+	public static final String[] $PROPS={ ID , NAME , TYPE , JOB_CONTENT , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION_TYPE };
 	
 	/**
 	 * 代理类
@@ -200,6 +210,17 @@ public class PositionMeta {
 		public Position setType(String type) {
 			super.change(TYPE,super.getType(),type);
 			super.setType(type);
+			return this;
+		}
+		
+		/**
+		 * 设置 工作职责
+		 * @param jobContent 工作职责
+		 * @return 当前对象
+		*/
+		public Position setJobContent(String jobContent) {
+			super.change(JOB_CONTENT,super.getJobContent(),jobContent);
+			super.setJobContent(jobContent);
 			return this;
 		}
 		
@@ -341,6 +362,7 @@ public class PositionMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNote(this.getNote());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setJobContent(this.getJobContent());
 			inst.setType(this.getType());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());

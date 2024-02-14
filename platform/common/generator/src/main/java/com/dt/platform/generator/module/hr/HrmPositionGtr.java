@@ -53,6 +53,8 @@ public class HrmPositionGtr extends BaseCodeGenerator {
                 textField(PositionTypeMeta.NAME).
                 fillWith(PositionMeta.POSITION_TYPE).muliti(false);
 
+        cfg.view().field(HrTables.HR_POSITION.NOTE).form().textArea().height(60);
+        cfg.view().field(HrTables.HR_POSITION.JOB_CONTENT).form().textArea().height(120);
 
         cfg.view().formWindow().width("65%");;
         cfg.view().formWindow().bottomSpace(200);
@@ -60,6 +62,7 @@ public class HrmPositionGtr extends BaseCodeGenerator {
                 new Object[] {
                         HrTables.HR_POSITION.NAME,
                         HrTables.HR_POSITION.TYPE,
+                        HrTables.HR_POSITION.JOB_CONTENT,
                         HrTables.HR_POSITION.NOTE,
                 }
         );

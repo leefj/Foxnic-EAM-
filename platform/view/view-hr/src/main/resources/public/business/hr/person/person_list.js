@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-02 07:35:53
+ * @since 2024-02-14 12:42:10
  */
 
 
@@ -112,6 +112,7 @@ function ListPage() {
 					,{ field: 'contractStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('合同开始时间') ,templet: function (d) { return templet('contractStartDate',fox.dateFormat(d.contractStartDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'contractFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('合同结束时间') ,templet: function (d) { return templet('contractFinishDate',fox.dateFormat(d.contractFinishDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'score', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('积分') , templet: function (d) { return templet('score',d.score,d);}  }
+					,{ field: 'yearDays', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('年假天数') , templet: function (d) { return templet('yearDays',d.yearDays,d);}  }
 					,{ field: 'batchCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('批次号') , templet: function (d) { return templet('batchCode',d.batchCode,d);}  }
 					,{ field: 'note', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('note',d.note,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
@@ -213,6 +214,9 @@ function ListPage() {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
 			} 		}
+
+
+
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {

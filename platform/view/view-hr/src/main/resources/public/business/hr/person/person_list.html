@@ -2,7 +2,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-02 07:35:53
+ * @since 2024-02-14 12:42:09
  */
  -->
  <!DOCTYPE html>
@@ -86,6 +86,7 @@
                     <!-- 合同周期 , contractDuration ,typeName=text_input, isHideInSearch=true -->
                     <!-- 合同结束时间 , contractFinishDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 积分 , score ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 年假天数 , yearDays ,typeName=number_input, isHideInSearch=true -->
                     <!-- 批次号 , batchCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 备注 , note ,typeName=text_area, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
@@ -138,7 +139,7 @@
                     <!-- 员工部门 , orgId ,typeName=button, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('员工部门')}" class="search-label orgId-label">员工部门</span><span class="search-colon">:</span></div>
-                            <input lay-filter="orgId" id="orgId" name="orgId"  type="hidden" class="layui-input"   />
+                            <input lay-filter="orgId" id="orgId" name="orgId"  type="hidden" class="layui-input"    lay-verify="|required"   />
                             <button id="orgId-button" type="button" action-type="org-dialog" class="layui-btn layui-btn-primary   " style="width: 180px"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择组织节点')}" th:default-label="${lang.translate('请选择组织节点')}">按钮文本</span></button>
                     </div>
                     <!-- 人员类型 , employeeTypeCode ,typeName=select_box, isHideInSearch=false -->
@@ -170,7 +171,7 @@
                     </div>
                     <!-- 合同开始时间 , contractStartDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('合同开始时间')}" class="search-label contractStartDate-label">合同开始时间</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('合同时间')}" class="search-label contractStartDate-label">合同时间</span><span class="search-colon">:</span></div>
                             <input type="text" id="contractStartDate-begin" style="width: 180px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
                             <input type="text" id="contractStartDate-end"  style="width: 180px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>

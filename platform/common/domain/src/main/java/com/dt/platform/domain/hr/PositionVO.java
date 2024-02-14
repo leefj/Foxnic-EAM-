@@ -22,8 +22,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 工作岗位VO类型
  * <p>工作岗位 , 数据表 hr_position 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:12:25
- * @sign 184B2A0DAE2C10151B6C2A05A0CBAE4C
+ * @since 2024-02-09 20:32:46
+ * @sign 33536843712ACE81E173E95A28D10538
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -81,9 +81,9 @@ public class PositionVO extends Position {
 	private String sortType;
 	
 	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
 	private String dataOrigin;
 	
 	/**
@@ -91,6 +91,12 @@ public class PositionVO extends Position {
 	*/
 	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
 	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -255,7 +261,7 @@ public class PositionVO extends Position {
 	
 	/**
 	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
 	 * @return 数据来源
 	*/
 	public String getDataOrigin() {
@@ -288,6 +294,25 @@ public class PositionVO extends Position {
 	*/
 	public PositionVO setQueryLogic(String queryLogic) {
 		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public PositionVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
 		return this;
 	}
 	
@@ -378,6 +403,7 @@ public class PositionVO extends Position {
 		com.dt.platform.domain.hr.meta.PositionVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.PositionVOMeta.$$proxy$$();
 		inst.setNote(this.getNote());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setJobContent(this.getJobContent());
 		inst.setType(this.getType());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
@@ -392,12 +418,13 @@ public class PositionVO extends Position {
 		if(all) {
 			inst.setPositionType(this.getPositionType());
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setFuzzyField(this.getFuzzyField());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
@@ -463,6 +490,7 @@ public class PositionVO extends Position {
 		if(cast) {
 			this.setNote(DataParser.parse(String.class, map.get(PositionVOMeta.NOTE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(PositionVOMeta.UPDATE_TIME)));
+			this.setJobContent(DataParser.parse(String.class, map.get(PositionVOMeta.JOB_CONTENT)));
 			this.setType(DataParser.parse(String.class, map.get(PositionVOMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(PositionVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(PositionVOMeta.CREATE_BY)));
@@ -477,11 +505,12 @@ public class PositionVO extends Position {
 			// others
 			this.setPositionType(DataParser.parse(PositionType.class, map.get(PositionVOMeta.POSITION_TYPE)));
 			this.setSearchField(DataParser.parse(String.class, map.get(PositionVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(PositionVOMeta.REQUEST_ACTION)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(PositionVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(PositionVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(PositionVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(PositionVOMeta.SORT_TYPE)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(PositionVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(PositionVOMeta.SORT_FIELD)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(PositionVOMeta.PAGE_SIZE)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(PositionVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(PositionVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(PositionVOMeta.SEARCH_VALUE)));
@@ -490,6 +519,7 @@ public class PositionVO extends Position {
 			try {
 				this.setNote( (String)map.get(PositionVOMeta.NOTE));
 				this.setUpdateTime( (Date)map.get(PositionVOMeta.UPDATE_TIME));
+				this.setJobContent( (String)map.get(PositionVOMeta.JOB_CONTENT));
 				this.setType( (String)map.get(PositionVOMeta.TYPE));
 				this.setVersion( (Integer)map.get(PositionVOMeta.VERSION));
 				this.setCreateBy( (String)map.get(PositionVOMeta.CREATE_BY));
@@ -504,11 +534,12 @@ public class PositionVO extends Position {
 				// others
 				this.setPositionType( (PositionType)map.get(PositionVOMeta.POSITION_TYPE));
 				this.setSearchField( (String)map.get(PositionVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(PositionVOMeta.REQUEST_ACTION));
+				this.setFuzzyField( (String)map.get(PositionVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(PositionVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(PositionVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(PositionVOMeta.SORT_TYPE));
-				this.setFuzzyField( (String)map.get(PositionVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(PositionVOMeta.SORT_FIELD));
-				this.setPageSize( (Integer)map.get(PositionVOMeta.PAGE_SIZE));
 				this.setDataOrigin( (String)map.get(PositionVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(PositionVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(PositionVOMeta.SEARCH_VALUE));
@@ -530,6 +561,7 @@ public class PositionVO extends Position {
 		if(cast) {
 			this.setNote(DataParser.parse(String.class, r.getValue(PositionVOMeta.NOTE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PositionVOMeta.UPDATE_TIME)));
+			this.setJobContent(DataParser.parse(String.class, r.getValue(PositionVOMeta.JOB_CONTENT)));
 			this.setType(DataParser.parse(String.class, r.getValue(PositionVOMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(PositionVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(PositionVOMeta.CREATE_BY)));
@@ -546,6 +578,7 @@ public class PositionVO extends Position {
 			try {
 				this.setNote( (String)r.getValue(PositionVOMeta.NOTE));
 				this.setUpdateTime( (Date)r.getValue(PositionVOMeta.UPDATE_TIME));
+				this.setJobContent( (String)r.getValue(PositionVOMeta.JOB_CONTENT));
 				this.setType( (String)r.getValue(PositionVOMeta.TYPE));
 				this.setVersion( (Integer)r.getValue(PositionVOMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(PositionVOMeta.CREATE_BY));
