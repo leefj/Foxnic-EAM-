@@ -82,6 +82,7 @@ public class HrmPersonApplyBusinessOfficeGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON_OFFICIAL_BUSINESS.NOTES,
                 }
         );
+        cfg.view().list().addJsVariable("CUR_EMP_ID","[[${curEmpId}]]","curEmpId");
         cfg.view().list().addJsVariable("CODE","[[${code}]]","code");
         cfg.view().form().addJsVariable("CUR_EMP_ID","[[${curEmpId}]]","curEmpId");
         cfg.view().form().addJsVariable("CUR_USER_NAME","[[${curUserName}]]","curUserName");

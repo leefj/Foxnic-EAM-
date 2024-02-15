@@ -451,7 +451,7 @@ public class PersonBusiInsureServiceImpl extends SuperService<PersonBusiInsure> 
 				}else{
 					RcdSet rcdset=this.dao.query("select * from hr_person where deleted=0 and job_number=?",jobNumber);
 					if(rcdset.size()==0){
-						errors.add(new ValidateResult(null,(i+1),"工号:"+jobNumber+",未来找到"));
+						errors.add(new ValidateResult(null,(i+1),"工号:"+jobNumber+",未找到"));
 						break;
 					}
 					if(rcdset.size()>1){

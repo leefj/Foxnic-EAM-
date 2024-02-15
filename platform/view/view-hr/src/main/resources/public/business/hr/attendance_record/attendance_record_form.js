@@ -1,14 +1,20 @@
 /**
- * 考勤记录 列表页 JS 脚本
+ * 考勤原始记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:24:01
+ * @since 2024-02-14 22:19:16
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
 	
+	// 接口地址
 	const moduleURL="/service-hr/hr-attendance-record";
+	const queryURL=moduleURL+"/get-by-id";
+	const insertURL=moduleURL+"/insert";
+	const updateURL=moduleURL+"/update";
+
+	var rawFormData=null;
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
@@ -64,9 +70,9 @@ function FormPage() {
 	 * 自动调节窗口高度
 	 * */
 	var adjustPopupTask=-1;
-	function adjustPopup() {
+	function adjustPopup(arg) {
 		if(window.pageExt.form.beforeAdjustPopup) {
-			var doNext=window.pageExt.form.beforeAdjustPopup();
+			var doNext=window.pageExt.form.beforeAdjustPopup(arg);
 			if(!doNext) return;
 		}
 
@@ -85,7 +91,7 @@ function FormPage() {
 				if(bodyHeight>0 && bodyHeight!=prevBodyHeight) {
 					updateFormIframeHeight && updateFormIframeHeight(bodyHeight);
 				} else {
-					setTimeout(adjustPopup,1000);
+					setTimeout(function() {adjustPopup(arg);},1000);
 				}
 				prevBodyHeight = bodyHeight;
 				return;
@@ -112,12 +118,67 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 personId 下拉字段
+		fox.renderSelectBox({
+			el: "personId",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("人员",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("personId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("personId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 		laydate.render({
 			elem: '#rcdTime',
+			type:"datetime",
 			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("rcdTime",value, date, endDate);
+			}
+		});
+		form.on('radio(processStatus)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=processStatus]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("processStatus",data,checked);
+		});
+		laydate.render({
+			elem: '#processTime',
+			type:"date",
+			format:"yyyy-MM-dd HH:mm:ss",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("processTime",value, date, endDate);
 			}
 		});
 	}
@@ -130,7 +191,7 @@ function FormPage() {
 		if(ids.length==0) return;
 		var id=ids[0];
 		if(!id) return;
-		admin.post(moduleURL+"/get-by-id", { id : id }, function (r) {
+		admin.post(queryURL, { id : id }, function (r) {
 			if (r.success) {
 				fillFormData(r.data)
 			} else {
@@ -153,6 +214,7 @@ function FormPage() {
 		if(!formData) {
 			formData = admin.getTempData('hr-attendance-record-form-data');
 		}
+		rawFormData=formData;
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
 
@@ -170,8 +232,18 @@ function FormPage() {
 
 
 
+			//设置 打卡时间 显示复选框勾选
+			if(formData["rcdTime"]) {
+				$("#rcdTime").val(fox.dateFormat(formData["rcdTime"],"yyyy-MM-dd HH:mm:ss"));
+			}
+			//设置 处理时间 显示复选框勾选
+			if(formData["processTime"]) {
+				$("#processTime").val(fox.dateFormat(formData["processTime"],"yyyy-MM-dd HH:mm:ss"));
+			}
 
 
+			//设置  人员 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#personId",formData.person);
 
 			//处理fillBy
 
@@ -187,15 +259,16 @@ function FormPage() {
 		//渐显效果
 		fm.css("opacity","0.0");
         fm.css("display","");
-        setTimeout(function (){
-            fm.animate({
-                opacity:'1.0'
-            },100,null,function (){
+		setTimeout(function (){
+			fm.animate({
+				opacity:'1.0'
+			},100,null,function (){
 				fm.css("opacity","1.0");});
-        },1);
+		},1);
+
 
         //禁用编辑
-		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+		if(action=="view" || (action=="edit" && disableModify) || (action=="create" && disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")
@@ -218,11 +291,23 @@ function FormPage() {
 
 	}
 
+	/**
+	 * 获得从服务器请求的原始表单数据
+	 * */
+	function getRawFormData() {
+		if(!rawFormData) {
+			rawFormData = admin.getTempData('hr-attendance-record-form-data');
+		}
+		return rawFormData;
+	}
+
 	function getFormData() {
 		var data=form.val("data-form");
 
 
 
+		//获取 人员 下拉框的值
+		data["personId"]=fox.getSelectedValue("personId",false);
 
 		return data;
 	}
@@ -240,7 +325,7 @@ function FormPage() {
 
 		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
 		var action=param.id?"edit":"create";
-		var api=moduleURL+"/"+(param.id?"update":"insert");
+		var api=param.id?updateURL:insertURL;
 		admin.post(api, param, function (data) {
 			if (data.success) {
 				var doNext=true;
@@ -299,7 +384,9 @@ function FormPage() {
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,
+		getRawFormData:getRawFormData,
 		verifyAndSaveForm:verifyAndSaveForm,
+		renderFormFields:renderFormFields,
 		fillFormData: fillFormData,
 		fillFormDataByIds:fillFormDataByIds,
 		processFormData4Bpm:processFormData4Bpm,

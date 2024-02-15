@@ -5,14 +5,15 @@ import com.dt.platform.domain.hr.AttendanceRecordVO;
 import java.util.List;
 import com.dt.platform.domain.hr.AttendanceRecord;
 import java.util.Date;
+import com.dt.platform.domain.hr.Person;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:24:00
- * @sign E74A57482162CD547EE704397DB05800
+ * @since 2024-02-14 22:19:13
+ * @sign 7544031466650EB35E2D976C6380908C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -99,14 +100,14 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
 	*/
 	public static final String DATA_ORIGIN="dataOrigin";
 	
 	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端按来源执行不同的逻辑", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
@@ -117,6 +118,16 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -137,6 +148,16 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 人员 , 类型: java.lang.String
+	*/
+	public static final String PERSON_ID="personId";
+	
+	/**
+	 * 人员 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> PERSON_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,PERSON_ID, java.lang.String.class, "人员", "人员", java.lang.String.class, null);
 	
 	/**
 	 * 人员 , 类型: java.lang.String
@@ -169,14 +190,14 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> EMPLOYEE_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,EMPLOYEE_NUMBER, java.lang.String.class, "工号", "工号", java.lang.String.class, null);
 	
 	/**
-	 * 记录时间 , 类型: java.util.Date
+	 * 打卡时间 , 类型: java.util.Date
 	*/
 	public static final String RCD_TIME="rcdTime";
 	
 	/**
-	 * 记录时间 , 类型: java.util.Date
+	 * 打卡时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.util.Date> RCD_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,RCD_TIME, java.util.Date.class, "记录时间", "记录时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.util.Date> RCD_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,RCD_TIME, java.util.Date.class, "打卡时间", "打卡时间", java.util.Date.class, null);
 	
 	/**
 	 * 来源 , 类型: java.lang.String
@@ -187,6 +208,46 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 	 * 来源 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> SOURCE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,SOURCE, java.lang.String.class, "来源", "来源", java.lang.String.class, null);
+	
+	/**
+	 * 批次号 , 类型: java.lang.String
+	*/
+	public static final String BATCH_CODE="batchCode";
+	
+	/**
+	 * 批次号 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> BATCH_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,BATCH_CODE, java.lang.String.class, "批次号", "批次号", java.lang.String.class, null);
+	
+	/**
+	 * 处理状态 , 类型: java.lang.String
+	*/
+	public static final String PROCESS_STATUS="processStatus";
+	
+	/**
+	 * 处理状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> PROCESS_STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,PROCESS_STATUS, java.lang.String.class, "处理状态", "处理状态", java.lang.String.class, null);
+	
+	/**
+	 * 处理时间 , 类型: java.util.Date
+	*/
+	public static final String PROCESS_TIME="processTime";
+	
+	/**
+	 * 处理时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.util.Date> PROCESS_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,PROCESS_TIME, java.util.Date.class, "处理时间", "处理时间", java.util.Date.class, null);
+	
+	/**
+	 * 处理结果 , 类型: java.lang.String
+	*/
+	public static final String PROCESS_RESULT="processResult";
+	
+	/**
+	 * 处理结果 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> PROCESS_RESULT_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,PROCESS_RESULT, java.lang.String.class, "处理结果", "处理结果", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -289,9 +350,19 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * person , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final String PERSON="person";
+	
+	/**
+	 * person , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,com.dt.platform.domain.hr.Person> PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,PERSON, com.dt.platform.domain.hr.Person.class, "person", "person", com.dt.platform.domain.hr.Person.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , EMPLOYEE_ID , EMPLOYEE_NAME , EMPLOYEE_NUMBER , RCD_TIME , SOURCE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PERSON_ID , EMPLOYEE_ID , EMPLOYEE_NAME , EMPLOYEE_NUMBER , RCD_TIME , SOURCE , BATCH_CODE , PROCESS_STATUS , PROCESS_TIME , PROCESS_RESULT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON };
 	
 	/**
 	 * 代理类
@@ -412,6 +483,17 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 		}
 		
 		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public AttendanceRecordVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
+			return this;
+		}
+		
+		/**
 		 * 设置 主键清单
 		 * @param ids 主键清单
 		 * @return 当前对象
@@ -430,6 +512,17 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 		public AttendanceRecord setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 人员
+		 * @param personId 人员
+		 * @return 当前对象
+		*/
+		public AttendanceRecord setPersonId(String personId) {
+			super.change(PERSON_ID,super.getPersonId(),personId);
+			super.setPersonId(personId);
 			return this;
 		}
 		
@@ -467,8 +560,8 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 		}
 		
 		/**
-		 * 设置 记录时间
-		 * @param rcdTime 记录时间
+		 * 设置 打卡时间
+		 * @param rcdTime 打卡时间
 		 * @return 当前对象
 		*/
 		public AttendanceRecord setRcdTime(Date rcdTime) {
@@ -485,6 +578,50 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 		public AttendanceRecord setSource(String source) {
 			super.change(SOURCE,super.getSource(),source);
 			super.setSource(source);
+			return this;
+		}
+		
+		/**
+		 * 设置 批次号
+		 * @param batchCode 批次号
+		 * @return 当前对象
+		*/
+		public AttendanceRecord setBatchCode(String batchCode) {
+			super.change(BATCH_CODE,super.getBatchCode(),batchCode);
+			super.setBatchCode(batchCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 处理状态
+		 * @param processStatus 处理状态
+		 * @return 当前对象
+		*/
+		public AttendanceRecord setProcessStatus(String processStatus) {
+			super.change(PROCESS_STATUS,super.getProcessStatus(),processStatus);
+			super.setProcessStatus(processStatus);
+			return this;
+		}
+		
+		/**
+		 * 设置 处理时间
+		 * @param processTime 处理时间
+		 * @return 当前对象
+		*/
+		public AttendanceRecord setProcessTime(Date processTime) {
+			super.change(PROCESS_TIME,super.getProcessTime(),processTime);
+			super.setProcessTime(processTime);
+			return this;
+		}
+		
+		/**
+		 * 设置 处理结果
+		 * @param processResult 处理结果
+		 * @return 当前对象
+		*/
+		public AttendanceRecord setProcessResult(String processResult) {
+			super.change(PROCESS_RESULT,super.getProcessResult(),processResult);
+			super.setProcessResult(processResult);
 			return this;
 		}
 		
@@ -597,6 +734,17 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 person
+		 * @param person person
+		 * @return 当前对象
+		*/
+		public AttendanceRecord setPerson(Person person) {
+			super.change(PERSON,super.getPerson(),person);
+			super.setPerson(person);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -615,10 +763,14 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setEmployeeName(this.getEmployeeName());
 			inst.setNotes(this.getNotes());
+			inst.setProcessStatus(this.getProcessStatus());
+			inst.setBatchCode(this.getBatchCode());
+			inst.setProcessResult(this.getProcessResult());
 			inst.setEmployeeId(this.getEmployeeId());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setSource(this.getSource());
 			inst.setVersion(this.getVersion());
+			inst.setProcessTime(this.getProcessTime());
 			inst.setEmployeeNumber(this.getEmployeeNumber());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
@@ -627,16 +779,19 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setPersonId(this.getPersonId());
 			inst.setId(this.getId());
 			inst.setRcdTime(this.getRcdTime());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPerson(this.getPerson());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());

@@ -20,16 +20,16 @@ import com.github.foxnic.sql.data.ExprRcd;
 
 
 /**
- * 考勤记录
- * <p>考勤记录 , 数据表 hr_attendance_record 的PO类型</p>
+ * 考勤原始记录
+ * <p>考勤原始记录 , 数据表 hr_attendance_record 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:24:00
- * @sign 2CA37B867AC5DBAA72F8A8C5C8B365A6
+ * @since 2024-02-14 22:19:13
+ * @sign E7B383BC7EB40A07087B7040DB13F431
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "hr_attendance_record")
-@ApiModel(description = "考勤记录 ; 考勤记录 , 数据表 hr_attendance_record 的PO类型")
+@ApiModel(description = "考勤原始记录 ; 考勤原始记录 , 数据表 hr_attendance_record 的PO类型")
 public class AttendanceRecord extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -40,8 +40,14 @@ public class AttendanceRecord extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "810273590422274048")
 	private String id;
+	
+	/**
+	 * 人员：人员
+	*/
+	@ApiModelProperty(required = false,value="人员" , notes = "人员" , example = "808426740073365504")
+	private String personId;
 	
 	/**
 	 * 人员：人员
@@ -62,9 +68,9 @@ public class AttendanceRecord extends Entity {
 	private String employeeNumber;
 	
 	/**
-	 * 记录时间：记录时间
+	 * 打卡时间：打卡时间
 	*/
-	@ApiModelProperty(required = false,value="记录时间" , notes = "记录时间")
+	@ApiModelProperty(required = false,value="打卡时间" , notes = "打卡时间" , example = "2024-02-20 12:02:03")
 	private Date rcdTime;
 	
 	/**
@@ -72,6 +78,30 @@ public class AttendanceRecord extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="来源" , notes = "来源")
 	private String source;
+	
+	/**
+	 * 批次号：批次号
+	*/
+	@ApiModelProperty(required = false,value="批次号" , notes = "批次号")
+	private String batchCode;
+	
+	/**
+	 * 处理状态：处理状态
+	*/
+	@ApiModelProperty(required = false,value="处理状态" , notes = "处理状态" , example = "not_process")
+	private String processStatus;
+	
+	/**
+	 * 处理时间：处理时间
+	*/
+	@ApiModelProperty(required = false,value="处理时间" , notes = "处理时间" , example = "2024-02-22 12:00:00")
+	private Date processTime;
+	
+	/**
+	 * 处理结果：处理结果
+	*/
+	@ApiModelProperty(required = false,value="处理结果" , notes = "处理结果")
+	private String processResult;
 	
 	/**
 	 * 备注：备注
@@ -82,13 +112,13 @@ public class AttendanceRecord extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-02-14 10:17:58")
 	private Date createTime;
 	
 	/**
@@ -106,7 +136,7 @@ public class AttendanceRecord extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -127,14 +157,20 @@ public class AttendanceRecord extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * person：person
+	*/
+	@ApiModelProperty(required = false,value="person" , notes = "person")
+	private Person person;
 	
 	/**
 	 * 获得 主键<br>
@@ -152,6 +188,25 @@ public class AttendanceRecord extends Entity {
 	*/
 	public AttendanceRecord setId(String id) {
 		this.id=id;
+		return this;
+	}
+	
+	/**
+	 * 获得 人员<br>
+	 * 人员
+	 * @return 人员
+	*/
+	public String getPersonId() {
+		return personId;
+	}
+	
+	/**
+	 * 设置 人员
+	 * @param personId 人员
+	 * @return 当前对象
+	*/
+	public AttendanceRecord setPersonId(String personId) {
+		this.personId=personId;
 		return this;
 	}
 	
@@ -213,17 +268,17 @@ public class AttendanceRecord extends Entity {
 	}
 	
 	/**
-	 * 获得 记录时间<br>
-	 * 记录时间
-	 * @return 记录时间
+	 * 获得 打卡时间<br>
+	 * 打卡时间
+	 * @return 打卡时间
 	*/
 	public Date getRcdTime() {
 		return rcdTime;
 	}
 	
 	/**
-	 * 设置 记录时间
-	 * @param rcdTime 记录时间
+	 * 设置 打卡时间
+	 * @param rcdTime 打卡时间
 	 * @return 当前对象
 	*/
 	public AttendanceRecord setRcdTime(Date rcdTime) {
@@ -247,6 +302,82 @@ public class AttendanceRecord extends Entity {
 	*/
 	public AttendanceRecord setSource(String source) {
 		this.source=source;
+		return this;
+	}
+	
+	/**
+	 * 获得 批次号<br>
+	 * 批次号
+	 * @return 批次号
+	*/
+	public String getBatchCode() {
+		return batchCode;
+	}
+	
+	/**
+	 * 设置 批次号
+	 * @param batchCode 批次号
+	 * @return 当前对象
+	*/
+	public AttendanceRecord setBatchCode(String batchCode) {
+		this.batchCode=batchCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 处理状态<br>
+	 * 处理状态
+	 * @return 处理状态
+	*/
+	public String getProcessStatus() {
+		return processStatus;
+	}
+	
+	/**
+	 * 设置 处理状态
+	 * @param processStatus 处理状态
+	 * @return 当前对象
+	*/
+	public AttendanceRecord setProcessStatus(String processStatus) {
+		this.processStatus=processStatus;
+		return this;
+	}
+	
+	/**
+	 * 获得 处理时间<br>
+	 * 处理时间
+	 * @return 处理时间
+	*/
+	public Date getProcessTime() {
+		return processTime;
+	}
+	
+	/**
+	 * 设置 处理时间
+	 * @param processTime 处理时间
+	 * @return 当前对象
+	*/
+	public AttendanceRecord setProcessTime(Date processTime) {
+		this.processTime=processTime;
+		return this;
+	}
+	
+	/**
+	 * 获得 处理结果<br>
+	 * 处理结果
+	 * @return 处理结果
+	*/
+	public String getProcessResult() {
+		return processResult;
+	}
+	
+	/**
+	 * 设置 处理结果
+	 * @param processResult 处理结果
+	 * @return 当前对象
+	*/
+	public AttendanceRecord setProcessResult(String processResult) {
+		this.processResult=processResult;
 		return this;
 	}
 	
@@ -470,6 +601,25 @@ public class AttendanceRecord extends Entity {
 		this.tenantId=tenantId;
 		return this;
 	}
+	
+	/**
+	 * 获得 person<br>
+	 * person
+	 * @return person
+	*/
+	public Person getPerson() {
+		return person;
+	}
+	
+	/**
+	 * 设置 person
+	 * @param person person
+	 * @return 当前对象
+	*/
+	public AttendanceRecord setPerson(Person person) {
+		this.person=person;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -517,10 +667,14 @@ public class AttendanceRecord extends Entity {
 		com.dt.platform.domain.hr.meta.AttendanceRecordMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AttendanceRecordMeta.$$proxy$$();
 		inst.setEmployeeName(this.getEmployeeName());
 		inst.setNotes(this.getNotes());
+		inst.setProcessStatus(this.getProcessStatus());
+		inst.setBatchCode(this.getBatchCode());
+		inst.setProcessResult(this.getProcessResult());
 		inst.setEmployeeId(this.getEmployeeId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setSource(this.getSource());
 		inst.setVersion(this.getVersion());
+		inst.setProcessTime(this.getProcessTime());
 		inst.setEmployeeNumber(this.getEmployeeNumber());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -529,8 +683,12 @@ public class AttendanceRecord extends Entity {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setPersonId(this.getPersonId());
 		inst.setId(this.getId());
 		inst.setRcdTime(this.getRcdTime());
+		if(all) {
+			inst.setPerson(this.getPerson());
+		}
 		inst.clearModifies();
 		return inst;
 	}
@@ -591,10 +749,14 @@ public class AttendanceRecord extends Entity {
 		if(cast) {
 			this.setEmployeeName(DataParser.parse(String.class, map.get(AttendanceRecordMeta.EMPLOYEE_NAME)));
 			this.setNotes(DataParser.parse(String.class, map.get(AttendanceRecordMeta.NOTES)));
+			this.setProcessStatus(DataParser.parse(String.class, map.get(AttendanceRecordMeta.PROCESS_STATUS)));
+			this.setBatchCode(DataParser.parse(String.class, map.get(AttendanceRecordMeta.BATCH_CODE)));
+			this.setProcessResult(DataParser.parse(String.class, map.get(AttendanceRecordMeta.PROCESS_RESULT)));
 			this.setEmployeeId(DataParser.parse(String.class, map.get(AttendanceRecordMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AttendanceRecordMeta.UPDATE_TIME)));
 			this.setSource(DataParser.parse(String.class, map.get(AttendanceRecordMeta.SOURCE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AttendanceRecordMeta.VERSION)));
+			this.setProcessTime(DataParser.parse(Date.class, map.get(AttendanceRecordMeta.PROCESS_TIME)));
 			this.setEmployeeNumber(DataParser.parse(String.class, map.get(AttendanceRecordMeta.EMPLOYEE_NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AttendanceRecordMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AttendanceRecordMeta.DELETED)));
@@ -603,18 +765,24 @@ public class AttendanceRecord extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AttendanceRecordMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(AttendanceRecordMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AttendanceRecordMeta.DELETE_BY)));
+			this.setPersonId(DataParser.parse(String.class, map.get(AttendanceRecordMeta.PERSON_ID)));
 			this.setId(DataParser.parse(String.class, map.get(AttendanceRecordMeta.ID)));
 			this.setRcdTime(DataParser.parse(Date.class, map.get(AttendanceRecordMeta.RCD_TIME)));
 			// others
+			this.setPerson(DataParser.parse(Person.class, map.get(AttendanceRecordMeta.PERSON)));
 			return true;
 		} else {
 			try {
 				this.setEmployeeName( (String)map.get(AttendanceRecordMeta.EMPLOYEE_NAME));
 				this.setNotes( (String)map.get(AttendanceRecordMeta.NOTES));
+				this.setProcessStatus( (String)map.get(AttendanceRecordMeta.PROCESS_STATUS));
+				this.setBatchCode( (String)map.get(AttendanceRecordMeta.BATCH_CODE));
+				this.setProcessResult( (String)map.get(AttendanceRecordMeta.PROCESS_RESULT));
 				this.setEmployeeId( (String)map.get(AttendanceRecordMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)map.get(AttendanceRecordMeta.UPDATE_TIME));
 				this.setSource( (String)map.get(AttendanceRecordMeta.SOURCE));
 				this.setVersion( (Integer)map.get(AttendanceRecordMeta.VERSION));
+				this.setProcessTime( (Date)map.get(AttendanceRecordMeta.PROCESS_TIME));
 				this.setEmployeeNumber( (String)map.get(AttendanceRecordMeta.EMPLOYEE_NUMBER));
 				this.setCreateBy( (String)map.get(AttendanceRecordMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AttendanceRecordMeta.DELETED));
@@ -623,9 +791,11 @@ public class AttendanceRecord extends Entity {
 				this.setDeleteTime( (Date)map.get(AttendanceRecordMeta.DELETE_TIME));
 				this.setTenantId( (String)map.get(AttendanceRecordMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AttendanceRecordMeta.DELETE_BY));
+				this.setPersonId( (String)map.get(AttendanceRecordMeta.PERSON_ID));
 				this.setId( (String)map.get(AttendanceRecordMeta.ID));
 				this.setRcdTime( (Date)map.get(AttendanceRecordMeta.RCD_TIME));
 				// others
+				this.setPerson( (Person)map.get(AttendanceRecordMeta.PERSON));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -644,10 +814,14 @@ public class AttendanceRecord extends Entity {
 		if(cast) {
 			this.setEmployeeName(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.EMPLOYEE_NAME)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.NOTES)));
+			this.setProcessStatus(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.PROCESS_STATUS)));
+			this.setBatchCode(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.BATCH_CODE)));
+			this.setProcessResult(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.PROCESS_RESULT)));
 			this.setEmployeeId(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AttendanceRecordMeta.UPDATE_TIME)));
 			this.setSource(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.SOURCE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AttendanceRecordMeta.VERSION)));
+			this.setProcessTime(DataParser.parse(Date.class, r.getValue(AttendanceRecordMeta.PROCESS_TIME)));
 			this.setEmployeeNumber(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.EMPLOYEE_NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AttendanceRecordMeta.DELETED)));
@@ -656,6 +830,7 @@ public class AttendanceRecord extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AttendanceRecordMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.DELETE_BY)));
+			this.setPersonId(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.PERSON_ID)));
 			this.setId(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.ID)));
 			this.setRcdTime(DataParser.parse(Date.class, r.getValue(AttendanceRecordMeta.RCD_TIME)));
 			return true;
@@ -663,10 +838,14 @@ public class AttendanceRecord extends Entity {
 			try {
 				this.setEmployeeName( (String)r.getValue(AttendanceRecordMeta.EMPLOYEE_NAME));
 				this.setNotes( (String)r.getValue(AttendanceRecordMeta.NOTES));
+				this.setProcessStatus( (String)r.getValue(AttendanceRecordMeta.PROCESS_STATUS));
+				this.setBatchCode( (String)r.getValue(AttendanceRecordMeta.BATCH_CODE));
+				this.setProcessResult( (String)r.getValue(AttendanceRecordMeta.PROCESS_RESULT));
 				this.setEmployeeId( (String)r.getValue(AttendanceRecordMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)r.getValue(AttendanceRecordMeta.UPDATE_TIME));
 				this.setSource( (String)r.getValue(AttendanceRecordMeta.SOURCE));
 				this.setVersion( (Integer)r.getValue(AttendanceRecordMeta.VERSION));
+				this.setProcessTime( (Date)r.getValue(AttendanceRecordMeta.PROCESS_TIME));
 				this.setEmployeeNumber( (String)r.getValue(AttendanceRecordMeta.EMPLOYEE_NUMBER));
 				this.setCreateBy( (String)r.getValue(AttendanceRecordMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AttendanceRecordMeta.DELETED));
@@ -675,6 +854,7 @@ public class AttendanceRecord extends Entity {
 				this.setDeleteTime( (Date)r.getValue(AttendanceRecordMeta.DELETE_TIME));
 				this.setTenantId( (String)r.getValue(AttendanceRecordMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AttendanceRecordMeta.DELETE_BY));
+				this.setPersonId( (String)r.getValue(AttendanceRecordMeta.PERSON_ID));
 				this.setId( (String)r.getValue(AttendanceRecordMeta.ID));
 				this.setRcdTime( (Date)r.getValue(AttendanceRecordMeta.RCD_TIME));
 				return true;

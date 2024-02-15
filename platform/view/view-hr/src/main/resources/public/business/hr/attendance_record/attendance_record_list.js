@@ -1,7 +1,7 @@
 /**
- * 考勤记录 列表页 JS 脚本
+ * 考勤原始记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:24:01
+ * @since 2024-02-14 22:19:15
  */
 
 
@@ -11,8 +11,14 @@ function ListPage() {
 	
 	//模块基础路径
 	const moduleURL="/service-hr/hr-attendance-record";
+	const queryURL=moduleURL+'/query-paged-list';
+	const deleteURL=moduleURL+'/delete';
+	const batchDeleteURL=moduleURL+'/delete-by-ids';
+	const getByIdURL=moduleURL+'/get-by-id';
+	//
 	var dataTable=null;
 	var sort=null;
+
 	/**
       * 入口函数，初始化
       */
@@ -71,7 +77,7 @@ function ListPage() {
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-paged-list',
+				url: queryURL,
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
@@ -79,20 +85,36 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'employeeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员') , templet: function (d) { return templet('employeeId',d.employeeId,d);}  }
-					,{ field: 'employeeName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('姓名') , templet: function (d) { return templet('employeeName',d.employeeName,d);}  }
+					,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员'), templet: function (d) { return templet('personId' ,fox.joinLabel(d.person,"name",',','','personId'),d);}}
 					,{ field: 'employeeNumber', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('工号') , templet: function (d) { return templet('employeeNumber',d.employeeNumber,d);}  }
-					,{ field: 'rcdTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('记录时间') ,templet: function (d) { return templet('rcdTime',fox.dateFormat(d.rcdTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'rcdTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('打卡时间') ,templet: function (d) { return templet('rcdTime',fox.dateFormat(d.rcdTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'source', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源') , templet: function (d) { return templet('source',d.source,d);}  }
+					,{ field: 'batchCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('批次号') , templet: function (d) { return templet('batchCode',d.batchCode,d);}  }
+					,{ field: 'processStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('处理状态'), templet:function (d){ return templet('processStatus',fox.getEnumText(RADIO_PROCESSSTATUS_DATA,d.processStatus,'','processStatus'),d);}}
+					,{ field: 'processTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('处理时间') ,templet: function (d) { return templet('processTime',fox.dateFormat(d.processTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'processResult', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('处理结果') , templet: function (d) { return templet('processResult',d.processResult,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
-				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
+				done: function (data) {
+					lockSwitchInputs();
+					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
+				},
 				footer : {
-					exportExcel : false ,
-					importExcel : false 
+					exportExcel :  admin.checkAuth(AUTH_PREFIX+":export") ,
+					importExcel :  admin.checkAuth(AUTH_PREFIX+":import")?{
+						params : {} ,
+						callback : function(r) {
+							if(r.success) {
+								layer.msg(fox.translate('数据导入成功','','cmp:table')+"!");
+							} else {
+								layer.msg(fox.translate('数据导入失败','','cmp:table')+"!");
+							}
+							// 是否执行后续逻辑：错误提示
+							return false;
+						}
+					}:false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -113,11 +135,13 @@ function ListPage() {
 		var context=dataTable.getDataRowContext( { id : data.id } );
 		if(context==null) return;
 		if(remote) {
-			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+			admin.post(getByIdURL, { id : data.id }, function (r) {
 				if (r.success) {
 					data = r.data;
 					context.update(data);
 					fox.renderFormInputs(form);
+					lockSwitchInputs();
+					window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 				} else {
 					fox.showMessage(data);
 				}
@@ -125,7 +149,24 @@ function ListPage() {
 		} else {
 			context.update(data);
 			fox.renderFormInputs(form);
+			lockSwitchInputs();
+			window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 		}
+	}
+
+
+
+	function lockSwitchInputs() {
+	}
+
+	function lockSwitchInput(field) {
+		var inputs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find("input");
+		var switchs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find(".layui-form-switch");
+		inputs.attr("readonly", "yes");
+		inputs.attr("disabled", "yes");
+		switchs.addClass("layui-disabled");
+		switchs.addClass("layui-checkbox-disabled");
+		switchs.addClass("layui-form-switch-disabled");
 	}
 
 	/**
@@ -134,8 +175,13 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.employeeId={ inputType:"button",value: $("#employeeId").val()};
-		value.notes={ inputType:"button",value: $("#notes").val()};
+		value.personId={ inputType:"select_box", value: getSelectedValue("#personId","value") ,fillBy:["person"]  , label:getSelectedValue("#personId","nameStr") };
+		value.employeeName={ inputType:"button",value: $("#employeeName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.employeeNumber={ inputType:"button",value: $("#employeeNumber").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.rcdTime={ inputType:"date_input", begin: $("#rcdTime-begin").val(), end: $("#rcdTime-end").val() ,matchType:"auto" };
+		value.source={ inputType:"button",value: $("#source").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.batchCode={ inputType:"button",value: $("#batchCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.processStatus={ inputType:"radio_box", value: getSelectedValue("#processStatus","value"), label:getSelectedValue("#processStatus","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -180,8 +226,82 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(1);
+		fox.switchSearchRow(2);
 
+		//渲染 personId 下拉字段
+		fox.renderSelectBox({
+			el: "personId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("personId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("personId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					}
+				}
+				return opts;
+			}
+		});
+		laydate.render({
+			elem: '#rcdTime-begin',
+			trigger:"click",
+			done: function(value, date, endDate) {
+				setTimeout(function () {
+					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("rcdTime",value, date, endDate);
+				},1);
+			}
+		});
+		laydate.render({
+			elem: '#rcdTime-end',
+			trigger:"click",
+			done: function(value, date, endDate) {
+				setTimeout(function () {
+					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("rcdTime",value, date, endDate);
+				},1);
+			}
+		});
+		//渲染 processStatus 搜索框
+		fox.renderSelectBox({
+			el: "processStatus",
+			size: "small",
+			radio: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("processStatus",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("processStatus",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
@@ -203,7 +323,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(1,function (ex){
+			fox.switchSearchRow(2,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {
@@ -235,6 +355,12 @@ function ListPage() {
 				case 'batch-del':
 					batchDelete(selected);
 					break;
+				case 'tool-import-data':
+					window.pageExt.list.importData && window.pageExt.list.importData(selected,obj);
+					break;
+				case 'tool-export-data':
+					window.pageExt.list.exportData && window.pageExt.list.exportData(selected,obj);
+					break;
 				case 'refresh-data':
 					refreshTableData();
 					break;
@@ -262,13 +388,13 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'考勤记录'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的'+'考勤原始记录'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'考勤记录'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'考勤原始记录'+'吗？'), function (i) {
                 top.layer.close(i);
-				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -303,7 +429,10 @@ function ListPage() {
 
 			admin.putTempData('hr-attendance-record-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				top.layer.load(2);
+				top.layer.load(2);
+				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-attendance-record-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -312,7 +441,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				top.layer.load(2);
+				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-attendance-record-form-data-form-action', "view",true);
 						showEditForm(data.data);
@@ -328,9 +459,9 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'考勤记录'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此'+'考勤原始记录'+'吗？'), function (i) {
 					top.layer.close(i);
-					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -368,7 +499,7 @@ function ListPage() {
 		var area=admin.getTempData('hr-attendance-record-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('考勤记录');
+		var title = fox.translate('考勤原始记录');
 		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
 		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
 		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
@@ -377,7 +508,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["65%",height+"px"],
+			area: ["75%",height+"px"],
 			type: 2,
 			id:"hr-attendance-record-form-data-win",
 			content: '/business/hr/attendance_record/attendance_record_form.html' + (queryString?("?"+queryString):""),

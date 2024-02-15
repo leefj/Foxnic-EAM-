@@ -24,7 +24,7 @@ import java.util.Map;
  * 考勤汇总服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:22:47
+ * @since 2024-02-15 15:02:21
 */
 
 public interface IAttendanceDataService extends  ISimpleIdService<AttendanceData,String> {

@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 考勤汇总 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:22:47
+ * @since 2024-02-15 15:02:21
  */
 @FeignClient(value = ServiceNames.HR, contextId = AttendanceDataServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AttendanceDataServiceProxy {

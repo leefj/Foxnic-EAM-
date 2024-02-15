@@ -14,14 +14,15 @@ import java.util.List;
 import com.dt.platform.domain.hr.Salary;
 import com.dt.platform.domain.hr.SalaryTpl;
 import org.github.foxnic.web.domain.hrm.Organization;
+import com.dt.platform.domain.hr.AttendanceTpl;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 12:42:07
- * @sign 5B44FEB6CEED7E1BEB66BF6B6473BDE7
+ * @since 2024-02-15 13:56:14
+ * @sign E336F49366A513EDEC1C549E34EC5A61
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -578,6 +579,16 @@ public class PersonMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.math.BigDecimal> YEAR_DAYS_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,YEAR_DAYS, java.math.BigDecimal.class, "年假天数", "年假天数", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 考勤模版 , 类型: java.lang.String
+	*/
+	public static final String ATTENDANCE_TPL_CODE="attendanceTplCode";
+	
+	/**
+	 * 考勤模版 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> ATTENDANCE_TPL_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,ATTENDANCE_TPL_CODE, java.lang.String.class, "考勤模版", "考勤模版", java.lang.String.class, null);
+	
+	/**
 	 * 批次号 , 类型: java.lang.String
 	*/
 	public static final String BATCH_CODE="batchCode";
@@ -848,9 +859,19 @@ public class PersonMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.hrm.Organization> ORGANIZATION_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,ORGANIZATION, org.github.foxnic.web.domain.hrm.Organization.class, "organization", "organization", org.github.foxnic.web.domain.hrm.Organization.class, null);
 	
 	/**
+	 * attendanceTpl , 类型: com.dt.platform.domain.hr.AttendanceTpl
+	*/
+	public static final String ATTENDANCE_TPL="attendanceTpl";
+	
+	/**
+	 * attendanceTpl , 类型: com.dt.platform.domain.hr.AttendanceTpl
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,com.dt.platform.domain.hr.AttendanceTpl> ATTENDANCE_TPL_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,ATTENDANCE_TPL, com.dt.platform.domain.hr.AttendanceTpl.class, "attendanceTpl", "attendanceTpl", com.dt.platform.domain.hr.AttendanceTpl.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_IDENTITY_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , SALARY_TPL_ID , SALARY_PAY_OUT , SALARY_NOTES , PERSON_PICTURE_ID , EMPLOYEE_ID , FILE_ID , CONTRACT_DURATION , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , SCORE , YEAR_DAYS , BATCH_CODE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION , RANK , PROFESSIONAL_LEVEL , BLOOD_TYPE_DICT , SEX_DICT , MARITAL_STATUS_DICT , EMPLOYEE_OWNER_TYPE_DICT , EDUCATION_DATA , POLITIC_COUNTENANCE_DATA , EMPLOYEE_IDENTITY , BANK , EMPLOYEE , PERSON_CERT_LIST , SALARY , SALARY_TPL , ORGANIZATION };
+	public static final String[] $PROPS={ ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_IDENTITY_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , SALARY_TPL_ID , SALARY_PAY_OUT , SALARY_NOTES , PERSON_PICTURE_ID , EMPLOYEE_ID , FILE_ID , CONTRACT_DURATION , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , SCORE , YEAR_DAYS , ATTENDANCE_TPL_CODE , BATCH_CODE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION , RANK , PROFESSIONAL_LEVEL , BLOOD_TYPE_DICT , SEX_DICT , MARITAL_STATUS_DICT , EMPLOYEE_OWNER_TYPE_DICT , EDUCATION_DATA , POLITIC_COUNTENANCE_DATA , EMPLOYEE_IDENTITY , BANK , EMPLOYEE , PERSON_CERT_LIST , SALARY , SALARY_TPL , ORGANIZATION , ATTENDANCE_TPL };
 	
 	/**
 	 * 代理类
@@ -1466,6 +1487,17 @@ public class PersonMeta {
 		}
 		
 		/**
+		 * 设置 考勤模版
+		 * @param attendanceTplCode 考勤模版
+		 * @return 当前对象
+		*/
+		public Person setAttendanceTplCode(String attendanceTplCode) {
+			super.change(ATTENDANCE_TPL_CODE,super.getAttendanceTplCode(),attendanceTplCode);
+			super.setAttendanceTplCode(attendanceTplCode);
+			return this;
+		}
+		
+		/**
 		 * 设置 批次号
 		 * @param batchCode 批次号
 		 * @return 当前对象
@@ -1761,6 +1793,17 @@ public class PersonMeta {
 			super.setOrganization(organization);
 			return this;
 		}
+		
+		/**
+		 * 设置 attendanceTpl
+		 * @param attendanceTpl attendanceTpl
+		 * @return 当前对象
+		*/
+		public Person setAttendanceTpl(AttendanceTpl attendanceTpl) {
+			super.change(ATTENDANCE_TPL,super.getAttendanceTpl(),attendanceTpl);
+			super.setAttendanceTpl(attendanceTpl);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1779,6 +1822,7 @@ public class PersonMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setRankCode(this.getRankCode());
 			inst.setYearDays(this.getYearDays());
+			inst.setAttendanceTplCode(this.getAttendanceTplCode());
 			inst.setEmergencyContactNo(this.getEmergencyContactNo());
 			inst.setEmploymentConfirmDate(this.getEmploymentConfirmDate());
 			inst.setScore(this.getScore());
@@ -1856,6 +1900,7 @@ public class PersonMeta {
 				inst.setPersonCertList(this.getPersonCertList());
 				inst.setSalaryTpl(this.getSalaryTpl());
 				inst.setOrganization(this.getOrganization());
+				inst.setAttendanceTpl(this.getAttendanceTpl());
 				inst.setRank(this.getRank());
 				inst.setPosition(this.getPosition());
 				inst.setSexDict(this.getSexDict());

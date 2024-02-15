@@ -19,15 +19,15 @@ import com.github.foxnic.sql.data.ExprRcd;
 
 
 /**
- * 考勤记录VO类型
- * <p>考勤记录 , 数据表 hr_attendance_record 的通用VO类型</p>
+ * 考勤原始记录VO类型
+ * <p>考勤原始记录 , 数据表 hr_attendance_record 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:24:00
- * @sign E74A57482162CD547EE704397DB05800
+ * @since 2024-02-14 22:19:13
+ * @sign 7544031466650EB35E2D976C6380908C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-@ApiModel(description = "考勤记录VO类型 ; 考勤记录 , 数据表 hr_attendance_record 的通用VO类型" , parent = AttendanceRecord.class)
+@ApiModel(description = "考勤原始记录VO类型 ; 考勤原始记录 , 数据表 hr_attendance_record 的通用VO类型" , parent = AttendanceRecord.class)
 public class AttendanceRecordVO extends AttendanceRecord {
 
 	private static final long serialVersionUID = 1L;
@@ -81,9 +81,9 @@ public class AttendanceRecordVO extends AttendanceRecord {
 	private String sortType;
 	
 	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
 	private String dataOrigin;
 	
 	/**
@@ -91,6 +91,12 @@ public class AttendanceRecordVO extends AttendanceRecord {
 	*/
 	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
 	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -255,7 +261,7 @@ public class AttendanceRecordVO extends AttendanceRecord {
 	
 	/**
 	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
 	 * @return 数据来源
 	*/
 	public String getDataOrigin() {
@@ -288,6 +294,25 @@ public class AttendanceRecordVO extends AttendanceRecord {
 	*/
 	public AttendanceRecordVO setQueryLogic(String queryLogic) {
 		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public AttendanceRecordVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
 		return this;
 	}
 	
@@ -378,10 +403,14 @@ public class AttendanceRecordVO extends AttendanceRecord {
 		com.dt.platform.domain.hr.meta.AttendanceRecordVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AttendanceRecordVOMeta.$$proxy$$();
 		inst.setEmployeeName(this.getEmployeeName());
 		inst.setNotes(this.getNotes());
+		inst.setProcessStatus(this.getProcessStatus());
+		inst.setBatchCode(this.getBatchCode());
+		inst.setProcessResult(this.getProcessResult());
 		inst.setEmployeeId(this.getEmployeeId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setSource(this.getSource());
 		inst.setVersion(this.getVersion());
+		inst.setProcessTime(this.getProcessTime());
 		inst.setEmployeeNumber(this.getEmployeeNumber());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -390,16 +419,19 @@ public class AttendanceRecordVO extends AttendanceRecord {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setPersonId(this.getPersonId());
 		inst.setId(this.getId());
 		inst.setRcdTime(this.getRcdTime());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPerson(this.getPerson());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
@@ -465,10 +497,14 @@ public class AttendanceRecordVO extends AttendanceRecord {
 		if(cast) {
 			this.setEmployeeName(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.EMPLOYEE_NAME)));
 			this.setNotes(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.NOTES)));
+			this.setProcessStatus(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.PROCESS_STATUS)));
+			this.setBatchCode(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.BATCH_CODE)));
+			this.setProcessResult(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.PROCESS_RESULT)));
 			this.setEmployeeId(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AttendanceRecordVOMeta.UPDATE_TIME)));
 			this.setSource(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.SOURCE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AttendanceRecordVOMeta.VERSION)));
+			this.setProcessTime(DataParser.parse(Date.class, map.get(AttendanceRecordVOMeta.PROCESS_TIME)));
 			this.setEmployeeNumber(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.EMPLOYEE_NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AttendanceRecordVOMeta.DELETED)));
@@ -477,15 +513,18 @@ public class AttendanceRecordVO extends AttendanceRecord {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AttendanceRecordVOMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.DELETE_BY)));
+			this.setPersonId(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.PERSON_ID)));
 			this.setId(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.ID)));
 			this.setRcdTime(DataParser.parse(Date.class, map.get(AttendanceRecordVOMeta.RCD_TIME)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.REQUEST_ACTION)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AttendanceRecordVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AttendanceRecordVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.SORT_TYPE)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.FUZZY_FIELD)));
+			this.setPerson(DataParser.parse(Person.class, map.get(AttendanceRecordVOMeta.PERSON)));
 			this.setSortField(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.SORT_FIELD)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(AttendanceRecordVOMeta.PAGE_SIZE)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.SEARCH_VALUE)));
@@ -494,10 +533,14 @@ public class AttendanceRecordVO extends AttendanceRecord {
 			try {
 				this.setEmployeeName( (String)map.get(AttendanceRecordVOMeta.EMPLOYEE_NAME));
 				this.setNotes( (String)map.get(AttendanceRecordVOMeta.NOTES));
+				this.setProcessStatus( (String)map.get(AttendanceRecordVOMeta.PROCESS_STATUS));
+				this.setBatchCode( (String)map.get(AttendanceRecordVOMeta.BATCH_CODE));
+				this.setProcessResult( (String)map.get(AttendanceRecordVOMeta.PROCESS_RESULT));
 				this.setEmployeeId( (String)map.get(AttendanceRecordVOMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)map.get(AttendanceRecordVOMeta.UPDATE_TIME));
 				this.setSource( (String)map.get(AttendanceRecordVOMeta.SOURCE));
 				this.setVersion( (Integer)map.get(AttendanceRecordVOMeta.VERSION));
+				this.setProcessTime( (Date)map.get(AttendanceRecordVOMeta.PROCESS_TIME));
 				this.setEmployeeNumber( (String)map.get(AttendanceRecordVOMeta.EMPLOYEE_NUMBER));
 				this.setCreateBy( (String)map.get(AttendanceRecordVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AttendanceRecordVOMeta.DELETED));
@@ -506,15 +549,18 @@ public class AttendanceRecordVO extends AttendanceRecord {
 				this.setDeleteTime( (Date)map.get(AttendanceRecordVOMeta.DELETE_TIME));
 				this.setTenantId( (String)map.get(AttendanceRecordVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AttendanceRecordVOMeta.DELETE_BY));
+				this.setPersonId( (String)map.get(AttendanceRecordVOMeta.PERSON_ID));
 				this.setId( (String)map.get(AttendanceRecordVOMeta.ID));
 				this.setRcdTime( (Date)map.get(AttendanceRecordVOMeta.RCD_TIME));
 				// others
 				this.setSearchField( (String)map.get(AttendanceRecordVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(AttendanceRecordVOMeta.REQUEST_ACTION));
+				this.setFuzzyField( (String)map.get(AttendanceRecordVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(AttendanceRecordVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(AttendanceRecordVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AttendanceRecordVOMeta.SORT_TYPE));
-				this.setFuzzyField( (String)map.get(AttendanceRecordVOMeta.FUZZY_FIELD));
+				this.setPerson( (Person)map.get(AttendanceRecordVOMeta.PERSON));
 				this.setSortField( (String)map.get(AttendanceRecordVOMeta.SORT_FIELD));
-				this.setPageSize( (Integer)map.get(AttendanceRecordVOMeta.PAGE_SIZE));
 				this.setDataOrigin( (String)map.get(AttendanceRecordVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(AttendanceRecordVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(AttendanceRecordVOMeta.SEARCH_VALUE));
@@ -536,10 +582,14 @@ public class AttendanceRecordVO extends AttendanceRecord {
 		if(cast) {
 			this.setEmployeeName(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.EMPLOYEE_NAME)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.NOTES)));
+			this.setProcessStatus(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.PROCESS_STATUS)));
+			this.setBatchCode(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.BATCH_CODE)));
+			this.setProcessResult(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.PROCESS_RESULT)));
 			this.setEmployeeId(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.EMPLOYEE_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AttendanceRecordVOMeta.UPDATE_TIME)));
 			this.setSource(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.SOURCE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AttendanceRecordVOMeta.VERSION)));
+			this.setProcessTime(DataParser.parse(Date.class, r.getValue(AttendanceRecordVOMeta.PROCESS_TIME)));
 			this.setEmployeeNumber(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.EMPLOYEE_NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AttendanceRecordVOMeta.DELETED)));
@@ -548,6 +598,7 @@ public class AttendanceRecordVO extends AttendanceRecord {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AttendanceRecordVOMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.DELETE_BY)));
+			this.setPersonId(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.PERSON_ID)));
 			this.setId(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.ID)));
 			this.setRcdTime(DataParser.parse(Date.class, r.getValue(AttendanceRecordVOMeta.RCD_TIME)));
 			return true;
@@ -555,10 +606,14 @@ public class AttendanceRecordVO extends AttendanceRecord {
 			try {
 				this.setEmployeeName( (String)r.getValue(AttendanceRecordVOMeta.EMPLOYEE_NAME));
 				this.setNotes( (String)r.getValue(AttendanceRecordVOMeta.NOTES));
+				this.setProcessStatus( (String)r.getValue(AttendanceRecordVOMeta.PROCESS_STATUS));
+				this.setBatchCode( (String)r.getValue(AttendanceRecordVOMeta.BATCH_CODE));
+				this.setProcessResult( (String)r.getValue(AttendanceRecordVOMeta.PROCESS_RESULT));
 				this.setEmployeeId( (String)r.getValue(AttendanceRecordVOMeta.EMPLOYEE_ID));
 				this.setUpdateTime( (Date)r.getValue(AttendanceRecordVOMeta.UPDATE_TIME));
 				this.setSource( (String)r.getValue(AttendanceRecordVOMeta.SOURCE));
 				this.setVersion( (Integer)r.getValue(AttendanceRecordVOMeta.VERSION));
+				this.setProcessTime( (Date)r.getValue(AttendanceRecordVOMeta.PROCESS_TIME));
 				this.setEmployeeNumber( (String)r.getValue(AttendanceRecordVOMeta.EMPLOYEE_NUMBER));
 				this.setCreateBy( (String)r.getValue(AttendanceRecordVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AttendanceRecordVOMeta.DELETED));
@@ -567,6 +622,7 @@ public class AttendanceRecordVO extends AttendanceRecord {
 				this.setDeleteTime( (Date)r.getValue(AttendanceRecordVOMeta.DELETE_TIME));
 				this.setTenantId( (String)r.getValue(AttendanceRecordVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AttendanceRecordVOMeta.DELETE_BY));
+				this.setPersonId( (String)r.getValue(AttendanceRecordVOMeta.PERSON_ID));
 				this.setId( (String)r.getValue(AttendanceRecordVOMeta.ID));
 				this.setRcdTime( (Date)r.getValue(AttendanceRecordVOMeta.RCD_TIME));
 				return true;

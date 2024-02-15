@@ -44,6 +44,7 @@ insert into sys_file(id,file_name,location,size,media_type,file_type)values('T00
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_11','hr_person_welfaer_g.xls','/tpl/T001/hr_person_welfaer_g.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_12','hr_person_kh_score.xls','/tpl/T001/hr_person_kh_score.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_13','hr_person_salary_base.xls','/tpl/T001/hr_person_salary_base.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_14','hr_person_attendance_record.xls','/tpl/T001/hr_person_attendance_record.xls',10000,'application/octet-stream','xls');
 
 
 
@@ -91,6 +92,8 @@ insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_10'
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_11','hr_excel','公积金','hr_person_welfaer_g','T001_hr_11','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_12','hr_excel','考核评分','hr_person_kh_score','T001_hr_12','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_13','hr_excel','员工薪酬','hr_person_salary_base','T001_hr_13','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_14','hr_excel','考勤记录','hr_person_attendance_record','T001_hr_14','T001');
+
 -- OPS
 delete from sys_file where id like 'T001_ops_%';
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_1','ops_download_host.xls','/tpl/T001/ops_download_host.xls',10000,'application/octet-stream','xls');

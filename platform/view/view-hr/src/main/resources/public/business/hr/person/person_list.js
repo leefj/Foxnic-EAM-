@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 12:42:10
+ * @since 2024-02-15 13:56:17
  */
 
 
@@ -113,6 +113,7 @@ function ListPage() {
 					,{ field: 'contractFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('合同结束时间') ,templet: function (d) { return templet('contractFinishDate',fox.dateFormat(d.contractFinishDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'score', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('积分') , templet: function (d) { return templet('score',d.score,d);}  }
 					,{ field: 'yearDays', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('年假天数') , templet: function (d) { return templet('yearDays',d.yearDays,d);}  }
+					,{ field: 'attendanceTplCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考勤模版'), templet: function (d) { return templet('attendanceTplCode' ,fox.joinLabel(d.attendanceTpl,"name",',','','attendanceTplCode'),d);}}
 					,{ field: 'batchCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('批次号') , templet: function (d) { return templet('batchCode',d.batchCode,d);}  }
 					,{ field: 'note', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('note',d.note,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
@@ -200,6 +201,7 @@ function ListPage() {
 		value.salaryTplId={ inputType:"select_box", value: getSelectedValue("#salaryTplId","value") ,fillBy:["salaryTpl"]  , label:getSelectedValue("#salaryTplId","nameStr") };
 		value.employeeId={ inputType:"button",value: $("#employeeId").val(),fillBy:["employee","name"] ,label:$("#employeeId-button").text() };
 		value.contractStartDate={ inputType:"date_input", begin: $("#contractStartDate-begin").val(), end: $("#contractStartDate-end").val() ,matchType:"auto" };
+		value.attendanceTplCode={ inputType:"select_box", value: getSelectedValue("#attendanceTplCode","value") ,fillBy:["attendanceTpl"]  , label:getSelectedValue("#attendanceTplCode","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -214,9 +216,6 @@ function ListPage() {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
 			} 		}
-
-
-
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -420,6 +419,37 @@ function ListPage() {
 				setTimeout(function () {
 					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("contractStartDate",value, date, endDate);
 				},1);
+			}
+		});
+		//渲染 attendanceTplCode 下拉字段
+		fox.renderSelectBox({
+			el: "attendanceTplCode",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("attendanceTplCode",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("attendanceTplCode",{data:data[i],name:data[i].name,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].code});
+					}
+				}
+				return opts;
 			}
 		});
 		fox.renderSearchInputs();

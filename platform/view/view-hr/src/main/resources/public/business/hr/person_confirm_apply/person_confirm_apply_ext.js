@@ -51,7 +51,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            console.log("list:beforeTableRender",cfg);
+            cfg.cellMinWidth=160;;
         },
         /**
          * 表格渲染后调用
@@ -95,6 +95,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            if(CODE&&CODE=="self"){
+                param.personId=CUR_EMP_ID;
+            }
             return true;
         },
         /**

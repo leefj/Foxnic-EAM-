@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 12:42:11
+ * @since 2024-02-15 13:56:18
  */
 
 function FormPage() {
@@ -676,6 +676,42 @@ function FormPage() {
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("contractFinishDate",value, date, endDate);
 			}
 		});
+		//渲染 attendanceTplCode 下拉字段
+		fox.renderSelectBox({
+			el: "attendanceTplCode",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("考勤模版",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("attendanceTplCode",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("attendanceTplCode",{data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 	}
 
 	/**
@@ -797,6 +833,8 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#payrollCardBankCode",formData.bank);
 			//设置  薪酬模版 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#salaryTplId",formData.salaryTpl);
+			//设置  考勤模版 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#attendanceTplCode",formData.attendanceTpl);
 
 			//处理fillBy
 
@@ -883,6 +921,8 @@ function FormPage() {
 		data["payrollCardBankCode"]=fox.getSelectedValue("payrollCardBankCode",false);
 		//获取 薪酬模版 下拉框的值
 		data["salaryTplId"]=fox.getSelectedValue("salaryTplId",false);
+		//获取 考勤模版 下拉框的值
+		data["attendanceTplCode"]=fox.getSelectedValue("attendanceTplCode",false);
 
 		return data;
 	}

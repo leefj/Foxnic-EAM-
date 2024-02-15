@@ -65,7 +65,7 @@ public class HrmPersonApplyConfirmGtr extends BaseCodeGenerator {
 
         cfg.view().field(HrTables.HR_PERSON_CONFIRM_APPLY.FILE_IDS).form().upload().maxFileCount(3).acceptAllType();
 
-
+        cfg.view().list().addJsVariable("CUR_EMP_ID","[[${curEmpId}]]","curEmpId");
         cfg.view().list().addJsVariable("CODE","[[${code}]]","code");
         cfg.view().form().addJsVariable("CUR_EMP_ID","[[${curEmpId}]]","curEmpId");
         cfg.view().form().addJsVariable("CUR_USER_NAME","[[${curUserName}]]","curUserName");

@@ -74,6 +74,7 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_pay_order_ext")
 					||table.startsWith("sys_pay_refund")
 					||table.startsWith("sys_dashboard")
+					||table.startsWith("sys_mapping_owner")
 					||table.startsWith("sys_dashboard_layer")
 					||table.startsWith("sys_dashboard_layer_ele")
 			)
