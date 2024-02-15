@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 转正申请
  * <p>转正申请 , 数据表 hr_person_confirm_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 12:58:58
+ * @since 2024-02-14 14:35:51
  * @sign 15D9C56BA4755CDAE237DF65693E02F5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

@@ -49,6 +49,9 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(SalaryTpl.class,"salaryTpl","salaryTpl","salaryTpl");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","organization","organization");
 
+        cfg.getPoClassFile().addSimpleProperty(AttendanceTpl.class,"attendanceTpl","attendanceTpl","attendanceTpl");
+
+
         cfg.view().field(HrTables.HR_PERSON.ID).basic().hidden(true);
         cfg.view().field(HrTables.HR_PERSON.NAME).search().fuzzySearch();
         cfg.view().field(HrTables.HR_PERSON.IDENTITY_CARD).search().fuzzySearch();
@@ -63,11 +66,9 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON.EMPLOYEE_STATUS,
                         HrTables.HR_PERSON.EMPLOYEE_IDENTITY_STATUS,
                         HrTables.HR_PERSON.JOB_NUMBER,
-                        HrTables.HR_PERSON.SALARY_TPL_ID,
-
+                        HrTables.HR_PERSON.NAME,
                 },
                 new Object[]{
-                        HrTables.HR_PERSON.NAME,
                         HrTables.HR_PERSON.EMPLOYEE_ID,
                         HrTables.HR_PERSON.WORK_KIND_CODE,
                         HrTables.HR_PERSON.PAYROLL_CARD_BANK_CODE,
@@ -79,7 +80,11 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                         HrTables.HR_PERSON.IDENTITY_CARD,
                 },
                 new Object[]{
-                     //   HrTables.HR_PERSON.BAT,
+                        //   HrTables.HR_PERSON.BAT,
+                        HrTables.HR_PERSON.SALARY_TPL_ID,
+                        HrTables.HR_PERSON.ATTENDANCE_TPL_CODE,
+                },
+                new Object[]{
                         HrTables.HR_PERSON.EMPLOYMENT_DATE,
                         HrTables.HR_PERSON.CONTRACT_START_DATE,
                 }
@@ -174,6 +179,12 @@ public class HrmPersonGtr extends BaseCodeGenerator {
                 textField(ProfessionalLevelMeta.NAME).
                 fillWith(PersonMeta.PROFESSIONAL_LEVEL).muliti(false);
 
+        cfg.view().field(HrTables.HR_PERSON.ATTENDANCE_TPL_CODE)
+                .form().selectBox().queryApi(AttendanceTplServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(true).toolbar(false)
+                .valueField(AttendanceTplMeta.CODE).
+                textField(AttendanceTplMeta.NAME).
+                fillWith(PersonMeta.ATTENDANCE_TPL).muliti(false);
 
 
         cfg.view().field(HrTables.HR_PERSON.RANK_CODE)
@@ -351,6 +362,7 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         );
         cfg.view().form().addGroup("其他信息",
                 new Object[] {
+                        HrTables.HR_PERSON.ATTENDANCE_TPL_CODE,
                         HrTables.HR_PERSON.PERSON_PICTURE_ID,
                         HrTables.HR_PERSON.FILE_ID,
                         HrTables.HR_PERSON.NOTE

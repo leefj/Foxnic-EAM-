@@ -44,6 +44,8 @@ public class PersonOfficialBusinessPageController extends ViewController {
 	@RequestMapping("/person_official_business_list.html")
 	public String list(Model model,HttpServletRequest request,String code) {
 		model.addAttribute("code",code);
+		String empId= SessionUser.getCurrent().getActivatedEmployeeId();
+		model.addAttribute("curEmpId",empId);
 		return getTemplatePath(prefix,"person_official_business_list");
 	}
 

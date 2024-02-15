@@ -1,7 +1,7 @@
 /**
  * 考勤汇总 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:22:47
+ * @since 2024-02-15 15:02:22
  */
 
 layui.config({
@@ -28,6 +28,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+        },
+        /**
+         * 按事件名称移除表格按钮栏的按钮
+         * */
+        removeOperationButtonByEvent(event) {
+            var template=$("#tableOperationTemplate");
+            var content=template.text();
+            content=content.split("\n");
+            var buttons=[]
+            for (let i = 0; i < content.length ; i++) {
+                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
+                    buttons.push(content[i]);
+                }
+            }
+            template.text(buttons.join("\n"))
         },
         /**
          * 表格渲染前调用
@@ -84,6 +99,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
+
+        },
+        /**
+         * 单行数据刷新后调用
+         * */
+        afterRefreshRowData: function (data,remote,context) {
 
         },
         /**
@@ -151,6 +172,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        moreActionMenu (items,data, it){
+            console.log('moreActionMenu',items,data,it);
+            return items;
+        },
+
+        sourceRcd:function (selected,it){
+
+            admin.popupCenter({
+                    title: "打卡明细",
+                    resize: false,
+                    offset: [30,null],
+                    area: ["95%","90%"],
+                    type: 2,
+                    id:"hr-attendance-date-form-data-win",
+                    content: '/business/hr/attendance_record/attendance_record_list.html',
+                    finish: function () {
+
+                    }
+            });
+        },
         /**
          * 末尾执行
          */
@@ -173,7 +214,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 窗口调节前
          * */
-        beforeAdjustPopup:function () {
+        beforeAdjustPopup:function (arg) {
             console.log('beforeAdjustPopup');
             return true;
         },

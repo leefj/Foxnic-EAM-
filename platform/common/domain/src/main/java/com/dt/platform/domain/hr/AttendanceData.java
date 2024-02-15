@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考勤汇总
  * <p>考勤汇总 , 数据表 hr_attendance_data 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:22:47
- * @sign C56932B38348518830F7567A99E69AE7
+ * @since 2024-02-15 15:15:15
+ * @sign 6965955D9B44788B65ED8107099861BB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,26 +40,26 @@ public class AttendanceData extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "810527595941593088")
 	private String id;
 	
 	/**
 	 * 人员：人员
 	*/
-	@ApiModelProperty(required = false,value="人员" , notes = "人员")
-	private String employeeId;
+	@ApiModelProperty(required = false,value="人员" , notes = "人员" , example = "808428146557714432")
+	private String personId;
 	
 	/**
-	 * 姓名：姓名
+	 * 考勤模版：考勤模版
 	*/
-	@ApiModelProperty(required = false,value="姓名" , notes = "姓名")
-	private String employeeName;
+	@ApiModelProperty(required = false,value="考勤模版" , notes = "考勤模版" , example = "default")
+	private String attendanceTplCode;
 	
 	/**
 	 * 工号：工号
 	*/
 	@ApiModelProperty(required = false,value="工号" , notes = "工号")
-	private String employeeNumber;
+	private String jobNumber;
 	
 	/**
 	 * 考勤日期：考勤日期
@@ -74,63 +74,75 @@ public class AttendanceData extends Entity {
 	private Date onWorkTime;
 	
 	/**
-	 * 上班打卡2：上班打卡2
+	 * 最早打卡：最早打卡
 	*/
-	@ApiModelProperty(required = false,value="上班打卡2" , notes = "上班打卡2")
+	@ApiModelProperty(required = false,value="最早打卡" , notes = "最早打卡")
 	private Date onWorkTime2;
 	
 	/**
 	 * 下班打卡：下班打卡
 	*/
-	@ApiModelProperty(required = false,value="下班打卡" , notes = "下班打卡")
+	@ApiModelProperty(required = false,value="下班打卡" , notes = "下班打卡" , example = "2024-02-13 12:00:04")
 	private Date offWorkTime;
 	
 	/**
-	 * 下班打卡2：下班打卡2
+	 * 最晚打卡：最晚打卡
 	*/
-	@ApiModelProperty(required = false,value="下班打卡2" , notes = "下班打卡2")
+	@ApiModelProperty(required = false,value="最晚打卡" , notes = "最晚打卡")
 	private Date offWorkTime2;
 	
 	/**
 	 * 早退：早退
 	*/
-	@ApiModelProperty(required = false,value="早退" , notes = "早退")
-	private Integer leaveEarly;
+	@ApiModelProperty(required = false,value="早退" , notes = "早退" , example = "12")
+	private String leaveEarly;
 	
 	/**
 	 * 晚退：晚退
 	*/
-	@ApiModelProperty(required = false,value="晚退" , notes = "晚退")
-	private Integer leaveLate;
+	@ApiModelProperty(required = false,value="晚退" , notes = "晚退" , example = "12")
+	private String leaveLate;
 	
 	/**
 	 * 矿工：矿工
 	*/
-	@ApiModelProperty(required = false,value="矿工" , notes = "矿工")
-	private Integer skipWork;
+	@ApiModelProperty(required = false,value="矿工" , notes = "矿工" , example = "12")
+	private String skipWork;
 	
 	/**
-	 * 正常：正常
+	 * 补签：补签
 	*/
-	@ApiModelProperty(required = false,value="正常" , notes = "正常")
-	private Integer normalWork;
+	@ApiModelProperty(required = false,value="补签" , notes = "补签" , example = "12")
+	private String bq;
+	
+	/**
+	 * 请假：请假
+	*/
+	@ApiModelProperty(required = false,value="请假" , notes = "请假" , example = "12")
+	private String qj;
+	
+	/**
+	 * 出差：出差
+	*/
+	@ApiModelProperty(required = false,value="出差" , notes = "出差" , example = "1212")
+	private String cc;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
 	private String notes;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-02-15 03:07:18")
 	private Date createTime;
 	
 	/**
@@ -148,7 +160,7 @@ public class AttendanceData extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -169,14 +181,32 @@ public class AttendanceData extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * person：person
+	*/
+	@ApiModelProperty(required = false,value="person" , notes = "person")
+	private Person person;
+	
+	/**
+	 * attendanceTpl：attendanceTpl
+	*/
+	@ApiModelProperty(required = false,value="attendanceTpl" , notes = "attendanceTpl")
+	private AttendanceTpl attendanceTpl;
+	
+	/**
+	 * personJobName：personJobName
+	*/
+	@ApiModelProperty(required = false,value="personJobName" , notes = "personJobName")
+	private String personJobName;
 	
 	/**
 	 * 获得 主键<br>
@@ -202,36 +232,36 @@ public class AttendanceData extends Entity {
 	 * 人员
 	 * @return 人员
 	*/
-	public String getEmployeeId() {
-		return employeeId;
+	public String getPersonId() {
+		return personId;
 	}
 	
 	/**
 	 * 设置 人员
-	 * @param employeeId 人员
+	 * @param personId 人员
 	 * @return 当前对象
 	*/
-	public AttendanceData setEmployeeId(String employeeId) {
-		this.employeeId=employeeId;
+	public AttendanceData setPersonId(String personId) {
+		this.personId=personId;
 		return this;
 	}
 	
 	/**
-	 * 获得 姓名<br>
-	 * 姓名
-	 * @return 姓名
+	 * 获得 考勤模版<br>
+	 * 考勤模版
+	 * @return 考勤模版
 	*/
-	public String getEmployeeName() {
-		return employeeName;
+	public String getAttendanceTplCode() {
+		return attendanceTplCode;
 	}
 	
 	/**
-	 * 设置 姓名
-	 * @param employeeName 姓名
+	 * 设置 考勤模版
+	 * @param attendanceTplCode 考勤模版
 	 * @return 当前对象
 	*/
-	public AttendanceData setEmployeeName(String employeeName) {
-		this.employeeName=employeeName;
+	public AttendanceData setAttendanceTplCode(String attendanceTplCode) {
+		this.attendanceTplCode=attendanceTplCode;
 		return this;
 	}
 	
@@ -240,17 +270,17 @@ public class AttendanceData extends Entity {
 	 * 工号
 	 * @return 工号
 	*/
-	public String getEmployeeNumber() {
-		return employeeNumber;
+	public String getJobNumber() {
+		return jobNumber;
 	}
 	
 	/**
 	 * 设置 工号
-	 * @param employeeNumber 工号
+	 * @param jobNumber 工号
 	 * @return 当前对象
 	*/
-	public AttendanceData setEmployeeNumber(String employeeNumber) {
-		this.employeeNumber=employeeNumber;
+	public AttendanceData setJobNumber(String jobNumber) {
+		this.jobNumber=jobNumber;
 		return this;
 	}
 	
@@ -293,17 +323,17 @@ public class AttendanceData extends Entity {
 	}
 	
 	/**
-	 * 获得 上班打卡2<br>
-	 * 上班打卡2
-	 * @return 上班打卡2
+	 * 获得 最早打卡<br>
+	 * 最早打卡
+	 * @return 最早打卡
 	*/
 	public Date getOnWorkTime2() {
 		return onWorkTime2;
 	}
 	
 	/**
-	 * 设置 上班打卡2
-	 * @param onWorkTime2 上班打卡2
+	 * 设置 最早打卡
+	 * @param onWorkTime2 最早打卡
 	 * @return 当前对象
 	*/
 	public AttendanceData setOnWorkTime2(Date onWorkTime2) {
@@ -331,17 +361,17 @@ public class AttendanceData extends Entity {
 	}
 	
 	/**
-	 * 获得 下班打卡2<br>
-	 * 下班打卡2
-	 * @return 下班打卡2
+	 * 获得 最晚打卡<br>
+	 * 最晚打卡
+	 * @return 最晚打卡
 	*/
 	public Date getOffWorkTime2() {
 		return offWorkTime2;
 	}
 	
 	/**
-	 * 设置 下班打卡2
-	 * @param offWorkTime2 下班打卡2
+	 * 设置 最晚打卡
+	 * @param offWorkTime2 最晚打卡
 	 * @return 当前对象
 	*/
 	public AttendanceData setOffWorkTime2(Date offWorkTime2) {
@@ -354,7 +384,7 @@ public class AttendanceData extends Entity {
 	 * 早退
 	 * @return 早退
 	*/
-	public Integer getLeaveEarly() {
+	public String getLeaveEarly() {
 		return leaveEarly;
 	}
 	
@@ -363,7 +393,7 @@ public class AttendanceData extends Entity {
 	 * @param leaveEarly 早退
 	 * @return 当前对象
 	*/
-	public AttendanceData setLeaveEarly(Integer leaveEarly) {
+	public AttendanceData setLeaveEarly(String leaveEarly) {
 		this.leaveEarly=leaveEarly;
 		return this;
 	}
@@ -373,7 +403,7 @@ public class AttendanceData extends Entity {
 	 * 晚退
 	 * @return 晚退
 	*/
-	public Integer getLeaveLate() {
+	public String getLeaveLate() {
 		return leaveLate;
 	}
 	
@@ -382,7 +412,7 @@ public class AttendanceData extends Entity {
 	 * @param leaveLate 晚退
 	 * @return 当前对象
 	*/
-	public AttendanceData setLeaveLate(Integer leaveLate) {
+	public AttendanceData setLeaveLate(String leaveLate) {
 		this.leaveLate=leaveLate;
 		return this;
 	}
@@ -392,7 +422,7 @@ public class AttendanceData extends Entity {
 	 * 矿工
 	 * @return 矿工
 	*/
-	public Integer getSkipWork() {
+	public String getSkipWork() {
 		return skipWork;
 	}
 	
@@ -401,27 +431,65 @@ public class AttendanceData extends Entity {
 	 * @param skipWork 矿工
 	 * @return 当前对象
 	*/
-	public AttendanceData setSkipWork(Integer skipWork) {
+	public AttendanceData setSkipWork(String skipWork) {
 		this.skipWork=skipWork;
 		return this;
 	}
 	
 	/**
-	 * 获得 正常<br>
-	 * 正常
-	 * @return 正常
+	 * 获得 补签<br>
+	 * 补签
+	 * @return 补签
 	*/
-	public Integer getNormalWork() {
-		return normalWork;
+	public String getBq() {
+		return bq;
 	}
 	
 	/**
-	 * 设置 正常
-	 * @param normalWork 正常
+	 * 设置 补签
+	 * @param bq 补签
 	 * @return 当前对象
 	*/
-	public AttendanceData setNormalWork(Integer normalWork) {
-		this.normalWork=normalWork;
+	public AttendanceData setBq(String bq) {
+		this.bq=bq;
+		return this;
+	}
+	
+	/**
+	 * 获得 请假<br>
+	 * 请假
+	 * @return 请假
+	*/
+	public String getQj() {
+		return qj;
+	}
+	
+	/**
+	 * 设置 请假
+	 * @param qj 请假
+	 * @return 当前对象
+	*/
+	public AttendanceData setQj(String qj) {
+		this.qj=qj;
+		return this;
+	}
+	
+	/**
+	 * 获得 出差<br>
+	 * 出差
+	 * @return 出差
+	*/
+	public String getCc() {
+		return cc;
+	}
+	
+	/**
+	 * 设置 出差
+	 * @param cc 出差
+	 * @return 当前对象
+	*/
+	public AttendanceData setCc(String cc) {
+		this.cc=cc;
 		return this;
 	}
 	
@@ -645,6 +713,63 @@ public class AttendanceData extends Entity {
 		this.tenantId=tenantId;
 		return this;
 	}
+	
+	/**
+	 * 获得 person<br>
+	 * person
+	 * @return person
+	*/
+	public Person getPerson() {
+		return person;
+	}
+	
+	/**
+	 * 设置 person
+	 * @param person person
+	 * @return 当前对象
+	*/
+	public AttendanceData setPerson(Person person) {
+		this.person=person;
+		return this;
+	}
+	
+	/**
+	 * 获得 attendanceTpl<br>
+	 * attendanceTpl
+	 * @return attendanceTpl
+	*/
+	public AttendanceTpl getAttendanceTpl() {
+		return attendanceTpl;
+	}
+	
+	/**
+	 * 设置 attendanceTpl
+	 * @param attendanceTpl attendanceTpl
+	 * @return 当前对象
+	*/
+	public AttendanceData setAttendanceTpl(AttendanceTpl attendanceTpl) {
+		this.attendanceTpl=attendanceTpl;
+		return this;
+	}
+	
+	/**
+	 * 获得 personJobName<br>
+	 * personJobName
+	 * @return personJobName
+	*/
+	public String getPersonJobName() {
+		return personJobName;
+	}
+	
+	/**
+	 * 设置 personJobName
+	 * @param personJobName personJobName
+	 * @return 当前对象
+	*/
+	public AttendanceData setPersonJobName(String personJobName) {
+		this.personJobName=personJobName;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -690,29 +815,36 @@ public class AttendanceData extends Entity {
 	@Transient
 	public AttendanceData duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AttendanceDataMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AttendanceDataMeta.$$proxy$$();
-		inst.setEmployeeName(this.getEmployeeName());
 		inst.setNotes(this.getNotes());
-		inst.setEmployeeId(this.getEmployeeId());
+		inst.setAttendanceTplCode(this.getAttendanceTplCode());
+		inst.setBq(this.getBq());
+		inst.setOnWorkTime(this.getOnWorkTime());
+		inst.setSkipWork(this.getSkipWork());
+		inst.setOffWorkTime(this.getOffWorkTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setQj(this.getQj());
+		inst.setId(this.getId());
+		inst.setOnWorkTime2(this.getOnWorkTime2());
+		inst.setCc(this.getCc());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setLeaveEarly(this.getLeaveEarly());
 		inst.setVersion(this.getVersion());
-		inst.setEmployeeNumber(this.getEmployeeNumber());
-		inst.setOnWorkTime(this.getOnWorkTime());
-		inst.setNormalWork(this.getNormalWork());
-		inst.setSkipWork(this.getSkipWork());
 		inst.setCreateBy(this.getCreateBy());
-		inst.setOffWorkTime(this.getOffWorkTime());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
-		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
-		inst.setId(this.getId());
+		inst.setPersonId(this.getPersonId());
 		inst.setLeaveLate(this.getLeaveLate());
 		inst.setAttendanceDate(this.getAttendanceDate());
+		inst.setJobNumber(this.getJobNumber());
 		inst.setOffWorkTime2(this.getOffWorkTime2());
-		inst.setOnWorkTime2(this.getOnWorkTime2());
+		if(all) {
+			inst.setPerson(this.getPerson());
+			inst.setAttendanceTpl(this.getAttendanceTpl());
+			inst.setPersonJobName(this.getPersonJobName());
+		}
 		inst.clearModifies();
 		return inst;
 	}
@@ -771,57 +903,67 @@ public class AttendanceData extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setEmployeeName(DataParser.parse(String.class, map.get(AttendanceDataMeta.EMPLOYEE_NAME)));
 			this.setNotes(DataParser.parse(String.class, map.get(AttendanceDataMeta.NOTES)));
-			this.setEmployeeId(DataParser.parse(String.class, map.get(AttendanceDataMeta.EMPLOYEE_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(AttendanceDataMeta.UPDATE_TIME)));
-			this.setLeaveEarly(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.LEAVE_EARLY)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.VERSION)));
-			this.setEmployeeNumber(DataParser.parse(String.class, map.get(AttendanceDataMeta.EMPLOYEE_NUMBER)));
+			this.setAttendanceTplCode(DataParser.parse(String.class, map.get(AttendanceDataMeta.ATTENDANCE_TPL_CODE)));
+			this.setBq(DataParser.parse(String.class, map.get(AttendanceDataMeta.BQ)));
 			this.setOnWorkTime(DataParser.parse(Date.class, map.get(AttendanceDataMeta.ON_WORK_TIME)));
-			this.setNormalWork(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.NORMAL_WORK)));
-			this.setSkipWork(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.SKIP_WORK)));
-			this.setCreateBy(DataParser.parse(String.class, map.get(AttendanceDataMeta.CREATE_BY)));
+			this.setSkipWork(DataParser.parse(String.class, map.get(AttendanceDataMeta.SKIP_WORK)));
 			this.setOffWorkTime(DataParser.parse(Date.class, map.get(AttendanceDataMeta.OFF_WORK_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AttendanceDataMeta.UPDATE_BY)));
+			this.setQj(DataParser.parse(String.class, map.get(AttendanceDataMeta.QJ)));
+			this.setId(DataParser.parse(String.class, map.get(AttendanceDataMeta.ID)));
+			this.setOnWorkTime2(DataParser.parse(Date.class, map.get(AttendanceDataMeta.ON_WORK_TIME2)));
+			this.setCc(DataParser.parse(String.class, map.get(AttendanceDataMeta.CC)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AttendanceDataMeta.UPDATE_TIME)));
+			this.setLeaveEarly(DataParser.parse(String.class, map.get(AttendanceDataMeta.LEAVE_EARLY)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AttendanceDataMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AttendanceDataMeta.CREATE_TIME)));
-			this.setUpdateBy(DataParser.parse(String.class, map.get(AttendanceDataMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AttendanceDataMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(AttendanceDataMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AttendanceDataMeta.DELETE_BY)));
-			this.setId(DataParser.parse(String.class, map.get(AttendanceDataMeta.ID)));
-			this.setLeaveLate(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.LEAVE_LATE)));
+			this.setPersonId(DataParser.parse(String.class, map.get(AttendanceDataMeta.PERSON_ID)));
+			this.setLeaveLate(DataParser.parse(String.class, map.get(AttendanceDataMeta.LEAVE_LATE)));
 			this.setAttendanceDate(DataParser.parse(Date.class, map.get(AttendanceDataMeta.ATTENDANCE_DATE)));
+			this.setJobNumber(DataParser.parse(String.class, map.get(AttendanceDataMeta.JOB_NUMBER)));
 			this.setOffWorkTime2(DataParser.parse(Date.class, map.get(AttendanceDataMeta.OFF_WORK_TIME2)));
-			this.setOnWorkTime2(DataParser.parse(Date.class, map.get(AttendanceDataMeta.ON_WORK_TIME2)));
 			// others
+			this.setPerson(DataParser.parse(Person.class, map.get(AttendanceDataMeta.PERSON)));
+			this.setAttendanceTpl(DataParser.parse(AttendanceTpl.class, map.get(AttendanceDataMeta.ATTENDANCE_TPL)));
+			this.setPersonJobName(DataParser.parse(String.class, map.get(AttendanceDataMeta.PERSON_JOB_NAME)));
 			return true;
 		} else {
 			try {
-				this.setEmployeeName( (String)map.get(AttendanceDataMeta.EMPLOYEE_NAME));
 				this.setNotes( (String)map.get(AttendanceDataMeta.NOTES));
-				this.setEmployeeId( (String)map.get(AttendanceDataMeta.EMPLOYEE_ID));
-				this.setUpdateTime( (Date)map.get(AttendanceDataMeta.UPDATE_TIME));
-				this.setLeaveEarly( (Integer)map.get(AttendanceDataMeta.LEAVE_EARLY));
-				this.setVersion( (Integer)map.get(AttendanceDataMeta.VERSION));
-				this.setEmployeeNumber( (String)map.get(AttendanceDataMeta.EMPLOYEE_NUMBER));
+				this.setAttendanceTplCode( (String)map.get(AttendanceDataMeta.ATTENDANCE_TPL_CODE));
+				this.setBq( (String)map.get(AttendanceDataMeta.BQ));
 				this.setOnWorkTime( (Date)map.get(AttendanceDataMeta.ON_WORK_TIME));
-				this.setNormalWork( (Integer)map.get(AttendanceDataMeta.NORMAL_WORK));
-				this.setSkipWork( (Integer)map.get(AttendanceDataMeta.SKIP_WORK));
-				this.setCreateBy( (String)map.get(AttendanceDataMeta.CREATE_BY));
+				this.setSkipWork( (String)map.get(AttendanceDataMeta.SKIP_WORK));
 				this.setOffWorkTime( (Date)map.get(AttendanceDataMeta.OFF_WORK_TIME));
+				this.setUpdateBy( (String)map.get(AttendanceDataMeta.UPDATE_BY));
+				this.setQj( (String)map.get(AttendanceDataMeta.QJ));
+				this.setId( (String)map.get(AttendanceDataMeta.ID));
+				this.setOnWorkTime2( (Date)map.get(AttendanceDataMeta.ON_WORK_TIME2));
+				this.setCc( (String)map.get(AttendanceDataMeta.CC));
+				this.setUpdateTime( (Date)map.get(AttendanceDataMeta.UPDATE_TIME));
+				this.setLeaveEarly( (String)map.get(AttendanceDataMeta.LEAVE_EARLY));
+				this.setVersion( (Integer)map.get(AttendanceDataMeta.VERSION));
+				this.setCreateBy( (String)map.get(AttendanceDataMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AttendanceDataMeta.DELETED));
 				this.setCreateTime( (Date)map.get(AttendanceDataMeta.CREATE_TIME));
-				this.setUpdateBy( (String)map.get(AttendanceDataMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(AttendanceDataMeta.DELETE_TIME));
 				this.setTenantId( (String)map.get(AttendanceDataMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AttendanceDataMeta.DELETE_BY));
-				this.setId( (String)map.get(AttendanceDataMeta.ID));
-				this.setLeaveLate( (Integer)map.get(AttendanceDataMeta.LEAVE_LATE));
+				this.setPersonId( (String)map.get(AttendanceDataMeta.PERSON_ID));
+				this.setLeaveLate( (String)map.get(AttendanceDataMeta.LEAVE_LATE));
 				this.setAttendanceDate( (Date)map.get(AttendanceDataMeta.ATTENDANCE_DATE));
+				this.setJobNumber( (String)map.get(AttendanceDataMeta.JOB_NUMBER));
 				this.setOffWorkTime2( (Date)map.get(AttendanceDataMeta.OFF_WORK_TIME2));
-				this.setOnWorkTime2( (Date)map.get(AttendanceDataMeta.ON_WORK_TIME2));
 				// others
+				this.setPerson( (Person)map.get(AttendanceDataMeta.PERSON));
+				this.setAttendanceTpl( (AttendanceTpl)map.get(AttendanceDataMeta.ATTENDANCE_TPL));
+				this.setPersonJobName( (String)map.get(AttendanceDataMeta.PERSON_JOB_NAME));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -838,55 +980,59 @@ public class AttendanceData extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setEmployeeName(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.EMPLOYEE_NAME)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.NOTES)));
-			this.setEmployeeId(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.EMPLOYEE_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.UPDATE_TIME)));
-			this.setLeaveEarly(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.LEAVE_EARLY)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.VERSION)));
-			this.setEmployeeNumber(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.EMPLOYEE_NUMBER)));
+			this.setAttendanceTplCode(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.ATTENDANCE_TPL_CODE)));
+			this.setBq(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.BQ)));
 			this.setOnWorkTime(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.ON_WORK_TIME)));
-			this.setNormalWork(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.NORMAL_WORK)));
-			this.setSkipWork(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.SKIP_WORK)));
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.CREATE_BY)));
+			this.setSkipWork(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.SKIP_WORK)));
 			this.setOffWorkTime(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.OFF_WORK_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.UPDATE_BY)));
+			this.setQj(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.QJ)));
+			this.setId(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.ID)));
+			this.setOnWorkTime2(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.ON_WORK_TIME2)));
+			this.setCc(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.CC)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.UPDATE_TIME)));
+			this.setLeaveEarly(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.LEAVE_EARLY)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.CREATE_TIME)));
-			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.DELETE_BY)));
-			this.setId(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.ID)));
-			this.setLeaveLate(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.LEAVE_LATE)));
+			this.setPersonId(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.PERSON_ID)));
+			this.setLeaveLate(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.LEAVE_LATE)));
 			this.setAttendanceDate(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.ATTENDANCE_DATE)));
+			this.setJobNumber(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.JOB_NUMBER)));
 			this.setOffWorkTime2(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.OFF_WORK_TIME2)));
-			this.setOnWorkTime2(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.ON_WORK_TIME2)));
 			return true;
 		} else {
 			try {
-				this.setEmployeeName( (String)r.getValue(AttendanceDataMeta.EMPLOYEE_NAME));
 				this.setNotes( (String)r.getValue(AttendanceDataMeta.NOTES));
-				this.setEmployeeId( (String)r.getValue(AttendanceDataMeta.EMPLOYEE_ID));
-				this.setUpdateTime( (Date)r.getValue(AttendanceDataMeta.UPDATE_TIME));
-				this.setLeaveEarly( (Integer)r.getValue(AttendanceDataMeta.LEAVE_EARLY));
-				this.setVersion( (Integer)r.getValue(AttendanceDataMeta.VERSION));
-				this.setEmployeeNumber( (String)r.getValue(AttendanceDataMeta.EMPLOYEE_NUMBER));
+				this.setAttendanceTplCode( (String)r.getValue(AttendanceDataMeta.ATTENDANCE_TPL_CODE));
+				this.setBq( (String)r.getValue(AttendanceDataMeta.BQ));
 				this.setOnWorkTime( (Date)r.getValue(AttendanceDataMeta.ON_WORK_TIME));
-				this.setNormalWork( (Integer)r.getValue(AttendanceDataMeta.NORMAL_WORK));
-				this.setSkipWork( (Integer)r.getValue(AttendanceDataMeta.SKIP_WORK));
-				this.setCreateBy( (String)r.getValue(AttendanceDataMeta.CREATE_BY));
+				this.setSkipWork( (String)r.getValue(AttendanceDataMeta.SKIP_WORK));
 				this.setOffWorkTime( (Date)r.getValue(AttendanceDataMeta.OFF_WORK_TIME));
+				this.setUpdateBy( (String)r.getValue(AttendanceDataMeta.UPDATE_BY));
+				this.setQj( (String)r.getValue(AttendanceDataMeta.QJ));
+				this.setId( (String)r.getValue(AttendanceDataMeta.ID));
+				this.setOnWorkTime2( (Date)r.getValue(AttendanceDataMeta.ON_WORK_TIME2));
+				this.setCc( (String)r.getValue(AttendanceDataMeta.CC));
+				this.setUpdateTime( (Date)r.getValue(AttendanceDataMeta.UPDATE_TIME));
+				this.setLeaveEarly( (String)r.getValue(AttendanceDataMeta.LEAVE_EARLY));
+				this.setVersion( (Integer)r.getValue(AttendanceDataMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(AttendanceDataMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AttendanceDataMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(AttendanceDataMeta.CREATE_TIME));
-				this.setUpdateBy( (String)r.getValue(AttendanceDataMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(AttendanceDataMeta.DELETE_TIME));
 				this.setTenantId( (String)r.getValue(AttendanceDataMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AttendanceDataMeta.DELETE_BY));
-				this.setId( (String)r.getValue(AttendanceDataMeta.ID));
-				this.setLeaveLate( (Integer)r.getValue(AttendanceDataMeta.LEAVE_LATE));
+				this.setPersonId( (String)r.getValue(AttendanceDataMeta.PERSON_ID));
+				this.setLeaveLate( (String)r.getValue(AttendanceDataMeta.LEAVE_LATE));
 				this.setAttendanceDate( (Date)r.getValue(AttendanceDataMeta.ATTENDANCE_DATE));
+				this.setJobNumber( (String)r.getValue(AttendanceDataMeta.JOB_NUMBER));
 				this.setOffWorkTime2( (Date)r.getValue(AttendanceDataMeta.OFF_WORK_TIME2));
-				this.setOnWorkTime2( (Date)r.getValue(AttendanceDataMeta.ON_WORK_TIME2));
 				return true;
 			} catch (Exception e) {
 				return false;

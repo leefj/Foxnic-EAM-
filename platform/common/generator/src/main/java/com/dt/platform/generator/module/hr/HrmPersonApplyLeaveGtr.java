@@ -18,6 +18,8 @@ public class HrmPersonApplyLeaveGtr extends BaseCodeGenerator {
         System.out.println(this.getClass().getName());
 
 
+
+
         cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
         cfg.getPoClassFile().addSimpleProperty(Person.class,"handover","handover","handover");
 
@@ -67,6 +69,7 @@ public class HrmPersonApplyLeaveGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().list().addJsVariable("CUR_EMP_ID","[[${curEmpId}]]","curEmpId");
         cfg.view().list().addJsVariable("CODE","[[${code}]]","code");
         cfg.view().form().addJsVariable("CUR_EMP_ID","[[${curEmpId}]]","curEmpId");
         cfg.view().form().addJsVariable("CUR_USER_NAME","[[${curUserName}]]","curUserName");

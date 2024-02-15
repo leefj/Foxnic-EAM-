@@ -21,13 +21,18 @@ import java.util.Map;
 
 /**
  * <p>
- * 考勤记录服务接口
+ * 考勤原始记录服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:24:00
+ * @since 2024-02-14 22:15:45
 */
 
 public interface IAttendanceRecordService extends  ISimpleIdService<AttendanceRecord,String> {
+
+
+	InputStream buildExcelTemplate(String code);
+
+	public ExcelStructure buildExcelStructure(InputStream dataInputStream,String code);
 
 
 	/**
@@ -56,7 +61,7 @@ public interface IAttendanceRecordService extends  ISimpleIdService<AttendanceRe
 
 		
 	/**
-	 * 按主键删除考勤记录
+	 * 按主键删除考勤原始记录
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -64,7 +69,7 @@ public interface IAttendanceRecordService extends  ISimpleIdService<AttendanceRe
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除考勤记录
+	 * 按主键删除考勤原始记录
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -87,7 +92,7 @@ public interface IAttendanceRecordService extends  ISimpleIdService<AttendanceRe
 
 		
 	/**
-	 * 按主键更新考勤记录
+	 * 按主键更新考勤原始记录
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -157,7 +162,7 @@ public interface IAttendanceRecordService extends  ISimpleIdService<AttendanceRe
 
 		
 	/**
-	 * 按主键获取考勤记录
+	 * 按主键获取考勤原始记录
 	 *
 	 * @param id 主键
 	 * @return AttendanceRecord 数据对象
@@ -302,7 +307,26 @@ public interface IAttendanceRecordService extends  ISimpleIdService<AttendanceRe
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
+	/**
+	 * 导出 Excel
+	 * */
+	ExcelWriter exportExcel(AttendanceRecord sample);
+	/**
+	 * 构建 Excel 结构
+	 * @param  isForExport 是否用于数据导出
+	 * @return   ExcelStructure
+	 * */
+	ExcelStructure buildExcelStructure(boolean isForExport);
+	/**
+	 * 导出用于数据导入的 Excel 模版
+	 * */
+	ExcelWriter  exportExcelTemplate();
 
+	/**
+	 * 导入 Excel 数据
+	 * @return  错误信息，成功时返回 null
+	 * */
+	List<ValidateResult> importExcel(InputStream input,int sheetIndex,String code);
 
 
 

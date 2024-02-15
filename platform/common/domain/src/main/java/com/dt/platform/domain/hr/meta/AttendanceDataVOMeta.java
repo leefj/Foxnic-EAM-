@@ -5,14 +5,16 @@ import com.dt.platform.domain.hr.AttendanceDataVO;
 import java.util.List;
 import com.dt.platform.domain.hr.AttendanceData;
 import java.util.Date;
+import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.AttendanceTpl;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:22:47
- * @sign 7D3A17025427F09B3F172266E333EB82
+ * @since 2024-02-15 15:15:15
+ * @sign 2B94EE770E339D33D2C0FCE396EAEEC3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -99,14 +101,14 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
 	*/
 	public static final String DATA_ORIGIN="dataOrigin";
 	
 	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端按来源执行不同的逻辑", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
@@ -117,6 +119,16 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -141,32 +153,32 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 	/**
 	 * 人员 , 类型: java.lang.String
 	*/
-	public static final String EMPLOYEE_ID="employeeId";
+	public static final String PERSON_ID="personId";
 	
 	/**
 	 * 人员 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> EMPLOYEE_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,EMPLOYEE_ID, java.lang.String.class, "人员", "人员", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> PERSON_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,PERSON_ID, java.lang.String.class, "人员", "人员", java.lang.String.class, null);
 	
 	/**
-	 * 姓名 , 类型: java.lang.String
+	 * 考勤模版 , 类型: java.lang.String
 	*/
-	public static final String EMPLOYEE_NAME="employeeName";
+	public static final String ATTENDANCE_TPL_CODE="attendanceTplCode";
 	
 	/**
-	 * 姓名 , 类型: java.lang.String
+	 * 考勤模版 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> EMPLOYEE_NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,EMPLOYEE_NAME, java.lang.String.class, "姓名", "姓名", java.lang.String.class, null);
-	
-	/**
-	 * 工号 , 类型: java.lang.String
-	*/
-	public static final String EMPLOYEE_NUMBER="employeeNumber";
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> ATTENDANCE_TPL_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,ATTENDANCE_TPL_CODE, java.lang.String.class, "考勤模版", "考勤模版", java.lang.String.class, null);
 	
 	/**
 	 * 工号 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> EMPLOYEE_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,EMPLOYEE_NUMBER, java.lang.String.class, "工号", "工号", java.lang.String.class, null);
+	public static final String JOB_NUMBER="jobNumber";
+	
+	/**
+	 * 工号 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> JOB_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,JOB_NUMBER, java.lang.String.class, "工号", "工号", java.lang.String.class, null);
 	
 	/**
 	 * 考勤日期 , 类型: java.util.Date
@@ -189,14 +201,14 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.util.Date> ON_WORK_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,ON_WORK_TIME, java.util.Date.class, "上班打卡", "上班打卡", java.util.Date.class, null);
 	
 	/**
-	 * 上班打卡2 , 类型: java.util.Date
+	 * 最早打卡 , 类型: java.util.Date
 	*/
 	public static final String ON_WORK_TIME2="onWorkTime2";
 	
 	/**
-	 * 上班打卡2 , 类型: java.util.Date
+	 * 最早打卡 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.util.Date> ON_WORK_TIME2_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,ON_WORK_TIME2, java.util.Date.class, "上班打卡2", "上班打卡2", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.util.Date> ON_WORK_TIME2_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,ON_WORK_TIME2, java.util.Date.class, "最早打卡", "最早打卡", java.util.Date.class, null);
 	
 	/**
 	 * 下班打卡 , 类型: java.util.Date
@@ -209,54 +221,74 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.util.Date> OFF_WORK_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,OFF_WORK_TIME, java.util.Date.class, "下班打卡", "下班打卡", java.util.Date.class, null);
 	
 	/**
-	 * 下班打卡2 , 类型: java.util.Date
+	 * 最晚打卡 , 类型: java.util.Date
 	*/
 	public static final String OFF_WORK_TIME2="offWorkTime2";
 	
 	/**
-	 * 下班打卡2 , 类型: java.util.Date
+	 * 最晚打卡 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.util.Date> OFF_WORK_TIME2_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,OFF_WORK_TIME2, java.util.Date.class, "下班打卡2", "下班打卡2", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.util.Date> OFF_WORK_TIME2_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,OFF_WORK_TIME2, java.util.Date.class, "最晚打卡", "最晚打卡", java.util.Date.class, null);
 	
 	/**
-	 * 早退 , 类型: java.lang.Integer
+	 * 早退 , 类型: java.lang.String
 	*/
 	public static final String LEAVE_EARLY="leaveEarly";
 	
 	/**
-	 * 早退 , 类型: java.lang.Integer
+	 * 早退 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.Integer> LEAVE_EARLY_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,LEAVE_EARLY, java.lang.Integer.class, "早退", "早退", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> LEAVE_EARLY_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,LEAVE_EARLY, java.lang.String.class, "早退", "早退", java.lang.String.class, null);
 	
 	/**
-	 * 晚退 , 类型: java.lang.Integer
+	 * 晚退 , 类型: java.lang.String
 	*/
 	public static final String LEAVE_LATE="leaveLate";
 	
 	/**
-	 * 晚退 , 类型: java.lang.Integer
+	 * 晚退 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.Integer> LEAVE_LATE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,LEAVE_LATE, java.lang.Integer.class, "晚退", "晚退", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> LEAVE_LATE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,LEAVE_LATE, java.lang.String.class, "晚退", "晚退", java.lang.String.class, null);
 	
 	/**
-	 * 矿工 , 类型: java.lang.Integer
+	 * 矿工 , 类型: java.lang.String
 	*/
 	public static final String SKIP_WORK="skipWork";
 	
 	/**
-	 * 矿工 , 类型: java.lang.Integer
+	 * 矿工 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.Integer> SKIP_WORK_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,SKIP_WORK, java.lang.Integer.class, "矿工", "矿工", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> SKIP_WORK_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,SKIP_WORK, java.lang.String.class, "矿工", "矿工", java.lang.String.class, null);
 	
 	/**
-	 * 正常 , 类型: java.lang.Integer
+	 * 补签 , 类型: java.lang.String
 	*/
-	public static final String NORMAL_WORK="normalWork";
+	public static final String BQ="bq";
 	
 	/**
-	 * 正常 , 类型: java.lang.Integer
+	 * 补签 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.Integer> NORMAL_WORK_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,NORMAL_WORK, java.lang.Integer.class, "正常", "正常", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> BQ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,BQ, java.lang.String.class, "补签", "补签", java.lang.String.class, null);
+	
+	/**
+	 * 请假 , 类型: java.lang.String
+	*/
+	public static final String QJ="qj";
+	
+	/**
+	 * 请假 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> QJ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,QJ, java.lang.String.class, "请假", "请假", java.lang.String.class, null);
+	
+	/**
+	 * 出差 , 类型: java.lang.String
+	*/
+	public static final String CC="cc";
+	
+	/**
+	 * 出差 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> CC_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,CC, java.lang.String.class, "出差", "出差", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -359,9 +391,39 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * person , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final String PERSON="person";
+	
+	/**
+	 * person , 类型: com.dt.platform.domain.hr.Person
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,com.dt.platform.domain.hr.Person> PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,PERSON, com.dt.platform.domain.hr.Person.class, "person", "person", com.dt.platform.domain.hr.Person.class, null);
+	
+	/**
+	 * attendanceTpl , 类型: com.dt.platform.domain.hr.AttendanceTpl
+	*/
+	public static final String ATTENDANCE_TPL="attendanceTpl";
+	
+	/**
+	 * attendanceTpl , 类型: com.dt.platform.domain.hr.AttendanceTpl
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,com.dt.platform.domain.hr.AttendanceTpl> ATTENDANCE_TPL_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,ATTENDANCE_TPL, com.dt.platform.domain.hr.AttendanceTpl.class, "attendanceTpl", "attendanceTpl", com.dt.platform.domain.hr.AttendanceTpl.class, null);
+	
+	/**
+	 * personJobName , 类型: java.lang.String
+	*/
+	public static final String PERSON_JOB_NAME="personJobName";
+	
+	/**
+	 * personJobName , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDataVO,java.lang.String> PERSON_JOB_NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDataVO.class ,PERSON_JOB_NAME, java.lang.String.class, "personJobName", "personJobName", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , EMPLOYEE_ID , EMPLOYEE_NAME , EMPLOYEE_NUMBER , ATTENDANCE_DATE , ON_WORK_TIME , ON_WORK_TIME2 , OFF_WORK_TIME , OFF_WORK_TIME2 , LEAVE_EARLY , LEAVE_LATE , SKIP_WORK , NORMAL_WORK , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PERSON_ID , ATTENDANCE_TPL_CODE , JOB_NUMBER , ATTENDANCE_DATE , ON_WORK_TIME , ON_WORK_TIME2 , OFF_WORK_TIME , OFF_WORK_TIME2 , LEAVE_EARLY , LEAVE_LATE , SKIP_WORK , BQ , QJ , CC , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON , ATTENDANCE_TPL , PERSON_JOB_NAME };
 	
 	/**
 	 * 代理类
@@ -482,6 +544,17 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 		}
 		
 		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public AttendanceDataVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
+			return this;
+		}
+		
+		/**
 		 * 设置 主键清单
 		 * @param ids 主键清单
 		 * @return 当前对象
@@ -505,34 +578,34 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 		
 		/**
 		 * 设置 人员
-		 * @param employeeId 人员
+		 * @param personId 人员
 		 * @return 当前对象
 		*/
-		public AttendanceData setEmployeeId(String employeeId) {
-			super.change(EMPLOYEE_ID,super.getEmployeeId(),employeeId);
-			super.setEmployeeId(employeeId);
+		public AttendanceData setPersonId(String personId) {
+			super.change(PERSON_ID,super.getPersonId(),personId);
+			super.setPersonId(personId);
 			return this;
 		}
 		
 		/**
-		 * 设置 姓名
-		 * @param employeeName 姓名
+		 * 设置 考勤模版
+		 * @param attendanceTplCode 考勤模版
 		 * @return 当前对象
 		*/
-		public AttendanceData setEmployeeName(String employeeName) {
-			super.change(EMPLOYEE_NAME,super.getEmployeeName(),employeeName);
-			super.setEmployeeName(employeeName);
+		public AttendanceData setAttendanceTplCode(String attendanceTplCode) {
+			super.change(ATTENDANCE_TPL_CODE,super.getAttendanceTplCode(),attendanceTplCode);
+			super.setAttendanceTplCode(attendanceTplCode);
 			return this;
 		}
 		
 		/**
 		 * 设置 工号
-		 * @param employeeNumber 工号
+		 * @param jobNumber 工号
 		 * @return 当前对象
 		*/
-		public AttendanceData setEmployeeNumber(String employeeNumber) {
-			super.change(EMPLOYEE_NUMBER,super.getEmployeeNumber(),employeeNumber);
-			super.setEmployeeNumber(employeeNumber);
+		public AttendanceData setJobNumber(String jobNumber) {
+			super.change(JOB_NUMBER,super.getJobNumber(),jobNumber);
+			super.setJobNumber(jobNumber);
 			return this;
 		}
 		
@@ -559,8 +632,8 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 		}
 		
 		/**
-		 * 设置 上班打卡2
-		 * @param onWorkTime2 上班打卡2
+		 * 设置 最早打卡
+		 * @param onWorkTime2 最早打卡
 		 * @return 当前对象
 		*/
 		public AttendanceData setOnWorkTime2(Date onWorkTime2) {
@@ -581,8 +654,8 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 		}
 		
 		/**
-		 * 设置 下班打卡2
-		 * @param offWorkTime2 下班打卡2
+		 * 设置 最晚打卡
+		 * @param offWorkTime2 最晚打卡
 		 * @return 当前对象
 		*/
 		public AttendanceData setOffWorkTime2(Date offWorkTime2) {
@@ -596,7 +669,7 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 		 * @param leaveEarly 早退
 		 * @return 当前对象
 		*/
-		public AttendanceData setLeaveEarly(Integer leaveEarly) {
+		public AttendanceData setLeaveEarly(String leaveEarly) {
 			super.change(LEAVE_EARLY,super.getLeaveEarly(),leaveEarly);
 			super.setLeaveEarly(leaveEarly);
 			return this;
@@ -607,7 +680,7 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 		 * @param leaveLate 晚退
 		 * @return 当前对象
 		*/
-		public AttendanceData setLeaveLate(Integer leaveLate) {
+		public AttendanceData setLeaveLate(String leaveLate) {
 			super.change(LEAVE_LATE,super.getLeaveLate(),leaveLate);
 			super.setLeaveLate(leaveLate);
 			return this;
@@ -618,20 +691,42 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 		 * @param skipWork 矿工
 		 * @return 当前对象
 		*/
-		public AttendanceData setSkipWork(Integer skipWork) {
+		public AttendanceData setSkipWork(String skipWork) {
 			super.change(SKIP_WORK,super.getSkipWork(),skipWork);
 			super.setSkipWork(skipWork);
 			return this;
 		}
 		
 		/**
-		 * 设置 正常
-		 * @param normalWork 正常
+		 * 设置 补签
+		 * @param bq 补签
 		 * @return 当前对象
 		*/
-		public AttendanceData setNormalWork(Integer normalWork) {
-			super.change(NORMAL_WORK,super.getNormalWork(),normalWork);
-			super.setNormalWork(normalWork);
+		public AttendanceData setBq(String bq) {
+			super.change(BQ,super.getBq(),bq);
+			super.setBq(bq);
+			return this;
+		}
+		
+		/**
+		 * 设置 请假
+		 * @param qj 请假
+		 * @return 当前对象
+		*/
+		public AttendanceData setQj(String qj) {
+			super.change(QJ,super.getQj(),qj);
+			super.setQj(qj);
+			return this;
+		}
+		
+		/**
+		 * 设置 出差
+		 * @param cc 出差
+		 * @return 当前对象
+		*/
+		public AttendanceData setCc(String cc) {
+			super.change(CC,super.getCc(),cc);
+			super.setCc(cc);
 			return this;
 		}
 		
@@ -744,6 +839,39 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 person
+		 * @param person person
+		 * @return 当前对象
+		*/
+		public AttendanceData setPerson(Person person) {
+			super.change(PERSON,super.getPerson(),person);
+			super.setPerson(person);
+			return this;
+		}
+		
+		/**
+		 * 设置 attendanceTpl
+		 * @param attendanceTpl attendanceTpl
+		 * @return 当前对象
+		*/
+		public AttendanceData setAttendanceTpl(AttendanceTpl attendanceTpl) {
+			super.change(ATTENDANCE_TPL,super.getAttendanceTpl(),attendanceTpl);
+			super.setAttendanceTpl(attendanceTpl);
+			return this;
+		}
+		
+		/**
+		 * 设置 personJobName
+		 * @param personJobName personJobName
+		 * @return 当前对象
+		*/
+		public AttendanceData setPersonJobName(String personJobName) {
+			super.change(PERSON_JOB_NAME,super.getPersonJobName(),personJobName);
+			super.setPersonJobName(personJobName);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -760,41 +888,47 @@ public class AttendanceDataVOMeta extends AttendanceDataMeta {
 		@Transient
 		public AttendanceDataVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setEmployeeName(this.getEmployeeName());
 			inst.setNotes(this.getNotes());
-			inst.setEmployeeId(this.getEmployeeId());
+			inst.setAttendanceTplCode(this.getAttendanceTplCode());
+			inst.setBq(this.getBq());
+			inst.setOnWorkTime(this.getOnWorkTime());
+			inst.setSkipWork(this.getSkipWork());
+			inst.setOffWorkTime(this.getOffWorkTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setQj(this.getQj());
+			inst.setId(this.getId());
+			inst.setOnWorkTime2(this.getOnWorkTime2());
+			inst.setCc(this.getCc());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setLeaveEarly(this.getLeaveEarly());
 			inst.setVersion(this.getVersion());
-			inst.setEmployeeNumber(this.getEmployeeNumber());
-			inst.setOnWorkTime(this.getOnWorkTime());
-			inst.setNormalWork(this.getNormalWork());
-			inst.setSkipWork(this.getSkipWork());
 			inst.setCreateBy(this.getCreateBy());
-			inst.setOffWorkTime(this.getOffWorkTime());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
-			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
-			inst.setId(this.getId());
+			inst.setPersonId(this.getPersonId());
 			inst.setLeaveLate(this.getLeaveLate());
 			inst.setAttendanceDate(this.getAttendanceDate());
+			inst.setJobNumber(this.getJobNumber());
 			inst.setOffWorkTime2(this.getOffWorkTime2());
-			inst.setOnWorkTime2(this.getOnWorkTime2());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPerson(this.getPerson());
+				inst.setAttendanceTpl(this.getAttendanceTpl());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
+				inst.setPersonJobName(this.getPersonJobName());
 			}
 			inst.clearModifies();
 			return inst;

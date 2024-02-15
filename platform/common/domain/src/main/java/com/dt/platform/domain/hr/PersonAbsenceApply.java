@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 请假申请
  * <p>请假申请 , 数据表 hr_person_absence_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 12:57:42
+ * @since 2024-02-14 14:35:32
  * @sign BECB09F546B09DA857D41F86B9B30697
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

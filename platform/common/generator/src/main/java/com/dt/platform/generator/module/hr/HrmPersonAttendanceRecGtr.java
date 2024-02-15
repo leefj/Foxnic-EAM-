@@ -71,6 +71,8 @@ public class HrmPersonAttendanceRecGtr extends BaseCodeGenerator {
 //        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.USER_NAME).form().readOnly();
         cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.EMPLOYEE_ID).table().disable(true);
 
+        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.UPDATE_BY).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.CREATE_TIME).form().table().disable(true);
 
         cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.JB_CNT).basic().label("加班(天)").form().numberInput().defaultValue(0.00).scale(2);
         cfg.view().field(HrTables.HR_PERSON_ATTENDANCE_REC.NJ_CNT).basic().label("年假(天)").form().numberInput().defaultValue(0.00).scale(2);

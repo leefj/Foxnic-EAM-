@@ -2,7 +2,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 12:42:09
+ * @since 2024-02-15 13:56:16
  */
  -->
  <!DOCTYPE html>
@@ -100,21 +100,16 @@
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('工号')}" class="search-label jobNumber-label">工号</span><span class="search-colon">:</span></div>
                         <input id="jobNumber" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
-                    <!-- 薪酬模版 , salaryTplId ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 姓名 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('薪酬模版')}" class="search-label salaryTplId-label">薪酬模版</span><span class="search-colon">:</span></div>
-                        <div id="salaryTplId" th:data="${'/service-hr/hr-salary-tpl/query-paged-list'}" style="width:180px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('姓名')}" class="search-label name-label">姓名</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 姓名 , name ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('姓名')}" class="search-label name-label">姓名</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
-                    </div>
                     <!-- 员工 , employeeId ,typeName=button, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('员工')}" class="search-label employeeId-label">员工</span><span class="search-colon">:</span></div>
@@ -162,6 +157,21 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
+                    <!-- 薪酬模版 , salaryTplId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('薪酬模版')}" class="search-label salaryTplId-label">薪酬模版</span><span class="search-colon">:</span></div>
+                        <div id="salaryTplId" th:data="${'/service-hr/hr-salary-tpl/query-paged-list'}" style="width:180px" extraParam="{}"></div>
+                    </div>
+                    <!-- 考勤模版 , attendanceTplCode ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('考勤模版')}" class="search-label attendanceTplCode-label">考勤模版</span><span class="search-colon">:</span></div>
+                        <div id="attendanceTplCode" th:data="${'/service-hr/hr-attendance-tpl/query-paged-list'}" style="width:180px" extraParam="{}"></div>
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
                     <!-- 入职日期 , employmentDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('入职日期')}" class="search-label employmentDate-label">入职日期</span><span class="search-colon">:</span></div>
@@ -171,7 +181,7 @@
                     </div>
                     <!-- 合同开始时间 , contractStartDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('合同时间')}" class="search-label contractStartDate-label">合同时间</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('合同开始时间')}" class="search-label contractStartDate-label">合同开始时间</span><span class="search-colon">:</span></div>
                             <input type="text" id="contractStartDate-begin" style="width: 180px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
                             <input type="text" id="contractStartDate-end"  style="width: 180px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>

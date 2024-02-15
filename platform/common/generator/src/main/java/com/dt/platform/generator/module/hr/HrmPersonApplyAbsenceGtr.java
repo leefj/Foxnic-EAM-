@@ -108,7 +108,7 @@ public class HrmPersonApplyAbsenceGtr extends BaseCodeGenerator {
                 }
 
         );
-
+        cfg.view().list().addJsVariable("CUR_EMP_ID","[[${curEmpId}]]","curEmpId");
         cfg.view().list().addJsVariable("CODE","[[${code}]]","code");
         cfg.view().form().addJsVariable("CUR_EMP_ID","[[${curEmpId}]]","curEmpId");
         cfg.view().form().addJsVariable("CUR_USER_NAME","[[${curUserName}]]","curUserName");

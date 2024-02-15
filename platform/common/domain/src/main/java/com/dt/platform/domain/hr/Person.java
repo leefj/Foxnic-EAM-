@@ -30,8 +30,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息
  * <p>人员信息 , 数据表 hr_person 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 12:42:07
- * @sign 5B44FEB6CEED7E1BEB66BF6B6473BDE7
+ * @since 2024-02-15 13:56:14
+ * @sign E336F49366A513EDEC1C549E34EC5A61
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -375,6 +375,12 @@ public class Person extends Entity {
 	private BigDecimal yearDays;
 	
 	/**
+	 * 考勤模版：考勤模版
+	*/
+	@ApiModelProperty(required = false,value="考勤模版" , notes = "考勤模版")
+	private String attendanceTplCode;
+	
+	/**
 	 * 批次号：批次号
 	*/
 	@ApiModelProperty(required = false,value="批次号" , notes = "批次号")
@@ -538,6 +544,12 @@ public class Person extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="organization" , notes = "organization")
 	private Organization organization;
+	
+	/**
+	 * attendanceTpl：attendanceTpl
+	*/
+	@ApiModelProperty(required = false,value="attendanceTpl" , notes = "attendanceTpl")
+	private AttendanceTpl attendanceTpl;
 	
 	/**
 	 * 获得 主键<br>
@@ -1585,6 +1597,25 @@ public class Person extends Entity {
 	}
 	
 	/**
+	 * 获得 考勤模版<br>
+	 * 考勤模版
+	 * @return 考勤模版
+	*/
+	public String getAttendanceTplCode() {
+		return attendanceTplCode;
+	}
+	
+	/**
+	 * 设置 考勤模版
+	 * @param attendanceTplCode 考勤模版
+	 * @return 当前对象
+	*/
+	public Person setAttendanceTplCode(String attendanceTplCode) {
+		this.attendanceTplCode=attendanceTplCode;
+		return this;
+	}
+	
+	/**
 	 * 获得 批次号<br>
 	 * 批次号
 	 * @return 批次号
@@ -2138,6 +2169,25 @@ public class Person extends Entity {
 		this.organization=organization;
 		return this;
 	}
+	
+	/**
+	 * 获得 attendanceTpl<br>
+	 * attendanceTpl
+	 * @return attendanceTpl
+	*/
+	public AttendanceTpl getAttendanceTpl() {
+		return attendanceTpl;
+	}
+	
+	/**
+	 * 设置 attendanceTpl
+	 * @param attendanceTpl attendanceTpl
+	 * @return 当前对象
+	*/
+	public Person setAttendanceTpl(AttendanceTpl attendanceTpl) {
+		this.attendanceTpl=attendanceTpl;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -2185,6 +2235,7 @@ public class Person extends Entity {
 		com.dt.platform.domain.hr.meta.PersonMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.PersonMeta.$$proxy$$();
 		inst.setRankCode(this.getRankCode());
 		inst.setYearDays(this.getYearDays());
+		inst.setAttendanceTplCode(this.getAttendanceTplCode());
 		inst.setEmergencyContactNo(this.getEmergencyContactNo());
 		inst.setEmploymentConfirmDate(this.getEmploymentConfirmDate());
 		inst.setScore(this.getScore());
@@ -2262,6 +2313,7 @@ public class Person extends Entity {
 			inst.setPersonCertList(this.getPersonCertList());
 			inst.setSalaryTpl(this.getSalaryTpl());
 			inst.setOrganization(this.getOrganization());
+			inst.setAttendanceTpl(this.getAttendanceTpl());
 			inst.setRank(this.getRank());
 			inst.setPosition(this.getPosition());
 			inst.setSexDict(this.getSexDict());
@@ -2327,6 +2379,7 @@ public class Person extends Entity {
 		if(cast) {
 			this.setRankCode(DataParser.parse(String.class, map.get(PersonMeta.RANK_CODE)));
 			this.setYearDays(DataParser.parse(BigDecimal.class, map.get(PersonMeta.YEAR_DAYS)));
+			this.setAttendanceTplCode(DataParser.parse(String.class, map.get(PersonMeta.ATTENDANCE_TPL_CODE)));
 			this.setEmergencyContactNo(DataParser.parse(String.class, map.get(PersonMeta.EMERGENCY_CONTACT_NO)));
 			this.setEmploymentConfirmDate(DataParser.parse(Date.class, map.get(PersonMeta.EMPLOYMENT_CONFIRM_DATE)));
 			this.setScore(DataParser.parse(Integer.class, map.get(PersonMeta.SCORE)));
@@ -2403,6 +2456,7 @@ public class Person extends Entity {
 			this.setBank(DataParser.parse(DictItem.class, map.get(PersonMeta.BANK)));
 			this.setSalaryTpl(DataParser.parse(SalaryTpl.class, map.get(PersonMeta.SALARY_TPL)));
 			this.setOrganization(DataParser.parse(Organization.class, map.get(PersonMeta.ORGANIZATION)));
+			this.setAttendanceTpl(DataParser.parse(AttendanceTpl.class, map.get(PersonMeta.ATTENDANCE_TPL)));
 			this.setRank(DataParser.parse(Rank.class, map.get(PersonMeta.RANK)));
 			this.setPosition(DataParser.parse(Position.class, map.get(PersonMeta.POSITION)));
 			this.setSexDict(DataParser.parse(DictItem.class, map.get(PersonMeta.SEX_DICT)));
@@ -2412,6 +2466,7 @@ public class Person extends Entity {
 			try {
 				this.setRankCode( (String)map.get(PersonMeta.RANK_CODE));
 				this.setYearDays( (BigDecimal)map.get(PersonMeta.YEAR_DAYS));
+				this.setAttendanceTplCode( (String)map.get(PersonMeta.ATTENDANCE_TPL_CODE));
 				this.setEmergencyContactNo( (String)map.get(PersonMeta.EMERGENCY_CONTACT_NO));
 				this.setEmploymentConfirmDate( (Date)map.get(PersonMeta.EMPLOYMENT_CONFIRM_DATE));
 				this.setScore( (Integer)map.get(PersonMeta.SCORE));
@@ -2488,6 +2543,7 @@ public class Person extends Entity {
 				this.setBank( (DictItem)map.get(PersonMeta.BANK));
 				this.setSalaryTpl( (SalaryTpl)map.get(PersonMeta.SALARY_TPL));
 				this.setOrganization( (Organization)map.get(PersonMeta.ORGANIZATION));
+				this.setAttendanceTpl( (AttendanceTpl)map.get(PersonMeta.ATTENDANCE_TPL));
 				this.setRank( (Rank)map.get(PersonMeta.RANK));
 				this.setPosition( (Position)map.get(PersonMeta.POSITION));
 				this.setSexDict( (DictItem)map.get(PersonMeta.SEX_DICT));
@@ -2510,6 +2566,7 @@ public class Person extends Entity {
 		if(cast) {
 			this.setRankCode(DataParser.parse(String.class, r.getValue(PersonMeta.RANK_CODE)));
 			this.setYearDays(DataParser.parse(BigDecimal.class, r.getValue(PersonMeta.YEAR_DAYS)));
+			this.setAttendanceTplCode(DataParser.parse(String.class, r.getValue(PersonMeta.ATTENDANCE_TPL_CODE)));
 			this.setEmergencyContactNo(DataParser.parse(String.class, r.getValue(PersonMeta.EMERGENCY_CONTACT_NO)));
 			this.setEmploymentConfirmDate(DataParser.parse(Date.class, r.getValue(PersonMeta.EMPLOYMENT_CONFIRM_DATE)));
 			this.setScore(DataParser.parse(Integer.class, r.getValue(PersonMeta.SCORE)));
@@ -2579,6 +2636,7 @@ public class Person extends Entity {
 			try {
 				this.setRankCode( (String)r.getValue(PersonMeta.RANK_CODE));
 				this.setYearDays( (BigDecimal)r.getValue(PersonMeta.YEAR_DAYS));
+				this.setAttendanceTplCode( (String)r.getValue(PersonMeta.ATTENDANCE_TPL_CODE));
 				this.setEmergencyContactNo( (String)r.getValue(PersonMeta.EMERGENCY_CONTACT_NO));
 				this.setEmploymentConfirmDate( (Date)r.getValue(PersonMeta.EMPLOYMENT_CONFIRM_DATE));
 				this.setScore( (Integer)r.getValue(PersonMeta.SCORE));

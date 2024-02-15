@@ -1,8 +1,8 @@
 <!--
 /**
- * 考勤记录 列表页 JS 脚本
+ * 考勤原始记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:24:01
+ * @since 2024-02-14 22:19:15
  */
  -->
  <!DOCTYPE html>
@@ -11,7 +11,8 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
-	<title th:text="${lang.translate('考勤记录')}">考勤记录</title>
+    <meta name="referrer" content="no-referrer">
+	<title th:text="${lang.translate('考勤原始记录')}">考勤原始记录</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -30,31 +31,127 @@
 <body style="overflow-y: hidden;">
 <div class="form-container" >
 
-    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="display:none">
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="opacity:0">
 
         <input name="id" id="id"  type="hidden"/>
 
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-6339-content">
+        <div class="layui-row form-row" id="random-3454-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                <!-- select_box : 人员 ,  personId  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('人员')}">人员</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="personId" input-type="select" th:data="${'/service-hr/hr-person/query-paged-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- text_input : 工号 ,  employeeNumber -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('工号')}">工号</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="employeeNumber" id="employeeNumber" name="employeeNumber" th:placeholder="${ lang.translate('请输入'+'工号') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                <!-- text_input : 来源 ,  source -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('来源')}">来源</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="source" id="source" name="source" th:placeholder="${ lang.translate('请输入'+'来源') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 批次号 ,  batchCode -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('批次号')}">批次号</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="batchCode" id="batchCode" name="batchCode" th:placeholder="${ lang.translate('请输入'+'批次号') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7750-fieldset">
+            <legend>处理情况</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-7750-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                <!-- radio_box : 处理状态 ,  processStatus  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('处理状态')}">处理状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="processStatus" lay-filter="processStatus" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.hr.AttendanceRcdProcessStatusEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
+                    </div>
+                </div>
+            
+                <!-- text_input : 处理结果 ,  processResult -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('处理结果')}">处理结果</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="processResult" id="processResult" name="processResult" th:placeholder="${ lang.translate('请输入'+'处理结果') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                <!-- date_input : 打卡时间 ,  rcdTime  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('打卡时间')}">打卡时间</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="date" lay-filter="rcdTime" id="rcdTime" name="rcdTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'打卡时间') }" type="text" class="layui-input"    lay-verify=""   />
+                    </div>
+                </div>
+            
+                <!-- date_input : 处理时间 ,  processTime  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('处理时间')}">处理时间</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="date" lay-filter="processTime" id="processTime" name="processTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'处理时间') }" type="text" class="layui-input"   />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3806-fieldset">
+            <legend>处理情况</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-3806-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column" >
 
-                <!-- text_input : 人员 ,  employeeId -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('人员')}">人员</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="employeeId" id="employeeId" name="employeeId" th:placeholder="${ lang.translate('请输入'+'人员') }" type="text" class="layui-input"  />
-                    </div>
-                </div>
-
                 <!-- text_area : 备注 ,  notes  -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
+                    <div class="layui-input-block ">
                         <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
@@ -83,7 +180,8 @@
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
-    var VALIDATE_CONFIG={};
+    var RADIO_PROCESSSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AttendanceRcdProcessStatusEnum')}]];
+    var VALIDATE_CONFIG={"processStatus":{"labelInForm":"处理状态","inputType":"radio_box","required":true},"personId":{"labelInForm":"人员","inputType":"select_box","required":true},"rcdTime":{"date":true,"labelInForm":"打卡时间","inputType":"date_input"}};
     var AUTH_PREFIX="hr_attendance_record";
 
 

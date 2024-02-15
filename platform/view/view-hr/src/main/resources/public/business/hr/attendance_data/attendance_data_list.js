@@ -1,7 +1,7 @@
 /**
  * 考勤汇总 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:22:48
+ * @since 2024-02-15 15:15:17
  */
 
 
@@ -11,8 +11,14 @@ function ListPage() {
 	
 	//模块基础路径
 	const moduleURL="/service-hr/hr-attendance-data";
+	const queryURL=moduleURL+'/query-paged-list';
+	const deleteURL=moduleURL+'/delete';
+	const batchDeleteURL=moduleURL+'/delete-by-ids';
+	const getByIdURL=moduleURL+'/get-by-id';
+	//
 	var dataTable=null;
 	var sort=null;
+
 	/**
       * 入口函数，初始化
       */
@@ -71,7 +77,7 @@ function ListPage() {
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-paged-list',
+				url: queryURL,
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
@@ -79,24 +85,27 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'employeeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员') , templet: function (d) { return templet('employeeId',d.employeeId,d);}  }
-					,{ field: 'employeeName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('姓名') , templet: function (d) { return templet('employeeName',d.employeeName,d);}  }
-					,{ field: 'employeeNumber', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('工号') , templet: function (d) { return templet('employeeNumber',d.employeeNumber,d);}  }
-					,{ field: 'attendanceDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('考勤日期') ,templet: function (d) { return templet('attendanceDate',fox.dateFormat(d.attendanceDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员'), templet: function (d) { return templet('personId' ,fox.joinLabel(d.person,"name",',','','personId'),d);}}
+					,{ field: 'attendanceTplCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考勤模版'), templet: function (d) { return templet('attendanceTplCode' ,fox.joinLabel(d.attendanceTpl,"name",',','','attendanceTplCode'),d);}}
+					,{ field: 'attendanceDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('考勤日期') ,templet: function (d) { return templet('attendanceDate',fox.dateFormat(d.attendanceDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'onWorkTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('上班打卡') ,templet: function (d) { return templet('onWorkTime',fox.dateFormat(d.onWorkTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'onWorkTime2', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('上班打卡2') ,templet: function (d) { return templet('onWorkTime2',fox.dateFormat(d.onWorkTime2,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'onWorkTime2', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('最早打卡') ,templet: function (d) { return templet('onWorkTime2',fox.dateFormat(d.onWorkTime2,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'offWorkTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('下班打卡') ,templet: function (d) { return templet('offWorkTime',fox.dateFormat(d.offWorkTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'offWorkTime2', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('下班打卡2') ,templet: function (d) { return templet('offWorkTime2',fox.dateFormat(d.offWorkTime2,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'leaveEarly', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('早退') , templet: function (d) { return templet('leaveEarly',d.leaveEarly,d);}  }
-					,{ field: 'leaveLate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('晚退') , templet: function (d) { return templet('leaveLate',d.leaveLate,d);}  }
-					,{ field: 'skipWork', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('矿工') , templet: function (d) { return templet('skipWork',d.skipWork,d);}  }
-					,{ field: 'normalWork', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('正常') , templet: function (d) { return templet('normalWork',d.normalWork,d);}  }
+					,{ field: 'offWorkTime2', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('最晚打卡') ,templet: function (d) { return templet('offWorkTime2',fox.dateFormat(d.offWorkTime2,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'leaveEarly', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('早退'), templet:function (d){ return templet('leaveEarly',fox.getEnumText(RADIO_LEAVEEARLY_DATA,d.leaveEarly,'','leaveEarly'),d);}}
+					,{ field: 'leaveLate', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('晚退'), templet:function (d){ return templet('leaveLate',fox.getEnumText(RADIO_LEAVELATE_DATA,d.leaveLate,'','leaveLate'),d);}}
+					,{ field: 'skipWork', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('矿工'), templet:function (d){ return templet('skipWork',fox.getEnumText(RADIO_SKIPWORK_DATA,d.skipWork,'','skipWork'),d);}}
+					,{ field: 'bq', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('补签'), templet:function (d){ return templet('bq',fox.getEnumText(RADIO_BQ_DATA,d.bq,'','bq'),d);}}
+					,{ field: 'qj', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('请假'), templet:function (d){ return templet('qj',fox.getEnumText(RADIO_QJ_DATA,d.qj,'','qj'),d);}}
+					,{ field: 'cc', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('出差'), templet:function (d){ return templet('cc',fox.getEnumText(RADIO_CC_DATA,d.cc,'','cc'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
-				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
+				done: function (data) {
+					lockSwitchInputs();
+					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
+				},
 				footer : {
 					exportExcel : false ,
 					importExcel : false 
@@ -120,11 +129,13 @@ function ListPage() {
 		var context=dataTable.getDataRowContext( { id : data.id } );
 		if(context==null) return;
 		if(remote) {
-			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+			admin.post(getByIdURL, { id : data.id }, function (r) {
 				if (r.success) {
 					data = r.data;
 					context.update(data);
 					fox.renderFormInputs(form);
+					lockSwitchInputs();
+					window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 				} else {
 					fox.showMessage(data);
 				}
@@ -132,7 +143,24 @@ function ListPage() {
 		} else {
 			context.update(data);
 			fox.renderFormInputs(form);
+			lockSwitchInputs();
+			window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 		}
+	}
+
+
+
+	function lockSwitchInputs() {
+	}
+
+	function lockSwitchInput(field) {
+		var inputs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find("input");
+		var switchs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find(".layui-form-switch");
+		inputs.attr("readonly", "yes");
+		inputs.attr("disabled", "yes");
+		switchs.addClass("layui-disabled");
+		switchs.addClass("layui-checkbox-disabled");
+		switchs.addClass("layui-form-switch-disabled");
 	}
 
 	/**
@@ -141,8 +169,9 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.employeeId={ inputType:"button",value: $("#employeeId").val()};
-		value.notes={ inputType:"button",value: $("#notes").val()};
+		value.personId={ inputType:"select_box", value: getSelectedValue("#personId","value") ,fillBy:["person"]  , label:getSelectedValue("#personId","nameStr") };
+		value.attendanceDate={ inputType:"date_input", begin: $("#attendanceDate-begin").val(), end: $("#attendanceDate-end").val() ,matchType:"auto" };
+		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -189,6 +218,55 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 personId 下拉字段
+		fox.renderSelectBox({
+			el: "personId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("personId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("personId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					}
+				}
+				return opts;
+			}
+		});
+		laydate.render({
+			elem: '#attendanceDate-begin',
+			trigger:"click",
+			done: function(value, date, endDate) {
+				setTimeout(function () {
+					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("attendanceDate",value, date, endDate);
+				},1);
+			}
+		});
+		laydate.render({
+			elem: '#attendanceDate-end',
+			trigger:"click",
+			done: function(value, date, endDate) {
+				setTimeout(function () {
+					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("attendanceDate",value, date, endDate);
+				},1);
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
@@ -242,6 +320,9 @@ function ListPage() {
 				case 'batch-del':
 					batchDelete(selected);
 					break;
+				case 'tool-source-rcd':
+					window.pageExt.list.sourceRcd && window.pageExt.list.sourceRcd(selected,obj);
+					break;
 				case 'refresh-data':
 					refreshTableData();
 					break;
@@ -275,7 +356,7 @@ function ListPage() {
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的'+'考勤汇总'+'吗？'), function (i) {
                 top.layer.close(i);
-				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -310,7 +391,10 @@ function ListPage() {
 
 			admin.putTempData('hr-attendance-data-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				top.layer.load(2);
+				top.layer.load(2);
+				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-attendance-data-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -319,7 +403,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				top.layer.load(2);
+				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-attendance-data-form-data-form-action', "view",true);
 						showEditForm(data.data);
@@ -337,7 +423,7 @@ function ListPage() {
 
 				top.layer.confirm(fox.translate('确定删除此'+'考勤汇总'+'吗？'), function (i) {
 					top.layer.close(i);
-					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -384,7 +470,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["65%",height+"px"],
+			area: ["85%",height+"px"],
 			type: 2,
 			id:"hr-attendance-data-form-data-win",
 			content: '/business/hr/attendance_data/attendance_data_form.html' + (queryString?("?"+queryString):""),

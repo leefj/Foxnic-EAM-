@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
-
 import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
@@ -39,11 +38,12 @@ import java.util.Map;
  * 考勤汇总服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:22:47
+ * @since 2024-02-15 15:02:21
 */
 
 
 @Service("HrAttendanceDataService")
+
 public class AttendanceDataServiceImpl extends SuperService<AttendanceData> implements IAttendanceDataService {
 
 	/**

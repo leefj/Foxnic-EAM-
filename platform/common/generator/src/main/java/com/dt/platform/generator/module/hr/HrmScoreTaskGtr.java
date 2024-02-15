@@ -22,7 +22,6 @@ public class HrmScoreTaskGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(HrTables.HR_SCORE_TASK.ID).basic().hidden(true);
-
         cfg.view().field(HrTables.HR_SCORE_TASK.NAME).search().fuzzySearch();
 
 

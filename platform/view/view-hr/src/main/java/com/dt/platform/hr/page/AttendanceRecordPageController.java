@@ -10,25 +10,25 @@ import com.dt.platform.proxy.hr.AttendanceRecordServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 考勤记录模版页面控制器
+ * 考勤原始记录模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:24:00
+ * @since 2024-02-14 22:15:46
 */
 
 @Controller("HrAttendanceRecordPageController")
 @RequestMapping(AttendanceRecordPageController.prefix)
 public class AttendanceRecordPageController extends ViewController {
-	
+
 	public static final String prefix="business/hr/attendance_record";
 
 	private AttendanceRecordServiceProxy proxy;
-	
+
 	/**
-	 * 获得代理对象<br> 
-	 * 1、单体应用时，在应用内部调用；<br> 
-	 * 2、前后端分离时，通过配置，以Rest方式调用后端；<br> 
-	 * 3、微服务时，通过feign调用; <br> 
+	 * 获得代理对象<br>
+	 * 1、单体应用时，在应用内部调用；<br>
+	 * 2、前后端分离时，通过配置，以Rest方式调用后端；<br>
+	 * 3、微服务时，通过feign调用; <br>
 	 * */
 	public AttendanceRecordServiceProxy proxy() {
 		if(proxy==null) {
@@ -36,20 +36,20 @@ public class AttendanceRecordPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
 	/**
-	 * 考勤记录 功能主页面
+	 * 考勤原始记录 功能主页面
 	 */
 	@RequestMapping("/attendance_record_list.html")
 	public String list(Model model,HttpServletRequest request) {
-		return prefix+"/attendance_record_list";
+		return getTemplatePath(prefix,"attendance_record_list");
 	}
 
 	/**
-	 * 考勤记录 表单页面
+	 * 考勤原始记录 表单页面
 	 */
 	@RequestMapping("/attendance_record_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
-		return prefix+"/attendance_record_form";
+		return getTemplatePath(prefix,"attendance_record_form");
 	}
 }

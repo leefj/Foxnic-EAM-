@@ -30,6 +30,8 @@ import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.hr.meta.AttendanceDataMeta;
+import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.AttendanceTpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -44,7 +46,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 考勤汇总接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-02 14:22:47
+ * @since 2024-02-15 15:02:21
 */
 
 @InDoc
@@ -55,32 +57,35 @@ public class AttendanceDataController extends SuperController {
 	@Autowired
 	private IAttendanceDataService attendanceDataService;
 
-
 	/**
 	 * 添加考勤汇总
 	*/
 	@ApiOperation(value = "添加考勤汇总")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_NAME , value = "姓名" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_NUMBER , value = "工号" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.ATTENDANCE_TPL_CODE , value = "考勤模版" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.JOB_NUMBER , value = "工号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ATTENDANCE_DATE , value = "考勤日期" , required = false , dataTypeClass=Date.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME , value = "上班打卡" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME2 , value = "上班打卡2" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME2 , value = "最早打卡" , required = false , dataTypeClass=Date.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME , value = "下班打卡" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME2 , value = "下班打卡2" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_EARLY , value = "早退" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_LATE , value = "晚退" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.SKIP_WORK , value = "矿工" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.NORMAL_WORK , value = "正常" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME2 , value = "最晚打卡" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_EARLY , value = "早退" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_LATE , value = "晚退" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.SKIP_WORK , value = "矿工" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.BQ , value = "补签" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.QJ , value = "请假" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.CC , value = "出差" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = AttendanceDataServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AttendanceDataServiceProxy.INSERT)
 	public Result insert(AttendanceDataVO attendanceDataVO) {
+		
 		Result result=attendanceDataService.insert(attendanceDataVO,false);
 		return result;
 	}
@@ -98,6 +103,7 @@ public class AttendanceDataController extends SuperController {
 	@SentinelResource(value = AttendanceDataServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AttendanceDataServiceProxy.DELETE)
 	public Result deleteById(String id) {
+		
 		this.validator().asserts(id).require("缺少id值");
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
@@ -126,7 +132,7 @@ public class AttendanceDataController extends SuperController {
 	@SentinelResource(value = AttendanceDataServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AttendanceDataServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
-
+		
 		// 参数校验
 		this.validator().asserts(ids).require("缺少ids参数");
 		if(this.validator().failure()) {
@@ -175,25 +181,29 @@ public class AttendanceDataController extends SuperController {
 	@ApiOperation(value = "更新考勤汇总")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_NAME , value = "姓名" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_NUMBER , value = "工号" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.ATTENDANCE_TPL_CODE , value = "考勤模版" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.JOB_NUMBER , value = "工号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ATTENDANCE_DATE , value = "考勤日期" , required = false , dataTypeClass=Date.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME , value = "上班打卡" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME2 , value = "上班打卡2" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME2 , value = "最早打卡" , required = false , dataTypeClass=Date.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME , value = "下班打卡" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME2 , value = "下班打卡2" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_EARLY , value = "早退" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_LATE , value = "晚退" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.SKIP_WORK , value = "矿工" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.NORMAL_WORK , value = "正常" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME2 , value = "最晚打卡" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_EARLY , value = "早退" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_LATE , value = "晚退" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.SKIP_WORK , value = "矿工" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.BQ , value = "补签" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.QJ , value = "请假" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.CC , value = "出差" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { AttendanceDataVOMeta.PAGE_INDEX , AttendanceDataVOMeta.PAGE_SIZE , AttendanceDataVOMeta.SEARCH_FIELD , AttendanceDataVOMeta.FUZZY_FIELD , AttendanceDataVOMeta.SEARCH_VALUE , AttendanceDataVOMeta.DIRTY_FIELDS , AttendanceDataVOMeta.SORT_FIELD , AttendanceDataVOMeta.SORT_TYPE , AttendanceDataVOMeta.DATA_ORIGIN , AttendanceDataVOMeta.QUERY_LOGIC , AttendanceDataVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { AttendanceDataVOMeta.PAGE_INDEX , AttendanceDataVOMeta.PAGE_SIZE , AttendanceDataVOMeta.SEARCH_FIELD , AttendanceDataVOMeta.FUZZY_FIELD , AttendanceDataVOMeta.SEARCH_VALUE , AttendanceDataVOMeta.DIRTY_FIELDS , AttendanceDataVOMeta.SORT_FIELD , AttendanceDataVOMeta.SORT_TYPE , AttendanceDataVOMeta.DATA_ORIGIN , AttendanceDataVOMeta.QUERY_LOGIC , AttendanceDataVOMeta.REQUEST_ACTION , AttendanceDataVOMeta.IDS } )
 	@SentinelResource(value = AttendanceDataServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AttendanceDataServiceProxy.UPDATE)
 	public Result update(AttendanceDataVO attendanceDataVO) {
+		
 		Result result=attendanceDataService.update(attendanceDataVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -205,25 +215,29 @@ public class AttendanceDataController extends SuperController {
 	@ApiOperation(value = "保存考勤汇总")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_NAME , value = "姓名" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_NUMBER , value = "工号" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.ATTENDANCE_TPL_CODE , value = "考勤模版" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.JOB_NUMBER , value = "工号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ATTENDANCE_DATE , value = "考勤日期" , required = false , dataTypeClass=Date.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME , value = "上班打卡" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME2 , value = "上班打卡2" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME2 , value = "最早打卡" , required = false , dataTypeClass=Date.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME , value = "下班打卡" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME2 , value = "下班打卡2" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_EARLY , value = "早退" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_LATE , value = "晚退" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.SKIP_WORK , value = "矿工" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.NORMAL_WORK , value = "正常" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME2 , value = "最晚打卡" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_EARLY , value = "早退" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_LATE , value = "晚退" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.SKIP_WORK , value = "矿工" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.BQ , value = "补签" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.QJ , value = "请假" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.CC , value = "出差" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { AttendanceDataVOMeta.PAGE_INDEX , AttendanceDataVOMeta.PAGE_SIZE , AttendanceDataVOMeta.SEARCH_FIELD , AttendanceDataVOMeta.FUZZY_FIELD , AttendanceDataVOMeta.SEARCH_VALUE , AttendanceDataVOMeta.DIRTY_FIELDS , AttendanceDataVOMeta.SORT_FIELD , AttendanceDataVOMeta.SORT_TYPE , AttendanceDataVOMeta.DATA_ORIGIN , AttendanceDataVOMeta.QUERY_LOGIC , AttendanceDataVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { AttendanceDataVOMeta.PAGE_INDEX , AttendanceDataVOMeta.PAGE_SIZE , AttendanceDataVOMeta.SEARCH_FIELD , AttendanceDataVOMeta.FUZZY_FIELD , AttendanceDataVOMeta.SEARCH_VALUE , AttendanceDataVOMeta.DIRTY_FIELDS , AttendanceDataVOMeta.SORT_FIELD , AttendanceDataVOMeta.SORT_TYPE , AttendanceDataVOMeta.DATA_ORIGIN , AttendanceDataVOMeta.QUERY_LOGIC , AttendanceDataVOMeta.REQUEST_ACTION , AttendanceDataVOMeta.IDS } )
 	@SentinelResource(value = AttendanceDataServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AttendanceDataServiceProxy.SAVE)
 	public Result save(AttendanceDataVO attendanceDataVO) {
+		
 		Result result=attendanceDataService.save(attendanceDataVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -240,8 +254,14 @@ public class AttendanceDataController extends SuperController {
 	@SentinelResource(value = AttendanceDataServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AttendanceDataServiceProxy.GET_BY_ID)
 	public Result<AttendanceData> getById(String id) {
+		
 		Result<AttendanceData> result=new Result<>();
 		AttendanceData attendanceData=attendanceDataService.getById(id);
+		// join 关联的对象
+		attendanceDataService.dao().fill(attendanceData)
+			.with(AttendanceDataMeta.PERSON)
+			.with(AttendanceDataMeta.ATTENDANCE_TPL)
+			.execute();
 		result.success(true).data(attendanceData);
 		return result;
 	}
@@ -259,6 +279,7 @@ public class AttendanceDataController extends SuperController {
 		@SentinelResource(value = AttendanceDataServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AttendanceDataServiceProxy.GET_BY_IDS)
 	public Result<List<AttendanceData>> getByIds(List<String> ids) {
+		
 		Result<List<AttendanceData>> result=new Result<>();
 		List<AttendanceData> list=attendanceDataService.queryListByIds(ids);
 		result.success(true).data(list);
@@ -272,24 +293,28 @@ public class AttendanceDataController extends SuperController {
 	@ApiOperation(value = "查询考勤汇总")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_NAME , value = "姓名" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_NUMBER , value = "工号" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.ATTENDANCE_TPL_CODE , value = "考勤模版" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.JOB_NUMBER , value = "工号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ATTENDANCE_DATE , value = "考勤日期" , required = false , dataTypeClass=Date.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME , value = "上班打卡" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME2 , value = "上班打卡2" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME2 , value = "最早打卡" , required = false , dataTypeClass=Date.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME , value = "下班打卡" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME2 , value = "下班打卡2" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_EARLY , value = "早退" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_LATE , value = "晚退" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.SKIP_WORK , value = "矿工" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.NORMAL_WORK , value = "正常" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME2 , value = "最晚打卡" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_EARLY , value = "早退" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_LATE , value = "晚退" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.SKIP_WORK , value = "矿工" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.BQ , value = "补签" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.QJ , value = "请假" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.CC , value = "出差" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { AttendanceDataVOMeta.PAGE_INDEX , AttendanceDataVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = AttendanceDataServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AttendanceDataServiceProxy.QUERY_LIST)
 	public Result<List<AttendanceData>> queryList(AttendanceDataVO sample) {
+		
 		Result<List<AttendanceData>> result=new Result<>();
 		List<AttendanceData> list=attendanceDataService.queryList(sample);
 		result.success(true).data(list);
@@ -303,30 +328,38 @@ public class AttendanceDataController extends SuperController {
 	@ApiOperation(value = "分页查询考勤汇总")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_ID , value = "人员" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_NAME , value = "姓名" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.EMPLOYEE_NUMBER , value = "工号" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.ATTENDANCE_TPL_CODE , value = "考勤模版" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.JOB_NUMBER , value = "工号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ATTENDANCE_DATE , value = "考勤日期" , required = false , dataTypeClass=Date.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME , value = "上班打卡" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME2 , value = "上班打卡2" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.ON_WORK_TIME2 , value = "最早打卡" , required = false , dataTypeClass=Date.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME , value = "下班打卡" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME2 , value = "下班打卡2" , required = false , dataTypeClass=Date.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_EARLY , value = "早退" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_LATE , value = "晚退" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.SKIP_WORK , value = "矿工" , required = false , dataTypeClass=Integer.class),
-		@ApiImplicitParam(name = AttendanceDataVOMeta.NORMAL_WORK , value = "正常" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.OFF_WORK_TIME2 , value = "最晚打卡" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_EARLY , value = "早退" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.LEAVE_LATE , value = "晚退" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.SKIP_WORK , value = "矿工" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.BQ , value = "补签" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.QJ , value = "请假" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.CC , value = "出差" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AttendanceDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AttendanceDataVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = AttendanceDataServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AttendanceDataServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<AttendanceData>> queryPagedList(AttendanceDataVO sample) {
+		
 		Result<PagedList<AttendanceData>> result=new Result<>();
 		PagedList<AttendanceData> list=attendanceDataService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
+		// join 关联的对象
+		attendanceDataService.dao().fill(list)
+			.with(AttendanceDataMeta.PERSON)
+			.with(AttendanceDataMeta.ATTENDANCE_TPL)
+			.execute();
 		result.success(true).data(list);
 		return result;
 	}
-
 
 
 

@@ -44,6 +44,8 @@ public class PersonAbsenceApplyPageController extends ViewController {
 	@RequestMapping("/person_absence_apply_list.html")
 	public String list(Model model,HttpServletRequest request,String code) {
 		model.addAttribute("code",code);
+		String empId= SessionUser.getCurrent().getActivatedEmployeeId();
+		model.addAttribute("curEmpId",empId);
 		return getTemplatePath(prefix,"person_absence_apply_list");
 	}
 

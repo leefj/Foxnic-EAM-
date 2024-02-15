@@ -1,6 +1,7 @@
 package com.dt.platform.relation.modules;
 
 import com.dt.platform.constants.db.HrTables;
+import com.dt.platform.constants.db.SysTables;
 import com.dt.platform.domain.hr.*;
 import com.dt.platform.domain.hr.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
@@ -37,19 +38,85 @@ public class HrmRelationManager extends RelationManager {
 		this.setupScoreTplItem();
 		this.setupScoreTpl();
 		this.setupPersonTransferRcd();
-
 		this.setupPersonTransfer();
 		this.setupPersonLeave();
 		this.setupPersonConfirmApply();
 		this.setupAbsenceApply();
 		this.setupAbsenceOfficeBusinessApply();
-
 		this.setupAttendanceYearDay();
+		this.setupTaskConf();
+		this.setupTaskInst();
+		this.setupScoreUser();
+
+		this.setupAttendanceRecord();
+		this.setupAttendanceTpl();
+		this.setupAttendanceData();
+
 	}
 
+	public void setupAttendanceData() {
+
+		this.property(AttendanceDataMeta.PERSON_PROP)
+				.using(HrTables.HR_ATTENDANCE_DATA.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+
+		this.property(AttendanceDataMeta.ATTENDANCE_TPL_PROP)
+				.using(HrTables.HR_ATTENDANCE_DATA.ATTENDANCE_TPL_CODE).join(HrTables.HR_ATTENDANCE_TPL.CODE);
+
+
+
+
+
+	}
+	public void setupAttendanceTpl() {
+		this.property(AttendanceTplMeta.WEEK_DICT_PROP)
+				.using(HrTables.HR_ATTENDANCE_TPL.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_attendance_week'");
+	}
+	public void setupAttendanceRecord() {
+
+		this.property(AttendanceRecordMeta.PERSON_PROP)
+				.using(HrTables.HR_ATTENDANCE_RECORD.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+	}
+	public void setupTaskConf() {
+		this.property(ScoreTaskConfMeta.SCORE_TPL_PROP)
+				.using(HrTables.HR_SCORE_TASK_CONF.TPL_ID).join(HrTables.HR_SCORE_TPL.ID);
+
+		this.property(ScoreTaskConfMeta.EVALUATION_RELATION_PROP)
+				.using(HrTables.HR_SCORE_TASK_CONF.RELATIONSHIP).join(HrTables.HR_EVALUATION_RELATION.ID);
+	}
+
+	public void setupTaskInst() {
+		this.property(ScoreTaskInstMeta.SCORE_TPL_PROP)
+				.using(HrTables.HR_SCORE_TASK_INST.TPL_ID).join(HrTables.HR_SCORE_TPL.ID);
+
+		this.property(ScoreTaskInstMeta.EVALUATION_RELATION_PROP)
+				.using(HrTables.HR_SCORE_TASK_INST.RELATIONSHIP).join(HrTables.HR_EVALUATION_RELATION.CODE);
+
+	}
+	public void setupScoreUser() {
+
+		this.property(ScoreUserMeta.RATED_USER_PROP)
+				.using(HrTables.HR_SCORE_USER.RATED_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(ScoreUserMeta.RATER_USER_PROP)
+				.using(HrTables.HR_SCORE_USER.RATER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(ScoreUserMeta.SCORE_TPL_PROP)
+				.using(HrTables.HR_SCORE_USER.TPL_ID).join(HrTables.HR_SCORE_TPL.ID);
+
+		this.property(ScoreUserMeta.EVALUATION_RELATION_PROP)
+				.using(HrTables.HR_SCORE_USER.RELATIONSHIP).join(HrTables.HR_EVALUATION_RELATION.ID);
+
+
+
+	}
 	public void setupAttendanceYearDay() {
 		this.property(AttendanceYearDayMeta.PERSON_PROP)
 				.using(HrTables.HR_ATTENDANCE_YEAR_DAY.PERSON_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
 	}
 
 	public void setupPersonLeave() {
@@ -332,6 +399,9 @@ public class HrmRelationManager extends RelationManager {
 	}
 
 	private void setupPerson() {
+
+		this.property(PersonMeta.ATTENDANCE_TPL_PROP)
+				.using(HrTables.HR_PERSON.ATTENDANCE_TPL_CODE).join(HrTables.HR_ATTENDANCE_TPL.CODE);
 
 		this.property(PersonMeta.ORGANIZATION_PROP)
 				.using(HrTables.HR_PERSON.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);

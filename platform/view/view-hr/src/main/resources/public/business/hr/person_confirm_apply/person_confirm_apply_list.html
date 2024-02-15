@@ -2,7 +2,7 @@
 /**
  * 转正申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 12:58:59
+ * @since 2024-02-14 14:35:52
  */
  -->
  <!DOCTYPE html>
@@ -112,6 +112,8 @@
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}]];
     var AUTH_PREFIX="hr_person_confirm_apply";
 
+    // curEmpId
+    var CUR_EMP_ID = [[${curEmpId}]] ;
     // code
     var CODE = [[${code}]] ;
 
