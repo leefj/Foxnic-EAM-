@@ -1,7 +1,7 @@
 /**
  * 人员合同 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 12:57:28
+ * @since 2024-02-18 15:58:29
  */
 
 function FormPage() {
@@ -188,12 +188,74 @@ function FormPage() {
 				return opts;
 			}
 		});
-		form.on('radio(status)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=status]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		//渲染 contractPartyId 下拉字段
+		fox.renderSelectBox({
+			el: "contractPartyId",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("签约方",'','cmp:form'),
+			filterable: false,
+			paging: true,
+			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("contractPartyId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("contractPartyId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 status 下拉字段
+		fox.renderSelectBox({
+			el: "status",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("状态",'','cmp:form'),
+			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "insert".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
 		});
 		//渲染 contractYear 下拉字段
 		fox.renderSelectBox({
@@ -236,46 +298,17 @@ function FormPage() {
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("transferToRegular",data,checked);
 		});
-		//渲染 contractPartyId 下拉字段
-		fox.renderSelectBox({
-			el: "contractPartyId",
-			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("签约方",'','cmp:form'),
-			filterable: false,
-			paging: true,
-			pageRemote: true,
-			layVerify: 'required',
-			layVerType: 'msg',
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("contractPartyId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("contractPartyId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
+		form.on('radio(isPermanent)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=isPermanent]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("isPermanent",data,checked);
 		});
 		laydate.render({
 			elem: '#probationStartDate',
 			type:"date",
-			format:"yyyy-mm-dd",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("probationStartDate",value, date, endDate);
@@ -284,7 +317,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#probationFinishDate',
 			type:"date",
-			format:"yyyy-mm-dd",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("probationFinishDate",value, date, endDate);
@@ -293,7 +326,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#contractStartDate',
 			type:"date",
-			format:"yyyy-mm-dd",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("contractStartDate",value, date, endDate);
@@ -302,7 +335,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#contractFinishDate',
 			type:"date",
-			format:"yyyy-mm-dd",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("contractFinishDate",value, date, endDate);
@@ -393,19 +426,19 @@ function FormPage() {
 
 			//设置 试用期生效时间 显示复选框勾选
 			if(formData["probationStartDate"]) {
-				$("#probationStartDate").val(fox.dateFormat(formData["probationStartDate"],"yyyy-mm-dd"));
+				$("#probationStartDate").val(fox.dateFormat(formData["probationStartDate"],"yyyy-MM-dd"));
 			}
 			//设置 试用期到期时间 显示复选框勾选
 			if(formData["probationFinishDate"]) {
-				$("#probationFinishDate").val(fox.dateFormat(formData["probationFinishDate"],"yyyy-mm-dd"));
+				$("#probationFinishDate").val(fox.dateFormat(formData["probationFinishDate"],"yyyy-MM-dd"));
 			}
 			//设置 生效时间 显示复选框勾选
 			if(formData["contractStartDate"]) {
-				$("#contractStartDate").val(fox.dateFormat(formData["contractStartDate"],"yyyy-mm-dd"));
+				$("#contractStartDate").val(fox.dateFormat(formData["contractStartDate"],"yyyy-MM-dd"));
 			}
 			//设置 到期时间 显示复选框勾选
 			if(formData["contractFinishDate"]) {
-				$("#contractFinishDate").val(fox.dateFormat(formData["contractFinishDate"],"yyyy-mm-dd"));
+				$("#contractFinishDate").val(fox.dateFormat(formData["contractFinishDate"],"yyyy-MM-dd"));
 			}
 
 
@@ -413,10 +446,12 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#personId",formData.person);
 			//设置  合同类型 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#type",formData.contractTypeData);
-			//设置  合同年份 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#contractYear",formData.contractYearData);
 			//设置  签约方 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#contractPartyId",formData.contractOrg);
+			//设置  状态 设置下拉框勾选
+			fox.setSelectValue4Enum("#status",formData.status,SELECT_STATUS_DATA);
+			//设置  合同年份 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#contractYear",formData.contractYearData);
 
 			//处理fillBy
 
@@ -483,10 +518,12 @@ function FormPage() {
 		data["personId"]=fox.getSelectedValue("personId",false);
 		//获取 合同类型 下拉框的值
 		data["type"]=fox.getSelectedValue("type",false);
-		//获取 合同年份 下拉框的值
-		data["contractYear"]=fox.getSelectedValue("contractYear",false);
 		//获取 签约方 下拉框的值
 		data["contractPartyId"]=fox.getSelectedValue("contractPartyId",false);
+		//获取 状态 下拉框的值
+		data["status"]=fox.getSelectedValue("status",false);
+		//获取 合同年份 下拉框的值
+		data["contractYear"]=fox.getSelectedValue("contractYear",false);
 
 		return data;
 	}

@@ -15,6 +15,7 @@ function ListPage() {
 
     var menuTree;
     var activedTab;
+    var firstAsyncSuccessFlag = 0;
     /**
      * 入口函数，初始化
      */
@@ -45,6 +46,7 @@ function ListPage() {
                 dataFilter: nodeDatafilter
             },
             callback: {
+                onAsyncSuccess:onAsyncSuccess,
                 onClick: onNodeClick
             },
             view: {
@@ -92,6 +94,27 @@ function ListPage() {
         }
 
 
+    }
+
+    function onAsyncSuccess(event,treeId,msg){
+        console.log("event",event);
+        console.log("treeId",treeId);
+        console.log("msg",msg)
+        if (firstAsyncSuccessFlag == 0) {
+            try {
+                //调用默认展开第一个结点
+                var selectedNode = menuTree.getSelectedNodes();
+                var nodes = menuTree.getNodes();
+                menuTree.expandNode(nodes[0], true);
+                var childNodes = menuTree.transformToArray(nodes[0]);
+                menuTree.expandNode(childNodes[1], true);
+                menuTree.selectNode(childNodes[1]);
+                var childNodes1 = menuTree.transformToArray(childNodes[1]);
+                menuTree.checkNode(childNodes1[1], true, true);
+                firstAsyncSuccessFlag = 1;
+            } catch (err) {
+            }
+        }
     }
 
 

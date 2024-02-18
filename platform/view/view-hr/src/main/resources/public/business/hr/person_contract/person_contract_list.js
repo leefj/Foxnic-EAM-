@@ -1,7 +1,7 @@
 /**
  * 人员合同 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 12:57:28
+ * @since 2024-02-18 15:58:28
  */
 
 
@@ -88,17 +88,19 @@ function ListPage() {
 					,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员'), templet: function (d) { return templet('personId' ,fox.joinLabel(d.person,"name",',','','personId'),d);}}
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同类型'), templet: function (d) { return templet('type' ,fox.joinLabel(d.contractTypeData,"label",',','','type'),d);}}
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'contractDuration', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('合同期限') , templet: function (d) { return templet('contractDuration',d.contractDuration,d);}  }
-					,{ field: 'contractYear', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同年份'), templet: function (d) { return templet('contractYear' ,fox.joinLabel(d.contractYearData,"label",',','','contractYear'),d);}}
-					,{ field: 'transferToRegular', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否转正'), templet:function (d){ return templet('transferToRegular',fox.getEnumText(RADIO_TRANSFERTOREGULAR_DATA,d.transferToRegular,'','transferToRegular'),d);}}
 					,{ field: 'contractPartyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('签约方'), templet: function (d) { return templet('contractPartyId' ,fox.joinLabel(d.contractOrg,"name",',','','contractPartyId'),d);}}
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'contractYear', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('合同年份'), templet: function (d) { return templet('contractYear' ,fox.joinLabel(d.contractYearData,"label",',','','contractYear'),d);}}
+					,{ field: 'isPermanent', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('永久期限'), templet:function (d){ return templet('isPermanent',fox.getEnumText(RADIO_ISPERMANENT_DATA,d.isPermanent,'','isPermanent'),d);}}
 					,{ field: 'probationSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('试用期工资') , templet: function (d) { return templet('probationSalary',d.probationSalary,d);}  }
-					,{ field: 'probationStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('试用期生效时间') ,templet: function (d) { return templet('probationStartDate',fox.dateFormat(d.probationStartDate,"yyyy-mm-dd"),d); }  }
-					,{ field: 'probationFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('试用期到期时间') ,templet: function (d) { return templet('probationFinishDate',fox.dateFormat(d.probationFinishDate,"yyyy-mm-dd"),d); }  }
-					,{ field: 'contractStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('生效时间') ,templet: function (d) { return templet('contractStartDate',fox.dateFormat(d.contractStartDate,"yyyy-mm-dd"),d); }  }
-					,{ field: 'contractFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('到期时间') ,templet: function (d) { return templet('contractFinishDate',fox.dateFormat(d.contractFinishDate,"yyyy-mm-dd"),d); }  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'contractTryDuration', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('试用期期限') , templet: function (d) { return templet('contractTryDuration',d.contractTryDuration,d);}  }
+					,{ field: 'probationStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('试用期生效时间') ,templet: function (d) { return templet('probationStartDate',fox.dateFormat(d.probationStartDate,"yyyy-MM-dd"),d); }  }
+					,{ field: 'probationFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('试用期到期时间') ,templet: function (d) { return templet('probationFinishDate',fox.dateFormat(d.probationFinishDate,"yyyy-MM-dd"),d); }  }
+					,{ field: 'contractDuration', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('合同期限') , templet: function (d) { return templet('contractDuration',d.contractDuration,d);}  }
+					,{ field: 'contractStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('生效时间') ,templet: function (d) { return templet('contractStartDate',fox.dateFormat(d.contractStartDate,"yyyy-MM-dd"),d); }  }
+					,{ field: 'contractFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('到期时间') ,templet: function (d) { return templet('contractFinishDate',fox.dateFormat(d.contractFinishDate,"yyyy-MM-dd"),d); }  }
+					,{ field: 'personJobNumber', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('工号') , templet: function (d) { return templet('personJobNumber',fox.getProperty(d,["person","jobNumber"],0,'','personJobNumber'),d);} }
+					,{ field: 'personIdentityCard', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('身份证') , templet: function (d) { return templet('personIdentityCard',fox.getProperty(d,["person","identityCard"],0,'','personIdentityCard'),d);} }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -169,14 +171,16 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
+		value.personId={ inputType:"select_box", value: getSelectedValue("#personId","value") ,fillBy:["person"]  , label:getSelectedValue("#personId","nameStr") };
 		value.businessCode={ inputType:"button",value: $("#businessCode").val()};
 		value.type={ inputType:"select_box", value: getSelectedValue("#type","value") ,fillBy:["contractTypeData"]  , label:getSelectedValue("#type","nameStr") };
-		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.contractYear={ inputType:"select_box", value: getSelectedValue("#contractYear","value") ,fillBy:["contractYearData"]  , label:getSelectedValue("#contractYear","nameStr") };
-		value.transferToRegular={ inputType:"radio_box", value: getSelectedValue("#transferToRegular","value"), label:getSelectedValue("#transferToRegular","nameStr") };
 		value.contractPartyId={ inputType:"select_box", value: getSelectedValue("#contractPartyId","value") ,fillBy:["contractOrg"]  , label:getSelectedValue("#contractPartyId","nameStr") };
+		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
+		value.contractYear={ inputType:"select_box", value: getSelectedValue("#contractYear","value") ,fillBy:["contractYearData"]  , label:getSelectedValue("#contractYear","nameStr") };
+		value.isPermanent={ inputType:"radio_box", value: getSelectedValue("#isPermanent","value"), label:getSelectedValue("#isPermanent","nameStr") };
 		value.contractStartDate={ inputType:"date_input", begin: $("#contractStartDate-begin").val(), end: $("#contractStartDate-end").val() ,matchType:"auto" };
 		value.contractFinishDate={ inputType:"date_input", begin: $("#contractFinishDate-begin").val(), end: $("#contractFinishDate-end").val() ,matchType:"auto" };
+	//	value.personJobNumber={ inputType:"button",value: $("#personJobNumber").val(),fillBy:["person","jobNumber"] };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -221,8 +225,39 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(1);
+		fox.switchSearchRow(2);
 
+		//渲染 personId 下拉字段
+		fox.renderSelectBox({
+			el: "personId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("personId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("personId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					}
+				}
+				return opts;
+			}
+		});
 		//渲染 type 下拉字段
 		fox.renderSelectBox({
 			el: "type",
@@ -250,17 +285,47 @@ function ListPage() {
 				return opts;
 			}
 		});
-		//渲染 status 搜索框
+		//渲染 contractPartyId 下拉字段
+		fox.renderSelectBox({
+			el: "contractPartyId",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("contractPartyId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("contractPartyId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 status 下拉字段
 		fox.renderSelectBox({
 			el: "status",
-			size: "small",
 			radio: true,
+			size: "small",
+			filterable: false,
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
 				},1);
 			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
+			//转换数据
 			transform:function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var opts=[];
@@ -302,14 +367,14 @@ function ListPage() {
 				return opts;
 			}
 		});
-		//渲染 transferToRegular 搜索框
+		//渲染 isPermanent 搜索框
 		fox.renderSelectBox({
-			el: "transferToRegular",
+			el: "isPermanent",
 			size: "small",
 			radio: true,
 			on: function(data){
 				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("transferToRegular",data.arr,data.change,data.isAdd);
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("isPermanent",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
@@ -319,38 +384,9 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("transferToRegular",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+						opts.push(window.pageExt.list.selectBoxDataTransform("isPermanent",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 contractPartyId 下拉字段
-		fox.renderSelectBox({
-			el: "contractPartyId",
-			radio: true,
-			size: "small",
-			filterable: false,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("contractPartyId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("contractPartyId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].id});
 					}
 				}
 				return opts;
@@ -413,7 +449,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(1,function (ex){
+			fox.switchSearchRow(2,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {
@@ -513,7 +549,10 @@ function ListPage() {
 
 			admin.putTempData('hr-person-contract-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				top.layer.load(2);
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-person-contract-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -522,7 +561,9 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
+				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
+					top.layer.closeAll('loading');
 					if(data.success) {
 						admin.putTempData('hr-person-contract-form-data-form-action', "view",true);
 						showEditForm(data.data);

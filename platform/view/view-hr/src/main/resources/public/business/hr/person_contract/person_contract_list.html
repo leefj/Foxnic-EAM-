@@ -2,7 +2,7 @@
 /**
  * 人员合同 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 12:57:27
+ * @since 2024-02-18 15:58:27
  */
  -->
  <!DOCTYPE html>
@@ -40,53 +40,64 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 人员 , personId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 合同编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('合同编号')}" class="search-label businessCode-label">合同编号</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('合同编号')}" class="search-label businessCode-label">合同编号</span><span class="search-colon">:</span></div>
                         <input id="businessCode" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
-                    <!-- 合同期限 , contractDuration ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 是否转正 , transferToRegular ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 试用期工资 , probationSalary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 试用期期限 , contractTryDuration ,typeName=text_input, isHideInSearch=true -->
                     <!-- 试用期生效时间 , probationStartDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 试用期到期时间 , probationFinishDate ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 工资 , salary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 转正工资 , salary ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 合同期限 , contractDuration ,typeName=number_input, isHideInSearch=true -->
                     <!-- 合同内容 , content ,typeName=text_area, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 合同附件 , fileId ,typeName=upload, isHideInSearch=true -->
                     <!-- 是否归档 , arch ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 身份证 , personIdentityCard ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 状态 , status ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
-
-
-                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.ContractStatusEnum')}" style="width:140px"></div>
-                    </div>
-                    <!-- 是否转正 , transferToRegular ,typeName=radio_box, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('是否转正')}" class="search-label transferToRegular-label">是否转正</span><span class="search-colon">:</span></div>
-
-
-                        <div id="transferToRegular" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.ContractTransferToRegularEnum')}" style="width:140px"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.ContractStatusEnum')}" style="width:140px" extraParam="{}"></div>
                     </div>
                     <!-- 合同类型 , type ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('合同类型')}" class="search-label type-label">合同类型</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('合同类型')}" class="search-label type-label">合同类型</span><span class="search-colon">:</span></div>
                         <div id="type" th:data="${'/service-system/sys-dict-item/query-list?dictCode=hr_contract_type'}" style="width:140px" extraParam="{}"></div>
+                    </div>
+                    <!-- 永久期限 , isPermanent ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('永久期限')}" class="search-label isPermanent-label">永久期限</span><span class="search-colon">:</span></div>
+
+
+                        <div id="isPermanent" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.ContractTransferToRegularEnum')}" style="width:140px"></div>
                     </div>
 
 
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
+                    <!-- 人员 , personId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('人员')}" class="search-label personId-label">人员</span><span class="search-colon">:</span></div>
+                        <div id="personId" th:data="${'/service-hr/hr-person/query-paged-list'}" style="width:140px" extraParam="{}"></div>
+                    </div>
+                    <!-- 工号 , personJobNumber ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('工号')}" class="search-label personJobNumber-label">工号</span><span class="search-colon">:</span></div>
+                        <input id="personJobNumber" class="layui-input search-input" style="width: 140px" type="text" />
+                    </div>
                     <!-- 合同年份 , contractYear ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('合同年份')}" class="search-label contractYear-label">合同年份</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('合同年份')}" class="search-label contractYear-label">合同年份</span><span class="search-colon">:</span></div>
                         <div id="contractYear" th:data="${'/service-system/sys-dict-item/query-list?dictCode=hr_contract_year'}" style="width:140px" extraParam="{}"></div>
                     </div>
                     <!-- 签约方 , contractPartyId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('签约方')}" class="search-label contractPartyId-label">签约方</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('签约方')}" class="search-label contractPartyId-label">签约方</span><span class="search-colon">:</span></div>
                         <div id="contractPartyId" th:data="${'/service-hr/hr-contract-org/query-paged-list'}" style="width:140px" extraParam="{}"></div>
                     </div>
 
@@ -96,14 +107,14 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 生效时间 , contractStartDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('生效时间')}" class="search-label contractStartDate-label">生效时间</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('生效时间')}" class="search-label contractStartDate-label">生效时间</span><span class="search-colon">:</span></div>
                             <input type="text" id="contractStartDate-begin" style="width: 140px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
                             <input type="text" id="contractStartDate-end"  style="width: 140px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
                     <!-- 到期时间 , contractFinishDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('到期时间')}" class="search-label contractFinishDate-label">到期时间</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('到期时间')}" class="search-label contractFinishDate-label">到期时间</span><span class="search-colon">:</span></div>
                             <input type="text" id="contractFinishDate-begin" style="width: 140px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
                             <input type="text" id="contractFinishDate-end"  style="width: 140px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
@@ -121,7 +132,7 @@
             </div>
         </div>
 
-        <div id="table-area" style="margin-top: 42px ">
+        <div id="table-area" style="margin-top: 84px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -155,8 +166,9 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
-    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.ContractStatusEnum')}]];
+    var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.ContractStatusEnum')}]];
     var RADIO_TRANSFERTOREGULAR_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.ContractTransferToRegularEnum')}]];
+    var RADIO_ISPERMANENT_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.ContractTransferToRegularEnum')}]];
     var AUTH_PREFIX="hr_person_contract";
 
     // personId

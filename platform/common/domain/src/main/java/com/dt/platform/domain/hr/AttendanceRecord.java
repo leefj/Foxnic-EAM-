@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考勤原始记录
  * <p>考勤原始记录 , 数据表 hr_attendance_record 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 22:19:13
+ * @since 2024-02-18 13:43:21
  * @sign E7B383BC7EB40A07087B7040DB13F431
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -64,7 +64,7 @@ public class AttendanceRecord extends Entity {
 	/**
 	 * 工号：工号
 	*/
-	@ApiModelProperty(required = false,value="工号" , notes = "工号")
+	@ApiModelProperty(required = false,value="工号" , notes = "工号" , example = "hhh")
 	private String employeeNumber;
 	
 	/**
@@ -76,13 +76,13 @@ public class AttendanceRecord extends Entity {
 	/**
 	 * 来源：来源
 	*/
-	@ApiModelProperty(required = false,value="来源" , notes = "来源")
+	@ApiModelProperty(required = false,value="来源" , notes = "来源" , example = "哈哈哈")
 	private String source;
 	
 	/**
 	 * 批次号：批次号
 	*/
-	@ApiModelProperty(required = false,value="批次号" , notes = "批次号")
+	@ApiModelProperty(required = false,value="批次号" , notes = "批次号" , example = "哈哈就好")
 	private String batchCode;
 	
 	/**
@@ -100,13 +100,13 @@ public class AttendanceRecord extends Entity {
 	/**
 	 * 处理结果：处理结果
 	*/
-	@ApiModelProperty(required = false,value="处理结果" , notes = "处理结果")
+	@ApiModelProperty(required = false,value="处理结果" , notes = "处理结果" , example = "刚回家")
 	private String processResult;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "的法国红酒")
 	private String notes;
 	
 	/**
@@ -124,13 +124,13 @@ public class AttendanceRecord extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-02-14 10:59:00")
 	private Date updateTime;
 	
 	/**
@@ -157,7 +157,7 @@ public class AttendanceRecord extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "1")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "2")
 	private Integer version;
 	
 	/**

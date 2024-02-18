@@ -52,6 +52,49 @@ public class HrmRelationManager extends RelationManager {
 		this.setupAttendanceTpl();
 		this.setupAttendanceData();
 
+		this.setupAttendanceOvertime();
+		this.setupAttendanceHoliday();
+		this.setupAttendanceOfficialBusi();
+
+		this.setupTrainingInstructor();
+
+	}
+
+
+	public void setupTrainingInstructor() {
+
+		this.property(TrainingInstructorMeta.TRAINING_INSTITUTION_PROP)
+				.using(HrTables.HR_TRAINING_INSTRUCTOR.ORG_ID).join(HrTables.HR_TRAINING_INSTITUTION.ID);
+	}
+
+	public void setupAttendanceOvertime() {
+		this.property(AttendanceOvertimeMeta.PERSON_PROP)
+				.using(HrTables.HR_ATTENDANCE_OVERTIME.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+		this.property(AttendanceOvertimeMeta.TYPE_DICT_PROP)
+				.using(HrTables.HR_ATTENDANCE_OVERTIME.ACTION_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_attendance_overtime_type'");
+
+
+	}
+
+	public void setupAttendanceHoliday() {
+		this.property(AttendanceHolidayMeta.PERSON_PROP)
+				.using(HrTables.HR_ATTENDANCE_HOLIDAY.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+		this.property(AttendanceHolidayMeta.TYPE_DICT_PROP)
+				.using(HrTables.HR_ATTENDANCE_HOLIDAY.ACTION_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_attendance_h_type'");
+
+	}
+
+	public void setupAttendanceOfficialBusi() {
+		this.property(AttendanceOfficialBusiMeta.PERSON_PROP)
+				.using(HrTables.HR_ATTENDANCE_OFFICIAL_BUSI.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+		this.property(AttendanceOfficialBusiMeta.TYPE_DICT_PROP)
+				.using(HrTables.HR_ATTENDANCE_OFFICIAL_BUSI.ACTION_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_attendance_ob_type'");
 	}
 
 	public void setupAttendanceData() {
@@ -62,9 +105,6 @@ public class HrmRelationManager extends RelationManager {
 
 		this.property(AttendanceDataMeta.ATTENDANCE_TPL_PROP)
 				.using(HrTables.HR_ATTENDANCE_DATA.ATTENDANCE_TPL_CODE).join(HrTables.HR_ATTENDANCE_TPL.CODE);
-
-
-
 
 
 	}

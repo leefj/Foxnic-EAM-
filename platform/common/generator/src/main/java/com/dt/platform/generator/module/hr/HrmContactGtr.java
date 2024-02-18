@@ -6,15 +6,13 @@ import com.dt.platform.constants.enums.hr.ContractStatusEnum;
 import com.dt.platform.constants.enums.hr.ContractTransferToRegularEnum;
 import com.dt.platform.domain.hr.ContractOrg;
 import com.dt.platform.domain.hr.PersonContract;
-import com.dt.platform.domain.hr.meta.ContractOrgMeta;
-import com.dt.platform.domain.hr.meta.PersonContractMeta;
-import com.dt.platform.domain.hr.meta.PersonMeta;
-import com.dt.platform.domain.hr.meta.PersonVOMeta;
+import com.dt.platform.domain.hr.meta.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.hr.page.PersonContractPageController;
 import com.dt.platform.proxy.hr.ContractOrgServiceProxy;
 import com.dt.platform.proxy.hr.PersonContractServiceProxy;
 import com.dt.platform.proxy.hr.PersonServiceProxy;
+import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -48,14 +46,25 @@ public class HrmContactGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addSimpleProperty(ContractOrg.class,"contractOrg","contractOrg","contractOrg");
 
+
+        cfg.getPoClassFile().addSimpleProperty(String.class,"sOrgId","sOrgId","sOrgId");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"sJobNumber","sJobNumber","sJobNumber");
+
+        cfg.getPoClassFile().addSimpleProperty(String.class,"personJobNumber","personJobNumber","personJobNumber");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"personIdentityCard","personIdentityCard","personIdentityCard");
+
+
+
         cfg.view().search().inputLayout(
                 new Object[]{
                         HrTables.HR_PERSON_CONTRACT.BUSINESS_CODE,
                         HrTables.HR_PERSON_CONTRACT.STATUS,
-                        HrTables.HR_PERSON_CONTRACT.TRANSFER_TO_REGULAR,
                         HrTables.HR_PERSON_CONTRACT.TYPE,
+                        HrTables.HR_PERSON_CONTRACT.IS_PERMANENT,
                 },
                 new Object[]{
+                        HrTables.HR_PERSON_CONTRACT.PERSON_ID,
+                        PersonContractMeta.PERSON_JOB_NUMBER,
                         HrTables.HR_PERSON_CONTRACT.CONTRACT_YEAR,
                         HrTables.HR_PERSON_CONTRACT.CONTRACT_PARTY_ID,
 
@@ -67,10 +76,13 @@ public class HrmContactGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().field( PersonContractMeta.PERSON_JOB_NUMBER).basic().label("工号").table().disable(false);
 
+        cfg.view().field( PersonContractMeta.PERSON_IDENTITY_CARD).basic().label("身份证").table().disable(false);
 
-        cfg.view().field(HrTables.HR_PERSON_CONTRACT.TRANSFER_TO_REGULAR).form().validate().required().form().radioBox().enumType(ContractTransferToRegularEnum.class).defaultIndex(0);
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.TRANSFER_TO_REGULAR).form().radioBox().enumType(ContractTransferToRegularEnum.class).defaultIndex(0);
 
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.IS_PERMANENT).form().validate().required().form().radioBox().enumType(ContractTransferToRegularEnum.class).defaultIndex(1);
 
         cfg.view().field(HrTables.HR_PERSON_CONTRACT.TYPE).form().validate().required().form()
                 .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=hr_contract_type")
@@ -109,58 +121,76 @@ public class HrmContactGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
 
-        cfg.view().search().rowsDisplay(1);
-        cfg.view().field(HrTables.HR_PERSON_CONTRACT.STATUS).form().validate().required().form().radioBox().enumType(ContractStatusEnum.class).defaultIndex(0);
+        cfg.view().search().rowsDisplay(2);
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.STATUS).form().validate().required().form().selectBox().enumType(ContractStatusEnum.class).defaultValue("insert");
         cfg.view().field(HrTables.HR_PERSON_CONTRACT.FILE_ID).form().upload().maxFileCount(6);
         cfg.view().field(HrTables.HR_PERSON_CONTRACT.NOTES).form().textArea().height(Config.textAreaHeight);
 
 
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.UPDATE_BY).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.CREATE_TIME).form().table().disable(true);
 
         cfg.view().field(HrTables.HR_PERSON_CONTRACT.SALARY).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_CONTRACT.CONTENT).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_CONTRACT.FILE_ID).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_CONTRACT.NOTES).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_CONTRACT.ARCH).form().table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.TRANSFER_TO_REGULAR).form().table().disable(true);
 
 
-        cfg.view().field(HrTables.HR_PERSON_CONTRACT.PROBATION_START_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
-        cfg.view().field(HrTables.HR_PERSON_CONTRACT.PROBATION_FINISH_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.PROBATION_START_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.PROBATION_FINISH_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
 
-        cfg.view().field(HrTables.HR_PERSON_CONTRACT.CONTRACT_FINISH_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
-        cfg.view().field(HrTables.HR_PERSON_CONTRACT.CONTRACT_START_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.CONTRACT_FINISH_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.CONTRACT_START_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
 
 
         cfg.view().formWindow().width("80%");
         cfg.view().formWindow().bottomSpace(20);
 
+        cfg.view().field(HrTables.HR_PERSON_CONTRACT.CONTENT).form().textArea().height(200);
+
+        cfg.view().field( PersonContractMeta.PERSON_JOB_NUMBER).basic().label("工号").table().disable(false);
+        cfg.view().field( PersonContractMeta.PERSON_IDENTITY_CARD).basic().label("身份证").table().disable(false);
+        cfg.view().field(PersonContractMeta.PERSON_JOB_NUMBER).table().fillBy("person","jobNumber");
+        cfg.view().field(PersonContractMeta.PERSON_IDENTITY_CARD).table().fillBy("person","identityCard");
+        cfg.view().field( PersonContractMeta.PERSON_JOB_NUMBER).form().readOnly();
+        cfg.view().field( PersonContractMeta.PERSON_IDENTITY_CARD).form().readOnly();
+//        cfg.bpm().form("hr_person_contact");
+//        cfg.bpm().integrate(IntegrateMode.FRONT);
+
         cfg.view().form().addGroup("人员信息",
                 new Object[] {
-                        HrTables.HR_PERSON_CONTRACT.PERSON_ID
+                        HrTables.HR_PERSON_CONTRACT.PERSON_ID,
+                        PersonContractMeta.PERSON_IDENTITY_CARD,
+                },
+                new Object[] {
+                        PersonContractMeta.PERSON_JOB_NUMBER
                 }
-//                new Object[] {
-//                        PersonContractMeta.EMPLOYEE_NAME,
-//                }
         );
         cfg.view().form().addGroup("合同信息",
                 new Object[] {
                         HrTables.HR_PERSON_CONTRACT.BUSINESS_CODE,
                         HrTables.HR_PERSON_CONTRACT.TYPE,
-                        HrTables.HR_PERSON_CONTRACT.CONTRACT_PARTY_ID,
+
                 },
                 new Object[] {
+                        HrTables.HR_PERSON_CONTRACT.CONTRACT_PARTY_ID,
                         HrTables.HR_PERSON_CONTRACT.STATUS,
-                        HrTables.HR_PERSON_CONTRACT.CONTRACT_DURATION,
+
 
                 },
                 new Object[] {
                         HrTables.HR_PERSON_CONTRACT.CONTRACT_YEAR,
-                        HrTables.HR_PERSON_CONTRACT.TRANSFER_TO_REGULAR,
+                        HrTables.HR_PERSON_CONTRACT.IS_PERMANENT,
+
                 }
         );
 
         cfg.view().form().addGroup("试用期信息",
                 new Object[] {
                         HrTables.HR_PERSON_CONTRACT.PROBATION_SALARY,
+                        HrTables.HR_PERSON_CONTRACT.CONTRACT_TRY_DURATION,
                 },
                 new Object[] {
                         HrTables.HR_PERSON_CONTRACT.PROBATION_START_DATE,
@@ -173,6 +203,7 @@ public class HrmContactGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup("转正信息",
                 new Object[] {
                         HrTables.HR_PERSON_CONTRACT.SALARY,
+                        HrTables.HR_PERSON_CONTRACT.CONTRACT_DURATION,
                 },
                 new Object[] {
                         HrTables.HR_PERSON_CONTRACT.CONTRACT_START_DATE,
@@ -183,6 +214,11 @@ public class HrmContactGtr extends BaseCodeGenerator {
         );
 
 
+        cfg.view().form().addGroup("详细信息",
+                new Object[] {
+                        HrTables.HR_PERSON_CONTRACT.CONTENT,
+                }
+        );
         cfg.view().form().addGroup("其他信息",
                 new Object[] {
                         HrTables.HR_PERSON_CONTRACT.NOTES,
@@ -199,6 +235,7 @@ public class HrmContactGtr extends BaseCodeGenerator {
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
+                .setBpmEventAdaptor(WriteMode.IGNORE) //页面控制器
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE) //列表HTML页

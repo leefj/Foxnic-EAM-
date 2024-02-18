@@ -13,9 +13,14 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum ContractStatusEnum implements CodeTextEnum {
 
-	NOT_EFFECTIVE("not_effective" , "未生效"),
-	ACTING("acting" , "履约中"),
-	CLOSED("closed" , "已结束")
+	INSERT("insert" , "录入"),
+	APPROVAL("approval" , "送审中"),
+	RETURNED("returned" , "已退回"),
+	ACTING("acting" , "生效中"),
+	TRYING("trying" , "试用中"),
+	TRIAL_EXPIRED("trial_expired" , "试用到期"),
+	RELEASED("released" , "已解除"),
+	CLOSED("closed" , "已到期")
 	;
 	private String code;
 	private String text;

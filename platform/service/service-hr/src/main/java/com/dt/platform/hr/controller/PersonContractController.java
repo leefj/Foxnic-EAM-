@@ -1,9 +1,10 @@
 package com.dt.platform.hr.controller;
 
 import java.util.*;
-
 import com.alibaba.fastjson.JSONObject;
-import com.dt.platform.proxy.hr.PersonServiceProxy;
+import com.dt.platform.domain.hr.*;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,8 @@ import com.github.foxnic.api.swagger.InDoc;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
 import com.github.foxnic.api.swagger.ApiParamSupport;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-
-
 import com.dt.platform.proxy.hr.PersonContractServiceProxy;
 import com.dt.platform.domain.hr.meta.PersonContractVOMeta;
-import com.dt.platform.domain.hr.PersonContract;
-import com.dt.platform.domain.hr.PersonContractVO;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.excel.ExcelWriter;
@@ -36,8 +33,6 @@ import com.dt.platform.domain.hr.meta.PersonContractMeta;
 import java.math.BigDecimal;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
-import com.dt.platform.domain.hr.Person;
-import com.dt.platform.domain.hr.ContractOrg;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -52,348 +47,338 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 人员合同接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 07:29:08
-*/
-
+ * @since 2024-02-18 12:48:13
+ */
 @InDoc
 @Api(tags = "人员合同")
 @RestController("HrPersonContractController")
 public class PersonContractController extends SuperController {
 
-	@Autowired
-	private IPersonContractService personContractService;
+    @Autowired
+    private IPersonContractService personContractService;
 
-	/**
-	 * 添加人员合同
-	*/
-	@ApiOperation(value = "添加人员合同")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonContractVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717273524535820288"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class , example = "717047181562871808"),
-		@ApiImplicitParam(name = PersonContractVOMeta.BUSINESS_CODE , value = "合同编号" , required = false , dataTypeClass=String.class , example = "sdf"),
-		@ApiImplicitParam(name = PersonContractVOMeta.TYPE , value = "合同类型" , required = false , dataTypeClass=String.class , example = "normal"),
-		@ApiImplicitParam(name = PersonContractVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "closed"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_DURATION , value = "合同期限" , required = false , dataTypeClass=BigDecimal.class , example = "333.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_YEAR , value = "合同年份" , required = false , dataTypeClass=String.class , example = "2018"),
-		@ApiImplicitParam(name = PersonContractVOMeta.TRANSFER_TO_REGULAR , value = "是否转正" , required = false , dataTypeClass=String.class , example = "y"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_PARTY_ID , value = "签约方" , required = false , dataTypeClass=String.class , example = "667031685421858816"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_SALARY , value = "试用期工资" , required = false , dataTypeClass=BigDecimal.class , example = "121212.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_START_DATE , value = "试用期生效时间" , required = false , dataTypeClass=Date.class , example = "2019-12-15 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_FINISH_DATE , value = "试用期到期时间" , required = false , dataTypeClass=Date.class , example = "2019-12-05 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_START_DATE , value = "生效时间" , required = false , dataTypeClass=Date.class , example = "2019-12-29 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_FINISH_DATE , value = "到期时间" , required = false , dataTypeClass=Date.class , example = "2019-12-21 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.SALARY , value = "工资" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTENT , value = "合同内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.FILE_ID , value = "合同附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.ARCH , value = "是否归档" , required = false , dataTypeClass=String.class),
+    /**
+     * 添加人员合同
+     */
+    @ApiOperation(value = "添加人员合同")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = PersonContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "801525635628400640"),
+		@ApiImplicitParam(name = PersonContractVOMeta.PERSON_ID, value = "人员", required = false, dataTypeClass = String.class, example = "799379402461806592"),
+		@ApiImplicitParam(name = PersonContractVOMeta.BUSINESS_CODE, value = "合同编号", required = false, dataTypeClass = String.class, example = "123"),
+		@ApiImplicitParam(name = PersonContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "normal"),
+		@ApiImplicitParam(name = PersonContractVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "acting"),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_YEAR, value = "合同年份", required = false, dataTypeClass = String.class, example = "2019"),
+		@ApiImplicitParam(name = PersonContractVOMeta.TRANSFER_TO_REGULAR, value = "是否转正", required = false, dataTypeClass = String.class, example = "n"),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_PARTY_ID, value = "签约方", required = false, dataTypeClass = String.class, example = "667031685421858816"),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_SALARY, value = "试用期工资", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_TRY_DURATION, value = "试用期期限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_START_DATE, value = "试用期生效时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_FINISH_DATE, value = "试用期到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.SALARY, value = "转正工资", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_DURATION, value = "合同期限", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_START_DATE, value = "生效时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_FINISH_DATE, value = "到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTENT, value = "合同内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.FILE_ID, value = "合同附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.ARCH, value = "是否归档", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.IS_PERMANENT, value = "永久期限", required = false, dataTypeClass = String.class)
 	})
-	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
-	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
-	@SentinelResource(value = PersonContractServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(PersonContractServiceProxy.INSERT)
-	public Result insert(PersonContractVO personContractVO) {
-		
-		Result result=personContractService.insert(personContractVO,false);
-		return result;
-	}
+    @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
+    @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonContractServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonContractServiceProxy.INSERT)
+    public Result insert(PersonContractVO personContractVO) {
+        Result result = personContractService.insert(personContractVO, false);
+        return result;
+    }
 
-
-
-	/**
-	 * 删除人员合同
-	*/
-	@ApiOperation(value = "删除人员合同")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonContractVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717273524535820288")
+    /**
+     * 删除人员合同
+     */
+    @ApiOperation(value = "删除人员合同")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = PersonContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "801525635628400640")
 	})
-	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
-	@SentinelResource(value = PersonContractServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(PersonContractServiceProxy.DELETE)
-	public Result deleteById(String id) {
-		
-		this.validator().asserts(id).require("缺少id值");
-		if(this.validator().failure()) {
-			return this.validator().getFirstResult();
-		}
-		// 引用校验
-		ReferCause cause =  personContractService.hasRefers(id);
-		// 判断是否可以删除
-		this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录："+cause.message(),false);
-		if(this.validator().failure()) {
-			return this.validator().getFirstResult().messageLevel4Confirm();
-		}
-		Result result=personContractService.deleteByIdLogical(id);
-		return result;
-	}
+    @ApiOperationSupport(order = 2, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonContractServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonContractServiceProxy.DELETE)
+    public Result deleteById(String id) {
+        this.validator().asserts(id).require("缺少id值");
+        if (this.validator().failure()) {
+            return this.validator().getFirstResult();
+        }
+        // 引用校验
+        ReferCause cause = personContractService.hasRefers(id);
+        // 判断是否可以删除
+        this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录：" + cause.message(), false);
+        if (this.validator().failure()) {
+            return this.validator().getFirstResult().messageLevel4Confirm();
+        }
+        Result result = personContractService.deleteByIdLogical(id);
+        return result;
+    }
 
-
-	/**
-	 * 批量删除人员合同 <br>
-	 * 联合主键时，请自行调整实现
-	*/
-	@ApiOperation(value = "批量删除人员合同")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonContractVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
+    /**
+     * 批量删除人员合同 <br>
+     * 联合主键时，请自行调整实现
+     */
+    @ApiOperation(value = "批量删除人员合同")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = PersonContractVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
-	@ApiOperationSupport(order=3 , author="金杰 , maillank@qq.com") 
-	@SentinelResource(value = PersonContractServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(PersonContractServiceProxy.DELETE_BY_IDS)
-	public Result deleteByIds(List<String> ids) {
-		
-		// 参数校验
-		this.validator().asserts(ids).require("缺少ids参数");
-		if(this.validator().failure()) {
-			return this.validator().getFirstResult();
-		}
+    @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonContractServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonContractServiceProxy.DELETE_BY_IDS)
+    public Result deleteByIds(List<String> ids) {
+        // 参数校验
+        this.validator().asserts(ids).require("缺少ids参数");
+        if (this.validator().failure()) {
+            return this.validator().getFirstResult();
+        }
+        // 查询引用
+        Map<String, ReferCause> causeMap = personContractService.hasRefers(ids);
+        // 收集可以删除的ID值
+        List<String> canDeleteIds = new ArrayList<>();
+        for (Map.Entry<String, ReferCause> e : causeMap.entrySet()) {
+            if (!e.getValue().hasRefer()) {
+                canDeleteIds.add(e.getKey());
+            }
+        }
+        // 执行删除
+        if (canDeleteIds.isEmpty()) {
+            // 如果没有一行可以被删除
+            return ErrorDesc.failure().message("无法删除您选中的数据行：").data(0).addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(), (e) -> {
+                return e.hasRefer();
+            }), ReferCause::message, String.class)).messageLevel4Confirm();
+        } else if (canDeleteIds.size() == ids.size()) {
+            // 如果全部可以删除
+            Result result = personContractService.deleteByIdsLogical(canDeleteIds);
+            return result;
+        } else if (canDeleteIds.size() > 0 && canDeleteIds.size() < ids.size()) {
+            // 如果部分行可以删除
+            Result result = personContractService.deleteByIdsLogical(canDeleteIds);
+            if (result.failure()) {
+                return result;
+            } else {
+                return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").data(canDeleteIds.size()).addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(), (e) -> {
+                    return e.hasRefer();
+                }), ReferCause::message, String.class)).messageLevel4Confirm();
+            }
+        } else {
+            // 理论上，这个分支不存在
+            return ErrorDesc.success().message("数据删除未处理");
+        }
+    }
 
-		// 查询引用
-		Map<String, ReferCause> causeMap = personContractService.hasRefers(ids);
-		// 收集可以删除的ID值
-		List<String> canDeleteIds = new ArrayList<>();
-		for (Map.Entry<String, ReferCause> e : causeMap.entrySet()) {
-			if (!e.getValue().hasRefer()) {
-				canDeleteIds.add(e.getKey());
-			}
-		}
-
-		// 执行删除
-		if (canDeleteIds.isEmpty()) {
-			// 如果没有一行可以被删除
-			return ErrorDesc.failure().message("无法删除您选中的数据行：").data(0)
-				.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
-				.messageLevel4Confirm();
-		} else if (canDeleteIds.size() == ids.size()) {
-			// 如果全部可以删除
-			Result result=personContractService.deleteByIdsLogical(canDeleteIds);
-			return result;
-		} else if (canDeleteIds.size()>0 && canDeleteIds.size() < ids.size()) {
-			// 如果部分行可以删除
-			Result result=personContractService.deleteByIdsLogical(canDeleteIds);
-			if (result.failure()) {
-				return result;
-			} else {
-				return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").data(canDeleteIds.size())
-				.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
-				.messageLevel4Confirm();
-			}
-		} else {
-			// 理论上，这个分支不存在
-			return ErrorDesc.success().message("数据删除未处理");
-		}
-	}
-
-	/**
-	 * 更新人员合同
-	*/
-	@ApiOperation(value = "更新人员合同")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonContractVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717273524535820288"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class , example = "717047181562871808"),
-		@ApiImplicitParam(name = PersonContractVOMeta.BUSINESS_CODE , value = "合同编号" , required = false , dataTypeClass=String.class , example = "sdf"),
-		@ApiImplicitParam(name = PersonContractVOMeta.TYPE , value = "合同类型" , required = false , dataTypeClass=String.class , example = "normal"),
-		@ApiImplicitParam(name = PersonContractVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "closed"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_DURATION , value = "合同期限" , required = false , dataTypeClass=BigDecimal.class , example = "333.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_YEAR , value = "合同年份" , required = false , dataTypeClass=String.class , example = "2018"),
-		@ApiImplicitParam(name = PersonContractVOMeta.TRANSFER_TO_REGULAR , value = "是否转正" , required = false , dataTypeClass=String.class , example = "y"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_PARTY_ID , value = "签约方" , required = false , dataTypeClass=String.class , example = "667031685421858816"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_SALARY , value = "试用期工资" , required = false , dataTypeClass=BigDecimal.class , example = "121212.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_START_DATE , value = "试用期生效时间" , required = false , dataTypeClass=Date.class , example = "2019-12-15 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_FINISH_DATE , value = "试用期到期时间" , required = false , dataTypeClass=Date.class , example = "2019-12-05 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_START_DATE , value = "生效时间" , required = false , dataTypeClass=Date.class , example = "2019-12-29 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_FINISH_DATE , value = "到期时间" , required = false , dataTypeClass=Date.class , example = "2019-12-21 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.SALARY , value = "工资" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTENT , value = "合同内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.FILE_ID , value = "合同附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.ARCH , value = "是否归档" , required = false , dataTypeClass=String.class),
+    /**
+     * 更新人员合同
+     */
+    @ApiOperation(value = "更新人员合同")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = PersonContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "801525635628400640"),
+		@ApiImplicitParam(name = PersonContractVOMeta.PERSON_ID, value = "人员", required = false, dataTypeClass = String.class, example = "799379402461806592"),
+		@ApiImplicitParam(name = PersonContractVOMeta.BUSINESS_CODE, value = "合同编号", required = false, dataTypeClass = String.class, example = "123"),
+		@ApiImplicitParam(name = PersonContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "normal"),
+		@ApiImplicitParam(name = PersonContractVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "acting"),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_YEAR, value = "合同年份", required = false, dataTypeClass = String.class, example = "2019"),
+		@ApiImplicitParam(name = PersonContractVOMeta.TRANSFER_TO_REGULAR, value = "是否转正", required = false, dataTypeClass = String.class, example = "n"),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_PARTY_ID, value = "签约方", required = false, dataTypeClass = String.class, example = "667031685421858816"),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_SALARY, value = "试用期工资", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_TRY_DURATION, value = "试用期期限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_START_DATE, value = "试用期生效时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_FINISH_DATE, value = "试用期到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.SALARY, value = "转正工资", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_DURATION, value = "合同期限", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_START_DATE, value = "生效时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_FINISH_DATE, value = "到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTENT, value = "合同内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.FILE_ID, value = "合同附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.ARCH, value = "是否归档", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.IS_PERMANENT, value = "永久期限", required = false, dataTypeClass = String.class)
 	})
-	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { PersonContractVOMeta.PAGE_INDEX , PersonContractVOMeta.PAGE_SIZE , PersonContractVOMeta.SEARCH_FIELD , PersonContractVOMeta.FUZZY_FIELD , PersonContractVOMeta.SEARCH_VALUE , PersonContractVOMeta.DIRTY_FIELDS , PersonContractVOMeta.SORT_FIELD , PersonContractVOMeta.SORT_TYPE , PersonContractVOMeta.DATA_ORIGIN , PersonContractVOMeta.QUERY_LOGIC , PersonContractVOMeta.REQUEST_ACTION , PersonContractVOMeta.IDS } )
-	@SentinelResource(value = PersonContractServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(PersonContractServiceProxy.UPDATE)
-	public Result update(PersonContractVO personContractVO) {
-		
-		Result result=personContractService.update(personContractVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
-		return result;
-	}
+    @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
+    @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { PersonContractVOMeta.PAGE_INDEX, PersonContractVOMeta.PAGE_SIZE, PersonContractVOMeta.SEARCH_FIELD, PersonContractVOMeta.FUZZY_FIELD, PersonContractVOMeta.SEARCH_VALUE, PersonContractVOMeta.DIRTY_FIELDS, PersonContractVOMeta.SORT_FIELD, PersonContractVOMeta.SORT_TYPE, PersonContractVOMeta.DATA_ORIGIN, PersonContractVOMeta.QUERY_LOGIC, PersonContractVOMeta.REQUEST_ACTION, PersonContractVOMeta.IDS })
+    @SentinelResource(value = PersonContractServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonContractServiceProxy.UPDATE)
+    public Result update(PersonContractVO personContractVO) {
+        Result result = personContractService.update(personContractVO, SaveMode.DIRTY_OR_NOT_NULL_FIELDS, false);
+        return result;
+    }
 
-
-	/**
-	 * 保存人员合同
-	*/
-	@ApiOperation(value = "保存人员合同")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonContractVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717273524535820288"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class , example = "717047181562871808"),
-		@ApiImplicitParam(name = PersonContractVOMeta.BUSINESS_CODE , value = "合同编号" , required = false , dataTypeClass=String.class , example = "sdf"),
-		@ApiImplicitParam(name = PersonContractVOMeta.TYPE , value = "合同类型" , required = false , dataTypeClass=String.class , example = "normal"),
-		@ApiImplicitParam(name = PersonContractVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "closed"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_DURATION , value = "合同期限" , required = false , dataTypeClass=BigDecimal.class , example = "333.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_YEAR , value = "合同年份" , required = false , dataTypeClass=String.class , example = "2018"),
-		@ApiImplicitParam(name = PersonContractVOMeta.TRANSFER_TO_REGULAR , value = "是否转正" , required = false , dataTypeClass=String.class , example = "y"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_PARTY_ID , value = "签约方" , required = false , dataTypeClass=String.class , example = "667031685421858816"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_SALARY , value = "试用期工资" , required = false , dataTypeClass=BigDecimal.class , example = "121212.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_START_DATE , value = "试用期生效时间" , required = false , dataTypeClass=Date.class , example = "2019-12-15 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_FINISH_DATE , value = "试用期到期时间" , required = false , dataTypeClass=Date.class , example = "2019-12-05 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_START_DATE , value = "生效时间" , required = false , dataTypeClass=Date.class , example = "2019-12-29 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_FINISH_DATE , value = "到期时间" , required = false , dataTypeClass=Date.class , example = "2019-12-21 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.SALARY , value = "工资" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTENT , value = "合同内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.FILE_ID , value = "合同附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.ARCH , value = "是否归档" , required = false , dataTypeClass=String.class),
+    /**
+     * 保存人员合同
+     */
+    @ApiOperation(value = "保存人员合同")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = PersonContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "801525635628400640"),
+		@ApiImplicitParam(name = PersonContractVOMeta.PERSON_ID, value = "人员", required = false, dataTypeClass = String.class, example = "799379402461806592"),
+		@ApiImplicitParam(name = PersonContractVOMeta.BUSINESS_CODE, value = "合同编号", required = false, dataTypeClass = String.class, example = "123"),
+		@ApiImplicitParam(name = PersonContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "normal"),
+		@ApiImplicitParam(name = PersonContractVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "acting"),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_YEAR, value = "合同年份", required = false, dataTypeClass = String.class, example = "2019"),
+		@ApiImplicitParam(name = PersonContractVOMeta.TRANSFER_TO_REGULAR, value = "是否转正", required = false, dataTypeClass = String.class, example = "n"),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_PARTY_ID, value = "签约方", required = false, dataTypeClass = String.class, example = "667031685421858816"),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_SALARY, value = "试用期工资", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_TRY_DURATION, value = "试用期期限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_START_DATE, value = "试用期生效时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_FINISH_DATE, value = "试用期到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.SALARY, value = "转正工资", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_DURATION, value = "合同期限", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_START_DATE, value = "生效时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_FINISH_DATE, value = "到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTENT, value = "合同内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.FILE_ID, value = "合同附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.ARCH, value = "是否归档", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.IS_PERMANENT, value = "永久期限", required = false, dataTypeClass = String.class)
 	})
-	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { PersonContractVOMeta.PAGE_INDEX , PersonContractVOMeta.PAGE_SIZE , PersonContractVOMeta.SEARCH_FIELD , PersonContractVOMeta.FUZZY_FIELD , PersonContractVOMeta.SEARCH_VALUE , PersonContractVOMeta.DIRTY_FIELDS , PersonContractVOMeta.SORT_FIELD , PersonContractVOMeta.SORT_TYPE , PersonContractVOMeta.DATA_ORIGIN , PersonContractVOMeta.QUERY_LOGIC , PersonContractVOMeta.REQUEST_ACTION , PersonContractVOMeta.IDS } )
-	@SentinelResource(value = PersonContractServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(PersonContractServiceProxy.SAVE)
-	public Result save(PersonContractVO personContractVO) {
-		
-		Result result=personContractService.save(personContractVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
-		return result;
-	}
+    @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
+    @ApiOperationSupport(order = 5, ignoreParameters = { PersonContractVOMeta.PAGE_INDEX, PersonContractVOMeta.PAGE_SIZE, PersonContractVOMeta.SEARCH_FIELD, PersonContractVOMeta.FUZZY_FIELD, PersonContractVOMeta.SEARCH_VALUE, PersonContractVOMeta.DIRTY_FIELDS, PersonContractVOMeta.SORT_FIELD, PersonContractVOMeta.SORT_TYPE, PersonContractVOMeta.DATA_ORIGIN, PersonContractVOMeta.QUERY_LOGIC, PersonContractVOMeta.REQUEST_ACTION, PersonContractVOMeta.IDS })
+    @SentinelResource(value = PersonContractServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonContractServiceProxy.SAVE)
+    public Result save(PersonContractVO personContractVO) {
+        Result result = personContractService.save(personContractVO, SaveMode.DIRTY_OR_NOT_NULL_FIELDS, false);
+        return result;
+    }
 
-
-	/**
-	 * 获取人员合同
-	*/
-	@ApiOperation(value = "获取人员合同")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonContractVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+    /**
+     * 获取人员合同
+     */
+    @ApiOperation(value = "获取人员合同")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = PersonContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
-	@ApiOperationSupport(order=6 , author="金杰 , maillank@qq.com")
-	@SentinelResource(value = PersonContractServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(PersonContractServiceProxy.GET_BY_ID)
-	public Result<PersonContract> getById(String id) {
-		
-		Result<PersonContract> result=new Result<>();
-		PersonContract personContract=personContractService.getById(id);
-		// join 关联的对象
-		personContractService.dao().fill(personContract)
-			.with(PersonContractMeta.CONTRACT_TYPE_DATA)
-			.with(PersonContractMeta.CONTRACT_YEAR_DATA)
-			.with(PersonContractMeta.CONTRACT_ORG)
-			.with(PersonContractMeta.PERSON)
-			.execute();
-		result.success(true).data(personContract);
-		return result;
-	}
+    @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonContractServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonContractServiceProxy.GET_BY_ID)
+    public Result<PersonContract> getById(String id) {
+        Result<PersonContract> result = new Result<>();
+        PersonContract personContract = personContractService.getById(id);
+        // join 关联的对象
+        personContractService.dao().fill(personContract).with(PersonContractMeta.CONTRACT_TYPE_DATA).with(PersonContractMeta.CONTRACT_YEAR_DATA).with(PersonContractMeta.CONTRACT_ORG).with(PersonContractMeta.PERSON).execute();
+        result.success(true).data(personContract);
+        return result;
+    }
 
-
-	/**
-	 * 批量获取人员合同 <br>
-	 * 联合主键时，请自行调整实现
-	*/
-		@ApiOperation(value = "批量获取人员合同")
-		@ApiImplicitParams({
-				@ApiImplicitParam(name = PersonContractVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
-		})
-		@ApiOperationSupport(order=3 , author="金杰 , maillank@qq.com") 
-		@SentinelResource(value = PersonContractServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(PersonContractServiceProxy.GET_BY_IDS)
-	public Result<List<PersonContract>> getByIds(List<String> ids) {
-		
-		Result<List<PersonContract>> result=new Result<>();
-		List<PersonContract> list=personContractService.queryListByIds(ids);
-		result.success(true).data(list);
-		return result;
-	}
-
-
-	/**
-	 * 查询人员合同
-	*/
-	@ApiOperation(value = "查询人员合同")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonContractVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717273524535820288"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class , example = "717047181562871808"),
-		@ApiImplicitParam(name = PersonContractVOMeta.BUSINESS_CODE , value = "合同编号" , required = false , dataTypeClass=String.class , example = "sdf"),
-		@ApiImplicitParam(name = PersonContractVOMeta.TYPE , value = "合同类型" , required = false , dataTypeClass=String.class , example = "normal"),
-		@ApiImplicitParam(name = PersonContractVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "closed"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_DURATION , value = "合同期限" , required = false , dataTypeClass=BigDecimal.class , example = "333.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_YEAR , value = "合同年份" , required = false , dataTypeClass=String.class , example = "2018"),
-		@ApiImplicitParam(name = PersonContractVOMeta.TRANSFER_TO_REGULAR , value = "是否转正" , required = false , dataTypeClass=String.class , example = "y"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_PARTY_ID , value = "签约方" , required = false , dataTypeClass=String.class , example = "667031685421858816"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_SALARY , value = "试用期工资" , required = false , dataTypeClass=BigDecimal.class , example = "121212.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_START_DATE , value = "试用期生效时间" , required = false , dataTypeClass=Date.class , example = "2019-12-15 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_FINISH_DATE , value = "试用期到期时间" , required = false , dataTypeClass=Date.class , example = "2019-12-05 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_START_DATE , value = "生效时间" , required = false , dataTypeClass=Date.class , example = "2019-12-29 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_FINISH_DATE , value = "到期时间" , required = false , dataTypeClass=Date.class , example = "2019-12-21 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.SALARY , value = "工资" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTENT , value = "合同内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.FILE_ID , value = "合同附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.ARCH , value = "是否归档" , required = false , dataTypeClass=String.class),
+    /**
+     * 批量获取人员合同 <br>
+     * 联合主键时，请自行调整实现
+     */
+    @ApiOperation(value = "批量获取人员合同")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = PersonContractVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
-	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { PersonContractVOMeta.PAGE_INDEX , PersonContractVOMeta.PAGE_SIZE } )
-	@SentinelResource(value = PersonContractServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(PersonContractServiceProxy.QUERY_LIST)
-	public Result<List<PersonContract>> queryList(PersonContractVO sample) {
-		
-		Result<List<PersonContract>> result=new Result<>();
-		List<PersonContract> list=personContractService.queryList(sample);
-		result.success(true).data(list);
-		return result;
-	}
+    @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonContractServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonContractServiceProxy.GET_BY_IDS)
+    public Result<List<PersonContract>> getByIds(List<String> ids) {
+        Result<List<PersonContract>> result = new Result<>();
+        List<PersonContract> list = personContractService.queryListByIds(ids);
+        result.success(true).data(list);
+        return result;
+    }
 
-
-	/**
-	 * 分页查询人员合同
-	*/
-	@ApiOperation(value = "分页查询人员合同")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = PersonContractVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "717273524535820288"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PERSON_ID , value = "人员" , required = false , dataTypeClass=String.class , example = "717047181562871808"),
-		@ApiImplicitParam(name = PersonContractVOMeta.BUSINESS_CODE , value = "合同编号" , required = false , dataTypeClass=String.class , example = "sdf"),
-		@ApiImplicitParam(name = PersonContractVOMeta.TYPE , value = "合同类型" , required = false , dataTypeClass=String.class , example = "normal"),
-		@ApiImplicitParam(name = PersonContractVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "closed"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_DURATION , value = "合同期限" , required = false , dataTypeClass=BigDecimal.class , example = "333.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_YEAR , value = "合同年份" , required = false , dataTypeClass=String.class , example = "2018"),
-		@ApiImplicitParam(name = PersonContractVOMeta.TRANSFER_TO_REGULAR , value = "是否转正" , required = false , dataTypeClass=String.class , example = "y"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_PARTY_ID , value = "签约方" , required = false , dataTypeClass=String.class , example = "667031685421858816"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_SALARY , value = "试用期工资" , required = false , dataTypeClass=BigDecimal.class , example = "121212.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_START_DATE , value = "试用期生效时间" , required = false , dataTypeClass=Date.class , example = "2019-12-15 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_FINISH_DATE , value = "试用期到期时间" , required = false , dataTypeClass=Date.class , example = "2019-12-05 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_START_DATE , value = "生效时间" , required = false , dataTypeClass=Date.class , example = "2019-12-29 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_FINISH_DATE , value = "到期时间" , required = false , dataTypeClass=Date.class , example = "2019-12-21 12:00:00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.SALARY , value = "工资" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
-		@ApiImplicitParam(name = PersonContractVOMeta.CONTENT , value = "合同内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.FILE_ID , value = "合同附件" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = PersonContractVOMeta.ARCH , value = "是否归档" , required = false , dataTypeClass=String.class),
+    /**
+     * 查询人员合同
+     */
+    @ApiOperation(value = "查询人员合同")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = PersonContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "801525635628400640"),
+		@ApiImplicitParam(name = PersonContractVOMeta.PERSON_ID, value = "人员", required = false, dataTypeClass = String.class, example = "799379402461806592"),
+		@ApiImplicitParam(name = PersonContractVOMeta.BUSINESS_CODE, value = "合同编号", required = false, dataTypeClass = String.class, example = "123"),
+		@ApiImplicitParam(name = PersonContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "normal"),
+		@ApiImplicitParam(name = PersonContractVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "acting"),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_YEAR, value = "合同年份", required = false, dataTypeClass = String.class, example = "2019"),
+		@ApiImplicitParam(name = PersonContractVOMeta.TRANSFER_TO_REGULAR, value = "是否转正", required = false, dataTypeClass = String.class, example = "n"),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_PARTY_ID, value = "签约方", required = false, dataTypeClass = String.class, example = "667031685421858816"),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_SALARY, value = "试用期工资", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_TRY_DURATION, value = "试用期期限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_START_DATE, value = "试用期生效时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_FINISH_DATE, value = "试用期到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.SALARY, value = "转正工资", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_DURATION, value = "合同期限", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_START_DATE, value = "生效时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_FINISH_DATE, value = "到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTENT, value = "合同内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.FILE_ID, value = "合同附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.ARCH, value = "是否归档", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.IS_PERMANENT, value = "永久期限", required = false, dataTypeClass = String.class)
 	})
-	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
-	@SentinelResource(value = PersonContractServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(PersonContractServiceProxy.QUERY_PAGED_LIST)
-	public Result<PagedList<PersonContract>> queryPagedList(PersonContractVO sample) {
-		
-		Result<PagedList<PersonContract>> result=new Result<>();
-		PagedList<PersonContract> list=personContractService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
-		// join 关联的对象
-		personContractService.dao().fill(list)
-			.with(PersonContractMeta.CONTRACT_TYPE_DATA)
-			.with(PersonContractMeta.CONTRACT_YEAR_DATA)
-			.with(PersonContractMeta.CONTRACT_ORG)
-			.with(PersonContractMeta.PERSON)
-			.execute();
-		result.success(true).data(list);
-		return result;
-	}
+    @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { PersonContractVOMeta.PAGE_INDEX, PersonContractVOMeta.PAGE_SIZE })
+    @SentinelResource(value = PersonContractServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonContractServiceProxy.QUERY_LIST)
+    public Result<List<PersonContract>> queryList(PersonContractVO sample) {
+        Result<List<PersonContract>> result = new Result<>();
+        List<PersonContract> list = personContractService.queryList(sample);
+        result.success(true).data(list);
+        return result;
+    }
 
+    /**
+     * 分页查询人员合同
+     */
+    @ApiOperation(value = "分页查询人员合同")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = PersonContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "801525635628400640"),
+		@ApiImplicitParam(name = PersonContractVOMeta.PERSON_ID, value = "人员", required = false, dataTypeClass = String.class, example = "799379402461806592"),
+		@ApiImplicitParam(name = PersonContractVOMeta.BUSINESS_CODE, value = "合同编号", required = false, dataTypeClass = String.class, example = "123"),
+		@ApiImplicitParam(name = PersonContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "normal"),
+		@ApiImplicitParam(name = PersonContractVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "acting"),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_YEAR, value = "合同年份", required = false, dataTypeClass = String.class, example = "2019"),
+		@ApiImplicitParam(name = PersonContractVOMeta.TRANSFER_TO_REGULAR, value = "是否转正", required = false, dataTypeClass = String.class, example = "n"),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_PARTY_ID, value = "签约方", required = false, dataTypeClass = String.class, example = "667031685421858816"),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_SALARY, value = "试用期工资", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_TRY_DURATION, value = "试用期期限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_START_DATE, value = "试用期生效时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.PROBATION_FINISH_DATE, value = "试用期到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.SALARY, value = "转正工资", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_DURATION, value = "合同期限", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_START_DATE, value = "生效时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTRACT_FINISH_DATE, value = "到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.CONTENT, value = "合同内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.FILE_ID, value = "合同附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.ARCH, value = "是否归档", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonContractVOMeta.IS_PERMANENT, value = "永久期限", required = false, dataTypeClass = String.class)
+	})
+    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonContractServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonContractServiceProxy.QUERY_PAGED_LIST)
+    public Result<PagedList<PersonContract>> queryPagedList(PersonContractVO sample) {
+        Result<PagedList<PersonContract>> result = new Result<>();
+        ConditionExpr expr = new ConditionExpr();
+        expr.and("1=1");
+        if (!StringUtil.isBlank(sample.getSOrgId())) {
+            expr.and("person_id in (select id from hr_person where org_id in (select id from hrm_organization where deleted=0 and type in ('com','dept') and (concat('/',hierarchy) like '%/" + sample.getSOrgId() + "/%' or id=?)))", sample.getSOrgId());
+        }
 
-	/**
-	 * 获取人员报表数据
-	 */
-	@ApiOperation(value = "获取人员报表数据")
-	@ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
-	@SentinelResource(value = PersonContractServiceProxy.QUERY_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-	@PostMapping(PersonContractServiceProxy.QUERY_DATA)
-	public Result<JSONObject> queryData(String labels) {
-		return personContractService.queryData(labels);
-	}
+        if (!StringUtil.isBlank(sample.getSJobNumber())) {
+            expr.and("person_id in (select id from hr_person where job_number=?)",sample.getSJobNumber());
+      }
 
+        PagedList<PersonContract> list = personContractService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        personContractService.dao().fill(list).with(PersonContractMeta.CONTRACT_TYPE_DATA).with(PersonContractMeta.CONTRACT_YEAR_DATA).with(PersonContractMeta.CONTRACT_ORG).with(PersonContractMeta.PERSON).execute();
+        result.success(true).data(list);
+        return result;
+    }
 
-
-
+    /**
+     * 获取人员报表数据
+     */
+    @ApiOperation(value = "获取人员报表数据")
+    @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = PersonContractServiceProxy.QUERY_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(PersonContractServiceProxy.QUERY_DATA)
+    public Result<JSONObject> queryData(String labels) {
+        return personContractService.queryData(labels);
+    }
 }
