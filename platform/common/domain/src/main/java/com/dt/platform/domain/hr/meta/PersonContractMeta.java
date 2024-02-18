@@ -14,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 12:57:26
- * @sign F1E6321274305523396F39D29009D329
+ * @since 2024-02-18 15:58:26
+ * @sign F701655D71EDAC836AC4137DD067B661
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -62,6 +62,16 @@ public class PersonContractMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,TYPE, java.lang.String.class, "合同类型", "合同类型", java.lang.String.class, null);
 	
 	/**
+	 * 签约方 , 类型: java.lang.String
+	*/
+	public static final String CONTRACT_PARTY_ID="contractPartyId";
+	
+	/**
+	 * 签约方 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> CONTRACT_PARTY_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,CONTRACT_PARTY_ID, java.lang.String.class, "签约方", "签约方", java.lang.String.class, null);
+	
+	/**
 	 * 状态 , 类型: java.lang.String
 	*/
 	public static final String STATUS="status";
@@ -70,16 +80,6 @@ public class PersonContractMeta {
 	 * 状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
-	
-	/**
-	 * 合同期限 , 月 , 类型: java.math.BigDecimal
-	*/
-	public static final String CONTRACT_DURATION="contractDuration";
-	
-	/**
-	 * 合同期限 , 月 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.math.BigDecimal> CONTRACT_DURATION_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,CONTRACT_DURATION, java.math.BigDecimal.class, "合同期限", "月", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 合同年份 , 类型: java.lang.String
@@ -102,14 +102,14 @@ public class PersonContractMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> TRANSFER_TO_REGULAR_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,TRANSFER_TO_REGULAR, java.lang.String.class, "是否转正", "是否转正", java.lang.String.class, null);
 	
 	/**
-	 * 签约方 , 类型: java.lang.String
+	 * 永久期限 , 类型: java.lang.String
 	*/
-	public static final String CONTRACT_PARTY_ID="contractPartyId";
+	public static final String IS_PERMANENT="isPermanent";
 	
 	/**
-	 * 签约方 , 类型: java.lang.String
+	 * 永久期限 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> CONTRACT_PARTY_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,CONTRACT_PARTY_ID, java.lang.String.class, "签约方", "签约方", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> IS_PERMANENT_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,IS_PERMANENT, java.lang.String.class, "永久期限", "永久期限", java.lang.String.class, null);
 	
 	/**
 	 * 试用期工资 , 类型: java.math.BigDecimal
@@ -120,6 +120,16 @@ public class PersonContractMeta {
 	 * 试用期工资 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.math.BigDecimal> PROBATION_SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,PROBATION_SALARY, java.math.BigDecimal.class, "试用期工资", "试用期工资", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 试用期期限 , 类型: java.lang.String
+	*/
+	public static final String CONTRACT_TRY_DURATION="contractTryDuration";
+	
+	/**
+	 * 试用期期限 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> CONTRACT_TRY_DURATION_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,CONTRACT_TRY_DURATION, java.lang.String.class, "试用期期限", "试用期期限", java.lang.String.class, null);
 	
 	/**
 	 * 试用期生效时间 , 类型: java.util.Date
@@ -142,6 +152,26 @@ public class PersonContractMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.util.Date> PROBATION_FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,PROBATION_FINISH_DATE, java.util.Date.class, "试用期到期时间", "试用期到期时间", java.util.Date.class, null);
 	
 	/**
+	 * 转正工资 , 类型: java.math.BigDecimal
+	*/
+	public static final String SALARY="salary";
+	
+	/**
+	 * 转正工资 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.math.BigDecimal> SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,SALARY, java.math.BigDecimal.class, "转正工资", "转正工资", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 合同期限 , 月 , 类型: java.math.BigDecimal
+	*/
+	public static final String CONTRACT_DURATION="contractDuration";
+	
+	/**
+	 * 合同期限 , 月 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.math.BigDecimal> CONTRACT_DURATION_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,CONTRACT_DURATION, java.math.BigDecimal.class, "合同期限", "月", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 生效时间 , 类型: java.util.Date
 	*/
 	public static final String CONTRACT_START_DATE="contractStartDate";
@@ -160,16 +190,6 @@ public class PersonContractMeta {
 	 * 到期时间 , 类型: java.util.Date
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.util.Date> CONTRACT_FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,CONTRACT_FINISH_DATE, java.util.Date.class, "到期时间", "到期时间", java.util.Date.class, null);
-	
-	/**
-	 * 工资 , 类型: java.math.BigDecimal
-	*/
-	public static final String SALARY="salary";
-	
-	/**
-	 * 工资 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.math.BigDecimal> SALARY_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,SALARY, java.math.BigDecimal.class, "工资", "工资", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 合同内容 , 类型: java.lang.String
@@ -362,9 +382,49 @@ public class PersonContractMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,com.dt.platform.domain.hr.ContractOrg> CONTRACT_ORG_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,CONTRACT_ORG, com.dt.platform.domain.hr.ContractOrg.class, "contractOrg", "contractOrg", com.dt.platform.domain.hr.ContractOrg.class, null);
 	
 	/**
+	 * sOrgId , 类型: java.lang.String
+	*/
+	public static final String S_ORG_ID="sOrgId";
+	
+	/**
+	 * sOrgId , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> S_ORG_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,S_ORG_ID, java.lang.String.class, "sOrgId", "sOrgId", java.lang.String.class, null);
+	
+	/**
+	 * sJobNumber , 类型: java.lang.String
+	*/
+	public static final String S_JOB_NUMBER="sJobNumber";
+	
+	/**
+	 * sJobNumber , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> S_JOB_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,S_JOB_NUMBER, java.lang.String.class, "sJobNumber", "sJobNumber", java.lang.String.class, null);
+	
+	/**
+	 * personJobNumber , 类型: java.lang.String
+	*/
+	public static final String PERSON_JOB_NUMBER="personJobNumber";
+	
+	/**
+	 * personJobNumber , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> PERSON_JOB_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,PERSON_JOB_NUMBER, java.lang.String.class, "personJobNumber", "personJobNumber", java.lang.String.class, null);
+	
+	/**
+	 * personIdentityCard , 类型: java.lang.String
+	*/
+	public static final String PERSON_IDENTITY_CARD="personIdentityCard";
+	
+	/**
+	 * personIdentityCard , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonContract,java.lang.String> PERSON_IDENTITY_CARD_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonContract.class ,PERSON_IDENTITY_CARD, java.lang.String.class, "personIdentityCard", "personIdentityCard", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PERSON_ID , BUSINESS_CODE , TYPE , STATUS , CONTRACT_DURATION , CONTRACT_YEAR , TRANSFER_TO_REGULAR , CONTRACT_PARTY_ID , PROBATION_SALARY , PROBATION_START_DATE , PROBATION_FINISH_DATE , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , SALARY , CONTENT , NOTES , FILE_ID , ARCH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CONTRACT_TYPE_DATA , CONTRACT_YEAR_DATA , EMPLOYEE , PERSON , EMPLOYEE_NAME , CONTRACT_ORG };
+	public static final String[] $PROPS={ ID , PERSON_ID , BUSINESS_CODE , TYPE , CONTRACT_PARTY_ID , STATUS , CONTRACT_YEAR , TRANSFER_TO_REGULAR , IS_PERMANENT , PROBATION_SALARY , CONTRACT_TRY_DURATION , PROBATION_START_DATE , PROBATION_FINISH_DATE , SALARY , CONTRACT_DURATION , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , CONTENT , NOTES , FILE_ID , ARCH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CONTRACT_TYPE_DATA , CONTRACT_YEAR_DATA , EMPLOYEE , PERSON , EMPLOYEE_NAME , CONTRACT_ORG , S_ORG_ID , S_JOB_NUMBER , PERSON_JOB_NUMBER , PERSON_IDENTITY_CARD };
 	
 	/**
 	 * 代理类
@@ -419,6 +479,17 @@ public class PersonContractMeta {
 		}
 		
 		/**
+		 * 设置 签约方
+		 * @param contractPartyId 签约方
+		 * @return 当前对象
+		*/
+		public PersonContract setContractPartyId(String contractPartyId) {
+			super.change(CONTRACT_PARTY_ID,super.getContractPartyId(),contractPartyId);
+			super.setContractPartyId(contractPartyId);
+			return this;
+		}
+		
+		/**
 		 * 设置 状态
 		 * @param status 状态
 		 * @return 当前对象
@@ -426,17 +497,6 @@ public class PersonContractMeta {
 		public PersonContract setStatus(String status) {
 			super.change(STATUS,super.getStatus(),status);
 			super.setStatus(status);
-			return this;
-		}
-		
-		/**
-		 * 设置 合同期限
-		 * @param contractDuration 合同期限
-		 * @return 当前对象
-		*/
-		public PersonContract setContractDuration(BigDecimal contractDuration) {
-			super.change(CONTRACT_DURATION,super.getContractDuration(),contractDuration);
-			super.setContractDuration(contractDuration);
 			return this;
 		}
 		
@@ -463,13 +523,13 @@ public class PersonContractMeta {
 		}
 		
 		/**
-		 * 设置 签约方
-		 * @param contractPartyId 签约方
+		 * 设置 永久期限
+		 * @param isPermanent 永久期限
 		 * @return 当前对象
 		*/
-		public PersonContract setContractPartyId(String contractPartyId) {
-			super.change(CONTRACT_PARTY_ID,super.getContractPartyId(),contractPartyId);
-			super.setContractPartyId(contractPartyId);
+		public PersonContract setIsPermanent(String isPermanent) {
+			super.change(IS_PERMANENT,super.getIsPermanent(),isPermanent);
+			super.setIsPermanent(isPermanent);
 			return this;
 		}
 		
@@ -481,6 +541,17 @@ public class PersonContractMeta {
 		public PersonContract setProbationSalary(BigDecimal probationSalary) {
 			super.change(PROBATION_SALARY,super.getProbationSalary(),probationSalary);
 			super.setProbationSalary(probationSalary);
+			return this;
+		}
+		
+		/**
+		 * 设置 试用期期限
+		 * @param contractTryDuration 试用期期限
+		 * @return 当前对象
+		*/
+		public PersonContract setContractTryDuration(String contractTryDuration) {
+			super.change(CONTRACT_TRY_DURATION,super.getContractTryDuration(),contractTryDuration);
+			super.setContractTryDuration(contractTryDuration);
 			return this;
 		}
 		
@@ -507,6 +578,28 @@ public class PersonContractMeta {
 		}
 		
 		/**
+		 * 设置 转正工资
+		 * @param salary 转正工资
+		 * @return 当前对象
+		*/
+		public PersonContract setSalary(BigDecimal salary) {
+			super.change(SALARY,super.getSalary(),salary);
+			super.setSalary(salary);
+			return this;
+		}
+		
+		/**
+		 * 设置 合同期限
+		 * @param contractDuration 合同期限
+		 * @return 当前对象
+		*/
+		public PersonContract setContractDuration(BigDecimal contractDuration) {
+			super.change(CONTRACT_DURATION,super.getContractDuration(),contractDuration);
+			super.setContractDuration(contractDuration);
+			return this;
+		}
+		
+		/**
 		 * 设置 生效时间
 		 * @param contractStartDate 生效时间
 		 * @return 当前对象
@@ -525,17 +618,6 @@ public class PersonContractMeta {
 		public PersonContract setContractFinishDate(Date contractFinishDate) {
 			super.change(CONTRACT_FINISH_DATE,super.getContractFinishDate(),contractFinishDate);
 			super.setContractFinishDate(contractFinishDate);
-			return this;
-		}
-		
-		/**
-		 * 设置 工资
-		 * @param salary 工资
-		 * @return 当前对象
-		*/
-		public PersonContract setSalary(BigDecimal salary) {
-			super.change(SALARY,super.getSalary(),salary);
-			super.setSalary(salary);
 			return this;
 		}
 		
@@ -747,6 +829,50 @@ public class PersonContractMeta {
 			super.setContractOrg(contractOrg);
 			return this;
 		}
+		
+		/**
+		 * 设置 sOrgId
+		 * @param sOrgId sOrgId
+		 * @return 当前对象
+		*/
+		public PersonContract setSOrgId(String sOrgId) {
+			super.change(S_ORG_ID,super.getSOrgId(),sOrgId);
+			super.setSOrgId(sOrgId);
+			return this;
+		}
+		
+		/**
+		 * 设置 sJobNumber
+		 * @param sJobNumber sJobNumber
+		 * @return 当前对象
+		*/
+		public PersonContract setSJobNumber(String sJobNumber) {
+			super.change(S_JOB_NUMBER,super.getSJobNumber(),sJobNumber);
+			super.setSJobNumber(sJobNumber);
+			return this;
+		}
+		
+		/**
+		 * 设置 personJobNumber
+		 * @param personJobNumber personJobNumber
+		 * @return 当前对象
+		*/
+		public PersonContract setPersonJobNumber(String personJobNumber) {
+			super.change(PERSON_JOB_NUMBER,super.getPersonJobNumber(),personJobNumber);
+			super.setPersonJobNumber(personJobNumber);
+			return this;
+		}
+		
+		/**
+		 * 设置 personIdentityCard
+		 * @param personIdentityCard personIdentityCard
+		 * @return 当前对象
+		*/
+		public PersonContract setPersonIdentityCard(String personIdentityCard) {
+			super.change(PERSON_IDENTITY_CARD,super.getPersonIdentityCard(),personIdentityCard);
+			super.setPersonIdentityCard(personIdentityCard);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -778,8 +904,10 @@ public class PersonContractMeta {
 			inst.setProbationStartDate(this.getProbationStartDate());
 			inst.setProbationSalary(this.getProbationSalary());
 			inst.setContractStartDate(this.getContractStartDate());
+			inst.setContractTryDuration(this.getContractTryDuration());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
+			inst.setIsPermanent(this.getIsPermanent());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
@@ -795,7 +923,11 @@ public class PersonContractMeta {
 				inst.setContractTypeData(this.getContractTypeData());
 				inst.setEmployeeName(this.getEmployeeName());
 				inst.setPerson(this.getPerson());
+				inst.setPersonIdentityCard(this.getPersonIdentityCard());
 				inst.setContractYearData(this.getContractYearData());
+				inst.setSOrgId(this.getSOrgId());
+				inst.setPersonJobNumber(this.getPersonJobNumber());
+				inst.setSJobNumber(this.getSJobNumber());
 				inst.setEmployee(this.getEmployee());
 				inst.setContractOrg(this.getContractOrg());
 			}

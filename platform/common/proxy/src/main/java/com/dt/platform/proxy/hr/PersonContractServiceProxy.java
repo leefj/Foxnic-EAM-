@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 人员合同 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 07:29:08
+ * @since 2024-02-18 12:48:13
  */
 @FeignClient(value = ServiceNames.HR, contextId = PersonContractServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface PersonContractServiceProxy {
@@ -79,6 +79,10 @@ public interface PersonContractServiceProxy {
      */
     public static final String QUERY_LIST = API_PREFIX + "query-list";
 
+    /**
+     * 分页查询人员合同
+     */
+    public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
      * 查询人员合同
@@ -86,9 +90,6 @@ public interface PersonContractServiceProxy {
     public static final String QUERY_DATA = API_PREFIX + "query-data";
 
     /**
-     * 分页查询人员合同
-     */
-    public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
      * 添加人员合同

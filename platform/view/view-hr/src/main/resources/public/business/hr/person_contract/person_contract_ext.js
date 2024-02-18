@@ -1,7 +1,7 @@
 /**
  * 人员合同 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 07:29:09
+ * @since 2024-02-18 12:48:13
  */
 
 layui.config({
@@ -96,6 +96,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             if(PERSON_ID){
                 param.personId=PERSON_ID;
             }
+            if($("#personJobNumber").val()&&$("#personJobNumber").val().length>0){
+                param.sJobNumber=$("#personJobNumber").val();
+            }
             return true;
         },
         /**
@@ -175,6 +178,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        moreActionMenu (items,data, it){
+            console.log('moreActionMenu',items,data,it);
+            return items;
+        },
+
         /**
          * 末尾执行
          */
@@ -231,6 +239,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         onSelectBoxChanged:function(id,selected,changes,isAdd) {
             console.log('onSelectBoxChanged',id,selected,changes,isAdd);
+            if(id=="personId"){
+                if(selected&&selected.length>0){
+                    $("#personJobNumber").val(selected[0].data.jobNumber);
+                    $("#personIdentityCard").val(selected[0].data.identityCard);
+                }
+            }
+
         },
         /**
          * 当日期选择组件选择后触发
@@ -274,21 +289,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterSubmit:function (param,result) {
             console.log("afterSubmitt",param,result);
         },
-        selectBoxDataTransform:function(id,obj,item,data,i){
-            console.log("selectBoxDataTransform")
-            console.log("hostId ",id)
-            console.log("data[i] ",item)
-            console.log("data ",data)
-            console.log("i ",i)
-            if (id&&id=="personId"){
-                if(item&&item.name&&item.jobNumber){
-                    obj.name=item.name+"-("+item.jobNumber+")";
-                }else {
-                    console.log("obj ", obj)
-                }
-            }
-            return obj;
-        },
+
+        /**
+         * 文件上传组件回调
+         *  event 类型包括：
+         *  afterPreview ：文件选择后，未上传前触发；
+         *  afterUpload ：文件上传后触发
+         *  beforeRemove ：文件删除前触发
+         *  afterRemove ：文件删除后触发
+         * */
         onUploadEvent: function(e) {
             console.log("onUploadEvent",e);
         },

@@ -46,6 +46,10 @@ insert into sys_file(id,file_name,location,size,media_type,file_type)values('T00
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_13','hr_person_salary_base.xls','/tpl/T001/hr_person_salary_base.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_14','hr_person_attendance_record.xls','/tpl/T001/hr_person_attendance_record.xls',10000,'application/octet-stream','xls');
 
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_15','hr_attendance_overtime.xls','/tpl/T001/hr_attendance_overtime.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_16','hr_attendance_official_busi.xls','/tpl/T001/hr_attendance_official_busi.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_17','hr_attendance_holiday.xls','/tpl/T001/hr_attendance_holiday.xls',10000,'application/octet-stream','xls');
+
 
 
 delete from sys_tpl_file where tenant_id='T001' and type in ('eam_bill_docx','eam_asset_excel','hr_excel');
@@ -93,7 +97,9 @@ insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_11'
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_12','hr_excel','考核评分','hr_person_kh_score','T001_hr_12','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_13','hr_excel','员工薪酬','hr_person_salary_base','T001_hr_13','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_14','hr_excel','考勤记录','hr_person_attendance_record','T001_hr_14','T001');
-
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_15','hr_excel','加班管理','hr_attendance_overtime','T001_hr_15','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_16','hr_excel','出差管理','hr_attendance_official_busi','T001_hr_16','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_17','hr_excel','休假管理','hr_attendance_holiday','T001_hr_17','T001');
 -- OPS
 delete from sys_file where id like 'T001_ops_%';
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_ops_1','ops_download_host.xls','/tpl/T001/ops_download_host.xls',10000,'application/octet-stream','xls');

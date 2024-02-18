@@ -2,11 +2,8 @@ package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.github.foxnic.commons.lang.StringUtil;
-import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,7 +42,7 @@ import java.util.Map;
  * 人员合同服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-03 07:29:08
+ * @since 2024-02-18 12:48:12
 */
 
 
@@ -83,7 +80,6 @@ public class PersonContractServiceImpl extends SuperService<PersonContract> impl
 		Result r=super.insert(personContract,throwsException);
 		return r;
 	}
-
 	@Override
 	public Result<JSONObject> queryData(String labels) {
 
@@ -117,7 +113,6 @@ public class PersonContractServiceImpl extends SuperService<PersonContract> impl
 		res.data(data);
 		return res;
 	}
-
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param personContract 数据对象

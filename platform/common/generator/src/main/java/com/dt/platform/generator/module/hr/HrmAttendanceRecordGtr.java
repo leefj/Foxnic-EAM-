@@ -81,6 +81,7 @@ public class HrmAttendanceRecordGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.EMPLOYEE_NUMBER).form().readOnly();
         cfg.view().formWindow().width("75%");;
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
@@ -105,7 +106,7 @@ public class HrmAttendanceRecordGtr extends BaseCodeGenerator {
                         HrTables.HR_ATTENDANCE_RECORD.PROCESS_TIME,
                 }
         );
-        cfg.view().form().addGroup("处理情况",
+        cfg.view().form().addGroup(null,
                 new Object[] {
 
                         HrTables.HR_ATTENDANCE_RECORD.NOTES,

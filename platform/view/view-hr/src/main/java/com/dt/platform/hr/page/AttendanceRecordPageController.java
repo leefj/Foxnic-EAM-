@@ -1,7 +1,9 @@
 package com.dt.platform.hr.page;
 
+import com.dt.platform.proxy.hr.PersonServiceProxy;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,24 @@ public class AttendanceRecordPageController extends ViewController {
 			proxy=AttendanceRecordServiceProxy.api();
 		}
 		return proxy;
+	}
+
+	/**
+	 * 考勤原始记录 功能主页面
+	 */
+	@RequestMapping("/my_record_list.html")
+	public String mylist(Model model,HttpServletRequest request) {
+
+		String personId=PersonServiceProxy.api().queryPersonIdByEmployeeId(SessionUser.getCurrent().getActivatedEmployeeId());
+		model.addAttribute("personId",personId);
+		return getTemplatePath(prefix,"my_record_list");
+	}
+
+	@RequestMapping("/my_record_dtl_list.html")
+	public String mylistdtl(Model model,HttpServletRequest request) {
+		String personId=PersonServiceProxy.api().queryPersonIdByEmployeeId(SessionUser.getCurrent().getActivatedEmployeeId());
+		model.addAttribute("personId",personId);
+		return getTemplatePath(prefix,"my_record_dtl_list");
 	}
 
 	/**

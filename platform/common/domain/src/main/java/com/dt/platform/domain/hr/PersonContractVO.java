@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员合同VO类型
  * <p>人员合同 , 数据表 hr_person_contract 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-06-05 12:57:26
+ * @since 2024-02-18 15:58:26
  * @sign 7B78BE4817EBF47023A1C7FDF56F43FC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -419,8 +419,10 @@ public class PersonContractVO extends PersonContract {
 		inst.setProbationStartDate(this.getProbationStartDate());
 		inst.setProbationSalary(this.getProbationSalary());
 		inst.setContractStartDate(this.getContractStartDate());
+		inst.setContractTryDuration(this.getContractTryDuration());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
+		inst.setIsPermanent(this.getIsPermanent());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
@@ -436,6 +438,8 @@ public class PersonContractVO extends PersonContract {
 			inst.setEmployeeName(this.getEmployeeName());
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
+			inst.setPersonIdentityCard(this.getPersonIdentityCard());
+			inst.setSOrgId(this.getSOrgId());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setEmployee(this.getEmployee());
@@ -446,9 +450,11 @@ public class PersonContractVO extends PersonContract {
 			inst.setContractYearData(this.getContractYearData());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
+			inst.setPersonJobNumber(this.getPersonJobNumber());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setSJobNumber(this.getSJobNumber());
 			inst.setContractOrg(this.getContractOrg());
 			inst.setSearchValue(this.getSearchValue());
 		}
@@ -525,8 +531,10 @@ public class PersonContractVO extends PersonContract {
 			this.setProbationStartDate(DataParser.parse(Date.class, map.get(PersonContractVOMeta.PROBATION_START_DATE)));
 			this.setProbationSalary(DataParser.parse(BigDecimal.class, map.get(PersonContractVOMeta.PROBATION_SALARY)));
 			this.setContractStartDate(DataParser.parse(Date.class, map.get(PersonContractVOMeta.CONTRACT_START_DATE)));
+			this.setContractTryDuration(DataParser.parse(String.class, map.get(PersonContractVOMeta.CONTRACT_TRY_DURATION)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(PersonContractVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(PersonContractVOMeta.VERSION)));
+			this.setIsPermanent(DataParser.parse(String.class, map.get(PersonContractVOMeta.IS_PERMANENT)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(PersonContractVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(PersonContractVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(PersonContractVOMeta.CREATE_TIME)));
@@ -542,6 +550,8 @@ public class PersonContractVO extends PersonContract {
 			this.setEmployeeName(DataParser.parse(String.class, map.get(PersonContractVOMeta.EMPLOYEE_NAME)));
 			this.setSearchField(DataParser.parse(String.class, map.get(PersonContractVOMeta.SEARCH_FIELD)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(PersonContractVOMeta.REQUEST_ACTION)));
+			this.setPersonIdentityCard(DataParser.parse(String.class, map.get(PersonContractVOMeta.PERSON_IDENTITY_CARD)));
+			this.setSOrgId(DataParser.parse(String.class, map.get(PersonContractVOMeta.S_ORG_ID)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(PersonContractVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(PersonContractVOMeta.PAGE_SIZE)));
 			this.setEmployee(DataParser.parse(Employee.class, map.get(PersonContractVOMeta.EMPLOYEE)));
@@ -551,8 +561,10 @@ public class PersonContractVO extends PersonContract {
 			this.setPerson(DataParser.parse(Person.class, map.get(PersonContractVOMeta.PERSON)));
 			this.setContractYearData(DataParser.parse(DictItem.class, map.get(PersonContractVOMeta.CONTRACT_YEAR_DATA)));
 			this.setSortField(DataParser.parse(String.class, map.get(PersonContractVOMeta.SORT_FIELD)));
+			this.setPersonJobNumber(DataParser.parse(String.class, map.get(PersonContractVOMeta.PERSON_JOB_NUMBER)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(PersonContractVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(PersonContractVOMeta.QUERY_LOGIC)));
+			this.setSJobNumber(DataParser.parse(String.class, map.get(PersonContractVOMeta.S_JOB_NUMBER)));
 			this.setContractOrg(DataParser.parse(ContractOrg.class, map.get(PersonContractVOMeta.CONTRACT_ORG)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(PersonContractVOMeta.SEARCH_VALUE)));
 			return true;
@@ -573,8 +585,10 @@ public class PersonContractVO extends PersonContract {
 				this.setProbationStartDate( (Date)map.get(PersonContractVOMeta.PROBATION_START_DATE));
 				this.setProbationSalary( (BigDecimal)map.get(PersonContractVOMeta.PROBATION_SALARY));
 				this.setContractStartDate( (Date)map.get(PersonContractVOMeta.CONTRACT_START_DATE));
+				this.setContractTryDuration( (String)map.get(PersonContractVOMeta.CONTRACT_TRY_DURATION));
 				this.setUpdateTime( (Date)map.get(PersonContractVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(PersonContractVOMeta.VERSION));
+				this.setIsPermanent( (String)map.get(PersonContractVOMeta.IS_PERMANENT));
 				this.setCreateBy( (String)map.get(PersonContractVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(PersonContractVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(PersonContractVOMeta.CREATE_TIME));
@@ -590,6 +604,8 @@ public class PersonContractVO extends PersonContract {
 				this.setEmployeeName( (String)map.get(PersonContractVOMeta.EMPLOYEE_NAME));
 				this.setSearchField( (String)map.get(PersonContractVOMeta.SEARCH_FIELD));
 				this.setRequestAction( (String)map.get(PersonContractVOMeta.REQUEST_ACTION));
+				this.setPersonIdentityCard( (String)map.get(PersonContractVOMeta.PERSON_IDENTITY_CARD));
+				this.setSOrgId( (String)map.get(PersonContractVOMeta.S_ORG_ID));
 				this.setFuzzyField( (String)map.get(PersonContractVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(PersonContractVOMeta.PAGE_SIZE));
 				this.setEmployee( (Employee)map.get(PersonContractVOMeta.EMPLOYEE));
@@ -599,8 +615,10 @@ public class PersonContractVO extends PersonContract {
 				this.setPerson( (Person)map.get(PersonContractVOMeta.PERSON));
 				this.setContractYearData( (DictItem)map.get(PersonContractVOMeta.CONTRACT_YEAR_DATA));
 				this.setSortField( (String)map.get(PersonContractVOMeta.SORT_FIELD));
+				this.setPersonJobNumber( (String)map.get(PersonContractVOMeta.PERSON_JOB_NUMBER));
 				this.setDataOrigin( (String)map.get(PersonContractVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(PersonContractVOMeta.QUERY_LOGIC));
+				this.setSJobNumber( (String)map.get(PersonContractVOMeta.S_JOB_NUMBER));
 				this.setContractOrg( (ContractOrg)map.get(PersonContractVOMeta.CONTRACT_ORG));
 				this.setSearchValue( (String)map.get(PersonContractVOMeta.SEARCH_VALUE));
 				return true;
@@ -634,8 +652,10 @@ public class PersonContractVO extends PersonContract {
 			this.setProbationStartDate(DataParser.parse(Date.class, r.getValue(PersonContractVOMeta.PROBATION_START_DATE)));
 			this.setProbationSalary(DataParser.parse(BigDecimal.class, r.getValue(PersonContractVOMeta.PROBATION_SALARY)));
 			this.setContractStartDate(DataParser.parse(Date.class, r.getValue(PersonContractVOMeta.CONTRACT_START_DATE)));
+			this.setContractTryDuration(DataParser.parse(String.class, r.getValue(PersonContractVOMeta.CONTRACT_TRY_DURATION)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PersonContractVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(PersonContractVOMeta.VERSION)));
+			this.setIsPermanent(DataParser.parse(String.class, r.getValue(PersonContractVOMeta.IS_PERMANENT)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(PersonContractVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(PersonContractVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(PersonContractVOMeta.CREATE_TIME)));
@@ -665,8 +685,10 @@ public class PersonContractVO extends PersonContract {
 				this.setProbationStartDate( (Date)r.getValue(PersonContractVOMeta.PROBATION_START_DATE));
 				this.setProbationSalary( (BigDecimal)r.getValue(PersonContractVOMeta.PROBATION_SALARY));
 				this.setContractStartDate( (Date)r.getValue(PersonContractVOMeta.CONTRACT_START_DATE));
+				this.setContractTryDuration( (String)r.getValue(PersonContractVOMeta.CONTRACT_TRY_DURATION));
 				this.setUpdateTime( (Date)r.getValue(PersonContractVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(PersonContractVOMeta.VERSION));
+				this.setIsPermanent( (String)r.getValue(PersonContractVOMeta.IS_PERMANENT));
 				this.setCreateBy( (String)r.getValue(PersonContractVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(PersonContractVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(PersonContractVOMeta.CREATE_TIME));
