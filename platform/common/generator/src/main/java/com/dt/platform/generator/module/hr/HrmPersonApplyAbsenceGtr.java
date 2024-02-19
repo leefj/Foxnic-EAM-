@@ -16,6 +16,7 @@ import com.dt.platform.proxy.hr.RankServiceProxy;
 import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Person;
 
 
@@ -28,13 +29,14 @@ public class HrmPersonApplyAbsenceGtr extends BaseCodeGenerator {
         System.out.println(this.getClass().getName());
 
 
-        cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
+        cfg.getPoClassFile().addSimpleProperty(Employee.class,"person","person","person");
         cfg.getPoClassFile().addSimpleProperty(AttendanceType.class,"attendanceType","attendanceType","attendanceType");
 
 
         cfg.view().field(HrTables.HR_PERSON_ABSENCE_APPLY.APPLY_S_DATE).form().dateInput().type(DatePickerType.datetime).format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_PERSON_ABSENCE_APPLY.APPLY_E_DATE).form().dateInput().type(DatePickerType.datetime).format("yyyy-MM-dd").search().range();
 
+        cfg.view().field(HrTables.HR_PERSON_ABSENCE_APPLY.BUSINESS_CODE).search().fuzzySearch();
 
         cfg.view().field(HrTables.HR_PERSON_ABSENCE_APPLY.ID).basic().hidden(true);
 
@@ -42,6 +44,7 @@ public class HrmPersonApplyAbsenceGtr extends BaseCodeGenerator {
         cfg.view().search().inputLayout(
                 new Object[]{
                         HrTables.HR_PERSON_ABSENCE_APPLY.STATUS,
+                        HrTables.HR_PERSON_ABSENCE_APPLY.BUSINESS_CODE,
                         HrTables.HR_PERSON_ABSENCE_APPLY.PERSON_ID,
                         HrTables.HR_PERSON_ABSENCE_APPLY.APPLY_S_DATE,
 
@@ -50,7 +53,7 @@ public class HrmPersonApplyAbsenceGtr extends BaseCodeGenerator {
         cfg.bpm().form("hr_person_absence");
         cfg.bpm().integrate(IntegrateMode.FRONT);
 
-
+        cfg.view().form().labelWidth(70);
         cfg.view().field(HrTables.HR_PERSON_ABSENCE_APPLY.STATUS).form()
                 .label("办理状态").selectBox().enumType(AssetHandleStatusEnum.class);
 

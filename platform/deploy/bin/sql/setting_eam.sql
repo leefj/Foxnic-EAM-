@@ -7,8 +7,6 @@ update sys_config set value=0 where code='eam.assetSerialNumberIsUnique';
 update sys_config set value=0 where code='eam.assetStatusColumnDisable';
 update sys_config set value='固资系统' where code='system.title';
 update sys_config set value='固资系统' where code='system.login.title';
--- 我的人事
-update sys_menu set hidden=1 where id='766183428553965568';
 -- 演示
 update sys_menu set hidden=1 where id='610152549789466624';
 -- 设备
@@ -57,7 +55,7 @@ update sys_menu set hidden=1 where id='489077805410156544';
 update sys_menu set hidden=1 where id='463401581010747392';
 -- 系统 编码配置
 update sys_menu set hidden=1 where id='476517102736375808';
--- 系统 权限 系统资源
+-- 系统 权限系统资源
 update sys_menu set hidden=1 where id='463397732229316608';
 -- 系统 公司管理
 update sys_menu set hidden=1 where id='482877676386779136';
@@ -94,21 +92,23 @@ update sys_menu set hidden=1 where id='582429852791996416';
 -- 资产系统设置 辅助工具
 update sys_menu set hidden=1 where id='637280752681091072';
 -- 人事系统 我的人事
-update sys_menu set hidden=1 where id='766183428553965568';
+-- update sys_menu set hidden=1 where id='766183428553965568';
 -- 人事系统 人员信息
-update sys_menu set hidden=1 where id='666943320815042560';
+-- update sys_menu set hidden=1 where id='666943320815042560';
 -- 人事系统 人员合同
-update sys_menu set hidden=1 where id='660861237046804480';
+-- update sys_menu set hidden=1 where id='660861237046804480';
 -- 人事系统 招聘
-update sys_menu set hidden=1 where id='662287283122077696';
+-- update sys_menu set hidden=1 where id='662287283122077696';
 -- 人事系统 薪酬
-update sys_menu set hidden=1 where id='662315275764367360';
+-- update sys_menu set hidden=1 where id='662315275764367360';
 -- 人事系统 考勤
-update sys_menu set hidden=1 where id='662281190966820864';
+-- update sys_menu set hidden=1 where id='662281190966820864';
 -- 人事系统 档案
-update sys_menu set hidden=1 where id='623153794699493376';
+-- update sys_menu set hidden=1 where id='623153794699493376';
 -- 人事系统  配置
-update sys_menu set hidden=1 where id='662204540778446848';
+-- update sys_menu set hidden=1 where id='662204540778446848';
+-- 我的人事
+-- update sys_menu set hidden=1 where id='766183428553965568';
 -- hr
 update sys_menu set hidden=1 where id in ('662204540778446848','666943320815042560','660861237046804480','662315275764367360','662281190966820864','662287283122077696','623153794699493376');
 

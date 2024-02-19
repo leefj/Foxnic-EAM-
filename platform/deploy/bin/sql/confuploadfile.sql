@@ -45,7 +45,6 @@ insert into sys_file(id,file_name,location,size,media_type,file_type)values('T00
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_12','hr_person_kh_score.xls','/tpl/T001/hr_person_kh_score.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_13','hr_person_salary_base.xls','/tpl/T001/hr_person_salary_base.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_14','hr_person_attendance_record.xls','/tpl/T001/hr_person_attendance_record.xls',10000,'application/octet-stream','xls');
-
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_15','hr_attendance_overtime.xls','/tpl/T001/hr_attendance_overtime.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_16','hr_attendance_official_busi.xls','/tpl/T001/hr_attendance_official_busi.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_17','hr_attendance_holiday.xls','/tpl/T001/hr_attendance_holiday.xls',10000,'application/octet-stream','xls');

@@ -15,7 +15,7 @@ import com.dt.platform.domain.hr.meta.PersonConfirmApplyVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
-import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.domain.hrm.Employee;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 转正申请VO类型
  * <p>转正申请 , 数据表 hr_person_confirm_apply 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 14:35:51
+ * @since 2024-02-19 16:01:14
  * @sign 259351FAA7DBC6D853235C681A521B97
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -523,7 +523,7 @@ public class PersonConfirmApplyVO extends PersonConfirmApply {
 			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(PersonConfirmApplyVOMeta.DEFAULT_PROCESS)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(PersonConfirmApplyVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(PersonConfirmApplyVOMeta.SORT_TYPE)));
-			this.setPerson(DataParser.parse(Person.class, map.get(PersonConfirmApplyVOMeta.PERSON)));
+			this.setPerson(DataParser.parse(Employee.class, map.get(PersonConfirmApplyVOMeta.PERSON)));
 			this.setSortField(DataParser.parse(String.class, map.get(PersonConfirmApplyVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(PersonConfirmApplyVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(PersonConfirmApplyVOMeta.QUERY_LOGIC)));
@@ -557,7 +557,7 @@ public class PersonConfirmApplyVO extends PersonConfirmApply {
 				this.setDefaultProcess( (ProcessInstance)map.get(PersonConfirmApplyVOMeta.DEFAULT_PROCESS));
 				this.setPageIndex( (Integer)map.get(PersonConfirmApplyVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(PersonConfirmApplyVOMeta.SORT_TYPE));
-				this.setPerson( (Person)map.get(PersonConfirmApplyVOMeta.PERSON));
+				this.setPerson( (Employee)map.get(PersonConfirmApplyVOMeta.PERSON));
 				this.setSortField( (String)map.get(PersonConfirmApplyVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(PersonConfirmApplyVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(PersonConfirmApplyVOMeta.QUERY_LOGIC));

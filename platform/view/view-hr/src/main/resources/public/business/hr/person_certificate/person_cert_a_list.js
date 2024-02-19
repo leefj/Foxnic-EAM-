@@ -79,7 +79,7 @@ function ListPage() {
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: queryURL,
-				height: 'full-'+(h+28),
+				height: 'full-'+(h+60),
 				limit: 50,
 				where: ps,
 				cols: [[

@@ -2,7 +2,7 @@
 /**
  * 转正申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 14:35:52
+ * @since 2024-02-19 16:01:15
  */
  -->
  <!DOCTYPE html>
@@ -40,10 +40,9 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 编号 , businessCode ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 状态 , status ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 办理状态 , status ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('办理状态')}" class="search-label status-label">办理状态</span><span class="search-colon">:</span></div>
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 内容 , content ,typeName=text_area, isHideInSearch=true -->
@@ -51,6 +50,11 @@
                     <!-- 备注 , note ,typeName=text_area, isHideInSearch=true -->
                     <!-- 操作人 , operUserId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('编号')}" class="search-label businessCode-label">编号</span><span class="search-colon">:</span></div>
+                        <input id="businessCode" class="layui-input search-input" style="width: 180px" type="text" />
+                    </div>
                     <!-- 申请人员 , personId ,typeName=button, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('申请人员')}" class="search-label personId-label">申请人员</span><span class="search-colon">:</span></div>

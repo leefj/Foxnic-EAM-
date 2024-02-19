@@ -58,8 +58,102 @@ public class HrmRelationManager extends RelationManager {
 
 		this.setupTrainingInstructor();
 
+		this.setupRecruitmentPlanApply();
+		this.setupPersonnelRequirementApply();
+
+		this.setupIncomeCertificateApply();
+
+
+		this.setupInterview();
+
+		this.setupPersonInterview();
+
+		this.setupPersonStore();
+	}
+	public void setupPersonStore(){
+		this.property(PersonStoreMeta.SEX_DICT_PROP)
+				.using(HrTables.HR_PERSON_STORE.SEX_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='sex'");
+
+
+		this.property(PersonStoreMeta.MARITAL_STATUS_DICT_PROP)
+				.using(HrTables.HR_PERSON_STORE.MARITAL_STATUS).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_marital_status'");
+
+		this.property(PersonStoreMeta.EDUCATION_DATA_PROP)
+				.using(HrTables.HR_PERSON_STORE.EDUCATION_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_education'");
+
+		this.property(PersonStoreMeta.POLITIC_COUNTENANCE_DATA_PROP)
+				.using(HrTables.HR_PERSON_STORE.POLITIC_COUNTENANCE_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_politic_countenance'");
+
+//		this.property(PersonStoreMeta.ORGANIZATION_PROP)
+//				.using(HrTables.HR_PERSON_STORE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+//				.condition("dict_code='hr_education'");
 	}
 
+	public void setupInterview() {
+		this.property(InterviewMeta.EMPLOYEE_PROP)
+				.using(HrTables.HR_INTERVIEW.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+	}
+
+	public void setupPersonInterview() {
+
+		this.property(PersonInterviewMeta.INTERVIEW_PROP)
+				.using(HrTables.HR_PERSON_INTERVIEW.INTERVIEW_ID).join(HrTables.HR_INTERVIEW.ID);
+
+
+		this.property(PersonInterviewMeta.ORGANIZATION_PROP)
+				.using(HrTables.HR_PERSON_INTERVIEW.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+		this.property(PersonInterviewMeta.SEX_DICT_PROP)
+				.using(HrTables.HR_PERSON_INTERVIEW.SEX_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='sex'");
+
+		this.property(PersonInterviewMeta.SOURCE_DICT_PROP)
+				.using(HrTables.HR_PERSON_INTERVIEW.SOURCE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_interview_profile_source'");
+
+		this.property(PersonInterviewMeta.INTERVIEW_METHOD_DICT_PROP)
+				.using(HrTables.HR_PERSON_INTERVIEW.INTERVIEW_METHOD).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_interview_method'");
+
+
+		this.property(PersonInterviewMeta.EDUCATION_DATA_PROP)
+				.using(HrTables.HR_PERSON_INTERVIEW.EDUCATION_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_education'");
+
+	}
+
+
+	public void setupIncomeCertificateApply() {
+		this.property(PersonIncomeCertificateApplyMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSON_INCOME_CERTIFICATE_APPLY.PERSON_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(PersonIncomeCertificateApplyMeta.ORGANIZATION_PROP)
+				.using(HrTables.HR_PERSON_INCOME_CERTIFICATE_APPLY.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+	}
+
+	public void setupRecruitmentPlanApply() {
+		this.property(RecruitmentPlanApplyMeta.PERSON_PROP)
+				.using(HrTables.HR_RECRUITMENT_PLAN_APPLY.APPLY_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(RecruitmentPlanApplyMeta.ORGANIZATION_PROP)
+				.using(HrTables.HR_RECRUITMENT_PLAN_APPLY.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+	}
+	public void setupPersonnelRequirementApply() {
+
+		this.property(PersonnelRequirementApplyMeta.PERSON_PROP)
+				.using(HrTables.HR_PERSONNEL_REQUIREMENT_APPLY.APPLY_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+		this.property(PersonnelRequirementApplyMeta.ORGANIZATION_PROP)
+				.using(HrTables.HR_PERSONNEL_REQUIREMENT_APPLY.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+	}
 
 	public void setupTrainingInstructor() {
 

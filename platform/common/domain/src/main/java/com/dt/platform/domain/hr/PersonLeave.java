@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
-import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 员工离职
  * <p>员工离职 , 数据表 hr_person_leave 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 14:36:01
- * @sign 8AFE03487904E3E51D842E834DD0E38B
+ * @since 2024-02-19 20:12:07
+ * @sign D4694AFE198A59FEE520F4B2CE429FE0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -55,9 +55,9 @@ public class PersonLeave extends Entity {
 	private String businessCode;
 	
 	/**
-	 * 状态：状态
+	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
 	private String status;
 	
 	/**
@@ -163,13 +163,13 @@ public class PersonLeave extends Entity {
 	 * person：person
 	*/
 	@ApiModelProperty(required = false,value="person" , notes = "person")
-	private Person person;
+	private Employee person;
 	
 	/**
 	 * handover：handover
 	*/
 	@ApiModelProperty(required = false,value="handover" , notes = "handover")
-	private Person handover;
+	private Employee handover;
 	
 	/**
 	 * 历史流程清单：历史流程清单
@@ -228,17 +228,17 @@ public class PersonLeave extends Entity {
 	}
 	
 	/**
-	 * 获得 状态<br>
-	 * 状态
-	 * @return 状态
+	 * 获得 办理状态<br>
+	 * 办理状态
+	 * @return 办理状态
 	*/
 	public String getStatus() {
 		return status;
 	}
 	
 	/**
-	 * 设置 状态
-	 * @param status 状态
+	 * 设置 办理状态
+	 * @param status 办理状态
 	 * @return 当前对象
 	*/
 	public PersonLeave setStatus(String status) {
@@ -586,7 +586,7 @@ public class PersonLeave extends Entity {
 	 * person
 	 * @return person
 	*/
-	public Person getPerson() {
+	public Employee getPerson() {
 		return person;
 	}
 	
@@ -595,7 +595,7 @@ public class PersonLeave extends Entity {
 	 * @param person person
 	 * @return 当前对象
 	*/
-	public PersonLeave setPerson(Person person) {
+	public PersonLeave setPerson(Employee person) {
 		this.person=person;
 		return this;
 	}
@@ -605,7 +605,7 @@ public class PersonLeave extends Entity {
 	 * handover
 	 * @return handover
 	*/
-	public Person getHandover() {
+	public Employee getHandover() {
 		return handover;
 	}
 	
@@ -614,7 +614,7 @@ public class PersonLeave extends Entity {
 	 * @param handover handover
 	 * @return 当前对象
 	*/
-	public PersonLeave setHandover(Person handover) {
+	public PersonLeave setHandover(Employee handover) {
 		this.handover=handover;
 		return this;
 	}
@@ -846,8 +846,8 @@ public class PersonLeave extends Entity {
 			this.setId(DataParser.parse(String.class, map.get(PersonLeaveMeta.ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(PersonLeaveMeta.STATUS)));
 			// others
-			this.setHandover(DataParser.parse(Person.class, map.get(PersonLeaveMeta.HANDOVER)));
-			this.setPerson(DataParser.parse(Person.class, map.get(PersonLeaveMeta.PERSON)));
+			this.setHandover(DataParser.parse(Employee.class, map.get(PersonLeaveMeta.HANDOVER)));
+			this.setPerson(DataParser.parse(Employee.class, map.get(PersonLeaveMeta.PERSON)));
 			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(PersonLeaveMeta.DEFAULT_PROCESS)));
 			return true;
 		} else {
@@ -872,8 +872,8 @@ public class PersonLeave extends Entity {
 				this.setId( (String)map.get(PersonLeaveMeta.ID));
 				this.setStatus( (String)map.get(PersonLeaveMeta.STATUS));
 				// others
-				this.setHandover( (Person)map.get(PersonLeaveMeta.HANDOVER));
-				this.setPerson( (Person)map.get(PersonLeaveMeta.PERSON));
+				this.setHandover( (Employee)map.get(PersonLeaveMeta.HANDOVER));
+				this.setPerson( (Employee)map.get(PersonLeaveMeta.PERSON));
 				this.setDefaultProcess( (ProcessInstance)map.get(PersonLeaveMeta.DEFAULT_PROCESS));
 				return true;
 			} catch (Exception e) {

@@ -3,7 +3,7 @@ package com.dt.platform.domain.hr.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.hr.PersonLeave;
 import java.util.Date;
-import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import java.util.List;
 import javax.persistence.Transient;
@@ -12,8 +12,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 14:36:01
- * @sign 8AFE03487904E3E51D842E834DD0E38B
+ * @since 2024-02-19 20:12:07
+ * @sign D4694AFE198A59FEE520F4B2CE429FE0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,14 +40,14 @@ public class PersonLeaveMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonLeave,java.lang.String> BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonLeave.class ,BUSINESS_CODE, java.lang.String.class, "编号", "编号", java.lang.String.class, null);
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 办理状态 , 类型: java.lang.String
 	*/
 	public static final String STATUS="status";
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 办理状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PersonLeave,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonLeave.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonLeave,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonLeave.class ,STATUS, java.lang.String.class, "办理状态", "办理状态", java.lang.String.class, null);
 	
 	/**
 	 * 离职人员 , 类型: java.lang.String
@@ -210,24 +210,24 @@ public class PersonLeaveMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.PersonLeave,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonLeave.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
-	 * person , 类型: org.github.foxnic.web.domain.hrm.Person
+	 * person , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final String PERSON="person";
 	
 	/**
-	 * person , 类型: org.github.foxnic.web.domain.hrm.Person
+	 * person , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PersonLeave,org.github.foxnic.web.domain.hrm.Person> PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonLeave.class ,PERSON, org.github.foxnic.web.domain.hrm.Person.class, "person", "person", org.github.foxnic.web.domain.hrm.Person.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonLeave,org.github.foxnic.web.domain.hrm.Employee> PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonLeave.class ,PERSON, org.github.foxnic.web.domain.hrm.Employee.class, "person", "person", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
-	 * handover , 类型: org.github.foxnic.web.domain.hrm.Person
+	 * handover , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final String HANDOVER="handover";
 	
 	/**
-	 * handover , 类型: org.github.foxnic.web.domain.hrm.Person
+	 * handover , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.PersonLeave,org.github.foxnic.web.domain.hrm.Person> HANDOVER_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonLeave.class ,HANDOVER, org.github.foxnic.web.domain.hrm.Person.class, "handover", "handover", org.github.foxnic.web.domain.hrm.Person.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.PersonLeave,org.github.foxnic.web.domain.hrm.Employee> HANDOVER_PROP = new BeanProperty(com.dt.platform.domain.hr.PersonLeave.class ,HANDOVER, org.github.foxnic.web.domain.hrm.Employee.class, "handover", "handover", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
 	 * 历史流程清单 , 集合类型: LIST , 类型: org.github.foxnic.web.domain.bpm.ProcessInstance
@@ -295,8 +295,8 @@ public class PersonLeaveMeta {
 		}
 		
 		/**
-		 * 设置 状态
-		 * @param status 状态
+		 * 设置 办理状态
+		 * @param status 办理状态
 		 * @return 当前对象
 		*/
 		public PersonLeave setStatus(String status) {
@@ -486,7 +486,7 @@ public class PersonLeaveMeta {
 		 * @param person person
 		 * @return 当前对象
 		*/
-		public PersonLeave setPerson(Person person) {
+		public PersonLeave setPerson(Employee person) {
 			super.change(PERSON,super.getPerson(),person);
 			super.setPerson(person);
 			return this;
@@ -497,7 +497,7 @@ public class PersonLeaveMeta {
 		 * @param handover handover
 		 * @return 当前对象
 		*/
-		public PersonLeave setHandover(Person handover) {
+		public PersonLeave setHandover(Employee handover) {
 			super.change(HANDOVER,super.getHandover(),handover);
 			super.setHandover(handover);
 			return this;

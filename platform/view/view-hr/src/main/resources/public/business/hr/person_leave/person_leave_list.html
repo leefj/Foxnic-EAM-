@@ -2,7 +2,7 @@
 /**
  * 员工离职 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 14:36:02
+ * @since 2024-02-19 20:12:09
  */
  -->
  <!DOCTYPE html>
@@ -40,24 +40,37 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 编号 , businessCode ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 状态 , status ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 离职人员 , personId ,typeName=button, isHideInSearch=false -->
+                    <!-- 办理状态 , status ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('离职人员')}" class="search-label personId-label">离职人员</span><span class="search-colon">:</span></div>
-                            <input lay-filter="personId" id="personId" name="personId"  type="hidden" class="layui-input"   />
-                            <button id="personId-button" type="button" action-type="emp-dialog" class="layui-btn layui-btn-primary   " style="width: 180px"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('办理状态')}" class="search-label status-label">办理状态</span><span class="search-colon">:</span></div>
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 交接人 , handoverId ,typeName=button, isHideInSearch=true -->
                     <!-- 附件 , fileIds ,typeName=upload, isHideInSearch=true -->
                     <!-- 备注 , note ,typeName=text_area, isHideInSearch=true -->
                     <!-- 操作人 , operUserId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('编号')}" class="search-label businessCode-label">编号</span><span class="search-colon">:</span></div>
+                        <input id="businessCode" class="layui-input search-input" style="width: 180px" type="text" />
+                    </div>
+                    <!-- 离职人员 , personId ,typeName=button, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('离职人员')}" class="search-label personId-label">离职人员</span><span class="search-colon">:</span></div>
+                            <input lay-filter="personId" id="personId" name="personId"  type="hidden" class="layui-input"   />
+                            <button id="personId-button" type="button" action-type="emp-dialog" class="layui-btn layui-btn-primary   " style="width: 180px"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>
+                    </div>
                     <!-- 原因 , content ,typeName=text_area, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('原因')}" class="search-label content-label">原因</span><span class="search-colon">:</span></div>
                         <input id="content" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
                     <!-- 离职日期 , leaveDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('离职日期')}" class="search-label leaveDate-label">离职日期</span><span class="search-colon">:</span></div>
@@ -74,6 +87,7 @@
             <!-- 按钮区域 -->
             <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
                 <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多','','cmp:table.search')}">更多</span></button>
             </div>
         </div>
 

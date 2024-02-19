@@ -155,7 +155,7 @@ foxnic:
     module-authorities:
       # 指定最顶层菜单的权限Key，用逗号分隔；若未指定值则忽略该规则，不做控制。
       ########################  public key list  ####################
-      #pay,system_monitor_list,hrm,bpm-mgr,auto_perm,changes,hr,basic_permissions,common_system,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,dp_rule:mngr,system_config,sys_tpl_file:mngr,job
+      #system:employee,pay,system_monitor_list,hrm,bpm-mgr,auto_perm,changes,hr,basic_permissions,common_system,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,dp_rule:mngr,system_config,sys_tpl_file:mngr,job
       ########################  common key list  #######################
       #system_ops
       ########################  eam key list  #######################
@@ -209,7 +209,7 @@ foxnic:
     enable: true
     debug:
       enable: true
-      process-definition-code-list: hr_person_confirm,hr_person_leave,hr_person_absencehr_person_official_business,eam_asset_stock_goods_use,bpm_common_action2,bpm_common_action1,eam_asset_equipment_repair,sys_bpm_common,eam_asset_purchase_apply,eam_asset_employee_apply,eam_asset_employee_handover,eam_asset_employee_loss,eam_asset_employee_repair,eam_asset_storage,eam_asset_tranfer,eam_asset_allocate,eam_asset_borrow,eam_asset_scrap,eam_asset_collection,eam_asset_repair_order,eam_asset_collection_return,demo-busi-case
+      process-definition-code-list: hr_person_income_certificate_apply,hr_recruitment_plan_apply,hr_personnel_requirement_apply,hr_person_confirm,hr_person_leave,hr_person_absencehr_person_official_business,eam_asset_stock_goods_use,bpm_common_action2,bpm_common_action1,eam_asset_equipment_repair,sys_bpm_common,eam_asset_purchase_apply,eam_asset_employee_apply,eam_asset_employee_handover,eam_asset_employee_loss,eam_asset_employee_repair,eam_asset_storage,eam_asset_tranfer,eam_asset_allocate,eam_asset_borrow,eam_asset_scrap,eam_asset_collection,eam_asset_repair_order,eam_asset_collection_return,demo-busi-case
   # 设置 Join 的二级缓存
   cache:
     # 默认配置

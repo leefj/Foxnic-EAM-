@@ -6,6 +6,7 @@ import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.generator.config.Config;
 import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Person;
 
 
@@ -20,22 +21,33 @@ public class HrmPersonApplyLeaveGtr extends BaseCodeGenerator {
 
 
 
-        cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
-        cfg.getPoClassFile().addSimpleProperty(Person.class,"handover","handover","handover");
+        cfg.getPoClassFile().addSimpleProperty(Employee.class,"person","person","person");
+        cfg.getPoClassFile().addSimpleProperty(Employee.class,"handover","handover","handover");
 
         cfg.view().field(HrTables.HR_PERSON_LEAVE.LEAVE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
+        cfg.view().field(HrTables.HR_PERSON_LEAVE.BUSINESS_CODE).search().fuzzySearch();
 
         cfg.view().field(HrTables.HR_PERSON_LEAVE.ID).basic().hidden(true);
         cfg.view().field(HrTables.HR_PERSON_LEAVE.LEAVE_DATE).search().range();
 
+        cfg.view().form().labelWidth(70);
+
         cfg.view().search().inputLayout(
                 new Object[]{
+                        HrTables.HR_PERSON_LEAVE.STATUS,
+                        HrTables.HR_PERSON_LEAVE.BUSINESS_CODE,
                         HrTables.HR_PERSON_LEAVE.PERSON_ID,
                         HrTables.HR_PERSON_LEAVE.CONTENT,
+
+                },
+                new Object[]{
                         HrTables.HR_PERSON_LEAVE.LEAVE_DATE,
+
                 }
         );
+
+
         cfg.bpm().form("hr_person_leave");
         cfg.bpm().integrate(IntegrateMode.FRONT);
 

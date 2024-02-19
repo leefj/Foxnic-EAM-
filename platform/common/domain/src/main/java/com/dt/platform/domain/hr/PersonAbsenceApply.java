@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
-import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 请假申请
  * <p>请假申请 , 数据表 hr_person_absence_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 14:35:32
- * @sign BECB09F546B09DA857D41F86B9B30697
+ * @since 2024-02-19 15:52:56
+ * @sign 526EE61B057C8D8F882CD2BB075798DB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -55,9 +55,9 @@ public class PersonAbsenceApply extends Entity {
 	private String businessCode;
 	
 	/**
-	 * 状态：状态
+	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
 	private String status;
 	
 	/**
@@ -169,7 +169,7 @@ public class PersonAbsenceApply extends Entity {
 	 * person：person
 	*/
 	@ApiModelProperty(required = false,value="person" , notes = "person")
-	private Person person;
+	private Employee person;
 	
 	/**
 	 * attendanceType：attendanceType
@@ -234,17 +234,17 @@ public class PersonAbsenceApply extends Entity {
 	}
 	
 	/**
-	 * 获得 状态<br>
-	 * 状态
-	 * @return 状态
+	 * 获得 办理状态<br>
+	 * 办理状态
+	 * @return 办理状态
 	*/
 	public String getStatus() {
 		return status;
 	}
 	
 	/**
-	 * 设置 状态
-	 * @param status 状态
+	 * 设置 办理状态
+	 * @param status 办理状态
 	 * @return 当前对象
 	*/
 	public PersonAbsenceApply setStatus(String status) {
@@ -611,7 +611,7 @@ public class PersonAbsenceApply extends Entity {
 	 * person
 	 * @return person
 	*/
-	public Person getPerson() {
+	public Employee getPerson() {
 		return person;
 	}
 	
@@ -620,7 +620,7 @@ public class PersonAbsenceApply extends Entity {
 	 * @param person person
 	 * @return 当前对象
 	*/
-	public PersonAbsenceApply setPerson(Person person) {
+	public PersonAbsenceApply setPerson(Employee person) {
 		this.person=person;
 		return this;
 	}
@@ -874,7 +874,7 @@ public class PersonAbsenceApply extends Entity {
 			this.setStatus(DataParser.parse(String.class, map.get(PersonAbsenceApplyMeta.STATUS)));
 			// others
 			this.setAttendanceType(DataParser.parse(AttendanceType.class, map.get(PersonAbsenceApplyMeta.ATTENDANCE_TYPE)));
-			this.setPerson(DataParser.parse(Person.class, map.get(PersonAbsenceApplyMeta.PERSON)));
+			this.setPerson(DataParser.parse(Employee.class, map.get(PersonAbsenceApplyMeta.PERSON)));
 			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(PersonAbsenceApplyMeta.DEFAULT_PROCESS)));
 			return true;
 		} else {
@@ -901,7 +901,7 @@ public class PersonAbsenceApply extends Entity {
 				this.setStatus( (String)map.get(PersonAbsenceApplyMeta.STATUS));
 				// others
 				this.setAttendanceType( (AttendanceType)map.get(PersonAbsenceApplyMeta.ATTENDANCE_TYPE));
-				this.setPerson( (Person)map.get(PersonAbsenceApplyMeta.PERSON));
+				this.setPerson( (Employee)map.get(PersonAbsenceApplyMeta.PERSON));
 				this.setDefaultProcess( (ProcessInstance)map.get(PersonAbsenceApplyMeta.DEFAULT_PROCESS));
 				return true;
 			} catch (Exception e) {
