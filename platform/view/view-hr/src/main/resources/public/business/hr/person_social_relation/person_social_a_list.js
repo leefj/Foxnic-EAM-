@@ -78,7 +78,7 @@ function ListPage() {
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: queryURL,
-				height: 'full-'+(h+28),
+				height: 'full-'+(h+60),
 				limit: 50,
 				where: ps,
 				cols: [[
@@ -378,7 +378,7 @@ function ListPage() {
 					if (selected&&selected.length>0){
 						admin.putTempData('hr-person-certificate-form-data', {});
 						itemIds=selected;
-						openCreateFrom();
+						openApprovalFrom();
 					}else{
 						top.layer.msg("请选择需要审批的数据");
 					}

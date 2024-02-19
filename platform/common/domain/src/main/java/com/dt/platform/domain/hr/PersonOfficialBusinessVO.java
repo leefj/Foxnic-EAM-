@@ -16,7 +16,7 @@ import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
 import java.math.BigDecimal;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
-import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.domain.hrm.Employee;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 出差申请VO类型
  * <p>出差申请 , 数据表 hr_person_official_business 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 14:35:42
+ * @since 2024-02-19 16:04:40
  * @sign 2975A764EDE62BB19758F52A283E2549
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -526,7 +526,7 @@ public class PersonOfficialBusinessVO extends PersonOfficialBusiness {
 			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(PersonOfficialBusinessVOMeta.DEFAULT_PROCESS)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(PersonOfficialBusinessVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(PersonOfficialBusinessVOMeta.SORT_TYPE)));
-			this.setPerson(DataParser.parse(Person.class, map.get(PersonOfficialBusinessVOMeta.PERSON)));
+			this.setPerson(DataParser.parse(Employee.class, map.get(PersonOfficialBusinessVOMeta.PERSON)));
 			this.setSortField(DataParser.parse(String.class, map.get(PersonOfficialBusinessVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(PersonOfficialBusinessVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(PersonOfficialBusinessVOMeta.QUERY_LOGIC)));
@@ -561,7 +561,7 @@ public class PersonOfficialBusinessVO extends PersonOfficialBusiness {
 				this.setDefaultProcess( (ProcessInstance)map.get(PersonOfficialBusinessVOMeta.DEFAULT_PROCESS));
 				this.setPageIndex( (Integer)map.get(PersonOfficialBusinessVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(PersonOfficialBusinessVOMeta.SORT_TYPE));
-				this.setPerson( (Person)map.get(PersonOfficialBusinessVOMeta.PERSON));
+				this.setPerson( (Employee)map.get(PersonOfficialBusinessVOMeta.PERSON));
 				this.setSortField( (String)map.get(PersonOfficialBusinessVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(PersonOfficialBusinessVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(PersonOfficialBusinessVOMeta.QUERY_LOGIC));

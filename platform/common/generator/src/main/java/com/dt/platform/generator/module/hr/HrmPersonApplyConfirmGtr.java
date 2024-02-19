@@ -8,6 +8,7 @@ import com.dt.platform.hr.page.PersonConfirmApplyPageController;
 import com.dt.platform.proxy.hr.PersonConfirmApplyServiceProxy;
 import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Person;
 
 
@@ -20,10 +21,13 @@ public class HrmPersonApplyConfirmGtr extends BaseCodeGenerator {
         System.out.println(this.getClass().getName());
 
 
-        cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
+        cfg.getPoClassFile().addSimpleProperty(Employee.class,"person","person","person");
 
 
         cfg.view().field(HrTables.HR_PERSON_CONFIRM_APPLY.CONFIRM_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+
+
+        cfg.view().field(HrTables.HR_PERSON_CONFIRM_APPLY.BUSINESS_CODE).search().fuzzySearch();
 
 
         cfg.view().field(HrTables.HR_PERSON_CONFIRM_APPLY.ID).basic().hidden(true);
@@ -32,13 +36,14 @@ public class HrmPersonApplyConfirmGtr extends BaseCodeGenerator {
         cfg.view().search().inputLayout(
                 new Object[]{
                         HrTables.HR_PERSON_CONFIRM_APPLY.STATUS,
+                        HrTables.HR_PERSON_CONFIRM_APPLY.BUSINESS_CODE,
                         HrTables.HR_PERSON_CONFIRM_APPLY.PERSON_ID,
                         HrTables.HR_PERSON_CONFIRM_APPLY.CONFIRM_DATE,
                 }
         );
         cfg.bpm().form("hr_person_confirm");
         cfg.bpm().integrate(IntegrateMode.FRONT);
-
+        cfg.view().form().labelWidth(70);
 
         cfg.view().field(HrTables.HR_PERSON_CONFIRM_APPLY.STATUS).form()
                 .label("办理状态").selectBox().enumType(AssetHandleStatusEnum.class);

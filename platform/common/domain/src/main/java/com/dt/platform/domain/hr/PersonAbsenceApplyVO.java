@@ -15,7 +15,7 @@ import com.dt.platform.domain.hr.meta.PersonAbsenceApplyVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
-import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.domain.hrm.Employee;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 请假申请VO类型
  * <p>请假申请 , 数据表 hr_person_absence_apply 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 14:35:32
+ * @since 2024-02-19 15:52:56
  * @sign 250F8D2B3613210A05B0A533A2B8BB23
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -529,7 +529,7 @@ public class PersonAbsenceApplyVO extends PersonAbsenceApply {
 			this.setAttendanceType(DataParser.parse(AttendanceType.class, map.get(PersonAbsenceApplyVOMeta.ATTENDANCE_TYPE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(PersonAbsenceApplyVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(PersonAbsenceApplyVOMeta.SORT_TYPE)));
-			this.setPerson(DataParser.parse(Person.class, map.get(PersonAbsenceApplyVOMeta.PERSON)));
+			this.setPerson(DataParser.parse(Employee.class, map.get(PersonAbsenceApplyVOMeta.PERSON)));
 			this.setSortField(DataParser.parse(String.class, map.get(PersonAbsenceApplyVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(PersonAbsenceApplyVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(PersonAbsenceApplyVOMeta.QUERY_LOGIC)));
@@ -566,7 +566,7 @@ public class PersonAbsenceApplyVO extends PersonAbsenceApply {
 				this.setAttendanceType( (AttendanceType)map.get(PersonAbsenceApplyVOMeta.ATTENDANCE_TYPE));
 				this.setPageIndex( (Integer)map.get(PersonAbsenceApplyVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(PersonAbsenceApplyVOMeta.SORT_TYPE));
-				this.setPerson( (Person)map.get(PersonAbsenceApplyVOMeta.PERSON));
+				this.setPerson( (Employee)map.get(PersonAbsenceApplyVOMeta.PERSON));
 				this.setSortField( (String)map.get(PersonAbsenceApplyVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(PersonAbsenceApplyVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(PersonAbsenceApplyVOMeta.QUERY_LOGIC));

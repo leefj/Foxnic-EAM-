@@ -8,7 +8,9 @@ import com.dt.platform.generator.config.Config;
 import com.dt.platform.hr.page.PersonOfficialBusinessPageController;
 import com.dt.platform.proxy.hr.PersonOfficialBusinessServiceProxy;
 import com.github.foxnic.api.bpm.IntegrateMode;
+import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Person;
 
 
@@ -21,21 +23,26 @@ public class HrmPersonApplyBusinessOfficeGtr extends BaseCodeGenerator {
         System.out.println(this.getClass().getName());
 
 
-        cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
+        cfg.getPoClassFile().addSimpleProperty(Employee.class,"person","person","person");
 
 
-        cfg.view().field(HrTables.HR_PERSON_OFFICIAL_BUSINESS.LEAVE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+        cfg.view().field(HrTables.HR_PERSON_OFFICIAL_BUSINESS.LEAVE_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd").search().range();
+
 
         cfg.view().field(HrTables.HR_PERSON_OFFICIAL_BUSINESS.ID).basic().hidden(true);
 
+        cfg.view().field(HrTables.HR_PERSON_OFFICIAL_BUSINESS.BUSINESS_CODE).search().fuzzySearch();
 
         cfg.view().search().inputLayout(
                 new Object[]{
                         HrTables.HR_PERSON_OFFICIAL_BUSINESS.STATUS,
+                        HrTables.HR_PERSON_OFFICIAL_BUSINESS.BUSINESS_CODE,
                         HrTables.HR_PERSON_OFFICIAL_BUSINESS.PERSON_ID,
-                        HrTables.HR_PERSON_OFFICIAL_BUSINESS.LEAVE_DATE,
+                },
+        new Object[]{
+                HrTables.HR_PERSON_OFFICIAL_BUSINESS.LEAVE_DATE,
+        }
 
-                }
         );
         cfg.bpm().form("hr_person_official_business");
         cfg.bpm().integrate(IntegrateMode.FRONT);
@@ -58,10 +65,10 @@ public class HrmPersonApplyBusinessOfficeGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
-        cfg.view().search().inputWidth(Config.searchInputWidth);
 
 
 
+        cfg.view().form().labelWidth(70);
         cfg.view().search().rowsDisplay(1);
         cfg.view().formWindow().width("75%");;
         cfg.view().formWindow().bottomSpace(50);
