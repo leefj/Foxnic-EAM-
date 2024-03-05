@@ -1,18 +1,13 @@
 package com.dt.platform.generator.module.hr;
 
 
-import com.dt.platform.constants.db.EAMTables;
+
 import com.dt.platform.constants.db.HrTables;
 import com.dt.platform.constants.enums.common.StatusYNEnum;
-import com.dt.platform.constants.enums.common.ValidStatusEnum;
 import com.dt.platform.constants.enums.hr.EmployeeStatusEnum;
-import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.hr.*;
 import com.dt.platform.domain.hr.meta.*;
 import com.dt.platform.generator.config.Config;
-
-
-import com.dt.platform.hr.page.PersonPageController;
 import com.dt.platform.proxy.hr.*;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -50,6 +45,8 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","organization","organization");
 
         cfg.getPoClassFile().addSimpleProperty(AttendanceTpl.class,"attendanceTpl","attendanceTpl","attendanceTpl");
+
+
 
 
         cfg.view().field(HrTables.HR_PERSON.ID).basic().hidden(true);
@@ -101,15 +98,15 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON.NATIVE_PLACE_CODE).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.MARITAL_STATUS).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.BIRTHDAY).form().table().disable(true);
-        cfg.view().field(HrTables.HR_PERSON.IDENTITY_CARD).form().table().disable(true);
+      //  cfg.view().field(HrTables.HR_PERSON.IDENTITY_CARD).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.EMERGENCY_CONTACT).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.EMERGENCY_CONTACT_NO).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.HOME_ADDRESS).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.WEIXIN_ID).form().table().disable(true);
-        cfg.view().field(HrTables.HR_PERSON.GRADUATION_SCHOOL).form().table().disable(true);
-        cfg.view().field(HrTables.HR_PERSON.MAJOR).form().table().disable(true);
+    //    cfg.view().field(HrTables.HR_PERSON.GRADUATION_SCHOOL).form().table().disable(true);
+     //   cfg.view().field(HrTables.HR_PERSON.MAJOR).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.GRADUATION_DATE).form().table().disable(true);
-        cfg.view().field(HrTables.HR_PERSON.GRADUATION_SCHOOL).form().table().disable(true);
+     //   cfg.view().field(HrTables.HR_PERSON.GRADUATION_SCHOOL).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.FOREIGN_LANGUAGE).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.FOREIGN_LANGUAGE_LEVEL).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON.COMPUTER_ABILITY).form().table().disable(true);

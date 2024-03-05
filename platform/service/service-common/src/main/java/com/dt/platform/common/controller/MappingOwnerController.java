@@ -44,7 +44,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 归属接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:30:20
+ * @since 2024-02-25 13:37:15
 */
 
 @InDoc
@@ -60,9 +60,10 @@ public class MappingOwnerController extends SuperController {
 	*/
 	@ApiOperation(value = "添加归属")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = MappingOwnerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MappingOwnerVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "814126505108963328"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class , example = "810507735081680896"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class , example = "w1"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER , value = "归属" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MappingOwnerVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
@@ -82,7 +83,7 @@ public class MappingOwnerController extends SuperController {
 	*/
 	@ApiOperation(value = "删除归属")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = MappingOwnerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = MappingOwnerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "814126505108963328")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = MappingOwnerServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -165,9 +166,10 @@ public class MappingOwnerController extends SuperController {
 	*/
 	@ApiOperation(value = "更新归属")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = MappingOwnerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MappingOwnerVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "814126505108963328"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class , example = "810507735081680896"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class , example = "w1"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER , value = "归属" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MappingOwnerVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
@@ -186,9 +188,10 @@ public class MappingOwnerController extends SuperController {
 	*/
 	@ApiOperation(value = "保存归属")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = MappingOwnerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MappingOwnerVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "814126505108963328"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class , example = "810507735081680896"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class , example = "w1"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER , value = "归属" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MappingOwnerVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
@@ -246,9 +249,10 @@ public class MappingOwnerController extends SuperController {
 	*/
 	@ApiOperation(value = "查询归属")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = MappingOwnerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MappingOwnerVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "814126505108963328"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class , example = "810507735081680896"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class , example = "w1"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER , value = "归属" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MappingOwnerVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { MappingOwnerVOMeta.PAGE_INDEX , MappingOwnerVOMeta.PAGE_SIZE } )
@@ -268,9 +272,10 @@ public class MappingOwnerController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询归属")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = MappingOwnerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = MappingOwnerVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "814126505108963328"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class , example = "810507735081680896"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class , example = "w1"),
+		@ApiImplicitParam(name = MappingOwnerVOMeta.OWNER , value = "归属" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MappingOwnerVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")

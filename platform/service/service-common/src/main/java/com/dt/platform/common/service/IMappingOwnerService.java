@@ -24,7 +24,7 @@ import java.util.Map;
  * 归属服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:30:19
+ * @since 2024-02-25 13:37:15
 */
 
 public interface IMappingOwnerService extends  ISimpleIdService<MappingOwner,String> {

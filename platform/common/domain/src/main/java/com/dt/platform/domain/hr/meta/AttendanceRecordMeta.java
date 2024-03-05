@@ -10,8 +10,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-18 13:43:21
- * @sign E7B383BC7EB40A07087B7040DB13F431
+ * @since 2024-02-27 16:36:55
+ * @sign 8482E933EDEC789FA1CDACD1B28E761F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -76,6 +76,16 @@ public class AttendanceRecordMeta {
 	 * 打卡时间 , 类型: java.util.Date
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecord,java.util.Date> RCD_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecord.class ,RCD_TIME, java.util.Date.class, "打卡时间", "打卡时间", java.util.Date.class, null);
+	
+	/**
+	 * 打卡位置 , 类型: java.lang.String
+	*/
+	public static final String ADDRESS="address";
+	
+	/**
+	 * 打卡位置 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecord,java.lang.String> ADDRESS_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecord.class ,ADDRESS, java.lang.String.class, "打卡位置", "打卡位置", java.lang.String.class, null);
 	
 	/**
 	 * 来源 , 类型: java.lang.String
@@ -240,7 +250,7 @@ public class AttendanceRecordMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PERSON_ID , EMPLOYEE_ID , EMPLOYEE_NAME , EMPLOYEE_NUMBER , RCD_TIME , SOURCE , BATCH_CODE , PROCESS_STATUS , PROCESS_TIME , PROCESS_RESULT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON };
+	public static final String[] $PROPS={ ID , PERSON_ID , EMPLOYEE_ID , EMPLOYEE_NAME , EMPLOYEE_NUMBER , RCD_TIME , ADDRESS , SOURCE , BATCH_CODE , PROCESS_STATUS , PROCESS_TIME , PROCESS_RESULT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON };
 	
 	/**
 	 * 代理类
@@ -313,6 +323,17 @@ public class AttendanceRecordMeta {
 		public AttendanceRecord setRcdTime(Date rcdTime) {
 			super.change(RCD_TIME,super.getRcdTime(),rcdTime);
 			super.setRcdTime(rcdTime);
+			return this;
+		}
+		
+		/**
+		 * 设置 打卡位置
+		 * @param address 打卡位置
+		 * @return 当前对象
+		*/
+		public AttendanceRecord setAddress(String address) {
+			super.change(ADDRESS,super.getAddress(),address);
+			super.setAddress(address);
 			return this;
 		}
 		
@@ -508,6 +529,7 @@ public class AttendanceRecordMeta {
 		public AttendanceRecord duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setEmployeeName(this.getEmployeeName());
+			inst.setAddress(this.getAddress());
 			inst.setNotes(this.getNotes());
 			inst.setProcessStatus(this.getProcessStatus());
 			inst.setBatchCode(this.getBatchCode());

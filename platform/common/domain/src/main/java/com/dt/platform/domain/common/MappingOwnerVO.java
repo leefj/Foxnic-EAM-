@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 归属VO类型
  * <p>归属 , 数据表 sys_mapping_owner 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:30:19
+ * @since 2024-02-25 13:37:15
  * @sign 1D00C5FFD430C056A00761EC9553E6B9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -401,6 +401,7 @@ public class MappingOwnerVO extends MappingOwner {
 	@Transient
 	public MappingOwnerVO duplicate(boolean all) {
 		com.dt.platform.domain.common.meta.MappingOwnerVOMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.MappingOwnerVOMeta.$$proxy$$();
+		inst.setOwner(this.getOwner());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
@@ -484,6 +485,7 @@ public class MappingOwnerVO extends MappingOwner {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setOwner(DataParser.parse(String.class, map.get(MappingOwnerVOMeta.OWNER)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(MappingOwnerVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(MappingOwnerVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(MappingOwnerVOMeta.CREATE_TIME)));
@@ -509,6 +511,7 @@ public class MappingOwnerVO extends MappingOwner {
 			return true;
 		} else {
 			try {
+				this.setOwner( (String)map.get(MappingOwnerVOMeta.OWNER));
 				this.setCreateBy( (String)map.get(MappingOwnerVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(MappingOwnerVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(MappingOwnerVOMeta.CREATE_TIME));
@@ -547,6 +550,7 @@ public class MappingOwnerVO extends MappingOwner {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setOwner(DataParser.parse(String.class, r.getValue(MappingOwnerVOMeta.OWNER)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(MappingOwnerVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MappingOwnerVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MappingOwnerVOMeta.CREATE_TIME)));
@@ -561,6 +565,7 @@ public class MappingOwnerVO extends MappingOwner {
 			return true;
 		} else {
 			try {
+				this.setOwner( (String)r.getValue(MappingOwnerVOMeta.OWNER));
 				this.setCreateBy( (String)r.getValue(MappingOwnerVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(MappingOwnerVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(MappingOwnerVOMeta.CREATE_TIME));

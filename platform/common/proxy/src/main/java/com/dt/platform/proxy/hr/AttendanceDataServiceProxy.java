@@ -84,6 +84,19 @@ public interface AttendanceDataServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+    public static final String QUERY_MONTH_PAGED_LIST = API_PREFIX + "query-month-paged-list";
+
+    public static final String QUERY_ABNORMAL_DATA_PAGED_LIST = API_PREFIX + "query-abnormal-data-paged-list";
+
+    public static final String QUERY_DATA_FOR_CAL = API_PREFIX + "query-data-for-cal";
+
+    public static final String PROCESS_SOURCE_DATA = API_PREFIX + "process-source-data";
+
+
+    @RequestMapping(AttendanceDataServiceProxy.PROCESS_SOURCE_DATA)
+    Result processSourceData(String dateStr,String groupCode);
+
+
     /**
      * 添加考勤汇总
      */

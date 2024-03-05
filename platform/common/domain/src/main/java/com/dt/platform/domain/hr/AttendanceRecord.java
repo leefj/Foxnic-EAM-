@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考勤原始记录
  * <p>考勤原始记录 , 数据表 hr_attendance_record 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-18 13:43:21
- * @sign E7B383BC7EB40A07087B7040DB13F431
+ * @since 2024-02-27 16:36:55
+ * @sign 8482E933EDEC789FA1CDACD1B28E761F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,38 +40,44 @@ public class AttendanceRecord extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "810273590422274048")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1")
 	private String id;
 	
 	/**
 	 * 人员：人员
 	*/
-	@ApiModelProperty(required = false,value="人员" , notes = "人员" , example = "808426740073365504")
+	@ApiModelProperty(required = false,value="人员" , notes = "人员" , example = "799379402461806592")
 	private String personId;
 	
 	/**
 	 * 人员：人员
 	*/
-	@ApiModelProperty(required = false,value="人员" , notes = "人员")
+	@ApiModelProperty(required = false,value="人员" , notes = "人员" , example = "E001")
 	private String employeeId;
 	
 	/**
 	 * 姓名：姓名
 	*/
-	@ApiModelProperty(required = false,value="姓名" , notes = "姓名")
+	@ApiModelProperty(required = false,value="姓名" , notes = "姓名" , example = "人员3")
 	private String employeeName;
 	
 	/**
 	 * 工号：工号
 	*/
-	@ApiModelProperty(required = false,value="工号" , notes = "工号" , example = "hhh")
+	@ApiModelProperty(required = false,value="工号" , notes = "工号" , example = "15728000002")
 	private String employeeNumber;
 	
 	/**
 	 * 打卡时间：打卡时间
 	*/
-	@ApiModelProperty(required = false,value="打卡时间" , notes = "打卡时间" , example = "2024-02-20 12:02:03")
+	@ApiModelProperty(required = false,value="打卡时间" , notes = "打卡时间" , example = "2024-02-08 09:02:03")
 	private Date rcdTime;
+	
+	/**
+	 * 打卡位置：打卡位置
+	*/
+	@ApiModelProperty(required = false,value="打卡位置" , notes = "打卡位置")
+	private String address;
 	
 	/**
 	 * 来源：来源
@@ -112,13 +118,13 @@ public class AttendanceRecord extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-02-14 10:17:58")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
 	private Date createTime;
 	
 	/**
@@ -130,7 +136,7 @@ public class AttendanceRecord extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-02-14 10:59:00")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-02-27 04:36:27")
 	private Date updateTime;
 	
 	/**
@@ -283,6 +289,25 @@ public class AttendanceRecord extends Entity {
 	*/
 	public AttendanceRecord setRcdTime(Date rcdTime) {
 		this.rcdTime=rcdTime;
+		return this;
+	}
+	
+	/**
+	 * 获得 打卡位置<br>
+	 * 打卡位置
+	 * @return 打卡位置
+	*/
+	public String getAddress() {
+		return address;
+	}
+	
+	/**
+	 * 设置 打卡位置
+	 * @param address 打卡位置
+	 * @return 当前对象
+	*/
+	public AttendanceRecord setAddress(String address) {
+		this.address=address;
 		return this;
 	}
 	
@@ -666,6 +691,7 @@ public class AttendanceRecord extends Entity {
 	public AttendanceRecord duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AttendanceRecordMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AttendanceRecordMeta.$$proxy$$();
 		inst.setEmployeeName(this.getEmployeeName());
+		inst.setAddress(this.getAddress());
 		inst.setNotes(this.getNotes());
 		inst.setProcessStatus(this.getProcessStatus());
 		inst.setBatchCode(this.getBatchCode());
@@ -748,6 +774,7 @@ public class AttendanceRecord extends Entity {
 		if(map==null) return false;
 		if(cast) {
 			this.setEmployeeName(DataParser.parse(String.class, map.get(AttendanceRecordMeta.EMPLOYEE_NAME)));
+			this.setAddress(DataParser.parse(String.class, map.get(AttendanceRecordMeta.ADDRESS)));
 			this.setNotes(DataParser.parse(String.class, map.get(AttendanceRecordMeta.NOTES)));
 			this.setProcessStatus(DataParser.parse(String.class, map.get(AttendanceRecordMeta.PROCESS_STATUS)));
 			this.setBatchCode(DataParser.parse(String.class, map.get(AttendanceRecordMeta.BATCH_CODE)));
@@ -774,6 +801,7 @@ public class AttendanceRecord extends Entity {
 		} else {
 			try {
 				this.setEmployeeName( (String)map.get(AttendanceRecordMeta.EMPLOYEE_NAME));
+				this.setAddress( (String)map.get(AttendanceRecordMeta.ADDRESS));
 				this.setNotes( (String)map.get(AttendanceRecordMeta.NOTES));
 				this.setProcessStatus( (String)map.get(AttendanceRecordMeta.PROCESS_STATUS));
 				this.setBatchCode( (String)map.get(AttendanceRecordMeta.BATCH_CODE));
@@ -813,6 +841,7 @@ public class AttendanceRecord extends Entity {
 		if(r==null) return false;
 		if(cast) {
 			this.setEmployeeName(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.EMPLOYEE_NAME)));
+			this.setAddress(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.ADDRESS)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.NOTES)));
 			this.setProcessStatus(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.PROCESS_STATUS)));
 			this.setBatchCode(DataParser.parse(String.class, r.getValue(AttendanceRecordMeta.BATCH_CODE)));
@@ -837,6 +866,7 @@ public class AttendanceRecord extends Entity {
 		} else {
 			try {
 				this.setEmployeeName( (String)r.getValue(AttendanceRecordMeta.EMPLOYEE_NAME));
+				this.setAddress( (String)r.getValue(AttendanceRecordMeta.ADDRESS));
 				this.setNotes( (String)r.getValue(AttendanceRecordMeta.NOTES));
 				this.setProcessStatus( (String)r.getValue(AttendanceRecordMeta.PROCESS_STATUS));
 				this.setBatchCode( (String)r.getValue(AttendanceRecordMeta.BATCH_CODE));

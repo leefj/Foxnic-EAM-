@@ -2,7 +2,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:56:16
+ * @since 2024-02-26 15:17:33
  */
  -->
  <!DOCTYPE html>
@@ -162,9 +162,9 @@
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('薪酬模版')}" class="search-label salaryTplId-label">薪酬模版</span><span class="search-colon">:</span></div>
                         <div id="salaryTplId" th:data="${'/service-hr/hr-salary-tpl/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
-                    <!-- 考勤模版 , attendanceTplCode ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 考勤组 , attendanceTplCode ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('考勤模版')}" class="search-label attendanceTplCode-label">考勤模版</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('考勤组')}" class="search-label attendanceTplCode-label">考勤组</span><span class="search-colon">:</span></div>
                         <div id="attendanceTplCode" th:data="${'/service-hr/hr-attendance-tpl/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
 

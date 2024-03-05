@@ -13,14 +13,15 @@ import java.util.List;
 import com.dt.platform.domain.eam.CheckSelect;
 import com.dt.platform.domain.eam.InspectionPoint;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.InspectionProcessAction;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 17:33:43
- * @sign BC46953133D27C642B9A7AE8F29F8D8E
+ * @since 2024-03-05 21:32:36
+ * @sign 3AFB891FB26184C21CA0B2156BE1F3D2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -75,6 +76,16 @@ public class InspectionTaskPointMeta {
 	 * 巡检结果 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPoint,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPoint.class ,CONTENT, java.lang.String.class, "巡检结果", "巡检结果", java.lang.String.class, null);
+	
+	/**
+	 * 处理动作 , 类型: java.lang.String
+	*/
+	public static final String ACTION_LABEL="actionLabel";
+	
+	/**
+	 * 处理动作 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPoint,java.lang.String> ACTION_LABEL_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPoint.class ,ACTION_LABEL, java.lang.String.class, "处理动作", "处理动作", java.lang.String.class, null);
 	
 	/**
 	 * 图片 , 类型: java.lang.String
@@ -407,9 +418,19 @@ public class InspectionTaskPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPoint,com.dt.platform.domain.eam.Asset> ASSET_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPoint.class ,ASSET, com.dt.platform.domain.eam.Asset.class, "asset", "asset", com.dt.platform.domain.eam.Asset.class, null);
 	
 	/**
+	 * inspectionProcessAction , 类型: com.dt.platform.domain.eam.InspectionProcessAction
+	*/
+	public static final String INSPECTION_PROCESS_ACTION="inspectionProcessAction";
+	
+	/**
+	 * inspectionProcessAction , 类型: com.dt.platform.domain.eam.InspectionProcessAction
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPoint,com.dt.platform.domain.eam.InspectionProcessAction> INSPECTION_PROCESS_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPoint.class ,INSPECTION_PROCESS_ACTION, com.dt.platform.domain.eam.InspectionProcessAction.class, "inspectionProcessAction", "inspectionProcessAction", com.dt.platform.domain.eam.InspectionProcessAction.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , IMAGE_ID , POINT_ID , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION , ROUTE , TASK , OPER_USER , INSPECTION_POINT_POS , CHECK_ITEM_LIST , CHECK_SELECT_LIST , INSPECTION_POINT , ITEM_COUNT , ASSET };
+	public static final String[] $PROPS={ ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , ACTION_LABEL , IMAGE_ID , POINT_ID , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION , ROUTE , TASK , OPER_USER , INSPECTION_POINT_POS , CHECK_ITEM_LIST , CHECK_SELECT_LIST , INSPECTION_POINT , ITEM_COUNT , ASSET , INSPECTION_PROCESS_ACTION };
 	
 	/**
 	 * 代理类
@@ -471,6 +492,17 @@ public class InspectionTaskPointMeta {
 		public InspectionTaskPoint setContent(String content) {
 			super.change(CONTENT,super.getContent(),content);
 			super.setContent(content);
+			return this;
+		}
+		
+		/**
+		 * 设置 处理动作
+		 * @param actionLabel 处理动作
+		 * @return 当前对象
+		*/
+		public InspectionTaskPoint setActionLabel(String actionLabel) {
+			super.change(ACTION_LABEL,super.getActionLabel(),actionLabel);
+			super.setActionLabel(actionLabel);
 			return this;
 		}
 		
@@ -836,6 +868,17 @@ public class InspectionTaskPointMeta {
 			super.setAsset(asset);
 			return this;
 		}
+		
+		/**
+		 * 设置 inspectionProcessAction
+		 * @param inspectionProcessAction inspectionProcessAction
+		 * @return 当前对象
+		*/
+		public InspectionTaskPoint setInspectionProcessAction(InspectionProcessAction inspectionProcessAction) {
+			super.change(INSPECTION_PROCESS_ACTION,super.getInspectionProcessAction(),inspectionProcessAction);
+			super.setInspectionProcessAction(inspectionProcessAction);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -858,6 +901,7 @@ public class InspectionTaskPointMeta {
 			inst.setOperId(this.getOperId());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setContent(this.getContent());
+			inst.setActionLabel(this.getActionLabel());
 			inst.setPointId(this.getPointId());
 			inst.setPointRouteId(this.getPointRouteId());
 			inst.setUpdateBy(this.getUpdateBy());
@@ -885,6 +929,7 @@ public class InspectionTaskPointMeta {
 				inst.setCheckItemList(this.getCheckItemList());
 				inst.setRoute(this.getRoute());
 				inst.setTask(this.getTask());
+				inst.setInspectionProcessAction(this.getInspectionProcessAction());
 				inst.setInspectionPointPos(this.getInspectionPointPos());
 				inst.setCheckSelectList(this.getCheckSelectList());
 				inst.setAsset(this.getAsset());

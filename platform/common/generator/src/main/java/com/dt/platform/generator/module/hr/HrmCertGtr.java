@@ -44,7 +44,7 @@ public class HrmCertGtr extends BaseCodeGenerator {
 
 
 
-
+//
         cfg.view().field(HrTables.HR_CERTIFICATE.NAME).form().validate().required();
         cfg.view().field(HrTables.HR_CERTIFICATE.TYPE).form().validate().required()
                 .form().selectBox().queryApi(CertificateTypeServiceProxy.QUERY_PAGED_LIST)

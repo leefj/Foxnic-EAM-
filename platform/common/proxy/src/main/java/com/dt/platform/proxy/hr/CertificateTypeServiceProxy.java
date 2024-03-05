@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 证书类型 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 09:41:58
+ * @since 2024-03-03 20:27:02
  */
 @FeignClient(value = ServiceNames.HR, contextId = CertificateTypeServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface CertificateTypeServiceProxy {

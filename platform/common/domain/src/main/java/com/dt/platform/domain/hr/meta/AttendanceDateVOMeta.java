@@ -5,13 +5,14 @@ import com.dt.platform.domain.hr.AttendanceDateVO;
 import java.util.List;
 import com.dt.platform.domain.hr.AttendanceDate;
 import java.util.Date;
+import com.dt.platform.domain.hr.AttendanceTpl;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:46:06
+ * @since 2024-02-27 16:27:27
  * @sign 7DDE6E3B824031D6A9C313D7A9729479
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -329,9 +330,69 @@ public class AttendanceDateVOMeta extends AttendanceDateMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDateVO,java.lang.String> CONF_CREATE_DATE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDateVO.class ,CONF_CREATE_DATE, java.lang.String.class, "confCreateDate", "confCreateDate", java.lang.String.class, null);
 	
 	/**
+	 * attendanceTplList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AttendanceTpl
+	*/
+	public static final String ATTENDANCE_TPL_LIST="attendanceTplList";
+	
+	/**
+	 * attendanceTplList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AttendanceTpl
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDateVO,com.dt.platform.domain.hr.AttendanceTpl> ATTENDANCE_TPL_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDateVO.class ,ATTENDANCE_TPL_LIST, java.util.List.class, "attendanceTplList", "attendanceTplList", com.dt.platform.domain.hr.AttendanceTpl.class, null);
+	
+	/**
+	 * attendanceTplIdsList , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String ATTENDANCE_TPL_IDS_LIST="attendanceTplIdsList";
+	
+	/**
+	 * attendanceTplIdsList , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDateVO,java.lang.String> ATTENDANCE_TPL_IDS_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDateVO.class ,ATTENDANCE_TPL_IDS_LIST, java.util.List.class, "attendanceTplIdsList", "attendanceTplIdsList", java.lang.String.class, null);
+	
+	/**
+	 * attendanceTplList2 , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AttendanceTpl
+	*/
+	public static final String ATTENDANCE_TPL_LIST2="attendanceTplList2";
+	
+	/**
+	 * attendanceTplList2 , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AttendanceTpl
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDateVO,com.dt.platform.domain.hr.AttendanceTpl> ATTENDANCE_TPL_LIST2_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDateVO.class ,ATTENDANCE_TPL_LIST2, java.util.List.class, "attendanceTplList2", "attendanceTplList2", com.dt.platform.domain.hr.AttendanceTpl.class, null);
+	
+	/**
+	 * attendanceTplIdsList2 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String ATTENDANCE_TPL_IDS_LIST2="attendanceTplIdsList2";
+	
+	/**
+	 * attendanceTplIdsList2 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDateVO,java.lang.String> ATTENDANCE_TPL_IDS_LIST2_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDateVO.class ,ATTENDANCE_TPL_IDS_LIST2, java.util.List.class, "attendanceTplIdsList2", "attendanceTplIdsList2", java.lang.String.class, null);
+	
+	/**
+	 * attendanceTplList3 , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AttendanceTpl
+	*/
+	public static final String ATTENDANCE_TPL_LIST3="attendanceTplList3";
+	
+	/**
+	 * attendanceTplList3 , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AttendanceTpl
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDateVO,com.dt.platform.domain.hr.AttendanceTpl> ATTENDANCE_TPL_LIST3_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDateVO.class ,ATTENDANCE_TPL_LIST3, java.util.List.class, "attendanceTplList3", "attendanceTplList3", com.dt.platform.domain.hr.AttendanceTpl.class, null);
+	
+	/**
+	 * attendanceTplIdsList3 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String ATTENDANCE_TPL_IDS_LIST3="attendanceTplIdsList3";
+	
+	/**
+	 * attendanceTplIdsList3 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceDateVO,java.lang.String> ATTENDANCE_TPL_IDS_LIST3_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceDateVO.class ,ATTENDANCE_TPL_IDS_LIST3, java.util.List.class, "attendanceTplIdsList3", "attendanceTplIdsList3", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , YEAR , DATE_STR , WEEK , STATUTORY_HOLIDAY , HOLIDAY , ATTENDANC_SIGN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CONF_S_DATE , CONF_E_DATE , CONF_CREATE_DATE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , YEAR , DATE_STR , WEEK , STATUTORY_HOLIDAY , HOLIDAY , ATTENDANC_SIGN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CONF_S_DATE , CONF_E_DATE , CONF_CREATE_DATE , ATTENDANCE_TPL_LIST , ATTENDANCE_TPL_IDS_LIST , ATTENDANCE_TPL_LIST2 , ATTENDANCE_TPL_IDS_LIST2 , ATTENDANCE_TPL_LIST3 , ATTENDANCE_TPL_IDS_LIST3 };
 	
 	/**
 	 * 代理类
@@ -681,6 +742,72 @@ public class AttendanceDateVOMeta extends AttendanceDateMeta {
 			super.setConfCreateDate(confCreateDate);
 			return this;
 		}
+		
+		/**
+		 * 设置 attendanceTplList
+		 * @param attendanceTplList attendanceTplList
+		 * @return 当前对象
+		*/
+		public AttendanceDate setAttendanceTplList(List<AttendanceTpl> attendanceTplList) {
+			super.change(ATTENDANCE_TPL_LIST,super.getAttendanceTplList(),attendanceTplList);
+			super.setAttendanceTplList(attendanceTplList);
+			return this;
+		}
+		
+		/**
+		 * 设置 attendanceTplIdsList
+		 * @param attendanceTplIdsList attendanceTplIdsList
+		 * @return 当前对象
+		*/
+		public AttendanceDate setAttendanceTplIdsList(List<String> attendanceTplIdsList) {
+			super.change(ATTENDANCE_TPL_IDS_LIST,super.getAttendanceTplIdsList(),attendanceTplIdsList);
+			super.setAttendanceTplIdsList(attendanceTplIdsList);
+			return this;
+		}
+		
+		/**
+		 * 设置 attendanceTplList2
+		 * @param attendanceTplList2 attendanceTplList2
+		 * @return 当前对象
+		*/
+		public AttendanceDate setAttendanceTplList2(List<AttendanceTpl> attendanceTplList2) {
+			super.change(ATTENDANCE_TPL_LIST2,super.getAttendanceTplList2(),attendanceTplList2);
+			super.setAttendanceTplList2(attendanceTplList2);
+			return this;
+		}
+		
+		/**
+		 * 设置 attendanceTplIdsList2
+		 * @param attendanceTplIdsList2 attendanceTplIdsList2
+		 * @return 当前对象
+		*/
+		public AttendanceDate setAttendanceTplIdsList2(List<String> attendanceTplIdsList2) {
+			super.change(ATTENDANCE_TPL_IDS_LIST2,super.getAttendanceTplIdsList2(),attendanceTplIdsList2);
+			super.setAttendanceTplIdsList2(attendanceTplIdsList2);
+			return this;
+		}
+		
+		/**
+		 * 设置 attendanceTplList3
+		 * @param attendanceTplList3 attendanceTplList3
+		 * @return 当前对象
+		*/
+		public AttendanceDate setAttendanceTplList3(List<AttendanceTpl> attendanceTplList3) {
+			super.change(ATTENDANCE_TPL_LIST3,super.getAttendanceTplList3(),attendanceTplList3);
+			super.setAttendanceTplList3(attendanceTplList3);
+			return this;
+		}
+		
+		/**
+		 * 设置 attendanceTplIdsList3
+		 * @param attendanceTplIdsList3 attendanceTplIdsList3
+		 * @return 当前对象
+		*/
+		public AttendanceDate setAttendanceTplIdsList3(List<String> attendanceTplIdsList3) {
+			super.change(ATTENDANCE_TPL_IDS_LIST3,super.getAttendanceTplIdsList3(),attendanceTplIdsList3);
+			super.setAttendanceTplIdsList3(attendanceTplIdsList3);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -714,13 +841,19 @@ public class AttendanceDateVOMeta extends AttendanceDateMeta {
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
 			if(all) {
+				inst.setAttendanceTplIdsList3(this.getAttendanceTplIdsList3());
 				inst.setSearchField(this.getSearchField());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
+				inst.setAttendanceTplIdsList2(this.getAttendanceTplIdsList2());
 				inst.setPageSize(this.getPageSize());
+				inst.setAttendanceTplList3(this.getAttendanceTplList3());
+				inst.setAttendanceTplList2(this.getAttendanceTplList2());
 				inst.setConfEDate(this.getConfEDate());
+				inst.setAttendanceTplList(this.getAttendanceTplList());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
+				inst.setAttendanceTplIdsList(this.getAttendanceTplIdsList());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setDataOrigin(this.getDataOrigin());

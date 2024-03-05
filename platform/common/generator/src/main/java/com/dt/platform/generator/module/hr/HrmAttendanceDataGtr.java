@@ -31,19 +31,22 @@ public class HrmAttendanceDataGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
         cfg.getPoClassFile().addSimpleProperty(AttendanceTpl.class,"attendanceTpl","attendanceTpl","attendanceTpl");
         cfg.getPoClassFile().addSimpleProperty(String.class,"personJobName","personJobName","personJobName");
-        //cfg.getPoClassFile().addSimpleProperty(String.class,"personOrg","personOrg","personOrg");
-
+        cfg.getPoClassFile().addSimpleProperty(String.class,"sJobNumber","sJobNumber","sJobNumber");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"rq","rq","rq");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"days","days","days");
 
         cfg.view().field(HrTables.HR_ATTENDANCE_DATA.ID).basic().hidden(true);
-
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.BATCH_CODE).search().fuzzySearch();
         cfg.view().field(HrTables.HR_ATTENDANCE_DATA.NOTES).search().fuzzySearch();
         cfg.view().field(HrTables.HR_ATTENDANCE_DATA.ATTENDANCE_DATE).search().range();
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.IS_WORK_DAY).form().validate().required().form().radioBox().enumType(YesNoEnum.class).defaultIndex(0);
 
-        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.ATTENDANCE_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd").search().range();
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.ATTENDANCE_DATE).form().validate().required().form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_ATTENDANCE_DATA.ON_WORK_TIME).form().dateInput().type(DatePickerType.datetime).format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(HrTables.HR_ATTENDANCE_DATA.ON_WORK_TIME2).form().dateInput().type(DatePickerType.datetime).format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(HrTables.HR_ATTENDANCE_DATA.OFF_WORK_TIME).form().dateInput().type(DatePickerType.datetime).format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(HrTables.HR_ATTENDANCE_DATA.OFF_WORK_TIME2).form().dateInput().type(DatePickerType.datetime).format("yyyy-MM-dd HH:mm:ss").search().range();
+
 
 
         cfg.view().field(HrTables.HR_ATTENDANCE_DATA.NOTES).form().textArea().height(120);
@@ -51,21 +54,31 @@ public class HrmAttendanceDataGtr extends BaseCodeGenerator {
         cfg.view().search().inputLayout(
                 new Object[]{
                         HrTables.HR_ATTENDANCE_DATA.PERSON_ID,
+                        AttendanceDataMeta.S_JOB_NUMBER,
+                        HrTables.HR_ATTENDANCE_DATA.ATTENDANCE_TPL_CODE,
                         HrTables.HR_ATTENDANCE_DATA.ATTENDANCE_DATE,
+                },
+                new Object[]{
+                        HrTables.HR_ATTENDANCE_DATA.IS_WORK_DAY,
+                        HrTables.HR_ATTENDANCE_DATA.BATCH_CODE,
                         HrTables.HR_ATTENDANCE_DATA.NOTES,
                 }
+
         );
 
+        cfg.view().search().rowsDisplay(1);
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
-
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.ATTENDANCE_DATE_STR).form().table().disable(true);
 
         cfg.view().field(HrTables.HR_ATTENDANCE_DATA.UPDATE_BY).form().table().disable(true);
         cfg.view().field(HrTables.HR_ATTENDANCE_DATA.CREATE_TIME).form().table().disable(true);
-        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.JOB_NUMBER).form().table().disable(true);
+        cfg.view().field(AttendanceDataMeta.S_JOB_NUMBER).basic().label("工号").form().table().disable(true);
+
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.REL_ID).form().table().disable(true);
 
         cfg.view().field(HrTables.HR_ATTENDANCE_DATA.PERSON_ID)
                 .form().validate().required().form().selectBox().queryApi(PersonServiceProxy.QUERY_PAGED_LIST)
@@ -81,15 +94,34 @@ public class HrmAttendanceDataGtr extends BaseCodeGenerator {
                 textField(AttendanceTplMeta.NAME).
                 fillWith(AttendanceDataMeta.ATTENDANCE_TPL).muliti(false);
 
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.NORMAL_DAY).basic().label("正常(天)").form().numberInput().decimal().scale(2);
 
-        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.LEAVE_EARLY).form().validate().required().form().radioBox().enumType(YesNoEnum.class).defaultIndex(1);
-        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.LEAVE_LATE).form().validate().required().form().radioBox().enumType(YesNoEnum.class).defaultIndex(1);
-        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.SKIP_WORK).form().validate().required().form().radioBox().enumType(YesNoEnum.class).defaultIndex(1);
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.LEAVE_EARLY).basic().label("迟到(次)").form().numberInput().integer();
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.LEAVE_EARLY_TIME).basic().label("迟到(分)").form().numberInput().decimal().scale(2);
 
-        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.BQ).form().validate().required().form().radioBox().enumType(YesNoEnum.class).defaultIndex(1);
-        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.QJ).form().validate().required().form().radioBox().enumType(YesNoEnum.class).defaultIndex(1);
-        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.CC).form().validate().required().form().radioBox().enumType(YesNoEnum.class).defaultIndex(1);
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.LEAVE_LATE).basic().label("早退(次)").form().numberInput().integer();
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.LEAVE_LATE_TIME).basic().label("早退(分)").form().numberInput().decimal().scale(2);
 
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.LOSS_EARLY).basic().label("上班缺卡(次)").form().numberInput().integer();
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.LOSS_LATE).basic().label("下班缺卡(次)").form().numberInput().integer();
+
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.LOSS_PROCESS).basic().label("缺卡处理(次)").form().numberInput().decimal().scale(2);
+
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.CC).basic().label("出差(天)").form().numberInput().decimal().scale(2);
+
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.JB_GZR).basic().label("工作日加班(小时)").form().numberInput().decimal().scale(2);
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.JB_XXR).basic().label("休息日加班(小时)").form().numberInput().decimal().scale(2);
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.JB_JJR).basic().label("节假日加班(小时)").form().numberInput().decimal().scale(2);
+
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.QJ_BJ).basic().label("病假(天)").form().numberInput().decimal().scale(2);
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.QJ_CJ).basic().label("产假(天)").form().numberInput().decimal().scale(2);
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.QJ_GSJ).basic().label("工伤假(天)").form().numberInput().decimal().scale(2);
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.QJ_HJ).basic().label("婚假(天)").form().numberInput().decimal().scale(2);
+
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.QJ_NJ).basic().label("年假(天)").form().numberInput().decimal().scale(2);
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.QJ_PLJ).basic().label("哺乳假(天)").form().numberInput().decimal().scale(2);
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.QJ_SJ).basic().label("事假(天)").form().numberInput().decimal().scale(2);
+        cfg.view().field(HrTables.HR_ATTENDANCE_DATA.QJ_TXJ).basic().label("调休假(天)").form().numberInput().decimal().scale(2);
 
         cfg.view().formWindow().width("85%");;
         cfg.view().formWindow().bottomSpace(80);
@@ -98,7 +130,6 @@ public class HrmAttendanceDataGtr extends BaseCodeGenerator {
                         HrTables.HR_ATTENDANCE_DATA.PERSON_ID,
                         HrTables.HR_ATTENDANCE_DATA.ON_WORK_TIME,
                         HrTables.HR_ATTENDANCE_DATA.ON_WORK_TIME2,
-                        HrTables.HR_ATTENDANCE_DATA.ATTENDANCE_TPL_CODE,
                 },
                 new Object[] {
                         HrTables.HR_ATTENDANCE_DATA.ATTENDANCE_DATE,
@@ -107,27 +138,59 @@ public class HrmAttendanceDataGtr extends BaseCodeGenerator {
                 }
         );
 
-        cfg.view().form().addGroup("其他信息",
+        cfg.view().form().addGroup("打卡统计",
                 new Object[] {
                         HrTables.HR_ATTENDANCE_DATA.LEAVE_EARLY,
                         HrTables.HR_ATTENDANCE_DATA.LEAVE_LATE,
-                        HrTables.HR_ATTENDANCE_DATA.SKIP_WORK,
+                        HrTables.HR_ATTENDANCE_DATA.LOSS_EARLY,
+                        HrTables.HR_ATTENDANCE_DATA.LOSS_PROCESS,
                 },
                 new Object[] {
-                        HrTables.HR_ATTENDANCE_DATA.BQ,
-                        HrTables.HR_ATTENDANCE_DATA.QJ,
-                        HrTables.HR_ATTENDANCE_DATA.CC,
+                        HrTables.HR_ATTENDANCE_DATA.LEAVE_EARLY_TIME,
+                        HrTables.HR_ATTENDANCE_DATA.LEAVE_LATE_TIME,
+                        HrTables.HR_ATTENDANCE_DATA.LOSS_LATE,
                 }
         );
 
+        cfg.view().form().addGroup("请假情况",
+                new Object[] {
+                        HrTables.HR_ATTENDANCE_DATA.QJ_BJ,
+                        HrTables.HR_ATTENDANCE_DATA.QJ_CJ,
+                        HrTables.HR_ATTENDANCE_DATA.QJ_GSJ,
+                        HrTables.HR_ATTENDANCE_DATA.QJ_HJ,
+                },
+                new Object[] {
+                        HrTables.HR_ATTENDANCE_DATA.QJ_NJ,
+                        HrTables.HR_ATTENDANCE_DATA.QJ_PLJ,
+                        HrTables.HR_ATTENDANCE_DATA.QJ_TXJ,
+                        HrTables.HR_ATTENDANCE_DATA.QJ_SJ,
+                }
+        );
+        cfg.view().form().addGroup("加班情况",
+                new Object[] {
+                        HrTables.HR_ATTENDANCE_DATA.JB_GZR,
+                        HrTables.HR_ATTENDANCE_DATA.JB_JJR,
+                },
+                new Object[] {
+                        HrTables.HR_ATTENDANCE_DATA.JB_XXR,
+                }
+        );
+
+
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        HrTables.HR_ATTENDANCE_DATA.CC,
+                        HrTables.HR_ATTENDANCE_DATA.ATTENDANCE_TPL_CODE,
+                        HrTables.HR_ATTENDANCE_DATA.RESULT,
+                        HrTables.HR_ATTENDANCE_DATA.IS_WORK_DAY,
+                        HrTables.HR_ATTENDANCE_DATA.BATCH_CODE,
                         HrTables.HR_ATTENDANCE_DATA.NOTES,
                 }
         );
 
-        cfg.view().list().addToolButton("原始记录","sourceRcd","source-rcd");
-
+       // cfg.view().list().addToolButton("原始记录","sourceRcd","source-rcd");
+        cfg.view().list().addJsVariable("PERSON_ID",   "[[${personId}]]","personId");
+        cfg.view().list().addJsVariable("CODE",   "[[${code}]]","code");
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口

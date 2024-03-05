@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 招聘面试VO类型
  * <p>招聘面试 , 数据表 hr_interview 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-19 13:27:03
+ * @since 2024-02-20 15:04:42
  * @sign 0599C7810BA6ED0794FEA55674AC22B1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -425,6 +425,7 @@ public class InterviewVO extends Interview {
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setEmployee(this.getEmployee());
+			inst.setSelectedCode(this.getSelectedCode());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
@@ -515,6 +516,7 @@ public class InterviewVO extends Interview {
 			this.setFuzzyField(DataParser.parse(String.class, map.get(InterviewVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(InterviewVOMeta.PAGE_SIZE)));
 			this.setEmployee(DataParser.parse(Employee.class, map.get(InterviewVOMeta.EMPLOYEE)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(InterviewVOMeta.SELECTED_CODE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(InterviewVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(InterviewVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(InterviewVOMeta.SORT_FIELD)));
@@ -547,6 +549,7 @@ public class InterviewVO extends Interview {
 				this.setFuzzyField( (String)map.get(InterviewVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(InterviewVOMeta.PAGE_SIZE));
 				this.setEmployee( (Employee)map.get(InterviewVOMeta.EMPLOYEE));
+				this.setSelectedCode( (String)map.get(InterviewVOMeta.SELECTED_CODE));
 				this.setPageIndex( (Integer)map.get(InterviewVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(InterviewVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(InterviewVOMeta.SORT_FIELD));

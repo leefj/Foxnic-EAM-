@@ -15,7 +15,7 @@ public class ActionCrontabGtr extends BaseCodeGenerator {
 
 
     public ActionCrontabGtr() {
-        super(EAMTables.EAM_ACTION_CRONTAB.$TABLE,BASIC_DATA_MENU_ID);
+        super(EAMTables.EAM_ACTION_CRONTAB.$TABLE,"719092198368346112");
     }
 
     public void generateCode() throws Exception {
@@ -81,7 +81,7 @@ public class ActionCrontabGtr extends BaseCodeGenerator {
         ActionCrontabGtr g=new ActionCrontabGtr();
         //生成代码
        g.generateCode();
-     //  g.generateMenu(ActionCrontabServiceProxy.class, ActionCrontabPageController.class);
+       g.generateMenu(ActionCrontabServiceProxy.class, ActionCrontabPageController.class);
 
         //生成菜单
 

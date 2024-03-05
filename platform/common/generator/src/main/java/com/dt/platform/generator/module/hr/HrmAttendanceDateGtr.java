@@ -7,12 +7,12 @@ import com.dt.platform.constants.enums.hr.AttendanceRcdProcessStatusEnum;
 import com.dt.platform.constants.enums.hr.WeekEnum;
 import com.dt.platform.domain.hr.AttendanceData;
 import com.dt.platform.domain.hr.AttendanceDate;
-import com.dt.platform.domain.hr.meta.AttendanceDateMeta;
-import com.dt.platform.domain.hr.meta.AttendanceRecordMeta;
-import com.dt.platform.domain.hr.meta.PersonMeta;
+import com.dt.platform.domain.hr.AttendanceTpl;
+import com.dt.platform.domain.hr.meta.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.hr.page.AttendanceDatePageController;
 import com.dt.platform.proxy.hr.AttendanceDateServiceProxy;
+import com.dt.platform.proxy.hr.AttendanceTplServiceProxy;
 import com.dt.platform.proxy.hr.PersonServiceProxy;
 import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
@@ -36,6 +36,16 @@ public class HrmAttendanceDateGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Date.class,"confSDate","confSDate","confSDate");
         cfg.getPoClassFile().addSimpleProperty(Date.class,"confEDate","confEDate","confEDate");
         cfg.getPoClassFile().addSimpleProperty(String.class,"confCreateDate","confCreateDate","confCreateDate");
+
+
+        cfg.getPoClassFile().addListProperty(AttendanceTpl.class,"attendanceTplList","attendanceTplList","attendanceTplList");
+        cfg.getPoClassFile().addListProperty(String.class,"attendanceTplIdsList","attendanceTplIdsList","attendanceTplIdsList");
+
+        cfg.getPoClassFile().addListProperty(AttendanceTpl.class,"attendanceTplList2","attendanceTplList2","attendanceTplList2");
+        cfg.getPoClassFile().addListProperty(String.class,"attendanceTplIdsList2","attendanceTplIdsList2","attendanceTplIdsList2");
+
+        cfg.getPoClassFile().addListProperty(AttendanceTpl.class,"attendanceTplList3","attendanceTplList3","attendanceTplList3");
+        cfg.getPoClassFile().addListProperty(String.class,"attendanceTplIdsList3","attendanceTplIdsList3","attendanceTplIdsList3");
 
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -71,6 +81,33 @@ public class HrmAttendanceDateGtr extends BaseCodeGenerator {
 
 
 
+        cfg.view().field(AttendanceDateMeta.ATTENDANCE_TPL_IDS_LIST).basic().label("不用上班(优先)")
+                .form().selectBox().queryApi(AttendanceTplServiceProxy.QUERY_LIST)
+                .paging(false).filter(false).toolbar(false)
+                .valueField(AttendanceTplMeta.CODE).
+                textField(AttendanceTplMeta.NAME).
+                fillWith(AttendanceDateMeta.ATTENDANCE_TPL_LIST).muliti(true);
+
+
+        cfg.view().field(AttendanceDateMeta.ATTENDANCE_TPL_IDS_LIST2).basic().label("需要上班")
+                .form().selectBox().queryApi(AttendanceTplServiceProxy.QUERY_LIST)
+                .paging(false).filter(false).toolbar(false)
+                .valueField(AttendanceTplMeta.CODE).
+                textField(AttendanceTplMeta.NAME).
+                fillWith(AttendanceDateMeta.ATTENDANCE_TPL_LIST2).muliti(true);
+
+        cfg.view().field(AttendanceDateMeta.ATTENDANCE_TPL_IDS_LIST3).basic().table().disable(false);
+        cfg.view().field(AttendanceDateMeta.ATTENDANCE_TPL_IDS_LIST3).basic().label("上午上班")
+                .form().selectBox().queryApi(AttendanceTplServiceProxy.QUERY_LIST)
+                .paging(false).filter(false).toolbar(false)
+                .valueField(AttendanceTplMeta.CODE).
+                textField(AttendanceTplMeta.NAME).
+                fillWith(AttendanceDateMeta.ATTENDANCE_TPL_LIST3).muliti(true);
+
+//        cfg.view().field(AttendanceDateMeta.ATTENDANCE_TPL_IDS_LIST).form().table().disable(true);
+//        cfg.view().field(AttendanceDateMeta.ATTENDANCE_TPL_IDS_LIST2).form().table().disable(true);
+//        cfg.view().field(AttendanceDateMeta.ATTENDANCE_TPL_IDS_LIST3).form().table().disable(true);
+
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
@@ -86,9 +123,13 @@ public class HrmAttendanceDateGtr extends BaseCodeGenerator {
                         HrTables.HR_ATTENDANCE_DATE.WEEK,
                         HrTables.HR_ATTENDANCE_DATE.STATUTORY_HOLIDAY,
                         HrTables.HR_ATTENDANCE_DATE.HOLIDAY,
-                        HrTables.HR_ATTENDANCE_DATE.ATTENDANC_SIGN
+                        HrTables.HR_ATTENDANCE_DATE.ATTENDANC_SIGN,
+                        AttendanceDateMeta.ATTENDANCE_TPL_IDS_LIST,
+                        AttendanceDateMeta.ATTENDANCE_TPL_IDS_LIST2
                 }
         );
+
+
         cfg.view().form().addGroup("生成数据",
                 new Object[] {
                         AttendanceDateMeta.CONF_CREATE_DATE
@@ -103,7 +144,7 @@ public class HrmAttendanceDateGtr extends BaseCodeGenerator {
                 }
         );
 
-        cfg.view().list().addToolButton("考勤模版","tplConf","tpl-conf");
+      //  cfg.view().list().addToolButton("考勤模版","tplConf","tpl-conf");
 
         //文件生成覆盖模式
         cfg.overrides()

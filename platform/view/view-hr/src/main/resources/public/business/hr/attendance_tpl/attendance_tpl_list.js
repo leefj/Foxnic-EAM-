@@ -1,7 +1,7 @@
 /**
  * 考勤模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:48:56
+ * @since 2024-02-27 13:13:45
  */
 
 
@@ -87,10 +87,8 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'onWorkTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('上班时间') ,templet: function (d) { return templet('onWorkTime',fox.dateFormat(d.onWorkTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'offWorkTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('下班时间') ,templet: function (d) { return templet('offWorkTime',fox.dateFormat(d.offWorkTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'tplType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('类型'), templet:function (d){ return templet('tplType',fox.getEnumText(RADIO_TPLTYPE_DATA,d.tplType,'','tplType'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'weekList', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('工作日'), templet: function (d) { return templet('weekList' ,fox.joinLabel(d.weekDict,"label",',','','weekList'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -163,7 +161,7 @@ function ListPage() {
 		var value = {};
 		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.tplType={ inputType:"radio_box", value: getSelectedValue("#tplType","value"), label:getSelectedValue("#tplType","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -210,6 +208,31 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 tplType 搜索框
+		fox.renderSelectBox({
+			el: "tplType",
+			size: "small",
+			radio: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("tplType",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("tplType",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}

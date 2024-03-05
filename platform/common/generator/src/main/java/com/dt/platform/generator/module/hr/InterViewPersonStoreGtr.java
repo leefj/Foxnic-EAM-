@@ -38,9 +38,6 @@ public class InterViewPersonStoreGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON_STORE.NAME).search().fuzzySearch();
         cfg.view().field(HrTables.HR_PERSON_STORE.IDENTITY_CARD).search().fuzzySearch();
 
-
-
-
         cfg.view().search().inputLayout(
                 new Object[]{
                         HrTables.HR_PERSON_STORE.NAME,
@@ -76,10 +73,10 @@ public class InterViewPersonStoreGtr extends BaseCodeGenerator {
 
         cfg.view().field(HrTables.HR_PERSON_STORE.JOIN_PART_DATE).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_STORE.OWNER_CODE).form().table().disable(true);
-
+        cfg.view().field(HrTables.HR_PERSON_STORE.CERTIFICATE).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_STORE.FILE_ID).form().table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_STORE.UPDATE_BY).form().table().disable(true);
-
+        cfg.view().field(HrTables.HR_PERSON_STORE.CREATE_TIME).form().table().disable(true);
 
         cfg.view().field(HrTables.HR_PERSON_STORE.BIRTHDAY).form().dateInput().format("yyyy-MM-dd").search().range();
 
@@ -91,8 +88,10 @@ public class InterViewPersonStoreGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON_STORE.STATUS).form().selectBox().enumType(PersonStoreStatusEnum.class);
 
 
-
+        cfg.view().field(HrTables.HR_PERSON_STORE.CREATE_TIME).table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON_STORE.FIRST_WORK_DATE).table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_STORE.FILE_ID).table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON_STORE.PICTURE_ID).table().disable(true);
 
         cfg.view().field(HrTables.HR_PERSON_STORE.PICTURE_ID).form().upload().acceptImageType().buttonLabel("选择图片").maxFileCount(3);
         cfg.view().field(HrTables.HR_PERSON_STORE.FILE_ID).form().upload().maxFileCount(6);
@@ -188,6 +187,7 @@ public class InterViewPersonStoreGtr extends BaseCodeGenerator {
 
                         HrTables.HR_PERSON_STORE.NOW_SALARY,
                         HrTables.HR_PERSON_STORE.JOB_REQUIREMENT,
+                        HrTables.HR_PERSON_STORE.POSITION,
 
                 },
                 new Object[] {

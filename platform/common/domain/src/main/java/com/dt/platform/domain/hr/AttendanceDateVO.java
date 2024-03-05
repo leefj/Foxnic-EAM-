@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考勤日期VO类型
  * <p>考勤日期 , 数据表 hr_attendance_date 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:46:06
+ * @since 2024-02-27 16:27:27
  * @sign 7DDE6E3B824031D6A9C313D7A9729479
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -418,13 +418,19 @@ public class AttendanceDateVO extends AttendanceDate {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
+			inst.setAttendanceTplIdsList3(this.getAttendanceTplIdsList3());
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
+			inst.setAttendanceTplIdsList2(this.getAttendanceTplIdsList2());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setAttendanceTplList3(this.getAttendanceTplList3());
 			inst.setPageSize(this.getPageSize());
+			inst.setAttendanceTplList2(this.getAttendanceTplList2());
 			inst.setConfEDate(this.getConfEDate());
+			inst.setAttendanceTplList(this.getAttendanceTplList());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
+			inst.setAttendanceTplIdsList(this.getAttendanceTplIdsList());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setDataOrigin(this.getDataOrigin());

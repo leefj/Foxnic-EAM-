@@ -1,7 +1,7 @@
 /**
  * 初选人员 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-19 19:53:50
+ * @since 2024-02-20 13:28:43
  */
 
 function FormPage() {
@@ -161,8 +161,6 @@ function FormPage() {
 			radio: true,
 			tips: fox.translate("请选择",'','cmp:form')+fox.translate("性别",'','cmp:form'),
 			filterable: false,
-			layVerify: 'required',
-			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("sexCode",data.arr,data.change,data.isAdd);
@@ -213,8 +211,6 @@ function FormPage() {
 			radio: true,
 			tips: fox.translate("请选择",'','cmp:form')+fox.translate("面试方式",'','cmp:form'),
 			filterable: false,
-			layVerify: 'required',
-			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("interviewMethod",data.arr,data.change,data.isAdd);
@@ -247,8 +243,6 @@ function FormPage() {
 			radio: true,
 			tips: fox.translate("请选择",'','cmp:form')+fox.translate("简历来源",'','cmp:form'),
 			filterable: false,
-			layVerify: 'required',
-			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("source",data.arr,data.change,data.isAdd);

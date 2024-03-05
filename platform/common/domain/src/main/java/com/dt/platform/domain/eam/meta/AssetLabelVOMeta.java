@@ -15,8 +15,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-07 09:48:43
- * @sign FBF616F005186112710DC3B1B46F1F4B
+ * @since 2024-03-05 10:12:25
+ * @sign F769A33EA7FBCC434CC4E93A74330DFC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -103,6 +103,36 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
 	*/
 	public static final String IDS="ids";
@@ -163,34 +193,34 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.lang.String> LABEL_TPL_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_TPL_ID, java.lang.String.class, "标签", "标签", java.lang.String.class, null);
 	
 	/**
-	 * 标签宽度(cm) , 类型: java.math.BigDecimal
+	 * 标签宽度 , cm) , 类型: java.math.BigDecimal
 	*/
 	public static final String LABEL_WIDTH="labelWidth";
 	
 	/**
-	 * 标签宽度(cm) , 类型: java.math.BigDecimal
+	 * 标签宽度 , cm) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_WIDTH_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_WIDTH, java.math.BigDecimal.class, "标签宽度(cm)", "标签宽度(cm)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_WIDTH_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_WIDTH, java.math.BigDecimal.class, "标签宽度", "cm)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 标签高度(cm) , 类型: java.math.BigDecimal
+	 * 标签高度 , cm) , 类型: java.math.BigDecimal
 	*/
 	public static final String LABEL_HEIGHT="labelHeight";
 	
 	/**
-	 * 标签高度(cm) , 类型: java.math.BigDecimal
+	 * 标签高度 , cm) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_HEIGHT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_HEIGHT, java.math.BigDecimal.class, "标签高度(cm)", "标签高度(cm)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_HEIGHT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_HEIGHT, java.math.BigDecimal.class, "标签高度", "cm)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 标签布局(暂时不用) , 类型: java.lang.String
+	 * 标签布局 , 暂时不用) , 类型: java.lang.String
 	*/
 	public static final String LABEL_LAYOUT="labelLayout";
 	
 	/**
-	 * 标签布局(暂时不用) , 类型: java.lang.String
+	 * 标签布局 , 暂时不用) , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.lang.String> LABEL_LAYOUT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_LAYOUT, java.lang.String.class, "标签布局(暂时不用)", "标签布局(暂时不用)", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.lang.String> LABEL_LAYOUT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_LAYOUT, java.lang.String.class, "标签布局", "暂时不用)", java.lang.String.class, null);
 	
 	/**
 	 * 标签间隔 , 类型: java.math.BigDecimal
@@ -203,54 +233,54 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_TABLE_MARGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_TABLE_MARGIN, java.math.BigDecimal.class, "标签间隔", "标签间隔", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 表格marginTop(mm) , 类型: java.math.BigDecimal
+	 * 表格marginTop , mm) , 类型: java.math.BigDecimal
 	*/
 	public static final String LABEL_TABLE_MARGIN_TOP="labelTableMarginTop";
 	
 	/**
-	 * 表格marginTop(mm) , 类型: java.math.BigDecimal
+	 * 表格marginTop , mm) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_TABLE_MARGIN_TOP_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_TABLE_MARGIN_TOP, java.math.BigDecimal.class, "表格marginTop(mm)", "表格marginTop(mm)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_TABLE_MARGIN_TOP_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_TABLE_MARGIN_TOP, java.math.BigDecimal.class, "表格marginTop", "mm)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 表格marginBottom(mm) , 类型: java.math.BigDecimal
+	 * 表格marginBottom , mm) , 类型: java.math.BigDecimal
 	*/
 	public static final String LABEL_TABLE_MARGIN_BOTTOM="labelTableMarginBottom";
 	
 	/**
-	 * 表格marginBottom(mm) , 类型: java.math.BigDecimal
+	 * 表格marginBottom , mm) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_TABLE_MARGIN_BOTTOM_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_TABLE_MARGIN_BOTTOM, java.math.BigDecimal.class, "表格marginBottom(mm)", "表格marginBottom(mm)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_TABLE_MARGIN_BOTTOM_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_TABLE_MARGIN_BOTTOM, java.math.BigDecimal.class, "表格marginBottom", "mm)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 表格marginLeft(mm) , 类型: java.math.BigDecimal
+	 * 表格marginLeft , mm) , 类型: java.math.BigDecimal
 	*/
 	public static final String LABEL_TABLE_MARGIN_LEFT="labelTableMarginLeft";
 	
 	/**
-	 * 表格marginLeft(mm) , 类型: java.math.BigDecimal
+	 * 表格marginLeft , mm) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_TABLE_MARGIN_LEFT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_TABLE_MARGIN_LEFT, java.math.BigDecimal.class, "表格marginLeft(mm)", "表格marginLeft(mm)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_TABLE_MARGIN_LEFT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_TABLE_MARGIN_LEFT, java.math.BigDecimal.class, "表格marginLeft", "mm)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 表格marginRight(mm) , 类型: java.math.BigDecimal
+	 * 表格marginRight , mm) , 类型: java.math.BigDecimal
 	*/
 	public static final String LABEL_TABLE_MARGIN_RIGHT="labelTableMarginRight";
 	
 	/**
-	 * 表格marginRight(mm) , 类型: java.math.BigDecimal
+	 * 表格marginRight , mm) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_TABLE_MARGIN_RIGHT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_TABLE_MARGIN_RIGHT, java.math.BigDecimal.class, "表格marginRight(mm)", "表格marginRight(mm)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_TABLE_MARGIN_RIGHT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_TABLE_MARGIN_RIGHT, java.math.BigDecimal.class, "表格marginRight", "mm)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 字体大小(mm) , 类型: java.math.BigDecimal
+	 * 字体大小 , mm) , 类型: java.math.BigDecimal
 	*/
 	public static final String LABEL_KEY_FONT_SIZE="labelKeyFontSize";
 	
 	/**
-	 * 字体大小(mm) , 类型: java.math.BigDecimal
+	 * 字体大小 , mm) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_KEY_FONT_SIZE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_KEY_FONT_SIZE, java.math.BigDecimal.class, "字体大小(mm)", "字体大小(mm)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_KEY_FONT_SIZE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_KEY_FONT_SIZE, java.math.BigDecimal.class, "字体大小", "mm)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * Key宽度 , 类型: java.math.BigDecimal
@@ -263,14 +293,14 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_KEY_WIDTH_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_KEY_WIDTH, java.math.BigDecimal.class, "Key宽度", "Key宽度", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 字体大小(mm) , 类型: java.math.BigDecimal
+	 * 字体大小 , mm) , 类型: java.math.BigDecimal
 	*/
 	public static final String LABEL_VALUE_FONT_SIZE="labelValueFontSize";
 	
 	/**
-	 * 字体大小(mm) , 类型: java.math.BigDecimal
+	 * 字体大小 , mm) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_VALUE_FONT_SIZE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_VALUE_FONT_SIZE, java.math.BigDecimal.class, "字体大小(mm)", "字体大小(mm)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelVO,java.math.BigDecimal> LABEL_VALUE_FONT_SIZE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelVO.class ,LABEL_VALUE_FONT_SIZE, java.math.BigDecimal.class, "字体大小", "mm)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 专用标签 , 图像容器大小(mm) , 类型: java.math.BigDecimal
@@ -475,7 +505,7 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CODE , FONT_TYPE , FONT_PATH , LABEL_TPL_ID , LABEL_WIDTH , LABEL_HEIGHT , LABEL_LAYOUT , LABEL_TABLE_MARGIN , LABEL_TABLE_MARGIN_TOP , LABEL_TABLE_MARGIN_BOTTOM , LABEL_TABLE_MARGIN_LEFT , LABEL_TABLE_MARGIN_RIGHT , LABEL_KEY_FONT_SIZE , LABEL_KEY_WIDTH , LABEL_VALUE_FONT_SIZE , IMAGE_CONTAIN_HEIGHT , IMAGE_WIDTH , IMAGE_HEIGHT , IMAGE_MARGIN_TOP , IMAGE_MARGIN_BOTTOM , IMAGE_MARGIN_LEFT , IMAGE_MARGIN_RIGHT , PAPER_TYPE_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_TPL , ASSET_PAPER , ASSET_LABEL_COLUMN_LIST };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , FONT_TYPE , FONT_PATH , LABEL_TPL_ID , LABEL_WIDTH , LABEL_HEIGHT , LABEL_LAYOUT , LABEL_TABLE_MARGIN , LABEL_TABLE_MARGIN_TOP , LABEL_TABLE_MARGIN_BOTTOM , LABEL_TABLE_MARGIN_LEFT , LABEL_TABLE_MARGIN_RIGHT , LABEL_KEY_FONT_SIZE , LABEL_KEY_WIDTH , LABEL_VALUE_FONT_SIZE , IMAGE_CONTAIN_HEIGHT , IMAGE_WIDTH , IMAGE_HEIGHT , IMAGE_MARGIN_TOP , IMAGE_MARGIN_BOTTOM , IMAGE_MARGIN_LEFT , IMAGE_MARGIN_RIGHT , PAPER_TYPE_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_TPL , ASSET_PAPER , ASSET_LABEL_COLUMN_LIST };
 	
 	/**
 	 * 代理类
@@ -574,6 +604,39 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 		}
 		
 		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public AssetLabelVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public AssetLabelVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public AssetLabelVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
+			return this;
+		}
+		
+		/**
 		 * 设置 主键清单
 		 * @param ids 主键清单
 		 * @return 当前对象
@@ -640,8 +703,8 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 		}
 		
 		/**
-		 * 设置 标签宽度(cm)
-		 * @param labelWidth 标签宽度(cm)
+		 * 设置 标签宽度
+		 * @param labelWidth 标签宽度
 		 * @return 当前对象
 		*/
 		public AssetLabel setLabelWidth(BigDecimal labelWidth) {
@@ -651,8 +714,8 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 		}
 		
 		/**
-		 * 设置 标签高度(cm)
-		 * @param labelHeight 标签高度(cm)
+		 * 设置 标签高度
+		 * @param labelHeight 标签高度
 		 * @return 当前对象
 		*/
 		public AssetLabel setLabelHeight(BigDecimal labelHeight) {
@@ -662,8 +725,8 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 		}
 		
 		/**
-		 * 设置 标签布局(暂时不用)
-		 * @param labelLayout 标签布局(暂时不用)
+		 * 设置 标签布局
+		 * @param labelLayout 标签布局
 		 * @return 当前对象
 		*/
 		public AssetLabel setLabelLayout(String labelLayout) {
@@ -684,8 +747,8 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 		}
 		
 		/**
-		 * 设置 表格marginTop(mm)
-		 * @param labelTableMarginTop 表格marginTop(mm)
+		 * 设置 表格marginTop
+		 * @param labelTableMarginTop 表格marginTop
 		 * @return 当前对象
 		*/
 		public AssetLabel setLabelTableMarginTop(BigDecimal labelTableMarginTop) {
@@ -695,8 +758,8 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 		}
 		
 		/**
-		 * 设置 表格marginBottom(mm)
-		 * @param labelTableMarginBottom 表格marginBottom(mm)
+		 * 设置 表格marginBottom
+		 * @param labelTableMarginBottom 表格marginBottom
 		 * @return 当前对象
 		*/
 		public AssetLabel setLabelTableMarginBottom(BigDecimal labelTableMarginBottom) {
@@ -706,8 +769,8 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 		}
 		
 		/**
-		 * 设置 表格marginLeft(mm)
-		 * @param labelTableMarginLeft 表格marginLeft(mm)
+		 * 设置 表格marginLeft
+		 * @param labelTableMarginLeft 表格marginLeft
 		 * @return 当前对象
 		*/
 		public AssetLabel setLabelTableMarginLeft(BigDecimal labelTableMarginLeft) {
@@ -717,8 +780,8 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 		}
 		
 		/**
-		 * 设置 表格marginRight(mm)
-		 * @param labelTableMarginRight 表格marginRight(mm)
+		 * 设置 表格marginRight
+		 * @param labelTableMarginRight 表格marginRight
 		 * @return 当前对象
 		*/
 		public AssetLabel setLabelTableMarginRight(BigDecimal labelTableMarginRight) {
@@ -728,8 +791,8 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 		}
 		
 		/**
-		 * 设置 字体大小(mm)
-		 * @param labelKeyFontSize 字体大小(mm)
+		 * 设置 字体大小
+		 * @param labelKeyFontSize 字体大小
 		 * @return 当前对象
 		*/
 		public AssetLabel setLabelKeyFontSize(BigDecimal labelKeyFontSize) {
@@ -750,8 +813,8 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 		}
 		
 		/**
-		 * 设置 字体大小(mm)
-		 * @param labelValueFontSize 字体大小(mm)
+		 * 设置 字体大小
+		 * @param labelValueFontSize 字体大小
 		 * @return 当前对象
 		*/
 		public AssetLabel setLabelValueFontSize(BigDecimal labelValueFontSize) {
@@ -1032,14 +1095,17 @@ public class AssetLabelVOMeta extends AssetLabelMeta {
 				inst.setAssetLabelColumnList(this.getAssetLabelColumnList());
 				inst.setAssetTpl(this.getAssetTpl());
 				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setAssetPaper(this.getAssetPaper());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setFuzzyField(this.getFuzzyField());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
+				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
-				inst.setAssetPaper(this.getAssetPaper());
+				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
 			}
 			inst.clearModifies();

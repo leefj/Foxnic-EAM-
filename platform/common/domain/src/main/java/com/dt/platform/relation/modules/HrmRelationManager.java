@@ -1,7 +1,9 @@
 package com.dt.platform.relation.modules;
 
+import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.HrTables;
 import com.dt.platform.constants.db.SysTables;
+import com.dt.platform.domain.eam.meta.InventoryMeta;
 import com.dt.platform.domain.hr.*;
 import com.dt.platform.domain.hr.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
@@ -49,27 +51,102 @@ public class HrmRelationManager extends RelationManager {
 		this.setupScoreUser();
 
 		this.setupAttendanceRecord();
-		this.setupAttendanceTpl();
+		this.setupAttendanceTplDtl();
 		this.setupAttendanceData();
-
 		this.setupAttendanceOvertime();
 		this.setupAttendanceHoliday();
 		this.setupAttendanceOfficialBusi();
-
 		this.setupTrainingInstructor();
-
 		this.setupRecruitmentPlanApply();
 		this.setupPersonnelRequirementApply();
-
 		this.setupIncomeCertificateApply();
-
-
 		this.setupInterview();
-
 		this.setupPersonInterview();
-
 		this.setupPersonStore();
+		this.setupAttendanceDataProcess();
+		this.setupAttendanceDate();
+		this.setupAttendanceProcess();
+		this.setupIndicator();
+
+		this.setupAssessmentPlan();
+		this.setupAssessmentTpl();
+		this.setupAssessmentTask();
+		this.setupAssessmentTaskDtl();
+
+
 	}
+	public void setupAssessmentPlan(){
+		this.property(AssessmentPlanMeta.ASSESSMENT_TPL_PROP)
+				.using(HrTables.HR_ASSESSMENT_PLAN.ID).join(HrTables.HR_ASSESSMENT_TPL.ID);
+	}
+
+	public void setupAssessmentTask(){
+		this.property(AssessmentTaskMeta.ASSESSMENT_TPL_PROP)
+				.using(HrTables.HR_ASSESSMENT_TASK.ID).join(HrTables.HR_ASSESSMENT_TPL.ID);
+	}
+
+	public void setupAssessmentTaskDtl(){
+
+	}
+
+
+	public void setupAssessmentTpl(){
+		this.property(AssessmentTplMeta.POSITION_LIST_PROP)
+				.using(HrTables.HR_ASSESSMENT_TPL.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+				.condition("owner='pos'")
+				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(HrTables.HR_POSITION.ID);
+
+
+	}
+
+	public void setupIndicator(){
+		this.property(IndicatorLibMeta.TYPE_DICT_PROP)
+				.using(HrTables.HR_INDICATOR_LIB.TYPE_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='hr_indicator_lib'");
+
+	}
+
+	public void setupAttendanceProcess(){
+
+		this.property(AttendanceProcessMeta.PERSON_LIST_PROP)
+				.using(HrTables.HR_ATTENDANCE_PROCESS.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+				.condition("owner='def'")
+				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(HrTables.HR_PERSON.ID);
+
+		this.property(AttendanceProcessMeta.ORGANIZATION_LIST_PROP)
+				.using(HrTables.HR_ATTENDANCE_PROCESS.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+				.condition("owner='def'")
+				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+	}
+
+
+
+	public void setupAttendanceDate(){
+
+		this.property(AttendanceDateMeta.ATTENDANCE_TPL_LIST_PROP)
+				.using(HrTables.HR_ATTENDANCE_DATE.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+				.condition("owner='def'")
+				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(HrTables.HR_ATTENDANCE_TPL.CODE);
+
+		this.property(AttendanceDateMeta.ATTENDANCE_TPL_LIST2_PROP)
+				.using(HrTables.HR_ATTENDANCE_DATE.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+				.condition("owner='need'")
+				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(HrTables.HR_ATTENDANCE_TPL.CODE);
+
+		this.property(AttendanceDateMeta.ATTENDANCE_TPL_LIST3_PROP)
+				.using(HrTables.HR_ATTENDANCE_DATE.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+				.condition("owner='half'")
+				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(HrTables.HR_ATTENDANCE_TPL.CODE);
+	}
+
+	public void setupAttendanceDataProcess(){
+		this.property(AttendanceDataProcessMeta.PERSON_PROP)
+				.using(HrTables.HR_ATTENDANCE_DATA_PROCESS.PERSON_ID).join(HrTables.HR_PERSON.ID);
+
+	}
+
+
 	public void setupPersonStore(){
 		this.property(PersonStoreMeta.SEX_DICT_PROP)
 				.using(HrTables.HR_PERSON_STORE.SEX_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
@@ -180,6 +257,13 @@ public class HrmRelationManager extends RelationManager {
 				.using(HrTables.HR_ATTENDANCE_HOLIDAY.ACTION_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
 				.condition("dict_code='hr_attendance_h_type'");
 
+		this.property(AttendanceHolidayMeta.ATTENDANCE_TPL_LIST_PROP)
+				.using(HrTables.HR_ATTENDANCE_HOLIDAY.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+				.condition("owner='def'")
+				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(HrTables.HR_ATTENDANCE_TPL.CODE);
+
+
+
 	}
 
 	public void setupAttendanceOfficialBusi() {
@@ -193,6 +277,8 @@ public class HrmRelationManager extends RelationManager {
 
 	public void setupAttendanceData() {
 
+
+
 		this.property(AttendanceDataMeta.PERSON_PROP)
 				.using(HrTables.HR_ATTENDANCE_DATA.PERSON_ID).join(HrTables.HR_PERSON.ID);
 
@@ -202,11 +288,29 @@ public class HrmRelationManager extends RelationManager {
 
 
 	}
-	public void setupAttendanceTpl() {
-		this.property(AttendanceTplMeta.WEEK_DICT_PROP)
-				.using(HrTables.HR_ATTENDANCE_TPL.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
-				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+	public void setupAttendanceTplDtl() {
+		this.property(AttendanceTplDtlMeta.WEEK_DICT_PROP)
+				.using(HrTables.HR_ATTENDANCE_TPL_DTL.WEEK).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
 				.condition("dict_code='hr_attendance_week'");
+
+		this.property(AttendanceTplDtlMeta.FIRST_GROUP_PROP)
+				.using(HrTables.HR_ATTENDANCE_TPL_DTL.FIRST_WORK).join(HrTables.HR_ATTENDANCE_TPL_GROUP.ID);
+
+		this.property(AttendanceTplDtlMeta.SECOND_GROUP_PROP)
+				.using(HrTables.HR_ATTENDANCE_TPL_DTL.SECOND_WORK).join(HrTables.HR_ATTENDANCE_TPL_GROUP.ID);
+
+//
+//		this.property(AttendanceTplMeta.UP_DAY_WEEK_DICT_PROP)
+//				.using(HrTables.HR_ATTENDANCE_TPL.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+//				.condition("owner='up'")
+//				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+//				.condition("dict_code='hr_attendance_week'");
+//
+//		this.property(AttendanceTplMeta.DOWN_DAY_WEEK_DICT_PROP)
+//				.using(HrTables.HR_ATTENDANCE_TPL.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+//				.condition("owner='down'")
+//				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+//				.condition("dict_code='hr_attendance_week'");
 	}
 	public void setupAttendanceRecord() {
 
@@ -426,7 +530,7 @@ public class HrmRelationManager extends RelationManager {
 
 	public void setupProperties() {
 	}
-	
+
 	private void setupRelations() {
 	}
 

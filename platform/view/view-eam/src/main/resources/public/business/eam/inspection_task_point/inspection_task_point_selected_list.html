@@ -38,6 +38,21 @@
             <div class="search-input-rows" style="opacity: 0">
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
+
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('巡检状态')}" class="search-label pointStatus-label">巡检状态</span><span class="search-colon">:</span></div>
+
+
+                        <div id="pointStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum')}" style="width:180px"></div>
+                    </div>
+                    <!-- 处理动作 , actionLabel ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('处理动作')}" class="search-label actionLabel-label">处理动作</span><span class="search-colon">:</span></div>
+                        <div id="actionLabel" th:data="${'/service-eam/eam-inspection-process-action/query-list'}" style="width:180px" extraParam="{}"></div>
+                    </div>
+
+
+
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('点位编码')}" class="search-label pointCode-label">点位编码</span><span class="search-colon">:</span></div>
                         <input id="pointCode" class="layui-input search-input" style="width: 150px" type="text" />
@@ -46,6 +61,8 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('点位编码')}" class="search-label pointName-label">点位编码</span><span class="search-colon">:</span></div>
                         <input id="pointName" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
+
+
 
 
                 </div>
@@ -74,14 +91,15 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
+        <button id="import-data"  class="layui-btn icon-btn layui-btn-sm  import-data " lay-event="tool-import-data"><span th:text="${lang.translate('导入','','cmp:table.button')}">导入</span></button>
+        <button id="export-data"  class="layui-btn icon-btn layui-btn-sm  export-data " lay-event="tool-export-data"><span th:text="${lang.translate('导出','','cmp:table.button')}">导出</span></button>
+
     </div>
 </script>
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
 
-<!--    <button class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>-->
-<!--  -->
     <button class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('执行')}">执行</span></button>
     <button class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="detail" data-id="{{d.id}}"><span th:text="${lang.translate('检查项')}">检查项</span></button>
 
@@ -92,6 +110,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum')}]];
     var SELECT_POINTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum')}]];
+    var RADIO_POINTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum')}]];
     var AUTH_PREFIX="eam_inspection_task_point_s";
 
     var TASK_ID = [[${taskId}]] ;

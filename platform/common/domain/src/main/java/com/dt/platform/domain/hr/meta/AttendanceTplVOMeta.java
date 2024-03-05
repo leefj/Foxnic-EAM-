@@ -5,14 +5,13 @@ import com.dt.platform.domain.hr.AttendanceTplVO;
 import java.util.List;
 import com.dt.platform.domain.hr.AttendanceTpl;
 import java.util.Date;
-import org.github.foxnic.web.domain.system.DictItem;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:48:54
+ * @since 2024-02-27 13:13:44
  * @sign 86A2472BEEF02FFB07BB9C893D7B182A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -170,24 +169,14 @@ public class AttendanceTplVOMeta extends AttendanceTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceTplVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceTplVO.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
 	
 	/**
-	 * 上班时间 , 类型: java.util.Date
+	 * 类型 , 类型: java.lang.String
 	*/
-	public static final String ON_WORK_TIME="onWorkTime";
+	public static final String TPL_TYPE="tplType";
 	
 	/**
-	 * 上班时间 , 类型: java.util.Date
+	 * 类型 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceTplVO,java.util.Date> ON_WORK_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceTplVO.class ,ON_WORK_TIME, java.util.Date.class, "上班时间", "上班时间", java.util.Date.class, null);
-	
-	/**
-	 * 下班时间 , 类型: java.util.Date
-	*/
-	public static final String OFF_WORK_TIME="offWorkTime";
-	
-	/**
-	 * 下班时间 , 类型: java.util.Date
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceTplVO,java.util.Date> OFF_WORK_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceTplVO.class ,OFF_WORK_TIME, java.util.Date.class, "下班时间", "下班时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceTplVO,java.lang.String> TPL_TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceTplVO.class ,TPL_TYPE, java.lang.String.class, "类型", "类型", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -290,29 +279,19 @@ public class AttendanceTplVOMeta extends AttendanceTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceTplVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceTplVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
-	 * weekDict , 集合类型: LIST , 类型: org.github.foxnic.web.domain.system.DictItem
+	 * selectedCode , 类型: java.lang.String
 	*/
-	public static final String WEEK_DICT="weekDict";
+	public static final String SELECTED_CODE="selectedCode";
 	
 	/**
-	 * weekDict , 集合类型: LIST , 类型: org.github.foxnic.web.domain.system.DictItem
+	 * selectedCode , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceTplVO,org.github.foxnic.web.domain.system.DictItem> WEEK_DICT_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceTplVO.class ,WEEK_DICT, java.util.List.class, "weekDict", "weekDict", org.github.foxnic.web.domain.system.DictItem.class, null);
-	
-	/**
-	 * weekList , 集合类型: LIST , 类型: java.lang.String
-	*/
-	public static final String WEEK_LIST="weekList";
-	
-	/**
-	 * weekList , 集合类型: LIST , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceTplVO,java.lang.String> WEEK_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceTplVO.class ,WEEK_LIST, java.util.List.class, "weekList", "weekList", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceTplVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceTplVO.class ,SELECTED_CODE, java.lang.String.class, "selectedCode", "selectedCode", java.lang.String.class, null);
 	
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , ON_WORK_TIME , OFF_WORK_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , WEEK_DICT , WEEK_LIST };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , TPL_TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE };
 	
 	/**
 	 * 代理类
@@ -488,24 +467,13 @@ public class AttendanceTplVOMeta extends AttendanceTplMeta {
 		}
 		
 		/**
-		 * 设置 上班时间
-		 * @param onWorkTime 上班时间
+		 * 设置 类型
+		 * @param tplType 类型
 		 * @return 当前对象
 		*/
-		public AttendanceTpl setOnWorkTime(Date onWorkTime) {
-			super.change(ON_WORK_TIME,super.getOnWorkTime(),onWorkTime);
-			super.setOnWorkTime(onWorkTime);
-			return this;
-		}
-		
-		/**
-		 * 设置 下班时间
-		 * @param offWorkTime 下班时间
-		 * @return 当前对象
-		*/
-		public AttendanceTpl setOffWorkTime(Date offWorkTime) {
-			super.change(OFF_WORK_TIME,super.getOffWorkTime(),offWorkTime);
-			super.setOffWorkTime(offWorkTime);
+		public AttendanceTpl setTplType(String tplType) {
+			super.change(TPL_TYPE,super.getTplType(),tplType);
+			super.setTplType(tplType);
 			return this;
 		}
 		
@@ -620,24 +588,13 @@ public class AttendanceTplVOMeta extends AttendanceTplMeta {
 		}
 		
 		/**
-		 * 设置 weekDict
-		 * @param weekDict weekDict
+		 * 设置 selectedCode
+		 * @param selectedCode selectedCode
 		 * @return 当前对象
 		*/
-		public AttendanceTpl setWeekDict(List<DictItem> weekDict) {
-			super.change(WEEK_DICT,super.getWeekDict(),weekDict);
-			super.setWeekDict(weekDict);
-			return this;
-		}
-		
-		/**
-		 * 设置 weekList
-		 * @param weekList weekList
-		 * @return 当前对象
-		*/
-		public AttendanceTpl setWeekList(List<String> weekList) {
-			super.change(WEEK_LIST,super.getWeekList(),weekList);
-			super.setWeekList(weekList);
+		public AttendanceTpl setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
 			return this;
 		}
 
@@ -656,13 +613,12 @@ public class AttendanceTplVOMeta extends AttendanceTplMeta {
 		@Transient
 		public AttendanceTplVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setTplType(this.getTplType());
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
-			inst.setOnWorkTime(this.getOnWorkTime());
 			inst.setCreateBy(this.getCreateBy());
-			inst.setOffWorkTime(this.getOffWorkTime());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
@@ -676,10 +632,9 @@ public class AttendanceTplVOMeta extends AttendanceTplMeta {
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
-				inst.setWeekList(this.getWeekList());
+				inst.setSelectedCode(this.getSelectedCode());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setWeekDict(this.getWeekDict());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setDataOrigin(this.getDataOrigin());

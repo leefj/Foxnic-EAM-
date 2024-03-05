@@ -1,7 +1,10 @@
 package com.dt.platform.hr.page;
 
+import com.dt.platform.proxy.hr.PersonServiceProxy;
+import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +43,91 @@ public class AttendanceDataPageController extends ViewController {
 	/**
 	 * 考勤汇总 功能主页面
 	 */
+	@RequestMapping("/attendance_cal_list.html")
+	public String callist(Model model,HttpServletRequest request,String code) {
+		String employeeId= SessionUser.getCurrent().getActivatedEmployeeId();
+		String personId=PersonServiceProxy.api().queryPersonIdByEmployeeId(employeeId);
+		if(StringUtil.isBlank(personId)){
+			personId="none";
+		}
+		model.addAttribute("personId",personId);
+		return getTemplatePath(prefix,"attendance_cal_list");
+	}
+
+	/**
+	 * 考勤汇总 功能主页面
+	 */
+	@RequestMapping("/attendance_abnormal_list.html")
+	public String ablist(Model model,HttpServletRequest request,String code) {
+		return getTemplatePath(prefix,"attendance_abnormal_list");
+	}
+
+	/**
+	 * 考勤汇总 功能主页面
+	 */
+	@RequestMapping("/attendance_month_list.html")
+	public String attendance_month_list(Model model,HttpServletRequest request,String code) {
+		return getTemplatePath(prefix,"attendance_month_list");
+	}
+
+
+	/**
+	 * 考勤汇总 功能主页面
+	 */
 	@RequestMapping("/attendance_data_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String code) {
 		return getTemplatePath(prefix,"attendance_data_list");
 	}
+
+
+
+
+	/**
+	 * 考勤汇总 功能主页面
+	 */
+	@RequestMapping("/self_attendance_abnormal_list.html")
+	public String self_attendance_abnormal_list(Model model,HttpServletRequest request) {
+
+		String employeeId= SessionUser.getCurrent().getActivatedEmployeeId();
+		String personId=PersonServiceProxy.api().queryPersonIdByEmployeeId(employeeId);
+		if(StringUtil.isBlank(personId)){
+			personId="none";
+		}
+		model.addAttribute("personId",personId);
+		return getTemplatePath(prefix,"self_attendance_abnormal_list");
+	}
+
+	/**
+	 * 考勤汇总 功能主页面
+	 */
+	@RequestMapping("/self_attendance_month_list.html")
+	public String self_attendance_month_list(Model model,HttpServletRequest request) {
+
+		String employeeId= SessionUser.getCurrent().getActivatedEmployeeId();
+		String personId=PersonServiceProxy.api().queryPersonIdByEmployeeId(employeeId);
+		if(StringUtil.isBlank(personId)){
+			personId="none";
+		}
+		model.addAttribute("personId",personId);
+		return getTemplatePath(prefix,"self_attendance_month_list");
+	}
+
+
+	/**
+	 * 考勤汇总 功能主页面
+	 */
+	@RequestMapping("/self_attendance_data_list.html")
+	public String self_attendance_data_list(Model model,HttpServletRequest request) {
+
+		String employeeId= SessionUser.getCurrent().getActivatedEmployeeId();
+		String personId=PersonServiceProxy.api().queryPersonIdByEmployeeId(employeeId);
+		if(StringUtil.isBlank(personId)){
+			personId="none";
+		}
+		model.addAttribute("personId",personId);
+		return getTemplatePath(prefix,"self_attendance_data_list");
+	}
+
 
 	/**
 	 * 考勤汇总 表单页面

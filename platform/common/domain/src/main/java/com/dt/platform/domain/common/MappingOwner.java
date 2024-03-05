@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 归属
  * <p>归属 , 数据表 sys_mapping_owner 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:30:19
- * @sign 7AB848B9908AF78E7BFF177380817DD7
+ * @since 2024-02-25 13:37:15
+ * @sign F35DF0E010FADE658A7C3DF0DB8B8EC2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,20 +40,26 @@ public class MappingOwner extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "814126505108963328")
 	private String id;
 	
 	/**
 	 * 所属：所属
 	*/
-	@ApiModelProperty(required = false,value="所属" , notes = "所属")
+	@ApiModelProperty(required = false,value="所属" , notes = "所属" , example = "810507735081680896")
 	private String ownerId;
 	
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "w1")
 	private String selectedCode;
+	
+	/**
+	 * 归属：归属
+	*/
+	@ApiModelProperty(required = false,value="归属" , notes = "归属")
+	private String owner;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -82,7 +88,7 @@ public class MappingOwner extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -103,7 +109,7 @@ public class MappingOwner extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -160,6 +166,25 @@ public class MappingOwner extends Entity {
 	*/
 	public MappingOwner setSelectedCode(String selectedCode) {
 		this.selectedCode=selectedCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 归属<br>
+	 * 归属
+	 * @return 归属
+	*/
+	public String getOwner() {
+		return owner;
+	}
+	
+	/**
+	 * 设置 归属
+	 * @param owner 归属
+	 * @return 当前对象
+	*/
+	public MappingOwner setOwner(String owner) {
+		this.owner=owner;
 		return this;
 	}
 	
@@ -390,6 +415,7 @@ public class MappingOwner extends Entity {
 	@Transient
 	public MappingOwner duplicate(boolean all) {
 		com.dt.platform.domain.common.meta.MappingOwnerMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.MappingOwnerMeta.$$proxy$$();
+		inst.setOwner(this.getOwner());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
@@ -459,6 +485,7 @@ public class MappingOwner extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setOwner(DataParser.parse(String.class, map.get(MappingOwnerMeta.OWNER)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(MappingOwnerMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(MappingOwnerMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(MappingOwnerMeta.CREATE_TIME)));
@@ -474,6 +501,7 @@ public class MappingOwner extends Entity {
 			return true;
 		} else {
 			try {
+				this.setOwner( (String)map.get(MappingOwnerMeta.OWNER));
 				this.setCreateBy( (String)map.get(MappingOwnerMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(MappingOwnerMeta.DELETED));
 				this.setCreateTime( (Date)map.get(MappingOwnerMeta.CREATE_TIME));
@@ -502,6 +530,7 @@ public class MappingOwner extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setOwner(DataParser.parse(String.class, r.getValue(MappingOwnerMeta.OWNER)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(MappingOwnerMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MappingOwnerMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MappingOwnerMeta.CREATE_TIME)));
@@ -516,6 +545,7 @@ public class MappingOwner extends Entity {
 			return true;
 		} else {
 			try {
+				this.setOwner( (String)r.getValue(MappingOwnerMeta.OWNER));
 				this.setCreateBy( (String)r.getValue(MappingOwnerMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(MappingOwnerMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(MappingOwnerMeta.CREATE_TIME));

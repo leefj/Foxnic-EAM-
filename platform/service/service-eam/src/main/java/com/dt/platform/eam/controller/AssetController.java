@@ -1,6 +1,5 @@
 package com.dt.platform.eam.controller;
 
-
 import java.io.File;
 import java.io.OutputStream;
 import java.net.URLEncoder;
@@ -9,7 +8,6 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.GoodsStockMeta;
@@ -27,7 +25,6 @@ import org.github.foxnic.web.domain.changes.ChangeDefinition;
 import org.github.foxnic.web.domain.changes.ChangeDefinitionVO;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.hrm.Employee;
-
 import org.github.foxnic.web.domain.pcm.CatalogData;
 import org.github.foxnic.web.proxy.changes.ChangeDefinitionServiceProxy;
 import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
@@ -46,11 +43,9 @@ import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.dt.platform.domain.eam.meta.AssetVOMeta;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.SaveMode;
-
 import com.github.foxnic.springboot.web.DownloadUtil;
 import com.github.foxnic.dao.data.PagedList;
 import java.util.Date;
-
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.commons.io.StreamUtil;
 import java.util.Map;
@@ -58,16 +53,13 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.eam.meta.AssetMeta;
 import java.math.BigDecimal;
-
 import org.github.foxnic.web.domain.hrm.Person;
-
 import io.swagger.annotations.Api;
 import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiImplicitParam;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-
 import com.github.foxnic.api.swagger.ApiParamSupport;
 
 /**
@@ -380,7 +372,8 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -727,7 +720,8 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE, AssetVOMeta.SEARCH_FIELD, AssetVOMeta.FUZZY_FIELD, AssetVOMeta.SEARCH_VALUE, AssetVOMeta.SORT_FIELD, AssetVOMeta.SORT_TYPE, AssetVOMeta.IDS })
     @SentinelResource(value = AssetServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -932,7 +926,8 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE, AssetVOMeta.SEARCH_FIELD, AssetVOMeta.FUZZY_FIELD, AssetVOMeta.SEARCH_VALUE, AssetVOMeta.SORT_FIELD, AssetVOMeta.SORT_TYPE, AssetVOMeta.IDS })
     @SentinelResource(value = AssetServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1157,7 +1152,8 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1342,7 +1338,8 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
+		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1866,46 +1863,43 @@ public class AssetController extends SuperController {
         return result;
     }
 
-	/**
-	 * 分页查询资产
-	 */
-	@ApiOperation(value = "分页查询资产")
-	@ApiOperationSupport(order = 10)
-	@SentinelResource(value = AssetServiceProxy.QUERY_ASSET_SUB_ASSET_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-	@PostMapping(AssetServiceProxy.QUERY_ASSET_SUB_ASSET_PAGED_LIST)
-	public Result<PagedList<Asset>> queryAssetSubAssetPagedList(AssetVO sample) {
-		Result<PagedList<Asset>> result = new Result<>();
-		PagedList<Asset> list = assetService.queryAssetSubAssetPagedList(sample.getId(),sample.getPageSize(),sample.getPageIndex());
-		assetService.joinData(list.getList());
-		result.success(true).data(list);
-		return result;
-	}
+    /**
+     * 分页查询资产
+     */
+    @ApiOperation(value = "分页查询资产")
+    @ApiOperationSupport(order = 10)
+    @SentinelResource(value = AssetServiceProxy.QUERY_ASSET_SUB_ASSET_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetServiceProxy.QUERY_ASSET_SUB_ASSET_PAGED_LIST)
+    public Result<PagedList<Asset>> queryAssetSubAssetPagedList(AssetVO sample) {
+        Result<PagedList<Asset>> result = new Result<>();
+        PagedList<Asset> list = assetService.queryAssetSubAssetPagedList(sample.getId(), sample.getPageSize(), sample.getPageIndex());
+        assetService.joinData(list.getList());
+        result.success(true).data(list);
+        return result;
+    }
 
-	/**
-	 * 分页查询资产
-	 */
-	@ApiOperation(value = "分页查询资产")
-	@ApiOperationSupport(order = 10)
-	@SentinelResource(value = AssetServiceProxy.QUERY_ASSET_SUB_GOODS_STOCK_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-	@PostMapping(AssetServiceProxy.QUERY_ASSET_SUB_GOODS_STOCK_PAGED_LIST)
-	public Result<PagedList<GoodsStock>> queryAssetSubGoodsStockPagedList(GoodsStockVO sample) {
-		//sample中的id为资产ID
-		Result<PagedList<GoodsStock>> result = new Result<>();
-		PagedList<GoodsStock> list = assetService.queryAssetSubGoodsStockPagedList(sample,sample.getId(),sample.getOwnerCode(),sample.getPageSize(),sample.getPageIndex());
-		// join 关联的对象
-		assetService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
+    /**
+     * 分页查询资产
+     */
+    @ApiOperation(value = "分页查询资产")
+    @ApiOperationSupport(order = 10)
+    @SentinelResource(value = AssetServiceProxy.QUERY_ASSET_SUB_GOODS_STOCK_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetServiceProxy.QUERY_ASSET_SUB_GOODS_STOCK_PAGED_LIST)
+    public Result<PagedList<GoodsStock>> queryAssetSubGoodsStockPagedList(GoodsStockVO sample) {
+        // sample中的id为资产ID
+        Result<PagedList<GoodsStock>> result = new Result<>();
+        PagedList<GoodsStock> list = assetService.queryAssetSubGoodsStockPagedList(sample, sample.getId(), sample.getOwnerCode(), sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        assetService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
+        List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
+        assetService.dao().join(originatorList, Person.class);
+        List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);
+        assetService.dao().join(managerList, Person.class);
+        result.success(true).data(list);
+        return result;
+    }
 
-		List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
-		assetService.dao().join(originatorList, Person.class);
-
-		List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);
-		assetService.dao().join(managerList, Person.class);
-		result.success(true).data(list);
-		return result;
-	}
-
-
-	/**
+    /**
      * 批量送审
      */
     @ApiImplicitParams({

@@ -1,7 +1,7 @@
 /**
  * 考勤原始记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-14 22:15:46
+ * @since 2024-02-25 18:31:19
  */
 
 layui.config({
@@ -49,7 +49,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            cfg.cellMinWidth=160;;
+            console.log("list:beforeTableRender",cfg);
         },
         /**
          * 表格渲染后调用
@@ -176,9 +176,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('moreActionMenu',items,data,it);
             return items;
         },
-
-
-        exportData:function(selected,obj){
+        // importData:function (selected,it){
+        //     console.log('importData',selected,it);
+        // },
+        // exportData:function (selected,it){
+        //     console.log('exportData',selected,it);
+        // },
+        importData:function (selected,it){
             var value = {};
             var ps={searchField: "$composite", searchValue: JSON.stringify(value)};
             var downloadUrl=moduleURL+"/export-excel";
@@ -188,16 +192,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
 
         importData:function(selected,obj){
-            var q="?code=123&importApi="+moduleURL+"/import-excel";
-            var index = admin.popupCenter({
-                title: "数据导入",
-                resize: false,
-                id: 'assetDataImport',
-                area: ["60%", "50%"],
-                type: 2,
-                content: '/business/common/tpl_file/import_form.html'+q,
-            });
-        },
+        var q="?code=123&importApi="+moduleURL+"/import-excel";
+        var index = admin.popupCenter({
+            title: "数据导入",
+            resize: false,
+            id: 'assetDataImport',
+            area: ["60%", "50%"],
+            type: 2,
+            content: '/business/common/tpl_file/import_form.html'+q,
+        });
+    },
         /**
          * 末尾执行
          */

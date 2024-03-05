@@ -10,12 +10,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
-import org.github.foxnic.web.domain.system.DictItem;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.hr.meta.AttendanceTplMeta;
@@ -27,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考勤模版
  * <p>考勤模版 , 数据表 hr_attendance_tpl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:48:54
- * @sign 105D9AEA3AE3D4F89EC05102CE500EA1
+ * @since 2024-02-27 13:13:44
+ * @sign B8B93DB56F24CC7C739AAF607F611C7D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -56,25 +52,19 @@ public class AttendanceTpl extends Entity {
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "默认模版")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "默认组")
 	private String name;
 	
 	/**
-	 * 上班时间：上班时间
+	 * 类型：类型
 	*/
-	@ApiModelProperty(required = false,value="上班时间" , notes = "上班时间" , example = "2024-02-15 08:30:00")
-	private Date onWorkTime;
-	
-	/**
-	 * 下班时间：下班时间
-	*/
-	@ApiModelProperty(required = false,value="下班时间" , notes = "下班时间" , example = "2024-01-30 05:30:00")
-	private Date offWorkTime;
+	@ApiModelProperty(required = false,value="类型" , notes = "类型")
+	private String tplType;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "默认考勤组")
 	private String notes;
 	
 	/**
@@ -98,7 +88,7 @@ public class AttendanceTpl extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-02-15 02:47:23")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-02-25 08:10:40")
 	private Date updateTime;
 	
 	/**
@@ -125,7 +115,7 @@ public class AttendanceTpl extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "10")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "21")
 	private Integer version;
 	
 	/**
@@ -135,16 +125,10 @@ public class AttendanceTpl extends Entity {
 	private String tenantId;
 	
 	/**
-	 * weekDict：weekDict
+	 * selectedCode：selectedCode
 	*/
-	@ApiModelProperty(required = false,value="weekDict" , notes = "weekDict")
-	private List<DictItem> weekDict;
-	
-	/**
-	 * weekList：weekList
-	*/
-	@ApiModelProperty(required = false,value="weekList" , notes = "weekList")
-	private List<String> weekList;
+	@ApiModelProperty(required = false,value="selectedCode" , notes = "selectedCode")
+	private String selectedCode;
 	
 	/**
 	 * 获得 主键<br>
@@ -204,40 +188,21 @@ public class AttendanceTpl extends Entity {
 	}
 	
 	/**
-	 * 获得 上班时间<br>
-	 * 上班时间
-	 * @return 上班时间
+	 * 获得 类型<br>
+	 * 类型
+	 * @return 类型
 	*/
-	public Date getOnWorkTime() {
-		return onWorkTime;
+	public String getTplType() {
+		return tplType;
 	}
 	
 	/**
-	 * 设置 上班时间
-	 * @param onWorkTime 上班时间
+	 * 设置 类型
+	 * @param tplType 类型
 	 * @return 当前对象
 	*/
-	public AttendanceTpl setOnWorkTime(Date onWorkTime) {
-		this.onWorkTime=onWorkTime;
-		return this;
-	}
-	
-	/**
-	 * 获得 下班时间<br>
-	 * 下班时间
-	 * @return 下班时间
-	*/
-	public Date getOffWorkTime() {
-		return offWorkTime;
-	}
-	
-	/**
-	 * 设置 下班时间
-	 * @param offWorkTime 下班时间
-	 * @return 当前对象
-	*/
-	public AttendanceTpl setOffWorkTime(Date offWorkTime) {
-		this.offWorkTime=offWorkTime;
+	public AttendanceTpl setTplType(String tplType) {
+		this.tplType=tplType;
 		return this;
 	}
 	
@@ -463,62 +428,21 @@ public class AttendanceTpl extends Entity {
 	}
 	
 	/**
-	 * 获得 weekDict<br>
-	 * weekDict
-	 * @return weekDict
+	 * 获得 selectedCode<br>
+	 * selectedCode
+	 * @return selectedCode
 	*/
-	public List<DictItem> getWeekDict() {
-		return weekDict;
+	public String getSelectedCode() {
+		return selectedCode;
 	}
 	
 	/**
-	 * 设置 weekDict
-	 * @param weekDict weekDict
+	 * 设置 selectedCode
+	 * @param selectedCode selectedCode
 	 * @return 当前对象
 	*/
-	public AttendanceTpl setWeekDict(List<DictItem> weekDict) {
-		this.weekDict=weekDict;
-		return this;
-	}
-	
-	/**
-	 * 添加 weekDict
-	 * @param entity weekDict
-	 * @return 当前对象
-	*/
-	public AttendanceTpl addWeekDict(DictItem... entity) {
-		if(this.weekDict==null) weekDict=new ArrayList<>();
-		this.weekDict.addAll(Arrays.asList(entity));
-		return this;
-	}
-	
-	/**
-	 * 获得 weekList<br>
-	 * weekList
-	 * @return weekList
-	*/
-	public List<String> getWeekList() {
-		return weekList;
-	}
-	
-	/**
-	 * 设置 weekList
-	 * @param weekList weekList
-	 * @return 当前对象
-	*/
-	public AttendanceTpl setWeekList(List<String> weekList) {
-		this.weekList=weekList;
-		return this;
-	}
-	
-	/**
-	 * 添加 weekList
-	 * @param week weekList
-	 * @return 当前对象
-	*/
-	public AttendanceTpl addWeek(String... week) {
-		if(this.weekList==null) weekList=new ArrayList<>();
-		this.weekList.addAll(Arrays.asList(week));
+	public AttendanceTpl setSelectedCode(String selectedCode) {
+		this.selectedCode=selectedCode;
 		return this;
 	}
 
@@ -566,13 +490,12 @@ public class AttendanceTpl extends Entity {
 	@Transient
 	public AttendanceTpl duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AttendanceTplMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AttendanceTplMeta.$$proxy$$();
+		inst.setTplType(this.getTplType());
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
-		inst.setOnWorkTime(this.getOnWorkTime());
 		inst.setCreateBy(this.getCreateBy());
-		inst.setOffWorkTime(this.getOffWorkTime());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -582,8 +505,7 @@ public class AttendanceTpl extends Entity {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
-			inst.setWeekList(this.getWeekList());
-			inst.setWeekDict(this.getWeekDict());
+			inst.setSelectedCode(this.getSelectedCode());
 		}
 		inst.clearModifies();
 		return inst;
@@ -643,13 +565,12 @@ public class AttendanceTpl extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setTplType(DataParser.parse(String.class, map.get(AttendanceTplMeta.TPL_TYPE)));
 			this.setCode(DataParser.parse(String.class, map.get(AttendanceTplMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(AttendanceTplMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AttendanceTplMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AttendanceTplMeta.VERSION)));
-			this.setOnWorkTime(DataParser.parse(Date.class, map.get(AttendanceTplMeta.ON_WORK_TIME)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AttendanceTplMeta.CREATE_BY)));
-			this.setOffWorkTime(DataParser.parse(Date.class, map.get(AttendanceTplMeta.OFF_WORK_TIME)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AttendanceTplMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AttendanceTplMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AttendanceTplMeta.UPDATE_BY)));
@@ -659,16 +580,16 @@ public class AttendanceTpl extends Entity {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AttendanceTplMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(AttendanceTplMeta.ID)));
 			// others
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AttendanceTplMeta.SELECTED_CODE)));
 			return true;
 		} else {
 			try {
+				this.setTplType( (String)map.get(AttendanceTplMeta.TPL_TYPE));
 				this.setCode( (String)map.get(AttendanceTplMeta.CODE));
 				this.setNotes( (String)map.get(AttendanceTplMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(AttendanceTplMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(AttendanceTplMeta.VERSION));
-				this.setOnWorkTime( (Date)map.get(AttendanceTplMeta.ON_WORK_TIME));
 				this.setCreateBy( (String)map.get(AttendanceTplMeta.CREATE_BY));
-				this.setOffWorkTime( (Date)map.get(AttendanceTplMeta.OFF_WORK_TIME));
 				this.setDeleted( (Integer)map.get(AttendanceTplMeta.DELETED));
 				this.setCreateTime( (Date)map.get(AttendanceTplMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(AttendanceTplMeta.UPDATE_BY));
@@ -678,6 +599,7 @@ public class AttendanceTpl extends Entity {
 				this.setDeleteBy( (String)map.get(AttendanceTplMeta.DELETE_BY));
 				this.setId( (String)map.get(AttendanceTplMeta.ID));
 				// others
+				this.setSelectedCode( (String)map.get(AttendanceTplMeta.SELECTED_CODE));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -694,13 +616,12 @@ public class AttendanceTpl extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setTplType(DataParser.parse(String.class, r.getValue(AttendanceTplMeta.TPL_TYPE)));
 			this.setCode(DataParser.parse(String.class, r.getValue(AttendanceTplMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(AttendanceTplMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AttendanceTplMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AttendanceTplMeta.VERSION)));
-			this.setOnWorkTime(DataParser.parse(Date.class, r.getValue(AttendanceTplMeta.ON_WORK_TIME)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AttendanceTplMeta.CREATE_BY)));
-			this.setOffWorkTime(DataParser.parse(Date.class, r.getValue(AttendanceTplMeta.OFF_WORK_TIME)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AttendanceTplMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AttendanceTplMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AttendanceTplMeta.UPDATE_BY)));
@@ -712,13 +633,12 @@ public class AttendanceTpl extends Entity {
 			return true;
 		} else {
 			try {
+				this.setTplType( (String)r.getValue(AttendanceTplMeta.TPL_TYPE));
 				this.setCode( (String)r.getValue(AttendanceTplMeta.CODE));
 				this.setNotes( (String)r.getValue(AttendanceTplMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(AttendanceTplMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(AttendanceTplMeta.VERSION));
-				this.setOnWorkTime( (Date)r.getValue(AttendanceTplMeta.ON_WORK_TIME));
 				this.setCreateBy( (String)r.getValue(AttendanceTplMeta.CREATE_BY));
-				this.setOffWorkTime( (Date)r.getValue(AttendanceTplMeta.OFF_WORK_TIME));
 				this.setDeleted( (Integer)r.getValue(AttendanceTplMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(AttendanceTplMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(AttendanceTplMeta.UPDATE_BY));

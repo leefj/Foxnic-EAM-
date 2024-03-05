@@ -19,7 +19,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //模块基础路径
     const moduleURL="/service-hr/hr-interview";
-
+    var timestamp = Date.parse(new Date());
+    var formAction=admin.getTempData('hr-interview-form-data-form-action');
 
     //列表页的扩展
     var list={
@@ -261,6 +262,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
+            data.selectedCode=timestamp;
             return true;
         },
         /**
@@ -285,8 +287,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("personSelectList",ifr,data);
             //设置 iframe 高度
             ifr.height("400px");
+            var interviewId="";
+            if(formAction=="create"){
+                interviewId=timestamp
+            }else{
+                interviewId=data.id
+            }
             //设置地址
-            win.location="/business/system/node/node_list.html?id="+data.id;
+            win.location="/business/hr/person_interview/person_interview_list.html?action="+formAction+"&interviewId="+interviewId;
         },
         /**
          * 文件上传组件回调

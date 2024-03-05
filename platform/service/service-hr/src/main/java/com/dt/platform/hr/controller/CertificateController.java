@@ -46,7 +46,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 证书管理接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 09:46:21
+ * @since 2024-02-28 07:53:34
 */
 
 @InDoc
@@ -57,24 +57,25 @@ public class CertificateController extends SuperController {
 	@Autowired
 	private ICertificateService certificateService;
 
-
 	/**
 	 * 添加证书管理
 	*/
 	@ApiOperation(value = "添加证书管理")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CertificateVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.CERT_LEVEL , value = "级别" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "666941995872157696"),
+		@ApiImplicitParam(name = CertificateVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "666941704535801856"),
+		@ApiImplicitParam(name = CertificateVOMeta.CERT_LEVEL , value = "级别" , required = false , dataTypeClass=String.class , example = "666941864850489344"),
+		@ApiImplicitParam(name = CertificateVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "软件工程师初级"),
 		@ApiImplicitParam(name = CertificateVOMeta.SORT , value = "排序" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CertificateVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = CertificateServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CertificateServiceProxy.INSERT)
 	public Result insert(CertificateVO certificateVO) {
+		
 		Result result=certificateService.insert(certificateVO,false);
 		return result;
 	}
@@ -86,12 +87,13 @@ public class CertificateController extends SuperController {
 	*/
 	@ApiOperation(value = "删除证书管理")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CertificateVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = CertificateVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "666941995872157696")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = CertificateServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CertificateServiceProxy.DELETE)
 	public Result deleteById(String id) {
+		
 		this.validator().asserts(id).require("缺少id值");
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
@@ -120,7 +122,7 @@ public class CertificateController extends SuperController {
 	@SentinelResource(value = CertificateServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CertificateServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
-
+		
 		// 参数校验
 		this.validator().asserts(ids).require("缺少ids参数");
 		if(this.validator().failure()) {
@@ -168,18 +170,20 @@ public class CertificateController extends SuperController {
 	*/
 	@ApiOperation(value = "更新证书管理")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CertificateVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.CERT_LEVEL , value = "级别" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "666941995872157696"),
+		@ApiImplicitParam(name = CertificateVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "666941704535801856"),
+		@ApiImplicitParam(name = CertificateVOMeta.CERT_LEVEL , value = "级别" , required = false , dataTypeClass=String.class , example = "666941864850489344"),
+		@ApiImplicitParam(name = CertificateVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "软件工程师初级"),
 		@ApiImplicitParam(name = CertificateVOMeta.SORT , value = "排序" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CertificateVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { CertificateVOMeta.PAGE_INDEX , CertificateVOMeta.PAGE_SIZE , CertificateVOMeta.SEARCH_FIELD , CertificateVOMeta.FUZZY_FIELD , CertificateVOMeta.SEARCH_VALUE , CertificateVOMeta.DIRTY_FIELDS , CertificateVOMeta.SORT_FIELD , CertificateVOMeta.SORT_TYPE , CertificateVOMeta.DATA_ORIGIN , CertificateVOMeta.QUERY_LOGIC , CertificateVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { CertificateVOMeta.PAGE_INDEX , CertificateVOMeta.PAGE_SIZE , CertificateVOMeta.SEARCH_FIELD , CertificateVOMeta.FUZZY_FIELD , CertificateVOMeta.SEARCH_VALUE , CertificateVOMeta.DIRTY_FIELDS , CertificateVOMeta.SORT_FIELD , CertificateVOMeta.SORT_TYPE , CertificateVOMeta.DATA_ORIGIN , CertificateVOMeta.QUERY_LOGIC , CertificateVOMeta.REQUEST_ACTION , CertificateVOMeta.IDS } )
 	@SentinelResource(value = CertificateServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CertificateServiceProxy.UPDATE)
 	public Result update(CertificateVO certificateVO) {
+		
 		Result result=certificateService.update(certificateVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -190,18 +194,20 @@ public class CertificateController extends SuperController {
 	*/
 	@ApiOperation(value = "保存证书管理")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CertificateVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.CERT_LEVEL , value = "级别" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "666941995872157696"),
+		@ApiImplicitParam(name = CertificateVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "666941704535801856"),
+		@ApiImplicitParam(name = CertificateVOMeta.CERT_LEVEL , value = "级别" , required = false , dataTypeClass=String.class , example = "666941864850489344"),
+		@ApiImplicitParam(name = CertificateVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "软件工程师初级"),
 		@ApiImplicitParam(name = CertificateVOMeta.SORT , value = "排序" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CertificateVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { CertificateVOMeta.PAGE_INDEX , CertificateVOMeta.PAGE_SIZE , CertificateVOMeta.SEARCH_FIELD , CertificateVOMeta.FUZZY_FIELD , CertificateVOMeta.SEARCH_VALUE , CertificateVOMeta.DIRTY_FIELDS , CertificateVOMeta.SORT_FIELD , CertificateVOMeta.SORT_TYPE , CertificateVOMeta.DATA_ORIGIN , CertificateVOMeta.QUERY_LOGIC , CertificateVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { CertificateVOMeta.PAGE_INDEX , CertificateVOMeta.PAGE_SIZE , CertificateVOMeta.SEARCH_FIELD , CertificateVOMeta.FUZZY_FIELD , CertificateVOMeta.SEARCH_VALUE , CertificateVOMeta.DIRTY_FIELDS , CertificateVOMeta.SORT_FIELD , CertificateVOMeta.SORT_TYPE , CertificateVOMeta.DATA_ORIGIN , CertificateVOMeta.QUERY_LOGIC , CertificateVOMeta.REQUEST_ACTION , CertificateVOMeta.IDS } )
 	@SentinelResource(value = CertificateServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CertificateServiceProxy.SAVE)
 	public Result save(CertificateVO certificateVO) {
+		
 		Result result=certificateService.save(certificateVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -218,6 +224,7 @@ public class CertificateController extends SuperController {
 	@SentinelResource(value = CertificateServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CertificateServiceProxy.GET_BY_ID)
 	public Result<Certificate> getById(String id) {
+		
 		Result<Certificate> result=new Result<>();
 		Certificate certificate=certificateService.getById(id);
 		// join 关联的对象
@@ -242,6 +249,7 @@ public class CertificateController extends SuperController {
 		@SentinelResource(value = CertificateServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CertificateServiceProxy.GET_BY_IDS)
 	public Result<List<Certificate>> getByIds(List<String> ids) {
+		
 		Result<List<Certificate>> result=new Result<>();
 		List<Certificate> list=certificateService.queryListByIds(ids);
 		result.success(true).data(list);
@@ -254,17 +262,19 @@ public class CertificateController extends SuperController {
 	*/
 	@ApiOperation(value = "查询证书管理")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CertificateVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.CERT_LEVEL , value = "级别" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "666941995872157696"),
+		@ApiImplicitParam(name = CertificateVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "666941704535801856"),
+		@ApiImplicitParam(name = CertificateVOMeta.CERT_LEVEL , value = "级别" , required = false , dataTypeClass=String.class , example = "666941864850489344"),
+		@ApiImplicitParam(name = CertificateVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "软件工程师初级"),
 		@ApiImplicitParam(name = CertificateVOMeta.SORT , value = "排序" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CertificateVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { CertificateVOMeta.PAGE_INDEX , CertificateVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = CertificateServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CertificateServiceProxy.QUERY_LIST)
 	public Result<List<Certificate>> queryList(CertificateVO sample) {
+		
 		Result<List<Certificate>> result=new Result<>();
 		List<Certificate> list=certificateService.queryList(sample);
 		result.success(true).data(list);
@@ -277,17 +287,19 @@ public class CertificateController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询证书管理")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CertificateVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.CERT_LEVEL , value = "级别" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CertificateVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "666941995872157696"),
+		@ApiImplicitParam(name = CertificateVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "666941704535801856"),
+		@ApiImplicitParam(name = CertificateVOMeta.CERT_LEVEL , value = "级别" , required = false , dataTypeClass=String.class , example = "666941864850489344"),
+		@ApiImplicitParam(name = CertificateVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "软件工程师初级"),
 		@ApiImplicitParam(name = CertificateVOMeta.SORT , value = "排序" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CertificateVOMeta.NOTE , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = CertificateServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CertificateServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<Certificate>> queryPagedList(CertificateVO sample) {
+		
 		Result<PagedList<Certificate>> result=new Result<>();
 		PagedList<Certificate> list=certificateService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
 		// join 关联的对象
@@ -298,7 +310,6 @@ public class CertificateController extends SuperController {
 		result.success(true).data(list);
 		return result;
 	}
-
 
 
 

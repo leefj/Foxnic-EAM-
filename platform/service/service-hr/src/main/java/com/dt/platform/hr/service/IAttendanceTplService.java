@@ -24,7 +24,7 @@ import java.util.Map;
  * 考勤模版服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:43:16
+ * @since 2024-02-25 19:16:26
 */
 
 public interface IAttendanceTplService extends  ISimpleIdService<AttendanceTpl,String> {

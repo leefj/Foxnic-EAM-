@@ -3,6 +3,9 @@ package com.dt.platform.proxy.eam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.eam.Goods;
 import com.dt.platform.domain.eam.GoodsVO;
@@ -10,14 +13,13 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
- * 物品档案  控制器服务代理
+ * 物品档案 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:56
+ * @since 2024-02-21 10:02:51
  */
 @FeignClient(value = ServiceNames.EAM, contextId = GoodsServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface GoodsServiceProxy {
@@ -83,21 +85,6 @@ public interface GoodsServiceProxy {
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
-     * 导出物品档案数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载物品档案导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入物品档案数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
-
-    /**
      * 添加物品档案
      */
     @RequestMapping(GoodsServiceProxy.INSERT)
@@ -134,7 +121,7 @@ public interface GoodsServiceProxy {
     Result<Goods> getById(@RequestParam(name = "id") String id);
 
     /**
-     * 批量删除物品档案
+     * 获取多个物品档案
      */
     @RequestMapping(GoodsServiceProxy.GET_BY_IDS)
     Result<List<Goods>> getByIds(@RequestParam(name = "ids") List<String> ids);

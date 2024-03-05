@@ -84,6 +84,8 @@ public interface AttendanceDateServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+
+
     /**
      * 添加考勤日期
      */

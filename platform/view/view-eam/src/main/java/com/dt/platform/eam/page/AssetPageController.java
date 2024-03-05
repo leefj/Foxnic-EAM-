@@ -4,12 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dt.platform.constants.enums.eam.*;
+import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetAttributeItem;
 import com.dt.platform.domain.eam.AssetAttributeItemVO;
+import com.dt.platform.domain.eam.AssetVO;
 import com.dt.platform.proxy.eam.*;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.bean.BeanNameUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.dao.data.PagedList;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.hrm.OrganizationVO;
 import org.github.foxnic.web.domain.pcm.Catalog;
@@ -57,6 +60,43 @@ public class AssetPageController extends ViewController {
 		}
 		return proxy;
 	}
+
+	/**
+	 * 资产
+	 */
+	@RequestMapping("/asset_info_scan.html")
+	public String asset_info_scan(Model model,HttpServletRequest request,String code) {
+		model.addAttribute("code",code);
+		String resStr="";
+		Asset asset=null;
+		String msg="";
+		if(StringUtil.isBlank(code)){
+			resStr="false";
+			msg="编号未空";
+		}else{
+			AssetVO assetVO=new AssetVO();
+			assetVO.setAssetCode(code);
+			assetVO.setOwnerCode("asset");
+			Result<List<Asset>> res=AssetServiceProxy.api().queryList(assetVO);
+			resStr=res.isSuccess()?"true":"false";
+			msg=res.getMessage();
+			if(res.isSuccess()){
+				List<Asset> list=res.getData();
+				if (list.size()==0){
+					msg="未找到资产数据";
+					resStr="false";
+				}else{
+					asset=list.get(0);
+				}
+			}
+		}
+
+		model.addAttribute("result",resStr);
+		model.addAttribute("message",msg);
+		model.addAttribute("asset",asset);
+		return prefix+"/asset_info_scan";
+	}
+
 
 
 	/**

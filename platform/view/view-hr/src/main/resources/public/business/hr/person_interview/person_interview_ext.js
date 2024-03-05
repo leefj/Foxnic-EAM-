@@ -27,6 +27,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 列表页初始化前调用
          * */
         beforeInit:function () {
+            if(ACTION=="create"){
+                console.log("none")
+            }else if(ACTION=="view"){
+                var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+                document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+                var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
+                document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+            }
             console.log("list:beforeInit");
         },
         /**
@@ -93,6 +105,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            if(INTERVIEW_ID&&INTERVIEW_ID.length>0){
+                param.interviewId=INTERVIEW_ID;
+            }
             return true;
         },
         /**
@@ -118,6 +133,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单页面打开时，追加更多的参数信息
          * */
         makeFormQueryString:function(data,queryString,action) {
+            if(data&&data.id){
+                queryString=queryString+"&interviewId="+INTERVIEW_ID;
+            }else{
+                queryString="interviewId="+INTERVIEW_ID;
+            }
             return queryString;
         },
         /**
@@ -261,6 +281,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
+            if(data&&data.id){
+                console.log("none");
+            }else{
+                data.interviewId=INTERVIEW_ID;
+            }
             return true;
         },
         /**

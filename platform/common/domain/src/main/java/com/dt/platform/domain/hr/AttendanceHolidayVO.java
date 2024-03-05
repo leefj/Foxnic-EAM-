@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 休假管理VO类型
  * <p>休假管理 , 数据表 hr_attendance_holiday 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-16 20:49:25
+ * @since 2024-02-25 14:09:10
  * @sign 52C985EC46D0D3FAD0C5631A9F745445
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -428,9 +428,11 @@ public class AttendanceHolidayVO extends AttendanceHoliday {
 			inst.setSOrgId(this.getSOrgId());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
+			inst.setAttendanceTplList(this.getAttendanceTplList());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setPerson(this.getPerson());
+			inst.setAttendanceTplIdsList(this.getAttendanceTplIdsList());
 			inst.setTypeDict(this.getTypeDict());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());

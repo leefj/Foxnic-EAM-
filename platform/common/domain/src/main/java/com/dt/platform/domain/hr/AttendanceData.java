@@ -8,6 +8,7 @@ import com.dt.platform.constants.db.HrTables.HR_ATTENDANCE_DATA;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
+import java.math.BigDecimal;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考勤汇总
  * <p>考勤汇总 , 数据表 hr_attendance_data 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 15:15:15
- * @sign 6965955D9B44788B65ED8107099861BB
+ * @since 2024-02-25 21:45:45
+ * @sign 1801815E431C2452EC3B027947A26E54
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,32 +41,56 @@ public class AttendanceData extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "810527595941593088")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "814250826699636736")
 	private String id;
 	
 	/**
 	 * 人员：人员
 	*/
-	@ApiModelProperty(required = false,value="人员" , notes = "人员" , example = "808428146557714432")
+	@ApiModelProperty(required = false,value="人员" , notes = "人员" , example = "799379402461806592")
 	private String personId;
 	
 	/**
-	 * 考勤模版：考勤模版
+	 * 考勤组：考勤组
 	*/
-	@ApiModelProperty(required = false,value="考勤模版" , notes = "考勤模版" , example = "default")
+	@ApiModelProperty(required = false,value="考勤组" , notes = "考勤组" , example = "default")
 	private String attendanceTplCode;
 	
 	/**
-	 * 工号：工号
+	 * 是否工作日：是否工作日
 	*/
-	@ApiModelProperty(required = false,value="工号" , notes = "工号")
-	private String jobNumber;
+	@ApiModelProperty(required = false,value="是否工作日" , notes = "是否工作日" , example = "yes")
+	private String isWorkDay;
 	
 	/**
 	 * 考勤日期：考勤日期
 	*/
-	@ApiModelProperty(required = false,value="考勤日期" , notes = "考勤日期")
+	@ApiModelProperty(required = false,value="考勤日期" , notes = "考勤日期" , example = "2024-01-29 12:00:00")
 	private Date attendanceDate;
+	
+	/**
+	 * 考勤日期：考勤日期
+	*/
+	@ApiModelProperty(required = false,value="考勤日期" , notes = "考勤日期" , example = "2024-01-29")
+	private String attendanceDateStr;
+	
+	/**
+	 * 结果：结果
+	*/
+	@ApiModelProperty(required = false,value="结果" , notes = "结果" , example = " 矿工")
+	private String result;
+	
+	/**
+	 * 上班天数：上班天数
+	*/
+	@ApiModelProperty(required = false,value="上班天数" , notes = "上班天数" , example = "0.00")
+	private BigDecimal normalDay;
+	
+	/**
+	 * 应上班天数：应上班天数
+	*/
+	@ApiModelProperty(required = false,value="应上班天数" , notes = "应上班天数" , example = "1.00")
+	private BigDecimal needDay;
 	
 	/**
 	 * 上班打卡：上班打卡
@@ -82,7 +107,7 @@ public class AttendanceData extends Entity {
 	/**
 	 * 下班打卡：下班打卡
 	*/
-	@ApiModelProperty(required = false,value="下班打卡" , notes = "下班打卡" , example = "2024-02-13 12:00:04")
+	@ApiModelProperty(required = false,value="下班打卡" , notes = "下班打卡")
 	private Date offWorkTime;
 	
 	/**
@@ -92,46 +117,148 @@ public class AttendanceData extends Entity {
 	private Date offWorkTime2;
 	
 	/**
-	 * 早退：早退
+	 * 迟到：次)
 	*/
-	@ApiModelProperty(required = false,value="早退" , notes = "早退" , example = "12")
-	private String leaveEarly;
+	@ApiModelProperty(required = false,value="迟到" , notes = "次)" , example = "0")
+	private Integer leaveEarly;
 	
 	/**
-	 * 晚退：晚退
+	 * 迟到：分)
 	*/
-	@ApiModelProperty(required = false,value="晚退" , notes = "晚退" , example = "12")
-	private String leaveLate;
+	@ApiModelProperty(required = false,value="迟到" , notes = "分)" , example = "0.00")
+	private BigDecimal leaveEarlyTime;
 	
 	/**
-	 * 矿工：矿工
+	 * 早退：次)
 	*/
-	@ApiModelProperty(required = false,value="矿工" , notes = "矿工" , example = "12")
-	private String skipWork;
+	@ApiModelProperty(required = false,value="早退" , notes = "次)" , example = "0")
+	private Integer leaveLate;
 	
 	/**
-	 * 补签：补签
+	 * 早退：分)
 	*/
-	@ApiModelProperty(required = false,value="补签" , notes = "补签" , example = "12")
-	private String bq;
+	@ApiModelProperty(required = false,value="早退" , notes = "分)" , example = "0.00")
+	private BigDecimal leaveLateTime;
 	
 	/**
-	 * 请假：请假
+	 * 上班缺卡：次)
 	*/
-	@ApiModelProperty(required = false,value="请假" , notes = "请假" , example = "12")
-	private String qj;
+	@ApiModelProperty(required = false,value="上班缺卡" , notes = "次)" , example = "1")
+	private Integer lossEarly;
 	
 	/**
-	 * 出差：出差
+	 * 下班却卡：次)
 	*/
-	@ApiModelProperty(required = false,value="出差" , notes = "出差" , example = "1212")
-	private String cc;
+	@ApiModelProperty(required = false,value="下班却卡" , notes = "次)" , example = "1")
+	private Integer lossLate;
+	
+	/**
+	 * 缺卡处理：次)
+	*/
+	@ApiModelProperty(required = false,value="缺卡处理" , notes = "次)" , example = "0")
+	private Integer lossProcess;
+	
+	/**
+	 * 工作日加班：小时)
+	*/
+	@ApiModelProperty(required = false,value="工作日加班" , notes = "小时)" , example = "0.00")
+	private BigDecimal jbGzr;
+	
+	/**
+	 * 休息日加班：小时)
+	*/
+	@ApiModelProperty(required = false,value="休息日加班" , notes = "小时)" , example = "0.00")
+	private BigDecimal jbXxr;
+	
+	/**
+	 * 节假日加班：小时)
+	*/
+	@ApiModelProperty(required = false,value="节假日加班" , notes = "小时)" , example = "0.00")
+	private BigDecimal jbJjr;
+	
+	/**
+	 * 出差：天)
+	*/
+	@ApiModelProperty(required = false,value="出差" , notes = "天)" , example = "0.00")
+	private BigDecimal cc;
+	
+	/**
+	 * 年假：天)
+	*/
+	@ApiModelProperty(required = false,value="年假" , notes = "天)" , example = "0.00")
+	private BigDecimal qjNj;
+	
+	/**
+	 * 工伤假：天)
+	*/
+	@ApiModelProperty(required = false,value="工伤假" , notes = "天)" , example = "0.00")
+	private BigDecimal qjGsj;
+	
+	/**
+	 * 产假：天)
+	*/
+	@ApiModelProperty(required = false,value="产假" , notes = "天)" , example = "0.00")
+	private BigDecimal qjCj;
+	
+	/**
+	 * 婚假：天)
+	*/
+	@ApiModelProperty(required = false,value="婚假" , notes = "天)" , example = "0.00")
+	private BigDecimal qjHj;
+	
+	/**
+	 * 病假：天)
+	*/
+	@ApiModelProperty(required = false,value="病假" , notes = "天)" , example = "0.00")
+	private BigDecimal qjBj;
+	
+	/**
+	 * 事假：天)
+	*/
+	@ApiModelProperty(required = false,value="事假" , notes = "天)" , example = "0.00")
+	private BigDecimal qjSj;
+	
+	/**
+	 * 调休假：天)
+	*/
+	@ApiModelProperty(required = false,value="调休假" , notes = "天)" , example = "0.00")
+	private BigDecimal qjTxj;
+	
+	/**
+	 * 哺乳假：天)
+	*/
+	@ApiModelProperty(required = false,value="哺乳假" , notes = "天)" , example = "0.00")
+	private BigDecimal qjPlj;
+	
+	/**
+	 * 批次号：批次号
+	*/
+	@ApiModelProperty(required = false,value="批次号" , notes = "批次号")
+	private String batchCode;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
+	
+	/**
+	 * 关联：关联
+	*/
+	@ApiModelProperty(required = false,value="关联" , notes = "关联")
+	private String relId;
+	
+	/**
+	 * 说明：说明
+	*/
+	@ApiModelProperty(required = false,value="说明" , notes = "说明")
+	private String dayInfo;
+	
+	/**
+	 * 记录时间：记录时间
+	*/
+	@ApiModelProperty(required = false,value="记录时间" , notes = "记录时间" , example = "2024-02-25 09:42:05")
+	private Date rcdTime;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -142,7 +269,7 @@ public class AttendanceData extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-02-15 03:07:18")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-02-25 09:42:05")
 	private Date createTime;
 	
 	/**
@@ -209,6 +336,24 @@ public class AttendanceData extends Entity {
 	private String personJobName;
 	
 	/**
+	 * sJobNumber：sJobNumber
+	*/
+	@ApiModelProperty(required = false,value="sJobNumber" , notes = "sJobNumber")
+	private String sJobNumber;
+	
+	/**
+	 * rq：rq
+	*/
+	@ApiModelProperty(required = false,value="rq" , notes = "rq")
+	private String rq;
+	
+	/**
+	 * days：days
+	*/
+	@ApiModelProperty(required = false,value="days" , notes = "days")
+	private String days;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -247,17 +392,17 @@ public class AttendanceData extends Entity {
 	}
 	
 	/**
-	 * 获得 考勤模版<br>
-	 * 考勤模版
-	 * @return 考勤模版
+	 * 获得 考勤组<br>
+	 * 考勤组
+	 * @return 考勤组
 	*/
 	public String getAttendanceTplCode() {
 		return attendanceTplCode;
 	}
 	
 	/**
-	 * 设置 考勤模版
-	 * @param attendanceTplCode 考勤模版
+	 * 设置 考勤组
+	 * @param attendanceTplCode 考勤组
 	 * @return 当前对象
 	*/
 	public AttendanceData setAttendanceTplCode(String attendanceTplCode) {
@@ -266,21 +411,21 @@ public class AttendanceData extends Entity {
 	}
 	
 	/**
-	 * 获得 工号<br>
-	 * 工号
-	 * @return 工号
+	 * 获得 是否工作日<br>
+	 * 是否工作日
+	 * @return 是否工作日
 	*/
-	public String getJobNumber() {
-		return jobNumber;
+	public String getIsWorkDay() {
+		return isWorkDay;
 	}
 	
 	/**
-	 * 设置 工号
-	 * @param jobNumber 工号
+	 * 设置 是否工作日
+	 * @param isWorkDay 是否工作日
 	 * @return 当前对象
 	*/
-	public AttendanceData setJobNumber(String jobNumber) {
-		this.jobNumber=jobNumber;
+	public AttendanceData setIsWorkDay(String isWorkDay) {
+		this.isWorkDay=isWorkDay;
 		return this;
 	}
 	
@@ -300,6 +445,82 @@ public class AttendanceData extends Entity {
 	*/
 	public AttendanceData setAttendanceDate(Date attendanceDate) {
 		this.attendanceDate=attendanceDate;
+		return this;
+	}
+	
+	/**
+	 * 获得 考勤日期<br>
+	 * 考勤日期
+	 * @return 考勤日期
+	*/
+	public String getAttendanceDateStr() {
+		return attendanceDateStr;
+	}
+	
+	/**
+	 * 设置 考勤日期
+	 * @param attendanceDateStr 考勤日期
+	 * @return 当前对象
+	*/
+	public AttendanceData setAttendanceDateStr(String attendanceDateStr) {
+		this.attendanceDateStr=attendanceDateStr;
+		return this;
+	}
+	
+	/**
+	 * 获得 结果<br>
+	 * 结果
+	 * @return 结果
+	*/
+	public String getResult() {
+		return result;
+	}
+	
+	/**
+	 * 设置 结果
+	 * @param result 结果
+	 * @return 当前对象
+	*/
+	public AttendanceData setResult(String result) {
+		this.result=result;
+		return this;
+	}
+	
+	/**
+	 * 获得 上班天数<br>
+	 * 上班天数
+	 * @return 上班天数
+	*/
+	public BigDecimal getNormalDay() {
+		return normalDay;
+	}
+	
+	/**
+	 * 设置 上班天数
+	 * @param normalDay 上班天数
+	 * @return 当前对象
+	*/
+	public AttendanceData setNormalDay(BigDecimal normalDay) {
+		this.normalDay=normalDay;
+		return this;
+	}
+	
+	/**
+	 * 获得 应上班天数<br>
+	 * 应上班天数
+	 * @return 应上班天数
+	*/
+	public BigDecimal getNeedDay() {
+		return needDay;
+	}
+	
+	/**
+	 * 设置 应上班天数
+	 * @param needDay 应上班天数
+	 * @return 当前对象
+	*/
+	public AttendanceData setNeedDay(BigDecimal needDay) {
+		this.needDay=needDay;
 		return this;
 	}
 	
@@ -380,106 +601,201 @@ public class AttendanceData extends Entity {
 	}
 	
 	/**
-	 * 获得 早退<br>
-	 * 早退
-	 * @return 早退
+	 * 获得 迟到<br>
+	 * 次)
+	 * @return 迟到
 	*/
-	public String getLeaveEarly() {
+	public Integer getLeaveEarly() {
 		return leaveEarly;
 	}
 	
 	/**
-	 * 设置 早退
-	 * @param leaveEarly 早退
+	 * 设置 迟到
+	 * @param leaveEarly 迟到
 	 * @return 当前对象
 	*/
-	public AttendanceData setLeaveEarly(String leaveEarly) {
+	public AttendanceData setLeaveEarly(Integer leaveEarly) {
 		this.leaveEarly=leaveEarly;
 		return this;
 	}
 	
 	/**
-	 * 获得 晚退<br>
-	 * 晚退
-	 * @return 晚退
+	 * 获得 迟到<br>
+	 * 分)
+	 * @return 迟到
 	*/
-	public String getLeaveLate() {
+	public BigDecimal getLeaveEarlyTime() {
+		return leaveEarlyTime;
+	}
+	
+	/**
+	 * 设置 迟到
+	 * @param leaveEarlyTime 迟到
+	 * @return 当前对象
+	*/
+	public AttendanceData setLeaveEarlyTime(BigDecimal leaveEarlyTime) {
+		this.leaveEarlyTime=leaveEarlyTime;
+		return this;
+	}
+	
+	/**
+	 * 获得 早退<br>
+	 * 次)
+	 * @return 早退
+	*/
+	public Integer getLeaveLate() {
 		return leaveLate;
 	}
 	
 	/**
-	 * 设置 晚退
-	 * @param leaveLate 晚退
+	 * 设置 早退
+	 * @param leaveLate 早退
 	 * @return 当前对象
 	*/
-	public AttendanceData setLeaveLate(String leaveLate) {
+	public AttendanceData setLeaveLate(Integer leaveLate) {
 		this.leaveLate=leaveLate;
 		return this;
 	}
 	
 	/**
-	 * 获得 矿工<br>
-	 * 矿工
-	 * @return 矿工
+	 * 获得 早退<br>
+	 * 分)
+	 * @return 早退
 	*/
-	public String getSkipWork() {
-		return skipWork;
+	public BigDecimal getLeaveLateTime() {
+		return leaveLateTime;
 	}
 	
 	/**
-	 * 设置 矿工
-	 * @param skipWork 矿工
+	 * 设置 早退
+	 * @param leaveLateTime 早退
 	 * @return 当前对象
 	*/
-	public AttendanceData setSkipWork(String skipWork) {
-		this.skipWork=skipWork;
+	public AttendanceData setLeaveLateTime(BigDecimal leaveLateTime) {
+		this.leaveLateTime=leaveLateTime;
 		return this;
 	}
 	
 	/**
-	 * 获得 补签<br>
-	 * 补签
-	 * @return 补签
+	 * 获得 上班缺卡<br>
+	 * 次)
+	 * @return 上班缺卡
 	*/
-	public String getBq() {
-		return bq;
+	public Integer getLossEarly() {
+		return lossEarly;
 	}
 	
 	/**
-	 * 设置 补签
-	 * @param bq 补签
+	 * 设置 上班缺卡
+	 * @param lossEarly 上班缺卡
 	 * @return 当前对象
 	*/
-	public AttendanceData setBq(String bq) {
-		this.bq=bq;
+	public AttendanceData setLossEarly(Integer lossEarly) {
+		this.lossEarly=lossEarly;
 		return this;
 	}
 	
 	/**
-	 * 获得 请假<br>
-	 * 请假
-	 * @return 请假
+	 * 获得 下班却卡<br>
+	 * 次)
+	 * @return 下班却卡
 	*/
-	public String getQj() {
-		return qj;
+	public Integer getLossLate() {
+		return lossLate;
 	}
 	
 	/**
-	 * 设置 请假
-	 * @param qj 请假
+	 * 设置 下班却卡
+	 * @param lossLate 下班却卡
 	 * @return 当前对象
 	*/
-	public AttendanceData setQj(String qj) {
-		this.qj=qj;
+	public AttendanceData setLossLate(Integer lossLate) {
+		this.lossLate=lossLate;
+		return this;
+	}
+	
+	/**
+	 * 获得 缺卡处理<br>
+	 * 次)
+	 * @return 缺卡处理
+	*/
+	public Integer getLossProcess() {
+		return lossProcess;
+	}
+	
+	/**
+	 * 设置 缺卡处理
+	 * @param lossProcess 缺卡处理
+	 * @return 当前对象
+	*/
+	public AttendanceData setLossProcess(Integer lossProcess) {
+		this.lossProcess=lossProcess;
+		return this;
+	}
+	
+	/**
+	 * 获得 工作日加班<br>
+	 * 小时)
+	 * @return 工作日加班
+	*/
+	public BigDecimal getJbGzr() {
+		return jbGzr;
+	}
+	
+	/**
+	 * 设置 工作日加班
+	 * @param jbGzr 工作日加班
+	 * @return 当前对象
+	*/
+	public AttendanceData setJbGzr(BigDecimal jbGzr) {
+		this.jbGzr=jbGzr;
+		return this;
+	}
+	
+	/**
+	 * 获得 休息日加班<br>
+	 * 小时)
+	 * @return 休息日加班
+	*/
+	public BigDecimal getJbXxr() {
+		return jbXxr;
+	}
+	
+	/**
+	 * 设置 休息日加班
+	 * @param jbXxr 休息日加班
+	 * @return 当前对象
+	*/
+	public AttendanceData setJbXxr(BigDecimal jbXxr) {
+		this.jbXxr=jbXxr;
+		return this;
+	}
+	
+	/**
+	 * 获得 节假日加班<br>
+	 * 小时)
+	 * @return 节假日加班
+	*/
+	public BigDecimal getJbJjr() {
+		return jbJjr;
+	}
+	
+	/**
+	 * 设置 节假日加班
+	 * @param jbJjr 节假日加班
+	 * @return 当前对象
+	*/
+	public AttendanceData setJbJjr(BigDecimal jbJjr) {
+		this.jbJjr=jbJjr;
 		return this;
 	}
 	
 	/**
 	 * 获得 出差<br>
-	 * 出差
+	 * 天)
 	 * @return 出差
 	*/
-	public String getCc() {
+	public BigDecimal getCc() {
 		return cc;
 	}
 	
@@ -488,8 +804,179 @@ public class AttendanceData extends Entity {
 	 * @param cc 出差
 	 * @return 当前对象
 	*/
-	public AttendanceData setCc(String cc) {
+	public AttendanceData setCc(BigDecimal cc) {
 		this.cc=cc;
+		return this;
+	}
+	
+	/**
+	 * 获得 年假<br>
+	 * 天)
+	 * @return 年假
+	*/
+	public BigDecimal getQjNj() {
+		return qjNj;
+	}
+	
+	/**
+	 * 设置 年假
+	 * @param qjNj 年假
+	 * @return 当前对象
+	*/
+	public AttendanceData setQjNj(BigDecimal qjNj) {
+		this.qjNj=qjNj;
+		return this;
+	}
+	
+	/**
+	 * 获得 工伤假<br>
+	 * 天)
+	 * @return 工伤假
+	*/
+	public BigDecimal getQjGsj() {
+		return qjGsj;
+	}
+	
+	/**
+	 * 设置 工伤假
+	 * @param qjGsj 工伤假
+	 * @return 当前对象
+	*/
+	public AttendanceData setQjGsj(BigDecimal qjGsj) {
+		this.qjGsj=qjGsj;
+		return this;
+	}
+	
+	/**
+	 * 获得 产假<br>
+	 * 天)
+	 * @return 产假
+	*/
+	public BigDecimal getQjCj() {
+		return qjCj;
+	}
+	
+	/**
+	 * 设置 产假
+	 * @param qjCj 产假
+	 * @return 当前对象
+	*/
+	public AttendanceData setQjCj(BigDecimal qjCj) {
+		this.qjCj=qjCj;
+		return this;
+	}
+	
+	/**
+	 * 获得 婚假<br>
+	 * 天)
+	 * @return 婚假
+	*/
+	public BigDecimal getQjHj() {
+		return qjHj;
+	}
+	
+	/**
+	 * 设置 婚假
+	 * @param qjHj 婚假
+	 * @return 当前对象
+	*/
+	public AttendanceData setQjHj(BigDecimal qjHj) {
+		this.qjHj=qjHj;
+		return this;
+	}
+	
+	/**
+	 * 获得 病假<br>
+	 * 天)
+	 * @return 病假
+	*/
+	public BigDecimal getQjBj() {
+		return qjBj;
+	}
+	
+	/**
+	 * 设置 病假
+	 * @param qjBj 病假
+	 * @return 当前对象
+	*/
+	public AttendanceData setQjBj(BigDecimal qjBj) {
+		this.qjBj=qjBj;
+		return this;
+	}
+	
+	/**
+	 * 获得 事假<br>
+	 * 天)
+	 * @return 事假
+	*/
+	public BigDecimal getQjSj() {
+		return qjSj;
+	}
+	
+	/**
+	 * 设置 事假
+	 * @param qjSj 事假
+	 * @return 当前对象
+	*/
+	public AttendanceData setQjSj(BigDecimal qjSj) {
+		this.qjSj=qjSj;
+		return this;
+	}
+	
+	/**
+	 * 获得 调休假<br>
+	 * 天)
+	 * @return 调休假
+	*/
+	public BigDecimal getQjTxj() {
+		return qjTxj;
+	}
+	
+	/**
+	 * 设置 调休假
+	 * @param qjTxj 调休假
+	 * @return 当前对象
+	*/
+	public AttendanceData setQjTxj(BigDecimal qjTxj) {
+		this.qjTxj=qjTxj;
+		return this;
+	}
+	
+	/**
+	 * 获得 哺乳假<br>
+	 * 天)
+	 * @return 哺乳假
+	*/
+	public BigDecimal getQjPlj() {
+		return qjPlj;
+	}
+	
+	/**
+	 * 设置 哺乳假
+	 * @param qjPlj 哺乳假
+	 * @return 当前对象
+	*/
+	public AttendanceData setQjPlj(BigDecimal qjPlj) {
+		this.qjPlj=qjPlj;
+		return this;
+	}
+	
+	/**
+	 * 获得 批次号<br>
+	 * 批次号
+	 * @return 批次号
+	*/
+	public String getBatchCode() {
+		return batchCode;
+	}
+	
+	/**
+	 * 设置 批次号
+	 * @param batchCode 批次号
+	 * @return 当前对象
+	*/
+	public AttendanceData setBatchCode(String batchCode) {
+		this.batchCode=batchCode;
 		return this;
 	}
 	
@@ -509,6 +996,63 @@ public class AttendanceData extends Entity {
 	*/
 	public AttendanceData setNotes(String notes) {
 		this.notes=notes;
+		return this;
+	}
+	
+	/**
+	 * 获得 关联<br>
+	 * 关联
+	 * @return 关联
+	*/
+	public String getRelId() {
+		return relId;
+	}
+	
+	/**
+	 * 设置 关联
+	 * @param relId 关联
+	 * @return 当前对象
+	*/
+	public AttendanceData setRelId(String relId) {
+		this.relId=relId;
+		return this;
+	}
+	
+	/**
+	 * 获得 说明<br>
+	 * 说明
+	 * @return 说明
+	*/
+	public String getDayInfo() {
+		return dayInfo;
+	}
+	
+	/**
+	 * 设置 说明
+	 * @param dayInfo 说明
+	 * @return 当前对象
+	*/
+	public AttendanceData setDayInfo(String dayInfo) {
+		this.dayInfo=dayInfo;
+		return this;
+	}
+	
+	/**
+	 * 获得 记录时间<br>
+	 * 记录时间
+	 * @return 记录时间
+	*/
+	public Date getRcdTime() {
+		return rcdTime;
+	}
+	
+	/**
+	 * 设置 记录时间
+	 * @param rcdTime 记录时间
+	 * @return 当前对象
+	*/
+	public AttendanceData setRcdTime(Date rcdTime) {
+		this.rcdTime=rcdTime;
 		return this;
 	}
 	
@@ -770,6 +1314,63 @@ public class AttendanceData extends Entity {
 		this.personJobName=personJobName;
 		return this;
 	}
+	
+	/**
+	 * 获得 sJobNumber<br>
+	 * sJobNumber
+	 * @return sJobNumber
+	*/
+	public String getSJobNumber() {
+		return sJobNumber;
+	}
+	
+	/**
+	 * 设置 sJobNumber
+	 * @param sJobNumber sJobNumber
+	 * @return 当前对象
+	*/
+	public AttendanceData setSJobNumber(String sJobNumber) {
+		this.sJobNumber=sJobNumber;
+		return this;
+	}
+	
+	/**
+	 * 获得 rq<br>
+	 * rq
+	 * @return rq
+	*/
+	public String getRq() {
+		return rq;
+	}
+	
+	/**
+	 * 设置 rq
+	 * @param rq rq
+	 * @return 当前对象
+	*/
+	public AttendanceData setRq(String rq) {
+		this.rq=rq;
+		return this;
+	}
+	
+	/**
+	 * 获得 days<br>
+	 * days
+	 * @return days
+	*/
+	public String getDays() {
+		return days;
+	}
+	
+	/**
+	 * 设置 days
+	 * @param days days
+	 * @return 当前对象
+	*/
+	public AttendanceData setDays(String days) {
+		this.days=days;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -815,35 +1416,59 @@ public class AttendanceData extends Entity {
 	@Transient
 	public AttendanceData duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AttendanceDataMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AttendanceDataMeta.$$proxy$$();
+		inst.setQjNj(this.getQjNj());
 		inst.setNotes(this.getNotes());
+		inst.setJbGzr(this.getJbGzr());
+		inst.setLeaveEarlyTime(this.getLeaveEarlyTime());
 		inst.setAttendanceTplCode(this.getAttendanceTplCode());
-		inst.setBq(this.getBq());
+		inst.setQjGsj(this.getQjGsj());
+		inst.setQjHj(this.getQjHj());
+		inst.setResult(this.getResult());
 		inst.setOnWorkTime(this.getOnWorkTime());
-		inst.setSkipWork(this.getSkipWork());
 		inst.setOffWorkTime(this.getOffWorkTime());
+		inst.setQjCj(this.getQjCj());
 		inst.setUpdateBy(this.getUpdateBy());
-		inst.setQj(this.getQj());
+		inst.setIsWorkDay(this.getIsWorkDay());
+		inst.setJbXxr(this.getJbXxr());
+		inst.setJbJjr(this.getJbJjr());
 		inst.setId(this.getId());
 		inst.setOnWorkTime2(this.getOnWorkTime2());
+		inst.setRcdTime(this.getRcdTime());
 		inst.setCc(this.getCc());
+		inst.setLossLate(this.getLossLate());
+		inst.setRelId(this.getRelId());
+		inst.setNeedDay(this.getNeedDay());
+		inst.setQjSj(this.getQjSj());
+		inst.setQjTxj(this.getQjTxj());
+		inst.setLossEarly(this.getLossEarly());
+		inst.setBatchCode(this.getBatchCode());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setDayInfo(this.getDayInfo());
+		inst.setNormalDay(this.getNormalDay());
 		inst.setLeaveEarly(this.getLeaveEarly());
+		inst.setAttendanceDateStr(this.getAttendanceDateStr());
 		inst.setVersion(this.getVersion());
+		inst.setLossProcess(this.getLossProcess());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
+		inst.setQjBj(this.getQjBj());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setLeaveLateTime(this.getLeaveLateTime());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPersonId(this.getPersonId());
 		inst.setLeaveLate(this.getLeaveLate());
+		inst.setQjPlj(this.getQjPlj());
 		inst.setAttendanceDate(this.getAttendanceDate());
-		inst.setJobNumber(this.getJobNumber());
 		inst.setOffWorkTime2(this.getOffWorkTime2());
 		if(all) {
 			inst.setPerson(this.getPerson());
 			inst.setAttendanceTpl(this.getAttendanceTpl());
+			inst.setDays(this.getDays());
+			inst.setSJobNumber(this.getSJobNumber());
 			inst.setPersonJobName(this.getPersonJobName());
+			inst.setRq(this.getRq());
 		}
 		inst.clearModifies();
 		return inst;
@@ -903,67 +1528,115 @@ public class AttendanceData extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setQjNj(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.QJ_NJ)));
 			this.setNotes(DataParser.parse(String.class, map.get(AttendanceDataMeta.NOTES)));
+			this.setJbGzr(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.JB_GZR)));
+			this.setLeaveEarlyTime(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.LEAVE_EARLY_TIME)));
 			this.setAttendanceTplCode(DataParser.parse(String.class, map.get(AttendanceDataMeta.ATTENDANCE_TPL_CODE)));
-			this.setBq(DataParser.parse(String.class, map.get(AttendanceDataMeta.BQ)));
+			this.setQjGsj(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.QJ_GSJ)));
+			this.setQjHj(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.QJ_HJ)));
+			this.setResult(DataParser.parse(String.class, map.get(AttendanceDataMeta.RESULT)));
 			this.setOnWorkTime(DataParser.parse(Date.class, map.get(AttendanceDataMeta.ON_WORK_TIME)));
-			this.setSkipWork(DataParser.parse(String.class, map.get(AttendanceDataMeta.SKIP_WORK)));
 			this.setOffWorkTime(DataParser.parse(Date.class, map.get(AttendanceDataMeta.OFF_WORK_TIME)));
+			this.setQjCj(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.QJ_CJ)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AttendanceDataMeta.UPDATE_BY)));
-			this.setQj(DataParser.parse(String.class, map.get(AttendanceDataMeta.QJ)));
+			this.setIsWorkDay(DataParser.parse(String.class, map.get(AttendanceDataMeta.IS_WORK_DAY)));
+			this.setJbXxr(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.JB_XXR)));
+			this.setJbJjr(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.JB_JJR)));
 			this.setId(DataParser.parse(String.class, map.get(AttendanceDataMeta.ID)));
 			this.setOnWorkTime2(DataParser.parse(Date.class, map.get(AttendanceDataMeta.ON_WORK_TIME2)));
-			this.setCc(DataParser.parse(String.class, map.get(AttendanceDataMeta.CC)));
+			this.setRcdTime(DataParser.parse(Date.class, map.get(AttendanceDataMeta.RCD_TIME)));
+			this.setCc(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.CC)));
+			this.setLossLate(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.LOSS_LATE)));
+			this.setRelId(DataParser.parse(String.class, map.get(AttendanceDataMeta.REL_ID)));
+			this.setNeedDay(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.NEED_DAY)));
+			this.setQjSj(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.QJ_SJ)));
+			this.setQjTxj(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.QJ_TXJ)));
+			this.setLossEarly(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.LOSS_EARLY)));
+			this.setBatchCode(DataParser.parse(String.class, map.get(AttendanceDataMeta.BATCH_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AttendanceDataMeta.UPDATE_TIME)));
-			this.setLeaveEarly(DataParser.parse(String.class, map.get(AttendanceDataMeta.LEAVE_EARLY)));
+			this.setDayInfo(DataParser.parse(String.class, map.get(AttendanceDataMeta.DAY_INFO)));
+			this.setNormalDay(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.NORMAL_DAY)));
+			this.setLeaveEarly(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.LEAVE_EARLY)));
+			this.setAttendanceDateStr(DataParser.parse(String.class, map.get(AttendanceDataMeta.ATTENDANCE_DATE_STR)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.VERSION)));
+			this.setLossProcess(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.LOSS_PROCESS)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AttendanceDataMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.DELETED)));
+			this.setQjBj(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.QJ_BJ)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AttendanceDataMeta.CREATE_TIME)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AttendanceDataMeta.DELETE_TIME)));
+			this.setLeaveLateTime(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.LEAVE_LATE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(AttendanceDataMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AttendanceDataMeta.DELETE_BY)));
 			this.setPersonId(DataParser.parse(String.class, map.get(AttendanceDataMeta.PERSON_ID)));
-			this.setLeaveLate(DataParser.parse(String.class, map.get(AttendanceDataMeta.LEAVE_LATE)));
+			this.setLeaveLate(DataParser.parse(Integer.class, map.get(AttendanceDataMeta.LEAVE_LATE)));
+			this.setQjPlj(DataParser.parse(BigDecimal.class, map.get(AttendanceDataMeta.QJ_PLJ)));
 			this.setAttendanceDate(DataParser.parse(Date.class, map.get(AttendanceDataMeta.ATTENDANCE_DATE)));
-			this.setJobNumber(DataParser.parse(String.class, map.get(AttendanceDataMeta.JOB_NUMBER)));
 			this.setOffWorkTime2(DataParser.parse(Date.class, map.get(AttendanceDataMeta.OFF_WORK_TIME2)));
 			// others
 			this.setPerson(DataParser.parse(Person.class, map.get(AttendanceDataMeta.PERSON)));
 			this.setAttendanceTpl(DataParser.parse(AttendanceTpl.class, map.get(AttendanceDataMeta.ATTENDANCE_TPL)));
+			this.setDays(DataParser.parse(String.class, map.get(AttendanceDataMeta.DAYS)));
+			this.setSJobNumber(DataParser.parse(String.class, map.get(AttendanceDataMeta.S_JOB_NUMBER)));
 			this.setPersonJobName(DataParser.parse(String.class, map.get(AttendanceDataMeta.PERSON_JOB_NAME)));
+			this.setRq(DataParser.parse(String.class, map.get(AttendanceDataMeta.RQ)));
 			return true;
 		} else {
 			try {
+				this.setQjNj( (BigDecimal)map.get(AttendanceDataMeta.QJ_NJ));
 				this.setNotes( (String)map.get(AttendanceDataMeta.NOTES));
+				this.setJbGzr( (BigDecimal)map.get(AttendanceDataMeta.JB_GZR));
+				this.setLeaveEarlyTime( (BigDecimal)map.get(AttendanceDataMeta.LEAVE_EARLY_TIME));
 				this.setAttendanceTplCode( (String)map.get(AttendanceDataMeta.ATTENDANCE_TPL_CODE));
-				this.setBq( (String)map.get(AttendanceDataMeta.BQ));
+				this.setQjGsj( (BigDecimal)map.get(AttendanceDataMeta.QJ_GSJ));
+				this.setQjHj( (BigDecimal)map.get(AttendanceDataMeta.QJ_HJ));
+				this.setResult( (String)map.get(AttendanceDataMeta.RESULT));
 				this.setOnWorkTime( (Date)map.get(AttendanceDataMeta.ON_WORK_TIME));
-				this.setSkipWork( (String)map.get(AttendanceDataMeta.SKIP_WORK));
 				this.setOffWorkTime( (Date)map.get(AttendanceDataMeta.OFF_WORK_TIME));
+				this.setQjCj( (BigDecimal)map.get(AttendanceDataMeta.QJ_CJ));
 				this.setUpdateBy( (String)map.get(AttendanceDataMeta.UPDATE_BY));
-				this.setQj( (String)map.get(AttendanceDataMeta.QJ));
+				this.setIsWorkDay( (String)map.get(AttendanceDataMeta.IS_WORK_DAY));
+				this.setJbXxr( (BigDecimal)map.get(AttendanceDataMeta.JB_XXR));
+				this.setJbJjr( (BigDecimal)map.get(AttendanceDataMeta.JB_JJR));
 				this.setId( (String)map.get(AttendanceDataMeta.ID));
 				this.setOnWorkTime2( (Date)map.get(AttendanceDataMeta.ON_WORK_TIME2));
-				this.setCc( (String)map.get(AttendanceDataMeta.CC));
+				this.setRcdTime( (Date)map.get(AttendanceDataMeta.RCD_TIME));
+				this.setCc( (BigDecimal)map.get(AttendanceDataMeta.CC));
+				this.setLossLate( (Integer)map.get(AttendanceDataMeta.LOSS_LATE));
+				this.setRelId( (String)map.get(AttendanceDataMeta.REL_ID));
+				this.setNeedDay( (BigDecimal)map.get(AttendanceDataMeta.NEED_DAY));
+				this.setQjSj( (BigDecimal)map.get(AttendanceDataMeta.QJ_SJ));
+				this.setQjTxj( (BigDecimal)map.get(AttendanceDataMeta.QJ_TXJ));
+				this.setLossEarly( (Integer)map.get(AttendanceDataMeta.LOSS_EARLY));
+				this.setBatchCode( (String)map.get(AttendanceDataMeta.BATCH_CODE));
 				this.setUpdateTime( (Date)map.get(AttendanceDataMeta.UPDATE_TIME));
-				this.setLeaveEarly( (String)map.get(AttendanceDataMeta.LEAVE_EARLY));
+				this.setDayInfo( (String)map.get(AttendanceDataMeta.DAY_INFO));
+				this.setNormalDay( (BigDecimal)map.get(AttendanceDataMeta.NORMAL_DAY));
+				this.setLeaveEarly( (Integer)map.get(AttendanceDataMeta.LEAVE_EARLY));
+				this.setAttendanceDateStr( (String)map.get(AttendanceDataMeta.ATTENDANCE_DATE_STR));
 				this.setVersion( (Integer)map.get(AttendanceDataMeta.VERSION));
+				this.setLossProcess( (Integer)map.get(AttendanceDataMeta.LOSS_PROCESS));
 				this.setCreateBy( (String)map.get(AttendanceDataMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AttendanceDataMeta.DELETED));
+				this.setQjBj( (BigDecimal)map.get(AttendanceDataMeta.QJ_BJ));
 				this.setCreateTime( (Date)map.get(AttendanceDataMeta.CREATE_TIME));
 				this.setDeleteTime( (Date)map.get(AttendanceDataMeta.DELETE_TIME));
+				this.setLeaveLateTime( (BigDecimal)map.get(AttendanceDataMeta.LEAVE_LATE_TIME));
 				this.setTenantId( (String)map.get(AttendanceDataMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AttendanceDataMeta.DELETE_BY));
 				this.setPersonId( (String)map.get(AttendanceDataMeta.PERSON_ID));
-				this.setLeaveLate( (String)map.get(AttendanceDataMeta.LEAVE_LATE));
+				this.setLeaveLate( (Integer)map.get(AttendanceDataMeta.LEAVE_LATE));
+				this.setQjPlj( (BigDecimal)map.get(AttendanceDataMeta.QJ_PLJ));
 				this.setAttendanceDate( (Date)map.get(AttendanceDataMeta.ATTENDANCE_DATE));
-				this.setJobNumber( (String)map.get(AttendanceDataMeta.JOB_NUMBER));
 				this.setOffWorkTime2( (Date)map.get(AttendanceDataMeta.OFF_WORK_TIME2));
 				// others
 				this.setPerson( (Person)map.get(AttendanceDataMeta.PERSON));
 				this.setAttendanceTpl( (AttendanceTpl)map.get(AttendanceDataMeta.ATTENDANCE_TPL));
+				this.setDays( (String)map.get(AttendanceDataMeta.DAYS));
+				this.setSJobNumber( (String)map.get(AttendanceDataMeta.S_JOB_NUMBER));
 				this.setPersonJobName( (String)map.get(AttendanceDataMeta.PERSON_JOB_NAME));
+				this.setRq( (String)map.get(AttendanceDataMeta.RQ));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -980,58 +1653,100 @@ public class AttendanceData extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setQjNj(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.QJ_NJ)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.NOTES)));
+			this.setJbGzr(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.JB_GZR)));
+			this.setLeaveEarlyTime(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.LEAVE_EARLY_TIME)));
 			this.setAttendanceTplCode(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.ATTENDANCE_TPL_CODE)));
-			this.setBq(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.BQ)));
+			this.setQjGsj(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.QJ_GSJ)));
+			this.setQjHj(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.QJ_HJ)));
+			this.setResult(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.RESULT)));
 			this.setOnWorkTime(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.ON_WORK_TIME)));
-			this.setSkipWork(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.SKIP_WORK)));
 			this.setOffWorkTime(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.OFF_WORK_TIME)));
+			this.setQjCj(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.QJ_CJ)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.UPDATE_BY)));
-			this.setQj(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.QJ)));
+			this.setIsWorkDay(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.IS_WORK_DAY)));
+			this.setJbXxr(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.JB_XXR)));
+			this.setJbJjr(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.JB_JJR)));
 			this.setId(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.ID)));
 			this.setOnWorkTime2(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.ON_WORK_TIME2)));
-			this.setCc(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.CC)));
+			this.setRcdTime(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.RCD_TIME)));
+			this.setCc(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.CC)));
+			this.setLossLate(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.LOSS_LATE)));
+			this.setRelId(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.REL_ID)));
+			this.setNeedDay(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.NEED_DAY)));
+			this.setQjSj(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.QJ_SJ)));
+			this.setQjTxj(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.QJ_TXJ)));
+			this.setLossEarly(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.LOSS_EARLY)));
+			this.setBatchCode(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.BATCH_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.UPDATE_TIME)));
-			this.setLeaveEarly(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.LEAVE_EARLY)));
+			this.setDayInfo(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.DAY_INFO)));
+			this.setNormalDay(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.NORMAL_DAY)));
+			this.setLeaveEarly(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.LEAVE_EARLY)));
+			this.setAttendanceDateStr(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.ATTENDANCE_DATE_STR)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.VERSION)));
+			this.setLossProcess(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.LOSS_PROCESS)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.DELETED)));
+			this.setQjBj(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.QJ_BJ)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.CREATE_TIME)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.DELETE_TIME)));
+			this.setLeaveLateTime(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.LEAVE_LATE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.DELETE_BY)));
 			this.setPersonId(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.PERSON_ID)));
-			this.setLeaveLate(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.LEAVE_LATE)));
+			this.setLeaveLate(DataParser.parse(Integer.class, r.getValue(AttendanceDataMeta.LEAVE_LATE)));
+			this.setQjPlj(DataParser.parse(BigDecimal.class, r.getValue(AttendanceDataMeta.QJ_PLJ)));
 			this.setAttendanceDate(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.ATTENDANCE_DATE)));
-			this.setJobNumber(DataParser.parse(String.class, r.getValue(AttendanceDataMeta.JOB_NUMBER)));
 			this.setOffWorkTime2(DataParser.parse(Date.class, r.getValue(AttendanceDataMeta.OFF_WORK_TIME2)));
 			return true;
 		} else {
 			try {
+				this.setQjNj( (BigDecimal)r.getValue(AttendanceDataMeta.QJ_NJ));
 				this.setNotes( (String)r.getValue(AttendanceDataMeta.NOTES));
+				this.setJbGzr( (BigDecimal)r.getValue(AttendanceDataMeta.JB_GZR));
+				this.setLeaveEarlyTime( (BigDecimal)r.getValue(AttendanceDataMeta.LEAVE_EARLY_TIME));
 				this.setAttendanceTplCode( (String)r.getValue(AttendanceDataMeta.ATTENDANCE_TPL_CODE));
-				this.setBq( (String)r.getValue(AttendanceDataMeta.BQ));
+				this.setQjGsj( (BigDecimal)r.getValue(AttendanceDataMeta.QJ_GSJ));
+				this.setQjHj( (BigDecimal)r.getValue(AttendanceDataMeta.QJ_HJ));
+				this.setResult( (String)r.getValue(AttendanceDataMeta.RESULT));
 				this.setOnWorkTime( (Date)r.getValue(AttendanceDataMeta.ON_WORK_TIME));
-				this.setSkipWork( (String)r.getValue(AttendanceDataMeta.SKIP_WORK));
 				this.setOffWorkTime( (Date)r.getValue(AttendanceDataMeta.OFF_WORK_TIME));
+				this.setQjCj( (BigDecimal)r.getValue(AttendanceDataMeta.QJ_CJ));
 				this.setUpdateBy( (String)r.getValue(AttendanceDataMeta.UPDATE_BY));
-				this.setQj( (String)r.getValue(AttendanceDataMeta.QJ));
+				this.setIsWorkDay( (String)r.getValue(AttendanceDataMeta.IS_WORK_DAY));
+				this.setJbXxr( (BigDecimal)r.getValue(AttendanceDataMeta.JB_XXR));
+				this.setJbJjr( (BigDecimal)r.getValue(AttendanceDataMeta.JB_JJR));
 				this.setId( (String)r.getValue(AttendanceDataMeta.ID));
 				this.setOnWorkTime2( (Date)r.getValue(AttendanceDataMeta.ON_WORK_TIME2));
-				this.setCc( (String)r.getValue(AttendanceDataMeta.CC));
+				this.setRcdTime( (Date)r.getValue(AttendanceDataMeta.RCD_TIME));
+				this.setCc( (BigDecimal)r.getValue(AttendanceDataMeta.CC));
+				this.setLossLate( (Integer)r.getValue(AttendanceDataMeta.LOSS_LATE));
+				this.setRelId( (String)r.getValue(AttendanceDataMeta.REL_ID));
+				this.setNeedDay( (BigDecimal)r.getValue(AttendanceDataMeta.NEED_DAY));
+				this.setQjSj( (BigDecimal)r.getValue(AttendanceDataMeta.QJ_SJ));
+				this.setQjTxj( (BigDecimal)r.getValue(AttendanceDataMeta.QJ_TXJ));
+				this.setLossEarly( (Integer)r.getValue(AttendanceDataMeta.LOSS_EARLY));
+				this.setBatchCode( (String)r.getValue(AttendanceDataMeta.BATCH_CODE));
 				this.setUpdateTime( (Date)r.getValue(AttendanceDataMeta.UPDATE_TIME));
-				this.setLeaveEarly( (String)r.getValue(AttendanceDataMeta.LEAVE_EARLY));
+				this.setDayInfo( (String)r.getValue(AttendanceDataMeta.DAY_INFO));
+				this.setNormalDay( (BigDecimal)r.getValue(AttendanceDataMeta.NORMAL_DAY));
+				this.setLeaveEarly( (Integer)r.getValue(AttendanceDataMeta.LEAVE_EARLY));
+				this.setAttendanceDateStr( (String)r.getValue(AttendanceDataMeta.ATTENDANCE_DATE_STR));
 				this.setVersion( (Integer)r.getValue(AttendanceDataMeta.VERSION));
+				this.setLossProcess( (Integer)r.getValue(AttendanceDataMeta.LOSS_PROCESS));
 				this.setCreateBy( (String)r.getValue(AttendanceDataMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AttendanceDataMeta.DELETED));
+				this.setQjBj( (BigDecimal)r.getValue(AttendanceDataMeta.QJ_BJ));
 				this.setCreateTime( (Date)r.getValue(AttendanceDataMeta.CREATE_TIME));
 				this.setDeleteTime( (Date)r.getValue(AttendanceDataMeta.DELETE_TIME));
+				this.setLeaveLateTime( (BigDecimal)r.getValue(AttendanceDataMeta.LEAVE_LATE_TIME));
 				this.setTenantId( (String)r.getValue(AttendanceDataMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AttendanceDataMeta.DELETE_BY));
 				this.setPersonId( (String)r.getValue(AttendanceDataMeta.PERSON_ID));
-				this.setLeaveLate( (String)r.getValue(AttendanceDataMeta.LEAVE_LATE));
+				this.setLeaveLate( (Integer)r.getValue(AttendanceDataMeta.LEAVE_LATE));
+				this.setQjPlj( (BigDecimal)r.getValue(AttendanceDataMeta.QJ_PLJ));
 				this.setAttendanceDate( (Date)r.getValue(AttendanceDataMeta.ATTENDANCE_DATE));
-				this.setJobNumber( (String)r.getValue(AttendanceDataMeta.JOB_NUMBER));
 				this.setOffWorkTime2( (Date)r.getValue(AttendanceDataMeta.OFF_WORK_TIME2));
 				return true;
 			} catch (Exception e) {

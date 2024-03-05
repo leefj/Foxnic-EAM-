@@ -45,7 +45,11 @@ public class HrmCertTypeGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(HrTables.HR_CERTIFICATE_TYPE.NAME).form().validate().required();
+        cfg.view().field(HrTables.HR_CERTIFICATE_TYPE.CREATE_TIME).table().disable(true);
+        cfg.view().field(HrTables.HR_CERTIFICATE_TYPE.UPDATE_BY).table().disable(true);
 
+
+        cfg.view().field(HrTables.HR_CERTIFICATE_TYPE.NOTE).form().textArea().height(80);
 
         cfg.view().formWindow().width("65%");;
         cfg.view().formWindow().bottomSpace(200);

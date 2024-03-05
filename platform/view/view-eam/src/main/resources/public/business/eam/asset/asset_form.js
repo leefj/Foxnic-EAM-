@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 09:37:41
+ * @since 2024-03-04 21:15:51
  */
 
 function FormPage() {
@@ -922,6 +922,15 @@ function FormPage() {
 					}
 				}
 				return opts;
+			}
+		});
+		laydate.render({
+			elem: '#lastInspectTime',
+			type:"date",
+			format:"yyyy-MM-dd HH:mm:ss",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("lastInspectTime",value, date, endDate);
 			}
 		});
 	}

@@ -78,16 +78,19 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' }
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 				    ,{ field: 'pointStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检状态'), templet:function (d){ return templet('pointStatus',fox.getEnumText(SELECT_POINTSTATUS_DATA,d.pointStatus),d);}}
-					,{ field: 'operId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('操作人') , templet: function (d) { return templet('operId',fox.getProperty(d,["operUser","name"],0,'','operId'),d);} }
-					,{ field: 'operTime', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('操作时间') , templet: function (d) { return templet('operTime',d.operTime,d);}  }
-				     ,{ field: 'pointCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检编码') , templet: function (d) { return templet('pointCode',d.pointCode,d);}  }
-					,{ field: 'pointName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检点') , templet: function (d) { return templet('pointName',d.pointName,d);}  }
-					,{ field: 'pointContent', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检内容') , templet: function (d) { return templet('pointContent',d.pointContent,d);}  }
-					,{ field: 'pointPosId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置'), templet: function (d) { return templet('pointPosId' ,fox.joinLabel(d.inspectionPointPos,"hierarchyName",',','','pointPosId'),d);}}
+					,{ field: 'operId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检人员') , templet: function (d) { return templet('operId',fox.getProperty(d,["operUser","name"],0,'','operId'),d);} }
+					,{ field: 'operTime', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检时间') , templet: function (d) { return templet('operTime',d.operTime,d);}  }
+				     ,{ field: 'pointCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检点编码') , templet: function (d) { return templet('pointCode',d.pointCode,d);}  }
+					,{ field: 'pointName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检点名称') , templet: function (d) { return templet('pointName',d.pointName,d);}  }
+					,{ field: 'relAsset', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('关联设备') , templet: function (d) { return templet('relAsset',d.asset,d);}  }
+				//	,{ field: 'pointContent', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检内容') , templet: function (d) { return templet('pointContent',d.pointContent,d);}  }
+					,{ field: 'pointPosId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检位置'), templet: function (d) { return templet('pointPosId' ,fox.joinLabel(d.inspectionPointPos,"hierarchyName",',','','pointPosId'),d);}}
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检结果') , templet: function (d) { return templet('content',d.content,d);}  }
-					,{ field: 'pointNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检点备注') , templet: function (d) { return templet('pointNotes',d.pointNotes,d);}  }
+				//	,{ field: 'pointNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检点备注') , templet: function (d) { return templet('pointNotes',d.pointNotes,d);}  }
 					,{ field: 'itemCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('检查项数') , templet: function (d) { return templet('itemCount',d.itemCount,d);}  }
-				//	,{ field: 'sort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('排序') , templet: function (d) { return templet('sort',d.sort,d);}  }
+					,{ field: 'actionLabel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('处理动作'), templet: function (d) { return templet('actionLabel' ,fox.joinLabel(d.inspectionProcessAction,"name",',','','actionLabel'),d);}}
+
+					//	,{ field: 'sort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('排序') , templet: function (d) { return templet('sort',d.sort,d);}  }
 				//	 ,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
@@ -148,6 +151,61 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
+		value.pointStatus={ inputType:"radio_box", value: getSelectedValue("#pointStatus","value"), label:getSelectedValue("#pointStatus","nameStr") };
+		value.actionLabel={ inputType:"select_box", value: getSelectedValue("#actionLabel","value") ,fillBy:["inspectionProcessAction"]  , label:getSelectedValue("#actionLabel","nameStr") };//渲染 pointStatus 搜索框
+		fox.renderSelectBox({
+			el: "pointStatus",
+			size: "small",
+			radio: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("pointStatus",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("pointStatus",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 actionLabel 下拉字段
+		fox.renderSelectBox({
+			el: "actionLabel",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("actionLabel",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("actionLabel",{data:data[i],name:data[i].name,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
 		value.pointCode={ inputType:"button",value: $("#pointCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.pointName={ inputType:"button",value: $("#pointName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
@@ -197,6 +255,60 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 pointStatus 搜索框
+		fox.renderSelectBox({
+			el: "pointStatus",
+			size: "small",
+			radio: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("pointStatus",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("pointStatus",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 actionLabel 下拉字段
+		fox.renderSelectBox({
+			el: "actionLabel",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("actionLabel",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("actionLabel",{data:data[i],name:data[i].name,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
@@ -248,6 +360,12 @@ function ListPage() {
 					break;
 				case 'batch-del':
 					batchDelete(selected);
+					break;
+				case 'tool-import-data':
+					window.pageExt.list.importData && window.pageExt.list.importData(selected,obj);
+					break;
+				case 'tool-export-data':
+					window.pageExt.list.exportData && window.pageExt.list.exportData(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();

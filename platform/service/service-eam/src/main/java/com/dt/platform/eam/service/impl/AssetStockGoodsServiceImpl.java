@@ -1,42 +1,49 @@
 package com.dt.platform.eam.service.impl;
 
+import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
+
 
 import com.dt.platform.domain.eam.AssetStockGoods;
-import com.dt.platform.eam.service.IAssetStockGoodsService;
-import com.github.foxnic.api.error.ErrorDesc;
+import com.dt.platform.domain.eam.AssetStockGoodsVO;
+import java.util.List;
 import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.excel.ExcelStructure;
+import com.github.foxnic.dao.spec.DAO;
+import java.lang.reflect.Field;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
-import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.sql.meta.DBField;
-import org.github.foxnic.web.framework.dao.DBConfigs;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
+import com.github.foxnic.dao.excel.ExcelStructure;
 import java.io.InputStream;
-import java.lang.reflect.Field;
+import com.github.foxnic.sql.meta.DBField;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.meta.DBColumnMeta;
+import com.github.foxnic.sql.expr.Select;
+import java.util.ArrayList;
+import com.dt.platform.eam.service.IAssetStockGoodsService;
+import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
  * <p>
- * 库存物品单 服务实现
+ * 库存物品单服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-20 17:52:46
+ * @since 2024-02-21 09:53:04
 */
 
 
 @Service("EamAssetStockGoodsService")
+
 public class AssetStockGoodsServiceImpl extends SuperService<AssetStockGoods> implements IAssetStockGoodsService {
 
 	/**
@@ -92,7 +99,7 @@ public class AssetStockGoodsServiceImpl extends SuperService<AssetStockGoods> im
 
 	
 	/**
-	 * 按主键删除 库存物品单
+	 * 按主键删除库存物品单
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -113,7 +120,7 @@ public class AssetStockGoodsServiceImpl extends SuperService<AssetStockGoods> im
 	}
 	
 	/**
-	 * 按主键删除 库存物品单
+	 * 按主键删除库存物品单
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -122,7 +129,7 @@ public class AssetStockGoodsServiceImpl extends SuperService<AssetStockGoods> im
 		AssetStockGoods assetStockGoods = new AssetStockGoods();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetStockGoods.setId(id);
-		assetStockGoods.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetStockGoods.setDeleted(true);
 		assetStockGoods.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetStockGoods.setDeleteTime(new Date());
 		try {
@@ -173,7 +180,7 @@ public class AssetStockGoodsServiceImpl extends SuperService<AssetStockGoods> im
 
 	
 	/**
-	 * 按主键更新字段 库存物品单
+	 * 按主键更新库存物品单
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -187,7 +194,7 @@ public class AssetStockGoodsServiceImpl extends SuperService<AssetStockGoods> im
 
 	
 	/**
-	 * 按主键获取 库存物品单
+	 * 按主键获取库存物品单
 	 *
 	 * @param id 主键
 	 * @return AssetStockGoods 数据对象
@@ -199,9 +206,22 @@ public class AssetStockGoodsServiceImpl extends SuperService<AssetStockGoods> im
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
 	@Override
 	public List<AssetStockGoods> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
+	@Override
+	public List<AssetStockGoods> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
+	}
+
+	@Override
+	public Map<String, AssetStockGoods> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, AssetStockGoods::getId);
 	}
 
 
@@ -213,7 +233,7 @@ public class AssetStockGoodsServiceImpl extends SuperService<AssetStockGoods> im
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<AssetStockGoods> queryList(AssetStockGoods sample) {
+	public List<AssetStockGoods> queryList(AssetStockGoodsVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -227,7 +247,7 @@ public class AssetStockGoodsServiceImpl extends SuperService<AssetStockGoods> im
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<AssetStockGoods> queryPagedList(AssetStockGoods sample, int pageSize, int pageIndex) {
+	public PagedList<AssetStockGoods> queryPagedList(AssetStockGoodsVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -258,22 +278,7 @@ public class AssetStockGoodsServiceImpl extends SuperService<AssetStockGoods> im
 		return false;
 	}
 
-	@Override
-	public ExcelWriter exportExcel(AssetStockGoods sample) {
-		return super.exportExcel(sample);
-	}
-
-	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
-	}
-
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
-
-/**
+	/**
 	 * 批量检查引用
 	 * @param ids  检查这些ID是否又被外部表引用
 	 * */
@@ -284,10 +289,8 @@ public class AssetStockGoodsServiceImpl extends SuperService<AssetStockGoods> im
 		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }

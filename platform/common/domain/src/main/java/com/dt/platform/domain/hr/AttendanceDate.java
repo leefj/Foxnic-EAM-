@@ -10,8 +10,11 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.hr.meta.AttendanceDateMeta;
@@ -23,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考勤日期
  * <p>考勤日期 , 数据表 hr_attendance_date 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:46:06
- * @sign D0C02CA45FED3118E62A42B660479D1B
+ * @since 2024-02-27 16:27:27
+ * @sign E7ACEF21127D06093406E3E5B17D616E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -100,7 +103,7 @@ public class AttendanceDate extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-02-15 12:58:33")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-02-25 02:22:07")
 	private Date updateTime;
 	
 	/**
@@ -127,7 +130,7 @@ public class AttendanceDate extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "2")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "3")
 	private Integer version;
 	
 	/**
@@ -153,6 +156,42 @@ public class AttendanceDate extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="confCreateDate" , notes = "confCreateDate")
 	private String confCreateDate;
+	
+	/**
+	 * attendanceTplList：attendanceTplList
+	*/
+	@ApiModelProperty(required = false,value="attendanceTplList" , notes = "attendanceTplList")
+	private List<AttendanceTpl> attendanceTplList;
+	
+	/**
+	 * attendanceTplIdsList：attendanceTplIdsList
+	*/
+	@ApiModelProperty(required = false,value="attendanceTplIdsList" , notes = "attendanceTplIdsList")
+	private List<String> attendanceTplIdsList;
+	
+	/**
+	 * attendanceTplList2：attendanceTplList2
+	*/
+	@ApiModelProperty(required = false,value="attendanceTplList2" , notes = "attendanceTplList2")
+	private List<AttendanceTpl> attendanceTplList2;
+	
+	/**
+	 * attendanceTplIdsList2：attendanceTplIdsList2
+	*/
+	@ApiModelProperty(required = false,value="attendanceTplIdsList2" , notes = "attendanceTplIdsList2")
+	private List<String> attendanceTplIdsList2;
+	
+	/**
+	 * attendanceTplList3：attendanceTplList3
+	*/
+	@ApiModelProperty(required = false,value="attendanceTplList3" , notes = "attendanceTplList3")
+	private List<AttendanceTpl> attendanceTplList3;
+	
+	/**
+	 * attendanceTplIdsList3：attendanceTplIdsList3
+	*/
+	@ApiModelProperty(required = false,value="attendanceTplIdsList3" , notes = "attendanceTplIdsList3")
+	private List<String> attendanceTplIdsList3;
 	
 	/**
 	 * 获得 主键<br>
@@ -545,6 +584,186 @@ public class AttendanceDate extends Entity {
 		this.confCreateDate=confCreateDate;
 		return this;
 	}
+	
+	/**
+	 * 获得 attendanceTplList<br>
+	 * attendanceTplList
+	 * @return attendanceTplList
+	*/
+	public List<AttendanceTpl> getAttendanceTplList() {
+		return attendanceTplList;
+	}
+	
+	/**
+	 * 设置 attendanceTplList
+	 * @param attendanceTplList attendanceTplList
+	 * @return 当前对象
+	*/
+	public AttendanceDate setAttendanceTplList(List<AttendanceTpl> attendanceTplList) {
+		this.attendanceTplList=attendanceTplList;
+		return this;
+	}
+	
+	/**
+	 * 添加 attendanceTplList
+	 * @param attendanceTpl attendanceTplList
+	 * @return 当前对象
+	*/
+	public AttendanceDate addAttendanceTpl(AttendanceTpl... attendanceTpl) {
+		if(this.attendanceTplList==null) attendanceTplList=new ArrayList<>();
+		this.attendanceTplList.addAll(Arrays.asList(attendanceTpl));
+		return this;
+	}
+	
+	/**
+	 * 获得 attendanceTplIdsList<br>
+	 * attendanceTplIdsList
+	 * @return attendanceTplIdsList
+	*/
+	public List<String> getAttendanceTplIdsList() {
+		return attendanceTplIdsList;
+	}
+	
+	/**
+	 * 设置 attendanceTplIdsList
+	 * @param attendanceTplIdsList attendanceTplIdsList
+	 * @return 当前对象
+	*/
+	public AttendanceDate setAttendanceTplIdsList(List<String> attendanceTplIdsList) {
+		this.attendanceTplIdsList=attendanceTplIdsList;
+		return this;
+	}
+	
+	/**
+	 * 添加 attendanceTplIdsList
+	 * @param attendanceTplIds attendanceTplIdsList
+	 * @return 当前对象
+	*/
+	public AttendanceDate addAttendanceTplIds(String... attendanceTplIds) {
+		if(this.attendanceTplIdsList==null) attendanceTplIdsList=new ArrayList<>();
+		this.attendanceTplIdsList.addAll(Arrays.asList(attendanceTplIds));
+		return this;
+	}
+	
+	/**
+	 * 获得 attendanceTplList2<br>
+	 * attendanceTplList2
+	 * @return attendanceTplList2
+	*/
+	public List<AttendanceTpl> getAttendanceTplList2() {
+		return attendanceTplList2;
+	}
+	
+	/**
+	 * 设置 attendanceTplList2
+	 * @param attendanceTplList2 attendanceTplList2
+	 * @return 当前对象
+	*/
+	public AttendanceDate setAttendanceTplList2(List<AttendanceTpl> attendanceTplList2) {
+		this.attendanceTplList2=attendanceTplList2;
+		return this;
+	}
+	
+	/**
+	 * 添加 attendanceTplList2
+	 * @param entity attendanceTplList2
+	 * @return 当前对象
+	*/
+	public AttendanceDate addAttendanceTplList2(AttendanceTpl... entity) {
+		if(this.attendanceTplList2==null) attendanceTplList2=new ArrayList<>();
+		this.attendanceTplList2.addAll(Arrays.asList(entity));
+		return this;
+	}
+	
+	/**
+	 * 获得 attendanceTplIdsList2<br>
+	 * attendanceTplIdsList2
+	 * @return attendanceTplIdsList2
+	*/
+	public List<String> getAttendanceTplIdsList2() {
+		return attendanceTplIdsList2;
+	}
+	
+	/**
+	 * 设置 attendanceTplIdsList2
+	 * @param attendanceTplIdsList2 attendanceTplIdsList2
+	 * @return 当前对象
+	*/
+	public AttendanceDate setAttendanceTplIdsList2(List<String> attendanceTplIdsList2) {
+		this.attendanceTplIdsList2=attendanceTplIdsList2;
+		return this;
+	}
+	
+	/**
+	 * 添加 attendanceTplIdsList2
+	 * @param entity attendanceTplIdsList2
+	 * @return 当前对象
+	*/
+	public AttendanceDate addAttendanceTplIdsList2(String... entity) {
+		if(this.attendanceTplIdsList2==null) attendanceTplIdsList2=new ArrayList<>();
+		this.attendanceTplIdsList2.addAll(Arrays.asList(entity));
+		return this;
+	}
+	
+	/**
+	 * 获得 attendanceTplList3<br>
+	 * attendanceTplList3
+	 * @return attendanceTplList3
+	*/
+	public List<AttendanceTpl> getAttendanceTplList3() {
+		return attendanceTplList3;
+	}
+	
+	/**
+	 * 设置 attendanceTplList3
+	 * @param attendanceTplList3 attendanceTplList3
+	 * @return 当前对象
+	*/
+	public AttendanceDate setAttendanceTplList3(List<AttendanceTpl> attendanceTplList3) {
+		this.attendanceTplList3=attendanceTplList3;
+		return this;
+	}
+	
+	/**
+	 * 添加 attendanceTplList3
+	 * @param entity attendanceTplList3
+	 * @return 当前对象
+	*/
+	public AttendanceDate addAttendanceTplList3(AttendanceTpl... entity) {
+		if(this.attendanceTplList3==null) attendanceTplList3=new ArrayList<>();
+		this.attendanceTplList3.addAll(Arrays.asList(entity));
+		return this;
+	}
+	
+	/**
+	 * 获得 attendanceTplIdsList3<br>
+	 * attendanceTplIdsList3
+	 * @return attendanceTplIdsList3
+	*/
+	public List<String> getAttendanceTplIdsList3() {
+		return attendanceTplIdsList3;
+	}
+	
+	/**
+	 * 设置 attendanceTplIdsList3
+	 * @param attendanceTplIdsList3 attendanceTplIdsList3
+	 * @return 当前对象
+	*/
+	public AttendanceDate setAttendanceTplIdsList3(List<String> attendanceTplIdsList3) {
+		this.attendanceTplIdsList3=attendanceTplIdsList3;
+		return this;
+	}
+	
+	/**
+	 * 添加 attendanceTplIdsList3
+	 * @param entity attendanceTplIdsList3
+	 * @return 当前对象
+	*/
+	public AttendanceDate addAttendanceTplIdsList3(String... entity) {
+		if(this.attendanceTplIdsList3==null) attendanceTplIdsList3=new ArrayList<>();
+		this.attendanceTplIdsList3.addAll(Arrays.asList(entity));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -607,7 +826,13 @@ public class AttendanceDate extends Entity {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
+			inst.setAttendanceTplIdsList3(this.getAttendanceTplIdsList3());
+			inst.setAttendanceTplList(this.getAttendanceTplList());
+			inst.setAttendanceTplIdsList(this.getAttendanceTplIdsList());
+			inst.setAttendanceTplIdsList2(this.getAttendanceTplIdsList2());
+			inst.setAttendanceTplList3(this.getAttendanceTplList3());
 			inst.setConfSDate(this.getConfSDate());
+			inst.setAttendanceTplList2(this.getAttendanceTplList2());
 			inst.setConfEDate(this.getConfEDate());
 			inst.setConfCreateDate(this.getConfCreateDate());
 		}

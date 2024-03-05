@@ -76,7 +76,8 @@ public class PurchaseOrderController extends SuperController {
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_ID, value = "物品档案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.PURCHASE_NUMBER, value = "采购数量", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class)
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = PurchaseOrderServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -136,7 +137,8 @@ public class PurchaseOrderController extends SuperController {
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_ID, value = "物品档案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.PURCHASE_NUMBER, value = "采购数量", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class)
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { PurchaseOrderVOMeta.PAGE_INDEX, PurchaseOrderVOMeta.PAGE_SIZE, PurchaseOrderVOMeta.SEARCH_FIELD, PurchaseOrderVOMeta.FUZZY_FIELD, PurchaseOrderVOMeta.SEARCH_VALUE, PurchaseOrderVOMeta.DIRTY_FIELDS, PurchaseOrderVOMeta.SORT_FIELD, PurchaseOrderVOMeta.SORT_TYPE, PurchaseOrderVOMeta.IDS })
     @SentinelResource(value = PurchaseOrderServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -165,7 +167,8 @@ public class PurchaseOrderController extends SuperController {
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_ID, value = "物品档案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.PURCHASE_NUMBER, value = "采购数量", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class)
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PurchaseOrderVOMeta.PAGE_INDEX, PurchaseOrderVOMeta.PAGE_SIZE, PurchaseOrderVOMeta.SEARCH_FIELD, PurchaseOrderVOMeta.FUZZY_FIELD, PurchaseOrderVOMeta.SEARCH_VALUE, PurchaseOrderVOMeta.DIRTY_FIELDS, PurchaseOrderVOMeta.SORT_FIELD, PurchaseOrderVOMeta.SORT_TYPE, PurchaseOrderVOMeta.IDS })
     @SentinelResource(value = PurchaseOrderServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -231,7 +234,8 @@ public class PurchaseOrderController extends SuperController {
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_ID, value = "物品档案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.PURCHASE_NUMBER, value = "采购数量", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class)
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PurchaseOrderVOMeta.PAGE_INDEX, PurchaseOrderVOMeta.PAGE_SIZE })
     @SentinelResource(value = PurchaseOrderServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -261,7 +265,8 @@ public class PurchaseOrderController extends SuperController {
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.GOODS_ID, value = "物品档案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseOrderVOMeta.PURCHASE_NUMBER, value = "采购数量", required = false, dataTypeClass = Integer.class),
-		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class)
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UNIT_PRICE, value = "采购单价", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = PurchaseOrderVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = PurchaseOrderServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -274,8 +279,6 @@ public class PurchaseOrderController extends SuperController {
         result.success(true).data(list);
         return result;
     }
-
-
 
     @ApiOperation(value = "分页查询采购订单")
     @ApiImplicitParams({

@@ -2,7 +2,6 @@ package com.dt.platform.hr.controller;
 
 import java.io.File;
 import java.math.BigDecimal;
-
 import java.util.*;
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
@@ -135,7 +134,7 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.YEAR_DAYS, value = "年假天数", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = PersonVOMeta.ATTENDANCE_TPL_CODE, value = "考勤模版", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.ATTENDANCE_TPL_CODE, value = "考勤组", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -287,7 +286,7 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.YEAR_DAYS, value = "年假天数", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = PersonVOMeta.ATTENDANCE_TPL_CODE, value = "考勤模版", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.ATTENDANCE_TPL_CODE, value = "考勤组", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE, PersonVOMeta.SEARCH_FIELD, PersonVOMeta.FUZZY_FIELD, PersonVOMeta.SEARCH_VALUE, PersonVOMeta.DIRTY_FIELDS, PersonVOMeta.SORT_FIELD, PersonVOMeta.SORT_TYPE, PersonVOMeta.DATA_ORIGIN, PersonVOMeta.QUERY_LOGIC, PersonVOMeta.REQUEST_ACTION, PersonVOMeta.IDS })
@@ -361,7 +360,7 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.YEAR_DAYS, value = "年假天数", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = PersonVOMeta.ATTENDANCE_TPL_CODE, value = "考勤模版", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.ATTENDANCE_TPL_CODE, value = "考勤组", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE, PersonVOMeta.SEARCH_FIELD, PersonVOMeta.FUZZY_FIELD, PersonVOMeta.SEARCH_VALUE, PersonVOMeta.DIRTY_FIELDS, PersonVOMeta.SORT_FIELD, PersonVOMeta.SORT_TYPE, PersonVOMeta.DATA_ORIGIN, PersonVOMeta.QUERY_LOGIC, PersonVOMeta.REQUEST_ACTION, PersonVOMeta.IDS })
@@ -494,7 +493,7 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.YEAR_DAYS, value = "年假天数", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = PersonVOMeta.ATTENDANCE_TPL_CODE, value = "考勤模版", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.ATTENDANCE_TPL_CODE, value = "考勤组", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE })
     @SentinelResource(value = PersonServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -569,7 +568,7 @@ public class PersonController extends SuperController {
 		@ApiImplicitParam(name = PersonVOMeta.SCORE, value = "积分", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = PersonVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PersonVOMeta.YEAR_DAYS, value = "年假天数", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = PersonVOMeta.ATTENDANCE_TPL_CODE, value = "考勤模版", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PersonVOMeta.ATTENDANCE_TPL_CODE, value = "考勤组", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = PersonServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

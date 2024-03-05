@@ -1,7 +1,7 @@
 /**
  * 休假管理 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-16 20:49:28
+ * @since 2024-02-25 14:09:12
  */
 
 function FormPage() {
@@ -239,6 +239,38 @@ function FormPage() {
 				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterRemove",elId:elId,index:index,upload:upload});
 			}
 	    });
+		//渲染 attendanceTplIdsList 下拉字段
+		fox.renderSelectBox({
+			el: "attendanceTplIdsList",
+			radio: false,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("不用上班",'','cmp:form'),
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("attendanceTplIdsList",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("attendanceTplIdsList",{data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 	}
 
 	/**
@@ -314,6 +346,8 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#personId",formData.person);
 			//设置  休假类型 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#actionType",formData.typeDict);
+			//设置  不用上班 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#attendanceTplIdsList",formData.attendanceTplList);
 
 			//处理fillBy
 
@@ -380,6 +414,8 @@ function FormPage() {
 		data["personId"]=fox.getSelectedValue("personId",false);
 		//获取 休假类型 下拉框的值
 		data["actionType"]=fox.getSelectedValue("actionType",false);
+		//获取 不用上班 下拉框的值
+		data["attendanceTplIdsList"]=fox.getSelectedValue("attendanceTplIdsList",true);
 
 		return data;
 	}

@@ -39,6 +39,7 @@ public class EamInventoryGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByLoss","盘亏","盘亏");
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountBySurplus","盘盈","盘盈");
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByException","异常","异常");
+
         cfg.getPoClassFile().addListProperty(Organization.class,"ownerCompany","所属公司","所属公司");
         cfg.getPoClassFile().addListProperty(Organization.class,"useOrganization","使用公司/部门","使用公司/部门");
 

@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产标签
  * <p>资产标签 , 数据表 eam_asset_label 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-07 09:48:43
- * @sign 96D2836263185E2A41E3AEC3F9B0F82F
+ * @since 2024-03-05 10:12:25
+ * @sign C69AD340AFB7E30E49D8307741583C48
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -62,7 +62,7 @@ public class AssetLabel extends Entity {
 	/**
 	 * 字体路径：字体路径
 	*/
-	@ApiModelProperty(required = false,value="字体路径" , notes = "字体路径" , example = "/Users/lankl/IdeaProjects/eam/bin/simhei.ttf")
+	@ApiModelProperty(required = false,value="字体路径" , notes = "字体路径" , example = "/Users/lankl/Documents/msyh.ttf")
 	private String fontPath;
 	
 	/**
@@ -72,21 +72,21 @@ public class AssetLabel extends Entity {
 	private String labelTplId;
 	
 	/**
-	 * 标签宽度(cm)：标签宽度(cm)
+	 * 标签宽度：cm)
 	*/
-	@ApiModelProperty(required = false,value="标签宽度(cm)" , notes = "标签宽度(cm)" , example = "8.00")
+	@ApiModelProperty(required = false,value="标签宽度" , notes = "cm)" , example = "11.20")
 	private BigDecimal labelWidth;
 	
 	/**
-	 * 标签高度(cm)：标签高度(cm)
+	 * 标签高度：cm)
 	*/
-	@ApiModelProperty(required = false,value="标签高度(cm)" , notes = "标签高度(cm)" , example = "6.00")
+	@ApiModelProperty(required = false,value="标签高度" , notes = "cm)" , example = "6.30")
 	private BigDecimal labelHeight;
 	
 	/**
-	 * 标签布局(暂时不用)：标签布局(暂时不用)
+	 * 标签布局：暂时不用)
 	*/
-	@ApiModelProperty(required = false,value="标签布局(暂时不用)" , notes = "标签布局(暂时不用)")
+	@ApiModelProperty(required = false,value="标签布局" , notes = "暂时不用)")
 	private String labelLayout;
 	
 	/**
@@ -96,33 +96,33 @@ public class AssetLabel extends Entity {
 	private BigDecimal labelTableMargin;
 	
 	/**
-	 * 表格marginTop(mm)：表格marginTop(mm)
+	 * 表格marginTop：mm)
 	*/
-	@ApiModelProperty(required = false,value="表格marginTop(mm)" , notes = "表格marginTop(mm)" , example = "0.30")
+	@ApiModelProperty(required = false,value="表格marginTop" , notes = "mm)" , example = "0.30")
 	private BigDecimal labelTableMarginTop;
 	
 	/**
-	 * 表格marginBottom(mm)：表格marginBottom(mm)
+	 * 表格marginBottom：mm)
 	*/
-	@ApiModelProperty(required = false,value="表格marginBottom(mm)" , notes = "表格marginBottom(mm)" , example = "0.00")
+	@ApiModelProperty(required = false,value="表格marginBottom" , notes = "mm)" , example = "0.00")
 	private BigDecimal labelTableMarginBottom;
 	
 	/**
-	 * 表格marginLeft(mm)：表格marginLeft(mm)
+	 * 表格marginLeft：mm)
 	*/
-	@ApiModelProperty(required = false,value="表格marginLeft(mm)" , notes = "表格marginLeft(mm)" , example = "0.00")
+	@ApiModelProperty(required = false,value="表格marginLeft" , notes = "mm)" , example = "0.00")
 	private BigDecimal labelTableMarginLeft;
 	
 	/**
-	 * 表格marginRight(mm)：表格marginRight(mm)
+	 * 表格marginRight：mm)
 	*/
-	@ApiModelProperty(required = false,value="表格marginRight(mm)" , notes = "表格marginRight(mm)" , example = "0.00")
+	@ApiModelProperty(required = false,value="表格marginRight" , notes = "mm)" , example = "0.00")
 	private BigDecimal labelTableMarginRight;
 	
 	/**
-	 * 字体大小(mm)：字体大小(mm)
+	 * 字体大小：mm)
 	*/
-	@ApiModelProperty(required = false,value="字体大小(mm)" , notes = "字体大小(mm)" , example = "2.80")
+	@ApiModelProperty(required = false,value="字体大小" , notes = "mm)" , example = "3.60")
 	private BigDecimal labelKeyFontSize;
 	
 	/**
@@ -132,27 +132,27 @@ public class AssetLabel extends Entity {
 	private BigDecimal labelKeyWidth;
 	
 	/**
-	 * 字体大小(mm)：字体大小(mm)
+	 * 字体大小：mm)
 	*/
-	@ApiModelProperty(required = false,value="字体大小(mm)" , notes = "字体大小(mm)" , example = "2.80")
+	@ApiModelProperty(required = false,value="字体大小" , notes = "mm)" , example = "3.60")
 	private BigDecimal labelValueFontSize;
 	
 	/**
 	 * 专用标签：图像容器大小(mm)
 	*/
-	@ApiModelProperty(required = false,value="专用标签" , notes = "图像容器大小(mm)" , example = "28.00")
+	@ApiModelProperty(required = false,value="专用标签" , notes = "图像容器大小(mm)" , example = "12.00")
 	private BigDecimal imageContainHeight;
 	
 	/**
 	 * 专用标签：图形宽度
 	*/
-	@ApiModelProperty(required = false,value="专用标签" , notes = "图形宽度" , example = "27.00")
+	@ApiModelProperty(required = false,value="专用标签" , notes = "图形宽度" , example = "10.00")
 	private BigDecimal imageWidth;
 	
 	/**
 	 * 专用标签：图形高度
 	*/
-	@ApiModelProperty(required = false,value="专用标签" , notes = "图形高度" , example = "27.00")
+	@ApiModelProperty(required = false,value="专用标签" , notes = "图形高度" , example = "10.00")
 	private BigDecimal imageHeight;
 	
 	/**
@@ -206,7 +206,7 @@ public class AssetLabel extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-12-03 02:06:23")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-05 12:35:57")
 	private Date updateTime;
 	
 	/**
@@ -233,7 +233,7 @@ public class AssetLabel extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "32")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "49")
 	private Integer version;
 	
 	/**
@@ -356,17 +356,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 标签宽度(cm)<br>
-	 * 标签宽度(cm)
-	 * @return 标签宽度(cm)
+	 * 获得 标签宽度<br>
+	 * cm)
+	 * @return 标签宽度
 	*/
 	public BigDecimal getLabelWidth() {
 		return labelWidth;
 	}
 	
 	/**
-	 * 设置 标签宽度(cm)
-	 * @param labelWidth 标签宽度(cm)
+	 * 设置 标签宽度
+	 * @param labelWidth 标签宽度
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelWidth(BigDecimal labelWidth) {
@@ -375,17 +375,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 标签高度(cm)<br>
-	 * 标签高度(cm)
-	 * @return 标签高度(cm)
+	 * 获得 标签高度<br>
+	 * cm)
+	 * @return 标签高度
 	*/
 	public BigDecimal getLabelHeight() {
 		return labelHeight;
 	}
 	
 	/**
-	 * 设置 标签高度(cm)
-	 * @param labelHeight 标签高度(cm)
+	 * 设置 标签高度
+	 * @param labelHeight 标签高度
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelHeight(BigDecimal labelHeight) {
@@ -394,17 +394,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 标签布局(暂时不用)<br>
-	 * 标签布局(暂时不用)
-	 * @return 标签布局(暂时不用)
+	 * 获得 标签布局<br>
+	 * 暂时不用)
+	 * @return 标签布局
 	*/
 	public String getLabelLayout() {
 		return labelLayout;
 	}
 	
 	/**
-	 * 设置 标签布局(暂时不用)
-	 * @param labelLayout 标签布局(暂时不用)
+	 * 设置 标签布局
+	 * @param labelLayout 标签布局
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelLayout(String labelLayout) {
@@ -432,17 +432,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 表格marginTop(mm)<br>
-	 * 表格marginTop(mm)
-	 * @return 表格marginTop(mm)
+	 * 获得 表格marginTop<br>
+	 * mm)
+	 * @return 表格marginTop
 	*/
 	public BigDecimal getLabelTableMarginTop() {
 		return labelTableMarginTop;
 	}
 	
 	/**
-	 * 设置 表格marginTop(mm)
-	 * @param labelTableMarginTop 表格marginTop(mm)
+	 * 设置 表格marginTop
+	 * @param labelTableMarginTop 表格marginTop
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelTableMarginTop(BigDecimal labelTableMarginTop) {
@@ -451,17 +451,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 表格marginBottom(mm)<br>
-	 * 表格marginBottom(mm)
-	 * @return 表格marginBottom(mm)
+	 * 获得 表格marginBottom<br>
+	 * mm)
+	 * @return 表格marginBottom
 	*/
 	public BigDecimal getLabelTableMarginBottom() {
 		return labelTableMarginBottom;
 	}
 	
 	/**
-	 * 设置 表格marginBottom(mm)
-	 * @param labelTableMarginBottom 表格marginBottom(mm)
+	 * 设置 表格marginBottom
+	 * @param labelTableMarginBottom 表格marginBottom
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelTableMarginBottom(BigDecimal labelTableMarginBottom) {
@@ -470,17 +470,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 表格marginLeft(mm)<br>
-	 * 表格marginLeft(mm)
-	 * @return 表格marginLeft(mm)
+	 * 获得 表格marginLeft<br>
+	 * mm)
+	 * @return 表格marginLeft
 	*/
 	public BigDecimal getLabelTableMarginLeft() {
 		return labelTableMarginLeft;
 	}
 	
 	/**
-	 * 设置 表格marginLeft(mm)
-	 * @param labelTableMarginLeft 表格marginLeft(mm)
+	 * 设置 表格marginLeft
+	 * @param labelTableMarginLeft 表格marginLeft
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelTableMarginLeft(BigDecimal labelTableMarginLeft) {
@@ -489,17 +489,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 表格marginRight(mm)<br>
-	 * 表格marginRight(mm)
-	 * @return 表格marginRight(mm)
+	 * 获得 表格marginRight<br>
+	 * mm)
+	 * @return 表格marginRight
 	*/
 	public BigDecimal getLabelTableMarginRight() {
 		return labelTableMarginRight;
 	}
 	
 	/**
-	 * 设置 表格marginRight(mm)
-	 * @param labelTableMarginRight 表格marginRight(mm)
+	 * 设置 表格marginRight
+	 * @param labelTableMarginRight 表格marginRight
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelTableMarginRight(BigDecimal labelTableMarginRight) {
@@ -508,17 +508,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 字体大小(mm)<br>
-	 * 字体大小(mm)
-	 * @return 字体大小(mm)
+	 * 获得 字体大小<br>
+	 * mm)
+	 * @return 字体大小
 	*/
 	public BigDecimal getLabelKeyFontSize() {
 		return labelKeyFontSize;
 	}
 	
 	/**
-	 * 设置 字体大小(mm)
-	 * @param labelKeyFontSize 字体大小(mm)
+	 * 设置 字体大小
+	 * @param labelKeyFontSize 字体大小
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelKeyFontSize(BigDecimal labelKeyFontSize) {
@@ -546,17 +546,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 字体大小(mm)<br>
-	 * 字体大小(mm)
-	 * @return 字体大小(mm)
+	 * 获得 字体大小<br>
+	 * mm)
+	 * @return 字体大小
 	*/
 	public BigDecimal getLabelValueFontSize() {
 		return labelValueFontSize;
 	}
 	
 	/**
-	 * 设置 字体大小(mm)
-	 * @param labelValueFontSize 字体大小(mm)
+	 * 设置 字体大小
+	 * @param labelValueFontSize 字体大小
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelValueFontSize(BigDecimal labelValueFontSize) {

@@ -5,13 +5,11 @@ import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
 import com.dt.platform.domain.eam.*;
-import com.dt.platform.domain.eam.meta.InspectionPointMeta;
-import com.dt.platform.domain.eam.meta.InspectionPointPosMeta;
-import com.dt.platform.domain.eam.meta.InspectionRouteMeta;
-import com.dt.platform.domain.eam.meta.InspectionTaskPointMeta;
+import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.page.InspectionTaskPointPageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.InspectionPointPosServiceProxy;
+import com.dt.platform.proxy.eam.InspectionProcessActionServiceProxy;
 import com.dt.platform.proxy.eam.InspectionRouteServiceProxy;
 import com.dt.platform.proxy.eam.InspectionTaskPointServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
@@ -40,7 +38,9 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(InspectionPoint.class,"inspectionPoint","inspectionPoint","inspectionPoint");
         cfg.getPoClassFile().addSimpleProperty(String.class,"itemCount","itemCount","itemCount");
         cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","asset","asset");
+        cfg.getPoClassFile().addSimpleProperty(InspectionProcessAction.class,"inspectionProcessAction","inspectionProcessAction","inspectionProcessAction");
 
+//        cfg.getPoClassFile().addSimpleProperty(String.class,"relAsset","relAsset","relAsset");
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.OPER_ID).table().fillBy("operUser","name");
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.OPER_ID).form()
@@ -55,7 +55,12 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
                         EAMTables.EAM_INSPECTION_TASK_POINT.POINT_CODE,
                         EAMTables.EAM_INSPECTION_TASK_POINT.POINT_NAME,
                         EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS,
+                },
+                new Object[]{
+                        EAMTables.EAM_INSPECTION_TASK_POINT.POINT_STATUS,
+                        EAMTables.EAM_INSPECTION_TASK_POINT.ACTION_LABEL,
                 }
+
         );
 
 
@@ -80,6 +85,7 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS_LONGITUDE).form().numberInput().defaultValue(0).decimal().scale(2);
 
 
+//        cfg.view().field(InspectionTaskPointMeta.REL_ASSET).basic().label("关联设备").table().disable(false);
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.IMAGE_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.IMAGE_ID).form().upload().acceptImageType().maxFileCount(3);
 
@@ -93,6 +99,12 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
                 textField(InspectionRouteMeta.NAME).
                 fillWith(InspectionTaskPointMeta.ROUTE).muliti(false).defaultIndex(0);
 
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.ACTION_LABEL)
+                .form().selectBox().queryApi(InspectionProcessActionServiceProxy.QUERY_LIST)
+                .paging(false).filter(true).toolbar(false)
+                .valueField(InspectionProcessActionMeta.CODE).
+                textField(InspectionProcessActionMeta.NAME).
+                fillWith(InspectionTaskPointMeta.INSPECTION_PROCESS_ACTION).muliti(false);
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS_ID)
                 .form().selectBox().queryApi(InspectionPointPosServiceProxy.QUERY_PAGED_LIST)
@@ -110,6 +122,7 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_INSPECTION_TASK_POINT.POINT_STATUS,
+                        EAMTables.EAM_INSPECTION_TASK_POINT.ACTION_LABEL,
                 }
         );
         cfg.view().form().addGroup(null,
@@ -133,6 +146,11 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
                         EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS_LATITUDE,
                 }
         );
+
+        cfg.view().list().addToolButton("导入","importData","import-data");
+        cfg.view().list().addToolButton("导出","exportData","export-data");
+
+
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口

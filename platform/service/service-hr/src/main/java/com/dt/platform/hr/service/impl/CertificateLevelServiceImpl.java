@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
-
 import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
@@ -39,11 +38,12 @@ import java.util.Map;
  * 证书级别服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 09:31:04
+ * @since 2024-03-03 20:27:25
 */
 
 
 @Service("HrCertificateLevelService")
+
 public class CertificateLevelServiceImpl extends SuperService<CertificateLevel> implements ICertificateLevelService {
 
 	/**

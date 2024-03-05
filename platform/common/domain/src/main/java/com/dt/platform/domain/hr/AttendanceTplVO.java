@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考勤模版VO类型
  * <p>考勤模版 , 数据表 hr_attendance_tpl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:48:54
+ * @since 2024-02-27 13:13:44
  * @sign 86A2472BEEF02FFB07BB9C893D7B182A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -401,13 +401,12 @@ public class AttendanceTplVO extends AttendanceTpl {
 	@Transient
 	public AttendanceTplVO duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AttendanceTplVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AttendanceTplVOMeta.$$proxy$$();
+		inst.setTplType(this.getTplType());
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
-		inst.setOnWorkTime(this.getOnWorkTime());
 		inst.setCreateBy(this.getCreateBy());
-		inst.setOffWorkTime(this.getOffWorkTime());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -421,8 +420,7 @@ public class AttendanceTplVO extends AttendanceTpl {
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
-			inst.setWeekList(this.getWeekList());
-			inst.setWeekDict(this.getWeekDict());
+			inst.setSelectedCode(this.getSelectedCode());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
@@ -490,13 +488,12 @@ public class AttendanceTplVO extends AttendanceTpl {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setTplType(DataParser.parse(String.class, map.get(AttendanceTplVOMeta.TPL_TYPE)));
 			this.setCode(DataParser.parse(String.class, map.get(AttendanceTplVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(AttendanceTplVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AttendanceTplVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AttendanceTplVOMeta.VERSION)));
-			this.setOnWorkTime(DataParser.parse(Date.class, map.get(AttendanceTplVOMeta.ON_WORK_TIME)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AttendanceTplVOMeta.CREATE_BY)));
-			this.setOffWorkTime(DataParser.parse(Date.class, map.get(AttendanceTplVOMeta.OFF_WORK_TIME)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AttendanceTplVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AttendanceTplVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AttendanceTplVOMeta.UPDATE_BY)));
@@ -510,6 +507,7 @@ public class AttendanceTplVO extends AttendanceTpl {
 			this.setRequestAction(DataParser.parse(String.class, map.get(AttendanceTplVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AttendanceTplVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AttendanceTplVOMeta.PAGE_SIZE)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AttendanceTplVOMeta.SELECTED_CODE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AttendanceTplVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AttendanceTplVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(AttendanceTplVOMeta.SORT_FIELD)));
@@ -519,13 +517,12 @@ public class AttendanceTplVO extends AttendanceTpl {
 			return true;
 		} else {
 			try {
+				this.setTplType( (String)map.get(AttendanceTplVOMeta.TPL_TYPE));
 				this.setCode( (String)map.get(AttendanceTplVOMeta.CODE));
 				this.setNotes( (String)map.get(AttendanceTplVOMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(AttendanceTplVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(AttendanceTplVOMeta.VERSION));
-				this.setOnWorkTime( (Date)map.get(AttendanceTplVOMeta.ON_WORK_TIME));
 				this.setCreateBy( (String)map.get(AttendanceTplVOMeta.CREATE_BY));
-				this.setOffWorkTime( (Date)map.get(AttendanceTplVOMeta.OFF_WORK_TIME));
 				this.setDeleted( (Integer)map.get(AttendanceTplVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(AttendanceTplVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(AttendanceTplVOMeta.UPDATE_BY));
@@ -539,6 +536,7 @@ public class AttendanceTplVO extends AttendanceTpl {
 				this.setRequestAction( (String)map.get(AttendanceTplVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(AttendanceTplVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(AttendanceTplVOMeta.PAGE_SIZE));
+				this.setSelectedCode( (String)map.get(AttendanceTplVOMeta.SELECTED_CODE));
 				this.setPageIndex( (Integer)map.get(AttendanceTplVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AttendanceTplVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(AttendanceTplVOMeta.SORT_FIELD));
@@ -561,13 +559,12 @@ public class AttendanceTplVO extends AttendanceTpl {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setTplType(DataParser.parse(String.class, r.getValue(AttendanceTplVOMeta.TPL_TYPE)));
 			this.setCode(DataParser.parse(String.class, r.getValue(AttendanceTplVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(AttendanceTplVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AttendanceTplVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AttendanceTplVOMeta.VERSION)));
-			this.setOnWorkTime(DataParser.parse(Date.class, r.getValue(AttendanceTplVOMeta.ON_WORK_TIME)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AttendanceTplVOMeta.CREATE_BY)));
-			this.setOffWorkTime(DataParser.parse(Date.class, r.getValue(AttendanceTplVOMeta.OFF_WORK_TIME)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AttendanceTplVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AttendanceTplVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AttendanceTplVOMeta.UPDATE_BY)));
@@ -579,13 +576,12 @@ public class AttendanceTplVO extends AttendanceTpl {
 			return true;
 		} else {
 			try {
+				this.setTplType( (String)r.getValue(AttendanceTplVOMeta.TPL_TYPE));
 				this.setCode( (String)r.getValue(AttendanceTplVOMeta.CODE));
 				this.setNotes( (String)r.getValue(AttendanceTplVOMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(AttendanceTplVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(AttendanceTplVOMeta.VERSION));
-				this.setOnWorkTime( (Date)r.getValue(AttendanceTplVOMeta.ON_WORK_TIME));
 				this.setCreateBy( (String)r.getValue(AttendanceTplVOMeta.CREATE_BY));
-				this.setOffWorkTime( (Date)r.getValue(AttendanceTplVOMeta.OFF_WORK_TIME));
 				this.setDeleted( (Integer)r.getValue(AttendanceTplVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(AttendanceTplVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(AttendanceTplVOMeta.UPDATE_BY));

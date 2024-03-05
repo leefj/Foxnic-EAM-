@@ -1,7 +1,7 @@
 /**
  * 考勤汇总 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 15:15:18
+ * @since 2024-02-25 21:45:48
  */
 
 function FormPage() {
@@ -160,7 +160,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "attendanceTplCode",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("考勤模版",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("考勤组",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -193,6 +193,13 @@ function FormPage() {
 				}
 				return opts;
 			}
+		});
+		form.on('radio(isWorkDay)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=isWorkDay]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("isWorkDay",data,checked);
 		});
 		laydate.render({
 			elem: '#attendanceDate',
@@ -239,47 +246,14 @@ function FormPage() {
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("offWorkTime2",value, date, endDate);
 			}
 		});
-		form.on('radio(leaveEarly)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=leaveEarly]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("leaveEarly",data,checked);
-		});
-		form.on('radio(leaveLate)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=leaveLate]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("leaveLate",data,checked);
-		});
-		form.on('radio(skipWork)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=skipWork]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("skipWork",data,checked);
-		});
-		form.on('radio(bq)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=bq]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("bq",data,checked);
-		});
-		form.on('radio(qj)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=qj]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("qj",data,checked);
-		});
-		form.on('radio(cc)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=cc]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("cc",data,checked);
+		laydate.render({
+			elem: '#rcdTime',
+			type:"date",
+			format:"yyyy-MM-dd HH:mm:ss",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("rcdTime",value, date, endDate);
+			}
 		});
 	}
 
@@ -356,7 +330,7 @@ function FormPage() {
 
 			//设置  人员 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#personId",formData.person);
-			//设置  考勤模版 设置下拉框勾选
+			//设置  考勤组 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#attendanceTplCode",formData.attendanceTpl);
 
 			//处理fillBy
@@ -422,7 +396,7 @@ function FormPage() {
 
 		//获取 人员 下拉框的值
 		data["personId"]=fox.getSelectedValue("personId",false);
-		//获取 考勤模版 下拉框的值
+		//获取 考勤组 下拉框的值
 		data["attendanceTplCode"]=fox.getSelectedValue("attendanceTplCode",false);
 
 		return data;

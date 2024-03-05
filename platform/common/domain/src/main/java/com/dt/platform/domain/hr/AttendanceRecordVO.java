@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考勤原始记录VO类型
  * <p>考勤原始记录 , 数据表 hr_attendance_record 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-18 13:43:21
+ * @since 2024-02-27 16:36:55
  * @sign 7544031466650EB35E2D976C6380908C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -402,6 +402,7 @@ public class AttendanceRecordVO extends AttendanceRecord {
 	public AttendanceRecordVO duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AttendanceRecordVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AttendanceRecordVOMeta.$$proxy$$();
 		inst.setEmployeeName(this.getEmployeeName());
+		inst.setAddress(this.getAddress());
 		inst.setNotes(this.getNotes());
 		inst.setProcessStatus(this.getProcessStatus());
 		inst.setBatchCode(this.getBatchCode());
@@ -496,6 +497,7 @@ public class AttendanceRecordVO extends AttendanceRecord {
 		if(map==null) return false;
 		if(cast) {
 			this.setEmployeeName(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.EMPLOYEE_NAME)));
+			this.setAddress(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.ADDRESS)));
 			this.setNotes(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.NOTES)));
 			this.setProcessStatus(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.PROCESS_STATUS)));
 			this.setBatchCode(DataParser.parse(String.class, map.get(AttendanceRecordVOMeta.BATCH_CODE)));
@@ -532,6 +534,7 @@ public class AttendanceRecordVO extends AttendanceRecord {
 		} else {
 			try {
 				this.setEmployeeName( (String)map.get(AttendanceRecordVOMeta.EMPLOYEE_NAME));
+				this.setAddress( (String)map.get(AttendanceRecordVOMeta.ADDRESS));
 				this.setNotes( (String)map.get(AttendanceRecordVOMeta.NOTES));
 				this.setProcessStatus( (String)map.get(AttendanceRecordVOMeta.PROCESS_STATUS));
 				this.setBatchCode( (String)map.get(AttendanceRecordVOMeta.BATCH_CODE));
@@ -581,6 +584,7 @@ public class AttendanceRecordVO extends AttendanceRecord {
 		if(r==null) return false;
 		if(cast) {
 			this.setEmployeeName(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.EMPLOYEE_NAME)));
+			this.setAddress(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.ADDRESS)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.NOTES)));
 			this.setProcessStatus(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.PROCESS_STATUS)));
 			this.setBatchCode(DataParser.parse(String.class, r.getValue(AttendanceRecordVOMeta.BATCH_CODE)));
@@ -605,6 +609,7 @@ public class AttendanceRecordVO extends AttendanceRecord {
 		} else {
 			try {
 				this.setEmployeeName( (String)r.getValue(AttendanceRecordVOMeta.EMPLOYEE_NAME));
+				this.setAddress( (String)r.getValue(AttendanceRecordVOMeta.ADDRESS));
 				this.setNotes( (String)r.getValue(AttendanceRecordVOMeta.NOTES));
 				this.setProcessStatus( (String)r.getValue(AttendanceRecordVOMeta.PROCESS_STATUS));
 				this.setBatchCode( (String)r.getValue(AttendanceRecordVOMeta.BATCH_CODE));

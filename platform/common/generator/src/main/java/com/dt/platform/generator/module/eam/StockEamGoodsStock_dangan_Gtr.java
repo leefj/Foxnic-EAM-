@@ -92,6 +92,7 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.BAR_CODE).basic().search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.CODE).basic().search().fuzzySearch();
 
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.UNIT_PRICE).form().validate().required().form().numberInput().scale(2);
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.PICTURE_ID).table().disable();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.OWNER_CODE).table().disable();

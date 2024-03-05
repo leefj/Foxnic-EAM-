@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-18 13:43:21
+ * @since 2024-02-27 16:36:55
  * @sign 7544031466650EB35E2D976C6380908C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -200,6 +200,16 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.util.Date> RCD_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,RCD_TIME, java.util.Date.class, "打卡时间", "打卡时间", java.util.Date.class, null);
 	
 	/**
+	 * 打卡位置 , 类型: java.lang.String
+	*/
+	public static final String ADDRESS="address";
+	
+	/**
+	 * 打卡位置 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceRecordVO,java.lang.String> ADDRESS_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceRecordVO.class ,ADDRESS, java.lang.String.class, "打卡位置", "打卡位置", java.lang.String.class, null);
+	
+	/**
 	 * 来源 , 类型: java.lang.String
 	*/
 	public static final String SOURCE="source";
@@ -362,7 +372,7 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PERSON_ID , EMPLOYEE_ID , EMPLOYEE_NAME , EMPLOYEE_NUMBER , RCD_TIME , SOURCE , BATCH_CODE , PROCESS_STATUS , PROCESS_TIME , PROCESS_RESULT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PERSON_ID , EMPLOYEE_ID , EMPLOYEE_NAME , EMPLOYEE_NUMBER , RCD_TIME , ADDRESS , SOURCE , BATCH_CODE , PROCESS_STATUS , PROCESS_TIME , PROCESS_RESULT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON };
 	
 	/**
 	 * 代理类
@@ -571,6 +581,17 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 		}
 		
 		/**
+		 * 设置 打卡位置
+		 * @param address 打卡位置
+		 * @return 当前对象
+		*/
+		public AttendanceRecord setAddress(String address) {
+			super.change(ADDRESS,super.getAddress(),address);
+			super.setAddress(address);
+			return this;
+		}
+		
+		/**
 		 * 设置 来源
 		 * @param source 来源
 		 * @return 当前对象
@@ -762,6 +783,7 @@ public class AttendanceRecordVOMeta extends AttendanceRecordMeta {
 		public AttendanceRecordVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setEmployeeName(this.getEmployeeName());
+			inst.setAddress(this.getAddress());
 			inst.setNotes(this.getNotes());
 			inst.setProcessStatus(this.getProcessStatus());
 			inst.setBatchCode(this.getBatchCode());

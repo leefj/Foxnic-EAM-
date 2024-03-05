@@ -47,13 +47,11 @@ public class HrmAttendanceRecordGtr extends BaseCodeGenerator {
                         HrTables.HR_ATTENDANCE_RECORD.PERSON_ID,
                         HrTables.HR_ATTENDANCE_RECORD.EMPLOYEE_NUMBER,
                         HrTables.HR_ATTENDANCE_RECORD.EMPLOYEE_NAME,
-                        HrTables.HR_ATTENDANCE_RECORD.BATCH_CODE,
+                        HrTables.HR_ATTENDANCE_RECORD.SOURCE,
                 },
                 new Object[]{
-                        HrTables.HR_ATTENDANCE_RECORD.SOURCE,
-                        HrTables.HR_ATTENDANCE_RECORD.PROCESS_STATUS,
+                        HrTables.HR_ATTENDANCE_RECORD.BATCH_CODE,
                         HrTables.HR_ATTENDANCE_RECORD.RCD_TIME,
-
                 }
         );
 
@@ -62,7 +60,9 @@ public class HrmAttendanceRecordGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.CREATE_TIME).form().table().disable(true);
         cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.EMPLOYEE_NAME).form().table().disable(true);
 
-        cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.PROCESS_STATUS).form().validate().required().form().radioBox().enumType(AttendanceRcdProcessStatusEnum.class).defaultIndex(0);
+        cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.PROCESS_STATUS).form().table().disable(true);
+
+        cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.PROCESS_STATUS).form().radioBox().enumType(AttendanceRcdProcessStatusEnum.class).defaultIndex(0);
 
         cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.PERSON_ID)
                 .form().validate().required().form().selectBox().queryApi(PersonServiceProxy.QUERY_PAGED_LIST)
@@ -72,7 +72,7 @@ public class HrmAttendanceRecordGtr extends BaseCodeGenerator {
                 fillWith(AttendanceRecordMeta.PERSON).muliti(false);
 
 
-        cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.RCD_TIME).form().dateInput().type(DatePickerType.datetime);
+        cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.RCD_TIME).form().validate().required().form().dateInput().type(DatePickerType.datetime);
 
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
@@ -81,31 +81,35 @@ public class HrmAttendanceRecordGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.PROCESS_STATUS).form().table().disable(true);
+        cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.PROCESS_RESULT).form().table().disable(true);
+
+        cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.PROCESS_TIME).form().table().disable(true);
         cfg.view().field(HrTables.HR_ATTENDANCE_RECORD.EMPLOYEE_NUMBER).form().readOnly();
         cfg.view().formWindow().width("75%");;
-        cfg.view().formWindow().bottomSpace(20);
+        cfg.view().formWindow().bottomSpace(160);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         HrTables.HR_ATTENDANCE_RECORD.PERSON_ID,
                         HrTables.HR_ATTENDANCE_RECORD.EMPLOYEE_NUMBER,
+                        HrTables.HR_ATTENDANCE_RECORD.RCD_TIME,
                 },
                 new Object[] {
-
+                        HrTables.HR_ATTENDANCE_RECORD.ADDRESS,
                         HrTables.HR_ATTENDANCE_RECORD.SOURCE,
                         HrTables.HR_ATTENDANCE_RECORD.BATCH_CODE
                 }
         );
-
-        cfg.view().form().addGroup("处理情况",
-                new Object[] {
-                        HrTables.HR_ATTENDANCE_RECORD.PROCESS_STATUS,
-                        HrTables.HR_ATTENDANCE_RECORD.PROCESS_RESULT,
-                },
-                new Object[] {
-                        HrTables.HR_ATTENDANCE_RECORD.RCD_TIME,
-                        HrTables.HR_ATTENDANCE_RECORD.PROCESS_TIME,
-                }
-        );
+//        cfg.view().form().addGroup("处理情况",
+//                new Object[] {
+//                        HrTables.HR_ATTENDANCE_RECORD.PROCESS_STATUS,
+//                        HrTables.HR_ATTENDANCE_RECORD.PROCESS_RESULT,
+//                },
+//                new Object[] {
+//                        HrTables.HR_ATTENDANCE_RECORD.RCD_TIME,
+//                        HrTables.HR_ATTENDANCE_RECORD.PROCESS_TIME,
+//                }
+//        );
         cfg.view().form().addGroup(null,
                 new Object[] {
 
@@ -113,6 +117,8 @@ public class HrmAttendanceRecordGtr extends BaseCodeGenerator {
 
                 }
         );
+
+        cfg.view().list().addJsVariable("PERSON_ID",   "[[${personId}]]","personId");
 
         cfg.view().list().excel(true,true);
         cfg.view().list().addToolButton("导入","importData","import-data");

@@ -63,6 +63,15 @@
             <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
+
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('处理动作')}">处理动作</div></div>
+                    <div class="layui-input-block ">
+                        <div id="actionLabel" input-type="select" th:data="${'/service-eam/eam-inspection-process-action/query-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
+
+
                 <!-- text_area : 巡检结果 ,  content  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('巡检结果')}">巡检结果</div></div>
@@ -70,8 +79,14 @@
                         <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入'+'巡检结果') }" class="layui-textarea" style="height: 150px" ></textarea>
                     </div>
                 </div>
+
+
                 <!--结束：栏次内字段循环-->
+
             </div>
+
+
+
 
             <!-- upload : 图片 ,  imageId  -->
             <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">

@@ -38,7 +38,7 @@ public interface IInspectionTaskPointService extends ISuperService<InspectionTas
 	*  @param imageId 数据对象
 	 * @return 是否成功
 	 * */
-	Result finish(String taskPointId,String status,String content,String imageId,String posData);
+	Result finish(String taskPointId,String status,String content,String imageId,String actionLabel,String posData);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -333,7 +333,13 @@ public interface IInspectionTaskPointService extends ISuperService<InspectionTas
 	 * 导入 Excel 数据
 	 * @return  错误信息，成功时返回 null
 	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
+	List<ValidateResult> importExcel(InputStream input,int sheetIndex,String code);
+
+
+	InputStream buildExcelTemplate(String code);
+
+	ExcelStructure buildExcelStructure(InputStream dataInputStream,String code);
+
 
 
 }

@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 招聘面试
  * <p>招聘面试 , 数据表 hr_interview 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-19 13:27:03
- * @sign A07A134F96D929913BB83B4C90489844
+ * @since 2024-02-20 15:04:42
+ * @sign A7F0ED0D7AC5BB4659F8AA9D485D1957
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,31 +41,31 @@ public class Interview extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "812299862279192576")
 	private String id;
 	
 	/**
 	 * 标题：标题
 	*/
-	@ApiModelProperty(required = false,value="标题" , notes = "标题")
+	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "12")
 	private String name;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "finish")
 	private String status;
 	
 	/**
 	 * 面试日期：面试日期
 	*/
-	@ApiModelProperty(required = false,value="面试日期" , notes = "面试日期")
+	@ApiModelProperty(required = false,value="面试日期" , notes = "面试日期" , example = "2024-02-07 12:00:00")
 	private Date interviewDate;
 	
 	/**
 	 * 内容：内容
 	*/
-	@ApiModelProperty(required = false,value="内容" , notes = "内容")
+	@ApiModelProperty(required = false,value="内容" , notes = "内容" , example = "121212")
 	private String content;
 	
 	/**
@@ -89,31 +89,31 @@ public class Interview extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-02-20 12:29:39")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-02-20 12:36:41")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -134,13 +134,13 @@ public class Interview extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -148,6 +148,12 @@ public class Interview extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="employee" , notes = "employee")
 	private Employee employee;
+	
+	/**
+	 * selectedCode：selectedCode
+	*/
+	@ApiModelProperty(required = false,value="selectedCode" , notes = "selectedCode")
+	private String selectedCode;
 	
 	/**
 	 * 获得 主键<br>
@@ -521,6 +527,25 @@ public class Interview extends Entity {
 		this.employee=employee;
 		return this;
 	}
+	
+	/**
+	 * 获得 selectedCode<br>
+	 * selectedCode
+	 * @return selectedCode
+	*/
+	public String getSelectedCode() {
+		return selectedCode;
+	}
+	
+	/**
+	 * 设置 selectedCode
+	 * @param selectedCode selectedCode
+	 * @return 当前对象
+	*/
+	public Interview setSelectedCode(String selectedCode) {
+		this.selectedCode=selectedCode;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -585,6 +610,7 @@ public class Interview extends Entity {
 		inst.setFileId(this.getFileId());
 		if(all) {
 			inst.setEmployee(this.getEmployee());
+			inst.setSelectedCode(this.getSelectedCode());
 		}
 		inst.clearModifies();
 		return inst;
@@ -663,6 +689,7 @@ public class Interview extends Entity {
 			this.setFileId(DataParser.parse(String.class, map.get(InterviewMeta.FILE_ID)));
 			// others
 			this.setEmployee(DataParser.parse(Employee.class, map.get(InterviewMeta.EMPLOYEE)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(InterviewMeta.SELECTED_CODE)));
 			return true;
 		} else {
 			try {
@@ -685,6 +712,7 @@ public class Interview extends Entity {
 				this.setFileId( (String)map.get(InterviewMeta.FILE_ID));
 				// others
 				this.setEmployee( (Employee)map.get(InterviewMeta.EMPLOYEE));
+				this.setSelectedCode( (String)map.get(InterviewMeta.SELECTED_CODE));
 				return true;
 			} catch (Exception e) {
 				return false;

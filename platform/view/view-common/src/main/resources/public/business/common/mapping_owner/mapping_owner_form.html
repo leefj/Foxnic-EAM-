@@ -2,7 +2,7 @@
 /**
  * 归属 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:30:21
+ * @since 2024-02-25 13:37:17
  */
  -->
  <!DOCTYPE html>
@@ -64,6 +64,14 @@
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('选择')}">选择</div></div>
                     <div class="layui-input-block layui-input-block-c1">
                         <input lay-filter="selectedCode" id="selectedCode" name="selectedCode" th:placeholder="${ lang.translate('请输入'+'选择') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 归属 ,  owner -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('归属')}">归属</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="owner" id="owner" name="owner" th:placeholder="${ lang.translate('请输入'+'归属') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             

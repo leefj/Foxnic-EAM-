@@ -2,7 +2,7 @@
 /**
  * 考勤日期 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:46:07
+ * @since 2024-02-27 16:27:28
  */
  -->
  <!DOCTYPE html>
@@ -49,6 +49,9 @@
                     <!-- 开始日期 , confSDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 结束日期 , confEDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 生成数据 , confCreateDate ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 不用上班(优先) , attendanceTplIdsList ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 需要上班 , attendanceTplIdsList2 ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 上午上班 , attendanceTplIdsList3 ,typeName=select_box, isHideInSearch=true -->
                     <!-- 周 , week ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('周')}" class="search-label week-label">周</span><span class="search-colon">:</span></div>
@@ -114,7 +117,6 @@
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('hr_attendance_date:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
         <button th:if="${perm.checkAuth('hr_attendance_date:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除','','cmp:table.button')}">删除</span></button>
-        <button id="tpl-conf"  class="layui-btn icon-btn layui-btn-sm  tpl-conf " lay-event="tool-tpl-conf"><span th:text="${lang.translate('考勤模版','','cmp:table.button')}">考勤模版</span></button>
     </div>
 </script>
 

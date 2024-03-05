@@ -2,7 +2,7 @@
 /**
  * 考勤日期 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:46:08
+ * @since 2024-02-27 16:27:29
  */
  -->
  <!DOCTYPE html>
@@ -37,11 +37,11 @@
 
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2968-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9156-fieldset">
             <legend>考勤日期</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-2968-content">
+        <div class="layui-row form-row" id="random-9156-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -94,17 +94,33 @@
                         <input input-type="radio" type="radio" name="attendancSign" lay-filter="attendancSign" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
+            
+                <!-- select_box : 不用上班(优先) ,  attendanceTplIdsList  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('不用上班(优先)')}">不用上班(优先)</div></div>
+                    <div class="layui-input-block ">
+                        <div id="attendanceTplIdsList" input-type="select" th:data="${'/service-hr/hr-attendance-tpl/query-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- select_box : 需要上班 ,  attendanceTplIdsList2  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('需要上班')}">需要上班</div></div>
+                    <div class="layui-input-block ">
+                        <div id="attendanceTplIdsList2" input-type="select" th:data="${'/service-hr/hr-attendance-tpl/query-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
             <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3741-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1205-fieldset">
             <legend>生成数据</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-3741-content">
+        <div class="layui-row form-row" id="random-1205-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -124,7 +140,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-7647-content">
+        <div class="layui-row form-row" id="random-9698-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->

@@ -1,6 +1,9 @@
 package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
+
+import com.github.foxnic.commons.lang.StringUtil;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -73,7 +76,14 @@ public class InterviewServiceImpl extends SuperService<Interview> implements IIn
 	 */
 	@Override
 	public Result insert(Interview interview,boolean throwsException) {
+
+		if(StringUtil.isBlank(interview.getUserId())){
+			interview.setUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+		}
 		Result r=super.insert(interview,throwsException);
+		if(r.isSuccess()){
+			dao.execute("update hr_person_interview set interview_id=? where interview_id=?",interview.getId(),interview.getSelectedCode());
+		}
 		return r;
 	}
 

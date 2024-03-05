@@ -144,7 +144,7 @@ public class StockGoodsGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.STOCK_CUR_NUMBER).form().validate().required();
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.STOCK_IN_NUMBER).form().validate().required();
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.GOODS_ID).form().validate().required();
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.UNIT_PRICE).form().validate().required();
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.UNIT_PRICE).form().validate().required().form().numberInput().scale(2);;
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.AMOUNT).form().validate().required();
 
         cfg.view().list().disableBatchDelete();
