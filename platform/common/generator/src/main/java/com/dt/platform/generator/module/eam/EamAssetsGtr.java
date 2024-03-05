@@ -390,6 +390,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET.SERIAL_NUMBER)
                 .basic().label("序列号");
 
+
         cfg.view().field(EAMTables.EAM_ASSET.PICTURE_ID)
                 .form().label("图片").upload().buttonLabel("选择图片").acceptSingleImage().maxFileCount(1).displayFileName(false);
 

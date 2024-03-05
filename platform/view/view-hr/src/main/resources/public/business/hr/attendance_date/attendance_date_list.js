@@ -1,7 +1,7 @@
 /**
  * 考勤日期 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:46:08
+ * @since 2024-02-27 16:27:29
  */
 
 
@@ -91,6 +91,9 @@ function ListPage() {
 					,{ field: 'statutoryHoliday', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('法定假日'), templet:function (d){ return templet('statutoryHoliday',fox.getEnumText(RADIO_STATUTORYHOLIDAY_DATA,d.statutoryHoliday,'','statutoryHoliday'),d);}}
 					,{ field: 'holiday', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节日') , templet: function (d) { return templet('holiday',d.holiday,d);}  }
 					,{ field: 'attendancSign', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考勤签到'), templet:function (d){ return templet('attendancSign',fox.getEnumText(RADIO_ATTENDANCSIGN_DATA,d.attendancSign,'','attendancSign'),d);}}
+					,{ field: 'attendanceTplIdsList', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('不用上班(优先)'), templet: function (d) { return templet('attendanceTplIdsList' ,fox.joinLabel(d.attendanceTplList,"name",',','','attendanceTplIdsList'),d);}}
+					,{ field: 'attendanceTplIdsList2', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('需要上班'), templet: function (d) { return templet('attendanceTplIdsList2' ,fox.joinLabel(d.attendanceTplList2,"name",',','','attendanceTplIdsList2'),d);}}
+					,{ field: 'attendanceTplIdsList3', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('上午上班'), templet: function (d) { return templet('attendanceTplIdsList3' ,fox.joinLabel(d.attendanceTplList3,"name",',','','attendanceTplIdsList3'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -340,9 +343,6 @@ function ListPage() {
 					break;
 				case 'batch-del':
 					batchDelete(selected);
-					break;
-				case 'tool-tpl-conf':
-					window.pageExt.list.tplConf && window.pageExt.list.tplConf(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();

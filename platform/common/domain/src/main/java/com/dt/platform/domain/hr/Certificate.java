@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 证书管理
  * <p>证书管理 , 数据表 hr_certificate 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 09:46:20
+ * @since 2024-02-28 07:53:34
  * @sign 9621AE2F0BC3A7EC845F244DD3688AA3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -40,25 +40,25 @@ public class Certificate extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "666941995872157696")
 	private String id;
 	
 	/**
 	 * 类型：类型
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "类型")
+	@ApiModelProperty(required = false,value="类型" , notes = "类型" , example = "666941704535801856")
 	private String type;
 	
 	/**
 	 * 级别：级别
 	*/
-	@ApiModelProperty(required = false,value="级别" , notes = "级别")
+	@ApiModelProperty(required = false,value="级别" , notes = "级别" , example = "666941864850489344")
 	private String certLevel;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "软件工程师初级")
 	private String name;
 	
 	/**
@@ -76,13 +76,13 @@ public class Certificate extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-01-15 09:49:23")
 	private Date createTime;
 	
 	/**
@@ -100,7 +100,7 @@ public class Certificate extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -121,13 +121,13 @@ public class Certificate extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**

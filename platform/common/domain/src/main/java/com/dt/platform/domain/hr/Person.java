@@ -30,8 +30,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员信息
  * <p>人员信息 , 数据表 hr_person 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:56:14
- * @sign E336F49366A513EDEC1C549E34EC5A61
+ * @since 2024-02-26 15:17:32
+ * @sign 9D327519FDC9838D3C1A7A327AEC095A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -59,7 +59,7 @@ public class Person extends Entity {
 	/**
 	 * 姓名：姓名
 	*/
-	@ApiModelProperty(required = false,value="姓名" , notes = "姓名" , example = "人员3")
+	@ApiModelProperty(required = false,value="姓名" , notes = "姓名" , example = "测试人员")
 	private String name;
 	
 	/**
@@ -257,7 +257,7 @@ public class Person extends Entity {
 	/**
 	 * 员工部门：员工部门
 	*/
-	@ApiModelProperty(required = false,value="员工部门" , notes = "员工部门")
+	@ApiModelProperty(required = false,value="员工部门" , notes = "员工部门" , example = "788871090188320766")
 	private String orgId;
 	
 	/**
@@ -375,9 +375,9 @@ public class Person extends Entity {
 	private BigDecimal yearDays;
 	
 	/**
-	 * 考勤模版：考勤模版
+	 * 考勤组：考勤组
 	*/
-	@ApiModelProperty(required = false,value="考勤模版" , notes = "考勤模版")
+	@ApiModelProperty(required = false,value="考勤组" , notes = "考勤组" , example = "default")
 	private String attendanceTplCode;
 	
 	/**
@@ -413,7 +413,7 @@ public class Person extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-22 04:09:58")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-02-26 09:49:33")
 	private Date updateTime;
 	
 	/**
@@ -440,7 +440,7 @@ public class Person extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "10")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "13")
 	private Integer version;
 	
 	/**
@@ -1597,17 +1597,17 @@ public class Person extends Entity {
 	}
 	
 	/**
-	 * 获得 考勤模版<br>
-	 * 考勤模版
-	 * @return 考勤模版
+	 * 获得 考勤组<br>
+	 * 考勤组
+	 * @return 考勤组
 	*/
 	public String getAttendanceTplCode() {
 		return attendanceTplCode;
 	}
 	
 	/**
-	 * 设置 考勤模版
-	 * @param attendanceTplCode 考勤模版
+	 * 设置 考勤组
+	 * @param attendanceTplCode 考勤组
 	 * @return 当前对象
 	*/
 	public Person setAttendanceTplCode(String attendanceTplCode) {

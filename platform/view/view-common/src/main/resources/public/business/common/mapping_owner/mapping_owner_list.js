@@ -1,7 +1,7 @@
 /**
  * 归属 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:30:21
+ * @since 2024-02-25 13:37:16
  */
 
 
@@ -87,6 +87,7 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'ownerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属') , templet: function (d) { return templet('ownerId',d.ownerId,d);}  }
 					,{ field: 'selectedCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('选择') , templet: function (d) { return templet('selectedCode',d.selectedCode,d);}  }
+					,{ field: 'owner', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('归属') , templet: function (d) { return templet('owner',d.owner,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}

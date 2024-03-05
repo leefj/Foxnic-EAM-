@@ -24,7 +24,7 @@ import java.util.Map;
  * 证书类型服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 09:41:58
+ * @since 2024-03-03 20:27:02
 */
 
 public interface ICertificateTypeService extends  ISimpleIdService<CertificateType,String> {

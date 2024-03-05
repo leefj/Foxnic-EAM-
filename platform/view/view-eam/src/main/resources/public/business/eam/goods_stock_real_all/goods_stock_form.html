@@ -184,8 +184,9 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label "><div th:text="${lang.translate('默认单价')}">默认单价</div></div>
                         <div class="layui-input-block ">
-                            <input lay-filter="unitPrice" id="unitPrice" name="unitPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('默认单价') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
-                        </div>
+                            <input lay-filter="unitPrice" id="unitPrice" name="unitPrice" th:placeholder="${ lang.translate('请输入'+'采购单价') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="2" />
+
+                         </div>
                     </div>
 
 

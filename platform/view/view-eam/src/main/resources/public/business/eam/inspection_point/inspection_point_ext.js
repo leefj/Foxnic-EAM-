@@ -120,6 +120,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 }
             }
 
+            if(field=="assetId"){
+                console.log("value",value);
+                console.log("r",r)
+                var res="";
+                if(r.asset){
+                    res="设备:"+r.asset.name+",型号:"+r.asset.model+",编号:"+r.asset.assetCode;
+                }
+                return res;
+            }
+
+
             if(field=="itemDisableCount"){
                 if(value){
                     return value

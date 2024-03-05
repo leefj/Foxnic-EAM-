@@ -1,8 +1,6 @@
 package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
-
-import com.github.foxnic.sql.expr.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -40,7 +38,7 @@ import java.util.Map;
  * 考勤模版服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:43:16
+ * @since 2024-02-25 19:16:26
 */
 
 
@@ -76,16 +74,10 @@ public class AttendanceTplServiceImpl extends SuperService<AttendanceTpl> implem
 	@Override
 	public Result insert(AttendanceTpl attendanceTpl,boolean throwsException) {
 		Result r=super.insert(attendanceTpl,throwsException);
-
 		if(r.isSuccess()){
-			List<String> idsList=attendanceTpl.getWeekList();
-			for(String itemId:idsList){
-				Insert ins= new Insert("sys_mapping_owner");
-				ins.set("id",IDGenerator.getSnowflakeIdString());
-				ins.set("owner_id",attendanceTpl.getId());
-				ins.set("selected_code",itemId);
-				dao.execute(ins);
-			}
+			dao.execute("update hr_attendance_tpl_dtl set owner_id=? where owner_id=?",attendanceTpl.getCode(),attendanceTpl.getSelectedCode());
+
+
 		}
 		return r;
 	}
@@ -176,20 +168,7 @@ public class AttendanceTplServiceImpl extends SuperService<AttendanceTpl> implem
 	 * */
 	@Override
 	public Result update(AttendanceTpl attendanceTpl , SaveMode mode,boolean throwsException) {
-
-
 		Result r=super.update(attendanceTpl , mode , throwsException);
-		if(r.isSuccess()){
-			dao.execute("delete from sys_mapping_owner where owner_id=?",attendanceTpl.getId());
-			List<String> idsList=attendanceTpl.getWeekList();
-			for(String itemId:idsList){
-				Insert ins= new Insert("sys_mapping_owner");
-				ins.set("id",IDGenerator.getSnowflakeIdString());
-				ins.set("owner_id",attendanceTpl.getId());
-				ins.set("selected_code",itemId);
-				dao.execute(ins);
-			}
-		}
 		return r;
 	}
 

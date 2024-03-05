@@ -2,7 +2,7 @@
 /**
  * 执行动作 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-09 22:04:34
+ * @since 2024-02-29 09:09:26
  */
  -->
  <!DOCTYPE html>
@@ -44,17 +44,18 @@
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 开始时间 , startExecutionTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 结束时间 , finishExecutionTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 上次执行时间 , lastExecutionTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 下次执行时间 , nextExecutionTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 表达式 , crontab ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('表达式')}" class="search-label crontab-label">表达式</span><span class="search-colon">:</span></div>
-                        <input id="crontab" class="layui-input search-input" style="width: 150px" type="text" />
+                        <input id="crontab" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 

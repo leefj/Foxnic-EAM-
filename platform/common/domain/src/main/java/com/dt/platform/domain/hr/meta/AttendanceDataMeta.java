@@ -3,6 +3,7 @@ package com.dt.platform.domain.hr.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.hr.AttendanceData;
 import java.util.Date;
+import java.math.BigDecimal;
 import com.dt.platform.domain.hr.Person;
 import com.dt.platform.domain.hr.AttendanceTpl;
 import javax.persistence.Transient;
@@ -11,8 +12,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 15:15:15
- * @sign 6965955D9B44788B65ED8107099861BB
+ * @since 2024-02-25 21:45:45
+ * @sign 1801815E431C2452EC3B027947A26E54
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -39,24 +40,24 @@ public class AttendanceDataMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> PERSON_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,PERSON_ID, java.lang.String.class, "人员", "人员", java.lang.String.class, null);
 	
 	/**
-	 * 考勤模版 , 类型: java.lang.String
+	 * 考勤组 , 类型: java.lang.String
 	*/
 	public static final String ATTENDANCE_TPL_CODE="attendanceTplCode";
 	
 	/**
-	 * 考勤模版 , 类型: java.lang.String
+	 * 考勤组 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> ATTENDANCE_TPL_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,ATTENDANCE_TPL_CODE, java.lang.String.class, "考勤模版", "考勤模版", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> ATTENDANCE_TPL_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,ATTENDANCE_TPL_CODE, java.lang.String.class, "考勤组", "考勤组", java.lang.String.class, null);
 	
 	/**
-	 * 工号 , 类型: java.lang.String
+	 * 是否工作日 , 类型: java.lang.String
 	*/
-	public static final String JOB_NUMBER="jobNumber";
+	public static final String IS_WORK_DAY="isWorkDay";
 	
 	/**
-	 * 工号 , 类型: java.lang.String
+	 * 是否工作日 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> JOB_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,JOB_NUMBER, java.lang.String.class, "工号", "工号", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> IS_WORK_DAY_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,IS_WORK_DAY, java.lang.String.class, "是否工作日", "是否工作日", java.lang.String.class, null);
 	
 	/**
 	 * 考勤日期 , 类型: java.util.Date
@@ -67,6 +68,46 @@ public class AttendanceDataMeta {
 	 * 考勤日期 , 类型: java.util.Date
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.util.Date> ATTENDANCE_DATE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,ATTENDANCE_DATE, java.util.Date.class, "考勤日期", "考勤日期", java.util.Date.class, null);
+	
+	/**
+	 * 考勤日期 , 类型: java.lang.String
+	*/
+	public static final String ATTENDANCE_DATE_STR="attendanceDateStr";
+	
+	/**
+	 * 考勤日期 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> ATTENDANCE_DATE_STR_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,ATTENDANCE_DATE_STR, java.lang.String.class, "考勤日期", "考勤日期", java.lang.String.class, null);
+	
+	/**
+	 * 结果 , 类型: java.lang.String
+	*/
+	public static final String RESULT="result";
+	
+	/**
+	 * 结果 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> RESULT_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,RESULT, java.lang.String.class, "结果", "结果", java.lang.String.class, null);
+	
+	/**
+	 * 上班天数 , 类型: java.math.BigDecimal
+	*/
+	public static final String NORMAL_DAY="normalDay";
+	
+	/**
+	 * 上班天数 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> NORMAL_DAY_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,NORMAL_DAY, java.math.BigDecimal.class, "上班天数", "上班天数", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 应上班天数 , 类型: java.math.BigDecimal
+	*/
+	public static final String NEED_DAY="needDay";
+	
+	/**
+	 * 应上班天数 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> NEED_DAY_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,NEED_DAY, java.math.BigDecimal.class, "应上班天数", "应上班天数", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 上班打卡 , 类型: java.util.Date
@@ -109,64 +150,204 @@ public class AttendanceDataMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.util.Date> OFF_WORK_TIME2_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,OFF_WORK_TIME2, java.util.Date.class, "最晚打卡", "最晚打卡", java.util.Date.class, null);
 	
 	/**
-	 * 早退 , 类型: java.lang.String
+	 * 迟到 , 次) , 类型: java.lang.Integer
 	*/
 	public static final String LEAVE_EARLY="leaveEarly";
 	
 	/**
-	 * 早退 , 类型: java.lang.String
+	 * 迟到 , 次) , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> LEAVE_EARLY_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,LEAVE_EARLY, java.lang.String.class, "早退", "早退", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.Integer> LEAVE_EARLY_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,LEAVE_EARLY, java.lang.Integer.class, "迟到", "次)", java.lang.Integer.class, null);
 	
 	/**
-	 * 晚退 , 类型: java.lang.String
+	 * 迟到 , 分) , 类型: java.math.BigDecimal
+	*/
+	public static final String LEAVE_EARLY_TIME="leaveEarlyTime";
+	
+	/**
+	 * 迟到 , 分) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> LEAVE_EARLY_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,LEAVE_EARLY_TIME, java.math.BigDecimal.class, "迟到", "分)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 早退 , 次) , 类型: java.lang.Integer
 	*/
 	public static final String LEAVE_LATE="leaveLate";
 	
 	/**
-	 * 晚退 , 类型: java.lang.String
+	 * 早退 , 次) , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> LEAVE_LATE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,LEAVE_LATE, java.lang.String.class, "晚退", "晚退", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.Integer> LEAVE_LATE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,LEAVE_LATE, java.lang.Integer.class, "早退", "次)", java.lang.Integer.class, null);
 	
 	/**
-	 * 矿工 , 类型: java.lang.String
+	 * 早退 , 分) , 类型: java.math.BigDecimal
 	*/
-	public static final String SKIP_WORK="skipWork";
+	public static final String LEAVE_LATE_TIME="leaveLateTime";
 	
 	/**
-	 * 矿工 , 类型: java.lang.String
+	 * 早退 , 分) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> SKIP_WORK_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,SKIP_WORK, java.lang.String.class, "矿工", "矿工", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> LEAVE_LATE_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,LEAVE_LATE_TIME, java.math.BigDecimal.class, "早退", "分)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 补签 , 类型: java.lang.String
+	 * 上班缺卡 , 次) , 类型: java.lang.Integer
 	*/
-	public static final String BQ="bq";
+	public static final String LOSS_EARLY="lossEarly";
 	
 	/**
-	 * 补签 , 类型: java.lang.String
+	 * 上班缺卡 , 次) , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> BQ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,BQ, java.lang.String.class, "补签", "补签", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.Integer> LOSS_EARLY_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,LOSS_EARLY, java.lang.Integer.class, "上班缺卡", "次)", java.lang.Integer.class, null);
 	
 	/**
-	 * 请假 , 类型: java.lang.String
+	 * 下班却卡 , 次) , 类型: java.lang.Integer
 	*/
-	public static final String QJ="qj";
+	public static final String LOSS_LATE="lossLate";
 	
 	/**
-	 * 请假 , 类型: java.lang.String
+	 * 下班却卡 , 次) , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> QJ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,QJ, java.lang.String.class, "请假", "请假", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.Integer> LOSS_LATE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,LOSS_LATE, java.lang.Integer.class, "下班却卡", "次)", java.lang.Integer.class, null);
 	
 	/**
-	 * 出差 , 类型: java.lang.String
+	 * 缺卡处理 , 次) , 类型: java.lang.Integer
+	*/
+	public static final String LOSS_PROCESS="lossProcess";
+	
+	/**
+	 * 缺卡处理 , 次) , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.Integer> LOSS_PROCESS_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,LOSS_PROCESS, java.lang.Integer.class, "缺卡处理", "次)", java.lang.Integer.class, null);
+	
+	/**
+	 * 工作日加班 , 小时) , 类型: java.math.BigDecimal
+	*/
+	public static final String JB_GZR="jbGzr";
+	
+	/**
+	 * 工作日加班 , 小时) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> JB_GZR_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,JB_GZR, java.math.BigDecimal.class, "工作日加班", "小时)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 休息日加班 , 小时) , 类型: java.math.BigDecimal
+	*/
+	public static final String JB_XXR="jbXxr";
+	
+	/**
+	 * 休息日加班 , 小时) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> JB_XXR_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,JB_XXR, java.math.BigDecimal.class, "休息日加班", "小时)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 节假日加班 , 小时) , 类型: java.math.BigDecimal
+	*/
+	public static final String JB_JJR="jbJjr";
+	
+	/**
+	 * 节假日加班 , 小时) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> JB_JJR_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,JB_JJR, java.math.BigDecimal.class, "节假日加班", "小时)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 出差 , 天) , 类型: java.math.BigDecimal
 	*/
 	public static final String CC="cc";
 	
 	/**
-	 * 出差 , 类型: java.lang.String
+	 * 出差 , 天) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> CC_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,CC, java.lang.String.class, "出差", "出差", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> CC_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,CC, java.math.BigDecimal.class, "出差", "天)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 年假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final String QJ_NJ="qjNj";
+	
+	/**
+	 * 年假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> QJ_NJ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,QJ_NJ, java.math.BigDecimal.class, "年假", "天)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 工伤假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final String QJ_GSJ="qjGsj";
+	
+	/**
+	 * 工伤假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> QJ_GSJ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,QJ_GSJ, java.math.BigDecimal.class, "工伤假", "天)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 产假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final String QJ_CJ="qjCj";
+	
+	/**
+	 * 产假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> QJ_CJ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,QJ_CJ, java.math.BigDecimal.class, "产假", "天)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 婚假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final String QJ_HJ="qjHj";
+	
+	/**
+	 * 婚假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> QJ_HJ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,QJ_HJ, java.math.BigDecimal.class, "婚假", "天)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 病假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final String QJ_BJ="qjBj";
+	
+	/**
+	 * 病假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> QJ_BJ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,QJ_BJ, java.math.BigDecimal.class, "病假", "天)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 事假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final String QJ_SJ="qjSj";
+	
+	/**
+	 * 事假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> QJ_SJ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,QJ_SJ, java.math.BigDecimal.class, "事假", "天)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 调休假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final String QJ_TXJ="qjTxj";
+	
+	/**
+	 * 调休假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> QJ_TXJ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,QJ_TXJ, java.math.BigDecimal.class, "调休假", "天)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 哺乳假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final String QJ_PLJ="qjPlj";
+	
+	/**
+	 * 哺乳假 , 天) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.math.BigDecimal> QJ_PLJ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,QJ_PLJ, java.math.BigDecimal.class, "哺乳假", "天)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 批次号 , 类型: java.lang.String
+	*/
+	public static final String BATCH_CODE="batchCode";
+	
+	/**
+	 * 批次号 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> BATCH_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,BATCH_CODE, java.lang.String.class, "批次号", "批次号", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -177,6 +358,36 @@ public class AttendanceDataMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 关联 , 类型: java.lang.String
+	*/
+	public static final String REL_ID="relId";
+	
+	/**
+	 * 关联 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> REL_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,REL_ID, java.lang.String.class, "关联", "关联", java.lang.String.class, null);
+	
+	/**
+	 * 说明 , 类型: java.lang.String
+	*/
+	public static final String DAY_INFO="dayInfo";
+	
+	/**
+	 * 说明 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> DAY_INFO_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,DAY_INFO, java.lang.String.class, "说明", "说明", java.lang.String.class, null);
+	
+	/**
+	 * 记录时间 , 类型: java.util.Date
+	*/
+	public static final String RCD_TIME="rcdTime";
+	
+	/**
+	 * 记录时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.util.Date> RCD_TIME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,RCD_TIME, java.util.Date.class, "记录时间", "记录时间", java.util.Date.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -299,9 +510,39 @@ public class AttendanceDataMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> PERSON_JOB_NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,PERSON_JOB_NAME, java.lang.String.class, "personJobName", "personJobName", java.lang.String.class, null);
 	
 	/**
+	 * sJobNumber , 类型: java.lang.String
+	*/
+	public static final String S_JOB_NUMBER="sJobNumber";
+	
+	/**
+	 * sJobNumber , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> S_JOB_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,S_JOB_NUMBER, java.lang.String.class, "sJobNumber", "sJobNumber", java.lang.String.class, null);
+	
+	/**
+	 * rq , 类型: java.lang.String
+	*/
+	public static final String RQ="rq";
+	
+	/**
+	 * rq , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> RQ_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,RQ, java.lang.String.class, "rq", "rq", java.lang.String.class, null);
+	
+	/**
+	 * days , 类型: java.lang.String
+	*/
+	public static final String DAYS="days";
+	
+	/**
+	 * days , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceData,java.lang.String> DAYS_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceData.class ,DAYS, java.lang.String.class, "days", "days", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PERSON_ID , ATTENDANCE_TPL_CODE , JOB_NUMBER , ATTENDANCE_DATE , ON_WORK_TIME , ON_WORK_TIME2 , OFF_WORK_TIME , OFF_WORK_TIME2 , LEAVE_EARLY , LEAVE_LATE , SKIP_WORK , BQ , QJ , CC , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON , ATTENDANCE_TPL , PERSON_JOB_NAME };
+	public static final String[] $PROPS={ ID , PERSON_ID , ATTENDANCE_TPL_CODE , IS_WORK_DAY , ATTENDANCE_DATE , ATTENDANCE_DATE_STR , RESULT , NORMAL_DAY , NEED_DAY , ON_WORK_TIME , ON_WORK_TIME2 , OFF_WORK_TIME , OFF_WORK_TIME2 , LEAVE_EARLY , LEAVE_EARLY_TIME , LEAVE_LATE , LEAVE_LATE_TIME , LOSS_EARLY , LOSS_LATE , LOSS_PROCESS , JB_GZR , JB_XXR , JB_JJR , CC , QJ_NJ , QJ_GSJ , QJ_CJ , QJ_HJ , QJ_BJ , QJ_SJ , QJ_TXJ , QJ_PLJ , BATCH_CODE , NOTES , REL_ID , DAY_INFO , RCD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , PERSON , ATTENDANCE_TPL , PERSON_JOB_NAME , S_JOB_NUMBER , RQ , DAYS };
 	
 	/**
 	 * 代理类
@@ -334,8 +575,8 @@ public class AttendanceDataMeta {
 		}
 		
 		/**
-		 * 设置 考勤模版
-		 * @param attendanceTplCode 考勤模版
+		 * 设置 考勤组
+		 * @param attendanceTplCode 考勤组
 		 * @return 当前对象
 		*/
 		public AttendanceData setAttendanceTplCode(String attendanceTplCode) {
@@ -345,13 +586,13 @@ public class AttendanceDataMeta {
 		}
 		
 		/**
-		 * 设置 工号
-		 * @param jobNumber 工号
+		 * 设置 是否工作日
+		 * @param isWorkDay 是否工作日
 		 * @return 当前对象
 		*/
-		public AttendanceData setJobNumber(String jobNumber) {
-			super.change(JOB_NUMBER,super.getJobNumber(),jobNumber);
-			super.setJobNumber(jobNumber);
+		public AttendanceData setIsWorkDay(String isWorkDay) {
+			super.change(IS_WORK_DAY,super.getIsWorkDay(),isWorkDay);
+			super.setIsWorkDay(isWorkDay);
 			return this;
 		}
 		
@@ -363,6 +604,50 @@ public class AttendanceDataMeta {
 		public AttendanceData setAttendanceDate(Date attendanceDate) {
 			super.change(ATTENDANCE_DATE,super.getAttendanceDate(),attendanceDate);
 			super.setAttendanceDate(attendanceDate);
+			return this;
+		}
+		
+		/**
+		 * 设置 考勤日期
+		 * @param attendanceDateStr 考勤日期
+		 * @return 当前对象
+		*/
+		public AttendanceData setAttendanceDateStr(String attendanceDateStr) {
+			super.change(ATTENDANCE_DATE_STR,super.getAttendanceDateStr(),attendanceDateStr);
+			super.setAttendanceDateStr(attendanceDateStr);
+			return this;
+		}
+		
+		/**
+		 * 设置 结果
+		 * @param result 结果
+		 * @return 当前对象
+		*/
+		public AttendanceData setResult(String result) {
+			super.change(RESULT,super.getResult(),result);
+			super.setResult(result);
+			return this;
+		}
+		
+		/**
+		 * 设置 上班天数
+		 * @param normalDay 上班天数
+		 * @return 当前对象
+		*/
+		public AttendanceData setNormalDay(BigDecimal normalDay) {
+			super.change(NORMAL_DAY,super.getNormalDay(),normalDay);
+			super.setNormalDay(normalDay);
+			return this;
+		}
+		
+		/**
+		 * 设置 应上班天数
+		 * @param needDay 应上班天数
+		 * @return 当前对象
+		*/
+		public AttendanceData setNeedDay(BigDecimal needDay) {
+			super.change(NEED_DAY,super.getNeedDay(),needDay);
+			super.setNeedDay(needDay);
 			return this;
 		}
 		
@@ -411,57 +696,112 @@ public class AttendanceDataMeta {
 		}
 		
 		/**
-		 * 设置 早退
-		 * @param leaveEarly 早退
+		 * 设置 迟到
+		 * @param leaveEarly 迟到
 		 * @return 当前对象
 		*/
-		public AttendanceData setLeaveEarly(String leaveEarly) {
+		public AttendanceData setLeaveEarly(Integer leaveEarly) {
 			super.change(LEAVE_EARLY,super.getLeaveEarly(),leaveEarly);
 			super.setLeaveEarly(leaveEarly);
 			return this;
 		}
 		
 		/**
-		 * 设置 晚退
-		 * @param leaveLate 晚退
+		 * 设置 迟到
+		 * @param leaveEarlyTime 迟到
 		 * @return 当前对象
 		*/
-		public AttendanceData setLeaveLate(String leaveLate) {
+		public AttendanceData setLeaveEarlyTime(BigDecimal leaveEarlyTime) {
+			super.change(LEAVE_EARLY_TIME,super.getLeaveEarlyTime(),leaveEarlyTime);
+			super.setLeaveEarlyTime(leaveEarlyTime);
+			return this;
+		}
+		
+		/**
+		 * 设置 早退
+		 * @param leaveLate 早退
+		 * @return 当前对象
+		*/
+		public AttendanceData setLeaveLate(Integer leaveLate) {
 			super.change(LEAVE_LATE,super.getLeaveLate(),leaveLate);
 			super.setLeaveLate(leaveLate);
 			return this;
 		}
 		
 		/**
-		 * 设置 矿工
-		 * @param skipWork 矿工
+		 * 设置 早退
+		 * @param leaveLateTime 早退
 		 * @return 当前对象
 		*/
-		public AttendanceData setSkipWork(String skipWork) {
-			super.change(SKIP_WORK,super.getSkipWork(),skipWork);
-			super.setSkipWork(skipWork);
+		public AttendanceData setLeaveLateTime(BigDecimal leaveLateTime) {
+			super.change(LEAVE_LATE_TIME,super.getLeaveLateTime(),leaveLateTime);
+			super.setLeaveLateTime(leaveLateTime);
 			return this;
 		}
 		
 		/**
-		 * 设置 补签
-		 * @param bq 补签
+		 * 设置 上班缺卡
+		 * @param lossEarly 上班缺卡
 		 * @return 当前对象
 		*/
-		public AttendanceData setBq(String bq) {
-			super.change(BQ,super.getBq(),bq);
-			super.setBq(bq);
+		public AttendanceData setLossEarly(Integer lossEarly) {
+			super.change(LOSS_EARLY,super.getLossEarly(),lossEarly);
+			super.setLossEarly(lossEarly);
 			return this;
 		}
 		
 		/**
-		 * 设置 请假
-		 * @param qj 请假
+		 * 设置 下班却卡
+		 * @param lossLate 下班却卡
 		 * @return 当前对象
 		*/
-		public AttendanceData setQj(String qj) {
-			super.change(QJ,super.getQj(),qj);
-			super.setQj(qj);
+		public AttendanceData setLossLate(Integer lossLate) {
+			super.change(LOSS_LATE,super.getLossLate(),lossLate);
+			super.setLossLate(lossLate);
+			return this;
+		}
+		
+		/**
+		 * 设置 缺卡处理
+		 * @param lossProcess 缺卡处理
+		 * @return 当前对象
+		*/
+		public AttendanceData setLossProcess(Integer lossProcess) {
+			super.change(LOSS_PROCESS,super.getLossProcess(),lossProcess);
+			super.setLossProcess(lossProcess);
+			return this;
+		}
+		
+		/**
+		 * 设置 工作日加班
+		 * @param jbGzr 工作日加班
+		 * @return 当前对象
+		*/
+		public AttendanceData setJbGzr(BigDecimal jbGzr) {
+			super.change(JB_GZR,super.getJbGzr(),jbGzr);
+			super.setJbGzr(jbGzr);
+			return this;
+		}
+		
+		/**
+		 * 设置 休息日加班
+		 * @param jbXxr 休息日加班
+		 * @return 当前对象
+		*/
+		public AttendanceData setJbXxr(BigDecimal jbXxr) {
+			super.change(JB_XXR,super.getJbXxr(),jbXxr);
+			super.setJbXxr(jbXxr);
+			return this;
+		}
+		
+		/**
+		 * 设置 节假日加班
+		 * @param jbJjr 节假日加班
+		 * @return 当前对象
+		*/
+		public AttendanceData setJbJjr(BigDecimal jbJjr) {
+			super.change(JB_JJR,super.getJbJjr(),jbJjr);
+			super.setJbJjr(jbJjr);
 			return this;
 		}
 		
@@ -470,9 +810,108 @@ public class AttendanceDataMeta {
 		 * @param cc 出差
 		 * @return 当前对象
 		*/
-		public AttendanceData setCc(String cc) {
+		public AttendanceData setCc(BigDecimal cc) {
 			super.change(CC,super.getCc(),cc);
 			super.setCc(cc);
+			return this;
+		}
+		
+		/**
+		 * 设置 年假
+		 * @param qjNj 年假
+		 * @return 当前对象
+		*/
+		public AttendanceData setQjNj(BigDecimal qjNj) {
+			super.change(QJ_NJ,super.getQjNj(),qjNj);
+			super.setQjNj(qjNj);
+			return this;
+		}
+		
+		/**
+		 * 设置 工伤假
+		 * @param qjGsj 工伤假
+		 * @return 当前对象
+		*/
+		public AttendanceData setQjGsj(BigDecimal qjGsj) {
+			super.change(QJ_GSJ,super.getQjGsj(),qjGsj);
+			super.setQjGsj(qjGsj);
+			return this;
+		}
+		
+		/**
+		 * 设置 产假
+		 * @param qjCj 产假
+		 * @return 当前对象
+		*/
+		public AttendanceData setQjCj(BigDecimal qjCj) {
+			super.change(QJ_CJ,super.getQjCj(),qjCj);
+			super.setQjCj(qjCj);
+			return this;
+		}
+		
+		/**
+		 * 设置 婚假
+		 * @param qjHj 婚假
+		 * @return 当前对象
+		*/
+		public AttendanceData setQjHj(BigDecimal qjHj) {
+			super.change(QJ_HJ,super.getQjHj(),qjHj);
+			super.setQjHj(qjHj);
+			return this;
+		}
+		
+		/**
+		 * 设置 病假
+		 * @param qjBj 病假
+		 * @return 当前对象
+		*/
+		public AttendanceData setQjBj(BigDecimal qjBj) {
+			super.change(QJ_BJ,super.getQjBj(),qjBj);
+			super.setQjBj(qjBj);
+			return this;
+		}
+		
+		/**
+		 * 设置 事假
+		 * @param qjSj 事假
+		 * @return 当前对象
+		*/
+		public AttendanceData setQjSj(BigDecimal qjSj) {
+			super.change(QJ_SJ,super.getQjSj(),qjSj);
+			super.setQjSj(qjSj);
+			return this;
+		}
+		
+		/**
+		 * 设置 调休假
+		 * @param qjTxj 调休假
+		 * @return 当前对象
+		*/
+		public AttendanceData setQjTxj(BigDecimal qjTxj) {
+			super.change(QJ_TXJ,super.getQjTxj(),qjTxj);
+			super.setQjTxj(qjTxj);
+			return this;
+		}
+		
+		/**
+		 * 设置 哺乳假
+		 * @param qjPlj 哺乳假
+		 * @return 当前对象
+		*/
+		public AttendanceData setQjPlj(BigDecimal qjPlj) {
+			super.change(QJ_PLJ,super.getQjPlj(),qjPlj);
+			super.setQjPlj(qjPlj);
+			return this;
+		}
+		
+		/**
+		 * 设置 批次号
+		 * @param batchCode 批次号
+		 * @return 当前对象
+		*/
+		public AttendanceData setBatchCode(String batchCode) {
+			super.change(BATCH_CODE,super.getBatchCode(),batchCode);
+			super.setBatchCode(batchCode);
 			return this;
 		}
 		
@@ -484,6 +923,39 @@ public class AttendanceDataMeta {
 		public AttendanceData setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 关联
+		 * @param relId 关联
+		 * @return 当前对象
+		*/
+		public AttendanceData setRelId(String relId) {
+			super.change(REL_ID,super.getRelId(),relId);
+			super.setRelId(relId);
+			return this;
+		}
+		
+		/**
+		 * 设置 说明
+		 * @param dayInfo 说明
+		 * @return 当前对象
+		*/
+		public AttendanceData setDayInfo(String dayInfo) {
+			super.change(DAY_INFO,super.getDayInfo(),dayInfo);
+			super.setDayInfo(dayInfo);
+			return this;
+		}
+		
+		/**
+		 * 设置 记录时间
+		 * @param rcdTime 记录时间
+		 * @return 当前对象
+		*/
+		public AttendanceData setRcdTime(Date rcdTime) {
+			super.change(RCD_TIME,super.getRcdTime(),rcdTime);
+			super.setRcdTime(rcdTime);
 			return this;
 		}
 		
@@ -618,6 +1090,39 @@ public class AttendanceDataMeta {
 			super.setPersonJobName(personJobName);
 			return this;
 		}
+		
+		/**
+		 * 设置 sJobNumber
+		 * @param sJobNumber sJobNumber
+		 * @return 当前对象
+		*/
+		public AttendanceData setSJobNumber(String sJobNumber) {
+			super.change(S_JOB_NUMBER,super.getSJobNumber(),sJobNumber);
+			super.setSJobNumber(sJobNumber);
+			return this;
+		}
+		
+		/**
+		 * 设置 rq
+		 * @param rq rq
+		 * @return 当前对象
+		*/
+		public AttendanceData setRq(String rq) {
+			super.change(RQ,super.getRq(),rq);
+			super.setRq(rq);
+			return this;
+		}
+		
+		/**
+		 * 设置 days
+		 * @param days days
+		 * @return 当前对象
+		*/
+		public AttendanceData setDays(String days) {
+			super.change(DAYS,super.getDays(),days);
+			super.setDays(days);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -634,35 +1139,59 @@ public class AttendanceDataMeta {
 		@Transient
 		public AttendanceData duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setQjNj(this.getQjNj());
 			inst.setNotes(this.getNotes());
+			inst.setJbGzr(this.getJbGzr());
+			inst.setLeaveEarlyTime(this.getLeaveEarlyTime());
 			inst.setAttendanceTplCode(this.getAttendanceTplCode());
-			inst.setBq(this.getBq());
+			inst.setQjGsj(this.getQjGsj());
+			inst.setQjHj(this.getQjHj());
+			inst.setResult(this.getResult());
 			inst.setOnWorkTime(this.getOnWorkTime());
-			inst.setSkipWork(this.getSkipWork());
 			inst.setOffWorkTime(this.getOffWorkTime());
+			inst.setQjCj(this.getQjCj());
 			inst.setUpdateBy(this.getUpdateBy());
-			inst.setQj(this.getQj());
+			inst.setIsWorkDay(this.getIsWorkDay());
+			inst.setJbXxr(this.getJbXxr());
+			inst.setJbJjr(this.getJbJjr());
 			inst.setId(this.getId());
 			inst.setOnWorkTime2(this.getOnWorkTime2());
+			inst.setRcdTime(this.getRcdTime());
 			inst.setCc(this.getCc());
+			inst.setLossLate(this.getLossLate());
+			inst.setRelId(this.getRelId());
+			inst.setNeedDay(this.getNeedDay());
+			inst.setQjSj(this.getQjSj());
+			inst.setQjTxj(this.getQjTxj());
+			inst.setLossEarly(this.getLossEarly());
+			inst.setBatchCode(this.getBatchCode());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setDayInfo(this.getDayInfo());
+			inst.setNormalDay(this.getNormalDay());
 			inst.setLeaveEarly(this.getLeaveEarly());
+			inst.setAttendanceDateStr(this.getAttendanceDateStr());
 			inst.setVersion(this.getVersion());
+			inst.setLossProcess(this.getLossProcess());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
+			inst.setQjBj(this.getQjBj());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setDeleteTime(this.getDeleteTime());
+			inst.setLeaveLateTime(this.getLeaveLateTime());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setPersonId(this.getPersonId());
 			inst.setLeaveLate(this.getLeaveLate());
+			inst.setQjPlj(this.getQjPlj());
 			inst.setAttendanceDate(this.getAttendanceDate());
-			inst.setJobNumber(this.getJobNumber());
 			inst.setOffWorkTime2(this.getOffWorkTime2());
 			if(all) {
 				inst.setPerson(this.getPerson());
 				inst.setAttendanceTpl(this.getAttendanceTpl());
+				inst.setDays(this.getDays());
+				inst.setSJobNumber(this.getSJobNumber());
 				inst.setPersonJobName(this.getPersonJobName());
+				inst.setRq(this.getRq());
 			}
 			inst.clearModifies();
 			return inst;

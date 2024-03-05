@@ -22,8 +22,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 证书类型VO类型
  * <p>证书类型 , 数据表 hr_certificate_type 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 09:41:58
- * @sign E228474C6A35B8C157541C016C57C801
+ * @since 2024-03-03 20:27:02
+ * @sign 86DED3F3DC1ECDB312B6C46A9FB4B009
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -81,9 +81,9 @@ public class CertificateTypeVO extends CertificateType {
 	private String sortType;
 	
 	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
 	private String dataOrigin;
 	
 	/**
@@ -91,6 +91,12 @@ public class CertificateTypeVO extends CertificateType {
 	*/
 	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
 	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -255,7 +261,7 @@ public class CertificateTypeVO extends CertificateType {
 	
 	/**
 	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
 	 * @return 数据来源
 	*/
 	public String getDataOrigin() {
@@ -288,6 +294,25 @@ public class CertificateTypeVO extends CertificateType {
 	*/
 	public CertificateTypeVO setQueryLogic(String queryLogic) {
 		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public CertificateTypeVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
 		return this;
 	}
 	
@@ -393,6 +418,7 @@ public class CertificateTypeVO extends CertificateType {
 			inst.setSearchField(this.getSearchField());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
@@ -477,6 +503,7 @@ public class CertificateTypeVO extends CertificateType {
 			this.setSearchField(DataParser.parse(String.class, map.get(CertificateTypeVOMeta.SEARCH_FIELD)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(CertificateTypeVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(CertificateTypeVOMeta.SORT_TYPE)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(CertificateTypeVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(CertificateTypeVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(CertificateTypeVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(CertificateTypeVOMeta.PAGE_SIZE)));
@@ -503,6 +530,7 @@ public class CertificateTypeVO extends CertificateType {
 				this.setSearchField( (String)map.get(CertificateTypeVOMeta.SEARCH_FIELD));
 				this.setPageIndex( (Integer)map.get(CertificateTypeVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(CertificateTypeVOMeta.SORT_TYPE));
+				this.setRequestAction( (String)map.get(CertificateTypeVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(CertificateTypeVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(CertificateTypeVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(CertificateTypeVOMeta.PAGE_SIZE));

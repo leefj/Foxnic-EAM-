@@ -93,6 +93,11 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
         cfg.view().form().addJsVariable("OWNER_ID","[[${ownerId}]]","applyId");
         cfg.view().list().addJsVariable("OWNER_ID","[[${ownerId}]]","ownerId");
 
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.UNIT_PRICE).form().numberInput().scale(2);;
+
+
+
+
         cfg.view().form().labelWidth(70);
         cfg.view().formWindow().bottomSpace(250);
         cfg.view().formWindow().width(Config.baseFormWidth);;

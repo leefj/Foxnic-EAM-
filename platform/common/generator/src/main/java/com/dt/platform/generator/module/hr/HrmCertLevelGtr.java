@@ -33,7 +33,12 @@ public class HrmCertLevelGtr extends BaseCodeGenerator {
 
 
 
+        cfg.view().field(HrTables.HR_PROFESSIONAL_LEVEL.CREATE_TIME).table().disable(true);
+        cfg.view().field(HrTables.HR_PROFESSIONAL_LEVEL.UPDATE_BY).table().disable(true);
+
+
         cfg.view().field(HrTables.HR_PROFESSIONAL_LEVEL.NAME).form().validate().required();
+        cfg.view().field(HrTables.HR_PROFESSIONAL_LEVEL.NOTE).form().textArea().height(80);
 
 
         cfg.view().formWindow().width("65%");;

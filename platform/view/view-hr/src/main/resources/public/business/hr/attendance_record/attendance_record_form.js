@@ -1,7 +1,7 @@
 /**
  * 考勤原始记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-18 13:43:23
+ * @since 2024-02-27 16:36:58
  */
 
 function FormPage() {
@@ -235,10 +235,6 @@ function FormPage() {
 			//设置 打卡时间 显示复选框勾选
 			if(formData["rcdTime"]) {
 				$("#rcdTime").val(fox.dateFormat(formData["rcdTime"],"yyyy-MM-dd HH:mm:ss"));
-			}
-			//设置 处理时间 显示复选框勾选
-			if(formData["processTime"]) {
-				$("#processTime").val(fox.dateFormat(formData["processTime"],"yyyy-MM-dd HH:mm:ss"));
 			}
 
 

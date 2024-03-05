@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_task_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 17:33:43
- * @sign BC46953133D27C642B9A7AE8F29F8D8E
+ * @since 2024-03-05 21:32:36
+ * @sign 3AFB891FB26184C21CA0B2156BE1F3D2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,32 +45,38 @@ public class InspectionTaskPoint extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "815523600894263296")
 	private String id;
 	
 	/**
 	 * 任务：任务
 	*/
-	@ApiModelProperty(required = false,value="任务" , notes = "任务")
+	@ApiModelProperty(required = false,value="任务" , notes = "任务" , example = "815523600164454400")
 	private String taskId;
 	
 	/**
 	 * 巡检状态：巡检状态
 	*/
-	@ApiModelProperty(required = false,value="巡检状态" , notes = "巡检状态")
+	@ApiModelProperty(required = false,value="巡检状态" , notes = "巡检状态" , example = "normal")
 	private String pointStatus;
 	
 	/**
 	 * 操作时间：操作时间
 	*/
-	@ApiModelProperty(required = false,value="操作时间" , notes = "操作时间")
+	@ApiModelProperty(required = false,value="操作时间" , notes = "操作时间" , example = "2024-03-05 09:32:21")
 	private Date operTime;
 	
 	/**
 	 * 巡检结果：巡检结果
 	*/
-	@ApiModelProperty(required = false,value="巡检结果" , notes = "巡检结果")
+	@ApiModelProperty(required = false,value="巡检结果" , notes = "巡检结果" , example = "正常")
 	private String content;
+	
+	/**
+	 * 处理动作：处理动作
+	*/
+	@ApiModelProperty(required = false,value="处理动作" , notes = "处理动作")
+	private String actionLabel;
 	
 	/**
 	 * 图片：图片
@@ -81,19 +87,19 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 巡检点：巡检点
 	*/
-	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点")
+	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点" , example = "798545714996051968")
 	private String pointId;
 	
 	/**
 	 * 编码：编码
 	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "C0000000029")
 	private String pointCode;
 	
 	/**
 	 * 巡检点：巡检点
 	*/
-	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点")
+	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点" , example = "巡检点")
 	private String pointName;
 	
 	/**
@@ -105,7 +111,7 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 巡检路线：巡检路线
 	*/
-	@ApiModelProperty(required = false,value="巡检路线" , notes = "巡检路线")
+	@ApiModelProperty(required = false,value="巡检路线" , notes = "巡检路线" , example = "743057421492027392")
 	private String pointRouteId;
 	
 	/**
@@ -129,13 +135,13 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 位置经度：位置经度
 	*/
-	@ApiModelProperty(required = false,value="位置经度" , notes = "位置经度")
+	@ApiModelProperty(required = false,value="位置经度" , notes = "位置经度" , example = "0.00")
 	private BigDecimal pointPosLongitude;
 	
 	/**
 	 * 位置纬度：位置纬度
 	*/
-	@ApiModelProperty(required = false,value="位置纬度" , notes = "位置纬度")
+	@ApiModelProperty(required = false,value="位置纬度" , notes = "位置纬度" , example = "0.00")
 	private BigDecimal pointPosLatitude;
 	
 	/**
@@ -147,13 +153,13 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 排序：排序
 	*/
-	@ApiModelProperty(required = false,value="排序" , notes = "排序")
+	@ApiModelProperty(required = false,value="排序" , notes = "排序" , example = "0")
 	private Integer sort;
 	
 	/**
 	 * 操作人：操作人
 	*/
-	@ApiModelProperty(required = false,value="操作人" , notes = "操作人")
+	@ApiModelProperty(required = false,value="操作人" , notes = "操作人" , example = "E001")
 	private String operId;
 	
 	/**
@@ -165,31 +171,31 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-02-29 09:59:38")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-05 09:32:21")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -210,13 +216,13 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "def")
 	private String selectedCode;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "4")
 	private Integer version;
 	
 	/**
@@ -272,6 +278,12 @@ public class InspectionTaskPoint extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="asset" , notes = "asset")
 	private Asset asset;
+	
+	/**
+	 * inspectionProcessAction：inspectionProcessAction
+	*/
+	@ApiModelProperty(required = false,value="inspectionProcessAction" , notes = "inspectionProcessAction")
+	private InspectionProcessAction inspectionProcessAction;
 	
 	/**
 	 * 获得 主键<br>
@@ -365,6 +377,25 @@ public class InspectionTaskPoint extends Entity {
 	*/
 	public InspectionTaskPoint setContent(String content) {
 		this.content=content;
+		return this;
+	}
+	
+	/**
+	 * 获得 处理动作<br>
+	 * 处理动作
+	 * @return 处理动作
+	*/
+	public String getActionLabel() {
+		return actionLabel;
+	}
+	
+	/**
+	 * 设置 处理动作
+	 * @param actionLabel 处理动作
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint setActionLabel(String actionLabel) {
+		this.actionLabel=actionLabel;
 		return this;
 	}
 	
@@ -1047,6 +1078,25 @@ public class InspectionTaskPoint extends Entity {
 		this.asset=asset;
 		return this;
 	}
+	
+	/**
+	 * 获得 inspectionProcessAction<br>
+	 * inspectionProcessAction
+	 * @return inspectionProcessAction
+	*/
+	public InspectionProcessAction getInspectionProcessAction() {
+		return inspectionProcessAction;
+	}
+	
+	/**
+	 * 设置 inspectionProcessAction
+	 * @param inspectionProcessAction inspectionProcessAction
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint setInspectionProcessAction(InspectionProcessAction inspectionProcessAction) {
+		this.inspectionProcessAction=inspectionProcessAction;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1098,6 +1148,7 @@ public class InspectionTaskPoint extends Entity {
 		inst.setOperId(this.getOperId());
 		inst.setSelectedCode(this.getSelectedCode());
 		inst.setContent(this.getContent());
+		inst.setActionLabel(this.getActionLabel());
 		inst.setPointId(this.getPointId());
 		inst.setPointRouteId(this.getPointRouteId());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -1125,6 +1176,7 @@ public class InspectionTaskPoint extends Entity {
 			inst.setCheckItemList(this.getCheckItemList());
 			inst.setRoute(this.getRoute());
 			inst.setTask(this.getTask());
+			inst.setInspectionProcessAction(this.getInspectionProcessAction());
 			inst.setInspectionPointPos(this.getInspectionPointPos());
 			inst.setCheckSelectList(this.getCheckSelectList());
 			inst.setAsset(this.getAsset());
@@ -1196,6 +1248,7 @@ public class InspectionTaskPoint extends Entity {
 			this.setOperId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.OPER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.CONTENT)));
+			this.setActionLabel(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.ACTION_LABEL)));
 			this.setPointId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_ID)));
 			this.setPointRouteId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_ROUTE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.UPDATE_BY)));
@@ -1222,6 +1275,7 @@ public class InspectionTaskPoint extends Entity {
 			// others
 			this.setRoute(DataParser.parse(InspectionRoute.class, map.get(InspectionTaskPointMeta.ROUTE)));
 			this.setTask(DataParser.parse(InspectionTask.class, map.get(InspectionTaskPointMeta.TASK)));
+			this.setInspectionProcessAction(DataParser.parse(InspectionProcessAction.class, map.get(InspectionTaskPointMeta.INSPECTION_PROCESS_ACTION)));
 			this.setInspectionPointPos(DataParser.parse(InspectionPointPos.class, map.get(InspectionTaskPointMeta.INSPECTION_POINT_POS)));
 			this.setAsset(DataParser.parse(Asset.class, map.get(InspectionTaskPointMeta.ASSET)));
 			this.setOperUser(DataParser.parse(Employee.class, map.get(InspectionTaskPointMeta.OPER_USER)));
@@ -1236,6 +1290,7 @@ public class InspectionTaskPoint extends Entity {
 				this.setOperId( (String)map.get(InspectionTaskPointMeta.OPER_ID));
 				this.setSelectedCode( (String)map.get(InspectionTaskPointMeta.SELECTED_CODE));
 				this.setContent( (String)map.get(InspectionTaskPointMeta.CONTENT));
+				this.setActionLabel( (String)map.get(InspectionTaskPointMeta.ACTION_LABEL));
 				this.setPointId( (String)map.get(InspectionTaskPointMeta.POINT_ID));
 				this.setPointRouteId( (String)map.get(InspectionTaskPointMeta.POINT_ROUTE_ID));
 				this.setUpdateBy( (String)map.get(InspectionTaskPointMeta.UPDATE_BY));
@@ -1262,6 +1317,7 @@ public class InspectionTaskPoint extends Entity {
 				// others
 				this.setRoute( (InspectionRoute)map.get(InspectionTaskPointMeta.ROUTE));
 				this.setTask( (InspectionTask)map.get(InspectionTaskPointMeta.TASK));
+				this.setInspectionProcessAction( (InspectionProcessAction)map.get(InspectionTaskPointMeta.INSPECTION_PROCESS_ACTION));
 				this.setInspectionPointPos( (InspectionPointPos)map.get(InspectionTaskPointMeta.INSPECTION_POINT_POS));
 				this.setAsset( (Asset)map.get(InspectionTaskPointMeta.ASSET));
 				this.setOperUser( (Employee)map.get(InspectionTaskPointMeta.OPER_USER));
@@ -1289,6 +1345,7 @@ public class InspectionTaskPoint extends Entity {
 			this.setOperId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.OPER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.CONTENT)));
+			this.setActionLabel(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.ACTION_LABEL)));
 			this.setPointId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_ID)));
 			this.setPointRouteId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_ROUTE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.UPDATE_BY)));
@@ -1321,6 +1378,7 @@ public class InspectionTaskPoint extends Entity {
 				this.setOperId( (String)r.getValue(InspectionTaskPointMeta.OPER_ID));
 				this.setSelectedCode( (String)r.getValue(InspectionTaskPointMeta.SELECTED_CODE));
 				this.setContent( (String)r.getValue(InspectionTaskPointMeta.CONTENT));
+				this.setActionLabel( (String)r.getValue(InspectionTaskPointMeta.ACTION_LABEL));
 				this.setPointId( (String)r.getValue(InspectionTaskPointMeta.POINT_ID));
 				this.setPointRouteId( (String)r.getValue(InspectionTaskPointMeta.POINT_ROUTE_ID));
 				this.setUpdateBy( (String)r.getValue(InspectionTaskPointMeta.UPDATE_BY));

@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 09:37:40
+ * @since 2024-03-04 21:15:50
  */
 
 
@@ -174,6 +174,7 @@ function ListPage() {
 					,{ field: 'label4', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('长标签4') , templet: function (d) { return templet('label4',d.label4,d);}  }
 					,{ field: 'label2', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('长标签2') , templet: function (d) { return templet('label2',d.label2,d);}  }
 					,{ field: 'billId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('单据') , templet: function (d) { return templet('billId',d.billId,d);}  }
+					,{ field: 'lastInspectTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('巡检时间') ,templet: function (d) { return templet('lastInspectTime',fox.dateFormat(d.lastInspectTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'longitude', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('经度数据') , templet: function (d) { return templet('longitude',d.longitude,d);}  }
 					,{ field: 'dimension', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('维度数据') , templet: function (d) { return templet('dimension',d.dimension,d);}  }
 					,{ field: 'internalControlLabel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内部控制标签') , templet: function (d) { return templet('internalControlLabel',d.internalControlLabel,d);}  }

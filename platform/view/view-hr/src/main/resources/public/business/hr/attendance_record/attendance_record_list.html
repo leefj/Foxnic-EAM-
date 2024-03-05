@@ -2,7 +2,7 @@
 /**
  * 考勤原始记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-18 13:43:22
+ * @since 2024-02-27 16:36:57
  */
  -->
  <!DOCTYPE html>
@@ -46,6 +46,8 @@
                         <div id="personId" th:data="${'/service-hr/hr-person/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 人员 , employeeId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 打卡位置 , address ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 处理状态 , processStatus ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 处理时间 , processTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 处理结果 , processResult ,typeName=text_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
@@ -60,27 +62,20 @@
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('姓名')}" class="search-label employeeName-label">姓名</span><span class="search-colon">:</span></div>
                         <input id="employeeName" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
-                    <!-- 批次号 , batchCode ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 来源 , source ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('批次号')}" class="search-label batchCode-label">批次号</span><span class="search-colon">:</span></div>
-                        <input id="batchCode" class="layui-input search-input" style="width: 180px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('来源')}" class="search-label source-label">来源</span><span class="search-colon">:</span></div>
+                        <input id="source" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 来源 , source ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 批次号 , batchCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('来源')}" class="search-label source-label">来源</span><span class="search-colon">:</span></div>
-                        <input id="source" class="layui-input search-input" style="width: 180px" type="text" />
-                    </div>
-                    <!-- 处理状态 , processStatus ,typeName=radio_box, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('处理状态')}" class="search-label processStatus-label">处理状态</span><span class="search-colon">:</span></div>
-
-
-                        <div id="processStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.AttendanceRcdProcessStatusEnum')}" style="width:180px"></div>
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('批次号')}" class="search-label batchCode-label">批次号</span><span class="search-colon">:</span></div>
+                        <input id="batchCode" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 打卡时间 , rcdTime ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
@@ -141,6 +136,8 @@
     var RADIO_PROCESSSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AttendanceRcdProcessStatusEnum')}]];
     var AUTH_PREFIX="hr_attendance_record";
 
+    // personId
+    var PERSON_ID = [[${personId}]] ;
 
 </script>
 

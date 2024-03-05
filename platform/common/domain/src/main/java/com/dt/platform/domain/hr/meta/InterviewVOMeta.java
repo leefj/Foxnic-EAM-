@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-19 13:27:03
+ * @since 2024-02-20 15:04:42
  * @sign 0599C7810BA6ED0794FEA55674AC22B1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -320,9 +320,19 @@ public class InterviewVOMeta extends InterviewMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.InterviewVO,org.github.foxnic.web.domain.hrm.Employee> EMPLOYEE_PROP = new BeanProperty(com.dt.platform.domain.hr.InterviewVO.class ,EMPLOYEE, org.github.foxnic.web.domain.hrm.Employee.class, "employee", "employee", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * selectedCode , 类型: java.lang.String
+	*/
+	public static final String SELECTED_CODE="selectedCode";
+	
+	/**
+	 * selectedCode , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.InterviewVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.InterviewVO.class ,SELECTED_CODE, java.lang.String.class, "selectedCode", "selectedCode", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , STATUS , INTERVIEW_DATE , CONTENT , FILE_ID , NOTES , USER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , EMPLOYEE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , STATUS , INTERVIEW_DATE , CONTENT , FILE_ID , NOTES , USER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , EMPLOYEE , SELECTED_CODE };
 	
 	/**
 	 * 代理类
@@ -661,6 +671,17 @@ public class InterviewVOMeta extends InterviewMeta {
 			super.setEmployee(employee);
 			return this;
 		}
+		
+		/**
+		 * 设置 selectedCode
+		 * @param selectedCode selectedCode
+		 * @return 当前对象
+		*/
+		public Interview setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -700,6 +721,7 @@ public class InterviewVOMeta extends InterviewMeta {
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
 				inst.setEmployee(this.getEmployee());
+				inst.setSelectedCode(this.getSelectedCode());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());

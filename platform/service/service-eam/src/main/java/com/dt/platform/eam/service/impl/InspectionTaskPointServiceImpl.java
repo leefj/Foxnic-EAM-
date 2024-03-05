@@ -3,47 +3,56 @@ package com.dt.platform.eam.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.constants.enums.common.StatusYNEnum;
+import com.dt.platform.constants.enums.eam.AssetDataExportColumnEnum;
+import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.hr.SalaryTpl;
+import com.dt.platform.eam.common.ResetOnCloseInputStream;
 import com.dt.platform.constants.enums.eam.CheckItemTypeEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
-import com.dt.platform.domain.eam.CheckItem;
-import com.dt.platform.domain.eam.CheckSelect;
-import com.dt.platform.domain.eam.InspectionTask;
-import com.dt.platform.domain.eam.InspectionTaskPoint;
 import com.dt.platform.domain.eam.meta.InspectionTaskPointMeta;
 import com.dt.platform.eam.service.ICheckSelectService;
+import com.dt.platform.eam.service.IInspectionProcessActionService;
 import com.dt.platform.eam.service.IInspectionTaskPointService;
 import com.dt.platform.eam.service.IInspectionTaskService;
+import com.dt.platform.proxy.common.TplFileServiceProxy;
+import com.github.foxnic.api.constant.CodeTextEnum;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.bean.BeanNameUtil;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
+import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.PagedList;
+import com.github.foxnic.dao.data.Rcd;
+import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.excel.ExcelStructure;
-import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.dao.excel.ValidateResult;
+import com.github.foxnic.dao.excel.*;
+import com.github.foxnic.dao.meta.DBTableMeta;
 import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.sql.expr.OrderBy;
+import com.github.foxnic.dao.sql.SQLBuilder;
+import com.github.foxnic.sql.expr.*;
 import com.github.foxnic.sql.meta.DBField;
+import com.github.foxnic.sql.treaty.DBTreaty;
 import com.mysql.jdbc.log.Log;
+import org.apache.poi.ss.usermodel.*;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * <p>
@@ -56,6 +65,10 @@ import java.util.Map;
 
 @Service("EamInspectionTaskPointService")
 public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskPoint> implements IInspectionTaskPointService {
+
+
+	@Autowired
+	private IInspectionProcessActionService inspectionProcessActionService;
 
 	/**
 	 * 注入DAO对象
@@ -107,7 +120,7 @@ public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskP
 	}
 
 	@Override
-	public Result finish(String id, String pointStatus, String content, String imageId,String itemData) {
+	public Result finish(String id, String pointStatus, String content, String imageId,String actionLabel,String itemData) {
 		//判断是否可以进行巡检
 		String cUserId=SessionUser.getCurrent().getActivatedEmployeeId();
 		String sql="select count(1) cnt from eam_inspection_task_point a,eam_inspection_task b,eam_inspection_group c,eam_inspection_group_user d \n" +
@@ -180,6 +193,7 @@ public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskP
 		taskPoint.setPointStatus(pointStatus);
 		taskPoint.setOperId(SessionUser.getCurrent().getActivatedEmployeeId());
 		taskPoint.setContent(content);
+		taskPoint.setActionLabel(actionLabel);
 		Result r=this.update(taskPoint,SaveMode.NOT_NULL_FIELDS,true);
 		return ErrorDesc.success();
 	}
@@ -387,10 +401,6 @@ public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskP
 		return super.exportExcelTemplate();
 	}
 
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
 
 /**
 	 * 批量检查引用
@@ -406,6 +416,184 @@ public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskP
 	@Override
 	public ExcelStructure buildExcelStructure(boolean isForExport) {
 		return super.buildExcelStructure(isForExport);
+	}
+
+	@Override
+	public List<ValidateResult> importExcel(InputStream input, int sheetIndex, String code) {
+		List<ValidateResult> errors=new ArrayList<>();
+		ExcelReader er=null;
+		try {
+			er=new ExcelReader(input);
+		} catch (Exception e) {
+			errors.add(new ValidateResult(null,-1,"缺少文件"));
+			return errors;
+		}
+		//构建 Excel 结构
+		ExcelStructure es=buildExcelStructure(input,code);
+
+		//装换成记录集
+		RcdSet rs=null;
+		try {
+			Logger.info("sheetIndex"+sheetIndex+","+es+"ind:"+es.getColumnReadEndIndex());
+			rs=er.read(sheetIndex,es);
+
+		} catch (Exception e) {
+			Logger.error("Excel 导入错误",e);
+			errors.add(new ValidateResult(null,-1,"Excel 读取失败"));
+			return errors;
+		}
+		return importData(rs);
+	}
+
+	public List<ValidateResult> importData(RcdSet rs) {
+		List<ValidateResult> errors=new ArrayList<>();
+		DBTableMeta tm=dao().getTableMeta(this.table());
+		DBTreaty dbTreaty= dao().getDBTreaty();
+		List<SQL> upsList=new ArrayList<>();
+		List<SQL> insList=new ArrayList<>();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		for(int i=0;i<rs.getRcdList().size();i++) {
+			Rcd r = rs.getRcd(i);
+			String id = r.getString("id");
+			String operTimeStr = r.getString("oper_time");
+			Date operTime = null;
+			String pointStatus="";
+			String actionLabel="";
+			String content="";
+			if (!StringUtil.isBlank(operTimeStr)) {
+				try {
+					operTime = sdf.parse(operTimeStr);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+			if(r.getString("content")!=null){
+				content=r.getString("content");
+			}
+			//状态
+			String statusName=r.getString("point_status_name");
+			if(!StringUtil.isBlank(statusName)){
+				CodeTextEnum value=EnumUtil.parseByText(InspectionTaskPointStatusEnum.class,statusName);
+				if(StringUtil.isBlank(value)){
+					errors.add(new ValidateResult(null,(i+1),"状态为空"));
+					break;
+				}else{
+					pointStatus=value.code();
+				}
+			}
+			//下拉框
+			String labelName=r.getString("action_label_name");
+			if(!StringUtil.isBlank(labelName)){
+				InspectionProcessAction tpl = inspectionProcessActionService.queryEntity(InspectionProcessAction.create().setName(labelName));
+				if(tpl==null){
+					errors.add(new ValidateResult(null,(i+1),"处理方式不存在,名称:"+labelName));
+					break;
+				}else{
+					actionLabel=tpl.getCode();
+				}
+			}
+			if(StringUtil.isBlank(id)){
+				System.out.println("none");
+			}else{
+				Update ups=new Update("eam_inspection_task_point");
+				ups.setIf("oper_time",operTime);
+				ups.setIf("content",content);
+				ups.setIf("action_label",actionLabel);
+				ups.setIf("point_status",pointStatus);
+				ups.setIf("oper_id",SessionUser.getCurrent().getActivatedEmployeeId());
+				ups.where().and("id=?",id);
+				upsList.add(ups);
+			}
+
+		}
+
+		if(errors.size()>0){
+			return errors;
+		}
+		if(insList.size()>0){
+			dao.batchExecute(insList);
+		}
+		if(upsList.size()>0){
+			dao.batchExecute(upsList);
+		}
+		return errors;
+	}
+
+	@Override
+	public InputStream buildExcelTemplate(String code) {
+		InputStream inputStream= TplFileServiceProxy.api().getTplFileStreamByCode(code);
+		Workbook workbook;
+		if(inputStream!=null){
+			try {
+				BufferedInputStream bufferInput = new ResetOnCloseInputStream(inputStream);
+				workbook = WorkbookFactory.create(bufferInput);
+				CellStyle cs=workbook.createCellStyle();
+				cs.setAlignment(HorizontalAlignment.CENTER);
+				cs.setVerticalAlignment(VerticalAlignment.CENTER);
+				Sheet sheet=workbook.getSheetAt(0);
+				Row firstRow=sheet.getRow(0);
+				Row secondRow=sheet.getRow(1);
+				Logger.info("SheetName:"+sheet.getSheetName());
+				Logger.info("firstRow lastCellNum:"+firstRow.getLastCellNum());
+				Logger.info("lastSecondRow lastCellNum:"+secondRow.getLastCellNum());
+				Logger.info("lastSecondRow lastCellNum Value:"+secondRow.getCell(secondRow.getLastCellNum()-1));
+				if(firstRow.getLastCellNum()!=secondRow.getLastCellNum()){
+					return null;
+				}
+				Short lastNum=firstRow.getLastCellNum();
+			} catch (Exception e) {
+				Logger.debug("Excel 读取错误", e);
+			}
+		}
+		return inputStream;
+	}
+
+	@Override
+	public ExcelStructure buildExcelStructure(InputStream dataInputStream, String code) {
+		InputStream inputStream= TplFileServiceProxy.api().getTplFileStreamByCode(code);
+		ExcelStructure es=new ExcelStructure();
+		//	es.setDataColumnBegin(0);
+		es.setDataRowBegin(2);
+		Short lastNum=0;
+		//从模板获取属性
+		Workbook workbook;
+		if ( inputStream != null) {
+			try {
+				workbook = WorkbookFactory.create(inputStream);
+				Sheet sheet=workbook.getSheetAt(0);
+				Row firstRow=sheet.getRow(0);
+				Row secondRow=sheet.getRow(1);
+				lastNum=firstRow.getLastCellNum();
+				String charIndex="";
+				for(int i=0;i<secondRow.getLastCellNum();i++){
+					String asset_column=secondRow.getCell(i).toString().replaceFirst("\\{\\{\\$fe:","")
+							.replaceFirst("dataList","")
+							.replaceFirst("}}","")
+							.replaceFirst("t.","").trim();
+
+					String rAssetColumn="";
+					//filter
+					if(AssetDataExportColumnEnum.USE_USER_NAME.code().equals(asset_column)
+							||AssetDataExportColumnEnum.MANAGER_NAME.code().equals(asset_column)
+							||AssetDataExportColumnEnum.STATUS_NAME.code().equals(asset_column)){
+						continue;
+					}
+					rAssetColumn= EnumUtil.parseByCode(AssetDataExportColumnEnum.class,asset_column)==null?
+							BeanNameUtil.instance().depart(asset_column):
+							EnumUtil.parseByCode(AssetDataExportColumnEnum.class,asset_column).text();
+					Logger.info("asset_column:"+asset_column+",rAssetColumn:"+rAssetColumn);
+					charIndex= ExcelUtil.toExcel26(i);
+					Logger.info("cell:"+charIndex+","+secondRow.getCell(i)  +","+ firstRow.getCell(i)+","+asset_column+","+rAssetColumn);
+					Logger.info("addColumn:"+rAssetColumn+","+firstRow.getCell(i).toString()+ ","+ ExcelColumn.STRING_CELL_READER);
+					es.addColumn(charIndex,rAssetColumn,firstRow.getCell(i).toString(), ExcelColumn.STRING_CELL_READER);
+				}
+				//追加自定义属性部分
+			} catch (Exception e) {
+				Logger.debug("Excel 读取错误", e);
+				return es;
+			}
+		}
+		return es;
 	}
 
 

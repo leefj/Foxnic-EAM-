@@ -88,12 +88,9 @@ function ListPage() {
 					,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员'), templet: function (d) { return templet('personId' ,fox.joinLabel(d.person,"name",',','','personId'),d);}}
 					,{ field: 'employeeNumber', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('工号') , templet: function (d) { return templet('employeeNumber',d.employeeNumber,d);}  }
 					,{ field: 'rcdTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('打卡时间') ,templet: function (d) { return templet('rcdTime',fox.dateFormat(d.rcdTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'address', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('打卡位置') , templet: function (d) { return templet('address',d.address,d);}  }
 					,{ field: 'source', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源') , templet: function (d) { return templet('source',d.source,d);}  }
-					,{ field: 'batchCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('批次号') , templet: function (d) { return templet('batchCode',d.batchCode,d);}  }
-					,{ field: 'processStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('处理状态'), templet:function (d){ return templet('processStatus',fox.getEnumText(RADIO_PROCESSSTATUS_DATA,d.processStatus,'','processStatus'),d);}}
-					,{ field: 'processTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('处理时间') ,templet: function (d) { return templet('processTime',fox.dateFormat(d.processTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'processResult', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('处理结果') , templet: function (d) { return templet('processResult',d.processResult,d);}  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+				 	,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

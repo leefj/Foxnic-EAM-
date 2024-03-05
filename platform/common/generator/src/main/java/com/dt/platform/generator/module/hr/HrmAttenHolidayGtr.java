@@ -2,12 +2,15 @@ package com.dt.platform.generator.module.hr;
 
 
 import com.dt.platform.constants.db.HrTables;
+import com.dt.platform.domain.hr.AttendanceTpl;
 import com.dt.platform.domain.hr.Person;
 import com.dt.platform.domain.hr.meta.AttendanceHolidayMeta;
+import com.dt.platform.domain.hr.meta.AttendanceTplMeta;
 import com.dt.platform.domain.hr.meta.PersonMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.hr.page.AttendanceHolidayPageController;
 import com.dt.platform.proxy.hr.AttendanceHolidayServiceProxy;
+import com.dt.platform.proxy.hr.AttendanceTplServiceProxy;
 import com.dt.platform.proxy.hr.PersonServiceProxy;
 import com.github.foxnic.generator.builder.view.config.DatePickerType;
 import com.github.foxnic.generator.config.WriteMode;
@@ -31,11 +34,16 @@ public class HrmAttenHolidayGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Person.class,"person","person","person");
         cfg.getPoClassFile().addSimpleProperty(String.class,"personJobNumber","personJobNumber","personJobNumber");
         cfg.getPoClassFile().addSimpleProperty(String.class,"sOrgId","sOrgId","sOrgId");
+
+        cfg.getPoClassFile().addListProperty(AttendanceTpl.class,"attendanceTplList","attendanceTplList","attendanceTplList");
+        cfg.getPoClassFile().addListProperty(String.class,"attendanceTplIdsList","attendanceTplIdsList","attendanceTplIdsList");
+
         cfg.view().field(HrTables.HR_ATTENDANCE_HOLIDAY.ACTION_DATE).form().validate().required().form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd").search().range();
         cfg.view().field(HrTables.HR_ATTENDANCE_HOLIDAY.ACTION_S_TIME).form().validate().required().form().dateInput().type(DatePickerType.datetime).format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(HrTables.HR_ATTENDANCE_HOLIDAY.ACTION_E_TIME).form().validate().required().form().dateInput().type(DatePickerType.datetime).format("yyyy-MM-dd HH:mm:ss").search().range();
-
         cfg.view().field(HrTables.HR_ATTENDANCE_HOLIDAY.BATCH_CODE).search().fuzzySearch();
+
+
 
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -66,6 +74,13 @@ public class HrmAttenHolidayGtr extends BaseCodeGenerator {
                 textField(DictItemMeta.LABEL).
                 fillWith(AttendanceHolidayMeta.TYPE_DICT).muliti(false);
 
+
+        cfg.view().field(AttendanceHolidayMeta.ATTENDANCE_TPL_IDS_LIST).basic().label("不用上班")
+                .form().selectBox().queryApi(AttendanceTplServiceProxy.QUERY_LIST)
+                .paging(false).filter(false).toolbar(false)
+                .valueField(AttendanceTplMeta.CODE).
+                textField(AttendanceTplMeta.NAME).
+                fillWith(AttendanceHolidayMeta.ATTENDANCE_TPL_LIST).muliti(true);
 
         cfg.view().field(HrTables.HR_ATTENDANCE_HOLIDAY.PERSON_ID)
                 .form().validate().required().form().selectBox().queryApi(PersonServiceProxy.QUERY_PAGED_LIST)
@@ -119,6 +134,7 @@ public class HrmAttenHolidayGtr extends BaseCodeGenerator {
         );
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        AttendanceHolidayMeta.ATTENDANCE_TPL_IDS_LIST,
                         HrTables.HR_ATTENDANCE_HOLIDAY.FILE_ID,
                 }
         );

@@ -1,7 +1,7 @@
 /**
  * 归属 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:30:20
+ * @since 2024-02-25 13:37:15
  */
 
 layui.config({
@@ -49,7 +49,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            cfg.cellMinWidth=160;;
+            console.log("list:beforeTableRender",cfg);
         },
         /**
          * 表格渲染后调用

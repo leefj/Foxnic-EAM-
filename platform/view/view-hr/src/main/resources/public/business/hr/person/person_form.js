@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:56:18
+ * @since 2024-02-26 15:17:34
  */
 
 function FormPage() {
@@ -680,7 +680,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "attendanceTplCode",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("考勤模版",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("考勤组",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -833,7 +833,7 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#payrollCardBankCode",formData.bank);
 			//设置  薪酬模版 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#salaryTplId",formData.salaryTpl);
-			//设置  考勤模版 设置下拉框勾选
+			//设置  考勤组 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#attendanceTplCode",formData.attendanceTpl);
 
 			//处理fillBy
@@ -921,7 +921,7 @@ function FormPage() {
 		data["payrollCardBankCode"]=fox.getSelectedValue("payrollCardBankCode",false);
 		//获取 薪酬模版 下拉框的值
 		data["salaryTplId"]=fox.getSelectedValue("salaryTplId",false);
-		//获取 考勤模版 下拉框的值
+		//获取 考勤组 下拉框的值
 		data["attendanceTplCode"]=fox.getSelectedValue("attendanceTplCode",false);
 
 		return data;

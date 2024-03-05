@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-19 19:55:05
+ * @since 2024-02-20 12:35:34
  */
 
 
@@ -90,9 +90,7 @@ function ListPage() {
 					,{ field: 'contactInformation', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('联系方式') , templet: function (d) { return templet('contactInformation',d.contactInformation,d);}  }
 					,{ field: 'email', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('电子邮件') , templet: function (d) { return templet('email',d.email,d);}  }
 					,{ field: 'educationCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('学历'), templet: function (d) { return templet('educationCode' ,fox.joinLabel(d.educationData,"label",',','','educationCode'),d);}}
-					,{ field: 'certificate', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所获证书') , templet: function (d) { return templet('certificate',d.certificate,d);}  }
 					,{ field: 'politicCountenanceCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('政治面貌'), templet: function (d) { return templet('politicCountenanceCode' ,fox.joinLabel(d.politicCountenanceData,"label",',','','politicCountenanceCode'),d);}}
-					,{ field: 'firstWorkDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('参加工作时间') ,templet: function (d) { return templet('firstWorkDate',fox.dateFormat(d.firstWorkDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'specialSkill', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('特长') , templet: function (d) { return templet('specialSkill',d.specialSkill,d);}  }
 					,{ field: 'jobRequirement', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('对工作要求') , templet: function (d) { return templet('jobRequirement',d.jobRequirement,d);}  }
 					,{ field: 'nowSalary', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('目前月薪') , templet: function (d) { return templet('nowSalary',d.nowSalary,d);}  }
@@ -100,10 +98,8 @@ function ListPage() {
 					,{ field: 'source', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('招聘来源') , templet: function (d) { return templet('source',d.source,d);}  }
 					,{ field: 'reviewResult', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('评审结果') , templet: function (d) { return templet('reviewResult',d.reviewResult,d);}  }
 					,{ field: 'position', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('应聘岗位') , templet: function (d) { return templet('position',d.position,d);}  }
-					,{ field: 'pictureId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('照片') , templet: function (d) { return templet('pictureId',d.pictureId,d);}  }
 					,{ field: 'note', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('note',d.note,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('面试结果'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

@@ -6,13 +6,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 import com.dt.platform.domain.eam.Category;
 import com.dt.platform.domain.eam.Manufacturer;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:56
- * @sign 45C36921CF68A52ECD35380147FEFF32
+ * @since 2024-02-21 10:02:51
+ * @sign A38B13F7C8ED2288C20CAEF1D5231F0A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -471,5 +472,48 @@ public class GoodsMeta {
 			super.setManufacturer(manufacturer);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public Goods clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public Goods duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setManufacturerId(this.getManufacturerId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setUnit(this.getUnit());
+			inst.setReferencePrice(this.getReferencePrice());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setPictureId(this.getPictureId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setModel(this.getModel());
+			inst.setId(this.getId());
+			inst.setCategoryId(this.getCategoryId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setCategory(this.getCategory());
+				inst.setManufacturer(this.getManufacturer());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

@@ -10,8 +10,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-19 13:27:03
- * @sign A07A134F96D929913BB83B4C90489844
+ * @since 2024-02-20 15:04:42
+ * @sign A7F0ED0D7AC5BB4659F8AA9D485D1957
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -198,9 +198,19 @@ public class InterviewMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.Interview,org.github.foxnic.web.domain.hrm.Employee> EMPLOYEE_PROP = new BeanProperty(com.dt.platform.domain.hr.Interview.class ,EMPLOYEE, org.github.foxnic.web.domain.hrm.Employee.class, "employee", "employee", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * selectedCode , 类型: java.lang.String
+	*/
+	public static final String SELECTED_CODE="selectedCode";
+	
+	/**
+	 * selectedCode , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Interview,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.Interview.class ,SELECTED_CODE, java.lang.String.class, "selectedCode", "selectedCode", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , STATUS , INTERVIEW_DATE , CONTENT , FILE_ID , NOTES , USER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , EMPLOYEE };
+	public static final String[] $PROPS={ ID , NAME , STATUS , INTERVIEW_DATE , CONTENT , FILE_ID , NOTES , USER_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , EMPLOYEE , SELECTED_CODE };
 	
 	/**
 	 * 代理类
@@ -407,6 +417,17 @@ public class InterviewMeta {
 			super.setEmployee(employee);
 			return this;
 		}
+		
+		/**
+		 * 设置 selectedCode
+		 * @param selectedCode selectedCode
+		 * @return 当前对象
+		*/
+		public Interview setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -442,6 +463,7 @@ public class InterviewMeta {
 			inst.setFileId(this.getFileId());
 			if(all) {
 				inst.setEmployee(this.getEmployee());
+				inst.setSelectedCode(this.getSelectedCode());
 			}
 			inst.clearModifies();
 			return inst;

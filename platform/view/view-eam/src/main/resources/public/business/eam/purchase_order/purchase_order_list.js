@@ -1,7 +1,7 @@
 /**
  * 采购清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-07 23:12:24
+ * @since 2024-02-21 09:55:20
  */
 
 
@@ -90,6 +90,7 @@ function ListPage() {
 					,{ field: 'purchaseNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('采购数量') , templet: function (d) { return templet('purchaseNumber',d.purchaseNumber,d);}  }
 					,{ field: 'unitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('采购单价') , templet: function (d) { return templet('unitPrice',d.unitPrice,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

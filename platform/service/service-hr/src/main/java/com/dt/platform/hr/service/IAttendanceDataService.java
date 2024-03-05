@@ -1,5 +1,7 @@
 package com.dt.platform.hr.service;
 
+import com.alibaba.fastjson.JSONArray;
+import com.dt.platform.domain.hr.Person;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
@@ -28,6 +30,10 @@ import java.util.Map;
 */
 
 public interface IAttendanceDataService extends  ISimpleIdService<AttendanceData,String> {
+
+
+	public Result processSourceDataByPerson(String dateStr, Person person,String batchCode);
+
 
 
 	/**
@@ -280,6 +286,18 @@ public interface IAttendanceDataService extends  ISimpleIdService<AttendanceData
 	 * @return 查询结果
 	 * */
 	PagedList<AttendanceData> queryPagedList(AttendanceData sample,OrderBy orderBy,int pageSize,int pageIndex);
+
+
+	PagedList<AttendanceData> queryMonthPagedList(AttendanceDataVO sample,int pageSize,int pageIndex);
+
+	PagedList<AttendanceData> queryAbnormalPagedList(AttendanceData sample,OrderBy orderBy,int pageSize,int pageIndex);
+
+	Result processSourceData(String DateStr, String groupCode);
+
+
+	Result<JSONArray> queryDataForCal(String type,String personId,String startStr,String endStr);
+
+
 
  	/**
 	 * 查询指定字段的数据清单

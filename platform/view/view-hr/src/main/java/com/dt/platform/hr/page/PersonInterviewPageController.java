@@ -41,7 +41,9 @@ public class PersonInterviewPageController extends ViewController {
 	 * 初选人员 功能主页面
 	 */
 	@RequestMapping("/person_interview_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String interviewId,String action) {
+		model.addAttribute("interviewId",interviewId);
+		model.addAttribute("action",action);
 		return getTemplatePath(prefix,"person_interview_list");
 	}
 
@@ -49,7 +51,8 @@ public class PersonInterviewPageController extends ViewController {
 	 * 初选人员 表单页面
 	 */
 	@RequestMapping("/person_interview_form.html")
-	public String form(Model model,HttpServletRequest request , String id) {
+	public String form(Model model,HttpServletRequest request , String id,String interviewId) {
+		model.addAttribute("interviewId",interviewId);
 		return getTemplatePath(prefix,"person_interview_form");
 	}
 }

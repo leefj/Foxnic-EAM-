@@ -36,7 +36,6 @@ public class InterViewPersonGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"interviewMethodDict","interviewMethodDict","interviewMethodDict");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"sourceDict","sourceDict","sourceDict");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","organization","organization");
-
         cfg.getPoClassFile().addSimpleProperty(Interview.class,"interview","interview","interview");
 
 
@@ -100,7 +99,7 @@ public class InterViewPersonGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(HrTables.HR_PERSON_INTERVIEW.SEX_CODE)
-                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=sex")
+                .form().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=sex")
                 .paging(false).filter(false).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
@@ -108,7 +107,7 @@ public class InterViewPersonGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(HrTables.HR_PERSON_INTERVIEW.INTERVIEW_METHOD)
-                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=hr_interview_method")
+                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=hr_interview_method")
                 .paging(false).filter(false).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
@@ -116,7 +115,7 @@ public class InterViewPersonGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(HrTables.HR_PERSON_INTERVIEW.SOURCE)
-                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=hr_interview_profile_source")
+               .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=hr_interview_profile_source")
                 .paging(false).filter(false).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
@@ -167,8 +166,12 @@ public class InterViewPersonGtr extends BaseCodeGenerator {
 
         );
 
+        cfg.view().list().addJsVariable("INTERVIEW_ID",   "[[${interviewId}]]","interviewId");
+      //  cfg.view().list().addJsVariable("selected_Code",   "[[${selectedCode}]]","selectedCode");
+        cfg.view().list().addJsVariable("ACTION",   "[[${action}]]","action");
 
-
+        cfg.view().form().addJsVariable("INTERVIEW_ID",   "[[${interviewId}]]","interviewId");
+       // cfg.view().form().addJsVariable("selectedCode",   "[[${selectedCode}]]","selectedCode");
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口

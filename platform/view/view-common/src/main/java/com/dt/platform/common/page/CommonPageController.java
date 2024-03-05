@@ -1,11 +1,10 @@
 package com.dt.platform.common.page;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dt.platform.domain.common.Report;
-import com.dt.platform.domain.common.ReportAclVO;
-import com.dt.platform.domain.common.ReportVO;
+import com.dt.platform.domain.common.*;
 import com.dt.platform.proxy.common.ReportAclServiceProxy;
 import com.dt.platform.proxy.common.ReportServiceProxy;
+import com.dt.platform.proxy.common.ScreenServiceProxy;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
@@ -32,9 +31,6 @@ public class CommonPageController extends ViewController {
 
 
 	public static final String prefix="business/common/common";
-
-
-
 
 	/**
 	 * 主页面
@@ -111,8 +107,25 @@ public class CommonPageController extends ViewController {
 		return prefix+"/iframe_acl";
 	}
 
+	@RequestMapping("/iframe_dashboard.html")
+	public String iframe2(Model model,HttpServletRequest request,String code,String path) {
+		if(!StringUtil.isBlank(code)){
+			ScreenVO vo=new ScreenVO();
+			vo.setCode(code);
+			Result<List<Screen>> res= ScreenServiceProxy.api().queryList(vo);
+			if(res.isSuccess()){
+				if(res.getData().size()>0){
+					path="/business/common/screen/dataview/dist/index.html#/chart/preview/"+res.getData().get(0).getId();
+				}
+			}
+		}
+		model.addAttribute("code",code);
+		model.addAttribute("path",path);
+		return prefix+"/iframe_dashboard";
+	}
+
 	@RequestMapping("/iframe.html")
-	public String iframe(Model model,HttpServletRequest request,String code,String path) {
+	public String iframe(Model model,HttpServletRequest request,String code,String path,String page) {
 		String result="0";
 		String message="";
 		String route="";
@@ -162,6 +175,7 @@ public class CommonPageController extends ViewController {
 		model.addAttribute("ip",ip);
 		model.addAttribute("id",id);
 		model.addAttribute("code",code);
+		model.addAttribute("page",page);
 		return prefix+"/iframe";
 	}
 
@@ -204,7 +218,6 @@ public class CommonPageController extends ViewController {
 //		shortTitle:Foxnic-Web
 //		fullTitle:Foxnic-Web
 //		userLoginJson:null
-
 		System.out.println("responseFormat:"+redirect);
 		System.out.println("redirect:"+redirect);
 		System.out.println("shortTitle:"+shortTitle);

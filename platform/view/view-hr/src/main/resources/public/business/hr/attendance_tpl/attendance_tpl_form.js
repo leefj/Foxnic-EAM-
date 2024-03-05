@@ -1,7 +1,7 @@
 /**
  * 考勤模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:48:56
+ * @since 2024-02-27 13:13:46
  */
 
 function FormPage() {
@@ -118,57 +118,12 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
-		laydate.render({
-			elem: '#onWorkTime',
-			type:"time",
-			format:"yyyy-MM-dd HH:mm:ss",
-			trigger:"click",
-			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("onWorkTime",value, date, endDate);
-			}
-		});
-		laydate.render({
-			elem: '#offWorkTime',
-			type:"time",
-			format:"yyyy-MM-dd HH:mm:ss",
-			trigger:"click",
-			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("offWorkTime",value, date, endDate);
-			}
-		});
-		//渲染 weekList 下拉字段
-		fox.renderSelectBox({
-			el: "weekList",
-			radio: false,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("工作日",'','cmp:form'),
-			filterable: false,
-			layVerify: 'required',
-			layVerType: 'msg',
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("weekList",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("weekList",{data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
+		form.on('radio(tplType)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=tplType]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("tplType",data,checked);
 		});
 	}
 
@@ -221,18 +176,8 @@ function FormPage() {
 
 
 
-			//设置 上班时间 显示复选框勾选
-			if(formData["onWorkTime"]) {
-				$("#onWorkTime").val(fox.dateFormat(formData["onWorkTime"],"yyyy-MM-dd HH:mm:ss"));
-			}
-			//设置 下班时间 显示复选框勾选
-			if(formData["offWorkTime"]) {
-				$("#offWorkTime").val(fox.dateFormat(formData["offWorkTime"],"yyyy-MM-dd HH:mm:ss"));
-			}
 
 
-			//设置  工作日 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#weekList",formData.weekDict);
 
 			//处理fillBy
 
@@ -295,8 +240,6 @@ function FormPage() {
 
 
 
-		//获取 工作日 下拉框的值
-		data["weekList"]=fox.getSelectedValue("weekList",true);
 
 		return data;
 	}

@@ -23,5 +23,9 @@ update sys_menu set hidden=1 where id='487568362436558848';
 update sys_menu set hidden=1 where id='487559533120454656';
 -- 流程门户
 update sys_menu set hidden=1 where id='577783476611198976';
+update sys_menu set hidden=1 where hierarchy like '%577783476611198976%';
+update sys_menu set hidden=1 where hierarchy like '%734474163506380800%';
+
+
 
 

@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 考勤模版 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:43:16
+ * @since 2024-02-25 19:16:26
  */
 @FeignClient(value = ServiceNames.HR, contextId = AttendanceTplServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AttendanceTplServiceProxy {

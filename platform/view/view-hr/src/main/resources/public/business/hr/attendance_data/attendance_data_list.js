@@ -1,7 +1,7 @@
 /**
  * 考勤汇总 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 15:15:17
+ * @since 2024-02-25 21:45:47
  */
 
 
@@ -86,19 +86,39 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员'), templet: function (d) { return templet('personId' ,fox.joinLabel(d.person,"name",',','','personId'),d);}}
-					,{ field: 'attendanceTplCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考勤模版'), templet: function (d) { return templet('attendanceTplCode' ,fox.joinLabel(d.attendanceTpl,"name",',','','attendanceTplCode'),d);}}
+					,{ field: 'attendanceTplCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考勤组'), templet: function (d) { return templet('attendanceTplCode' ,fox.joinLabel(d.attendanceTpl,"name",',','','attendanceTplCode'),d);}}
+					,{ field: 'isWorkDay', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否工作日'), templet:function (d){ return templet('isWorkDay',fox.getEnumText(RADIO_ISWORKDAY_DATA,d.isWorkDay,'','isWorkDay'),d);}}
 					,{ field: 'attendanceDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('考勤日期') ,templet: function (d) { return templet('attendanceDate',fox.dateFormat(d.attendanceDate,"yyyy-MM-dd"),d); }  }
+					,{ field: 'result', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('结果') , templet: function (d) { return templet('result',d.result,d);}  }
+					,{ field: 'normalDay', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('正常(天)') , templet: function (d) { return templet('normalDay',d.normalDay,d);}  }
+					,{ field: 'needDay', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('应上班天数') , templet: function (d) { return templet('needDay',d.needDay,d);}  }
 					,{ field: 'onWorkTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('上班打卡') ,templet: function (d) { return templet('onWorkTime',fox.dateFormat(d.onWorkTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'onWorkTime2', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('最早打卡') ,templet: function (d) { return templet('onWorkTime2',fox.dateFormat(d.onWorkTime2,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'offWorkTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('下班打卡') ,templet: function (d) { return templet('offWorkTime',fox.dateFormat(d.offWorkTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'offWorkTime2', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('最晚打卡') ,templet: function (d) { return templet('offWorkTime2',fox.dateFormat(d.offWorkTime2,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'leaveEarly', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('早退'), templet:function (d){ return templet('leaveEarly',fox.getEnumText(RADIO_LEAVEEARLY_DATA,d.leaveEarly,'','leaveEarly'),d);}}
-					,{ field: 'leaveLate', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('晚退'), templet:function (d){ return templet('leaveLate',fox.getEnumText(RADIO_LEAVELATE_DATA,d.leaveLate,'','leaveLate'),d);}}
-					,{ field: 'skipWork', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('矿工'), templet:function (d){ return templet('skipWork',fox.getEnumText(RADIO_SKIPWORK_DATA,d.skipWork,'','skipWork'),d);}}
-					,{ field: 'bq', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('补签'), templet:function (d){ return templet('bq',fox.getEnumText(RADIO_BQ_DATA,d.bq,'','bq'),d);}}
-					,{ field: 'qj', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('请假'), templet:function (d){ return templet('qj',fox.getEnumText(RADIO_QJ_DATA,d.qj,'','qj'),d);}}
-					,{ field: 'cc', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('出差'), templet:function (d){ return templet('cc',fox.getEnumText(RADIO_CC_DATA,d.cc,'','cc'),d);}}
+					,{ field: 'leaveEarly', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('迟到(次)') , templet: function (d) { return templet('leaveEarly',d.leaveEarly,d);}  }
+					,{ field: 'leaveEarlyTime', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('迟到(分)') , templet: function (d) { return templet('leaveEarlyTime',d.leaveEarlyTime,d);}  }
+					,{ field: 'leaveLate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('早退(次)') , templet: function (d) { return templet('leaveLate',d.leaveLate,d);}  }
+					,{ field: 'leaveLateTime', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('早退(分)') , templet: function (d) { return templet('leaveLateTime',d.leaveLateTime,d);}  }
+					,{ field: 'lossEarly', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('上班缺卡(次)') , templet: function (d) { return templet('lossEarly',d.lossEarly,d);}  }
+					,{ field: 'lossLate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('下班缺卡(次)') , templet: function (d) { return templet('lossLate',d.lossLate,d);}  }
+					,{ field: 'lossProcess', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('缺卡处理(次)') , templet: function (d) { return templet('lossProcess',d.lossProcess,d);}  }
+					,{ field: 'jbGzr', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('工作日加班(小时)') , templet: function (d) { return templet('jbGzr',d.jbGzr,d);}  }
+					,{ field: 'jbXxr', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('休息日加班(小时)') , templet: function (d) { return templet('jbXxr',d.jbXxr,d);}  }
+					,{ field: 'jbJjr', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('节假日加班(小时)') , templet: function (d) { return templet('jbJjr',d.jbJjr,d);}  }
+					,{ field: 'cc', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('出差(天)') , templet: function (d) { return templet('cc',d.cc,d);}  }
+					,{ field: 'qjNj', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('年假(天)') , templet: function (d) { return templet('qjNj',d.qjNj,d);}  }
+					,{ field: 'qjGsj', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('工伤假(天)') , templet: function (d) { return templet('qjGsj',d.qjGsj,d);}  }
+					,{ field: 'qjCj', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('产假(天)') , templet: function (d) { return templet('qjCj',d.qjCj,d);}  }
+					,{ field: 'qjHj', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('婚假(天)') , templet: function (d) { return templet('qjHj',d.qjHj,d);}  }
+					,{ field: 'qjBj', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('病假(天)') , templet: function (d) { return templet('qjBj',d.qjBj,d);}  }
+					,{ field: 'qjSj', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('事假(天)') , templet: function (d) { return templet('qjSj',d.qjSj,d);}  }
+					,{ field: 'qjTxj', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('调休假(天)') , templet: function (d) { return templet('qjTxj',d.qjTxj,d);}  }
+					,{ field: 'qjPlj', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('哺乳假(天)') , templet: function (d) { return templet('qjPlj',d.qjPlj,d);}  }
+					,{ field: 'batchCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('批次号') , templet: function (d) { return templet('batchCode',d.batchCode,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'dayInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('说明') , templet: function (d) { return templet('dayInfo',d.dayInfo,d);}  }
+					,{ field: 'rcdTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('记录时间') ,templet: function (d) { return templet('rcdTime',fox.dateFormat(d.rcdTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -170,8 +190,12 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.personId={ inputType:"select_box", value: getSelectedValue("#personId","value") ,fillBy:["person"]  , label:getSelectedValue("#personId","nameStr") };
+		value.attendanceTplCode={ inputType:"select_box", value: getSelectedValue("#attendanceTplCode","value") ,fillBy:["attendanceTpl"]  , label:getSelectedValue("#attendanceTplCode","nameStr") };
+		value.isWorkDay={ inputType:"radio_box", value: getSelectedValue("#isWorkDay","value"), label:getSelectedValue("#isWorkDay","nameStr") };
 		value.attendanceDate={ inputType:"date_input", begin: $("#attendanceDate-begin").val(), end: $("#attendanceDate-end").val() ,matchType:"auto" };
+		value.batchCode={ inputType:"button",value: $("#batchCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.sJobNumber={ inputType:"button",value: $("#sJobNumber").val()};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -249,6 +273,62 @@ function ListPage() {
 				return opts;
 			}
 		});
+		//渲染 attendanceTplCode 下拉字段
+		fox.renderSelectBox({
+			el: "attendanceTplCode",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("attendanceTplCode",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("attendanceTplCode",{data:data[i],name:data[i].name,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 isWorkDay 搜索框
+		fox.renderSelectBox({
+			el: "isWorkDay",
+			size: "small",
+			radio: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("isWorkDay",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("isWorkDay",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
 		laydate.render({
 			elem: '#attendanceDate-begin',
 			trigger:"click",
@@ -319,9 +399,6 @@ function ListPage() {
 					break;
 				case 'batch-del':
 					batchDelete(selected);
-					break;
-				case 'tool-source-rcd':
-					window.pageExt.list.sourceRcd && window.pageExt.list.sourceRcd(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();

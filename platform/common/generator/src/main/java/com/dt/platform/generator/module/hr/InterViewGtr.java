@@ -23,6 +23,7 @@ public class InterViewGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"employee","employee","employee");
         cfg.view().field(HrTables.HR_INTERVIEW.INTERVIEW_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd").search().range();
+        cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
 
 
         cfg.view().field(HrTables.HR_INTERVIEW.ID).basic().hidden(true);
@@ -72,6 +73,12 @@ public class InterViewGtr extends BaseCodeGenerator {
                         HrTables.HR_INTERVIEW.FILE_ID,
                 }
         );
+
+
+
+        cfg.view().field(HrTables.HR_INTERVIEW.USER_ID).table().fillBy("employee","name");
+        cfg.view().field(HrTables.HR_INTERVIEW.USER_ID).form()
+                .button().chooseEmployee(true);
 
 
 

@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_GOODS;
@@ -9,20 +10,27 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.GoodsMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 物品档案
+ * <p>物品档案 , 数据表 eam_goods 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:56
- * @sign 45C36921CF68A52ECD35380147FEFF32
+ * @since 2024-02-21 10:02:51
+ * @sign A38B13F7C8ED2288C20CAEF1D5231F0A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_goods")
+@ApiModel(description = "物品档案 ; 物品档案 , 数据表 eam_goods 的PO类型")
 public class Goods extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -119,6 +127,9 @@ public class Goods extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -432,12 +443,43 @@ public class Goods extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public Goods setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public Goods setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -585,6 +627,56 @@ public class Goods extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Goods clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public Goods duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.GoodsMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.GoodsMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setManufacturerId(this.getManufacturerId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setUnit(this.getUnit());
+		inst.setReferencePrice(this.getReferencePrice());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setPictureId(this.getPictureId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setModel(this.getModel());
+		inst.setId(this.getId());
+		inst.setCategoryId(this.getCategoryId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setCategory(this.getCategory());
+			inst.setManufacturer(this.getManufacturer());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Goods clone(boolean deep) {
+		return EntityContext.clone(Goods.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 Goods
 	 * @param goodsMap 包含实体信息的 Map 对象
 	 * @return Goods , 转换好的的 Goods 对象
@@ -592,7 +684,9 @@ public class Goods extends Entity {
 	@Transient
 	public static Goods createFrom(Map<String,Object> goodsMap) {
 		if(goodsMap==null) return null;
-		Goods po = EntityContext.create(Goods.class, goodsMap);
+		Goods po = create();
+		EntityContext.copyProperties(po,goodsMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -604,7 +698,9 @@ public class Goods extends Entity {
 	@Transient
 	public static Goods createFrom(Object pojo) {
 		if(pojo==null) return null;
-		Goods po = EntityContext.create(Goods.class,pojo);
+		Goods po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -614,6 +710,126 @@ public class Goods extends Entity {
 	*/
 	@Transient
 	public static Goods create() {
-		return EntityContext.create(Goods.class);
+		return new com.dt.platform.domain.eam.meta.GoodsMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(GoodsMeta.NOTES)));
+			this.setManufacturerId(DataParser.parse(String.class, map.get(GoodsMeta.MANUFACTURER_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(GoodsMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(GoodsMeta.VERSION)));
+			this.setUnit(DataParser.parse(String.class, map.get(GoodsMeta.UNIT)));
+			this.setReferencePrice(DataParser.parse(BigDecimal.class, map.get(GoodsMeta.REFERENCE_PRICE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(GoodsMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(GoodsMeta.DELETED)));
+			this.setPictureId(DataParser.parse(String.class, map.get(GoodsMeta.PICTURE_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(GoodsMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(GoodsMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(GoodsMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(GoodsMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(GoodsMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(GoodsMeta.DELETE_BY)));
+			this.setModel(DataParser.parse(String.class, map.get(GoodsMeta.MODEL)));
+			this.setId(DataParser.parse(String.class, map.get(GoodsMeta.ID)));
+			this.setCategoryId(DataParser.parse(String.class, map.get(GoodsMeta.CATEGORY_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(GoodsMeta.STATUS)));
+			// others
+			this.setCategory(DataParser.parse(Category.class, map.get(GoodsMeta.CATEGORY)));
+			this.setManufacturer(DataParser.parse(Manufacturer.class, map.get(GoodsMeta.MANUFACTURER)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(GoodsMeta.NOTES));
+				this.setManufacturerId( (String)map.get(GoodsMeta.MANUFACTURER_ID));
+				this.setUpdateTime( (Date)map.get(GoodsMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(GoodsMeta.VERSION));
+				this.setUnit( (String)map.get(GoodsMeta.UNIT));
+				this.setReferencePrice( (BigDecimal)map.get(GoodsMeta.REFERENCE_PRICE));
+				this.setCreateBy( (String)map.get(GoodsMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(GoodsMeta.DELETED));
+				this.setPictureId( (String)map.get(GoodsMeta.PICTURE_ID));
+				this.setCreateTime( (Date)map.get(GoodsMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(GoodsMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(GoodsMeta.DELETE_TIME));
+				this.setName( (String)map.get(GoodsMeta.NAME));
+				this.setTenantId( (String)map.get(GoodsMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(GoodsMeta.DELETE_BY));
+				this.setModel( (String)map.get(GoodsMeta.MODEL));
+				this.setId( (String)map.get(GoodsMeta.ID));
+				this.setCategoryId( (String)map.get(GoodsMeta.CATEGORY_ID));
+				this.setStatus( (String)map.get(GoodsMeta.STATUS));
+				// others
+				this.setCategory( (Category)map.get(GoodsMeta.CATEGORY));
+				this.setManufacturer( (Manufacturer)map.get(GoodsMeta.MANUFACTURER));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(GoodsMeta.NOTES)));
+			this.setManufacturerId(DataParser.parse(String.class, r.getValue(GoodsMeta.MANUFACTURER_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(GoodsMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(GoodsMeta.VERSION)));
+			this.setUnit(DataParser.parse(String.class, r.getValue(GoodsMeta.UNIT)));
+			this.setReferencePrice(DataParser.parse(BigDecimal.class, r.getValue(GoodsMeta.REFERENCE_PRICE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(GoodsMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(GoodsMeta.DELETED)));
+			this.setPictureId(DataParser.parse(String.class, r.getValue(GoodsMeta.PICTURE_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(GoodsMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(GoodsMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(GoodsMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(GoodsMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(GoodsMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(GoodsMeta.DELETE_BY)));
+			this.setModel(DataParser.parse(String.class, r.getValue(GoodsMeta.MODEL)));
+			this.setId(DataParser.parse(String.class, r.getValue(GoodsMeta.ID)));
+			this.setCategoryId(DataParser.parse(String.class, r.getValue(GoodsMeta.CATEGORY_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(GoodsMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(GoodsMeta.NOTES));
+				this.setManufacturerId( (String)r.getValue(GoodsMeta.MANUFACTURER_ID));
+				this.setUpdateTime( (Date)r.getValue(GoodsMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(GoodsMeta.VERSION));
+				this.setUnit( (String)r.getValue(GoodsMeta.UNIT));
+				this.setReferencePrice( (BigDecimal)r.getValue(GoodsMeta.REFERENCE_PRICE));
+				this.setCreateBy( (String)r.getValue(GoodsMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(GoodsMeta.DELETED));
+				this.setPictureId( (String)r.getValue(GoodsMeta.PICTURE_ID));
+				this.setCreateTime( (Date)r.getValue(GoodsMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(GoodsMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(GoodsMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(GoodsMeta.NAME));
+				this.setTenantId( (String)r.getValue(GoodsMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(GoodsMeta.DELETE_BY));
+				this.setModel( (String)r.getValue(GoodsMeta.MODEL));
+				this.setId( (String)r.getValue(GoodsMeta.ID));
+				this.setCategoryId( (String)r.getValue(GoodsMeta.CATEGORY_ID));
+				this.setStatus( (String)r.getValue(GoodsMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

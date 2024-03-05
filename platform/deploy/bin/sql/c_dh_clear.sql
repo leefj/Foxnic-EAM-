@@ -76,5 +76,42 @@ delete from sys_menu where hierarchy like '%592109055049211904%';
 delete from sys_menu where hierarchy like '%768485399684186114%';
 delete from sys_menu where hierarchy like '%768485298425298944%';
 delete from sys_menu where hierarchy like '%768002841599016960%';
+-- 系统
+delete from sys_menu where hierarchy like '%723993418992189440%';
+delete from sys_menu where hierarchy like '%684480859725627392%';
+delete from sys_menu where hierarchy like '%686529995333435392%';
+delete from sys_menu where hierarchy like '%616256406374318080%';
+delete from sys_menu where hierarchy like '%616256291005792256%';
+delete from sys_menu where hierarchy like '%577783476611198976%';
+-- 图表中心
+delete from sys_menu where hierarchy like '%803970853485150208%';
+delete from sys_menu where hierarchy like '%807234885918916609%';
+delete from sys_menu where hierarchy like '%812066338984951809%';
+delete from sys_menu where hierarchy like '%741946151036518401%';
+delete from sys_menu where hierarchy like '%812066149570183169%';
+delete from sys_menu where hierarchy like '%812066338984951809%';
+delete from sys_menu where hierarchy like '%812066338984951809%';
+delete from sys_menu where hierarchy like '%812066338984951809%';
+delete from sys_menu where hierarchy like '%812066338984951809%';
+-- 人事
+delete from sys_menu where hierarchy like '%811292398666645504%';
+delete from sys_menu where hierarchy like '%803949358914469888%';
+delete from sys_menu where hierarchy like '%803970322595315713%';
+delete from sys_menu where hierarchy like '%807235387075330049%';
+delete from sys_menu where hierarchy like '%806953516751912960%';
+delete from sys_menu where hierarchy like '%811268060357853184%';
+-- 工作台
+delete from sys_menu where hierarchy like '%812060024565137409%';
+delete from sys_menu where hierarchy like '%812055899739783168%';
+delete from sys_menu where hierarchy like '%812059257083002880%';
+delete from sys_menu where hierarchy like '%809752346140606464%';
+-- 运维
+delete from sys_menu where hierarchy like '%613652361268690944%';
+delete from sys_menu where hierarchy like '%613652361268690944%';
+delete from sys_menu where hierarchy like '%613652361268690944%';
+-- 隐藏
+update sys_menu set hidden=1 where hierarchy like '%577783476611198976%';
+update sys_menu set hidden=1 where hierarchy like '%617101382733791232%';
+update sys_menu set hidden=1 where hierarchy like '%734474163506380800%';
 commit;
 

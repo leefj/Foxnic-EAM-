@@ -64,7 +64,7 @@ public class AttendanceDateController extends SuperController {
 		@ApiImplicitParam(name = AttendanceDateVOMeta.HOLIDAY, value = "节日", required = false, dataTypeClass = String.class, example = "春节"),
 		@ApiImplicitParam(name = AttendanceDateVOMeta.ATTENDANC_SIGN, value = "考勤签到", required = false, dataTypeClass = String.class, example = "yes"),
 		@ApiImplicitParam(name = AttendanceDateVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AttendanceDateVOMeta.STATUTORY_HOLIDAY, value = "法定假日", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AttendanceDateVOMeta.STATUTORY_HOLIDAY, value = "法定假日", required = false, dataTypeClass = String.class),
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -165,7 +165,8 @@ public class AttendanceDateController extends SuperController {
 		@ApiImplicitParam(name = AttendanceDateVOMeta.HOLIDAY, value = "节日", required = false, dataTypeClass = String.class, example = "春节"),
 		@ApiImplicitParam(name = AttendanceDateVOMeta.ATTENDANC_SIGN, value = "考勤签到", required = false, dataTypeClass = String.class, example = "yes"),
 		@ApiImplicitParam(name = AttendanceDateVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AttendanceDateVOMeta.STATUTORY_HOLIDAY, value = "法定假日", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AttendanceDateVOMeta.STATUTORY_HOLIDAY, value = "法定假日", required = false, dataTypeClass = String.class),
+
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { AttendanceDateVOMeta.PAGE_INDEX, AttendanceDateVOMeta.PAGE_SIZE, AttendanceDateVOMeta.SEARCH_FIELD, AttendanceDateVOMeta.FUZZY_FIELD, AttendanceDateVOMeta.SEARCH_VALUE, AttendanceDateVOMeta.DIRTY_FIELDS, AttendanceDateVOMeta.SORT_FIELD, AttendanceDateVOMeta.SORT_TYPE, AttendanceDateVOMeta.DATA_ORIGIN, AttendanceDateVOMeta.QUERY_LOGIC, AttendanceDateVOMeta.REQUEST_ACTION, AttendanceDateVOMeta.IDS })
@@ -188,7 +189,7 @@ public class AttendanceDateController extends SuperController {
 		@ApiImplicitParam(name = AttendanceDateVOMeta.HOLIDAY, value = "节日", required = false, dataTypeClass = String.class, example = "春节"),
 		@ApiImplicitParam(name = AttendanceDateVOMeta.ATTENDANC_SIGN, value = "考勤签到", required = false, dataTypeClass = String.class, example = "yes"),
 		@ApiImplicitParam(name = AttendanceDateVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AttendanceDateVOMeta.STATUTORY_HOLIDAY, value = "法定假日", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AttendanceDateVOMeta.STATUTORY_HOLIDAY, value = "法定假日", required = false, dataTypeClass = String.class),
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { AttendanceDateVOMeta.PAGE_INDEX, AttendanceDateVOMeta.PAGE_SIZE, AttendanceDateVOMeta.SEARCH_FIELD, AttendanceDateVOMeta.FUZZY_FIELD, AttendanceDateVOMeta.SEARCH_VALUE, AttendanceDateVOMeta.DIRTY_FIELDS, AttendanceDateVOMeta.SORT_FIELD, AttendanceDateVOMeta.SORT_TYPE, AttendanceDateVOMeta.DATA_ORIGIN, AttendanceDateVOMeta.QUERY_LOGIC, AttendanceDateVOMeta.REQUEST_ACTION, AttendanceDateVOMeta.IDS })
@@ -212,6 +213,7 @@ public class AttendanceDateController extends SuperController {
     public Result<AttendanceDate> getById(String id) {
         Result<AttendanceDate> result = new Result<>();
         AttendanceDate attendanceDate = attendanceDateService.getById(id);
+        attendanceDateService.dao().fill(attendanceDate).with(AttendanceDateMeta.ATTENDANCE_TPL_LIST).with(AttendanceDateMeta.ATTENDANCE_TPL_LIST2).with(AttendanceDateMeta.ATTENDANCE_TPL_LIST3).execute();
         result.success(true).data(attendanceDate);
         return result;
     }
@@ -246,7 +248,8 @@ public class AttendanceDateController extends SuperController {
 		@ApiImplicitParam(name = AttendanceDateVOMeta.HOLIDAY, value = "节日", required = false, dataTypeClass = String.class, example = "春节"),
 		@ApiImplicitParam(name = AttendanceDateVOMeta.ATTENDANC_SIGN, value = "考勤签到", required = false, dataTypeClass = String.class, example = "yes"),
 		@ApiImplicitParam(name = AttendanceDateVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AttendanceDateVOMeta.STATUTORY_HOLIDAY, value = "法定假日", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AttendanceDateVOMeta.STATUTORY_HOLIDAY, value = "法定假日", required = false, dataTypeClass = String.class),
+
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { AttendanceDateVOMeta.PAGE_INDEX, AttendanceDateVOMeta.PAGE_SIZE })
     @SentinelResource(value = AttendanceDateServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -270,7 +273,8 @@ public class AttendanceDateController extends SuperController {
 		@ApiImplicitParam(name = AttendanceDateVOMeta.HOLIDAY, value = "节日", required = false, dataTypeClass = String.class, example = "春节"),
 		@ApiImplicitParam(name = AttendanceDateVOMeta.ATTENDANC_SIGN, value = "考勤签到", required = false, dataTypeClass = String.class, example = "yes"),
 		@ApiImplicitParam(name = AttendanceDateVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AttendanceDateVOMeta.STATUTORY_HOLIDAY, value = "法定假日", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AttendanceDateVOMeta.STATUTORY_HOLIDAY, value = "法定假日", required = false, dataTypeClass = String.class),
+
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = AttendanceDateServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -278,6 +282,9 @@ public class AttendanceDateController extends SuperController {
     public Result<PagedList<AttendanceDate>> queryPagedList(AttendanceDateVO sample) {
         Result<PagedList<AttendanceDate>> result = new Result<>();
         PagedList<AttendanceDate> list = attendanceDateService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+
+        attendanceDateService.dao().fill(list).with(AttendanceDateMeta.ATTENDANCE_TPL_LIST).with(AttendanceDateMeta.ATTENDANCE_TPL_LIST2).with(AttendanceDateMeta.ATTENDANCE_TPL_LIST3).execute();
+
         result.success(true).data(list);
         return result;
     }

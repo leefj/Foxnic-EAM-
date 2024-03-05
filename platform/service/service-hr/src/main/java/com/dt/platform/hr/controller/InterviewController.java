@@ -1,6 +1,9 @@
 package com.dt.platform.hr.controller;
 
 import java.util.*;
+
+import com.dt.platform.domain.hr.PersonConfirmApply;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -232,6 +235,11 @@ public class InterviewController extends SuperController {
 		
 		Result<Interview> result=new Result<>();
 		Interview interview=interviewService.getById(id);
+
+		interviewService.dao().fill(interview).with(InterviewMeta.EMPLOYEE).execute();
+
+		interviewService.dao().join(interview.getEmployee(), Person.class);
+
 		result.success(true).data(interview);
 		return result;
 	}
@@ -306,6 +314,13 @@ public class InterviewController extends SuperController {
 		
 		Result<PagedList<Interview>> result=new Result<>();
 		PagedList<Interview> list=interviewService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
+
+		interviewService.dao().fill(list).with(InterviewMeta.EMPLOYEE).execute();
+
+		List<Employee> employees = CollectorUtil.collectList(list, Interview::getEmployee);
+		interviewService.dao().join(employees, Person.class);
+
+
 		result.success(true).data(list);
 		return result;
 	}

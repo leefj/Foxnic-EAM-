@@ -1,7 +1,7 @@
 /**
  * 招聘面试 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-19 13:27:05
+ * @since 2024-02-20 15:04:45
  */
 
 function FormPage() {
@@ -349,6 +349,23 @@ function FormPage() {
 
 	    form.on('submit(submit-button)', verifyAndSaveForm);
 
+		// 请选择人员对话框
+		$("#userId-button").click(function(){
+				var userIdDialogOptions={
+				field:"userId",
+				formData:getFormData(),
+				inputEl:$("#userId"),
+				buttonEl:$(this),
+				single:true,
+				autoWidth:false,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"emp",
+				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
+			};
+			fox.chooseEmployee(userIdDialogOptions);
+		});
 
 	    //关闭窗口
 	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('hr-interview-form-data-win',this); });

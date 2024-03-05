@@ -8,13 +8,14 @@ import java.util.Date;
 import java.math.BigDecimal;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.hr.Person;
+import com.dt.platform.domain.hr.AttendanceTpl;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-16 20:49:25
+ * @since 2024-02-25 14:09:10
  * @sign 52C985EC46D0D3FAD0C5631A9F745445
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -372,9 +373,29 @@ public class AttendanceHolidayVOMeta extends AttendanceHolidayMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceHolidayVO,java.lang.String> S_ORG_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceHolidayVO.class ,S_ORG_ID, java.lang.String.class, "sOrgId", "sOrgId", java.lang.String.class, null);
 	
 	/**
+	 * attendanceTplList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AttendanceTpl
+	*/
+	public static final String ATTENDANCE_TPL_LIST="attendanceTplList";
+	
+	/**
+	 * attendanceTplList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AttendanceTpl
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceHolidayVO,com.dt.platform.domain.hr.AttendanceTpl> ATTENDANCE_TPL_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceHolidayVO.class ,ATTENDANCE_TPL_LIST, java.util.List.class, "attendanceTplList", "attendanceTplList", com.dt.platform.domain.hr.AttendanceTpl.class, null);
+	
+	/**
+	 * attendanceTplIdsList , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String ATTENDANCE_TPL_IDS_LIST="attendanceTplIdsList";
+	
+	/**
+	 * attendanceTplIdsList , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AttendanceHolidayVO,java.lang.String> ATTENDANCE_TPL_IDS_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AttendanceHolidayVO.class ,ATTENDANCE_TPL_IDS_LIST, java.util.List.class, "attendanceTplIdsList", "attendanceTplIdsList", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PERSON_ID , ACTION_TYPE , ACTION_DATE , ACTION_S_TIME , ACTION_E_TIME , ACTION_DAYS , NOTES , FILE_ID , BATCH_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TYPE_DICT , PERSON , PERSON_JOB_NUMBER , S_ORG_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PERSON_ID , ACTION_TYPE , ACTION_DATE , ACTION_S_TIME , ACTION_E_TIME , ACTION_DAYS , NOTES , FILE_ID , BATCH_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TYPE_DICT , PERSON , PERSON_JOB_NUMBER , S_ORG_ID , ATTENDANCE_TPL_LIST , ATTENDANCE_TPL_IDS_LIST };
 	
 	/**
 	 * 代理类
@@ -768,6 +789,28 @@ public class AttendanceHolidayVOMeta extends AttendanceHolidayMeta {
 			super.setSOrgId(sOrgId);
 			return this;
 		}
+		
+		/**
+		 * 设置 attendanceTplList
+		 * @param attendanceTplList attendanceTplList
+		 * @return 当前对象
+		*/
+		public AttendanceHoliday setAttendanceTplList(List<AttendanceTpl> attendanceTplList) {
+			super.change(ATTENDANCE_TPL_LIST,super.getAttendanceTplList(),attendanceTplList);
+			super.setAttendanceTplList(attendanceTplList);
+			return this;
+		}
+		
+		/**
+		 * 设置 attendanceTplIdsList
+		 * @param attendanceTplIdsList attendanceTplIdsList
+		 * @return 当前对象
+		*/
+		public AttendanceHoliday setAttendanceTplIdsList(List<String> attendanceTplIdsList) {
+			super.change(ATTENDANCE_TPL_IDS_LIST,super.getAttendanceTplIdsList(),attendanceTplIdsList);
+			super.setAttendanceTplIdsList(attendanceTplIdsList);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -809,9 +852,11 @@ public class AttendanceHolidayVOMeta extends AttendanceHolidayMeta {
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setSOrgId(this.getSOrgId());
 				inst.setPageSize(this.getPageSize());
+				inst.setAttendanceTplList(this.getAttendanceTplList());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
 				inst.setPerson(this.getPerson());
+				inst.setAttendanceTplIdsList(this.getAttendanceTplIdsList());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setTypeDict(this.getTypeDict());

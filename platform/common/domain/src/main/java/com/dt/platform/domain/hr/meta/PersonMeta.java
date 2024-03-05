@@ -21,8 +21,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:56:14
- * @sign E336F49366A513EDEC1C549E34EC5A61
+ * @since 2024-02-26 15:17:32
+ * @sign 9D327519FDC9838D3C1A7A327AEC095A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -579,14 +579,14 @@ public class PersonMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.math.BigDecimal> YEAR_DAYS_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,YEAR_DAYS, java.math.BigDecimal.class, "年假天数", "年假天数", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 考勤模版 , 类型: java.lang.String
+	 * 考勤组 , 类型: java.lang.String
 	*/
 	public static final String ATTENDANCE_TPL_CODE="attendanceTplCode";
 	
 	/**
-	 * 考勤模版 , 类型: java.lang.String
+	 * 考勤组 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> ATTENDANCE_TPL_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,ATTENDANCE_TPL_CODE, java.lang.String.class, "考勤模版", "考勤模版", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> ATTENDANCE_TPL_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,ATTENDANCE_TPL_CODE, java.lang.String.class, "考勤组", "考勤组", java.lang.String.class, null);
 	
 	/**
 	 * 批次号 , 类型: java.lang.String
@@ -1487,8 +1487,8 @@ public class PersonMeta {
 		}
 		
 		/**
-		 * 设置 考勤模版
-		 * @param attendanceTplCode 考勤模版
+		 * 设置 考勤组
+		 * @param attendanceTplCode 考勤组
 		 * @return 当前对象
 		*/
 		public Person setAttendanceTplCode(String attendanceTplCode) {

@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 采购清单
  * <p>采购清单 , 数据表 eam_purchase_order 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-07 23:12:23
+ * @since 2024-02-21 09:55:18
  * @sign 5FFB889BAB1497C1CF36C72B3B76E1D2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -45,13 +45,13 @@ public class PurchaseOrder extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "740992291878993920")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "788825051578236928")
 	private String id;
 	
 	/**
 	 * 业务编码：业务编码
 	*/
-	@ApiModelProperty(required = false,value="业务编码" , notes = "业务编码" , example = "POD202358071758425")
+	@ApiModelProperty(required = false,value="业务编码" , notes = "业务编码" , example = "POD202349171749518")
 	private String businessCode;
 	
 	/**
@@ -63,13 +63,13 @@ public class PurchaseOrder extends Entity {
 	/**
 	 * 物品名称：物品名称
 	*/
-	@ApiModelProperty(required = false,value="物品名称" , notes = "物品名称" , example = "1")
+	@ApiModelProperty(required = false,value="物品名称" , notes = "物品名称" , example = "1212")
 	private String name;
 	
 	/**
 	 * 物品档案：物品档案
 	*/
-	@ApiModelProperty(required = false,value="物品档案" , notes = "物品档案")
+	@ApiModelProperty(required = false,value="物品档案" , notes = "物品档案" , example = "788802646768091137")
 	private String goodsId;
 	
 	/**
@@ -93,7 +93,7 @@ public class PurchaseOrder extends Entity {
 	/**
 	 * 采购单价：采购单价
 	*/
-	@ApiModelProperty(required = false,value="采购单价" , notes = "采购单价" , example = "111.00")
+	@ApiModelProperty(required = false,value="采购单价" , notes = "采购单价")
 	private BigDecimal unitPrice;
 	
 	/**
@@ -105,7 +105,7 @@ public class PurchaseOrder extends Entity {
 	/**
 	 * 采购单：采购单
 	*/
-	@ApiModelProperty(required = false,value="采购单" , notes = "采购单" , example = "740992252024717312")
+	@ApiModelProperty(required = false,value="采购单" , notes = "采购单" , example = "1702806535000")
 	private String applyId;
 	
 	/**
@@ -129,7 +129,7 @@ public class PurchaseOrder extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-07 05:58:38")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-12-17 05:49:08")
 	private Date createTime;
 	
 	/**
@@ -180,7 +180,7 @@ public class PurchaseOrder extends Entity {
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1691402328000")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1702806535000")
 	private String selectedCode;
 	
 	/**

@@ -1,7 +1,7 @@
 /**
  * 考勤模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:47:27
+ * @since 2024-02-25 19:16:26
  */
 
 layui.config({
@@ -19,8 +19,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //模块基础路径
     const moduleURL="/service-hr/hr-attendance-tpl";
+    var formAction=admin.getTempData('hr-attendance-tpl-form-data-form-action');
 
-
+    var timestamp = Date.parse(new Date());
     //列表页的扩展
     var list={
         /**
@@ -49,7 +50,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            cfg.cellMinWidth=160;;
+            console.log("list:beforeTableRender",cfg);
         },
         /**
          * 表格渲染后调用
@@ -261,6 +262,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
+            data.selectedCode=timestamp;
             return true;
         },
         /**
@@ -277,6 +279,23 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("afterSubmitt",param,result);
         },
 
+        /**
+         *  加载 工作日
+         */
+        weekSelectList:function (ifr,win,data) {
+            // debugger
+            console.log("weekSelectList",ifr,data);
+            //设置 iframe 高度
+            ifr.height("400px");
+            //设置地址
+            var ownerId="";
+            if(formAction=="create"){
+                ownerId=timestamp;
+            }else{
+                ownerId=data.code;
+            }
+            win.location="/business/hr/attendance_tpl_dtl/attendance_tpl_dtl_list.html?action="+formAction+"&ownerId="+ownerId;
+        },
         /**
          * 文件上传组件回调
          *  event 类型包括：

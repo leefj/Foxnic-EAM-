@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:56:17
+ * @since 2024-02-26 15:17:34
  */
 
 
@@ -91,9 +91,12 @@ function ListPage() {
 					,{ field: 'employeeStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工状态'), templet:function (d){ return templet('employeeStatus',fox.getEnumText(RADIO_EMPLOYEESTATUS_DATA,d.employeeStatus,'','employeeStatus'),d);}}
 					,{ field: 'employeeIdentityStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工标记'), templet: function (d) { return templet('employeeIdentityStatus' ,fox.joinLabel(d.employeeIdentity,"label",',','','employeeIdentityStatus'),d);}}
 					,{ field: 'employeeTypeCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员类型'), templet: function (d) { return templet('employeeTypeCode' ,fox.joinLabel(d.employeeOwnerTypeDict,"label",',','','employeeTypeCode'),d);}}
+					,{ field: 'identityCard', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('身份证') , templet: function (d) { return templet('identityCard',d.identityCard,d);}  }
 					,{ field: 'contactInformation', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('联系方式') , templet: function (d) { return templet('contactInformation',d.contactInformation,d);}  }
 					,{ field: 'email', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('电子邮件') , templet: function (d) { return templet('email',d.email,d);}  }
 					,{ field: 'educationCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('学历'), templet: function (d) { return templet('educationCode' ,fox.joinLabel(d.educationData,"label",',','','educationCode'),d);}}
+					,{ field: 'graduationSchool', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('毕业院校') , templet: function (d) { return templet('graduationSchool',d.graduationSchool,d);}  }
+					,{ field: 'major', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所学专业') , templet: function (d) { return templet('major',d.major,d);}  }
 					,{ field: 'politicCountenanceCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('政治面貌'), templet: function (d) { return templet('politicCountenanceCode' ,fox.joinLabel(d.politicCountenanceData,"label",',','','politicCountenanceCode'),d);}}
 					,{ field: 'employmentDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('入职日期') ,templet: function (d) { return templet('employmentDate',fox.dateFormat(d.employmentDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'employmentConfirmDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('转正日期') ,templet: function (d) { return templet('employmentConfirmDate',fox.dateFormat(d.employmentConfirmDate,"yyyy-MM-dd"),d); }  }
@@ -113,7 +116,7 @@ function ListPage() {
 					,{ field: 'contractFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('合同结束时间') ,templet: function (d) { return templet('contractFinishDate',fox.dateFormat(d.contractFinishDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'score', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('积分') , templet: function (d) { return templet('score',d.score,d);}  }
 					,{ field: 'yearDays', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('年假天数') , templet: function (d) { return templet('yearDays',d.yearDays,d);}  }
-					,{ field: 'attendanceTplCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考勤模版'), templet: function (d) { return templet('attendanceTplCode' ,fox.joinLabel(d.attendanceTpl,"name",',','','attendanceTplCode'),d);}}
+					,{ field: 'attendanceTplCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考勤组'), templet: function (d) { return templet('attendanceTplCode' ,fox.joinLabel(d.attendanceTpl,"name",',','','attendanceTplCode'),d);}}
 					,{ field: 'batchCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('批次号') , templet: function (d) { return templet('batchCode',d.batchCode,d);}  }
 					,{ field: 'note', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('note',d.note,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }

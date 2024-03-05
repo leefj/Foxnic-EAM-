@@ -160,7 +160,7 @@ foxnic:
       #hrm
       ########################  oa key list  #######################
       #oa
-      auth-keys: auto_perm,system:mngr,changes,hr,basic_permissions,eam,system_monitor,common_system,oa,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,hrm,dp_rule:mngr,pay,system_monitor_list,system_config,system_ops,sys_tpl_file:mngr,bigscreen,job,bpm-mgr
+      auth-keys: system:report,system:employee,auto_perm,system:mngr,changes,hr,basic_permissions,eam,system_monitor,common_system,oa,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,hrm,dp_rule:mngr,pay,system_monitor_list,system_config,system_ops,sys_tpl_file:mngr,bigscreen,job,bpm-mgr
       # 是否在首页体现 module-authorities 控制
       apply-index-page: true
       # 是否在菜单树体现 module-authorities 控制，主要包括菜单管理、角色选择等。注意，此项若开启可能导致菜单权限勾选不全，建议仅在生产环境开启。

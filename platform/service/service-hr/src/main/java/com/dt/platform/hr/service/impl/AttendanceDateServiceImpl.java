@@ -137,10 +137,41 @@ public class AttendanceDateServiceImpl extends SuperService<AttendanceDate> impl
 			return ErrorDesc.success();
 		}else{
 			Result r=super.insert(attendanceDate,throwsException);
+			if(r.isSuccess()){
+				List<String> idsList=attendanceDate.getAttendanceTplIdsList();
+				for(String itemId:idsList){
+					Insert ins= new Insert("sys_mapping_owner");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("owner_id",attendanceDate.getId());
+					ins.set("selected_code",itemId);
+					dao.execute(ins);
+				}
+
+				List<String> idsList2=attendanceDate.getAttendanceTplIdsList2();
+				for(String itemId:idsList2){
+					Insert ins= new Insert("sys_mapping_owner");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("owner_id",attendanceDate.getId());
+					ins.set("owner","need");
+					ins.set("selected_code",itemId);
+					dao.execute(ins);
+				}
+
+				List<String> idsList3=attendanceDate.getAttendanceTplIdsList3();
+				if(idsList3!=null){
+					for(String itemId:idsList3){
+						Insert ins= new Insert("sys_mapping_owner");
+						ins.set("id",IDGenerator.getSnowflakeIdString());
+						ins.set("owner_id",attendanceDate.getId());
+						ins.set("owner","half");
+						ins.set("selected_code",itemId);
+						dao.execute(ins);
+					}
+				}
+
+			}
 			return r;
 		}
-
-
 	}
 
 	/**
@@ -230,6 +261,42 @@ public class AttendanceDateServiceImpl extends SuperService<AttendanceDate> impl
 	@Override
 	public Result update(AttendanceDate attendanceDate , SaveMode mode,boolean throwsException) {
 		Result r=super.update(attendanceDate , mode , throwsException);
+		if(r.isSuccess()){
+			dao.execute("delete from sys_mapping_owner where owner_id=?",attendanceDate.getId());
+			List<String> idsList=attendanceDate.getAttendanceTplIdsList();
+			for(String itemId:idsList){
+				Insert ins= new Insert("sys_mapping_owner");
+				ins.set("id",IDGenerator.getSnowflakeIdString());
+				ins.set("owner_id",attendanceDate.getId());
+				ins.set("selected_code",itemId);
+				dao.execute(ins);
+			}
+
+			List<String> idsList2=attendanceDate.getAttendanceTplIdsList2();
+
+			for(String itemId:idsList2){
+				Insert ins= new Insert("sys_mapping_owner");
+				ins.set("id",IDGenerator.getSnowflakeIdString());
+				ins.set("owner_id",attendanceDate.getId());
+				ins.set("owner","need");
+				ins.set("selected_code",itemId);
+				dao.execute(ins);
+			}
+
+			List<String> idsList3=attendanceDate.getAttendanceTplIdsList3();
+			if(idsList3!=null){
+				for(String itemId:idsList3){
+					Insert ins= new Insert("sys_mapping_owner");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("owner_id",attendanceDate.getId());
+					ins.set("owner","half");
+					ins.set("selected_code",itemId);
+					dao.execute(ins);
+				}
+			}
+
+
+		}
 		return r;
 	}
 

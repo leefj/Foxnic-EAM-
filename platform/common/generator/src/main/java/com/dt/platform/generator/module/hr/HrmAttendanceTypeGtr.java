@@ -40,6 +40,7 @@ public class HrmAttendanceTypeGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_ATTENDANCE_TYPE.NAME).form().validate().required();
         cfg.view().field(HrTables.HR_ATTENDANCE_TYPE.STATUS).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
 
+
         cfg.view().formWindow().width("65%");;
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,

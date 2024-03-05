@@ -1,7 +1,7 @@
 /**
  * 考勤日期 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 13:46:08
+ * @since 2024-02-27 16:27:29
  */
 
 function FormPage() {
@@ -166,6 +166,102 @@ function FormPage() {
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("confCreateDate",data,checked);
 		});
+		//渲染 attendanceTplIdsList 下拉字段
+		fox.renderSelectBox({
+			el: "attendanceTplIdsList",
+			radio: false,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("不用上班(优先)",'','cmp:form'),
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("attendanceTplIdsList",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("attendanceTplIdsList",{data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 attendanceTplIdsList2 下拉字段
+		fox.renderSelectBox({
+			el: "attendanceTplIdsList2",
+			radio: false,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("需要上班",'','cmp:form'),
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("attendanceTplIdsList2",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("attendanceTplIdsList2",{data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 attendanceTplIdsList3 下拉字段
+		fox.renderSelectBox({
+			el: "attendanceTplIdsList3",
+			radio: false,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("上午上班",'','cmp:form'),
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("attendanceTplIdsList3",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("attendanceTplIdsList3",{data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 	}
 
 	/**
@@ -227,6 +323,10 @@ function FormPage() {
 			}
 
 
+			//设置  不用上班(优先) 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#attendanceTplIdsList",formData.attendanceTplList);
+			//设置  需要上班 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#attendanceTplIdsList2",formData.attendanceTplList2);
 
 			//处理fillBy
 
@@ -289,6 +389,10 @@ function FormPage() {
 
 
 
+		//获取 不用上班(优先) 下拉框的值
+		data["attendanceTplIdsList"]=fox.getSelectedValue("attendanceTplIdsList",true);
+		//获取 需要上班 下拉框的值
+		data["attendanceTplIdsList2"]=fox.getSelectedValue("attendanceTplIdsList2",true);
 
 		return data;
 	}

@@ -12,13 +12,14 @@ import com.dt.platform.domain.eam.Supplier;
 import org.github.foxnic.web.domain.hrm.Organization;
 import com.dt.platform.domain.eam.Warehouse;
 import org.github.foxnic.web.domain.system.DictItem;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-20 17:52:46
- * @sign 7D4339BF417666EEADF8D5E7912310EF
+ * @since 2024-02-21 09:53:04
+ * @sign 1B4640E34E7518F60C6081FC6D88A13C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -103,6 +104,36 @@ public class AssetStockGoodsVOMeta extends AssetStockGoodsMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -527,7 +558,7 @@ public class AssetStockGoodsVOMeta extends AssetStockGoodsMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , OWNER_CODE , OWNER_TYPE , STOCK_TYPE , BUSINESS_CODE , STOCK_BATCH_CODE , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , UNIT_PRICE , AMOUNT , SUPPLIER_ID , WAREHOUSE_ID , OWN_COMPANY_ID , NOTES , USE_ORG_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , GOODS , ORIGINATOR , SUPPLIER , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , OWNER_CODE , OWNER_TYPE , STOCK_TYPE , BUSINESS_CODE , STOCK_BATCH_CODE , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , UNIT_PRICE , AMOUNT , SUPPLIER_ID , WAREHOUSE_ID , OWN_COMPANY_ID , NOTES , USE_ORG_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , GOODS , ORIGINATOR , SUPPLIER , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE };
 	
 	/**
 	 * 代理类
@@ -622,6 +653,39 @@ public class AssetStockGoodsVOMeta extends AssetStockGoodsMeta {
 		public AssetStockGoodsVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public AssetStockGoodsVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public AssetStockGoodsVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public AssetStockGoodsVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
 			return this;
 		}
 		
@@ -1086,5 +1150,80 @@ public class AssetStockGoodsVOMeta extends AssetStockGoodsMeta {
 			super.setGoodsBarCode(goodsBarCode);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetStockGoodsVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetStockGoodsVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setOwnerType(this.getOwnerType());
+			inst.setSourceId(this.getSourceId());
+			inst.setSupplierId(this.getSupplierId());
+			inst.setNotes(this.getNotes());
+			inst.setOwnerCode(this.getOwnerCode());
+			inst.setGoodsId(this.getGoodsId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setUnitPrice(this.getUnitPrice());
+			inst.setStockInNumber(this.getStockInNumber());
+			inst.setAmount(this.getAmount());
+			inst.setStockType(this.getStockType());
+			inst.setUseOrgId(this.getUseOrgId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setStockBatchCode(this.getStockBatchCode());
+			inst.setVersion(this.getVersion());
+			inst.setStockCurNumber(this.getStockCurNumber());
+			inst.setOwnCompanyId(this.getOwnCompanyId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setWarehouseId(this.getWarehouseId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			if(all) {
+				inst.setOwnerCompany(this.getOwnerCompany());
+				inst.setSearchField(this.getSearchField());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setGoods(this.getGoods());
+				inst.setOriginator(this.getOriginator());
+				inst.setSource(this.getSource());
+				inst.setGoodsModel(this.getGoodsModel());
+				inst.setGoodsBarCode(this.getGoodsBarCode());
+				inst.setSupplier(this.getSupplier());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setGoodsUnit(this.getGoodsUnit());
+				inst.setGoodsName(this.getGoodsName());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setWarehouse(this.getWarehouse());
+				inst.setUseOrganization(this.getUseOrganization());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setGoodsCategoryName(this.getGoodsCategoryName());
+				inst.setIds(this.getIds());
+				inst.setGoodsCode(this.getGoodsCode());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

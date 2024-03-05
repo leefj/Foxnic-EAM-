@@ -12,8 +12,11 @@ import java.math.BigDecimal;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
 import org.github.foxnic.web.domain.system.DictItem;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.hr.meta.AttendanceHolidayMeta;
@@ -25,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 休假管理
  * <p>休假管理 , 数据表 hr_attendance_holiday 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-16 20:49:25
- * @sign ED71951970D49EF98D075DD4FF40C6EA
+ * @since 2024-02-25 14:09:10
+ * @sign 7E4F9F49B2E08A0011656600CA3A341A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -179,6 +182,18 @@ public class AttendanceHoliday extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="sOrgId" , notes = "sOrgId")
 	private String sOrgId;
+	
+	/**
+	 * attendanceTplList：attendanceTplList
+	*/
+	@ApiModelProperty(required = false,value="attendanceTplList" , notes = "attendanceTplList")
+	private List<AttendanceTpl> attendanceTplList;
+	
+	/**
+	 * attendanceTplIdsList：attendanceTplIdsList
+	*/
+	@ApiModelProperty(required = false,value="attendanceTplIdsList" , notes = "attendanceTplIdsList")
+	private List<String> attendanceTplIdsList;
 	
 	/**
 	 * 获得 主键<br>
@@ -647,6 +662,66 @@ public class AttendanceHoliday extends Entity {
 		this.sOrgId=sOrgId;
 		return this;
 	}
+	
+	/**
+	 * 获得 attendanceTplList<br>
+	 * attendanceTplList
+	 * @return attendanceTplList
+	*/
+	public List<AttendanceTpl> getAttendanceTplList() {
+		return attendanceTplList;
+	}
+	
+	/**
+	 * 设置 attendanceTplList
+	 * @param attendanceTplList attendanceTplList
+	 * @return 当前对象
+	*/
+	public AttendanceHoliday setAttendanceTplList(List<AttendanceTpl> attendanceTplList) {
+		this.attendanceTplList=attendanceTplList;
+		return this;
+	}
+	
+	/**
+	 * 添加 attendanceTplList
+	 * @param attendanceTpl attendanceTplList
+	 * @return 当前对象
+	*/
+	public AttendanceHoliday addAttendanceTpl(AttendanceTpl... attendanceTpl) {
+		if(this.attendanceTplList==null) attendanceTplList=new ArrayList<>();
+		this.attendanceTplList.addAll(Arrays.asList(attendanceTpl));
+		return this;
+	}
+	
+	/**
+	 * 获得 attendanceTplIdsList<br>
+	 * attendanceTplIdsList
+	 * @return attendanceTplIdsList
+	*/
+	public List<String> getAttendanceTplIdsList() {
+		return attendanceTplIdsList;
+	}
+	
+	/**
+	 * 设置 attendanceTplIdsList
+	 * @param attendanceTplIdsList attendanceTplIdsList
+	 * @return 当前对象
+	*/
+	public AttendanceHoliday setAttendanceTplIdsList(List<String> attendanceTplIdsList) {
+		this.attendanceTplIdsList=attendanceTplIdsList;
+		return this;
+	}
+	
+	/**
+	 * 添加 attendanceTplIdsList
+	 * @param attendanceTplIds attendanceTplIdsList
+	 * @return 当前对象
+	*/
+	public AttendanceHoliday addAttendanceTplIds(String... attendanceTplIds) {
+		if(this.attendanceTplIdsList==null) attendanceTplIdsList=new ArrayList<>();
+		this.attendanceTplIdsList.addAll(Arrays.asList(attendanceTplIds));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -712,8 +787,10 @@ public class AttendanceHoliday extends Entity {
 		inst.setActionDate(this.getActionDate());
 		inst.setFileId(this.getFileId());
 		if(all) {
+			inst.setAttendanceTplList(this.getAttendanceTplList());
 			inst.setPerson(this.getPerson());
 			inst.setSOrgId(this.getSOrgId());
+			inst.setAttendanceTplIdsList(this.getAttendanceTplIdsList());
 			inst.setTypeDict(this.getTypeDict());
 			inst.setPersonJobNumber(this.getPersonJobNumber());
 		}

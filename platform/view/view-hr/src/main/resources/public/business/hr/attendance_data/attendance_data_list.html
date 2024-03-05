@@ -2,7 +2,7 @@
 /**
  * 考勤汇总 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 15:15:17
+ * @since 2024-02-25 21:45:46
  */
  -->
  <!DOCTYPE html>
@@ -45,25 +45,70 @@
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('人员')}" class="search-label personId-label">人员</span><span class="search-colon">:</span></div>
                         <div id="personId" th:data="${'/service-hr/hr-person/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
-                    <!-- 考勤模版 , attendanceTplCode ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 工号 , jobNumber ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 考勤日期 , attendanceDateStr ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 结果 , result ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 正常(天) , normalDay ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 应上班天数 , needDay ,typeName=number_input, isHideInSearch=true -->
                     <!-- 上班打卡 , onWorkTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 最早打卡 , onWorkTime2 ,typeName=date_input, isHideInSearch=true -->
                     <!-- 下班打卡 , offWorkTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 最晚打卡 , offWorkTime2 ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 早退 , leaveEarly ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 晚退 , leaveLate ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 矿工 , skipWork ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 补签 , bq ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 请假 , qj ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 出差 , cc ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 迟到(次) , leaveEarly ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 迟到(分) , leaveEarlyTime ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 早退(次) , leaveLate ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 早退(分) , leaveLateTime ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 上班缺卡(次) , lossEarly ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 下班缺卡(次) , lossLate ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 缺卡处理(次) , lossProcess ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 工作日加班(小时) , jbGzr ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 休息日加班(小时) , jbXxr ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 节假日加班(小时) , jbJjr ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 出差(天) , cc ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 年假(天) , qjNj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 工伤假(天) , qjGsj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 产假(天) , qjCj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 婚假(天) , qjHj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 病假(天) , qjBj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 事假(天) , qjSj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 调休假(天) , qjTxj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 哺乳假(天) , qjPlj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 关联 , relId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 说明 , dayInfo ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 记录时间 , rcdTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 工号 , sJobNumber ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('工号')}" class="search-label sJobNumber-label">工号</span><span class="search-colon">:</span></div>
+                        <input id="sJobNumber" class="layui-input search-input" style="width: 180px" type="text" />
+                    </div>
+                    <!-- 考勤组 , attendanceTplCode ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('考勤组')}" class="search-label attendanceTplCode-label">考勤组</span><span class="search-colon">:</span></div>
+                        <div id="attendanceTplCode" th:data="${'/service-hr/hr-attendance-tpl/query-paged-list'}" style="width:180px" extraParam="{}"></div>
+                    </div>
                     <!-- 考勤日期 , attendanceDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('考勤日期')}" class="search-label attendanceDate-label">考勤日期</span><span class="search-colon">:</span></div>
                             <input type="text" id="attendanceDate-begin" style="width: 180px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
                             <input type="text" id="attendanceDate-end"  style="width: 180px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 是否工作日 , isWorkDay ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('是否工作日')}" class="search-label isWorkDay-label">是否工作日</span><span class="search-colon">:</span></div>
+
+
+                        <div id="isWorkDay" th:data="${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}" style="width:180px"></div>
+                    </div>
+                    <!-- 批次号 , batchCode ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('批次号')}" class="search-label batchCode-label">批次号</span><span class="search-colon">:</span></div>
+                        <input id="batchCode" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=false -->
                     <div class="search-unit">
@@ -79,6 +124,7 @@
             <!-- 按钮区域 -->
             <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
                 <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多','','cmp:table.search')}">更多</span></button>
             </div>
         </div>
 
@@ -99,7 +145,6 @@
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('hr_attendance_data:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
         <button th:if="${perm.checkAuth('hr_attendance_data:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除','','cmp:table.button')}">删除</span></button>
-        <button id="source-rcd"  class="layui-btn icon-btn layui-btn-sm  source-rcd " lay-event="tool-source-rcd"><span th:text="${lang.translate('原始记录','','cmp:table.button')}">原始记录</span></button>
     </div>
 </script>
 
@@ -118,14 +163,13 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
-    var RADIO_LEAVEEARLY_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
-    var RADIO_LEAVELATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
-    var RADIO_SKIPWORK_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
-    var RADIO_BQ_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
-    var RADIO_QJ_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
-    var RADIO_CC_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
+    var RADIO_ISWORKDAY_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
     var AUTH_PREFIX="hr_attendance_data";
 
+    // personId
+    var PERSON_ID = [[${personId}]] ;
+    // code
+    var CODE = [[${code}]] ;
 
 </script>
 

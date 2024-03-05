@@ -2,7 +2,7 @@
 /**
  * 考勤模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:48:55
+ * @since 2024-02-27 13:13:45
  */
  -->
  <!DOCTYPE html>
@@ -40,24 +40,24 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 类型 , tplType ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('类型')}" class="search-label tplType-label">类型</span><span class="search-colon">:</span></div>
+
+
+                        <div id="tplType" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.AttendanceTypeEnum')}" style="width:180px"></div>
+                    </div>
+                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 编码 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('编码')}" class="search-label code-label">编码</span><span class="search-colon">:</span></div>
                         <input id="code" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
-                    <!-- 上班时间 , onWorkTime ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 下班时间 , offWorkTime ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 工作日 , weekList ,typeName=select_box, isHideInSearch=true -->
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
                         <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
-                    </div>
-                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
-                        <input id="notes" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -105,6 +105,7 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var RADIO_TPLTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AttendanceTypeEnum')}]];
     var AUTH_PREFIX="hr_attendance_tpl";
 
 

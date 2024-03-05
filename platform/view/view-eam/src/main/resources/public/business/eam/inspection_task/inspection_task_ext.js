@@ -88,7 +88,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 if(TASK_STATUS=="all"){
                     console.log("none")
                 }else{
-                    param.status=TASK_STATUS;
+                    param.taskStatus=TASK_STATUS;
                 }
             }
             return true;

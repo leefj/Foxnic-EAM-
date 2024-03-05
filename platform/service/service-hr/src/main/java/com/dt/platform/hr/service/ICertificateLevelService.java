@@ -24,7 +24,7 @@ import java.util.Map;
  * 证书级别服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 09:31:04
+ * @since 2024-03-03 20:27:24
 */
 
 public interface ICertificateLevelService extends  ISimpleIdService<CertificateLevel,String> {

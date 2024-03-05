@@ -22,8 +22,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 证书管理VO类型
  * <p>证书管理 , 数据表 hr_certificate 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 09:46:20
- * @sign 2B52832D9822D420291FB88E96E0607D
+ * @since 2024-02-28 07:53:34
+ * @sign 597C59CD3DF396D515119D0418EC0ECB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -81,9 +81,9 @@ public class CertificateVO extends Certificate {
 	private String sortType;
 	
 	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
 	private String dataOrigin;
 	
 	/**
@@ -91,6 +91,12 @@ public class CertificateVO extends Certificate {
 	*/
 	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
 	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -255,7 +261,7 @@ public class CertificateVO extends Certificate {
 	
 	/**
 	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
 	 * @return 数据来源
 	*/
 	public String getDataOrigin() {
@@ -288,6 +294,25 @@ public class CertificateVO extends Certificate {
 	*/
 	public CertificateVO setQueryLogic(String queryLogic) {
 		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public CertificateVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
 		return this;
 	}
 	
@@ -393,6 +418,7 @@ public class CertificateVO extends Certificate {
 		inst.setId(this.getId());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setCertificateLevel(this.getCertificateLevel());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
@@ -481,6 +507,7 @@ public class CertificateVO extends Certificate {
 			this.setId(DataParser.parse(String.class, map.get(CertificateVOMeta.ID)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(CertificateVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(CertificateVOMeta.REQUEST_ACTION)));
 			this.setCertificateLevel(DataParser.parse(CertificateLevel.class, map.get(CertificateVOMeta.CERTIFICATE_LEVEL)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(CertificateVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(CertificateVOMeta.PAGE_SIZE)));
@@ -511,6 +538,7 @@ public class CertificateVO extends Certificate {
 				this.setId( (String)map.get(CertificateVOMeta.ID));
 				// others
 				this.setSearchField( (String)map.get(CertificateVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(CertificateVOMeta.REQUEST_ACTION));
 				this.setCertificateLevel( (CertificateLevel)map.get(CertificateVOMeta.CERTIFICATE_LEVEL));
 				this.setFuzzyField( (String)map.get(CertificateVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(CertificateVOMeta.PAGE_SIZE));

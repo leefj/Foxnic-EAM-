@@ -34,8 +34,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 09:37:38
- * @sign F4526C75FDE1B25AF5B7A087710234CF
+ * @since 2024-03-04 21:15:48
+ * @sign 773756949FD1992EA88763EAB924F2E0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -617,6 +617,12 @@ public class Asset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="单据" , notes = "单据")
 	private String billId;
+	
+	/**
+	 * 巡检时间：巡检时间
+	*/
+	@ApiModelProperty(required = false,value="巡检时间" , notes = "巡检时间")
+	private Date lastInspectTime;
 	
 	/**
 	 * 经度数据：经度数据
@@ -2793,6 +2799,25 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 巡检时间<br>
+	 * 巡检时间
+	 * @return 巡检时间
+	*/
+	public Date getLastInspectTime() {
+		return lastInspectTime;
+	}
+	
+	/**
+	 * 设置 巡检时间
+	 * @param lastInspectTime 巡检时间
+	 * @return 当前对象
+	*/
+	public Asset setLastInspectTime(Date lastInspectTime) {
+		this.lastInspectTime=lastInspectTime;
+		return this;
+	}
+	
+	/**
 	 * 获得 经度数据<br>
 	 * 经度数据
 	 * @return 经度数据
@@ -4162,6 +4187,7 @@ public class Asset extends Entity {
 		inst.setResidualsRate(this.getResidualsRate());
 		inst.setAssetStatus(this.getAssetStatus());
 		inst.setExpenseItem(this.getExpenseItem());
+		inst.setLastInspectTime(this.getLastInspectTime());
 		inst.setChsVersion(this.getChsVersion());
 		inst.setSupplierId(this.getSupplierId());
 		inst.setPurpose(this.getPurpose());
@@ -4378,6 +4404,7 @@ public class Asset extends Entity {
 			this.setResidualsRate(DataParser.parse(BigDecimal.class, map.get(AssetMeta.RESIDUALS_RATE)));
 			this.setAssetStatus(DataParser.parse(String.class, map.get(AssetMeta.ASSET_STATUS)));
 			this.setExpenseItem(DataParser.parse(String.class, map.get(AssetMeta.EXPENSE_ITEM)));
+			this.setLastInspectTime(DataParser.parse(Date.class, map.get(AssetMeta.LAST_INSPECT_TIME)));
 			this.setChsVersion(DataParser.parse(String.class, map.get(AssetMeta.CHS_VERSION)));
 			this.setSupplierId(DataParser.parse(String.class, map.get(AssetMeta.SUPPLIER_ID)));
 			this.setPurpose(DataParser.parse(String.class, map.get(AssetMeta.PURPOSE)));
@@ -4534,6 +4561,7 @@ public class Asset extends Entity {
 				this.setResidualsRate( (BigDecimal)map.get(AssetMeta.RESIDUALS_RATE));
 				this.setAssetStatus( (String)map.get(AssetMeta.ASSET_STATUS));
 				this.setExpenseItem( (String)map.get(AssetMeta.EXPENSE_ITEM));
+				this.setLastInspectTime( (Date)map.get(AssetMeta.LAST_INSPECT_TIME));
 				this.setChsVersion( (String)map.get(AssetMeta.CHS_VERSION));
 				this.setSupplierId( (String)map.get(AssetMeta.SUPPLIER_ID));
 				this.setPurpose( (String)map.get(AssetMeta.PURPOSE));
@@ -4703,6 +4731,7 @@ public class Asset extends Entity {
 			this.setResidualsRate(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.RESIDUALS_RATE)));
 			this.setAssetStatus(DataParser.parse(String.class, r.getValue(AssetMeta.ASSET_STATUS)));
 			this.setExpenseItem(DataParser.parse(String.class, r.getValue(AssetMeta.EXPENSE_ITEM)));
+			this.setLastInspectTime(DataParser.parse(Date.class, r.getValue(AssetMeta.LAST_INSPECT_TIME)));
 			this.setChsVersion(DataParser.parse(String.class, r.getValue(AssetMeta.CHS_VERSION)));
 			this.setSupplierId(DataParser.parse(String.class, r.getValue(AssetMeta.SUPPLIER_ID)));
 			this.setPurpose(DataParser.parse(String.class, r.getValue(AssetMeta.PURPOSE)));
@@ -4828,6 +4857,7 @@ public class Asset extends Entity {
 				this.setResidualsRate( (BigDecimal)r.getValue(AssetMeta.RESIDUALS_RATE));
 				this.setAssetStatus( (String)r.getValue(AssetMeta.ASSET_STATUS));
 				this.setExpenseItem( (String)r.getValue(AssetMeta.EXPENSE_ITEM));
+				this.setLastInspectTime( (Date)r.getValue(AssetMeta.LAST_INSPECT_TIME));
 				this.setChsVersion( (String)r.getValue(AssetMeta.CHS_VERSION));
 				this.setSupplierId( (String)r.getValue(AssetMeta.SUPPLIER_ID));
 				this.setPurpose( (String)r.getValue(AssetMeta.PURPOSE));

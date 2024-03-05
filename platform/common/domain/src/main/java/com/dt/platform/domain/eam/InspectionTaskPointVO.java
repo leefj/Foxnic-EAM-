@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点VO类型
  * <p>巡检点 , 数据表 eam_inspection_task_point 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 17:33:43
+ * @since 2024-03-05 21:32:36
  * @sign 651D328B81E70EC1A0B8941BD7D880C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -409,6 +409,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 		inst.setOperId(this.getOperId());
 		inst.setSelectedCode(this.getSelectedCode());
 		inst.setContent(this.getContent());
+		inst.setActionLabel(this.getActionLabel());
 		inst.setPointId(this.getPointId());
 		inst.setPointRouteId(this.getPointRouteId());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -436,6 +437,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			inst.setCheckItemList(this.getCheckItemList());
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
+			inst.setInspectionProcessAction(this.getInspectionProcessAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setInspectionPointPos(this.getInspectionPointPos());
@@ -519,6 +521,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			this.setOperId(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.OPER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.CONTENT)));
+			this.setActionLabel(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.ACTION_LABEL)));
 			this.setPointId(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.POINT_ID)));
 			this.setPointRouteId(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.POINT_ROUTE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.UPDATE_BY)));
@@ -545,6 +548,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.SEARCH_FIELD)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.REQUEST_ACTION)));
+			this.setInspectionProcessAction(DataParser.parse(InspectionProcessAction.class, map.get(InspectionTaskPointVOMeta.INSPECTION_PROCESS_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(InspectionTaskPointVOMeta.PAGE_SIZE)));
 			this.setInspectionPointPos(DataParser.parse(InspectionPointPos.class, map.get(InspectionTaskPointVOMeta.INSPECTION_POINT_POS)));
@@ -569,6 +573,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 				this.setOperId( (String)map.get(InspectionTaskPointVOMeta.OPER_ID));
 				this.setSelectedCode( (String)map.get(InspectionTaskPointVOMeta.SELECTED_CODE));
 				this.setContent( (String)map.get(InspectionTaskPointVOMeta.CONTENT));
+				this.setActionLabel( (String)map.get(InspectionTaskPointVOMeta.ACTION_LABEL));
 				this.setPointId( (String)map.get(InspectionTaskPointVOMeta.POINT_ID));
 				this.setPointRouteId( (String)map.get(InspectionTaskPointVOMeta.POINT_ROUTE_ID));
 				this.setUpdateBy( (String)map.get(InspectionTaskPointVOMeta.UPDATE_BY));
@@ -595,6 +600,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 				// others
 				this.setSearchField( (String)map.get(InspectionTaskPointVOMeta.SEARCH_FIELD));
 				this.setRequestAction( (String)map.get(InspectionTaskPointVOMeta.REQUEST_ACTION));
+				this.setInspectionProcessAction( (InspectionProcessAction)map.get(InspectionTaskPointVOMeta.INSPECTION_PROCESS_ACTION));
 				this.setFuzzyField( (String)map.get(InspectionTaskPointVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(InspectionTaskPointVOMeta.PAGE_SIZE));
 				this.setInspectionPointPos( (InspectionPointPos)map.get(InspectionTaskPointVOMeta.INSPECTION_POINT_POS));
@@ -632,6 +638,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			this.setOperId(DataParser.parse(String.class, r.getValue(InspectionTaskPointVOMeta.OPER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionTaskPointVOMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, r.getValue(InspectionTaskPointVOMeta.CONTENT)));
+			this.setActionLabel(DataParser.parse(String.class, r.getValue(InspectionTaskPointVOMeta.ACTION_LABEL)));
 			this.setPointId(DataParser.parse(String.class, r.getValue(InspectionTaskPointVOMeta.POINT_ID)));
 			this.setPointRouteId(DataParser.parse(String.class, r.getValue(InspectionTaskPointVOMeta.POINT_ROUTE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InspectionTaskPointVOMeta.UPDATE_BY)));
@@ -664,6 +671,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 				this.setOperId( (String)r.getValue(InspectionTaskPointVOMeta.OPER_ID));
 				this.setSelectedCode( (String)r.getValue(InspectionTaskPointVOMeta.SELECTED_CODE));
 				this.setContent( (String)r.getValue(InspectionTaskPointVOMeta.CONTENT));
+				this.setActionLabel( (String)r.getValue(InspectionTaskPointVOMeta.ACTION_LABEL));
 				this.setPointId( (String)r.getValue(InspectionTaskPointVOMeta.POINT_ID));
 				this.setPointRouteId( (String)r.getValue(InspectionTaskPointVOMeta.POINT_ROUTE_ID));
 				this.setUpdateBy( (String)r.getValue(InspectionTaskPointVOMeta.UPDATE_BY));

@@ -1,0 +1,174 @@
+<!--
+/**
+ * 考勤汇总 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2024-02-25 21:45:46
+ */
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+    <title th:text="${lang.translate('考勤异常')}">考勤异常</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden">
+
+<div class="layui-card">
+
+    <div class="layui-card-body" style="">
+
+        <div class="search-bar" style="">
+
+            <div class="search-input-rows" style="opacity: 0">
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 人员 , personId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('人员')}" class="search-label personId-label">人员</span><span class="search-colon">:</span></div>
+                        <div id="personId" th:data="${'/service-hr/hr-person/query-paged-list'}" style="width:180px" extraParam="{}"></div>
+                    </div>
+                    <!-- 考勤日期 , attendanceDateStr ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 结果 , result ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 正常(天) , normalDay ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 应上班天数 , needDay ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 上班打卡 , onWorkTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 最早打卡 , onWorkTime2 ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 下班打卡 , offWorkTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 最晚打卡 , offWorkTime2 ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 迟到(次) , leaveEarly ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 迟到(分) , leaveEarlyTime ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 早退(次) , leaveLate ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 早退(分) , leaveLateTime ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 上班缺卡(次) , lossEarly ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 下班缺卡(次) , lossLate ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 缺卡处理(次) , lossProcess ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 工作日加班(小时) , jbGzr ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 休息日加班(小时) , jbXxr ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 节假日加班(小时) , jbJjr ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 出差(天) , cc ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 年假(天) , qjNj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 工伤假(天) , qjGsj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 产假(天) , qjCj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 婚假(天) , qjHj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 病假(天) , qjBj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 事假(天) , qjSj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 调休假(天) , qjTxj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 哺乳假(天) , qjPlj ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 关联 , relId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 说明 , dayInfo ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 记录时间 , rcdTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 工号 , sJobNumber ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('工号')}" class="search-label sJobNumber-label">工号</span><span class="search-colon">:</span></div>
+                        <input id="sJobNumber" class="layui-input search-input" style="width: 180px" type="text" />
+                    </div>
+                    <!-- 考勤组 , attendanceTplCode ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('考勤组')}" class="search-label attendanceTplCode-label">考勤组</span><span class="search-colon">:</span></div>
+                        <div id="attendanceTplCode" th:data="${'/service-hr/hr-attendance-tpl/query-paged-list'}" style="width:180px" extraParam="{}"></div>
+                    </div>
+                    <!-- 考勤日期 , attendanceDate ,typeName=date_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('考勤日期')}" class="search-label attendanceDate-label">考勤日期</span><span class="search-colon">:</span></div>
+                        <input type="text" id="attendanceDate-begin" style="width: 180px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                        <span class="search-dash">-</span>
+                        <input type="text" id="attendanceDate-end"  style="width: 180px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 是否工作日 , isWorkDay ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('是否工作日')}" class="search-label isWorkDay-label">是否工作日</span><span class="search-colon">:</span></div>
+
+
+                        <div id="isWorkDay" th:data="${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}" style="width:180px"></div>
+                    </div>
+                    <!-- 批次号 , batchCode ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('批次号')}" class="search-label batchCode-label">批次号</span><span class="search-colon">:</span></div>
+                        <input id="batchCode" class="layui-input search-input" style="width: 180px" type="text" />
+                    </div>
+                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
+                        <input id="notes" class="layui-input search-input" style="width: 180px" type="text" />
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!-- 按钮区域 -->
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
+                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多','','cmp:table.search')}">更多</span></button>
+            </div>
+        </div>
+
+        <div id="table-area" style="margin-top: 42px ">
+            <table class="layui-table" id="data-table" lay-filter="data-table"></table>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<!-- 表格工具栏 -->
+<script type="text/html" id="toolbarTemplate">
+    <div class="layui-btn-container">
+     </div>
+</script>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="tableOperationTemplate">
+
+    <button  class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>
+
+
+</script>
+
+
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var RADIO_ISWORKDAY_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
+    var AUTH_PREFIX="hr_attendance_data_ab";
+
+    // personId
+    var PERSON_ID = [[${personId}]] ;
+    // code
+    var CODE = [[${code}]] ;
+
+</script>
+
+<script th:src="'/business/hr/attendance_data/attendance_abnormal_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/hr/attendance_data/attendance_abnormal_list.js?'+${cacheKey}"></script>
+
+</body>
+</html>

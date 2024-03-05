@@ -63,6 +63,9 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(GoodsStock.class,"goodsParentGoodsStockList","goodsParentGoodsStockList","goodsParentGoodsStockList");
 
 
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.UNIT_PRICE).form().validate().required().form().numberInput().scale(2);
+
+
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.PID).table().disable(true);
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.UPDATE_BY).table().disable(true);
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.UPDATE_TIME).table().disable(true);

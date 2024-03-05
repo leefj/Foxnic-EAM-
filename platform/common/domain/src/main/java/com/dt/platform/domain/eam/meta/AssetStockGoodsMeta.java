@@ -10,13 +10,14 @@ import com.dt.platform.domain.eam.Supplier;
 import org.github.foxnic.web.domain.hrm.Organization;
 import com.dt.platform.domain.eam.Warehouse;
 import org.github.foxnic.web.domain.system.DictItem;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-20 17:52:46
- * @sign C79AE054D75AB9EE3A1D73C02A1B18EA
+ * @since 2024-02-21 09:53:04
+ * @sign FF71BB5557567282E03DEEE347D452AF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -895,5 +896,68 @@ public class AssetStockGoodsMeta {
 			super.setGoodsBarCode(goodsBarCode);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetStockGoods clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetStockGoods duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setOwnerType(this.getOwnerType());
+			inst.setSourceId(this.getSourceId());
+			inst.setSupplierId(this.getSupplierId());
+			inst.setNotes(this.getNotes());
+			inst.setOwnerCode(this.getOwnerCode());
+			inst.setGoodsId(this.getGoodsId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setUnitPrice(this.getUnitPrice());
+			inst.setStockInNumber(this.getStockInNumber());
+			inst.setAmount(this.getAmount());
+			inst.setStockType(this.getStockType());
+			inst.setUseOrgId(this.getUseOrgId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setStockBatchCode(this.getStockBatchCode());
+			inst.setVersion(this.getVersion());
+			inst.setStockCurNumber(this.getStockCurNumber());
+			inst.setOwnCompanyId(this.getOwnCompanyId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setWarehouseId(this.getWarehouseId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			if(all) {
+				inst.setOwnerCompany(this.getOwnerCompany());
+				inst.setGoods(this.getGoods());
+				inst.setOriginator(this.getOriginator());
+				inst.setSource(this.getSource());
+				inst.setGoodsModel(this.getGoodsModel());
+				inst.setWarehouse(this.getWarehouse());
+				inst.setGoodsBarCode(this.getGoodsBarCode());
+				inst.setUseOrganization(this.getUseOrganization());
+				inst.setGoodsCategoryName(this.getGoodsCategoryName());
+				inst.setSupplier(this.getSupplier());
+				inst.setGoodsUnit(this.getGoodsUnit());
+				inst.setGoodsCode(this.getGoodsCode());
+				inst.setGoodsName(this.getGoodsName());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

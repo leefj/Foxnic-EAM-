@@ -105,6 +105,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     return 0;
                 }
             }
+            if(field=="relAsset"){
+                var html="";
+                if(value){
+                    html=value.name+"_"+value.model+"["+value.assetCode+"]";
+                }
+                return html;
+            }
 
             if(value==null) return "";
             return value;
@@ -166,6 +173,37 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
+        },
+        exportData:function(selected,obj){
+            console.log(selected,obj);
+         //   var ps={searchField: "$composite", searchValue: JSON.stringify(value)};
+            function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
+            var value = {};
+            value.pointStatus={ inputType:"radio_box", value: getSelectedValue("#pointStatus","value"), label:getSelectedValue("#pointStatus","nameStr") };
+            value.actionLabel={ inputType:"select_box", value: getSelectedValue("#actionLabel","value") ,fillBy:["inspectionProcessAction"]  , label:getSelectedValue("#actionLabel","nameStr") };//渲染 pointStatus 搜索框
+            value.pointCode={ inputType:"button",value: $("#pointCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+            value.pointName={ inputType:"button",value: $("#pointName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+            var ps={searchField:"$composite"};
+            if(window.pageExt.list.beforeQuery){
+                if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
+            }
+            ps.searchValue=JSON.stringify(value);
+            var downloadUrl=moduleURL+"/export-excel";
+            fox.submit(downloadUrl,ps,"post",function(){
+                console.log("execute finish");
+            });
+        },
+
+        importData:function(selected,obj){
+            var q="?code=123&importApi="+moduleURL+"/import-excel";
+            var index = admin.popupCenter({
+                title: "数据导入",
+                resize: false,
+                id: 'assetDataImport',
+                area: ["60%", "50%"],
+                type: 2,
+                content: '/business/common/tpl_file/import_form.html'+q,
+            });
         },
         /**
          * 末尾执行

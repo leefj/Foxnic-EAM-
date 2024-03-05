@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+    <title>标签信息</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden">
+<div id="ct">
+
+</div>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script th:inline="javascript">
+
+    var result = [[${result}]];
+    var msg = [[${message}]];
+    var asset = [[${asset}]];
+    var ct="";
+    if(result=="false"){
+        ct=msg;
+    }else{
+        if(asset){
+            var html="";
+            var name="";
+            var model="";
+            var inspectOrg="";
+            var inspectTime="";
+            if(asset.lastInspectTime){
+                inspectTime=asset.lastInspectTime;
+            }
+            if(asset.label5){
+                inspectOrg=asset.label5;
+            }
+            if(asset.name){
+                name=asset.name;
+            }
+            if(asset.model){
+                model=asset.model;
+            }
+            html="<div>资产编号:"+asset.assetCode+"</div>"
+            html=html+"<div>资产名称:"+name+"</div>"
+            html=html+"<div>资产型号:"+model+"</div>"
+            html=html+"<div>巡检单位:"+inspectOrg+"</div>"
+            html=html+"<div>巡检时间:"+inspectTime+"</div>"
+            ct=html;
+        }else{
+            ct="资产未空数据"
+        }
+    }
+    $("#ct").html(ct);
+
+</script>
+</body>
+</html>

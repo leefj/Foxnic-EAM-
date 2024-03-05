@@ -1,7 +1,7 @@
 /**
  * 招聘面试 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-19 13:27:04
+ * @since 2024-02-20 15:04:44
  */
 
 
@@ -89,7 +89,7 @@ function ListPage() {
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'interviewDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('面试日期') ,templet: function (d) { return templet('interviewDate',fox.dateFormat(d.interviewDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内容') , templet: function (d) { return templet('content',d.content,d);}  }
-					,{ field: 'userId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('登记人') , templet: function (d) { return templet('userId',d.userId,d);}  }
+					,{ field: 'userId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('登记人') , templet: function (d) { return templet('userId',fox.getProperty(d,["employee","name"],0,'','userId'),d);} }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

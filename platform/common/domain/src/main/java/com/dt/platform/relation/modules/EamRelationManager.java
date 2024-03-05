@@ -1170,6 +1170,10 @@ public class EamRelationManager extends RelationManager {
 
     public void setupInspectionTaskPoint() {
 
+        this.property(InspectionTaskPointMeta.INSPECTION_PROCESS_ACTION_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK_POINT.ACTION_LABEL).join(EAMTables.EAM_INSPECTION_PROCESS_ACTION.CODE);
+
+
         this.property(InspectionTaskPointMeta.INSPECTION_POINT_PROP)
                 .using(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_ID).join(EAMTables.EAM_INSPECTION_POINT.ID);
 

@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-15 14:30:19
- * @sign 7AB848B9908AF78E7BFF177380817DD7
+ * @since 2024-02-25 13:37:15
+ * @sign F35DF0E010FADE658A7C3DF0DB8B8EC2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,6 +45,16 @@ public class MappingOwnerMeta {
 	 * 选择 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.common.MappingOwner,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.common.MappingOwner.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
+	
+	/**
+	 * 归属 , 类型: java.lang.String
+	*/
+	public static final String OWNER="owner";
+	
+	/**
+	 * 归属 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.MappingOwner,java.lang.String> OWNER_PROP = new BeanProperty(com.dt.platform.domain.common.MappingOwner.class ,OWNER, java.lang.String.class, "归属", "归属", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -129,7 +139,7 @@ public class MappingOwnerMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER_ID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ ID , OWNER_ID , SELECTED_CODE , OWNER , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -169,6 +179,17 @@ public class MappingOwnerMeta {
 		public MappingOwner setSelectedCode(String selectedCode) {
 			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
 			super.setSelectedCode(selectedCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 归属
+		 * @param owner 归属
+		 * @return 当前对象
+		*/
+		public MappingOwner setOwner(String owner) {
+			super.change(OWNER,super.getOwner(),owner);
+			super.setOwner(owner);
 			return this;
 		}
 		
@@ -275,6 +296,7 @@ public class MappingOwnerMeta {
 		@Transient
 		public MappingOwner duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setOwner(this.getOwner());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());

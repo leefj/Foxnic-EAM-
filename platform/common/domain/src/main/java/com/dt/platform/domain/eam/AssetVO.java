@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产VO类型
  * <p>资产 , 数据表 eam_asset 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 09:37:38
+ * @since 2024-03-04 21:15:48
  * @sign 740673009F6EFF378B232C887D6576FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -498,6 +498,7 @@ public class AssetVO extends Asset {
 		inst.setResidualsRate(this.getResidualsRate());
 		inst.setAssetStatus(this.getAssetStatus());
 		inst.setExpenseItem(this.getExpenseItem());
+		inst.setLastInspectTime(this.getLastInspectTime());
 		inst.setChsVersion(this.getChsVersion());
 		inst.setSupplierId(this.getSupplierId());
 		inst.setPurpose(this.getPurpose());
@@ -726,6 +727,7 @@ public class AssetVO extends Asset {
 			this.setResidualsRate(DataParser.parse(BigDecimal.class, map.get(AssetVOMeta.RESIDUALS_RATE)));
 			this.setAssetStatus(DataParser.parse(String.class, map.get(AssetVOMeta.ASSET_STATUS)));
 			this.setExpenseItem(DataParser.parse(String.class, map.get(AssetVOMeta.EXPENSE_ITEM)));
+			this.setLastInspectTime(DataParser.parse(Date.class, map.get(AssetVOMeta.LAST_INSPECT_TIME)));
 			this.setChsVersion(DataParser.parse(String.class, map.get(AssetVOMeta.CHS_VERSION)));
 			this.setSupplierId(DataParser.parse(String.class, map.get(AssetVOMeta.SUPPLIER_ID)));
 			this.setPurpose(DataParser.parse(String.class, map.get(AssetVOMeta.PURPOSE)));
@@ -892,6 +894,7 @@ public class AssetVO extends Asset {
 				this.setResidualsRate( (BigDecimal)map.get(AssetVOMeta.RESIDUALS_RATE));
 				this.setAssetStatus( (String)map.get(AssetVOMeta.ASSET_STATUS));
 				this.setExpenseItem( (String)map.get(AssetVOMeta.EXPENSE_ITEM));
+				this.setLastInspectTime( (Date)map.get(AssetVOMeta.LAST_INSPECT_TIME));
 				this.setChsVersion( (String)map.get(AssetVOMeta.CHS_VERSION));
 				this.setSupplierId( (String)map.get(AssetVOMeta.SUPPLIER_ID));
 				this.setPurpose( (String)map.get(AssetVOMeta.PURPOSE));
@@ -1071,6 +1074,7 @@ public class AssetVO extends Asset {
 			this.setResidualsRate(DataParser.parse(BigDecimal.class, r.getValue(AssetVOMeta.RESIDUALS_RATE)));
 			this.setAssetStatus(DataParser.parse(String.class, r.getValue(AssetVOMeta.ASSET_STATUS)));
 			this.setExpenseItem(DataParser.parse(String.class, r.getValue(AssetVOMeta.EXPENSE_ITEM)));
+			this.setLastInspectTime(DataParser.parse(Date.class, r.getValue(AssetVOMeta.LAST_INSPECT_TIME)));
 			this.setChsVersion(DataParser.parse(String.class, r.getValue(AssetVOMeta.CHS_VERSION)));
 			this.setSupplierId(DataParser.parse(String.class, r.getValue(AssetVOMeta.SUPPLIER_ID)));
 			this.setPurpose(DataParser.parse(String.class, r.getValue(AssetVOMeta.PURPOSE)));
@@ -1196,6 +1200,7 @@ public class AssetVO extends Asset {
 				this.setResidualsRate( (BigDecimal)r.getValue(AssetVOMeta.RESIDUALS_RATE));
 				this.setAssetStatus( (String)r.getValue(AssetVOMeta.ASSET_STATUS));
 				this.setExpenseItem( (String)r.getValue(AssetVOMeta.EXPENSE_ITEM));
+				this.setLastInspectTime( (Date)r.getValue(AssetVOMeta.LAST_INSPECT_TIME));
 				this.setChsVersion( (String)r.getValue(AssetVOMeta.CHS_VERSION));
 				this.setSupplierId( (String)r.getValue(AssetVOMeta.SUPPLIER_ID));
 				this.setPurpose( (String)r.getValue(AssetVOMeta.PURPOSE));
