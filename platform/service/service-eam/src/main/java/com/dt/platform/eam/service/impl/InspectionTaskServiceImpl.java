@@ -378,6 +378,11 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 
 		Result rr=super.update(inspectionTask,SaveMode.NOT_NULL_FIELDS,false);
 		if(rr.isSuccess()){
+			//将最后巡检记录插入到资产主表
+			dao.execute("update eam_asset c set last_inspect_time=now() where id in (select distinct c.id from eam_inspection_task_point a,eam_inspection_point b where a.task_id=? and a.point_id=b.id and c.id=b.asset_id and a.deleted=0 and b.deleted=0) ",inspectionTask.getId());
+			//处理直接报废标签
+			dao.execute("update eam_asset c set asset_status='scrapped' where id in (select distinct c.id from eam_inspection_task_point a,eam_inspection_point b where a.task_id=? and a.point_id=b.id and c.id=b.asset_id and a.deleted=0 and b.deleted=0 and a.action_label='scrap')",inspectionTask.getId());
+			//插入异常数据
 			if(insertAbnormal){
 				InspectionTaskAbnormal inspectionTaskAbnormal=new InspectionTaskAbnormal();
 				inspectionTaskAbnormal.setTaskId(inspectionTask.getId());

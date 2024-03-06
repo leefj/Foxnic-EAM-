@@ -11,6 +11,16 @@
 - 如果您需要将本产品进行二次开发、更改并进行任何附带商业化性质行为使用，请联系我们进行商业授权，并以遵守 AGPL-3.0 协议保证您的正常使用。
 
 
+# 免费使用（白嫖说明）
+- 允许白嫖，范围社区免费版本,具体哪些功能以固定资产系统一键安装后的功能，功能已足够满足中小企业使用。
+- 对于用三年以上研发能力的客户，可以基于社区版定制满足自身企业需求，未经同意绝不允许修改后和衍生的代码做软件发布和销售。
+- 对于免费使用场景，有能力二开的使用者，已提供足够的各类文档，请自行解决项目过程中遇到的各类问题，群主没这个精力，还来指导你怎么部署mysql，怎么配置maven。
+
+
+# 系统及相关文档下载地址
+- 链接: https://pan.baidu.com/s/1d6Yvszugq2fdGNEsW8ijmQ 提取码: lm6i
+- <img width="200"  src="https://images.gitee.com/uploads/images/2022/0621/084431_f977a14d_448530.png" />
+
 # 官方网站
 - http://web.foxnicweb.com/
 - 1、QQ群:634770774
@@ -18,12 +28,6 @@
 - 企业或个人相关技术开发合作，请进群联系！
 - 微信群：      
   ![微信群](platform/view/view-console/src/main/resources/static/assets/images/wx.png)
-  
-
-# 系统及相关文档下载地址
-- 链接: https://pan.baidu.com/s/1d6Yvszugq2fdGNEsW8ijmQ 提取码: lm6i
-- <img width="200"  src="https://images.gitee.com/uploads/images/2022/0621/084431_f977a14d_448530.png" />
-
 
 # 使用方案一
 #### 一键部署是社区版本的功能，其他没看到的属于非社区版本，有啥功能就用啥，
