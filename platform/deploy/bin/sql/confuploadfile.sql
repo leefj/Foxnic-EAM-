@@ -32,6 +32,8 @@ insert into sys_file(id,file_name,location,size,media_type,file_type)values('T00
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_29','eam_asset_borrow_return.docx','/tpl/T001/eam_asset_borrow_return.docx',10000,'application/octet-stream','docx');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_30','eam_asset_download_depreciation_report.xls','/tpl/T001/eam_asset_download_depreciation_report.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_31','eam_asset_insepect_detail.xls','/tpl/T001/eam_asset_insepect_detail.xls',10000,'application/octet-stream','xls');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_32','eam_asset_insepect_point.xls','/tpl/T001/eam_asset_insepect_point.xls',10000,'application/octet-stream','xls');
+
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_1','hr_person_salary_detail.xls','/tpl/T001/hr_person_salary_detail.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_2','hr_salary_commission.xls','/tpl/T001/hr_salary_commission.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_3','hr_salary_time.xls','/tpl/T001/hr_salary_time.xls',10000,'application/octet-stream','xls');
@@ -49,9 +51,6 @@ insert into sys_file(id,file_name,location,size,media_type,file_type)values('T00
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_15','hr_attendance_overtime.xls','/tpl/T001/hr_attendance_overtime.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_16','hr_attendance_official_busi.xls','/tpl/T001/hr_attendance_official_busi.xls',10000,'application/octet-stream','xls');
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_hr_17','hr_attendance_holiday.xls','/tpl/T001/hr_attendance_holiday.xls',10000,'application/octet-stream','xls');
-
-
-
 delete from sys_tpl_file where tenant_id='T001' and type in ('eam_bill_docx','eam_asset_excel','hr_excel');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_1','eam_bill_docx','资产报修','eam_download_asset_repair_bill','T001_eam_1','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_2','eam_bill_docx','资产借用','eam_download_asset_borrow_bill','T001_eam_2','T001');
@@ -84,6 +83,7 @@ insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_28
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_29','eam_bill_docx','资产归还','eam_download_asset_borrow_return_bill','T001_eam_29','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_30','eam_asset_excel','资产折旧','eam_asset_download_depreciation_report','T001_eam_30','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_31','eam_asset_excel','设备巡检','eam_asset_insepect_detail','T001_eam_31','T001');
+insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_eam_32','eam_asset_excel','巡检点位','eam_asset_insepect_point','T001_eam_32','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_1','hr_excel','人员薪酬','hr_person_salary_detail','T001_hr_1','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_2','hr_excel','提成','hr_salary_commission','T001_hr_2','T001');
 insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_hr_3','hr_excel','计时','hr_salary_time','T001_hr_3','T001');

@@ -399,6 +399,23 @@ public class AssetController extends SuperController {
         return result;
     }
 
+
+
+
+	/**
+	 * 删除资产
+	 */
+	@ApiOperation(value = "删除资产")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = AssetVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "489517168661102592")
+	})
+	@ApiOperationSupport(order = 2)
+	@SentinelResource(value = AssetServiceProxy.SCAN_LABEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+	@PostMapping(AssetServiceProxy.SCAN_LABEL)
+	public Result<Asset> scanLabel(String txt,String scene) {
+		return assetService.scanLabel(txt,scene);
+	}
+
     /**
      * 删除资产
      */

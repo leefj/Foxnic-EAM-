@@ -143,6 +143,14 @@ public class EamRelationManager extends RelationManager {
 
         this.setupAssetWorkOrder();
 
+        this.setupAssetScanMethod();
+
+    }
+
+    public void setupAssetScanMethod() {
+        this.property(AssetScanSceneMeta.METHOD_DICT_PROP)
+                .using(EAMTables.EAM_ASSET_SCAN_SCENE.METHOD).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_label_scan_method'");
     }
 
     public void setupAssetWorkOrder() {

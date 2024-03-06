@@ -42,6 +42,7 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
 
 public interface IAssetService extends ISuperService<Asset> {
 
+	Result<Asset> scanLabel(String txt,String scene);
 	PagedList<Asset> queryAssetSubAssetPagedList(String assetId,int pageSize,int pageIndex);
 
 	PagedList<GoodsStock> queryAssetSubGoodsStockPagedList(GoodsStockVO goodsStockVO,String assetId,String ownerCode,int pageSize,int pageIndex);

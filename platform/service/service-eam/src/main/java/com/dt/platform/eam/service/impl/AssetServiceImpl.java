@@ -111,6 +111,10 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 
 	@Autowired
 	private IGoodsStockService goodsStockService;
+
+	@Autowired
+	private IAssetScanSceneService assetScanSceneService;
+
 	/**
 	 * 注入DAO对象
 	 * */
@@ -430,6 +434,48 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		data.put("update",ups);
 		data.put("change",ins);
 		return data;
+	}
+
+	@Override
+	public Result<Asset> scanLabel(String txt, String scene) {
+		if(StringUtil.isBlank(scene)){
+			scene="mobile_asset_scan";
+		}
+		AssetScanSceneVO vo=new AssetScanSceneVO();
+		vo.setCode(scene);
+		AssetScanScene assetScanScene=assetScanSceneService.queryEntity(vo);
+		if(assetScanScene==null){
+			return ErrorDesc.failureMessage("为定义扫码配置场景!");
+		}
+		String assetCode=txt;
+		if("asset_url".equals(assetScanScene.getMethod())){
+			//http://ip:192.124?code=12345
+			String[] strArr=txt.split("=");
+			if (strArr.length==2){
+				assetCode=strArr[1].trim();
+			}else{
+				return ErrorDesc.failureMessage("当前二维码格式不正确");
+			}
+		}else if ("asset_code".equals(assetScanScene.getMethod())){
+			assetCode=txt.trim();
+		}
+
+		AssetVO assetVO=new AssetVO();
+		assetVO.setAssetCode(assetCode.trim());
+		assetVO.setOwnerCode("asset");
+		Asset asset=this.queryEntity(assetVO);
+		if(asset==null){
+			ErrorDesc.failureMessage("没有找到该资产");
+		}
+		dao().fill(asset).with(AssetMeta.CATEGORY).with(AssetMeta.CATEGORY_FINANCE).with(AssetMeta.GOODS).with(AssetMeta.MANUFACTURER).with(AssetMeta.MAINTENANCE_METHOD_DATA).with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA).with(AssetMeta.POSITION).with(AssetMeta.MAINTNAINER).with(AssetMeta.SUPPLIER).with(AssetMeta.OWNER_COMPANY).with(AssetMeta.USE_ORGANIZATION).with(AssetMeta.MANAGER).with(AssetMeta.REGION).with(AssetMeta.USE_USER).with(AssetMeta.ORIGINATOR).with(AssetMeta.ASSET_CYCLE_STATUS).with(AssetMeta.RACK).with(AssetMeta.SOURCE).with(AssetMeta.SAFETY_LEVEL).with(AssetMeta.EQUIPMENT_ENVIRONMENT).with(AssetMeta.ASSET_MAINTENANCE_STATUS).with(AssetMeta.EXPENSE_ITEM_DICT).with(AssetMeta.FINANCIAL_OPTION_DICT).execute();
+		dao().join(asset.getManager(), Person.class);
+		dao().join(asset.getUseUser(), Person.class);
+		// 加载自定义数据
+		asset.setCatalogAttribute(assetCategoryService.queryCatalogAttributeByAssetCategory(asset.getCategoryId()));
+		Result<Asset> r=new Result<>();
+		r.success(true);
+		r.data(asset);
+		return r;
 	}
 
 	@Override

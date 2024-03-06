@@ -187,6 +187,9 @@ public interface AssetServiceProxy {
     public static final String QUERY_ASSET_SUB_GOODS_STOCK_PAGED_LIST = API_PREFIX + "query-asset-sub-goods-stock-paged-list";
 
 
+    //扫码
+    public static final String SCAN_LABEL = API_PREFIX + "scan-label";
+
     /**
      * 盘点员工是否有资产
      */
