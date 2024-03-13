@@ -130,7 +130,7 @@
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
 
-     <button th:if="${perm.checkAnyAuth('hr_assessment_bill_user_map:update','hr_assessment_bill_user_map:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改','','cmp:table.ops')}">修改</span></button>
+    <button th:if="${perm.checkAnyAuth('hr_assessment_bill_user_map:update','hr_assessment_bill_user_map:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改','','cmp:table.ops')}">修改</span></button>
     <button th:if="${perm.checkAuth('hr_assessment_bill_user_map:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
 </script>

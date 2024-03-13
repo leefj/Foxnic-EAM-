@@ -115,9 +115,19 @@ function ListPage() {
 										offset: [10,null],
 										area: ["95%","95%"],
 										type: 2,
-										id:"hr-assessment-bill-paper-form-data-win",
+										id:"hr-assessment-bill-task-paper-list-data-win",
 										content: '/business/hr/assessment_bill_task_paper/bill_task_paper_list.html?billTaskDtlId='+obj.data.id,
 										finish: function () {
+
+
+											admin.post("/service-hr/hr-assessment-bill-task-paper/get-by-id", { id : obj.data.id }, function (r) {
+												if (r.success) {
+													var contextdata = r.data;
+													obj.update(contextdata);
+												}
+											});
+
+
 
 										}
 									});
@@ -132,7 +142,7 @@ function ListPage() {
 										,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 										,{ field: 'row-ops1', fixed: 'right', align: 'center',title: fox.translate('操作','','cmp:table'), width: 160, templet:
 												function(r) {
-													return '<a class="layui-btn layui-btn-xs" lay-event="childPf">评分</a>'
+													return '<a class="layui-btn layui-btn-xs" lay-event="childPf">评分表</a>'
 												}
 											}
 									]]

@@ -63,11 +63,8 @@ public class HrmAssessMentIndicatorValueGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         HrTables.HR_ASSESSMENT_INDICATOR_VALUE.VALUE,
-                },
-                new Object[] {
-                        HrTables.HR_ASSESSMENT_INDICATOR_VALUE.CONTENT,
+                        HrTables.HR_ASSESSMENT_INDICATOR_VALUE.CONTENT
                 }
-
         );
         //文件生成覆盖模式
         cfg.overrides()

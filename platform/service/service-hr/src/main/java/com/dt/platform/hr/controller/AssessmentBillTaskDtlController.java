@@ -235,6 +235,21 @@ public class AssessmentBillTaskDtlController extends SuperController {
 		return result;
 	}
 
+	/**
+	 * 获取任务明细单
+	 */
+	@ApiOperation(value = "获取任务明细单")
+	@ApiImplicitParams({
+	})
+	@ApiOperationSupport(order=6 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = AssessmentBillTaskDtlServiceProxy.SUBMIT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AssessmentBillTaskDtlServiceProxy.SUBMIT)
+	public Result submit(String id) {
+		return assessmentBillTaskDtlService.submit(id);
+	}
+
+
+
 
 	/**
 	 * 批量获取任务明细单 <br>

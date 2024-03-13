@@ -30,6 +30,8 @@ import java.util.Map;
 public interface IAssessmentBillTaskDtlService extends  ISimpleIdService<AssessmentBillTaskDtl,String> {
 
 
+	Result submit(String id);
+
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param assessmentBillTaskDtl 数据对象
