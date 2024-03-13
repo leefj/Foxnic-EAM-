@@ -77,6 +77,11 @@ public class AssessmentBillTaskDtlServiceImpl extends SuperService<AssessmentBil
 		return r;
 	}
 
+	@Override
+	public Result submit(String id) {
+		return ErrorDesc.success();
+	}
+
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param assessmentBillTaskDtl 数据对象

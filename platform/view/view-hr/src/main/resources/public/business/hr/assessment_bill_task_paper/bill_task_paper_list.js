@@ -100,18 +100,50 @@ function ListPage() {
 										// pobj 父表当前行对象
 										var childId = this.id; // 通过 this 对象获取当前子表的id
 										if (obj.event === 'childPf') {
-											admin.popupCenter({
-												title: "评分",
-												resize: false,
-												offset: [10,null],
-												area: ["98%","98%"],
-												type: 2,
-												id:"hr-assessment-bill-paper-form-data-win",
-												content: '/business/hr/assessment_indicator_value/indicator_value_list.html?paperId='+obj.data.id,
-												finish: function () {
 
+											top.layer.load(2);
+											top.layer.load(2);
+											admin.post("/service-hr/hr-assessment-indicator-value/get-by-id", { id : obj.data.id}, function (cRs) {
+												top.layer.closeAll('loading');
+												if(cRs.success) {
+													admin.putTempData('hr-assessment-indicator-value-form-data-form-action', "edit",true);
+
+													var queryString="id="+obj.data.id;
+													admin.putTempData('hr-assessment-indicator-value-form-data', cRs.data);
+													admin.popupCenter({
+														title: "评分",
+														resize: false,
+														offset: [20,null],
+														area: ["75%","75%"],
+														type: 2,
+														id:"hr-assessment-indicator-value-form-data-win",
+														content: '/business/hr/assessment_indicator_value/assessment_indicator_value_form.html' + (queryString?("?"+queryString):""),
+														finish: function () {
+
+															//var context=obj.getDataRowContext( { id : obj.data.id } );
+															admin.post("/service-hr/hr-assessment-indicator-value/get-by-id", { id : obj.data.id }, function (r) {
+																if (r.success) {
+																	var contextdata = r.data;
+																	obj.update(contextdata);
+
+																} else {
+
+																}
+															});
+
+
+
+														}
+													});
+
+
+												} else {
+													fox.showMessage(cRs);
 												}
 											});
+
+
+
 										}
 									}
 									,cols: [[
@@ -124,7 +156,6 @@ function ListPage() {
 										,{ field: 'IndicatorMinValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('最低分') , templet: function (d) { return templet('IndicatorMinValue',fox.getProperty(d,["assessmentIndicator","IndicatorMinValue"],0,'','IndicatorMinValue'),d);} }
 										,{ field: 'IndicatorMaxValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('最高分') , templet: function (d) { return templet('IndicatorMaxValue',fox.getProperty(d,["assessmentIndicator","IndicatorMaxValue"],0,'','IndicatorMaxValue'),d);} }
 										,{ field: 'value', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('得分') , templet: function (d) { return templet('value',d.value,d);}  }
-
 										,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 										,{ field: 'row-ops1', fixed: 'right', align: 'center',title: fox.translate('操作','','cmp:table'), width: 160, templet:
 												function(r) {
@@ -132,7 +163,7 @@ function ListPage() {
 												}
 										}
 									]]
-									,where: {"billTaskId":row.id}
+									,where: {"taskPaperId":row.id}
 									,parseData: function(res){ //res 即为原始返回的数据
 										console.log("res",res);
 										return {
@@ -144,6 +175,7 @@ function ListPage() {
 									}
 									,done: function () {
 										tableChild.render(this);
+										tableMerge.render(this);
 									}
 								}
 							]
@@ -342,9 +374,18 @@ function ListPage() {
 				if(!doNext) return;
 			}
 			switch(obj.event){
-				case 'create':
-					admin.putTempData('hr-assessment-bill-task-paper-form-data', {});
-					openCreateFrom();
+				case 'tj':
+					top.layer.confirm(fox.translate('确定是否提交？'), function (i) {
+						top.layer.close(i);
+						admin.post("/service-hr/hr-assessment-bill-task-dtl/submit", {id:BILL_TASK_DTL_ID }, function (data) {
+							if (data.success) {
+								admin.finishPopupCenterById('hr-assessment-bill-task-paper-list-data-win');
+								fox.showMessage(data);
+							} else {
+
+							}
+						},{delayLoading:200,elms:[$("#add-button")]});
+					});
 					break;
 				case 'batch-del':
 					batchDelete(selected);

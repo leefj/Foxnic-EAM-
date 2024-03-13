@@ -84,6 +84,8 @@ public interface AssessmentBillTaskDtlServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+    public static final String SUBMIT = API_PREFIX + "submit";
+
     /**
      * 添加任务明细单
      */
