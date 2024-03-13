@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核计划VO类型
  * <p>考核计划 , 数据表 hr_assessment_plan 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-04 07:40:29
+ * @since 2024-03-10 15:10:35
  * @sign 6C64A7624E90FE86529E9455D952E103
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

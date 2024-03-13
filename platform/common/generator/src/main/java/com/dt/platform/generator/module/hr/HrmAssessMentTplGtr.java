@@ -6,16 +6,16 @@ import com.dt.platform.domain.hr.AssessmentIndicator;
 import com.dt.platform.domain.hr.AssessmentIndicatorValue;
 import com.dt.platform.domain.hr.AssessmentTpl;
 import com.dt.platform.domain.hr.Position;
-import com.dt.platform.domain.hr.meta.AssessmentTplMeta;
-import com.dt.platform.domain.hr.meta.AttendanceDataMeta;
-import com.dt.platform.domain.hr.meta.PersonMeta;
-import com.dt.platform.domain.hr.meta.PositionMeta;
+import com.dt.platform.domain.hr.meta.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.hr.page.AssessmentTplPageController;
 import com.dt.platform.proxy.hr.AssessmentTplServiceProxy;
 import com.dt.platform.proxy.hr.PositionServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Organization;
+import org.github.foxnic.web.domain.system.DictItem;
+import org.github.foxnic.web.domain.system.meta.DictItemMeta;
+import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
 
 
 public class HrmAssessMentTplGtr extends BaseCodeGenerator {
@@ -28,7 +28,7 @@ public class HrmAssessMentTplGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addListProperty(AssessmentIndicator.class,"assessmentIndicator","assessmentIndicator","assessmentIndicator");
         cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
-
+        cfg.getPoClassFile().addSimpleProperty(DictItem.class,"typeDict","typeDict","typeDict");
 
         cfg.getPoClassFile().addListProperty(Position.class,"positionList","positionList","positionList");
         cfg.getPoClassFile().addListProperty(String.class,"positionIds","positionIds","positionIds");
@@ -37,6 +37,7 @@ public class HrmAssessMentTplGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_ASSESSMENT_TPL.NAME).search().fuzzySearch();
         cfg.view().search().inputLayout(
                 new Object[]{
+                        HrTables.HR_ASSESSMENT_TPL.TYPE,
                         HrTables.HR_ASSESSMENT_TPL.NAME
                 }
         );
@@ -61,7 +62,7 @@ public class HrmAssessMentTplGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_ASSESSMENT_TPL.ORG_ID)
                 .form().form().button().chooseOrganization(false);
 
-        cfg.view().field(HrTables.HR_ASSESSMENT_TPL.ORG_ID).table().disable(false);
+        cfg.view().field( HrTables.HR_ASSESSMENT_TPL.ORG_ID).table().disable(true);
 
         cfg.view().field(AssessmentTplMeta.POSITION_IDS)
                 .form().selectBox().queryApi(PositionServiceProxy.QUERY_PAGED_LIST)
@@ -70,11 +71,21 @@ public class HrmAssessMentTplGtr extends BaseCodeGenerator {
                 textField(PositionMeta.NAME).
                 fillWith(AssessmentTplMeta.POSITION_LIST).muliti(true);
 
+        cfg.view().field(HrTables.HR_ASSESSMENT_TPL.TYPE)
+                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=hr_assessment_type")
+                .paging(false).filter(false).toolbar(false)
+                .valueField(DictItemMeta.CODE).
+                textField(DictItemMeta.LABEL).
+                fillWith(AssessmentTplMeta.TYPE_DICT).muliti(false);
+
+
+
 
 
         cfg.view().form().addGroup(null,
                 new Object[] {
                         HrTables.HR_ASSESSMENT_TPL.NAME,
+                        HrTables.HR_ASSESSMENT_TPL.TYPE,
                 },
                 new Object[] {
                         HrTables.HR_ASSESSMENT_TPL.TOTAL_WEIGHT,

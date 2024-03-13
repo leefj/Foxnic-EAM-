@@ -7,6 +7,7 @@ import com.dt.platform.domain.hr.AssessmentTpl;
 import java.math.BigDecimal;
 import java.util.Date;
 import com.dt.platform.domain.hr.AssessmentIndicator;
+import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.hr.Position;
 import javax.persistence.Transient;
 
@@ -14,7 +15,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-01 09:12:37
+ * @since 2024-03-10 21:32:45
  * @sign 8F28162D05AA2D8B7D33BD7B3B3287AA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -162,6 +163,16 @@ public class AssessmentTplVOMeta extends AssessmentTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTplVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTplVO.class ,NAME, java.lang.String.class, "模版名称", "模版名称", java.lang.String.class, null);
 	
 	/**
+	 * 分类 , 类型: java.lang.String
+	*/
+	public static final String TYPE="type";
+	
+	/**
+	 * 分类 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTplVO,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTplVO.class ,TYPE, java.lang.String.class, "分类", "分类", java.lang.String.class, null);
+	
+	/**
 	 * 部门 , 类型: java.lang.String
 	*/
 	public static final String ORG_ID="orgId";
@@ -302,6 +313,16 @@ public class AssessmentTplVOMeta extends AssessmentTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTplVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTplVO.class ,SELECTED_CODE, java.lang.String.class, "selectedCode", "selectedCode", java.lang.String.class, null);
 	
 	/**
+	 * typeDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String TYPE_DICT="typeDict";
+	
+	/**
+	 * typeDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTplVO,org.github.foxnic.web.domain.system.DictItem> TYPE_DICT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTplVO.class ,TYPE_DICT, org.github.foxnic.web.domain.system.DictItem.class, "typeDict", "typeDict", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * positionList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.Position
 	*/
 	public static final String POSITION_LIST="positionList";
@@ -324,7 +345,7 @@ public class AssessmentTplVOMeta extends AssessmentTplMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , ORG_ID , TOTAL_WEIGHT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_INDICATOR , SELECTED_CODE , POSITION_LIST , POSITION_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , TYPE , ORG_ID , TOTAL_WEIGHT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_INDICATOR , SELECTED_CODE , TYPE_DICT , POSITION_LIST , POSITION_IDS };
 	
 	/**
 	 * 代理类
@@ -489,6 +510,17 @@ public class AssessmentTplVOMeta extends AssessmentTplMeta {
 		}
 		
 		/**
+		 * 设置 分类
+		 * @param type 分类
+		 * @return 当前对象
+		*/
+		public AssessmentTpl setType(String type) {
+			super.change(TYPE,super.getType(),type);
+			super.setType(type);
+			return this;
+		}
+		
+		/**
 		 * 设置 部门
 		 * @param orgId 部门
 		 * @return 当前对象
@@ -643,6 +675,17 @@ public class AssessmentTplVOMeta extends AssessmentTplMeta {
 		}
 		
 		/**
+		 * 设置 typeDict
+		 * @param typeDict typeDict
+		 * @return 当前对象
+		*/
+		public AssessmentTpl setTypeDict(DictItem typeDict) {
+			super.change(TYPE_DICT,super.getTypeDict(),typeDict);
+			super.setTypeDict(typeDict);
+			return this;
+		}
+		
+		/**
 		 * 设置 positionList
 		 * @param positionList positionList
 		 * @return 当前对象
@@ -681,6 +724,7 @@ public class AssessmentTplVOMeta extends AssessmentTplMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setType(this.getType());
 			inst.setVersion(this.getVersion());
 			inst.setOrgId(this.getOrgId());
 			inst.setCreateBy(this.getCreateBy());
@@ -705,6 +749,7 @@ public class AssessmentTplVOMeta extends AssessmentTplMeta {
 				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
+				inst.setTypeDict(this.getTypeDict());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());

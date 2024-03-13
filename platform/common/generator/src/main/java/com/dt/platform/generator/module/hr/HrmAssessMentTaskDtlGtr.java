@@ -41,9 +41,9 @@ public class HrmAssessMentTaskDtlGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_ASSESSMENT_TASK_DTL.ASSESSOR_ID).form()
                 .button().chooseEmployee(true);
 
-        cfg.view().field(HrTables.HR_ASSESSMENT_TASK_DTL.ASSESSEE_ID).table().fillBy("assesseeUser","name");
-        cfg.view().field(HrTables.HR_ASSESSMENT_TASK_DTL.ASSESSEE_ID).form()
-                .button().chooseEmployee(true);
+//        cfg.view().field(HrTables.HR_ASSESSMENT_TASK_DTL.ASSESSEE_ID).table().fillBy("assesseeUser","name");
+//        cfg.view().field(HrTables.HR_ASSESSMENT_TASK_DTL.ASSESSEE_ID).form()
+//                .button().chooseEmployee(true);
 
 
 
@@ -53,7 +53,7 @@ public class HrmAssessMentTaskDtlGtr extends BaseCodeGenerator {
         cfg.view().search().inputLayout(
                 new Object[]{
                         HrTables.HR_ASSESSMENT_TASK_DTL.BILL_ID,
-                        HrTables.HR_ASSESSMENT_TASK_DTL.ASSESSEE_ID,
+                     //   HrTables.HR_ASSESSMENT_TASK_DTL.ASSESSEE_ID,
                         HrTables.HR_ASSESSMENT_TASK_DTL.ASSESSOR_ID,
                         HrTables.HR_ASSESSMENT_TASK_DTL.RCD_TIME,
                 }
@@ -71,24 +71,21 @@ public class HrmAssessMentTaskDtlGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_ASSESSMENT_TASK_DTL.EVALUATE_CONTENT).form().textArea().height(250);
 
         cfg.view().form().addGroup(null,
-                new Object[] {
-                        HrTables.HR_ASSESSMENT_TASK_DTL.TASK_ID,
 
-                },
                 new Object[] {
                         HrTables.HR_ASSESSMENT_TASK_DTL.BILL_ID,
                 }
         );
 
-        cfg.view().form().addGroup(null,
-                new Object[] {
-
-                        HrTables.HR_ASSESSMENT_TASK_DTL.ASSESSEE_ID,
-                },
-                new Object[] {
-                        HrTables.HR_ASSESSMENT_TASK_DTL.ASSESSOR_ID,
-                }
-        );
+//        cfg.view().form().addGroup(null,
+//                new Object[] {
+//
+//                        HrTables.HR_ASSESSMENT_TASK_DTL.ASSESSEE_ID,
+//                },
+//                new Object[] {
+//                        HrTables.HR_ASSESSMENT_TASK_DTL.ASSESSOR_ID,
+//                }
+//        );
 
         cfg.view().form().addGroup(null,
                 new Object[] {

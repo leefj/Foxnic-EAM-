@@ -1,7 +1,7 @@
 /**
  * 考核模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-01 09:12:39
+ * @since 2024-03-10 21:32:47
  */
 
 function FormPage() {
@@ -118,6 +118,40 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 type 下拉字段
+		fox.renderSelectBox({
+			el: "type",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("分类",'','cmp:form'),
+			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("type",{data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 		//渲染 positionIds 下拉字段
 		fox.renderSelectBox({
 			el: "positionIds",
@@ -207,6 +241,8 @@ function FormPage() {
 
 
 
+			//设置  分类 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#type",formData.typeDict);
 			//设置  岗位 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#positionIds",formData.positionList);
 
@@ -271,6 +307,8 @@ function FormPage() {
 
 
 
+		//获取 分类 下拉框的值
+		data["type"]=fox.getSelectedValue("type",false);
 		//获取 岗位 下拉框的值
 		data["positionIds"]=fox.getSelectedValue("positionIds",true);
 

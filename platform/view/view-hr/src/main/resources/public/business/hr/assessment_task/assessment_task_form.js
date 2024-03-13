@@ -1,7 +1,7 @@
 /**
  * 考核任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 19:40:27
+ * @since 2024-03-13 20:22:34
  */
 
 function FormPage() {
@@ -125,12 +125,79 @@ function FormPage() {
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("owner",data,checked);
 		});
-		form.on('radio(cycle)', function(data){
+		//渲染 type 下拉字段
+		fox.renderSelectBox({
+			el: "type",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("分类",'','cmp:form'),
+			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("type",{data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+		form.on('radio(status)', function(data){
 			var checked=[];
-			$('input[type=radio][lay-filter=cycle]:checked').each(function() {
+			$('input[type=radio][lay-filter=status]:checked').each(function() {
 				checked.push($(this).val());
 			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("cycle",data,checked);
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
+		//渲染 cycle 下拉字段
+		fox.renderSelectBox({
+			el: "cycle",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("周期",'','cmp:form'),
+			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("cycle",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "0".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("cycle",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
 		});
 		form.on('radio(isAllPerson)', function(data){
 			var checked=[];
@@ -263,6 +330,12 @@ function FormPage() {
 
 
 
+			//设置  分类 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#type",formData.typeDict);
+			//设置  周期 设置下拉框勾选
+			fox.setSelectValue4Enum("#cycle",formData.cycle,SELECT_CYCLE_DATA);
+			//设置  绩效模版 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#tplId",formData.assessmentTpl);
 
 			//处理fillBy
 
@@ -325,6 +398,12 @@ function FormPage() {
 
 
 
+		//获取 分类 下拉框的值
+		data["type"]=fox.getSelectedValue("type",false);
+		//获取 周期 下拉框的值
+		data["cycle"]=fox.getSelectedValue("cycle",false);
+		//获取 绩效模版 下拉框的值
+		data["tplId"]=fox.getSelectedValue("tplId",false);
 
 		return data;
 	}
@@ -391,6 +470,78 @@ function FormPage() {
 
 	    form.on('submit(submit-button)', verifyAndSaveForm);
 
+		// 请选择人员对话框
+		$("#hrUserId-button").click(function(){
+				var hrUserIdDialogOptions={
+				field:"hrUserId",
+				formData:getFormData(),
+				inputEl:$("#hrUserId"),
+				buttonEl:$(this),
+				single:true,
+				autoWidth:false,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"emp",
+				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
+			};
+			fox.chooseEmployee(hrUserIdDialogOptions);
+		});
+		// 加载指标对话框
+		$("#buttonAction-button").click(function(){
+			window.pageExt.form.loadTplData && window.pageExt.form.loadTplData(getFormData(),$("#buttonAction"),$(this));
+		});
+		// 请选择人员对话框
+		$("#personIds-button").click(function(){
+				var personIdsDialogOptions={
+				field:"personIds",
+				formData:getFormData(),
+				inputEl:$("#personIds"),
+				buttonEl:$(this),
+				single:false,
+				autoWidth:false,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"emp",
+				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
+			};
+			fox.chooseEmployee(personIdsDialogOptions);
+		});
+		// 请选择人员对话框
+		$("#excludePersonIds-button").click(function(){
+				var excludePersonIdsDialogOptions={
+				field:"excludePersonIds",
+				formData:getFormData(),
+				inputEl:$("#excludePersonIds"),
+				buttonEl:$(this),
+				single:false,
+				autoWidth:false,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"emp",
+				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
+			};
+			fox.chooseEmployee(excludePersonIdsDialogOptions);
+		});
+		// 请选择组织节点对话框
+		$("#organizationIds-button").click(function(){
+			var organizationIdsDialogOptions={
+				field:"organizationIds",
+				formData:getFormData(),
+				inputEl:$("#organizationIds"),
+				buttonEl:$(this),
+				single:false,
+				autoWidth:false,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"org",
+				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
+			};
+			fox.chooseOrgNode(organizationIdsDialogOptions);
+		});
 
 	    //关闭窗口
 	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('hr-assessment-task-form-data-win',this); });

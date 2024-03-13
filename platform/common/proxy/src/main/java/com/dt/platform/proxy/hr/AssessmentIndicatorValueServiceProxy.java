@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 考核结果 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-28 10:43:18
+ * @since 2024-03-13 07:20:12
  */
 @FeignClient(value = ServiceNames.HR, contextId = AssessmentIndicatorValueServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssessmentIndicatorValueServiceProxy {

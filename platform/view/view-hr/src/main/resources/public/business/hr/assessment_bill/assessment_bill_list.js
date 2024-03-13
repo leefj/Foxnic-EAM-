@@ -1,7 +1,7 @@
 /**
  * 考核单据 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 18:53:11
+ * @since 2024-03-13 10:56:24
  */
 
 
@@ -85,11 +85,14 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'taskId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考核') , templet: function (d) { return templet('taskId',d.taskId,d);}  }
+					,{ field: 'taskId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考核'), templet: function (d) { return templet('taskId' ,fox.joinLabel(d.assessmentTask,"name",',','','taskId'),d);}}
 					,{ field: 'taskName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考核名称') , templet: function (d) { return templet('taskName',d.taskName,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态') , templet: function (d) { return templet('status',d.status,d);}  }
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'isShow', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否可见'), templet:function (d){ return templet('isShow',fox.getEnumText(RADIO_ISSHOW_DATA,d.isShow,'','isShow'),d);}}
+					,{ field: 'stime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('stime',fox.dateFormat(d.stime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'etime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('etime',fox.dateFormat(d.etime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -160,7 +163,9 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.taskId={ inputType:"button",value: $("#taskId").val()};
+		value.taskId={ inputType:"select_box", value: getSelectedValue("#taskId","value") ,fillBy:["assessmentTask"]  , label:getSelectedValue("#taskId","nameStr") };
+		value.taskName={ inputType:"button",value: $("#taskName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -207,6 +212,62 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 taskId 下拉字段
+		fox.renderSelectBox({
+			el: "taskId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("taskId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("taskId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 status 搜索框
+		fox.renderSelectBox({
+			el: "status",
+			size: "small",
+			radio: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
@@ -259,6 +320,9 @@ function ListPage() {
 					break;
 				case 'batch-del':
 					batchDelete(selected);
+					break;
+				case 'tool-create-bill-task':
+					window.pageExt.list.createBillTask && window.pageExt.list.createBillTask(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();
@@ -374,6 +438,18 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'person-data') { // 考核明细
+				window.pageExt.list.personData(data,this);
+			}
+			else if (layEvent === 'pfr-data') { // 评分人员
+				window.pageExt.list.pfrData(data,this);
+			}
+			else if (layEvent === 'bill-task-cancel') { // 取消
+				window.pageExt.list.BillTaskCancel(data,this);
+			}
+			else if (layEvent === 'bill-task-copy') { // 复制
+				window.pageExt.list.BillTaskCopy(data,this);
 			}
 			
 		});

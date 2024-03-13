@@ -181,7 +181,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeDataFill:function (data) {
             var memberIds="";
-            if(data&&data.leader){
+            if(data&&data.memberList){
                 for(var i=0;i<data.memberList.length;i++){
                     if(i==0){
                         memberIds=data.memberList[i].id;

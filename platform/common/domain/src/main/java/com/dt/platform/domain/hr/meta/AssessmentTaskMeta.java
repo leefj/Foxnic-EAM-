@@ -8,15 +8,17 @@ import com.dt.platform.domain.hr.AssessmentTpl;
 import com.dt.platform.domain.hr.AssessmentIndicator;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
-import org.github.foxnic.web.domain.hrm.Person;
+import com.dt.platform.domain.hr.Position;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.system.DictItem;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 19:40:25
- * @sign 2247B2F097AA83F2840257359BF3CF32
+ * @since 2024-03-13 20:22:31
+ * @sign 610101D070CC35093C304E1EAE0D4D68
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -33,24 +35,24 @@ public class AssessmentTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
-	 * 所属 , 类型: java.lang.String
+	 * 所属 , 模版,数据 , 类型: java.lang.String
 	*/
 	public static final String OWNER="owner";
 	
 	/**
-	 * 所属 , 类型: java.lang.String
+	 * 所属 , 模版,数据 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> OWNER_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,OWNER, java.lang.String.class, "所属", "所属", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> OWNER_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,OWNER, java.lang.String.class, "所属", "模版,数据", java.lang.String.class, null);
 	
 	/**
-	 * 考核状态 , 类型: java.lang.String
+	 * 分类 , 类型: java.lang.String
 	*/
-	public static final String STATUS="status";
+	public static final String TYPE="type";
 	
 	/**
-	 * 考核状态 , 类型: java.lang.String
+	 * 分类 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,STATUS, java.lang.String.class, "考核状态", "考核状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,TYPE, java.lang.String.class, "分类", "分类", java.lang.String.class, null);
 	
 	/**
 	 * 考核名称 , 类型: java.lang.String
@@ -63,14 +65,14 @@ public class AssessmentTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,NAME, java.lang.String.class, "考核名称", "考核名称", java.lang.String.class, null);
 	
 	/**
-	 * 岗位 , 类型: java.lang.String
+	 * 任务状态 , 类型: java.lang.String
 	*/
-	public static final String POS_ID="posId";
+	public static final String STATUS="status";
 	
 	/**
-	 * 岗位 , 类型: java.lang.String
+	 * 任务状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> POS_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,POS_ID, java.lang.String.class, "岗位", "岗位", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,STATUS, java.lang.String.class, "任务状态", "任务状态", java.lang.String.class, null);
 	
 	/**
 	 * 周期 , 类型: java.lang.String
@@ -93,16 +95,6 @@ public class AssessmentTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> IS_ALL_PERSON_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,IS_ALL_PERSON, java.lang.String.class, "全部人员", "全部人员", java.lang.String.class, null);
 	
 	/**
-	 * 同级评分人 , 类型: java.lang.String
-	*/
-	public static final String SAME_LEVEL_USER_ID="sameLevelUserId";
-	
-	/**
-	 * 同级评分人 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> SAME_LEVEL_USER_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,SAME_LEVEL_USER_ID, java.lang.String.class, "同级评分人", "同级评分人", java.lang.String.class, null);
-	
-	/**
 	 * 考核方式 , 类型: java.lang.String
 	*/
 	public static final String ASSESSMEN_METHOD="assessmenMethod";
@@ -123,24 +115,24 @@ public class AssessmentTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.math.BigDecimal> TOTAL_WEIGHT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,TOTAL_WEIGHT, java.math.BigDecimal.class, "指标总权重", "%）", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 自评 , 类型: java.lang.String
+	 * 自评评分 , 类型: java.lang.String
 	*/
 	public static final String HAS_SELF_ASSESSMENT="hasSelfAssessment";
 	
 	/**
-	 * 自评 , 类型: java.lang.String
+	 * 自评评分 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_SELF_ASSESSMENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_SELF_ASSESSMENT, java.lang.String.class, "自评", "自评", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_SELF_ASSESSMENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_SELF_ASSESSMENT, java.lang.String.class, "自评评分", "自评评分", java.lang.String.class, null);
 	
 	/**
-	 * 同级评分 , 类型: java.lang.String
+	 * 互评分 , 类型: java.lang.String
 	*/
 	public static final String HAS_SAME_ASSESSMENT="hasSameAssessment";
 	
 	/**
-	 * 同级评分 , 类型: java.lang.String
+	 * 互评分 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_SAME_ASSESSMENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_SAME_ASSESSMENT, java.lang.String.class, "同级评分", "同级评分", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_SAME_ASSESSMENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_SAME_ASSESSMENT, java.lang.String.class, "互评分", "互评分", java.lang.String.class, null);
 	
 	/**
 	 * 直接领导评分 , 类型: java.lang.String
@@ -153,24 +145,34 @@ public class AssessmentTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_LEADER_ASSESSMENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_LEADER_ASSESSMENT, java.lang.String.class, "直接领导评分", "直接领导评分", java.lang.String.class, null);
 	
 	/**
-	 * 领导评分 , 类型: java.lang.String
+	 * 上上级领导评分 , 类型: java.lang.String
 	*/
 	public static final String HAS_SECOND_LEADER_ASSESSMENT="hasSecondLeaderAssessment";
 	
 	/**
-	 * 领导评分 , 类型: java.lang.String
+	 * 上上级领导评分 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_SECOND_LEADER_ASSESSMENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_SECOND_LEADER_ASSESSMENT, java.lang.String.class, "领导评分", "领导评分", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_SECOND_LEADER_ASSESSMENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_SECOND_LEADER_ASSESSMENT, java.lang.String.class, "上上级领导评分", "上上级领导评分", java.lang.String.class, null);
 	
 	/**
-	 * HR复核 , 类型: java.lang.String
+	 * HR是否复核 , 类型: java.lang.String
 	*/
 	public static final String HAS_HR_CONFIRM="hasHrConfirm";
 	
 	/**
-	 * HR复核 , 类型: java.lang.String
+	 * HR是否复核 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_HR_CONFIRM_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_HR_CONFIRM, java.lang.String.class, "HR复核", "HR复核", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_HR_CONFIRM_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_HR_CONFIRM, java.lang.String.class, "HR是否复核", "HR是否复核", java.lang.String.class, null);
+	
+	/**
+	 * HR复核人 , 类型: java.lang.String
+	*/
+	public static final String HR_USER_ID="hrUserId";
+	
+	/**
+	 * HR复核人 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HR_USER_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HR_USER_ID, java.lang.String.class, "HR复核人", "HR复核人", java.lang.String.class, null);
 	
 	/**
 	 * 绩效模版 , 类型: java.lang.String
@@ -303,14 +305,14 @@ public class AssessmentTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,com.dt.platform.domain.hr.AssessmentTpl> ASSESSMENT_TPL_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,ASSESSMENT_TPL, com.dt.platform.domain.hr.AssessmentTpl.class, "assessmentTpl", "assessmentTpl", com.dt.platform.domain.hr.AssessmentTpl.class, null);
 	
 	/**
-	 * assessmentIndicator , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AssessmentIndicator
+	 * assessmentIndicatorList , assessmentIndicator , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AssessmentIndicator
 	*/
-	public static final String ASSESSMENT_INDICATOR="assessmentIndicator";
+	public static final String ASSESSMENT_INDICATOR_LIST="assessmentIndicatorList";
 	
 	/**
-	 * assessmentIndicator , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AssessmentIndicator
+	 * assessmentIndicatorList , assessmentIndicator , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AssessmentIndicator
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,com.dt.platform.domain.hr.AssessmentIndicator> ASSESSMENT_INDICATOR_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,ASSESSMENT_INDICATOR, java.util.List.class, "assessmentIndicator", "assessmentIndicator", com.dt.platform.domain.hr.AssessmentIndicator.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,com.dt.platform.domain.hr.AssessmentIndicator> ASSESSMENT_INDICATOR_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,ASSESSMENT_INDICATOR_LIST, java.util.List.class, "assessmentIndicatorList", "assessmentIndicator", com.dt.platform.domain.hr.AssessmentIndicator.class, null);
 	
 	/**
 	 * selectedCode , 类型: java.lang.String
@@ -343,14 +345,34 @@ public class AssessmentTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> ORGANIZATION_IDS_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,ORGANIZATION_IDS, java.util.List.class, "organizationIds", "organizationIds", java.lang.String.class, null);
 	
 	/**
-	 * personList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Person
+	 * positionList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.Position
+	*/
+	public static final String POSITION_LIST="positionList";
+	
+	/**
+	 * positionList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.Position
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,com.dt.platform.domain.hr.Position> POSITION_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,POSITION_LIST, java.util.List.class, "positionList", "positionList", com.dt.platform.domain.hr.Position.class, null);
+	
+	/**
+	 * positionIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String POSITION_IDS="positionIds";
+	
+	/**
+	 * positionIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> POSITION_IDS_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,POSITION_IDS, java.util.List.class, "positionIds", "positionIds", java.lang.String.class, null);
+	
+	/**
+	 * personList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final String PERSON_LIST="personList";
 	
 	/**
-	 * personList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Person
+	 * personList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,org.github.foxnic.web.domain.hrm.Person> PERSON_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,PERSON_LIST, java.util.List.class, "personList", "personList", org.github.foxnic.web.domain.hrm.Person.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,org.github.foxnic.web.domain.hrm.Employee> PERSON_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,PERSON_LIST, java.util.List.class, "personList", "personList", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
 	 * personIds , 集合类型: LIST , 类型: java.lang.String
@@ -363,14 +385,24 @@ public class AssessmentTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> PERSON_IDS_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,PERSON_IDS, java.util.List.class, "personIds", "personIds", java.lang.String.class, null);
 	
 	/**
-	 * excludePersonList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Person
+	 * hrUser , 类型: org.github.foxnic.web.domain.hrm.Employee
+	*/
+	public static final String HR_USER="hrUser";
+	
+	/**
+	 * hrUser , 类型: org.github.foxnic.web.domain.hrm.Employee
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,org.github.foxnic.web.domain.hrm.Employee> HR_USER_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HR_USER, org.github.foxnic.web.domain.hrm.Employee.class, "hrUser", "hrUser", org.github.foxnic.web.domain.hrm.Employee.class, null);
+	
+	/**
+	 * excludePersonList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final String EXCLUDE_PERSON_LIST="excludePersonList";
 	
 	/**
-	 * excludePersonList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Person
+	 * excludePersonList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,org.github.foxnic.web.domain.hrm.Person> EXCLUDE_PERSON_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,EXCLUDE_PERSON_LIST, java.util.List.class, "excludePersonList", "excludePersonList", org.github.foxnic.web.domain.hrm.Person.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,org.github.foxnic.web.domain.hrm.Employee> EXCLUDE_PERSON_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,EXCLUDE_PERSON_LIST, java.util.List.class, "excludePersonList", "excludePersonList", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
 	 * excludePersonIds , 集合类型: LIST , 类型: java.lang.String
@@ -383,9 +415,29 @@ public class AssessmentTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> EXCLUDE_PERSON_IDS_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,EXCLUDE_PERSON_IDS, java.util.List.class, "excludePersonIds", "excludePersonIds", java.lang.String.class, null);
 	
 	/**
+	 * buttonAction , 类型: java.lang.String
+	*/
+	public static final String BUTTON_ACTION="buttonAction";
+	
+	/**
+	 * buttonAction , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> BUTTON_ACTION_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,BUTTON_ACTION, java.lang.String.class, "buttonAction", "buttonAction", java.lang.String.class, null);
+	
+	/**
+	 * typeDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String TYPE_DICT="typeDict";
+	
+	/**
+	 * typeDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,org.github.foxnic.web.domain.system.DictItem> TYPE_DICT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,TYPE_DICT, org.github.foxnic.web.domain.system.DictItem.class, "typeDict", "typeDict", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER , STATUS , NAME , POS_ID , CYCLE , IS_ALL_PERSON , SAME_LEVEL_USER_ID , ASSESSMEN_METHOD , TOTAL_WEIGHT , HAS_SELF_ASSESSMENT , HAS_SAME_ASSESSMENT , HAS_LEADER_ASSESSMENT , HAS_SECOND_LEADER_ASSESSMENT , HAS_HR_CONFIRM , TPL_ID , SOURCE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_TPL , ASSESSMENT_INDICATOR , SELECTED_CODE , ORGANIZATION_LIST , ORGANIZATION_IDS , PERSON_LIST , PERSON_IDS , EXCLUDE_PERSON_LIST , EXCLUDE_PERSON_IDS };
+	public static final String[] $PROPS={ ID , OWNER , TYPE , NAME , STATUS , CYCLE , IS_ALL_PERSON , ASSESSMEN_METHOD , TOTAL_WEIGHT , HAS_SELF_ASSESSMENT , HAS_SAME_ASSESSMENT , HAS_LEADER_ASSESSMENT , HAS_SECOND_LEADER_ASSESSMENT , HAS_HR_CONFIRM , HR_USER_ID , TPL_ID , SOURCE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_TPL , ASSESSMENT_INDICATOR_LIST , SELECTED_CODE , ORGANIZATION_LIST , ORGANIZATION_IDS , POSITION_LIST , POSITION_IDS , PERSON_LIST , PERSON_IDS , HR_USER , EXCLUDE_PERSON_LIST , EXCLUDE_PERSON_IDS , BUTTON_ACTION , TYPE_DICT };
 	
 	/**
 	 * 代理类
@@ -418,13 +470,13 @@ public class AssessmentTaskMeta {
 		}
 		
 		/**
-		 * 设置 考核状态
-		 * @param status 考核状态
+		 * 设置 分类
+		 * @param type 分类
 		 * @return 当前对象
 		*/
-		public AssessmentTask setStatus(String status) {
-			super.change(STATUS,super.getStatus(),status);
-			super.setStatus(status);
+		public AssessmentTask setType(String type) {
+			super.change(TYPE,super.getType(),type);
+			super.setType(type);
 			return this;
 		}
 		
@@ -440,13 +492,13 @@ public class AssessmentTaskMeta {
 		}
 		
 		/**
-		 * 设置 岗位
-		 * @param posId 岗位
+		 * 设置 任务状态
+		 * @param status 任务状态
 		 * @return 当前对象
 		*/
-		public AssessmentTask setPosId(String posId) {
-			super.change(POS_ID,super.getPosId(),posId);
-			super.setPosId(posId);
+		public AssessmentTask setStatus(String status) {
+			super.change(STATUS,super.getStatus(),status);
+			super.setStatus(status);
 			return this;
 		}
 		
@@ -473,17 +525,6 @@ public class AssessmentTaskMeta {
 		}
 		
 		/**
-		 * 设置 同级评分人
-		 * @param sameLevelUserId 同级评分人
-		 * @return 当前对象
-		*/
-		public AssessmentTask setSameLevelUserId(String sameLevelUserId) {
-			super.change(SAME_LEVEL_USER_ID,super.getSameLevelUserId(),sameLevelUserId);
-			super.setSameLevelUserId(sameLevelUserId);
-			return this;
-		}
-		
-		/**
 		 * 设置 考核方式
 		 * @param assessmenMethod 考核方式
 		 * @return 当前对象
@@ -506,8 +547,8 @@ public class AssessmentTaskMeta {
 		}
 		
 		/**
-		 * 设置 自评
-		 * @param hasSelfAssessment 自评
+		 * 设置 自评评分
+		 * @param hasSelfAssessment 自评评分
 		 * @return 当前对象
 		*/
 		public AssessmentTask setHasSelfAssessment(String hasSelfAssessment) {
@@ -517,8 +558,8 @@ public class AssessmentTaskMeta {
 		}
 		
 		/**
-		 * 设置 同级评分
-		 * @param hasSameAssessment 同级评分
+		 * 设置 互评分
+		 * @param hasSameAssessment 互评分
 		 * @return 当前对象
 		*/
 		public AssessmentTask setHasSameAssessment(String hasSameAssessment) {
@@ -539,8 +580,8 @@ public class AssessmentTaskMeta {
 		}
 		
 		/**
-		 * 设置 领导评分
-		 * @param hasSecondLeaderAssessment 领导评分
+		 * 设置 上上级领导评分
+		 * @param hasSecondLeaderAssessment 上上级领导评分
 		 * @return 当前对象
 		*/
 		public AssessmentTask setHasSecondLeaderAssessment(String hasSecondLeaderAssessment) {
@@ -550,13 +591,24 @@ public class AssessmentTaskMeta {
 		}
 		
 		/**
-		 * 设置 HR复核
-		 * @param hasHrConfirm HR复核
+		 * 设置 HR是否复核
+		 * @param hasHrConfirm HR是否复核
 		 * @return 当前对象
 		*/
 		public AssessmentTask setHasHrConfirm(String hasHrConfirm) {
 			super.change(HAS_HR_CONFIRM,super.getHasHrConfirm(),hasHrConfirm);
 			super.setHasHrConfirm(hasHrConfirm);
+			return this;
+		}
+		
+		/**
+		 * 设置 HR复核人
+		 * @param hrUserId HR复核人
+		 * @return 当前对象
+		*/
+		public AssessmentTask setHrUserId(String hrUserId) {
+			super.change(HR_USER_ID,super.getHrUserId(),hrUserId);
+			super.setHrUserId(hrUserId);
 			return this;
 		}
 		
@@ -704,13 +756,13 @@ public class AssessmentTaskMeta {
 		}
 		
 		/**
-		 * 设置 assessmentIndicator
-		 * @param assessmentIndicator assessmentIndicator
+		 * 设置 assessmentIndicatorList
+		 * @param assessmentIndicatorList assessmentIndicatorList
 		 * @return 当前对象
 		*/
-		public AssessmentTask setAssessmentIndicator(List<AssessmentIndicator> assessmentIndicator) {
-			super.change(ASSESSMENT_INDICATOR,super.getAssessmentIndicator(),assessmentIndicator);
-			super.setAssessmentIndicator(assessmentIndicator);
+		public AssessmentTask setAssessmentIndicatorList(List<AssessmentIndicator> assessmentIndicatorList) {
+			super.change(ASSESSMENT_INDICATOR_LIST,super.getAssessmentIndicatorList(),assessmentIndicatorList);
+			super.setAssessmentIndicatorList(assessmentIndicatorList);
 			return this;
 		}
 		
@@ -748,11 +800,33 @@ public class AssessmentTaskMeta {
 		}
 		
 		/**
+		 * 设置 positionList
+		 * @param positionList positionList
+		 * @return 当前对象
+		*/
+		public AssessmentTask setPositionList(List<Position> positionList) {
+			super.change(POSITION_LIST,super.getPositionList(),positionList);
+			super.setPositionList(positionList);
+			return this;
+		}
+		
+		/**
+		 * 设置 positionIds
+		 * @param positionIds positionIds
+		 * @return 当前对象
+		*/
+		public AssessmentTask setPositionIds(List<String> positionIds) {
+			super.change(POSITION_IDS,super.getPositionIds(),positionIds);
+			super.setPositionIds(positionIds);
+			return this;
+		}
+		
+		/**
 		 * 设置 personList
 		 * @param personList personList
 		 * @return 当前对象
 		*/
-		public AssessmentTask setPersonList(List<Person> personList) {
+		public AssessmentTask setPersonList(List<Employee> personList) {
 			super.change(PERSON_LIST,super.getPersonList(),personList);
 			super.setPersonList(personList);
 			return this;
@@ -770,11 +844,22 @@ public class AssessmentTaskMeta {
 		}
 		
 		/**
+		 * 设置 hrUser
+		 * @param hrUser hrUser
+		 * @return 当前对象
+		*/
+		public AssessmentTask setHrUser(Employee hrUser) {
+			super.change(HR_USER,super.getHrUser(),hrUser);
+			super.setHrUser(hrUser);
+			return this;
+		}
+		
+		/**
 		 * 设置 excludePersonList
 		 * @param excludePersonList excludePersonList
 		 * @return 当前对象
 		*/
-		public AssessmentTask setExcludePersonList(List<Person> excludePersonList) {
+		public AssessmentTask setExcludePersonList(List<Employee> excludePersonList) {
 			super.change(EXCLUDE_PERSON_LIST,super.getExcludePersonList(),excludePersonList);
 			super.setExcludePersonList(excludePersonList);
 			return this;
@@ -788,6 +873,28 @@ public class AssessmentTaskMeta {
 		public AssessmentTask setExcludePersonIds(List<String> excludePersonIds) {
 			super.change(EXCLUDE_PERSON_IDS,super.getExcludePersonIds(),excludePersonIds);
 			super.setExcludePersonIds(excludePersonIds);
+			return this;
+		}
+		
+		/**
+		 * 设置 buttonAction
+		 * @param buttonAction buttonAction
+		 * @return 当前对象
+		*/
+		public AssessmentTask setButtonAction(String buttonAction) {
+			super.change(BUTTON_ACTION,super.getButtonAction(),buttonAction);
+			super.setButtonAction(buttonAction);
+			return this;
+		}
+		
+		/**
+		 * 设置 typeDict
+		 * @param typeDict typeDict
+		 * @return 当前对象
+		*/
+		public AssessmentTask setTypeDict(DictItem typeDict) {
+			super.change(TYPE_DICT,super.getTypeDict(),typeDict);
+			super.setTypeDict(typeDict);
 			return this;
 		}
 
@@ -808,15 +915,15 @@ public class AssessmentTaskMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
 			inst.setSource(this.getSource());
+			inst.setType(this.getType());
 			inst.setCycle(this.getCycle());
-			inst.setSameLevelUserId(this.getSameLevelUserId());
 			inst.setHasSelfAssessment(this.getHasSelfAssessment());
-			inst.setPosId(this.getPosId());
 			inst.setHasLeaderAssessment(this.getHasLeaderAssessment());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setId(this.getId());
 			inst.setIsAllPerson(this.getIsAllPerson());
 			inst.setOwner(this.getOwner());
+			inst.setHrUserId(this.getHrUserId());
 			inst.setHasHrConfirm(this.getHasHrConfirm());
 			inst.setHasSecondLeaderAssessment(this.getHasSecondLeaderAssessment());
 			inst.setHasSameAssessment(this.getHasSameAssessment());
@@ -834,14 +941,19 @@ public class AssessmentTaskMeta {
 			inst.setTplId(this.getTplId());
 			inst.setStatus(this.getStatus());
 			if(all) {
+				inst.setPositionIds(this.getPositionIds());
+				inst.setPositionList(this.getPositionList());
 				inst.setPersonList(this.getPersonList());
+				inst.setOrganizationList(this.getOrganizationList());
+				inst.setSelectedCode(this.getSelectedCode());
+				inst.setHrUser(this.getHrUser());
+				inst.setAssessmentIndicatorList(this.getAssessmentIndicatorList());
 				inst.setOrganizationIds(this.getOrganizationIds());
 				inst.setExcludePersonIds(this.getExcludePersonIds());
-				inst.setOrganizationList(this.getOrganizationList());
+				inst.setTypeDict(this.getTypeDict());
 				inst.setPersonIds(this.getPersonIds());
 				inst.setAssessmentTpl(this.getAssessmentTpl());
-				inst.setSelectedCode(this.getSelectedCode());
-				inst.setAssessmentIndicator(this.getAssessmentIndicator());
+				inst.setButtonAction(this.getButtonAction());
 				inst.setExcludePersonList(this.getExcludePersonList());
 			}
 			inst.clearModifies();

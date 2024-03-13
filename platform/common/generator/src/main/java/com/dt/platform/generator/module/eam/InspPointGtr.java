@@ -52,7 +52,7 @@ public class InspPointGtr extends BaseCodeGenerator {
         cfg.view().field(InspectionPointMeta.ITEM_COUNT).basic().label("检查项数").table().alignLeft().disable(false);
         cfg.view().field(InspectionPointMeta.ITEM_DISABLE_COUNT).basic().label("检查项数(未启用)").table().alignLeft().disable(false);
         cfg.view().field(EAMTables.EAM_INSPECTION_POINT.PICTURE_ID).table().disable(true);
-
+        cfg.view().field(EAMTables.EAM_INSPECTION_POINT.UPDATE_BY).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_POINT.ROUTE_ID).table().disable(true);
 //        cfg.view().field(EAMTables.EAM_INSPECTION_POINT.SELECTED_CODE).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_POINT.POS_LONGITUDE).table().disable(true);
@@ -131,6 +131,9 @@ public class InspPointGtr extends BaseCodeGenerator {
 
         cfg.view().search().rowsDisplay(1);
         cfg.view().form().addPage("巡检项","checkSelectList");
+
+        cfg.view().list().addToolButton("导入","importData","import-data");
+        cfg.view().list().addToolButton("导出","exportData","export-data");
 
         //文件生成覆盖模式
         cfg.overrides()

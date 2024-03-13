@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-03-06 13:40:38
+ * @since 2024-03-10 13:47:05
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -7620,87 +7620,6 @@ public class EAMTables {
 			this.init($NAME,"扫码配置" , ID , CODE , NAME , METHOD , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_ASSET_SCAN_SCENE $TABLE=new EAM_ASSET_SCAN_SCENE();
-	}
-	
-	/**
-	 * 扫码配置
-	*/
-	public static class EAM_ASSET_SCENE extends DBTable {
-		
-		/**
-		 * 表名
-		*/
-		public static final String $NAME = "eam_asset_scene";
-		
-		/**
-		 * 主键
-		*/
-		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
-		
-		/**
-		 * 场景编码
-		*/
-		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","场景编码","场景编码",false,false,true);
-		
-		/**
-		 * 场景名称
-		*/
-		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","场景名称","场景名称",false,false,true);
-		
-		/**
-		 * 方式
-		*/
-		public static final DBField METHOD = new DBField(DBDataType.STRING , "method","method","方式","方式",false,false,true);
-		
-		/**
-		 * 创建人ID
-		*/
-		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
-		
-		/**
-		 * 创建时间
-		*/
-		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
-		
-		/**
-		 * 修改人ID
-		*/
-		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
-		
-		/**
-		 * 修改时间
-		*/
-		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
-		
-		/**
-		 * 是否已删除
-		*/
-		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
-		
-		/**
-		 * 删除人ID
-		*/
-		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
-		
-		/**
-		 * 删除时间
-		*/
-		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
-		
-		/**
-		 * 数据版本号
-		*/
-		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
-		
-		/**
-		 * 租户
-		*/
-		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
-		
-		public EAM_ASSET_SCENE() {
-			this.init($NAME,"扫码配置" , ID , CODE , NAME , METHOD , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
-		}
-		public static final EAM_ASSET_SCENE $TABLE=new EAM_ASSET_SCENE();
 	}
 	
 	/**
@@ -16766,6 +16685,126 @@ public class EAMTables {
 			this.init($NAME,"巡检点" , ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , ACTION_LABEL , IMAGE_ID , POINT_ID , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION);
 		}
 		public static final EAM_INSPECTION_TASK_POINT $TABLE=new EAM_INSPECTION_TASK_POINT();
+	}
+	
+	/**
+	 * 巡检点批量操作
+	*/
+	public static class EAM_INSPECTION_TASK_POINT_OPER extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_inspection_task_point_oper";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 任务
+		*/
+		public static final DBField TASK_ID = new DBField(DBDataType.STRING , "task_id","taskId","任务","任务",false,false,true);
+		
+		/**
+		 * 巡检状态
+		*/
+		public static final DBField IS_POINT_STATUS = new DBField(DBDataType.STRING , "is_point_status","isPointStatus","巡检状态","巡检状态",false,false,true);
+		
+		/**
+		 * 巡检状态
+		*/
+		public static final DBField POINT_STATUS = new DBField(DBDataType.STRING , "point_status","pointStatus","巡检状态","巡检状态",false,false,true);
+		
+		/**
+		 * 处理动作
+		*/
+		public static final DBField IS_ACTION_LABEL = new DBField(DBDataType.STRING , "is_action_label","isActionLabel","处理动作","处理动作",false,false,true);
+		
+		/**
+		 * 处理动作
+		*/
+		public static final DBField ACTION_LABEL = new DBField(DBDataType.STRING , "action_label","actionLabel","处理动作","处理动作",false,false,true);
+		
+		/**
+		 * 巡检人
+		*/
+		public static final DBField IS_INSPECTOR_ID = new DBField(DBDataType.STRING , "is_inspector_id","isInspectorId","巡检人","巡检人",false,false,true);
+		
+		/**
+		 * 巡检人
+		*/
+		public static final DBField INSPECTOR_ID = new DBField(DBDataType.STRING , "inspector_id","inspectorId","巡检人","巡检人",false,false,true);
+		
+		/**
+		 * 巡检结果
+		*/
+		public static final DBField IS_CONTENT = new DBField(DBDataType.STRING , "is_content","isContent","巡检结果","巡检结果",false,false,true);
+		
+		/**
+		 * 巡检结果
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","巡检结果","巡检结果",false,false,true);
+		
+		/**
+		 * 操作人
+		*/
+		public static final DBField OPER_USER_ID = new DBField(DBDataType.STRING , "oper_user_id","operUserId","操作人","操作人",false,false,true);
+		
+		/**
+		 * 操作时间
+		*/
+		public static final DBField OPER_TIME = new DBField(DBDataType.DATE , "oper_time","operTime","操作时间","操作时间",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public EAM_INSPECTION_TASK_POINT_OPER() {
+			this.init($NAME,"巡检点批量操作" , ID , TASK_ID , IS_POINT_STATUS , POINT_STATUS , IS_ACTION_LABEL , ACTION_LABEL , IS_INSPECTOR_ID , INSPECTOR_ID , IS_CONTENT , CONTENT , OPER_USER_ID , OPER_TIME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final EAM_INSPECTION_TASK_POINT_OPER $TABLE=new EAM_INSPECTION_TASK_POINT_OPER();
 	}
 	
 	/**

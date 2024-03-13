@@ -1,7 +1,7 @@
 /**
  * 考核计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-04 07:40:31
+ * @since 2024-03-10 15:10:37
  */
 
 
@@ -92,8 +92,8 @@ function ListPage() {
 					,{ field: 'cycle', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('周期'), templet:function (d){ return templet('cycle',fox.getEnumText(RADIO_CYCLE_DATA,d.cycle,'','cycle'),d);}}
 					,{ field: 'method', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考核方式') , templet: function (d) { return templet('method',d.method,d);}  }
 					,{ field: 'assesseeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('被考核人') , templet: function (d) { return templet('assesseeId',fox.getProperty(d,["assesseeUser","name"],0,'','assesseeId'),d);} }
+					,{ field: 'assessorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考核人'), templet: function (d) { return templet('assessorId' ,fox.joinLabel(d.assessmentTpl,"name",',','','assessorId'),fox.getProperty(d,["assessorUser","name"],0,'','assessorId'),d);}}
 					,{ field: 'totalWeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('指标总权重') , templet: function (d) { return templet('totalWeight',d.totalWeight,d);}  }
-					,{ field: 'buttonAction', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('buttonAction') , templet: function (d) { return templet('buttonAction',d.buttonAction,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -167,7 +167,7 @@ function ListPage() {
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.assesseeId={ inputType:"button",value: $("#assesseeId").val(),fillBy:["assesseeUser","name"] ,label:$("#assesseeId-button").text() };
-		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
+		value.createTime={ inputType:"date_input", begin: $("#createTime-begin").val(), end: $("#createTime-end").val() ,matchType:"auto" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -240,7 +240,16 @@ function ListPage() {
 			}
 		});
 		laydate.render({
-			elem: '#createTime',
+			elem: '#createTime-begin',
+			trigger:"click",
+			done: function(value, date, endDate) {
+				setTimeout(function () {
+					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("createTime",value, date, endDate);
+				},1);
+			}
+		});
+		laydate.render({
+			elem: '#createTime-end',
 			trigger:"click",
 			done: function(value, date, endDate) {
 				setTimeout(function () {

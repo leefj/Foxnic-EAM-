@@ -715,6 +715,10 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         Map<String,Object> map=queryAssetMap(assetList,null);
         List<Map<String, Object>> mapList= (List<Map<String, Object>>) map.get("dataList");
         AssetLabelPrint printData=new AssetLabelPrint();
+        Rcd labelRs=dao.queryRecord("select * from sys_config where code='eam.assetLabelPrefix' and deleted=0");
+        if(labelRs!=null){
+            printData.setAssetLabelPrefix(labelRs.getString("value"));
+        }
         printData.setLabel(label);
         printData.setUuid(uuid);
         printData.setLabelTpl(label.getAssetTpl());

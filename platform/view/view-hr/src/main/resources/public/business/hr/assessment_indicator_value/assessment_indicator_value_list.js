@@ -1,7 +1,7 @@
 /**
  * 考核结果 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-28 10:43:19
+ * @since 2024-03-13 15:06:49
  */
 
 
@@ -85,13 +85,14 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'indicatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('指标') , templet: function (d) { return templet('indicatorId',d.indicatorId,d);}  }
-					,{ field: 'owner', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('评分人类型') , templet: function (d) { return templet('owner',d.owner,d);}  }
-					,{ field: 'userId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('评分人') , templet: function (d) { return templet('userId',d.userId,d);}  }
-					,{ field: 'value', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('评分') , templet: function (d) { return templet('value',d.value,d);}  }
-					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('说明') , templet: function (d) { return templet('content',d.content,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
+					,{ field: 'value', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('得分') , templet: function (d) { return templet('value',d.value,d);}  }
+					,{ field: 'assessmentIndicator', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('分类') , templet: function (d) { return templet('assessmentIndicator',d.assessmentIndicator,d);}  }
+					,{ field: 'IndicatorName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('名称') , templet: function (d) { return templet('IndicatorName',fox.getProperty(d,["assessmentIndicator","IndicatorGroupName"],0,'','IndicatorName'),d);} }
+					,{ field: 'IndicatorGroupName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('分类') , templet: function (d) { return templet('IndicatorGroupName',fox.getProperty(d,["assessmentIndicator","IndicatorGroupName"],0,'','IndicatorGroupName'),d);} }
+					,{ field: 'IndicatorScoringBase', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('评份标准') , templet: function (d) { return templet('IndicatorScoringBase',fox.getProperty(d,["assessmentIndicator","IndicatorScoringBase"],0,'','IndicatorScoringBase'),d);} }
+					,{ field: 'IndicatorDef', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('评份定义') , templet: function (d) { return templet('IndicatorDef',fox.getProperty(d,["assessmentIndicator","IndicatorDef"],0,'','IndicatorDef'),d);} }
+					,{ field: 'IndicatorMinValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('最低分') , templet: function (d) { return templet('IndicatorMinValue',fox.getProperty(d,["assessmentIndicator","IndicatorMinValue"],0,'','IndicatorMinValue'),d);} }
+					,{ field: 'IndicatorMaxValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('最高分') , templet: function (d) { return templet('IndicatorMaxValue',fox.getProperty(d,["assessmentIndicator","IndicatorMaxValue"],0,'','IndicatorMaxValue'),d);} }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -162,13 +163,20 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
+		value.taskPaperId={ inputType:"button",value: $("#taskPaperId").val()};
 		value.indicatorId={ inputType:"button",value: $("#indicatorId").val()};
-		value.owner={ inputType:"button",value: $("#owner").val()};
-		value.userId={ inputType:"button",value: $("#userId").val()};
 		value.value={ inputType:"number_input", value: $("#value").val() };
+		value.sn={ inputType:"number_input", value: $("#sn").val() };
 		value.content={ inputType:"button",value: $("#content").val()};
 		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
 		value.updateBy={ inputType:"button",value: $("#updateBy").val()};
+		value.assessmentIndicator={ inputType:"button",value: $("#assessmentIndicator").val()};
+		value.IndicatorName={ inputType:"button",value: $("#IndicatorName").val(),fillBy:["assessmentIndicator","IndicatorGroupName"] };
+		value.IndicatorGroupName={ inputType:"button",value: $("#IndicatorGroupName").val(),fillBy:["assessmentIndicator","IndicatorGroupName"] };
+		value.IndicatorScoringBase={ inputType:"button",value: $("#IndicatorScoringBase").val(),fillBy:["assessmentIndicator","IndicatorScoringBase"] };
+		value.IndicatorDef={ inputType:"button",value: $("#IndicatorDef").val(),fillBy:["assessmentIndicator","IndicatorDef"] };
+		value.IndicatorMinValue={ inputType:"button",value: $("#IndicatorMinValue").val(),fillBy:["assessmentIndicator","IndicatorMinValue"] };
+		value.IndicatorMaxValue={ inputType:"button",value: $("#IndicatorMaxValue").val(),fillBy:["assessmentIndicator","IndicatorMaxValue"] };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -415,7 +423,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["75%",height+"px"],
 			type: 2,
 			id:"hr-assessment-indicator-value-form-data-win",
 			content: '/business/hr/assessment_indicator_value/assessment_indicator_value_form.html' + (queryString?("?"+queryString):""),

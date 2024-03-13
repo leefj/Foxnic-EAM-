@@ -24,7 +24,7 @@ import java.util.Map;
  * 考核结果服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-28 10:43:18
+ * @since 2024-03-13 07:20:11
 */
 
 public interface IAssessmentIndicatorValueService extends  ISimpleIdService<AssessmentIndicatorValue,String> {

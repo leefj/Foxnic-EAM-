@@ -12,6 +12,7 @@ import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
+import org.github.foxnic.web.domain.system.DictItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
@@ -27,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核模版
  * <p>考核模版 , 数据表 hr_assessment_tpl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-01 09:12:37
- * @sign 7B273DD1579B695939F8B8440A1CF844
+ * @since 2024-03-10 21:32:45
+ * @sign 1F01E8FA93F5623B45986E56B197E55E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -52,6 +53,12 @@ public class AssessmentTpl extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="模版名称" , notes = "模版名称" , example = "科技项目绩效模版")
 	private String name;
+	
+	/**
+	 * 分类：分类
+	*/
+	@ApiModelProperty(required = false,value="分类" , notes = "分类")
+	private String type;
 	
 	/**
 	 * 部门：部门
@@ -92,7 +99,7 @@ public class AssessmentTpl extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-01 08:44:36")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-02 04:51:08")
 	private Date updateTime;
 	
 	/**
@@ -119,7 +126,7 @@ public class AssessmentTpl extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "10")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "11")
 	private Integer version;
 	
 	/**
@@ -139,6 +146,12 @@ public class AssessmentTpl extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="selectedCode" , notes = "selectedCode")
 	private String selectedCode;
+	
+	/**
+	 * typeDict：typeDict
+	*/
+	@ApiModelProperty(required = false,value="typeDict" , notes = "typeDict")
+	private DictItem typeDict;
 	
 	/**
 	 * positionList：positionList
@@ -187,6 +200,25 @@ public class AssessmentTpl extends Entity {
 	*/
 	public AssessmentTpl setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 分类<br>
+	 * 分类
+	 * @return 分类
+	*/
+	public String getType() {
+		return type;
+	}
+	
+	/**
+	 * 设置 分类
+	 * @param type 分类
+	 * @return 当前对象
+	*/
+	public AssessmentTpl setType(String type) {
+		this.type=type;
 		return this;
 	}
 	
@@ -499,6 +531,25 @@ public class AssessmentTpl extends Entity {
 	}
 	
 	/**
+	 * 获得 typeDict<br>
+	 * typeDict
+	 * @return typeDict
+	*/
+	public DictItem getTypeDict() {
+		return typeDict;
+	}
+	
+	/**
+	 * 设置 typeDict
+	 * @param typeDict typeDict
+	 * @return 当前对象
+	*/
+	public AssessmentTpl setTypeDict(DictItem typeDict) {
+		this.typeDict=typeDict;
+		return this;
+	}
+	
+	/**
 	 * 获得 positionList<br>
 	 * positionList
 	 * @return positionList
@@ -604,6 +655,7 @@ public class AssessmentTpl extends Entity {
 		com.dt.platform.domain.hr.meta.AssessmentTplMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AssessmentTplMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setType(this.getType());
 		inst.setVersion(this.getVersion());
 		inst.setOrgId(this.getOrgId());
 		inst.setCreateBy(this.getCreateBy());
@@ -619,6 +671,7 @@ public class AssessmentTpl extends Entity {
 		if(all) {
 			inst.setPositionIds(this.getPositionIds());
 			inst.setPositionList(this.getPositionList());
+			inst.setTypeDict(this.getTypeDict());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setAssessmentIndicator(this.getAssessmentIndicator());
 		}
@@ -682,6 +735,7 @@ public class AssessmentTpl extends Entity {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(AssessmentTplMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssessmentTplMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, map.get(AssessmentTplMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssessmentTplMeta.VERSION)));
 			this.setOrgId(DataParser.parse(String.class, map.get(AssessmentTplMeta.ORG_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssessmentTplMeta.CREATE_BY)));
@@ -695,12 +749,14 @@ public class AssessmentTpl extends Entity {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssessmentTplMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentTplMeta.ID)));
 			// others
+			this.setTypeDict(DataParser.parse(DictItem.class, map.get(AssessmentTplMeta.TYPE_DICT)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(AssessmentTplMeta.SELECTED_CODE)));
 			return true;
 		} else {
 			try {
 				this.setNotes( (String)map.get(AssessmentTplMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(AssessmentTplMeta.UPDATE_TIME));
+				this.setType( (String)map.get(AssessmentTplMeta.TYPE));
 				this.setVersion( (Integer)map.get(AssessmentTplMeta.VERSION));
 				this.setOrgId( (String)map.get(AssessmentTplMeta.ORG_ID));
 				this.setCreateBy( (String)map.get(AssessmentTplMeta.CREATE_BY));
@@ -714,6 +770,7 @@ public class AssessmentTpl extends Entity {
 				this.setDeleteBy( (String)map.get(AssessmentTplMeta.DELETE_BY));
 				this.setId( (String)map.get(AssessmentTplMeta.ID));
 				// others
+				this.setTypeDict( (DictItem)map.get(AssessmentTplMeta.TYPE_DICT));
 				this.setSelectedCode( (String)map.get(AssessmentTplMeta.SELECTED_CODE));
 				return true;
 			} catch (Exception e) {
@@ -733,6 +790,7 @@ public class AssessmentTpl extends Entity {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(AssessmentTplMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssessmentTplMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, r.getValue(AssessmentTplMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssessmentTplMeta.VERSION)));
 			this.setOrgId(DataParser.parse(String.class, r.getValue(AssessmentTplMeta.ORG_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssessmentTplMeta.CREATE_BY)));
@@ -750,6 +808,7 @@ public class AssessmentTpl extends Entity {
 			try {
 				this.setNotes( (String)r.getValue(AssessmentTplMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(AssessmentTplMeta.UPDATE_TIME));
+				this.setType( (String)r.getValue(AssessmentTplMeta.TYPE));
 				this.setVersion( (Integer)r.getValue(AssessmentTplMeta.VERSION));
 				this.setOrgId( (String)r.getValue(AssessmentTplMeta.ORG_ID));
 				this.setCreateBy( (String)r.getValue(AssessmentTplMeta.CREATE_BY));

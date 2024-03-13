@@ -2,7 +2,7 @@
 /**
  * 考核结果 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-28 10:43:19
+ * @since 2024-03-13 15:06:48
  */
  -->
  <!DOCTYPE html>
@@ -40,35 +40,70 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 评分卷 , taskPaperId ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('评分卷')}" class="search-label taskPaperId-label">评分卷</span><span class="search-colon">:</span></div>
+                        <input id="taskPaperId" class="layui-input search-input" style="width: 140px" type="text" />
+                    </div>
                     <!-- 指标 , indicatorId ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('指标')}" class="search-label indicatorId-label">指标</span><span class="search-colon">:</span></div>
                         <input id="indicatorId" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
-                    <!-- 评分人类型 , owner ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 得分 , value ,typeName=number_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('评分人类型')}" class="search-label owner-label">评分人类型</span><span class="search-colon">:</span></div>
-                        <input id="owner" class="layui-input search-input" style="width: 140px" type="text" />
-                    </div>
-                    <!-- 评分人 , userId ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('评分人')}" class="search-label userId-label">评分人</span><span class="search-colon">:</span></div>
-                        <input id="userId" class="layui-input search-input" style="width: 140px" type="text" />
-                    </div>
-                    <!-- 评分 , value ,typeName=number_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('评分')}" class="search-label value-label">评分</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('得分')}" class="search-label value-label">得分</span><span class="search-colon">:</span></div>
                             <input id="value" class="layui-input search-input" style="width: 140px" type="text" autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0" min-value="" max-value="" scale="0"/>
                     </div>
-                    <!-- 说明 , content ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 顺序 , sn ,typeName=number_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('说明')}" class="search-label content-label">说明</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('顺序')}" class="search-label sn-label">顺序</span><span class="search-colon">:</span></div>
+                            <input id="sn" class="layui-input search-input" style="width: 140px" type="text" autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0" min-value="" max-value="" scale="0"/>
+                    </div>
+                    <!-- 内容 , content ,typeName=text_area, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('内容')}" class="search-label content-label">内容</span><span class="search-colon">:</span></div>
                         <input id="content" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('修改人ID')}" class="search-label updateBy-label">修改人ID</span><span class="search-colon">:</span></div>
                         <input id="updateBy" class="layui-input search-input" style="width: 140px" type="text" />
+                    </div>
+                    <!-- 分类 , assessmentIndicator ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('分类')}" class="search-label assessmentIndicator-label">分类</span><span class="search-colon">:</span></div>
+                        <input id="assessmentIndicator" class="layui-input search-input" style="width: 140px" type="text" />
+                    </div>
+                    <!-- 名称 , IndicatorName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('名称')}" class="search-label IndicatorName-label">名称</span><span class="search-colon">:</span></div>
+                        <input id="IndicatorName" class="layui-input search-input" style="width: 140px" type="text" />
+                    </div>
+                    <!-- 分类 , IndicatorGroupName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('分类')}" class="search-label IndicatorGroupName-label">分类</span><span class="search-colon">:</span></div>
+                        <input id="IndicatorGroupName" class="layui-input search-input" style="width: 140px" type="text" />
+                    </div>
+                    <!-- 评份标准 , IndicatorScoringBase ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('评份标准')}" class="search-label IndicatorScoringBase-label">评份标准</span><span class="search-colon">:</span></div>
+                        <input id="IndicatorScoringBase" class="layui-input search-input" style="width: 140px" type="text" />
+                    </div>
+                    <!-- 评份定义 , IndicatorDef ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('评份定义')}" class="search-label IndicatorDef-label">评份定义</span><span class="search-colon">:</span></div>
+                        <input id="IndicatorDef" class="layui-input search-input" style="width: 140px" type="text" />
+                    </div>
+                    <!-- 最低分 , IndicatorMinValue ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('最低分')}" class="search-label IndicatorMinValue-label">最低分</span><span class="search-colon">:</span></div>
+                        <input id="IndicatorMinValue" class="layui-input search-input" style="width: 140px" type="text" />
+                    </div>
+                    <!-- 最高分 , IndicatorMaxValue ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('最高分')}" class="search-label IndicatorMaxValue-label">最高分</span><span class="search-colon">:</span></div>
+                        <input id="IndicatorMaxValue" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
 
 
@@ -98,7 +133,6 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('hr_assessment_indicator_value:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
-        <button th:if="${perm.checkAuth('hr_assessment_indicator_value:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除','','cmp:table.button')}">删除</span></button>
     </div>
 </script>
 
@@ -119,6 +153,8 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var AUTH_PREFIX="hr_assessment_indicator_value";
 
+    // paperId
+    var PAPER_ID = [[${paperId}]] ;
 
 </script>
 

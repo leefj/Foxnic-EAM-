@@ -1,7 +1,7 @@
 /**
  * 考核任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 19:40:26
+ * @since 2024-03-09 14:46:37
  */
 
 layui.config({
@@ -20,6 +20,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-hr/hr-assessment-task";
 
+
+    var timestamp = Date.parse(new Date());
+    var formAction=admin.getTempData('hr-assessment-task-form-data-form-action');
 
     //列表页的扩展
     var list={
@@ -93,6 +96,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            param.owner="tpl";
             return true;
         },
         /**
@@ -177,8 +181,20 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             return items;
         },
 
-        createTaskDtl:function (data){
-            console.log('createTaskDtl',data);
+        createBill:function (data){
+            console.log('createBill',data);
+
+            admin.popupCenter({
+                title: "任务明细",
+                resize: false,
+                offset: [10,null],
+                area: ["95%","95%"],
+                type: 2,
+                id:"hr-assessment-task-form-data-win",
+                content: '/business/hr/assessment_bill/assessment_bill_list.html?taskId='+data.id,
+                finish: function () {
+                }
+            });
         },
         /**
          * 末尾执行
@@ -211,12 +227,57 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeDataFill:function (data) {
             console.log('beforeDataFill',data);
+            var personIds="";
+            if(data&&data.personList){
+                for(var i=0;i<data.personList.length;i++){
+                    if(i==0){
+                        personIds=data.personList[i].id;
+                    }else{
+                        personIds=personIds+","+data.personList[i].id;
+                    }
+                }
+                data.personIds=personIds;
+            }else{
+                data.personIds="";
+            }
+
+            var expersonIds="";
+            if(data&&data.excludePersonList){
+                for(var i=0;i<data.excludePersonList.length;i++){
+                    if(i==0){
+                        expersonIds=data.excludePersonList[i].id;
+                    }else{
+                        expersonIds=expersonIds+","+data.excludePersonList[i].id;
+                    }
+                }
+                data.excludePersonIds=expersonIds;
+            }else{
+                data.excludePersonIds="";
+            }
+
+            var orgIds="";
+            if(data&&data.organizationList){
+                for(var i=0;i<data.organizationList.length;i++){
+                    if(i==0){
+                        orgIds=data.organizationList[i].id;
+                    }else{
+                        orgIds=orgIds+","+data.organizationList[i].id;
+                    }
+                }
+                data.organizationIds=orgIds;
+            }else{
+                data.organizationIds="";
+            }
+            console.log('beforeDataFill',data);
+
         },
         /**
          * 表单数据填充后
          * */
         afterDataFill:function (data) {
             console.log('afterDataFill',data);
+
+
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框
@@ -264,6 +325,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
+            data.selectedCode=timestamp;
             return true;
         },
         /**
@@ -279,6 +341,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterSubmit:function (param,result) {
             console.log("afterSubmitt",param,result);
         },
+        loadTplData:function (data,input,button) {
+            console.log("loadTplData",data,input,button);
+            top.layer.prompt(function(value, index, elem){
+                //设置隐藏域
+                input.val(value);
+                //设置按钮
+                button.text(value);
+                top.layer.close(index);
+            });
+        },
 
         /**
          *  加载 指标数据
@@ -289,7 +361,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //设置 iframe 高度
             ifr.height("400px");
             //设置地址
-            win.location="/business/system/node/node_list.html?id="+data.id;
+            var assessmentId="";
+            if(data&&data.id){
+                assessmentId=data.id;
+            }else{
+                assessmentId=timestamp;
+            }
+            win.location="/business/hr/assessment_indicator/tpl_indicator_list.html?assessmentId="+assessmentId+"&action="+formAction;
         },
         /**
          * 文件上传组件回调

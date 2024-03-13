@@ -2,7 +2,7 @@
 /**
  * 考核指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-29 16:32:32
+ * @since 2024-03-13 20:35:53
  */
  -->
  <!DOCTYPE html>
@@ -40,8 +40,10 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 归属 , owner ,typeName=text_input, isHideInSearch=true -->
                     <!-- 考核主题 , assessmentId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 指标库 , tplIndicatorId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 分类 , groupname ,typeName=text_input, isHideInSearch=true -->
                     <!-- 指标名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('指标名称')}" class="search-label name-label">指标名称</span><span class="search-colon">:</span></div>

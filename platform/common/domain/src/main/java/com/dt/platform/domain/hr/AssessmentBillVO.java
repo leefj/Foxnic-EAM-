@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核单据VO类型
  * <p>考核单据 , 数据表 hr_assessment_bill 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 18:53:09
+ * @since 2024-03-13 10:56:23
  * @sign 507CA975D10C6A3FB58673F235BDFE65
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -401,29 +401,37 @@ public class AssessmentBillVO extends AssessmentBill {
 	@Transient
 	public AssessmentBillVO duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AssessmentBillVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AssessmentBillVOMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setTaskDataId(this.getTaskDataId());
+		inst.setStime(this.getStime());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setIsShow(this.getIsShow());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setEtime(this.getEtime());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setTaskName(this.getTaskName());
-		inst.setUpdateTime(this.getUpdateTime());
 		inst.setId(this.getId());
-		inst.setVersion(this.getVersion());
 		inst.setTaskId(this.getTaskId());
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setAssessmentDataTask(this.getAssessmentDataTask());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setRequestAction(this.getRequestAction());
-			inst.setFuzzyField(this.getFuzzyField());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setAssessmentTask(this.getAssessmentTask());
+			inst.setAssessmentBillTaskList(this.getAssessmentBillTaskList());
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
 		}
@@ -485,53 +493,67 @@ public class AssessmentBillVO extends AssessmentBill {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.NOTES)));
+			this.setTaskDataId(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.TASK_DATA_ID)));
+			this.setStime(DataParser.parse(Date.class, map.get(AssessmentBillVOMeta.STIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssessmentBillVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssessmentBillVOMeta.VERSION)));
+			this.setIsShow(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.IS_SHOW)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AssessmentBillVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AssessmentBillVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssessmentBillVOMeta.DELETE_TIME)));
+			this.setEtime(DataParser.parse(Date.class, map.get(AssessmentBillVOMeta.ETIME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.DELETE_BY)));
 			this.setTaskName(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.TASK_NAME)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssessmentBillVOMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.ID)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(AssessmentBillVOMeta.VERSION)));
 			this.setTaskId(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.TASK_ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.REQUEST_ACTION)));
+			this.setAssessmentDataTask(DataParser.parse(AssessmentTask.class, map.get(AssessmentBillVOMeta.ASSESSMENT_DATA_TASK)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AssessmentBillVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssessmentBillVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.SORT_TYPE)));
-			this.setRequestAction(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.REQUEST_ACTION)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.SORT_FIELD)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(AssessmentBillVOMeta.PAGE_SIZE)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.DATA_ORIGIN)));
+			this.setAssessmentTask(DataParser.parse(AssessmentTask.class, map.get(AssessmentBillVOMeta.ASSESSMENT_TASK)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssessmentBillVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
 			try {
+				this.setNotes( (String)map.get(AssessmentBillVOMeta.NOTES));
+				this.setTaskDataId( (String)map.get(AssessmentBillVOMeta.TASK_DATA_ID));
+				this.setStime( (Date)map.get(AssessmentBillVOMeta.STIME));
+				this.setUpdateTime( (Date)map.get(AssessmentBillVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssessmentBillVOMeta.VERSION));
+				this.setIsShow( (String)map.get(AssessmentBillVOMeta.IS_SHOW));
 				this.setCreateBy( (String)map.get(AssessmentBillVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AssessmentBillVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(AssessmentBillVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(AssessmentBillVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(AssessmentBillVOMeta.DELETE_TIME));
+				this.setEtime( (Date)map.get(AssessmentBillVOMeta.ETIME));
 				this.setDeleteBy( (String)map.get(AssessmentBillVOMeta.DELETE_BY));
 				this.setTaskName( (String)map.get(AssessmentBillVOMeta.TASK_NAME));
-				this.setUpdateTime( (Date)map.get(AssessmentBillVOMeta.UPDATE_TIME));
 				this.setId( (String)map.get(AssessmentBillVOMeta.ID));
-				this.setVersion( (Integer)map.get(AssessmentBillVOMeta.VERSION));
 				this.setTaskId( (String)map.get(AssessmentBillVOMeta.TASK_ID));
 				this.setStatus( (String)map.get(AssessmentBillVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(AssessmentBillVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(AssessmentBillVOMeta.REQUEST_ACTION));
+				this.setAssessmentDataTask( (AssessmentTask)map.get(AssessmentBillVOMeta.ASSESSMENT_DATA_TASK));
+				this.setFuzzyField( (String)map.get(AssessmentBillVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(AssessmentBillVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(AssessmentBillVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AssessmentBillVOMeta.SORT_TYPE));
-				this.setRequestAction( (String)map.get(AssessmentBillVOMeta.REQUEST_ACTION));
-				this.setFuzzyField( (String)map.get(AssessmentBillVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(AssessmentBillVOMeta.SORT_FIELD));
-				this.setPageSize( (Integer)map.get(AssessmentBillVOMeta.PAGE_SIZE));
 				this.setDataOrigin( (String)map.get(AssessmentBillVOMeta.DATA_ORIGIN));
+				this.setAssessmentTask( (AssessmentTask)map.get(AssessmentBillVOMeta.ASSESSMENT_TASK));
 				this.setQueryLogic( (String)map.get(AssessmentBillVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(AssessmentBillVOMeta.SEARCH_VALUE));
 				return true;
@@ -550,31 +572,41 @@ public class AssessmentBillVO extends AssessmentBill {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssessmentBillVOMeta.NOTES)));
+			this.setTaskDataId(DataParser.parse(String.class, r.getValue(AssessmentBillVOMeta.TASK_DATA_ID)));
+			this.setStime(DataParser.parse(Date.class, r.getValue(AssessmentBillVOMeta.STIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssessmentBillVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssessmentBillVOMeta.VERSION)));
+			this.setIsShow(DataParser.parse(String.class, r.getValue(AssessmentBillVOMeta.IS_SHOW)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssessmentBillVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssessmentBillVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssessmentBillVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssessmentBillVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssessmentBillVOMeta.DELETE_TIME)));
+			this.setEtime(DataParser.parse(Date.class, r.getValue(AssessmentBillVOMeta.ETIME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssessmentBillVOMeta.DELETE_BY)));
 			this.setTaskName(DataParser.parse(String.class, r.getValue(AssessmentBillVOMeta.TASK_NAME)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssessmentBillVOMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentBillVOMeta.ID)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssessmentBillVOMeta.VERSION)));
 			this.setTaskId(DataParser.parse(String.class, r.getValue(AssessmentBillVOMeta.TASK_ID)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(AssessmentBillVOMeta.STATUS)));
 			return true;
 		} else {
 			try {
+				this.setNotes( (String)r.getValue(AssessmentBillVOMeta.NOTES));
+				this.setTaskDataId( (String)r.getValue(AssessmentBillVOMeta.TASK_DATA_ID));
+				this.setStime( (Date)r.getValue(AssessmentBillVOMeta.STIME));
+				this.setUpdateTime( (Date)r.getValue(AssessmentBillVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssessmentBillVOMeta.VERSION));
+				this.setIsShow( (String)r.getValue(AssessmentBillVOMeta.IS_SHOW));
 				this.setCreateBy( (String)r.getValue(AssessmentBillVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AssessmentBillVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(AssessmentBillVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(AssessmentBillVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(AssessmentBillVOMeta.DELETE_TIME));
+				this.setEtime( (Date)r.getValue(AssessmentBillVOMeta.ETIME));
 				this.setDeleteBy( (String)r.getValue(AssessmentBillVOMeta.DELETE_BY));
 				this.setTaskName( (String)r.getValue(AssessmentBillVOMeta.TASK_NAME));
-				this.setUpdateTime( (Date)r.getValue(AssessmentBillVOMeta.UPDATE_TIME));
 				this.setId( (String)r.getValue(AssessmentBillVOMeta.ID));
-				this.setVersion( (Integer)r.getValue(AssessmentBillVOMeta.VERSION));
 				this.setTaskId( (String)r.getValue(AssessmentBillVOMeta.TASK_ID));
 				this.setStatus( (String)r.getValue(AssessmentBillVOMeta.STATUS));
 				return true;

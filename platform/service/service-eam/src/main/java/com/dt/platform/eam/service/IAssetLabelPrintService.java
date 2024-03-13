@@ -28,7 +28,6 @@ public interface IAssetLabelPrintService  {
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param  printData 数据对象
-	 * @param  code 数据对象
 	 * @return 插入是否成功
 	 * */
 	Result print(AssetLabelPrint printData);

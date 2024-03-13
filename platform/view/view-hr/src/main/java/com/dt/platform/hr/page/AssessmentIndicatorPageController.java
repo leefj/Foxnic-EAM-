@@ -48,6 +48,7 @@ public class AssessmentIndicatorPageController extends ViewController {
 
 	@RequestMapping("/tpl_indicator_list.html")
 	public String tpllist(Model model,HttpServletRequest request,String assessmentId,String action) {
+
 		model.addAttribute("assessmentId",assessmentId);
 		model.addAttribute("action",action);
 		return getTemplatePath(prefix,"tpl_indicator_list");

@@ -10,8 +10,11 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.hr.meta.AssessmentBillMeta;
@@ -23,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核单据
  * <p>考核单据 , 数据表 hr_assessment_bill 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 18:53:09
- * @sign FB4F80D4904E27FD770F1E6E4A47E049
+ * @since 2024-03-13 10:56:23
+ * @sign C171DFB2B86B882DBDC4D060513F38AA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,19 +43,25 @@ public class AssessmentBill extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "819124501601058816")
 	private String id;
 	
 	/**
 	 * 考核：考核
 	*/
-	@ApiModelProperty(required = false,value="考核" , notes = "考核")
+	@ApiModelProperty(required = false,value="考核" , notes = "考核" , example = "818930295733485568")
 	private String taskId;
+	
+	/**
+	 * 考核任务：考核任务
+	*/
+	@ApiModelProperty(required = false,value="考核任务" , notes = "考核任务")
+	private String taskDataId;
 	
 	/**
 	 * 考核名称：考核名称
 	*/
-	@ApiModelProperty(required = false,value="考核名称" , notes = "考核名称")
+	@ApiModelProperty(required = false,value="考核名称" , notes = "考核名称" , example = "cc")
 	private String taskName;
 	
 	/**
@@ -62,33 +71,57 @@ public class AssessmentBill extends Entity {
 	private String status;
 	
 	/**
+	 * 是否可见：是否可见
+	*/
+	@ApiModelProperty(required = false,value="是否可见" , notes = "是否可见")
+	private String isShow;
+	
+	/**
+	 * 开始时间：开始时间
+	*/
+	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2024-03-10 08:28:20")
+	private Date stime;
+	
+	/**
+	 * 结束时间：结束时间
+	*/
+	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间" , example = "2024-03-10 08:28:20")
+	private Date etime;
+	
+	/**
+	 * 备注：备注
+	*/
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
+	private String notes;
+	
+	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-10 08:28:20")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-10 08:28:45")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -109,8 +142,26 @@ public class AssessmentBill extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "2")
 	private Integer version;
+	
+	/**
+	 * assessmentTask：assessmentTask
+	*/
+	@ApiModelProperty(required = false,value="assessmentTask" , notes = "assessmentTask")
+	private AssessmentTask assessmentTask;
+	
+	/**
+	 * assessmentDataTask：assessmentDataTask
+	*/
+	@ApiModelProperty(required = false,value="assessmentDataTask" , notes = "assessmentDataTask")
+	private AssessmentTask assessmentDataTask;
+	
+	/**
+	 * assessmentBillTaskList：assessmentBillTaskList
+	*/
+	@ApiModelProperty(required = false,value="assessmentBillTaskList" , notes = "assessmentBillTaskList")
+	private List<AssessmentBillTask> assessmentBillTaskList;
 	
 	/**
 	 * 获得 主键<br>
@@ -151,6 +202,25 @@ public class AssessmentBill extends Entity {
 	}
 	
 	/**
+	 * 获得 考核任务<br>
+	 * 考核任务
+	 * @return 考核任务
+	*/
+	public String getTaskDataId() {
+		return taskDataId;
+	}
+	
+	/**
+	 * 设置 考核任务
+	 * @param taskDataId 考核任务
+	 * @return 当前对象
+	*/
+	public AssessmentBill setTaskDataId(String taskDataId) {
+		this.taskDataId=taskDataId;
+		return this;
+	}
+	
+	/**
 	 * 获得 考核名称<br>
 	 * 考核名称
 	 * @return 考核名称
@@ -185,6 +255,82 @@ public class AssessmentBill extends Entity {
 	*/
 	public AssessmentBill setStatus(String status) {
 		this.status=status;
+		return this;
+	}
+	
+	/**
+	 * 获得 是否可见<br>
+	 * 是否可见
+	 * @return 是否可见
+	*/
+	public String getIsShow() {
+		return isShow;
+	}
+	
+	/**
+	 * 设置 是否可见
+	 * @param isShow 是否可见
+	 * @return 当前对象
+	*/
+	public AssessmentBill setIsShow(String isShow) {
+		this.isShow=isShow;
+		return this;
+	}
+	
+	/**
+	 * 获得 开始时间<br>
+	 * 开始时间
+	 * @return 开始时间
+	*/
+	public Date getStime() {
+		return stime;
+	}
+	
+	/**
+	 * 设置 开始时间
+	 * @param stime 开始时间
+	 * @return 当前对象
+	*/
+	public AssessmentBill setStime(Date stime) {
+		this.stime=stime;
+		return this;
+	}
+	
+	/**
+	 * 获得 结束时间<br>
+	 * 结束时间
+	 * @return 结束时间
+	*/
+	public Date getEtime() {
+		return etime;
+	}
+	
+	/**
+	 * 设置 结束时间
+	 * @param etime 结束时间
+	 * @return 当前对象
+	*/
+	public AssessmentBill setEtime(Date etime) {
+		this.etime=etime;
+		return this;
+	}
+	
+	/**
+	 * 获得 备注<br>
+	 * 备注
+	 * @return 备注
+	*/
+	public String getNotes() {
+		return notes;
+	}
+	
+	/**
+	 * 设置 备注
+	 * @param notes 备注
+	 * @return 当前对象
+	*/
+	public AssessmentBill setNotes(String notes) {
+		this.notes=notes;
 		return this;
 	}
 	
@@ -370,6 +516,74 @@ public class AssessmentBill extends Entity {
 		this.version=version;
 		return this;
 	}
+	
+	/**
+	 * 获得 assessmentTask<br>
+	 * assessmentTask
+	 * @return assessmentTask
+	*/
+	public AssessmentTask getAssessmentTask() {
+		return assessmentTask;
+	}
+	
+	/**
+	 * 设置 assessmentTask
+	 * @param assessmentTask assessmentTask
+	 * @return 当前对象
+	*/
+	public AssessmentBill setAssessmentTask(AssessmentTask assessmentTask) {
+		this.assessmentTask=assessmentTask;
+		return this;
+	}
+	
+	/**
+	 * 获得 assessmentDataTask<br>
+	 * assessmentDataTask
+	 * @return assessmentDataTask
+	*/
+	public AssessmentTask getAssessmentDataTask() {
+		return assessmentDataTask;
+	}
+	
+	/**
+	 * 设置 assessmentDataTask
+	 * @param assessmentDataTask assessmentDataTask
+	 * @return 当前对象
+	*/
+	public AssessmentBill setAssessmentDataTask(AssessmentTask assessmentDataTask) {
+		this.assessmentDataTask=assessmentDataTask;
+		return this;
+	}
+	
+	/**
+	 * 获得 assessmentBillTaskList<br>
+	 * assessmentBillTaskList
+	 * @return assessmentBillTaskList
+	*/
+	public List<AssessmentBillTask> getAssessmentBillTaskList() {
+		return assessmentBillTaskList;
+	}
+	
+	/**
+	 * 设置 assessmentBillTaskList
+	 * @param assessmentBillTaskList assessmentBillTaskList
+	 * @return 当前对象
+	*/
+	public AssessmentBill setAssessmentBillTaskList(List<AssessmentBillTask> assessmentBillTaskList) {
+		this.assessmentBillTaskList=assessmentBillTaskList;
+		return this;
+	}
+	
+	/**
+	 * 添加 assessmentBillTaskList
+	 * @param assessmentBillTask assessmentBillTaskList
+	 * @return 当前对象
+	*/
+	public AssessmentBill addAssessmentBillTask(AssessmentBillTask... assessmentBillTask) {
+		if(this.assessmentBillTaskList==null) assessmentBillTaskList=new ArrayList<>();
+		this.assessmentBillTaskList.addAll(Arrays.asList(assessmentBillTask));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -415,18 +629,28 @@ public class AssessmentBill extends Entity {
 	@Transient
 	public AssessmentBill duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AssessmentBillMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AssessmentBillMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setTaskDataId(this.getTaskDataId());
+		inst.setStime(this.getStime());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setIsShow(this.getIsShow());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setEtime(this.getEtime());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setTaskName(this.getTaskName());
-		inst.setUpdateTime(this.getUpdateTime());
 		inst.setId(this.getId());
-		inst.setVersion(this.getVersion());
 		inst.setTaskId(this.getTaskId());
 		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setAssessmentDataTask(this.getAssessmentDataTask());
+			inst.setAssessmentTask(this.getAssessmentTask());
+			inst.setAssessmentBillTaskList(this.getAssessmentBillTaskList());
+		}
 		inst.clearModifies();
 		return inst;
 	}
@@ -485,35 +709,49 @@ public class AssessmentBill extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AssessmentBillMeta.NOTES)));
+			this.setTaskDataId(DataParser.parse(String.class, map.get(AssessmentBillMeta.TASK_DATA_ID)));
+			this.setStime(DataParser.parse(Date.class, map.get(AssessmentBillMeta.STIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssessmentBillMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssessmentBillMeta.VERSION)));
+			this.setIsShow(DataParser.parse(String.class, map.get(AssessmentBillMeta.IS_SHOW)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssessmentBillMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AssessmentBillMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AssessmentBillMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssessmentBillMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssessmentBillMeta.DELETE_TIME)));
+			this.setEtime(DataParser.parse(Date.class, map.get(AssessmentBillMeta.ETIME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssessmentBillMeta.DELETE_BY)));
 			this.setTaskName(DataParser.parse(String.class, map.get(AssessmentBillMeta.TASK_NAME)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssessmentBillMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentBillMeta.ID)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(AssessmentBillMeta.VERSION)));
 			this.setTaskId(DataParser.parse(String.class, map.get(AssessmentBillMeta.TASK_ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(AssessmentBillMeta.STATUS)));
 			// others
+			this.setAssessmentDataTask(DataParser.parse(AssessmentTask.class, map.get(AssessmentBillMeta.ASSESSMENT_DATA_TASK)));
+			this.setAssessmentTask(DataParser.parse(AssessmentTask.class, map.get(AssessmentBillMeta.ASSESSMENT_TASK)));
 			return true;
 		} else {
 			try {
+				this.setNotes( (String)map.get(AssessmentBillMeta.NOTES));
+				this.setTaskDataId( (String)map.get(AssessmentBillMeta.TASK_DATA_ID));
+				this.setStime( (Date)map.get(AssessmentBillMeta.STIME));
+				this.setUpdateTime( (Date)map.get(AssessmentBillMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssessmentBillMeta.VERSION));
+				this.setIsShow( (String)map.get(AssessmentBillMeta.IS_SHOW));
 				this.setCreateBy( (String)map.get(AssessmentBillMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AssessmentBillMeta.DELETED));
 				this.setCreateTime( (Date)map.get(AssessmentBillMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(AssessmentBillMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(AssessmentBillMeta.DELETE_TIME));
+				this.setEtime( (Date)map.get(AssessmentBillMeta.ETIME));
 				this.setDeleteBy( (String)map.get(AssessmentBillMeta.DELETE_BY));
 				this.setTaskName( (String)map.get(AssessmentBillMeta.TASK_NAME));
-				this.setUpdateTime( (Date)map.get(AssessmentBillMeta.UPDATE_TIME));
 				this.setId( (String)map.get(AssessmentBillMeta.ID));
-				this.setVersion( (Integer)map.get(AssessmentBillMeta.VERSION));
 				this.setTaskId( (String)map.get(AssessmentBillMeta.TASK_ID));
 				this.setStatus( (String)map.get(AssessmentBillMeta.STATUS));
 				// others
+				this.setAssessmentDataTask( (AssessmentTask)map.get(AssessmentBillMeta.ASSESSMENT_DATA_TASK));
+				this.setAssessmentTask( (AssessmentTask)map.get(AssessmentBillMeta.ASSESSMENT_TASK));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -530,31 +768,41 @@ public class AssessmentBill extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssessmentBillMeta.NOTES)));
+			this.setTaskDataId(DataParser.parse(String.class, r.getValue(AssessmentBillMeta.TASK_DATA_ID)));
+			this.setStime(DataParser.parse(Date.class, r.getValue(AssessmentBillMeta.STIME)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssessmentBillMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssessmentBillMeta.VERSION)));
+			this.setIsShow(DataParser.parse(String.class, r.getValue(AssessmentBillMeta.IS_SHOW)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssessmentBillMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssessmentBillMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssessmentBillMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssessmentBillMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssessmentBillMeta.DELETE_TIME)));
+			this.setEtime(DataParser.parse(Date.class, r.getValue(AssessmentBillMeta.ETIME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssessmentBillMeta.DELETE_BY)));
 			this.setTaskName(DataParser.parse(String.class, r.getValue(AssessmentBillMeta.TASK_NAME)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssessmentBillMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentBillMeta.ID)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssessmentBillMeta.VERSION)));
 			this.setTaskId(DataParser.parse(String.class, r.getValue(AssessmentBillMeta.TASK_ID)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(AssessmentBillMeta.STATUS)));
 			return true;
 		} else {
 			try {
+				this.setNotes( (String)r.getValue(AssessmentBillMeta.NOTES));
+				this.setTaskDataId( (String)r.getValue(AssessmentBillMeta.TASK_DATA_ID));
+				this.setStime( (Date)r.getValue(AssessmentBillMeta.STIME));
+				this.setUpdateTime( (Date)r.getValue(AssessmentBillMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssessmentBillMeta.VERSION));
+				this.setIsShow( (String)r.getValue(AssessmentBillMeta.IS_SHOW));
 				this.setCreateBy( (String)r.getValue(AssessmentBillMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AssessmentBillMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(AssessmentBillMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(AssessmentBillMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(AssessmentBillMeta.DELETE_TIME));
+				this.setEtime( (Date)r.getValue(AssessmentBillMeta.ETIME));
 				this.setDeleteBy( (String)r.getValue(AssessmentBillMeta.DELETE_BY));
 				this.setTaskName( (String)r.getValue(AssessmentBillMeta.TASK_NAME));
-				this.setUpdateTime( (Date)r.getValue(AssessmentBillMeta.UPDATE_TIME));
 				this.setId( (String)r.getValue(AssessmentBillMeta.ID));
-				this.setVersion( (Integer)r.getValue(AssessmentBillMeta.VERSION));
 				this.setTaskId( (String)r.getValue(AssessmentBillMeta.TASK_ID));
 				this.setStatus( (String)r.getValue(AssessmentBillMeta.STATUS));
 				return true;

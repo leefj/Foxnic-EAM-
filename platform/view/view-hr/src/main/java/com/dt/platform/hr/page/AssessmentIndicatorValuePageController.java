@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 考核结果模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-28 10:43:19
+ * @since 2024-03-13 07:20:12
 */
 
 @Controller("HrAssessmentIndicatorValuePageController")
@@ -35,6 +35,15 @@ public class AssessmentIndicatorValuePageController extends ViewController {
 			proxy=AssessmentIndicatorValueServiceProxy.api();
 		}
 		return proxy;
+	}
+
+	/**
+	 * 考核结果 功能主页面
+	 */
+	@RequestMapping("/indicator_value_list.html")
+	public String indicator_value_list(Model model,HttpServletRequest request,String paperId) {
+		model.addAttribute("paperId",paperId);
+		return getTemplatePath(prefix,"indicator_value_list");
 	}
 
 	/**

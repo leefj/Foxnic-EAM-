@@ -1,5 +1,6 @@
 package com.dt.platform.hr.service;
 
+import com.dt.platform.domain.hr.AssessmentBillTask;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
@@ -24,11 +25,22 @@ import java.util.Map;
  * 考核单据服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 18:53:09
+ * @since 2024-03-08 20:54:08
 */
 
 public interface IAssessmentBillService extends  ISimpleIdService<AssessmentBill,String> {
 
+	Result createPaperDataAll(String billId);
+
+	Result createPaperData(AssessmentBillTask assessmentBillTask);
+
+	Result cancel(String id);
+
+	Result release(String id);
+
+	Result reset(String id);
+
+	Result copy(String id);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

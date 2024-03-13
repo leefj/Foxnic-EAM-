@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 考核单据模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 18:53:10
+ * @since 2024-03-08 20:54:09
 */
 
 @Controller("HrAssessmentBillPageController")
@@ -40,8 +40,16 @@ public class AssessmentBillPageController extends ViewController {
 	/**
 	 * 考核单据 功能主页面
 	 */
+
+	@RequestMapping("/assessment_bill_show_list.html")
+	public String assessment_bill_show_list(Model model,HttpServletRequest request,String taskId) {
+		model.addAttribute("taskId",taskId);
+		return getTemplatePath(prefix,"assessment_bill_show_list");
+	}
+
 	@RequestMapping("/assessment_bill_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String taskId) {
+		model.addAttribute("taskId",taskId);
 		return getTemplatePath(prefix,"assessment_bill_list");
 	}
 

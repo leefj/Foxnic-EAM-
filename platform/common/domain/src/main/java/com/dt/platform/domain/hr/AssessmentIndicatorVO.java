@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核指标VO类型
  * <p>考核指标 , 数据表 hr_assessment_indicator 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-29 16:32:31
+ * @since 2024-03-13 20:35:52
  * @sign 93A6886A9E8CEF3CD1F4844E3086978F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -405,26 +405,28 @@ public class AssessmentIndicatorVO extends AssessmentIndicator {
 		inst.setScoringBase(this.getScoringBase());
 		inst.setDef(this.getDef());
 		inst.setDefaultValue(this.getDefaultValue());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setProperty(this.getProperty());
+		inst.setId(this.getId());
+		inst.setSn(this.getSn());
+		inst.setAssessmentId(this.getAssessmentId());
+		inst.setOwner(this.getOwner());
 		inst.setWeight(this.getWeight());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setGroupname(this.getGroupname());
 		inst.setVersion(this.getVersion());
 		inst.setScoringBy(this.getScoringBy());
 		inst.setUnit(this.getUnit());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
-		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setTargetMinValue(this.getTargetMinValue());
 		inst.setName(this.getName());
 		inst.setTargetMaxValue(this.getTargetMaxValue());
-		inst.setProperty(this.getProperty());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
-		inst.setId(this.getId());
-		inst.setSn(this.getSn());
 		inst.setTplIndicatorId(this.getTplIndicatorId());
-		inst.setAssessmentId(this.getAssessmentId());
 		if(all) {
 			inst.setIndicatorLib(this.getIndicatorLib());
 			inst.setSelfAssessmentValue(this.getSelfAssessmentValue());
@@ -504,26 +506,28 @@ public class AssessmentIndicatorVO extends AssessmentIndicator {
 			this.setScoringBase(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.SCORING_BASE)));
 			this.setDef(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.DEF)));
 			this.setDefaultValue(DataParser.parse(BigDecimal.class, map.get(AssessmentIndicatorVOMeta.DEFAULT_VALUE)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.UPDATE_BY)));
+			this.setProperty(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.PROPERTY)));
+			this.setId(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.ID)));
+			this.setSn(DataParser.parse(Integer.class, map.get(AssessmentIndicatorVOMeta.SN)));
+			this.setAssessmentId(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.ASSESSMENT_ID)));
+			this.setOwner(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.OWNER)));
 			this.setWeight(DataParser.parse(BigDecimal.class, map.get(AssessmentIndicatorVOMeta.WEIGHT)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssessmentIndicatorVOMeta.UPDATE_TIME)));
+			this.setGroupname(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.GROUPNAME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssessmentIndicatorVOMeta.VERSION)));
 			this.setScoringBy(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.SCORING_BY)));
 			this.setUnit(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.UNIT)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AssessmentIndicatorVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AssessmentIndicatorVOMeta.CREATE_TIME)));
-			this.setUpdateBy(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssessmentIndicatorVOMeta.DELETE_TIME)));
 			this.setTargetMinValue(DataParser.parse(BigDecimal.class, map.get(AssessmentIndicatorVOMeta.TARGET_MIN_VALUE)));
 			this.setName(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.NAME)));
 			this.setTargetMaxValue(DataParser.parse(BigDecimal.class, map.get(AssessmentIndicatorVOMeta.TARGET_MAX_VALUE)));
-			this.setProperty(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.PROPERTY)));
 			this.setTenantId(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.DELETE_BY)));
-			this.setId(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.ID)));
-			this.setSn(DataParser.parse(Integer.class, map.get(AssessmentIndicatorVOMeta.SN)));
 			this.setTplIndicatorId(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.TPL_INDICATOR_ID)));
-			this.setAssessmentId(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.ASSESSMENT_ID)));
 			// others
 			this.setSelfAssessmentValue(DataParser.parse(AssessmentIndicatorValue.class, map.get(AssessmentIndicatorVOMeta.SELF_ASSESSMENT_VALUE)));
 			this.setSearchField(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.SEARCH_FIELD)));
@@ -543,26 +547,28 @@ public class AssessmentIndicatorVO extends AssessmentIndicator {
 				this.setScoringBase( (String)map.get(AssessmentIndicatorVOMeta.SCORING_BASE));
 				this.setDef( (String)map.get(AssessmentIndicatorVOMeta.DEF));
 				this.setDefaultValue( (BigDecimal)map.get(AssessmentIndicatorVOMeta.DEFAULT_VALUE));
+				this.setUpdateBy( (String)map.get(AssessmentIndicatorVOMeta.UPDATE_BY));
+				this.setProperty( (String)map.get(AssessmentIndicatorVOMeta.PROPERTY));
+				this.setId( (String)map.get(AssessmentIndicatorVOMeta.ID));
+				this.setSn( (Integer)map.get(AssessmentIndicatorVOMeta.SN));
+				this.setAssessmentId( (String)map.get(AssessmentIndicatorVOMeta.ASSESSMENT_ID));
+				this.setOwner( (String)map.get(AssessmentIndicatorVOMeta.OWNER));
 				this.setWeight( (BigDecimal)map.get(AssessmentIndicatorVOMeta.WEIGHT));
 				this.setUpdateTime( (Date)map.get(AssessmentIndicatorVOMeta.UPDATE_TIME));
+				this.setGroupname( (String)map.get(AssessmentIndicatorVOMeta.GROUPNAME));
 				this.setVersion( (Integer)map.get(AssessmentIndicatorVOMeta.VERSION));
 				this.setScoringBy( (String)map.get(AssessmentIndicatorVOMeta.SCORING_BY));
 				this.setUnit( (String)map.get(AssessmentIndicatorVOMeta.UNIT));
 				this.setCreateBy( (String)map.get(AssessmentIndicatorVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AssessmentIndicatorVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(AssessmentIndicatorVOMeta.CREATE_TIME));
-				this.setUpdateBy( (String)map.get(AssessmentIndicatorVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(AssessmentIndicatorVOMeta.DELETE_TIME));
 				this.setTargetMinValue( (BigDecimal)map.get(AssessmentIndicatorVOMeta.TARGET_MIN_VALUE));
 				this.setName( (String)map.get(AssessmentIndicatorVOMeta.NAME));
 				this.setTargetMaxValue( (BigDecimal)map.get(AssessmentIndicatorVOMeta.TARGET_MAX_VALUE));
-				this.setProperty( (String)map.get(AssessmentIndicatorVOMeta.PROPERTY));
 				this.setTenantId( (String)map.get(AssessmentIndicatorVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AssessmentIndicatorVOMeta.DELETE_BY));
-				this.setId( (String)map.get(AssessmentIndicatorVOMeta.ID));
-				this.setSn( (Integer)map.get(AssessmentIndicatorVOMeta.SN));
 				this.setTplIndicatorId( (String)map.get(AssessmentIndicatorVOMeta.TPL_INDICATOR_ID));
-				this.setAssessmentId( (String)map.get(AssessmentIndicatorVOMeta.ASSESSMENT_ID));
 				// others
 				this.setSelfAssessmentValue( (AssessmentIndicatorValue)map.get(AssessmentIndicatorVOMeta.SELF_ASSESSMENT_VALUE));
 				this.setSearchField( (String)map.get(AssessmentIndicatorVOMeta.SEARCH_FIELD));
@@ -595,52 +601,56 @@ public class AssessmentIndicatorVO extends AssessmentIndicator {
 			this.setScoringBase(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.SCORING_BASE)));
 			this.setDef(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.DEF)));
 			this.setDefaultValue(DataParser.parse(BigDecimal.class, r.getValue(AssessmentIndicatorVOMeta.DEFAULT_VALUE)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.UPDATE_BY)));
+			this.setProperty(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.PROPERTY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.ID)));
+			this.setSn(DataParser.parse(Integer.class, r.getValue(AssessmentIndicatorVOMeta.SN)));
+			this.setAssessmentId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.ASSESSMENT_ID)));
+			this.setOwner(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.OWNER)));
 			this.setWeight(DataParser.parse(BigDecimal.class, r.getValue(AssessmentIndicatorVOMeta.WEIGHT)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssessmentIndicatorVOMeta.UPDATE_TIME)));
+			this.setGroupname(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.GROUPNAME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssessmentIndicatorVOMeta.VERSION)));
 			this.setScoringBy(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.SCORING_BY)));
 			this.setUnit(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.UNIT)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssessmentIndicatorVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssessmentIndicatorVOMeta.CREATE_TIME)));
-			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssessmentIndicatorVOMeta.DELETE_TIME)));
 			this.setTargetMinValue(DataParser.parse(BigDecimal.class, r.getValue(AssessmentIndicatorVOMeta.TARGET_MIN_VALUE)));
 			this.setName(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.NAME)));
 			this.setTargetMaxValue(DataParser.parse(BigDecimal.class, r.getValue(AssessmentIndicatorVOMeta.TARGET_MAX_VALUE)));
-			this.setProperty(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.PROPERTY)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.DELETE_BY)));
-			this.setId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.ID)));
-			this.setSn(DataParser.parse(Integer.class, r.getValue(AssessmentIndicatorVOMeta.SN)));
 			this.setTplIndicatorId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.TPL_INDICATOR_ID)));
-			this.setAssessmentId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.ASSESSMENT_ID)));
 			return true;
 		} else {
 			try {
 				this.setScoringBase( (String)r.getValue(AssessmentIndicatorVOMeta.SCORING_BASE));
 				this.setDef( (String)r.getValue(AssessmentIndicatorVOMeta.DEF));
 				this.setDefaultValue( (BigDecimal)r.getValue(AssessmentIndicatorVOMeta.DEFAULT_VALUE));
+				this.setUpdateBy( (String)r.getValue(AssessmentIndicatorVOMeta.UPDATE_BY));
+				this.setProperty( (String)r.getValue(AssessmentIndicatorVOMeta.PROPERTY));
+				this.setId( (String)r.getValue(AssessmentIndicatorVOMeta.ID));
+				this.setSn( (Integer)r.getValue(AssessmentIndicatorVOMeta.SN));
+				this.setAssessmentId( (String)r.getValue(AssessmentIndicatorVOMeta.ASSESSMENT_ID));
+				this.setOwner( (String)r.getValue(AssessmentIndicatorVOMeta.OWNER));
 				this.setWeight( (BigDecimal)r.getValue(AssessmentIndicatorVOMeta.WEIGHT));
 				this.setUpdateTime( (Date)r.getValue(AssessmentIndicatorVOMeta.UPDATE_TIME));
+				this.setGroupname( (String)r.getValue(AssessmentIndicatorVOMeta.GROUPNAME));
 				this.setVersion( (Integer)r.getValue(AssessmentIndicatorVOMeta.VERSION));
 				this.setScoringBy( (String)r.getValue(AssessmentIndicatorVOMeta.SCORING_BY));
 				this.setUnit( (String)r.getValue(AssessmentIndicatorVOMeta.UNIT));
 				this.setCreateBy( (String)r.getValue(AssessmentIndicatorVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AssessmentIndicatorVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(AssessmentIndicatorVOMeta.CREATE_TIME));
-				this.setUpdateBy( (String)r.getValue(AssessmentIndicatorVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(AssessmentIndicatorVOMeta.DELETE_TIME));
 				this.setTargetMinValue( (BigDecimal)r.getValue(AssessmentIndicatorVOMeta.TARGET_MIN_VALUE));
 				this.setName( (String)r.getValue(AssessmentIndicatorVOMeta.NAME));
 				this.setTargetMaxValue( (BigDecimal)r.getValue(AssessmentIndicatorVOMeta.TARGET_MAX_VALUE));
-				this.setProperty( (String)r.getValue(AssessmentIndicatorVOMeta.PROPERTY));
 				this.setTenantId( (String)r.getValue(AssessmentIndicatorVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AssessmentIndicatorVOMeta.DELETE_BY));
-				this.setId( (String)r.getValue(AssessmentIndicatorVOMeta.ID));
-				this.setSn( (Integer)r.getValue(AssessmentIndicatorVOMeta.SN));
 				this.setTplIndicatorId( (String)r.getValue(AssessmentIndicatorVOMeta.TPL_INDICATOR_ID));
-				this.setAssessmentId( (String)r.getValue(AssessmentIndicatorVOMeta.ASSESSMENT_ID));
 				return true;
 			} catch (Exception e) {
 				return false;

@@ -1,7 +1,7 @@
 /**
  * 考核任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 19:40:26
+ * @since 2024-03-13 20:22:34
  */
 
 
@@ -85,22 +85,16 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考核状态') , templet: function (d) { return templet('status',d.status,d);}  }
+					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分类'), templet: function (d) { return templet('type' ,fox.joinLabel(d.typeDict,"label",',','','type'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考核名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'posId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('岗位') , templet: function (d) { return templet('posId',d.posId,d);}  }
-					,{ field: 'cycle', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('周期'), templet:function (d){ return templet('cycle',fox.getEnumText(RADIO_CYCLE_DATA,d.cycle,'','cycle'),d);}}
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('任务状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'cycle', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('周期'), templet:function (d){ return templet('cycle',fox.getEnumText(SELECT_CYCLE_DATA,d.cycle,'','cycle'),d);}}
 					,{ field: 'isAllPerson', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('全部人员'), templet:function (d){ return templet('isAllPerson',fox.getEnumText(RADIO_ISALLPERSON_DATA,d.isAllPerson,'','isAllPerson'),d);}}
-					,{ field: 'sameLevelUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('同级评分人') , templet: function (d) { return templet('sameLevelUserId',d.sameLevelUserId,d);}  }
-					,{ field: 'assessmenMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考核方式') , templet: function (d) { return templet('assessmenMethod',d.assessmenMethod,d);}  }
 					,{ field: 'totalWeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('指标总权重') , templet: function (d) { return templet('totalWeight',d.totalWeight,d);}  }
-					,{ field: 'hasSelfAssessment', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('自评'), templet:function (d){ return templet('hasSelfAssessment',fox.getEnumText(RADIO_HASSELFASSESSMENT_DATA,d.hasSelfAssessment,'','hasSelfAssessment'),d);}}
-					,{ field: 'hasSameAssessment', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('同级评分'), templet:function (d){ return templet('hasSameAssessment',fox.getEnumText(RADIO_HASSAMEASSESSMENT_DATA,d.hasSameAssessment,'','hasSameAssessment'),d);}}
+					,{ field: 'hasSelfAssessment', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('自评评分'), templet:function (d){ return templet('hasSelfAssessment',fox.getEnumText(RADIO_HASSELFASSESSMENT_DATA,d.hasSelfAssessment,'','hasSelfAssessment'),d);}}
+					,{ field: 'hasSameAssessment', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('互评分'), templet:function (d){ return templet('hasSameAssessment',fox.getEnumText(RADIO_HASSAMEASSESSMENT_DATA,d.hasSameAssessment,'','hasSameAssessment'),d);}}
 					,{ field: 'hasLeaderAssessment', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('直接领导评分'), templet:function (d){ return templet('hasLeaderAssessment',fox.getEnumText(RADIO_HASLEADERASSESSMENT_DATA,d.hasLeaderAssessment,'','hasLeaderAssessment'),d);}}
-					,{ field: 'hasSecondLeaderAssessment', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('领导评分'), templet:function (d){ return templet('hasSecondLeaderAssessment',fox.getEnumText(RADIO_HASSECONDLEADERASSESSMENT_DATA,d.hasSecondLeaderAssessment,'','hasSecondLeaderAssessment'),d);}}
-					,{ field: 'hasHrConfirm', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('HR复核'), templet:function (d){ return templet('hasHrConfirm',fox.getEnumText(RADIO_HASHRCONFIRM_DATA,d.hasHrConfirm,'','hasHrConfirm'),d);}}
-					,{ field: 'tplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('绩效模版'), templet: function (d) { return templet('tplId' ,fox.joinLabel(d.assessmentTpl,"name",',','','tplId'),d);}}
-					,{ field: 'source', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源') , templet: function (d) { return templet('source',d.source,d);}  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'hasSecondLeaderAssessment', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('上上级领导评分'), templet:function (d){ return templet('hasSecondLeaderAssessment',fox.getEnumText(RADIO_HASSECONDLEADERASSESSMENT_DATA,d.hasSecondLeaderAssessment,'','hasSecondLeaderAssessment'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -171,8 +165,10 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
+		value.type={ inputType:"select_box", value: getSelectedValue("#type","value") ,fillBy:["typeDict"]  , label:getSelectedValue("#type","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.source={ inputType:"button",value: $("#source").val()};
+		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
+		value.cycle={ inputType:"select_box", value: getSelectedValue("#cycle","value"), label:getSelectedValue("#cycle","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -219,6 +215,84 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 type 下拉字段
+		fox.renderSelectBox({
+			el: "type",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("type",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 status 搜索框
+		fox.renderSelectBox({
+			el: "status",
+			size: "small",
+			radio: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 cycle 下拉字段
+		fox.renderSelectBox({
+			el: "cycle",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("cycle",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("cycle",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
@@ -387,8 +461,8 @@ function ListPage() {
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			else if (layEvent === 'create-task-dtl') { // 生成明细
-				window.pageExt.list.createTaskDtl(data,this);
+			else if (layEvent === 'create-bill') { // 任务列表
+				window.pageExt.list.createBill(data,this);
 			}
 			
 		});

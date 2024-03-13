@@ -1,7 +1,7 @@
 /**
  * 考核单据 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 18:53:10
+ * @since 2024-03-10 08:31:58
  */
 
 layui.config({
@@ -28,6 +28,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+
+            var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+            toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+            document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+            if(!TASK_ID){
+                var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                toolHtml=toolHtml.replace(/lay-event="tool-create-bill-task"/i, "style=\"display:none\"")
+                document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+            }
         },
         /**
          * 按事件名称移除表格按钮栏的按钮
@@ -92,6 +102,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param location 调用的代码位置
          * */
         beforeQuery:function (conditions,param,location) {
+            param.taskId=TASK_ID;
             console.log('beforeQuery',conditions,param,location);
             return true;
         },
@@ -99,7 +110,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-
+            for (var i = 0; i < data.length; i++) {
+                //如果审批中或审批通过的不允许编辑
+                if(data[i].status=="complete") {
+                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                }
+            }
         },
         /**
          * 单行数据刷新后调用
@@ -176,7 +196,144 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('moreActionMenu',items,data,it);
             return items;
         },
+        createBillTask:function (selected,it){
+            var btnClass="create-bill-task";
+            var ps={};
+            ps.taskId=TASK_ID;
+            var btn=$('.'+btnClass)
+            var api="/service-hr/hr-assessment-task/create-task";
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        top.layer.msg(r.message, {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        top.layer.msg(r.message, {time: 1000});
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+        },
 
+        BillTaskCopy:function (data){
+            console.log('createBilCopt',data);
+            var btnClass="bill-task-copy";
+            var ps={};
+            ps.id=data.id;
+            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
+            var api="/service-hr/hr-assessment-bill/copy";
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        top.layer.msg(r.message, {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        top.layer.msg(r.message, {time: 1000});
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+        },
+        BillTaskReset:function (data){
+            console.log('createBillTask',data);
+            var btnClass="bill-task-reset";
+            var ps={};
+            ps.id=data.id;
+            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
+            var api="/service-hr/hr-assessment-bill/reset";
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        top.layer.msg(r.message, {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        top.layer.msg(r.message, {time: 1000});
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+        },
+
+
+        BillTaskCancel:function (data){
+            console.log('BillTaskCancel',data);
+            var btnClass="create-bill-cancel";
+            var ps={};
+            ps.id=data.id;
+            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
+            var api="/service-hr/hr-assessment-bill/cancel";
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        top.layer.msg(r.message, {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        top.layer.msg(r.message, {time: 1000});
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+        },
+        BillTaskDown:function (data){
+            console.log('BillTaskDown',data);
+            var btnClass="create-bill-down";
+            var ps={};
+            ps.id=data.id;
+            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
+            var api="/service-hr/hr-assessment-bill/release";
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        top.layer.msg(r.message, {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        top.layer.msg(r.message, {time: 1000});
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+        },
+        pfrData:function (data){
+            admin.popupCenter({
+                title: "评分人列表",
+                resize: false,
+                offset: [10,null],
+                area: ["95%","95%"],
+                type: 2,
+                id:"hr-assessment-person2-form-data-win",
+                content: '/business/hr/assessment_bill_task/tree_bill_task_list.html?billId='+data.id,
+                finish: function () {
+                }
+            });
+        },
+        BillDtl:function (data){
+            console.log('BillDtl',data);
+            admin.popupCenter({
+                title: "下发列表",
+                resize: false,
+                offset: [10,null],
+                area: ["90%","90%"],
+                type: 2,
+                id:"hr-assessment-bill-form-data-win",
+                content: '/business/hr/assessment_bill_task/assessment_bill_task_list.html?billId='+data.id,
+                finish: function () {
+                }
+            });
+        },
+        personData:function (data){
+            console.log('personData',data);
+            admin.popupCenter({
+                title: "绩效明细",
+                resize: false,
+                offset: [10,null],
+                area: ["95%","95%"],
+                type: 2,
+                id:"hr-assessment-person-form-data-win",
+                content: '/business/hr/assessment_bill_user_map/tree_user_map_list.html?billId='+data.id,
+                finish: function () {
+                }
+            });
+        },
         /**
          * 末尾执行
          */
