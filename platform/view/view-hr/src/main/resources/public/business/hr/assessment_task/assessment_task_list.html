@@ -2,7 +2,7 @@
 /**
  * 考核任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 19:40:26
+ * @since 2024-03-13 20:22:33
  */
  -->
  <!DOCTYPE html>
@@ -41,30 +41,45 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 所属 , owner ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 考核状态 , status ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 分类 , type ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('分类')}" class="search-label type-label">分类</span><span class="search-colon">:</span></div>
+                        <div id="type" th:data="${'/service-system/sys-dict-item/query-list?dictCode=hr_assessment_type'}" style="width:180px" extraParam="{}"></div>
+                    </div>
+                    <!-- 全部人员 , isAllPerson ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 考核方式 , assessmenMethod ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 指标总权重 , totalWeight ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 自评评分 , hasSelfAssessment ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 互评分 , hasSameAssessment ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 直接领导评分 , hasLeaderAssessment ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 上上级领导评分 , hasSecondLeaderAssessment ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- HR是否复核 , hasHrConfirm ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- HR复核人 , hrUserId ,typeName=button, isHideInSearch=true -->
+                    <!-- 绩效模版 , tplId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 来源 , source ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 指标动作 , buttonAction ,typeName=button, isHideInSearch=true -->
+                    <!-- 包含人员 , personIds ,typeName=button, isHideInSearch=true -->
+                    <!-- 不包含人员 , excludePersonIds ,typeName=button, isHideInSearch=true -->
+                    <!-- 包含部门 , organizationIds ,typeName=button, isHideInSearch=true -->
+                    <!-- selectedCode , selectedCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 任务状态 , status ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('任务状态')}" class="search-label status-label">任务状态</span><span class="search-colon">:</span></div>
+
+
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:180px"></div>
+                    </div>
+                    <!-- 周期 , cycle ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('周期')}" class="search-label cycle-label">周期</span><span class="search-colon">:</span></div>
+                        <div id="cycle" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentCycleEnum')}" style="width:180px" extraParam="{}"></div>
+                    </div>
                     <!-- 考核名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('考核名称')}" class="search-label name-label">考核名称</span><span class="search-colon">:</span></div>
                         <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
-                    </div>
-                    <!-- 岗位 , posId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 周期 , cycle ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 全部人员 , isAllPerson ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 同级评分人 , sameLevelUserId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 考核方式 , assessmenMethod ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 指标总权重 , totalWeight ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 自评 , hasSelfAssessment ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 同级评分 , hasSameAssessment ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 直接领导评分 , hasLeaderAssessment ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 领导评分 , hasSecondLeaderAssessment ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- HR复核 , hasHrConfirm ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 绩效模版 , tplId ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
-                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 来源 , source ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('来源')}" class="search-label source-label">来源</span><span class="search-colon">:</span></div>
-                        <input id="source" class="layui-input search-input" style="width: 180px" type="text" />
                     </div>
 
 
@@ -106,7 +121,7 @@
 
     <button th:if="${perm.checkAuth('hr_assessment_task:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
-    <button class="layui-btn layui-btn-xs  task-dtl " lay-event="create-task-dtl" data-id="{{d.id}}"><span th:text="${lang.translate('生成明细','','cmp:table.ops')}">生成明细</span></button>
+    <button class="layui-btn layui-btn-xs  bill " lay-event="create-bill" data-id="{{d.id}}"><span th:text="${lang.translate('任务列表','','cmp:table.ops')}">任务列表</span></button>
 
 </script>
 
@@ -114,7 +129,8 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_OWNER_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentTaskOwnerEnum')}]];
-    var RADIO_CYCLE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentCycleEnum')}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var SELECT_CYCLE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentCycleEnum')}]];
     var RADIO_ISALLPERSON_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
     var RADIO_HASSELFASSESSMENT_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
     var RADIO_HASSAMEASSESSMENT_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];

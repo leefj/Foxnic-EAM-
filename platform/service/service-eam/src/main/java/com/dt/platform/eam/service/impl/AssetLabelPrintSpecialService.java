@@ -191,11 +191,14 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			Logger.info("print image margin right:"+imageMarginRight);
 
 			SimpleDateFormat format=new SimpleDateFormat("yyyy年MM月dd日");
+
+
 			if(assetList!=null){
 				Logger.info("print asset label number:"+assetList.size());
 				for(int i=0;i<assetList.size();i++){
 					Map<String, Object> asset=assetList.get(i);
 					String assetCode=asset.getOrDefault("assetCode","none").toString();
+
 					Logger.info("\n\n\nn######table asset code:"+assetCode+"######");
 					if(i%printData.getPrintColumnNumber()==0){
 						Logger.info("to new paragraphIncludeTable");
@@ -316,14 +319,17 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							Logger.info("image current width:"+valueWidthPoint);
 							Logger.info("image setting width:"+imageWidthInt+",setting > current width value may be error");
 							Logger.info("image setting height:"+imageHeightInt);
-						//	imageWidthInt=20;
-						//	imageHeightInt=20;
-							Image img=this.createImage(AsseLabelTableCellTypeEnum.QR_CODE.code(),assetCode,imageWidthInt-5,imageHeightInt-5);
+							Image img=this.createImage(AsseLabelTableCellTypeEnum.QR_CODE.code(),printData.getAssetLabelPrefix()+assetCode,imageWidthInt-5,imageHeightInt-5);
 							Paragraph p=new Paragraph();
-							p.setMarginTop(imageMarginTop);
-							p.setMarginBottom(imageMarginBottom);
-							p.setMarginLeft(imageMarginLeft);
-							p.setMarginRight(imageMarginRight);
+//							p.setMarginTop(imageMarginTop);
+//							p.setMarginBottom(imageMarginBottom);
+//							p.setMarginLeft(imageMarginLeft);
+//							p.setMarginRight(imageMarginRight);
+
+							p.setMarginTop(0);
+							p.setMarginBottom(0);
+							p.setMarginLeft(0);
+							p.setMarginRight(0);
 							p.add(img);
 							cell.add(p);
 							table.addCell(cell);

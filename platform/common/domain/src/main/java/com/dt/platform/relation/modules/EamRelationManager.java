@@ -81,6 +81,7 @@ public class EamRelationManager extends RelationManager {
         this.setupInspectionTaskAbnormal();
         this.setupInspectionTaskPoint();
         this.setupInspectionOwner();
+        this.setupInspectionTaskPointOper();
 
 
         this.setupAssetDepreciationDetail();
@@ -146,6 +147,21 @@ public class EamRelationManager extends RelationManager {
         this.setupAssetScanMethod();
 
     }
+    public void setupInspectionTaskPointOper() {
+
+        this.property(InspectionTaskPointOperMeta.OPER_USER_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK_POINT_OPER.OPER_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
+        this.property(InspectionTaskPointOperMeta.INSPECTOR_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK_POINT_OPER.INSPECTOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
+        this.property(InspectionTaskPointOperMeta.INSPECTION_PROCESS_ACTION_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK_POINT_OPER.ACTION_LABEL).join(EAMTables.EAM_INSPECTION_PROCESS_ACTION.CODE);
+
+    }
+
 
     public void setupAssetScanMethod() {
         this.property(AssetScanSceneMeta.METHOD_DICT_PROP)

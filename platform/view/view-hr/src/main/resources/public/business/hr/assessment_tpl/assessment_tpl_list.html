@@ -2,7 +2,7 @@
 /**
  * 考核模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-01 09:12:38
+ * @since 2024-03-10 21:32:47
  */
  -->
  <!DOCTYPE html>
@@ -40,16 +40,21 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 模版名称 , name ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 分类 , type ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('模版名称')}" class="search-label name-label">模版名称</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('分类')}" class="search-label type-label">分类</span><span class="search-colon">:</span></div>
+                        <div id="type" th:data="${'/service-system/sys-dict-item/query-list?dictCode=hr_assessment_type'}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 部门 , orgId ,typeName=button, isHideInSearch=true -->
                     <!-- 指标总权重 , totalWeight ,typeName=number_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 岗位 , positionIds ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 模版名称 , name ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('模版名称')}" class="search-label name-label">模版名称</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 180px" type="text" />
+                    </div>
 
 
                 </div>

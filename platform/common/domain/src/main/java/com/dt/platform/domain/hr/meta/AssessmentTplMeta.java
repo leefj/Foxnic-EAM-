@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import com.dt.platform.domain.hr.AssessmentIndicator;
 import java.util.List;
+import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.hr.Position;
 import javax.persistence.Transient;
 
@@ -13,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-01 09:12:37
- * @sign 7B273DD1579B695939F8B8440A1CF844
+ * @since 2024-03-10 21:32:45
+ * @sign 1F01E8FA93F5623B45986E56B197E55E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -39,6 +40,16 @@ public class AssessmentTplMeta {
 	 * 模版名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTpl,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTpl.class ,NAME, java.lang.String.class, "模版名称", "模版名称", java.lang.String.class, null);
+	
+	/**
+	 * 分类 , 类型: java.lang.String
+	*/
+	public static final String TYPE="type";
+	
+	/**
+	 * 分类 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTpl,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTpl.class ,TYPE, java.lang.String.class, "分类", "分类", java.lang.String.class, null);
 	
 	/**
 	 * 部门 , 类型: java.lang.String
@@ -181,6 +192,16 @@ public class AssessmentTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTpl,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTpl.class ,SELECTED_CODE, java.lang.String.class, "selectedCode", "selectedCode", java.lang.String.class, null);
 	
 	/**
+	 * typeDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String TYPE_DICT="typeDict";
+	
+	/**
+	 * typeDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTpl,org.github.foxnic.web.domain.system.DictItem> TYPE_DICT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTpl.class ,TYPE_DICT, org.github.foxnic.web.domain.system.DictItem.class, "typeDict", "typeDict", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * positionList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.Position
 	*/
 	public static final String POSITION_LIST="positionList";
@@ -203,7 +224,7 @@ public class AssessmentTplMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , ORG_ID , TOTAL_WEIGHT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_INDICATOR , SELECTED_CODE , POSITION_LIST , POSITION_IDS };
+	public static final String[] $PROPS={ ID , NAME , TYPE , ORG_ID , TOTAL_WEIGHT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_INDICATOR , SELECTED_CODE , TYPE_DICT , POSITION_LIST , POSITION_IDS };
 	
 	/**
 	 * 代理类
@@ -232,6 +253,17 @@ public class AssessmentTplMeta {
 		public AssessmentTpl setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 分类
+		 * @param type 分类
+		 * @return 当前对象
+		*/
+		public AssessmentTpl setType(String type) {
+			super.change(TYPE,super.getType(),type);
+			super.setType(type);
 			return this;
 		}
 		
@@ -390,6 +422,17 @@ public class AssessmentTplMeta {
 		}
 		
 		/**
+		 * 设置 typeDict
+		 * @param typeDict typeDict
+		 * @return 当前对象
+		*/
+		public AssessmentTpl setTypeDict(DictItem typeDict) {
+			super.change(TYPE_DICT,super.getTypeDict(),typeDict);
+			super.setTypeDict(typeDict);
+			return this;
+		}
+		
+		/**
 		 * 设置 positionList
 		 * @param positionList positionList
 		 * @return 当前对象
@@ -428,6 +471,7 @@ public class AssessmentTplMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setType(this.getType());
 			inst.setVersion(this.getVersion());
 			inst.setOrgId(this.getOrgId());
 			inst.setCreateBy(this.getCreateBy());
@@ -443,6 +487,7 @@ public class AssessmentTplMeta {
 			if(all) {
 				inst.setPositionIds(this.getPositionIds());
 				inst.setPositionList(this.getPositionList());
+				inst.setTypeDict(this.getTypeDict());
 				inst.setSelectedCode(this.getSelectedCode());
 				inst.setAssessmentIndicator(this.getAssessmentIndicator());
 			}

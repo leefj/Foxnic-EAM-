@@ -27,7 +27,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 08:43:02
+ * @since 2024-03-07 15:51:26
  * @sign 104BD51E49E055154B0330073E6A5754
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -44,19 +44,19 @@ public class InspectionPoint extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "697560868916822016")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "743057470687019008")
 	private String id;
 	
 	/**
 	 * 点位编码：点位编码
 	*/
-	@ApiModelProperty(required = false,value="点位编码" , notes = "点位编码" , example = "point1")
+	@ApiModelProperty(required = false,value="点位编码" , notes = "点位编码" , example = "C0000000025")
 	private String code;
 	
 	/**
 	 * 点位名称：点位名称
 	*/
-	@ApiModelProperty(required = false,value="点位名称" , notes = "点位名称" , example = "point1")
+	@ApiModelProperty(required = false,value="点位名称" , notes = "点位名称" , example = "巡检点1")
 	private String name;
 	
 	/**
@@ -74,7 +74,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * 巡检路线：巡检路线
 	*/
-	@ApiModelProperty(required = false,value="巡检路线" , notes = "巡检路线" , example = "697560681343352832")
+	@ApiModelProperty(required = false,value="巡检路线" , notes = "巡检路线" , example = "743057421492027392")
 	private String routeId;
 	
 	/**
@@ -86,7 +86,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * 点位位置：点位位置
 	*/
-	@ApiModelProperty(required = false,value="点位位置" , notes = "点位位置" , example = "698104347535343616")
+	@ApiModelProperty(required = false,value="点位位置" , notes = "点位位置")
 	private String posId;
 	
 	/**
@@ -122,7 +122,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * 关联设备：关联设备
 	*/
-	@ApiModelProperty(required = false,value="关联设备" , notes = "关联设备" , example = "706795885647888384")
+	@ApiModelProperty(required = false,value="关联设备" , notes = "关联设备" , example = "788874106652065792")
 	private String assetId;
 	
 	/**
@@ -134,7 +134,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-09 09:37:51")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-13 10:45:06")
 	private Date createTime;
 	
 	/**
@@ -146,7 +146,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-10 01:07:31")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-05 07:21:26")
 	private Date updateTime;
 	
 	/**

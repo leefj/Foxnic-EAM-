@@ -183,7 +183,7 @@ public class MaintainGroupServiceImpl extends SuperService<MaintainGroup> implem
 	public Result update(MaintainGroup maintainGroup , SaveMode mode,boolean throwsException) {
 		Result r=super.update(maintainGroup , mode , throwsException);
 		if(r.isSuccess()){
-			dao.execute("delete from eam_inspection_group_user where group_id=?",maintainGroup.getId());
+			dao.execute("delete from eam_group_user where group_id=?",maintainGroup.getId());
 			if(maintainGroup.getMemberIds()!=null&&maintainGroup.getMemberIds().size()>0){
 				List<GroupUser> list=new ArrayList<>();
 				for(String id:maintainGroup.getMemberIds()){

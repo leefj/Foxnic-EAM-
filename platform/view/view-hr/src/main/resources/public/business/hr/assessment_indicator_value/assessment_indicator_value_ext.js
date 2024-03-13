@@ -1,7 +1,7 @@
 /**
  * 考核结果 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-28 10:43:19
+ * @since 2024-03-13 07:20:12
  */
 
 layui.config({
@@ -93,6 +93,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            param.taskPaperId=PAPER_ID
             return true;
         },
         /**
@@ -111,6 +112,55 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="IndicatorName"){
+                var html="";
+                if(r.assessmentIndicator&&r.assessmentIndicator.name){
+                    html=r.assessmentIndicator.name;
+                }
+                return html;
+            }
+            if(field=="IndicatorGroupName"){
+                var html="";
+                if(r.assessmentIndicator&&r.assessmentIndicator.groupname){
+                    html=r.assessmentIndicator.groupname;
+                }
+                return html;
+            }
+
+            if(field=="IndicatorScoringBase"){
+                var html="";
+                if(r.assessmentIndicator&&r.assessmentIndicator.scoringBase){
+                    html=r.assessmentIndicator.scoringBase;
+                }
+                return html;
+            }
+
+            if(field=="IndicatorDef"){
+                var html="";
+                if(r.assessmentIndicator&&r.assessmentIndicator.def){
+                    html=r.assessmentIndicator.def;
+                }
+                return html;
+            }
+
+            if(field=="IndicatorMinValue"){
+                var html="";
+                if(r.assessmentIndicator&&r.assessmentIndicator.targetMinValue){
+                    html=r.assessmentIndicator.targetMinValue;
+                }
+                return html;
+            }
+
+            if(field=="IndicatorMaxValue"){
+                var html="";
+                if(r.assessmentIndicator&&r.assessmentIndicator.targetMaxValue){
+                    html=r.assessmentIndicator.targetMaxValue;
+                }
+                return html;
+            }
+
+
             if(value==null) return "";
             return value;
         },

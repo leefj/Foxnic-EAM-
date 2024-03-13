@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核结果VO类型
  * <p>考核结果 , 数据表 hr_assessment_indicator_value 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-28 10:43:18
+ * @since 2024-03-13 15:06:47
  * @sign DF3FE34BD1CF467CC4495113D19A8059
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -402,9 +402,8 @@ public class AssessmentIndicatorValueVO extends AssessmentIndicatorValue {
 	@Transient
 	public AssessmentIndicatorValueVO duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AssessmentIndicatorValueVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AssessmentIndicatorValueVOMeta.$$proxy$$();
-		inst.setOwner(this.getOwner());
+		inst.setTaskPaperId(this.getTaskPaperId());
 		inst.setUpdateTime(this.getUpdateTime());
-		inst.setUserId(this.getUserId());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
 		inst.setIndicatorId(this.getIndicatorId());
@@ -416,20 +415,28 @@ public class AssessmentIndicatorValueVO extends AssessmentIndicatorValue {
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setSn(this.getSn());
 		inst.setValue(this.getValue());
 		if(all) {
+			inst.setIndicatorName(this.getIndicatorName());
+			inst.setIndicatorMaxValue(this.getIndicatorMaxValue());
 			inst.setSearchField(this.getSearchField());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setIndicatorMinValue(this.getIndicatorMinValue());
+			inst.setIndicatorDef(this.getIndicatorDef());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
+			inst.setIndicatorGroupName(this.getIndicatorGroupName());
+			inst.setIndicatorScoringBase(this.getIndicatorScoringBase());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
+			inst.setAssessmentIndicator(this.getAssessmentIndicator());
 		}
 		inst.clearModifies();
 		return inst;
@@ -489,9 +496,8 @@ public class AssessmentIndicatorValueVO extends AssessmentIndicatorValue {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setOwner(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.OWNER)));
+			this.setTaskPaperId(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.TASK_PAPER_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssessmentIndicatorValueVOMeta.UPDATE_TIME)));
-			this.setUserId(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssessmentIndicatorValueVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.CONTENT)));
 			this.setIndicatorId(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.INDICATOR_ID)));
@@ -503,24 +509,31 @@ public class AssessmentIndicatorValueVO extends AssessmentIndicatorValue {
 			this.setTenantId(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.ID)));
+			this.setSn(DataParser.parse(Integer.class, map.get(AssessmentIndicatorValueVOMeta.SN)));
 			this.setValue(DataParser.parse(BigDecimal.class, map.get(AssessmentIndicatorValueVOMeta.VALUE)));
 			// others
+			this.setIndicatorName(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.INDICATOR_NAME)));
+			this.setIndicatorMaxValue(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.INDICATOR_MAX_VALUE)));
 			this.setSearchField(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.SEARCH_FIELD)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssessmentIndicatorValueVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.SORT_TYPE)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.FUZZY_FIELD)));
-			this.setSortField(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AssessmentIndicatorValueVOMeta.PAGE_SIZE)));
+			this.setIndicatorMinValue(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.INDICATOR_MIN_VALUE)));
+			this.setIndicatorDef(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.INDICATOR_DEF)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssessmentIndicatorValueVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.SORT_TYPE)));
+			this.setSortField(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.SORT_FIELD)));
+			this.setIndicatorGroupName(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.INDICATOR_GROUP_NAME)));
+			this.setIndicatorScoringBase(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.INDICATOR_SCORING_BASE)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssessmentIndicatorValueVOMeta.SEARCH_VALUE)));
+			this.setAssessmentIndicator(DataParser.parse(AssessmentIndicator.class, map.get(AssessmentIndicatorValueVOMeta.ASSESSMENT_INDICATOR)));
 			return true;
 		} else {
 			try {
-				this.setOwner( (String)map.get(AssessmentIndicatorValueVOMeta.OWNER));
+				this.setTaskPaperId( (String)map.get(AssessmentIndicatorValueVOMeta.TASK_PAPER_ID));
 				this.setUpdateTime( (Date)map.get(AssessmentIndicatorValueVOMeta.UPDATE_TIME));
-				this.setUserId( (String)map.get(AssessmentIndicatorValueVOMeta.USER_ID));
 				this.setVersion( (Integer)map.get(AssessmentIndicatorValueVOMeta.VERSION));
 				this.setContent( (String)map.get(AssessmentIndicatorValueVOMeta.CONTENT));
 				this.setIndicatorId( (String)map.get(AssessmentIndicatorValueVOMeta.INDICATOR_ID));
@@ -532,18 +545,26 @@ public class AssessmentIndicatorValueVO extends AssessmentIndicatorValue {
 				this.setTenantId( (String)map.get(AssessmentIndicatorValueVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AssessmentIndicatorValueVOMeta.DELETE_BY));
 				this.setId( (String)map.get(AssessmentIndicatorValueVOMeta.ID));
+				this.setSn( (Integer)map.get(AssessmentIndicatorValueVOMeta.SN));
 				this.setValue( (BigDecimal)map.get(AssessmentIndicatorValueVOMeta.VALUE));
 				// others
+				this.setIndicatorName( (String)map.get(AssessmentIndicatorValueVOMeta.INDICATOR_NAME));
+				this.setIndicatorMaxValue( (String)map.get(AssessmentIndicatorValueVOMeta.INDICATOR_MAX_VALUE));
 				this.setSearchField( (String)map.get(AssessmentIndicatorValueVOMeta.SEARCH_FIELD));
-				this.setPageIndex( (Integer)map.get(AssessmentIndicatorValueVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(AssessmentIndicatorValueVOMeta.SORT_TYPE));
 				this.setRequestAction( (String)map.get(AssessmentIndicatorValueVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(AssessmentIndicatorValueVOMeta.FUZZY_FIELD));
-				this.setSortField( (String)map.get(AssessmentIndicatorValueVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(AssessmentIndicatorValueVOMeta.PAGE_SIZE));
+				this.setIndicatorMinValue( (String)map.get(AssessmentIndicatorValueVOMeta.INDICATOR_MIN_VALUE));
+				this.setIndicatorDef( (String)map.get(AssessmentIndicatorValueVOMeta.INDICATOR_DEF));
+				this.setPageIndex( (Integer)map.get(AssessmentIndicatorValueVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(AssessmentIndicatorValueVOMeta.SORT_TYPE));
+				this.setSortField( (String)map.get(AssessmentIndicatorValueVOMeta.SORT_FIELD));
+				this.setIndicatorGroupName( (String)map.get(AssessmentIndicatorValueVOMeta.INDICATOR_GROUP_NAME));
+				this.setIndicatorScoringBase( (String)map.get(AssessmentIndicatorValueVOMeta.INDICATOR_SCORING_BASE));
 				this.setDataOrigin( (String)map.get(AssessmentIndicatorValueVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(AssessmentIndicatorValueVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(AssessmentIndicatorValueVOMeta.SEARCH_VALUE));
+				this.setAssessmentIndicator( (AssessmentIndicator)map.get(AssessmentIndicatorValueVOMeta.ASSESSMENT_INDICATOR));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -560,9 +581,8 @@ public class AssessmentIndicatorValueVO extends AssessmentIndicatorValue {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setOwner(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueVOMeta.OWNER)));
+			this.setTaskPaperId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueVOMeta.TASK_PAPER_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssessmentIndicatorValueVOMeta.UPDATE_TIME)));
-			this.setUserId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueVOMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssessmentIndicatorValueVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueVOMeta.CONTENT)));
 			this.setIndicatorId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueVOMeta.INDICATOR_ID)));
@@ -574,13 +594,13 @@ public class AssessmentIndicatorValueVO extends AssessmentIndicatorValue {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueVOMeta.ID)));
+			this.setSn(DataParser.parse(Integer.class, r.getValue(AssessmentIndicatorValueVOMeta.SN)));
 			this.setValue(DataParser.parse(BigDecimal.class, r.getValue(AssessmentIndicatorValueVOMeta.VALUE)));
 			return true;
 		} else {
 			try {
-				this.setOwner( (String)r.getValue(AssessmentIndicatorValueVOMeta.OWNER));
+				this.setTaskPaperId( (String)r.getValue(AssessmentIndicatorValueVOMeta.TASK_PAPER_ID));
 				this.setUpdateTime( (Date)r.getValue(AssessmentIndicatorValueVOMeta.UPDATE_TIME));
-				this.setUserId( (String)r.getValue(AssessmentIndicatorValueVOMeta.USER_ID));
 				this.setVersion( (Integer)r.getValue(AssessmentIndicatorValueVOMeta.VERSION));
 				this.setContent( (String)r.getValue(AssessmentIndicatorValueVOMeta.CONTENT));
 				this.setIndicatorId( (String)r.getValue(AssessmentIndicatorValueVOMeta.INDICATOR_ID));
@@ -592,6 +612,7 @@ public class AssessmentIndicatorValueVO extends AssessmentIndicatorValue {
 				this.setTenantId( (String)r.getValue(AssessmentIndicatorValueVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AssessmentIndicatorValueVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(AssessmentIndicatorValueVOMeta.ID));
+				this.setSn( (Integer)r.getValue(AssessmentIndicatorValueVOMeta.SN));
 				this.setValue( (BigDecimal)r.getValue(AssessmentIndicatorValueVOMeta.VALUE));
 				return true;
 			} catch (Exception e) {

@@ -20,7 +20,7 @@ import com.dt.platform.hr.service.IAssessmentPlanService;
  * 考核计划流程回调事件适配器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-04 07:40:29
+ * @since 2024-03-10 15:10:35
 */
 
 public class AssessmentPlanBpmEventAdaptor extends BpmEventAdaptor<AssessmentPlan,IAssessmentPlanService> {

@@ -2,7 +2,7 @@
 /**
  * 考核单据 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 18:53:10
+ * @since 2024-03-13 10:56:24
  */
  -->
  <!DOCTYPE html>
@@ -40,14 +40,29 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 考核 , taskId ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 考核 , taskId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('考核')}" class="search-label taskId-label">考核</span><span class="search-colon">:</span></div>
-                        <input id="taskId" class="layui-input search-input" style="width: 180px" type="text" />
+                        <div id="taskId" th:data="${'/service-hr/hr-assessment-task/query-paged-list'}" style="width:180px" extraParam="{}"></div>
                     </div>
-                    <!-- 考核名称 , taskName ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 状态 , status ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 考核任务 , taskDataId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 是否可见 , isShow ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 开始时间 , stime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 结束时间 , etime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
+
+
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentBillStatusEnum')}" style="width:180px"></div>
+                    </div>
+                    <!-- 考核名称 , taskName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('考核名称')}" class="search-label taskName-label">考核名称</span><span class="search-colon">:</span></div>
+                        <input id="taskName" class="layui-input search-input" style="width: 180px" type="text" />
+                    </div>
 
 
                 </div>
@@ -76,6 +91,7 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('hr_assessment_bill:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
+        <button id="create-bill-task"  class="layui-btn icon-btn layui-btn-sm  create-bill-task " lay-event="tool-create-bill-task"><span th:text="${lang.translate('新建任务','','cmp:table.button')}">新建任务</span></button>
     </div>
 </script>
 
@@ -88,14 +104,22 @@
 
     <button th:if="${perm.checkAuth('hr_assessment_bill:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
+    <button class="layui-btn layui-btn-xs  person-data " lay-event="person-data" data-id="{{d.id}}"><span th:text="${lang.translate('考核明细','','cmp:table.ops')}">考核明细</span></button>
+    <button class="layui-btn layui-btn-xs  pfr-data " lay-event="pfr-data" data-id="{{d.id}}"><span th:text="${lang.translate('评分人员','','cmp:table.ops')}">评分人员</span></button>
+    <button class="layui-btn layui-btn-xs  bill-task-cancel " lay-event="bill-task-cancel" data-id="{{d.id}}"><span th:text="${lang.translate('取消','','cmp:table.ops')}">取消</span></button>
+    <button class="layui-btn layui-btn-xs  bill-task-copy " lay-event="bill-task-copy" data-id="{{d.id}}"><span th:text="${lang.translate('复制','','cmp:table.ops')}">复制</span></button>
 
 </script>
 
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentBillStatusEnum')}]];
+    var RADIO_ISSHOW_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
     var AUTH_PREFIX="hr_assessment_bill";
 
+    // taskId
+    var TASK_ID = [[${taskId}]] ;
 
 </script>
 

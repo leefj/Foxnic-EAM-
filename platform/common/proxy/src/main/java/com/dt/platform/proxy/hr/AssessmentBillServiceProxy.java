@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 考核单据 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 18:53:10
+ * @since 2024-03-08 20:54:09
  */
 @FeignClient(value = ServiceNames.HR, contextId = AssessmentBillServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssessmentBillServiceProxy {
@@ -83,6 +83,18 @@ public interface AssessmentBillServiceProxy {
      * 分页查询考核单据
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
+
+    public static final String CANCEL = API_PREFIX + "cancel";
+
+    public static final String RESET = API_PREFIX + "reset";
+
+    public static final String RELEASE = API_PREFIX + "release";
+
+    public static final String COPY = API_PREFIX + "copy";
+
+    public static final String CREATE_PAPER = API_PREFIX + "create-paper";
+
+
 
     /**
      * 添加考核单据

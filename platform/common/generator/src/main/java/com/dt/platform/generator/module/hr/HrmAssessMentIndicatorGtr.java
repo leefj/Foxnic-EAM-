@@ -34,8 +34,6 @@ public class HrmAssessMentIndicatorGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(AssessmentIndicatorValue.class,"leaderAssessmentValue","leaderAssessmentValue","leaderAssessmentValue");
         cfg.getPoClassFile().addListProperty(AssessmentIndicatorValue.class,"sameAssessmentValue","sameAssessmentValue","sameAssessmentValue");
 
-
-
         cfg.getPoClassFile().addListProperty(IndicatorLib.class,"indicatorLib","indicatorLib","indicatorLib");
 
         cfg.view().field(HrTables.HR_ASSESSMENT_INDICATOR.PROPERTY).form().validate().required().form().radioBox().enumType(AssessmentIndicatorPropertyEnum.class).defaultIndex(0);
@@ -82,13 +80,14 @@ public class HrmAssessMentIndicatorGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().width("75%");;
         cfg.view().formWindow().bottomSpace(80);
-        cfg.view().form().addGroup("指标",
+        cfg.view().form().addGroup("指标说明",
                 new Object[] {
                         HrTables.HR_ASSESSMENT_INDICATOR.TPL_INDICATOR_ID,
                         HrTables.HR_ASSESSMENT_INDICATOR.PROPERTY,
                         HrTables.HR_ASSESSMENT_INDICATOR.UNIT,
                 },
                 new Object[] {
+                        HrTables.HR_ASSESSMENT_INDICATOR.GROUPNAME,
                         HrTables.HR_ASSESSMENT_INDICATOR.NAME,
                         HrTables.HR_ASSESSMENT_INDICATOR.WEIGHT,
                 }
@@ -100,11 +99,10 @@ public class HrmAssessMentIndicatorGtr extends BaseCodeGenerator {
                         HrTables.HR_ASSESSMENT_INDICATOR.SCORING_BY,
                 }
         );
-        cfg.view().form().addGroup("计算",
+        cfg.view().form().addGroup("得分情况",
                 new Object[] {
-                        HrTables.HR_ASSESSMENT_INDICATOR.TARGET_MAX_VALUE,
                         HrTables.HR_ASSESSMENT_INDICATOR.TARGET_MIN_VALUE,
-
+                        HrTables.HR_ASSESSMENT_INDICATOR.TARGET_MAX_VALUE,
                 },
                 new Object[] {
                         HrTables.HR_ASSESSMENT_INDICATOR.DEFAULT_VALUE,

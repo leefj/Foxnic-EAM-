@@ -6,13 +6,14 @@ import java.util.List;
 import com.dt.platform.domain.hr.AssessmentIndicatorValue;
 import java.math.BigDecimal;
 import java.util.Date;
+import com.dt.platform.domain.hr.AssessmentIndicator;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-28 10:43:18
+ * @since 2024-03-13 15:06:47
  * @sign DF3FE34BD1CF467CC4495113D19A8059
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -150,6 +151,16 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
+	 * 评分卷 , 类型: java.lang.String
+	*/
+	public static final String TASK_PAPER_ID="taskPaperId";
+	
+	/**
+	 * 评分卷 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> TASK_PAPER_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,TASK_PAPER_ID, java.lang.String.class, "评分卷", "评分卷", java.lang.String.class, null);
+	
+	/**
 	 * 指标 , 类型: java.lang.String
 	*/
 	public static final String INDICATOR_ID="indicatorId";
@@ -160,44 +171,34 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> INDICATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,INDICATOR_ID, java.lang.String.class, "指标", "指标", java.lang.String.class, null);
 	
 	/**
-	 * 评分人类型 , 类型: java.lang.String
-	*/
-	public static final String OWNER="owner";
-	
-	/**
-	 * 评分人类型 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> OWNER_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,OWNER, java.lang.String.class, "评分人类型", "评分人类型", java.lang.String.class, null);
-	
-	/**
-	 * 评分人 , 类型: java.lang.String
-	*/
-	public static final String USER_ID="userId";
-	
-	/**
-	 * 评分人 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> USER_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,USER_ID, java.lang.String.class, "评分人", "评分人", java.lang.String.class, null);
-	
-	/**
-	 * 评分 , 类型: java.math.BigDecimal
+	 * 得分 , 类型: java.math.BigDecimal
 	*/
 	public static final String VALUE="value";
 	
 	/**
-	 * 评分 , 类型: java.math.BigDecimal
+	 * 得分 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.math.BigDecimal> VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,VALUE, java.math.BigDecimal.class, "评分", "评分", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.math.BigDecimal> VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,VALUE, java.math.BigDecimal.class, "得分", "得分", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 说明 , 类型: java.lang.String
+	 * 顺序 , 类型: java.lang.Integer
+	*/
+	public static final String SN="sn";
+	
+	/**
+	 * 顺序 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.Integer> SN_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,SN, java.lang.Integer.class, "顺序", "顺序", java.lang.Integer.class, null);
+	
+	/**
+	 * 内容 , 类型: java.lang.String
 	*/
 	public static final String CONTENT="content";
 	
 	/**
-	 * 说明 , 类型: java.lang.String
+	 * 内容 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,CONTENT, java.lang.String.class, "说明", "说明", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,CONTENT, java.lang.String.class, "内容", "内容", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -290,9 +291,79 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * assessmentIndicator , 类型: com.dt.platform.domain.hr.AssessmentIndicator
+	*/
+	public static final String ASSESSMENT_INDICATOR="assessmentIndicator";
+	
+	/**
+	 * assessmentIndicator , 类型: com.dt.platform.domain.hr.AssessmentIndicator
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,com.dt.platform.domain.hr.AssessmentIndicator> ASSESSMENT_INDICATOR_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,ASSESSMENT_INDICATOR, com.dt.platform.domain.hr.AssessmentIndicator.class, "assessmentIndicator", "assessmentIndicator", com.dt.platform.domain.hr.AssessmentIndicator.class, null);
+	
+	/**
+	 * IndicatorGroupName , 类型: java.lang.String
+	*/
+	public static final String INDICATOR_GROUP_NAME="IndicatorGroupName";
+	
+	/**
+	 * IndicatorGroupName , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> INDICATOR_GROUP_NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,INDICATOR_GROUP_NAME, java.lang.String.class, "IndicatorGroupName", "IndicatorGroupName", java.lang.String.class, null);
+	
+	/**
+	 * IndicatorName , 类型: java.lang.String
+	*/
+	public static final String INDICATOR_NAME="IndicatorName";
+	
+	/**
+	 * IndicatorName , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> INDICATOR_NAME_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,INDICATOR_NAME, java.lang.String.class, "IndicatorName", "IndicatorName", java.lang.String.class, null);
+	
+	/**
+	 * IndicatorScoringBase , 类型: java.lang.String
+	*/
+	public static final String INDICATOR_SCORING_BASE="IndicatorScoringBase";
+	
+	/**
+	 * IndicatorScoringBase , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> INDICATOR_SCORING_BASE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,INDICATOR_SCORING_BASE, java.lang.String.class, "IndicatorScoringBase", "IndicatorScoringBase", java.lang.String.class, null);
+	
+	/**
+	 * IndicatorDef , 类型: java.lang.String
+	*/
+	public static final String INDICATOR_DEF="IndicatorDef";
+	
+	/**
+	 * IndicatorDef , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> INDICATOR_DEF_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,INDICATOR_DEF, java.lang.String.class, "IndicatorDef", "IndicatorDef", java.lang.String.class, null);
+	
+	/**
+	 * IndicatorMinValue , 类型: java.lang.String
+	*/
+	public static final String INDICATOR_MIN_VALUE="IndicatorMinValue";
+	
+	/**
+	 * IndicatorMinValue , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> INDICATOR_MIN_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,INDICATOR_MIN_VALUE, java.lang.String.class, "IndicatorMinValue", "IndicatorMinValue", java.lang.String.class, null);
+	
+	/**
+	 * IndicatorMaxValue , 类型: java.lang.String
+	*/
+	public static final String INDICATOR_MAX_VALUE="IndicatorMaxValue";
+	
+	/**
+	 * IndicatorMaxValue , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> INDICATOR_MAX_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,INDICATOR_MAX_VALUE, java.lang.String.class, "IndicatorMaxValue", "IndicatorMaxValue", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , INDICATOR_ID , OWNER , USER_ID , VALUE , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TASK_PAPER_ID , INDICATOR_ID , VALUE , SN , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_INDICATOR , INDICATOR_GROUP_NAME , INDICATOR_NAME , INDICATOR_SCORING_BASE , INDICATOR_DEF , INDICATOR_MIN_VALUE , INDICATOR_MAX_VALUE };
 	
 	/**
 	 * 代理类
@@ -446,6 +517,17 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 		}
 		
 		/**
+		 * 设置 评分卷
+		 * @param taskPaperId 评分卷
+		 * @return 当前对象
+		*/
+		public AssessmentIndicatorValue setTaskPaperId(String taskPaperId) {
+			super.change(TASK_PAPER_ID,super.getTaskPaperId(),taskPaperId);
+			super.setTaskPaperId(taskPaperId);
+			return this;
+		}
+		
+		/**
 		 * 设置 指标
 		 * @param indicatorId 指标
 		 * @return 当前对象
@@ -457,30 +539,8 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 		}
 		
 		/**
-		 * 设置 评分人类型
-		 * @param owner 评分人类型
-		 * @return 当前对象
-		*/
-		public AssessmentIndicatorValue setOwner(String owner) {
-			super.change(OWNER,super.getOwner(),owner);
-			super.setOwner(owner);
-			return this;
-		}
-		
-		/**
-		 * 设置 评分人
-		 * @param userId 评分人
-		 * @return 当前对象
-		*/
-		public AssessmentIndicatorValue setUserId(String userId) {
-			super.change(USER_ID,super.getUserId(),userId);
-			super.setUserId(userId);
-			return this;
-		}
-		
-		/**
-		 * 设置 评分
-		 * @param value 评分
+		 * 设置 得分
+		 * @param value 得分
 		 * @return 当前对象
 		*/
 		public AssessmentIndicatorValue setValue(BigDecimal value) {
@@ -490,8 +550,19 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 		}
 		
 		/**
-		 * 设置 说明
-		 * @param content 说明
+		 * 设置 顺序
+		 * @param sn 顺序
+		 * @return 当前对象
+		*/
+		public AssessmentIndicatorValue setSn(Integer sn) {
+			super.change(SN,super.getSn(),sn);
+			super.setSn(sn);
+			return this;
+		}
+		
+		/**
+		 * 设置 内容
+		 * @param content 内容
 		 * @return 当前对象
 		*/
 		public AssessmentIndicatorValue setContent(String content) {
@@ -598,6 +669,83 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 assessmentIndicator
+		 * @param assessmentIndicator assessmentIndicator
+		 * @return 当前对象
+		*/
+		public AssessmentIndicatorValue setAssessmentIndicator(AssessmentIndicator assessmentIndicator) {
+			super.change(ASSESSMENT_INDICATOR,super.getAssessmentIndicator(),assessmentIndicator);
+			super.setAssessmentIndicator(assessmentIndicator);
+			return this;
+		}
+		
+		/**
+		 * 设置 IndicatorGroupName
+		 * @param IndicatorGroupName IndicatorGroupName
+		 * @return 当前对象
+		*/
+		public AssessmentIndicatorValue setIndicatorGroupName(String IndicatorGroupName) {
+			super.change(INDICATOR_GROUP_NAME,super.getIndicatorGroupName(),IndicatorGroupName);
+			super.setIndicatorGroupName(IndicatorGroupName);
+			return this;
+		}
+		
+		/**
+		 * 设置 IndicatorName
+		 * @param IndicatorName IndicatorName
+		 * @return 当前对象
+		*/
+		public AssessmentIndicatorValue setIndicatorName(String IndicatorName) {
+			super.change(INDICATOR_NAME,super.getIndicatorName(),IndicatorName);
+			super.setIndicatorName(IndicatorName);
+			return this;
+		}
+		
+		/**
+		 * 设置 IndicatorScoringBase
+		 * @param IndicatorScoringBase IndicatorScoringBase
+		 * @return 当前对象
+		*/
+		public AssessmentIndicatorValue setIndicatorScoringBase(String IndicatorScoringBase) {
+			super.change(INDICATOR_SCORING_BASE,super.getIndicatorScoringBase(),IndicatorScoringBase);
+			super.setIndicatorScoringBase(IndicatorScoringBase);
+			return this;
+		}
+		
+		/**
+		 * 设置 IndicatorDef
+		 * @param IndicatorDef IndicatorDef
+		 * @return 当前对象
+		*/
+		public AssessmentIndicatorValue setIndicatorDef(String IndicatorDef) {
+			super.change(INDICATOR_DEF,super.getIndicatorDef(),IndicatorDef);
+			super.setIndicatorDef(IndicatorDef);
+			return this;
+		}
+		
+		/**
+		 * 设置 IndicatorMinValue
+		 * @param IndicatorMinValue IndicatorMinValue
+		 * @return 当前对象
+		*/
+		public AssessmentIndicatorValue setIndicatorMinValue(String IndicatorMinValue) {
+			super.change(INDICATOR_MIN_VALUE,super.getIndicatorMinValue(),IndicatorMinValue);
+			super.setIndicatorMinValue(IndicatorMinValue);
+			return this;
+		}
+		
+		/**
+		 * 设置 IndicatorMaxValue
+		 * @param IndicatorMaxValue IndicatorMaxValue
+		 * @return 当前对象
+		*/
+		public AssessmentIndicatorValue setIndicatorMaxValue(String IndicatorMaxValue) {
+			super.change(INDICATOR_MAX_VALUE,super.getIndicatorMaxValue(),IndicatorMaxValue);
+			super.setIndicatorMaxValue(IndicatorMaxValue);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -614,9 +762,8 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 		@Transient
 		public AssessmentIndicatorValueVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setOwner(this.getOwner());
+			inst.setTaskPaperId(this.getTaskPaperId());
 			inst.setUpdateTime(this.getUpdateTime());
-			inst.setUserId(this.getUserId());
 			inst.setVersion(this.getVersion());
 			inst.setContent(this.getContent());
 			inst.setIndicatorId(this.getIndicatorId());
@@ -628,20 +775,28 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setSn(this.getSn());
 			inst.setValue(this.getValue());
 			if(all) {
+				inst.setIndicatorName(this.getIndicatorName());
+				inst.setIndicatorMaxValue(this.getIndicatorMaxValue());
 				inst.setSearchField(this.getSearchField());
-				inst.setPageIndex(this.getPageIndex());
-				inst.setSortType(this.getSortType());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setIndicatorMinValue(this.getIndicatorMinValue());
+				inst.setIndicatorDef(this.getIndicatorDef());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
+				inst.setIndicatorGroupName(this.getIndicatorGroupName());
+				inst.setIndicatorScoringBase(this.getIndicatorScoringBase());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSearchValue(this.getSearchValue());
+				inst.setAssessmentIndicator(this.getAssessmentIndicator());
 			}
 			inst.clearModifies();
 			return inst;

@@ -15,6 +15,8 @@ import com.dt.platform.domain.hr.meta.AssessmentTaskVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
 import java.math.BigDecimal;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.system.DictItem;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -23,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核任务VO类型
  * <p>考核任务 , 数据表 hr_assessment_task 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 19:40:25
+ * @since 2024-03-13 20:22:32
  * @sign 216B4531EC5B295012D06E8F075C75F2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -404,15 +406,15 @@ public class AssessmentTaskVO extends AssessmentTask {
 		com.dt.platform.domain.hr.meta.AssessmentTaskVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AssessmentTaskVOMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
 		inst.setSource(this.getSource());
+		inst.setType(this.getType());
 		inst.setCycle(this.getCycle());
-		inst.setSameLevelUserId(this.getSameLevelUserId());
 		inst.setHasSelfAssessment(this.getHasSelfAssessment());
-		inst.setPosId(this.getPosId());
 		inst.setHasLeaderAssessment(this.getHasLeaderAssessment());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setId(this.getId());
 		inst.setIsAllPerson(this.getIsAllPerson());
 		inst.setOwner(this.getOwner());
+		inst.setHrUserId(this.getHrUserId());
 		inst.setHasHrConfirm(this.getHasHrConfirm());
 		inst.setHasSecondLeaderAssessment(this.getHasSecondLeaderAssessment());
 		inst.setHasSameAssessment(this.getHasSameAssessment());
@@ -430,27 +432,32 @@ public class AssessmentTaskVO extends AssessmentTask {
 		inst.setTplId(this.getTplId());
 		inst.setStatus(this.getStatus());
 		if(all) {
-			inst.setPersonList(this.getPersonList());
+			inst.setPositionIds(this.getPositionIds());
 			inst.setSearchField(this.getSearchField());
-			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setOrganizationList(this.getOrganizationList());
 			inst.setPageSize(this.getPageSize());
 			inst.setSelectedCode(this.getSelectedCode());
+			inst.setHrUser(this.getHrUser());
+			inst.setAssessmentIndicatorList(this.getAssessmentIndicatorList());
 			inst.setOrganizationIds(this.getOrganizationIds());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setExcludePersonIds(this.getExcludePersonIds());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPersonIds(this.getPersonIds());
 			inst.setDataOrigin(this.getDataOrigin());
-			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
-			inst.setAssessmentTpl(this.getAssessmentTpl());
-			inst.setSearchValue(this.getSearchValue());
-			inst.setAssessmentIndicator(this.getAssessmentIndicator());
 			inst.setExcludePersonList(this.getExcludePersonList());
+			inst.setPositionList(this.getPositionList());
+			inst.setPersonList(this.getPersonList());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setTypeDict(this.getTypeDict());
+			inst.setPersonIds(this.getPersonIds());
+			inst.setIds(this.getIds());
+			inst.setAssessmentTpl(this.getAssessmentTpl());
+			inst.setButtonAction(this.getButtonAction());
+			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
 		return inst;
@@ -512,15 +519,15 @@ public class AssessmentTaskVO extends AssessmentTask {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.NOTES)));
 			this.setSource(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.SOURCE)));
+			this.setType(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.TYPE)));
 			this.setCycle(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.CYCLE)));
-			this.setSameLevelUserId(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.SAME_LEVEL_USER_ID)));
 			this.setHasSelfAssessment(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.HAS_SELF_ASSESSMENT)));
-			this.setPosId(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.POS_ID)));
 			this.setHasLeaderAssessment(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.HAS_LEADER_ASSESSMENT)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.UPDATE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.ID)));
 			this.setIsAllPerson(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.IS_ALL_PERSON)));
 			this.setOwner(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.OWNER)));
+			this.setHrUserId(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.HR_USER_ID)));
 			this.setHasHrConfirm(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.HAS_HR_CONFIRM)));
 			this.setHasSecondLeaderAssessment(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.HAS_SECOND_LEADER_ASSESSMENT)));
 			this.setHasSameAssessment(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.HAS_SAME_ASSESSMENT)));
@@ -539,31 +546,34 @@ public class AssessmentTaskVO extends AssessmentTask {
 			this.setStatus(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.SEARCH_FIELD)));
-			this.setRequestAction(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AssessmentTaskVOMeta.PAGE_SIZE)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.SELECTED_CODE)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssessmentTaskVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.SORT_TYPE)));
+			this.setHrUser(DataParser.parse(Employee.class, map.get(AssessmentTaskVOMeta.HR_USER)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.QUERY_LOGIC)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.REQUEST_ACTION)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssessmentTaskVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.SORT_TYPE)));
+			this.setTypeDict(DataParser.parse(DictItem.class, map.get(AssessmentTaskVOMeta.TYPE_DICT)));
 			this.setAssessmentTpl(DataParser.parse(AssessmentTpl.class, map.get(AssessmentTaskVOMeta.ASSESSMENT_TPL)));
+			this.setButtonAction(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.BUTTON_ACTION)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
 			try {
 				this.setNotes( (String)map.get(AssessmentTaskVOMeta.NOTES));
 				this.setSource( (String)map.get(AssessmentTaskVOMeta.SOURCE));
+				this.setType( (String)map.get(AssessmentTaskVOMeta.TYPE));
 				this.setCycle( (String)map.get(AssessmentTaskVOMeta.CYCLE));
-				this.setSameLevelUserId( (String)map.get(AssessmentTaskVOMeta.SAME_LEVEL_USER_ID));
 				this.setHasSelfAssessment( (String)map.get(AssessmentTaskVOMeta.HAS_SELF_ASSESSMENT));
-				this.setPosId( (String)map.get(AssessmentTaskVOMeta.POS_ID));
 				this.setHasLeaderAssessment( (String)map.get(AssessmentTaskVOMeta.HAS_LEADER_ASSESSMENT));
 				this.setUpdateBy( (String)map.get(AssessmentTaskVOMeta.UPDATE_BY));
 				this.setId( (String)map.get(AssessmentTaskVOMeta.ID));
 				this.setIsAllPerson( (String)map.get(AssessmentTaskVOMeta.IS_ALL_PERSON));
 				this.setOwner( (String)map.get(AssessmentTaskVOMeta.OWNER));
+				this.setHrUserId( (String)map.get(AssessmentTaskVOMeta.HR_USER_ID));
 				this.setHasHrConfirm( (String)map.get(AssessmentTaskVOMeta.HAS_HR_CONFIRM));
 				this.setHasSecondLeaderAssessment( (String)map.get(AssessmentTaskVOMeta.HAS_SECOND_LEADER_ASSESSMENT));
 				this.setHasSameAssessment( (String)map.get(AssessmentTaskVOMeta.HAS_SAME_ASSESSMENT));
@@ -582,16 +592,19 @@ public class AssessmentTaskVO extends AssessmentTask {
 				this.setStatus( (String)map.get(AssessmentTaskVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(AssessmentTaskVOMeta.SEARCH_FIELD));
-				this.setRequestAction( (String)map.get(AssessmentTaskVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(AssessmentTaskVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(AssessmentTaskVOMeta.PAGE_SIZE));
 				this.setSelectedCode( (String)map.get(AssessmentTaskVOMeta.SELECTED_CODE));
-				this.setPageIndex( (Integer)map.get(AssessmentTaskVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(AssessmentTaskVOMeta.SORT_TYPE));
+				this.setHrUser( (Employee)map.get(AssessmentTaskVOMeta.HR_USER));
 				this.setSortField( (String)map.get(AssessmentTaskVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(AssessmentTaskVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(AssessmentTaskVOMeta.QUERY_LOGIC));
+				this.setRequestAction( (String)map.get(AssessmentTaskVOMeta.REQUEST_ACTION));
+				this.setPageIndex( (Integer)map.get(AssessmentTaskVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(AssessmentTaskVOMeta.SORT_TYPE));
+				this.setTypeDict( (DictItem)map.get(AssessmentTaskVOMeta.TYPE_DICT));
 				this.setAssessmentTpl( (AssessmentTpl)map.get(AssessmentTaskVOMeta.ASSESSMENT_TPL));
+				this.setButtonAction( (String)map.get(AssessmentTaskVOMeta.BUTTON_ACTION));
 				this.setSearchValue( (String)map.get(AssessmentTaskVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {
@@ -611,15 +624,15 @@ public class AssessmentTaskVO extends AssessmentTask {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.NOTES)));
 			this.setSource(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.SOURCE)));
+			this.setType(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.TYPE)));
 			this.setCycle(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.CYCLE)));
-			this.setSameLevelUserId(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.SAME_LEVEL_USER_ID)));
 			this.setHasSelfAssessment(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.HAS_SELF_ASSESSMENT)));
-			this.setPosId(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.POS_ID)));
 			this.setHasLeaderAssessment(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.HAS_LEADER_ASSESSMENT)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.UPDATE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.ID)));
 			this.setIsAllPerson(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.IS_ALL_PERSON)));
 			this.setOwner(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.OWNER)));
+			this.setHrUserId(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.HR_USER_ID)));
 			this.setHasHrConfirm(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.HAS_HR_CONFIRM)));
 			this.setHasSecondLeaderAssessment(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.HAS_SECOND_LEADER_ASSESSMENT)));
 			this.setHasSameAssessment(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.HAS_SAME_ASSESSMENT)));
@@ -641,15 +654,15 @@ public class AssessmentTaskVO extends AssessmentTask {
 			try {
 				this.setNotes( (String)r.getValue(AssessmentTaskVOMeta.NOTES));
 				this.setSource( (String)r.getValue(AssessmentTaskVOMeta.SOURCE));
+				this.setType( (String)r.getValue(AssessmentTaskVOMeta.TYPE));
 				this.setCycle( (String)r.getValue(AssessmentTaskVOMeta.CYCLE));
-				this.setSameLevelUserId( (String)r.getValue(AssessmentTaskVOMeta.SAME_LEVEL_USER_ID));
 				this.setHasSelfAssessment( (String)r.getValue(AssessmentTaskVOMeta.HAS_SELF_ASSESSMENT));
-				this.setPosId( (String)r.getValue(AssessmentTaskVOMeta.POS_ID));
 				this.setHasLeaderAssessment( (String)r.getValue(AssessmentTaskVOMeta.HAS_LEADER_ASSESSMENT));
 				this.setUpdateBy( (String)r.getValue(AssessmentTaskVOMeta.UPDATE_BY));
 				this.setId( (String)r.getValue(AssessmentTaskVOMeta.ID));
 				this.setIsAllPerson( (String)r.getValue(AssessmentTaskVOMeta.IS_ALL_PERSON));
 				this.setOwner( (String)r.getValue(AssessmentTaskVOMeta.OWNER));
+				this.setHrUserId( (String)r.getValue(AssessmentTaskVOMeta.HR_USER_ID));
 				this.setHasHrConfirm( (String)r.getValue(AssessmentTaskVOMeta.HAS_HR_CONFIRM));
 				this.setHasSecondLeaderAssessment( (String)r.getValue(AssessmentTaskVOMeta.HAS_SECOND_LEADER_ASSESSMENT));
 				this.setHasSameAssessment( (String)r.getValue(AssessmentTaskVOMeta.HAS_SAME_ASSESSMENT));

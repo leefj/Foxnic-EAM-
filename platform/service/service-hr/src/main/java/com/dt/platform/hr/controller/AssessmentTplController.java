@@ -66,7 +66,8 @@ public class AssessmentTplController extends SuperController {
 		@ApiImplicitParam(name = AssessmentTplVOMeta.TOTAL_WEIGHT, value = "指标总权重", required = false, dataTypeClass = BigDecimal.class, example = "100.00"),
 		@ApiImplicitParam(name = AssessmentTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "科技项目绩效模版"),
 		@ApiImplicitParam(name = AssessmentTplVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
-		@ApiImplicitParam(name = AssessmentTplVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentTplVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -165,7 +166,8 @@ public class AssessmentTplController extends SuperController {
 		@ApiImplicitParam(name = AssessmentTplVOMeta.TOTAL_WEIGHT, value = "指标总权重", required = false, dataTypeClass = BigDecimal.class, example = "100.00"),
 		@ApiImplicitParam(name = AssessmentTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "科技项目绩效模版"),
 		@ApiImplicitParam(name = AssessmentTplVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
-		@ApiImplicitParam(name = AssessmentTplVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentTplVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { AssessmentTplVOMeta.PAGE_INDEX, AssessmentTplVOMeta.PAGE_SIZE, AssessmentTplVOMeta.SEARCH_FIELD, AssessmentTplVOMeta.FUZZY_FIELD, AssessmentTplVOMeta.SEARCH_VALUE, AssessmentTplVOMeta.DIRTY_FIELDS, AssessmentTplVOMeta.SORT_FIELD, AssessmentTplVOMeta.SORT_TYPE, AssessmentTplVOMeta.DATA_ORIGIN, AssessmentTplVOMeta.QUERY_LOGIC, AssessmentTplVOMeta.REQUEST_ACTION, AssessmentTplVOMeta.IDS })
@@ -186,7 +188,8 @@ public class AssessmentTplController extends SuperController {
 		@ApiImplicitParam(name = AssessmentTplVOMeta.TOTAL_WEIGHT, value = "指标总权重", required = false, dataTypeClass = BigDecimal.class, example = "100.00"),
 		@ApiImplicitParam(name = AssessmentTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "科技项目绩效模版"),
 		@ApiImplicitParam(name = AssessmentTplVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
-		@ApiImplicitParam(name = AssessmentTplVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentTplVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { AssessmentTplVOMeta.PAGE_INDEX, AssessmentTplVOMeta.PAGE_SIZE, AssessmentTplVOMeta.SEARCH_FIELD, AssessmentTplVOMeta.FUZZY_FIELD, AssessmentTplVOMeta.SEARCH_VALUE, AssessmentTplVOMeta.DIRTY_FIELDS, AssessmentTplVOMeta.SORT_FIELD, AssessmentTplVOMeta.SORT_TYPE, AssessmentTplVOMeta.DATA_ORIGIN, AssessmentTplVOMeta.QUERY_LOGIC, AssessmentTplVOMeta.REQUEST_ACTION, AssessmentTplVOMeta.IDS })
@@ -211,7 +214,7 @@ public class AssessmentTplController extends SuperController {
         Result<AssessmentTpl> result = new Result<>();
         AssessmentTpl assessmentTpl = assessmentTplService.getById(id);
         // join 关联的对象
-        assessmentTplService.dao().fill(assessmentTpl).with(AssessmentTplMeta.POSITION_LIST).execute();
+        assessmentTplService.dao().fill(assessmentTpl).with(AssessmentTplMeta.TYPE_DICT).with(AssessmentTplMeta.POSITION_LIST).execute();
         result.success(true).data(assessmentTpl);
         return result;
     }
@@ -244,7 +247,8 @@ public class AssessmentTplController extends SuperController {
 		@ApiImplicitParam(name = AssessmentTplVOMeta.TOTAL_WEIGHT, value = "指标总权重", required = false, dataTypeClass = BigDecimal.class, example = "100.00"),
 		@ApiImplicitParam(name = AssessmentTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "科技项目绩效模版"),
 		@ApiImplicitParam(name = AssessmentTplVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
-		@ApiImplicitParam(name = AssessmentTplVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentTplVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { AssessmentTplVOMeta.PAGE_INDEX, AssessmentTplVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssessmentTplServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -266,7 +270,8 @@ public class AssessmentTplController extends SuperController {
 		@ApiImplicitParam(name = AssessmentTplVOMeta.TOTAL_WEIGHT, value = "指标总权重", required = false, dataTypeClass = BigDecimal.class, example = "100.00"),
 		@ApiImplicitParam(name = AssessmentTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "科技项目绩效模版"),
 		@ApiImplicitParam(name = AssessmentTplVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
-		@ApiImplicitParam(name = AssessmentTplVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentTplVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = AssessmentTplServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -275,7 +280,7 @@ public class AssessmentTplController extends SuperController {
         Result<PagedList<AssessmentTpl>> result = new Result<>();
         PagedList<AssessmentTpl> list = assessmentTplService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        assessmentTplService.dao().fill(list).with(AssessmentTplMeta.POSITION_LIST).execute();
+        assessmentTplService.dao().fill(list).with(AssessmentTplMeta.TYPE_DICT).with(AssessmentTplMeta.POSITION_LIST).execute();
         result.success(true).data(list);
         return result;
     }

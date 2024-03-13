@@ -1,12 +1,29 @@
 package com.dt.platform.eam.controller;
 
-import java.util.List;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
 import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.InspectionTaskPointMeta;
 import com.dt.platform.domain.eam.meta.MaintainProjectMeta;
+import com.dt.platform.proxy.common.TplFileServiceProxy;
 import com.dt.platform.proxy.eam.CheckItemServiceProxy;
 import com.dt.platform.proxy.eam.MaintainProjectServiceProxy;
+import com.github.foxnic.api.constant.CodeTextEnum;
+import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
+import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.entity.ReferCause;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,11 +41,10 @@ import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.springboot.web.DownloadUtil;
 import com.github.foxnic.dao.data.PagedList;
-import java.util.Date;
+
 import java.sql.Timestamp;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.commons.io.StreamUtil;
-import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.eam.meta.InspectionPointMeta;
@@ -76,7 +92,8 @@ public class InspectionPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionPointVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.POS_ID, value = "点位位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InspectionPointServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -137,7 +154,8 @@ public class InspectionPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionPointVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.POS_ID, value = "点位位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InspectionPointVOMeta.PAGE_INDEX, InspectionPointVOMeta.PAGE_SIZE, InspectionPointVOMeta.SEARCH_FIELD, InspectionPointVOMeta.FUZZY_FIELD, InspectionPointVOMeta.SEARCH_VALUE, InspectionPointVOMeta.DIRTY_FIELDS, InspectionPointVOMeta.SORT_FIELD, InspectionPointVOMeta.SORT_TYPE, InspectionPointVOMeta.IDS })
     @SentinelResource(value = InspectionPointServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -167,7 +185,8 @@ public class InspectionPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionPointVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.POS_ID, value = "点位位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionPointVOMeta.PAGE_INDEX, InspectionPointVOMeta.PAGE_SIZE, InspectionPointVOMeta.SEARCH_FIELD, InspectionPointVOMeta.FUZZY_FIELD, InspectionPointVOMeta.SEARCH_VALUE, InspectionPointVOMeta.DIRTY_FIELDS, InspectionPointVOMeta.SORT_FIELD, InspectionPointVOMeta.SORT_TYPE, InspectionPointVOMeta.IDS })
     @SentinelResource(value = InspectionPointServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -234,7 +253,8 @@ public class InspectionPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionPointVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.POS_ID, value = "点位位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionPointVOMeta.PAGE_INDEX, InspectionPointVOMeta.PAGE_SIZE })
     @SentinelResource(value = InspectionPointServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -265,7 +285,8 @@ public class InspectionPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionPointVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.POS_ID, value = "点位位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionPointVOMeta.ASSET_ID, value = "关联设备", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InspectionPointServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -331,13 +352,36 @@ public class InspectionPointController extends SuperController {
     @SentinelResource(value = InspectionPointServiceProxy.EXPORT_EXCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(InspectionPointServiceProxy.EXPORT_EXCEL)
     public void exportExcel(InspectionPointVO sample, HttpServletResponse response) throws Exception {
-        try {
-            // 生成 Excel 数据
-            ExcelWriter ew = inspectionPointService.exportExcel(sample);
-            // 下载
-            DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
+        String code="eam_asset_insepect_point";
+        InputStream inputstream = inspectionPointService.buildExcelTemplate(code);
+        try{
+            File f = TplFileServiceProxy.api().saveTempFile(inputstream, "tmp_"+code+".xls");
+            List<InspectionPoint> list= inspectionPointService.queryList(sample);
+            inspectionPointService.dao().fill(list).with(InspectionPointMeta.ASSET).with(InspectionPointMeta.ROUTE).with(InspectionPointMeta.INSPECTION_POINT_POS).execute();
+            List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
+            for(int i=0;i<list.size();i++){
+                InspectionPoint item=list.get(i);
+                Map<String, Object> assetMap= BeanUtil.toMap(item);
+                if(item.getAsset()!=null){
+                    assetMap.put("relAssetCode",item.getAsset().getAssetCode());
+                    assetMap.put("relAssetName",item.getAsset().getName());
+                    assetMap.put("relAssetModel",item.getAsset().getModel());
+                }
+                if(item.getInspectionPointPos()!=null){
+                    assetMap.put("posName",item.getInspectionPointPos().getHierarchyName());
+                }
+                CodeTextEnum status= EnumUtil.parseByCode(StatusEnableEnum.class,item.getStatus());
+                assetMap.put("statusName",status==null?"":status.text());
+                listMap.add(assetMap);
+            }
+            Map<String,Object> map=new HashMap<>();
+            map.put("dataList", listMap);
+            TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
+            templateExportParams.setScanAllsheet(true);
+            Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
+            DownloadUtil.writeToOutput(response, workbook, "巡检点位.xls");
         } catch (Exception e) {
-            DownloadUtil.writeDownloadError(response, e);
+            DownloadUtil.writeDownloadError(response,e);
         }
     }
 
@@ -382,21 +426,28 @@ public class InspectionPointController extends SuperController {
     @SentinelResource(value = InspectionPointServiceProxy.IMPORT_EXCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(InspectionPointServiceProxy.IMPORT_EXCEL)
     public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
-        // 获得上传的文件
+        String code="eam_asset_insepect_point";
+        //获得上传的文件
         Map<String, MultipartFile> map = request.getFileMap();
-        InputStream input = null;
+        InputStream input=null;
         for (MultipartFile mf : map.values()) {
-            input = StreamUtil.bytes2input(mf.getBytes());
+            input=StreamUtil.bytes2input(mf.getBytes());
             break;
         }
-        if (input == null) {
+        if(input==null) {
             return ErrorDesc.failure().message("缺少上传的文件");
         }
-        List<ValidateResult> errors = inspectionPointService.importExcel(input, 0, true);
+        List<ValidateResult> errors = inspectionPointService.importExcel(input, 0, code);
         if (errors == null || errors.isEmpty()) {
             return ErrorDesc.success();
         } else {
-            return ErrorDesc.failure().message("导入失败").data(errors);
+            Logger.info("import Result:");
+            String msg = "导入失败";
+            for (int i = 0; i < errors.size(); i++) {
+                Logger.info(i + ":" + errors.get(i).message);
+                msg = errors.get(i).message;
+            }
+            return ErrorDesc.failure().message(msg).data(errors);
         }
     }
 }

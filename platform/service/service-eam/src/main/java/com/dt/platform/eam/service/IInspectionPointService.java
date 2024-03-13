@@ -331,7 +331,10 @@ public interface IInspectionPointService extends ISuperService<InspectionPoint> 
 	 * 导入 Excel 数据
 	 * @return  错误信息，成功时返回 null
 	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
+	List<ValidateResult> importExcel(InputStream input,int sheetIndex,String code);
 
 
+	InputStream buildExcelTemplate(String code);
+
+	ExcelStructure buildExcelStructure(InputStream dataInputStream,String code);
 }

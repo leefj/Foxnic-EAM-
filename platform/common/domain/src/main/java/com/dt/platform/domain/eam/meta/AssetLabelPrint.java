@@ -13,6 +13,7 @@ public class AssetLabelPrint {
     public float PAGE_SIZE_A4_POINT_PER_MM=595/210f;
     List<Map<String, Object>> assetData=null;
 
+    private String assetLabelPrefix="";
     private AssetLabel label;
     private AssetLabelTpl labelTpl;
     private AssetLabelPaper assetLabelPaper;
@@ -118,6 +119,16 @@ public class AssetLabelPrint {
         this.tableWidthMM=label.getLabelWidth().floatValue()*10;
         this.tableHeightMM=label.getLabelHeight().floatValue()*10;
     }
+
+
+    public String getAssetLabelPrefix() {
+        return assetLabelPrefix;
+    }
+
+    public void setAssetLabelPrefix(String assetLabelPrefix) {
+        this.assetLabelPrefix = assetLabelPrefix;
+    }
+
 
     public String getPaperType() {
         return paperType;

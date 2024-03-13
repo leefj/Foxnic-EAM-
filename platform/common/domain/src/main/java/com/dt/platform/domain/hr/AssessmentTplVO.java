@@ -15,6 +15,7 @@ import com.dt.platform.domain.hr.meta.AssessmentTplVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
 import java.math.BigDecimal;
+import org.github.foxnic.web.domain.system.DictItem;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -23,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核模版VO类型
  * <p>考核模版 , 数据表 hr_assessment_tpl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-01 09:12:37
+ * @since 2024-03-10 21:32:45
  * @sign 8F28162D05AA2D8B7D33BD7B3B3287AA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -404,6 +405,7 @@ public class AssessmentTplVO extends AssessmentTpl {
 		com.dt.platform.domain.hr.meta.AssessmentTplVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AssessmentTplVOMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setType(this.getType());
 		inst.setVersion(this.getVersion());
 		inst.setOrgId(this.getOrgId());
 		inst.setCreateBy(this.getCreateBy());
@@ -426,6 +428,7 @@ public class AssessmentTplVO extends AssessmentTpl {
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
+			inst.setTypeDict(this.getTypeDict());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setDataOrigin(this.getDataOrigin());
@@ -494,6 +497,7 @@ public class AssessmentTplVO extends AssessmentTpl {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(AssessmentTplVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssessmentTplVOMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, map.get(AssessmentTplVOMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssessmentTplVOMeta.VERSION)));
 			this.setOrgId(DataParser.parse(String.class, map.get(AssessmentTplVOMeta.ORG_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssessmentTplVOMeta.CREATE_BY)));
@@ -514,6 +518,7 @@ public class AssessmentTplVO extends AssessmentTpl {
 			this.setSelectedCode(DataParser.parse(String.class, map.get(AssessmentTplVOMeta.SELECTED_CODE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssessmentTplVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AssessmentTplVOMeta.SORT_TYPE)));
+			this.setTypeDict(DataParser.parse(DictItem.class, map.get(AssessmentTplVOMeta.TYPE_DICT)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssessmentTplVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(AssessmentTplVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(AssessmentTplVOMeta.QUERY_LOGIC)));
@@ -523,6 +528,7 @@ public class AssessmentTplVO extends AssessmentTpl {
 			try {
 				this.setNotes( (String)map.get(AssessmentTplVOMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(AssessmentTplVOMeta.UPDATE_TIME));
+				this.setType( (String)map.get(AssessmentTplVOMeta.TYPE));
 				this.setVersion( (Integer)map.get(AssessmentTplVOMeta.VERSION));
 				this.setOrgId( (String)map.get(AssessmentTplVOMeta.ORG_ID));
 				this.setCreateBy( (String)map.get(AssessmentTplVOMeta.CREATE_BY));
@@ -543,6 +549,7 @@ public class AssessmentTplVO extends AssessmentTpl {
 				this.setSelectedCode( (String)map.get(AssessmentTplVOMeta.SELECTED_CODE));
 				this.setPageIndex( (Integer)map.get(AssessmentTplVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AssessmentTplVOMeta.SORT_TYPE));
+				this.setTypeDict( (DictItem)map.get(AssessmentTplVOMeta.TYPE_DICT));
 				this.setSortField( (String)map.get(AssessmentTplVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(AssessmentTplVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(AssessmentTplVOMeta.QUERY_LOGIC));
@@ -565,6 +572,7 @@ public class AssessmentTplVO extends AssessmentTpl {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(AssessmentTplVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssessmentTplVOMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, r.getValue(AssessmentTplVOMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssessmentTplVOMeta.VERSION)));
 			this.setOrgId(DataParser.parse(String.class, r.getValue(AssessmentTplVOMeta.ORG_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssessmentTplVOMeta.CREATE_BY)));
@@ -582,6 +590,7 @@ public class AssessmentTplVO extends AssessmentTpl {
 			try {
 				this.setNotes( (String)r.getValue(AssessmentTplVOMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(AssessmentTplVOMeta.UPDATE_TIME));
+				this.setType( (String)r.getValue(AssessmentTplVOMeta.TYPE));
 				this.setVersion( (Integer)r.getValue(AssessmentTplVOMeta.VERSION));
 				this.setOrgId( (String)r.getValue(AssessmentTplVOMeta.ORG_ID));
 				this.setCreateBy( (String)r.getValue(AssessmentTplVOMeta.CREATE_BY));

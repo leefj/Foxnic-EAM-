@@ -2,7 +2,7 @@
 /**
  * 考核单据 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 18:53:11
+ * @since 2024-03-13 10:56:24
  */
  -->
  <!DOCTYPE html>
@@ -33,53 +33,79 @@
 
     <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="opacity:0">
 
+        <input name="id" id="id"  type="hidden"/>
 
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="default-content">
+        <div class="layui-row form-row" id="random-7840-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs12 form-column" >
+            <div class="layui-col-xs6 form-column" >
 
-                <!-- text_input : 主键 ,  id -->
-                <div class="layui-form-item" style="display: none"inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('主键')}">主键</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入'+'主键') }" type="text" class="layui-input"  />
-                    </div>
-                </div>
-            
-                <!-- text_input : 考核 ,  taskId -->
-                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('考核')}">考核</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="taskId" id="taskId" name="taskId" th:placeholder="${ lang.translate('请输入'+'考核') }" type="text" class="layui-input"  />
-                    </div>
-                </div>
-            
                 <!-- text_input : 考核名称 ,  taskName -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('考核名称')}">考核名称</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="taskName" id="taskName" name="taskName" th:placeholder="${ lang.translate('请输入'+'考核名称') }" type="text" class="layui-input"  />
+                    <div class="layui-form-label "><div th:text="${lang.translate('考核名称')}">考核名称</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="taskName" id="taskName" name="taskName" th:placeholder="${ lang.translate('请输入'+'考核名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
             
-                <!-- text_input : 状态 ,  status -->
+                <!-- radio_box : 状态 ,  status  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('状态')}">状态</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="status" id="status" name="status" th:placeholder="${ lang.translate('请输入'+'状态') }" type="text" class="layui-input"  />
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentBillStatusEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
                     </div>
                 </div>
             
-                <!-- text_input : 修改人ID ,  updateBy -->
+                <!-- radio_box : 是否可见 ,  isShow  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('修改人ID')}">修改人ID</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="updateBy" id="updateBy" name="updateBy" th:placeholder="${ lang.translate('请输入'+'修改人ID') }" type="text" class="layui-input"  />
+                    <div class="layui-form-label "><div th:text="${lang.translate('是否可见')}">是否可见</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="isShow" lay-filter="isShow" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==1)}">
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                <!-- date_input : 开始时间 ,  stime  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('开始时间')}">开始时间</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="date" lay-filter="stime" id="stime" name="stime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'开始时间') }" type="text" class="layui-input"    lay-verify=""   />
+                    </div>
+                </div>
+            
+                <!-- date_input : 结束时间 ,  etime  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('结束时间')}">结束时间</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="date" lay-filter="etime" id="etime" name="etime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'结束时间') }" type="text" class="layui-input"    lay-verify=""   />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <div class="layui-row form-row" id="random-9696-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
+
+                <!-- text_area : 备注 ,  notes  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 80px" ></textarea>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -89,7 +115,7 @@
         <!--结束：group循环-->
 
         <div style="height: 8px"></div>
-        <div style="height: 80px"></div>
+        <div style="height: 150px"></div>
 
 
     </form>
@@ -107,7 +133,9 @@
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
-    var VALIDATE_CONFIG={};
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentBillStatusEnum')}]];
+    var RADIO_ISSHOW_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}]];
+    var VALIDATE_CONFIG={"etime":{"date":true,"labelInForm":"结束时间","inputType":"date_input"},"taskName":{"labelInForm":"考核名称","inputType":"text_input","required":true},"stime":{"date":true,"labelInForm":"开始时间","inputType":"date_input"},"isShow":{"labelInForm":"是否可见","inputType":"radio_box","required":true}};
     var AUTH_PREFIX="hr_assessment_bill";
 
 

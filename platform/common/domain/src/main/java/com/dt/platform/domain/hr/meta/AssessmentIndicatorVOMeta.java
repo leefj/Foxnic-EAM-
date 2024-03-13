@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-29 16:32:31
+ * @since 2024-03-13 20:35:52
  * @sign 93A6886A9E8CEF3CD1F4844E3086978F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -152,6 +152,16 @@ public class AssessmentIndicatorVOMeta extends AssessmentIndicatorMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
+	 * 归属 , tpl,inst , 类型: java.lang.String
+	*/
+	public static final String OWNER="owner";
+	
+	/**
+	 * 归属 , tpl,inst , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorVO,java.lang.String> OWNER_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorVO.class ,OWNER, java.lang.String.class, "归属", "tpl,inst", java.lang.String.class, null);
+	
+	/**
 	 * 考核主题 , 类型: java.lang.String
 	*/
 	public static final String ASSESSMENT_ID="assessmentId";
@@ -170,6 +180,16 @@ public class AssessmentIndicatorVOMeta extends AssessmentIndicatorMeta {
 	 * 指标库 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorVO,java.lang.String> TPL_INDICATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorVO.class ,TPL_INDICATOR_ID, java.lang.String.class, "指标库", "指标库", java.lang.String.class, null);
+	
+	/**
+	 * 分类 , 类型: java.lang.String
+	*/
+	public static final String GROUPNAME="groupname";
+	
+	/**
+	 * 分类 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorVO,java.lang.String> GROUPNAME_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorVO.class ,GROUPNAME, java.lang.String.class, "分类", "分类", java.lang.String.class, null);
 	
 	/**
 	 * 指标名称 , 类型: java.lang.String
@@ -414,7 +434,7 @@ public class AssessmentIndicatorVOMeta extends AssessmentIndicatorMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , ASSESSMENT_ID , TPL_INDICATOR_ID , NAME , WEIGHT , TARGET_MIN_VALUE , TARGET_MAX_VALUE , DEFAULT_VALUE , PROPERTY , UNIT , DEF , SCORING_BASE , SCORING_BY , SN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELF_ASSESSMENT_VALUE , LEADER_ASSESSMENT_VALUE , SAME_ASSESSMENT_VALUE , INDICATOR_LIB };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , OWNER , ASSESSMENT_ID , TPL_INDICATOR_ID , GROUPNAME , NAME , WEIGHT , TARGET_MIN_VALUE , TARGET_MAX_VALUE , DEFAULT_VALUE , PROPERTY , UNIT , DEF , SCORING_BASE , SCORING_BY , SN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELF_ASSESSMENT_VALUE , LEADER_ASSESSMENT_VALUE , SAME_ASSESSMENT_VALUE , INDICATOR_LIB };
 	
 	/**
 	 * 代理类
@@ -568,6 +588,17 @@ public class AssessmentIndicatorVOMeta extends AssessmentIndicatorMeta {
 		}
 		
 		/**
+		 * 设置 归属
+		 * @param owner 归属
+		 * @return 当前对象
+		*/
+		public AssessmentIndicator setOwner(String owner) {
+			super.change(OWNER,super.getOwner(),owner);
+			super.setOwner(owner);
+			return this;
+		}
+		
+		/**
 		 * 设置 考核主题
 		 * @param assessmentId 考核主题
 		 * @return 当前对象
@@ -586,6 +617,17 @@ public class AssessmentIndicatorVOMeta extends AssessmentIndicatorMeta {
 		public AssessmentIndicator setTplIndicatorId(String tplIndicatorId) {
 			super.change(TPL_INDICATOR_ID,super.getTplIndicatorId(),tplIndicatorId);
 			super.setTplIndicatorId(tplIndicatorId);
+			return this;
+		}
+		
+		/**
+		 * 设置 分类
+		 * @param groupname 分类
+		 * @return 当前对象
+		*/
+		public AssessmentIndicator setGroupname(String groupname) {
+			super.change(GROUPNAME,super.getGroupname(),groupname);
+			super.setGroupname(groupname);
 			return this;
 		}
 		
@@ -871,26 +913,28 @@ public class AssessmentIndicatorVOMeta extends AssessmentIndicatorMeta {
 			inst.setScoringBase(this.getScoringBase());
 			inst.setDef(this.getDef());
 			inst.setDefaultValue(this.getDefaultValue());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setProperty(this.getProperty());
+			inst.setId(this.getId());
+			inst.setSn(this.getSn());
+			inst.setAssessmentId(this.getAssessmentId());
+			inst.setOwner(this.getOwner());
 			inst.setWeight(this.getWeight());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setGroupname(this.getGroupname());
 			inst.setVersion(this.getVersion());
 			inst.setScoringBy(this.getScoringBy());
 			inst.setUnit(this.getUnit());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
-			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setTargetMinValue(this.getTargetMinValue());
 			inst.setName(this.getName());
 			inst.setTargetMaxValue(this.getTargetMaxValue());
-			inst.setProperty(this.getProperty());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
-			inst.setId(this.getId());
-			inst.setSn(this.getSn());
 			inst.setTplIndicatorId(this.getTplIndicatorId());
-			inst.setAssessmentId(this.getAssessmentId());
 			if(all) {
 				inst.setIndicatorLib(this.getIndicatorLib());
 				inst.setSearchField(this.getSearchField());

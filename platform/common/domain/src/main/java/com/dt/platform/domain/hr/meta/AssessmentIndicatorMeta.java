@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-29 16:32:31
- * @sign 6B8FCA6EBB2FADF71DEF4A38AC4464B2
+ * @since 2024-03-13 20:35:52
+ * @sign 4655835F77559C83E4A00A190DB1A387
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -29,6 +29,16 @@ public class AssessmentIndicatorMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicator,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicator.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 归属 , tpl,inst , 类型: java.lang.String
+	*/
+	public static final String OWNER="owner";
+	
+	/**
+	 * 归属 , tpl,inst , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicator,java.lang.String> OWNER_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicator.class ,OWNER, java.lang.String.class, "归属", "tpl,inst", java.lang.String.class, null);
 	
 	/**
 	 * 考核主题 , 类型: java.lang.String
@@ -49,6 +59,16 @@ public class AssessmentIndicatorMeta {
 	 * 指标库 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicator,java.lang.String> TPL_INDICATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicator.class ,TPL_INDICATOR_ID, java.lang.String.class, "指标库", "指标库", java.lang.String.class, null);
+	
+	/**
+	 * 分类 , 类型: java.lang.String
+	*/
+	public static final String GROUPNAME="groupname";
+	
+	/**
+	 * 分类 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicator,java.lang.String> GROUPNAME_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicator.class ,GROUPNAME, java.lang.String.class, "分类", "分类", java.lang.String.class, null);
 	
 	/**
 	 * 指标名称 , 类型: java.lang.String
@@ -293,7 +313,7 @@ public class AssessmentIndicatorMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , ASSESSMENT_ID , TPL_INDICATOR_ID , NAME , WEIGHT , TARGET_MIN_VALUE , TARGET_MAX_VALUE , DEFAULT_VALUE , PROPERTY , UNIT , DEF , SCORING_BASE , SCORING_BY , SN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELF_ASSESSMENT_VALUE , LEADER_ASSESSMENT_VALUE , SAME_ASSESSMENT_VALUE , INDICATOR_LIB };
+	public static final String[] $PROPS={ ID , OWNER , ASSESSMENT_ID , TPL_INDICATOR_ID , GROUPNAME , NAME , WEIGHT , TARGET_MIN_VALUE , TARGET_MAX_VALUE , DEFAULT_VALUE , PROPERTY , UNIT , DEF , SCORING_BASE , SCORING_BY , SN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELF_ASSESSMENT_VALUE , LEADER_ASSESSMENT_VALUE , SAME_ASSESSMENT_VALUE , INDICATOR_LIB };
 	
 	/**
 	 * 代理类
@@ -311,6 +331,17 @@ public class AssessmentIndicatorMeta {
 		public AssessmentIndicator setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 归属
+		 * @param owner 归属
+		 * @return 当前对象
+		*/
+		public AssessmentIndicator setOwner(String owner) {
+			super.change(OWNER,super.getOwner(),owner);
+			super.setOwner(owner);
 			return this;
 		}
 		
@@ -333,6 +364,17 @@ public class AssessmentIndicatorMeta {
 		public AssessmentIndicator setTplIndicatorId(String tplIndicatorId) {
 			super.change(TPL_INDICATOR_ID,super.getTplIndicatorId(),tplIndicatorId);
 			super.setTplIndicatorId(tplIndicatorId);
+			return this;
+		}
+		
+		/**
+		 * 设置 分类
+		 * @param groupname 分类
+		 * @return 当前对象
+		*/
+		public AssessmentIndicator setGroupname(String groupname) {
+			super.change(GROUPNAME,super.getGroupname(),groupname);
+			super.setGroupname(groupname);
 			return this;
 		}
 		
@@ -618,26 +660,28 @@ public class AssessmentIndicatorMeta {
 			inst.setScoringBase(this.getScoringBase());
 			inst.setDef(this.getDef());
 			inst.setDefaultValue(this.getDefaultValue());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setProperty(this.getProperty());
+			inst.setId(this.getId());
+			inst.setSn(this.getSn());
+			inst.setAssessmentId(this.getAssessmentId());
+			inst.setOwner(this.getOwner());
 			inst.setWeight(this.getWeight());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setGroupname(this.getGroupname());
 			inst.setVersion(this.getVersion());
 			inst.setScoringBy(this.getScoringBy());
 			inst.setUnit(this.getUnit());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
-			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setTargetMinValue(this.getTargetMinValue());
 			inst.setName(this.getName());
 			inst.setTargetMaxValue(this.getTargetMaxValue());
-			inst.setProperty(this.getProperty());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
-			inst.setId(this.getId());
-			inst.setSn(this.getSn());
 			inst.setTplIndicatorId(this.getTplIndicatorId());
-			inst.setAssessmentId(this.getAssessmentId());
 			if(all) {
 				inst.setIndicatorLib(this.getIndicatorLib());
 				inst.setSelfAssessmentValue(this.getSelfAssessmentValue());

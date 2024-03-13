@@ -1,6 +1,23 @@
 package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.constants.enums.common.StatusSuccessFailedEnum;
+import com.dt.platform.constants.enums.common.YesNoEnum;
+import com.dt.platform.constants.enums.hr.AssessmentBillStatusEnum;
+import com.dt.platform.domain.hr.AssessmentBill;
+import com.dt.platform.domain.hr.AssessmentBillUserMap;
+import com.dt.platform.domain.hr.meta.AssessmentBillUserMapMeta;
+import com.dt.platform.domain.hr.meta.AssessmentTaskMeta;
+import com.dt.platform.hr.service.IAssessmentBillService;
+import com.dt.platform.hr.service.IAssessmentBillUserMapService;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.sql.expr.Insert;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.EmployeeVO;
+import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.proxy.hrm.EmployeeServiceProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -38,7 +55,7 @@ import java.util.Map;
  * 考核任务服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 19:40:25
+ * @since 2024-03-09 16:34:53
 */
 
 
@@ -46,6 +63,12 @@ import java.util.Map;
 
 public class AssessmentTaskServiceImpl extends SuperService<AssessmentTask> implements IAssessmentTaskService {
 
+	@Autowired
+	private IAssessmentBillService assessmentBillService;
+
+
+	@Autowired
+	private IAssessmentBillUserMapService assessmentBillUserMapService;
 	/**
 	 * 注入DAO对象
 	 * */
@@ -74,7 +97,162 @@ public class AssessmentTaskServiceImpl extends SuperService<AssessmentTask> impl
 	@Override
 	public Result insert(AssessmentTask assessmentTask,boolean throwsException) {
 		Result r=super.insert(assessmentTask,throwsException);
+
+		if(r.isSuccess()){
+			dao.execute("update hr_assessment_indicator set assessment_id=? where assessment_id=?",assessmentTask.getId(),assessmentTask.getSelectedCode());
+			List<String> posIds=assessmentTask.getPositionIds();
+			if(posIds!=null){
+				for(int i=0;i<posIds.size();i++){
+					Insert ins=new Insert("sys_mapping_owner");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("owner_id",assessmentTask.getId());
+					ins.set("selected_code",posIds.get(i));
+					ins.set("owner","pos");
+					dao.execute(ins);
+				}
+			}
+			List<String> orgIds=assessmentTask.getOrganizationIds();
+			if(posIds!=null){
+				for(int i=0;i<orgIds.size();i++){
+					Insert ins=new Insert("sys_mapping_owner");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("owner_id",assessmentTask.getId());
+					ins.set("selected_code",orgIds.get(i));
+					ins.set("owner","org");
+					dao.execute(ins);
+				}
+			}
+			List<String> personIds=assessmentTask.getPersonIds();
+			if(personIds!=null){
+				for(int i=0;i<personIds.size();i++){
+					Insert ins=new Insert("sys_mapping_owner");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("owner_id",assessmentTask.getId());
+					ins.set("selected_code",personIds.get(i));
+					ins.set("owner","person");
+					dao.execute(ins);
+				}
+			}
+			List<String> exPersonIds=assessmentTask.getPersonIds();
+			if(exPersonIds!=null){
+				for(int i=0;i<personIds.size();i++){
+					Insert ins=new Insert("sys_mapping_owner");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("owner_id",assessmentTask.getId());
+					ins.set("selected_code",exPersonIds.get(i));
+					ins.set("owner","experson");
+					dao.execute(ins);
+				}
+			}
+		}
 		return r;
+	}
+
+
+	@Override
+	public Result createTask(String taskId,String billIdValue) {
+		AssessmentTask assessmentTask=this.getById(taskId);
+		String billId="";
+		if(StringUtil.isBlank(billIdValue)){
+			 billId=IDGenerator.getSnowflakeIdString();
+		}else{
+			billId=billIdValue;
+		}
+
+		EmployeeVO employeeVO=new EmployeeVO();
+		employeeVO.setStatus("active");
+		Result<List<Employee>> listRes= EmployeeServiceProxy.api().queryList(employeeVO);
+		if(!listRes.isSuccess()){
+			return listRes;
+		}
+		List<Employee> list=listRes.data();
+		if(list==null||list.size()==0){
+			return ErrorDesc.failureMessage("当前没有匹配的人员");
+		}
+		List<AssessmentBillUserMap> userMapList=new ArrayList<>();
+		for(Employee employee:list){
+			AssessmentBillUserMap userMap=new AssessmentBillUserMap();
+			userMap.setAssesseeId(employee.getId());
+			userMap.setStatus(StatusEnableEnum.ENABLE.code());
+			userMap.setBillId(billId);
+			//userMap.setOwnerId(taskId);
+			userMap.setHrUserId(assessmentTask.getHrUserId());
+			userMapList.add(userMap);
+		}
+		Result createDataRes=createUserMapData(userMapList,assessmentTask,billId);
+		if(!createDataRes.isSuccess()){
+			return createDataRes;
+		}
+
+		//插入任务
+		if(StringUtil.isBlank(billIdValue)){
+			AssessmentBill bill=new AssessmentBill();
+			bill.setId(billId);
+			bill.setTaskName(assessmentTask.getName());
+			bill.setStatus(AssessmentBillStatusEnum.WAIT.code());
+			bill.setStime(new Date());
+			bill.setIsShow(YesNoEnum.no.code());
+			bill.setEtime(new Date());
+			bill.setTaskId(taskId);
+			assessmentBillService.insert(bill,false);
+		}else{
+			AssessmentBill bill=new AssessmentBill();
+			bill.setId(billId);
+			bill.setStatus(AssessmentBillStatusEnum.WAIT.code());
+			assessmentBillService.update(bill,SaveMode.NOT_NULL_FIELDS,false);
+		}
+		return ErrorDesc.success();
+	}
+
+
+
+
+	@Override
+	public Result createUserMapData(List<AssessmentBillUserMap> userMapList,AssessmentTask assessmentTask,String billId){
+		dao.fill(userMapList)
+				.with(AssessmentBillUserMapMeta.LEADER_USER_REL)
+				.execute();
+
+		for(AssessmentBillUserMap user:userMapList){
+			//fill 数据
+			if(!StringUtil.isBlank(user.getLeaderUserRel())){
+				user.setLeaderId(user.getLeaderUserRel().getId());
+			}
+			//assessmentBillUserMapService.insert(user,false);
+
+		}
+
+		//上一级的上一级，需要分开获取
+		//找同事，也需要先获取上一级领导信息
+		dao.fill(userMapList)
+				.with(AssessmentBillUserMapMeta.SECOND_LEADER_USER_REL)
+				.with(AssessmentBillUserMapMeta.SAME_USER_LIST_REL)
+				.execute();
+
+		for(AssessmentBillUserMap user:userMapList){
+			user.setBillId(billId);
+			user.setStatus(StatusEnableEnum.ENABLE.code());
+			//user.setOwnerId(assessmentTask.getId());
+			user.setHrUserId(assessmentTask.getHrUserId());
+
+			if(!StringUtil.isBlank(user.getSecondLeaderUserRel())){
+				user.setSecondLeaderId(user.getSecondLeaderUserRel().getId());
+			}
+			//同时
+			List<Employee> sameUserList=user.getSameUserListRel();
+			List<String> sameUserIds=new ArrayList<>();
+			if (sameUserList!=null&&sameUserList.size()>0){
+				for(int i=0;i<sameUserList.size();i++){
+					sameUserIds.add(sameUserList.get(i).getId());
+				}
+				user.setSameUserIds(sameUserIds);
+			}
+			user.setResult(StatusSuccessFailedEnum.SUCCESS.code());
+			//assessmentBillUserMapService.update(user,SaveMode.NOT_NULL_FIELDS,false);
+			assessmentBillUserMapService.insert(user,false);
+		}
+
+		return ErrorDesc.success();
 	}
 
 	/**
@@ -164,6 +342,54 @@ public class AssessmentTaskServiceImpl extends SuperService<AssessmentTask> impl
 	@Override
 	public Result update(AssessmentTask assessmentTask , SaveMode mode,boolean throwsException) {
 		Result r=super.update(assessmentTask , mode , throwsException);
+		if(r.isSuccess()){
+			dao.execute("delete from sys_mapping_owner where owner_id=?",assessmentTask.getId());
+			List<String> posIds=assessmentTask.getPositionIds();
+			if(posIds!=null){
+				for(int i=0;i<posIds.size();i++){
+					Insert ins=new Insert("sys_mapping_owner");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("owner_id",assessmentTask.getId());
+					ins.set("selected_code",posIds.get(i));
+					ins.set("owner","pos");
+					dao.execute(ins);
+				}
+			}
+			List<String> orgIds=assessmentTask.getOrganizationIds();
+			if(orgIds!=null){
+				for(int i=0;i<orgIds.size();i++){
+					Insert ins=new Insert("sys_mapping_owner");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("owner_id",assessmentTask.getId());
+					ins.set("selected_code",orgIds.get(i));
+					ins.set("owner","org");
+					dao.execute(ins);
+				}
+			}
+			List<String> personIds=assessmentTask.getPersonIds();
+			if(personIds!=null){
+				for(int i=0;i<personIds.size();i++){
+					Insert ins=new Insert("sys_mapping_owner");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("owner_id",assessmentTask.getId());
+					ins.set("selected_code",personIds.get(i));
+					ins.set("owner","person");
+					dao.execute(ins);
+				}
+			}
+			List<String> exPersonIds=assessmentTask.getPersonIds();
+			if(exPersonIds!=null){
+				for(int i=0;i<personIds.size();i++){
+					Insert ins=new Insert("sys_mapping_owner");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("owner_id",assessmentTask.getId());
+					ins.set("selected_code",exPersonIds.get(i));
+					ins.set("owner","experson");
+					dao.execute(ins);
+				}
+			}
+		}
+
 		return r;
 	}
 

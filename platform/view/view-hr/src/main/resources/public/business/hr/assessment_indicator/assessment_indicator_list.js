@@ -1,7 +1,7 @@
 /**
  * 考核指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-29 16:32:33
+ * @since 2024-03-13 20:35:54
  */
 
 
@@ -85,6 +85,8 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'owner', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('归属') , templet: function (d) { return templet('owner',d.owner,d);}  }
+					,{ field: 'groupname', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分类') , templet: function (d) { return templet('groupname',d.groupname,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('指标名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'weight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('权重') , templet: function (d) { return templet('weight',d.weight,d);}  }
 					,{ field: 'targetMinValue', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('最小评分值') , templet: function (d) { return templet('targetMinValue',d.targetMinValue,d);}  }

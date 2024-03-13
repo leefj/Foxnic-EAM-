@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 考核任务 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 19:40:25
+ * @since 2024-03-09 16:34:53
  */
 @FeignClient(value = ServiceNames.HR, contextId = AssessmentTaskServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssessmentTaskServiceProxy {
@@ -83,6 +83,13 @@ public interface AssessmentTaskServiceProxy {
      * 分页查询考核任务
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
+
+    /**
+     * 创建考核任务
+     */
+    public static final String CREATE_TASK = API_PREFIX + "create-task";
+
+
 
     /**
      * 添加考核任务

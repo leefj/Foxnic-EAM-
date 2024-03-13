@@ -1,7 +1,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-04 08:43:03
+ * @since 2024-03-07 15:51:28
  */
 
 
@@ -323,6 +323,12 @@ function ListPage() {
 					break;
 				case 'batch-del':
 					batchDelete(selected);
+					break;
+				case 'tool-import-data':
+					window.pageExt.list.importData && window.pageExt.list.importData(selected,obj);
+					break;
+				case 'tool-export-data':
+					window.pageExt.list.exportData && window.pageExt.list.exportData(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();

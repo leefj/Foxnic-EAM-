@@ -13,7 +13,8 @@ import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
-import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.system.DictItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
@@ -29,8 +30,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核任务
  * <p>考核任务 , 数据表 hr_assessment_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-02 19:40:25
- * @sign 2247B2F097AA83F2840257359BF3CF32
+ * @since 2024-03-13 20:22:31
+ * @sign 610101D070CC35093C304E1EAE0D4D68
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -46,50 +47,44 @@ public class AssessmentTask extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "816383435982503936")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "820260965772689408")
 	private String id;
 	
 	/**
-	 * 所属：所属
+	 * 所属：模版,数据
 	*/
-	@ApiModelProperty(required = false,value="所属" , notes = "所属")
+	@ApiModelProperty(required = false,value="所属" , notes = "模版,数据" , example = "tpl")
 	private String owner;
 	
 	/**
-	 * 考核状态：考核状态
+	 * 分类：分类
 	*/
-	@ApiModelProperty(required = false,value="考核状态" , notes = "考核状态")
-	private String status;
+	@ApiModelProperty(required = false,value="分类" , notes = "分类" , example = "sales")
+	private String type;
 	
 	/**
 	 * 考核名称：考核名称
 	*/
-	@ApiModelProperty(required = false,value="考核名称" , notes = "考核名称" , example = "12")
+	@ApiModelProperty(required = false,value="考核名称" , notes = "考核名称" , example = "abcde")
 	private String name;
 	
 	/**
-	 * 岗位：岗位
+	 * 任务状态：任务状态
 	*/
-	@ApiModelProperty(required = false,value="岗位" , notes = "岗位")
-	private String posId;
+	@ApiModelProperty(required = false,value="任务状态" , notes = "任务状态" , example = "enable")
+	private String status;
 	
 	/**
 	 * 周期：周期
 	*/
-	@ApiModelProperty(required = false,value="周期" , notes = "周期")
+	@ApiModelProperty(required = false,value="周期" , notes = "周期" , example = "full_yar")
 	private String cycle;
 	
 	/**
 	 * 全部人员：全部人员
 	*/
-	@ApiModelProperty(required = false,value="全部人员" , notes = "全部人员")
+	@ApiModelProperty(required = false,value="全部人员" , notes = "全部人员" , example = "no")
 	private String isAllPerson;
-	
-	/**
-	 * 同级评分人：同级评分人
-	*/
-	@ApiModelProperty(required = false,value="同级评分人" , notes = "同级评分人")
-	private String sameLevelUserId;
 	
 	/**
 	 * 考核方式：考核方式
@@ -100,43 +95,49 @@ public class AssessmentTask extends Entity {
 	/**
 	 * 指标总权重：%）
 	*/
-	@ApiModelProperty(required = false,value="指标总权重" , notes = "%）" , example = "12.00")
+	@ApiModelProperty(required = false,value="指标总权重" , notes = "%）" , example = "100.00")
 	private BigDecimal totalWeight;
 	
 	/**
-	 * 自评：自评
+	 * 自评评分：自评评分
 	*/
-	@ApiModelProperty(required = false,value="自评" , notes = "自评")
+	@ApiModelProperty(required = false,value="自评评分" , notes = "自评评分" , example = "yes")
 	private String hasSelfAssessment;
 	
 	/**
-	 * 同级评分：同级评分
+	 * 互评分：互评分
 	*/
-	@ApiModelProperty(required = false,value="同级评分" , notes = "同级评分")
+	@ApiModelProperty(required = false,value="互评分" , notes = "互评分" , example = "yes")
 	private String hasSameAssessment;
 	
 	/**
 	 * 直接领导评分：直接领导评分
 	*/
-	@ApiModelProperty(required = false,value="直接领导评分" , notes = "直接领导评分")
+	@ApiModelProperty(required = false,value="直接领导评分" , notes = "直接领导评分" , example = "yes")
 	private String hasLeaderAssessment;
 	
 	/**
-	 * 领导评分：领导评分
+	 * 上上级领导评分：上上级领导评分
 	*/
-	@ApiModelProperty(required = false,value="领导评分" , notes = "领导评分")
+	@ApiModelProperty(required = false,value="上上级领导评分" , notes = "上上级领导评分" , example = "yes")
 	private String hasSecondLeaderAssessment;
 	
 	/**
-	 * HR复核：HR复核
+	 * HR是否复核：HR是否复核
 	*/
-	@ApiModelProperty(required = false,value="HR复核" , notes = "HR复核")
+	@ApiModelProperty(required = false,value="HR是否复核" , notes = "HR是否复核" , example = "no")
 	private String hasHrConfirm;
+	
+	/**
+	 * HR复核人：HR复核人
+	*/
+	@ApiModelProperty(required = false,value="HR复核人" , notes = "HR复核人" , example = "617107757929070592")
+	private String hrUserId;
 	
 	/**
 	 * 绩效模版：绩效模版
 	*/
-	@ApiModelProperty(required = false,value="绩效模版" , notes = "绩效模版")
+	@ApiModelProperty(required = false,value="绩效模版" , notes = "绩效模版" , example = "815575524477763584")
 	private String tplId;
 	
 	/**
@@ -148,7 +149,7 @@ public class AssessmentTask extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
 	
 	/**
@@ -160,19 +161,19 @@ public class AssessmentTask extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-02 06:56:19")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-09 07:36:37")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-13 09:33:48")
 	private Date updateTime;
 	
 	/**
@@ -199,7 +200,7 @@ public class AssessmentTask extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "1")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "6")
 	private Integer version;
 	
 	/**
@@ -215,10 +216,10 @@ public class AssessmentTask extends Entity {
 	private AssessmentTpl assessmentTpl;
 	
 	/**
-	 * assessmentIndicator：assessmentIndicator
+	 * assessmentIndicatorList：assessmentIndicator
 	*/
-	@ApiModelProperty(required = false,value="assessmentIndicator" , notes = "assessmentIndicator")
-	private List<AssessmentIndicator> assessmentIndicator;
+	@ApiModelProperty(required = false,value="assessmentIndicatorList" , notes = "assessmentIndicator")
+	private List<AssessmentIndicator> assessmentIndicatorList;
 	
 	/**
 	 * selectedCode：selectedCode
@@ -239,10 +240,22 @@ public class AssessmentTask extends Entity {
 	private List<String> organizationIds;
 	
 	/**
+	 * positionList：positionList
+	*/
+	@ApiModelProperty(required = false,value="positionList" , notes = "positionList")
+	private List<Position> positionList;
+	
+	/**
+	 * positionIds：positionIds
+	*/
+	@ApiModelProperty(required = false,value="positionIds" , notes = "positionIds")
+	private List<String> positionIds;
+	
+	/**
 	 * personList：personList
 	*/
 	@ApiModelProperty(required = false,value="personList" , notes = "personList")
-	private List<Person> personList;
+	private List<Employee> personList;
 	
 	/**
 	 * personIds：personIds
@@ -251,16 +264,34 @@ public class AssessmentTask extends Entity {
 	private List<String> personIds;
 	
 	/**
+	 * hrUser：hrUser
+	*/
+	@ApiModelProperty(required = false,value="hrUser" , notes = "hrUser")
+	private Employee hrUser;
+	
+	/**
 	 * excludePersonList：excludePersonList
 	*/
 	@ApiModelProperty(required = false,value="excludePersonList" , notes = "excludePersonList")
-	private List<Person> excludePersonList;
+	private List<Employee> excludePersonList;
 	
 	/**
 	 * excludePersonIds：excludePersonIds
 	*/
 	@ApiModelProperty(required = false,value="excludePersonIds" , notes = "excludePersonIds")
 	private List<String> excludePersonIds;
+	
+	/**
+	 * buttonAction：buttonAction
+	*/
+	@ApiModelProperty(required = false,value="buttonAction" , notes = "buttonAction")
+	private String buttonAction;
+	
+	/**
+	 * typeDict：typeDict
+	*/
+	@ApiModelProperty(required = false,value="typeDict" , notes = "typeDict")
+	private DictItem typeDict;
 	
 	/**
 	 * 获得 主键<br>
@@ -283,7 +314,7 @@ public class AssessmentTask extends Entity {
 	
 	/**
 	 * 获得 所属<br>
-	 * 所属
+	 * 模版,数据
 	 * @return 所属
 	*/
 	public String getOwner() {
@@ -301,21 +332,21 @@ public class AssessmentTask extends Entity {
 	}
 	
 	/**
-	 * 获得 考核状态<br>
-	 * 考核状态
-	 * @return 考核状态
+	 * 获得 分类<br>
+	 * 分类
+	 * @return 分类
 	*/
-	public String getStatus() {
-		return status;
+	public String getType() {
+		return type;
 	}
 	
 	/**
-	 * 设置 考核状态
-	 * @param status 考核状态
+	 * 设置 分类
+	 * @param type 分类
 	 * @return 当前对象
 	*/
-	public AssessmentTask setStatus(String status) {
-		this.status=status;
+	public AssessmentTask setType(String type) {
+		this.type=type;
 		return this;
 	}
 	
@@ -339,21 +370,21 @@ public class AssessmentTask extends Entity {
 	}
 	
 	/**
-	 * 获得 岗位<br>
-	 * 岗位
-	 * @return 岗位
+	 * 获得 任务状态<br>
+	 * 任务状态
+	 * @return 任务状态
 	*/
-	public String getPosId() {
-		return posId;
+	public String getStatus() {
+		return status;
 	}
 	
 	/**
-	 * 设置 岗位
-	 * @param posId 岗位
+	 * 设置 任务状态
+	 * @param status 任务状态
 	 * @return 当前对象
 	*/
-	public AssessmentTask setPosId(String posId) {
-		this.posId=posId;
+	public AssessmentTask setStatus(String status) {
+		this.status=status;
 		return this;
 	}
 	
@@ -396,25 +427,6 @@ public class AssessmentTask extends Entity {
 	}
 	
 	/**
-	 * 获得 同级评分人<br>
-	 * 同级评分人
-	 * @return 同级评分人
-	*/
-	public String getSameLevelUserId() {
-		return sameLevelUserId;
-	}
-	
-	/**
-	 * 设置 同级评分人
-	 * @param sameLevelUserId 同级评分人
-	 * @return 当前对象
-	*/
-	public AssessmentTask setSameLevelUserId(String sameLevelUserId) {
-		this.sameLevelUserId=sameLevelUserId;
-		return this;
-	}
-	
-	/**
 	 * 获得 考核方式<br>
 	 * 考核方式
 	 * @return 考核方式
@@ -453,17 +465,17 @@ public class AssessmentTask extends Entity {
 	}
 	
 	/**
-	 * 获得 自评<br>
-	 * 自评
-	 * @return 自评
+	 * 获得 自评评分<br>
+	 * 自评评分
+	 * @return 自评评分
 	*/
 	public String getHasSelfAssessment() {
 		return hasSelfAssessment;
 	}
 	
 	/**
-	 * 设置 自评
-	 * @param hasSelfAssessment 自评
+	 * 设置 自评评分
+	 * @param hasSelfAssessment 自评评分
 	 * @return 当前对象
 	*/
 	public AssessmentTask setHasSelfAssessment(String hasSelfAssessment) {
@@ -472,17 +484,17 @@ public class AssessmentTask extends Entity {
 	}
 	
 	/**
-	 * 获得 同级评分<br>
-	 * 同级评分
-	 * @return 同级评分
+	 * 获得 互评分<br>
+	 * 互评分
+	 * @return 互评分
 	*/
 	public String getHasSameAssessment() {
 		return hasSameAssessment;
 	}
 	
 	/**
-	 * 设置 同级评分
-	 * @param hasSameAssessment 同级评分
+	 * 设置 互评分
+	 * @param hasSameAssessment 互评分
 	 * @return 当前对象
 	*/
 	public AssessmentTask setHasSameAssessment(String hasSameAssessment) {
@@ -510,17 +522,17 @@ public class AssessmentTask extends Entity {
 	}
 	
 	/**
-	 * 获得 领导评分<br>
-	 * 领导评分
-	 * @return 领导评分
+	 * 获得 上上级领导评分<br>
+	 * 上上级领导评分
+	 * @return 上上级领导评分
 	*/
 	public String getHasSecondLeaderAssessment() {
 		return hasSecondLeaderAssessment;
 	}
 	
 	/**
-	 * 设置 领导评分
-	 * @param hasSecondLeaderAssessment 领导评分
+	 * 设置 上上级领导评分
+	 * @param hasSecondLeaderAssessment 上上级领导评分
 	 * @return 当前对象
 	*/
 	public AssessmentTask setHasSecondLeaderAssessment(String hasSecondLeaderAssessment) {
@@ -529,21 +541,40 @@ public class AssessmentTask extends Entity {
 	}
 	
 	/**
-	 * 获得 HR复核<br>
-	 * HR复核
-	 * @return HR复核
+	 * 获得 HR是否复核<br>
+	 * HR是否复核
+	 * @return HR是否复核
 	*/
 	public String getHasHrConfirm() {
 		return hasHrConfirm;
 	}
 	
 	/**
-	 * 设置 HR复核
-	 * @param hasHrConfirm HR复核
+	 * 设置 HR是否复核
+	 * @param hasHrConfirm HR是否复核
 	 * @return 当前对象
 	*/
 	public AssessmentTask setHasHrConfirm(String hasHrConfirm) {
 		this.hasHrConfirm=hasHrConfirm;
+		return this;
+	}
+	
+	/**
+	 * 获得 HR复核人<br>
+	 * HR复核人
+	 * @return HR复核人
+	*/
+	public String getHrUserId() {
+		return hrUserId;
+	}
+	
+	/**
+	 * 设置 HR复核人
+	 * @param hrUserId HR复核人
+	 * @return 当前对象
+	*/
+	public AssessmentTask setHrUserId(String hrUserId) {
+		this.hrUserId=hrUserId;
 		return this;
 	}
 	
@@ -826,32 +857,32 @@ public class AssessmentTask extends Entity {
 	}
 	
 	/**
-	 * 获得 assessmentIndicator<br>
+	 * 获得 assessmentIndicatorList<br>
 	 * assessmentIndicator
-	 * @return assessmentIndicator
+	 * @return assessmentIndicatorList
 	*/
-	public List<AssessmentIndicator> getAssessmentIndicator() {
-		return assessmentIndicator;
+	public List<AssessmentIndicator> getAssessmentIndicatorList() {
+		return assessmentIndicatorList;
 	}
 	
 	/**
-	 * 设置 assessmentIndicator
-	 * @param assessmentIndicator assessmentIndicator
+	 * 设置 assessmentIndicatorList
+	 * @param assessmentIndicatorList assessmentIndicatorList
 	 * @return 当前对象
 	*/
-	public AssessmentTask setAssessmentIndicator(List<AssessmentIndicator> assessmentIndicator) {
-		this.assessmentIndicator=assessmentIndicator;
+	public AssessmentTask setAssessmentIndicatorList(List<AssessmentIndicator> assessmentIndicatorList) {
+		this.assessmentIndicatorList=assessmentIndicatorList;
 		return this;
 	}
 	
 	/**
-	 * 添加 assessmentIndicator
-	 * @param entity assessmentIndicator
+	 * 添加 assessmentIndicatorList
+	 * @param assessmentIndicator assessmentIndicatorList
 	 * @return 当前对象
 	*/
-	public AssessmentTask addAssessmentIndicator(AssessmentIndicator... entity) {
-		if(this.assessmentIndicator==null) assessmentIndicator=new ArrayList<>();
-		this.assessmentIndicator.addAll(Arrays.asList(entity));
+	public AssessmentTask addAssessmentIndicator(AssessmentIndicator... assessmentIndicator) {
+		if(this.assessmentIndicatorList==null) assessmentIndicatorList=new ArrayList<>();
+		this.assessmentIndicatorList.addAll(Arrays.asList(assessmentIndicator));
 		return this;
 	}
 	
@@ -935,11 +966,71 @@ public class AssessmentTask extends Entity {
 	}
 	
 	/**
+	 * 获得 positionList<br>
+	 * positionList
+	 * @return positionList
+	*/
+	public List<Position> getPositionList() {
+		return positionList;
+	}
+	
+	/**
+	 * 设置 positionList
+	 * @param positionList positionList
+	 * @return 当前对象
+	*/
+	public AssessmentTask setPositionList(List<Position> positionList) {
+		this.positionList=positionList;
+		return this;
+	}
+	
+	/**
+	 * 添加 positionList
+	 * @param position positionList
+	 * @return 当前对象
+	*/
+	public AssessmentTask addPosition(Position... position) {
+		if(this.positionList==null) positionList=new ArrayList<>();
+		this.positionList.addAll(Arrays.asList(position));
+		return this;
+	}
+	
+	/**
+	 * 获得 positionIds<br>
+	 * positionIds
+	 * @return positionIds
+	*/
+	public List<String> getPositionIds() {
+		return positionIds;
+	}
+	
+	/**
+	 * 设置 positionIds
+	 * @param positionIds positionIds
+	 * @return 当前对象
+	*/
+	public AssessmentTask setPositionIds(List<String> positionIds) {
+		this.positionIds=positionIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 positionIds
+	 * @param positionId positionIds
+	 * @return 当前对象
+	*/
+	public AssessmentTask addPositionId(String... positionId) {
+		if(this.positionIds==null) positionIds=new ArrayList<>();
+		this.positionIds.addAll(Arrays.asList(positionId));
+		return this;
+	}
+	
+	/**
 	 * 获得 personList<br>
 	 * personList
 	 * @return personList
 	*/
-	public List<Person> getPersonList() {
+	public List<Employee> getPersonList() {
 		return personList;
 	}
 	
@@ -948,7 +1039,7 @@ public class AssessmentTask extends Entity {
 	 * @param personList personList
 	 * @return 当前对象
 	*/
-	public AssessmentTask setPersonList(List<Person> personList) {
+	public AssessmentTask setPersonList(List<Employee> personList) {
 		this.personList=personList;
 		return this;
 	}
@@ -958,7 +1049,7 @@ public class AssessmentTask extends Entity {
 	 * @param person personList
 	 * @return 当前对象
 	*/
-	public AssessmentTask addPerson(Person... person) {
+	public AssessmentTask addPerson(Employee... person) {
 		if(this.personList==null) personList=new ArrayList<>();
 		this.personList.addAll(Arrays.asList(person));
 		return this;
@@ -995,11 +1086,30 @@ public class AssessmentTask extends Entity {
 	}
 	
 	/**
+	 * 获得 hrUser<br>
+	 * hrUser
+	 * @return hrUser
+	*/
+	public Employee getHrUser() {
+		return hrUser;
+	}
+	
+	/**
+	 * 设置 hrUser
+	 * @param hrUser hrUser
+	 * @return 当前对象
+	*/
+	public AssessmentTask setHrUser(Employee hrUser) {
+		this.hrUser=hrUser;
+		return this;
+	}
+	
+	/**
 	 * 获得 excludePersonList<br>
 	 * excludePersonList
 	 * @return excludePersonList
 	*/
-	public List<Person> getExcludePersonList() {
+	public List<Employee> getExcludePersonList() {
 		return excludePersonList;
 	}
 	
@@ -1008,7 +1118,7 @@ public class AssessmentTask extends Entity {
 	 * @param excludePersonList excludePersonList
 	 * @return 当前对象
 	*/
-	public AssessmentTask setExcludePersonList(List<Person> excludePersonList) {
+	public AssessmentTask setExcludePersonList(List<Employee> excludePersonList) {
 		this.excludePersonList=excludePersonList;
 		return this;
 	}
@@ -1018,7 +1128,7 @@ public class AssessmentTask extends Entity {
 	 * @param excludePerson excludePersonList
 	 * @return 当前对象
 	*/
-	public AssessmentTask addExcludePerson(Person... excludePerson) {
+	public AssessmentTask addExcludePerson(Employee... excludePerson) {
 		if(this.excludePersonList==null) excludePersonList=new ArrayList<>();
 		this.excludePersonList.addAll(Arrays.asList(excludePerson));
 		return this;
@@ -1051,6 +1161,44 @@ public class AssessmentTask extends Entity {
 	public AssessmentTask addExcludePersonId(String... excludePersonId) {
 		if(this.excludePersonIds==null) excludePersonIds=new ArrayList<>();
 		this.excludePersonIds.addAll(Arrays.asList(excludePersonId));
+		return this;
+	}
+	
+	/**
+	 * 获得 buttonAction<br>
+	 * buttonAction
+	 * @return buttonAction
+	*/
+	public String getButtonAction() {
+		return buttonAction;
+	}
+	
+	/**
+	 * 设置 buttonAction
+	 * @param buttonAction buttonAction
+	 * @return 当前对象
+	*/
+	public AssessmentTask setButtonAction(String buttonAction) {
+		this.buttonAction=buttonAction;
+		return this;
+	}
+	
+	/**
+	 * 获得 typeDict<br>
+	 * typeDict
+	 * @return typeDict
+	*/
+	public DictItem getTypeDict() {
+		return typeDict;
+	}
+	
+	/**
+	 * 设置 typeDict
+	 * @param typeDict typeDict
+	 * @return 当前对象
+	*/
+	public AssessmentTask setTypeDict(DictItem typeDict) {
+		this.typeDict=typeDict;
 		return this;
 	}
 
@@ -1100,15 +1248,15 @@ public class AssessmentTask extends Entity {
 		com.dt.platform.domain.hr.meta.AssessmentTaskMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AssessmentTaskMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
 		inst.setSource(this.getSource());
+		inst.setType(this.getType());
 		inst.setCycle(this.getCycle());
-		inst.setSameLevelUserId(this.getSameLevelUserId());
 		inst.setHasSelfAssessment(this.getHasSelfAssessment());
-		inst.setPosId(this.getPosId());
 		inst.setHasLeaderAssessment(this.getHasLeaderAssessment());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setId(this.getId());
 		inst.setIsAllPerson(this.getIsAllPerson());
 		inst.setOwner(this.getOwner());
+		inst.setHrUserId(this.getHrUserId());
 		inst.setHasHrConfirm(this.getHasHrConfirm());
 		inst.setHasSecondLeaderAssessment(this.getHasSecondLeaderAssessment());
 		inst.setHasSameAssessment(this.getHasSameAssessment());
@@ -1126,14 +1274,19 @@ public class AssessmentTask extends Entity {
 		inst.setTplId(this.getTplId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setPositionIds(this.getPositionIds());
+			inst.setPositionList(this.getPositionList());
 			inst.setPersonList(this.getPersonList());
+			inst.setOrganizationList(this.getOrganizationList());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setHrUser(this.getHrUser());
+			inst.setAssessmentIndicatorList(this.getAssessmentIndicatorList());
 			inst.setOrganizationIds(this.getOrganizationIds());
 			inst.setExcludePersonIds(this.getExcludePersonIds());
-			inst.setOrganizationList(this.getOrganizationList());
+			inst.setTypeDict(this.getTypeDict());
 			inst.setPersonIds(this.getPersonIds());
 			inst.setAssessmentTpl(this.getAssessmentTpl());
-			inst.setSelectedCode(this.getSelectedCode());
-			inst.setAssessmentIndicator(this.getAssessmentIndicator());
+			inst.setButtonAction(this.getButtonAction());
 			inst.setExcludePersonList(this.getExcludePersonList());
 		}
 		inst.clearModifies();
@@ -1196,15 +1349,15 @@ public class AssessmentTask extends Entity {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(AssessmentTaskMeta.NOTES)));
 			this.setSource(DataParser.parse(String.class, map.get(AssessmentTaskMeta.SOURCE)));
+			this.setType(DataParser.parse(String.class, map.get(AssessmentTaskMeta.TYPE)));
 			this.setCycle(DataParser.parse(String.class, map.get(AssessmentTaskMeta.CYCLE)));
-			this.setSameLevelUserId(DataParser.parse(String.class, map.get(AssessmentTaskMeta.SAME_LEVEL_USER_ID)));
 			this.setHasSelfAssessment(DataParser.parse(String.class, map.get(AssessmentTaskMeta.HAS_SELF_ASSESSMENT)));
-			this.setPosId(DataParser.parse(String.class, map.get(AssessmentTaskMeta.POS_ID)));
 			this.setHasLeaderAssessment(DataParser.parse(String.class, map.get(AssessmentTaskMeta.HAS_LEADER_ASSESSMENT)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssessmentTaskMeta.UPDATE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentTaskMeta.ID)));
 			this.setIsAllPerson(DataParser.parse(String.class, map.get(AssessmentTaskMeta.IS_ALL_PERSON)));
 			this.setOwner(DataParser.parse(String.class, map.get(AssessmentTaskMeta.OWNER)));
+			this.setHrUserId(DataParser.parse(String.class, map.get(AssessmentTaskMeta.HR_USER_ID)));
 			this.setHasHrConfirm(DataParser.parse(String.class, map.get(AssessmentTaskMeta.HAS_HR_CONFIRM)));
 			this.setHasSecondLeaderAssessment(DataParser.parse(String.class, map.get(AssessmentTaskMeta.HAS_SECOND_LEADER_ASSESSMENT)));
 			this.setHasSameAssessment(DataParser.parse(String.class, map.get(AssessmentTaskMeta.HAS_SAME_ASSESSMENT)));
@@ -1222,22 +1375,25 @@ public class AssessmentTask extends Entity {
 			this.setTplId(DataParser.parse(String.class, map.get(AssessmentTaskMeta.TPL_ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(AssessmentTaskMeta.STATUS)));
 			// others
-			this.setAssessmentTpl(DataParser.parse(AssessmentTpl.class, map.get(AssessmentTaskMeta.ASSESSMENT_TPL)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(AssessmentTaskMeta.SELECTED_CODE)));
+			this.setHrUser(DataParser.parse(Employee.class, map.get(AssessmentTaskMeta.HR_USER)));
+			this.setTypeDict(DataParser.parse(DictItem.class, map.get(AssessmentTaskMeta.TYPE_DICT)));
+			this.setAssessmentTpl(DataParser.parse(AssessmentTpl.class, map.get(AssessmentTaskMeta.ASSESSMENT_TPL)));
+			this.setButtonAction(DataParser.parse(String.class, map.get(AssessmentTaskMeta.BUTTON_ACTION)));
 			return true;
 		} else {
 			try {
 				this.setNotes( (String)map.get(AssessmentTaskMeta.NOTES));
 				this.setSource( (String)map.get(AssessmentTaskMeta.SOURCE));
+				this.setType( (String)map.get(AssessmentTaskMeta.TYPE));
 				this.setCycle( (String)map.get(AssessmentTaskMeta.CYCLE));
-				this.setSameLevelUserId( (String)map.get(AssessmentTaskMeta.SAME_LEVEL_USER_ID));
 				this.setHasSelfAssessment( (String)map.get(AssessmentTaskMeta.HAS_SELF_ASSESSMENT));
-				this.setPosId( (String)map.get(AssessmentTaskMeta.POS_ID));
 				this.setHasLeaderAssessment( (String)map.get(AssessmentTaskMeta.HAS_LEADER_ASSESSMENT));
 				this.setUpdateBy( (String)map.get(AssessmentTaskMeta.UPDATE_BY));
 				this.setId( (String)map.get(AssessmentTaskMeta.ID));
 				this.setIsAllPerson( (String)map.get(AssessmentTaskMeta.IS_ALL_PERSON));
 				this.setOwner( (String)map.get(AssessmentTaskMeta.OWNER));
+				this.setHrUserId( (String)map.get(AssessmentTaskMeta.HR_USER_ID));
 				this.setHasHrConfirm( (String)map.get(AssessmentTaskMeta.HAS_HR_CONFIRM));
 				this.setHasSecondLeaderAssessment( (String)map.get(AssessmentTaskMeta.HAS_SECOND_LEADER_ASSESSMENT));
 				this.setHasSameAssessment( (String)map.get(AssessmentTaskMeta.HAS_SAME_ASSESSMENT));
@@ -1255,8 +1411,11 @@ public class AssessmentTask extends Entity {
 				this.setTplId( (String)map.get(AssessmentTaskMeta.TPL_ID));
 				this.setStatus( (String)map.get(AssessmentTaskMeta.STATUS));
 				// others
-				this.setAssessmentTpl( (AssessmentTpl)map.get(AssessmentTaskMeta.ASSESSMENT_TPL));
 				this.setSelectedCode( (String)map.get(AssessmentTaskMeta.SELECTED_CODE));
+				this.setHrUser( (Employee)map.get(AssessmentTaskMeta.HR_USER));
+				this.setTypeDict( (DictItem)map.get(AssessmentTaskMeta.TYPE_DICT));
+				this.setAssessmentTpl( (AssessmentTpl)map.get(AssessmentTaskMeta.ASSESSMENT_TPL));
+				this.setButtonAction( (String)map.get(AssessmentTaskMeta.BUTTON_ACTION));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -1275,15 +1434,15 @@ public class AssessmentTask extends Entity {
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.NOTES)));
 			this.setSource(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.SOURCE)));
+			this.setType(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.TYPE)));
 			this.setCycle(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.CYCLE)));
-			this.setSameLevelUserId(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.SAME_LEVEL_USER_ID)));
 			this.setHasSelfAssessment(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.HAS_SELF_ASSESSMENT)));
-			this.setPosId(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.POS_ID)));
 			this.setHasLeaderAssessment(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.HAS_LEADER_ASSESSMENT)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.UPDATE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.ID)));
 			this.setIsAllPerson(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.IS_ALL_PERSON)));
 			this.setOwner(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.OWNER)));
+			this.setHrUserId(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.HR_USER_ID)));
 			this.setHasHrConfirm(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.HAS_HR_CONFIRM)));
 			this.setHasSecondLeaderAssessment(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.HAS_SECOND_LEADER_ASSESSMENT)));
 			this.setHasSameAssessment(DataParser.parse(String.class, r.getValue(AssessmentTaskMeta.HAS_SAME_ASSESSMENT)));
@@ -1305,15 +1464,15 @@ public class AssessmentTask extends Entity {
 			try {
 				this.setNotes( (String)r.getValue(AssessmentTaskMeta.NOTES));
 				this.setSource( (String)r.getValue(AssessmentTaskMeta.SOURCE));
+				this.setType( (String)r.getValue(AssessmentTaskMeta.TYPE));
 				this.setCycle( (String)r.getValue(AssessmentTaskMeta.CYCLE));
-				this.setSameLevelUserId( (String)r.getValue(AssessmentTaskMeta.SAME_LEVEL_USER_ID));
 				this.setHasSelfAssessment( (String)r.getValue(AssessmentTaskMeta.HAS_SELF_ASSESSMENT));
-				this.setPosId( (String)r.getValue(AssessmentTaskMeta.POS_ID));
 				this.setHasLeaderAssessment( (String)r.getValue(AssessmentTaskMeta.HAS_LEADER_ASSESSMENT));
 				this.setUpdateBy( (String)r.getValue(AssessmentTaskMeta.UPDATE_BY));
 				this.setId( (String)r.getValue(AssessmentTaskMeta.ID));
 				this.setIsAllPerson( (String)r.getValue(AssessmentTaskMeta.IS_ALL_PERSON));
 				this.setOwner( (String)r.getValue(AssessmentTaskMeta.OWNER));
+				this.setHrUserId( (String)r.getValue(AssessmentTaskMeta.HR_USER_ID));
 				this.setHasHrConfirm( (String)r.getValue(AssessmentTaskMeta.HAS_HR_CONFIRM));
 				this.setHasSecondLeaderAssessment( (String)r.getValue(AssessmentTaskMeta.HAS_SECOND_LEADER_ASSESSMENT));
 				this.setHasSameAssessment( (String)r.getValue(AssessmentTaskMeta.HAS_SAME_ASSESSMENT));

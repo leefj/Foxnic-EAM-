@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核结果
  * <p>考核结果 , 数据表 hr_assessment_indicator_value 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-28 10:43:18
- * @sign A2F85344F9CF6991DB519981D75E8C94
+ * @since 2024-03-13 15:06:47
+ * @sign C071413DA5D2F314EA97E984B1F14F24
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,49 +41,49 @@ public class AssessmentIndicatorValue extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "820258554597343233")
 	private String id;
+	
+	/**
+	 * 评分卷：评分卷
+	*/
+	@ApiModelProperty(required = false,value="评分卷" , notes = "评分卷" , example = "820258554597343232")
+	private String taskPaperId;
 	
 	/**
 	 * 指标：指标
 	*/
-	@ApiModelProperty(required = false,value="指标" , notes = "指标")
+	@ApiModelProperty(required = false,value="指标" , notes = "指标" , example = "818930287911108608")
 	private String indicatorId;
 	
 	/**
-	 * 评分人类型：评分人类型
+	 * 得分：得分
 	*/
-	@ApiModelProperty(required = false,value="评分人类型" , notes = "评分人类型")
-	private String owner;
-	
-	/**
-	 * 评分人：评分人
-	*/
-	@ApiModelProperty(required = false,value="评分人" , notes = "评分人")
-	private String userId;
-	
-	/**
-	 * 评分：评分
-	*/
-	@ApiModelProperty(required = false,value="评分" , notes = "评分")
+	@ApiModelProperty(required = false,value="得分" , notes = "得分")
 	private BigDecimal value;
 	
 	/**
-	 * 说明：说明
+	 * 顺序：顺序
 	*/
-	@ApiModelProperty(required = false,value="说明" , notes = "说明")
+	@ApiModelProperty(required = false,value="顺序" , notes = "顺序" , example = "1")
+	private Integer sn;
+	
+	/**
+	 * 内容：内容
+	*/
+	@ApiModelProperty(required = false,value="内容" , notes = "内容")
 	private String content;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-13 11:34:39")
 	private Date createTime;
 	
 	/**
@@ -101,7 +101,7 @@ public class AssessmentIndicatorValue extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -122,14 +122,56 @@ public class AssessmentIndicatorValue extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * assessmentIndicator：assessmentIndicator
+	*/
+	@ApiModelProperty(required = false,value="assessmentIndicator" , notes = "assessmentIndicator")
+	private AssessmentIndicator assessmentIndicator;
+	
+	/**
+	 * IndicatorGroupName：IndicatorGroupName
+	*/
+	@ApiModelProperty(required = false,value="IndicatorGroupName" , notes = "IndicatorGroupName")
+	private String IndicatorGroupName;
+	
+	/**
+	 * IndicatorName：IndicatorName
+	*/
+	@ApiModelProperty(required = false,value="IndicatorName" , notes = "IndicatorName")
+	private String IndicatorName;
+	
+	/**
+	 * IndicatorScoringBase：IndicatorScoringBase
+	*/
+	@ApiModelProperty(required = false,value="IndicatorScoringBase" , notes = "IndicatorScoringBase")
+	private String IndicatorScoringBase;
+	
+	/**
+	 * IndicatorDef：IndicatorDef
+	*/
+	@ApiModelProperty(required = false,value="IndicatorDef" , notes = "IndicatorDef")
+	private String IndicatorDef;
+	
+	/**
+	 * IndicatorMinValue：IndicatorMinValue
+	*/
+	@ApiModelProperty(required = false,value="IndicatorMinValue" , notes = "IndicatorMinValue")
+	private String IndicatorMinValue;
+	
+	/**
+	 * IndicatorMaxValue：IndicatorMaxValue
+	*/
+	@ApiModelProperty(required = false,value="IndicatorMaxValue" , notes = "IndicatorMaxValue")
+	private String IndicatorMaxValue;
 	
 	/**
 	 * 获得 主键<br>
@@ -147,6 +189,25 @@ public class AssessmentIndicatorValue extends Entity {
 	*/
 	public AssessmentIndicatorValue setId(String id) {
 		this.id=id;
+		return this;
+	}
+	
+	/**
+	 * 获得 评分卷<br>
+	 * 评分卷
+	 * @return 评分卷
+	*/
+	public String getTaskPaperId() {
+		return taskPaperId;
+	}
+	
+	/**
+	 * 设置 评分卷
+	 * @param taskPaperId 评分卷
+	 * @return 当前对象
+	*/
+	public AssessmentIndicatorValue setTaskPaperId(String taskPaperId) {
+		this.taskPaperId=taskPaperId;
 		return this;
 	}
 	
@@ -170,55 +231,17 @@ public class AssessmentIndicatorValue extends Entity {
 	}
 	
 	/**
-	 * 获得 评分人类型<br>
-	 * 评分人类型
-	 * @return 评分人类型
-	*/
-	public String getOwner() {
-		return owner;
-	}
-	
-	/**
-	 * 设置 评分人类型
-	 * @param owner 评分人类型
-	 * @return 当前对象
-	*/
-	public AssessmentIndicatorValue setOwner(String owner) {
-		this.owner=owner;
-		return this;
-	}
-	
-	/**
-	 * 获得 评分人<br>
-	 * 评分人
-	 * @return 评分人
-	*/
-	public String getUserId() {
-		return userId;
-	}
-	
-	/**
-	 * 设置 评分人
-	 * @param userId 评分人
-	 * @return 当前对象
-	*/
-	public AssessmentIndicatorValue setUserId(String userId) {
-		this.userId=userId;
-		return this;
-	}
-	
-	/**
-	 * 获得 评分<br>
-	 * 评分
-	 * @return 评分
+	 * 获得 得分<br>
+	 * 得分
+	 * @return 得分
 	*/
 	public BigDecimal getValue() {
 		return value;
 	}
 	
 	/**
-	 * 设置 评分
-	 * @param value 评分
+	 * 设置 得分
+	 * @param value 得分
 	 * @return 当前对象
 	*/
 	public AssessmentIndicatorValue setValue(BigDecimal value) {
@@ -227,17 +250,36 @@ public class AssessmentIndicatorValue extends Entity {
 	}
 	
 	/**
-	 * 获得 说明<br>
-	 * 说明
-	 * @return 说明
+	 * 获得 顺序<br>
+	 * 顺序
+	 * @return 顺序
+	*/
+	public Integer getSn() {
+		return sn;
+	}
+	
+	/**
+	 * 设置 顺序
+	 * @param sn 顺序
+	 * @return 当前对象
+	*/
+	public AssessmentIndicatorValue setSn(Integer sn) {
+		this.sn=sn;
+		return this;
+	}
+	
+	/**
+	 * 获得 内容<br>
+	 * 内容
+	 * @return 内容
 	*/
 	public String getContent() {
 		return content;
 	}
 	
 	/**
-	 * 设置 说明
-	 * @param content 说明
+	 * 设置 内容
+	 * @param content 内容
 	 * @return 当前对象
 	*/
 	public AssessmentIndicatorValue setContent(String content) {
@@ -446,6 +488,139 @@ public class AssessmentIndicatorValue extends Entity {
 		this.tenantId=tenantId;
 		return this;
 	}
+	
+	/**
+	 * 获得 assessmentIndicator<br>
+	 * assessmentIndicator
+	 * @return assessmentIndicator
+	*/
+	public AssessmentIndicator getAssessmentIndicator() {
+		return assessmentIndicator;
+	}
+	
+	/**
+	 * 设置 assessmentIndicator
+	 * @param assessmentIndicator assessmentIndicator
+	 * @return 当前对象
+	*/
+	public AssessmentIndicatorValue setAssessmentIndicator(AssessmentIndicator assessmentIndicator) {
+		this.assessmentIndicator=assessmentIndicator;
+		return this;
+	}
+	
+	/**
+	 * 获得 IndicatorGroupName<br>
+	 * IndicatorGroupName
+	 * @return IndicatorGroupName
+	*/
+	public String getIndicatorGroupName() {
+		return IndicatorGroupName;
+	}
+	
+	/**
+	 * 设置 IndicatorGroupName
+	 * @param IndicatorGroupName IndicatorGroupName
+	 * @return 当前对象
+	*/
+	public AssessmentIndicatorValue setIndicatorGroupName(String IndicatorGroupName) {
+		this.IndicatorGroupName=IndicatorGroupName;
+		return this;
+	}
+	
+	/**
+	 * 获得 IndicatorName<br>
+	 * IndicatorName
+	 * @return IndicatorName
+	*/
+	public String getIndicatorName() {
+		return IndicatorName;
+	}
+	
+	/**
+	 * 设置 IndicatorName
+	 * @param IndicatorName IndicatorName
+	 * @return 当前对象
+	*/
+	public AssessmentIndicatorValue setIndicatorName(String IndicatorName) {
+		this.IndicatorName=IndicatorName;
+		return this;
+	}
+	
+	/**
+	 * 获得 IndicatorScoringBase<br>
+	 * IndicatorScoringBase
+	 * @return IndicatorScoringBase
+	*/
+	public String getIndicatorScoringBase() {
+		return IndicatorScoringBase;
+	}
+	
+	/**
+	 * 设置 IndicatorScoringBase
+	 * @param IndicatorScoringBase IndicatorScoringBase
+	 * @return 当前对象
+	*/
+	public AssessmentIndicatorValue setIndicatorScoringBase(String IndicatorScoringBase) {
+		this.IndicatorScoringBase=IndicatorScoringBase;
+		return this;
+	}
+	
+	/**
+	 * 获得 IndicatorDef<br>
+	 * IndicatorDef
+	 * @return IndicatorDef
+	*/
+	public String getIndicatorDef() {
+		return IndicatorDef;
+	}
+	
+	/**
+	 * 设置 IndicatorDef
+	 * @param IndicatorDef IndicatorDef
+	 * @return 当前对象
+	*/
+	public AssessmentIndicatorValue setIndicatorDef(String IndicatorDef) {
+		this.IndicatorDef=IndicatorDef;
+		return this;
+	}
+	
+	/**
+	 * 获得 IndicatorMinValue<br>
+	 * IndicatorMinValue
+	 * @return IndicatorMinValue
+	*/
+	public String getIndicatorMinValue() {
+		return IndicatorMinValue;
+	}
+	
+	/**
+	 * 设置 IndicatorMinValue
+	 * @param IndicatorMinValue IndicatorMinValue
+	 * @return 当前对象
+	*/
+	public AssessmentIndicatorValue setIndicatorMinValue(String IndicatorMinValue) {
+		this.IndicatorMinValue=IndicatorMinValue;
+		return this;
+	}
+	
+	/**
+	 * 获得 IndicatorMaxValue<br>
+	 * IndicatorMaxValue
+	 * @return IndicatorMaxValue
+	*/
+	public String getIndicatorMaxValue() {
+		return IndicatorMaxValue;
+	}
+	
+	/**
+	 * 设置 IndicatorMaxValue
+	 * @param IndicatorMaxValue IndicatorMaxValue
+	 * @return 当前对象
+	*/
+	public AssessmentIndicatorValue setIndicatorMaxValue(String IndicatorMaxValue) {
+		this.IndicatorMaxValue=IndicatorMaxValue;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -491,9 +666,8 @@ public class AssessmentIndicatorValue extends Entity {
 	@Transient
 	public AssessmentIndicatorValue duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AssessmentIndicatorValueMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AssessmentIndicatorValueMeta.$$proxy$$();
-		inst.setOwner(this.getOwner());
+		inst.setTaskPaperId(this.getTaskPaperId());
 		inst.setUpdateTime(this.getUpdateTime());
-		inst.setUserId(this.getUserId());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
 		inst.setIndicatorId(this.getIndicatorId());
@@ -505,7 +679,17 @@ public class AssessmentIndicatorValue extends Entity {
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setSn(this.getSn());
 		inst.setValue(this.getValue());
+		if(all) {
+			inst.setIndicatorName(this.getIndicatorName());
+			inst.setIndicatorMaxValue(this.getIndicatorMaxValue());
+			inst.setIndicatorDef(this.getIndicatorDef());
+			inst.setIndicatorGroupName(this.getIndicatorGroupName());
+			inst.setIndicatorScoringBase(this.getIndicatorScoringBase());
+			inst.setAssessmentIndicator(this.getAssessmentIndicator());
+			inst.setIndicatorMinValue(this.getIndicatorMinValue());
+		}
 		inst.clearModifies();
 		return inst;
 	}
@@ -564,9 +748,8 @@ public class AssessmentIndicatorValue extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setOwner(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.OWNER)));
+			this.setTaskPaperId(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.TASK_PAPER_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssessmentIndicatorValueMeta.UPDATE_TIME)));
-			this.setUserId(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssessmentIndicatorValueMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.CONTENT)));
 			this.setIndicatorId(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.INDICATOR_ID)));
@@ -578,14 +761,21 @@ public class AssessmentIndicatorValue extends Entity {
 			this.setTenantId(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.ID)));
+			this.setSn(DataParser.parse(Integer.class, map.get(AssessmentIndicatorValueMeta.SN)));
 			this.setValue(DataParser.parse(BigDecimal.class, map.get(AssessmentIndicatorValueMeta.VALUE)));
 			// others
+			this.setIndicatorName(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.INDICATOR_NAME)));
+			this.setIndicatorMaxValue(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.INDICATOR_MAX_VALUE)));
+			this.setIndicatorDef(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.INDICATOR_DEF)));
+			this.setIndicatorGroupName(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.INDICATOR_GROUP_NAME)));
+			this.setIndicatorScoringBase(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.INDICATOR_SCORING_BASE)));
+			this.setAssessmentIndicator(DataParser.parse(AssessmentIndicator.class, map.get(AssessmentIndicatorValueMeta.ASSESSMENT_INDICATOR)));
+			this.setIndicatorMinValue(DataParser.parse(String.class, map.get(AssessmentIndicatorValueMeta.INDICATOR_MIN_VALUE)));
 			return true;
 		} else {
 			try {
-				this.setOwner( (String)map.get(AssessmentIndicatorValueMeta.OWNER));
+				this.setTaskPaperId( (String)map.get(AssessmentIndicatorValueMeta.TASK_PAPER_ID));
 				this.setUpdateTime( (Date)map.get(AssessmentIndicatorValueMeta.UPDATE_TIME));
-				this.setUserId( (String)map.get(AssessmentIndicatorValueMeta.USER_ID));
 				this.setVersion( (Integer)map.get(AssessmentIndicatorValueMeta.VERSION));
 				this.setContent( (String)map.get(AssessmentIndicatorValueMeta.CONTENT));
 				this.setIndicatorId( (String)map.get(AssessmentIndicatorValueMeta.INDICATOR_ID));
@@ -597,8 +787,16 @@ public class AssessmentIndicatorValue extends Entity {
 				this.setTenantId( (String)map.get(AssessmentIndicatorValueMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AssessmentIndicatorValueMeta.DELETE_BY));
 				this.setId( (String)map.get(AssessmentIndicatorValueMeta.ID));
+				this.setSn( (Integer)map.get(AssessmentIndicatorValueMeta.SN));
 				this.setValue( (BigDecimal)map.get(AssessmentIndicatorValueMeta.VALUE));
 				// others
+				this.setIndicatorName( (String)map.get(AssessmentIndicatorValueMeta.INDICATOR_NAME));
+				this.setIndicatorMaxValue( (String)map.get(AssessmentIndicatorValueMeta.INDICATOR_MAX_VALUE));
+				this.setIndicatorDef( (String)map.get(AssessmentIndicatorValueMeta.INDICATOR_DEF));
+				this.setIndicatorGroupName( (String)map.get(AssessmentIndicatorValueMeta.INDICATOR_GROUP_NAME));
+				this.setIndicatorScoringBase( (String)map.get(AssessmentIndicatorValueMeta.INDICATOR_SCORING_BASE));
+				this.setAssessmentIndicator( (AssessmentIndicator)map.get(AssessmentIndicatorValueMeta.ASSESSMENT_INDICATOR));
+				this.setIndicatorMinValue( (String)map.get(AssessmentIndicatorValueMeta.INDICATOR_MIN_VALUE));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -615,9 +813,8 @@ public class AssessmentIndicatorValue extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setOwner(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueMeta.OWNER)));
+			this.setTaskPaperId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueMeta.TASK_PAPER_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssessmentIndicatorValueMeta.UPDATE_TIME)));
-			this.setUserId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueMeta.USER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssessmentIndicatorValueMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueMeta.CONTENT)));
 			this.setIndicatorId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueMeta.INDICATOR_ID)));
@@ -629,13 +826,13 @@ public class AssessmentIndicatorValue extends Entity {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorValueMeta.ID)));
+			this.setSn(DataParser.parse(Integer.class, r.getValue(AssessmentIndicatorValueMeta.SN)));
 			this.setValue(DataParser.parse(BigDecimal.class, r.getValue(AssessmentIndicatorValueMeta.VALUE)));
 			return true;
 		} else {
 			try {
-				this.setOwner( (String)r.getValue(AssessmentIndicatorValueMeta.OWNER));
+				this.setTaskPaperId( (String)r.getValue(AssessmentIndicatorValueMeta.TASK_PAPER_ID));
 				this.setUpdateTime( (Date)r.getValue(AssessmentIndicatorValueMeta.UPDATE_TIME));
-				this.setUserId( (String)r.getValue(AssessmentIndicatorValueMeta.USER_ID));
 				this.setVersion( (Integer)r.getValue(AssessmentIndicatorValueMeta.VERSION));
 				this.setContent( (String)r.getValue(AssessmentIndicatorValueMeta.CONTENT));
 				this.setIndicatorId( (String)r.getValue(AssessmentIndicatorValueMeta.INDICATOR_ID));
@@ -647,6 +844,7 @@ public class AssessmentIndicatorValue extends Entity {
 				this.setTenantId( (String)r.getValue(AssessmentIndicatorValueMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AssessmentIndicatorValueMeta.DELETE_BY));
 				this.setId( (String)r.getValue(AssessmentIndicatorValueMeta.ID));
+				this.setSn( (Integer)r.getValue(AssessmentIndicatorValueMeta.SN));
 				this.setValue( (BigDecimal)r.getValue(AssessmentIndicatorValueMeta.VALUE));
 				return true;
 			} catch (Exception e) {

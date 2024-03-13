@@ -77,12 +77,16 @@ public class HrmAssessMentPlanGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_ASSESSMENT_PLAN.NOTES).form().table().disable(true);
         cfg.view().field(HrTables.HR_ASSESSMENT_PLAN.ASSESSOR_SECOND_ID).form().table().disable(true);
 
-        cfg.view().field(HrTables.HR_ASSESSMENT_PLAN.ASSESSOR_ID).form().table().disable(true);
+
+
+
+
+
+        cfg.view().field(AssessmentPlanMeta.BUTTON_ACTION).form().button().action("加载指标","loadTplData");
 
         cfg.view().field(AssessmentPlanMeta.BUTTON_ACTION).form().table().disable(true);
 
 
-        cfg.view().field(AssessmentPlanMeta.BUTTON_ACTION).form().button().action("加载指标","loadTplData");
 
         cfg.view().field(HrTables.HR_ASSESSMENT_PLAN.CYCLE).form().validate().required().form().radioBox().enumType(AssessmentCycleEnum.class).defaultIndex(0);
 
@@ -92,12 +96,10 @@ public class HrmAssessMentPlanGtr extends BaseCodeGenerator {
         .valueField(AssessmentPlanMeta.ID).
         textField(AssessmentPlanMeta.NAME).
         fillWith(AssessmentPlanMeta.ASSESSMENT_TPL).muliti(false);
-
+        cfg.view().field(AssessmentPlanMeta.BUTTON_ACTION).form().table().disable(true);
 
         cfg.view().formWindow().width("80%");;
         cfg.view().formWindow().bottomSpace(80);
-
-
         cfg.bpm().form("hr_assessment_plan");
         cfg.bpm().integrate(IntegrateMode.FRONT);
         cfg.view().form().labelWidth(70);
