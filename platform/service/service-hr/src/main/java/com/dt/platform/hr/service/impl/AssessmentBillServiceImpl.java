@@ -265,6 +265,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 				billTaskDtl.setBillTaskId(billTaskId);
 				billTaskDtl.setStatus(AssessmentBillTaskDtlStatusEnum.WAIT.code());
 				billTaskDtl.setRcdTime(new Date());
+				billTaskDtl.setBillId(bill.getId());
 				billTaskDtl.setRelationship(AssessmentBillTaskDtlRelationshipEnum.SECONDLEADER.code());
 				dtlList.add(billTaskDtl);
 			}
