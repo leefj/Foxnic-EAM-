@@ -131,7 +131,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 
 
 		if(AssessmentBillStatusEnum.ACTING.code().equals(assessmentBill.getStatus())
-		||AssessmentBillStatusEnum.FINISH.code().equals(assessmentBill.getStatus())
+				||AssessmentBillStatusEnum.FINISH.code().equals(assessmentBill.getStatus())
 		){
 			return ErrorDesc.failureMessage("当前状态不能进行操作");
 		}
@@ -139,9 +139,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 
         dao.fill(assessmentBill).with(AssessmentBillMeta.ASSESSMENT_TASK).execute();
 
-		if(!AssessmentBillStatusEnum.ACTING.code().equals(assessmentBill.getStatus())){
-			return ErrorDesc.failureMessage("当前状态不能进行操作");
-		}
+
 
         //下发的时候生成临时数据，主要保存主表数，
 		AssessmentTask dataTask=assessmentBill.getAssessmentTask();
@@ -234,6 +232,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 				billTaskDtl.setBillTaskId(billTaskId);
 				billTaskDtl.setStatus(AssessmentBillTaskDtlStatusEnum.WAIT.code());
 				billTaskDtl.setRcdTime(new Date());
+				billTaskDtl.setBillId(assessmentBillTask.getBillId());
 				billTaskDtl.setRelationship(AssessmentBillTaskDtlRelationshipEnum.SELF.code());
 				dtlList.add(billTaskDtl);
 			}
@@ -244,6 +243,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 				billTaskDtl.setBillTaskId(billTaskId);
 				billTaskDtl.setStatus(AssessmentBillTaskDtlStatusEnum.WAIT.code());
 				billTaskDtl.setRcdTime(new Date());
+				billTaskDtl.setBillId(assessmentBillTask.getBillId());
 				billTaskDtl.setRelationship(AssessmentBillTaskDtlRelationshipEnum.LEADER.code());
 				dtlList.add(billTaskDtl);
 			}
@@ -254,6 +254,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 				billTaskDtl.setBillTaskId(billTaskId);
 				billTaskDtl.setStatus(AssessmentBillTaskDtlStatusEnum.WAIT.code());
 				billTaskDtl.setRcdTime(new Date());
+				billTaskDtl.setBillId(assessmentBillTask.getBillId());
 				billTaskDtl.setRelationship(AssessmentBillTaskDtlRelationshipEnum.SAMEUSER.code());
 				dtlList.add(billTaskDtl);
 			}
@@ -265,7 +266,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 				billTaskDtl.setBillTaskId(billTaskId);
 				billTaskDtl.setStatus(AssessmentBillTaskDtlStatusEnum.WAIT.code());
 				billTaskDtl.setRcdTime(new Date());
-				billTaskDtl.setBillId(bill.getId());
+				billTaskDtl.setBillId(assessmentBillTask.getBillId());
 				billTaskDtl.setRelationship(AssessmentBillTaskDtlRelationshipEnum.SECONDLEADER.code());
 				dtlList.add(billTaskDtl);
 			}
