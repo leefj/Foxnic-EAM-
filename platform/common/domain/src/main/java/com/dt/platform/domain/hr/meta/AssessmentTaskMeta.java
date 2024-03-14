@@ -17,8 +17,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 20:22:31
- * @sign 610101D070CC35093C304E1EAE0D4D68
+ * @since 2024-03-14 07:22:53
+ * @sign 728ABCB3180826B97F77AD10809296D4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -125,6 +125,16 @@ public class AssessmentTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_SELF_ASSESSMENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_SELF_ASSESSMENT, java.lang.String.class, "自评评分", "自评评分", java.lang.String.class, null);
 	
 	/**
+	 * 权重 , 类型: java.lang.Integer
+	*/
+	public static final String SELF_WEIGTH="selfWeigth";
+	
+	/**
+	 * 权重 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.Integer> SELF_WEIGTH_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,SELF_WEIGTH, java.lang.Integer.class, "权重", "权重", java.lang.Integer.class, null);
+	
+	/**
 	 * 互评分 , 类型: java.lang.String
 	*/
 	public static final String HAS_SAME_ASSESSMENT="hasSameAssessment";
@@ -133,6 +143,16 @@ public class AssessmentTaskMeta {
 	 * 互评分 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_SAME_ASSESSMENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_SAME_ASSESSMENT, java.lang.String.class, "互评分", "互评分", java.lang.String.class, null);
+	
+	/**
+	 * 权重 , 类型: java.lang.Integer
+	*/
+	public static final String SAME_WEIGTH="sameWeigth";
+	
+	/**
+	 * 权重 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.Integer> SAME_WEIGTH_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,SAME_WEIGTH, java.lang.Integer.class, "权重", "权重", java.lang.Integer.class, null);
 	
 	/**
 	 * 直接领导评分 , 类型: java.lang.String
@@ -145,6 +165,16 @@ public class AssessmentTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_LEADER_ASSESSMENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_LEADER_ASSESSMENT, java.lang.String.class, "直接领导评分", "直接领导评分", java.lang.String.class, null);
 	
 	/**
+	 * 权重 , 类型: java.lang.Integer
+	*/
+	public static final String LEADER_WEIGTH="leaderWeigth";
+	
+	/**
+	 * 权重 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.Integer> LEADER_WEIGTH_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,LEADER_WEIGTH, java.lang.Integer.class, "权重", "权重", java.lang.Integer.class, null);
+	
+	/**
 	 * 上上级领导评分 , 类型: java.lang.String
 	*/
 	public static final String HAS_SECOND_LEADER_ASSESSMENT="hasSecondLeaderAssessment";
@@ -153,6 +183,16 @@ public class AssessmentTaskMeta {
 	 * 上上级领导评分 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.String> HAS_SECOND_LEADER_ASSESSMENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,HAS_SECOND_LEADER_ASSESSMENT, java.lang.String.class, "上上级领导评分", "上上级领导评分", java.lang.String.class, null);
+	
+	/**
+	 * 权重 , 类型: java.lang.Integer
+	*/
+	public static final String SECOND_WEIGHT="secondWeight";
+	
+	/**
+	 * 权重 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentTask,java.lang.Integer> SECOND_WEIGHT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentTask.class ,SECOND_WEIGHT, java.lang.Integer.class, "权重", "权重", java.lang.Integer.class, null);
 	
 	/**
 	 * HR是否复核 , 类型: java.lang.String
@@ -437,7 +477,7 @@ public class AssessmentTaskMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER , TYPE , NAME , STATUS , CYCLE , IS_ALL_PERSON , ASSESSMEN_METHOD , TOTAL_WEIGHT , HAS_SELF_ASSESSMENT , HAS_SAME_ASSESSMENT , HAS_LEADER_ASSESSMENT , HAS_SECOND_LEADER_ASSESSMENT , HAS_HR_CONFIRM , HR_USER_ID , TPL_ID , SOURCE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_TPL , ASSESSMENT_INDICATOR_LIST , SELECTED_CODE , ORGANIZATION_LIST , ORGANIZATION_IDS , POSITION_LIST , POSITION_IDS , PERSON_LIST , PERSON_IDS , HR_USER , EXCLUDE_PERSON_LIST , EXCLUDE_PERSON_IDS , BUTTON_ACTION , TYPE_DICT };
+	public static final String[] $PROPS={ ID , OWNER , TYPE , NAME , STATUS , CYCLE , IS_ALL_PERSON , ASSESSMEN_METHOD , TOTAL_WEIGHT , HAS_SELF_ASSESSMENT , SELF_WEIGTH , HAS_SAME_ASSESSMENT , SAME_WEIGTH , HAS_LEADER_ASSESSMENT , LEADER_WEIGTH , HAS_SECOND_LEADER_ASSESSMENT , SECOND_WEIGHT , HAS_HR_CONFIRM , HR_USER_ID , TPL_ID , SOURCE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_TPL , ASSESSMENT_INDICATOR_LIST , SELECTED_CODE , ORGANIZATION_LIST , ORGANIZATION_IDS , POSITION_LIST , POSITION_IDS , PERSON_LIST , PERSON_IDS , HR_USER , EXCLUDE_PERSON_LIST , EXCLUDE_PERSON_IDS , BUTTON_ACTION , TYPE_DICT };
 	
 	/**
 	 * 代理类
@@ -558,6 +598,17 @@ public class AssessmentTaskMeta {
 		}
 		
 		/**
+		 * 设置 权重
+		 * @param selfWeigth 权重
+		 * @return 当前对象
+		*/
+		public AssessmentTask setSelfWeigth(Integer selfWeigth) {
+			super.change(SELF_WEIGTH,super.getSelfWeigth(),selfWeigth);
+			super.setSelfWeigth(selfWeigth);
+			return this;
+		}
+		
+		/**
 		 * 设置 互评分
 		 * @param hasSameAssessment 互评分
 		 * @return 当前对象
@@ -565,6 +616,17 @@ public class AssessmentTaskMeta {
 		public AssessmentTask setHasSameAssessment(String hasSameAssessment) {
 			super.change(HAS_SAME_ASSESSMENT,super.getHasSameAssessment(),hasSameAssessment);
 			super.setHasSameAssessment(hasSameAssessment);
+			return this;
+		}
+		
+		/**
+		 * 设置 权重
+		 * @param sameWeigth 权重
+		 * @return 当前对象
+		*/
+		public AssessmentTask setSameWeigth(Integer sameWeigth) {
+			super.change(SAME_WEIGTH,super.getSameWeigth(),sameWeigth);
+			super.setSameWeigth(sameWeigth);
 			return this;
 		}
 		
@@ -580,6 +642,17 @@ public class AssessmentTaskMeta {
 		}
 		
 		/**
+		 * 设置 权重
+		 * @param leaderWeigth 权重
+		 * @return 当前对象
+		*/
+		public AssessmentTask setLeaderWeigth(Integer leaderWeigth) {
+			super.change(LEADER_WEIGTH,super.getLeaderWeigth(),leaderWeigth);
+			super.setLeaderWeigth(leaderWeigth);
+			return this;
+		}
+		
+		/**
 		 * 设置 上上级领导评分
 		 * @param hasSecondLeaderAssessment 上上级领导评分
 		 * @return 当前对象
@@ -587,6 +660,17 @@ public class AssessmentTaskMeta {
 		public AssessmentTask setHasSecondLeaderAssessment(String hasSecondLeaderAssessment) {
 			super.change(HAS_SECOND_LEADER_ASSESSMENT,super.getHasSecondLeaderAssessment(),hasSecondLeaderAssessment);
 			super.setHasSecondLeaderAssessment(hasSecondLeaderAssessment);
+			return this;
+		}
+		
+		/**
+		 * 设置 权重
+		 * @param secondWeight 权重
+		 * @return 当前对象
+		*/
+		public AssessmentTask setSecondWeight(Integer secondWeight) {
+			super.change(SECOND_WEIGHT,super.getSecondWeight(),secondWeight);
+			super.setSecondWeight(secondWeight);
 			return this;
 		}
 		
@@ -914,9 +998,11 @@ public class AssessmentTaskMeta {
 		public AssessmentTask duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
+			inst.setLeaderWeigth(this.getLeaderWeigth());
 			inst.setSource(this.getSource());
 			inst.setType(this.getType());
 			inst.setCycle(this.getCycle());
+			inst.setSecondWeight(this.getSecondWeight());
 			inst.setHasSelfAssessment(this.getHasSelfAssessment());
 			inst.setHasLeaderAssessment(this.getHasLeaderAssessment());
 			inst.setUpdateBy(this.getUpdateBy());
@@ -924,12 +1010,14 @@ public class AssessmentTaskMeta {
 			inst.setIsAllPerson(this.getIsAllPerson());
 			inst.setOwner(this.getOwner());
 			inst.setHrUserId(this.getHrUserId());
+			inst.setSelfWeigth(this.getSelfWeigth());
 			inst.setHasHrConfirm(this.getHasHrConfirm());
 			inst.setHasSecondLeaderAssessment(this.getHasSecondLeaderAssessment());
 			inst.setHasSameAssessment(this.getHasSameAssessment());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setAssessmenMethod(this.getAssessmenMethod());
+			inst.setSameWeigth(this.getSameWeigth());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());

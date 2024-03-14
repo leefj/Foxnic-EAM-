@@ -162,6 +162,10 @@ public class HrmRelationManager extends RelationManager {
 	public void setupAssessmentBillTaskDtl(){
 		this.property(AssessmentBillTaskDtlMeta.ASSESSMENT_BILL_TASK_PROP)
 				.using(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.BILL_TASK_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ID);
+
+		this.property(AssessmentBillTaskDtlMeta.ASSESSOR_PROP)
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.BILL_TASK_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ID)
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 	}
 
 
@@ -223,15 +227,13 @@ public class HrmRelationManager extends RelationManager {
 				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.SECOND_LEADER_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID)
 				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
-
-
 		this.property(AssessmentBillTaskDtlMeta.WITH_SAME_USER_LIST_PROP)
 				.using(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.BILL_TASK_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ID)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.BILL_ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
-				.condition("owner='same_user'")
-				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID)
-				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK.BILL_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.BILL_ID)
+				.condition("status='enable'")
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID)
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
 
 		this.property(AssessmentBillTaskDtlMeta.WITH_SELF_USER_PROP)
@@ -263,10 +265,13 @@ public class HrmRelationManager extends RelationManager {
 						.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
 		this.property(AssessmentBillTaskMeta.WITH_SAME_USER_LIST_PROP)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.BILL_ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
-				.condition("owner='same_user'")
-				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID)
-				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK.BILL_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.BILL_ID)
+				.condition("status='enable'")
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID)
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
 
 
 		this.property(AssessmentBillTaskMeta.ASSESSOR_PROP)

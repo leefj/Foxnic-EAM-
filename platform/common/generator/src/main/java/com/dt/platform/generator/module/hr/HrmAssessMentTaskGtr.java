@@ -181,11 +181,16 @@ public class HrmAssessMentTaskGtr extends BaseCodeGenerator {
                 new Object[] {
                         HrTables.HR_ASSESSMENT_TASK.HAS_SELF_ASSESSMENT,
                         HrTables.HR_ASSESSMENT_TASK.HAS_SAME_ASSESSMENT,
-
-                },
-                new Object[] {
                         HrTables.HR_ASSESSMENT_TASK.HAS_LEADER_ASSESSMENT,
                         HrTables.HR_ASSESSMENT_TASK.HAS_SECOND_LEADER_ASSESSMENT,
+
+                }
+                ,
+                new Object[] {
+                        HrTables.HR_ASSESSMENT_TASK.SELF_WEIGTH,
+                        HrTables.HR_ASSESSMENT_TASK.SAME_WEIGTH,
+                        HrTables.HR_ASSESSMENT_TASK.LEADER_WEIGTH,
+                        HrTables.HR_ASSESSMENT_TASK.SECOND_WEIGHT,
                 }
         );
 

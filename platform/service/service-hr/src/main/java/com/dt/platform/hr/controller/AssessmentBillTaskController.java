@@ -88,6 +88,21 @@ public class AssessmentBillTaskController extends SuperController {
 
 	/**
 	 * 删除单据任务
+	 */
+	@ApiOperation(value = "提交")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = AssessmentBillTaskVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+	})
+	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = AssessmentBillTaskServiceProxy.SUBMIT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AssessmentBillTaskServiceProxy.SUBMIT)
+	public Result submit(String id) {
+		return assessmentBillTaskService.submit(id);
+	}
+
+
+	/**
+	 * 删除单据任务
 	*/
 	@ApiOperation(value = "删除单据任务")
 	@ApiImplicitParams({
@@ -303,12 +318,20 @@ public class AssessmentBillTaskController extends SuperController {
 	@SentinelResource(value = AssessmentBillTaskServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssessmentBillTaskServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<AssessmentBillTask>> queryPagedList(AssessmentBillTaskVO sample) {
-		
+
+
+
 		Result<PagedList<AssessmentBillTask>> result=new Result<>();
 		ConditionExpr expr = new ConditionExpr();
 		expr.and("1=1");
 		if (!StringUtil.isBlank(sample.getSOrgId())) {
 			expr.and("assessor_id in (select distinct b.employee_id from hrm_position a,hrm_employee_position b where a.id=b.position_id and a.deleted=0 and b.deleted=0 and a.org_id in  (select id from hrm_organization where deleted=0 and type in ('com','dept') and (concat('/',hierarchy) like '%/" + sample.getSOrgId() + "/%' or id=?)))", sample.getSOrgId());
+		}
+
+		if(!StringUtil.isBlank(sample.getSRole())){
+			if ("self".equals(sample.getSRole())){
+				expr.and("bill_id in (select id from hr_assessment_bill where deleted=0 and is_show='yes')");
+			}
 		}
 
 		PagedList<AssessmentBillTask> list=assessmentBillTaskService.queryPagedList(sample,expr,sample.getPageSize(),sample.getPageIndex());

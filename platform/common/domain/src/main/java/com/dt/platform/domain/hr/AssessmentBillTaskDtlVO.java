@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 任务明细单VO类型
  * <p>任务明细单 , 数据表 hr_assessment_bill_task_dtl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-12 13:38:44
+ * @since 2024-03-14 21:33:43
  * @sign 759E6C22280FD5CE1B8CBF044D42E9F1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -410,6 +410,7 @@ public class AssessmentBillTaskDtlVO extends AssessmentBillTaskDtl {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setBillId(this.getBillId());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
@@ -437,6 +438,7 @@ public class AssessmentBillTaskDtlVO extends AssessmentBillTaskDtl {
 			inst.setAssessmentBill(this.getAssessmentBill());
 			inst.setWithLeaderList(this.getWithLeaderList());
 			inst.setSearchValue(this.getSearchValue());
+			inst.setAssessorStr(this.getAssessorStr());
 		}
 		inst.clearModifies();
 		return inst;
@@ -504,6 +506,7 @@ public class AssessmentBillTaskDtlVO extends AssessmentBillTaskDtl {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AssessmentBillTaskDtlVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssessmentBillTaskDtlVOMeta.DELETE_TIME)));
+			this.setBillId(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlVOMeta.BILL_ID)));
 			this.setTenantId(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlVOMeta.ID)));
@@ -526,6 +529,7 @@ public class AssessmentBillTaskDtlVO extends AssessmentBillTaskDtl {
 			this.setQueryLogic(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlVOMeta.QUERY_LOGIC)));
 			this.setAssessmentBill(DataParser.parse(AssessmentBill.class, map.get(AssessmentBillTaskDtlVOMeta.ASSESSMENT_BILL)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlVOMeta.SEARCH_VALUE)));
+			this.setAssessorStr(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlVOMeta.ASSESSOR_STR)));
 			return true;
 		} else {
 			try {
@@ -537,6 +541,7 @@ public class AssessmentBillTaskDtlVO extends AssessmentBillTaskDtl {
 				this.setCreateTime( (Date)map.get(AssessmentBillTaskDtlVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(AssessmentBillTaskDtlVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(AssessmentBillTaskDtlVOMeta.DELETE_TIME));
+				this.setBillId( (String)map.get(AssessmentBillTaskDtlVOMeta.BILL_ID));
 				this.setTenantId( (String)map.get(AssessmentBillTaskDtlVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AssessmentBillTaskDtlVOMeta.DELETE_BY));
 				this.setId( (String)map.get(AssessmentBillTaskDtlVOMeta.ID));
@@ -559,6 +564,7 @@ public class AssessmentBillTaskDtlVO extends AssessmentBillTaskDtl {
 				this.setQueryLogic( (String)map.get(AssessmentBillTaskDtlVOMeta.QUERY_LOGIC));
 				this.setAssessmentBill( (AssessmentBill)map.get(AssessmentBillTaskDtlVOMeta.ASSESSMENT_BILL));
 				this.setSearchValue( (String)map.get(AssessmentBillTaskDtlVOMeta.SEARCH_VALUE));
+				this.setAssessorStr( (String)map.get(AssessmentBillTaskDtlVOMeta.ASSESSOR_STR));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -583,6 +589,7 @@ public class AssessmentBillTaskDtlVO extends AssessmentBillTaskDtl {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssessmentBillTaskDtlVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssessmentBillTaskDtlVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssessmentBillTaskDtlVOMeta.DELETE_TIME)));
+			this.setBillId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskDtlVOMeta.BILL_ID)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskDtlVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssessmentBillTaskDtlVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskDtlVOMeta.ID)));
@@ -600,6 +607,7 @@ public class AssessmentBillTaskDtlVO extends AssessmentBillTaskDtl {
 				this.setCreateTime( (Date)r.getValue(AssessmentBillTaskDtlVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(AssessmentBillTaskDtlVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(AssessmentBillTaskDtlVOMeta.DELETE_TIME));
+				this.setBillId( (String)r.getValue(AssessmentBillTaskDtlVOMeta.BILL_ID));
 				this.setTenantId( (String)r.getValue(AssessmentBillTaskDtlVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AssessmentBillTaskDtlVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(AssessmentBillTaskDtlVOMeta.ID));

@@ -2,7 +2,7 @@
 /**
  * 考核单据 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 10:56:24
+ * @since 2024-03-14 07:40:18
  */
  -->
  <!DOCTYPE html>
@@ -104,10 +104,9 @@
 
     <button th:if="${perm.checkAuth('hr_assessment_bill:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
-    <button class="layui-btn layui-btn-xs  person-data " lay-event="person-data" data-id="{{d.id}}"><span th:text="${lang.translate('考核明细','','cmp:table.ops')}">考核明细</span></button>
-    <button class="layui-btn layui-btn-xs  pfr-data " lay-event="pfr-data" data-id="{{d.id}}"><span th:text="${lang.translate('评分人员','','cmp:table.ops')}">评分人员</span></button>
+    <button class="layui-btn layui-btn-xs  person-data " lay-event="person-data" data-id="{{d.id}}"><span th:text="${lang.translate('考核配置','','cmp:table.ops')}">考核配置</span></button>
+    <button class="layui-btn layui-btn-xs  pfr-data " lay-event="pfr-data" data-id="{{d.id}}"><span th:text="${lang.translate('考核人员','','cmp:table.ops')}">考核人员</span></button>
     <button class="layui-btn layui-btn-xs  bill-task-cancel " lay-event="bill-task-cancel" data-id="{{d.id}}"><span th:text="${lang.translate('取消','','cmp:table.ops')}">取消</span></button>
-    <button class="layui-btn layui-btn-xs  bill-task-copy " lay-event="bill-task-copy" data-id="{{d.id}}"><span th:text="${lang.translate('复制','','cmp:table.ops')}">复制</span></button>
 
 </script>
 

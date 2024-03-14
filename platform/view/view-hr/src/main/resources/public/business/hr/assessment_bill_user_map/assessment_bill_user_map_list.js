@@ -1,7 +1,7 @@
 /**
  * 人员映射 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 10:58:36
+ * @since 2024-03-14 07:26:11
  */
 
 
@@ -90,6 +90,10 @@ function ListPage() {
 					,{ field: 'leaderId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('直属领导') , templet: function (d) { return templet('leaderId',fox.getProperty(d,["leaderUser","name"],0,'','leaderId'),d);} }
 					,{ field: 'secondLeaderId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('上上级领导') , templet: function (d) { return templet('secondLeaderId',fox.getProperty(d,["secondLeaderUser","name"],0,'','secondLeaderId'),d);} }
 					,{ field: 'hrUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('HR复核人') , templet: function (d) { return templet('hrUserId',fox.getProperty(d,["hrUser","name"],0,'','hrUserId'),d);} }
+					,{ field: 'selfScore', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('自评分') , templet: function (d) { return templet('selfScore',d.selfScore,d);}  }
+					,{ field: 'sameScore', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('互评分') , templet: function (d) { return templet('sameScore',d.sameScore,d);}  }
+					,{ field: 'leaderScore', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('直属领导评分') , templet: function (d) { return templet('leaderScore',d.leaderScore,d);}  }
+					,{ field: 'secondLeaderScore', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('上上级别领导评分') , templet: function (d) { return templet('secondLeaderScore',d.secondLeaderScore,d);}  }
 					,{ field: 'result', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('生成状态'), templet:function (d){ return templet('result',fox.getEnumText(RADIO_RESULT_DATA,d.result,'','result'),d);}}
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'leaderUserIdRel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('直属领导【参考】') , templet: function (d) { return templet('leaderUserIdRel',fox.getProperty(d,["leaderUserRel","name"],0,'','leaderUserIdRel'),d);} }

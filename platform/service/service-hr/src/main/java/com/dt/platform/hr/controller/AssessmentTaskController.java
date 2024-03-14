@@ -82,7 +82,11 @@ public class AssessmentTaskController extends SuperController {
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentTaskVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SELF_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SAME_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.LEADER_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SECOND_WEIGHT, value = "权重", required = false, dataTypeClass = Integer.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -205,7 +209,11 @@ public class AssessmentTaskController extends SuperController {
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentTaskVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SELF_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SAME_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.LEADER_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SECOND_WEIGHT, value = "权重", required = false, dataTypeClass = Integer.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { AssessmentTaskVOMeta.PAGE_INDEX, AssessmentTaskVOMeta.PAGE_SIZE, AssessmentTaskVOMeta.SEARCH_FIELD, AssessmentTaskVOMeta.FUZZY_FIELD, AssessmentTaskVOMeta.SEARCH_VALUE, AssessmentTaskVOMeta.DIRTY_FIELDS, AssessmentTaskVOMeta.SORT_FIELD, AssessmentTaskVOMeta.SORT_TYPE, AssessmentTaskVOMeta.DATA_ORIGIN, AssessmentTaskVOMeta.QUERY_LOGIC, AssessmentTaskVOMeta.REQUEST_ACTION, AssessmentTaskVOMeta.IDS })
@@ -239,7 +247,11 @@ public class AssessmentTaskController extends SuperController {
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentTaskVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SELF_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SAME_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.LEADER_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SECOND_WEIGHT, value = "权重", required = false, dataTypeClass = Integer.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { AssessmentTaskVOMeta.PAGE_INDEX, AssessmentTaskVOMeta.PAGE_SIZE, AssessmentTaskVOMeta.SEARCH_FIELD, AssessmentTaskVOMeta.FUZZY_FIELD, AssessmentTaskVOMeta.SEARCH_VALUE, AssessmentTaskVOMeta.DIRTY_FIELDS, AssessmentTaskVOMeta.SORT_FIELD, AssessmentTaskVOMeta.SORT_TYPE, AssessmentTaskVOMeta.DATA_ORIGIN, AssessmentTaskVOMeta.QUERY_LOGIC, AssessmentTaskVOMeta.REQUEST_ACTION, AssessmentTaskVOMeta.IDS })
@@ -310,7 +322,11 @@ public class AssessmentTaskController extends SuperController {
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentTaskVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SELF_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SAME_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.LEADER_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SECOND_WEIGHT, value = "权重", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { AssessmentTaskVOMeta.PAGE_INDEX, AssessmentTaskVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssessmentTaskServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -345,7 +361,11 @@ public class AssessmentTaskController extends SuperController {
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = AssessmentTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentTaskVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SELF_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SAME_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.LEADER_WEIGTH, value = "权重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssessmentTaskVOMeta.SECOND_WEIGHT, value = "权重", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = AssessmentTaskServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

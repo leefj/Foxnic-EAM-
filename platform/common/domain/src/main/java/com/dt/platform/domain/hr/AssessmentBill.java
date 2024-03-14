@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核单据
  * <p>考核单据 , 数据表 hr_assessment_bill 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 10:56:23
+ * @since 2024-03-14 07:40:16
  * @sign C171DFB2B86B882DBDC4D060513F38AA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -43,55 +43,55 @@ public class AssessmentBill extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "819124501601058816")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "820392766063247360")
 	private String id;
 	
 	/**
 	 * 考核：考核
 	*/
-	@ApiModelProperty(required = false,value="考核" , notes = "考核" , example = "818930295733485568")
+	@ApiModelProperty(required = false,value="考核" , notes = "考核" , example = "820392317524377600")
 	private String taskId;
 	
 	/**
 	 * 考核任务：考核任务
 	*/
-	@ApiModelProperty(required = false,value="考核任务" , notes = "考核任务")
+	@ApiModelProperty(required = false,value="考核任务" , notes = "考核任务" , example = "820393586116788224")
 	private String taskDataId;
 	
 	/**
 	 * 考核名称：考核名称
 	*/
-	@ApiModelProperty(required = false,value="考核名称" , notes = "考核名称" , example = "cc")
+	@ApiModelProperty(required = false,value="考核名称" , notes = "考核名称" , example = "abcde")
 	private String taskName;
 	
 	/**
 	 * 状态：待下发，考评中，考评结束，取消
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "待下发，考评中，考评结束，取消")
+	@ApiModelProperty(required = false,value="状态" , notes = "待下发，考评中，考评结束，取消" , example = "wait")
 	private String status;
 	
 	/**
 	 * 是否可见：是否可见
 	*/
-	@ApiModelProperty(required = false,value="是否可见" , notes = "是否可见")
+	@ApiModelProperty(required = false,value="是否可见" , notes = "是否可见" , example = "no")
 	private String isShow;
 	
 	/**
 	 * 开始时间：开始时间
 	*/
-	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2024-03-10 08:28:20")
+	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2024-03-13 08:27:59")
 	private Date stime;
 	
 	/**
 	 * 结束时间：结束时间
 	*/
-	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间" , example = "2024-03-10 08:28:20")
+	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间" , example = "2024-03-13 08:27:59")
 	private Date etime;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
 	
 	/**
@@ -103,7 +103,7 @@ public class AssessmentBill extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-10 08:28:20")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-13 08:27:59")
 	private Date createTime;
 	
 	/**
@@ -115,7 +115,7 @@ public class AssessmentBill extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-10 08:28:45")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-13 08:31:05")
 	private Date updateTime;
 	
 	/**
@@ -142,7 +142,7 @@ public class AssessmentBill extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "2")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "3")
 	private Integer version;
 	
 	/**

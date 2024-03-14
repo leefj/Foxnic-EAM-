@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 任务明细单
  * <p>任务明细单 , 数据表 hr_assessment_bill_task_dtl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-12 13:38:44
- * @sign 48AD2F1E5F12503B93E6F7FCC8B79069
+ * @since 2024-03-14 21:33:43
+ * @sign 485DADC1467D320F7DFC22833169E46F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,13 +44,19 @@ public class AssessmentBillTaskDtl extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "819858163200163840")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "819953141876260864")
 	private String id;
+	
+	/**
+	 * 任务：任务
+	*/
+	@ApiModelProperty(required = false,value="任务" , notes = "任务")
+	private String billId;
 	
 	/**
 	 * 单据：单据
 	*/
-	@ApiModelProperty(required = false,value="单据" , notes = "单据" , example = "819286495167774720")
+	@ApiModelProperty(required = false,value="单据" , notes = "单据" , example = "819953138105581568")
 	private String billTaskId;
 	
 	/**
@@ -60,15 +66,15 @@ public class AssessmentBillTaskDtl extends Entity {
 	private String status;
 	
 	/**
-	 * 关系：关系
+	 * 考核方式：考核方式
 	*/
-	@ApiModelProperty(required = false,value="关系" , notes = "关系" , example = "self")
+	@ApiModelProperty(required = false,value="考核方式" , notes = "考核方式" , example = "self")
 	private String relationship;
 	
 	/**
 	 * 操作时间：操作时间
 	*/
-	@ApiModelProperty(required = false,value="操作时间" , notes = "操作时间" , example = "2024-03-12 09:03:38")
+	@ApiModelProperty(required = false,value="操作时间" , notes = "操作时间" , example = "2024-03-12 03:21:03")
 	private Date rcdTime;
 	
 	/**
@@ -80,7 +86,7 @@ public class AssessmentBillTaskDtl extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-12 09:03:38")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-12 03:21:03")
 	private Date createTime;
 	
 	/**
@@ -153,6 +159,12 @@ public class AssessmentBillTaskDtl extends Entity {
 	private String assesseeStr;
 	
 	/**
+	 * assessorStr：assessorStr
+	*/
+	@ApiModelProperty(required = false,value="assessorStr" , notes = "assessorStr")
+	private String assessorStr;
+	
+	/**
 	 * withSelfUser：withSelfUser
 	*/
 	@ApiModelProperty(required = false,value="withSelfUser" , notes = "withSelfUser")
@@ -196,6 +208,25 @@ public class AssessmentBillTaskDtl extends Entity {
 	}
 	
 	/**
+	 * 获得 任务<br>
+	 * 任务
+	 * @return 任务
+	*/
+	public String getBillId() {
+		return billId;
+	}
+	
+	/**
+	 * 设置 任务
+	 * @param billId 任务
+	 * @return 当前对象
+	*/
+	public AssessmentBillTaskDtl setBillId(String billId) {
+		this.billId=billId;
+		return this;
+	}
+	
+	/**
 	 * 获得 单据<br>
 	 * 单据
 	 * @return 单据
@@ -234,17 +265,17 @@ public class AssessmentBillTaskDtl extends Entity {
 	}
 	
 	/**
-	 * 获得 关系<br>
-	 * 关系
-	 * @return 关系
+	 * 获得 考核方式<br>
+	 * 考核方式
+	 * @return 考核方式
 	*/
 	public String getRelationship() {
 		return relationship;
 	}
 	
 	/**
-	 * 设置 关系
-	 * @param relationship 关系
+	 * 设置 考核方式
+	 * @param relationship 考核方式
 	 * @return 当前对象
 	*/
 	public AssessmentBillTaskDtl setRelationship(String relationship) {
@@ -550,6 +581,25 @@ public class AssessmentBillTaskDtl extends Entity {
 	}
 	
 	/**
+	 * 获得 assessorStr<br>
+	 * assessorStr
+	 * @return assessorStr
+	*/
+	public String getAssessorStr() {
+		return assessorStr;
+	}
+	
+	/**
+	 * 设置 assessorStr
+	 * @param assessorStr assessorStr
+	 * @return 当前对象
+	*/
+	public AssessmentBillTaskDtl setAssessorStr(String assessorStr) {
+		this.assessorStr=assessorStr;
+		return this;
+	}
+	
+	/**
 	 * 获得 withSelfUser<br>
 	 * withSelfUser
 	 * @return withSelfUser
@@ -710,6 +760,7 @@ public class AssessmentBillTaskDtl extends Entity {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setBillId(this.getBillId());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
@@ -725,6 +776,7 @@ public class AssessmentBillTaskDtl extends Entity {
 			inst.setAssessmentBill(this.getAssessmentBill());
 			inst.setWithLeaderList(this.getWithLeaderList());
 			inst.setAssesseeStr(this.getAssesseeStr());
+			inst.setAssessorStr(this.getAssessorStr());
 		}
 		inst.clearModifies();
 		return inst;
@@ -792,6 +844,7 @@ public class AssessmentBillTaskDtl extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AssessmentBillTaskDtlMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssessmentBillTaskDtlMeta.DELETE_TIME)));
+			this.setBillId(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlMeta.BILL_ID)));
 			this.setTenantId(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlMeta.ID)));
@@ -804,6 +857,7 @@ public class AssessmentBillTaskDtl extends Entity {
 			this.setAssessor(DataParser.parse(Employee.class, map.get(AssessmentBillTaskDtlMeta.ASSESSOR)));
 			this.setAssessmentBill(DataParser.parse(AssessmentBill.class, map.get(AssessmentBillTaskDtlMeta.ASSESSMENT_BILL)));
 			this.setAssesseeStr(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlMeta.ASSESSEE_STR)));
+			this.setAssessorStr(DataParser.parse(String.class, map.get(AssessmentBillTaskDtlMeta.ASSESSOR_STR)));
 			return true;
 		} else {
 			try {
@@ -815,6 +869,7 @@ public class AssessmentBillTaskDtl extends Entity {
 				this.setCreateTime( (Date)map.get(AssessmentBillTaskDtlMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(AssessmentBillTaskDtlMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(AssessmentBillTaskDtlMeta.DELETE_TIME));
+				this.setBillId( (String)map.get(AssessmentBillTaskDtlMeta.BILL_ID));
 				this.setTenantId( (String)map.get(AssessmentBillTaskDtlMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AssessmentBillTaskDtlMeta.DELETE_BY));
 				this.setId( (String)map.get(AssessmentBillTaskDtlMeta.ID));
@@ -827,6 +882,7 @@ public class AssessmentBillTaskDtl extends Entity {
 				this.setAssessor( (Employee)map.get(AssessmentBillTaskDtlMeta.ASSESSOR));
 				this.setAssessmentBill( (AssessmentBill)map.get(AssessmentBillTaskDtlMeta.ASSESSMENT_BILL));
 				this.setAssesseeStr( (String)map.get(AssessmentBillTaskDtlMeta.ASSESSEE_STR));
+				this.setAssessorStr( (String)map.get(AssessmentBillTaskDtlMeta.ASSESSOR_STR));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -851,6 +907,7 @@ public class AssessmentBillTaskDtl extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssessmentBillTaskDtlMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssessmentBillTaskDtlMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssessmentBillTaskDtlMeta.DELETE_TIME)));
+			this.setBillId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskDtlMeta.BILL_ID)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskDtlMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssessmentBillTaskDtlMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskDtlMeta.ID)));
@@ -868,6 +925,7 @@ public class AssessmentBillTaskDtl extends Entity {
 				this.setCreateTime( (Date)r.getValue(AssessmentBillTaskDtlMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(AssessmentBillTaskDtlMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(AssessmentBillTaskDtlMeta.DELETE_TIME));
+				this.setBillId( (String)r.getValue(AssessmentBillTaskDtlMeta.BILL_ID));
 				this.setTenantId( (String)r.getValue(AssessmentBillTaskDtlMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AssessmentBillTaskDtlMeta.DELETE_BY));
 				this.setId( (String)r.getValue(AssessmentBillTaskDtlMeta.ID));

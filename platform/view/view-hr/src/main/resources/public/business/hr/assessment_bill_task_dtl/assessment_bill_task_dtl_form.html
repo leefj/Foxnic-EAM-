@@ -2,7 +2,7 @@
 /**
  * 任务明细单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-12 13:38:46
+ * @since 2024-03-14 21:33:45
  */
  -->
  <!DOCTYPE html>
@@ -51,6 +51,14 @@
                     </div>
                 </div>
             
+                <!-- text_input : 任务 ,  billId -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('任务')}">任务</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="billId" id="billId" name="billId" th:placeholder="${ lang.translate('请输入'+'任务') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
                 <!-- select_box : 单据 ,  billTaskId  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('单据')}">单据</div></div>
@@ -67,9 +75,9 @@
                     </div>
                 </div>
             
-                <!-- radio_box : 关系 ,  relationship  -->
+                <!-- radio_box : 考核方式 ,  relationship  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('关系')}">关系</div></div>
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('考核方式')}">考核方式</div></div>
                     <div class="layui-input-block layui-input-block-c1">
                         <input input-type="radio" type="radio" name="relationship" lay-filter="relationship" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentBillTaskDtlRelationshipEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
                     </div>
@@ -91,11 +99,19 @@
                     </div>
                 </div>
             
-                <!-- text_input : 被评人 ,  assesseeStr -->
+                <!-- text_input : 被考核人 ,  assesseeStr -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('被评人')}">被评人</div></div>
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('被考核人')}">被考核人</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="assesseeStr" id="assesseeStr" name="assesseeStr" th:placeholder="${ lang.translate('请输入'+'被评人') }" type="text" class="layui-input"  />
+                        <input lay-filter="assesseeStr" id="assesseeStr" name="assesseeStr" th:placeholder="${ lang.translate('请输入'+'被考核人') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 考核人 ,  assessorStr -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('考核人')}">考核人</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="assessorStr" id="assessorStr" name="assessorStr" th:placeholder="${ lang.translate('请输入'+'考核人') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->

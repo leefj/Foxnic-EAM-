@@ -1,5 +1,6 @@
 package com.dt.platform.hr.controller;
 
+import java.math.BigDecimal;
 import java.util.*;
 import com.dt.platform.domain.eam.AssetBorrow;
 import com.github.foxnic.commons.lang.StringUtil;
@@ -73,7 +74,11 @@ public class AssessmentBillUserMapController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.BILL_ID, value = "单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.HR_USER_ID, value = "HR复核人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ASSESSEE_ID, value = "被考核人", required = false, dataTypeClass = String.class, example = "590511680593592320")
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ASSESSEE_ID, value = "被考核人", required = false, dataTypeClass = String.class, example = "590511680593592320"),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SELF_SCORE, value = "自评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SAME_SCORE, value = "互评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.LEADER_SCORE, value = "直属领导评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE, value = "上上级别领导评分", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -195,7 +200,6 @@ public class AssessmentBillUserMapController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class),
-
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.LEADER_ID, value = "直属领导", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SECOND_LEADER_ID, value = "上上级领导", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.RESULT, value = "生成状态", required = false, dataTypeClass = String.class),
@@ -203,7 +207,11 @@ public class AssessmentBillUserMapController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.BILL_ID, value = "单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.HR_USER_ID, value = "HR复核人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ASSESSEE_ID, value = "被考核人", required = false, dataTypeClass = String.class, example = "590511680593592320")
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ASSESSEE_ID, value = "被考核人", required = false, dataTypeClass = String.class, example = "590511680593592320"),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SELF_SCORE, value = "自评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SAME_SCORE, value = "互评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.LEADER_SCORE, value = "直属领导评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE, value = "上上级别领导评分", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { AssessmentBillUserMapVOMeta.PAGE_INDEX, AssessmentBillUserMapVOMeta.PAGE_SIZE, AssessmentBillUserMapVOMeta.SEARCH_FIELD, AssessmentBillUserMapVOMeta.FUZZY_FIELD, AssessmentBillUserMapVOMeta.SEARCH_VALUE, AssessmentBillUserMapVOMeta.DIRTY_FIELDS, AssessmentBillUserMapVOMeta.SORT_FIELD, AssessmentBillUserMapVOMeta.SORT_TYPE, AssessmentBillUserMapVOMeta.DATA_ORIGIN, AssessmentBillUserMapVOMeta.QUERY_LOGIC, AssessmentBillUserMapVOMeta.REQUEST_ACTION, AssessmentBillUserMapVOMeta.IDS })
@@ -222,7 +230,6 @@ public class AssessmentBillUserMapController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class),
-
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.LEADER_ID, value = "直属领导", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SECOND_LEADER_ID, value = "上上级领导", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.RESULT, value = "生成状态", required = false, dataTypeClass = String.class),
@@ -230,7 +237,11 @@ public class AssessmentBillUserMapController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.BILL_ID, value = "单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.HR_USER_ID, value = "HR复核人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ASSESSEE_ID, value = "被考核人", required = false, dataTypeClass = String.class, example = "590511680593592320")
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ASSESSEE_ID, value = "被考核人", required = false, dataTypeClass = String.class, example = "590511680593592320"),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SELF_SCORE, value = "自评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SAME_SCORE, value = "互评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.LEADER_SCORE, value = "直属领导评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE, value = "上上级别领导评分", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { AssessmentBillUserMapVOMeta.PAGE_INDEX, AssessmentBillUserMapVOMeta.PAGE_SIZE, AssessmentBillUserMapVOMeta.SEARCH_FIELD, AssessmentBillUserMapVOMeta.FUZZY_FIELD, AssessmentBillUserMapVOMeta.SEARCH_VALUE, AssessmentBillUserMapVOMeta.DIRTY_FIELDS, AssessmentBillUserMapVOMeta.SORT_FIELD, AssessmentBillUserMapVOMeta.SORT_TYPE, AssessmentBillUserMapVOMeta.DATA_ORIGIN, AssessmentBillUserMapVOMeta.QUERY_LOGIC, AssessmentBillUserMapVOMeta.REQUEST_ACTION, AssessmentBillUserMapVOMeta.IDS })
@@ -291,7 +302,6 @@ public class AssessmentBillUserMapController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class),
-
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.LEADER_ID, value = "直属领导", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SECOND_LEADER_ID, value = "上上级领导", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.RESULT, value = "生成状态", required = false, dataTypeClass = String.class),
@@ -299,7 +309,11 @@ public class AssessmentBillUserMapController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.BILL_ID, value = "单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.HR_USER_ID, value = "HR复核人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ASSESSEE_ID, value = "被考核人", required = false, dataTypeClass = String.class, example = "590511680593592320")
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ASSESSEE_ID, value = "被考核人", required = false, dataTypeClass = String.class, example = "590511680593592320"),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SELF_SCORE, value = "自评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SAME_SCORE, value = "互评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.LEADER_SCORE, value = "直属领导评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE, value = "上上级别领导评分", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { AssessmentBillUserMapVOMeta.PAGE_INDEX, AssessmentBillUserMapVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssessmentBillUserMapServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -319,7 +333,6 @@ public class AssessmentBillUserMapController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ORG_ID, value = "部门", required = false, dataTypeClass = String.class),
-
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.LEADER_ID, value = "直属领导", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SECOND_LEADER_ID, value = "上上级领导", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.RESULT, value = "生成状态", required = false, dataTypeClass = String.class),
@@ -327,20 +340,23 @@ public class AssessmentBillUserMapController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.BILL_ID, value = "单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.HR_USER_ID, value = "HR复核人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ASSESSEE_ID, value = "被考核人", required = false, dataTypeClass = String.class, example = "590511680593592320")
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.ASSESSEE_ID, value = "被考核人", required = false, dataTypeClass = String.class, example = "590511680593592320"),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SELF_SCORE, value = "自评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SAME_SCORE, value = "互评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.LEADER_SCORE, value = "直属领导评分", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE, value = "上上级别领导评分", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = AssessmentBillUserMapServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssessmentBillUserMapServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<AssessmentBillUserMap>> queryPagedList(AssessmentBillUserMapVO sample) {
         Result<PagedList<AssessmentBillUserMap>> result = new Result<>();
-
         ConditionExpr expr = new ConditionExpr();
         expr.and("1=1");
         if (!StringUtil.isBlank(sample.getSOrgId())) {
             expr.and("assessee_id in (select distinct b.employee_id from hrm_position a,hrm_employee_position b where a.id=b.position_id and a.deleted=0 and b.deleted=0 and a.org_id in  (select id from hrm_organization where deleted=0 and type in ('com','dept') and (concat('/',hierarchy) like '%/" + sample.getSOrgId() + "/%' or id=?)))", sample.getSOrgId());
         }
-        PagedList<AssessmentBillUserMap> list = assessmentBillUserMapService.queryPagedList(sample,expr, sample.getPageSize(), sample.getPageIndex());
+        PagedList<AssessmentBillUserMap> list = assessmentBillUserMapService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         assessmentBillUserMapService.dao().fill(list).with("hrUser").with("assesseeUser").with("leaderUser").with("secondLeaderUser").with("sameUserList").execute();
         List<Employee> assessorList = CollectorUtil.collectList(list, AssessmentBillUserMap::getAssesseeUser);
@@ -354,8 +370,6 @@ public class AssessmentBillUserMapController extends SuperController {
         List<List<Employee>> sameListList = CollectorUtil.collectList(list, AssessmentBillUserMap::getSameUserList);
         List<Employee> sameList = sameListList.stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
         assessmentBillUserMapService.dao().join(sameList, Person.class);
-
-
         result.success(true).data(list);
         return result;
     }

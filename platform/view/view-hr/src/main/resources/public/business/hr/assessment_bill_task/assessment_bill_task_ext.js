@@ -29,6 +29,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
 
+            if(ROLE=="self"){
+                //隐藏评分表情况
+                var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                toolHtml=toolHtml.replace(/lay-event="pfb"/i, "style=\"display:none\"")
+                document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+            }
         },
         /**
          * 按事件名称移除表格按钮栏的按钮
@@ -124,6 +130,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             if(field=="assesseeStr"){
                 var html="";
                 console.log(r);
+                var d=[];
+
                 if(r.relationship=="self"){
                     if(r.withSelfUser){
                         html=r.withSelfUser.name;
@@ -133,8 +141,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                         for(var i=0;i<r.withSecondLeaderList.length;i++){
                             if(i==0){
                                 html=r.withSecondLeaderList[i].name;
+                                d.push(r.withSecondLeaderList[i].name);
                             }else{
-                                html=html+","+r.withSecondLeaderList[i].name;
+                                if(!d.includes(r.withSecondLeaderList[i].name)){
+                                    d.push(r.withSecondLeaderList[i].name);
+                                    html=html+","+r.withSecondLeaderList[i].name;
+                                }
                             }
                             if(i>10){
                                 break;
@@ -145,9 +157,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     if(r.withLeaderList&&r.withLeaderList.length>0){
                         for(var i=0;i<r.withLeaderList.length;i++){
                             if(i==0){
+                                d.push(r.withLeaderList[i].name);
                                 html=r.withLeaderList[i].name;
                             }else{
-                                html=html+","+r.withLeaderList[i].name;
+                                if(!d.includes(r.withLeaderList[i].name)){
+                                    d.push(r.withLeaderList[i].name);
+                                    html=html+","+r.withLeaderList[i].name;
+                                }
                             }
                             if(i>10){
                                 break;
@@ -158,9 +174,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     if(r.withSameUserList&&r.withSameUserList.length>0){
                         for(var i=0;i<r.withSameUserList.length;i++){
                             if(i==0){
+                                d.push(r.withSameUserList[i].name);
                                 html=r.withSameUserList[i].name;
                             }else{
-                                html=html+","+r.withSameUserList[i].name;
+                                if(!d.includes(r.withSameUserList[i].name)){
+                                    d.push(r.withSameUserList[i].name);
+                                    html=html+","+r.withSameUserList[i].name;
+                                }
                             }
                             if(i>10){
                                 break;

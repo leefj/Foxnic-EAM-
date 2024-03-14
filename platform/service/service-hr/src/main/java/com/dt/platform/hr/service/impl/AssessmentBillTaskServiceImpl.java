@@ -1,6 +1,12 @@
 package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.constants.enums.hr.AssessmentBillStatusEnum;
+import com.dt.platform.domain.hr.AssessmentBill;
+import com.dt.platform.domain.hr.AssessmentBillTaskDtl;
+import com.dt.platform.domain.hr.meta.AssessmentBillTaskMeta;
+import com.dt.platform.hr.service.IAssessmentBillTaskDtlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -46,6 +52,10 @@ import java.util.Map;
 
 public class AssessmentBillTaskServiceImpl extends SuperService<AssessmentBillTask> implements IAssessmentBillTaskService {
 
+
+
+	@Autowired
+	private IAssessmentBillTaskDtlService assessmentBillTaskDtlService;
 	/**
 	 * 注入DAO对象
 	 * */
@@ -57,6 +67,21 @@ public class AssessmentBillTaskServiceImpl extends SuperService<AssessmentBillTa
 	 * */
 	public DAO dao() { return dao; }
 
+
+	@Override
+	public Result submit(String id){
+		AssessmentBillTask task=this.getById(id);
+		dao.fill(task).with(AssessmentBillTaskMeta.ASSESSMENT_BILL_TASK_DTL_LIST).with(AssessmentBillTaskMeta.ASSESSMENT_BILL).execute();
+		AssessmentBill bill=task.getAssessmentBill();
+		if(!AssessmentBillStatusEnum.ACTING.code().equals(bill.getStatus())){
+			return ErrorDesc.failureMessage("当前状态不能进行操作");
+		}
+		List<AssessmentBillTaskDtl> list=task.getAssessmentBillTaskDtlList();
+		for(int i=0;i<list.size();i++){
+			assessmentBillTaskDtlService.submit(list.get(i).getId());
+		}
+		return ErrorDesc.success();
+	}
 
 
 	@Override
