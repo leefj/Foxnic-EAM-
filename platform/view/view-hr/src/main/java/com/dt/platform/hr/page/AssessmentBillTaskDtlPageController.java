@@ -41,8 +41,9 @@ public class AssessmentBillTaskDtlPageController extends ViewController {
 	 * 任务明细单 功能主页面
 	 */
 	@RequestMapping("/assessment_bill_task_dtl_list.html")
-	public String list(Model model,HttpServletRequest request,String billTaskId) {
+	public String list(Model model,HttpServletRequest request,String billTaskId,String billId) {
 		model.addAttribute("billTaskId",billTaskId);
+		model.addAttribute("billId",billId);
 		return getTemplatePath(prefix,"assessment_bill_task_dtl_list");
 	}
 

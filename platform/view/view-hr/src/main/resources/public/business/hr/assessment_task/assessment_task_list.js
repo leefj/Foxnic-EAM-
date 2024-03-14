@@ -1,7 +1,7 @@
 /**
  * 考核任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 20:22:34
+ * @since 2024-03-14 07:22:55
  */
 
 
@@ -92,9 +92,13 @@ function ListPage() {
 					,{ field: 'isAllPerson', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('全部人员'), templet:function (d){ return templet('isAllPerson',fox.getEnumText(RADIO_ISALLPERSON_DATA,d.isAllPerson,'','isAllPerson'),d);}}
 					,{ field: 'totalWeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('指标总权重') , templet: function (d) { return templet('totalWeight',d.totalWeight,d);}  }
 					,{ field: 'hasSelfAssessment', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('自评评分'), templet:function (d){ return templet('hasSelfAssessment',fox.getEnumText(RADIO_HASSELFASSESSMENT_DATA,d.hasSelfAssessment,'','hasSelfAssessment'),d);}}
+					,{ field: 'selfWeigth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('权重') , templet: function (d) { return templet('selfWeigth',d.selfWeigth,d);}  }
 					,{ field: 'hasSameAssessment', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('互评分'), templet:function (d){ return templet('hasSameAssessment',fox.getEnumText(RADIO_HASSAMEASSESSMENT_DATA,d.hasSameAssessment,'','hasSameAssessment'),d);}}
+					,{ field: 'sameWeigth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('权重') , templet: function (d) { return templet('sameWeigth',d.sameWeigth,d);}  }
 					,{ field: 'hasLeaderAssessment', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('直接领导评分'), templet:function (d){ return templet('hasLeaderAssessment',fox.getEnumText(RADIO_HASLEADERASSESSMENT_DATA,d.hasLeaderAssessment,'','hasLeaderAssessment'),d);}}
+					,{ field: 'leaderWeigth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('权重') , templet: function (d) { return templet('leaderWeigth',d.leaderWeigth,d);}  }
 					,{ field: 'hasSecondLeaderAssessment', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('上上级领导评分'), templet:function (d){ return templet('hasSecondLeaderAssessment',fox.getEnumText(RADIO_HASSECONDLEADERASSESSMENT_DATA,d.hasSecondLeaderAssessment,'','hasSecondLeaderAssessment'),d);}}
+					,{ field: 'secondWeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('权重') , templet: function (d) { return templet('secondWeight',d.secondWeight,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

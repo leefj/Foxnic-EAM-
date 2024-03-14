@@ -69,6 +69,8 @@ public class HrmAssessMentBillGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().field(HrTables.HR_ASSESSMENT_BILL.TASK_ID).form().table().disable(true);
+
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL.TASK_DATA_ID).form().table().disable(true);
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL.UPDATE_BY).form().table().disable(true);
 
@@ -104,10 +106,10 @@ public class HrmAssessMentBillGtr extends BaseCodeGenerator {
 
 
         cfg.view().list().addToolButton("新建任务","createBillTask","create-bill-task");
-        cfg.view().list().operationColumn().addActionButton("考核明细","personData","person-data");
-        cfg.view().list().operationColumn().addActionButton("评分人员","pfrData","pfr-data");
+        cfg.view().list().operationColumn().addActionButton("考核配置","personData","person-data");
+        cfg.view().list().operationColumn().addActionButton("考核人员","pfrData","pfr-data");
         cfg.view().list().operationColumn().addActionButton("取消","BillTaskCancel","bill-task-cancel");
-        cfg.view().list().operationColumn().addActionButton("复制","BillTaskCopy","bill-task-copy");
+      //  cfg.view().list().operationColumn().addActionButton("复制","BillTaskCopy","bill-task-copy");
         cfg.view().list().addJsVariable("TASK_ID",   "[[${taskId}]]","taskId");
 
 

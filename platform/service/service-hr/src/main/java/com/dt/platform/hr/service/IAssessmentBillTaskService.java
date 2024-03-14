@@ -1,5 +1,6 @@
 package com.dt.platform.hr.service;
 
+import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
@@ -29,6 +30,10 @@ import java.util.Map;
 
 public interface IAssessmentBillTaskService extends  ISimpleIdService<AssessmentBillTask,String> {
 
+
+
+
+	Result submit(String id);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

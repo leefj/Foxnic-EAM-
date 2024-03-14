@@ -7,6 +7,7 @@ import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.HrTables.HR_ASSESSMENT_BILL_USER_MAP;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
@@ -27,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员映射
  * <p>人员映射 , 数据表 hr_assessment_bill_user_map 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 10:58:35
- * @sign 23558D4CD977ACEC07849DE22C5B4AC4
+ * @since 2024-03-14 07:26:08
+ * @sign 34BC0AB4845EAA40A6A0A22BD52EE5B0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,13 +45,13 @@ public class AssessmentBillUserMap extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "819278441642721280")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "820395136759365632")
 	private String id;
 	
 	/**
 	 * 单据：单据
 	*/
-	@ApiModelProperty(required = false,value="单据" , notes = "单据" , example = "819278440770306048")
+	@ApiModelProperty(required = false,value="单据" , notes = "单据" , example = "820394780939780096")
 	private String billId;
 	
 	/**
@@ -90,6 +91,30 @@ public class AssessmentBillUserMap extends Entity {
 	private String hrUserId;
 	
 	/**
+	 * 自评分：自评分
+	*/
+	@ApiModelProperty(required = false,value="自评分" , notes = "自评分")
+	private BigDecimal selfScore;
+	
+	/**
+	 * 互评分：互评分
+	*/
+	@ApiModelProperty(required = false,value="互评分" , notes = "互评分")
+	private BigDecimal sameScore;
+	
+	/**
+	 * 直属领导评分：直属领导评分
+	*/
+	@ApiModelProperty(required = false,value="直属领导评分" , notes = "直属领导评分")
+	private BigDecimal leaderScore;
+	
+	/**
+	 * 上上级别领导评分：上上级别领导评分
+	*/
+	@ApiModelProperty(required = false,value="上上级别领导评分" , notes = "上上级别领导评分")
+	private BigDecimal secondLeaderScore;
+	
+	/**
 	 * 生成状态：生成状态
 	*/
 	@ApiModelProperty(required = false,value="生成状态" , notes = "生成状态" , example = "success")
@@ -110,7 +135,7 @@ public class AssessmentBillUserMap extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-10 06:40:02")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-13 08:37:23")
 	private Date createTime;
 	
 	/**
@@ -433,6 +458,82 @@ public class AssessmentBillUserMap extends Entity {
 	*/
 	public AssessmentBillUserMap setHrUserId(String hrUserId) {
 		this.hrUserId=hrUserId;
+		return this;
+	}
+	
+	/**
+	 * 获得 自评分<br>
+	 * 自评分
+	 * @return 自评分
+	*/
+	public BigDecimal getSelfScore() {
+		return selfScore;
+	}
+	
+	/**
+	 * 设置 自评分
+	 * @param selfScore 自评分
+	 * @return 当前对象
+	*/
+	public AssessmentBillUserMap setSelfScore(BigDecimal selfScore) {
+		this.selfScore=selfScore;
+		return this;
+	}
+	
+	/**
+	 * 获得 互评分<br>
+	 * 互评分
+	 * @return 互评分
+	*/
+	public BigDecimal getSameScore() {
+		return sameScore;
+	}
+	
+	/**
+	 * 设置 互评分
+	 * @param sameScore 互评分
+	 * @return 当前对象
+	*/
+	public AssessmentBillUserMap setSameScore(BigDecimal sameScore) {
+		this.sameScore=sameScore;
+		return this;
+	}
+	
+	/**
+	 * 获得 直属领导评分<br>
+	 * 直属领导评分
+	 * @return 直属领导评分
+	*/
+	public BigDecimal getLeaderScore() {
+		return leaderScore;
+	}
+	
+	/**
+	 * 设置 直属领导评分
+	 * @param leaderScore 直属领导评分
+	 * @return 当前对象
+	*/
+	public AssessmentBillUserMap setLeaderScore(BigDecimal leaderScore) {
+		this.leaderScore=leaderScore;
+		return this;
+	}
+	
+	/**
+	 * 获得 上上级别领导评分<br>
+	 * 上上级别领导评分
+	 * @return 上上级别领导评分
+	*/
+	public BigDecimal getSecondLeaderScore() {
+		return secondLeaderScore;
+	}
+	
+	/**
+	 * 设置 上上级别领导评分
+	 * @param secondLeaderScore 上上级别领导评分
+	 * @return 当前对象
+	*/
+	public AssessmentBillUserMap setSecondLeaderScore(BigDecimal secondLeaderScore) {
+		this.secondLeaderScore=secondLeaderScore;
 		return this;
 	}
 	
@@ -1164,6 +1265,8 @@ public class AssessmentBillUserMap extends Entity {
 	public AssessmentBillUserMap duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AssessmentBillUserMapMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AssessmentBillUserMapMeta.$$proxy$$();
 		inst.setHrUserId(this.getHrUserId());
+		inst.setSelfScore(this.getSelfScore());
+		inst.setSecondLeaderScore(this.getSecondLeaderScore());
 		inst.setSecondLeaderId(this.getSecondLeaderId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setMessage(this.getMessage());
@@ -1180,7 +1283,9 @@ public class AssessmentBillUserMap extends Entity {
 		inst.setBillId(this.getBillId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setSameScore(this.getSameScore());
 		inst.setStatus(this.getStatus());
+		inst.setLeaderScore(this.getLeaderScore());
 		if(all) {
 			inst.setAssesseeUser(this.getAssesseeUser());
 			inst.setSameUserList(this.getSameUserList());
@@ -1264,6 +1369,8 @@ public class AssessmentBillUserMap extends Entity {
 		if(map==null) return false;
 		if(cast) {
 			this.setHrUserId(DataParser.parse(String.class, map.get(AssessmentBillUserMapMeta.HR_USER_ID)));
+			this.setSelfScore(DataParser.parse(BigDecimal.class, map.get(AssessmentBillUserMapMeta.SELF_SCORE)));
+			this.setSecondLeaderScore(DataParser.parse(BigDecimal.class, map.get(AssessmentBillUserMapMeta.SECOND_LEADER_SCORE)));
 			this.setSecondLeaderId(DataParser.parse(String.class, map.get(AssessmentBillUserMapMeta.SECOND_LEADER_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssessmentBillUserMapMeta.UPDATE_TIME)));
 			this.setMessage(DataParser.parse(String.class, map.get(AssessmentBillUserMapMeta.MESSAGE)));
@@ -1280,7 +1387,9 @@ public class AssessmentBillUserMap extends Entity {
 			this.setBillId(DataParser.parse(String.class, map.get(AssessmentBillUserMapMeta.BILL_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssessmentBillUserMapMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentBillUserMapMeta.ID)));
+			this.setSameScore(DataParser.parse(BigDecimal.class, map.get(AssessmentBillUserMapMeta.SAME_SCORE)));
 			this.setStatus(DataParser.parse(String.class, map.get(AssessmentBillUserMapMeta.STATUS)));
+			this.setLeaderScore(DataParser.parse(BigDecimal.class, map.get(AssessmentBillUserMapMeta.LEADER_SCORE)));
 			// others
 			this.setAssesseeUser(DataParser.parse(Employee.class, map.get(AssessmentBillUserMapMeta.ASSESSEE_USER)));
 			this.setSameUserAvgScoreValue(DataParser.parse(String.class, map.get(AssessmentBillUserMapMeta.SAME_USER_AVG_SCORE_VALUE)));
@@ -1304,6 +1413,8 @@ public class AssessmentBillUserMap extends Entity {
 		} else {
 			try {
 				this.setHrUserId( (String)map.get(AssessmentBillUserMapMeta.HR_USER_ID));
+				this.setSelfScore( (BigDecimal)map.get(AssessmentBillUserMapMeta.SELF_SCORE));
+				this.setSecondLeaderScore( (BigDecimal)map.get(AssessmentBillUserMapMeta.SECOND_LEADER_SCORE));
 				this.setSecondLeaderId( (String)map.get(AssessmentBillUserMapMeta.SECOND_LEADER_ID));
 				this.setUpdateTime( (Date)map.get(AssessmentBillUserMapMeta.UPDATE_TIME));
 				this.setMessage( (String)map.get(AssessmentBillUserMapMeta.MESSAGE));
@@ -1320,7 +1431,9 @@ public class AssessmentBillUserMap extends Entity {
 				this.setBillId( (String)map.get(AssessmentBillUserMapMeta.BILL_ID));
 				this.setDeleteBy( (String)map.get(AssessmentBillUserMapMeta.DELETE_BY));
 				this.setId( (String)map.get(AssessmentBillUserMapMeta.ID));
+				this.setSameScore( (BigDecimal)map.get(AssessmentBillUserMapMeta.SAME_SCORE));
 				this.setStatus( (String)map.get(AssessmentBillUserMapMeta.STATUS));
+				this.setLeaderScore( (BigDecimal)map.get(AssessmentBillUserMapMeta.LEADER_SCORE));
 				// others
 				this.setAssesseeUser( (Employee)map.get(AssessmentBillUserMapMeta.ASSESSEE_USER));
 				this.setSameUserAvgScoreValue( (String)map.get(AssessmentBillUserMapMeta.SAME_USER_AVG_SCORE_VALUE));
@@ -1357,6 +1470,8 @@ public class AssessmentBillUserMap extends Entity {
 		if(r==null) return false;
 		if(cast) {
 			this.setHrUserId(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapMeta.HR_USER_ID)));
+			this.setSelfScore(DataParser.parse(BigDecimal.class, r.getValue(AssessmentBillUserMapMeta.SELF_SCORE)));
+			this.setSecondLeaderScore(DataParser.parse(BigDecimal.class, r.getValue(AssessmentBillUserMapMeta.SECOND_LEADER_SCORE)));
 			this.setSecondLeaderId(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapMeta.SECOND_LEADER_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssessmentBillUserMapMeta.UPDATE_TIME)));
 			this.setMessage(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapMeta.MESSAGE)));
@@ -1373,11 +1488,15 @@ public class AssessmentBillUserMap extends Entity {
 			this.setBillId(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapMeta.BILL_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapMeta.ID)));
+			this.setSameScore(DataParser.parse(BigDecimal.class, r.getValue(AssessmentBillUserMapMeta.SAME_SCORE)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapMeta.STATUS)));
+			this.setLeaderScore(DataParser.parse(BigDecimal.class, r.getValue(AssessmentBillUserMapMeta.LEADER_SCORE)));
 			return true;
 		} else {
 			try {
 				this.setHrUserId( (String)r.getValue(AssessmentBillUserMapMeta.HR_USER_ID));
+				this.setSelfScore( (BigDecimal)r.getValue(AssessmentBillUserMapMeta.SELF_SCORE));
+				this.setSecondLeaderScore( (BigDecimal)r.getValue(AssessmentBillUserMapMeta.SECOND_LEADER_SCORE));
 				this.setSecondLeaderId( (String)r.getValue(AssessmentBillUserMapMeta.SECOND_LEADER_ID));
 				this.setUpdateTime( (Date)r.getValue(AssessmentBillUserMapMeta.UPDATE_TIME));
 				this.setMessage( (String)r.getValue(AssessmentBillUserMapMeta.MESSAGE));
@@ -1394,7 +1513,9 @@ public class AssessmentBillUserMap extends Entity {
 				this.setBillId( (String)r.getValue(AssessmentBillUserMapMeta.BILL_ID));
 				this.setDeleteBy( (String)r.getValue(AssessmentBillUserMapMeta.DELETE_BY));
 				this.setId( (String)r.getValue(AssessmentBillUserMapMeta.ID));
+				this.setSameScore( (BigDecimal)r.getValue(AssessmentBillUserMapMeta.SAME_SCORE));
 				this.setStatus( (String)r.getValue(AssessmentBillUserMapMeta.STATUS));
+				this.setLeaderScore( (BigDecimal)r.getValue(AssessmentBillUserMapMeta.LEADER_SCORE));
 				return true;
 			} catch (Exception e) {
 				return false;

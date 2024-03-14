@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-03-13 20:17:29
+ * @since 2024-03-14 21:08:22
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -299,6 +299,11 @@ public class HrTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
+		 * 任务
+		*/
+		public static final DBField BILL_ID = new DBField(DBDataType.STRING , "bill_id","billId","任务","任务",false,false,true);
+		
+		/**
 		 * 单据
 		*/
 		public static final DBField BILL_TASK_ID = new DBField(DBDataType.STRING , "bill_task_id","billTaskId","单据","单据",false,false,true);
@@ -364,7 +369,7 @@ public class HrTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public HR_ASSESSMENT_BILL_TASK_DTL() {
-			this.init($NAME,"任务明细单" , ID , BILL_TASK_ID , STATUS , RELATIONSHIP , RCD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"任务明细单" , ID , BILL_ID , BILL_TASK_ID , STATUS , RELATIONSHIP , RCD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final HR_ASSESSMENT_BILL_TASK_DTL $TABLE=new HR_ASSESSMENT_BILL_TASK_DTL();
 	}
@@ -526,6 +531,26 @@ public class HrTables {
 		public static final DBField HR_USER_ID = new DBField(DBDataType.STRING , "hr_user_id","hrUserId","HR复核人","HR复核人",false,false,true);
 		
 		/**
+		 * 自评分
+		*/
+		public static final DBField SELF_SCORE = new DBField(DBDataType.DECIMAL , "self_score","selfScore","自评分","自评分",false,false,true);
+		
+		/**
+		 * 互评分
+		*/
+		public static final DBField SAME_SCORE = new DBField(DBDataType.DECIMAL , "same_score","sameScore","互评分","互评分",false,false,true);
+		
+		/**
+		 * 直属领导评分
+		*/
+		public static final DBField LEADER_SCORE = new DBField(DBDataType.DECIMAL , "leader_score","leaderScore","直属领导评分","直属领导评分",false,false,true);
+		
+		/**
+		 * 上上级别领导评分
+		*/
+		public static final DBField SECOND_LEADER_SCORE = new DBField(DBDataType.DECIMAL , "second_leader_score","secondLeaderScore","上上级别领导评分","上上级别领导评分",false,false,true);
+		
+		/**
 		 * 生成状态
 		*/
 		public static final DBField RESULT = new DBField(DBDataType.STRING , "result","result","生成状态","生成状态",false,false,true);
@@ -576,7 +601,7 @@ public class HrTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
 		
 		public HR_ASSESSMENT_BILL_USER_MAP() {
-			this.init($NAME,"人员映射" , ID , BILL_ID , STATUS , ORG_ID , ASSESSEE_ID , LEADER_ID , SECOND_LEADER_ID , HR_USER_ID , RESULT , MESSAGE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"人员映射" , ID , BILL_ID , STATUS , ORG_ID , ASSESSEE_ID , LEADER_ID , SECOND_LEADER_ID , HR_USER_ID , SELF_SCORE , SAME_SCORE , LEADER_SCORE , SECOND_LEADER_SCORE , RESULT , MESSAGE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final HR_ASSESSMENT_BILL_USER_MAP $TABLE=new HR_ASSESSMENT_BILL_USER_MAP();
 	}
@@ -925,9 +950,9 @@ public class HrTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 评分卷
+		 * 评分表
 		*/
-		public static final DBField TASK_PAPER_ID = new DBField(DBDataType.STRING , "task_paper_id","taskPaperId","评分卷","评分卷",false,false,true);
+		public static final DBField TASK_PAPER_ID = new DBField(DBDataType.STRING , "task_paper_id","taskPaperId","评分表","评分表",false,false,true);
 		
 		/**
 		 * 指标
@@ -940,14 +965,14 @@ public class HrTables {
 		public static final DBField VALUE = new DBField(DBDataType.DECIMAL , "value","value","得分","得分",false,false,true);
 		
 		/**
-		 * 顺序
-		*/
-		public static final DBField SN = new DBField(DBDataType.INTEGER , "sn","sn","顺序","顺序",false,false,true);
-		
-		/**
 		 * 内容
 		*/
 		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","内容","内容",false,false,true);
+		
+		/**
+		 * 顺序
+		*/
+		public static final DBField SN = new DBField(DBDataType.INTEGER , "sn","sn","顺序","顺序",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -995,7 +1020,7 @@ public class HrTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public HR_ASSESSMENT_INDICATOR_VALUE() {
-			this.init($NAME,"考核结果" , ID , TASK_PAPER_ID , INDICATOR_ID , VALUE , SN , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"考核结果" , ID , TASK_PAPER_ID , INDICATOR_ID , VALUE , CONTENT , SN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final HR_ASSESSMENT_INDICATOR_VALUE $TABLE=new HR_ASSESSMENT_INDICATOR_VALUE();
 	}
@@ -1268,9 +1293,19 @@ public class HrTables {
 		public static final DBField HAS_SELF_ASSESSMENT = new DBField(DBDataType.STRING , "has_self_assessment","hasSelfAssessment","自评评分","自评评分",false,false,true);
 		
 		/**
+		 * 权重
+		*/
+		public static final DBField SELF_WEIGTH = new DBField(DBDataType.INTEGER , "self_weigth","selfWeigth","权重","权重",false,false,true);
+		
+		/**
 		 * 互评分
 		*/
 		public static final DBField HAS_SAME_ASSESSMENT = new DBField(DBDataType.STRING , "has_same_assessment","hasSameAssessment","互评分","互评分",false,false,true);
+		
+		/**
+		 * 权重
+		*/
+		public static final DBField SAME_WEIGTH = new DBField(DBDataType.INTEGER , "same_weigth","sameWeigth","权重","权重",false,false,true);
 		
 		/**
 		 * 直接领导评分
@@ -1278,9 +1313,19 @@ public class HrTables {
 		public static final DBField HAS_LEADER_ASSESSMENT = new DBField(DBDataType.STRING , "has_leader_assessment","hasLeaderAssessment","直接领导评分","直接领导评分",false,false,true);
 		
 		/**
+		 * 权重
+		*/
+		public static final DBField LEADER_WEIGTH = new DBField(DBDataType.INTEGER , "leader_weigth","leaderWeigth","权重","权重",false,false,true);
+		
+		/**
 		 * 上上级领导评分
 		*/
 		public static final DBField HAS_SECOND_LEADER_ASSESSMENT = new DBField(DBDataType.STRING , "has_second_leader_assessment","hasSecondLeaderAssessment","上上级领导评分","上上级领导评分",false,false,true);
+		
+		/**
+		 * 权重
+		*/
+		public static final DBField SECOND_WEIGHT = new DBField(DBDataType.INTEGER , "second_weight","secondWeight","权重","权重",false,false,true);
 		
 		/**
 		 * HR是否复核
@@ -1353,7 +1398,7 @@ public class HrTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public HR_ASSESSMENT_TASK() {
-			this.init($NAME,"考核任务" , ID , OWNER , TYPE , NAME , STATUS , CYCLE , IS_ALL_PERSON , ASSESSMEN_METHOD , TOTAL_WEIGHT , HAS_SELF_ASSESSMENT , HAS_SAME_ASSESSMENT , HAS_LEADER_ASSESSMENT , HAS_SECOND_LEADER_ASSESSMENT , HAS_HR_CONFIRM , HR_USER_ID , TPL_ID , SOURCE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"考核任务" , ID , OWNER , TYPE , NAME , STATUS , CYCLE , IS_ALL_PERSON , ASSESSMEN_METHOD , TOTAL_WEIGHT , HAS_SELF_ASSESSMENT , SELF_WEIGTH , HAS_SAME_ASSESSMENT , SAME_WEIGTH , HAS_LEADER_ASSESSMENT , LEADER_WEIGTH , HAS_SECOND_LEADER_ASSESSMENT , SECOND_WEIGHT , HAS_HR_CONFIRM , HR_USER_ID , TPL_ID , SOURCE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final HR_ASSESSMENT_TASK $TABLE=new HR_ASSESSMENT_TASK();
 	}

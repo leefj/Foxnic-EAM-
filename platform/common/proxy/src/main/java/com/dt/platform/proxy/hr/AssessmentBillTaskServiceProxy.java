@@ -24,6 +24,9 @@ import com.dt.platform.proxy.ServiceNames;
 @FeignClient(value = ServiceNames.HR, contextId = AssessmentBillTaskServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssessmentBillTaskServiceProxy {
 
+
+
+
     /**
      * 基础路径 , service-hr
      */
@@ -83,6 +86,8 @@ public interface AssessmentBillTaskServiceProxy {
      * 分页查询单据任务
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
+
+    public static final String SUBMIT = API_PREFIX + "submit";
 
     /**
      * 添加单据任务

@@ -34,6 +34,9 @@ public class HrmAssessMentBillTaskDtlGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(AssessmentBillTask.class,"AssessmentBillTask","AssessmentBillTask","AssessmentBillTask");
         cfg.getPoClassFile().addSimpleProperty(String.class,"assesseeStr","assesseeStr","assesseeStr");
 
+        cfg.getPoClassFile().addSimpleProperty(Employee.class,"assessor","assessor","assessor");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"assessorStr","assessorStr","assessorStr");
+
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"withSelfUser","withSelfUser","withSelfUser");
         cfg.getPoClassFile().addListProperty(Employee.class,"withLeaderList","withLeaderList","withLeaderList");
         cfg.getPoClassFile().addListProperty(Employee.class,"withSecondLeaderList","withSecondLeaderList","withSecondLeaderList");
@@ -57,15 +60,22 @@ public class HrmAssessMentBillTaskDtlGtr extends BaseCodeGenerator {
 
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().field(AssessmentBillTaskDtlMeta.ASSESSEE_STR).basic().label("被评人").table().disable(false);
+        cfg.view().field(AssessmentBillTaskDtlMeta.ASSESSEE_STR).basic().label("被考核人").table().disable(false);
+        cfg.view().field(AssessmentBillTaskDtlMeta.ASSESSOR_STR).basic().label("考核人").table().disable(false);
+        cfg.view().field(AssessmentBillTaskDtlMeta.ASSESSOR_STR).form().table().fillBy("assessor","name");
+
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.UPDATE_BY).form().table().disable(true);
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.CREATE_TIME).form().table().disable(true);
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.STATUS).form().radioBox().enumType(AssessmentBillTaskDtlStatusEnum.class);
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.RELATIONSHIP).form().radioBox().enumType(AssessmentBillTaskDtlRelationshipEnum.class);
+
         cfg.view().list().operationColumn().addActionButton("评分","assessment","assessment-dtl");
-        cfg.view().list().addJsVariable("BILL_TASK_ID",   "[[${billTaskId}]]","BILL_TASK_ID");
+        cfg.view().list().addJsVariable("BILL_TASK_ID",   "[[${billTaskId}]]","billTaskId");
+        cfg.view().list().addJsVariable("BILL_ID",   "[[${billId}]]","billId");
         cfg.view().list().addJsVariable("ROLE",   "[[${role}]]","role");
 
+
+        cfg.view().field(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.BILL_ID).form().table().disable(true);
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.CREATE_TIME).form().table().disable(true);
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.UPDATE_BY).form().table().disable(true);
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.BILL_TASK_ID).form().table().disable(true);

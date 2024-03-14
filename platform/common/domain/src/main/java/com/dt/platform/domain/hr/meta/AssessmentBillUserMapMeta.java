@@ -2,6 +2,7 @@ package com.dt.platform.domain.hr.meta;
 
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.hr.AssessmentBillUserMap;
+import java.math.BigDecimal;
 import java.util.Date;
 import com.dt.platform.domain.hr.AssessmentTask;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -13,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 10:58:35
- * @sign 23558D4CD977ACEC07849DE22C5B4AC4
+ * @since 2024-03-14 07:26:08
+ * @sign 34BC0AB4845EAA40A6A0A22BD52EE5B0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -99,6 +100,46 @@ public class AssessmentBillUserMapMeta {
 	 * HR复核人 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMap,java.lang.String> HR_USER_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMap.class ,HR_USER_ID, java.lang.String.class, "HR复核人", "HR复核人", java.lang.String.class, null);
+	
+	/**
+	 * 自评分 , 类型: java.math.BigDecimal
+	*/
+	public static final String SELF_SCORE="selfScore";
+	
+	/**
+	 * 自评分 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMap,java.math.BigDecimal> SELF_SCORE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMap.class ,SELF_SCORE, java.math.BigDecimal.class, "自评分", "自评分", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 互评分 , 类型: java.math.BigDecimal
+	*/
+	public static final String SAME_SCORE="sameScore";
+	
+	/**
+	 * 互评分 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMap,java.math.BigDecimal> SAME_SCORE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMap.class ,SAME_SCORE, java.math.BigDecimal.class, "互评分", "互评分", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 直属领导评分 , 类型: java.math.BigDecimal
+	*/
+	public static final String LEADER_SCORE="leaderScore";
+	
+	/**
+	 * 直属领导评分 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMap,java.math.BigDecimal> LEADER_SCORE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMap.class ,LEADER_SCORE, java.math.BigDecimal.class, "直属领导评分", "直属领导评分", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 上上级别领导评分 , 类型: java.math.BigDecimal
+	*/
+	public static final String SECOND_LEADER_SCORE="secondLeaderScore";
+	
+	/**
+	 * 上上级别领导评分 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMap,java.math.BigDecimal> SECOND_LEADER_SCORE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMap.class ,SECOND_LEADER_SCORE, java.math.BigDecimal.class, "上上级别领导评分", "上上级别领导评分", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 生成状态 , 类型: java.lang.String
@@ -423,7 +464,7 @@ public class AssessmentBillUserMapMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BILL_ID , STATUS , ORG_ID , ASSESSEE_ID , LEADER_ID , SECOND_LEADER_ID , HR_USER_ID , RESULT , MESSAGE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSESSMENT_TASK , ASSESSEE_USER , SAME_USER_LIST , SAME_USER_IDS , LEADER_USER , SECOND_LEADER_USER , HR_USER , SAME_USER_LIST_REL , SAME_USER_IDS_REL , LEADER_USER_REL , LEADER_USER_ID_REL , SECOND_LEADER_USER_REL , SECOND_LEADER_USER_ID_REL , ASSESSMENT_BILL_TASK_LIST , SELF_SCORE_VALUE , SAME_USER_AVG_SCORE_VALUE , SAME_USER_NEED_COUNT , SAME_USER_FINISH_COUNT , LEADER_SCORE_VALUE , SECOND_LEADER_SCORE_VALUE , IF_HR_CONFIRM , S_ORG_ID };
+	public static final String[] $PROPS={ ID , BILL_ID , STATUS , ORG_ID , ASSESSEE_ID , LEADER_ID , SECOND_LEADER_ID , HR_USER_ID , SELF_SCORE , SAME_SCORE , LEADER_SCORE , SECOND_LEADER_SCORE , RESULT , MESSAGE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSESSMENT_TASK , ASSESSEE_USER , SAME_USER_LIST , SAME_USER_IDS , LEADER_USER , SECOND_LEADER_USER , HR_USER , SAME_USER_LIST_REL , SAME_USER_IDS_REL , LEADER_USER_REL , LEADER_USER_ID_REL , SECOND_LEADER_USER_REL , SECOND_LEADER_USER_ID_REL , ASSESSMENT_BILL_TASK_LIST , SELF_SCORE_VALUE , SAME_USER_AVG_SCORE_VALUE , SAME_USER_NEED_COUNT , SAME_USER_FINISH_COUNT , LEADER_SCORE_VALUE , SECOND_LEADER_SCORE_VALUE , IF_HR_CONFIRM , S_ORG_ID };
 	
 	/**
 	 * 代理类
@@ -518,6 +559,50 @@ public class AssessmentBillUserMapMeta {
 		public AssessmentBillUserMap setHrUserId(String hrUserId) {
 			super.change(HR_USER_ID,super.getHrUserId(),hrUserId);
 			super.setHrUserId(hrUserId);
+			return this;
+		}
+		
+		/**
+		 * 设置 自评分
+		 * @param selfScore 自评分
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setSelfScore(BigDecimal selfScore) {
+			super.change(SELF_SCORE,super.getSelfScore(),selfScore);
+			super.setSelfScore(selfScore);
+			return this;
+		}
+		
+		/**
+		 * 设置 互评分
+		 * @param sameScore 互评分
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setSameScore(BigDecimal sameScore) {
+			super.change(SAME_SCORE,super.getSameScore(),sameScore);
+			super.setSameScore(sameScore);
+			return this;
+		}
+		
+		/**
+		 * 设置 直属领导评分
+		 * @param leaderScore 直属领导评分
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setLeaderScore(BigDecimal leaderScore) {
+			super.change(LEADER_SCORE,super.getLeaderScore(),leaderScore);
+			super.setLeaderScore(leaderScore);
+			return this;
+		}
+		
+		/**
+		 * 设置 上上级别领导评分
+		 * @param secondLeaderScore 上上级别领导评分
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setSecondLeaderScore(BigDecimal secondLeaderScore) {
+			super.change(SECOND_LEADER_SCORE,super.getSecondLeaderScore(),secondLeaderScore);
+			super.setSecondLeaderScore(secondLeaderScore);
 			return this;
 		}
 		
@@ -889,6 +974,8 @@ public class AssessmentBillUserMapMeta {
 		public AssessmentBillUserMap duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setHrUserId(this.getHrUserId());
+			inst.setSelfScore(this.getSelfScore());
+			inst.setSecondLeaderScore(this.getSecondLeaderScore());
 			inst.setSecondLeaderId(this.getSecondLeaderId());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setMessage(this.getMessage());
@@ -905,7 +992,9 @@ public class AssessmentBillUserMapMeta {
 			inst.setBillId(this.getBillId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setSameScore(this.getSameScore());
 			inst.setStatus(this.getStatus());
+			inst.setLeaderScore(this.getLeaderScore());
 			if(all) {
 				inst.setAssesseeUser(this.getAssesseeUser());
 				inst.setSameUserList(this.getSameUserList());

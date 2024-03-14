@@ -13,6 +13,7 @@ import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
 import com.dt.platform.domain.hr.meta.AssessmentBillUserMapVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
+import java.math.BigDecimal;
 import java.util.Date;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.github.foxnic.sql.data.ExprRcd;
@@ -23,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员映射VO类型
  * <p>人员映射 , 数据表 hr_assessment_bill_user_map 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 10:58:35
+ * @since 2024-03-14 07:26:08
  * @sign B486CF9E3D70862C082CD0236C42FB8A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -403,6 +404,8 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 	public AssessmentBillUserMapVO duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AssessmentBillUserMapVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AssessmentBillUserMapVOMeta.$$proxy$$();
 		inst.setHrUserId(this.getHrUserId());
+		inst.setSelfScore(this.getSelfScore());
+		inst.setSecondLeaderScore(this.getSecondLeaderScore());
 		inst.setSecondLeaderId(this.getSecondLeaderId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setMessage(this.getMessage());
@@ -419,7 +422,9 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 		inst.setBillId(this.getBillId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setSameScore(this.getSameScore());
 		inst.setStatus(this.getStatus());
+		inst.setLeaderScore(this.getLeaderScore());
 		if(all) {
 			inst.setAssesseeUser(this.getAssesseeUser());
 			inst.setSameUserNeedCount(this.getSameUserNeedCount());
@@ -515,6 +520,8 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 		if(map==null) return false;
 		if(cast) {
 			this.setHrUserId(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.HR_USER_ID)));
+			this.setSelfScore(DataParser.parse(BigDecimal.class, map.get(AssessmentBillUserMapVOMeta.SELF_SCORE)));
+			this.setSecondLeaderScore(DataParser.parse(BigDecimal.class, map.get(AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE)));
 			this.setSecondLeaderId(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SECOND_LEADER_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssessmentBillUserMapVOMeta.UPDATE_TIME)));
 			this.setMessage(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.MESSAGE)));
@@ -531,7 +538,9 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 			this.setBillId(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.BILL_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.ID)));
+			this.setSameScore(DataParser.parse(BigDecimal.class, map.get(AssessmentBillUserMapVOMeta.SAME_SCORE)));
 			this.setStatus(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.STATUS)));
+			this.setLeaderScore(DataParser.parse(BigDecimal.class, map.get(AssessmentBillUserMapVOMeta.LEADER_SCORE)));
 			// others
 			this.setAssesseeUser(DataParser.parse(Employee.class, map.get(AssessmentBillUserMapVOMeta.ASSESSEE_USER)));
 			this.setSameUserNeedCount(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SAME_USER_NEED_COUNT)));
@@ -565,6 +574,8 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 		} else {
 			try {
 				this.setHrUserId( (String)map.get(AssessmentBillUserMapVOMeta.HR_USER_ID));
+				this.setSelfScore( (BigDecimal)map.get(AssessmentBillUserMapVOMeta.SELF_SCORE));
+				this.setSecondLeaderScore( (BigDecimal)map.get(AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE));
 				this.setSecondLeaderId( (String)map.get(AssessmentBillUserMapVOMeta.SECOND_LEADER_ID));
 				this.setUpdateTime( (Date)map.get(AssessmentBillUserMapVOMeta.UPDATE_TIME));
 				this.setMessage( (String)map.get(AssessmentBillUserMapVOMeta.MESSAGE));
@@ -581,7 +592,9 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 				this.setBillId( (String)map.get(AssessmentBillUserMapVOMeta.BILL_ID));
 				this.setDeleteBy( (String)map.get(AssessmentBillUserMapVOMeta.DELETE_BY));
 				this.setId( (String)map.get(AssessmentBillUserMapVOMeta.ID));
+				this.setSameScore( (BigDecimal)map.get(AssessmentBillUserMapVOMeta.SAME_SCORE));
 				this.setStatus( (String)map.get(AssessmentBillUserMapVOMeta.STATUS));
+				this.setLeaderScore( (BigDecimal)map.get(AssessmentBillUserMapVOMeta.LEADER_SCORE));
 				// others
 				this.setAssesseeUser( (Employee)map.get(AssessmentBillUserMapVOMeta.ASSESSEE_USER));
 				this.setSameUserNeedCount( (String)map.get(AssessmentBillUserMapVOMeta.SAME_USER_NEED_COUNT));
@@ -628,6 +641,8 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 		if(r==null) return false;
 		if(cast) {
 			this.setHrUserId(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapVOMeta.HR_USER_ID)));
+			this.setSelfScore(DataParser.parse(BigDecimal.class, r.getValue(AssessmentBillUserMapVOMeta.SELF_SCORE)));
+			this.setSecondLeaderScore(DataParser.parse(BigDecimal.class, r.getValue(AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE)));
 			this.setSecondLeaderId(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapVOMeta.SECOND_LEADER_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssessmentBillUserMapVOMeta.UPDATE_TIME)));
 			this.setMessage(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapVOMeta.MESSAGE)));
@@ -644,11 +659,15 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 			this.setBillId(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapVOMeta.BILL_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapVOMeta.ID)));
+			this.setSameScore(DataParser.parse(BigDecimal.class, r.getValue(AssessmentBillUserMapVOMeta.SAME_SCORE)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapVOMeta.STATUS)));
+			this.setLeaderScore(DataParser.parse(BigDecimal.class, r.getValue(AssessmentBillUserMapVOMeta.LEADER_SCORE)));
 			return true;
 		} else {
 			try {
 				this.setHrUserId( (String)r.getValue(AssessmentBillUserMapVOMeta.HR_USER_ID));
+				this.setSelfScore( (BigDecimal)r.getValue(AssessmentBillUserMapVOMeta.SELF_SCORE));
+				this.setSecondLeaderScore( (BigDecimal)r.getValue(AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE));
 				this.setSecondLeaderId( (String)r.getValue(AssessmentBillUserMapVOMeta.SECOND_LEADER_ID));
 				this.setUpdateTime( (Date)r.getValue(AssessmentBillUserMapVOMeta.UPDATE_TIME));
 				this.setMessage( (String)r.getValue(AssessmentBillUserMapVOMeta.MESSAGE));
@@ -665,7 +684,9 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 				this.setBillId( (String)r.getValue(AssessmentBillUserMapVOMeta.BILL_ID));
 				this.setDeleteBy( (String)r.getValue(AssessmentBillUserMapVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(AssessmentBillUserMapVOMeta.ID));
+				this.setSameScore( (BigDecimal)r.getValue(AssessmentBillUserMapVOMeta.SAME_SCORE));
 				this.setStatus( (String)r.getValue(AssessmentBillUserMapVOMeta.STATUS));
+				this.setLeaderScore( (BigDecimal)r.getValue(AssessmentBillUserMapVOMeta.LEADER_SCORE));
 				return true;
 			} catch (Exception e) {
 				return false;

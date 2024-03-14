@@ -1,7 +1,7 @@
 /**
  * 考核单据 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 10:56:24
+ * @since 2024-03-14 07:40:18
  */
 
 
@@ -85,7 +85,6 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'taskId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考核'), templet: function (d) { return templet('taskId' ,fox.joinLabel(d.assessmentTask,"name",',','','taskId'),d);}}
 					,{ field: 'taskName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考核名称') , templet: function (d) { return templet('taskName',d.taskName,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'isShow', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否可见'), templet:function (d){ return templet('isShow',fox.getEnumText(RADIO_ISSHOW_DATA,d.isShow,'','isShow'),d);}}
@@ -439,17 +438,14 @@ function ListPage() {
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			else if (layEvent === 'person-data') { // 考核明细
+			else if (layEvent === 'person-data') { // 考核配置
 				window.pageExt.list.personData(data,this);
 			}
-			else if (layEvent === 'pfr-data') { // 评分人员
+			else if (layEvent === 'pfr-data') { // 考核人员
 				window.pageExt.list.pfrData(data,this);
 			}
 			else if (layEvent === 'bill-task-cancel') { // 取消
 				window.pageExt.list.BillTaskCancel(data,this);
-			}
-			else if (layEvent === 'bill-task-copy') { // 复制
-				window.pageExt.list.BillTaskCopy(data,this);
 			}
 			
 		});

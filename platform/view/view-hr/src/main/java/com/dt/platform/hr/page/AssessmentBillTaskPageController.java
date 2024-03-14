@@ -59,6 +59,11 @@ public class AssessmentBillTaskPageController extends ViewController {
 		model.addAttribute("billId",billId);
 		model.addAttribute("operUserId", SessionUser.getCurrent().getActivatedEmployeeId());
 		model.addAttribute("role",role);
+		boolean spread=false;
+		if("self".equals(role)){
+			spread=true;
+		}
+		model.addAttribute("spread",spread);
 		return getTemplatePath(prefix,"bill_task_list");
 	}
 

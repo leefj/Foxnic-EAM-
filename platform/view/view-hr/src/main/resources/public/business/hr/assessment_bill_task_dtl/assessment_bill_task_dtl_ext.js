@@ -103,7 +103,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
-            param.billTaskId=BILL_TASK_ID;
+            if(BILL_TASK_ID){
+                param.billTaskId=BILL_TASK_ID;
+            }
+            if(BILL_ID){
+                param.billId=BILL_ID;
+            }
             return true;
         },
         /**

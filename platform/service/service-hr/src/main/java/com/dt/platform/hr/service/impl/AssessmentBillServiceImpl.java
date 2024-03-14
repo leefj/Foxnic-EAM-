@@ -110,6 +110,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 
 	public Result cancel(String id) {
 		AssessmentBill assessmentBill=this.getById(id);
+
 		if(AssessmentBillStatusEnum.WAIT.code().equals(assessmentBill.getStatus())
 				||AssessmentBillStatusEnum.ACTING.code().equals(assessmentBill.getStatus())
 		){
@@ -127,8 +128,20 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 	@Override
 	public Result release(String id) {
 		AssessmentBill assessmentBill=this.getById(id);
+
+
+		if(AssessmentBillStatusEnum.ACTING.code().equals(assessmentBill.getStatus())
+		||AssessmentBillStatusEnum.FINISH.code().equals(assessmentBill.getStatus())
+		){
+			return ErrorDesc.failureMessage("当前状态不能进行操作");
+		}
+
+
         dao.fill(assessmentBill).with(AssessmentBillMeta.ASSESSMENT_TASK).execute();
 
+		if(!AssessmentBillStatusEnum.ACTING.code().equals(assessmentBill.getStatus())){
+			return ErrorDesc.failureMessage("当前状态不能进行操作");
+		}
 
         //下发的时候生成临时数据，主要保存主表数，
 		AssessmentTask dataTask=assessmentBill.getAssessmentTask();
@@ -267,7 +280,15 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 
 	@Override
 	public Result createPaperDataAll(String id) {
+
 		AssessmentBill bill=this.getById(id);
+		if(AssessmentBillStatusEnum.ACTING.code().equals(bill.getStatus())
+				||AssessmentBillStatusEnum.FINISH.code().equals(bill.getStatus())
+		){
+			return ErrorDesc.failureMessage("当前状态不能进行操作");
+		}
+
+
 		dao.fill(bill).with(AssessmentBillMeta.ASSESSMENT_BILL_TASK_LIST).execute();
 		List<AssessmentBillTask> list=bill.getAssessmentBillTaskList();
 		dao.fill(list).with(AssessmentBillTaskMeta.ASSESSMENT_TASK)
@@ -291,6 +312,8 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 	}
 
 	public Result createPaperData(AssessmentBillTask assessmentBillTask){
+
+
 		dao.execute("update hr_assessment_bill_task_paper set deleted=1 where bill_task_id=?",assessmentBillTask.getId());
 		AssessmentTask assessmentTask=assessmentBillTask.getAssessmentTask();
 		if(assessmentTask==null){
@@ -314,6 +337,10 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 		List<String> paperIdsList=new ArrayList<>();
 		for(int i=0;i<taskDtlList.size();i++){
 			AssessmentBillTaskDtl dtl=taskDtlList.get(i);
+			if(dtl.getId().equals("820640901771558913")){
+				System.out.println("git");
+			}
+
 			List<Employee> users=null;
 			if(AssessmentBillTaskDtlRelationshipEnum.SELF.code().equals(dtl.getRelationship())){
 				users=new ArrayList<>();
@@ -337,7 +364,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 						paper.setBillTaskDtlId(dtl.getId());
 						paper.setBillTaskId(assessmentBillTask.getId());
 						paper.setBillId(assessmentBillTask.getBillId());
-						paper.setAssesseeId(userIdsUniq.get(i));
+						paper.setAssesseeId(userIdsUniq.get(j));
 						paper.setAssessorId(assessmentBillTask.getAssessorId());
 						paperIdsList.add(paperId);
 						paperList.add(paper);
@@ -360,8 +387,10 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 						paper.setBillTaskDtlId(dtl.getId());
 						paper.setBillTaskId(assessmentBillTask.getId());
 						paper.setBillId(assessmentBillTask.getBillId());
-						paper.setAssesseeId(userIdsUniq.get(i));
+						// setAssessorId 考核人
+						paper.setAssesseeId(userIdsUniq.get(j));
 						paper.setAssessorId(assessmentBillTask.getAssessorId());
+						//插入试卷
 						paperIdsList.add(paperId);
 						paperList.add(paper);
 					}
@@ -383,7 +412,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 						paper.setBillTaskDtlId(dtl.getId());
 						paper.setBillTaskId(assessmentBillTask.getId());
 						paper.setBillId(assessmentBillTask.getBillId());
-						paper.setAssesseeId(userIdsUniq.get(i));
+						paper.setAssesseeId(userIdsUniq.get(j));
 						paper.setAssessorId(assessmentBillTask.getAssessorId());
 						paperIdsList.add(paperId);
 						paperList.add(paper);
@@ -406,15 +435,18 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 						paper.setBillTaskDtlId(dtl.getId());
 						paper.setBillTaskId(assessmentBillTask.getId());
 						paper.setBillId(assessmentBillTask.getBillId());
-						paper.setAssesseeId(userIdsUniq.get(i));
+						if(userIdsUniq.get(j)!=null&&userIdsUniq.get(j).equals(assessmentBillTask.getAssessorId())){
+							continue;
+						}
+						paper.setAssesseeId(userIdsUniq.get(j));
 						paper.setAssessorId(assessmentBillTask.getAssessorId());
 						paperIdsList.add(paperId);
 						paperList.add(paper);
 					}
 				}
 			}
-
 		}
+
 		if(paperList.size()>0){
 			List<AssessmentIndicatorValue> valueList=new ArrayList<>();
 			//插入所有试卷
@@ -441,6 +473,13 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 	@Override
 	public Result reset(String id) {
 		AssessmentBill assessmentBill=this.getById(id);
+		if(AssessmentBillStatusEnum.ACTING.code().equals(assessmentBill.getStatus())
+				||AssessmentBillStatusEnum.FINISH.code().equals(assessmentBill.getStatus())
+		){
+			return ErrorDesc.failureMessage("当前状态不能进行操作");
+		}
+
+
 		if(AssessmentBillStatusEnum.WAIT.code().equals(assessmentBill.getStatus())
 				||AssessmentBillStatusEnum.ACTING.code().equals(assessmentBill.getStatus())
 				||AssessmentBillStatusEnum.CANCEL.code().equals(assessmentBill.getStatus())){

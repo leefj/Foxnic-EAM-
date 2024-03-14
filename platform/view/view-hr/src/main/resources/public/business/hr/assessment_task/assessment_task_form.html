@@ -2,7 +2,7 @@
 /**
  * 考核任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 20:22:34
+ * @since 2024-03-14 07:22:55
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-8506-content">
+        <div class="layui-row form-row" id="random-8116-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -94,11 +94,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6488-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9255-fieldset">
             <legend>评分范围</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-6488-content">
+        <div class="layui-row form-row" id="random-9255-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -149,11 +149,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1178-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2519-fieldset">
             <legend>评分方式</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-1178-content">
+        <div class="layui-row form-row" id="random-2519-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -174,12 +174,7 @@
                         <input input-type="radio" type="radio" name="hasSameAssessment" lay-filter="hasSameAssessment" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.YesNoEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==1)}">
                     </div>
                 </div>
-            <!--结束：栏次内字段循环-->
-            </div>
-             <!--开始：column 循环-->
-            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs6 form-column" >
-
+            
                 <!-- radio_box : 直接领导评分 ,  hasLeaderAssessment  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('直接领导评分')}">直接领导评分</div><div class="layui-required">*</div></div>
@@ -197,15 +192,52 @@
                 </div>
             <!--结束：栏次内字段循环-->
             </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                <!-- number_input : 权重 ,  selfWeigth  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('权重')}">权重</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="selfWeigth" id="selfWeigth" name="selfWeigth" th:placeholder="${ lang.translate('请输入'+'权重') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 权重 ,  sameWeigth  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('权重')}">权重</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="sameWeigth" id="sameWeigth" name="sameWeigth" th:placeholder="${ lang.translate('请输入'+'权重') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 权重 ,  leaderWeigth  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('权重')}">权重</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="leaderWeigth" id="leaderWeigth" name="leaderWeigth" th:placeholder="${ lang.translate('请输入'+'权重') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 权重 ,  secondWeight  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('权重')}">权重</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="secondWeight" id="secondWeight" name="secondWeight" th:placeholder="${ lang.translate('请输入'+'权重') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1230-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7662-fieldset">
             <legend>评分复核</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-1230-content">
+        <div class="layui-row form-row" id="random-7662-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -238,11 +270,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5230-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-8565-fieldset">
             <legend>评分指标</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-5230-content">
+        <div class="layui-row form-row" id="random-8565-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -274,18 +306,18 @@
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1011-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7947-fieldset">
         <legend>指标数据</legend>
         </fieldset>
-        <div class="layui-row form-row" style="text-align: center;" id="random-1011-content">
+        <div class="layui-row form-row" style="text-align: center;" id="random-7947-content">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
-            <iframe id="random-1011-iframe" js-fn="indicatorSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+            <iframe id="random-7947-iframe" js-fn="indicatorSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
             </div>
         </div>
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-7338-content">
+        <div class="layui-row form-row" id="random-0457-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->

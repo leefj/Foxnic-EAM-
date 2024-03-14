@@ -78,7 +78,7 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-
+        <button  id="tab" class="layui-btn icon-btn layui-btn-sm tab-new-button " lay-event="pfb"><span th:text="${lang.translate('评分表情况','','cmp:table.button')}">评分表情况</span></button>
     </div>
 </script>
 
@@ -89,6 +89,7 @@
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
+    <button  id="add-button" class="layui-btn icon-btn layui-btn-sm tj-new-button " lay-event="tj"><span th:text="${lang.translate('提交','','cmp:table.button')}">提交</span></button>
 </script>
 
 <script type="text/html" id="tableOperationTemplate2">
@@ -104,6 +105,7 @@
     var RADIO_RELATIONSHIP_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentBillTaskDtlRelationshipEnum')}]];
 
     var ROLE = [[${role}]] ;
+    var SPREAD = [[${spread}]] ;
 
     var OPER_USER_ID = [[${operUserId}]] ;
 

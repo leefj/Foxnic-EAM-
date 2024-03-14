@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核任务VO类型
  * <p>考核任务 , 数据表 hr_assessment_task 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 20:22:32
+ * @since 2024-03-14 07:22:53
  * @sign 216B4531EC5B295012D06E8F075C75F2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -405,9 +405,11 @@ public class AssessmentTaskVO extends AssessmentTask {
 	public AssessmentTaskVO duplicate(boolean all) {
 		com.dt.platform.domain.hr.meta.AssessmentTaskVOMeta.$$proxy$$ inst = new com.dt.platform.domain.hr.meta.AssessmentTaskVOMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
+		inst.setLeaderWeigth(this.getLeaderWeigth());
 		inst.setSource(this.getSource());
 		inst.setType(this.getType());
 		inst.setCycle(this.getCycle());
+		inst.setSecondWeight(this.getSecondWeight());
 		inst.setHasSelfAssessment(this.getHasSelfAssessment());
 		inst.setHasLeaderAssessment(this.getHasLeaderAssessment());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -415,12 +417,14 @@ public class AssessmentTaskVO extends AssessmentTask {
 		inst.setIsAllPerson(this.getIsAllPerson());
 		inst.setOwner(this.getOwner());
 		inst.setHrUserId(this.getHrUserId());
+		inst.setSelfWeigth(this.getSelfWeigth());
 		inst.setHasHrConfirm(this.getHasHrConfirm());
 		inst.setHasSecondLeaderAssessment(this.getHasSecondLeaderAssessment());
 		inst.setHasSameAssessment(this.getHasSameAssessment());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setAssessmenMethod(this.getAssessmenMethod());
+		inst.setSameWeigth(this.getSameWeigth());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
@@ -518,9 +522,11 @@ public class AssessmentTaskVO extends AssessmentTask {
 		if(map==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.NOTES)));
+			this.setLeaderWeigth(DataParser.parse(Integer.class, map.get(AssessmentTaskVOMeta.LEADER_WEIGTH)));
 			this.setSource(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.SOURCE)));
 			this.setType(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.TYPE)));
 			this.setCycle(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.CYCLE)));
+			this.setSecondWeight(DataParser.parse(Integer.class, map.get(AssessmentTaskVOMeta.SECOND_WEIGHT)));
 			this.setHasSelfAssessment(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.HAS_SELF_ASSESSMENT)));
 			this.setHasLeaderAssessment(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.HAS_LEADER_ASSESSMENT)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.UPDATE_BY)));
@@ -528,12 +534,14 @@ public class AssessmentTaskVO extends AssessmentTask {
 			this.setIsAllPerson(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.IS_ALL_PERSON)));
 			this.setOwner(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.OWNER)));
 			this.setHrUserId(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.HR_USER_ID)));
+			this.setSelfWeigth(DataParser.parse(Integer.class, map.get(AssessmentTaskVOMeta.SELF_WEIGTH)));
 			this.setHasHrConfirm(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.HAS_HR_CONFIRM)));
 			this.setHasSecondLeaderAssessment(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.HAS_SECOND_LEADER_ASSESSMENT)));
 			this.setHasSameAssessment(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.HAS_SAME_ASSESSMENT)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssessmentTaskVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssessmentTaskVOMeta.VERSION)));
 			this.setAssessmenMethod(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.ASSESSMEN_METHOD)));
+			this.setSameWeigth(DataParser.parse(Integer.class, map.get(AssessmentTaskVOMeta.SAME_WEIGTH)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssessmentTaskVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AssessmentTaskVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AssessmentTaskVOMeta.CREATE_TIME)));
@@ -564,9 +572,11 @@ public class AssessmentTaskVO extends AssessmentTask {
 		} else {
 			try {
 				this.setNotes( (String)map.get(AssessmentTaskVOMeta.NOTES));
+				this.setLeaderWeigth( (Integer)map.get(AssessmentTaskVOMeta.LEADER_WEIGTH));
 				this.setSource( (String)map.get(AssessmentTaskVOMeta.SOURCE));
 				this.setType( (String)map.get(AssessmentTaskVOMeta.TYPE));
 				this.setCycle( (String)map.get(AssessmentTaskVOMeta.CYCLE));
+				this.setSecondWeight( (Integer)map.get(AssessmentTaskVOMeta.SECOND_WEIGHT));
 				this.setHasSelfAssessment( (String)map.get(AssessmentTaskVOMeta.HAS_SELF_ASSESSMENT));
 				this.setHasLeaderAssessment( (String)map.get(AssessmentTaskVOMeta.HAS_LEADER_ASSESSMENT));
 				this.setUpdateBy( (String)map.get(AssessmentTaskVOMeta.UPDATE_BY));
@@ -574,12 +584,14 @@ public class AssessmentTaskVO extends AssessmentTask {
 				this.setIsAllPerson( (String)map.get(AssessmentTaskVOMeta.IS_ALL_PERSON));
 				this.setOwner( (String)map.get(AssessmentTaskVOMeta.OWNER));
 				this.setHrUserId( (String)map.get(AssessmentTaskVOMeta.HR_USER_ID));
+				this.setSelfWeigth( (Integer)map.get(AssessmentTaskVOMeta.SELF_WEIGTH));
 				this.setHasHrConfirm( (String)map.get(AssessmentTaskVOMeta.HAS_HR_CONFIRM));
 				this.setHasSecondLeaderAssessment( (String)map.get(AssessmentTaskVOMeta.HAS_SECOND_LEADER_ASSESSMENT));
 				this.setHasSameAssessment( (String)map.get(AssessmentTaskVOMeta.HAS_SAME_ASSESSMENT));
 				this.setUpdateTime( (Date)map.get(AssessmentTaskVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(AssessmentTaskVOMeta.VERSION));
 				this.setAssessmenMethod( (String)map.get(AssessmentTaskVOMeta.ASSESSMEN_METHOD));
+				this.setSameWeigth( (Integer)map.get(AssessmentTaskVOMeta.SAME_WEIGTH));
 				this.setCreateBy( (String)map.get(AssessmentTaskVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AssessmentTaskVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(AssessmentTaskVOMeta.CREATE_TIME));
@@ -623,9 +635,11 @@ public class AssessmentTaskVO extends AssessmentTask {
 		if(r==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.NOTES)));
+			this.setLeaderWeigth(DataParser.parse(Integer.class, r.getValue(AssessmentTaskVOMeta.LEADER_WEIGTH)));
 			this.setSource(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.SOURCE)));
 			this.setType(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.TYPE)));
 			this.setCycle(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.CYCLE)));
+			this.setSecondWeight(DataParser.parse(Integer.class, r.getValue(AssessmentTaskVOMeta.SECOND_WEIGHT)));
 			this.setHasSelfAssessment(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.HAS_SELF_ASSESSMENT)));
 			this.setHasLeaderAssessment(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.HAS_LEADER_ASSESSMENT)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.UPDATE_BY)));
@@ -633,12 +647,14 @@ public class AssessmentTaskVO extends AssessmentTask {
 			this.setIsAllPerson(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.IS_ALL_PERSON)));
 			this.setOwner(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.OWNER)));
 			this.setHrUserId(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.HR_USER_ID)));
+			this.setSelfWeigth(DataParser.parse(Integer.class, r.getValue(AssessmentTaskVOMeta.SELF_WEIGTH)));
 			this.setHasHrConfirm(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.HAS_HR_CONFIRM)));
 			this.setHasSecondLeaderAssessment(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.HAS_SECOND_LEADER_ASSESSMENT)));
 			this.setHasSameAssessment(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.HAS_SAME_ASSESSMENT)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssessmentTaskVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssessmentTaskVOMeta.VERSION)));
 			this.setAssessmenMethod(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.ASSESSMEN_METHOD)));
+			this.setSameWeigth(DataParser.parse(Integer.class, r.getValue(AssessmentTaskVOMeta.SAME_WEIGTH)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssessmentTaskVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssessmentTaskVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssessmentTaskVOMeta.CREATE_TIME)));
@@ -653,9 +669,11 @@ public class AssessmentTaskVO extends AssessmentTask {
 		} else {
 			try {
 				this.setNotes( (String)r.getValue(AssessmentTaskVOMeta.NOTES));
+				this.setLeaderWeigth( (Integer)r.getValue(AssessmentTaskVOMeta.LEADER_WEIGTH));
 				this.setSource( (String)r.getValue(AssessmentTaskVOMeta.SOURCE));
 				this.setType( (String)r.getValue(AssessmentTaskVOMeta.TYPE));
 				this.setCycle( (String)r.getValue(AssessmentTaskVOMeta.CYCLE));
+				this.setSecondWeight( (Integer)r.getValue(AssessmentTaskVOMeta.SECOND_WEIGHT));
 				this.setHasSelfAssessment( (String)r.getValue(AssessmentTaskVOMeta.HAS_SELF_ASSESSMENT));
 				this.setHasLeaderAssessment( (String)r.getValue(AssessmentTaskVOMeta.HAS_LEADER_ASSESSMENT));
 				this.setUpdateBy( (String)r.getValue(AssessmentTaskVOMeta.UPDATE_BY));
@@ -663,12 +681,14 @@ public class AssessmentTaskVO extends AssessmentTask {
 				this.setIsAllPerson( (String)r.getValue(AssessmentTaskVOMeta.IS_ALL_PERSON));
 				this.setOwner( (String)r.getValue(AssessmentTaskVOMeta.OWNER));
 				this.setHrUserId( (String)r.getValue(AssessmentTaskVOMeta.HR_USER_ID));
+				this.setSelfWeigth( (Integer)r.getValue(AssessmentTaskVOMeta.SELF_WEIGTH));
 				this.setHasHrConfirm( (String)r.getValue(AssessmentTaskVOMeta.HAS_HR_CONFIRM));
 				this.setHasSecondLeaderAssessment( (String)r.getValue(AssessmentTaskVOMeta.HAS_SECOND_LEADER_ASSESSMENT));
 				this.setHasSameAssessment( (String)r.getValue(AssessmentTaskVOMeta.HAS_SAME_ASSESSMENT));
 				this.setUpdateTime( (Date)r.getValue(AssessmentTaskVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(AssessmentTaskVOMeta.VERSION));
 				this.setAssessmenMethod( (String)r.getValue(AssessmentTaskVOMeta.ASSESSMEN_METHOD));
+				this.setSameWeigth( (Integer)r.getValue(AssessmentTaskVOMeta.SAME_WEIGTH));
 				this.setCreateBy( (String)r.getValue(AssessmentTaskVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AssessmentTaskVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(AssessmentTaskVOMeta.CREATE_TIME));

@@ -1,6 +1,9 @@
 package com.dt.platform.hr.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.constants.enums.hr.AssessmentBillTaskDtlRelationshipEnum;
+import com.dt.platform.constants.enums.hr.AssessmentBillTaskDtlStatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -79,6 +82,10 @@ public class AssessmentBillTaskDtlServiceImpl extends SuperService<AssessmentBil
 
 	@Override
 	public Result submit(String id) {
+		AssessmentBillTaskDtl dtl=this.getById(id);
+		String sql="update hr_assessment_bill_task_paper a,(select task_paper_id,sum(value) value from hr_assessment_indicator_value where task_paper_id in (select id from hr_assessment_bill_task_paper  where bill_task_dtl_id=?) and deleted=0 group by task_paper_id) b set a.score_value=b.value where a.id=b.task_paper_id";
+		dao.execute(sql,id);
+		dao.execute("update hr_assessment_bill_task_dtl set status=? where id=?", AssessmentBillTaskDtlStatusEnum.FINISH.code(),id);
 		return ErrorDesc.success();
 	}
 

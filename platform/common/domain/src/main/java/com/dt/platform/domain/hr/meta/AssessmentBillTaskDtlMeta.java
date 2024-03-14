@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-12 13:38:44
- * @sign 48AD2F1E5F12503B93E6F7FCC8B79069
+ * @since 2024-03-14 21:33:43
+ * @sign 485DADC1467D320F7DFC22833169E46F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -29,6 +29,16 @@ public class AssessmentBillTaskDtlMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskDtl,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskDtl.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 任务 , 类型: java.lang.String
+	*/
+	public static final String BILL_ID="billId";
+	
+	/**
+	 * 任务 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskDtl,java.lang.String> BILL_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskDtl.class ,BILL_ID, java.lang.String.class, "任务", "任务", java.lang.String.class, null);
 	
 	/**
 	 * 单据 , 类型: java.lang.String
@@ -51,14 +61,14 @@ public class AssessmentBillTaskDtlMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskDtl,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskDtl.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
 	
 	/**
-	 * 关系 , 类型: java.lang.String
+	 * 考核方式 , 类型: java.lang.String
 	*/
 	public static final String RELATIONSHIP="relationship";
 	
 	/**
-	 * 关系 , 类型: java.lang.String
+	 * 考核方式 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskDtl,java.lang.String> RELATIONSHIP_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskDtl.class ,RELATIONSHIP, java.lang.String.class, "关系", "关系", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskDtl,java.lang.String> RELATIONSHIP_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskDtl.class ,RELATIONSHIP, java.lang.String.class, "考核方式", "考核方式", java.lang.String.class, null);
 	
 	/**
 	 * 操作时间 , 类型: java.util.Date
@@ -201,6 +211,16 @@ public class AssessmentBillTaskDtlMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskDtl,java.lang.String> ASSESSEE_STR_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskDtl.class ,ASSESSEE_STR, java.lang.String.class, "assesseeStr", "assesseeStr", java.lang.String.class, null);
 	
 	/**
+	 * assessorStr , 类型: java.lang.String
+	*/
+	public static final String ASSESSOR_STR="assessorStr";
+	
+	/**
+	 * assessorStr , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskDtl,java.lang.String> ASSESSOR_STR_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskDtl.class ,ASSESSOR_STR, java.lang.String.class, "assessorStr", "assessorStr", java.lang.String.class, null);
+	
+	/**
 	 * withSelfUser , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final String WITH_SELF_USER="withSelfUser";
@@ -243,7 +263,7 @@ public class AssessmentBillTaskDtlMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BILL_TASK_ID , STATUS , RELATIONSHIP , RCD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSOR , ASSESSMENT_BILL , ASSESSMENT_BILL_TASK , ASSESSEE_STR , WITH_SELF_USER , WITH_LEADER_LIST , WITH_SECOND_LEADER_LIST , WITH_SAME_USER_LIST };
+	public static final String[] $PROPS={ ID , BILL_ID , BILL_TASK_ID , STATUS , RELATIONSHIP , RCD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSOR , ASSESSMENT_BILL , ASSESSMENT_BILL_TASK , ASSESSEE_STR , ASSESSOR_STR , WITH_SELF_USER , WITH_LEADER_LIST , WITH_SECOND_LEADER_LIST , WITH_SAME_USER_LIST };
 	
 	/**
 	 * 代理类
@@ -261,6 +281,17 @@ public class AssessmentBillTaskDtlMeta {
 		public AssessmentBillTaskDtl setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 任务
+		 * @param billId 任务
+		 * @return 当前对象
+		*/
+		public AssessmentBillTaskDtl setBillId(String billId) {
+			super.change(BILL_ID,super.getBillId(),billId);
+			super.setBillId(billId);
 			return this;
 		}
 		
@@ -287,8 +318,8 @@ public class AssessmentBillTaskDtlMeta {
 		}
 		
 		/**
-		 * 设置 关系
-		 * @param relationship 关系
+		 * 设置 考核方式
+		 * @param relationship 考核方式
 		 * @return 当前对象
 		*/
 		public AssessmentBillTaskDtl setRelationship(String relationship) {
@@ -452,6 +483,17 @@ public class AssessmentBillTaskDtlMeta {
 		}
 		
 		/**
+		 * 设置 assessorStr
+		 * @param assessorStr assessorStr
+		 * @return 当前对象
+		*/
+		public AssessmentBillTaskDtl setAssessorStr(String assessorStr) {
+			super.change(ASSESSOR_STR,super.getAssessorStr(),assessorStr);
+			super.setAssessorStr(assessorStr);
+			return this;
+		}
+		
+		/**
 		 * 设置 withSelfUser
 		 * @param withSelfUser withSelfUser
 		 * @return 当前对象
@@ -518,6 +560,7 @@ public class AssessmentBillTaskDtlMeta {
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
+			inst.setBillId(this.getBillId());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
@@ -533,6 +576,7 @@ public class AssessmentBillTaskDtlMeta {
 				inst.setAssessmentBill(this.getAssessmentBill());
 				inst.setWithLeaderList(this.getWithLeaderList());
 				inst.setAssesseeStr(this.getAssesseeStr());
+				inst.setAssessorStr(this.getAssessorStr());
 			}
 			inst.clearModifies();
 			return inst;

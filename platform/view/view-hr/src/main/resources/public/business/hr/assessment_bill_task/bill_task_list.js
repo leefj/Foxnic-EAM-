@@ -93,7 +93,7 @@ function ListPage() {
 				page:true,
 				where: ps,
 				cols: [[
-					{title: '#', width: 50,hide:false,  spread: true,children:function(row){
+					{title: '#', width: 50,hide:false, spread: SPREAD,children:function(row){
 							return [
 								{
 									title: '任务明细',
@@ -118,16 +118,12 @@ function ListPage() {
 										id:"hr-assessment-bill-task-paper-list-data-win",
 										content: '/business/hr/assessment_bill_task_paper/bill_task_paper_list.html?billTaskDtlId='+obj.data.id,
 										finish: function () {
-
-
 											admin.post("/service-hr/hr-assessment-bill-task-paper/get-by-id", { id : obj.data.id }, function (r) {
 												if (r.success) {
 													var contextdata = r.data;
 													obj.update(contextdata);
 												}
 											});
-
-
 
 										}
 									});
@@ -136,8 +132,8 @@ function ListPage() {
 									,cols: [[
 										{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 										,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-										,{ field: 'relationship', edit:"text",align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('关系'), templet:function (d){ return templet('relationship',fox.getEnumText(RADIO_RELATIONSHIP_DATA,d.relationship,'','relationship'),d);}}
-										,{ field: 'assesseeStr', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('被评人') , templet: function (d) { return templet('assesseeStr',d.assesseeStr,d);}  }
+										,{ field: 'relationship', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('考核方式'), templet:function (d){ return templet('relationship',fox.getEnumText(RADIO_RELATIONSHIP_DATA,d.relationship,'','relationship'),d);}}
+										,{ field: 'assesseeStr', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('被考核人') , templet: function (d) { return templet('assesseeStr',d.assesseeStr,d);}  }
 								//		,{ field: 'rcdTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('操作时间') ,templet: function (d) { return templet('rcdTime',fox.dateFormat(d.rcdTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 										,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 										,{ field: 'row-ops1', fixed: 'right', align: 'center',title: fox.translate('操作','','cmp:table'), width: 160, templet:
@@ -147,6 +143,7 @@ function ListPage() {
 											}
 									]]
 									,where: {"billTaskId":row.id}
+
 									,parseData: function(res){ //res 即为原始返回的数据
 										console.log("res",res);
 										return {
@@ -171,8 +168,39 @@ function ListPage() {
 					,{ field: 'stimeStr', align:"", fixed:false, hide:false, sort: false   ,title: fox.translate('开始时间')  ,templet: function (d) { return templet('stimeStr',fox.dateFormat(fox.getProperty(d,["assessmentBill","stimeStr"],0,'','stimeStr'),"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'etimeStr', align:"", fixed:false, hide:false, sort: false   ,title: fox.translate('结束时间')  ,templet: function (d) { return templet('etimeStr',fox.dateFormat(fox.getProperty(d,["assessmentBill","etimeStr"],0,'','etimeStr'),"yyyy-MM-dd HH:mm:ss"),d); }  }
 				//	,{ field: 'rcdTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('记录时间') ,templet: function (d) { return templet('rcdTime',fox.dateFormat(d.rcdTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-				//	,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
+					,{ field: 'row-ops', fixed: 'right', align: 'center', templet:function(r) {
+							return '    <button  id="add-button" class="layui-btn icon-btn layui-btn-sm tj-new-button "  data-id="{{d.id}}"  lay-event="tj" ><span>提交</span></button>'
+						}, title: fox.translate('操作','','cmp:table'), width: 160 }
 				]]
+				,toolEvent: function (obj) {
+					if (obj.event === 'tj') {
+						top.layer.confirm(fox.translate('确定是否提交所有任务？'), function (i) {
+							top.layer.close(i);
+							admin.post("/service-hr/hr-assessment-bill-task/submit", {id:obj.data.id}, function (r) {
+								if (r.success) {
+								}
+								fox.showMessage(r);
+							},{delayLoading:100, elms:[]});
+						});
+					}
+
+					if (obj.event === 'pfb') {
+						admin.popupCenter({
+							title: "评分表",
+							resize: false,
+							offset: [20,null],
+							area: ["75%","75%"],
+							type: 2,
+							id:"hr-assessment-bill-task-list-data-win",
+							content: '/business/hr/assessment_bill_task_dtl/assessment_bill_task_dtl_list.html?billId='+BILL_ID ,
+							finish: function () {
+
+							}
+						});
+					}
+
+
+				}
 				,parseData: function(res){ //res 即为原始返回的数据
 					console.log("res",res);
 					return {
@@ -195,6 +223,25 @@ function ListPage() {
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
 			dataTable=table.render(tableConfig);
+			table.on('toolbar(data-table)', function(obj){
+				switch(obj.event){
+					case 'pfb':
+						admin.popupCenter({
+							title: "评分表",
+							resize: false,
+							offset: [20,null],
+							area: ["75%","75%"],
+							type: 2,
+							id:"hr-assessment-bill-task-list-data-win",
+							content: '/business/hr/assessment_bill_task_dtl/assessment_bill_task_dtl_list.html?billId='+BILL_ID ,
+							finish: function () {
+							}
+						});
+						break;
+
+				};
+			});
+
 			//绑定排序事件
 			table.on('sort(data-table)', function(obj){
 				refreshTableData(obj.sortField,obj.type);
@@ -374,6 +421,20 @@ function ListPage() {
 				if(!doNext) return;
 			}
 			switch(obj.event){
+				case 'pfb':
+					admin.popupCenter({
+						title: "评分表",
+						resize: false,
+						offset: [20,null],
+						area: ["75%","75%"],
+						type: 2,
+						id:"hr-assessment-bill-task-list-data-win",
+						content: '/business/hr/assessment_bill_task_dtl/assessment_bill_task_dtl_list.html?billId='+BILL_ID ,
+						finish: function () {
+
+						}
+					});
+					break;
 				case 'create':
 					admin.putTempData('hr-assessment-bill-task-form-data', {});
 					openCreateFrom();
@@ -473,6 +534,16 @@ function ListPage() {
 					} else {
 						fox.showMessage(data);
 					}
+				});
+			}
+			else if (layEvent === 'tj') { // 删除
+				top.layer.confirm(fox.translate('确定是否提交所有任务？'), function (i) {
+					top.layer.close(i);
+					admin.post("/service-hr/hr-assessment-bill-task/submit", {id:data.id}, function (r) {
+						if (r.success) {
+							fox.showMessage(r);
+						}
+					},{delayLoading:100, elms:[$(".tj-new-button[data-id='"+data.id+"']")]});
 				});
 			}
 			else if (layEvent === 'del') { // 删除
