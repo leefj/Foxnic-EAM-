@@ -30,7 +30,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核任务
  * <p>考核任务 , 数据表 hr_assessment_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-14 07:22:53
+ * @since 2024-03-16 20:01:29
  * @sign 728ABCB3180826B97F77AD10809296D4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -107,7 +107,7 @@ public class AssessmentTask extends Entity {
 	/**
 	 * 权重：权重
 	*/
-	@ApiModelProperty(required = false,value="权重" , notes = "权重")
+	@ApiModelProperty(required = false,value="权重" , notes = "权重" , example = "86")
 	private Integer selfWeigth;
 	
 	/**
@@ -119,7 +119,7 @@ public class AssessmentTask extends Entity {
 	/**
 	 * 权重：权重
 	*/
-	@ApiModelProperty(required = false,value="权重" , notes = "权重")
+	@ApiModelProperty(required = false,value="权重" , notes = "权重" , example = "100")
 	private Integer sameWeigth;
 	
 	/**
@@ -131,7 +131,7 @@ public class AssessmentTask extends Entity {
 	/**
 	 * 权重：权重
 	*/
-	@ApiModelProperty(required = false,value="权重" , notes = "权重")
+	@ApiModelProperty(required = false,value="权重" , notes = "权重" , example = "100")
 	private Integer leaderWeigth;
 	
 	/**
@@ -143,7 +143,7 @@ public class AssessmentTask extends Entity {
 	/**
 	 * 权重：权重
 	*/
-	@ApiModelProperty(required = false,value="权重" , notes = "权重")
+	@ApiModelProperty(required = false,value="权重" , notes = "权重" , example = "100")
 	private Integer secondWeight;
 	
 	/**
@@ -197,7 +197,7 @@ public class AssessmentTask extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-13 08:45:04")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-15 01:54:38")
 	private Date updateTime;
 	
 	/**
@@ -224,7 +224,7 @@ public class AssessmentTask extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "11")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "15")
 	private Integer version;
 	
 	/**

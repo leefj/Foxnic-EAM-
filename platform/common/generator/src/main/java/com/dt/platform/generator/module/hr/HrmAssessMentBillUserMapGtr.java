@@ -4,12 +4,16 @@ package com.dt.platform.generator.module.hr;
 import com.dt.platform.constants.db.HrTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.common.StatusSuccessFailedEnum;
+import com.dt.platform.constants.enums.hr.AssessmentBillConfirmStatusEnum;
 import com.dt.platform.domain.hr.AssessmentBillTask;
+import com.dt.platform.domain.hr.AssessmentBillTaskPaper;
 import com.dt.platform.domain.hr.AssessmentTask;
 import com.dt.platform.domain.hr.meta.AssessmentBillUserMapMeta;
 import com.dt.platform.generator.config.Config;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
+
+import java.math.BigDecimal;
 
 
 public class HrmAssessMentBillUserMapGtr extends BaseCodeGenerator {
@@ -47,14 +51,64 @@ public class HrmAssessMentBillUserMapGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(AssessmentBillTask.class,"assessmentBillTaskList","assessmentBillTaskList","assessmentBillTaskList");
 
 
+        cfg.getPoClassFile().addListProperty(AssessmentBillTaskPaper.class,"incompletePaper","incompletePaper","incompletePaper");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"incompleteSelfPaperCount","incompleteSelfPaperCount","incompleteSelfPaperCount");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"incompleteSamePaperCount","incompleteSamePaperCount","incompleteSamePaperCount");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"incompleteLeaderPaperCount","incompleteLeaderPaperCount","incompleteLeaderPaperCount");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"incompleteSecondLeaderPaperCount","incompleteSecondLeaderPaperCount","incompleteSecondLeaderPaperCount");
 
-        cfg.getPoClassFile().addSimpleProperty(String.class,"selfScoreValue","selfScoreValue","selfScoreValue");
+
+
+        cfg.getPoClassFile().addSimpleProperty(AssessmentBillTaskPaper.class,"selfScorePaper","selfScorePaper","selfScorePaper");
+        cfg.getPoClassFile().addSimpleProperty(AssessmentBillTaskPaper.class,"sameScorePaperList","sameScorePaperList","sameScorePaperList");
+        cfg.getPoClassFile().addSimpleProperty(AssessmentBillTaskPaper.class,"leaderScorePaper","leaderScorePaper","leaderScorePaper");
+        cfg.getPoClassFile().addSimpleProperty(AssessmentBillTaskPaper.class,"secondLeaderScorePaper","secondLeaderScorePaper","secondLeaderScorePaper");
+
+
+
+
+
         cfg.getPoClassFile().addSimpleProperty(String.class,"sameUserAvgScoreValue","sameUserAvgScoreValue","sameUserAvgScoreValue");
         cfg.getPoClassFile().addSimpleProperty(String.class,"sameUserNeedCount","sameUserNeedCount","sameUserNeedCount");
         cfg.getPoClassFile().addSimpleProperty(String.class,"sameUserFinishCount","sameUserFinishCount","sameUserFinishCount");
+
+
+
+        cfg.getPoClassFile().addSimpleProperty(String.class,"sameScoreValue","sameScoreValue","sameScoreValue");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"selfScoreValue","selfScoreValue","selfScoreValue");
         cfg.getPoClassFile().addSimpleProperty(String.class,"leaderScoreValue","leaderScoreValue","sameUserScoreValue");
         cfg.getPoClassFile().addSimpleProperty(String.class,"secondLeaderScoreValue","secondLeaderScoreValue","secondLeaderScoreValue");
-        cfg.getPoClassFile().addSimpleProperty(String.class,"ifHrConfirm","ifHrConfirm","ifHrConfirm");
+
+
+
+
+
+
+
+
+
+        cfg.view().field(AssessmentBillUserMapMeta.SELF_SCORE_VALUE).table().disable(false);
+
+        cfg.view().field(AssessmentBillUserMapMeta.LEADER_SCORE_VALUE).table().disable(false);
+        cfg.view().field(AssessmentBillUserMapMeta.SELF_SCORE_VALUE).table().disable(false);
+
+        cfg.view().field(AssessmentBillUserMapMeta.SELF_SCORE_VALUE).table().fillBy("selfScorePaper","scoreValue");
+        cfg.view().field(AssessmentBillUserMapMeta.LEADER_SCORE_VALUE).table().fillBy("leaderScorePaper","scoreValue");
+        cfg.view().field(AssessmentBillUserMapMeta.SECOND_LEADER_SCORE_VALUE).table().fillBy("secondLeaderScorePaper","scoreValue");
+
+
+        cfg.view().field(AssessmentBillUserMapMeta.INCOMPLETE_SECOND_LEADER_PAPER_COUNT).basic().label("上上级别领导未完成数").form().table().disable(false);
+        cfg.view().field(AssessmentBillUserMapMeta.INCOMPLETE_LEADER_PAPER_COUNT).basic().label("直接领导未完成数").form().table().disable(false);
+        cfg.view().field(AssessmentBillUserMapMeta.INCOMPLETE_SAME_PAPER_COUNT).basic().label("互评未完成数").form().table().disable(false);
+        cfg.view().field(AssessmentBillUserMapMeta.INCOMPLETE_SELF_PAPER_COUNT).basic().label("自评未完成数").form().table().disable(false);
+
+
+        cfg.view().field(AssessmentBillUserMapMeta.SELF_SCORE_VALUE).basic().label("自评分").form().table().disable(false);
+        cfg.view().field(AssessmentBillUserMapMeta.SAME_USER_AVG_SCORE_VALUE).basic().label("互评评价分").form().table().disable(false);
+        cfg.view().field(AssessmentBillUserMapMeta.LEADER_SCORE_VALUE).basic().label("直接领导分").form().table().disable(false);
+        cfg.view().field(AssessmentBillUserMapMeta.SECOND_LEADER_SCORE_VALUE).basic().label("上上级领导分").form().table().disable(false);
+
+
 
         cfg.getPoClassFile().addSimpleProperty(String.class,"sOrgId","sOrgId","sOrgId");
 
@@ -72,8 +126,10 @@ public class HrmAssessMentBillUserMapGtr extends BaseCodeGenerator {
                         HrTables.HR_ASSESSMENT_BILL_USER_MAP.CREATE_TIME,
                 }
         );
+      //  cfg.view().field(HrTables.HR_ASSESSMENT_BILL_USER_MAP.
+       // AssessmentBillConfirmStatusEnum
 
-
+        cfg.view().field(HrTables.HR_ASSESSMENT_BILL_USER_MAP.IS_CONFIRM).form().radioBox().enumType(AssessmentBillConfirmStatusEnum.class);
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID).table().fillBy("assesseeUser","name");
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID).form().validate().required().form()
                 .button().chooseEmployee(true);
@@ -128,6 +184,11 @@ public class HrmAssessMentBillUserMapGtr extends BaseCodeGenerator {
 
         cfg.view().list().disableBatchDelete();
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL_USER_MAP.UPDATE_BY).form().table().disable(true);
+
+
+
+
+
 
 
         cfg.view().field(HrTables.HR_ASSESSMENT_BILL_USER_MAP.MESSAGE).form().table().disable(true);

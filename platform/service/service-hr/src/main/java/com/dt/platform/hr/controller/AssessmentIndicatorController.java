@@ -1,6 +1,8 @@
 package com.dt.platform.hr.controller;
 
 import java.util.*;
+
+import com.github.foxnic.sql.expr.OrderBy;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +77,8 @@ public class AssessmentIndicatorController extends SuperController {
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.SN, value = "排序", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.GROUPNAME, value = "分类", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.GROUPNAME, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.INPUT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -185,7 +188,8 @@ public class AssessmentIndicatorController extends SuperController {
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.SN, value = "排序", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.GROUPNAME, value = "分类", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.GROUPNAME, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.INPUT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { AssessmentIndicatorVOMeta.PAGE_INDEX, AssessmentIndicatorVOMeta.PAGE_SIZE, AssessmentIndicatorVOMeta.SEARCH_FIELD, AssessmentIndicatorVOMeta.FUZZY_FIELD, AssessmentIndicatorVOMeta.SEARCH_VALUE, AssessmentIndicatorVOMeta.DIRTY_FIELDS, AssessmentIndicatorVOMeta.SORT_FIELD, AssessmentIndicatorVOMeta.SORT_TYPE, AssessmentIndicatorVOMeta.DATA_ORIGIN, AssessmentIndicatorVOMeta.QUERY_LOGIC, AssessmentIndicatorVOMeta.REQUEST_ACTION, AssessmentIndicatorVOMeta.IDS })
@@ -217,7 +221,8 @@ public class AssessmentIndicatorController extends SuperController {
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.SN, value = "排序", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.GROUPNAME, value = "分类", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.GROUPNAME, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.INPUT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { AssessmentIndicatorVOMeta.PAGE_INDEX, AssessmentIndicatorVOMeta.PAGE_SIZE, AssessmentIndicatorVOMeta.SEARCH_FIELD, AssessmentIndicatorVOMeta.FUZZY_FIELD, AssessmentIndicatorVOMeta.SEARCH_VALUE, AssessmentIndicatorVOMeta.DIRTY_FIELDS, AssessmentIndicatorVOMeta.SORT_FIELD, AssessmentIndicatorVOMeta.SORT_TYPE, AssessmentIndicatorVOMeta.DATA_ORIGIN, AssessmentIndicatorVOMeta.QUERY_LOGIC, AssessmentIndicatorVOMeta.REQUEST_ACTION, AssessmentIndicatorVOMeta.IDS })
@@ -285,7 +290,8 @@ public class AssessmentIndicatorController extends SuperController {
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.SN, value = "排序", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.GROUPNAME, value = "分类", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.GROUPNAME, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.INPUT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { AssessmentIndicatorVOMeta.PAGE_INDEX, AssessmentIndicatorVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssessmentIndicatorServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -318,14 +324,18 @@ public class AssessmentIndicatorController extends SuperController {
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.SN, value = "排序", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.GROUPNAME, value = "分类", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.GROUPNAME, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentIndicatorVOMeta.INPUT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = AssessmentIndicatorServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssessmentIndicatorServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<AssessmentIndicator>> queryPagedList(AssessmentIndicatorVO sample) {
         Result<PagedList<AssessmentIndicator>> result = new Result<>();
-        PagedList<AssessmentIndicator> list = assessmentIndicatorService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        OrderBy orderBy=new OrderBy();
+        orderBy.asc("sn");
+        PagedList<AssessmentIndicator> list = assessmentIndicatorService.queryPagedList(sample,orderBy, sample.getPageSize(), sample.getPageIndex());
+
         result.success(true).data(list);
         return result;
     }

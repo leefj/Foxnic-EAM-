@@ -1,7 +1,7 @@
 /**
  * 考核结果 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 23:14:34
+ * @since 2024-03-15 18:11:50
  */
 
 
@@ -166,8 +166,8 @@ function ListPage() {
 		value.taskPaperId={ inputType:"button",value: $("#taskPaperId").val()};
 		value.indicatorId={ inputType:"button",value: $("#indicatorId").val()};
 		value.value={ inputType:"number_input", value: $("#value").val() };
-		value.sn={ inputType:"number_input", value: $("#sn").val() };
 		value.content={ inputType:"button",value: $("#content").val()};
+		value.sn={ inputType:"number_input", value: $("#sn").val() };
 		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
 		value.updateBy={ inputType:"button",value: $("#updateBy").val()};
 		value.IndicatorGroupName={ inputType:"button",value: $("#IndicatorGroupName").val(),fillBy:["assessmentIndicator","IndicatorGroupName"] };

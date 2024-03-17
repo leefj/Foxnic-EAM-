@@ -9,13 +9,14 @@ import java.util.Date;
 import com.dt.platform.domain.hr.AssessmentTask;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.hr.AssessmentBillTask;
+import com.dt.platform.domain.hr.AssessmentBillTaskPaper;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-14 07:26:08
+ * @since 2024-03-16 19:51:39
  * @sign B486CF9E3D70862C082CD0236C42FB8A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -263,6 +264,16 @@ public class AssessmentBillUserMapVOMeta extends AssessmentBillUserMapMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,java.math.BigDecimal> SECOND_LEADER_SCORE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,SECOND_LEADER_SCORE, java.math.BigDecimal.class, "上上级别领导评分", "上上级别领导评分", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 复核情况 , 类型: java.lang.String
+	*/
+	public static final String IS_CONFIRM="isConfirm";
+	
+	/**
+	 * 复核情况 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,java.lang.String> IS_CONFIRM_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,IS_CONFIRM, java.lang.String.class, "复核情况", "复核情况", java.lang.String.class, null);
+	
+	/**
 	 * 生成状态 , 类型: java.lang.String
 	*/
 	public static final String RESULT="result";
@@ -503,14 +514,94 @@ public class AssessmentBillUserMapVOMeta extends AssessmentBillUserMapMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,com.dt.platform.domain.hr.AssessmentBillTask> ASSESSMENT_BILL_TASK_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,ASSESSMENT_BILL_TASK_LIST, com.dt.platform.domain.hr.AssessmentBillTask.class, "assessmentBillTaskList", "assessmentBillTaskList", com.dt.platform.domain.hr.AssessmentBillTask.class, null);
 	
 	/**
-	 * selfScoreValue , 类型: java.lang.String
+	 * incompletePaper , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AssessmentBillTaskPaper
 	*/
-	public static final String SELF_SCORE_VALUE="selfScoreValue";
+	public static final String INCOMPLETE_PAPER="incompletePaper";
 	
 	/**
-	 * selfScoreValue , 类型: java.lang.String
+	 * incompletePaper , 集合类型: LIST , 类型: com.dt.platform.domain.hr.AssessmentBillTaskPaper
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,java.lang.String> SELF_SCORE_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,SELF_SCORE_VALUE, java.lang.String.class, "selfScoreValue", "selfScoreValue", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,com.dt.platform.domain.hr.AssessmentBillTaskPaper> INCOMPLETE_PAPER_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,INCOMPLETE_PAPER, java.util.List.class, "incompletePaper", "incompletePaper", com.dt.platform.domain.hr.AssessmentBillTaskPaper.class, null);
+	
+	/**
+	 * incompleteSelfPaperCount , 类型: java.lang.String
+	*/
+	public static final String INCOMPLETE_SELF_PAPER_COUNT="incompleteSelfPaperCount";
+	
+	/**
+	 * incompleteSelfPaperCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,java.lang.String> INCOMPLETE_SELF_PAPER_COUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,INCOMPLETE_SELF_PAPER_COUNT, java.lang.String.class, "incompleteSelfPaperCount", "incompleteSelfPaperCount", java.lang.String.class, null);
+	
+	/**
+	 * incompleteSamePaperCount , 类型: java.lang.String
+	*/
+	public static final String INCOMPLETE_SAME_PAPER_COUNT="incompleteSamePaperCount";
+	
+	/**
+	 * incompleteSamePaperCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,java.lang.String> INCOMPLETE_SAME_PAPER_COUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,INCOMPLETE_SAME_PAPER_COUNT, java.lang.String.class, "incompleteSamePaperCount", "incompleteSamePaperCount", java.lang.String.class, null);
+	
+	/**
+	 * incompleteLeaderPaperCount , 类型: java.lang.String
+	*/
+	public static final String INCOMPLETE_LEADER_PAPER_COUNT="incompleteLeaderPaperCount";
+	
+	/**
+	 * incompleteLeaderPaperCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,java.lang.String> INCOMPLETE_LEADER_PAPER_COUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,INCOMPLETE_LEADER_PAPER_COUNT, java.lang.String.class, "incompleteLeaderPaperCount", "incompleteLeaderPaperCount", java.lang.String.class, null);
+	
+	/**
+	 * incompleteSecondLeaderPaperCount , 类型: java.lang.String
+	*/
+	public static final String INCOMPLETE_SECOND_LEADER_PAPER_COUNT="incompleteSecondLeaderPaperCount";
+	
+	/**
+	 * incompleteSecondLeaderPaperCount , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,java.lang.String> INCOMPLETE_SECOND_LEADER_PAPER_COUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,INCOMPLETE_SECOND_LEADER_PAPER_COUNT, java.lang.String.class, "incompleteSecondLeaderPaperCount", "incompleteSecondLeaderPaperCount", java.lang.String.class, null);
+	
+	/**
+	 * selfScorePaper , 类型: com.dt.platform.domain.hr.AssessmentBillTaskPaper
+	*/
+	public static final String SELF_SCORE_PAPER="selfScorePaper";
+	
+	/**
+	 * selfScorePaper , 类型: com.dt.platform.domain.hr.AssessmentBillTaskPaper
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,com.dt.platform.domain.hr.AssessmentBillTaskPaper> SELF_SCORE_PAPER_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,SELF_SCORE_PAPER, com.dt.platform.domain.hr.AssessmentBillTaskPaper.class, "selfScorePaper", "selfScorePaper", com.dt.platform.domain.hr.AssessmentBillTaskPaper.class, null);
+	
+	/**
+	 * sameScorePaperList , 类型: com.dt.platform.domain.hr.AssessmentBillTaskPaper
+	*/
+	public static final String SAME_SCORE_PAPER_LIST="sameScorePaperList";
+	
+	/**
+	 * sameScorePaperList , 类型: com.dt.platform.domain.hr.AssessmentBillTaskPaper
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,com.dt.platform.domain.hr.AssessmentBillTaskPaper> SAME_SCORE_PAPER_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,SAME_SCORE_PAPER_LIST, com.dt.platform.domain.hr.AssessmentBillTaskPaper.class, "sameScorePaperList", "sameScorePaperList", com.dt.platform.domain.hr.AssessmentBillTaskPaper.class, null);
+	
+	/**
+	 * leaderScorePaper , 类型: com.dt.platform.domain.hr.AssessmentBillTaskPaper
+	*/
+	public static final String LEADER_SCORE_PAPER="leaderScorePaper";
+	
+	/**
+	 * leaderScorePaper , 类型: com.dt.platform.domain.hr.AssessmentBillTaskPaper
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,com.dt.platform.domain.hr.AssessmentBillTaskPaper> LEADER_SCORE_PAPER_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,LEADER_SCORE_PAPER, com.dt.platform.domain.hr.AssessmentBillTaskPaper.class, "leaderScorePaper", "leaderScorePaper", com.dt.platform.domain.hr.AssessmentBillTaskPaper.class, null);
+	
+	/**
+	 * secondLeaderScorePaper , 类型: com.dt.platform.domain.hr.AssessmentBillTaskPaper
+	*/
+	public static final String SECOND_LEADER_SCORE_PAPER="secondLeaderScorePaper";
+	
+	/**
+	 * secondLeaderScorePaper , 类型: com.dt.platform.domain.hr.AssessmentBillTaskPaper
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,com.dt.platform.domain.hr.AssessmentBillTaskPaper> SECOND_LEADER_SCORE_PAPER_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,SECOND_LEADER_SCORE_PAPER, com.dt.platform.domain.hr.AssessmentBillTaskPaper.class, "secondLeaderScorePaper", "secondLeaderScorePaper", com.dt.platform.domain.hr.AssessmentBillTaskPaper.class, null);
 	
 	/**
 	 * sameUserAvgScoreValue , 类型: java.lang.String
@@ -543,6 +634,26 @@ public class AssessmentBillUserMapVOMeta extends AssessmentBillUserMapMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,java.lang.String> SAME_USER_FINISH_COUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,SAME_USER_FINISH_COUNT, java.lang.String.class, "sameUserFinishCount", "sameUserFinishCount", java.lang.String.class, null);
 	
 	/**
+	 * sameScoreValue , 类型: java.lang.String
+	*/
+	public static final String SAME_SCORE_VALUE="sameScoreValue";
+	
+	/**
+	 * sameScoreValue , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,java.lang.String> SAME_SCORE_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,SAME_SCORE_VALUE, java.lang.String.class, "sameScoreValue", "sameScoreValue", java.lang.String.class, null);
+	
+	/**
+	 * selfScoreValue , 类型: java.lang.String
+	*/
+	public static final String SELF_SCORE_VALUE="selfScoreValue";
+	
+	/**
+	 * selfScoreValue , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,java.lang.String> SELF_SCORE_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,SELF_SCORE_VALUE, java.lang.String.class, "selfScoreValue", "selfScoreValue", java.lang.String.class, null);
+	
+	/**
 	 * leaderScoreValue , sameUserScoreValue , 类型: java.lang.String
 	*/
 	public static final String LEADER_SCORE_VALUE="leaderScoreValue";
@@ -563,16 +674,6 @@ public class AssessmentBillUserMapVOMeta extends AssessmentBillUserMapMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,java.lang.String> SECOND_LEADER_SCORE_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,SECOND_LEADER_SCORE_VALUE, java.lang.String.class, "secondLeaderScoreValue", "secondLeaderScoreValue", java.lang.String.class, null);
 	
 	/**
-	 * ifHrConfirm , 类型: java.lang.String
-	*/
-	public static final String IF_HR_CONFIRM="ifHrConfirm";
-	
-	/**
-	 * ifHrConfirm , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillUserMapVO,java.lang.String> IF_HR_CONFIRM_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillUserMapVO.class ,IF_HR_CONFIRM, java.lang.String.class, "ifHrConfirm", "ifHrConfirm", java.lang.String.class, null);
-	
-	/**
 	 * sOrgId , 类型: java.lang.String
 	*/
 	public static final String S_ORG_ID="sOrgId";
@@ -585,7 +686,7 @@ public class AssessmentBillUserMapVOMeta extends AssessmentBillUserMapMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , BILL_ID , STATUS , ORG_ID , ASSESSEE_ID , LEADER_ID , SECOND_LEADER_ID , HR_USER_ID , SELF_SCORE , SAME_SCORE , LEADER_SCORE , SECOND_LEADER_SCORE , RESULT , MESSAGE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSESSMENT_TASK , ASSESSEE_USER , SAME_USER_LIST , SAME_USER_IDS , LEADER_USER , SECOND_LEADER_USER , HR_USER , SAME_USER_LIST_REL , SAME_USER_IDS_REL , LEADER_USER_REL , LEADER_USER_ID_REL , SECOND_LEADER_USER_REL , SECOND_LEADER_USER_ID_REL , ASSESSMENT_BILL_TASK_LIST , SELF_SCORE_VALUE , SAME_USER_AVG_SCORE_VALUE , SAME_USER_NEED_COUNT , SAME_USER_FINISH_COUNT , LEADER_SCORE_VALUE , SECOND_LEADER_SCORE_VALUE , IF_HR_CONFIRM , S_ORG_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , BILL_ID , STATUS , ORG_ID , ASSESSEE_ID , LEADER_ID , SECOND_LEADER_ID , HR_USER_ID , SELF_SCORE , SAME_SCORE , LEADER_SCORE , SECOND_LEADER_SCORE , IS_CONFIRM , RESULT , MESSAGE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSESSMENT_TASK , ASSESSEE_USER , SAME_USER_LIST , SAME_USER_IDS , LEADER_USER , SECOND_LEADER_USER , HR_USER , SAME_USER_LIST_REL , SAME_USER_IDS_REL , LEADER_USER_REL , LEADER_USER_ID_REL , SECOND_LEADER_USER_REL , SECOND_LEADER_USER_ID_REL , ASSESSMENT_BILL_TASK_LIST , INCOMPLETE_PAPER , INCOMPLETE_SELF_PAPER_COUNT , INCOMPLETE_SAME_PAPER_COUNT , INCOMPLETE_LEADER_PAPER_COUNT , INCOMPLETE_SECOND_LEADER_PAPER_COUNT , SELF_SCORE_PAPER , SAME_SCORE_PAPER_LIST , LEADER_SCORE_PAPER , SECOND_LEADER_SCORE_PAPER , SAME_USER_AVG_SCORE_VALUE , SAME_USER_NEED_COUNT , SAME_USER_FINISH_COUNT , SAME_SCORE_VALUE , SELF_SCORE_VALUE , LEADER_SCORE_VALUE , SECOND_LEADER_SCORE_VALUE , S_ORG_ID };
 	
 	/**
 	 * 代理类
@@ -860,6 +961,17 @@ public class AssessmentBillUserMapVOMeta extends AssessmentBillUserMapMeta {
 		}
 		
 		/**
+		 * 设置 复核情况
+		 * @param isConfirm 复核情况
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setIsConfirm(String isConfirm) {
+			super.change(IS_CONFIRM,super.getIsConfirm(),isConfirm);
+			super.setIsConfirm(isConfirm);
+			return this;
+		}
+		
+		/**
 		 * 设置 生成状态
 		 * @param result 生成状态
 		 * @return 当前对象
@@ -1124,13 +1236,101 @@ public class AssessmentBillUserMapVOMeta extends AssessmentBillUserMapMeta {
 		}
 		
 		/**
-		 * 设置 selfScoreValue
-		 * @param selfScoreValue selfScoreValue
+		 * 设置 incompletePaper
+		 * @param incompletePaper incompletePaper
 		 * @return 当前对象
 		*/
-		public AssessmentBillUserMap setSelfScoreValue(String selfScoreValue) {
-			super.change(SELF_SCORE_VALUE,super.getSelfScoreValue(),selfScoreValue);
-			super.setSelfScoreValue(selfScoreValue);
+		public AssessmentBillUserMap setIncompletePaper(List<AssessmentBillTaskPaper> incompletePaper) {
+			super.change(INCOMPLETE_PAPER,super.getIncompletePaper(),incompletePaper);
+			super.setIncompletePaper(incompletePaper);
+			return this;
+		}
+		
+		/**
+		 * 设置 incompleteSelfPaperCount
+		 * @param incompleteSelfPaperCount incompleteSelfPaperCount
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setIncompleteSelfPaperCount(String incompleteSelfPaperCount) {
+			super.change(INCOMPLETE_SELF_PAPER_COUNT,super.getIncompleteSelfPaperCount(),incompleteSelfPaperCount);
+			super.setIncompleteSelfPaperCount(incompleteSelfPaperCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 incompleteSamePaperCount
+		 * @param incompleteSamePaperCount incompleteSamePaperCount
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setIncompleteSamePaperCount(String incompleteSamePaperCount) {
+			super.change(INCOMPLETE_SAME_PAPER_COUNT,super.getIncompleteSamePaperCount(),incompleteSamePaperCount);
+			super.setIncompleteSamePaperCount(incompleteSamePaperCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 incompleteLeaderPaperCount
+		 * @param incompleteLeaderPaperCount incompleteLeaderPaperCount
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setIncompleteLeaderPaperCount(String incompleteLeaderPaperCount) {
+			super.change(INCOMPLETE_LEADER_PAPER_COUNT,super.getIncompleteLeaderPaperCount(),incompleteLeaderPaperCount);
+			super.setIncompleteLeaderPaperCount(incompleteLeaderPaperCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 incompleteSecondLeaderPaperCount
+		 * @param incompleteSecondLeaderPaperCount incompleteSecondLeaderPaperCount
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setIncompleteSecondLeaderPaperCount(String incompleteSecondLeaderPaperCount) {
+			super.change(INCOMPLETE_SECOND_LEADER_PAPER_COUNT,super.getIncompleteSecondLeaderPaperCount(),incompleteSecondLeaderPaperCount);
+			super.setIncompleteSecondLeaderPaperCount(incompleteSecondLeaderPaperCount);
+			return this;
+		}
+		
+		/**
+		 * 设置 selfScorePaper
+		 * @param selfScorePaper selfScorePaper
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setSelfScorePaper(AssessmentBillTaskPaper selfScorePaper) {
+			super.change(SELF_SCORE_PAPER,super.getSelfScorePaper(),selfScorePaper);
+			super.setSelfScorePaper(selfScorePaper);
+			return this;
+		}
+		
+		/**
+		 * 设置 sameScorePaperList
+		 * @param sameScorePaperList sameScorePaperList
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setSameScorePaperList(AssessmentBillTaskPaper sameScorePaperList) {
+			super.change(SAME_SCORE_PAPER_LIST,super.getSameScorePaperList(),sameScorePaperList);
+			super.setSameScorePaperList(sameScorePaperList);
+			return this;
+		}
+		
+		/**
+		 * 设置 leaderScorePaper
+		 * @param leaderScorePaper leaderScorePaper
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setLeaderScorePaper(AssessmentBillTaskPaper leaderScorePaper) {
+			super.change(LEADER_SCORE_PAPER,super.getLeaderScorePaper(),leaderScorePaper);
+			super.setLeaderScorePaper(leaderScorePaper);
+			return this;
+		}
+		
+		/**
+		 * 设置 secondLeaderScorePaper
+		 * @param secondLeaderScorePaper secondLeaderScorePaper
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setSecondLeaderScorePaper(AssessmentBillTaskPaper secondLeaderScorePaper) {
+			super.change(SECOND_LEADER_SCORE_PAPER,super.getSecondLeaderScorePaper(),secondLeaderScorePaper);
+			super.setSecondLeaderScorePaper(secondLeaderScorePaper);
 			return this;
 		}
 		
@@ -1168,6 +1368,28 @@ public class AssessmentBillUserMapVOMeta extends AssessmentBillUserMapMeta {
 		}
 		
 		/**
+		 * 设置 sameScoreValue
+		 * @param sameScoreValue sameScoreValue
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setSameScoreValue(String sameScoreValue) {
+			super.change(SAME_SCORE_VALUE,super.getSameScoreValue(),sameScoreValue);
+			super.setSameScoreValue(sameScoreValue);
+			return this;
+		}
+		
+		/**
+		 * 设置 selfScoreValue
+		 * @param selfScoreValue selfScoreValue
+		 * @return 当前对象
+		*/
+		public AssessmentBillUserMap setSelfScoreValue(String selfScoreValue) {
+			super.change(SELF_SCORE_VALUE,super.getSelfScoreValue(),selfScoreValue);
+			super.setSelfScoreValue(selfScoreValue);
+			return this;
+		}
+		
+		/**
 		 * 设置 leaderScoreValue
 		 * @param leaderScoreValue leaderScoreValue
 		 * @return 当前对象
@@ -1186,17 +1408,6 @@ public class AssessmentBillUserMapVOMeta extends AssessmentBillUserMapMeta {
 		public AssessmentBillUserMap setSecondLeaderScoreValue(String secondLeaderScoreValue) {
 			super.change(SECOND_LEADER_SCORE_VALUE,super.getSecondLeaderScoreValue(),secondLeaderScoreValue);
 			super.setSecondLeaderScoreValue(secondLeaderScoreValue);
-			return this;
-		}
-		
-		/**
-		 * 设置 ifHrConfirm
-		 * @param ifHrConfirm ifHrConfirm
-		 * @return 当前对象
-		*/
-		public AssessmentBillUserMap setIfHrConfirm(String ifHrConfirm) {
-			super.change(IF_HR_CONFIRM,super.getIfHrConfirm(),ifHrConfirm);
-			super.setIfHrConfirm(ifHrConfirm);
 			return this;
 		}
 		
@@ -1239,6 +1450,7 @@ public class AssessmentBillUserMapVOMeta extends AssessmentBillUserMapMeta {
 			inst.setResult(this.getResult());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
+			inst.setIsConfirm(this.getIsConfirm());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
@@ -1251,22 +1463,27 @@ public class AssessmentBillUserMapVOMeta extends AssessmentBillUserMapMeta {
 			if(all) {
 				inst.setAssesseeUser(this.getAssesseeUser());
 				inst.setSearchField(this.getSearchField());
+				inst.setSelfScorePaper(this.getSelfScorePaper());
 				inst.setSameUserNeedCount(this.getSameUserNeedCount());
 				inst.setSameUserFinishCount(this.getSameUserFinishCount());
-				inst.setIfHrConfirm(this.getIfHrConfirm());
 				inst.setFuzzyField(this.getFuzzyField());
+				inst.setIncompleteSecondLeaderPaperCount(this.getIncompleteSecondLeaderPaperCount());
 				inst.setPageSize(this.getPageSize());
 				inst.setSecondLeaderUserRel(this.getSecondLeaderUserRel());
 				inst.setLeaderUserIdRel(this.getLeaderUserIdRel());
+				inst.setSameScoreValue(this.getSameScoreValue());
 				inst.setHrUser(this.getHrUser());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setSameUserIdsRel(this.getSameUserIdsRel());
 				inst.setDataOrigin(this.getDataOrigin());
+				inst.setSecondLeaderScorePaper(this.getSecondLeaderScorePaper());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setSameUserIds(this.getSameUserIds());
 				inst.setAssessmentBillTaskList(this.getAssessmentBillTaskList());
 				inst.setLeaderScoreValue(this.getLeaderScoreValue());
+				inst.setIncompleteSamePaperCount(this.getIncompleteSamePaperCount());
+				inst.setLeaderScorePaper(this.getLeaderScorePaper());
 				inst.setSecondLeaderScoreValue(this.getSecondLeaderScoreValue());
 				inst.setSameUserList(this.getSameUserList());
 				inst.setSameUserAvgScoreValue(this.getSameUserAvgScoreValue());
@@ -1275,10 +1492,14 @@ public class AssessmentBillUserMapVOMeta extends AssessmentBillUserMapMeta {
 				inst.setSOrgId(this.getSOrgId());
 				inst.setLeaderUserRel(this.getLeaderUserRel());
 				inst.setSecondLeaderUserIdRel(this.getSecondLeaderUserIdRel());
+				inst.setSameScorePaperList(this.getSameScorePaperList());
+				inst.setIncompleteLeaderPaperCount(this.getIncompleteLeaderPaperCount());
 				inst.setLeaderUser(this.getLeaderUser());
 				inst.setSameUserListRel(this.getSameUserListRel());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
+				inst.setIncompleteSelfPaperCount(this.getIncompleteSelfPaperCount());
+				inst.setIncompletePaper(this.getIncompletePaper());
 				inst.setIds(this.getIds());
 				inst.setAssessmentTask(this.getAssessmentTask());
 				inst.setSearchValue(this.getSearchValue());

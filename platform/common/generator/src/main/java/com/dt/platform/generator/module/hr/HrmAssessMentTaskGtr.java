@@ -76,6 +76,20 @@ public class HrmAssessMentTaskGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_ASSESSMENT_TASK.CREATE_TIME).form().table().disable(true);
         cfg.view().field(HrTables.HR_ASSESSMENT_TASK.OWNER).form().table().disable(true);
 
+        cfg.view().field(HrTables.HR_ASSESSMENT_TASK.LEADER_WEIGTH).form().table().disable(true);
+        cfg.view().field(HrTables.HR_ASSESSMENT_TASK.SAME_WEIGTH).form().table().disable(true);
+        cfg.view().field(HrTables.HR_ASSESSMENT_TASK.SECOND_WEIGHT).form().table().disable(true);
+        cfg.view().field(HrTables.HR_ASSESSMENT_TASK.SELF_WEIGTH).form().table().disable(true);
+        cfg.view().field(HrTables.HR_ASSESSMENT_TASK.TOTAL_WEIGHT).form().table().disable(true);
+        cfg.view().field(HrTables.HR_ASSESSMENT_TASK.IS_ALL_PERSON).form().table().disable(true);
+
+        cfg.view().field(HrTables.HR_ASSESSMENT_TASK.HAS_SAME_ASSESSMENT).form().table().disable(true);
+        cfg.view().field(HrTables.HR_ASSESSMENT_TASK.HAS_LEADER_ASSESSMENT).form().table().disable(true);
+        cfg.view().field(HrTables.HR_ASSESSMENT_TASK.HAS_SELF_ASSESSMENT).form().table().disable(true);
+        cfg.view().field(HrTables.HR_ASSESSMENT_TASK.HAS_SECOND_LEADER_ASSESSMENT).form().table().disable(true);
+
+
+
         cfg.view().field(HrTables.HR_ASSESSMENT_TASK.OWNER).form().radioBox().enumType(AssessmentTaskOwnerEnum.class);
         cfg.view().formWindow().width("75%");;
         cfg.view().formWindow().bottomSpace(80);

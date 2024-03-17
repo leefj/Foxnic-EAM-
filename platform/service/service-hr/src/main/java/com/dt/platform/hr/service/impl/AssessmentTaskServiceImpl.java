@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.common.StatusSuccessFailedEnum;
 import com.dt.platform.constants.enums.common.YesNoEnum;
+import com.dt.platform.constants.enums.hr.AssessmentBillConfirmStatusEnum;
 import com.dt.platform.constants.enums.hr.AssessmentBillStatusEnum;
 import com.dt.platform.domain.hr.AssessmentBill;
 import com.dt.platform.domain.hr.AssessmentBillUserMap;
@@ -169,11 +170,19 @@ public class AssessmentTaskServiceImpl extends SuperService<AssessmentTask> impl
 		if(list==null||list.size()==0){
 			return ErrorDesc.failureMessage("当前没有匹配的人员");
 		}
+		String sureCode="";
+		if(YesNoEnum.YES.code().equals(assessmentTask.getHasHrConfirm())){
+			sureCode=AssessmentBillConfirmStatusEnum.NO_SURE.code();
+		}else{
+			sureCode=AssessmentBillConfirmStatusEnum.NO_NEED.code();
+		}
+
 		List<AssessmentBillUserMap> userMapList=new ArrayList<>();
 		for(Employee employee:list){
 			AssessmentBillUserMap userMap=new AssessmentBillUserMap();
 			userMap.setAssesseeId(employee.getId());
 			userMap.setStatus(StatusEnableEnum.ENABLE.code());
+			userMap.setIsConfirm(sureCode);
 			userMap.setBillId(billId);
 			//userMap.setOwnerId(taskId);
 			userMap.setHrUserId(assessmentTask.getHrUserId());

@@ -2,7 +2,7 @@
 /**
  * 人员映射 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-14 07:26:10
+ * @since 2024-03-16 19:51:40
  */
  -->
  <!DOCTYPE html>
@@ -53,8 +53,17 @@
                     <!-- 互评分 , sameScore ,typeName=number_input, isHideInSearch=true -->
                     <!-- 直属领导评分 , leaderScore ,typeName=number_input, isHideInSearch=true -->
                     <!-- 上上级别领导评分 , secondLeaderScore ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 复核情况 , isConfirm ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 生成结果 , message ,typeName=text_area, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 自评分 , selfScoreValue ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 直接领导分 , leaderScoreValue ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 上上级领导分 , secondLeaderScoreValue ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 上上级别领导未完成数 , incompleteSecondLeaderPaperCount ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 直接领导未完成数 , incompleteLeaderPaperCount ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 互评未完成数 , incompleteSamePaperCount ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 自评未完成数 , incompleteSelfPaperCount ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 互评评价分 , sameUserAvgScoreValue ,typeName=text_input, isHideInSearch=true -->
                     <!-- 直属领导【参考】 , leaderUserIdRel ,typeName=button, isHideInSearch=true -->
                     <!-- 上上级领导【参考】 , secondLeaderUserIdRel ,typeName=button, isHideInSearch=true -->
                     <!-- 人员互评 , sameUserIds ,typeName=button, isHideInSearch=true -->
@@ -153,6 +162,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_ISCONFIRM_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentBillConfirmStatusEnum')}]];
     var RADIO_RESULT_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusSuccessFailedEnum')}]];
     var AUTH_PREFIX="hr_assessment_bill_user_map";
 

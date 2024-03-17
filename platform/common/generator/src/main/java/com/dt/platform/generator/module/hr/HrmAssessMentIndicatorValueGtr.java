@@ -66,6 +66,10 @@ public class HrmAssessMentIndicatorValueGtr extends BaseCodeGenerator {
                         HrTables.HR_ASSESSMENT_INDICATOR_VALUE.CONTENT
                 }
         );
+
+        //cfg.view().list().addJsVariable("IND_DATA",   "[[${indData}]]","indData");
+        cfg.view().form().addJsVariable("IND_DATA",   "[[${indData}]]","indData");
+
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口

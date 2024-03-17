@@ -139,7 +139,9 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_ISCONFIRM_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentBillConfirmStatusEnum')}]];
     var RADIO_RESULT_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusSuccessFailedEnum')}]];
+    
     var AUTH_PREFIX="hr_assessment_bill_user_map_2";
 
     // ownerId

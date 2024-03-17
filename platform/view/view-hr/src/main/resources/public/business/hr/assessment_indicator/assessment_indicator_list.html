@@ -2,7 +2,7 @@
 /**
  * 考核指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 20:35:53
+ * @since 2024-03-15 18:43:29
  */
  -->
  <!DOCTYPE html>
@@ -54,10 +54,11 @@
                     <!-- 最大评分值 , targetMaxValue ,typeName=number_input, isHideInSearch=true -->
                     <!-- 默认评分值 , defaultValue ,typeName=number_input, isHideInSearch=true -->
                     <!-- 定性/定量指标 , property ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 计量单位 , unit ,typeName=text_input, isHideInSearch=true -->
                     <!-- 指标定义 , def ,typeName=text_area, isHideInSearch=true -->
                     <!-- 评分标准 , scoringBase ,typeName=text_area, isHideInSearch=true -->
                     <!-- 评分依据 , scoringBy ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 计量单位 , unit ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 组件类型 , inputType ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 排序 , sn ,typeName=number_input, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
 
@@ -107,6 +108,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_PROPERTY_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentIndicatorPropertyEnum')}]];
+    var RADIO_INPUTTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentIndicatorInputTypeEnum')}]];
     var AUTH_PREFIX="hr_assessment_indicator";
 
     // assessmentId

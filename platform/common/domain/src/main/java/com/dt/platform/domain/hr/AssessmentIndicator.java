@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核指标
  * <p>考核指标 , 数据表 hr_assessment_indicator 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 20:35:52
- * @sign 4655835F77559C83E4A00A190DB1A387
+ * @since 2024-03-15 18:43:28
+ * @sign E86A1F690A2CE4DDD9A70C3CD6D32AA8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -108,12 +108,6 @@ public class AssessmentIndicator extends Entity {
 	private String property;
 	
 	/**
-	 * 计量单位：计量单位
-	*/
-	@ApiModelProperty(required = false,value="计量单位" , notes = "计量单位")
-	private String unit;
-	
-	/**
 	 * 指标定义：指标定义
 	*/
 	@ApiModelProperty(required = false,value="指标定义" , notes = "指标定义")
@@ -130,6 +124,18 @@ public class AssessmentIndicator extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="评分依据" , notes = "评分依据")
 	private String scoringBy;
+	
+	/**
+	 * 计量单位：计量单位
+	*/
+	@ApiModelProperty(required = false,value="计量单位" , notes = "计量单位")
+	private String unit;
+	
+	/**
+	 * 组件类型：组件类型
+	*/
+	@ApiModelProperty(required = false,value="组件类型" , notes = "组件类型")
+	private String inputType;
 	
 	/**
 	 * 排序：排序
@@ -428,25 +434,6 @@ public class AssessmentIndicator extends Entity {
 	}
 	
 	/**
-	 * 获得 计量单位<br>
-	 * 计量单位
-	 * @return 计量单位
-	*/
-	public String getUnit() {
-		return unit;
-	}
-	
-	/**
-	 * 设置 计量单位
-	 * @param unit 计量单位
-	 * @return 当前对象
-	*/
-	public AssessmentIndicator setUnit(String unit) {
-		this.unit=unit;
-		return this;
-	}
-	
-	/**
 	 * 获得 指标定义<br>
 	 * 指标定义
 	 * @return 指标定义
@@ -500,6 +487,44 @@ public class AssessmentIndicator extends Entity {
 	*/
 	public AssessmentIndicator setScoringBy(String scoringBy) {
 		this.scoringBy=scoringBy;
+		return this;
+	}
+	
+	/**
+	 * 获得 计量单位<br>
+	 * 计量单位
+	 * @return 计量单位
+	*/
+	public String getUnit() {
+		return unit;
+	}
+	
+	/**
+	 * 设置 计量单位
+	 * @param unit 计量单位
+	 * @return 当前对象
+	*/
+	public AssessmentIndicator setUnit(String unit) {
+		this.unit=unit;
+		return this;
+	}
+	
+	/**
+	 * 获得 组件类型<br>
+	 * 组件类型
+	 * @return 组件类型
+	*/
+	public String getInputType() {
+		return inputType;
+	}
+	
+	/**
+	 * 设置 组件类型
+	 * @param inputType 组件类型
+	 * @return 当前对象
+	*/
+	public AssessmentIndicator setInputType(String inputType) {
+		this.inputType=inputType;
 		return this;
 	}
 	
@@ -871,6 +896,7 @@ public class AssessmentIndicator extends Entity {
 		inst.setDefaultValue(this.getDefaultValue());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setProperty(this.getProperty());
+		inst.setInputType(this.getInputType());
 		inst.setId(this.getId());
 		inst.setSn(this.getSn());
 		inst.setAssessmentId(this.getAssessmentId());
@@ -960,6 +986,7 @@ public class AssessmentIndicator extends Entity {
 			this.setDefaultValue(DataParser.parse(BigDecimal.class, map.get(AssessmentIndicatorMeta.DEFAULT_VALUE)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssessmentIndicatorMeta.UPDATE_BY)));
 			this.setProperty(DataParser.parse(String.class, map.get(AssessmentIndicatorMeta.PROPERTY)));
+			this.setInputType(DataParser.parse(String.class, map.get(AssessmentIndicatorMeta.INPUT_TYPE)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentIndicatorMeta.ID)));
 			this.setSn(DataParser.parse(Integer.class, map.get(AssessmentIndicatorMeta.SN)));
 			this.setAssessmentId(DataParser.parse(String.class, map.get(AssessmentIndicatorMeta.ASSESSMENT_ID)));
@@ -991,6 +1018,7 @@ public class AssessmentIndicator extends Entity {
 				this.setDefaultValue( (BigDecimal)map.get(AssessmentIndicatorMeta.DEFAULT_VALUE));
 				this.setUpdateBy( (String)map.get(AssessmentIndicatorMeta.UPDATE_BY));
 				this.setProperty( (String)map.get(AssessmentIndicatorMeta.PROPERTY));
+				this.setInputType( (String)map.get(AssessmentIndicatorMeta.INPUT_TYPE));
 				this.setId( (String)map.get(AssessmentIndicatorMeta.ID));
 				this.setSn( (Integer)map.get(AssessmentIndicatorMeta.SN));
 				this.setAssessmentId( (String)map.get(AssessmentIndicatorMeta.ASSESSMENT_ID));
@@ -1035,6 +1063,7 @@ public class AssessmentIndicator extends Entity {
 			this.setDefaultValue(DataParser.parse(BigDecimal.class, r.getValue(AssessmentIndicatorMeta.DEFAULT_VALUE)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssessmentIndicatorMeta.UPDATE_BY)));
 			this.setProperty(DataParser.parse(String.class, r.getValue(AssessmentIndicatorMeta.PROPERTY)));
+			this.setInputType(DataParser.parse(String.class, r.getValue(AssessmentIndicatorMeta.INPUT_TYPE)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorMeta.ID)));
 			this.setSn(DataParser.parse(Integer.class, r.getValue(AssessmentIndicatorMeta.SN)));
 			this.setAssessmentId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorMeta.ASSESSMENT_ID)));
@@ -1063,6 +1092,7 @@ public class AssessmentIndicator extends Entity {
 				this.setDefaultValue( (BigDecimal)r.getValue(AssessmentIndicatorMeta.DEFAULT_VALUE));
 				this.setUpdateBy( (String)r.getValue(AssessmentIndicatorMeta.UPDATE_BY));
 				this.setProperty( (String)r.getValue(AssessmentIndicatorMeta.PROPERTY));
+				this.setInputType( (String)r.getValue(AssessmentIndicatorMeta.INPUT_TYPE));
 				this.setId( (String)r.getValue(AssessmentIndicatorMeta.ID));
 				this.setSn( (Integer)r.getValue(AssessmentIndicatorMeta.SN));
 				this.setAssessmentId( (String)r.getValue(AssessmentIndicatorMeta.ASSESSMENT_ID));

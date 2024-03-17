@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.hr;
 
 
 import com.dt.platform.constants.db.HrTables;
+import com.dt.platform.constants.enums.hr.AssessmentIndicatorInputTypeEnum;
 import com.dt.platform.constants.enums.hr.AssessmentIndicatorPropertyEnum;
 import com.dt.platform.domain.hr.AssessmentIndicator;
 import com.dt.platform.domain.hr.AssessmentIndicatorValue;
@@ -37,6 +38,7 @@ public class HrmAssessMentIndicatorGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(IndicatorLib.class,"indicatorLib","indicatorLib","indicatorLib");
 
         cfg.view().field(HrTables.HR_ASSESSMENT_INDICATOR.PROPERTY).form().validate().required().form().radioBox().enumType(AssessmentIndicatorPropertyEnum.class).defaultIndex(0);
+        cfg.view().field(HrTables.HR_ASSESSMENT_INDICATOR.INPUT_TYPE).form().validate().required().form().radioBox().enumType(AssessmentIndicatorInputTypeEnum.class).defaultIndex(0);
 
 
         cfg.view().field(HrTables.HR_ASSESSMENT_INDICATOR.ID).basic().hidden(true);
@@ -68,6 +70,8 @@ public class HrmAssessMentIndicatorGtr extends BaseCodeGenerator {
                 fillWith(AssessmentIndicatorMeta.INDICATOR_LIB).muliti(false);
 
 
+        cfg.view().field(HrTables.HR_ASSESSMENT_INDICATOR.SN).table().disable(true);
+        cfg.view().field(HrTables.HR_ASSESSMENT_INDICATOR.INPUT_TYPE).table().disable(true);
         cfg.view().field(HrTables.HR_ASSESSMENT_INDICATOR.CREATE_TIME).table().disable(true);
         cfg.view().field(HrTables.HR_ASSESSMENT_INDICATOR.UPDATE_BY).table().disable(true);
         cfg.view().field(HrTables.HR_ASSESSMENT_INDICATOR.UPDATE_BY).table().disable(true);
@@ -111,6 +115,7 @@ public class HrmAssessMentIndicatorGtr extends BaseCodeGenerator {
 
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        HrTables.HR_ASSESSMENT_INDICATOR.INPUT_TYPE,
                         HrTables.HR_ASSESSMENT_INDICATOR.SN,
 
                 }

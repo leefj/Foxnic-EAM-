@@ -149,13 +149,13 @@ function ListPage() {
 									,cols: [[
 										{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 									//,{ field: 'assessmentIndicator', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('分类') , templet: function (d) { return templet('assessmentIndicator',d.assessmentIndicator,d);}  }
-										,{ field: 'IndicatorGroupName',merge:true, align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('分类') , templet: function (d) { return templet('IndicatorGroupName',fox.getProperty(d,["assessmentIndicator","IndicatorGroupName"],0,'','IndicatorGroupName'),d);} }
+										,{ field: 'IndicatorGroupName',merge:false, align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('分类') , templet: function (d) { return templet('IndicatorGroupName',fox.getProperty(d,["assessmentIndicator","IndicatorGroupName"],0,'','IndicatorGroupName'),d);} }
 										,{ field: 'IndicatorName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('名称') , templet: function (d) { return templet('IndicatorName',fox.getProperty(d,["assessmentIndicator","IndicatorGroupName"],0,'','IndicatorName'),d);} }
 										,{ field: 'IndicatorScoringBase', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('评份标准') , templet: function (d) { return templet('IndicatorScoringBase',fox.getProperty(d,["assessmentIndicator","IndicatorScoringBase"],0,'','IndicatorScoringBase'),d);} }
 										,{ field: 'IndicatorDef', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('评份定义') , templet: function (d) { return templet('IndicatorDef',fox.getProperty(d,["assessmentIndicator","IndicatorDef"],0,'','IndicatorDef'),d);} }
-										,{ field: 'IndicatorMinValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('最低分') , templet: function (d) { return templet('IndicatorMinValue',fox.getProperty(d,["assessmentIndicator","IndicatorMinValue"],0,'','IndicatorMinValue'),d);} }
-										,{ field: 'IndicatorMaxValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('最高分') , templet: function (d) { return templet('IndicatorMaxValue',fox.getProperty(d,["assessmentIndicator","IndicatorMaxValue"],0,'','IndicatorMaxValue'),d);} }
-										,{ field: 'value', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('得分') , templet: function (d) { return templet('value',d.value,d);}  }
+										,{ field: 'IndicatorMinValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('得分范围') , templet: function (d) { return templet('IndicatorMinValue',fox.getProperty(d,["assessmentIndicator","IndicatorMinValue"],0,'','IndicatorMinValue'),d);} }
+									//	,{ field: 'IndicatorMaxValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('最高分') , templet: function (d) { return templet('IndicatorMaxValue',fox.getProperty(d,["assessmentIndicator","IndicatorMaxValue"],0,'','IndicatorMaxValue'),d);} }
+										,{ field: 'value', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('结果') , templet: function (d) { return templet('value',d.value,d);}  }
 										,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 										,{ field: 'row-ops1', fixed: 'right', align: 'center',title: fox.translate('操作','','cmp:table'), width: 160, templet:
 												function(r) {

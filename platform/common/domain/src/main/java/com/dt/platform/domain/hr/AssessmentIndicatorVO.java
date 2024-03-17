@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核指标VO类型
  * <p>考核指标 , 数据表 hr_assessment_indicator 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 20:35:52
+ * @since 2024-03-15 18:43:28
  * @sign 93A6886A9E8CEF3CD1F4844E3086978F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -407,6 +407,7 @@ public class AssessmentIndicatorVO extends AssessmentIndicator {
 		inst.setDefaultValue(this.getDefaultValue());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setProperty(this.getProperty());
+		inst.setInputType(this.getInputType());
 		inst.setId(this.getId());
 		inst.setSn(this.getSn());
 		inst.setAssessmentId(this.getAssessmentId());
@@ -508,6 +509,7 @@ public class AssessmentIndicatorVO extends AssessmentIndicator {
 			this.setDefaultValue(DataParser.parse(BigDecimal.class, map.get(AssessmentIndicatorVOMeta.DEFAULT_VALUE)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.UPDATE_BY)));
 			this.setProperty(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.PROPERTY)));
+			this.setInputType(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.INPUT_TYPE)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.ID)));
 			this.setSn(DataParser.parse(Integer.class, map.get(AssessmentIndicatorVOMeta.SN)));
 			this.setAssessmentId(DataParser.parse(String.class, map.get(AssessmentIndicatorVOMeta.ASSESSMENT_ID)));
@@ -549,6 +551,7 @@ public class AssessmentIndicatorVO extends AssessmentIndicator {
 				this.setDefaultValue( (BigDecimal)map.get(AssessmentIndicatorVOMeta.DEFAULT_VALUE));
 				this.setUpdateBy( (String)map.get(AssessmentIndicatorVOMeta.UPDATE_BY));
 				this.setProperty( (String)map.get(AssessmentIndicatorVOMeta.PROPERTY));
+				this.setInputType( (String)map.get(AssessmentIndicatorVOMeta.INPUT_TYPE));
 				this.setId( (String)map.get(AssessmentIndicatorVOMeta.ID));
 				this.setSn( (Integer)map.get(AssessmentIndicatorVOMeta.SN));
 				this.setAssessmentId( (String)map.get(AssessmentIndicatorVOMeta.ASSESSMENT_ID));
@@ -603,6 +606,7 @@ public class AssessmentIndicatorVO extends AssessmentIndicator {
 			this.setDefaultValue(DataParser.parse(BigDecimal.class, r.getValue(AssessmentIndicatorVOMeta.DEFAULT_VALUE)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.UPDATE_BY)));
 			this.setProperty(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.PROPERTY)));
+			this.setInputType(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.INPUT_TYPE)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.ID)));
 			this.setSn(DataParser.parse(Integer.class, r.getValue(AssessmentIndicatorVOMeta.SN)));
 			this.setAssessmentId(DataParser.parse(String.class, r.getValue(AssessmentIndicatorVOMeta.ASSESSMENT_ID)));
@@ -631,6 +635,7 @@ public class AssessmentIndicatorVO extends AssessmentIndicator {
 				this.setDefaultValue( (BigDecimal)r.getValue(AssessmentIndicatorVOMeta.DEFAULT_VALUE));
 				this.setUpdateBy( (String)r.getValue(AssessmentIndicatorVOMeta.UPDATE_BY));
 				this.setProperty( (String)r.getValue(AssessmentIndicatorVOMeta.PROPERTY));
+				this.setInputType( (String)r.getValue(AssessmentIndicatorVOMeta.INPUT_TYPE));
 				this.setId( (String)r.getValue(AssessmentIndicatorVOMeta.ID));
 				this.setSn( (Integer)r.getValue(AssessmentIndicatorVOMeta.SN));
 				this.setAssessmentId( (String)r.getValue(AssessmentIndicatorVOMeta.ASSESSMENT_ID));

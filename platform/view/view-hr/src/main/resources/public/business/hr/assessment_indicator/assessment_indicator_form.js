@@ -1,7 +1,7 @@
 /**
  * 考核指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 20:35:55
+ * @since 2024-03-15 18:43:31
  */
 
 function FormPage() {
@@ -160,6 +160,13 @@ function FormPage() {
 				checked.push($(this).val());
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("property",data,checked);
+		});
+		form.on('radio(inputType)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=inputType]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("inputType",data,checked);
 		});
 	}
 

@@ -100,6 +100,8 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var AUTH_PREFIX="hr_tpl_indicator_2";
+    var RADIO_PROPERTY_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentIndicatorPropertyEnum')}]];
+    var RADIO_INPUTTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentIndicatorInputTypeEnum')}]];
 
     // assessmentId
     var ASSESSMENT_ID = [[${assessmentId}]] ;

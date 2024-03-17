@@ -1,7 +1,7 @@
 /**
  * 考核指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 20:35:54
+ * @since 2024-03-15 18:43:30
  */
 
 
@@ -93,11 +93,10 @@ function ListPage() {
 					,{ field: 'targetMaxValue', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('最大评分值') , templet: function (d) { return templet('targetMaxValue',d.targetMaxValue,d);}  }
 					,{ field: 'defaultValue', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('默认评分值') , templet: function (d) { return templet('defaultValue',d.defaultValue,d);}  }
 					,{ field: 'property', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('定性/定量指标'), templet:function (d){ return templet('property',fox.getEnumText(RADIO_PROPERTY_DATA,d.property,'','property'),d);}}
-					,{ field: 'unit', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计量单位') , templet: function (d) { return templet('unit',d.unit,d);}  }
 					,{ field: 'def', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('指标定义') , templet: function (d) { return templet('def',d.def,d);}  }
 					,{ field: 'scoringBase', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('评分标准') , templet: function (d) { return templet('scoringBase',d.scoringBase,d);}  }
 					,{ field: 'scoringBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('评分依据') , templet: function (d) { return templet('scoringBy',d.scoringBy,d);}  }
-					,{ field: 'sn', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('排序') , templet: function (d) { return templet('sn',d.sn,d);}  }
+					,{ field: 'unit', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计量单位') , templet: function (d) { return templet('unit',d.unit,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

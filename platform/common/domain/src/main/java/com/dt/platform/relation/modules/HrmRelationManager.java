@@ -3,11 +3,18 @@ package com.dt.platform.relation.modules;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.HrTables;
 import com.dt.platform.constants.db.SysTables;
+import com.dt.platform.domain.eam.MaintainProject;
 import com.dt.platform.domain.eam.meta.InventoryMeta;
+import com.dt.platform.domain.eam.meta.MaintainPlanMeta;
 import com.dt.platform.domain.hr.*;
 import com.dt.platform.domain.hr.meta.*;
+import com.github.foxnic.dao.relation.Join;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
+
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
 
 public class HrmRelationManager extends RelationManager {
 
@@ -104,6 +111,8 @@ public class HrmRelationManager extends RelationManager {
 	}
 	public void setupAssessmentTaskUserMap(){
 
+
+
 		this.property(AssessmentBillUserMapMeta.LEADER_USER_PROP)
 				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.LEADER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
@@ -136,7 +145,77 @@ public class HrmRelationManager extends RelationManager {
 		this.property(AssessmentBillUserMapMeta.SAME_USER_LIST_REL_PROP)
 				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.LEADER_ID).join(FoxnicWeb.HRM_EMPLOYEE.DIRECT_LEADER_ID);
 
+		//得分情况
+		this.property(AssessmentBillUserMapMeta.SELF_SCORE_PAPER_PROP)
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ID).join(HrTables.HR_ASSESSMENT_BILL_TASK_PAPER.USER_MAP_ID)
+				.condition("relationship='self'")
+		;
+		//得分情况
+		this.property(AssessmentBillUserMapMeta.SECOND_LEADER_SCORE_PAPER_PROP)
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ID).join(HrTables.HR_ASSESSMENT_BILL_TASK_PAPER.USER_MAP_ID)
+				.condition("relationship='secondLeader'")
+		;
+
+		//得分情况
+		this.property(AssessmentBillUserMapMeta.LEADER_SCORE_PAPER_PROP)
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ID).join(HrTables.HR_ASSESSMENT_BILL_TASK_PAPER.USER_MAP_ID)
+				.condition("relationship='leader'")
+		;
+		//得分情况
+		this.property(AssessmentBillUserMapMeta.SAME_SCORE_PAPER_LIST_PROP)
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ID).join(HrTables.HR_ASSESSMENT_BILL_TASK_PAPER.USER_MAP_ID)
+				.after((tag,point,checkItems,map)->{
+					int total=checkItems.size();
+					int w=0;
+					int f=0;
+					if(checkItems!=null&&checkItems.size()>0){
+						BigDecimal sum =new BigDecimal("0");
+						for(int i=0;i<checkItems.size();i++){
+							if(checkItems.get(i).getAssesseeId().equals(checkItems.get(i).getAssessorId())){
+								total--;
+								continue;
+							}
+							sum=sum.add(checkItems.get(i).getScoreValue());
+						}
+						if(total>0){
+							point.setSameUserAvgScoreValue(sum.divide(new BigDecimal(total)).toString());
+						}
+					}
+					point.setSameScore(new BigDecimal(100));
+			return checkItems;
+		}).condition("relationship='sameUser'");
+
+		//得分情况
+		this.property(AssessmentBillUserMapMeta.INCOMPLETE_PAPER_PROP)
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ID).join(HrTables.HR_ASSESSMENT_BILL_TASK_PAPER.USER_MAP_ID)
+				.after((tag,point,checkItems,map)->{
+					int self=0;
+					int same=0;
+					int leader=0;
+					int secondleader=0;
+					if(checkItems!=null&&checkItems.size()>0){
+						for(int i=0;i<checkItems.size();i++){
+							if("self".equals(checkItems.get(i).getRelationship())){
+								self++;
+							}else if("leader".equals(checkItems.get(i).getRelationship())){
+								leader++;
+							}else if("sameUser".equals(checkItems.get(i).getRelationship())){
+								same++;
+							}else if("secondLeader".equals(checkItems.get(i).getRelationship())){
+								secondleader++;
+							}
+						}
+					}
+					point.setIncompleteLeaderPaperCount(leader+"");
+					point.setIncompleteSelfPaperCount(self+"");
+					point.setIncompleteSamePaperCount(same+"");
+					point.setIncompleteSecondLeaderPaperCount(secondleader+"");
+					return checkItems;
+				}).using(HrTables.HR_ASSESSMENT_BILL_TASK_PAPER.BILL_TASK_DTL_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.ID)
+				.condition("status='wait'");
+
 	}
+
 
 
 	public void setupAssessmentIndicator(){
@@ -214,33 +293,31 @@ public class HrmRelationManager extends RelationManager {
 
 		this.property(AssessmentBillTaskDtlMeta.WITH_LEADER_LIST_PROP)
 				.using(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.BILL_TASK_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ID)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.BILL_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.BILL_ID)
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.LEADER_ID)
 				.condition("status='enable'")
-				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.LEADER_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
 
 		this.property(AssessmentBillTaskDtlMeta.WITH_SECOND_LEADER_LIST_PROP)
 				.using(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.BILL_TASK_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ID)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.BILL_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.BILL_ID)
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.SECOND_LEADER_ID)
 				.condition("status='enable'")
-				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.SECOND_LEADER_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
-		this.property(AssessmentBillTaskDtlMeta.WITH_SAME_USER_LIST_PROP)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.BILL_TASK_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ID)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.BILL_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.BILL_ID)
-				.condition("status='enable'")
-				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
-				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
 
 		this.property(AssessmentBillTaskDtlMeta.WITH_SELF_USER_PROP)
 				.using(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.BILL_TASK_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ID)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID)
+				.condition("status='enable'")
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
-
+		this.property(AssessmentBillTaskDtlMeta.WITH_SAME_USER_LIST_PROP)
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK_DTL.BILL_TASK_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ID)
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID)
+				.condition("status='enable'")
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
+				.condition("owner='same_user'")
+				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 	}
 
 	public void setupAssessmentBillTask(){
@@ -253,24 +330,21 @@ public class HrmRelationManager extends RelationManager {
 				.using(HrTables.HR_ASSESSMENT_BILL.TASK_DATA_ID).join(HrTables.HR_ASSESSMENT_TASK.ID);
 
 		this.property(AssessmentBillTaskMeta.WITH_LEADER_LIST_PROP)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.BILL_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.BILL_ID)
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.LEADER_ID)
 				.condition("status='enable'")
-				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.LEADER_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
 		this.property(AssessmentBillTaskMeta.WITH_SECOND_LEADER_LIST_PROP)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.BILL_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.BILL_ID)
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.SECOND_LEADER_ID)
 				.condition("status='enable'")
-				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.SECOND_LEADER_ID).join(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID)
-						.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
 		this.property(AssessmentBillTaskMeta.WITH_SAME_USER_LIST_PROP)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.BILL_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.BILL_ID)
+				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ASSESSEE_ID)
 				.condition("status='enable'")
 				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ID).join(SysTables.SYS_MAPPING_OWNER.OWNER_ID)
-				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID)
-				.using(HrTables.HR_ASSESSMENT_BILL_TASK.ASSESSOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
+				.condition("owner='same_user'")
+				.using(SysTables.SYS_MAPPING_OWNER.SELECTED_CODE).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
 
 

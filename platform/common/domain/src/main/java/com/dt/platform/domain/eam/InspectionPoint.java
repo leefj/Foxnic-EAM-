@@ -27,7 +27,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-07 15:51:26
+ * @since 2024-03-16 22:11:39
  * @sign 104BD51E49E055154B0330073E6A5754
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -122,7 +122,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * 关联设备：关联设备
 	*/
-	@ApiModelProperty(required = false,value="关联设备" , notes = "关联设备" , example = "788874106652065792")
+	@ApiModelProperty(required = false,value="关联设备" , notes = "关联设备")
 	private String assetId;
 	
 	/**
@@ -146,7 +146,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-05 07:21:26")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-07 09:22:58")
 	private Date updateTime;
 	
 	/**
@@ -179,7 +179,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "4")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "5")
 	private Integer version;
 	
 	/**

@@ -135,6 +135,10 @@ public class InspPointGtr extends BaseCodeGenerator {
         cfg.view().list().addToolButton("导入","importData","import-data");
         cfg.view().list().addToolButton("导出","exportData","export-data");
 
+        cfg.view().list().addJs("/business/eam/asset/jquery.qrcode.min.js");
+        cfg.view().list().operationColumn().addActionButton("二维码","showRwm","show-rwm");
+
+
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口

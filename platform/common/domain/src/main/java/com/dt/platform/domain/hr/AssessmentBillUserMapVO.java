@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员映射VO类型
  * <p>人员映射 , 数据表 hr_assessment_bill_user_map 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-14 07:26:08
+ * @since 2024-03-16 19:51:39
  * @sign B486CF9E3D70862C082CD0236C42FB8A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -416,6 +416,7 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 		inst.setResult(this.getResult());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
+		inst.setIsConfirm(this.getIsConfirm());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
@@ -427,23 +428,28 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 		inst.setLeaderScore(this.getLeaderScore());
 		if(all) {
 			inst.setAssesseeUser(this.getAssesseeUser());
+			inst.setSelfScorePaper(this.getSelfScorePaper());
 			inst.setSameUserNeedCount(this.getSameUserNeedCount());
 			inst.setSearchField(this.getSearchField());
 			inst.setSameUserFinishCount(this.getSameUserFinishCount());
-			inst.setIfHrConfirm(this.getIfHrConfirm());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setIncompleteSecondLeaderPaperCount(this.getIncompleteSecondLeaderPaperCount());
 			inst.setPageSize(this.getPageSize());
 			inst.setSecondLeaderUserRel(this.getSecondLeaderUserRel());
 			inst.setLeaderUserIdRel(this.getLeaderUserIdRel());
+			inst.setSameScoreValue(this.getSameScoreValue());
 			inst.setHrUser(this.getHrUser());
 			inst.setSameUserIdsRel(this.getSameUserIdsRel());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
+			inst.setSecondLeaderScorePaper(this.getSecondLeaderScorePaper());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setSameUserIds(this.getSameUserIds());
 			inst.setAssessmentBillTaskList(this.getAssessmentBillTaskList());
 			inst.setLeaderScoreValue(this.getLeaderScoreValue());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setIncompleteSamePaperCount(this.getIncompleteSamePaperCount());
+			inst.setLeaderScorePaper(this.getLeaderScorePaper());
 			inst.setSecondLeaderScoreValue(this.getSecondLeaderScoreValue());
 			inst.setSameUserList(this.getSameUserList());
 			inst.setSameUserAvgScoreValue(this.getSameUserAvgScoreValue());
@@ -452,10 +458,14 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 			inst.setSOrgId(this.getSOrgId());
 			inst.setLeaderUserRel(this.getLeaderUserRel());
 			inst.setSecondLeaderUserIdRel(this.getSecondLeaderUserIdRel());
+			inst.setSameScorePaperList(this.getSameScorePaperList());
+			inst.setIncompleteLeaderPaperCount(this.getIncompleteLeaderPaperCount());
 			inst.setLeaderUser(this.getLeaderUser());
 			inst.setSameUserListRel(this.getSameUserListRel());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
+			inst.setIncompleteSelfPaperCount(this.getIncompleteSelfPaperCount());
+			inst.setIncompletePaper(this.getIncompletePaper());
 			inst.setIds(this.getIds());
 			inst.setAssessmentTask(this.getAssessmentTask());
 			inst.setSelfScoreValue(this.getSelfScoreValue());
@@ -532,6 +542,7 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 			this.setResult(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.RESULT)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AssessmentBillUserMapVOMeta.DELETED)));
+			this.setIsConfirm(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.IS_CONFIRM)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AssessmentBillUserMapVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssessmentBillUserMapVOMeta.DELETE_TIME)));
@@ -543,20 +554,25 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 			this.setLeaderScore(DataParser.parse(BigDecimal.class, map.get(AssessmentBillUserMapVOMeta.LEADER_SCORE)));
 			// others
 			this.setAssesseeUser(DataParser.parse(Employee.class, map.get(AssessmentBillUserMapVOMeta.ASSESSEE_USER)));
+			this.setSelfScorePaper(DataParser.parse(AssessmentBillTaskPaper.class, map.get(AssessmentBillUserMapVOMeta.SELF_SCORE_PAPER)));
 			this.setSameUserNeedCount(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SAME_USER_NEED_COUNT)));
 			this.setSearchField(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SEARCH_FIELD)));
 			this.setSameUserFinishCount(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SAME_USER_FINISH_COUNT)));
-			this.setIfHrConfirm(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.IF_HR_CONFIRM)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.FUZZY_FIELD)));
+			this.setIncompleteSecondLeaderPaperCount(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.INCOMPLETE_SECOND_LEADER_PAPER_COUNT)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AssessmentBillUserMapVOMeta.PAGE_SIZE)));
 			this.setSecondLeaderUserRel(DataParser.parse(Employee.class, map.get(AssessmentBillUserMapVOMeta.SECOND_LEADER_USER_REL)));
 			this.setLeaderUserIdRel(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.LEADER_USER_ID_REL)));
+			this.setSameScoreValue(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SAME_SCORE_VALUE)));
 			this.setHrUser(DataParser.parse(Employee.class, map.get(AssessmentBillUserMapVOMeta.HR_USER)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SORT_FIELD)));
+			this.setSecondLeaderScorePaper(DataParser.parse(AssessmentBillTaskPaper.class, map.get(AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE_PAPER)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.DATA_ORIGIN)));
 			this.setAssessmentBillTaskList(DataParser.parse(AssessmentBillTask.class, map.get(AssessmentBillUserMapVOMeta.ASSESSMENT_BILL_TASK_LIST)));
 			this.setLeaderScoreValue(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.LEADER_SCORE_VALUE)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.QUERY_LOGIC)));
+			this.setIncompleteSamePaperCount(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.INCOMPLETE_SAME_PAPER_COUNT)));
+			this.setLeaderScorePaper(DataParser.parse(AssessmentBillTaskPaper.class, map.get(AssessmentBillUserMapVOMeta.LEADER_SCORE_PAPER)));
 			this.setSecondLeaderScoreValue(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE_VALUE)));
 			this.setSameUserAvgScoreValue(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SAME_USER_AVG_SCORE_VALUE)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.REQUEST_ACTION)));
@@ -564,9 +580,12 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 			this.setSOrgId(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.S_ORG_ID)));
 			this.setLeaderUserRel(DataParser.parse(Employee.class, map.get(AssessmentBillUserMapVOMeta.LEADER_USER_REL)));
 			this.setSecondLeaderUserIdRel(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SECOND_LEADER_USER_ID_REL)));
+			this.setSameScorePaperList(DataParser.parse(AssessmentBillTaskPaper.class, map.get(AssessmentBillUserMapVOMeta.SAME_SCORE_PAPER_LIST)));
+			this.setIncompleteLeaderPaperCount(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.INCOMPLETE_LEADER_PAPER_COUNT)));
 			this.setLeaderUser(DataParser.parse(Employee.class, map.get(AssessmentBillUserMapVOMeta.LEADER_USER)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssessmentBillUserMapVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SORT_TYPE)));
+			this.setIncompleteSelfPaperCount(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.INCOMPLETE_SELF_PAPER_COUNT)));
 			this.setAssessmentTask(DataParser.parse(AssessmentTask.class, map.get(AssessmentBillUserMapVOMeta.ASSESSMENT_TASK)));
 			this.setSelfScoreValue(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SELF_SCORE_VALUE)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssessmentBillUserMapVOMeta.SEARCH_VALUE)));
@@ -586,6 +605,7 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 				this.setResult( (String)map.get(AssessmentBillUserMapVOMeta.RESULT));
 				this.setCreateBy( (String)map.get(AssessmentBillUserMapVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AssessmentBillUserMapVOMeta.DELETED));
+				this.setIsConfirm( (String)map.get(AssessmentBillUserMapVOMeta.IS_CONFIRM));
 				this.setCreateTime( (Date)map.get(AssessmentBillUserMapVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(AssessmentBillUserMapVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(AssessmentBillUserMapVOMeta.DELETE_TIME));
@@ -597,20 +617,25 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 				this.setLeaderScore( (BigDecimal)map.get(AssessmentBillUserMapVOMeta.LEADER_SCORE));
 				// others
 				this.setAssesseeUser( (Employee)map.get(AssessmentBillUserMapVOMeta.ASSESSEE_USER));
+				this.setSelfScorePaper( (AssessmentBillTaskPaper)map.get(AssessmentBillUserMapVOMeta.SELF_SCORE_PAPER));
 				this.setSameUserNeedCount( (String)map.get(AssessmentBillUserMapVOMeta.SAME_USER_NEED_COUNT));
 				this.setSearchField( (String)map.get(AssessmentBillUserMapVOMeta.SEARCH_FIELD));
 				this.setSameUserFinishCount( (String)map.get(AssessmentBillUserMapVOMeta.SAME_USER_FINISH_COUNT));
-				this.setIfHrConfirm( (String)map.get(AssessmentBillUserMapVOMeta.IF_HR_CONFIRM));
 				this.setFuzzyField( (String)map.get(AssessmentBillUserMapVOMeta.FUZZY_FIELD));
+				this.setIncompleteSecondLeaderPaperCount( (String)map.get(AssessmentBillUserMapVOMeta.INCOMPLETE_SECOND_LEADER_PAPER_COUNT));
 				this.setPageSize( (Integer)map.get(AssessmentBillUserMapVOMeta.PAGE_SIZE));
 				this.setSecondLeaderUserRel( (Employee)map.get(AssessmentBillUserMapVOMeta.SECOND_LEADER_USER_REL));
 				this.setLeaderUserIdRel( (String)map.get(AssessmentBillUserMapVOMeta.LEADER_USER_ID_REL));
+				this.setSameScoreValue( (String)map.get(AssessmentBillUserMapVOMeta.SAME_SCORE_VALUE));
 				this.setHrUser( (Employee)map.get(AssessmentBillUserMapVOMeta.HR_USER));
 				this.setSortField( (String)map.get(AssessmentBillUserMapVOMeta.SORT_FIELD));
+				this.setSecondLeaderScorePaper( (AssessmentBillTaskPaper)map.get(AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE_PAPER));
 				this.setDataOrigin( (String)map.get(AssessmentBillUserMapVOMeta.DATA_ORIGIN));
 				this.setAssessmentBillTaskList( (AssessmentBillTask)map.get(AssessmentBillUserMapVOMeta.ASSESSMENT_BILL_TASK_LIST));
 				this.setLeaderScoreValue( (String)map.get(AssessmentBillUserMapVOMeta.LEADER_SCORE_VALUE));
 				this.setQueryLogic( (String)map.get(AssessmentBillUserMapVOMeta.QUERY_LOGIC));
+				this.setIncompleteSamePaperCount( (String)map.get(AssessmentBillUserMapVOMeta.INCOMPLETE_SAME_PAPER_COUNT));
+				this.setLeaderScorePaper( (AssessmentBillTaskPaper)map.get(AssessmentBillUserMapVOMeta.LEADER_SCORE_PAPER));
 				this.setSecondLeaderScoreValue( (String)map.get(AssessmentBillUserMapVOMeta.SECOND_LEADER_SCORE_VALUE));
 				this.setSameUserAvgScoreValue( (String)map.get(AssessmentBillUserMapVOMeta.SAME_USER_AVG_SCORE_VALUE));
 				this.setRequestAction( (String)map.get(AssessmentBillUserMapVOMeta.REQUEST_ACTION));
@@ -618,9 +643,12 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 				this.setSOrgId( (String)map.get(AssessmentBillUserMapVOMeta.S_ORG_ID));
 				this.setLeaderUserRel( (Employee)map.get(AssessmentBillUserMapVOMeta.LEADER_USER_REL));
 				this.setSecondLeaderUserIdRel( (String)map.get(AssessmentBillUserMapVOMeta.SECOND_LEADER_USER_ID_REL));
+				this.setSameScorePaperList( (AssessmentBillTaskPaper)map.get(AssessmentBillUserMapVOMeta.SAME_SCORE_PAPER_LIST));
+				this.setIncompleteLeaderPaperCount( (String)map.get(AssessmentBillUserMapVOMeta.INCOMPLETE_LEADER_PAPER_COUNT));
 				this.setLeaderUser( (Employee)map.get(AssessmentBillUserMapVOMeta.LEADER_USER));
 				this.setPageIndex( (Integer)map.get(AssessmentBillUserMapVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AssessmentBillUserMapVOMeta.SORT_TYPE));
+				this.setIncompleteSelfPaperCount( (String)map.get(AssessmentBillUserMapVOMeta.INCOMPLETE_SELF_PAPER_COUNT));
 				this.setAssessmentTask( (AssessmentTask)map.get(AssessmentBillUserMapVOMeta.ASSESSMENT_TASK));
 				this.setSelfScoreValue( (String)map.get(AssessmentBillUserMapVOMeta.SELF_SCORE_VALUE));
 				this.setSearchValue( (String)map.get(AssessmentBillUserMapVOMeta.SEARCH_VALUE));
@@ -653,6 +681,7 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 			this.setResult(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapVOMeta.RESULT)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssessmentBillUserMapVOMeta.DELETED)));
+			this.setIsConfirm(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapVOMeta.IS_CONFIRM)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssessmentBillUserMapVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssessmentBillUserMapVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssessmentBillUserMapVOMeta.DELETE_TIME)));
@@ -678,6 +707,7 @@ public class AssessmentBillUserMapVO extends AssessmentBillUserMap {
 				this.setResult( (String)r.getValue(AssessmentBillUserMapVOMeta.RESULT));
 				this.setCreateBy( (String)r.getValue(AssessmentBillUserMapVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AssessmentBillUserMapVOMeta.DELETED));
+				this.setIsConfirm( (String)r.getValue(AssessmentBillUserMapVOMeta.IS_CONFIRM));
 				this.setCreateTime( (Date)r.getValue(AssessmentBillUserMapVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(AssessmentBillUserMapVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(AssessmentBillUserMapVOMeta.DELETE_TIME));

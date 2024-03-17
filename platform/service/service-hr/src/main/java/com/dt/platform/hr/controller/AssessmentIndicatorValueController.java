@@ -1,6 +1,8 @@
 package com.dt.platform.hr.controller;
 
 import java.util.*;
+
+import com.github.foxnic.sql.expr.OrderBy;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +62,7 @@ public class AssessmentIndicatorValueController extends SuperController {
     @ApiOperation(value = "添加考核结果")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.TASK_PAPER_ID, value = "评分卷", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.TASK_PAPER_ID, value = "评分表", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.INDICATOR_ID, value = "指标", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.VALUE, value = "得分", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
@@ -160,7 +162,7 @@ public class AssessmentIndicatorValueController extends SuperController {
     @ApiOperation(value = "更新考核结果")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.TASK_PAPER_ID, value = "评分卷", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.TASK_PAPER_ID, value = "评分表", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.INDICATOR_ID, value = "指标", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.VALUE, value = "得分", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
@@ -182,7 +184,7 @@ public class AssessmentIndicatorValueController extends SuperController {
     @ApiOperation(value = "保存考核结果")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.TASK_PAPER_ID, value = "评分卷", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.TASK_PAPER_ID, value = "评分表", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.INDICATOR_ID, value = "指标", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.VALUE, value = "得分", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
@@ -211,6 +213,8 @@ public class AssessmentIndicatorValueController extends SuperController {
     public Result<AssessmentIndicatorValue> getById(String id) {
         Result<AssessmentIndicatorValue> result = new Result<>();
         AssessmentIndicatorValue assessmentIndicatorValue = assessmentIndicatorValueService.getById(id);
+        assessmentIndicatorValueService.dao().fill(assessmentIndicatorValue).with(AssessmentIndicatorValueMeta.ASSESSMENT_INDICATOR).execute();
+
         result.success(true).data(assessmentIndicatorValue);
         return result;
     }
@@ -239,7 +243,7 @@ public class AssessmentIndicatorValueController extends SuperController {
     @ApiOperation(value = "查询考核结果")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.TASK_PAPER_ID, value = "评分卷", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.TASK_PAPER_ID, value = "评分表", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.INDICATOR_ID, value = "指标", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.VALUE, value = "得分", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
@@ -262,7 +266,7 @@ public class AssessmentIndicatorValueController extends SuperController {
     @ApiOperation(value = "分页查询考核结果")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.TASK_PAPER_ID, value = "评分卷", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.TASK_PAPER_ID, value = "评分表", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.INDICATOR_ID, value = "指标", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.VALUE, value = "得分", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssessmentIndicatorValueVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
@@ -274,11 +278,12 @@ public class AssessmentIndicatorValueController extends SuperController {
     @PostMapping(AssessmentIndicatorValueServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<AssessmentIndicatorValue>> queryPagedList(AssessmentIndicatorValueVO sample) {
         Result<PagedList<AssessmentIndicatorValue>> result = new Result<>();
-        PagedList<AssessmentIndicatorValue> list = assessmentIndicatorValueService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
-        assessmentIndicatorValueService.dao().fill(list).with(AssessmentIndicatorValueMeta.ASSESSMENT_INDICATOR)
-                .with(AssessmentIndicatorValueMeta.ASSESSMENT_INDICATOR)
-                .execute();
 
+        OrderBy orderBy=new OrderBy();
+        orderBy.asc("sn");
+        PagedList<AssessmentIndicatorValue> list = assessmentIndicatorValueService.queryPagedList(sample, orderBy,sample.getPageSize(), sample.getPageIndex());
+
+        assessmentIndicatorValueService.dao().fill(list).with(AssessmentIndicatorValueMeta.ASSESSMENT_INDICATOR).execute();
         result.success(true).data(list);
         return result;
     }
