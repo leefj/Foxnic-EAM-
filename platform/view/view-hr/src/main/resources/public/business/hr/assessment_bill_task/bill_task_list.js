@@ -93,7 +93,7 @@ function ListPage() {
 				page:true,
 				where: ps,
 				cols: [[
-					{title: '#', width: 50,hide:false, spread: SPREAD,children:function(row){
+					{title: '#', width: 50,hide:false, spread: false,children:function(row){
 							return [
 								{
 									title: '任务明细',

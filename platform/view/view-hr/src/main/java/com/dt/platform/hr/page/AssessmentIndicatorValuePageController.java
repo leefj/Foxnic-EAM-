@@ -59,6 +59,7 @@ public class AssessmentIndicatorValuePageController extends ViewController {
 	 */
 	@RequestMapping("/assessment_indicator_value_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
+		model.addAttribute("indData","indData");
 		return getTemplatePath(prefix,"assessment_indicator_value_form");
 	}
 }

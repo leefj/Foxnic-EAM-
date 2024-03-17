@@ -216,6 +216,36 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 console.log("execute finish");
             });
         },
+        showRwm:function(data,it){
+
+            var textValue = data.code;
+            var type = "auto";
+            var text = data.code
+            layer.open({
+                type: 1
+                , offset: type
+                ,title:"二维码"
+                , area: ["60%", "60%"]
+                , id: 'layerAsset_' + type //防止重复弹出
+                , content: '<div style="padding: 20px 100px;">' + text + '</div> ' +
+                    '<div style="margin-left:20px;margin-right: 20px;margin-top:20px;margin-bottom: 20px;" id="assetCodePic"></div>'
+                , btn: '关闭'
+                , btnAlign: 'c' //按钮居中
+                , shade: 0 //不显示遮罩
+                , success: function (layero) {
+                    console.log("open success",layero);
+                    $("#assetCodePic").qrcode({
+                        render: "canvas",
+                        wihth: 250,
+                        height: 250,
+                        text: textValue
+                    });
+                }
+                ,yes: function(){
+                    layer.closeAll();
+                }
+            });
+        },
         importData:function(selected,obj){
             var q="?code=123&importApi="+moduleURL+"/import-excel";
             var index = admin.popupCenter({

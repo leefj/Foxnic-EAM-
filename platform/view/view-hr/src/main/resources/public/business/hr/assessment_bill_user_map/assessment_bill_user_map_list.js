@@ -1,7 +1,7 @@
 /**
  * 人员映射 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-14 07:26:11
+ * @since 2024-03-16 19:51:40
  */
 
 
@@ -94,8 +94,17 @@ function ListPage() {
 					,{ field: 'sameScore', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('互评分') , templet: function (d) { return templet('sameScore',d.sameScore,d);}  }
 					,{ field: 'leaderScore', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('直属领导评分') , templet: function (d) { return templet('leaderScore',d.leaderScore,d);}  }
 					,{ field: 'secondLeaderScore', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('上上级别领导评分') , templet: function (d) { return templet('secondLeaderScore',d.secondLeaderScore,d);}  }
+					,{ field: 'isConfirm', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('复核情况'), templet:function (d){ return templet('isConfirm',fox.getEnumText(RADIO_ISCONFIRM_DATA,d.isConfirm,'','isConfirm'),d);}}
 					,{ field: 'result', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('生成状态'), templet:function (d){ return templet('result',fox.getEnumText(RADIO_RESULT_DATA,d.result,'','result'),d);}}
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'selfScoreValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('自评分') , templet: function (d) { return templet('selfScoreValue',fox.getProperty(d,["selfScorePaper","scoreValue"],0,'','selfScoreValue'),d);} }
+					,{ field: 'leaderScoreValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('直接领导分') , templet: function (d) { return templet('leaderScoreValue',fox.getProperty(d,["leaderScorePaper","scoreValue"],0,'','leaderScoreValue'),d);} }
+					,{ field: 'secondLeaderScoreValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('上上级领导分') , templet: function (d) { return templet('secondLeaderScoreValue',fox.getProperty(d,["secondLeaderScorePaper","scoreValue"],0,'','secondLeaderScoreValue'),d);} }
+					,{ field: 'incompleteSecondLeaderPaperCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('上上级别领导未完成数') , templet: function (d) { return templet('incompleteSecondLeaderPaperCount',d.incompleteSecondLeaderPaperCount,d);}  }
+					,{ field: 'incompleteLeaderPaperCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('直接领导未完成数') , templet: function (d) { return templet('incompleteLeaderPaperCount',d.incompleteLeaderPaperCount,d);}  }
+					,{ field: 'incompleteSamePaperCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('互评未完成数') , templet: function (d) { return templet('incompleteSamePaperCount',d.incompleteSamePaperCount,d);}  }
+					,{ field: 'incompleteSelfPaperCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('自评未完成数') , templet: function (d) { return templet('incompleteSelfPaperCount',d.incompleteSelfPaperCount,d);}  }
+					,{ field: 'sameUserAvgScoreValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('互评评价分') , templet: function (d) { return templet('sameUserAvgScoreValue',d.sameUserAvgScoreValue,d);}  }
 					,{ field: 'leaderUserIdRel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('直属领导【参考】') , templet: function (d) { return templet('leaderUserIdRel',fox.getProperty(d,["leaderUserRel","name"],0,'','leaderUserIdRel'),d);} }
 					,{ field: 'secondLeaderUserIdRel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('上上级领导【参考】') , templet: function (d) { return templet('secondLeaderUserIdRel',fox.getProperty(d,["secondLeaderUserRel","name"],0,'','secondLeaderUserIdRel'),d);} }
 					,{ field: 'sameUserIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('人员互评') , templet: function (d) { return templet('sameUserIds',fox.getProperty(d,["sameUserList","name"],0,'','sameUserIds'),d);} }

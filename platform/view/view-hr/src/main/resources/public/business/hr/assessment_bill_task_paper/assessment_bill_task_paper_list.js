@@ -1,7 +1,7 @@
 /**
  * 考核试卷 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 13:59:40
+ * @since 2024-03-16 17:56:39
  */
 
 
@@ -85,7 +85,9 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'relationship', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('关系') , templet: function (d) { return templet('relationship',d.relationship,d);}  }
 					,{ field: 'assesseeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('被考核人') , templet: function (d) { return templet('assesseeId',fox.getProperty(d,["assessee","name"],0,'','assesseeId'),d);} }
+					,{ field: 'userMapId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('用户') , templet: function (d) { return templet('userMapId',d.userMapId,d);}  }
 					,{ field: 'name', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('name') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }

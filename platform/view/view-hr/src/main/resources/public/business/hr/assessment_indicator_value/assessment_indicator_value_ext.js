@@ -242,6 +242,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function (action,data) {
             //获取参数，并调整下拉框查询用的URL
+
+
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
@@ -257,6 +259,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充前
          * */
         beforeDataFill:function (data) {
+            if(data.assessmentIndicator.inputType=="pj"){
+                $("#value").parent().parent().hide();
+            }
+
+            if(data.assessmentIndicator.inputType=="pf"){
+                $("#content").parent().parent().hide();
+            }
+
+            // if(IND_DATA){
+            //     if(IND_DATA.inputType=="pf"){
+            //
+            //     }else if(IND_DATA.inputType=="pj"){
+            //
+            //     }
+            // }
             console.log('beforeDataFill',data);
         },
         /**

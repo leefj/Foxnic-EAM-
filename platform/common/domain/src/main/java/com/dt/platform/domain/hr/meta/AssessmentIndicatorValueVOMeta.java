@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 23:14:32
+ * @since 2024-03-15 18:11:48
  * @sign DF3FE34BD1CF467CC4495113D19A8059
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -151,14 +151,14 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
-	 * 评分卷 , 类型: java.lang.String
+	 * 评分表 , 类型: java.lang.String
 	*/
 	public static final String TASK_PAPER_ID="taskPaperId";
 	
 	/**
-	 * 评分卷 , 类型: java.lang.String
+	 * 评分表 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> TASK_PAPER_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,TASK_PAPER_ID, java.lang.String.class, "评分卷", "评分卷", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> TASK_PAPER_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,TASK_PAPER_ID, java.lang.String.class, "评分表", "评分表", java.lang.String.class, null);
 	
 	/**
 	 * 指标 , 类型: java.lang.String
@@ -181,16 +181,6 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.math.BigDecimal> VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,VALUE, java.math.BigDecimal.class, "得分", "得分", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 顺序 , 类型: java.lang.Integer
-	*/
-	public static final String SN="sn";
-	
-	/**
-	 * 顺序 , 类型: java.lang.Integer
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.Integer> SN_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,SN, java.lang.Integer.class, "顺序", "顺序", java.lang.Integer.class, null);
-	
-	/**
 	 * 内容 , 类型: java.lang.String
 	*/
 	public static final String CONTENT="content";
@@ -199,6 +189,16 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 	 * 内容 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,CONTENT, java.lang.String.class, "内容", "内容", java.lang.String.class, null);
+	
+	/**
+	 * 顺序 , 类型: java.lang.Integer
+	*/
+	public static final String SN="sn";
+	
+	/**
+	 * 顺序 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorValueVO,java.lang.Integer> SN_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorValueVO.class ,SN, java.lang.Integer.class, "顺序", "顺序", java.lang.Integer.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -363,7 +363,7 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TASK_PAPER_ID , INDICATOR_ID , VALUE , SN , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_INDICATOR , INDICATOR_GROUP_NAME , INDICATOR_NAME , INDICATOR_SCORING_BASE , INDICATOR_DEF , INDICATOR_MIN_VALUE , INDICATOR_MAX_VALUE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TASK_PAPER_ID , INDICATOR_ID , VALUE , CONTENT , SN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_INDICATOR , INDICATOR_GROUP_NAME , INDICATOR_NAME , INDICATOR_SCORING_BASE , INDICATOR_DEF , INDICATOR_MIN_VALUE , INDICATOR_MAX_VALUE };
 	
 	/**
 	 * 代理类
@@ -517,8 +517,8 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 		}
 		
 		/**
-		 * 设置 评分卷
-		 * @param taskPaperId 评分卷
+		 * 设置 评分表
+		 * @param taskPaperId 评分表
 		 * @return 当前对象
 		*/
 		public AssessmentIndicatorValue setTaskPaperId(String taskPaperId) {
@@ -550,17 +550,6 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 		}
 		
 		/**
-		 * 设置 顺序
-		 * @param sn 顺序
-		 * @return 当前对象
-		*/
-		public AssessmentIndicatorValue setSn(Integer sn) {
-			super.change(SN,super.getSn(),sn);
-			super.setSn(sn);
-			return this;
-		}
-		
-		/**
 		 * 设置 内容
 		 * @param content 内容
 		 * @return 当前对象
@@ -568,6 +557,17 @@ public class AssessmentIndicatorValueVOMeta extends AssessmentIndicatorValueMeta
 		public AssessmentIndicatorValue setContent(String content) {
 			super.change(CONTENT,super.getContent(),content);
 			super.setContent(content);
+			return this;
+		}
+		
+		/**
+		 * 设置 顺序
+		 * @param sn 顺序
+		 * @return 当前对象
+		*/
+		public AssessmentIndicatorValue setSn(Integer sn) {
+			super.change(SN,super.getSn(),sn);
+			super.setSn(sn);
 			return this;
 		}
 		

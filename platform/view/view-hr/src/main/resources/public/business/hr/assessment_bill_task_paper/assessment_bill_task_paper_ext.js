@@ -155,24 +155,51 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 }
                 return html;
             }
+            //
+            // if(field=="IndicatorMinValue"){
+            //     var html="";
+            //     if(r.assessmentIndicator&&r.assessmentIndicator.targetMinValue){
+            //         html=r.assessmentIndicator.targetMinValue;
+            //     }
+            //     return html;
+            // }
+            //
+            // if(field=="IndicatorMaxValue"){
+            //     var html="";
+            //     if(r.assessmentIndicator&&r.assessmentIndicator.targetMaxValue){
+            //         html=r.assessmentIndicator.targetMaxValue;
+            //     }
+            //     return html;
+            // }
 
             if(field=="IndicatorMinValue"){
                 var html="";
+                var min=""
                 if(r.assessmentIndicator&&r.assessmentIndicator.targetMinValue){
-                    html=r.assessmentIndicator.targetMinValue;
+                    min=r.assessmentIndicator.targetMinValue
                 }
+                var max=""
+                if(r.assessmentIndicator&&r.assessmentIndicator.targetMinValue){
+                    max=r.assessmentIndicator.targetMinValue
+                }
+                html=min+"-"+max;
                 return html;
             }
 
-            if(field=="IndicatorMaxValue"){
-                var html="";
-                if(r.assessmentIndicator&&r.assessmentIndicator.targetMaxValue){
-                    html=r.assessmentIndicator.targetMaxValue;
+            if(field=="value"){
+                console.log(r);
+                if(r.assessmentIndicator.inputType=="pf"){
+                    return value
+                }else if(r.assessmentIndicator.inputType=="pj"){
+                    if(r.content){
+                        return r.content
+                    }else{
+                        return ""
+                    }
                 }
-                return html;
+                return value;
+
             }
-
-
 
             if(value==null) return "";
             return value;

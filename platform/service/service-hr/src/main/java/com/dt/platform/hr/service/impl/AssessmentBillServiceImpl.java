@@ -129,13 +129,11 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 	public Result release(String id) {
 		AssessmentBill assessmentBill=this.getById(id);
 
-
 		if(AssessmentBillStatusEnum.ACTING.code().equals(assessmentBill.getStatus())
 				||AssessmentBillStatusEnum.FINISH.code().equals(assessmentBill.getStatus())
 		){
 			return ErrorDesc.failureMessage("当前状态不能进行操作");
 		}
-
 
         dao.fill(assessmentBill).with(AssessmentBillMeta.ASSESSMENT_TASK).execute();
 
@@ -168,24 +166,29 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 		//直接领导
 		RcdSet leaderRs=dao.query("select distinct leader_id user_id from hr_assessment_bill_user_map where deleted=0 and status='enable' and bill_id=? and leader_id is not null",id);
 		List<String> leaderList=leaderRs.getValueList("user_id",String.class);
-		if (YesNoEnum.YES.code().equals(assessmentBill.getAssessmentDataTask().getHasSameAssessment())){
+		if (YesNoEnum.YES.code().equals(assessmentBill.getAssessmentDataTask().getHasLeaderAssessment())){
 			userList.addAll(leaderList);
 		}
 
 		//处理上上级别领导
-		RcdSet secondleaderRs=dao.query("select distinct second_leader_id from hr_assessment_bill_user_map where deleted=0 and status='enable' and bill_id=? and second_leader_id is not null",id);
+		RcdSet secondleaderRs=dao.query("select distinct second_leader_id user_id from hr_assessment_bill_user_map where deleted=0 and status='enable' and bill_id=? and second_leader_id is not null",id);
 		List<String> secondleaderList=secondleaderRs.getValueList("user_id",String.class);
 		userList.addAll(secondleaderList);
-		if (YesNoEnum.YES.code().equals(assessmentBill.getAssessmentDataTask().getHasSameAssessment())){
+		if (YesNoEnum.YES.code().equals(assessmentBill.getAssessmentDataTask().getHasSecondLeaderAssessment())){
 			userList.addAll(secondleaderList);
 		}
+
 		List<String> userListUniq = userList.stream().distinct().collect(Collectors.toList());
 
 		if(userListUniq.size()==0){
 			return ErrorDesc.failureMessage("当前无用户需要生成");
 		}
 
+
 		dao.execute("update hr_assessment_bill_task set deleted=1 where bill_id=?",id);
+		dao.execute("update hr_assessment_bill_task_dtl set deleted=1 where bill_id=?",id);
+		dao.execute("update hr_assessment_bill_task_paper set deleted=1 where bill_id=?",id);
+
 
 		//生成考核单
 		List<AssessmentBillTask> billTaskList=new ArrayList<>();
@@ -285,11 +288,9 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 
 		AssessmentBill bill=this.getById(id);
 		if(AssessmentBillStatusEnum.ACTING.code().equals(bill.getStatus())
-				||AssessmentBillStatusEnum.FINISH.code().equals(bill.getStatus())
-		){
+				||AssessmentBillStatusEnum.FINISH.code().equals(bill.getStatus())){
 			return ErrorDesc.failureMessage("当前状态不能进行操作");
 		}
-
 
 		dao.fill(bill).with(AssessmentBillMeta.ASSESSMENT_BILL_TASK_LIST).execute();
 		List<AssessmentBillTask> list=bill.getAssessmentBillTaskList();
@@ -314,6 +315,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 	}
 
 	public Result createPaperData(AssessmentBillTask assessmentBillTask){
+
 
 
 		dao.execute("update hr_assessment_bill_task_paper set deleted=1 where bill_task_id=?",assessmentBillTask.getId());
@@ -368,6 +370,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 						paper.setBillId(assessmentBillTask.getBillId());
 						paper.setAssesseeId(userIdsUniq.get(j));
 						paper.setAssessorId(assessmentBillTask.getAssessorId());
+						paper.setRelationship(AssessmentBillTaskDtlRelationshipEnum.SELF.code());
 						paperIdsList.add(paperId);
 						paperList.add(paper);
 					}
@@ -392,6 +395,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 						// setAssessorId 考核人
 						paper.setAssesseeId(userIdsUniq.get(j));
 						paper.setAssessorId(assessmentBillTask.getAssessorId());
+						paper.setRelationship(AssessmentBillTaskDtlRelationshipEnum.LEADER.code());
 						//插入试卷
 						paperIdsList.add(paperId);
 						paperList.add(paper);
@@ -417,6 +421,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 						paper.setAssesseeId(userIdsUniq.get(j));
 						paper.setAssessorId(assessmentBillTask.getAssessorId());
 						paperIdsList.add(paperId);
+						paper.setRelationship(AssessmentBillTaskDtlRelationshipEnum.SECONDLEADER.code());
 						paperList.add(paper);
 					}
 				}
@@ -437,6 +442,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 						paper.setBillTaskDtlId(dtl.getId());
 						paper.setBillTaskId(assessmentBillTask.getId());
 						paper.setBillId(assessmentBillTask.getBillId());
+						paper.setRelationship(AssessmentBillTaskDtlRelationshipEnum.SAMEUSER.code());
 						if(userIdsUniq.get(j)!=null&&userIdsUniq.get(j).equals(assessmentBillTask.getAssessorId())){
 							continue;
 						}
@@ -466,8 +472,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 			}
 			assessmentBillTaskPaperService.insertList(paperList);
 		}
-
-
+		dao.execute("update hr_assessment_bill_task_paper a,hr_assessment_bill_user_map b set a.user_map_id=b.id where a.deleted=0 and b.deleted=0 and a.assessee_id=b.assessee_id and a.bill_id=b.bill_id and a.bill_id=?",assessmentBillTask.getBillId());
 		return ErrorDesc.success();
 	}
 
@@ -476,8 +481,7 @@ public class AssessmentBillServiceImpl extends SuperService<AssessmentBill> impl
 	public Result reset(String id) {
 		AssessmentBill assessmentBill=this.getById(id);
 		if(AssessmentBillStatusEnum.ACTING.code().equals(assessmentBill.getStatus())
-				||AssessmentBillStatusEnum.FINISH.code().equals(assessmentBill.getStatus())
-		){
+				||AssessmentBillStatusEnum.FINISH.code().equals(assessmentBill.getStatus())){
 			return ErrorDesc.failureMessage("当前状态不能进行操作");
 		}
 

@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点VO类型
  * <p>巡检点 , 数据表 eam_inspection_point 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-07 15:51:26
+ * @since 2024-03-16 22:11:39
  * @sign 371CE6A618210E29DF0A57D83CAB6C81
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

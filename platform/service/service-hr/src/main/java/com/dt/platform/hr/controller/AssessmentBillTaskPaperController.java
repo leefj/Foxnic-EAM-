@@ -1,7 +1,6 @@
 package com.dt.platform.hr.controller;
 
 import java.util.*;
-
 import com.dt.platform.domain.hr.*;
 import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.framework.web.SuperController;
@@ -30,7 +29,6 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.hr.meta.AssessmentBillTaskPaperMeta;
 import java.math.BigDecimal;
-
 import org.github.foxnic.web.domain.hrm.Employee;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -70,7 +68,9 @@ public class AssessmentBillTaskPaperController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.CONTENT, value = "说明", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_ID, value = "任务", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_TASK_ID, value = "任务", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_TASK_ID, value = "任务", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.RELATIONSHIP, value = "关系", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.USER_MAP_ID, value = "用户", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -173,7 +173,9 @@ public class AssessmentBillTaskPaperController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.CONTENT, value = "说明", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_ID, value = "任务", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_TASK_ID, value = "任务", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_TASK_ID, value = "任务", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.RELATIONSHIP, value = "关系", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.USER_MAP_ID, value = "用户", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { AssessmentBillTaskPaperVOMeta.PAGE_INDEX, AssessmentBillTaskPaperVOMeta.PAGE_SIZE, AssessmentBillTaskPaperVOMeta.SEARCH_FIELD, AssessmentBillTaskPaperVOMeta.FUZZY_FIELD, AssessmentBillTaskPaperVOMeta.SEARCH_VALUE, AssessmentBillTaskPaperVOMeta.DIRTY_FIELDS, AssessmentBillTaskPaperVOMeta.SORT_FIELD, AssessmentBillTaskPaperVOMeta.SORT_TYPE, AssessmentBillTaskPaperVOMeta.DATA_ORIGIN, AssessmentBillTaskPaperVOMeta.QUERY_LOGIC, AssessmentBillTaskPaperVOMeta.REQUEST_ACTION, AssessmentBillTaskPaperVOMeta.IDS })
@@ -198,7 +200,9 @@ public class AssessmentBillTaskPaperController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.CONTENT, value = "说明", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_ID, value = "任务", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_TASK_ID, value = "任务", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_TASK_ID, value = "任务", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.RELATIONSHIP, value = "关系", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.USER_MAP_ID, value = "用户", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { AssessmentBillTaskPaperVOMeta.PAGE_INDEX, AssessmentBillTaskPaperVOMeta.PAGE_SIZE, AssessmentBillTaskPaperVOMeta.SEARCH_FIELD, AssessmentBillTaskPaperVOMeta.FUZZY_FIELD, AssessmentBillTaskPaperVOMeta.SEARCH_VALUE, AssessmentBillTaskPaperVOMeta.DIRTY_FIELDS, AssessmentBillTaskPaperVOMeta.SORT_FIELD, AssessmentBillTaskPaperVOMeta.SORT_TYPE, AssessmentBillTaskPaperVOMeta.DATA_ORIGIN, AssessmentBillTaskPaperVOMeta.QUERY_LOGIC, AssessmentBillTaskPaperVOMeta.REQUEST_ACTION, AssessmentBillTaskPaperVOMeta.IDS })
@@ -260,7 +264,9 @@ public class AssessmentBillTaskPaperController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.CONTENT, value = "说明", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_ID, value = "任务", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_TASK_ID, value = "任务", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_TASK_ID, value = "任务", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.RELATIONSHIP, value = "关系", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.USER_MAP_ID, value = "用户", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { AssessmentBillTaskPaperVOMeta.PAGE_INDEX, AssessmentBillTaskPaperVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssessmentBillTaskPaperServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -286,7 +292,9 @@ public class AssessmentBillTaskPaperController extends SuperController {
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.CONTENT, value = "说明", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_ID, value = "任务", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_TASK_ID, value = "任务", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.BILL_TASK_ID, value = "任务", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.RELATIONSHIP, value = "关系", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssessmentBillTaskPaperVOMeta.USER_MAP_ID, value = "用户", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = AssessmentBillTaskPaperServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -296,14 +304,10 @@ public class AssessmentBillTaskPaperController extends SuperController {
         PagedList<AssessmentBillTaskPaper> list = assessmentBillTaskPaperService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         assessmentBillTaskPaperService.dao().fill(list).with("assessee").with("assessor").execute();
-
-
         List<Employee> employeeList = CollectorUtil.collectList(list, AssessmentBillTaskPaper::getAssessor);
         assessmentBillTaskPaperService.dao().join(employeeList, Person.class);
-
         List<Employee> employeeList2 = CollectorUtil.collectList(list, AssessmentBillTaskPaper::getAssessee);
         assessmentBillTaskPaperService.dao().join(employeeList2, Person.class);
-
         result.success(true).data(list);
         return result;
     }

@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核试卷VO类型
  * <p>考核试卷 , 数据表 hr_assessment_bill_task_paper 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 13:59:39
+ * @since 2024-03-16 17:56:37
  * @sign D0F5C41AA1F86419B8A151B1F24FE9AC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -419,17 +419,15 @@ public class AssessmentBillTaskPaperVO extends AssessmentBillTaskPaper {
 		inst.setBillId(this.getBillId());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setUserMapId(this.getUserMapId());
 		inst.setId(this.getId());
+		inst.setRelationship(this.getRelationship());
 		inst.setScoreValue(this.getScoreValue());
 		if(all) {
-			inst.setSameUserAvgScoreValue(this.getSameUserAvgScoreValue());
-			inst.setSameUserNeedCount(this.getSameUserNeedCount());
 			inst.setSearchField(this.getSearchField());
 			inst.setAssessee(this.getAssessee());
-			inst.setSameUserFinishCount(this.getSameUserFinishCount());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setAssessor(this.getAssessor());
-			inst.setIfHrConfirm(this.getIfHrConfirm());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setAssessmentIndicatorValueList(this.getAssessmentIndicatorValueList());
@@ -440,11 +438,8 @@ public class AssessmentBillTaskPaperVO extends AssessmentBillTaskPaper {
 			inst.setSortField(this.getSortField());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
-			inst.setLeaderScoreValue(this.getLeaderScoreValue());
 			inst.setQueryLogic(this.getQueryLogic());
-			inst.setSelfScoreValue(this.getSelfScoreValue());
 			inst.setSearchValue(this.getSearchValue());
-			inst.setSecondLeaderScoreValue(this.getSecondLeaderScoreValue());
 		}
 		inst.clearModifies();
 		return inst;
@@ -520,17 +515,15 @@ public class AssessmentBillTaskPaperVO extends AssessmentBillTaskPaper {
 			this.setBillId(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.BILL_ID)));
 			this.setTenantId(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.DELETE_BY)));
+			this.setUserMapId(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.USER_MAP_ID)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.ID)));
+			this.setRelationship(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.RELATIONSHIP)));
 			this.setScoreValue(DataParser.parse(BigDecimal.class, map.get(AssessmentBillTaskPaperVOMeta.SCORE_VALUE)));
 			// others
-			this.setSameUserAvgScoreValue(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.SAME_USER_AVG_SCORE_VALUE)));
-			this.setSameUserNeedCount(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.SAME_USER_NEED_COUNT)));
 			this.setSearchField(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.SEARCH_FIELD)));
 			this.setAssessee(DataParser.parse(Employee.class, map.get(AssessmentBillTaskPaperVOMeta.ASSESSEE)));
-			this.setSameUserFinishCount(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.SAME_USER_FINISH_COUNT)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.REQUEST_ACTION)));
 			this.setAssessor(DataParser.parse(Employee.class, map.get(AssessmentBillTaskPaperVOMeta.ASSESSOR)));
-			this.setIfHrConfirm(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.IF_HR_CONFIRM)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AssessmentBillTaskPaperVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssessmentBillTaskPaperVOMeta.PAGE_INDEX)));
@@ -538,11 +531,8 @@ public class AssessmentBillTaskPaperVO extends AssessmentBillTaskPaper {
 			this.setAssessmentBillTaskDtl(DataParser.parse(AssessmentBillTaskDtl.class, map.get(AssessmentBillTaskPaperVOMeta.ASSESSMENT_BILL_TASK_DTL)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.DATA_ORIGIN)));
-			this.setLeaderScoreValue(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.LEADER_SCORE_VALUE)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.QUERY_LOGIC)));
-			this.setSelfScoreValue(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.SELF_SCORE_VALUE)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.SEARCH_VALUE)));
-			this.setSecondLeaderScoreValue(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperVOMeta.SECOND_LEADER_SCORE_VALUE)));
 			return true;
 		} else {
 			try {
@@ -562,17 +552,15 @@ public class AssessmentBillTaskPaperVO extends AssessmentBillTaskPaper {
 				this.setBillId( (String)map.get(AssessmentBillTaskPaperVOMeta.BILL_ID));
 				this.setTenantId( (String)map.get(AssessmentBillTaskPaperVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AssessmentBillTaskPaperVOMeta.DELETE_BY));
+				this.setUserMapId( (String)map.get(AssessmentBillTaskPaperVOMeta.USER_MAP_ID));
 				this.setId( (String)map.get(AssessmentBillTaskPaperVOMeta.ID));
+				this.setRelationship( (String)map.get(AssessmentBillTaskPaperVOMeta.RELATIONSHIP));
 				this.setScoreValue( (BigDecimal)map.get(AssessmentBillTaskPaperVOMeta.SCORE_VALUE));
 				// others
-				this.setSameUserAvgScoreValue( (String)map.get(AssessmentBillTaskPaperVOMeta.SAME_USER_AVG_SCORE_VALUE));
-				this.setSameUserNeedCount( (String)map.get(AssessmentBillTaskPaperVOMeta.SAME_USER_NEED_COUNT));
 				this.setSearchField( (String)map.get(AssessmentBillTaskPaperVOMeta.SEARCH_FIELD));
 				this.setAssessee( (Employee)map.get(AssessmentBillTaskPaperVOMeta.ASSESSEE));
-				this.setSameUserFinishCount( (String)map.get(AssessmentBillTaskPaperVOMeta.SAME_USER_FINISH_COUNT));
 				this.setRequestAction( (String)map.get(AssessmentBillTaskPaperVOMeta.REQUEST_ACTION));
 				this.setAssessor( (Employee)map.get(AssessmentBillTaskPaperVOMeta.ASSESSOR));
-				this.setIfHrConfirm( (String)map.get(AssessmentBillTaskPaperVOMeta.IF_HR_CONFIRM));
 				this.setFuzzyField( (String)map.get(AssessmentBillTaskPaperVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(AssessmentBillTaskPaperVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(AssessmentBillTaskPaperVOMeta.PAGE_INDEX));
@@ -580,11 +568,8 @@ public class AssessmentBillTaskPaperVO extends AssessmentBillTaskPaper {
 				this.setAssessmentBillTaskDtl( (AssessmentBillTaskDtl)map.get(AssessmentBillTaskPaperVOMeta.ASSESSMENT_BILL_TASK_DTL));
 				this.setSortField( (String)map.get(AssessmentBillTaskPaperVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(AssessmentBillTaskPaperVOMeta.DATA_ORIGIN));
-				this.setLeaderScoreValue( (String)map.get(AssessmentBillTaskPaperVOMeta.LEADER_SCORE_VALUE));
 				this.setQueryLogic( (String)map.get(AssessmentBillTaskPaperVOMeta.QUERY_LOGIC));
-				this.setSelfScoreValue( (String)map.get(AssessmentBillTaskPaperVOMeta.SELF_SCORE_VALUE));
 				this.setSearchValue( (String)map.get(AssessmentBillTaskPaperVOMeta.SEARCH_VALUE));
-				this.setSecondLeaderScoreValue( (String)map.get(AssessmentBillTaskPaperVOMeta.SECOND_LEADER_SCORE_VALUE));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -617,7 +602,9 @@ public class AssessmentBillTaskPaperVO extends AssessmentBillTaskPaper {
 			this.setBillId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskPaperVOMeta.BILL_ID)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskPaperVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssessmentBillTaskPaperVOMeta.DELETE_BY)));
+			this.setUserMapId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskPaperVOMeta.USER_MAP_ID)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskPaperVOMeta.ID)));
+			this.setRelationship(DataParser.parse(String.class, r.getValue(AssessmentBillTaskPaperVOMeta.RELATIONSHIP)));
 			this.setScoreValue(DataParser.parse(BigDecimal.class, r.getValue(AssessmentBillTaskPaperVOMeta.SCORE_VALUE)));
 			return true;
 		} else {
@@ -638,7 +625,9 @@ public class AssessmentBillTaskPaperVO extends AssessmentBillTaskPaper {
 				this.setBillId( (String)r.getValue(AssessmentBillTaskPaperVOMeta.BILL_ID));
 				this.setTenantId( (String)r.getValue(AssessmentBillTaskPaperVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AssessmentBillTaskPaperVOMeta.DELETE_BY));
+				this.setUserMapId( (String)r.getValue(AssessmentBillTaskPaperVOMeta.USER_MAP_ID));
 				this.setId( (String)r.getValue(AssessmentBillTaskPaperVOMeta.ID));
+				this.setRelationship( (String)r.getValue(AssessmentBillTaskPaperVOMeta.RELATIONSHIP));
 				this.setScoreValue( (BigDecimal)r.getValue(AssessmentBillTaskPaperVOMeta.SCORE_VALUE));
 				return true;
 			} catch (Exception e) {

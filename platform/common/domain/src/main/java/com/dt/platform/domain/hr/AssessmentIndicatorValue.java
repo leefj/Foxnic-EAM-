@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核结果
  * <p>考核结果 , 数据表 hr_assessment_indicator_value 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 23:14:32
- * @sign C071413DA5D2F314EA97E984B1F14F24
+ * @since 2024-03-15 18:11:48
+ * @sign 4D73E285831145B4E430AA30FAF126A1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,9 +45,9 @@ public class AssessmentIndicatorValue extends Entity {
 	private String id;
 	
 	/**
-	 * 评分卷：评分卷
+	 * 评分表：评分表
 	*/
-	@ApiModelProperty(required = false,value="评分卷" , notes = "评分卷" , example = "820258554597343232")
+	@ApiModelProperty(required = false,value="评分表" , notes = "评分表" , example = "820258554597343232")
 	private String taskPaperId;
 	
 	/**
@@ -63,16 +63,16 @@ public class AssessmentIndicatorValue extends Entity {
 	private BigDecimal value;
 	
 	/**
-	 * 顺序：顺序
-	*/
-	@ApiModelProperty(required = false,value="顺序" , notes = "顺序" , example = "1")
-	private Integer sn;
-	
-	/**
 	 * 内容：内容
 	*/
 	@ApiModelProperty(required = false,value="内容" , notes = "内容")
 	private String content;
+	
+	/**
+	 * 顺序：顺序
+	*/
+	@ApiModelProperty(required = false,value="顺序" , notes = "顺序" , example = "1")
+	private Integer sn;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -193,17 +193,17 @@ public class AssessmentIndicatorValue extends Entity {
 	}
 	
 	/**
-	 * 获得 评分卷<br>
-	 * 评分卷
-	 * @return 评分卷
+	 * 获得 评分表<br>
+	 * 评分表
+	 * @return 评分表
 	*/
 	public String getTaskPaperId() {
 		return taskPaperId;
 	}
 	
 	/**
-	 * 设置 评分卷
-	 * @param taskPaperId 评分卷
+	 * 设置 评分表
+	 * @param taskPaperId 评分表
 	 * @return 当前对象
 	*/
 	public AssessmentIndicatorValue setTaskPaperId(String taskPaperId) {
@@ -250,25 +250,6 @@ public class AssessmentIndicatorValue extends Entity {
 	}
 	
 	/**
-	 * 获得 顺序<br>
-	 * 顺序
-	 * @return 顺序
-	*/
-	public Integer getSn() {
-		return sn;
-	}
-	
-	/**
-	 * 设置 顺序
-	 * @param sn 顺序
-	 * @return 当前对象
-	*/
-	public AssessmentIndicatorValue setSn(Integer sn) {
-		this.sn=sn;
-		return this;
-	}
-	
-	/**
 	 * 获得 内容<br>
 	 * 内容
 	 * @return 内容
@@ -284,6 +265,25 @@ public class AssessmentIndicatorValue extends Entity {
 	*/
 	public AssessmentIndicatorValue setContent(String content) {
 		this.content=content;
+		return this;
+	}
+	
+	/**
+	 * 获得 顺序<br>
+	 * 顺序
+	 * @return 顺序
+	*/
+	public Integer getSn() {
+		return sn;
+	}
+	
+	/**
+	 * 设置 顺序
+	 * @param sn 顺序
+	 * @return 当前对象
+	*/
+	public AssessmentIndicatorValue setSn(Integer sn) {
+		this.sn=sn;
 		return this;
 	}
 	

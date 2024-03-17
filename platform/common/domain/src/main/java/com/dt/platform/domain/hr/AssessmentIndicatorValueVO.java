@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核结果VO类型
  * <p>考核结果 , 数据表 hr_assessment_indicator_value 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 23:14:32
+ * @since 2024-03-15 18:11:48
  * @sign DF3FE34BD1CF467CC4495113D19A8059
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

@@ -2,7 +2,7 @@
 /**
  * 人员映射 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-14 07:26:11
+ * @since 2024-03-16 19:51:41
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-8959-content">
+        <div class="layui-row form-row" id="random-1126-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -71,11 +71,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3724-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0143-fieldset">
             <legend>人员信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-3724-content">
+        <div class="layui-row form-row" id="random-0143-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -118,11 +118,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9814-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5078-fieldset">
             <legend>生成记录</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-9814-content">
+        <div class="layui-row form-row" id="random-5078-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -161,6 +161,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_ISCONFIRM_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentBillConfirmStatusEnum')}]];
     var RADIO_RESULT_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusSuccessFailedEnum')}]];
     var VALIDATE_CONFIG={"assesseeId":{"labelInForm":"被考核人","inputType":"button","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true}};
     var AUTH_PREFIX="hr_assessment_bill_user_map";

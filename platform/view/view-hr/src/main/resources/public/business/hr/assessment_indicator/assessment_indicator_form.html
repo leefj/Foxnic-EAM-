@@ -2,7 +2,7 @@
 /**
  * 考核指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 20:35:54
+ * @since 2024-03-15 18:43:30
  */
  -->
  <!DOCTYPE html>
@@ -37,11 +37,11 @@
 
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2833-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7112-fieldset">
             <legend>指标说明</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-2833-content">
+        <div class="layui-row form-row" id="random-7112-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -106,7 +106,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-8952-content">
+        <div class="layui-row form-row" id="random-2259-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -141,11 +141,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3526-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5989-fieldset">
             <legend>得分情况</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-3526-content">
+        <div class="layui-row form-row" id="random-5989-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -186,12 +186,20 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-9786-content">
+        <div class="layui-row form-row" id="random-9082-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
 
+                <!-- radio_box : 组件类型 ,  inputType  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('组件类型')}">组件类型</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="inputType" lay-filter="inputType" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentIndicatorInputTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
+                    </div>
+                </div>
+            
                 <!-- number_input : 排序 ,  sn  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('排序')}">排序</div></div>
@@ -225,7 +233,8 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_PROPERTY_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentIndicatorPropertyEnum')}]];
-    var VALIDATE_CONFIG={"name":{"labelInForm":"指标名称","inputType":"text_input","required":true},"property":{"labelInForm":"定性/定量指标","inputType":"radio_box","required":true}};
+    var RADIO_INPUTTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.hr.AssessmentIndicatorInputTypeEnum')}]];
+    var VALIDATE_CONFIG={"name":{"labelInForm":"指标名称","inputType":"text_input","required":true},"property":{"labelInForm":"定性/定量指标","inputType":"radio_box","required":true},"inputType":{"labelInForm":"组件类型","inputType":"radio_box","required":true}};
     var AUTH_PREFIX="hr_assessment_indicator";
 
     // assessmentId

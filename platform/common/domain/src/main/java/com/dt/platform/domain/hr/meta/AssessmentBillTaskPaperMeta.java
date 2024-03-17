@@ -14,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 13:59:39
- * @sign 2CB0C5EC8D3EC8911824972B9360E346
+ * @since 2024-03-16 17:56:37
+ * @sign F2D852A149AF59BA9667C0F9583ABA75
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -62,6 +62,16 @@ public class AssessmentBillTaskPaperMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskPaper,java.lang.String> BILL_TASK_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskPaper.class ,BILL_TASK_ID, java.lang.String.class, "任务", "任务", java.lang.String.class, null);
 	
 	/**
+	 * 关系 , 类型: java.lang.String
+	*/
+	public static final String RELATIONSHIP="relationship";
+	
+	/**
+	 * 关系 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskPaper,java.lang.String> RELATIONSHIP_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskPaper.class ,RELATIONSHIP, java.lang.String.class, "关系", "关系", java.lang.String.class, null);
+	
+	/**
 	 * 考核人 , 类型: java.lang.String
 	*/
 	public static final String ASSESSOR_ID="assessorId";
@@ -100,6 +110,16 @@ public class AssessmentBillTaskPaperMeta {
 	 * 综合评价 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskPaper,java.lang.String> EVALUATE_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskPaper.class ,EVALUATE_CONTENT, java.lang.String.class, "综合评价", "综合评价", java.lang.String.class, null);
+	
+	/**
+	 * 用户 , 类型: java.lang.String
+	*/
+	public static final String USER_MAP_ID="userMapId";
+	
+	/**
+	 * 用户 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskPaper,java.lang.String> USER_MAP_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskPaper.class ,USER_MAP_ID, java.lang.String.class, "用户", "用户", java.lang.String.class, null);
 	
 	/**
 	 * 说明 , 类型: java.lang.String
@@ -242,79 +262,9 @@ public class AssessmentBillTaskPaperMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskPaper,org.github.foxnic.web.domain.hrm.Employee> ASSESSOR_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskPaper.class ,ASSESSOR, org.github.foxnic.web.domain.hrm.Employee.class, "assessor", "assessor", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
-	 * selfScoreValue , 类型: java.lang.String
-	*/
-	public static final String SELF_SCORE_VALUE="selfScoreValue";
-	
-	/**
-	 * selfScoreValue , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskPaper,java.lang.String> SELF_SCORE_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskPaper.class ,SELF_SCORE_VALUE, java.lang.String.class, "selfScoreValue", "selfScoreValue", java.lang.String.class, null);
-	
-	/**
-	 * sameUserAvgScoreValue , 类型: java.lang.String
-	*/
-	public static final String SAME_USER_AVG_SCORE_VALUE="sameUserAvgScoreValue";
-	
-	/**
-	 * sameUserAvgScoreValue , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskPaper,java.lang.String> SAME_USER_AVG_SCORE_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskPaper.class ,SAME_USER_AVG_SCORE_VALUE, java.lang.String.class, "sameUserAvgScoreValue", "sameUserAvgScoreValue", java.lang.String.class, null);
-	
-	/**
-	 * sameUserNeedCount , 类型: java.lang.String
-	*/
-	public static final String SAME_USER_NEED_COUNT="sameUserNeedCount";
-	
-	/**
-	 * sameUserNeedCount , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskPaper,java.lang.String> SAME_USER_NEED_COUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskPaper.class ,SAME_USER_NEED_COUNT, java.lang.String.class, "sameUserNeedCount", "sameUserNeedCount", java.lang.String.class, null);
-	
-	/**
-	 * sameUserFinishCount , 类型: java.lang.String
-	*/
-	public static final String SAME_USER_FINISH_COUNT="sameUserFinishCount";
-	
-	/**
-	 * sameUserFinishCount , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskPaper,java.lang.String> SAME_USER_FINISH_COUNT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskPaper.class ,SAME_USER_FINISH_COUNT, java.lang.String.class, "sameUserFinishCount", "sameUserFinishCount", java.lang.String.class, null);
-	
-	/**
-	 * leaderScoreValue , sameUserScoreValue , 类型: java.lang.String
-	*/
-	public static final String LEADER_SCORE_VALUE="leaderScoreValue";
-	
-	/**
-	 * leaderScoreValue , sameUserScoreValue , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskPaper,java.lang.String> LEADER_SCORE_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskPaper.class ,LEADER_SCORE_VALUE, java.lang.String.class, "leaderScoreValue", "sameUserScoreValue", java.lang.String.class, null);
-	
-	/**
-	 * secondLeaderScoreValue , 类型: java.lang.String
-	*/
-	public static final String SECOND_LEADER_SCORE_VALUE="secondLeaderScoreValue";
-	
-	/**
-	 * secondLeaderScoreValue , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskPaper,java.lang.String> SECOND_LEADER_SCORE_VALUE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskPaper.class ,SECOND_LEADER_SCORE_VALUE, java.lang.String.class, "secondLeaderScoreValue", "secondLeaderScoreValue", java.lang.String.class, null);
-	
-	/**
-	 * ifHrConfirm , 类型: java.lang.String
-	*/
-	public static final String IF_HR_CONFIRM="ifHrConfirm";
-	
-	/**
-	 * ifHrConfirm , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentBillTaskPaper,java.lang.String> IF_HR_CONFIRM_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentBillTaskPaper.class ,IF_HR_CONFIRM, java.lang.String.class, "ifHrConfirm", "ifHrConfirm", java.lang.String.class, null);
-	
-	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BILL_TASK_DTL_ID , BILL_ID , BILL_TASK_ID , ASSESSOR_ID , ASSESSEE_ID , SCORE_VALUE , EVALUATE_CONTENT , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_INDICATOR_VALUE_LIST , ASSESSMENT_BILL_TASK_DTL , ASSESSEE , ASSESSOR , SELF_SCORE_VALUE , SAME_USER_AVG_SCORE_VALUE , SAME_USER_NEED_COUNT , SAME_USER_FINISH_COUNT , LEADER_SCORE_VALUE , SECOND_LEADER_SCORE_VALUE , IF_HR_CONFIRM };
+	public static final String[] $PROPS={ ID , BILL_TASK_DTL_ID , BILL_ID , BILL_TASK_ID , RELATIONSHIP , ASSESSOR_ID , ASSESSEE_ID , SCORE_VALUE , EVALUATE_CONTENT , USER_MAP_ID , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSESSMENT_INDICATOR_VALUE_LIST , ASSESSMENT_BILL_TASK_DTL , ASSESSEE , ASSESSOR };
 	
 	/**
 	 * 代理类
@@ -369,6 +319,17 @@ public class AssessmentBillTaskPaperMeta {
 		}
 		
 		/**
+		 * 设置 关系
+		 * @param relationship 关系
+		 * @return 当前对象
+		*/
+		public AssessmentBillTaskPaper setRelationship(String relationship) {
+			super.change(RELATIONSHIP,super.getRelationship(),relationship);
+			super.setRelationship(relationship);
+			return this;
+		}
+		
+		/**
 		 * 设置 考核人
 		 * @param assessorId 考核人
 		 * @return 当前对象
@@ -409,6 +370,17 @@ public class AssessmentBillTaskPaperMeta {
 		public AssessmentBillTaskPaper setEvaluateContent(String evaluateContent) {
 			super.change(EVALUATE_CONTENT,super.getEvaluateContent(),evaluateContent);
 			super.setEvaluateContent(evaluateContent);
+			return this;
+		}
+		
+		/**
+		 * 设置 用户
+		 * @param userMapId 用户
+		 * @return 当前对象
+		*/
+		public AssessmentBillTaskPaper setUserMapId(String userMapId) {
+			super.change(USER_MAP_ID,super.getUserMapId(),userMapId);
+			super.setUserMapId(userMapId);
 			return this;
 		}
 		
@@ -565,83 +537,6 @@ public class AssessmentBillTaskPaperMeta {
 			super.setAssessor(assessor);
 			return this;
 		}
-		
-		/**
-		 * 设置 selfScoreValue
-		 * @param selfScoreValue selfScoreValue
-		 * @return 当前对象
-		*/
-		public AssessmentBillTaskPaper setSelfScoreValue(String selfScoreValue) {
-			super.change(SELF_SCORE_VALUE,super.getSelfScoreValue(),selfScoreValue);
-			super.setSelfScoreValue(selfScoreValue);
-			return this;
-		}
-		
-		/**
-		 * 设置 sameUserAvgScoreValue
-		 * @param sameUserAvgScoreValue sameUserAvgScoreValue
-		 * @return 当前对象
-		*/
-		public AssessmentBillTaskPaper setSameUserAvgScoreValue(String sameUserAvgScoreValue) {
-			super.change(SAME_USER_AVG_SCORE_VALUE,super.getSameUserAvgScoreValue(),sameUserAvgScoreValue);
-			super.setSameUserAvgScoreValue(sameUserAvgScoreValue);
-			return this;
-		}
-		
-		/**
-		 * 设置 sameUserNeedCount
-		 * @param sameUserNeedCount sameUserNeedCount
-		 * @return 当前对象
-		*/
-		public AssessmentBillTaskPaper setSameUserNeedCount(String sameUserNeedCount) {
-			super.change(SAME_USER_NEED_COUNT,super.getSameUserNeedCount(),sameUserNeedCount);
-			super.setSameUserNeedCount(sameUserNeedCount);
-			return this;
-		}
-		
-		/**
-		 * 设置 sameUserFinishCount
-		 * @param sameUserFinishCount sameUserFinishCount
-		 * @return 当前对象
-		*/
-		public AssessmentBillTaskPaper setSameUserFinishCount(String sameUserFinishCount) {
-			super.change(SAME_USER_FINISH_COUNT,super.getSameUserFinishCount(),sameUserFinishCount);
-			super.setSameUserFinishCount(sameUserFinishCount);
-			return this;
-		}
-		
-		/**
-		 * 设置 leaderScoreValue
-		 * @param leaderScoreValue leaderScoreValue
-		 * @return 当前对象
-		*/
-		public AssessmentBillTaskPaper setLeaderScoreValue(String leaderScoreValue) {
-			super.change(LEADER_SCORE_VALUE,super.getLeaderScoreValue(),leaderScoreValue);
-			super.setLeaderScoreValue(leaderScoreValue);
-			return this;
-		}
-		
-		/**
-		 * 设置 secondLeaderScoreValue
-		 * @param secondLeaderScoreValue secondLeaderScoreValue
-		 * @return 当前对象
-		*/
-		public AssessmentBillTaskPaper setSecondLeaderScoreValue(String secondLeaderScoreValue) {
-			super.change(SECOND_LEADER_SCORE_VALUE,super.getSecondLeaderScoreValue(),secondLeaderScoreValue);
-			super.setSecondLeaderScoreValue(secondLeaderScoreValue);
-			return this;
-		}
-		
-		/**
-		 * 设置 ifHrConfirm
-		 * @param ifHrConfirm ifHrConfirm
-		 * @return 当前对象
-		*/
-		public AssessmentBillTaskPaper setIfHrConfirm(String ifHrConfirm) {
-			super.change(IF_HR_CONFIRM,super.getIfHrConfirm(),ifHrConfirm);
-			super.setIfHrConfirm(ifHrConfirm);
-			return this;
-		}
 
 		/**
 		 * 克隆当前对象
@@ -674,20 +569,15 @@ public class AssessmentBillTaskPaperMeta {
 			inst.setBillId(this.getBillId());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setUserMapId(this.getUserMapId());
 			inst.setId(this.getId());
+			inst.setRelationship(this.getRelationship());
 			inst.setScoreValue(this.getScoreValue());
 			if(all) {
-				inst.setSameUserAvgScoreValue(this.getSameUserAvgScoreValue());
 				inst.setAssessmentIndicatorValueList(this.getAssessmentIndicatorValueList());
-				inst.setSameUserNeedCount(this.getSameUserNeedCount());
 				inst.setAssessee(this.getAssessee());
-				inst.setSameUserFinishCount(this.getSameUserFinishCount());
 				inst.setAssessor(this.getAssessor());
-				inst.setIfHrConfirm(this.getIfHrConfirm());
 				inst.setAssessmentBillTaskDtl(this.getAssessmentBillTaskDtl());
-				inst.setLeaderScoreValue(this.getLeaderScoreValue());
-				inst.setSelfScoreValue(this.getSelfScoreValue());
-				inst.setSecondLeaderScoreValue(this.getSecondLeaderScoreValue());
 			}
 			inst.clearModifies();
 			return inst;

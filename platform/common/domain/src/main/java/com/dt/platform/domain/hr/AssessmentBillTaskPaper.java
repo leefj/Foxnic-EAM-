@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 考核试卷
  * <p>考核试卷 , 数据表 hr_assessment_bill_task_paper 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 13:59:39
- * @sign 2CB0C5EC8D3EC8911824972B9360E346
+ * @since 2024-03-16 17:56:37
+ * @sign F2D852A149AF59BA9667C0F9583ABA75
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,43 +45,49 @@ public class AssessmentBillTaskPaper extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "820258554597343232")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "821414764633653248")
 	private String id;
 	
 	/**
 	 * 任务：任务
 	*/
-	@ApiModelProperty(required = false,value="任务" , notes = "任务" , example = "820247444540358656")
+	@ApiModelProperty(required = false,value="任务" , notes = "任务" , example = "821414684258205696")
 	private String billTaskDtlId;
 	
 	/**
 	 * 任务：任务
 	*/
-	@ApiModelProperty(required = false,value="任务" , notes = "任务" , example = "820011059996786688")
+	@ApiModelProperty(required = false,value="任务" , notes = "任务" , example = "820394780939780096")
 	private String billId;
 	
 	/**
 	 * 任务：任务
 	*/
-	@ApiModelProperty(required = false,value="任务" , notes = "任务" , example = "820247438899019776")
+	@ApiModelProperty(required = false,value="任务" , notes = "任务" , example = "821414679543808000")
 	private String billTaskId;
+	
+	/**
+	 * 关系：关系
+	*/
+	@ApiModelProperty(required = false,value="关系" , notes = "关系" , example = "self")
+	private String relationship;
 	
 	/**
 	 * 考核人：考核人
 	*/
-	@ApiModelProperty(required = false,value="考核人" , notes = "考核人")
+	@ApiModelProperty(required = false,value="考核人" , notes = "考核人" , example = "590511680593592320")
 	private String assessorId;
 	
 	/**
 	 * 被考核人：被考核人
 	*/
-	@ApiModelProperty(required = false,value="被考核人" , notes = "被考核人")
+	@ApiModelProperty(required = false,value="被考核人" , notes = "被考核人" , example = "590511680593592320")
 	private String assesseeId;
 	
 	/**
 	 * 综合得分：综合得分
 	*/
-	@ApiModelProperty(required = false,value="综合得分" , notes = "综合得分" , example = "100.00")
+	@ApiModelProperty(required = false,value="综合得分" , notes = "综合得分" , example = "0.00")
 	private BigDecimal scoreValue;
 	
 	/**
@@ -89,6 +95,12 @@ public class AssessmentBillTaskPaper extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="综合评价" , notes = "综合评价")
 	private String evaluateContent;
+	
+	/**
+	 * 用户：用户
+	*/
+	@ApiModelProperty(required = false,value="用户" , notes = "用户" , example = "821414484445757440")
+	private String userMapId;
 	
 	/**
 	 * 说明：说明
@@ -105,7 +117,7 @@ public class AssessmentBillTaskPaper extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-13 11:34:39")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-16 04:09:01")
 	private Date createTime;
 	
 	/**
@@ -176,48 +188,6 @@ public class AssessmentBillTaskPaper extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="assessor" , notes = "assessor")
 	private Employee assessor;
-	
-	/**
-	 * selfScoreValue：selfScoreValue
-	*/
-	@ApiModelProperty(required = false,value="selfScoreValue" , notes = "selfScoreValue")
-	private String selfScoreValue;
-	
-	/**
-	 * sameUserAvgScoreValue：sameUserAvgScoreValue
-	*/
-	@ApiModelProperty(required = false,value="sameUserAvgScoreValue" , notes = "sameUserAvgScoreValue")
-	private String sameUserAvgScoreValue;
-	
-	/**
-	 * sameUserNeedCount：sameUserNeedCount
-	*/
-	@ApiModelProperty(required = false,value="sameUserNeedCount" , notes = "sameUserNeedCount")
-	private String sameUserNeedCount;
-	
-	/**
-	 * sameUserFinishCount：sameUserFinishCount
-	*/
-	@ApiModelProperty(required = false,value="sameUserFinishCount" , notes = "sameUserFinishCount")
-	private String sameUserFinishCount;
-	
-	/**
-	 * leaderScoreValue：sameUserScoreValue
-	*/
-	@ApiModelProperty(required = false,value="leaderScoreValue" , notes = "sameUserScoreValue")
-	private String leaderScoreValue;
-	
-	/**
-	 * secondLeaderScoreValue：secondLeaderScoreValue
-	*/
-	@ApiModelProperty(required = false,value="secondLeaderScoreValue" , notes = "secondLeaderScoreValue")
-	private String secondLeaderScoreValue;
-	
-	/**
-	 * ifHrConfirm：ifHrConfirm
-	*/
-	@ApiModelProperty(required = false,value="ifHrConfirm" , notes = "ifHrConfirm")
-	private String ifHrConfirm;
 	
 	/**
 	 * 获得 主键<br>
@@ -296,6 +266,25 @@ public class AssessmentBillTaskPaper extends Entity {
 	}
 	
 	/**
+	 * 获得 关系<br>
+	 * 关系
+	 * @return 关系
+	*/
+	public String getRelationship() {
+		return relationship;
+	}
+	
+	/**
+	 * 设置 关系
+	 * @param relationship 关系
+	 * @return 当前对象
+	*/
+	public AssessmentBillTaskPaper setRelationship(String relationship) {
+		this.relationship=relationship;
+		return this;
+	}
+	
+	/**
 	 * 获得 考核人<br>
 	 * 考核人
 	 * @return 考核人
@@ -368,6 +357,25 @@ public class AssessmentBillTaskPaper extends Entity {
 	*/
 	public AssessmentBillTaskPaper setEvaluateContent(String evaluateContent) {
 		this.evaluateContent=evaluateContent;
+		return this;
+	}
+	
+	/**
+	 * 获得 用户<br>
+	 * 用户
+	 * @return 用户
+	*/
+	public String getUserMapId() {
+		return userMapId;
+	}
+	
+	/**
+	 * 设置 用户
+	 * @param userMapId 用户
+	 * @return 当前对象
+	*/
+	public AssessmentBillTaskPaper setUserMapId(String userMapId) {
+		this.userMapId=userMapId;
 		return this;
 	}
 	
@@ -678,139 +686,6 @@ public class AssessmentBillTaskPaper extends Entity {
 		this.assessor=assessor;
 		return this;
 	}
-	
-	/**
-	 * 获得 selfScoreValue<br>
-	 * selfScoreValue
-	 * @return selfScoreValue
-	*/
-	public String getSelfScoreValue() {
-		return selfScoreValue;
-	}
-	
-	/**
-	 * 设置 selfScoreValue
-	 * @param selfScoreValue selfScoreValue
-	 * @return 当前对象
-	*/
-	public AssessmentBillTaskPaper setSelfScoreValue(String selfScoreValue) {
-		this.selfScoreValue=selfScoreValue;
-		return this;
-	}
-	
-	/**
-	 * 获得 sameUserAvgScoreValue<br>
-	 * sameUserAvgScoreValue
-	 * @return sameUserAvgScoreValue
-	*/
-	public String getSameUserAvgScoreValue() {
-		return sameUserAvgScoreValue;
-	}
-	
-	/**
-	 * 设置 sameUserAvgScoreValue
-	 * @param sameUserAvgScoreValue sameUserAvgScoreValue
-	 * @return 当前对象
-	*/
-	public AssessmentBillTaskPaper setSameUserAvgScoreValue(String sameUserAvgScoreValue) {
-		this.sameUserAvgScoreValue=sameUserAvgScoreValue;
-		return this;
-	}
-	
-	/**
-	 * 获得 sameUserNeedCount<br>
-	 * sameUserNeedCount
-	 * @return sameUserNeedCount
-	*/
-	public String getSameUserNeedCount() {
-		return sameUserNeedCount;
-	}
-	
-	/**
-	 * 设置 sameUserNeedCount
-	 * @param sameUserNeedCount sameUserNeedCount
-	 * @return 当前对象
-	*/
-	public AssessmentBillTaskPaper setSameUserNeedCount(String sameUserNeedCount) {
-		this.sameUserNeedCount=sameUserNeedCount;
-		return this;
-	}
-	
-	/**
-	 * 获得 sameUserFinishCount<br>
-	 * sameUserFinishCount
-	 * @return sameUserFinishCount
-	*/
-	public String getSameUserFinishCount() {
-		return sameUserFinishCount;
-	}
-	
-	/**
-	 * 设置 sameUserFinishCount
-	 * @param sameUserFinishCount sameUserFinishCount
-	 * @return 当前对象
-	*/
-	public AssessmentBillTaskPaper setSameUserFinishCount(String sameUserFinishCount) {
-		this.sameUserFinishCount=sameUserFinishCount;
-		return this;
-	}
-	
-	/**
-	 * 获得 leaderScoreValue<br>
-	 * sameUserScoreValue
-	 * @return leaderScoreValue
-	*/
-	public String getLeaderScoreValue() {
-		return leaderScoreValue;
-	}
-	
-	/**
-	 * 设置 leaderScoreValue
-	 * @param leaderScoreValue leaderScoreValue
-	 * @return 当前对象
-	*/
-	public AssessmentBillTaskPaper setLeaderScoreValue(String leaderScoreValue) {
-		this.leaderScoreValue=leaderScoreValue;
-		return this;
-	}
-	
-	/**
-	 * 获得 secondLeaderScoreValue<br>
-	 * secondLeaderScoreValue
-	 * @return secondLeaderScoreValue
-	*/
-	public String getSecondLeaderScoreValue() {
-		return secondLeaderScoreValue;
-	}
-	
-	/**
-	 * 设置 secondLeaderScoreValue
-	 * @param secondLeaderScoreValue secondLeaderScoreValue
-	 * @return 当前对象
-	*/
-	public AssessmentBillTaskPaper setSecondLeaderScoreValue(String secondLeaderScoreValue) {
-		this.secondLeaderScoreValue=secondLeaderScoreValue;
-		return this;
-	}
-	
-	/**
-	 * 获得 ifHrConfirm<br>
-	 * ifHrConfirm
-	 * @return ifHrConfirm
-	*/
-	public String getIfHrConfirm() {
-		return ifHrConfirm;
-	}
-	
-	/**
-	 * 设置 ifHrConfirm
-	 * @param ifHrConfirm ifHrConfirm
-	 * @return 当前对象
-	*/
-	public AssessmentBillTaskPaper setIfHrConfirm(String ifHrConfirm) {
-		this.ifHrConfirm=ifHrConfirm;
-		return this;
-	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -872,20 +747,15 @@ public class AssessmentBillTaskPaper extends Entity {
 		inst.setBillId(this.getBillId());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setUserMapId(this.getUserMapId());
 		inst.setId(this.getId());
+		inst.setRelationship(this.getRelationship());
 		inst.setScoreValue(this.getScoreValue());
 		if(all) {
-			inst.setSameUserAvgScoreValue(this.getSameUserAvgScoreValue());
 			inst.setAssessmentIndicatorValueList(this.getAssessmentIndicatorValueList());
-			inst.setSameUserNeedCount(this.getSameUserNeedCount());
 			inst.setAssessee(this.getAssessee());
-			inst.setSameUserFinishCount(this.getSameUserFinishCount());
 			inst.setAssessor(this.getAssessor());
-			inst.setIfHrConfirm(this.getIfHrConfirm());
 			inst.setAssessmentBillTaskDtl(this.getAssessmentBillTaskDtl());
-			inst.setLeaderScoreValue(this.getLeaderScoreValue());
-			inst.setSelfScoreValue(this.getSelfScoreValue());
-			inst.setSecondLeaderScoreValue(this.getSecondLeaderScoreValue());
 		}
 		inst.clearModifies();
 		return inst;
@@ -961,19 +831,14 @@ public class AssessmentBillTaskPaper extends Entity {
 			this.setBillId(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.BILL_ID)));
 			this.setTenantId(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.DELETE_BY)));
+			this.setUserMapId(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.USER_MAP_ID)));
 			this.setId(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.ID)));
+			this.setRelationship(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.RELATIONSHIP)));
 			this.setScoreValue(DataParser.parse(BigDecimal.class, map.get(AssessmentBillTaskPaperMeta.SCORE_VALUE)));
 			// others
-			this.setSameUserAvgScoreValue(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.SAME_USER_AVG_SCORE_VALUE)));
-			this.setSameUserNeedCount(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.SAME_USER_NEED_COUNT)));
 			this.setAssessee(DataParser.parse(Employee.class, map.get(AssessmentBillTaskPaperMeta.ASSESSEE)));
-			this.setSameUserFinishCount(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.SAME_USER_FINISH_COUNT)));
 			this.setAssessor(DataParser.parse(Employee.class, map.get(AssessmentBillTaskPaperMeta.ASSESSOR)));
-			this.setIfHrConfirm(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.IF_HR_CONFIRM)));
 			this.setAssessmentBillTaskDtl(DataParser.parse(AssessmentBillTaskDtl.class, map.get(AssessmentBillTaskPaperMeta.ASSESSMENT_BILL_TASK_DTL)));
-			this.setLeaderScoreValue(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.LEADER_SCORE_VALUE)));
-			this.setSelfScoreValue(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.SELF_SCORE_VALUE)));
-			this.setSecondLeaderScoreValue(DataParser.parse(String.class, map.get(AssessmentBillTaskPaperMeta.SECOND_LEADER_SCORE_VALUE)));
 			return true;
 		} else {
 			try {
@@ -993,19 +858,14 @@ public class AssessmentBillTaskPaper extends Entity {
 				this.setBillId( (String)map.get(AssessmentBillTaskPaperMeta.BILL_ID));
 				this.setTenantId( (String)map.get(AssessmentBillTaskPaperMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AssessmentBillTaskPaperMeta.DELETE_BY));
+				this.setUserMapId( (String)map.get(AssessmentBillTaskPaperMeta.USER_MAP_ID));
 				this.setId( (String)map.get(AssessmentBillTaskPaperMeta.ID));
+				this.setRelationship( (String)map.get(AssessmentBillTaskPaperMeta.RELATIONSHIP));
 				this.setScoreValue( (BigDecimal)map.get(AssessmentBillTaskPaperMeta.SCORE_VALUE));
 				// others
-				this.setSameUserAvgScoreValue( (String)map.get(AssessmentBillTaskPaperMeta.SAME_USER_AVG_SCORE_VALUE));
-				this.setSameUserNeedCount( (String)map.get(AssessmentBillTaskPaperMeta.SAME_USER_NEED_COUNT));
 				this.setAssessee( (Employee)map.get(AssessmentBillTaskPaperMeta.ASSESSEE));
-				this.setSameUserFinishCount( (String)map.get(AssessmentBillTaskPaperMeta.SAME_USER_FINISH_COUNT));
 				this.setAssessor( (Employee)map.get(AssessmentBillTaskPaperMeta.ASSESSOR));
-				this.setIfHrConfirm( (String)map.get(AssessmentBillTaskPaperMeta.IF_HR_CONFIRM));
 				this.setAssessmentBillTaskDtl( (AssessmentBillTaskDtl)map.get(AssessmentBillTaskPaperMeta.ASSESSMENT_BILL_TASK_DTL));
-				this.setLeaderScoreValue( (String)map.get(AssessmentBillTaskPaperMeta.LEADER_SCORE_VALUE));
-				this.setSelfScoreValue( (String)map.get(AssessmentBillTaskPaperMeta.SELF_SCORE_VALUE));
-				this.setSecondLeaderScoreValue( (String)map.get(AssessmentBillTaskPaperMeta.SECOND_LEADER_SCORE_VALUE));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -1038,7 +898,9 @@ public class AssessmentBillTaskPaper extends Entity {
 			this.setBillId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskPaperMeta.BILL_ID)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskPaperMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssessmentBillTaskPaperMeta.DELETE_BY)));
+			this.setUserMapId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskPaperMeta.USER_MAP_ID)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssessmentBillTaskPaperMeta.ID)));
+			this.setRelationship(DataParser.parse(String.class, r.getValue(AssessmentBillTaskPaperMeta.RELATIONSHIP)));
 			this.setScoreValue(DataParser.parse(BigDecimal.class, r.getValue(AssessmentBillTaskPaperMeta.SCORE_VALUE)));
 			return true;
 		} else {
@@ -1059,7 +921,9 @@ public class AssessmentBillTaskPaper extends Entity {
 				this.setBillId( (String)r.getValue(AssessmentBillTaskPaperMeta.BILL_ID));
 				this.setTenantId( (String)r.getValue(AssessmentBillTaskPaperMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AssessmentBillTaskPaperMeta.DELETE_BY));
+				this.setUserMapId( (String)r.getValue(AssessmentBillTaskPaperMeta.USER_MAP_ID));
 				this.setId( (String)r.getValue(AssessmentBillTaskPaperMeta.ID));
+				this.setRelationship( (String)r.getValue(AssessmentBillTaskPaperMeta.RELATIONSHIP));
 				this.setScoreValue( (BigDecimal)r.getValue(AssessmentBillTaskPaperMeta.SCORE_VALUE));
 				return true;
 			} catch (Exception e) {

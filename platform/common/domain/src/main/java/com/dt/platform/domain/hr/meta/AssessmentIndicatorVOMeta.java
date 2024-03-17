@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 20:35:52
+ * @since 2024-03-15 18:43:28
  * @sign 93A6886A9E8CEF3CD1F4844E3086978F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -252,16 +252,6 @@ public class AssessmentIndicatorVOMeta extends AssessmentIndicatorMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorVO,java.lang.String> PROPERTY_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorVO.class ,PROPERTY, java.lang.String.class, "定性/定量指标", "定性/定量指标", java.lang.String.class, null);
 	
 	/**
-	 * 计量单位 , 类型: java.lang.String
-	*/
-	public static final String UNIT="unit";
-	
-	/**
-	 * 计量单位 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorVO,java.lang.String> UNIT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorVO.class ,UNIT, java.lang.String.class, "计量单位", "计量单位", java.lang.String.class, null);
-	
-	/**
 	 * 指标定义 , 类型: java.lang.String
 	*/
 	public static final String DEF="def";
@@ -290,6 +280,26 @@ public class AssessmentIndicatorVOMeta extends AssessmentIndicatorMeta {
 	 * 评分依据 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorVO,java.lang.String> SCORING_BY_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorVO.class ,SCORING_BY, java.lang.String.class, "评分依据", "评分依据", java.lang.String.class, null);
+	
+	/**
+	 * 计量单位 , 类型: java.lang.String
+	*/
+	public static final String UNIT="unit";
+	
+	/**
+	 * 计量单位 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorVO,java.lang.String> UNIT_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorVO.class ,UNIT, java.lang.String.class, "计量单位", "计量单位", java.lang.String.class, null);
+	
+	/**
+	 * 组件类型 , 类型: java.lang.String
+	*/
+	public static final String INPUT_TYPE="inputType";
+	
+	/**
+	 * 组件类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.AssessmentIndicatorVO,java.lang.String> INPUT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.hr.AssessmentIndicatorVO.class ,INPUT_TYPE, java.lang.String.class, "组件类型", "组件类型", java.lang.String.class, null);
 	
 	/**
 	 * 排序 , 类型: java.lang.Integer
@@ -434,7 +444,7 @@ public class AssessmentIndicatorVOMeta extends AssessmentIndicatorMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , OWNER , ASSESSMENT_ID , TPL_INDICATOR_ID , GROUPNAME , NAME , WEIGHT , TARGET_MIN_VALUE , TARGET_MAX_VALUE , DEFAULT_VALUE , PROPERTY , UNIT , DEF , SCORING_BASE , SCORING_BY , SN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELF_ASSESSMENT_VALUE , LEADER_ASSESSMENT_VALUE , SAME_ASSESSMENT_VALUE , INDICATOR_LIB };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , OWNER , ASSESSMENT_ID , TPL_INDICATOR_ID , GROUPNAME , NAME , WEIGHT , TARGET_MIN_VALUE , TARGET_MAX_VALUE , DEFAULT_VALUE , PROPERTY , DEF , SCORING_BASE , SCORING_BY , UNIT , INPUT_TYPE , SN , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELF_ASSESSMENT_VALUE , LEADER_ASSESSMENT_VALUE , SAME_ASSESSMENT_VALUE , INDICATOR_LIB };
 	
 	/**
 	 * 代理类
@@ -698,17 +708,6 @@ public class AssessmentIndicatorVOMeta extends AssessmentIndicatorMeta {
 		}
 		
 		/**
-		 * 设置 计量单位
-		 * @param unit 计量单位
-		 * @return 当前对象
-		*/
-		public AssessmentIndicator setUnit(String unit) {
-			super.change(UNIT,super.getUnit(),unit);
-			super.setUnit(unit);
-			return this;
-		}
-		
-		/**
 		 * 设置 指标定义
 		 * @param def 指标定义
 		 * @return 当前对象
@@ -738,6 +737,28 @@ public class AssessmentIndicatorVOMeta extends AssessmentIndicatorMeta {
 		public AssessmentIndicator setScoringBy(String scoringBy) {
 			super.change(SCORING_BY,super.getScoringBy(),scoringBy);
 			super.setScoringBy(scoringBy);
+			return this;
+		}
+		
+		/**
+		 * 设置 计量单位
+		 * @param unit 计量单位
+		 * @return 当前对象
+		*/
+		public AssessmentIndicator setUnit(String unit) {
+			super.change(UNIT,super.getUnit(),unit);
+			super.setUnit(unit);
+			return this;
+		}
+		
+		/**
+		 * 设置 组件类型
+		 * @param inputType 组件类型
+		 * @return 当前对象
+		*/
+		public AssessmentIndicator setInputType(String inputType) {
+			super.change(INPUT_TYPE,super.getInputType(),inputType);
+			super.setInputType(inputType);
 			return this;
 		}
 		
@@ -915,6 +936,7 @@ public class AssessmentIndicatorVOMeta extends AssessmentIndicatorMeta {
 			inst.setDefaultValue(this.getDefaultValue());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setProperty(this.getProperty());
+			inst.setInputType(this.getInputType());
 			inst.setId(this.getId());
 			inst.setSn(this.getSn());
 			inst.setAssessmentId(this.getAssessmentId());

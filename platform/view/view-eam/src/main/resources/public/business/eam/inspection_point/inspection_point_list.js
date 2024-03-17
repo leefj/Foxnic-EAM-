@@ -1,7 +1,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-07 15:51:28
+ * @since 2024-03-16 22:11:40
  */
 
 
@@ -444,6 +444,9 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'show-rwm') { // 二维码
+				window.pageExt.list.showRwm(data,this);
 			}
 			
 		});

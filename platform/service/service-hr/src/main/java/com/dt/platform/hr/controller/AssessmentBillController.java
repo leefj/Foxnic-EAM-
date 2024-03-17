@@ -111,8 +111,8 @@ public class AssessmentBillController extends SuperController {
     @ApiOperationSupport(order = 2, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = AssessmentBillServiceProxy.CANCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssessmentBillServiceProxy.CANCEL)
-    public Result cancel(String billId) {
-        return assessmentBillService.cancel(billId);
+    public Result cancel(String id) {
+        return assessmentBillService.cancel(id);
     }
 
     /**

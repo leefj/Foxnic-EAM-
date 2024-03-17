@@ -1,7 +1,7 @@
 /**
  * 人员映射 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-14 07:26:11
+ * @since 2024-03-16 19:51:41
  */
 
 function FormPage() {
@@ -124,6 +124,13 @@ function FormPage() {
 				checked.push($(this).val());
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
+		form.on('radio(isConfirm)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=isConfirm]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("isConfirm",data,checked);
 		});
 		form.on('radio(result)', function(data){
 			var checked=[];

@@ -2,7 +2,7 @@
 /**
  * 考核试卷 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-13 13:59:40
+ * @since 2024-03-16 17:56:39
  */
  -->
  <!DOCTYPE html>
@@ -75,6 +75,14 @@
                     </div>
                 </div>
             
+                <!-- text_input : 关系 ,  relationship -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('关系')}">关系</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="relationship" id="relationship" name="relationship" th:placeholder="${ lang.translate('请输入'+'关系') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
                 <!-- button : 考核人 ,  assessorId  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('考核人')}">考核人</div></div>
@@ -106,6 +114,14 @@
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('综合评价')}">综合评价</div></div>
                     <div class="layui-input-block layui-input-block-c1">
                         <textarea lay-filter="evaluateContent" id="evaluateContent" name="evaluateContent" th:placeholder="${ lang.translate('请输入'+'综合评价') }" class="layui-textarea" style="height: 250px" ></textarea>
+                    </div>
+                </div>
+            
+                <!-- text_input : 用户 ,  userMapId -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('用户')}">用户</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="userMapId" id="userMapId" name="userMapId" th:placeholder="${ lang.translate('请输入'+'用户') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             

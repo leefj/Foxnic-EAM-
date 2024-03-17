@@ -26,14 +26,16 @@ public class HrmAssessMentBillTaskPaperGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"assessee","assessee","assessee");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"assessor","assessor","assessor");
 
+//
+//        cfg.getPoClassFile().addSimpleProperty(String.class,"selfScoreValue","selfScoreValue","selfScoreValue");
+//        cfg.getPoClassFile().addSimpleProperty(String.class,"sameUserAvgScoreValue","sameUserAvgScoreValue","sameUserAvgScoreValue");
+//        cfg.getPoClassFile().addSimpleProperty(String.class,"sameUserNeedCount","sameUserNeedCount","sameUserNeedCount");
+//        cfg.getPoClassFile().addSimpleProperty(String.class,"sameUserFinishCount","sameUserFinishCount","sameUserFinishCount");
+//        cfg.getPoClassFile().addSimpleProperty(String.class,"leaderScoreValue","leaderScoreValue","sameUserScoreValue");
+//        cfg.getPoClassFile().addSimpleProperty(String.class,"secondLeaderScoreValue","secondLeaderScoreValue","secondLeaderScoreValue");
 
-        cfg.getPoClassFile().addSimpleProperty(String.class,"selfScoreValue","selfScoreValue","selfScoreValue");
-        cfg.getPoClassFile().addSimpleProperty(String.class,"sameUserAvgScoreValue","sameUserAvgScoreValue","sameUserAvgScoreValue");
-        cfg.getPoClassFile().addSimpleProperty(String.class,"sameUserNeedCount","sameUserNeedCount","sameUserNeedCount");
-        cfg.getPoClassFile().addSimpleProperty(String.class,"sameUserFinishCount","sameUserFinishCount","sameUserFinishCount");
-        cfg.getPoClassFile().addSimpleProperty(String.class,"leaderScoreValue","leaderScoreValue","sameUserScoreValue");
-        cfg.getPoClassFile().addSimpleProperty(String.class,"secondLeaderScoreValue","secondLeaderScoreValue","secondLeaderScoreValue");
-        cfg.getPoClassFile().addSimpleProperty(String.class,"ifHrConfirm","ifHrConfirm","ifHrConfirm");
+
+
 
 
         cfg.view().field(HrTables.HR_CERTIFICATE.NAME).search().fuzzySearch();
