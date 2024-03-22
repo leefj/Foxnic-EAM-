@@ -96,10 +96,13 @@ public class InspTaskGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_NOTES).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.CONTENT).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_CODE).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.NOTES).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.REMIND_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_INSPECTION_METHOD).table().disable(true);
         cfg.view().list().disableBatchDelete();
 
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_CODE).table().disable();
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_CODE).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_INSPECTION_METHOD).table().disable();
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_START_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_FINISH_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
@@ -112,8 +115,12 @@ public class InspTaskGtr extends BaseCodeGenerator {
 //
 //        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ACT_TOTAL_COST).form().numberInput().defaultValue(2.0).decimal().scale(2);
 //        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_COMPLETION_TIME).form().numberInput().defaultValue(2.0).decimal().scale(2);
-
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.CREATE_TIME).table().hidden(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_INSPECTION_METHOD).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_CODE).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.CREATE_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.UPDATE_BY).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.TASK_CODE).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.OVERTIME_METHOD).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.GROUP_ID)
                 .form().selectBox().
@@ -230,6 +237,7 @@ public class InspTaskGtr extends BaseCodeGenerator {
      //   cfg.view().list().operationColumn().addActionButton("巡检","inspect","execute-button","eam_inspection_task:execute");
         cfg.view().list().operationColumn().addActionButton("完成","finish","finish-button","eam_inspection_task:finish");
         cfg.view().list().operationColumn().addActionButton("取消","cancel","cancel-button","eam_inspection_task:cancel");
+        cfg.view().list().operationColumn().addActionButton("详情","detail","detail-button");
 //        cfg.view().list().addToolButton("取消","taskCancel","","eam_inspection_task:cancel");
         //文件生成覆盖模式
         cfg.overrides()

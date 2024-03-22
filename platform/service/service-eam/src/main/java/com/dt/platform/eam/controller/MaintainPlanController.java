@@ -87,7 +87,8 @@ public class MaintainPlanController extends SuperController {
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_CODE, value = "保养设备", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_NAME, value = "设备名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_MODEL, value = "设备型号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_SN, value = "设备序列", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_SN, value = "设备序列", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MaintainPlanServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -156,7 +157,8 @@ public class MaintainPlanController extends SuperController {
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_CODE, value = "保养设备", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_NAME, value = "设备名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_MODEL, value = "设备型号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_SN, value = "设备序列", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_SN, value = "设备序列", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MaintainPlanVOMeta.PAGE_INDEX, MaintainPlanVOMeta.PAGE_SIZE, MaintainPlanVOMeta.SEARCH_FIELD, MaintainPlanVOMeta.FUZZY_FIELD, MaintainPlanVOMeta.SEARCH_VALUE, MaintainPlanVOMeta.DIRTY_FIELDS, MaintainPlanVOMeta.SORT_FIELD, MaintainPlanVOMeta.SORT_TYPE, MaintainPlanVOMeta.IDS })
     @SentinelResource(value = MaintainPlanServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -194,7 +196,8 @@ public class MaintainPlanController extends SuperController {
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_CODE, value = "保养设备", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_NAME, value = "设备名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_MODEL, value = "设备型号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_SN, value = "设备序列", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_SN, value = "设备序列", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MaintainPlanVOMeta.PAGE_INDEX, MaintainPlanVOMeta.PAGE_SIZE, MaintainPlanVOMeta.SEARCH_FIELD, MaintainPlanVOMeta.FUZZY_FIELD, MaintainPlanVOMeta.SEARCH_VALUE, MaintainPlanVOMeta.DIRTY_FIELDS, MaintainPlanVOMeta.SORT_FIELD, MaintainPlanVOMeta.SORT_TYPE, MaintainPlanVOMeta.IDS })
     @SentinelResource(value = MaintainPlanServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -269,7 +272,8 @@ public class MaintainPlanController extends SuperController {
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_CODE, value = "保养设备", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_NAME, value = "设备名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_MODEL, value = "设备型号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_SN, value = "设备序列", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_SN, value = "设备序列", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MaintainPlanVOMeta.PAGE_INDEX, MaintainPlanVOMeta.PAGE_SIZE })
     @SentinelResource(value = MaintainPlanServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -308,7 +312,8 @@ public class MaintainPlanController extends SuperController {
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_CODE, value = "保养设备", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_NAME, value = "设备名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_MODEL, value = "设备型号", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_SN, value = "设备序列", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainPlanVOMeta.ASSET_SN, value = "设备序列", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainPlanVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MaintainPlanServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

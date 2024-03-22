@@ -31,9 +31,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
-            var operHtml=document.getElementById("toolbarTemplate").innerHTML;
-            operHtml=operHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
-            document.getElementById("toolbarTemplate").innerHTML=operHtml;
+            var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+            toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+            document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+            var operHtml2=document.getElementById("tableOperationTemplate").innerHTML;
+            operHtml2=operHtml2.replace(/lay-event="view"/i, "style=\"display:none\"")
+            document.getElementById("tableOperationTemplate").innerHTML=operHtml2;
+
         },
         /**
          * 表格渲染前调用
@@ -220,6 +225,24 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         inspect:function(item,it){
             list.billOper("cancel2","cancel-button",{id:item.id},"已取消");
+        },
+        detail:function(item,it){
+            //list.billOper("cancel2","cancel-button",{id:item.id}
+            console.log("it");
+            admin.popupCenter({
+                title: "详细",
+                resize: false,
+                offset: [10,null],
+                area: ["95%","95%"],
+                type: 2,
+                id:"eam-inspection-list-detail-data-win",
+                content: '/ureport/preview?_u=db:821844669242540032.ureport.xml&_t=0&taskId='+item.id,
+                finish: function () {
+
+                }
+            });
+
+
         },
         /**
          * 末尾执行

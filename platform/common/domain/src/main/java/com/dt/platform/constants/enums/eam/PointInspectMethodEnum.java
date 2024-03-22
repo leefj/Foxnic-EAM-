@@ -11,16 +11,16 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 */
 
 
-public enum InspectionTaskStatusEnum implements CodeTextEnum {
+public enum PointInspectMethodEnum implements CodeTextEnum {
 
-	WAIT("wait" , "待检"),
-	ACTING("acting" , "检中"),
-	FINISH("finish" , "完成"),
-	CANCEL("cancel" , "取消");
+	SCAN("sacn" , "扫描"),
+	RFID("rfid" , "RFID"),
+	NFC("nfc" , "NFC"),
+	MANUAL("manual" , "手动");
 
 	private String code;
 	private String text;
-	private InspectionTaskStatusEnum(String code, String text)  {
+	private PointInspectMethodEnum(String code, String text)  {
 		this.code=code;
 		this.text=text;
 	}

@@ -20,8 +20,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-05 21:32:36
- * @sign 3AFB891FB26184C21CA0B2156BE1F3D2
+ * @since 2024-03-18 09:23:55
+ * @sign B5625A42BFD927AC25F37E8AF15A850D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -238,6 +238,16 @@ public class InspectionTaskPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPoint,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPoint.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
+	 * 巡检方式 , 类型: java.lang.String
+	*/
+	public static final String INSP_METHOD="inspMethod";
+	
+	/**
+	 * 巡检方式 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPoint,java.lang.String> INSP_METHOD_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPoint.class ,INSP_METHOD, java.lang.String.class, "巡检方式", "巡检方式", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -430,7 +440,7 @@ public class InspectionTaskPointMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , ACTION_LABEL , IMAGE_ID , POINT_ID , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION , ROUTE , TASK , OPER_USER , INSPECTION_POINT_POS , CHECK_ITEM_LIST , CHECK_SELECT_LIST , INSPECTION_POINT , ITEM_COUNT , ASSET , INSPECTION_PROCESS_ACTION };
+	public static final String[] $PROPS={ ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , ACTION_LABEL , IMAGE_ID , POINT_ID , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , INSP_METHOD , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION , ROUTE , TASK , OPER_USER , INSPECTION_POINT_POS , CHECK_ITEM_LIST , CHECK_SELECT_LIST , INSPECTION_POINT , ITEM_COUNT , ASSET , INSPECTION_PROCESS_ACTION };
 	
 	/**
 	 * 代理类
@@ -672,6 +682,17 @@ public class InspectionTaskPointMeta {
 		}
 		
 		/**
+		 * 设置 巡检方式
+		 * @param inspMethod 巡检方式
+		 * @return 当前对象
+		*/
+		public InspectionTaskPoint setInspMethod(String inspMethod) {
+			super.change(INSP_METHOD,super.getInspMethod(),inspMethod);
+			super.setInspMethod(inspMethod);
+			return this;
+		}
+		
+		/**
 		 * 设置 创建人ID
 		 * @param createBy 创建人ID
 		 * @return 当前对象
@@ -902,6 +923,7 @@ public class InspectionTaskPointMeta {
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setContent(this.getContent());
 			inst.setActionLabel(this.getActionLabel());
+			inst.setInspMethod(this.getInspMethod());
 			inst.setPointId(this.getPointId());
 			inst.setPointRouteId(this.getPointRouteId());
 			inst.setUpdateBy(this.getUpdateBy());

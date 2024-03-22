@@ -92,7 +92,8 @@ public class InspectionTaskController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.REMIND_TIME, value = "提醒时间", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = InspectionTaskVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InspectionTaskServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -159,7 +160,8 @@ public class InspectionTaskController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.REMIND_TIME, value = "提醒时间", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = InspectionTaskVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InspectionTaskVOMeta.PAGE_INDEX, InspectionTaskVOMeta.PAGE_SIZE, InspectionTaskVOMeta.SEARCH_FIELD, InspectionTaskVOMeta.FUZZY_FIELD, InspectionTaskVOMeta.SEARCH_VALUE, InspectionTaskVOMeta.DIRTY_FIELDS, InspectionTaskVOMeta.SORT_FIELD, InspectionTaskVOMeta.SORT_TYPE, InspectionTaskVOMeta.IDS })
     @SentinelResource(value = InspectionTaskServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -195,7 +197,8 @@ public class InspectionTaskController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.REMIND_TIME, value = "提醒时间", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = InspectionTaskVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionTaskVOMeta.PAGE_INDEX, InspectionTaskVOMeta.PAGE_SIZE, InspectionTaskVOMeta.SEARCH_FIELD, InspectionTaskVOMeta.FUZZY_FIELD, InspectionTaskVOMeta.SEARCH_VALUE, InspectionTaskVOMeta.DIRTY_FIELDS, InspectionTaskVOMeta.SORT_FIELD, InspectionTaskVOMeta.SORT_TYPE, InspectionTaskVOMeta.IDS })
     @SentinelResource(value = InspectionTaskServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -276,7 +279,8 @@ public class InspectionTaskController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.REMIND_TIME, value = "提醒时间", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = InspectionTaskVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionTaskVOMeta.PAGE_INDEX, InspectionTaskVOMeta.PAGE_SIZE })
     @SentinelResource(value = InspectionTaskServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -313,7 +317,8 @@ public class InspectionTaskController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.REMIND_TIME, value = "提醒时间", required = false, dataTypeClass = BigDecimal.class),
-		@ApiImplicitParam(name = InspectionTaskVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskVOMeta.OVERTIME_METHOD, value = "超时处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InspectionTaskServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

@@ -47,6 +47,8 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.ID).basic().hidden(true);
 
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.UPDATE_BY).table().disable(true);
+
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CONTENT).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).search().fuzzySearch();
 

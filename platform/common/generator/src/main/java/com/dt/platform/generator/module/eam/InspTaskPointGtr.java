@@ -4,6 +4,7 @@ import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
+import com.dt.platform.constants.enums.eam.PointInspectMethodEnum;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.page.InspectionTaskPointPageController;
@@ -91,6 +92,11 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_STATUS).form().readOnly().form()
                 .radioBox().enumType(InspectionTaskPointStatusEnum.class).defaultIndex(0);
+
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.INSP_METHOD).table().disable(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.INSP_METHOD).form().form()
+                .radioBox().enumType(PointInspectMethodEnum.class);
+        
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_ROUTE_ID)
                 .form().selectBox().queryApi(InspectionRouteServiceProxy.QUERY_LIST)

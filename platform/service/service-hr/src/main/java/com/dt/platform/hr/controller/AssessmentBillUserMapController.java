@@ -370,6 +370,12 @@ public class AssessmentBillUserMapController extends SuperController {
                 .with(AssessmentBillUserMapMeta.SELF_SCORE_PAPER)
                 .with(AssessmentBillUserMapMeta.SAME_SCORE_PAPER_LIST)
                 .with("hrUser").with("assesseeUser").with("leaderUser").with("secondLeaderUser").with("sameUserList").execute();
+
+        assessmentBillUserMapService.dao().fill(list)
+                .with(AssessmentBillUserMapMeta.INCOMPLETE_PAPER)
+                .with(AssessmentBillUserMapMeta.SECOND_LEADER_SCORE_PAPER).execute();
+
+
         List<Employee> assessorList = CollectorUtil.collectList(list, AssessmentBillUserMap::getAssesseeUser);
         assessmentBillUserMapService.dao().join(assessorList, Person.class);
         List<Employee> leaderList = CollectorUtil.collectList(list, AssessmentBillUserMap::getLeaderUser);

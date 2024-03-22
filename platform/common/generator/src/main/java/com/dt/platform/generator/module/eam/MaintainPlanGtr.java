@@ -38,6 +38,7 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
 
 
+
         cfg.getPoClassFile().addListProperty(MaintainProject.class,"projectList","项目","项目");
         cfg.getPoClassFile().addListProperty(String.class,"projectIds","项目","项目");
 
@@ -64,6 +65,7 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.INFO).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.LAST_TIME).table().hidden(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NEXT_TIME).table().hidden(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.UPDATE_BY).table().hidden(true);
         cfg.view().field(MaintainPlanMeta.ITEM_COUNT).basic().label("保养项目数").table().disable(false);
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_ID).table().disable(true);
@@ -220,7 +222,8 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
         cfg.view().form().addJsVariable("BILL_ID","[[${billId}]]","单据ID");
         cfg.view().form().addJsVariable("BILL_TYPE","[[${billType}]]","单据类型");
 
-     //   cfg.view().form().addPage("设备范围","assetSelectList");
+        cfg.view().form().addPage("设备范围","assetSelectList");
+
         cfg.view().form().addPage("保养项目","maintainSelectList");
 
         cfg.view().search().rowsDisplay(1);

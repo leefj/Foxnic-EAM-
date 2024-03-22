@@ -1,7 +1,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-05 21:32:38
+ * @since 2024-03-18 09:23:57
  */
 
 function FormPage() {
@@ -262,6 +262,13 @@ function FormPage() {
 				}
 				return opts;
 			}
+		});
+		form.on('radio(inspMethod)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=inspMethod]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("inspMethod",data,checked);
 		});
 	}
 

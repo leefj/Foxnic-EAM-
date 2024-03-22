@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养任务
  * <p>保养任务 , 数据表 eam_maintain_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-13 09:12:14
- * @sign 8CD2B08F6E7CDC48FE0338493B600191
+ * @since 2024-03-22 07:47:12
+ * @sign 0178339AFD7DD7750896B3B616806A0A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -46,85 +46,85 @@ public class MaintainTask extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "742135555822714880")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
 	
 	/**
 	 * 任务名称：任务名称
 	*/
-	@ApiModelProperty(required = false,value="任务名称" , notes = "任务名称" , example = "TTTTTTT")
+	@ApiModelProperty(required = false,value="任务名称" , notes = "任务名称")
 	private String name;
 	
 	/**
 	 * 任务状态：任务状态
 	*/
-	@ApiModelProperty(required = false,value="任务状态" , notes = "任务状态" , example = "wait")
+	@ApiModelProperty(required = false,value="任务状态" , notes = "任务状态")
 	private String status;
 	
 	/**
 	 * 任务单据：任务单据
 	*/
-	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "MT202341102141522")
+	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据")
 	private String businessCode;
 	
 	/**
 	 * 方案：方案
 	*/
-	@ApiModelProperty(required = false,value="方案" , notes = "方案" , example = "735029975651975168")
+	@ApiModelProperty(required = false,value="方案" , notes = "方案")
 	private String planId;
 	
 	/**
 	 * 保养类型：保养类型
 	*/
-	@ApiModelProperty(required = false,value="保养类型" , notes = "保养类型" , example = "default")
+	@ApiModelProperty(required = false,value="保养类型" , notes = "保养类型")
 	private String maintainType;
 	
 	/**
 	 * 保养班组：保养班组
 	*/
-	@ApiModelProperty(required = true,value="保养班组" , notes = "保养班组" , example = "698150545436704768")
+	@ApiModelProperty(required = true,value="保养班组" , notes = "保养班组")
 	private String groupId;
 	
 	/**
 	 * 保养设备：保养设备
 	*/
-	@ApiModelProperty(required = false,value="保养设备" , notes = "保养设备" , example = "705002737598726144")
+	@ApiModelProperty(required = false,value="保养设备" , notes = "保养设备")
 	private String assetId;
 	
 	/**
 	 * 设备名称：设备名称
 	*/
-	@ApiModelProperty(required = false,value="设备名称" , notes = "设备名称" , example = "服务器")
+	@ApiModelProperty(required = false,value="设备名称" , notes = "设备名称")
 	private String assetName;
 	
 	/**
 	 * 设备编码：设备编码
 	*/
-	@ApiModelProperty(required = false,value="设备编码" , notes = "设备编码" , example = "AS16233")
+	@ApiModelProperty(required = false,value="设备编码" , notes = "设备编码")
 	private String assetCode;
 	
 	/**
 	 * 设备型号：设备型号
 	*/
-	@ApiModelProperty(required = false,value="设备型号" , notes = "设备型号" , example = "型号")
+	@ApiModelProperty(required = false,value="设备型号" , notes = "设备型号")
 	private String assetModel;
 	
 	/**
 	 * 设备状态：设备状态
 	*/
-	@ApiModelProperty(required = false,value="设备状态" , notes = "设备状态" , example = "repair")
+	@ApiModelProperty(required = false,value="设备状态" , notes = "设备状态")
 	private String assetStatus;
 	
 	/**
 	 * 设备序列：设备序列
 	*/
-	@ApiModelProperty(required = false,value="设备序列" , notes = "设备序列" , example = "12000000000000000000")
+	@ApiModelProperty(required = false,value="设备序列" , notes = "设备序列")
 	private String assetSn;
 	
 	/**
 	 * 设备位置：设备位置
 	*/
-	@ApiModelProperty(required = false,value="设备位置" , notes = "设备位置" , example = "detail")
+	@ApiModelProperty(required = false,value="设备位置" , notes = "设备位置")
 	private String assetPos;
 	
 	/**
@@ -142,7 +142,7 @@ public class MaintainTask extends Entity {
 	/**
 	 * 应开始时间：应开始时间
 	*/
-	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2023-08-10 09:41:45")
+	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间")
 	private Date planStartTime;
 	
 	/**
@@ -160,19 +160,19 @@ public class MaintainTask extends Entity {
 	/**
 	 * 超时时间：超时时间
 	*/
-	@ApiModelProperty(required = false,value="超时时间" , notes = "超时时间" , example = "2.00")
+	@ApiModelProperty(required = false,value="超时时间" , notes = "超时时间")
 	private BigDecimal timeout;
 	
 	/**
 	 * 预计工时：预计工时
 	*/
-	@ApiModelProperty(required = false,value="预计工时" , notes = "预计工时" , example = "0.00")
+	@ApiModelProperty(required = false,value="预计工时" , notes = "预计工时")
 	private BigDecimal totalCost;
 	
 	/**
 	 * 实际工时：实际工时
 	*/
-	@ApiModelProperty(required = false,value="实际工时" , notes = "实际工时" , example = "0.00")
+	@ApiModelProperty(required = false,value="实际工时" , notes = "实际工时")
 	private BigDecimal actTotalCost;
 	
 	/**
@@ -184,7 +184,7 @@ public class MaintainTask extends Entity {
 	/**
 	 * 逾期：逾期
 	*/
-	@ApiModelProperty(required = false,value="逾期" , notes = "逾期" , example = "normal")
+	@ApiModelProperty(required = false,value="逾期" , notes = "逾期")
 	private String overdue;
 	
 	/**
@@ -208,13 +208,13 @@ public class MaintainTask extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-10 09:41:45")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
 	private Date createTime;
 	
 	/**
@@ -232,7 +232,7 @@ public class MaintainTask extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -253,13 +253,13 @@ public class MaintainTask extends Entity {
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户")
 	private String tenantId;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version")
 	private Integer version;
 	
 	/**
@@ -339,6 +339,18 @@ public class MaintainTask extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="waitCount" , notes = "waitCount")
 	private String waitCount;
+	
+	/**
+	 * 资产：资产
+	*/
+	@ApiModelProperty(required = false,value="资产" , notes = "资产")
+	private List<Asset> assetList;
+	
+	/**
+	 * 资产列表：资产列表
+	*/
+	@ApiModelProperty(required = false,value="资产列表" , notes = "资产列表")
+	private List<String> assetIds;
 	
 	/**
 	 * 获得 主键<br>
@@ -1345,6 +1357,66 @@ public class MaintainTask extends Entity {
 		this.waitCount=waitCount;
 		return this;
 	}
+	
+	/**
+	 * 获得 资产<br>
+	 * 资产
+	 * @return 资产
+	*/
+	public List<Asset> getAssetList() {
+		return assetList;
+	}
+	
+	/**
+	 * 设置 资产
+	 * @param assetList 资产
+	 * @return 当前对象
+	*/
+	public MaintainTask setAssetList(List<Asset> assetList) {
+		this.assetList=assetList;
+		return this;
+	}
+	
+	/**
+	 * 添加 资产
+	 * @param asset 资产
+	 * @return 当前对象
+	*/
+	public MaintainTask addAsset(Asset... asset) {
+		if(this.assetList==null) assetList=new ArrayList<>();
+		this.assetList.addAll(Arrays.asList(asset));
+		return this;
+	}
+	
+	/**
+	 * 获得 资产列表<br>
+	 * 资产列表
+	 * @return 资产列表
+	*/
+	public List<String> getAssetIds() {
+		return assetIds;
+	}
+	
+	/**
+	 * 设置 资产列表
+	 * @param assetIds 资产列表
+	 * @return 当前对象
+	*/
+	public MaintainTask setAssetIds(List<String> assetIds) {
+		this.assetIds=assetIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 资产列表
+	 * @param assetId 资产列表
+	 * @return 当前对象
+	*/
+	public MaintainTask addAssetId(String... assetId) {
+		if(this.assetIds==null) assetIds=new ArrayList<>();
+		this.assetIds.addAll(Arrays.asList(assetId));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1430,9 +1502,11 @@ public class MaintainTask extends Entity {
 			inst.setProjectList(this.getProjectList());
 			inst.setTaskProjectList(this.getTaskProjectList());
 			inst.setMaintainPlan(this.getMaintainPlan());
+			inst.setAssetIds(this.getAssetIds());
 			inst.setProjectIds(this.getProjectIds());
 			inst.setTaskProjectIds(this.getTaskProjectIds());
 			inst.setOriginator(this.getOriginator());
+			inst.setAssetList(this.getAssetList());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setMaintainTypeDict(this.getMaintainTypeDict());
 			inst.setItemCount(this.getItemCount());
