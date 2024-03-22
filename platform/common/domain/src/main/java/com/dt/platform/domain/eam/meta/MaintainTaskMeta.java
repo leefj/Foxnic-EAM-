@@ -18,8 +18,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-13 09:12:14
- * @sign 8CD2B08F6E7CDC48FE0338493B600191
+ * @since 2024-03-22 07:47:12
+ * @sign 0178339AFD7DD7750896B3B616806A0A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -516,9 +516,29 @@ public class MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> WAIT_COUNT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,WAIT_COUNT, java.lang.String.class, "waitCount", "waitCount", java.lang.String.class, null);
 	
 	/**
+	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET_LIST="assetList";
+	
+	/**
+	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,com.dt.platform.domain.eam.Asset> ASSET_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,ASSET_LIST, java.util.List.class, "资产", "资产", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
+	 * 资产列表 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String ASSET_IDS="assetIds";
+	
+	/**
+	 * 资产列表 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> ASSET_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,ASSET_IDS, java.util.List.class, "资产列表", "资产列表", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , STATUS , BUSINESS_CODE , PLAN_ID , MAINTAIN_TYPE , GROUP_ID , ASSET_ID , ASSET_NAME , ASSET_CODE , ASSET_MODEL , ASSET_STATUS , ASSET_SN , ASSET_POS , CONTENT , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , TIMEOUT , TOTAL_COST , ACT_TOTAL_COST , COST , OVERDUE , RESULT , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , PROJECT_LIST , PROJECT_IDS , TASK_PROJECT_LIST , TASK_PROJECT_IDS , ASSET , MAINTAIN_PLAN , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ORIGINATOR , EXECUTOR , SELECTED_CODE , ITEM_COUNT , WAIT_COUNT };
+	public static final String[] $PROPS={ ID , NAME , STATUS , BUSINESS_CODE , PLAN_ID , MAINTAIN_TYPE , GROUP_ID , ASSET_ID , ASSET_NAME , ASSET_CODE , ASSET_MODEL , ASSET_STATUS , ASSET_SN , ASSET_POS , CONTENT , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , TIMEOUT , TOTAL_COST , ACT_TOTAL_COST , COST , OVERDUE , RESULT , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , PROJECT_LIST , PROJECT_IDS , TASK_PROJECT_LIST , TASK_PROJECT_IDS , ASSET , MAINTAIN_PLAN , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ORIGINATOR , EXECUTOR , SELECTED_CODE , ITEM_COUNT , WAIT_COUNT , ASSET_LIST , ASSET_IDS };
 	
 	/**
 	 * 代理类
@@ -1066,6 +1086,28 @@ public class MaintainTaskMeta {
 			super.setWaitCount(waitCount);
 			return this;
 		}
+		
+		/**
+		 * 设置 资产
+		 * @param assetList 资产
+		 * @return 当前对象
+		*/
+		public MaintainTask setAssetList(List<Asset> assetList) {
+			super.change(ASSET_LIST,super.getAssetList(),assetList);
+			super.setAssetList(assetList);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产列表
+		 * @param assetIds 资产列表
+		 * @return 当前对象
+		*/
+		public MaintainTask setAssetIds(List<String> assetIds) {
+			super.change(ASSET_IDS,super.getAssetIds(),assetIds);
+			super.setAssetIds(assetIds);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1122,9 +1164,11 @@ public class MaintainTaskMeta {
 				inst.setProjectList(this.getProjectList());
 				inst.setTaskProjectList(this.getTaskProjectList());
 				inst.setMaintainPlan(this.getMaintainPlan());
+				inst.setAssetIds(this.getAssetIds());
 				inst.setProjectIds(this.getProjectIds());
 				inst.setTaskProjectIds(this.getTaskProjectIds());
 				inst.setOriginator(this.getOriginator());
+				inst.setAssetList(this.getAssetList());
 				inst.setSelectedCode(this.getSelectedCode());
 				inst.setMaintainTypeDict(this.getMaintainTypeDict());
 				inst.setItemCount(this.getItemCount());

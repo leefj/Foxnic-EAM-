@@ -93,7 +93,8 @@ public class MaintainTaskController extends SuperController {
 		@ApiImplicitParam(name = MaintainTaskVOMeta.ASSET_POS, value = "设备位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainTaskVOMeta.COST, value = "费用", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = MaintainTaskVOMeta.CONTENT, value = "保养结果", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainTaskVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainTaskVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MaintainTaskServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -135,7 +136,6 @@ public class MaintainTaskController extends SuperController {
         return result;
     }
 
-
     @ApiOperation(value = "获取tab数据")
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MaintainTaskServiceProxy.QUERY_STATUS_COUNT_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -143,7 +143,6 @@ public class MaintainTaskController extends SuperController {
     public Result<JSONObject> queryStatusCountData(String label) {
         return maintainTaskService.queryStatusCountData(label);
     }
-
 
     /**
      * 更新保养任务
@@ -177,7 +176,8 @@ public class MaintainTaskController extends SuperController {
 		@ApiImplicitParam(name = MaintainTaskVOMeta.ASSET_POS, value = "设备位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainTaskVOMeta.COST, value = "费用", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = MaintainTaskVOMeta.CONTENT, value = "保养结果", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainTaskVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainTaskVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MaintainTaskVOMeta.PAGE_INDEX, MaintainTaskVOMeta.PAGE_SIZE, MaintainTaskVOMeta.SEARCH_FIELD, MaintainTaskVOMeta.FUZZY_FIELD, MaintainTaskVOMeta.SEARCH_VALUE, MaintainTaskVOMeta.DIRTY_FIELDS, MaintainTaskVOMeta.SORT_FIELD, MaintainTaskVOMeta.SORT_TYPE, MaintainTaskVOMeta.IDS })
     @SentinelResource(value = MaintainTaskServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -220,7 +220,8 @@ public class MaintainTaskController extends SuperController {
 		@ApiImplicitParam(name = MaintainTaskVOMeta.ASSET_POS, value = "设备位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainTaskVOMeta.COST, value = "费用", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = MaintainTaskVOMeta.CONTENT, value = "保养结果", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainTaskVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainTaskVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MaintainTaskVOMeta.PAGE_INDEX, MaintainTaskVOMeta.PAGE_SIZE, MaintainTaskVOMeta.SEARCH_FIELD, MaintainTaskVOMeta.FUZZY_FIELD, MaintainTaskVOMeta.SEARCH_VALUE, MaintainTaskVOMeta.DIRTY_FIELDS, MaintainTaskVOMeta.SORT_FIELD, MaintainTaskVOMeta.SORT_TYPE, MaintainTaskVOMeta.IDS })
     @SentinelResource(value = MaintainTaskServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -302,7 +303,8 @@ public class MaintainTaskController extends SuperController {
 		@ApiImplicitParam(name = MaintainTaskVOMeta.ASSET_POS, value = "设备位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainTaskVOMeta.COST, value = "费用", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = MaintainTaskVOMeta.CONTENT, value = "保养结果", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainTaskVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainTaskVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MaintainTaskVOMeta.PAGE_INDEX, MaintainTaskVOMeta.PAGE_SIZE })
     @SentinelResource(value = MaintainTaskServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -346,7 +348,8 @@ public class MaintainTaskController extends SuperController {
 		@ApiImplicitParam(name = MaintainTaskVOMeta.ASSET_POS, value = "设备位置", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = MaintainTaskVOMeta.COST, value = "费用", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = MaintainTaskVOMeta.CONTENT, value = "保养结果", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = MaintainTaskVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = MaintainTaskVOMeta.RESULT, value = "结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainTaskVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MaintainTaskServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

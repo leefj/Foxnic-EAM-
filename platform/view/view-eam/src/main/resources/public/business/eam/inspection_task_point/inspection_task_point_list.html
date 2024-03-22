@@ -2,7 +2,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-05 21:32:37
+ * @since 2024-03-18 09:23:56
  */
  -->
  <!DOCTYPE html>
@@ -59,6 +59,7 @@
                     <!-- 排序 , sort ,typeName=number_input, isHideInSearch=true -->
                     <!-- 操作人 , operId ,typeName=button, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 巡检方式 , inspMethod ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 编码 , pointCode ,typeName=text_input, isHideInSearch=false -->
@@ -123,7 +124,6 @@
         <button th:if="${perm.checkAuth('eam_inspection_task_point:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
         <button id="import-data"  class="layui-btn icon-btn layui-btn-sm  import-data " lay-event="tool-import-data"><span th:text="${lang.translate('导入','','cmp:table.button')}">导入</span></button>
         <button id="export-data"  class="layui-btn icon-btn layui-btn-sm  export-data " lay-event="tool-export-data"><span th:text="${lang.translate('导出','','cmp:table.button')}">导出</span></button>
-
     </div>
 </script>
 
@@ -143,6 +143,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_POINTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum')}]];
+    var RADIO_INSPMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.PointInspectMethodEnum')}]];
     var AUTH_PREFIX="eam_inspection_task_point";
 
 

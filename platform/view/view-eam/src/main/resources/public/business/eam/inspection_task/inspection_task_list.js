@@ -1,7 +1,7 @@
 /**
  * 巡检任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-13 09:12:46
+ * @since 2024-03-18 08:59:42
  */
 
 
@@ -85,11 +85,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'taskStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('任务状态'), templet:function (d){ return templet('taskStatus',fox.getEnumText(SELECT_TASKSTATUS_DATA,d.taskStatus,'','taskStatus'),d);}}
-					,{ field: 'taskCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('任务单据') , templet: function (d) { return templet('taskCode',d.taskCode,d);}  }
 					,{ field: 'planName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检名称') , templet: function (d) { return templet('planName',d.planName,d);}  }
-					,{ field: 'remindTime', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('提醒时间(时)') , templet: function (d) { return templet('remindTime',d.remindTime,d);}  }
-					,{ field: 'overtimeMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('超时处理'), templet:function (d){ return templet('overtimeMethod',fox.getEnumText(SELECT_OVERTIMEMETHOD_DATA,d.overtimeMethod,'','overtimeMethod'),d);}}
-					,{ field: 'createTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'pointCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('巡检点数(总数)') , templet: function (d) { return templet('pointCount',d.pointCount,d);}  }
 					,{ field: 'pointWaitCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('巡检点数(待检)') , templet: function (d) { return templet('pointWaitCount',d.pointWaitCount,d);}  }
 					,{ field: 'pointNormalCount', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('巡检点数(正常)') , templet: function (d) { return templet('pointNormalCount',d.pointNormalCount,d);}  }
@@ -463,6 +459,9 @@ function ListPage() {
 			}
 			else if (layEvent === 'cancel') { // 取消
 				window.pageExt.list.cancel(data,this);
+			}
+			else if (layEvent === 'detail') { // 详情
+				window.pageExt.list.detail(data,this);
 			}
 			
 		});

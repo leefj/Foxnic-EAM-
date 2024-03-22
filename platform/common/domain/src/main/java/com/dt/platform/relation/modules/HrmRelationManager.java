@@ -145,6 +145,8 @@ public class HrmRelationManager extends RelationManager {
 		this.property(AssessmentBillUserMapMeta.SAME_USER_LIST_REL_PROP)
 				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.LEADER_ID).join(FoxnicWeb.HRM_EMPLOYEE.DIRECT_LEADER_ID);
 
+
+
 		//得分情况
 		this.property(AssessmentBillUserMapMeta.SELF_SCORE_PAPER_PROP)
 				.using(HrTables.HR_ASSESSMENT_BILL_USER_MAP.ID).join(HrTables.HR_ASSESSMENT_BILL_TASK_PAPER.USER_MAP_ID)

@@ -882,9 +882,11 @@ sed -i '/startApp/d' /etc/rc.d/rc.local
 sed -i '/startJob/d' /etc/rc.d/rc.local
 sed -i '/startBpm/d' /etc/rc.d/rc.local
 echo "#to start all">>/etc/rc.d/rc.local
+chmod +x /etc/rc.d/rc.local
 echo "sleep 10">>/etc/rc.d/rc.local
 echo "cd $app_dir;sh startAll.sh">>/etc/rc.d/rc.local
 echo "#add application start finish">>/etc/rc.d/rc.local
+
 #################################### stop Firewalld ####################################
 #process firewalld
 which firewall-cmd

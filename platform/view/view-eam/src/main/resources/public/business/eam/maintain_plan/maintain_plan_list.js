@@ -1,7 +1,7 @@
 /**
  * 保养方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-09-14 13:09:59
+ * @since 2024-03-22 09:26:43
  */
 
 
@@ -94,6 +94,7 @@ function ListPage() {
 					,{ field: 'endTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('endTime',fox.dateFormat(d.endTime,"yyyy-MM-dd"),d); }  }
 					,{ field: 'totalCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('预计工时(时)') , templet: function (d) { return templet('totalCost',d.totalCost,d);}  }
 					,{ field: 'lastTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('上次执行') ,templet: function (d) { return templet('lastTime',fox.dateFormat(d.lastTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'updateBy', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: 'itemCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('保养项目数') , templet: function (d) { return templet('itemCount',d.itemCount,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 250 }

@@ -51,6 +51,9 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(String.class,"itemCount","itemCount","itemCount");
         cfg.getPoClassFile().addSimpleProperty(String.class,"waitCount","waitCount","waitCount");
 
+        cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
+        cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
+
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_START_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_FINISH_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_START_TIME).form().validate().required().form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
@@ -78,7 +81,7 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.NOTES).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ORIGINATOR_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_POS).table().disable(true);
-
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.UPDATE_BY).table().hidden(true);
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.BUSINESS_CODE).search().fuzzySearch();
      //   cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_NAME).search().fuzzySearch();
@@ -148,9 +151,7 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.TIMEOUT).form().numberInput().defaultValue(2.0).scale(2).decimal();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.TOTAL_COST).form().numberInput().defaultValue(2.0).scale(2).decimal();
-
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_TOTAL_COST).form().numberInput().defaultValue(2.0).scale(2).decimal();
-
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.COST).form().numberInput().defaultValue(2.0).scale(2).decimal();
 
 

@@ -29,7 +29,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务
  * <p>巡检任务 , 数据表 eam_inspection_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-13 09:12:44
+ * @since 2024-03-18 08:59:41
  * @sign A7D8F14B8D3723F828DAABDF71F0E505
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -46,37 +46,37 @@ public class InspectionTask extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "742135122488197120")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "815523600164454400")
 	private String id;
 	
 	/**
 	 * 巡检计划：巡检计划
 	*/
-	@ApiModelProperty(required = false,value="巡检计划" , notes = "巡检计划" , example = "729705521644306432")
+	@ApiModelProperty(required = false,value="巡检计划" , notes = "巡检计划" , example = "815523516488089600")
 	private String planId;
 	
 	/**
 	 * 任务状态：任务状态
 	*/
-	@ApiModelProperty(required = false,value="任务状态" , notes = "任务状态" , example = "wait")
+	@ApiModelProperty(required = false,value="任务状态" , notes = "任务状态" , example = "finish")
 	private String taskStatus;
 	
 	/**
 	 * 任务单据：任务单据
 	*/
-	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "INSPT202340102140786")
+	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "INSPT202459290959540")
 	private String taskCode;
 	
 	/**
 	 * 计划单据：计划单据
 	*/
-	@ApiModelProperty(required = false,value="计划单据" , notes = "计划单据" , example = "INSP202329071429562")
+	@ApiModelProperty(required = false,value="计划单据" , notes = "计划单据" , example = "INSP202459290959817")
 	private String planCode;
 	
 	/**
 	 * 巡检名称：巡检名称
 	*/
-	@ApiModelProperty(required = false,value="巡检名称" , notes = "巡检名称" , example = "1212-2023-08-10")
+	@ApiModelProperty(required = false,value="巡检名称" , notes = "巡检名称" , example = "测试-2024-02-29")
 	private String planName;
 	
 	/**
@@ -88,7 +88,7 @@ public class InspectionTask extends Entity {
 	/**
 	 * 时间要求：时间要求
 	*/
-	@ApiModelProperty(required = false,value="时间要求" , notes = "时间要求" , example = "3.00")
+	@ApiModelProperty(required = false,value="时间要求" , notes = "时间要求" , example = "2.00")
 	private BigDecimal planCompletionTime;
 	
 	/**
@@ -106,25 +106,25 @@ public class InspectionTask extends Entity {
 	/**
 	 * 执行人：执行人
 	*/
-	@ApiModelProperty(required = false,value="执行人" , notes = "执行人")
+	@ApiModelProperty(required = false,value="执行人" , notes = "执行人" , example = "E001")
 	private String executorId;
 	
 	/**
 	 * 应开始时间：应开始时间
 	*/
-	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2023-08-10 09:40:01")
+	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2024-02-29 09:59:38")
 	private Date planStartTime;
 	
 	/**
 	 * 实际开始：实际开始
 	*/
-	@ApiModelProperty(required = false,value="实际开始" , notes = "实际开始")
+	@ApiModelProperty(required = false,value="实际开始" , notes = "实际开始" , example = "2024-03-05 09:32:21")
 	private Date actStartTime;
 	
 	/**
 	 * 实际完成：实际完成
 	*/
-	@ApiModelProperty(required = false,value="实际完成" , notes = "实际完成")
+	@ApiModelProperty(required = false,value="实际完成" , notes = "实际完成" , example = "2024-03-05 09:32:21")
 	private Date actFinishTime;
 	
 	/**
@@ -136,7 +136,7 @@ public class InspectionTask extends Entity {
 	/**
 	 * 提醒时间：提醒时间
 	*/
-	@ApiModelProperty(required = false,value="提醒时间" , notes = "提醒时间" , example = "1.00")
+	@ApiModelProperty(required = false,value="提醒时间" , notes = "提醒时间" , example = "2.00")
 	private BigDecimal remindTime;
 	
 	/**
@@ -166,25 +166,25 @@ public class InspectionTask extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-10 09:40:01")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-02-29 09:59:38")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-05 09:28:51")
 	private Date updateTime;
 	
 	/**
@@ -211,13 +211,13 @@ public class InspectionTask extends Entity {
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**

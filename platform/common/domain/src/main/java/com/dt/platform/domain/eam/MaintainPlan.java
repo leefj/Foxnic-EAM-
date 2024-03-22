@@ -29,7 +29,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 保养方案
  * <p>保养方案 , 数据表 eam_maintain_plan 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-09-14 13:09:58
+ * @since 2024-03-22 09:26:41
  * @sign 628BFA930A24FFD6D41480135F0FFC41
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -46,31 +46,31 @@ public class MaintainPlan extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "698202515644088320")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
 	
 	/**
 	 * 计划单据：计划单据
 	*/
-	@ApiModelProperty(required = false,value="计划单据" , notes = "计划单据" , example = "MP202304111604601")
+	@ApiModelProperty(required = false,value="计划单据" , notes = "计划单据")
 	private String code;
 	
 	/**
 	 * 计划名称：计划名称
 	*/
-	@ApiModelProperty(required = false,value="计划名称" , notes = "计划名称" , example = "12")
+	@ApiModelProperty(required = false,value="计划名称" , notes = "计划名称")
 	private String name;
 	
 	/**
 	 * 计划状态：计划状态
 	*/
-	@ApiModelProperty(required = false,value="计划状态" , notes = "计划状态" , example = "stop")
+	@ApiModelProperty(required = false,value="计划状态" , notes = "计划状态")
 	private String status;
 	
 	/**
 	 * 保养设备：保养设备
 	*/
-	@ApiModelProperty(required = false,value="保养设备" , notes = "保养设备" , example = "681881153086423040")
+	@ApiModelProperty(required = false,value="保养设备" , notes = "保养设备")
 	private String assetId;
 	
 	/**
@@ -100,19 +100,19 @@ public class MaintainPlan extends Entity {
 	/**
 	 * 保养班组：保养班组
 	*/
-	@ApiModelProperty(required = false,value="保养班组" , notes = "保养班组" , example = "698150545436704768")
+	@ApiModelProperty(required = false,value="保养班组" , notes = "保养班组")
 	private String groupId;
 	
 	/**
 	 * 保养类型：保养类型
 	*/
-	@ApiModelProperty(required = false,value="保养类型" , notes = "保养类型" , example = "default")
+	@ApiModelProperty(required = false,value="保养类型" , notes = "保养类型")
 	private String maintainType;
 	
 	/**
 	 * 循环方式：循环方式
 	*/
-	@ApiModelProperty(required = false,value="循环方式" , notes = "循环方式" , example = "once")
+	@ApiModelProperty(required = false,value="循环方式" , notes = "循环方式")
 	private String cycleMethod;
 	
 	/**
@@ -124,7 +124,7 @@ public class MaintainPlan extends Entity {
 	/**
 	 * 开始时间：开始时间
 	*/
-	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2023-04-11 04:04:59")
+	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间")
 	private Date startTime;
 	
 	/**
@@ -136,19 +136,19 @@ public class MaintainPlan extends Entity {
 	/**
 	 * 预计工时：小时)
 	*/
-	@ApiModelProperty(required = false,value="预计工时" , notes = "小时)" , example = "0.00")
+	@ApiModelProperty(required = false,value="预计工时" , notes = "小时)")
 	private BigDecimal totalCost;
 	
 	/**
 	 * 超时时间：分)
 	*/
-	@ApiModelProperty(required = false,value="超时时间" , notes = "分)" , example = "2.00")
+	@ApiModelProperty(required = false,value="超时时间" , notes = "分)")
 	private BigDecimal timeout;
 	
 	/**
 	 * 方案说明：方案说明
 	*/
-	@ApiModelProperty(required = false,value="方案说明" , notes = "方案说明" , example = "121212")
+	@ApiModelProperty(required = false,value="方案说明" , notes = "方案说明")
 	private String info;
 	
 	/**
@@ -160,7 +160,7 @@ public class MaintainPlan extends Entity {
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
 	private String originatorId;
 	
 	/**
@@ -178,13 +178,13 @@ public class MaintainPlan extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-11 04:07:32")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
 	private Date createTime;
 	
 	/**
@@ -202,7 +202,7 @@ public class MaintainPlan extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -223,13 +223,13 @@ public class MaintainPlan extends Entity {
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户")
 	private String tenantId;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version")
 	private Integer version;
 	
 	/**

@@ -252,6 +252,10 @@ public class AssessmentTaskServiceImpl extends SuperService<AssessmentTask> impl
 			List<String> sameUserIds=new ArrayList<>();
 			if (sameUserList!=null&&sameUserList.size()>0){
 				for(int i=0;i<sameUserList.size();i++){
+					//互评里，排除自己
+					if(sameUserList.get(i).getId().equals(user.getAssesseeId())){
+						continue;
+					}
 					sameUserIds.add(sameUserList.get(i).getId());
 				}
 				user.setSameUserIds(sameUserIds);

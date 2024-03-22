@@ -3,7 +3,6 @@ package com.dt.platform.eam.controller;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
 import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
@@ -39,7 +38,6 @@ import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.springboot.web.DownloadUtil;
 import com.github.foxnic.dao.data.PagedList;
-
 import java.sql.Timestamp;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.commons.io.StreamUtil;
@@ -98,7 +96,8 @@ public class InspectionTaskPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.IMAGE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.ACTION_LABEL, value = "处理动作", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.INSP_METHOD, value = "巡检方式", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InspectionTaskPointServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -167,7 +166,8 @@ public class InspectionTaskPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.IMAGE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.ACTION_LABEL, value = "处理动作", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.INSP_METHOD, value = "巡检方式", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InspectionTaskPointVOMeta.PAGE_INDEX, InspectionTaskPointVOMeta.PAGE_SIZE, InspectionTaskPointVOMeta.SEARCH_FIELD, InspectionTaskPointVOMeta.FUZZY_FIELD, InspectionTaskPointVOMeta.SEARCH_VALUE, InspectionTaskPointVOMeta.DIRTY_FIELDS, InspectionTaskPointVOMeta.SORT_FIELD, InspectionTaskPointVOMeta.SORT_TYPE, InspectionTaskPointVOMeta.IDS })
     @SentinelResource(value = InspectionTaskPointServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -205,7 +205,8 @@ public class InspectionTaskPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.IMAGE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.ACTION_LABEL, value = "处理动作", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.INSP_METHOD, value = "巡检方式", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionTaskPointVOMeta.PAGE_INDEX, InspectionTaskPointVOMeta.PAGE_SIZE, InspectionTaskPointVOMeta.SEARCH_FIELD, InspectionTaskPointVOMeta.FUZZY_FIELD, InspectionTaskPointVOMeta.SEARCH_VALUE, InspectionTaskPointVOMeta.DIRTY_FIELDS, InspectionTaskPointVOMeta.SORT_FIELD, InspectionTaskPointVOMeta.SORT_TYPE, InspectionTaskPointVOMeta.IDS })
     @SentinelResource(value = InspectionTaskPointServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -280,7 +281,8 @@ public class InspectionTaskPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.IMAGE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.ACTION_LABEL, value = "处理动作", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.INSP_METHOD, value = "巡检方式", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionTaskPointVOMeta.PAGE_INDEX, InspectionTaskPointVOMeta.PAGE_SIZE })
     @SentinelResource(value = InspectionTaskPointServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -319,7 +321,8 @@ public class InspectionTaskPointController extends SuperController {
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.IMAGE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskPointVOMeta.ACTION_LABEL, value = "处理动作", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.INSP_METHOD, value = "巡检方式", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InspectionTaskPointServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -378,8 +381,8 @@ public class InspectionTaskPointController extends SuperController {
 
     @SentinelResource(value = InspectionTaskPointServiceProxy.FINISH, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(InspectionTaskPointServiceProxy.FINISH)
-    public Result finish(String id, String pointStatus, String content, String imageId, String actionLabel,String itemData) {
-        return inspectionTaskPointService.finish(id, pointStatus, content, imageId, actionLabel,itemData);
+    public Result finish(String id, String pointStatus, String content, String imageId, String actionLabel, String itemData) {
+        return inspectionTaskPointService.finish(id, pointStatus, content, imageId, actionLabel, itemData);
     }
 
     /**
@@ -388,62 +391,52 @@ public class InspectionTaskPointController extends SuperController {
     @SentinelResource(value = InspectionTaskPointServiceProxy.EXPORT_EXCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(InspectionTaskPointServiceProxy.EXPORT_EXCEL)
     public void exportExcel(InspectionTaskPointVO sample, HttpServletResponse response) throws Exception {
-        String code="eam_asset_insepect_detail";
+        String code = "eam_asset_insepect_detail";
         InputStream inputstream = inspectionTaskPointService.buildExcelTemplate(code);
-        try{
-            File f = TplFileServiceProxy.api().saveTempFile(inputstream, "tmp_"+code+".xls");
-            List<InspectionTaskPoint> list= inspectionTaskPointService.queryList(sample);
+        try {
+            File f = TplFileServiceProxy.api().saveTempFile(inputstream, "tmp_" + code + ".xls");
+            List<InspectionTaskPoint> list = inspectionTaskPointService.queryList(sample);
             inspectionTaskPointService.dao().fill(list).with(InspectionTaskPointMeta.ASSET).with(InspectionTaskPointMeta.INSPECTION_PROCESS_ACTION).with(InspectionTaskPointMeta.TASK).with(InspectionTaskPointMeta.CHECK_SELECT_LIST).with(InspectionTaskPointMeta.ROUTE).with(InspectionTaskPointMeta.OPER_USER).with(InspectionTaskPointMeta.INSPECTION_POINT_POS).execute();
             List<Employee> user2 = CollectorUtil.collectList(list, InspectionTaskPoint::getOperUser);
             inspectionTaskPointService.dao().join(user2, Person.class);
-
-
             List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            for(int i=0;i<list.size();i++){
-                InspectionTaskPoint item=list.get(i);
-                Map<String, Object> assetMap= BeanUtil.toMap(item);
-
-                if(item.getTask()!=null){
-                    assetMap.put("taskName",item.getTask().getPlanName());
+            for (int i = 0; i < list.size(); i++) {
+                InspectionTaskPoint item = list.get(i);
+                Map<String, Object> assetMap = BeanUtil.toMap(item);
+                if (item.getTask() != null) {
+                    assetMap.put("taskName", item.getTask().getPlanName());
                 }
-
-                if(item.getAsset()!=null){
-                    assetMap.put("relAssetName",item.getAsset().getName());
-                    assetMap.put("relAssetModel",item.getAsset().getModel());
-                    assetMap.put("relAssetCode",item.getAsset().getAssetCode());
+                if (item.getAsset() != null) {
+                    assetMap.put("relAssetName", item.getAsset().getName());
+                    assetMap.put("relAssetModel", item.getAsset().getModel());
+                    assetMap.put("relAssetCode", item.getAsset().getAssetCode());
                 }
-
-                if(!StringUtil.isBlank(item.getOperTime())){
-                    assetMap.put("operTimeName",sdf.format(item.getOperTime()));
+                if (!StringUtil.isBlank(item.getOperTime())) {
+                    assetMap.put("operTimeName", sdf.format(item.getOperTime()));
                 }
-
-                CodeTextEnum status= EnumUtil.parseByCode(InspectionTaskPointStatusEnum.class,item.getPointStatus());
-                assetMap.put("pointStatusName",status==null?"":status.text());
-
-                //数据字典
-                if(item.getInspectionProcessAction()!=null){
-                    assetMap.put("actionLabelName",item.getInspectionProcessAction().getName());
+                CodeTextEnum status = EnumUtil.parseByCode(InspectionTaskPointStatusEnum.class, item.getPointStatus());
+                assetMap.put("pointStatusName", status == null ? "" : status.text());
+                // 数据字典
+                if (item.getInspectionProcessAction() != null) {
+                    assetMap.put("actionLabelName", item.getInspectionProcessAction().getName());
                 }
-
-                if(!StringUtil.isBlank(item.getOperTime())){
+                if (!StringUtil.isBlank(item.getOperTime())) {
                     assetMap.put("operTime", sdf.format(item.getOperTime()));
                 }
-
-                if(!StringUtil.isBlank(item.getOperUser())){
-                    assetMap.put("operUserName",item.getOperUser().getName());
+                if (!StringUtil.isBlank(item.getOperUser())) {
+                    assetMap.put("operUserName", item.getOperUser().getName());
                 }
-
                 listMap.add(assetMap);
             }
-            Map<String,Object> map=new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("dataList", listMap);
             TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
             templateExportParams.setScanAllsheet(true);
             Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
             DownloadUtil.writeToOutput(response, workbook, "巡检列表.xls");
         } catch (Exception e) {
-            DownloadUtil.writeDownloadError(response,e);
+            DownloadUtil.writeDownloadError(response, e);
         }
     }
 
@@ -466,15 +459,15 @@ public class InspectionTaskPointController extends SuperController {
     @SentinelResource(value = InspectionTaskPointServiceProxy.IMPORT_EXCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(InspectionTaskPointServiceProxy.IMPORT_EXCEL)
     public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
-        String code="eam_asset_insepect_detail";
-        //获得上传的文件
+        String code = "eam_asset_insepect_detail";
+        // 获得上传的文件
         Map<String, MultipartFile> map = request.getFileMap();
-        InputStream input=null;
+        InputStream input = null;
         for (MultipartFile mf : map.values()) {
-            input=StreamUtil.bytes2input(mf.getBytes());
+            input = StreamUtil.bytes2input(mf.getBytes());
             break;
         }
-        if(input==null) {
+        if (input == null) {
             return ErrorDesc.failure().message("缺少上传的文件");
         }
         List<ValidateResult> errors = inspectionTaskPointService.importExcel(input, 0, code);

@@ -1,7 +1,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-05 21:32:37
+ * @since 2024-03-18 09:23:57
  */
 
 
@@ -169,7 +169,6 @@ function ListPage() {
 		var value = {};
 		value.pointStatus={ inputType:"radio_box", value: getSelectedValue("#pointStatus","value"), label:getSelectedValue("#pointStatus","nameStr") };
 		value.actionLabel={ inputType:"select_box", value: getSelectedValue("#actionLabel","value") ,fillBy:["inspectionProcessAction"]  , label:getSelectedValue("#actionLabel","nameStr") };
-
 		value.pointCode={ inputType:"button",value: $("#pointCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.pointName={ inputType:"button",value: $("#pointName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.pointPos={ inputType:"button",value: $("#pointPos").val()};

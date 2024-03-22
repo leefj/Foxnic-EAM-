@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_task_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-05 21:32:36
- * @sign 3AFB891FB26184C21CA0B2156BE1F3D2
+ * @since 2024-03-18 09:23:55
+ * @sign B5625A42BFD927AC25F37E8AF15A850D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -167,6 +167,12 @@ public class InspectionTaskPoint extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
+	
+	/**
+	 * 巡检方式：巡检方式
+	*/
+	@ApiModelProperty(required = false,value="巡检方式" , notes = "巡检方式")
+	private String inspMethod;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -685,6 +691,25 @@ public class InspectionTaskPoint extends Entity {
 	}
 	
 	/**
+	 * 获得 巡检方式<br>
+	 * 巡检方式
+	 * @return 巡检方式
+	*/
+	public String getInspMethod() {
+		return inspMethod;
+	}
+	
+	/**
+	 * 设置 巡检方式
+	 * @param inspMethod 巡检方式
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint setInspMethod(String inspMethod) {
+		this.inspMethod=inspMethod;
+		return this;
+	}
+	
+	/**
 	 * 获得 创建人ID<br>
 	 * 创建人ID
 	 * @return 创建人ID
@@ -1149,6 +1174,7 @@ public class InspectionTaskPoint extends Entity {
 		inst.setSelectedCode(this.getSelectedCode());
 		inst.setContent(this.getContent());
 		inst.setActionLabel(this.getActionLabel());
+		inst.setInspMethod(this.getInspMethod());
 		inst.setPointId(this.getPointId());
 		inst.setPointRouteId(this.getPointRouteId());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -1249,6 +1275,7 @@ public class InspectionTaskPoint extends Entity {
 			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.CONTENT)));
 			this.setActionLabel(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.ACTION_LABEL)));
+			this.setInspMethod(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.INSP_METHOD)));
 			this.setPointId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_ID)));
 			this.setPointRouteId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_ROUTE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.UPDATE_BY)));
@@ -1291,6 +1318,7 @@ public class InspectionTaskPoint extends Entity {
 				this.setSelectedCode( (String)map.get(InspectionTaskPointMeta.SELECTED_CODE));
 				this.setContent( (String)map.get(InspectionTaskPointMeta.CONTENT));
 				this.setActionLabel( (String)map.get(InspectionTaskPointMeta.ACTION_LABEL));
+				this.setInspMethod( (String)map.get(InspectionTaskPointMeta.INSP_METHOD));
 				this.setPointId( (String)map.get(InspectionTaskPointMeta.POINT_ID));
 				this.setPointRouteId( (String)map.get(InspectionTaskPointMeta.POINT_ROUTE_ID));
 				this.setUpdateBy( (String)map.get(InspectionTaskPointMeta.UPDATE_BY));
@@ -1346,6 +1374,7 @@ public class InspectionTaskPoint extends Entity {
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.CONTENT)));
 			this.setActionLabel(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.ACTION_LABEL)));
+			this.setInspMethod(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.INSP_METHOD)));
 			this.setPointId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_ID)));
 			this.setPointRouteId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_ROUTE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.UPDATE_BY)));
@@ -1379,6 +1408,7 @@ public class InspectionTaskPoint extends Entity {
 				this.setSelectedCode( (String)r.getValue(InspectionTaskPointMeta.SELECTED_CODE));
 				this.setContent( (String)r.getValue(InspectionTaskPointMeta.CONTENT));
 				this.setActionLabel( (String)r.getValue(InspectionTaskPointMeta.ACTION_LABEL));
+				this.setInspMethod( (String)r.getValue(InspectionTaskPointMeta.INSP_METHOD));
 				this.setPointId( (String)r.getValue(InspectionTaskPointMeta.POINT_ID));
 				this.setPointRouteId( (String)r.getValue(InspectionTaskPointMeta.POINT_ROUTE_ID));
 				this.setUpdateBy( (String)r.getValue(InspectionTaskPointMeta.UPDATE_BY));

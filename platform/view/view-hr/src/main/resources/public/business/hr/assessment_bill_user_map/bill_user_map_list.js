@@ -76,6 +76,15 @@ function ListPage() {
 			var h=$(".search-bar").height();
 			var tableConfig={
 				elem: '#data-table',
+				skin: 'line' //行边框风格
+				,even: true //开启隔行背景
+				,size: 'sm' ,//小尺寸的表格
+				method:"post",
+				// ,autoColumnWidth: {
+				// 	init: true
+				// },
+				cellMinWidth:100,
+			//	cellMinWidth:'auto',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: queryURL,
@@ -83,42 +92,50 @@ function ListPage() {
 				limit: 50,
 				where: ps,
 				cols: [[
-					{ fixed: 'left',type: 'numbers' },
-					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'assesseeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('被考核人') , templet: function (d) { return templet('assesseeId',fox.getProperty(d,["assesseeUser","name"],0,'','assesseeId'),d);} }
-					,{ field: 'selfScoreValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('自评分') , templet: function (d) { return templet('selfScoreValue',fox.getProperty(d,["selfScorePaper","scoreValue"],0,'','selfScoreValue'),d);} }
-					,{ field: 'incompleteSelfPaperCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('自评未完成数') , templet: function (d) { return templet('incompleteSelfPaperCount',d.incompleteSelfPaperCount,d);}  }
+					{ fixed: 'left',type: 'numbers',rowspan:2 },
+					{ fixed: 'left',type:'checkbox',rowspan:2 }
+					,{ field: 'id',rowspan:2 ,align:"center",fixed:false,  hide:true, sort: false  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'status',rowspan:2 ,align:"center",fixed:false,  hide:false, sort: false  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);} ,minWidth: 80,width:80,}
+					,{ field: 'assesseeId',rowspan:2 , align:"center",fixed:false,  hide:false, sort: false  , title: fox.translate('被考核人') , templet: function (d) { return templet('assesseeId',fox.getProperty(d,["assesseeUser","name"],0,'','assesseeId'),d);},minWidth: 80,width:100, }
+					,{ field: 'aaa',colspan:2, align:"center" , title: fox.translate('自评信息') }
+					,{ field: 'bbb',colspan:3, align:"center" , title: fox.translate('互评信息') }
+					,{ field: 'ccc',colspan:3, align:"center" , title: fox.translate('直接领导考评') }
+					,{ field: 'ddd',colspan:3, align:"center" , title: fox.translate('上上级领导考评') }
+					,{ field: 'hrUserId',rowspan:2, align:"left",fixed:false,  hide:false, sort: true  , width: 160, title: fox.translate('HR复核人') , templet: function (d) { return templet('hrUserId',fox.getProperty(d,["hrUser","name"],0,'','hrUserId'),d);} }
+					,{ field: 'isConfirm', rowspan:2,align:"left",fixed:false,  hide:false, sort: true  ,  width: 160,title: fox.translate('复核情况'), templet:function (d){ return templet('isConfirm',fox.getEnumText(RADIO_ISCONFIRM_DATA,d.isConfirm,'','isConfirm'),d);}}
+					,{ field: fox.translate('空白列','','cmp:table'),rowspan:2, align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
+					,{ field: 'row-ops', rowspan:2,fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160}
+				],
+					[
+						{ field: 'selfScoreValue', align:"center",fixed:false,  hide:false, sort: false  , title: fox.translate('自评分数') , templet: function (d) { return templet('selfScoreValue',fox.getProperty(d,["selfScorePaper","scoreValue"],0,'','selfScoreValue'),d);} }
+						,{ field: 'incompleteSelfPaperCount', align:"center",fixed:false,  hide:false, sort: false  , title: fox.translate('自评未完成数') , templet: function (d) { return templet('incompleteSelfPaperCount',d.incompleteSelfPaperCount,d);}  }
+						,{ field: 'sameUserAvgScoreValue', align:"center",fixed:false,  hide:false, sort: false  , title: fox.translate('互评平均评分') , templet: function (d) { return templet('sameUserAvgScoreValue',d.sameUserAvgScoreValue,d);}  }
+						,{ field: 'incompleteSamePaperCount', align:"center",fixed:false,  hide:false, sort: false  , title: fox.translate('未完成数') , templet: function (d) { return templet('incompleteSamePaperCount',d.incompleteSamePaperCount,d);}  }
+						 ,{ field: 'sameUserIds', align:"center",fixed:false,  hide:false, sort: false  , title: fox.translate('互评人员') , templet: function (d) { return templet('sameUserIds',fox.getProperty(d,["sameUserList","name"],0,'','sameUserIds'),d);} }
+						,{ field: 'leaderScoreValue', align:"center",fixed:false,  hide:false, sort: false  , title: fox.translate('评分') , templet: function (d) { return templet('leaderScoreValue',fox.getProperty(d,["leaderScorePaper","scoreValue"],0,'','leaderScoreValue'),d);} }
+						,{ field: 'incompleteLeaderPaperCount', align:"center",fixed:false,  hide:false, sort: false  , title: fox.translate('未完成数') , templet: function (d) { return templet('incompleteLeaderPaperCount',d.incompleteLeaderPaperCount,d);}  }
+						 ,{ field: 'leaderId', align:"center",fixed:false,  hide:false, sort: true  , title: fox.translate('考评人员') , templet: function (d) { return templet('leaderId',fox.getProperty(d,["leaderUser","name"],0,'','leaderId'),d);} }
+						,{ field: 'secondLeaderScoreValue', align:"center",fixed:false,  hide:false, sort: false  , title: fox.translate('评分') , templet: function (d) { return templet('secondLeaderScoreValue',fox.getProperty(d,["secondLeaderScorePaper","scoreValue"],0,'','secondLeaderScoreValue'),d);} }
+						,{ field: 'incompleteSecondLeaderPaperCount', align:"center",fixed:false,  hide:false, sort: false  , title: fox.translate('未完成数') , templet: function (d) { return templet('incompleteSecondLeaderPaperCount',d.incompleteSecondLeaderPaperCount,d);}  }
+						,{ field: 'secondLeaderId', align:"center",fixed:false,  hide:false, sort: true  , title: fox.translate('考评人员') , templet: function (d) { return templet('secondLeaderId',fox.getProperty(d,["secondLeaderUser","name"],0,'','secondLeaderId'),d);} }
+						// ,{ field: 'leaderUserIdRel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('直属领导【参考】') , templet: function (d) { return templet('leaderUserIdRel',fox.getProperty(d,["leaderUserRel","name"],0,'','leaderUserIdRel'),d);} }
+						// ,{ field: 'secondLeaderUserIdRel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('上上级领导【参考】') , templet: function (d) { return templet('secondLeaderUserIdRel',fox.getProperty(d,["secondLeaderUserRel","name"],0,'','secondLeaderUserIdRel'),d);} }
+						// ,{ field: 'sameUserIdsRel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('人员互评【参考】') , templet: function (d) { return templet('sameUserIdsRel',fox.getProperty(d,["sameUserListRel","name"],0,'','sameUserIdsRel'),d);} }
+					]
+				],
 
-					,{ field: 'sameUserAvgScoreValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('互评平均评分') , templet: function (d) { return templet('sameUserAvgScoreValue',d.sameUserAvgScoreValue,d);}  }
-					,{ field: 'incompleteSamePaperCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('互评未完成数') , templet: function (d) { return templet('incompleteSamePaperCount',d.incompleteSamePaperCount,d);}  }
-
-
-					,{ field: 'leaderScoreValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('直接领导评分') , templet: function (d) { return templet('leaderScoreValue',fox.getProperty(d,["leaderScorePaper","scoreValue"],0,'','leaderScoreValue'),d);} }
-					,{ field: 'incompleteLeaderPaperCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('直接领导未完成数') , templet: function (d) { return templet('incompleteLeaderPaperCount',d.incompleteLeaderPaperCount,d);}  }
-
-					,{ field: 'secondLeaderScoreValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('上上级领导评分') , templet: function (d) { return templet('secondLeaderScoreValue',fox.getProperty(d,["secondLeaderScorePaper","scoreValue"],0,'','secondLeaderScoreValue'),d);} }
-					,{ field: 'incompleteSecondLeaderPaperCount', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('上上级别领导未完成数') , templet: function (d) { return templet('incompleteSecondLeaderPaperCount',d.incompleteSecondLeaderPaperCount,d);}  }
-
-
-					,{ field: 'sameUserIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('人员互评') , templet: function (d) { return templet('sameUserIds',fox.getProperty(d,["sameUserList","name"],0,'','sameUserIds'),d);} }
-					,{ field: 'leaderId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('直属领导') , templet: function (d) { return templet('leaderId',fox.getProperty(d,["leaderUser","name"],0,'','leaderId'),d);} }
-					,{ field: 'secondLeaderId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('上上级领导') , templet: function (d) { return templet('secondLeaderId',fox.getProperty(d,["secondLeaderUser","name"],0,'','secondLeaderId'),d);} }
-
-
-					,{ field: 'leaderUserIdRel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('直属领导【参考】') , templet: function (d) { return templet('leaderUserIdRel',fox.getProperty(d,["leaderUserRel","name"],0,'','leaderUserIdRel'),d);} }
-					,{ field: 'secondLeaderUserIdRel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('上上级领导【参考】') , templet: function (d) { return templet('secondLeaderUserIdRel',fox.getProperty(d,["secondLeaderUserRel","name"],0,'','secondLeaderUserIdRel'),d);} }
-				    ,{ field: 'sameUserIdsRel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('人员互评【参考】') , templet: function (d) { return templet('sameUserIdsRel',fox.getProperty(d,["sameUserListRel","name"],0,'','sameUserIdsRel'),d);} }
-					,{ field: 'hrUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('HR复核人') , templet: function (d) { return templet('hrUserId',fox.getProperty(d,["hrUser","name"],0,'','hrUserId'),d);} }
-					,{ field: 'isConfirm', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('复核情况'), templet:function (d){ return templet('isConfirm',fox.getEnumText(RADIO_ISCONFIRM_DATA,d.isConfirm,'','isConfirm'),d);}}
-					//		,{ field: 'result', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('生成状态'), templet:function (d){ return templet('result',fox.getEnumText(RADIO_RESULT_DATA,d.result,'','result'),d);}}
-					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
-					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
-				]],
 				done: function (data) {
 					lockSwitchInputs();
 					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
+				}
+				,parseData: function(res){ //res 即为原始返回的数据
+					console.log("res",res);
+					return {
+						"code": res.code, //解析接口状态
+						"msg": res.message, //解析提示文本
+						"count": res.totalRowCount, //解析数据长度
+						"data": res.data.list //解析数据列表
+					};
 				},
 				footer : {
 					exportExcel : false ,
@@ -126,7 +143,8 @@ function ListPage() {
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
-			dataTable=fox.renderTable(tableConfig);
+			//dataTable=table.renderTable(tableConfig);
+			dataTable=table.render(tableConfig);
 			//绑定排序事件
 			table.on('sort(data-table)', function(obj){
 				refreshTableData(obj.sortField,obj.type);
