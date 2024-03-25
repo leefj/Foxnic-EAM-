@@ -1,7 +1,7 @@
 /**
  * 维修工单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-11 11:53:50
+ * @since 2024-03-25 13:23:34
  */
 
 function FormPage() {
@@ -184,6 +184,42 @@ function FormPage() {
 				return opts;
 			}
 		});
+		//渲染 causeReasonCode 下拉字段
+		fox.renderSelectBox({
+			el: "causeReasonCode",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("故障原因",'','cmp:form'),
+			filterable: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("causeReasonCode",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("causeReasonCode",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 		laydate.render({
 			elem: '#startTime',
 			type:"datetime",
@@ -299,6 +335,8 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#groupId",formData.repairGroup);
 			//设置  维修人员 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#executorId",formData.executor);
+			//设置  故障原因 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#causeReasonCode",formData.categoryTpl);
 
 			//处理fillBy
 
@@ -365,6 +403,8 @@ function FormPage() {
 		data["groupId"]=fox.getSelectedValue("groupId",false);
 		//获取 维修人员 下拉框的值
 		data["executorId"]=fox.getSelectedValue("executorId",false);
+		//获取 故障原因 下拉框的值
+		data["causeReasonCode"]=fox.getSelectedValue("causeReasonCode",false);
 
 		return data;
 	}

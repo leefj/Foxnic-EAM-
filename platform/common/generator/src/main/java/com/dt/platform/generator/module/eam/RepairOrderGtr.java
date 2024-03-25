@@ -114,7 +114,7 @@ public class RepairOrderGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.PICTURE_ID).form().upload().acceptImageType().maxFileCount(6).buttonLabel("选择图片");
 
         cfg.view().list().addToolButton("派单","dispatchOrder","","eam_repair_order:dispatch");
-        cfg.view().list().operationColumn().addActionButton("维修工单","repairOrder","repair-order-button","eam_repair_order:repairOrder");
+        cfg.view().list().operationColumn().addActionButton("维修单据","repairOrder","repair-order-button","eam_repair_order:repairOrder");
 
       //  cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_repair_order:for-approval");
     //    cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_repair_order:revoke");

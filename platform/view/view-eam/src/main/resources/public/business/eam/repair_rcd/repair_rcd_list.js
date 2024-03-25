@@ -1,7 +1,7 @@
 /**
  * 维修记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 12:15:38
+ * @since 2024-03-24 08:16:00
  */
 
 
@@ -72,7 +72,7 @@ function ListPage() {
 					return value;
 				}
 			}
-			var h=$(".search-bar").height();
+			var h=-28; 
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
@@ -256,6 +256,9 @@ function ListPage() {
 					break;
 				case 'batch-del':
 					batchDelete(selected);
+					break;
+				case 'tool-rcd-detail':
+					window.pageExt.list.rcdDetail && window.pageExt.list.rcdDetail(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();

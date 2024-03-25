@@ -26,7 +26,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 列表页初始化前调用
          * */
         beforeInit:function () {
-            console.log("list:beforeInit");
+
         },
         /**
          * 表格渲染前调用
@@ -144,6 +144,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('beforeRowOperationEvent',data,obj);
             return true;
         },
+
         /**
          * 表格右侧操作列更多按钮事件
          * */

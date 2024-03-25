@@ -2,7 +2,7 @@
 /**
  * 维修记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 12:15:37
+ * @since 2024-03-24 08:16:00
  */
  -->
  <!DOCTYPE html>
@@ -34,7 +34,7 @@
 
     <div class="layui-card-body" style="">
 
-        <div class="search-bar" style="">
+        <div class="search-bar" style=" display: none; ">
 
             <div class="search-input-rows" style="opacity: 0">
                 <!-- 搜索输入区域 -->
@@ -50,6 +50,7 @@
                     <!-- 操作日期 , rcdTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 操作人员 , operUserId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 操作人员 , operUserName ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
 
 
                 </div>
@@ -62,7 +63,7 @@
             </div>
         </div>
 
-        <div id="table-area" style="margin-top: 42px ">
+        <div id="table-area" style="margin-top: 0px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -77,6 +78,7 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
+        <button id="rcd-detail"  class="layui-btn icon-btn layui-btn-sm  rcd-detail " lay-event="tool-rcd-detail"><span th:text="${lang.translate('详细情况','','cmp:table.button')}">详细情况</span></button>
     </div>
 </script>
 
@@ -97,6 +99,8 @@
 
     // assetId
     var ASSET_ID = [[${assetId}]] ;
+    // source
+    var SOURCE = [[${source}]] ;
 
 </script>
 

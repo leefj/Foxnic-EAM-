@@ -42,6 +42,8 @@ public class EAMAssetAttributeGtr extends BaseCodeGenerator{
         cfg.view().search().rowsDisplay(1);
         cfg.view().field(EAMTables.EAM_ASSET_ATTRIBUTE.UPDATE_BY).table().disable(true);
 
+        cfg.view().field(EAMTables.EAM_ASSET_ATTRIBUTE.UPDATE_BY).table().disable(true);
+
 
         cfg.view().field(EAMTables.EAM_ASSET_ATTRIBUTE.OWNER).form().validate().required()
                 .form().selectBox().enumType(AssetAttributeOwnerEnum.class);

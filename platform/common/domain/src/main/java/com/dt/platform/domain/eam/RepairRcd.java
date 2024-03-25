@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 维修记录
  * <p>维修记录 , 数据表 eam_repair_rcd 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 12:15:36
+ * @since 2024-03-24 08:15:59
  * @sign 6CE731136A90590F5F0F1A86044A44F4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -40,31 +40,31 @@ public class RepairRcd extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "742720220023488512")
 	private String id;
 	
 	/**
 	 * 单据：单据
 	*/
-	@ApiModelProperty(required = false,value="单据" , notes = "单据")
+	@ApiModelProperty(required = false,value="单据" , notes = "单据" , example = "ROD202324121224375")
 	private String businessCode;
 	
 	/**
 	 * 设备：设备
 	*/
-	@ApiModelProperty(required = false,value="设备" , notes = "设备")
+	@ApiModelProperty(required = false,value="设备" , notes = "设备" , example = "703902227277807616")
 	private String assetId;
 	
 	/**
 	 * 内容：内容
 	*/
-	@ApiModelProperty(required = false,value="内容" , notes = "内容")
+	@ApiModelProperty(required = false,value="内容" , notes = "内容" , example = "完成维修")
 	private String content;
 	
 	/**
 	 * 操作日期：操作日期
 	*/
-	@ApiModelProperty(required = false,value="操作日期" , notes = "操作日期")
+	@ApiModelProperty(required = false,value="操作日期" , notes = "操作日期" , example = "2023-08-12 12:25:00")
 	private Date rcdTime;
 	
 	/**
@@ -82,13 +82,13 @@ public class RepairRcd extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-12 12:25:00")
 	private Date createTime;
 	
 	/**
@@ -106,7 +106,7 @@ public class RepairRcd extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -127,7 +127,7 @@ public class RepairRcd extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**

@@ -28,8 +28,9 @@ public class RcdInspectionGtr extends BaseCodeGenerator{
                         EAMTables.EAM_INSPECTION_RCD.BUSINESS_CODE,
                 }
         );
+        cfg.view().search().disable();
 
-
+        cfg.view().field(EAMTables.EAM_INSPECTION_RCD.UPDATE_BY).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_RCD.OPER_USER_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_RCD.OPER_USER_NAME).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_RCD.ASSET_ID).table().disable(true);
@@ -52,6 +53,7 @@ public class RcdInspectionGtr extends BaseCodeGenerator{
         cfg.view().list().disableBatchDelete();
         cfg.view().list().disableSingleDelete();
 
+        cfg.view().list().addToolButton("详细情况","rcdDetail","rcd-detail");
 
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
@@ -65,7 +67,7 @@ public class RcdInspectionGtr extends BaseCodeGenerator{
         );
 
         cfg.view().list().addJsVariable("ASSET_ID","[[${assetId}]]","assetId");
-
+        cfg.view().list().addJsVariable("SOURCE","[[${source}]]","source");
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口

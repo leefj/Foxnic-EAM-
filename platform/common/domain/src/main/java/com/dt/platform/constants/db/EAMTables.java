@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-03-18 09:18:01
+ * @since 2024-03-25 11:57:57
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -20877,6 +20877,11 @@ public class EAMTables {
 		public static final DBField REPAIR_COST = new DBField(DBDataType.DECIMAL , "repair_cost","repairCost","维修费用","维修费用",false,false,true);
 		
 		/**
+		 * 故障原因
+		*/
+		public static final DBField CAUSE_REASON_CODE = new DBField(DBDataType.STRING , "cause_reason_code","causeReasonCode","故障原因","故障原因",false,false,true);
+		
+		/**
 		 * 开始时间
 		*/
 		public static final DBField START_TIME = new DBField(DBDataType.DATE , "start_time","startTime","开始时间","开始时间",false,false,true);
@@ -20905,6 +20910,11 @@ public class EAMTables {
 		 * 跟随验证
 		*/
 		public static final DBField WITH_ACCEPTANCE = new DBField(DBDataType.STRING , "with_acceptance","withAcceptance","跟随验证","跟随验证",false,false,true);
+		
+		/**
+		 * 设备
+		*/
+		public static final DBField ASSET_ID = new DBField(DBDataType.STRING , "asset_id","assetId","设备","设备",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -20961,7 +20971,7 @@ public class EAMTables {
 		public static final DBField OWNER_TYPE = new DBField(DBDataType.STRING , "owner_type","ownerType","类型","part 备件仓库，partList 备件清单",false,false,true);
 		
 		public EAM_REPAIR_ORDER_ACT() {
-			this.init($NAME,"维修工单" , ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , OWNER_TYPE);
+			this.init($NAME,"维修工单" , ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , CAUSE_REASON_CODE , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , ASSET_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , OWNER_TYPE);
 		}
 		public static final EAM_REPAIR_ORDER_ACT $TABLE=new EAM_REPAIR_ORDER_ACT();
 	}

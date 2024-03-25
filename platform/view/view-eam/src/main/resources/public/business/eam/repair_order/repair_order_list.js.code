@@ -1,7 +1,7 @@
 /**
  * 故障申请单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-01 20:31:38
+ * @since 2024-03-25 13:24:21
  */
 
 
@@ -510,7 +510,7 @@ function ListPage() {
 					},"bill",);
 				});
 			}
-			else if (layEvent === 'repair-order') { // 维修工单
+			else if (layEvent === 'repair-order') { // 维修单据
 				window.pageExt.list.repairOrder(data,this);
 			}
 			else if (layEvent === 'confirm-data') { // 确认工单

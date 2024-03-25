@@ -26,7 +26,7 @@ import java.util.Map;
  * 故障申请单服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-01 20:31:36
+ * @since 2024-03-25 13:24:20
 */
 
 public interface IRepairOrderService extends  ISimpleIdService<RepairOrder,String> {

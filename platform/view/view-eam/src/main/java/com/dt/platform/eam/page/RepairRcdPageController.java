@@ -41,7 +41,8 @@ public class RepairRcdPageController extends ViewController {
 	 * 维修记录 功能主页面
 	 */
 	@RequestMapping("/repair_rcd_list.html")
-	public String list(Model model,HttpServletRequest request,String assetId) {
+	public String list(Model model,HttpServletRequest request,String assetId,String source) {
+		model.addAttribute("source",source);
 		model.addAttribute("assetId",assetId);
 		return getTemplatePath(prefix,"repair_rcd_list");
 	}

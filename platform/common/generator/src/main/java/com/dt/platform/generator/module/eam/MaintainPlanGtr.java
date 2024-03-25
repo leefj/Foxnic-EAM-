@@ -54,7 +54,7 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addSimpleProperty(String.class,"itemCount","itemCount","itemCount");
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.MAINTAIN_TYPE).table().disable();
+
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.CYCLE_METHOD).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ACTION_CYCLE_ID).table().disable(true);
@@ -106,11 +106,15 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT).basic().label("超时工时(分)");
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ACTION_CYCLE_ID).table().disable();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT).table().disable();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NEXT_TIME).table().disable();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.GROUP_ID).table().disable();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_SN).table().disable();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ACTION_CYCLE_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NEXT_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.GROUP_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_SN).table().disable(true) ;
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_NAME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_CODE).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_MODEL).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.START_TIME).form().validate().required().form().dateInput().format("yyyy-MM-dd HH:mm:ss").defaultNow().search().range();
 
@@ -133,12 +137,12 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
                 textField(DictItemMeta.LABEL).
                 fillWith(MaintainPlanMeta.MAINTAIN_TYPE_DICT).muliti(false).defaultIndex(0);
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_ID)
-                .form().validate().required().form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST+"?ownerCode=asset")
-                .paging(true).filter(true).toolbar(false)
-                .valueField(AssetMeta.ID).
-                textField(AssetMeta.ASSET_CODE).
-                fillWith(MaintainPlanMeta.ASSET).muliti(false);
+//        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_ID)
+//                .form().validate().required().form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST+"?ownerCode=asset")
+//                .paging(true).filter(true).toolbar(false)
+//                .valueField(AssetMeta.ID).
+//                textField(AssetMeta.ASSET_CODE).
+//                fillWith(MaintainPlanMeta.ASSET).muliti(false);
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ORIGINATOR_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ORIGINATOR_ID).table().fillBy("originator","name");
@@ -183,11 +187,12 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
                 },
                 new Object[] {
                         EAMTables.EAM_MAINTAIN_PLAN.MAINTAIN_TYPE,
-                        EAMTables.EAM_MAINTAIN_PLAN.ASSET_ID,
+                        EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT
+                  //      EAMTables.EAM_MAINTAIN_PLAN.ASSET_ID,
                 },
                 new Object[] {
                         EAMTables.EAM_MAINTAIN_PLAN.TOTAL_COST,
-                        EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT
+
                 }
         );
         cfg.view().form().addGroup(null,

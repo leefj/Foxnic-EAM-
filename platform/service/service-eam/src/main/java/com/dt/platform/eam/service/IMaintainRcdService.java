@@ -24,7 +24,7 @@ import java.util.Map;
  * 保养记录服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 12:15:31
+ * @since 2024-03-24 08:15:54
 */
 
 public interface IMaintainRcdService extends  ISimpleIdService<MaintainRcd,String> {

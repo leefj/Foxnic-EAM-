@@ -216,6 +216,7 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 		return ErrorDesc.success();
 	}
 
+
 	@Override
 	public Result createTask(String id) {
 		MaintainPlan plan=this.getById(id);
@@ -252,59 +253,66 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 					.with(MaintainPlanMeta.ASSET_LIST)
 					.with(MaintainPlanMeta.PROJECT_LIST)
 					.execute();
-			Asset asset=plan.getAsset();
-			List<MaintainProject> projectList=plan.getProjectList();
- 			if(asset==null){
- 				return ErrorDesc.failureMessage("当前没有要保养的设备");
+			List<Asset> assetList=plan.getAssetList();
+			if(assetList==null&&assetList.size()==0){
+				return ErrorDesc.failureMessage("当前没有要保养的设备");
+
 			}
-			this.dao().fill(asset)
+//			Asset asset=plan.getAsset();
+			List<MaintainProject> projectList=plan.getProjectList();
+// 			if(asset==null){
+// 				return ErrorDesc.failureMessage("当前没有要保养的设备");
+//			}
+			this.dao().fill(assetList)
 					.with(AssetMeta.POSITION)
 					.execute();
 			//生成任务
-			MaintainTask task=new MaintainTask();
-			String taskId=IDGenerator.getSnowflakeIdString();
-			task.setId(taskId);
-			task.setName(plan.getName());
-			task.setMaintainType(plan.getMaintainType());
-			task.setPlanStartTime(new Date());
-			task.setTimeout(plan.getTimeout());
-			task.setPlanId(plan.getId());
-			task.setGroupId(plan.getGroupId());
-			task.setAssetId(asset.getId());
-			task.setAssetName(asset.getName());
-			task.setAssetModel(asset.getModel());
-			task.setAssetStatus(asset.getAssetStatus());
-			task.setAssetSn(asset.getSerialNumber());
-			task.setAssetCode(asset.getSerialNumber());
-			task.setNotes(plan.getNotes());
-			task.setTenantId(plan.getTenantId());
-
-			if(asset.getPosition()!=null){
-				task.setAssetPos(asset.getPosition().getHierarchyName());
-			}
-			if(projectList==null||projectList.size()==0){
-				return ErrorDesc.failureMessage("当前计划没有配置保养项目，保养任务单生成失败");
-			}
-			maintainTaskService.insert(task,true);
-			//保养项目
-			for(int j=0;j<projectList.size();j++){
-				MaintainProject project=projectList.get(j);
-//				MaintainProjectSelect sel=new MaintainProjectSelect();
-//				sel.setOwnerId(taskId);
-//				sel.setProjectId(project.getId());
-//				maintainProjectSelectService.insert(sel);
-				MaintainTaskProject taskProject=new MaintainTaskProject();
-				taskProject.setTaskId(taskId);
-				taskProject.setProjectId(project.getId());
-				taskProject.setStatus(MaintainTaskProjectStatusEnum.UNEXECUTED.code());
-				taskProject.setProjectCode(project.getCode());
-				taskProject.setProjectName(project.getName());
-				taskProject.setProjectMaintainType(project.getMaintainType());
-				taskProject.setProjectNotes(project.getNotes());
-				taskProject.setProjectAttachId(project.getAttachId());
-				taskProject.setProjectBaseCost(project.getBaseCost());
-				taskProject.setSelectedCode("def");
-				maintainTaskProjectService.insert(taskProject,false);
+			for(int k=0;k<assetList.size();k++){
+				Asset asset=assetList.get(k);
+				MaintainTask task=new MaintainTask();
+				String taskId=IDGenerator.getSnowflakeIdString();
+				task.setId(taskId);
+				task.setName(plan.getName());
+				task.setMaintainType(plan.getMaintainType());
+				task.setPlanStartTime(new Date());
+				task.setTimeout(plan.getTimeout());
+				task.setPlanId(plan.getId());
+				task.setGroupId(plan.getGroupId());
+				task.setAssetId(asset.getId());
+				task.setAssetName(asset.getName());
+				task.setAssetModel(asset.getModel());
+				task.setAssetStatus(asset.getAssetStatus());
+				task.setAssetSn(asset.getSerialNumber());
+				task.setAssetCode(asset.getSerialNumber());
+				task.setNotes(plan.getNotes());
+				task.setTenantId(plan.getTenantId());
+				if(asset.getPosition()!=null){
+					task.setAssetPos(asset.getPosition().getHierarchyName());
+				}
+				if(projectList==null||projectList.size()==0){
+					return ErrorDesc.failureMessage("当前计划没有配置保养项目，保养任务单生成失败");
+				}
+				maintainTaskService.insert(task,true);
+				//保养项目
+				for(int j=0;j<projectList.size();j++){
+					MaintainProject project=projectList.get(j);
+	//				MaintainProjectSelect sel=new MaintainProjectSelect();
+	//				sel.setOwnerId(taskId);
+	//				sel.setProjectId(project.getId());
+	//				maintainProjectSelectService.insert(sel);
+					MaintainTaskProject taskProject=new MaintainTaskProject();
+					taskProject.setTaskId(taskId);
+					taskProject.setProjectId(project.getId());
+					taskProject.setStatus(MaintainTaskProjectStatusEnum.UNEXECUTED.code());
+					taskProject.setProjectCode(project.getCode());
+					taskProject.setProjectName(project.getName());
+					taskProject.setProjectMaintainType(project.getMaintainType());
+					taskProject.setProjectNotes(project.getNotes());
+					taskProject.setProjectAttachId(project.getAttachId());
+					taskProject.setProjectBaseCost(project.getBaseCost());
+					taskProject.setSelectedCode("def");
+					maintainTaskProjectService.insert(taskProject,false);
+				}
 			}
 		}else{
 			Logger.info("########## plan not execute ###########");
@@ -324,30 +332,33 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 	@Override
 	public Result insert(MaintainPlan maintainPlan,boolean throwsException) {
 
-		if(StringUtil.isBlank(maintainPlan.getAssetId())){
-			return ErrorDesc.failureMessage("请选择要保养的设备");
-		}
-		Asset asset=assetService.getById(maintainPlan.getAssetId());
-		if(asset==null){
-			return ErrorDesc.failureMessage("没有找到保养的设备");
-		}
-		maintainPlan.setAssetCode(asset.getAssetCode());
-		maintainPlan.setAssetName(asset.getName());
-		maintainPlan.setAssetModel(asset.getModel());
-		maintainPlan.setAssetSn(asset.getSerialNumber());
-
 
 		String selectedCode=maintainPlan.getSelectedCode();
-//		if(maintainPlan.getAssetIds()==null||maintainPlan.getAssetIds().size()==0){
-//			ConditionExpr condition=new ConditionExpr();
-//			condition.andIn("asset_selected_code",selectedCode==null?"":selectedCode);
-//			List<String> list=assetSelectedDataService.queryValues(EAMTables.EAM_ASSET_SELECTED_DATA.ASSET_ID,String.class,condition);
-//			maintainPlan.setAssetIds(list);
+		if(maintainPlan.getAssetIds()==null||maintainPlan.getAssetIds().size()==0){
+			String assetSelectedCode=maintainPlan.getSelectedCode();
+			ConditionExpr condition=new ConditionExpr();
+			condition.andIn("asset_selected_code",assetSelectedCode==null?"":assetSelectedCode);
+			List<String> list=assetSelectedDataService.queryValues(EAMTables.EAM_ASSET_SELECTED_DATA.ASSET_ID,String.class,condition);
+			maintainPlan.setAssetIds(list);
+		}
+
+
+		if(maintainPlan.getAssetIds().size()==0){
+			return ErrorDesc.failure().message("请选择需要保养的设备");
+		}
+
+
+//		Asset asset=assetService.getById(maintainPlan.getAssetId());
+//		if(asset==null){
+//			return ErrorDesc.failureMessage("没有找到保养的设备");
 //		}
-//
-//		if(maintainPlan.getAssetIds()==null||maintainPlan.getAssetIds().size()==0){
-//			return ErrorDesc.failureMessage("请选择要保养的设备");
-//		}
+//		maintainPlan.setAssetCode(asset.getAssetCode());
+//		maintainPlan.setAssetName(asset.getName());
+//		maintainPlan.setAssetModel(asset.getModel());
+//		maintainPlan.setAssetSn(asset.getSerialNumber());
+
+
+
 
 		if(maintainPlan.getProjectIds()==null||maintainPlan.getProjectIds().size()==0){
 			ConditionExpr condition=new ConditionExpr();
@@ -404,18 +415,18 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 		Result r=super.insert(maintainPlan,throwsException);
 		if(r.isSuccess()){
 			//保存表单数据
-//			List<AssetItem> saveList=new ArrayList<AssetItem>();
-//			for(int i=0;i<maintainPlan.getAssetIds().size();i++){
-//				AssetItem asset=new AssetItem();
-//				asset.setId(IDGenerator.getSnowflakeIdString());
-//				asset.setHandleId(maintainPlan.getId());
-//				asset.setAssetId(maintainPlan.getAssetIds().get(i));
-//				saveList.add(asset);
-//			}
-//			Result batchInsertReuslt= assetItemService.insertList(saveList);
-//			if(!batchInsertReuslt.isSuccess()){
-//				return batchInsertReuslt;
-//			}
+			List<AssetItem> saveList=new ArrayList<AssetItem>();
+			for(int i=0;i<maintainPlan.getAssetIds().size();i++){
+				AssetItem assetItem=new AssetItem();
+				assetItem.setId(IDGenerator.getSnowflakeIdString());
+				assetItem.setHandleId(maintainPlan.getId());
+				assetItem.setAssetId(maintainPlan.getAssetIds().get(i));
+				saveList.add(assetItem);
+			}
+			Result batchInsertReuslt= assetItemService.insertList(saveList);
+			if(!batchInsertReuslt.isSuccess()){
+				return batchInsertReuslt;
+			}
 			if(!StringUtil.isBlank(selectedCode)){
 				dao.execute("update eam_maintain_project_select set selected_code=?,owner_id=? where owner_id=? and selected_code=?","def",maintainPlan.getId(),selectedCode,selectedCode);
 			}
@@ -510,17 +521,17 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 	@Override
 	public Result update(MaintainPlan maintainPlan , SaveMode mode,boolean throwsException) {
 
-		if(StringUtil.isBlank(maintainPlan.getAssetId())){
-			return ErrorDesc.failureMessage("请选择要保养的设备");
-		}
-		Asset asset=assetService.getById(maintainPlan.getAssetId());
-		if(asset==null){
-			return ErrorDesc.failureMessage("没有找到保养的设备");
-		}
-		maintainPlan.setAssetCode(asset.getAssetCode());
-		maintainPlan.setAssetName(asset.getName());
-		maintainPlan.setAssetModel(asset.getModel());
-		maintainPlan.setAssetSn(asset.getSerialNumber());
+//		if(StringUtil.isBlank(maintainPlan.getAssetId())){
+//			return ErrorDesc.failureMessage("请选择要保养的设备");
+//		}
+//		Asset asset=assetService.getById(maintainPlan.getAssetId());
+//		if(asset==null){
+//			return ErrorDesc.failureMessage("没有找到保养的设备");
+//		}
+//		maintainPlan.setAssetCode(asset.getAssetCode());
+//		maintainPlan.setAssetName(asset.getName());
+//		maintainPlan.setAssetModel(asset.getModel());
+//		maintainPlan.setAssetSn(asset.getSerialNumber());
 
 
 		if(maintainPlan.getEndTime()!=null){
@@ -554,6 +565,9 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 				dao.execute("delete from eam_maintain_project_select where owner_id=? and selected_code='def'",maintainPlan.getId());
 				dao.execute("update eam_maintain_project_select set selected_code=? where owner_id=? and selected_code=?","def",maintainPlan.getId(),selectedCode);
 			}
+			//保存表单数据
+			dao.execute("update eam_asset_item set crd='r' where crd='c' and handle_id=?",maintainPlan.getId());
+			dao.execute("delete from eam_asset_item where crd ='d'  and  handle_id=?",maintainPlan.getId());
 		}
 		return r;
 	}

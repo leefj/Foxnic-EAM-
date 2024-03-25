@@ -19,6 +19,7 @@ public enum AssetAttributeItemOwnerEnum implements CodeTextEnum {
 	ASSET_SELECT("asset_select" , "资产选择列表"),
 	ASSET_BOOK("asset_book" , "资产公共台账列表"),
 	ASSET_STOCK_GOODS("asset_stock_goods" , "物品档案分类列表"),
+	ASSET_EQ_BOOK("asset_eq_book" , "设备管理台账列表"),
 
 	//单据耗材，
 	ASSET_CONSUMABLES_BILL("asset_consumables_bill","耗材单据"),

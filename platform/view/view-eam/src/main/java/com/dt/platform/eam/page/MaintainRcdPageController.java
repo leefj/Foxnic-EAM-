@@ -41,8 +41,8 @@ public class MaintainRcdPageController extends ViewController {
 	 * 保养记录 功能主页面
 	 */
 	@RequestMapping("/maintain_rcd_list.html")
-	public String list(Model model,HttpServletRequest request,String assetId)
-	{
+	public String list(Model model,HttpServletRequest request,String assetId,String source) {
+		model.addAttribute("source",source);
 		model.addAttribute("assetId",assetId);
 		return getTemplatePath(prefix,"maintain_rcd_list");
 	}

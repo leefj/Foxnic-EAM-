@@ -437,30 +437,41 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('downloadBill',data);
         },
         repairOrder:function(item,it) {
-
-            admin.post("/service-eam/eam-repair-order-act/get-by-order-id", { orderId : item.id }, function (data) {
-                if(data.success) {
-                    admin.putTempData('eam-repair-order-act-form-data-form-action', "view",true);
-                    admin.putTempData('eam-repair-order-act-form-data', data.data);
-                    var area=admin.getTempData('eam-repair-order-act-form-area');
-                    var height= (area && area.height) ? area.height : ($(window).height()*0.6);
-                    var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-                    var title = fox.translate('查看维修工单');
-                    admin.popupCenter({
-                        title: title,
-                        resize: false,
-                        offset: [top,null],
-                        area: ["80%",height+"px"],
-                        type: 2,
-                        id:"eam-repair-order-act-form-data-win",
-                        content: '/business/eam/repair_order_act/repair_order_act_form.html?id='+data.data.id,
-                        finish: function () {
-                        }
-                    });
-                } else {
-                    fox.showMessage(data);
+            admin.popupCenter({
+                title: "单据",
+                resize: false,
+                offset: [20,null],
+                area: ["90%","95%"],
+                type: 2,
+                id:"eam-repair-order-act-form-data-win",
+                content: '/ureport/preview?_u=db:824589793542275072.ureport.xml&_t=0&orderId'+item.id,
+                finish: function () {
                 }
             });
+
+            // admin.post("/service-eam/eam-repair-order-act/get-by-order-id", { orderId : item.id }, function (data) {
+            //     if(data.success) {
+            //         admin.putTempData('eam-repair-order-act-form-data-form-action', "view",true);
+            //         admin.putTempData('eam-repair-order-act-form-data', data.data);
+            //         var area=admin.getTempData('eam-repair-order-act-form-area');
+            //         var height= (area && area.height) ? area.height : ($(window).height()*0.6);
+            //         var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
+            //         var title = fox.translate('查看维修工单');
+            //         admin.popupCenter({
+            //             title: title,
+            //             resize: false,
+            //             offset: [top,null],
+            //             area: ["80%",height+"px"],
+            //             type: 2,
+            //             id:"eam-repair-order-act-form-data-win",
+            //             content: '/business/eam/repair_order_act/repair_order_act_form.html?id='+data.data.id,
+            //             finish: function () {
+            //             }
+            //         });
+            //     } else {
+            //         fox.showMessage(data);
+            //     }
+            // });
         },
          dispatchForm:function(data) {
                 admin.putTempData('eam-repair-order-transfer-form-data-form-action', "create",true);

@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检记录
  * <p>巡检记录 , 数据表 eam_inspection_rcd 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 12:14:48
- * @sign 7B4E839F57A8DE3947DA7DAE91FAE698
+ * @since 2024-03-24 08:15:44
+ * @sign 0A90F504491B062ABB8A97E84A4E97ED
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,31 +40,37 @@ public class InspectionRcd extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "817530455120150528")
 	private String id;
 	
 	/**
 	 * 单据：单据
 	*/
-	@ApiModelProperty(required = false,value="单据" , notes = "单据")
+	@ApiModelProperty(required = false,value="单据" , notes = "单据" , example = "INSPT202426050726887")
 	private String businessCode;
 	
 	/**
 	 * 设备：设备
 	*/
-	@ApiModelProperty(required = false,value="设备" , notes = "设备")
+	@ApiModelProperty(required = false,value="设备" , notes = "设备" , example = "788874106652065792")
 	private String assetId;
+	
+	/**
+	 * 结果：结果
+	*/
+	@ApiModelProperty(required = false,value="结果" , notes = "结果")
+	private String resultCode;
 	
 	/**
 	 * 内容：内容
 	*/
-	@ApiModelProperty(required = false,value="内容" , notes = "内容")
+	@ApiModelProperty(required = false,value="内容" , notes = "内容" , example = "巡检完成")
 	private String content;
 	
 	/**
 	 * 操作日期：操作日期
 	*/
-	@ApiModelProperty(required = false,value="操作日期" , notes = "操作日期")
+	@ApiModelProperty(required = false,value="操作日期" , notes = "操作日期" , example = "2024-03-05 10:54:09")
 	private Date rcdTime;
 	
 	/**
@@ -82,13 +88,13 @@ public class InspectionRcd extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-05 10:54:10")
 	private Date createTime;
 	
 	/**
@@ -106,7 +112,7 @@ public class InspectionRcd extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -127,7 +133,7 @@ public class InspectionRcd extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -184,6 +190,25 @@ public class InspectionRcd extends Entity {
 	*/
 	public InspectionRcd setAssetId(String assetId) {
 		this.assetId=assetId;
+		return this;
+	}
+	
+	/**
+	 * 获得 结果<br>
+	 * 结果
+	 * @return 结果
+	*/
+	public String getResultCode() {
+		return resultCode;
+	}
+	
+	/**
+	 * 设置 结果
+	 * @param resultCode 结果
+	 * @return 当前对象
+	*/
+	public InspectionRcd setResultCode(String resultCode) {
+		this.resultCode=resultCode;
 		return this;
 	}
 	
@@ -491,6 +516,7 @@ public class InspectionRcd extends Entity {
 	public InspectionRcd duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.InspectionRcdMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.InspectionRcdMeta.$$proxy$$();
 		inst.setOperUserId(this.getOperUserId());
+		inst.setResultCode(this.getResultCode());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
@@ -564,6 +590,7 @@ public class InspectionRcd extends Entity {
 		if(map==null) return false;
 		if(cast) {
 			this.setOperUserId(DataParser.parse(String.class, map.get(InspectionRcdMeta.OPER_USER_ID)));
+			this.setResultCode(DataParser.parse(String.class, map.get(InspectionRcdMeta.RESULT_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(InspectionRcdMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(InspectionRcdMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(InspectionRcdMeta.CONTENT)));
@@ -583,6 +610,7 @@ public class InspectionRcd extends Entity {
 		} else {
 			try {
 				this.setOperUserId( (String)map.get(InspectionRcdMeta.OPER_USER_ID));
+				this.setResultCode( (String)map.get(InspectionRcdMeta.RESULT_CODE));
 				this.setUpdateTime( (Date)map.get(InspectionRcdMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(InspectionRcdMeta.VERSION));
 				this.setContent( (String)map.get(InspectionRcdMeta.CONTENT));
@@ -615,6 +643,7 @@ public class InspectionRcd extends Entity {
 		if(r==null) return false;
 		if(cast) {
 			this.setOperUserId(DataParser.parse(String.class, r.getValue(InspectionRcdMeta.OPER_USER_ID)));
+			this.setResultCode(DataParser.parse(String.class, r.getValue(InspectionRcdMeta.RESULT_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InspectionRcdMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(InspectionRcdMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(InspectionRcdMeta.CONTENT)));
@@ -633,6 +662,7 @@ public class InspectionRcd extends Entity {
 		} else {
 			try {
 				this.setOperUserId( (String)r.getValue(InspectionRcdMeta.OPER_USER_ID));
+				this.setResultCode( (String)r.getValue(InspectionRcdMeta.RESULT_CODE));
 				this.setUpdateTime( (Date)r.getValue(InspectionRcdMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(InspectionRcdMeta.VERSION));
 				this.setContent( (String)r.getValue(InspectionRcdMeta.CONTENT));

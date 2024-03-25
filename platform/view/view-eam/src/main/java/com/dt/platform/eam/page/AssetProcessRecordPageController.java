@@ -41,8 +41,9 @@ public class AssetProcessRecordPageController extends ViewController {
 	 * 资产处理记录 功能主页面
 	 */
 	@RequestMapping("/asset_process_record_list.html")
-	public String list(Model model,HttpServletRequest request,String assetId) {
+	public String list(Model model,HttpServletRequest request,String source,String assetId) {
 		model.addAttribute("assetId",assetId);
+		model.addAttribute("source",source);
 		return prefix+"/asset_process_record_list";
 	}
 

@@ -2,7 +2,7 @@
 /**
  * 保养方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-22 09:26:42
+ * @since 2024-03-25 08:44:45
  */
  -->
  <!DOCTYPE html>
@@ -45,7 +45,7 @@
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('计划状态')}" class="search-label status-label">计划状态</span><span class="search-colon">:</span></div>
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.EamPlanStatusEnum')}" style="width:180px" extraParam="{}"></div>
                     </div>
-                    <!-- 保养设备 , assetId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 保养设备 , assetId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 保养周期 , actionCycleId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 开始时间 , startTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 结束时间 , endTime ,typeName=date_input, isHideInSearch=true -->

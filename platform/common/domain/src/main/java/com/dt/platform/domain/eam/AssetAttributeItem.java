@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产字段配置项
  * <p>资产字段配置项 , 数据表 eam_asset_attribute_item 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-10-17 16:24:36
+ * @since 2024-03-24 08:16:58
  * @sign 76619BED4D662052BFE393E79FF5D75D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

@@ -262,6 +262,7 @@ public class EamAssetMaintenanceRecordGtr extends BaseCodeGenerator{
         cfg.view().list().addJsVariable("MAINTENANCE_UPDATE_ID","[[${maintenanceUpdateId}]]","maintenanceUpdateId");
         cfg.view().list().addJsVariable("MAINTENANCE_UPDATE_DATA","[[${maintenanceUpdateData}]]","maintenanceUpdateData");
 
+
         cfg.view().search().rowsDisplay(1);
         //文件生成覆盖模式
         cfg.overrides()

@@ -2,7 +2,7 @@
 /**
  * 维修工单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-11 11:53:49
+ * @since 2024-03-25 13:23:34
  */
  -->
  <!DOCTYPE html>
@@ -37,11 +37,11 @@
 
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4977-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4985-fieldset">
             <legend>订单信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-4977-content">
+        <div class="layui-row form-row" id="random-4985-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -73,11 +73,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2927-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7266-fieldset">
             <legend>维修信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-2927-content">
+        <div class="layui-row form-row" id="random-7266-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -96,6 +96,14 @@
                     <div class="layui-form-label "><div th:text="${lang.translate('维修费用')}">维修费用</div></div>
                     <div class="layui-input-block ">
                         <input lay-filter="repairCost" id="repairCost" name="repairCost" th:placeholder="${ lang.translate('请输入'+'维修费用') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
+                    </div>
+                </div>
+            
+                <!-- select_box : 故障原因 ,  causeReasonCode  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('故障原因')}">故障原因</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="causeReasonCode" input-type="select" th:data="${'/service-eam/eam-repair-category-tpl/query-list'}" extraParam="{}"></div>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -126,7 +134,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-1003-content">
+        <div class="layui-row form-row" id="random-6085-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -159,7 +167,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-4259-content">
+        <div class="layui-row form-row" id="random-9514-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -186,21 +194,21 @@
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3556-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1376-fieldset">
         <legend>设备列表</legend>
         </fieldset>
-        <div class="layui-row form-row" style="text-align: center;" id="random-3556-content">
+        <div class="layui-row form-row" style="text-align: center;" id="random-1376-content">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
-            <iframe id="random-3556-iframe" js-fn="assetSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+            <iframe id="random-1376-iframe" js-fn="assetSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
             </div>
         </div>
          <!--开始：group 循环-->
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1806-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3057-fieldset">
         <legend>备件列表</legend>
         </fieldset>
-        <div class="layui-row form-row" style="text-align: center;" id="random-1806-content">
+        <div class="layui-row form-row" style="text-align: center;" id="random-3057-content">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
-            <iframe id="random-1806-iframe" js-fn="deviceSpList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+            <iframe id="random-3057-iframe" js-fn="deviceSpList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
             </div>
         </div>
          <!--开始：group 循环-->
@@ -233,7 +241,7 @@
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
-    var VALIDATE_CONFIG={"finishTime":{"date":true,"labelInForm":"完成时间","inputType":"date_input"},"groupId":{"labelInForm":"维修班组","inputType":"select_box","required":true},"startTime":{"date":true,"labelInForm":"开始时间","inputType":"date_input"}};
+    var VALIDATE_CONFIG={"causeReasonCode":{"labelInForm":"故障原因","inputType":"select_box","required":true},"finishTime":{"date":true,"labelInForm":"完成时间","inputType":"date_input"},"groupId":{"labelInForm":"维修班组","inputType":"select_box","required":true},"startTime":{"date":true,"labelInForm":"开始时间","inputType":"date_input"}};
     var AUTH_PREFIX="eam_repair_order_act";
 
     // 工单
