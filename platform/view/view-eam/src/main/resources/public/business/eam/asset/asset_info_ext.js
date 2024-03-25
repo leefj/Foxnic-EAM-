@@ -824,31 +824,31 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 数据提交后执行
          * */
         afterSubmit:function (param,result) {
-            console.log("afterSubmitt",param,result);
+            console.log("afterSubmit",param,result);
         },
         historyList:function (ifr,win,data) {
             ifr.height("450px");
-            var queryString="?assetId="+data.id;
+            var queryString="?source=asset&assetId="+data.id;
             win.location='/business/eam/asset_process_record/asset_process_record_list.html' + queryString;
         },
         insepectionRcdList:function (ifr,win,data) {
             ifr.height("450px");
-            var queryString="?assetId="+data.id;
+            var queryString="?source=asset&assetId="+data.id;
             win.location='/business/eam/inspection_rcd/inspection_rcd_list.html' + queryString;
         },
         maintainRcdList:function (ifr,win,data) {
             ifr.height("450px");
-            var queryString="?assetId="+data.id;
+            var queryString="?source=asset&assetId="+data.id;
             win.location='/business/eam/maintain_rcd/maintain_rcd_list.html' + queryString;
         },
         repairRcdList:function (ifr,win,data) {
             ifr.height("450px");
-            var queryString="?assetId="+data.id;
+            var queryString="?source=asset&assetId="+data.id;
             win.location='/business/eam/repair_rcd/repair_rcd_list.html' + queryString;
         },
         partRcdList:function (ifr,win,data) {
             ifr.height("450px");
-            var queryString="?assetId="+data.id+"&ownerCode=part&ownerType=part";
+            var queryString="?source=asset&assetId="+data.id+"&ownerCode=part&ownerType=part";
             win.location='/business/eam/goods_stock_goods/asset_part_goods_list.html' + queryString;
         },
         /**

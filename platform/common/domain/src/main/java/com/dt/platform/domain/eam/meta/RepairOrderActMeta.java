@@ -12,14 +12,16 @@ import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.RepairGroup;
 import com.dt.platform.domain.eam.GoodsStock;
 import com.dt.platform.domain.eam.RepairOrderAcceptance;
+import com.dt.platform.domain.eam.RepairCategoryTpl;
+import com.dt.platform.domain.eam.Asset;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-11 11:53:48
- * @sign 755E0851D071EFD894FE247A82947280
+ * @since 2024-03-25 13:23:32
+ * @sign 1BC7092C15AC96C23EC402C129F86B6E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -106,6 +108,16 @@ public class RepairOrderActMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.math.BigDecimal> REPAIR_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,REPAIR_COST, java.math.BigDecimal.class, "维修费用", "维修费用", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 故障原因 , 类型: java.lang.String
+	*/
+	public static final String CAUSE_REASON_CODE="causeReasonCode";
+	
+	/**
+	 * 故障原因 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> CAUSE_REASON_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,CAUSE_REASON_CODE, java.lang.String.class, "故障原因", "故障原因", java.lang.String.class, null);
+	
+	/**
 	 * 开始时间 , 类型: java.util.Date
 	*/
 	public static final String START_TIME="startTime";
@@ -164,6 +176,16 @@ public class RepairOrderActMeta {
 	 * 跟随验证 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> WITH_ACCEPTANCE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,WITH_ACCEPTANCE, java.lang.String.class, "跟随验证", "跟随验证", java.lang.String.class, null);
+	
+	/**
+	 * 设备 , 类型: java.lang.String
+	*/
+	public static final String ASSET_ID="assetId";
+	
+	/**
+	 * 设备 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,ASSET_ID, java.lang.String.class, "设备", "设备", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -376,9 +398,29 @@ public class RepairOrderActMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,com.dt.platform.domain.eam.RepairOrderAcceptance> REPAIR_ORDER_ACCEPTANCE_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,REPAIR_ORDER_ACCEPTANCE, com.dt.platform.domain.eam.RepairOrderAcceptance.class, "repairOrderAcceptance", "repairOrderAcceptance", com.dt.platform.domain.eam.RepairOrderAcceptance.class, null);
 	
 	/**
+	 * 报修故障 , 类型: com.dt.platform.domain.eam.RepairCategoryTpl
+	*/
+	public static final String CATEGORY_TPL="categoryTpl";
+	
+	/**
+	 * 报修故障 , 类型: com.dt.platform.domain.eam.RepairCategoryTpl
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,com.dt.platform.domain.eam.RepairCategoryTpl> CATEGORY_TPL_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,CATEGORY_TPL, com.dt.platform.domain.eam.RepairCategoryTpl.class, "报修故障", "报修故障", com.dt.platform.domain.eam.RepairCategoryTpl.class, null);
+	
+	/**
+	 * asset , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET="asset";
+	
+	/**
+	 * asset , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.RepairOrderAct,com.dt.platform.domain.eam.Asset> ASSET_PROP = new BeanProperty(com.dt.platform.domain.eam.RepairOrderAct.class ,ASSET, com.dt.platform.domain.eam.Asset.class, "asset", "asset", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , OWNER_TYPE , REPAIR_ORDER_PROCESS , REPAIR_ORDER_ACT_SP_LIST , IDS_LIST , ORDER , ORIGINATOR , EXECUTOR , REPAIR_GROUP , STATUS , GOODS_STOCK_PART_LIST , REPAIR_ORDER_ACCEPTANCE };
+	public static final String[] $PROPS={ ID , ORDER_ID , ORDER_BUSINESS_CODE , ORDER_NAME , BUSINESS_CODE , GROUP_ID , EXECUTOR_ID , REPAIR_COST , CAUSE_REASON_CODE , START_TIME , FINISH_TIME , NOTES , PICTURE_ID , ORIGINATOR_ID , WITH_ACCEPTANCE , ASSET_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , OWNER_TYPE , REPAIR_ORDER_PROCESS , REPAIR_ORDER_ACT_SP_LIST , IDS_LIST , ORDER , ORIGINATOR , EXECUTOR , REPAIR_GROUP , STATUS , GOODS_STOCK_PART_LIST , REPAIR_ORDER_ACCEPTANCE , CATEGORY_TPL , ASSET };
 	
 	/**
 	 * 代理类
@@ -477,6 +519,17 @@ public class RepairOrderActMeta {
 		}
 		
 		/**
+		 * 设置 故障原因
+		 * @param causeReasonCode 故障原因
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setCauseReasonCode(String causeReasonCode) {
+			super.change(CAUSE_REASON_CODE,super.getCauseReasonCode(),causeReasonCode);
+			super.setCauseReasonCode(causeReasonCode);
+			return this;
+		}
+		
+		/**
 		 * 设置 开始时间
 		 * @param startTime 开始时间
 		 * @return 当前对象
@@ -539,6 +592,17 @@ public class RepairOrderActMeta {
 		public RepairOrderAct setWithAcceptance(String withAcceptance) {
 			super.change(WITH_ACCEPTANCE,super.getWithAcceptance(),withAcceptance);
 			super.setWithAcceptance(withAcceptance);
+			return this;
+		}
+		
+		/**
+		 * 设置 设备
+		 * @param assetId 设备
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setAssetId(String assetId) {
+			super.change(ASSET_ID,super.getAssetId(),assetId);
+			super.setAssetId(assetId);
 			return this;
 		}
 		
@@ -772,6 +836,28 @@ public class RepairOrderActMeta {
 			super.setRepairOrderAcceptance(repairOrderAcceptance);
 			return this;
 		}
+		
+		/**
+		 * 设置 报修故障
+		 * @param categoryTpl 报修故障
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setCategoryTpl(RepairCategoryTpl categoryTpl) {
+			super.change(CATEGORY_TPL,super.getCategoryTpl(),categoryTpl);
+			super.setCategoryTpl(categoryTpl);
+			return this;
+		}
+		
+		/**
+		 * 设置 asset
+		 * @param asset asset
+		 * @return 当前对象
+		*/
+		public RepairOrderAct setAsset(Asset asset) {
+			super.change(ASSET,super.getAsset(),asset);
+			super.setAsset(asset);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -797,6 +883,7 @@ public class RepairOrderActMeta {
 			inst.setBusinessCode(this.getBusinessCode());
 			inst.setPictureId(this.getPictureId());
 			inst.setUpdateBy(this.getUpdateBy());
+			inst.setAssetId(this.getAssetId());
 			inst.setStartTime(this.getStartTime());
 			inst.setId(this.getId());
 			inst.setOriginatorId(this.getOriginatorId());
@@ -806,6 +893,7 @@ public class RepairOrderActMeta {
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setOrderBusinessCode(this.getOrderBusinessCode());
+			inst.setCauseReasonCode(this.getCauseReasonCode());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
@@ -817,10 +905,12 @@ public class RepairOrderActMeta {
 				inst.setRepairOrderActSpList(this.getRepairOrderActSpList());
 				inst.setExecutor(this.getExecutor());
 				inst.setRepairGroup(this.getRepairGroup());
+				inst.setCategoryTpl(this.getCategoryTpl());
 				inst.setRepairOrderProcess(this.getRepairOrderProcess());
 				inst.setOriginator(this.getOriginator());
 				inst.setGoodsStockPartList(this.getGoodsStockPartList());
 				inst.setRepairOrderAcceptance(this.getRepairOrderAcceptance());
+				inst.setAsset(this.getAsset());
 				inst.setIdsList(this.getIdsList());
 				inst.setOrder(this.getOrder());
 				inst.setStatus(this.getStatus());

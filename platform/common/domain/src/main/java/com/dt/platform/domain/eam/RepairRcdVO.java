@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 维修记录VO类型
  * <p>维修记录 , 数据表 eam_repair_rcd 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 12:15:36
+ * @since 2024-03-24 08:15:59
  * @sign E0058B29AB1592850ECCFD7F28BFDC03
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

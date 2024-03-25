@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 12:14:48
- * @sign 7B4E839F57A8DE3947DA7DAE91FAE698
+ * @since 2024-03-24 08:15:44
+ * @sign 0A90F504491B062ABB8A97E84A4E97ED
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,6 +45,16 @@ public class InspectionRcdMeta {
 	 * 设备 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionRcd,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionRcd.class ,ASSET_ID, java.lang.String.class, "设备", "设备", java.lang.String.class, null);
+	
+	/**
+	 * 结果 , 类型: java.lang.String
+	*/
+	public static final String RESULT_CODE="resultCode";
+	
+	/**
+	 * 结果 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionRcd,java.lang.String> RESULT_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionRcd.class ,RESULT_CODE, java.lang.String.class, "结果", "结果", java.lang.String.class, null);
 	
 	/**
 	 * 内容 , 类型: java.lang.String
@@ -169,7 +179,7 @@ public class InspectionRcdMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , ASSET_ID , CONTENT , RCD_TIME , OPER_USER_ID , OPER_USER_NAME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , ASSET_ID , RESULT_CODE , CONTENT , RCD_TIME , OPER_USER_ID , OPER_USER_NAME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -209,6 +219,17 @@ public class InspectionRcdMeta {
 		public InspectionRcd setAssetId(String assetId) {
 			super.change(ASSET_ID,super.getAssetId(),assetId);
 			super.setAssetId(assetId);
+			return this;
+		}
+		
+		/**
+		 * 设置 结果
+		 * @param resultCode 结果
+		 * @return 当前对象
+		*/
+		public InspectionRcd setResultCode(String resultCode) {
+			super.change(RESULT_CODE,super.getResultCode(),resultCode);
+			super.setResultCode(resultCode);
 			return this;
 		}
 		
@@ -360,6 +381,7 @@ public class InspectionRcdMeta {
 		public InspectionRcd duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setOperUserId(this.getOperUserId());
+			inst.setResultCode(this.getResultCode());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setContent(this.getContent());

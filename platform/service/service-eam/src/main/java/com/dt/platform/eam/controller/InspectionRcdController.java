@@ -44,7 +44,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 巡检记录接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 12:14:48
+ * @since 2024-03-24 08:15:44
 */
 
 @InDoc
@@ -60,13 +60,15 @@ public class InspectionRcdController extends SuperController {
 	*/
 	@ApiOperation(value = "添加巡检记录")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = InspectionRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.BUSINESS_CODE , value = "单据" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.ASSET_ID , value = "设备" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.RCD_TIME , value = "操作日期" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "817530455120150528"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.BUSINESS_CODE , value = "单据" , required = false , dataTypeClass=String.class , example = "INSPT202426050726887"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.ASSET_ID , value = "设备" , required = false , dataTypeClass=String.class , example = "788874106652065792"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.RESULT_CODE , value = "结果" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "巡检完成"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.RCD_TIME , value = "操作日期" , required = false , dataTypeClass=Date.class , example = "2024-03-05 10:54:09"),
 		@ApiImplicitParam(name = InspectionRcdVOMeta.OPER_USER_ID , value = "操作人员" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = InspectionRcdVOMeta.OPER_USER_NAME , value = "操作人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -85,7 +87,7 @@ public class InspectionRcdController extends SuperController {
 	*/
 	@ApiOperation(value = "删除巡检记录")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = InspectionRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = InspectionRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "817530455120150528")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = InspectionRcdServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -168,13 +170,15 @@ public class InspectionRcdController extends SuperController {
 	*/
 	@ApiOperation(value = "更新巡检记录")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = InspectionRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.BUSINESS_CODE , value = "单据" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.ASSET_ID , value = "设备" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.RCD_TIME , value = "操作日期" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "817530455120150528"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.BUSINESS_CODE , value = "单据" , required = false , dataTypeClass=String.class , example = "INSPT202426050726887"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.ASSET_ID , value = "设备" , required = false , dataTypeClass=String.class , example = "788874106652065792"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.RESULT_CODE , value = "结果" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "巡检完成"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.RCD_TIME , value = "操作日期" , required = false , dataTypeClass=Date.class , example = "2024-03-05 10:54:09"),
 		@ApiImplicitParam(name = InspectionRcdVOMeta.OPER_USER_ID , value = "操作人员" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = InspectionRcdVOMeta.OPER_USER_NAME , value = "操作人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { InspectionRcdVOMeta.PAGE_INDEX , InspectionRcdVOMeta.PAGE_SIZE , InspectionRcdVOMeta.SEARCH_FIELD , InspectionRcdVOMeta.FUZZY_FIELD , InspectionRcdVOMeta.SEARCH_VALUE , InspectionRcdVOMeta.DIRTY_FIELDS , InspectionRcdVOMeta.SORT_FIELD , InspectionRcdVOMeta.SORT_TYPE , InspectionRcdVOMeta.DATA_ORIGIN , InspectionRcdVOMeta.QUERY_LOGIC , InspectionRcdVOMeta.REQUEST_ACTION , InspectionRcdVOMeta.IDS } )
@@ -192,13 +196,15 @@ public class InspectionRcdController extends SuperController {
 	*/
 	@ApiOperation(value = "保存巡检记录")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = InspectionRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.BUSINESS_CODE , value = "单据" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.ASSET_ID , value = "设备" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.RCD_TIME , value = "操作日期" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "817530455120150528"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.BUSINESS_CODE , value = "单据" , required = false , dataTypeClass=String.class , example = "INSPT202426050726887"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.ASSET_ID , value = "设备" , required = false , dataTypeClass=String.class , example = "788874106652065792"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.RESULT_CODE , value = "结果" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "巡检完成"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.RCD_TIME , value = "操作日期" , required = false , dataTypeClass=Date.class , example = "2024-03-05 10:54:09"),
 		@ApiImplicitParam(name = InspectionRcdVOMeta.OPER_USER_ID , value = "操作人员" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = InspectionRcdVOMeta.OPER_USER_NAME , value = "操作人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { InspectionRcdVOMeta.PAGE_INDEX , InspectionRcdVOMeta.PAGE_SIZE , InspectionRcdVOMeta.SEARCH_FIELD , InspectionRcdVOMeta.FUZZY_FIELD , InspectionRcdVOMeta.SEARCH_VALUE , InspectionRcdVOMeta.DIRTY_FIELDS , InspectionRcdVOMeta.SORT_FIELD , InspectionRcdVOMeta.SORT_TYPE , InspectionRcdVOMeta.DATA_ORIGIN , InspectionRcdVOMeta.QUERY_LOGIC , InspectionRcdVOMeta.REQUEST_ACTION , InspectionRcdVOMeta.IDS } )
@@ -255,13 +261,15 @@ public class InspectionRcdController extends SuperController {
 	*/
 	@ApiOperation(value = "查询巡检记录")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = InspectionRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.BUSINESS_CODE , value = "单据" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.ASSET_ID , value = "设备" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.RCD_TIME , value = "操作日期" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "817530455120150528"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.BUSINESS_CODE , value = "单据" , required = false , dataTypeClass=String.class , example = "INSPT202426050726887"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.ASSET_ID , value = "设备" , required = false , dataTypeClass=String.class , example = "788874106652065792"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.RESULT_CODE , value = "结果" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "巡检完成"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.RCD_TIME , value = "操作日期" , required = false , dataTypeClass=Date.class , example = "2024-03-05 10:54:09"),
 		@ApiImplicitParam(name = InspectionRcdVOMeta.OPER_USER_ID , value = "操作人员" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = InspectionRcdVOMeta.OPER_USER_NAME , value = "操作人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { InspectionRcdVOMeta.PAGE_INDEX , InspectionRcdVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = InspectionRcdServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -280,13 +288,15 @@ public class InspectionRcdController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询巡检记录")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = InspectionRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.BUSINESS_CODE , value = "单据" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.ASSET_ID , value = "设备" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = InspectionRcdVOMeta.RCD_TIME , value = "操作日期" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "817530455120150528"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.BUSINESS_CODE , value = "单据" , required = false , dataTypeClass=String.class , example = "INSPT202426050726887"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.ASSET_ID , value = "设备" , required = false , dataTypeClass=String.class , example = "788874106652065792"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.RESULT_CODE , value = "结果" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "巡检完成"),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.RCD_TIME , value = "操作日期" , required = false , dataTypeClass=Date.class , example = "2024-03-05 10:54:09"),
 		@ApiImplicitParam(name = InspectionRcdVOMeta.OPER_USER_ID , value = "操作人员" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = InspectionRcdVOMeta.OPER_USER_NAME , value = "操作人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = InspectionRcdVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = InspectionRcdServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

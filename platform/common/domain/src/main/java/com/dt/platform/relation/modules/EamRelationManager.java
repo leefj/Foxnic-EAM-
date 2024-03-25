@@ -18,14 +18,6 @@ public class EamRelationManager extends RelationManager {
     @Override
     protected void config() {
 
-//定制
-//        this.setupCustRepairItem();
-//        this.setupCustRepairApply();
-//        this.setupCustInspectItem();
-//        this.setupCustInspectTask();
-//        this.setupCustInspectPlan();
-//        this.setupCustInspectTpl();
-
 //通用
         this.setupRelations();
         this.setupProperties();
@@ -578,8 +570,6 @@ public class EamRelationManager extends RelationManager {
             return checkItems;
         });
 
-
-
         this.property(MaintainPlanMeta.ASSET_PROP)
                 .using(EAMTables.EAM_MAINTAIN_PLAN.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
 
@@ -680,6 +670,9 @@ public class EamRelationManager extends RelationManager {
 
     }
     public void setupRepairOrderAct() {
+        this.property(RepairOrderActMeta.CATEGORY_TPL_PROP)
+                .using(EAMTables.EAM_REPAIR_ORDER_ACT.CAUSE_REASON_CODE).join(EAMTables.EAM_REPAIR_CATEGORY_TPL.ID);
+
 
         this.property(RepairOrderActMeta.REPAIR_ORDER_ACCEPTANCE_PROP)
                 .using(EAMTables.EAM_REPAIR_ORDER_ACT.ID).join(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ORDER_ACT_ID);

@@ -173,6 +173,20 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        rcdDetail:function (selected,obj) {
+            var q="&assetId="+ASSET_ID;
+            admin.popupCenter({
+                title: "详细情况",
+                resize: false,
+                offset: [10,null],
+                area: ["95%","95%"],
+                type: 2,
+                id:"eam-inspection-rcd-form-data-win",
+                content: '/ureport/preview?_u=db:823503622649151488.ureport.xml&_t=0'+q,
+                finish: function () {
+                }
+            });
+        },
         /**
          * 末尾执行
          */

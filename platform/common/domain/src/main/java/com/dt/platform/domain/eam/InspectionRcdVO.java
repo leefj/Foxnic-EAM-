@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检记录VO类型
  * <p>巡检记录 , 数据表 eam_inspection_rcd 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 12:14:48
+ * @since 2024-03-24 08:15:44
  * @sign C1036EA7F50A4FD9D03C5552E1A41F6F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -402,6 +402,7 @@ public class InspectionRcdVO extends InspectionRcd {
 	public InspectionRcdVO duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.InspectionRcdVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.InspectionRcdVOMeta.$$proxy$$();
 		inst.setOperUserId(this.getOperUserId());
+		inst.setResultCode(this.getResultCode());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
@@ -489,6 +490,7 @@ public class InspectionRcdVO extends InspectionRcd {
 		if(map==null) return false;
 		if(cast) {
 			this.setOperUserId(DataParser.parse(String.class, map.get(InspectionRcdVOMeta.OPER_USER_ID)));
+			this.setResultCode(DataParser.parse(String.class, map.get(InspectionRcdVOMeta.RESULT_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(InspectionRcdVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(InspectionRcdVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(InspectionRcdVOMeta.CONTENT)));
@@ -518,6 +520,7 @@ public class InspectionRcdVO extends InspectionRcd {
 		} else {
 			try {
 				this.setOperUserId( (String)map.get(InspectionRcdVOMeta.OPER_USER_ID));
+				this.setResultCode( (String)map.get(InspectionRcdVOMeta.RESULT_CODE));
 				this.setUpdateTime( (Date)map.get(InspectionRcdVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(InspectionRcdVOMeta.VERSION));
 				this.setContent( (String)map.get(InspectionRcdVOMeta.CONTENT));
@@ -560,6 +563,7 @@ public class InspectionRcdVO extends InspectionRcd {
 		if(r==null) return false;
 		if(cast) {
 			this.setOperUserId(DataParser.parse(String.class, r.getValue(InspectionRcdVOMeta.OPER_USER_ID)));
+			this.setResultCode(DataParser.parse(String.class, r.getValue(InspectionRcdVOMeta.RESULT_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InspectionRcdVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(InspectionRcdVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(InspectionRcdVOMeta.CONTENT)));
@@ -578,6 +582,7 @@ public class InspectionRcdVO extends InspectionRcd {
 		} else {
 			try {
 				this.setOperUserId( (String)r.getValue(InspectionRcdVOMeta.OPER_USER_ID));
+				this.setResultCode( (String)r.getValue(InspectionRcdVOMeta.RESULT_CODE));
 				this.setUpdateTime( (Date)r.getValue(InspectionRcdVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(InspectionRcdVOMeta.VERSION));
 				this.setContent( (String)r.getValue(InspectionRcdVOMeta.CONTENT));

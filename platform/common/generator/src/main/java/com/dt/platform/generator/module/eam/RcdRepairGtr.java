@@ -27,7 +27,7 @@ public class RcdRepairGtr extends BaseCodeGenerator{
                 }
         );
 
-
+        cfg.view().field(EAMTables.EAM_REPAIR_RCD.UPDATE_BY).table().disable(true);
         cfg.view().field(EAMTables.EAM_REPAIR_RCD.OPER_USER_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_REPAIR_RCD.CREATE_TIME).table().disable(true);
         cfg.view().field(EAMTables.EAM_REPAIR_RCD.OPER_USER_NAME).table().disable(true);
@@ -48,7 +48,7 @@ public class RcdRepairGtr extends BaseCodeGenerator{
         cfg.view().list().disableModify();
         cfg.view().list().disableBatchDelete();
         cfg.view().list().disableSingleDelete();
-
+        cfg.view().search().disable();
 
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
@@ -60,9 +60,9 @@ public class RcdRepairGtr extends BaseCodeGenerator{
 
                 }
         );
-
+        cfg.view().list().addToolButton("详细情况","rcdDetail","rcd-detail");
         cfg.view().list().addJsVariable("ASSET_ID","[[${assetId}]]","assetId");
-
+        cfg.view().list().addJsVariable("SOURCE","[[${source}]]","source");
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口

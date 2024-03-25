@@ -6,10 +6,7 @@ import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.RepairOrderActStatusEnum;
 import com.dt.platform.constants.enums.eam.RepairOrderStatusEnum;
 import com.dt.platform.domain.eam.*;
-import com.dt.platform.domain.eam.meta.RepairCategoryTplMeta;
-import com.dt.platform.domain.eam.meta.RepairGroupMeta;
-import com.dt.platform.domain.eam.meta.RepairOrderActMeta;
-import com.dt.platform.domain.eam.meta.RepairOrderMeta;
+import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.page.RepairOrderActPageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.GroupUserServiceProxy;
@@ -44,6 +41,10 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(GoodsStock.class,"goodsStockPartList","goodsStockPartList","备件信息");
         cfg.getPoClassFile().addSimpleProperty(RepairOrderAcceptance.class,"repairOrderAcceptance","repairOrderAcceptance","repairOrderAcceptance");
 
+        cfg.getPoClassFile().addSimpleProperty(RepairCategoryTpl.class,"categoryTpl","报修故障","报修故障");
+
+        cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","asset","asset");
+
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.NOTES).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.BUSINESS_CODE).search().fuzzySearch();
@@ -74,6 +75,13 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.CAUSE_REASON_CODE)
+                .form().validate().required().form().selectBox().queryApi(RepairCategoryTplServiceProxy.QUERY_LIST)
+                .paging(false).filter(true).toolbar(false)
+                .valueField(RepairCategoryTplMeta.ID).
+                textField(RepairCategoryTplMeta.NAME).
+                fillWith(RepairOrderActMeta.CATEGORY_TPL).muliti(false);
+
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.ORIGINATOR_ID).table().fillBy("originator","name");
 //        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.ORIGINATOR_ID).form()
@@ -86,7 +94,8 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.REPAIR_COST).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.WITH_ACCEPTANCE).table().disable();
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.OWNER_TYPE).table().disable();
-
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.UPDATE_BY).table().disable();
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.ASSET_ID).table().disable();
 //
 //        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPAIR_STATUS).form()
 //                .form().selectBox().enumType(RepairOrderStatusEnum.class);
@@ -145,11 +154,13 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
                 new Object[] {
                         EAMTables.EAM_REPAIR_ORDER_ACT.BUSINESS_CODE,
                         EAMTables.EAM_REPAIR_ORDER_ACT.REPAIR_COST,
+                        EAMTables.EAM_REPAIR_ORDER_ACT.CAUSE_REASON_CODE
                    //     EAMTables.EAM_REPAIR_ORDER_ACT.WITH_ACCEPTANCE,
                 },
                 new Object[] {
                         EAMTables.EAM_REPAIR_ORDER_ACT.START_TIME,
                         EAMTables.EAM_REPAIR_ORDER_ACT.FINISH_TIME,
+
                 }
         );
 
@@ -178,11 +189,13 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
 
         cfg.view().list().addJsVariable("REPAIR_STATUS","[[${repairStatus}]]","单据ID");
         cfg.view().form().addJsVariable("ORDER_ID","[[${orderId}]]","工单");
+
         cfg.view().list().operationColumn().addActionButton("开始维修","start","start-button","eam_repair_order_act:start");
         cfg.view().list().operationColumn().addActionButton("维修","maintenance","maintenance-button","eam_repair_order_act:maintenance");
         cfg.view().list().operationColumn().addActionButton("结束维修","finish","finish-button","eam_repair_order_act:finish");
         cfg.view().list().operationColumn().addActionButton("验收单","acceptance","acceptance-button","eam_repair_order_act:acceptance");
         cfg.view().list().operationColumn().addActionButton("取消 ","cancel","cancel-button","eam_repair_order_act:cancel");
+        cfg.view().list().operationColumn().addActionButton(" 维修单据","repairBill","repair-bill");
 
 
 

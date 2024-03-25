@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 12:14:48
+ * @since 2024-03-24 08:15:44
  * @sign C1036EA7F50A4FD9D03C5552E1A41F6F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -169,6 +169,16 @@ public class InspectionRcdVOMeta extends InspectionRcdMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionRcdVO,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionRcdVO.class ,ASSET_ID, java.lang.String.class, "设备", "设备", java.lang.String.class, null);
 	
 	/**
+	 * 结果 , 类型: java.lang.String
+	*/
+	public static final String RESULT_CODE="resultCode";
+	
+	/**
+	 * 结果 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionRcdVO,java.lang.String> RESULT_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionRcdVO.class ,RESULT_CODE, java.lang.String.class, "结果", "结果", java.lang.String.class, null);
+	
+	/**
 	 * 内容 , 类型: java.lang.String
 	*/
 	public static final String CONTENT="content";
@@ -291,7 +301,7 @@ public class InspectionRcdVOMeta extends InspectionRcdMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , BUSINESS_CODE , ASSET_ID , CONTENT , RCD_TIME , OPER_USER_ID , OPER_USER_NAME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , BUSINESS_CODE , ASSET_ID , RESULT_CODE , CONTENT , RCD_TIME , OPER_USER_ID , OPER_USER_NAME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -467,6 +477,17 @@ public class InspectionRcdVOMeta extends InspectionRcdMeta {
 		}
 		
 		/**
+		 * 设置 结果
+		 * @param resultCode 结果
+		 * @return 当前对象
+		*/
+		public InspectionRcd setResultCode(String resultCode) {
+			super.change(RESULT_CODE,super.getResultCode(),resultCode);
+			super.setResultCode(resultCode);
+			return this;
+		}
+		
+		/**
 		 * 设置 内容
 		 * @param content 内容
 		 * @return 当前对象
@@ -614,6 +635,7 @@ public class InspectionRcdVOMeta extends InspectionRcdMeta {
 		public InspectionRcdVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setOperUserId(this.getOperUserId());
+			inst.setResultCode(this.getResultCode());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setContent(this.getContent());

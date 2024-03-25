@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 维修验收
  * <p>维修验收 , 数据表 eam_repair_order_acceptance 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-11 11:51:31
+ * @since 2024-03-25 10:14:58
  * @sign BF78CF48AB1AC2E9BBE1C47F8A401326
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -43,31 +43,31 @@ public class RepairOrderAcceptance extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "742347717484740608")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "824573009405673472")
 	private String id;
 	
 	/**
 	 * 申请单：申请单
 	*/
-	@ApiModelProperty(required = false,value="申请单" , notes = "申请单" , example = "742272745621946368")
+	@ApiModelProperty(required = false,value="申请单" , notes = "申请单" , example = "824568315341963264")
 	private String orderId;
 	
 	/**
 	 * 维修单：维修单
 	*/
-	@ApiModelProperty(required = false,value="维修单" , notes = "维修单" , example = "742272804027629568")
+	@ApiModelProperty(required = false,value="维修单" , notes = "维修单" , example = "824570994768216064")
 	private String orderActId;
 	
 	/**
 	 * 验证结果：验证结果
 	*/
-	@ApiModelProperty(required = false,value="验证结果" , notes = "验证结果")
+	@ApiModelProperty(required = false,value="验证结果" , notes = "验证结果" , example = "finish")
 	private String acceptResult;
 	
 	/**
 	 * 验收编号：验收编号
 	*/
-	@ApiModelProperty(required = false,value="验收编号" , notes = "验收编号" , example = "RA202344111144128")
+	@ApiModelProperty(required = false,value="验收编号" , notes = "验收编号" , example = "RA202418250918230")
 	private String businessCode;
 	
 	/**
@@ -97,13 +97,13 @@ public class RepairOrderAcceptance extends Entity {
 	/**
 	 * 完成时间：完成时间
 	*/
-	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间" , example = "2023-08-11 12:00:00")
+	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间" , example = "2024-03-25 12:00:00")
 	private Date finishTime;
 	
 	/**
 	 * 验收备注：验收备注
 	*/
-	@ApiModelProperty(required = false,value="验收备注" , notes = "验收备注" , example = "121212")
+	@ApiModelProperty(required = false,value="验收备注" , notes = "验收备注")
 	private String notes;
 	
 	/**
@@ -127,7 +127,7 @@ public class RepairOrderAcceptance extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-11 11:44:48")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-25 09:18:45")
 	private Date createTime;
 	
 	/**

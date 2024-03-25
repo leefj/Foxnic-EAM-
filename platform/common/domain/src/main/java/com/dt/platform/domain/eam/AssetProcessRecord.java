@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产处理记录
  * <p>资产处理记录 , 数据表 eam_asset_process_record 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-01 22:43:56
+ * @since 2024-03-23 18:44:07
  * @sign 6EDE2FB2DAAC2670B3A9BDE5780FA427
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -40,19 +40,19 @@ public class AssetProcessRecord extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "681881175731470336")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "788842097154195456")
 	private String id;
 	
 	/**
 	 * 资产名称：资产名称
 	*/
-	@ApiModelProperty(required = false,value="资产名称" , notes = "资产名称" , example = "681881153086423040")
+	@ApiModelProperty(required = false,value="资产名称" , notes = "资产名称" , example = "788842079307431936")
 	private String assetId;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "681881175257513984")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "788842096814456832")
 	private String businessCode;
 	
 	/**
@@ -88,7 +88,7 @@ public class AssetProcessRecord extends Entity {
 	/**
 	 * 变更时间：变更时间
 	*/
-	@ApiModelProperty(required = false,value="变更时间" , notes = "变更时间" , example = "2023-02-25 03:12:21")
+	@ApiModelProperty(required = false,value="变更时间" , notes = "变更时间" , example = "2023-12-17 06:56:52")
 	private Date processdTime;
 	
 	/**
@@ -100,7 +100,7 @@ public class AssetProcessRecord extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-02-25 03:12:21")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-12-17 06:56:52")
 	private Date createTime;
 	
 	/**

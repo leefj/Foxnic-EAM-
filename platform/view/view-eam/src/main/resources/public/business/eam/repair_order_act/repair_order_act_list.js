@@ -1,7 +1,7 @@
 /**
  * 维修工单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-11 11:53:49
+ * @since 2024-03-25 13:23:33
  */
 
 
@@ -40,7 +40,6 @@ function ListPage() {
 		bindButtonEvent();
 		//绑定行操作按钮事件
     	bindRowOperationEvent();
-    	console.log("REPAIR_STATUS",REPAIR_STATUS)
      }
 
 
@@ -56,7 +55,6 @@ function ListPage() {
 		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
 		 $("#table-area").css("margin-top",marginTop+"px");
 		//
-
 		function renderTableInternal() {
 
 			var ps={searchField: "$composite"};
@@ -75,7 +73,7 @@ function ListPage() {
 				}
 			}
 			var h=$(".search-bar").height();
-			 var tableConfig={
+			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
@@ -92,6 +90,7 @@ function ListPage() {
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修班组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.repairGroup,"name",',','','groupId'),d);}}
 					,{ field: 'executorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修人员'), templet: function (d) { return templet('executorId' ,fox.joinLabel(d.executor,"name",',','','executorId'),d);}}
+					,{ field: 'causeReasonCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('故障原因'), templet: function (d) { return templet('causeReasonCode' ,fox.joinLabel(d.categoryTpl,"name",',','','causeReasonCode'),d);}}
 					,{ field: 'startTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('startTime',fox.dateFormat(d.startTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'finishTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('完成时间') ,templet: function (d) { return templet('finishTime',fox.dateFormat(d.finishTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
@@ -101,7 +100,6 @@ function ListPage() {
 				done: function (data) {
 					lockSwitchInputs();
 					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
-					calWidth();
 				},
 				footer : {
 					exportExcel : false ,
@@ -115,49 +113,10 @@ function ListPage() {
 			  refreshTableData(obj.sortField,obj.type);
 			});
 			window.pageExt.list.afterTableRender && window.pageExt.list.afterTableRender();
-			calWidth();
 		}
 		setTimeout(renderTableInternal,1);
     };
 
-    function sleep(ms){
-    	console.log("sleep");
-		return new Promise(resolve => setTimeout(resolve, ms));
-	}
-
-	function calWidth() {
-		var maxWidth=0;
-		if(dataTable){
-			var tableId="data-table"
-			var cells=$("#"+tableId).parent().find(".layui-table-body table td[data-field=row-ops] div");
-			for (var i = 0; i < cells.length; i++) {
-				var cw =0;
-				var cell=$(cells[i]);
-				for (let j = 0; j < cell.children().length; j++) {
-					if(cell.children()[j].clientWidth<35){
-						cell.children()[j].clientWidth=35;
-					}else{
-						cell.children()[j].clientWidth=cell.children()[j].clientWidth+1;
-					}
-					var e=cell.children()[j];
-					cw+=e.clientWidth+5*2+1;
-				}
-				if(cw>maxWidth) maxWidth=cw;
-			}
-			console.log("maxWidth"+maxWidth);
-			for(var i=100;i<1000;i=i+100){
-				setTimeout(function(){
-					if(dataTable.updateOpsColumnWidth){
-						dataTable.updateOpsColumnWidth();
-					}
-				},i);
-			}
-
-		}else{
-			console.log("dataTable is null");
-		}
-	};
-	window.calWidth=calWidth;
 	/**
 	 * 刷新单号数据
 	 * */
@@ -230,8 +189,6 @@ function ListPage() {
 			table.reload('data-table', { where : ps });
 		}
 	}
-
-
 
 
 	/**
@@ -361,9 +318,6 @@ function ListPage() {
 				case 'refresh-data':
 					refreshTableData();
 					break;
-				case 'test':
-					calWidth();
-					break;
 				case 'other':
 					break;
 			};
@@ -491,11 +445,13 @@ function ListPage() {
 			else if (layEvent === 'cancel') { // 取消 
 				window.pageExt.list.cancel(data,this);
 			}
+			else if (layEvent === 'repair-bill') { //  维修单据
+				window.pageExt.list.repairBill(data,this);
+			}
 			
 		});
 
     };
-
 
     /**
      * 打开编辑窗口

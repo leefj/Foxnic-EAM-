@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import com.dt.platform.constants.enums.eam.RepairOrderActStatusEnum;
 import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.RepairOrderMeta;
 import com.dt.platform.eam.service.IRepairOrderActService;
 import com.dt.platform.eam.service.IRepairOrderProcessService;
 import com.dt.platform.eam.service.IRepairOrderService;
@@ -87,12 +88,18 @@ public class RepairOrderTransferServiceImpl extends SuperService<RepairOrderTran
 	@Override
 	public Result insert(RepairOrderTransfer repairOrderTransfer,boolean throwsException) {
 		RepairOrder order=repairOrderService.getById(repairOrderTransfer.getOrderId());
+		dao.fill(order).with(RepairOrderMeta.ASSET_LIST).execute();
+		if(order.getAssetList().size()==0){
+			return ErrorDesc.failureMessage("没有在该订单找找到需报修的设备");
+		}
 		RepairOrderAct act=new RepairOrderAct();
 		act.setNotes(repairOrderTransfer.getNotes());
 		act.setExecutorId(repairOrderTransfer.getExecutorId());
 		act.setGroupId(repairOrderTransfer.getGroupId());
 		act.setOrderId(repairOrderTransfer.getOrderId());
 		act.setOrderName(order.getName());
+		//默认只支持一个设备的报修
+		act.setAssetId(order.getAssetList().get(0).getId());
 		act.setOrderBusinessCode(order.getBusinessCode());
 		Result rr=repairOrderActService.insert(act,false);
 		if(rr.isSuccess()){

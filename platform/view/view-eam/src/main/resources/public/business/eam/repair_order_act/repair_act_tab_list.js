@@ -15,47 +15,65 @@ function ListPage() {
 		var formIfrs=$(".form-iframe");
 		for (var i = 0; i < formIfrs.length; i++) {
 			var jsFn=$(formIfrs[i]).attr("js-fn");
-			if(window.pageExt.list){
+			console.log(jsFn);
+			if(i==0){
 				jsFn=window.pageExt.list[jsFn];
 				jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,'idle');
 			}
 		}
 
+
+
+
+
+
 		queryTabData("none");
 
 		$("#wait_repair_count_tab").on('click', function(){
-			queryTabData("none");
+			queryTabData("none","orderWaitRepair");
 		//	$("#orderWaitRepair")[0].contentWindow.location.reload();
-			$("#orderWaitRepair")[0].contentWindow.calWidth();
+			//$("#orderWaitRepair")[0].contentWindow.calWidth();
 		});
 
 		$("#repairing_count_tab").on('click', function(){
-			queryTabData("none");
+			queryTabData("none","orderRepairing");
 			//$("#orderRepairing")[0].contentWindow.location.reload();
-			$("#orderRepairing")[0].contentWindow.calWidth();
+			//$("#orderRepairing")[0].contentWindow.calWidth();
 		});
 		$("#wait_acceptance_count_tab").on('click', function(){
-			queryTabData("none");
+			queryTabData("none","orderWaitAcceptance");
 			//$("#orderWaitAcceptance")[0].contentWindow.location.reload();
-			$("#orderWaitAcceptance")[0].contentWindow.calWidth();
+			//$("#orderWaitAcceptance")[0].contentWindow.calWidth();
 		});
 		$("#acceptance_failed_count_tab").on('click', function(){
-			queryTabData("none");
+			queryTabData("none","orderAcceptanceFailed");
 			//$("#orderAcceptanceFailed")[0].contentWindow.location.reload();
-			$("#orderAcceptanceFailed")[0].contentWindow.calWidth();
+			//$("#orderAcceptanceFailed")[0].contentWindow.calWidth();
 		});
 
 		$("#orderFinish_tab").on('click', function(){
+			queryTabData("none","orderFinish");
 			//$("#orderAcceptanceFailed")[0].contentWindow.location.reload();
-			$("#orderFinish")[0].contentWindow.calWidth();
+		//	$("#orderFinish")[0].contentWindow.calWidth();
 		});
 
 		$("#all_tab").on('click', function(){
+			queryTabData("none","orderAll");
 			//$("#orderAcceptanceFailed")[0].contentWindow.location.reload();
-			$("#orderAll")[0].contentWindow.calWidth();
+			//$("#orderAll")[0].contentWindow.calWidth();
 		});
 	}
-	function queryTabData(label){
+	function queryTabData(label,elId){
+		console.log("elId",elId);
+		var formIfrs=$(".form-iframe");
+		for (var i = 0; i < formIfrs.length; i++) {
+			var jsFn=$(formIfrs[i]).attr("js-fn");
+			if(jsFn==elId){
+				jsFn=window.pageExt.list[jsFn];
+				jsFn && jsFn($(formIfrs[i]),$(formIfrs[i])[0].contentWindow,'idle');
+			}
+		}
+
 		admin.post("/service-eam/eam-repair-order/query-status-count-data", { label :label }, function (r) {
 			if (r.success) {
 				var data=r.data;

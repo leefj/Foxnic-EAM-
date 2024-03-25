@@ -262,8 +262,6 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 			return ckResult;
 		}
 
-
-
 		//制单人
 		if(StringUtil.isBlank(assetCollection.getOriginatorId())){
 			assetCollection.setOriginatorId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());

@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 维修记录 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-12 12:15:37
+ * @since 2024-03-24 08:15:59
  */
 @FeignClient(value = ServiceNames.EAM, contextId = RepairRcdServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface RepairRcdServiceProxy {

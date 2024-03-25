@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产处理记录VO类型
  * <p>资产处理记录 , 数据表 eam_asset_process_record 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-01 22:43:56
+ * @since 2024-03-23 18:44:07
  * @sign D5CEEB05B76DE32B1F519872EAA0AD72
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

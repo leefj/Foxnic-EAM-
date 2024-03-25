@@ -47,6 +47,7 @@ public class EamProcessRecordGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_PROCESS_RECORD.NOTES).form().textArea().height(120);
         cfg.view().field(EAMTables.EAM_ASSET_PROCESS_RECORD.PROCESSD_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
 
+        cfg.view().list().addJsVariable("SOURCE","[[${source}]]","资产ID");
 
         cfg.view().field(EAMTables.EAM_ASSET_PROCESS_RECORD.ID).form().hidden();
         cfg.view().field(EAMTables.EAM_ASSET_PROCESS_RECORD.PROCESS_USER_ID).form().hidden();
@@ -68,12 +69,12 @@ public class EamProcessRecordGtr extends BaseCodeGenerator{
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.CREATE_IF_NOT_EXISTS) //服务与接口
-                .setControllerAndAgent(WriteMode.CREATE_IF_NOT_EXISTS) //Rest
-                .setPageController(WriteMode.CREATE_IF_NOT_EXISTS) //页面控制器
-                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
-                .setListPage(WriteMode.CREATE_IF_NOT_EXISTS)//列表HTML页
-                .setExtendJsFile(WriteMode.CREATE_IF_NOT_EXISTS); //列表HTML页
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
+                .setPageController(WriteMode.IGNORE) //页面控制器
+                .setFormPage(WriteMode.IGNORE) //表单HTML页
+                .setListPage(WriteMode.IGNORE)//列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         cfg.buildAll();
     }
 

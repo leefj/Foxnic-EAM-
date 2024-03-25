@@ -39,10 +39,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         beforeInit:function () {
             $("#data-table").css("width", "100%");
             console.log("list:beforeInit");
-            var operHtml=document.getElementById("toolbarTemplate").innerHTML;
-            operHtml=operHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
-            document.getElementById("toolbarTemplate").innerHTML=operHtml;
+            var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+            toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+            document.getElementById("toolbarTemplate").innerHTML=toolHtml;
 
+
+            var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+            operHtml=operHtml.replace(/lay-event="view"/i, "style=\"display:none\"")
+            document.getElementById("tableOperationTemplate").innerHTML=operHtml;
 
 
             if(REPAIR_STATUS){
@@ -354,6 +358,19 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         cancel:function(item,it){
             list.billOper("cancel","cancel-button",{id:item.id},"取消成功");
+        },
+        repairBill:function(item,it) {
+            admin.popupCenter({
+                title: "单据",
+                resize: false,
+                offset: [20, null],
+                area: ["90%", "95%"],
+                type: 2,
+                id: "eam-repair-order-act-form-data-win",
+                content: '/ureport/preview?_u=db:824589793542275072.ureport.xml&_t=0&orderId' + item.orderId,
+                finish: function () {
+                }
+            });
         },
         maintenance:function(item,it){
             admin.post(moduleURL+"/get-by-id", { id : item.id }, function (res) {

@@ -273,6 +273,20 @@ public class AssetPageController extends ViewController {
 		return prefix+"/asset_search/category_tree";
 	}
 
+	@RequestMapping("/asset_search/eq_category_tree.html")
+	public String eqcategoryTree(Model model,HttpServletRequest request) {
+
+		Result<HashMap<String,List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(AssetAttributeItemOwnerEnum.ASSET_EQ_BOOK.code(),null);
+		if(result.isSuccess()){
+			HashMap<String,List<AssetAttributeItem>> data = result.getData();
+			List<AssetAttributeItem> list=data.get("attributeListData");
+			model.addAttribute("attributeListData",list);
+		}
+		Result idResult=AssetCategoryServiceProxy.api().queryNodesByCode(AssetPcmCodeEnum.ASSET.code());
+		model.addAttribute("categoryParentId",idResult.getData());
+		return prefix+"/asset_search/eq_category_tree";
+	}
+
 	/**
 	 * 资产 台账
 	 */
@@ -286,6 +300,21 @@ public class AssetPageController extends ViewController {
 			model.addAttribute("attributeListData",list);
 		}
 		return prefix+"/asset_search/org_tree";
+	}
+
+	/**
+	 * 资产 台账
+	 */
+	@RequestMapping("/asset_search/eq_org_tree.html")
+	public String eqorgTree(Model model,HttpServletRequest request) {
+
+		Result<HashMap<String,List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(AssetAttributeItemOwnerEnum.ASSET_EQ_BOOK.code(),null);
+		if(result.isSuccess()){
+			HashMap<String,List<AssetAttributeItem>> data = result.getData();
+			List<AssetAttributeItem> list=data.get("attributeListData");
+			model.addAttribute("attributeListData",list);
+		}
+		return prefix+"/asset_search/eq_org_tree";
 	}
 
 
@@ -318,6 +347,21 @@ public class AssetPageController extends ViewController {
 		}
 		return prefix+"/asset_search/position_tree";
 	}
+
+	/**
+	 * 资产 台账
+	 */
+	@RequestMapping("/asset_search/eq_position_tree.html")
+	public String eQpositionTree(Model model,HttpServletRequest request) {
+		Result<HashMap<String,List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(AssetAttributeItemOwnerEnum.ASSET_EQ_BOOK.code(),null);
+		if(result.isSuccess()){
+			HashMap<String,List<AssetAttributeItem>> data = result.getData();
+			List<AssetAttributeItem> list=data.get("attributeListData");
+			model.addAttribute("attributeListData",list);
+		}
+		return prefix+"/asset_search/eq_position_tree";
+	}
+
 
 
 	/**
@@ -370,6 +414,21 @@ public class AssetPageController extends ViewController {
 		return prefix+"/asset_search/asset_search";
 	}
 
+	/**
+	 * 资产 台账
+	 */
+	@RequestMapping("/asset_search/eq_asset_search.html")
+	public String eqsearchList(Model model,HttpServletRequest request) {
+
+
+		Result<HashMap<String,List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(AssetAttributeItemOwnerEnum.ASSET_EQ_BOOK.code(),null);
+		if(result.isSuccess()){
+			HashMap<String,List<AssetAttributeItem>> data = result.getData();
+			List<AssetAttributeItem> list=data.get("attributeListData");
+			model.addAttribute("attributeListData",list);
+		}
+		return prefix+"/asset_search/eq_asset_search";
+	}
 
 
 	/**

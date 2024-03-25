@@ -24,7 +24,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //列表页的扩展
     var list={
-
         orderNotDispatch:function (ifr,win,data) {
             ifr.height("720px");
             win.location="/business/eam/repair_order_act/repair_order_act_list.html?repairStatus=not_dispatch&t="+timestamp

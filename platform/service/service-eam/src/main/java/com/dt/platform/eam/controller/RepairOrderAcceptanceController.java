@@ -83,7 +83,8 @@ public class RepairOrderAcceptanceController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ACCEPT_RESULT, value = "验证结果", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ACCEPT_RESULT, value = "验证结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = RepairOrderAcceptanceServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -143,7 +144,8 @@ public class RepairOrderAcceptanceController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ACCEPT_RESULT, value = "验证结果", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ACCEPT_RESULT, value = "验证结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { RepairOrderAcceptanceVOMeta.PAGE_INDEX, RepairOrderAcceptanceVOMeta.PAGE_SIZE, RepairOrderAcceptanceVOMeta.SEARCH_FIELD, RepairOrderAcceptanceVOMeta.FUZZY_FIELD, RepairOrderAcceptanceVOMeta.SEARCH_VALUE, RepairOrderAcceptanceVOMeta.DIRTY_FIELDS, RepairOrderAcceptanceVOMeta.SORT_FIELD, RepairOrderAcceptanceVOMeta.SORT_TYPE, RepairOrderAcceptanceVOMeta.IDS })
     @SentinelResource(value = RepairOrderAcceptanceServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -172,7 +174,8 @@ public class RepairOrderAcceptanceController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ACCEPT_RESULT, value = "验证结果", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ACCEPT_RESULT, value = "验证结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairOrderAcceptanceVOMeta.PAGE_INDEX, RepairOrderAcceptanceVOMeta.PAGE_SIZE, RepairOrderAcceptanceVOMeta.SEARCH_FIELD, RepairOrderAcceptanceVOMeta.FUZZY_FIELD, RepairOrderAcceptanceVOMeta.SEARCH_VALUE, RepairOrderAcceptanceVOMeta.DIRTY_FIELDS, RepairOrderAcceptanceVOMeta.SORT_FIELD, RepairOrderAcceptanceVOMeta.SORT_TYPE, RepairOrderAcceptanceVOMeta.IDS })
     @SentinelResource(value = RepairOrderAcceptanceServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -240,7 +243,8 @@ public class RepairOrderAcceptanceController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ACCEPT_RESULT, value = "验证结果", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ACCEPT_RESULT, value = "验证结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairOrderAcceptanceVOMeta.PAGE_INDEX, RepairOrderAcceptanceVOMeta.PAGE_SIZE })
     @SentinelResource(value = RepairOrderAcceptanceServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -270,7 +274,8 @@ public class RepairOrderAcceptanceController extends SuperController {
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ORIGINATOR_ID, value = "制单人员", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ACCEPT_RESULT, value = "验证结果", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.ACCEPT_RESULT, value = "验证结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairOrderAcceptanceVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = RepairOrderAcceptanceServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

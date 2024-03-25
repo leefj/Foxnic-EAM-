@@ -57,11 +57,12 @@ public class EAMAssetAttributeItemGtr extends BaseCodeGenerator{
 
 
         cfg.view().field(EAMTables.EAM_ASSET_ATTRIBUTE_ITEM.ATTRIBUTE_ID).form().validate().required()
-                .form().selectBox().queryApi(AssetAttributeServiceProxy.QUERY_ATTRIBUTE_OWNER_LIST+"?owner=asset&itemOwner=-1").valueField(AssetAttributeMeta.ID).textField(AssetAttributeMeta.LABEL)
+                .form().selectBox().queryApi(AssetAttributeServiceProxy.QUERY_ATTRIBUTE_OWNER_LIST+"?owner=asset&itemOwner=-1")
+                .valueField(AssetAttributeMeta.ID).textField(AssetAttributeMeta.LABEL)
         .filter(true).toolbar(false).paging(false).muliti(false).fillWith(AssetAttributeItemMeta.ATTRIBUTE);
 
 
-
+        cfg.view().field(EAMTables.EAM_ASSET_ATTRIBUTE_ITEM.UPDATE_BY).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_ATTRIBUTE_ITEM.OWNER_CODE).form().validate().required()
                 .form().selectBox().enumType(AssetAttributeItemOwnerEnum.class);
