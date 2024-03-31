@@ -1,7 +1,7 @@
 /**
  * 人员档案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-14 15:09:16
+ * @since 2024-03-26 21:26:03
  */
 
 
@@ -91,7 +91,7 @@ function ListPage() {
 					,{ field: 'ifNew', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否新建档'), templet:function (d){ return templet('ifNew',fox.getEnumText(RADIO_IFNEW_DATA,d.ifNew,'','ifNew'),d);}}
 					,{ field: 'source', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源') , templet: function (d) { return templet('source',d.source,d);}  }
 					,{ field: 'saveLoc', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('档案保管地') , templet: function (d) { return templet('saveLoc',d.saveLoc,d);}  }
-					,{ field: 'workStartDate', align:"left", fixed:false, hide:false, sort: true   ,title: fox.translate('参加工作时间') ,templet: function (d) { return templet('workStartDate',fox.dateFormat(d.workStartDate,"yyyy-mm-dd"),d); }  }
+					,{ field: 'workStartDate', align:"left", fixed:false, hide:false, sort: true   ,title: fox.translate('参加工作时间') ,templet: function (d) { return templet('workStartDate',fox.dateFormat(d.workStartDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'file', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('附件') , templet: function (d) { return templet('file',d.file,d);}  }
 					,{ field: 'note', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('note',d.note,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }

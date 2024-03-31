@@ -60,6 +60,30 @@ public class OpsRelationManager extends RelationManager {
         this.setupMonitorTrigger();
         this.setupMonitorAlert();
         this.setupMonitorTpl();
+
+        this.setupDBApplyExecute();
+        this.setupDBChangeApply();
+
+
+    }
+
+    public void setupDBChangeApply() {
+
+        this.property(DbChangeApplyMeta.APPLY_USER_PROP)
+                .using(OpsTables.OPS_DB_CHANGE_APPLY.APPLY_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(DbChangeApplyMeta.DB_INFO_APPLY_PROP)
+                .using(OpsTables.OPS_DB_CHANGE_APPLY.DB_ID).join(OpsTables.OPS_DB_CHANGE_APPLY.ID);
+
+        this.property(DbChangeApplyMeta.REQUEST_ORDER_PROP)
+                .using(OpsTables.OPS_DB_CHANGE_APPLY.ITEM_CODE).join(OpsTables.OPS_DB_APPLY_EXECUTE.ID);
+
+    }
+    public void setupDBApplyExecute() {
+
+        this.property(DbApplyExecuteMeta.OPER_USER_PROP)
+                .using(OpsTables.OPS_DB_APPLY_EXECUTE.OPER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
     }
 
     public void setupMonitorTpl() {

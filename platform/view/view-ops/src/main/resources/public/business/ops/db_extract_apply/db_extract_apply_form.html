@@ -1,0 +1,175 @@
+<!--
+/**
+ * 数据库提取申请 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2024-03-31 18:45:10
+ */
+ -->
+ <!DOCTYPE html>
+<html style="background-color: #FFFFFF;">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+	<title th:text="${lang.translate('数据库提取申请')}">数据库提取申请</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}"/>
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden;">
+<div class="form-container" >
+
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="opacity:0">
+
+        <input name="id" id="id"  type="hidden"/>
+
+         <!--开始：group 循环-->
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9717-fieldset">
+            <legend>关联信息</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-9717-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                <!-- select_box : 工单编号 ,  itemCode  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('工单编号')}">工单编号</div></div>
+                    <div class="layui-input-block ">
+                        <div id="itemCode" input-type="select" th:data="${'/service-ops/ops-db-apply-execute/query-paged-list?datarange=extract'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- text_input : 原因 ,  content -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('原因')}">原因</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入'+'原因') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                <!-- select_box : 数据库 ,  dbId  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('数据库')}">数据库</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="dbId" input-type="select" th:data="${'/service-ops/ops-db-info-apply/query-list?datarange=extract'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6212-fieldset">
+            <legend>查询的SQL文本放于此处,一个框一个提取语句</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-6212-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs12 form-column" >
+
+                <!-- text_area : SQL文本1 ,  sqlArea  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('SQL文本1')}">SQL文本1</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="sqlArea" id="sqlArea" name="sqlArea" th:placeholder="${ lang.translate('请输入'+'SQL文本1') }" class="layui-textarea" style="height: 150px" ></textarea>
+                    </div>
+                </div>
+            
+                <!-- text_area : SQL文本2 ,  sqlArea2  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('SQL文本2')}">SQL文本2</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="sqlArea2" id="sqlArea2" name="sqlArea2" th:placeholder="${ lang.translate('请输入'+'SQL文本2') }" class="layui-textarea" style="height: 150px" ></textarea>
+                    </div>
+                </div>
+            
+                <!-- text_area : SQL文本3 ,  sqlArea3  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('SQL文本3')}">SQL文本3</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="sqlArea3" id="sqlArea3" name="sqlArea3" th:placeholder="${ lang.translate('请输入'+'SQL文本3') }" class="layui-textarea" style="height: 150px" ></textarea>
+                    </div>
+                </div>
+            
+                <!-- text_area : SQL文本4 ,  sqlArea4  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('SQL文本4')}">SQL文本4</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="sqlArea4" id="sqlArea4" name="sqlArea4" th:placeholder="${ lang.translate('请输入'+'SQL文本4') }" class="layui-textarea" style="height: 150px" ></textarea>
+                    </div>
+                </div>
+            
+                <!-- text_area : SQL文本5 ,  sqlArea5  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('SQL文本5')}">SQL文本5</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="sqlArea5" id="sqlArea5" name="sqlArea5" th:placeholder="${ lang.translate('请输入'+'SQL文本5') }" class="layui-textarea" style="height: 150px" ></textarea>
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+        <!--结束：group循环-->
+
+        <div style="height: 8px"></div>
+        <div style="height: 120px"></div>
+
+
+    </form>
+
+</div>
+<div class="model-form-footer">
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('ops_db_extract_apply:create','ops_db_extract_apply:update','ops_db_extract_apply:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbApplyStatusEnum')}]];
+    var SELECT_CHECKRESULT_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbApplyCheckEnum')}]];
+    var SELECT_PUSHORDERSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbApplyOrderStatusEnum')}]];
+    var VALIDATE_CONFIG={"dbId":{"labelInForm":"数据库","inputType":"select_box","required":true},"checkResult":{"labelInForm":"验证结果","inputType":"select_box","required":true}};
+    var AUTH_PREFIX="ops_db_extract_apply";
+
+    // associatedSystem
+    var ASSOCIATED_SYSTEM = [[${associatedSystem}]] ;
+
+</script>
+
+
+
+<script th:src="'/business/ops/db_extract_apply/db_extract_apply_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/ops/db_extract_apply/db_extract_apply_form.js?'+${cacheKey}"></script>
+
+</body>
+</html>

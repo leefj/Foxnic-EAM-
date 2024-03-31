@@ -47,8 +47,8 @@ public class HrmPersonEducatinGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(HrTables.HR_PERSON_EDUCATION.EMPLOYEE_ID).table().fillBy("person","name");
-        cfg.view().field(HrTables.HR_PERSON_EDUCATION.S_TIME).form().validate().required().form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
-        cfg.view().field(HrTables.HR_PERSON_EDUCATION.E_TIME).form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
+        cfg.view().field(HrTables.HR_PERSON_EDUCATION.S_TIME).form().validate().required().form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
+        cfg.view().field(HrTables.HR_PERSON_EDUCATION.E_TIME).form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
 
         cfg.view().field(HrTables.HR_PERSON_EDUCATION.STATUS).form().radioBox().enumType(ApprovalStatusEnum.class);
         cfg.view().field(HrTables.HR_PERSON_EDUCATION.FILE_IDS).form().upload().buttonLabel("附件").acceptAllType().maxFileCount(1);
@@ -59,6 +59,7 @@ public class HrmPersonEducatinGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON_EDUCATION.UPDATE_TIME).table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_EDUCATION.UPDATE_BY).table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_EDUCATION.CREATE_BY).table().disable(true);
+        cfg.view().field(HrTables.HR_PERSON_EDUCATION.FILE_IDS).table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_EDUCATION.REL_ID).table().disable(true);
         //cfg.view().field(HrTables.HR_PERSON_EDUCATION.PERSON_ID).table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_EDUCATION.EMPLOYEE_ID).table().disable(true);

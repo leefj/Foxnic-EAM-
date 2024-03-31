@@ -90,8 +90,8 @@ function ListPage() {
 					,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工') , templet: function (d) { return templet('personId',fox.getProperty(d,["user","name"],0,'','personId'),d);} }
 				//	,{ field: 'employeeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员(工号)'), templet:function (d){ return templet('employeeId',fox.joinLabel(d.person,"nameAndBadge",',','','employeeId'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('证书名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'getTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('获得时间') ,templet: function (d) { return templet('getTime',fox.dateFormat(d.getTime,"yyyy-mm-dd"),d); }  }
-					,{ field: 'fileIds', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('附件') , templet: function (d) { return templet('fileIds',d.fileIds,d);}  }
+					,{ field: 'getTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('获得时间') ,templet: function (d) { return templet('getTime',fox.dateFormat(d.getTime,"yyyy-MM-dd"),d); }  }
+				//	,{ field: 'fileIds', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('附件') , templet: function (d) { return templet('fileIds',d.fileIds,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }

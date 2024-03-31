@@ -218,6 +218,9 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                 detail.setAssetCode(asset.getAssetCode());
                 detail.setAssetName(asset.getName());
                 detail.setAssetModel(asset.getModel());
+                if(asset.getPurchaseDate()==null){
+                    return ErrorDesc.failureMessage("资产编号:"+asset.getAssetCode()+"采购日期为空");
+                }
                 detail.setAssetPurchaseDate(asset.getPurchaseDate());
                 detail.setAssetRegisterDate(asset.getRegisterDate());
                 detail.setAssetOriginalUnitPrice(asset.getOriginalUnitPrice());

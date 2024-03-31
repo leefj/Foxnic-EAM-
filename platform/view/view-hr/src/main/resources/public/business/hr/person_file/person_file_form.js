@@ -1,7 +1,7 @@
 /**
  * 人员档案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-14 15:09:16
+ * @since 2024-03-26 21:26:04
  */
 
 function FormPage() {
@@ -171,7 +171,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#workStartDate',
 			type:"date",
-			format:"yyyy-mm-dd",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("workStartDate",value, date, endDate);
@@ -262,7 +262,7 @@ function FormPage() {
 
 			//设置 参加工作时间 显示复选框勾选
 			if(formData["workStartDate"]) {
-				$("#workStartDate").val(fox.dateFormat(formData["workStartDate"],"yyyy-mm-dd"));
+				$("#workStartDate").val(fox.dateFormat(formData["workStartDate"],"yyyy-MM-dd"));
 			}
 
 

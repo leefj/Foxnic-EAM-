@@ -1,6 +1,7 @@
 package com.dt.platform.relation.modules;
 
 import com.dt.platform.constants.db.EAMTables;
+import com.dt.platform.constants.db.SysTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.AssetInventoryDetailStatusEnum;
 
@@ -448,6 +449,12 @@ public class EamRelationManager extends RelationManager {
     }
 
     public void setupEmployeeHandover() {
+        this.property(AssetEmployeeHandoverMeta.ASSET_LIST_PROP)
+                .using(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.ID).join(EAMTables.EAM_ASSET_ITEM.HANDLE_ID)
+                .condition("crd in ('c','r') ")
+                .using(EAMTables.EAM_ASSET_ITEM.ASSET_ID).join(EAMTables.EAM_ASSET.ID)
+                .condition("owner_code='asset' ");
+
         this.property(AssetEmployeeHandoverMeta.ORIGINATOR_PROP)
                 .using(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 

@@ -55,7 +55,7 @@ public class HrmPersonFileGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON_FILE.STATUS).form().radioBox().enumType(PersonFileStatusEnum.class).defaultIndex(0);
         cfg.view().field(HrTables.HR_PERSON_FILE.IF_NEW).form().validate().required().form().radioBox().enumType(PersonFileNewEnum.class).defaultIndex(0);
 
-        cfg.view().field(HrTables.HR_PERSON_FILE.WORK_START_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
+        cfg.view().field(HrTables.HR_PERSON_FILE.WORK_START_DATE).form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
         cfg.view().field(HrTables.HR_PERSON_FILE.FILE).form().upload().acceptAllType().maxFileCount(6);
 
 

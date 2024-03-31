@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 工作经历
  * <p>工作经历 , 数据表 hr_person_work_experience 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-16 12:47:53
+ * @since 2024-03-26 21:35:07
  * @sign 536DEF6CB594343B186EBBB34B271447
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -65,13 +65,13 @@ public class PersonWorkExperience extends Entity {
 	/**
 	 * 公司名称：公司名称
 	*/
-	@ApiModelProperty(required = false,value="公司名称" , notes = "公司名称" , example = "rty")
+	@ApiModelProperty(required = false,value="公司名称" , notes = "公司名称" , example = "ccc")
 	private String name;
 	
 	/**
 	 * 开始时间：开始时间
 	*/
-	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2023-12-05 12:00:00")
+	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间" , example = "2022-12-05 12:00:00")
 	private Date sTime;
 	
 	/**
@@ -113,7 +113,7 @@ public class PersonWorkExperience extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-15 07:54:45")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-01-16 12:55:44")
 	private Date updateTime;
 	
 	/**
@@ -140,7 +140,7 @@ public class PersonWorkExperience extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "2")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "3")
 	private Integer version;
 	
 	/**

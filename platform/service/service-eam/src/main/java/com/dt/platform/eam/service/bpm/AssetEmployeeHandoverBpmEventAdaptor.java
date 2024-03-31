@@ -104,12 +104,6 @@ public class AssetEmployeeHandoverBpmEventAdaptor extends BpmEventAdaptor<AssetE
 		Logger.info("onNodeEnd result:"+event.getActionResult().getData());
 		Logger.info("onNodeEnd result:"+event.getActionResult().getMessage());
 
-
-
-
-		if("END".equals(event.getNodeId())){
-			updateBillStatus(AssetHandleStatusEnum.COMPLETE.code(), event.getBillId());
-		}
 		return event.getActionResult();
 	}
 
