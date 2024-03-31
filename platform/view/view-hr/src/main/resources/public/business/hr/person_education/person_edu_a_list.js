@@ -90,12 +90,12 @@ function ListPage() {
 					,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工') , templet: function (d) { return templet('personId',fox.getProperty(d,["user","name"],0,'','personId'),d);} }
 
 					,{ field: 'education', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('学历'), templet: function (d) { return templet('education' ,fox.joinLabel(d.educationInfo,"label",',','','education'),d);}}
-					,{ field: 'sTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('sTime',fox.dateFormat(d.sTime,"yyyy-mm-dd"),d); }  }
-					,{ field: 'eTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('eTime',fox.dateFormat(d.eTime,"yyyy-mm-dd"),d); }  }
+					,{ field: 'sTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('sTime',fox.dateFormat(d.sTime,"yyyy-MM-dd"),d); }  }
+					,{ field: 'eTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('eTime',fox.dateFormat(d.eTime,"yyyy-MM-dd"),d); }  }
 					,{ field: 'educationalInstitutions', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('毕业院校') , templet: function (d) { return templet('educationalInstitutions',d.educationalInstitutions,d);}  }
 					,{ field: 'majoyStudied', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所学专业') , templet: function (d) { return templet('majoyStudied',d.majoyStudied,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'fileIds', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('附件') , templet: function (d) { return templet('fileIds',d.fileIds,d);}  }
+				//	,{ field: 'fileIds', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('附件') , templet: function (d) { return templet('fileIds',d.fileIds,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

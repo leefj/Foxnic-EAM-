@@ -39,7 +39,7 @@ public class HrmPersonCert2Gtr extends BaseCodeGenerator {
 
 
         cfg.view().field(HrTables.HR_PERSON_CERTIFICATE.EMPLOYEE_ID).table().fillBy("person","name");
-        cfg.view().field(HrTables.HR_PERSON_CERTIFICATE.GET_TIME).form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
+        cfg.view().field(HrTables.HR_PERSON_CERTIFICATE.GET_TIME).form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
         cfg.view().field(HrTables.HR_PERSON_CERTIFICATE.NAME).form().validate().required();
         cfg.view().field(HrTables.HR_PERSON_CERTIFICATE.NOTES).form().textArea().height(80);
         cfg.view().field(HrTables.HR_PERSON_CERTIFICATE.STATUS).form().radioBox().enumType(ApprovalStatusEnum.class);
@@ -52,7 +52,7 @@ public class HrmPersonCert2Gtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON_CERTIFICATE.UPDATE_BY).table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_CERTIFICATE.CREATE_BY).table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_CERTIFICATE.REL_ID).table().disable(true);
-
+        cfg.view().field(HrTables.HR_PERSON_CERTIFICATE.FILE_IDS).table().disable(true);
         cfg.view().field(HrTables.HR_PERSON_CERTIFICATE.EMPLOYEE_ID).table().disable(true);
 
         cfg.view().field(HrTables.HR_PERSON_CERTIFICATE.PERSON_ID).table().fillBy("user","name");

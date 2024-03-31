@@ -1,7 +1,7 @@
 /**
  * 工作经历 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-16 12:47:55
+ * @since 2024-03-26 21:35:09
  */
 
 function FormPage() {
@@ -128,7 +128,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#sTime',
 			type:"date",
-			format:"yyyy-mm-dd",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("sTime",value, date, endDate);
@@ -137,7 +137,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#eTime',
 			type:"date",
-			format:"yyyy-mm-dd",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("eTime",value, date, endDate);
@@ -196,11 +196,11 @@ function FormPage() {
 
 			//设置 开始时间 显示复选框勾选
 			if(formData["sTime"]) {
-				$("#sTime").val(fox.dateFormat(formData["sTime"],"yyyy-mm-dd"));
+				$("#sTime").val(fox.dateFormat(formData["sTime"],"yyyy-MM-dd"));
 			}
 			//设置 结束时间 显示复选框勾选
 			if(formData["eTime"]) {
-				$("#eTime").val(fox.dateFormat(formData["eTime"],"yyyy-mm-dd"));
+				$("#eTime").val(fox.dateFormat(formData["eTime"],"yyyy-MM-dd"));
 			}
 
 

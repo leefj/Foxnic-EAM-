@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员档案
  * <p>人员档案 , 数据表 hr_person_file 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-14 15:09:14
+ * @since 2024-03-26 21:26:00
  * @sign 4148727D70AE8690D98C9FF9A8452ECD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

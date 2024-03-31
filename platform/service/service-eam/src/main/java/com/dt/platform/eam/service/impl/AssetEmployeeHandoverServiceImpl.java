@@ -3,9 +3,8 @@ package com.dt.platform.eam.service.impl;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.domain.eam.AssetEmployeeHandover;
-import com.dt.platform.domain.eam.AssetEmployeeHandoverVO;
-import com.dt.platform.domain.eam.AssetItem;
+import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.AssetEmployeeHandoverMeta;
 import com.dt.platform.eam.service.*;
 import com.dt.platform.eam.service.bpm.AssetEmployeeApplyBpmEventAdaptor;
 import com.dt.platform.eam.service.bpm.AssetEmployeeHandoverBpmEventAdaptor;
@@ -26,9 +25,11 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.sql.expr.Update;
 import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.session.SessionUser;
@@ -65,10 +66,11 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 	@Autowired
 	private IOperateService operateService;
 
-	/**
-	 * 注入DAO对象
-	 * */
-	@Resource(name=DBConfigs.PRIMARY_DAO) 
+	@Autowired
+	private IAssetProcessRecordService assetProcessRecordService;
+
+
+	@Resource(name=DBConfigs.PRIMARY_DAO)
 	private DAO dao=null;
 
 	/**
@@ -392,11 +394,49 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 	 * */
 	public  BpmActionResult onProcessCallback(BpmEvent event) {
 
+		Logger.info("onProcessCallback onNodeEnd nodeId:" + event.getNodeId());
+		Logger.info("onProcessCallback onNodeEnd result:"+event.getActionResult().code());
+		Logger.info("onProcessCallback onNodeEnd result:"+event.getActionResult().getData());
+		Logger.info("onProcessCallback onNodeEnd result:"+event.getActionResult().getMessage());
+		Logger.info("onProcessCallback onNodeEnd result:"+event.getBillId());
+		if("END".equals(event.getNodeId())){
+			AssetEmployeeHandover bill=this.getById(event.getBillId());
+			dao.fill(bill).with(AssetEmployeeHandoverMeta.ASSET_LIST)
+					.with(AssetEmployeeHandoverMeta.ORGANIZATION)
+					.with(AssetEmployeeHandoverMeta.RECEIVER_USER)
+					.execute();
+			assetService.dao().join(bill.getReceiverUser(), Person.class);
+			List<Asset> list=bill.getAssetList();
+			Logger.info("交接资产数:"+list.size());
 
+			String org=bill.getOrganization()==null?"":bill.getOrganization().getFullName();
+			String user=bill.getReceiverUser()==null?"":bill.getReceiverUser().getName();
+			if(!AssetHandleStatusEnum.COMPLETE.code().equals(bill.getStatus())){
+				for(int i=0;i<list.size();i++){
+					Update ups=new Update("eam_asset");
+					ups.set("use_user_id","");
+					ups.setIf("manager_id",bill.getReceiveUserId());
+					ups.setIf("use_organization_id",bill.getOrgId());
+					ups.where().and("id=?",list.get(i).getId()).and("owner_code=?","asset");
+					dao.execute(ups);
+					AssetProcessRecord rcd=new AssetProcessRecord();
+					rcd.setBusinessCode(bill.getId());
+					rcd.setId(IDGenerator.getSnowflakeIdString());
+					rcd.setAssetId(list.get(i).getId());
+					rcd.setProcessType(AssetOperateEnum.EAM_ASSET_EMPLOYEE_HANDOVER.code());
+					rcd.setProcessdTime(new Date());
+					rcd.setContent("资产进行交接,交接至"+org+"部门,交接管理人:"+user);
+					assetProcessRecordService.insert(rcd,false);
+					bill.setStatus(AssetHandleStatusEnum.COMPLETE.code());
+					super.update(bill,SaveMode.NOT_NULL_FIELDS,false);
+				}
+			}
+		}
 		try {
 			if(event!=null&&event.getProcessInstance()!=null&&event.getProcessInstance().getTitle()!=null){
 				dao.execute("update eam_asset_employee_handover set name=? where id=?",event.getProcessInstance().getTitle(),event.getBillId());
 			}
+
 			return (new AssetEmployeeHandoverBpmEventAdaptor(this)).onProcessCallback(event);
 		} catch (Throwable t) {
 			Logger.exception("流程 "+event.getProcessInstance().getProcessDefinition().getName()+" , code = "+event.getProcessInstance().getProcessDefinition().getCode()+" , node = { name : "+event.getCurrentNode().getNodeName()+" , id : "+event.getCurrentNode().getCamundaNodeId()+"}  回调异常",t);

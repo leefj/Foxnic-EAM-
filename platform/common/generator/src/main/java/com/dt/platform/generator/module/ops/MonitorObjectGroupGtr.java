@@ -47,10 +47,8 @@ public class MonitorObjectGroupGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_OBJECT_GROUP.NAME).form().validate().required();
         cfg.view().field(OpsTables.OPS_MONITOR_OBJECT_GROUP.CODE).form().validate().required();
         cfg.view().field(OpsTables.OPS_MONITOR_OBJECT_GROUP.NOTES).form().textArea().height(Config.textAreaHeight);
-        // cfg.view().list().disableBatchDelete();
 
 
-       // cfg.view().list().disableBatchDelete();
         cfg.view().form().labelWidth(70);
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);

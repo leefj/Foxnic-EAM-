@@ -38,8 +38,8 @@ public class HrmPersonWorkGtr extends BaseCodeGenerator {
         cfg.view().field(HrTables.HR_PERSON_WORK_EXPERIENCE.EMPLOYEE_ID).table().fillBy("person","name");
 
 
-        cfg.view().field(HrTables.HR_PERSON_WORK_EXPERIENCE.S_TIME).form().validate().required().form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
-        cfg.view().field(HrTables.HR_PERSON_WORK_EXPERIENCE.E_TIME).form().dateInput().type(DatePickerType.date).format("yyyy-mm-dd");
+        cfg.view().field(HrTables.HR_PERSON_WORK_EXPERIENCE.S_TIME).form().validate().required().form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
+        cfg.view().field(HrTables.HR_PERSON_WORK_EXPERIENCE.E_TIME).form().dateInput().type(DatePickerType.date).format("yyyy-MM-dd");
         cfg.view().field(HrTables.HR_PERSON_WORK_EXPERIENCE.NAME).form().validate().required();
         cfg.view().field(HrTables.HR_PERSON_WORK_EXPERIENCE.POST).form().validate().required();
         cfg.view().field(HrTables.HR_PERSON_WORK_EXPERIENCE.STATUS).form().radioBox().enumType(ApprovalStatusEnum.class);

@@ -91,8 +91,8 @@ function ListPage() {
 					,{ field: 'personId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工') , templet: function (d) { return templet('personId',fox.getProperty(d,["user","name"],0,'','personId'),d);} }
 
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('公司名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'sTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('sTime',fox.dateFormat(d.sTime,"yyyy-mm-dd"),d); }  }
-					,{ field: 'eTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('eTime',fox.dateFormat(d.eTime,"yyyy-mm-dd"),d); }  }
+					,{ field: 'sTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('sTime',fox.dateFormat(d.sTime,"yyyy-MM-dd"),d); }  }
+					,{ field: 'eTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('eTime',fox.dateFormat(d.eTime,"yyyy-MM-dd"),d); }  }
 					,{ field: 'post', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('岗位') , templet: function (d) { return templet('post',d.post,d);}  }
 					,{ field: 'workContent', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('工作内容') , templet: function (d) { return templet('workContent',d.workContent,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}

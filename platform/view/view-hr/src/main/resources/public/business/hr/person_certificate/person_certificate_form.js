@@ -1,7 +1,7 @@
 /**
  * 证书信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-16 12:46:52
+ * @since 2024-03-26 21:44:51
  */
 
 function FormPage() {
@@ -126,7 +126,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#getTime',
 			type:"date",
-			format:"yyyy-mm-dd",
+			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("getTime",value, date, endDate);
@@ -217,7 +217,7 @@ function FormPage() {
 
 			//设置 获得时间 显示复选框勾选
 			if(formData["getTime"]) {
-				$("#getTime").val(fox.dateFormat(formData["getTime"],"yyyy-mm-dd"));
+				$("#getTime").val(fox.dateFormat(formData["getTime"],"yyyy-MM-dd"));
 			}
 
 

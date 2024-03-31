@@ -271,9 +271,10 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 					inId=IDGenerator.getSnowflakeIdString();
 					Insert ins=new Insert("eam_goods_stock");
 					ins.set("id",inId);
+					ins.setIf("category_id",goodsObj.getCategoryId());
 					ins.set("owner_code",ownerCode);
 					ins.set("owner_type",bill.getOwnerType());
-					ins.set("stock_cur_number",0);
+					ins.set("stock_cur_number",goodsNumber);
 					ins.set("tenant_id",tenantId);
 					ins.set("warehouse_id",warehouseIn);
 					ins.set("goods_id",goodsId);

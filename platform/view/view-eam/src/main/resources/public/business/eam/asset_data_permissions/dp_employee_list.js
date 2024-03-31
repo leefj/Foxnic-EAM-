@@ -112,6 +112,7 @@ function ListPage() {
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
 		}
+		ps.id=ID;
 		ps.searchValue=JSON.stringify(value);
 		if(sortField) {
 			ps.sortField=sortField;
