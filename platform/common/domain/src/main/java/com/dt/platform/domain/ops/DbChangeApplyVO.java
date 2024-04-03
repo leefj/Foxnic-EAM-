@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库变更申请VO类型
  * <p>数据库变更申请 , 数据表 ops_db_change_apply 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 18:26:51
+ * @since 2024-03-31 22:50:13
  * @sign 2C7DA3DDEA1402913D0BE1E6AD52BEC4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

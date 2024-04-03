@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库提取申请
  * <p>数据库提取申请 , 数据表 ops_db_extract_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 18:45:09
- * @sign F586A7460DDDE757DDF6E057774F2663
+ * @since 2024-03-31 21:38:46
+ * @sign 40280B61B314DEAAB306634148327C65
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,13 +41,13 @@ public class DbExtractApply extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "826921216710279168")
 	private String id;
 	
 	/**
-	 * 工单编号：工单编号
+	 * 关联工单：关联工单
 	*/
-	@ApiModelProperty(required = false,value="工单编号" , notes = "工单编号")
+	@ApiModelProperty(required = false,value="关联工单" , notes = "关联工单")
 	private String itemCode;
 	
 	/**
@@ -71,7 +71,7 @@ public class DbExtractApply extends Entity {
 	/**
 	 * 数据库：数据库
 	*/
-	@ApiModelProperty(required = false,value="数据库" , notes = "数据库")
+	@ApiModelProperty(required = false,value="数据库" , notes = "数据库" , example = "826842666317643776")
 	private String dbId;
 	
 	/**
@@ -101,31 +101,31 @@ public class DbExtractApply extends Entity {
 	/**
 	 * 原因：原因
 	*/
-	@ApiModelProperty(required = false,value="原因" , notes = "原因")
+	@ApiModelProperty(required = false,value="原因" , notes = "原因" , example = "a s d f")
 	private String content;
 	
 	/**
 	 * SQL文本1：SQL文本1
 	*/
-	@ApiModelProperty(required = false,value="SQL文本1" , notes = "SQL文本1")
+	@ApiModelProperty(required = false,value="SQL文本1" , notes = "SQL文本1" , example = "的撒发a s d f")
 	private String sqlArea;
 	
 	/**
 	 * SQL文本2：SQL文本2
 	*/
-	@ApiModelProperty(required = false,value="SQL文本2" , notes = "SQL文本2")
+	@ApiModelProperty(required = false,value="SQL文本2" , notes = "SQL文本2" , example = " a d f")
 	private String sqlArea2;
 	
 	/**
 	 * SQL文本3：SQL文本3
 	*/
-	@ApiModelProperty(required = false,value="SQL文本3" , notes = "SQL文本3")
+	@ApiModelProperty(required = false,value="SQL文本3" , notes = "SQL文本3" , example = "安德森")
 	private String sqlArea3;
 	
 	/**
 	 * SQL文本4：SQL文本4
 	*/
-	@ApiModelProperty(required = false,value="SQL文本4" , notes = "SQL文本4")
+	@ApiModelProperty(required = false,value="SQL文本4" , notes = "SQL文本4" , example = "阿斯顿发")
 	private String sqlArea4;
 	
 	/**
@@ -197,7 +197,7 @@ public class DbExtractApply extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -218,25 +218,25 @@ public class DbExtractApply extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-31 08:49:42")
 	private Date createTime;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -289,17 +289,17 @@ public class DbExtractApply extends Entity {
 	}
 	
 	/**
-	 * 获得 工单编号<br>
-	 * 工单编号
-	 * @return 工单编号
+	 * 获得 关联工单<br>
+	 * 关联工单
+	 * @return 关联工单
 	*/
 	public String getItemCode() {
 		return itemCode;
 	}
 	
 	/**
-	 * 设置 工单编号
-	 * @param itemCode 工单编号
+	 * 设置 关联工单
+	 * @param itemCode 关联工单
 	 * @return 当前对象
 	*/
 	public DbExtractApply setItemCode(String itemCode) {

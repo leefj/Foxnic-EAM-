@@ -1,7 +1,7 @@
 /**
  * 数据库变更申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 18:26:53
+ * @since 2024-03-31 22:50:15
  */
 
 
@@ -88,10 +88,9 @@ function ListPage() {
 					,{ field: 'itemName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('关联工单') , templet: function (d) { return templet('itemName',d.itemName,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'dbFullName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库') , templet: function (d) { return templet('dbFullName',d.dbFullName,d);}  }
-					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('原因') , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'checkResult', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验证结果'), templet:function (d){ return templet('checkResult',fox.getEnumText(SELECT_CHECKRESULT_DATA,d.checkResult,'','checkResult'),d);}}
 					,{ field: 'applyUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('申请人') , templet: function (d) { return templet('applyUserId',fox.getProperty(d,["applyUser","name"],0,'','applyUserId'),d);} }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],

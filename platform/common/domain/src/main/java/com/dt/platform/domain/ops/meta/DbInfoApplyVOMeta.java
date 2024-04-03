@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 17:57:36
+ * @since 2024-03-31 21:27:58
  * @sign A59D57910C685AECD57CE7A7AB730523
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -289,19 +289,29 @@ public class DbInfoApplyVOMeta extends DbInfoApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoApplyVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoApplyVO.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
-	 * dataRange , 类型: java.lang.String
+	 * datarange , 类型: java.lang.String
 	*/
-	public static final String DATA_RANGE="dataRange";
+	public static final String DATARANGE="datarange";
 	
 	/**
-	 * dataRange , 类型: java.lang.String
+	 * datarange , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoApplyVO,java.lang.String> DATA_RANGE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoApplyVO.class ,DATA_RANGE, java.lang.String.class, "dataRange", "dataRange", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoApplyVO,java.lang.String> DATARANGE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoApplyVO.class ,DATARANGE, java.lang.String.class, "datarange", "datarange", java.lang.String.class, null);
+	
+	/**
+	 * business , 类型: java.lang.String
+	*/
+	public static final String BUSINESS="business";
+	
+	/**
+	 * business , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoApplyVO,java.lang.String> BUSINESS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoApplyVO.class ,BUSINESS, java.lang.String.class, "business", "business", java.lang.String.class, null);
 	
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , DB_FULL_NAME , DB_NAME , DB_IP , DB_PORT , ASSOCIATED_SYSTEM , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , CREATE_BY , CREATE_TIME , VERSION , DATA_RANGE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , DB_FULL_NAME , DB_NAME , DB_IP , DB_PORT , ASSOCIATED_SYSTEM , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , CREATE_BY , CREATE_TIME , VERSION , DATARANGE , BUSINESS };
 	
 	/**
 	 * 代理类
@@ -609,13 +619,24 @@ public class DbInfoApplyVOMeta extends DbInfoApplyMeta {
 		}
 		
 		/**
-		 * 设置 dataRange
-		 * @param dataRange dataRange
+		 * 设置 datarange
+		 * @param datarange datarange
 		 * @return 当前对象
 		*/
-		public DbInfoApply setDataRange(String dataRange) {
-			super.change(DATA_RANGE,super.getDataRange(),dataRange);
-			super.setDataRange(dataRange);
+		public DbInfoApply setDatarange(String datarange) {
+			super.change(DATARANGE,super.getDatarange(),datarange);
+			super.setDatarange(datarange);
+			return this;
+		}
+		
+		/**
+		 * 设置 business
+		 * @param business business
+		 * @return 当前对象
+		*/
+		public DbInfoApply setBusiness(String business) {
+			super.change(BUSINESS,super.getBusiness(),business);
+			super.setBusiness(business);
 			return this;
 		}
 
@@ -651,10 +672,11 @@ public class DbInfoApplyVOMeta extends DbInfoApplyMeta {
 			inst.setId(this.getId());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
-				inst.setDataRange(this.getDataRange());
+				inst.setBusiness(this.getBusiness());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
+				inst.setDatarange(this.getDatarange());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());

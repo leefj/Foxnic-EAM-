@@ -1,7 +1,7 @@
 /**
- * 数据库提取申请 列表页 JS 脚本
+ * 数据库人员 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 18:45:09
+ * @since 2024-03-31 21:12:53
  */
 
 layui.config({
@@ -18,7 +18,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     //模块基础路径
-    const moduleURL="/service-ops/ops-db-extract-apply";
+    const moduleURL="/service-ops/ops-db-execute-user";
 
 
     //列表页的扩展
@@ -99,13 +99,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-            for(var i=0;i<data.length;i++){
-                if(data[i].status=="submitted") {
-                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.submit-order').filter("[data-id='" + data[i].id + "']"), true);
-                }
-            }
+
         },
         /**
          * 单行数据刷新后调用
@@ -183,9 +177,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             return items;
         },
 
-        submitOrder:function (data){
-            console.log('submitOrder',data);
-        },
         /**
          * 末尾执行
          */
@@ -284,26 +275,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterSubmit:function (param,result) {
             console.log("afterSubmitt",param,result);
-        },
-        checkSql:function (data,input,button) {
-            console.log("checkSql",data,input,button);
-            top.layer.prompt(function(value, index, elem){
-                //设置隐藏域
-                input.val(value);
-                //设置按钮
-                button.text(value);
-                top.layer.close(index);
-            });
-        },
-        checkSqlResult:function (data,input,button) {
-            console.log("checkSqlResult",data,input,button);
-            top.layer.prompt(function(value, index, elem){
-                //设置隐藏域
-                input.val(value);
-                //设置按钮
-                button.text(value);
-                top.layer.close(index);
-            });
         },
 
         /**

@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 变更数据库VO类型
  * <p>变更数据库 , 数据表 ops_db_info_apply 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 17:57:36
+ * @since 2024-03-31 21:27:58
  * @sign A59D57910C685AECD57CE7A7AB730523
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -417,10 +417,11 @@ public class DbInfoApplyVO extends DbInfoApply {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
-			inst.setDataRange(this.getDataRange());
+			inst.setBusiness(this.getBusiness());
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setDatarange(this.getDatarange());
 			inst.setPageSize(this.getPageSize());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
@@ -505,10 +506,11 @@ public class DbInfoApplyVO extends DbInfoApply {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(DbInfoApplyVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(DbInfoApplyVOMeta.ID)));
 			// others
-			this.setDataRange(DataParser.parse(String.class, map.get(DbInfoApplyVOMeta.DATA_RANGE)));
+			this.setBusiness(DataParser.parse(String.class, map.get(DbInfoApplyVOMeta.BUSINESS)));
 			this.setSearchField(DataParser.parse(String.class, map.get(DbInfoApplyVOMeta.SEARCH_FIELD)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(DbInfoApplyVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(DbInfoApplyVOMeta.FUZZY_FIELD)));
+			this.setDatarange(DataParser.parse(String.class, map.get(DbInfoApplyVOMeta.DATARANGE)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(DbInfoApplyVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(DbInfoApplyVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(DbInfoApplyVOMeta.SORT_TYPE)));
@@ -535,10 +537,11 @@ public class DbInfoApplyVO extends DbInfoApply {
 				this.setDeleteBy( (String)map.get(DbInfoApplyVOMeta.DELETE_BY));
 				this.setId( (String)map.get(DbInfoApplyVOMeta.ID));
 				// others
-				this.setDataRange( (String)map.get(DbInfoApplyVOMeta.DATA_RANGE));
+				this.setBusiness( (String)map.get(DbInfoApplyVOMeta.BUSINESS));
 				this.setSearchField( (String)map.get(DbInfoApplyVOMeta.SEARCH_FIELD));
 				this.setRequestAction( (String)map.get(DbInfoApplyVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(DbInfoApplyVOMeta.FUZZY_FIELD));
+				this.setDatarange( (String)map.get(DbInfoApplyVOMeta.DATARANGE));
 				this.setPageSize( (Integer)map.get(DbInfoApplyVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(DbInfoApplyVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(DbInfoApplyVOMeta.SORT_TYPE));

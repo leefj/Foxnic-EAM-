@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 变更数据库
  * <p>变更数据库 , 数据表 ops_db_info_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 17:57:36
- * @sign 323CA524DE76C673121F39F41E7E8A82
+ * @since 2024-03-31 21:27:58
+ * @sign D54A84BB6236CE855B655D586E877410
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -131,10 +131,16 @@ public class DbInfoApply extends Entity {
 	private Integer version;
 	
 	/**
-	 * dataRange：dataRange
+	 * datarange：datarange
 	*/
-	@ApiModelProperty(required = false,value="dataRange" , notes = "dataRange")
-	private String dataRange;
+	@ApiModelProperty(required = false,value="datarange" , notes = "datarange")
+	private String datarange;
+	
+	/**
+	 * business：business
+	*/
+	@ApiModelProperty(required = false,value="business" , notes = "business")
+	private String business;
 	
 	/**
 	 * 获得 主键<br>
@@ -453,21 +459,40 @@ public class DbInfoApply extends Entity {
 	}
 	
 	/**
-	 * 获得 dataRange<br>
-	 * dataRange
-	 * @return dataRange
+	 * 获得 datarange<br>
+	 * datarange
+	 * @return datarange
 	*/
-	public String getDataRange() {
-		return dataRange;
+	public String getDatarange() {
+		return datarange;
 	}
 	
 	/**
-	 * 设置 dataRange
-	 * @param dataRange dataRange
+	 * 设置 datarange
+	 * @param datarange datarange
 	 * @return 当前对象
 	*/
-	public DbInfoApply setDataRange(String dataRange) {
-		this.dataRange=dataRange;
+	public DbInfoApply setDatarange(String datarange) {
+		this.datarange=datarange;
+		return this;
+	}
+	
+	/**
+	 * 获得 business<br>
+	 * business
+	 * @return business
+	*/
+	public String getBusiness() {
+		return business;
+	}
+	
+	/**
+	 * 设置 business
+	 * @param business business
+	 * @return 当前对象
+	*/
+	public DbInfoApply setBusiness(String business) {
+		this.business=business;
 		return this;
 	}
 
@@ -531,7 +556,8 @@ public class DbInfoApply extends Entity {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
-			inst.setDataRange(this.getDataRange());
+			inst.setBusiness(this.getBusiness());
+			inst.setDatarange(this.getDatarange());
 		}
 		inst.clearModifies();
 		return inst;
@@ -607,7 +633,8 @@ public class DbInfoApply extends Entity {
 			this.setDeleteBy(DataParser.parse(String.class, map.get(DbInfoApplyMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(DbInfoApplyMeta.ID)));
 			// others
-			this.setDataRange(DataParser.parse(String.class, map.get(DbInfoApplyMeta.DATA_RANGE)));
+			this.setBusiness(DataParser.parse(String.class, map.get(DbInfoApplyMeta.BUSINESS)));
+			this.setDatarange(DataParser.parse(String.class, map.get(DbInfoApplyMeta.DATARANGE)));
 			return true;
 		} else {
 			try {
@@ -627,7 +654,8 @@ public class DbInfoApply extends Entity {
 				this.setDeleteBy( (String)map.get(DbInfoApplyMeta.DELETE_BY));
 				this.setId( (String)map.get(DbInfoApplyMeta.ID));
 				// others
-				this.setDataRange( (String)map.get(DbInfoApplyMeta.DATA_RANGE));
+				this.setBusiness( (String)map.get(DbInfoApplyMeta.BUSINESS));
+				this.setDatarange( (String)map.get(DbInfoApplyMeta.DATARANGE));
 				return true;
 			} catch (Exception e) {
 				return false;

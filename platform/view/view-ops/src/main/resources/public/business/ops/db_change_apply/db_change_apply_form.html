@@ -2,7 +2,7 @@
 /**
  * 数据库变更申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 18:26:53
+ * @since 2024-03-31 22:50:15
  */
  -->
  <!DOCTYPE html>
@@ -37,29 +37,29 @@
 
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3900-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1965-fieldset">
             <legend>关联信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-3900-content">
+        <div class="layui-row form-row" id="random-1965-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-                <!-- select_box : 工单编号 ,  itemCode  -->
+                <!-- select_box : 关联工单 ,  itemCode  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('工单编号')}">工单编号</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('关联工单')}">关联工单</div></div>
                     <div class="layui-input-block ">
-                        <div id="itemCode" input-type="select" th:data="${'/service-ops/ops-db-apply-execute/query-paged-list?datarange=change'}" extraParam="{}"></div>
+                        <div id="itemCode" input-type="select" th:data="${'/service-ops/ops-db-apply-execute/query-paged-list?business=change'}" extraParam="{}"></div>
                     </div>
                 </div>
             
-                <!-- text_input : 原因 ,  content -->
+                <!-- text_input : 备注 ,  notes -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('原因')}">原因</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入'+'原因') }" type="text" class="layui-input"  />
+                        <input lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -72,7 +72,7 @@
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('数据库')}">数据库</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <div id="dbId" input-type="select" th:data="${'/service-ops/ops-db-info-apply/query-list?datarange=change'}" extraParam="{}"></div>
+                        <div id="dbId" input-type="select" th:data="${'/service-ops/ops-db-info-apply/query-execute-db-paged-list?business=change'}" extraParam="{}"></div>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -81,11 +81,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4289-fieldset">
-            <legend>SQL内容，DML和DDL分开，原则上先执行DDL</legend>
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9907-fieldset">
+            <legend>【SQL内容区域】DML和DDL分开，先执行SQL框，后执行SQL文件</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-4289-content">
+        <div class="layui-row form-row" id="random-9907-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -96,11 +96,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1269-fieldset">
-            <legend>事务说明:每个DML文件一个事务</legend>
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3441-fieldset">
+            <legend>【事务说明】每个DML文件一个事务</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-1269-content">
+        <div class="layui-row form-row" id="random-3441-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -111,11 +111,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7423-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3159-fieldset">
             <legend>执行的SQL文本放于此处</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-7423-content">
+        <div class="layui-row form-row" id="random-3159-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -133,29 +133,29 @@
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2645-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3819-fieldset">
         <legend>SQL过多时可按顺序以附件形式上传</legend>
         </fieldset>
-        <div class="layui-row form-row" style="text-align: center;" id="random-2645-content">
+        <div class="layui-row form-row" style="text-align: center;" id="random-3819-content">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
-            <iframe id="random-2645-iframe" js-fn="sqlList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+            <iframe id="random-3819-iframe" js-fn="sqlList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
             </div>
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9286-fieldset">
-            <legend>点击验证SQL的有效性</legend>
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6084-fieldset">
+            <legend>【验证SQL】</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-9286-content">
+        <div class="layui-row form-row" id="random-6084-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
+            <div class="layui-col-xs6 form-column" >
 
-                <!-- button : 按钮 ,  buttonCheck  -->
+                <!-- button : - ,  buttonCheck  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('按钮')}">按钮</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('-')}">-</div></div>
                     <div class="layui-input-block ">
                         <input lay-filter="buttonCheck" id="buttonCheck" name="buttonCheck"  type="hidden" class="layui-input"   />
                         <button id="buttonCheck-button" type="button" action-type="" class="layui-btn  check-Sql " style="width: 100%" default-width="100%" auto-width="false">  <span th:text="${lang.translate('验证')}" th:default-label="${lang.translate('验证')}">按钮文本</span></button>
@@ -165,7 +165,19 @@
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
+            <div class="layui-col-xs6 form-column" >
+<!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <div class="layui-row form-row" id="random-5591-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column"  style="padding-top: 0px" >
 
                 <!-- select_box : 验证结果 ,  checkResult  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
@@ -178,11 +190,11 @@
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
+            <div class="layui-col-xs6 form-column"  style="padding-top: 0px" >
 
-                <!-- button : 按钮 ,  buttonCheckDetail  -->
+                <!-- button : - ,  buttonCheckDetail  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('按钮')}">按钮</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('-')}">-</div></div>
                     <div class="layui-input-block ">
                         <input lay-filter="buttonCheckDetail" id="buttonCheckDetail" name="buttonCheckDetail"  type="hidden" class="layui-input"   />
                         <button id="buttonCheckDetail-button" type="button" action-type="" class="layui-btn  check-Sql-result " style="width: 100%" default-width="100%" auto-width="false">  <span th:text="${lang.translate('结果明细')}" th:default-label="${lang.translate('结果明细')}">按钮文本</span></button>
@@ -194,19 +206,19 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1219-fieldset">
-            <legend>生成回滚/备份内容</legend>
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5664-fieldset">
+            <legend>【回滚/备份】</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-1219-content">
+        <div class="layui-row form-row" id="random-5664-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
+            <div class="layui-col-xs6 form-column" >
 
-                <!-- button : 按钮 ,  buttonRB  -->
+                <!-- button : - ,  buttonRB  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('按钮')}">按钮</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('-')}">-</div></div>
                     <div class="layui-input-block ">
                         <input lay-filter="buttonRB" id="buttonRB" name="buttonRB"  type="hidden" class="layui-input"   />
                         <button id="buttonRB-button" type="button" action-type="" class="layui-btn  rb-Sql " style="width: 100%" default-width="100%" auto-width="false">  <span th:text="${lang.translate('回滚/备份')}" th:default-label="${lang.translate('回滚/备份')}">按钮文本</span></button>
@@ -216,7 +228,19 @@
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
+            <div class="layui-col-xs6 form-column" >
+<!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <div class="layui-row form-row" id="random-9480-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column"  style="padding-top: 0px" >
 
                 <!-- select_box : 回滚/备份 ,  rbResult  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
@@ -229,34 +253,14 @@
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs4 form-column" >
+            <div class="layui-col-xs6 form-column"  style="padding-top: 0px" >
 
-                <!-- button : 按钮 ,  buttonRBDetail  -->
+                <!-- button : - ,  buttonRBDetail  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('按钮')}">按钮</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('-')}">-</div></div>
                     <div class="layui-input-block ">
                         <input lay-filter="buttonRBDetail" id="buttonRBDetail" name="buttonRBDetail"  type="hidden" class="layui-input"   />
                         <button id="buttonRBDetail-button" type="button" action-type="" class="layui-btn  rb-Sql-result " style="width: 100%" default-width="100%" auto-width="false">  <span th:text="${lang.translate('结果明细')}" th:default-label="${lang.translate('结果明细')}">按钮文本</span></button>
-                    </div>
-                </div>
-            <!--结束：栏次内字段循环-->
-            </div>
-            <!--结束：栏次输入框循环-->
-        </div>
-         <!--开始：group 循环-->
-
-
-        <div class="layui-row form-row" id="random-4785-content">
-
-             <!--开始：column 循环-->
-            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
-
-                <!-- text_area : 备注 ,  notes  -->
-                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
-                    <div class="layui-input-block ">
-                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 20px" ></textarea>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -291,6 +295,8 @@
     var VALIDATE_CONFIG={"rbResult":{"labelInForm":"回滚/备份","inputType":"select_box","required":true},"dbId":{"labelInForm":"数据库","inputType":"select_box","required":true},"checkResult":{"labelInForm":"验证结果","inputType":"select_box","required":true}};
     var AUTH_PREFIX="ops_db_change_apply";
 
+    // uuid
+    var UUID = [[${uuid}]] ;
     // associatedSystem
     var ASSOCIATED_SYSTEM = [[${associatedSystem}]] ;
 

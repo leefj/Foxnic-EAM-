@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库变更申请
  * <p>数据库变更申请 , 数据表 ops_db_change_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 18:26:51
- * @sign DB23783845DC9F93D8B5E5A4848E0A8C
+ * @since 2024-03-31 22:50:13
+ * @sign A14E771AED8D459BE454C6E666FF653C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,9 +45,9 @@ public class DbChangeApply extends Entity {
 	private String id;
 	
 	/**
-	 * 工单编号：工单编号
+	 * 关联工单：关联工单
 	*/
-	@ApiModelProperty(required = false,value="工单编号" , notes = "工单编号" , example = "host")
+	@ApiModelProperty(required = false,value="关联工单" , notes = "关联工单" , example = "host")
 	private String itemCode;
 	
 	/**
@@ -283,17 +283,17 @@ public class DbChangeApply extends Entity {
 	}
 	
 	/**
-	 * 获得 工单编号<br>
-	 * 工单编号
-	 * @return 工单编号
+	 * 获得 关联工单<br>
+	 * 关联工单
+	 * @return 关联工单
 	*/
 	public String getItemCode() {
 		return itemCode;
 	}
 	
 	/**
-	 * 设置 工单编号
-	 * @param itemCode 工单编号
+	 * 设置 关联工单
+	 * @param itemCode 关联工单
 	 * @return 当前对象
 	*/
 	public DbChangeApply setItemCode(String itemCode) {

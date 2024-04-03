@@ -1,7 +1,6 @@
 package com.dt.platform.ops.controller;
 
 import java.util.*;
-
 import com.dt.platform.domain.ops.DbApplyExecute;
 import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.framework.web.SuperController;
@@ -64,7 +63,7 @@ public class DbChangeApplyController extends SuperController {
     @ApiOperation(value = "添加数据库变更申请")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_CODE, value = "工单编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_CODE, value = "关联工单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_NAME, value = "关联工单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.DB_FULL_NAME, value = "数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.DB_ID, value = "数据库", required = false, dataTypeClass = String.class),
@@ -179,7 +178,7 @@ public class DbChangeApplyController extends SuperController {
     @ApiOperation(value = "更新数据库变更申请")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_CODE, value = "工单编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_CODE, value = "关联工单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_NAME, value = "关联工单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.DB_FULL_NAME, value = "数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.DB_ID, value = "数据库", required = false, dataTypeClass = String.class),
@@ -216,7 +215,7 @@ public class DbChangeApplyController extends SuperController {
     @ApiOperation(value = "保存数据库变更申请")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_CODE, value = "工单编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_CODE, value = "关联工单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_NAME, value = "关联工单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.DB_FULL_NAME, value = "数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.DB_ID, value = "数据库", required = false, dataTypeClass = String.class),
@@ -271,8 +270,8 @@ public class DbChangeApplyController extends SuperController {
      */
     @ApiOperation(value = "获取数据库变更申请")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = DbChangeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
-    })
+		@ApiImplicitParam(name = DbChangeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = DbChangeApplyServiceProxy.SUBMIT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbChangeApplyServiceProxy.SUBMIT)
@@ -285,13 +284,13 @@ public class DbChangeApplyController extends SuperController {
      */
     @ApiOperation(value = "获取数据库变更申请")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = DbChangeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
-    })
+		@ApiImplicitParam(name = DbChangeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = DbChangeApplyServiceProxy.VALID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbChangeApplyServiceProxy.VALID)
-    public Result valid(String code,String method,String sqlArea,String fileIds) {
-        return dbChangeApplyService.valid(code,method,sqlArea,fileIds);
+    public Result valid(String code, String method, String sqlArea, String fileIds) {
+        return dbChangeApplyService.valid(code, method, sqlArea, fileIds);
     }
 
     /**
@@ -299,13 +298,13 @@ public class DbChangeApplyController extends SuperController {
      */
     @ApiOperation(value = "获取数据库变更申请")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = DbChangeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
-    })
+		@ApiImplicitParam(name = DbChangeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = DbChangeApplyServiceProxy.CREATE_RB, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbChangeApplyServiceProxy.CREATE_RB)
-    public Result createRb(String code,String method,String sqlArea,String fileIds) {
-        return dbChangeApplyService.createRb(code,method,sqlArea,fileIds);
+    public Result createRb(String code, String method, String sqlArea, String fileIds) {
+        return dbChangeApplyService.createRb(code, method, sqlArea, fileIds);
     }
 
     /**
@@ -332,7 +331,7 @@ public class DbChangeApplyController extends SuperController {
     @ApiOperation(value = "查询数据库变更申请")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_CODE, value = "工单编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_CODE, value = "关联工单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_NAME, value = "关联工单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.DB_FULL_NAME, value = "数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.DB_ID, value = "数据库", required = false, dataTypeClass = String.class),
@@ -370,7 +369,7 @@ public class DbChangeApplyController extends SuperController {
     @ApiOperation(value = "分页查询数据库变更申请")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_CODE, value = "工单编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_CODE, value = "关联工单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.ITEM_NAME, value = "关联工单", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.DB_FULL_NAME, value = "数据库", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbChangeApplyVOMeta.DB_ID, value = "数据库", required = false, dataTypeClass = String.class),
@@ -400,7 +399,6 @@ public class DbChangeApplyController extends SuperController {
         PagedList<DbChangeApply> list = dbChangeApplyService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         dbChangeApplyService.dao().fill(list).with("applyUser").with(DbChangeApplyMeta.DB_INFO_APPLY).with(DbChangeApplyMeta.REQUEST_ORDER).execute();
-
         List<Employee> users = CollectorUtil.collectList(list, DbChangeApply::getApplyUser);
         dbChangeApplyService.dao().join(users, Person.class);
         result.success(true).data(list);

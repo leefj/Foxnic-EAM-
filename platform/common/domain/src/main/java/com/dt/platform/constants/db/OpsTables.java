@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-03-31 18:37:53
+ * @since 2024-03-31 21:04:53
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -4331,9 +4331,9 @@ public class OpsTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 工单编号
+		 * 关联工单
 		*/
-		public static final DBField ITEM_CODE = new DBField(DBDataType.STRING , "item_code","itemCode","工单编号","工单编号",false,false,true);
+		public static final DBField ITEM_CODE = new DBField(DBDataType.STRING , "item_code","itemCode","关联工单","关联工单",false,false,true);
 		
 		/**
 		 * 关联工单
@@ -4736,6 +4736,76 @@ public class OpsTables {
 	}
 	
 	/**
+	 * 数据库人员
+	*/
+	public static class OPS_DB_EXECUTE_USER extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_db_execute_user";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 操作人
+		*/
+		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","操作人","操作人",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public OPS_DB_EXECUTE_USER() {
+			this.init($NAME,"数据库人员" , ID , USER_ID , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , CREATE_BY , CREATE_TIME , VERSION);
+		}
+		public static final OPS_DB_EXECUTE_USER $TABLE=new OPS_DB_EXECUTE_USER();
+	}
+	
+	/**
 	 * 数据库提取申请
 	*/
 	public static class OPS_DB_EXTRACT_APPLY extends DBTable {
@@ -4751,9 +4821,9 @@ public class OpsTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 工单编号
+		 * 关联工单
 		*/
-		public static final DBField ITEM_CODE = new DBField(DBDataType.STRING , "item_code","itemCode","工单编号","工单编号",false,false,true);
+		public static final DBField ITEM_CODE = new DBField(DBDataType.STRING , "item_code","itemCode","关联工单","关联工单",false,false,true);
 		
 		/**
 		 * 关联工单

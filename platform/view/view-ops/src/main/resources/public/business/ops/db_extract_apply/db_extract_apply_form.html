@@ -2,7 +2,7 @@
 /**
  * 数据库提取申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 18:45:10
+ * @since 2024-03-31 21:38:48
  */
  -->
  <!DOCTYPE html>
@@ -37,29 +37,29 @@
 
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9717-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6512-fieldset">
             <legend>关联信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-9717-content">
+        <div class="layui-row form-row" id="random-6512-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-                <!-- select_box : 工单编号 ,  itemCode  -->
+                <!-- select_box : 关联工单 ,  itemCode  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('工单编号')}">工单编号</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('关联工单')}">关联工单</div></div>
                     <div class="layui-input-block ">
-                        <div id="itemCode" input-type="select" th:data="${'/service-ops/ops-db-apply-execute/query-paged-list?datarange=extract'}" extraParam="{}"></div>
+                        <div id="itemCode" input-type="select" th:data="${'/service-ops/ops-db-apply-execute/query-order-list?business=extract'}" extraParam="{}"></div>
                     </div>
                 </div>
             
-                <!-- text_input : 原因 ,  content -->
+                <!-- text_area : 备注 ,  notes  -->
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('原因')}">原因</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入'+'原因') }" type="text" class="layui-input"  />
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -72,7 +72,7 @@
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label "><div th:text="${lang.translate('数据库')}">数据库</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <div id="dbId" input-type="select" th:data="${'/service-ops/ops-db-info-apply/query-list?datarange=extract'}" extraParam="{}"></div>
+                        <div id="dbId" input-type="select" th:data="${'/service-ops/ops-db-info-apply/query-execute-db-paged-list?business=extract'}" extraParam="{}"></div>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -81,11 +81,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6212-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7559-fieldset">
             <legend>查询的SQL文本放于此处,一个框一个提取语句</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-6212-content">
+        <div class="layui-row form-row" id="random-7559-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -128,6 +128,57 @@
                     <div class="layui-form-label "><div th:text="${lang.translate('SQL文本5')}">SQL文本5</div></div>
                     <div class="layui-input-block ">
                         <textarea lay-filter="sqlArea5" id="sqlArea5" name="sqlArea5" th:placeholder="${ lang.translate('请输入'+'SQL文本5') }" class="layui-textarea" style="height: 150px" ></textarea>
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4330-fieldset">
+            <legend>点击验证SQL的有效性</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-4330-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- button : 按钮 ,  buttonCheck  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('按钮')}">按钮</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="buttonCheck" id="buttonCheck" name="buttonCheck"  type="hidden" class="layui-input"   />
+                        <button id="buttonCheck-button" type="button" action-type="" class="layui-btn  check-Sql " style="width: 100%" default-width="100%" auto-width="false">  <span th:text="${lang.translate('验证')}" th:default-label="${lang.translate('验证')}">按钮文本</span></button>
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- select_box : 验证结果 ,  checkResult  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('验证结果')}">验证结果</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="checkResult" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbApplyCheckEnum')}" extraParam="{}"></div>
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
+
+                <!-- button : 按钮 ,  buttonCheckDetail  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('按钮')}">按钮</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="buttonCheckDetail" id="buttonCheckDetail" name="buttonCheckDetail"  type="hidden" class="layui-input"   />
+                        <button id="buttonCheckDetail-button" type="button" action-type="" class="layui-btn  check-Sql-result " style="width: 100%" default-width="100%" auto-width="false">  <span th:text="${lang.translate('结果明细')}" th:default-label="${lang.translate('结果明细')}">按钮文本</span></button>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->

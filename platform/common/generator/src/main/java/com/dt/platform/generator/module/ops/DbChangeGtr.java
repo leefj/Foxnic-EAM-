@@ -80,29 +80,29 @@ public class DbChangeGtr extends BaseCodeGenerator{
 
 
 
-
+        cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.CREATE_TIME).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.DB_USER).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.SELECTED_CODE).table().disable(true);
-        cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.NOTES).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.CONTENT).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.PUSH_RESULT).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.PUSH_ORDER_STATUS).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.ASSOCIATED_SYSTEM).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.SQL_AREA).form().textArea().height(150);
-        cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.NOTES).form().textArea().height(20);
+        cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.NOTES).form().textInput();
 
 
 
         cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.DB_ID)
-                .form().validate().required().form().selectBox().queryApi(DbInfoApplyServiceProxy.QUERY_LIST+"?datarange=change")
+                .form().validate().required().form().selectBox().queryApi(DbInfoApplyServiceProxy.QUERY_EXECUTE_DB_PAGED_LIST+"?business=change")
                 .paging(false).filter(true).toolbar(false)
-                .valueField(DbInfoApplyMeta.ID).
+                .valueField(DbInfoApplyMeta.CODE).
                 textField(DbInfoApplyMeta.DB_FULL_NAME).
                 fillWith(DbChangeApplyMeta.DB_INFO_APPLY).muliti(false).defaultIndex(0);
 
 
 
         cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.ITEM_CODE)
-                 .form().selectBox().queryApi(DbApplyExecuteServiceProxy.QUERY_PAGED_LIST+"?datarange=change")
+                 .form().selectBox().queryApi(DbApplyExecuteServiceProxy.QUERY_PAGED_LIST+"?business=change")
                 .paging(false).filter(true).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
@@ -117,12 +117,12 @@ public class DbChangeGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.APPLY_USER_ID).form().button().chooseEmployee(true);
         cfg.view().field(OpsTables.OPS_DB_CHANGE_APPLY.APPLY_USER_ID).table().fillBy("applyUser","name");
-        cfg.view().field(DbChangeApplyMeta.BUTTON_CHECK).basic().label("按钮").form().button().action("验证","checkSql","check-Sql","");
-        cfg.view().field(DbChangeApplyMeta.BUTTON_CHECK_DETAIL).basic().label("按钮").form().button().action("结果明细","checkSqlResult","check-Sql-result","");
+        cfg.view().field(DbChangeApplyMeta.BUTTON_CHECK).basic().label("-").form().button().action("验证","checkSql","check-Sql","");
+        cfg.view().field(DbChangeApplyMeta.BUTTON_CHECK_DETAIL).basic().label("-").form().button().action("结果明细","checkSqlResult","check-Sql-result","");
 
 
-        cfg.view().field(DbChangeApplyMeta.BUTTON_RB).basic().label("按钮").form().button().action("回滚/备份","rbSql","rb-Sql","");
-        cfg.view().field(DbChangeApplyMeta.BUTTON_RB_DETAIL).basic().label("按钮").form().button().action("结果明细","rbSqlResult","rb-Sql-result","");
+        cfg.view().field(DbChangeApplyMeta.BUTTON_RB).basic().label("-").form().button().action("回滚/备份","rbSql","rb-Sql","");
+        cfg.view().field(DbChangeApplyMeta.BUTTON_RB_DETAIL).basic().label("-").form().button().action("结果明细","rbSqlResult","rb-Sql-result","");
         cfg.view().formWindow().width(Config.baseFormWidth_95);
         cfg.view().formWindow().bottomSpace(120);
         cfg.view().list().disableBatchDelete();
@@ -130,18 +130,18 @@ public class DbChangeGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup("关联信息",
                 new Object[] {
                         OpsTables.OPS_DB_CHANGE_APPLY.ITEM_CODE,
-                        OpsTables.OPS_DB_CHANGE_APPLY.CONTENT
+                        OpsTables.OPS_DB_CHANGE_APPLY.NOTES
                 },
                 new Object[] {
                         OpsTables.OPS_DB_CHANGE_APPLY.DB_ID
                 }
         );
 
-        cfg.view().form().addGroup("SQL内容，DML和DDL分开，原则上先执行DDL",
+        cfg.view().form().addGroup("【SQL内容区域】DML和DDL分开，先执行SQL框，后执行SQL文件",
                 new Object[] {
                 }
         );
-        cfg.view().form().addGroup("事务说明:每个DML文件一个事务",
+        cfg.view().form().addGroup("【事务说明】每个DML文件一个事务",
                 new Object[] {
                 }
         );
@@ -151,10 +151,18 @@ public class DbChangeGtr extends BaseCodeGenerator{
                 }
         );
         cfg.view().form().addPage("SQL过多时可按顺序以附件形式上传","sqlList");
-        cfg.view().form().addGroup("点击验证SQL的有效性",
+
+        cfg.view().form().addGroup("【验证SQL】",
                 new Object[] {
                         DbChangeApplyMeta.BUTTON_CHECK,
+
                 },
+                new Object[] {
+                }
+
+
+        );
+        cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_DB_CHANGE_APPLY.CHECK_RESULT,
                 },
@@ -165,10 +173,20 @@ public class DbChangeGtr extends BaseCodeGenerator{
 
 
 
-        cfg.view().form().addGroup("生成回滚/备份内容",
+
+        cfg.view().form().addGroup("【回滚/备份】",
                 new Object[] {
                         DbChangeApplyMeta.BUTTON_RB
                 },
+                new Object[] {
+                }
+
+
+        );
+
+
+        cfg.view().form().addGroup(null,
+
                 new Object[] {
                         OpsTables.OPS_DB_CHANGE_APPLY.RB_RESULT
                 },
@@ -177,13 +195,13 @@ public class DbChangeGtr extends BaseCodeGenerator{
                 }
         );
 
+//        cfg.view().form().addGroup(null,
+//                new Object[] {
+//                        OpsTables.OPS_DB_CHANGE_APPLY.NOTES,
+//                }
+//        );
 
-        cfg.view().form().addGroup(null,
-                new Object[] {
-                        OpsTables.OPS_DB_CHANGE_APPLY.NOTES,
-                }
-        );
-
+        cfg.view().form().addJsVariable("UUID","[[${uuid}]]","uuid");
         cfg.view().form().addJsVariable("ASSOCIATED_SYSTEM","[[${associatedSystem}]]","associatedSystem");
         cfg.view().list().operationColumn().addActionButton("提交","submitOrder","submit-order");
 

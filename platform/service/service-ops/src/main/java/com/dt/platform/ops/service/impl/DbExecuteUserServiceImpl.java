@@ -1,9 +1,6 @@
 package com.dt.platform.ops.service.impl;
 
 import javax.annotation.Resource;
-
-import com.dt.platform.constants.enums.ops.OpsDbApplyAssociatedSystemEnum;
-import com.github.foxnic.dao.data.Rcd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -11,8 +8,8 @@ import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
 
-import com.dt.platform.domain.ops.DbApplyExecute;
-import com.dt.platform.domain.ops.DbApplyExecuteVO;
+import com.dt.platform.domain.ops.DbExecuteUser;
+import com.dt.platform.domain.ops.DbExecuteUserVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -31,23 +28,23 @@ import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
 import java.util.ArrayList;
-import com.dt.platform.ops.service.IDbApplyExecuteService;
+import com.dt.platform.ops.service.IDbExecuteUserService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
 import java.util.Map;
 
 /**
  * <p>
- * 数据库操作执行服务实现
+ * 数据库人员服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 15:04:12
+ * @since 2024-03-31 21:12:53
 */
 
 
-@Service("OpsDbApplyExecuteService")
+@Service("OpsDbExecuteUserService")
 
-public class DbApplyExecuteServiceImpl extends SuperService<DbApplyExecute> implements IDbApplyExecuteService {
+public class DbExecuteUserServiceImpl extends SuperService<DbExecuteUser> implements IDbExecuteUserService {
 
 	/**
 	 * 注入DAO对象
@@ -60,32 +57,7 @@ public class DbApplyExecuteServiceImpl extends SuperService<DbApplyExecute> impl
 	 * */
 	public DAO dao() { return dao; }
 
-	@Override
-	public String queryDbAssociatedSystemRootUrl() {
-		String res="";
-		String as=queryCurAssociatedSystem();
-		String code="none";
-		if(OpsDbApplyAssociatedSystemEnum.BB.code().equals(as)){
-			code="ops.dbAssociatedSystemUrlForBb";
-		}else if(OpsDbApplyAssociatedSystemEnum.YQ.code().equals(as)){
-			code="ops.ops.dbAssociatedSystemUrlForYq";
-		}
-		Rcd rs=dao.queryRecord("select * from sys_config where id=?",code);
-		if(rs!=null){
-			res=rs.getString("value");
-		}
-		return res;
-	}
 
-	@Override
-	public String queryCurAssociatedSystem() {
-		String res="none";
-		Rcd rs=dao.queryRecord("select * from sys_config where id='ops.dbAssociatedSystem'");
-		if(rs!=null){
-			res=rs.getString("value");
-		}
-		return res;
-	}
 
 	@Override
 	public Object generateId(Field field) {
@@ -95,51 +67,49 @@ public class DbApplyExecuteServiceImpl extends SuperService<DbApplyExecute> impl
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param dbApplyExecute  数据对象
+	 * @param dbExecuteUser  数据对象
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
 	@Override
-	public Result insert(DbApplyExecute dbApplyExecute,boolean throwsException) {
-		Result r=super.insert(dbApplyExecute,throwsException);
+	public Result insert(DbExecuteUser dbExecuteUser,boolean throwsException) {
+		Result r=super.insert(dbExecuteUser,throwsException);
 		return r;
 	}
 
-
-
 	/**
 	 * 添加，如果语句错误，则抛出异常
-	 * @param dbApplyExecute 数据对象
+	 * @param dbExecuteUser 数据对象
 	 * @return 插入是否成功
 	 * */
 	@Override
-	public Result insert(DbApplyExecute dbApplyExecute) {
-		return this.insert(dbApplyExecute,true);
+	public Result insert(DbExecuteUser dbExecuteUser) {
+		return this.insert(dbExecuteUser,true);
 	}
 
 	/**
 	 * 批量插入实体，事务内
-	 * @param dbApplyExecuteList 实体数据清单
+	 * @param dbExecuteUserList 实体数据清··单
 	 * @return 插入是否成功
 	 * */
 	@Override
-	public Result insertList(List<DbApplyExecute> dbApplyExecuteList) {
-		return super.insertList(dbApplyExecuteList);
+	public Result insertList(List<DbExecuteUser> dbExecuteUserList) {
+		return super.insertList(dbExecuteUserList);
 	}
 
 	
 	/**
-	 * 按主键删除数据库操作执行
+	 * 按主键删除数据库人员
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
 	 */
 	public Result deleteByIdPhysical(String id) {
-		DbApplyExecute dbApplyExecute = new DbApplyExecute();
+		DbExecuteUser dbExecuteUser = new DbExecuteUser();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
-		dbApplyExecute.setId(id);
+		dbExecuteUser.setId(id);
 		try {
-			boolean suc = dao.deleteEntity(dbApplyExecute);
+			boolean suc = dao.deleteEntity(dbExecuteUser);
 			return suc?ErrorDesc.success():ErrorDesc.failure();
 		}
 		catch(Exception e) {
@@ -150,20 +120,20 @@ public class DbApplyExecuteServiceImpl extends SuperService<DbApplyExecute> impl
 	}
 	
 	/**
-	 * 按主键删除数据库操作执行
+	 * 按主键删除数据库人员
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
 	 */
 	public Result deleteByIdLogical(String id) {
-		DbApplyExecute dbApplyExecute = new DbApplyExecute();
+		DbExecuteUser dbExecuteUser = new DbExecuteUser();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
-		dbApplyExecute.setId(id);
-		dbApplyExecute.setDeleted(true);
-		dbApplyExecute.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
-		dbApplyExecute.setDeleteTime(new Date());
+		dbExecuteUser.setId(id);
+		dbExecuteUser.setDeleted(true);
+		dbExecuteUser.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
+		dbExecuteUser.setDeleteTime(new Date());
 		try {
-			boolean suc = dao.updateEntity(dbApplyExecute,SaveMode.NOT_NULL_FIELDS);
+			boolean suc = dao.updateEntity(dbExecuteUser,SaveMode.NOT_NULL_FIELDS);
 			return suc?ErrorDesc.success():ErrorDesc.failure();
 		}
 		catch(Exception e) {
@@ -175,42 +145,42 @@ public class DbApplyExecuteServiceImpl extends SuperService<DbApplyExecute> impl
 
 	/**
 	 * 更新，如果执行错误，则抛出异常
-	 * @param dbApplyExecute 数据对象
+	 * @param dbExecuteUser 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result update(DbApplyExecute dbApplyExecute , SaveMode mode) {
-		return this.update(dbApplyExecute,mode,true);
+	public Result update(DbExecuteUser dbExecuteUser , SaveMode mode) {
+		return this.update(dbExecuteUser,mode,true);
 	}
 
 	/**
 	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
-	 * @param dbApplyExecute 数据对象
+	 * @param dbExecuteUser 数据对象
 	 * @param mode 保存模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result update(DbApplyExecute dbApplyExecute , SaveMode mode,boolean throwsException) {
-		Result r=super.update(dbApplyExecute , mode , throwsException);
+	public Result update(DbExecuteUser dbExecuteUser , SaveMode mode,boolean throwsException) {
+		Result r=super.update(dbExecuteUser , mode , throwsException);
 		return r;
 	}
 
 	/**
 	 * 更新实体集，事务内
-	 * @param dbApplyExecuteList 数据对象列表
+	 * @param dbExecuteUserList 数据对象列表
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result updateList(List<DbApplyExecute> dbApplyExecuteList , SaveMode mode) {
-		return super.updateList(dbApplyExecuteList , mode);
+	public Result updateList(List<DbExecuteUser> dbExecuteUserList , SaveMode mode) {
+		return super.updateList(dbExecuteUserList , mode);
 	}
 
 	
 	/**
-	 * 按主键更新数据库操作执行
+	 * 按主键更新数据库人员
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -224,13 +194,13 @@ public class DbApplyExecuteServiceImpl extends SuperService<DbApplyExecute> impl
 
 	
 	/**
-	 * 按主键获取数据库操作执行
+	 * 按主键获取数据库人员
 	 *
 	 * @param id 主键
-	 * @return DbApplyExecute 数据对象
+	 * @return DbExecuteUser 数据对象
 	 */
-	public DbApplyExecute getById(String id) {
-		DbApplyExecute sample = new DbApplyExecute();
+	public DbExecuteUser getById(String id) {
+		DbExecuteUser sample = new DbExecuteUser();
 		if(id==null) throw new IllegalArgumentException("id 不允许为 null ");
 		sample.setId(id);
 		return dao.queryEntity(sample);
@@ -240,18 +210,18 @@ public class DbApplyExecuteServiceImpl extends SuperService<DbApplyExecute> impl
 	 * 等价于 queryListByIds
 	 * */
 	@Override
-	public List<DbApplyExecute> getByIds(List<String> ids) {
+	public List<DbExecuteUser> getByIds(List<String> ids) {
 		return this.queryListByIds(ids);
 	}
 
 	@Override
-	public List<DbApplyExecute> queryListByIds(List<String> ids) {
+	public List<DbExecuteUser> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
 	}
 
 	@Override
-	public Map<String, DbApplyExecute> queryMapByIds(List<String> ids) {
-		return super.queryMapByUKeys("id",ids, DbApplyExecute::getId);
+	public Map<String, DbExecuteUser> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, DbExecuteUser::getId);
 	}
 
 
@@ -263,7 +233,7 @@ public class DbApplyExecuteServiceImpl extends SuperService<DbApplyExecute> impl
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<DbApplyExecute> queryList(DbApplyExecuteVO sample) {
+	public List<DbExecuteUser> queryList(DbExecuteUserVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -277,7 +247,7 @@ public class DbApplyExecuteServiceImpl extends SuperService<DbApplyExecute> impl
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<DbApplyExecute> queryPagedList(DbApplyExecuteVO sample, int pageSize, int pageIndex) {
+	public PagedList<DbExecuteUser> queryPagedList(DbExecuteUserVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -291,19 +261,19 @@ public class DbApplyExecuteServiceImpl extends SuperService<DbApplyExecute> impl
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<DbApplyExecute> queryPagedList(DbApplyExecute sample, ConditionExpr condition, int pageSize, int pageIndex) {
+	public PagedList<DbExecuteUser> queryPagedList(DbExecuteUser sample, ConditionExpr condition, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, condition, pageSize, pageIndex);
 	}
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
-	 * @param dbApplyExecute 数据对象
+	 * @param dbExecuteUser 数据对象
 	 * @return 判断结果
 	 */
-	public Boolean checkExists(DbApplyExecute dbApplyExecute) {
+	public Boolean checkExists(DbExecuteUser dbExecuteUser) {
 		//TDOD 此处添加判断段的代码
-		//boolean exists=super.checkExists(dbApplyExecute, SYS_ROLE.NAME);
+		//boolean exists=super.checkExists(dbExecuteUser, SYS_ROLE.NAME);
 		//return exists;
 		return false;
 	}

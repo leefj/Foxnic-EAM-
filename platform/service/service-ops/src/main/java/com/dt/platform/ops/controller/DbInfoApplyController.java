@@ -1,7 +1,13 @@
 package com.dt.platform.ops.controller;
 
 import java.util.*;
+
+import com.dt.platform.ops.service.IDbApplyExecuteService;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.dao.data.Rcd;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.framework.web.SuperController;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +54,11 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 @Api(tags = "变更数据库")
 @RestController("OpsDbInfoApplyController")
 public class DbInfoApplyController extends SuperController {
+
+
+
+    @Autowired
+    private IDbApplyExecuteService dbApplyExecuteService;
 
     @Autowired
     private IDbInfoApplyService dbInfoApplyService;
@@ -281,4 +292,50 @@ public class DbInfoApplyController extends SuperController {
         result.success(true).data(list);
         return result;
     }
+
+    /**
+     * 分页查询变更数据库
+     */
+    @ApiOperation(value = "分页查询变更数据库")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = DbInfoApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+            @ApiImplicitParam(name = DbInfoApplyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = DbInfoApplyVOMeta.DB_FULL_NAME, value = "数据库全名", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = DbInfoApplyVOMeta.DB_NAME, value = "数据库", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = DbInfoApplyVOMeta.DB_IP, value = "数据库IP", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = DbInfoApplyVOMeta.DB_PORT, value = "端口", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = DbInfoApplyVOMeta.ASSOCIATED_SYSTEM, value = "关联系统", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = DbInfoApplyVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class)
+    })
+    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = DbInfoApplyServiceProxy.QUERY_EXECUTE_DB_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(DbInfoApplyServiceProxy.QUERY_EXECUTE_DB_PAGED_LIST)
+    public Result<PagedList<DbInfoApply>> queryExecuteDbPagedList(DbInfoApplyVO sample) {
+
+        sample.setAssociatedSystem(dbApplyExecuteService.queryCurAssociatedSystem());
+
+        String business=sample.getBusiness();
+        String roleCode="db_none";
+        if(!StringUtil.isBlank(business)){
+            if("change".equals(business)){
+                roleCode="ops_db_change_apply_bill";
+            }else if("exe".equals(business)){
+                roleCode="ops_db_extract_apply_bill";
+            }
+        }
+        String curUserId= SessionUser.getCurrent().getActivatedEmployeeId();
+        String sql="select 1 from sys_busi_role a,sys_busi_role_member b where a.id=b.role_id and a.deleted=0 and member_type='employee' and b.member_id=? and a.code=?";
+        Rcd userCk=dbInfoApplyService.dao().queryRecord(sql,curUserId,roleCode);
+        ConditionExpr expr=new ConditionExpr();
+        if(userCk==null){
+            expr.and("id='123'");
+        }else{
+            expr.and("1=1");
+        }
+        Result<PagedList<DbInfoApply>> result = new Result<>();
+        PagedList<DbInfoApply> list = dbInfoApplyService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        result.success(true).data(list);
+        return result;
+    }
+
 }
