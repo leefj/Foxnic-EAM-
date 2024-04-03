@@ -1,7 +1,7 @@
 /**
- * 变更数据库 列表页 JS 脚本
+ * 数据库人员 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 21:28:00
+ * @since 2024-03-31 21:12:55
  */
 
 function FormPage() {
@@ -9,7 +9,7 @@ function FormPage() {
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
 	
 	// 接口地址
-	const moduleURL="/service-ops/ops-db-info-apply";
+	const moduleURL="/service-ops/ops-db-execute-user";
 	const queryURL=moduleURL+"/get-by-id";
 	const insertURL=moduleURL+"/insert";
 	const updateURL=moduleURL+"/update";
@@ -30,7 +30,7 @@ function FormPage() {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
-		action=admin.getTempData('ops-db-info-apply-form-data-form-action');
+		action=admin.getTempData('ops-db-execute-user-form-data-form-action');
 		//如果没有修改和保存权限
 		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
 			disableModify=true;
@@ -44,7 +44,7 @@ function FormPage() {
 		}
 
 		if(window.pageExt.form.beforeInit) {
-			window.pageExt.form.beforeInit(action,admin.getTempData('ops-db-info-apply-form-data'));
+			window.pageExt.form.beforeInit(action,admin.getTempData('ops-db-execute-user-form-data'));
 		}
 
 		//渲染表单组件
@@ -96,9 +96,9 @@ function FormPage() {
 				prevBodyHeight = bodyHeight;
 				return;
 			}
-			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-db-info-apply-form-data-win');
+			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-db-execute-user-form-data-win');
 			if(area==null) return;
-			admin.putTempData('ops-db-info-apply-form-area', area);
+			admin.putTempData('ops-db-execute-user-form-area', area);
 			window.adjustPopup=adjustPopup;
 			if(area.tooHeigh) {
 				var windowHeight=area.iframeHeight;
@@ -118,39 +118,6 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
-		//渲染 associatedSystem 下拉字段
-		fox.renderSelectBox({
-			el: "associatedSystem",
-			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("关联系统",'','cmp:form'),
-			filterable: false,
-			layVerify: 'required',
-			layVerType: 'msg',
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("associatedSystem",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "0".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("associatedSystem",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
-		});
 	}
 
 	/**
@@ -182,7 +149,7 @@ function FormPage() {
       */
 	function fillFormData(formData) {
 		if(!formData) {
-			formData = admin.getTempData('ops-db-info-apply-form-data');
+			formData = admin.getTempData('ops-db-execute-user-form-data');
 		}
 		rawFormData=formData;
 
@@ -204,8 +171,6 @@ function FormPage() {
 
 
 
-			//设置  关联系统 设置下拉框勾选
-			fox.setSelectValue4Enum("#associatedSystem",formData.associatedSystem,SELECT_ASSOCIATEDSYSTEM_DATA);
 
 			//处理fillBy
 
@@ -258,7 +223,7 @@ function FormPage() {
 	 * */
 	function getRawFormData() {
 		if(!rawFormData) {
-			rawFormData = admin.getTempData('ops-db-info-apply-form-data');
+			rawFormData = admin.getTempData('ops-db-execute-user-form-data');
 		}
 		return rawFormData;
 	}
@@ -268,8 +233,6 @@ function FormPage() {
 
 
 
-		//获取 关联系统 下拉框的值
-		data["associatedSystem"]=fox.getSelectedValue("associatedSystem",false);
 
 		return data;
 	}
@@ -306,7 +269,7 @@ function FormPage() {
 				}
 
 				if(doNext) {
-					admin.finishPopupCenterById('ops-db-info-apply-form-data-win');
+					admin.finishPopupCenterById('ops-db-execute-user-form-data-win');
 				}
 
 				// 调整状态为编辑
@@ -338,7 +301,7 @@ function FormPage() {
 
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-db-info-apply-form-data-win',this); });
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-db-execute-user-form-data-win',this); });
 
     }
 

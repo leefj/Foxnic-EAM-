@@ -3,8 +3,12 @@ package com.dt.platform.ops.controller;
 import java.util.*;
 
 import com.dt.platform.domain.eam.AssetBorrow;
+import com.dt.platform.ops.service.IDbInfoApplyService;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.dao.data.Rcd;
 import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.framework.web.SuperController;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,6 +56,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 @Api(tags = "数据库操作执行")
 @RestController("OpsDbApplyExecuteController")
 public class DbApplyExecuteController extends SuperController {
+
 
     @Autowired
     private IDbApplyExecuteService dbApplyExecuteService;
@@ -286,11 +291,12 @@ public class DbApplyExecuteController extends SuperController {
         return ErrorDesc.success();
     }
 
-    @ApiOperation(value = "备份")
+    @ApiOperation(value = "数据库用户")
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = DbApplyExecuteServiceProxy.QUERY_DB_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbApplyExecuteServiceProxy.QUERY_DB_LIST)
-    public Result queryDbList() {
+    public Result queryDbList(String code,String business) {
+
         return ErrorDesc.success();
     }
 
@@ -298,8 +304,10 @@ public class DbApplyExecuteController extends SuperController {
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = DbApplyExecuteServiceProxy.QUERY_DB_USER, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbApplyExecuteServiceProxy.QUERY_DB_USER)
-    public Result queryDbUser() {
+    public Result queryDbUser(String code) {
+        //连接第三方系统，查询当前可用的数据库用户
         return ErrorDesc.success();
+
     }
 
     /**

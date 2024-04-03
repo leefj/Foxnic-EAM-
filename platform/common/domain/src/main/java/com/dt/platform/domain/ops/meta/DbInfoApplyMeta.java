@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 17:57:36
- * @sign 323CA524DE76C673121F39F41E7E8A82
+ * @since 2024-03-31 21:27:58
+ * @sign D54A84BB6236CE855B655D586E877410
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -167,19 +167,29 @@ public class DbInfoApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoApply,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoApply.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
-	 * dataRange , 类型: java.lang.String
+	 * datarange , 类型: java.lang.String
 	*/
-	public static final String DATA_RANGE="dataRange";
+	public static final String DATARANGE="datarange";
 	
 	/**
-	 * dataRange , 类型: java.lang.String
+	 * datarange , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoApply,java.lang.String> DATA_RANGE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoApply.class ,DATA_RANGE, java.lang.String.class, "dataRange", "dataRange", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoApply,java.lang.String> DATARANGE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoApply.class ,DATARANGE, java.lang.String.class, "datarange", "datarange", java.lang.String.class, null);
+	
+	/**
+	 * business , 类型: java.lang.String
+	*/
+	public static final String BUSINESS="business";
+	
+	/**
+	 * business , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoApply,java.lang.String> BUSINESS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoApply.class ,BUSINESS, java.lang.String.class, "business", "business", java.lang.String.class, null);
 	
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , DB_FULL_NAME , DB_NAME , DB_IP , DB_PORT , ASSOCIATED_SYSTEM , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , CREATE_BY , CREATE_TIME , VERSION , DATA_RANGE };
+	public static final String[] $PROPS={ ID , CODE , DB_FULL_NAME , DB_NAME , DB_IP , DB_PORT , ASSOCIATED_SYSTEM , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , CREATE_BY , CREATE_TIME , VERSION , DATARANGE , BUSINESS };
 	
 	/**
 	 * 代理类
@@ -355,13 +365,24 @@ public class DbInfoApplyMeta {
 		}
 		
 		/**
-		 * 设置 dataRange
-		 * @param dataRange dataRange
+		 * 设置 datarange
+		 * @param datarange datarange
 		 * @return 当前对象
 		*/
-		public DbInfoApply setDataRange(String dataRange) {
-			super.change(DATA_RANGE,super.getDataRange(),dataRange);
-			super.setDataRange(dataRange);
+		public DbInfoApply setDatarange(String datarange) {
+			super.change(DATARANGE,super.getDatarange(),datarange);
+			super.setDatarange(datarange);
+			return this;
+		}
+		
+		/**
+		 * 设置 business
+		 * @param business business
+		 * @return 当前对象
+		*/
+		public DbInfoApply setBusiness(String business) {
+			super.change(BUSINESS,super.getBusiness(),business);
+			super.setBusiness(business);
 			return this;
 		}
 
@@ -396,7 +417,8 @@ public class DbInfoApplyMeta {
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
 			if(all) {
-				inst.setDataRange(this.getDataRange());
+				inst.setBusiness(this.getBusiness());
+				inst.setDatarange(this.getDatarange());
 			}
 			inst.clearModifies();
 			return inst;

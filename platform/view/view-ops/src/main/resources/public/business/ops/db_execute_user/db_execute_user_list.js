@@ -1,7 +1,7 @@
 /**
- * 数据库提取申请 列表页 JS 脚本
+ * 数据库人员 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 21:38:47
+ * @since 2024-03-31 21:12:54
  */
 
 
@@ -10,7 +10,7 @@ function ListPage() {
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	
 	//模块基础路径
-	const moduleURL="/service-ops/ops-db-extract-apply";
+	const moduleURL="/service-ops/ops-db-execute-user";
 	const queryURL=moduleURL+'/query-paged-list';
 	const deleteURL=moduleURL+'/delete';
 	const batchDeleteURL=moduleURL+'/delete-by-ids';
@@ -72,7 +72,7 @@ function ListPage() {
 					return value;
 				}
 			}
-			var h=$(".search-bar").height();
+			var h=-28; 
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
@@ -84,12 +84,7 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'itemName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('关联工单') , templet: function (d) { return templet('itemName',d.itemName,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'dbFullName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库') , templet: function (d) { return templet('dbFullName',d.dbFullName,d);}  }
-					,{ field: 'checkResult', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验证结果'), templet:function (d){ return templet('checkResult',fox.getEnumText(SELECT_CHECKRESULT_DATA,d.checkResult,'','checkResult'),d);}}
-					,{ field: 'applyUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('申请人') , templet: function (d) { return templet('applyUserId',fox.getProperty(d,["applyUser","name"],0,'','applyUserId'),d);} }
+					,{ field: 'userId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('操作人') , templet: function (d) { return templet('userId',d.userId,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
@@ -162,9 +157,10 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.dbFullName={ inputType:"button",value: $("#dbFullName").val()};
-		value.applyUserId={ inputType:"button",value: $("#applyUserId").val(),fillBy:["applyUser","name"] ,label:$("#applyUserId-button").text() };
+		value.userId={ inputType:"button",value: $("#userId").val()};
+		value.notes={ inputType:"button",value: $("#notes").val()};
+		value.updateBy={ inputType:"button",value: $("#updateBy").val()};
+		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -211,31 +207,6 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
-		//渲染 status 搜索框
-		fox.renderSelectBox({
-			el: "status",
-			size: "small",
-			radio: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
@@ -266,21 +237,6 @@ function ListPage() {
 			});
 		});
 
-		// 请选择人员对话框
-		$("#applyUserId-button").click(function(){
-				var applyUserIdDialogOptions={
-				field:"applyUserId",
-				inputEl:$("#applyUserId"),
-				buttonEl:$(this),
-				single:false,
-				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
-				root: "",
-				targetType:"emp",
-				prepose:function(param){ return window.pageExt.list.beforeDialog && window.pageExt.list.beforeDialog(param);},
-				callback:function(param,result){ window.pageExt.list.afterDialog && window.pageExt.list.afterDialog(param,result);}
-			};
-			fox.chooseEmployee(applyUserIdDialogOptions);
-		});
 	}
 
 	/**
@@ -298,7 +254,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
-					admin.putTempData('ops-db-extract-apply-form-data', {});
+					admin.putTempData('ops-db-execute-user-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -317,7 +273,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('ops-db-extract-apply-form-data-form-action', "create",true);
+			admin.putTempData('ops-db-execute-user-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -331,11 +287,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'数据库提取申请'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的'+'数据库人员'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'数据库提取申请'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'数据库人员'+'吗？'), function (i) {
                 top.layer.close(i);
 				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
@@ -370,14 +326,14 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('ops-db-extract-apply-form-data-form-action', "",true);
+			admin.putTempData('ops-db-execute-user-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
 				top.layer.load(2);
 				top.layer.load(2);
 				admin.post(getByIdURL, { id : data.id }, function (data) {
 					top.layer.closeAll('loading');
 					if(data.success) {
-						admin.putTempData('ops-db-extract-apply-form-data-form-action', "edit",true);
+						admin.putTempData('ops-db-execute-user-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
 						 fox.showMessage(data);
@@ -388,7 +344,7 @@ function ListPage() {
 				admin.post(getByIdURL, { id : data.id }, function (data) {
 					top.layer.closeAll('loading');
 					if(data.success) {
-						admin.putTempData('ops-db-extract-apply-form-data-form-action', "view",true);
+						admin.putTempData('ops-db-execute-user-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -402,7 +358,7 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'数据库提取申请'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此'+'数据库人员'+'吗？'), function (i) {
 					top.layer.close(i);
 					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
@@ -419,9 +375,6 @@ function ListPage() {
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			else if (layEvent === 'submit-order') { // 提交
-				window.pageExt.list.submitOrder(data,this);
-			}
 			
 		});
 
@@ -435,17 +388,17 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('ops-db-extract-apply-form-data-form-action');
+		var action=admin.getTempData('ops-db-execute-user-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('ops-db-extract-apply-form-data', data);
-		var area=admin.getTempData('ops-db-extract-apply-form-area');
+		admin.putTempData('ops-db-execute-user-form-data', data);
+		var area=admin.getTempData('ops-db-execute-user-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('数据库提取申请');
+		var title = fox.translate('数据库人员');
 		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
 		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
 		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
@@ -454,10 +407,10 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["95%",height+"px"],
+			area: ["500px",height+"px"],
 			type: 2,
-			id:"ops-db-extract-apply-form-data-win",
-			content: '/business/ops/db_extract_apply/db_extract_apply_form.html' + (queryString?("?"+queryString):""),
+			id:"ops-db-execute-user-form-data-win",
+			content: '/business/ops/db_execute_user/db_execute_user_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();

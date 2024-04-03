@@ -21,6 +21,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     const moduleURL="/service-ops/ops-db-change-apply";
 
 
+
     //列表页的扩展
     var list={
         /**
@@ -216,6 +217,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
+
         },
         /**
          * 窗口调节前
@@ -229,6 +231,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeDataFill:function (data) {
             console.log('beforeDataFill',data);
+            var checkResultSel = xmSelect.get('#checkResult', true);
+            if (checkResultSel) {
+                checkResultSel.update({disabled: true})
+                $("#checkResult").attr("disabled","disabled").css("background-color","#e6e6e6");
+            }
+            var rbResultSel = xmSelect.get('#rbResult', true);
+            if (rbResultSel) {
+                rbResultSel.update({disabled: true})
+                $("#rbResult").attr("disabled","disabled").css("background-color","#e6e6e6");
+            }
+
         },
         /**
          * 表单数据填充后

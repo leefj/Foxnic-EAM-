@@ -7,6 +7,7 @@ import com.dt.platform.constants.enums.ops.OpsDbApplyStatusEnum;
 import com.dt.platform.domain.ops.DbApplyExecute;
 import com.dt.platform.domain.ops.DbExtractApply;
 import com.dt.platform.domain.ops.DbInfoApply;
+import com.dt.platform.domain.ops.meta.DbChangeApplyMeta;
 import com.dt.platform.domain.ops.meta.DbExtractApplyMeta;
 import com.dt.platform.domain.ops.meta.DbInfoApplyMeta;
 import com.dt.platform.generator.config.Config;
@@ -31,6 +32,7 @@ public class DbTqGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.NOTES).search().fuzzySearch();
         cfg.getPoClassFile().addSimpleProperty(DbInfoApply.class,"dbInfoApply","dbInfoApply","dbInfoApply");
+
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"applyUser","applyUser","applyUser");
 
         cfg.getPoClassFile().addSimpleProperty(DbApplyExecute.class,"requestOrder","requestOrder","requestOrder");
@@ -72,52 +74,66 @@ public class DbTqGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.DB_USER).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.SELECTED_CODE).table().disable(true);
-        cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.NOTES).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.CONTENT).table().disable(true);
+
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.PUSH_RESULT).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.PUSH_ORDER_STATUS).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.ASSOCIATED_SYSTEM).table().disable(true);
 
-        cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.NOTES).form().textArea().height(20);
+
+
+        cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.SQL_AREA).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.SQL_AREA2).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.SQL_AREA3).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.SQL_AREA4).table().disable(true);
+        cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.SQL_AREA5).table().disable(true);
 
 
 
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.DB_ID)
-                .form().validate().required().form().selectBox().queryApi(DbInfoApplyServiceProxy.QUERY_LIST+"?datarange=extract")
+                .form().validate().required().form().selectBox().queryApi(DbInfoApplyServiceProxy.QUERY_EXECUTE_DB_PAGED_LIST+"?business=extract")
                 .paging(false).filter(true).toolbar(false)
-                .valueField(DbInfoApplyMeta.ID).
+                .valueField(DbInfoApplyMeta.CODE).
                 textField(DbInfoApplyMeta.DB_FULL_NAME).
                 fillWith(DbExtractApplyMeta.DB_INFO_APPLY).muliti(false).defaultIndex(0);
 
 
-
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.ITEM_CODE)
-                 .form().selectBox().queryApi(DbApplyExecuteServiceProxy.QUERY_PAGED_LIST+"?datarange=extract")
+                 .form().selectBox().queryApi(DbApplyExecuteServiceProxy.QUERY_ORDER_LIST+"?business=extract")
                 .paging(false).filter(true).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
                 fillWith(DbExtractApplyMeta.REQUEST_ORDER).muliti(false).defaultIndex(0);
+
+
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.CHECK_RESULT).form().validate().required().form().readOnly().form().selectBox().enumType(OpsDbApplyCheckEnum.class).defaultIndex(0);
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.PUSH_ORDER_STATUS).form().selectBox().enumType(OpsDbApplyOrderStatusEnum.class).defaultIndex(0);
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.STATUS).form().radioBox().enumType(OpsDbApplyStatusEnum.class).defaultIndex(0);
+
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.APPLY_USER_ID).form().button().chooseEmployee(true);
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.APPLY_USER_ID).table().fillBy("applyUser","name");
+
         cfg.view().field(DbExtractApplyMeta.BUTTON_CHECK).basic().label("按钮").form().button().action("验证","checkSql","check-Sql","");
         cfg.view().field(DbExtractApplyMeta.BUTTON_CHECK_DETAIL).basic().label("按钮").form().button().action("结果明细","checkSqlResult","check-Sql-result","");
         cfg.view().formWindow().width(Config.baseFormWidth_95);
         cfg.view().formWindow().bottomSpace(120);
 
+        cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.CREATE_TIME).table().disable(true);
+
+        cfg.view().field(DbExtractApplyMeta.BUTTON_CHECK).table().disable(true);
+        cfg.view().field(DbExtractApplyMeta.BUTTON_CHECK_DETAIL).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.SQL_AREA).form().textArea().height(150);
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.SQL_AREA2).form().textArea().height(150);
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.SQL_AREA3).form().textArea().height(150);
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.SQL_AREA4).form().textArea().height(150);
         cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.SQL_AREA5).form().textArea().height(150);
-
+        cfg.view().field(OpsTables.OPS_DB_EXTRACT_APPLY.NOTES).form().textInput();
         cfg.view().list().disableBatchDelete();
         cfg.view().form().addGroup("关联信息",
                 new Object[] {
                         OpsTables.OPS_DB_EXTRACT_APPLY.ITEM_CODE,
-                        OpsTables.OPS_DB_EXTRACT_APPLY.CONTENT
+                        OpsTables.OPS_DB_EXTRACT_APPLY.NOTES
                 },
                 new Object[] {
                         OpsTables.OPS_DB_EXTRACT_APPLY.DB_ID
@@ -132,6 +148,19 @@ public class DbTqGtr extends BaseCodeGenerator{
                         OpsTables.OPS_DB_EXTRACT_APPLY.SQL_AREA5,
                 }
         );
+        cfg.view().form().addGroup("点击验证SQL的有效性",
+                new Object[] {
+                        DbExtractApplyMeta.BUTTON_CHECK,
+                },
+                new Object[] {
+                        OpsTables.OPS_DB_EXTRACT_APPLY.CHECK_RESULT,
+                },
+                new Object[] {
+                        DbExtractApplyMeta.BUTTON_CHECK_DETAIL,
+                }
+        );
+
+        cfg.view().form().addJsVariable("UUID","[[${uuid}]]","uuid");
         cfg.view().form().addJsVariable("ASSOCIATED_SYSTEM","[[${associatedSystem}]]","associatedSystem");
         cfg.view().list().operationColumn().addActionButton("提交","submitOrder","submit-order");
 

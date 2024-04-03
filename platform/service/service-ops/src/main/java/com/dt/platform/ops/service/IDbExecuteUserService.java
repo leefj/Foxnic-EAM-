@@ -5,8 +5,8 @@ import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.ops.DbApplyExecute;
-import com.dt.platform.domain.ops.DbApplyExecuteVO;
+import com.dt.platform.domain.ops.DbExecuteUser;
+import com.dt.platform.domain.ops.DbExecuteUserVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -21,44 +21,42 @@ import java.util.Map;
 
 /**
  * <p>
- * 数据库操作执行服务接口
+ * 数据库人员服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 15:04:12
+ * @since 2024-03-31 21:12:53
 */
 
-public interface IDbApplyExecuteService extends  ISimpleIdService<DbApplyExecute,String> {
+public interface IDbExecuteUserService extends  ISimpleIdService<DbExecuteUser,String> {
 
-	String queryDbAssociatedSystemRootUrl();
 
-	String queryCurAssociatedSystem();
 	/**
 	 * 添加，如果语句错误，则抛出异常
-	 * @param dbApplyExecute 数据对象
+	 * @param dbExecuteUser 数据对象
 	 * @return 插入是否成功
 	 * */
-	Result insert(DbApplyExecute dbApplyExecute);
+	Result insert(DbExecuteUser dbExecuteUser);
 
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param dbApplyExecute  数据对象
+	 * @param dbExecuteUser  数据对象
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
-	Result insert(DbApplyExecute dbApplyExecute,boolean throwsException);
+	Result insert(DbExecuteUser dbExecuteUser,boolean throwsException);
 
 	/**
 	 * 批量插入实体，事务内
-	 * @param dbApplyExecuteList 实体数据清单
+	 * @param dbExecuteUserList 实体数据清单
 	 * @return 插入是否成功
 	 * */
-	Result insertList(List<DbApplyExecute> dbApplyExecuteList);
+	Result insertList(List<DbExecuteUser> dbExecuteUserList);
 
 
 		
 	/**
-	 * 按主键删除数据库操作执行
+	 * 按主键删除数据库人员
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -66,7 +64,7 @@ public interface IDbApplyExecuteService extends  ISimpleIdService<DbApplyExecute
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除数据库操作执行
+	 * 按主键删除数据库人员
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -89,7 +87,7 @@ public interface IDbApplyExecuteService extends  ISimpleIdService<DbApplyExecute
 
 		
 	/**
-	 * 按主键更新数据库操作执行
+	 * 按主键更新数据库人员
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -98,103 +96,103 @@ public interface IDbApplyExecuteService extends  ISimpleIdService<DbApplyExecute
 
 	/**
 	 * 更新，如果执行错误，则抛出异常
-	 * @param dbApplyExecute 数据对象
+	 * @param dbExecuteUser 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result update(DbApplyExecute dbApplyExecute , SaveMode mode);
+	Result update(DbExecuteUser dbExecuteUser , SaveMode mode);
 
 
 	/**
 	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param dbApplyExecute 数据对象
+	 * @param dbExecuteUser 数据对象
 	 * @param mode SaveMode,数据更新的模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果
 	 */
-	Result update(DbApplyExecute dbApplyExecute , SaveMode mode,boolean throwsException);
+	Result update(DbExecuteUser dbExecuteUser , SaveMode mode,boolean throwsException);
 
 
 	/**
 	 * 更新实体集，事务内
-	 * @param dbApplyExecuteList 数据对象列表
+	 * @param dbExecuteUserList 数据对象列表
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result updateList(List<DbApplyExecute> dbApplyExecuteList, SaveMode mode);
+	Result updateList(List<DbExecuteUser> dbExecuteUserList, SaveMode mode);
 
 	/**
 	 * 保存实体，根据 throwsException 参数抛出异常或返回 Result 对象
-	 * @param dbApplyExecute 实体数据
+	 * @param dbExecuteUser 实体数据
 	 * @param mode 保存模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 保存是否成功
 	 * */
-	Result save(DbApplyExecute dbApplyExecute , SaveMode mode,boolean throwsException);
+	Result save(DbExecuteUser dbExecuteUser , SaveMode mode,boolean throwsException);
 
 	/**
 	 * 保存实体，如果语句错误，则抛出异常
-	 * @param dbApplyExecute 实体数据
+	 * @param dbExecuteUser 实体数据
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result save(DbApplyExecute dbApplyExecute , SaveMode mode);
+	Result save(DbExecuteUser dbExecuteUser , SaveMode mode);
 
 	/**
 	 * 保存实体，如果主键值不为null，则更新，否则插入
-	 * @param dbApplyExecuteList 实体数据清单
+	 * @param dbExecuteUserList 实体数据清单
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result saveList(List<DbApplyExecute> dbApplyExecuteList , SaveMode mode);
+	Result saveList(List<DbExecuteUser> dbExecuteUserList , SaveMode mode);
 
 	/**
 	 * 检查实体中的数据字段是否已经存在 . 判断 主键值不同，但指定字段的值相同的记录是否存在
-	 * @param dbApplyExecute  实体对象
+	 * @param dbExecuteUser  实体对象
 	 * @param field  字段清单，至少指定一个
 	 * @return 是否已经存在
 	 * */
-	boolean checkExists(DbApplyExecute dbApplyExecute,DBField... field);
+	boolean checkExists(DbExecuteUser dbExecuteUser,DBField... field);
 
 		
 	/**
-	 * 按主键获取数据库操作执行
+	 * 按主键获取数据库人员
 	 *
 	 * @param id 主键
-	 * @return DbApplyExecute 数据对象
+	 * @return DbExecuteUser 数据对象
 	 */
-	DbApplyExecute getById(String id);
+	DbExecuteUser getById(String id);
 
 	/**
 	 * 按 id 获取多个对象
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<DbApplyExecute> queryListByIds(List<String> ids);
+	List<DbExecuteUser> queryListByIds(List<String> ids);
 
 	/**
 	 * 按 id 列表查询 Map
 	 * @param ids  主键清单
 	 * */
-	Map<String, DbApplyExecute> queryMapByIds(List<String> ids);
+	Map<String, DbExecuteUser> queryMapByIds(List<String> ids);
 
 
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
-	 * @param dbApplyExecute 数据对象
+	 * @param dbExecuteUser 数据对象
 	 * @return 判断结果
 	 */
-	Boolean checkExists(DbApplyExecute dbApplyExecute);
+	Boolean checkExists(DbExecuteUser dbExecuteUser);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
 	 * @param sample 数据样例
 	 * @return ConditionExpr 条件表达式
 	 * */
-	ConditionExpr buildQueryCondition(DbApplyExecute sample);
+	ConditionExpr buildQueryCondition(DbExecuteUser sample);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
@@ -202,14 +200,14 @@ public interface IDbApplyExecuteService extends  ISimpleIdService<DbApplyExecute
 	 * @param tableAliase 数据表别名
 	 * 	@return ConditionExpr 条件表达式
 	 * */
-	ConditionExpr buildQueryCondition(DbApplyExecute sample,String tableAliase);
+	ConditionExpr buildQueryCondition(DbExecuteUser sample,String tableAliase);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<DbApplyExecute> queryList(DbApplyExecuteVO sample);
+	List<DbExecuteUser> queryList(DbExecuteUserVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -218,7 +216,7 @@ public interface IDbApplyExecuteService extends  ISimpleIdService<DbApplyExecute
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	List<DbApplyExecute> queryList(DbApplyExecute sample,ConditionExpr condition,OrderBy orderBy);
+	List<DbExecuteUser> queryList(DbExecuteUser sample,ConditionExpr condition,OrderBy orderBy);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -226,7 +224,7 @@ public interface IDbApplyExecuteService extends  ISimpleIdService<DbApplyExecute
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	List<DbApplyExecute> queryList(DbApplyExecute sample,OrderBy orderBy);
+	List<DbExecuteUser> queryList(DbExecuteUser sample,OrderBy orderBy);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -234,14 +232,14 @@ public interface IDbApplyExecuteService extends  ISimpleIdService<DbApplyExecute
 	 * @param condition  其它条件
 	 * @return 查询结果
 	 * */
-	List<DbApplyExecute> queryList(DbApplyExecute sample,ConditionExpr condition);
+	List<DbExecuteUser> queryList(DbExecuteUser sample,ConditionExpr condition);
 
 	/**
 	 * 查询单个实体
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	DbApplyExecute queryEntity(DbApplyExecute sample);
+	DbExecuteUser queryEntity(DbExecuteUser sample);
 
 	/**
 	 * 分页查询实体集
@@ -250,7 +248,7 @@ public interface IDbApplyExecuteService extends  ISimpleIdService<DbApplyExecute
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<DbApplyExecute> queryPagedList(DbApplyExecuteVO sample,int pageSize,int pageIndex);
+	PagedList<DbExecuteUser> queryPagedList(DbExecuteUserVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -261,7 +259,7 @@ public interface IDbApplyExecuteService extends  ISimpleIdService<DbApplyExecute
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	PagedList<DbApplyExecute> queryPagedList(DbApplyExecute sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
+	PagedList<DbExecuteUser> queryPagedList(DbExecuteUser sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -271,7 +269,7 @@ public interface IDbApplyExecuteService extends  ISimpleIdService<DbApplyExecute
 	 * @param condition  其它条件
 	 * @return 查询结果
 	 * */
-	PagedList<DbApplyExecute> queryPagedList(DbApplyExecute sample,ConditionExpr condition,int pageSize,int pageIndex);
+	PagedList<DbExecuteUser> queryPagedList(DbExecuteUser sample,ConditionExpr condition,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -281,7 +279,7 @@ public interface IDbApplyExecuteService extends  ISimpleIdService<DbApplyExecute
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	PagedList<DbApplyExecute> queryPagedList(DbApplyExecute sample,OrderBy orderBy,int pageSize,int pageIndex);
+	PagedList<DbExecuteUser> queryPagedList(DbExecuteUser sample,OrderBy orderBy,int pageSize,int pageIndex);
 
  	/**
 	 * 查询指定字段的数据清单

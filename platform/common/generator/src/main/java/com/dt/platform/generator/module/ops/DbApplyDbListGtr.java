@@ -22,7 +22,8 @@ public class DbApplyDbListGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
 
 
-        cfg.getPoClassFile().addSimpleProperty(String.class,"dataRange","dataRange","dataRange");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"datarange","datarange","datarange");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"business","business","business");
 
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);

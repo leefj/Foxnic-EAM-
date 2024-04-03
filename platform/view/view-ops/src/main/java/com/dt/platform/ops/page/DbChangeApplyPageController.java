@@ -1,6 +1,7 @@
 package com.dt.platform.ops.page;
 
 import com.dt.platform.proxy.ops.DbApplyExecuteServiceProxy;
+import com.github.foxnic.commons.busi.id.IDGenerator;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
 import org.springframework.stereotype.Controller;
@@ -51,6 +52,8 @@ public class DbChangeApplyPageController extends ViewController {
 	 */
 	@RequestMapping("/db_change_apply_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
+
+		model.addAttribute("uuid",IDGenerator.getSnowflakeIdString());
 		model.addAttribute("associatedSystem",DbApplyExecuteServiceProxy.api().queryCurAssociatedSystem());
 		return getTemplatePath(prefix,"db_change_apply_form");
 	}

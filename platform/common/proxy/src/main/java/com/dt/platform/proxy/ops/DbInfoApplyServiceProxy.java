@@ -84,6 +84,10 @@ public interface DbInfoApplyServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+    /**
+     * 分页查询变更数据库
+     */
+    public static final String QUERY_EXECUTE_DB_PAGED_LIST = API_PREFIX + "query-execute-db-paged-list";
 
 
     /**

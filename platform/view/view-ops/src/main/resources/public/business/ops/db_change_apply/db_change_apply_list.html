@@ -2,7 +2,7 @@
 /**
  * 数据库变更申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 18:26:52
+ * @since 2024-03-31 22:50:14
  */
  -->
  <!DOCTYPE html>
@@ -40,7 +40,7 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 工单编号 , itemCode ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 关联工单 , itemCode ,typeName=select_box, isHideInSearch=true -->
                     <!-- 关联工单 , itemName ,typeName=text_input, isHideInSearch=true -->
                     <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
@@ -62,13 +62,13 @@
                     <!-- 返回信息 , pushResult ,typeName=text_area, isHideInSearch=true -->
                     <!-- 工单编号 , orderId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 关联系统 , associatedSystem ,typeName=text_input, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 按钮 , buttonCheck ,typeName=button, isHideInSearch=true -->
-                    <!-- 按钮 , buttonRBDetail ,typeName=button, isHideInSearch=true -->
-                    <!-- 按钮 , buttonRB ,typeName=button, isHideInSearch=true -->
-                    <!-- 按钮 , buttonCheckDetail ,typeName=button, isHideInSearch=true -->
+                    <!-- - , buttonCheck ,typeName=button, isHideInSearch=true -->
+                    <!-- - , buttonRBDetail ,typeName=button, isHideInSearch=true -->
+                    <!-- - , buttonRB ,typeName=button, isHideInSearch=true -->
+                    <!-- - , buttonCheckDetail ,typeName=button, isHideInSearch=true -->
                     <!-- 数据库 , dbFullName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('数据库')}" class="search-label dbFullName-label">数据库</span><span class="search-colon">:</span></div>

@@ -1,7 +1,7 @@
 /**
  * 数据库变更申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 18:26:53
+ * @since 2024-03-31 22:50:16
  */
 
 function FormPage() {
@@ -122,7 +122,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "itemCode",
 			radio: true,
-			tips: fox.translate("请选择",'','cmp:form')+fox.translate("工单编号",'','cmp:form'),
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("关联工单",'','cmp:form'),
 			filterable: true,
 			on: function(data){
 				setTimeout(function () {
@@ -187,9 +187,9 @@ function FormPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
 					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("dbId",{data:data[i],name:data[i].dbFullName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+						opts.push(window.pageExt.form.selectBoxDataTransform("dbId",{data:data[i],name:data[i].dbFullName,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
 					} else {
-						opts.push({data:data[i],name:data[i].dbFullName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+						opts.push({data:data[i],name:data[i].dbFullName,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
 					}
 				}
 				return opts;
@@ -345,7 +345,7 @@ function FormPage() {
 
 
 
-			//设置  工单编号 设置下拉框勾选
+			//设置  关联工单 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#itemCode",formData.requestOrder);
 			//设置  数据库 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#dbId",formData.dbInfoApply);
@@ -415,7 +415,7 @@ function FormPage() {
 
 
 
-		//获取 工单编号 下拉框的值
+		//获取 关联工单 下拉框的值
 		data["itemCode"]=fox.getSelectedValue("itemCode",false);
 		//获取 数据库 下拉框的值
 		data["dbId"]=fox.getSelectedValue("dbId",false);

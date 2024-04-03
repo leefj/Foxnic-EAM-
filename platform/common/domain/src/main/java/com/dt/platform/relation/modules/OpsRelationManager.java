@@ -14,7 +14,6 @@ import java.util.List;
 public class OpsRelationManager extends RelationManager {
     @Override
     protected void config() {
-
         this.setupRelations();
         this.setupProperties();
         this.setupOpsHost();
@@ -56,28 +55,31 @@ public class OpsRelationManager extends RelationManager {
         this.setupPublicContent();
         this.setupDbEvnInfo();
         this.setupDbDoc();
-
         this.setupMonitorTrigger();
         this.setupMonitorAlert();
         this.setupMonitorTpl();
-
         this.setupDBApplyExecute();
         this.setupDBChangeApply();
+        this.setupDBExtApply();
+    }
 
 
+    public void setupDBExtApply() {
+        this.property(DbExtractApplyMeta.APPLY_USER_PROP)
+                .using(OpsTables.OPS_DB_EXTRACT_APPLY.APPLY_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+        this.property(DbExtractApplyMeta.DB_INFO_APPLY_PROP)
+                .using(OpsTables.OPS_DB_EXTRACT_APPLY.DB_ID).join(OpsTables.OPS_DB_CHANGE_APPLY.ID);
+        this.property(DbExtractApplyMeta.REQUEST_ORDER_PROP)
+                .using(OpsTables.OPS_DB_EXTRACT_APPLY.ITEM_CODE).join(OpsTables.OPS_DB_APPLY_EXECUTE.ID);
     }
 
     public void setupDBChangeApply() {
-
         this.property(DbChangeApplyMeta.APPLY_USER_PROP)
                 .using(OpsTables.OPS_DB_CHANGE_APPLY.APPLY_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
         this.property(DbChangeApplyMeta.DB_INFO_APPLY_PROP)
                 .using(OpsTables.OPS_DB_CHANGE_APPLY.DB_ID).join(OpsTables.OPS_DB_CHANGE_APPLY.ID);
-
         this.property(DbChangeApplyMeta.REQUEST_ORDER_PROP)
                 .using(OpsTables.OPS_DB_CHANGE_APPLY.ITEM_CODE).join(OpsTables.OPS_DB_APPLY_EXECUTE.ID);
-
     }
     public void setupDBApplyExecute() {
 

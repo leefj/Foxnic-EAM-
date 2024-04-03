@@ -12,8 +12,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-31 18:26:51
- * @sign DB23783845DC9F93D8B5E5A4848E0A8C
+ * @since 2024-03-31 22:50:13
+ * @sign A14E771AED8D459BE454C6E666FF653C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -30,14 +30,14 @@ public class DbChangeApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbChangeApply,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbChangeApply.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
-	 * 工单编号 , 类型: java.lang.String
+	 * 关联工单 , 类型: java.lang.String
 	*/
 	public static final String ITEM_CODE="itemCode";
 	
 	/**
-	 * 工单编号 , 类型: java.lang.String
+	 * 关联工单 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbChangeApply,java.lang.String> ITEM_CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbChangeApply.class ,ITEM_CODE, java.lang.String.class, "工单编号", "工单编号", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.DbChangeApply,java.lang.String> ITEM_CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbChangeApply.class ,ITEM_CODE, java.lang.String.class, "关联工单", "关联工单", java.lang.String.class, null);
 	
 	/**
 	 * 关联工单 , 类型: java.lang.String
@@ -414,8 +414,8 @@ public class DbChangeApplyMeta {
 		}
 		
 		/**
-		 * 设置 工单编号
-		 * @param itemCode 工单编号
+		 * 设置 关联工单
+		 * @param itemCode 关联工单
 		 * @return 当前对象
 		*/
 		public DbChangeApply setItemCode(String itemCode) {
