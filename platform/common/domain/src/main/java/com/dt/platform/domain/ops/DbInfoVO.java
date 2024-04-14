@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库VO类型
  * <p>数据库 , 数据表 ops_db_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:39:00
+ * @since 2024-04-08 21:15:17
  * @sign 072C5A86F75E9E21D5871FA491A60284
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -412,6 +412,7 @@ public class DbInfoVO extends DbInfo {
 		inst.setBackupStrategy(this.getBackupStrategy());
 		inst.setFileIds(this.getFileIds());
 		inst.setUpdateBy(this.getUpdateBy());
+		inst.setPwdStragegyNotes(this.getPwdStragegyNotes());
 		inst.setVoucherStr(this.getVoucherStr());
 		inst.setId(this.getId());
 		inst.setAdminUserList(this.getAdminUserList());
@@ -425,6 +426,7 @@ public class DbInfoVO extends DbInfo {
 		inst.setOtherUserList(this.getOtherUserList());
 		inst.setHostId(this.getHostId());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setPwdStragegy(this.getPwdStragegy());
 		inst.setVersion(this.getVersion());
 		inst.setDbSize(this.getDbSize());
 		inst.setClearStrategy(this.getClearStrategy());
@@ -447,6 +449,7 @@ public class DbInfoVO extends DbInfo {
 			inst.setType(this.getType());
 			inst.setDbTypeIds(this.getDbTypeIds());
 			inst.setOtherEnvInfoCount(this.getOtherEnvInfoCount());
+			inst.setPwdStragegyDict(this.getPwdStragegyDict());
 			inst.setLabelIds(this.getLabelIds());
 			inst.setDataLocData(this.getDataLocData());
 			inst.setHost(this.getHost());
@@ -533,6 +536,7 @@ public class DbInfoVO extends DbInfo {
 			this.setBackupStrategy(DataParser.parse(String.class, map.get(DbInfoVOMeta.BACKUP_STRATEGY)));
 			this.setFileIds(DataParser.parse(String.class, map.get(DbInfoVOMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(DbInfoVOMeta.UPDATE_BY)));
+			this.setPwdStragegyNotes(DataParser.parse(String.class, map.get(DbInfoVOMeta.PWD_STRAGEGY_NOTES)));
 			this.setVoucherStr(DataParser.parse(String.class, map.get(DbInfoVOMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, map.get(DbInfoVOMeta.ID)));
 			this.setAdminUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.ADMIN_USER_LIST)));
@@ -546,6 +550,7 @@ public class DbInfoVO extends DbInfo {
 			this.setOtherUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.OTHER_USER_LIST)));
 			this.setHostId(DataParser.parse(String.class, map.get(DbInfoVOMeta.HOST_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbInfoVOMeta.UPDATE_TIME)));
+			this.setPwdStragegy(DataParser.parse(String.class, map.get(DbInfoVOMeta.PWD_STRAGEGY)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(DbInfoVOMeta.VERSION)));
 			this.setDbSize(DataParser.parse(BigDecimal.class, map.get(DbInfoVOMeta.DB_SIZE)));
 			this.setClearStrategy(DataParser.parse(String.class, map.get(DbInfoVOMeta.CLEAR_STRATEGY)));
@@ -587,6 +592,7 @@ public class DbInfoVO extends DbInfo {
 				this.setBackupStrategy( (String)map.get(DbInfoVOMeta.BACKUP_STRATEGY));
 				this.setFileIds( (String)map.get(DbInfoVOMeta.FILE_IDS));
 				this.setUpdateBy( (String)map.get(DbInfoVOMeta.UPDATE_BY));
+				this.setPwdStragegyNotes( (String)map.get(DbInfoVOMeta.PWD_STRAGEGY_NOTES));
 				this.setVoucherStr( (String)map.get(DbInfoVOMeta.VOUCHER_STR));
 				this.setId( (String)map.get(DbInfoVOMeta.ID));
 				this.setAdminUserList( (String)map.get(DbInfoVOMeta.ADMIN_USER_LIST));
@@ -600,6 +606,7 @@ public class DbInfoVO extends DbInfo {
 				this.setOtherUserList( (String)map.get(DbInfoVOMeta.OTHER_USER_LIST));
 				this.setHostId( (String)map.get(DbInfoVOMeta.HOST_ID));
 				this.setUpdateTime( (Date)map.get(DbInfoVOMeta.UPDATE_TIME));
+				this.setPwdStragegy( (String)map.get(DbInfoVOMeta.PWD_STRAGEGY));
 				this.setVersion( (Integer)map.get(DbInfoVOMeta.VERSION));
 				this.setDbSize( (BigDecimal)map.get(DbInfoVOMeta.DB_SIZE));
 				this.setClearStrategy( (String)map.get(DbInfoVOMeta.CLEAR_STRATEGY));
@@ -654,6 +661,7 @@ public class DbInfoVO extends DbInfo {
 			this.setBackupStrategy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.BACKUP_STRATEGY)));
 			this.setFileIds(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.UPDATE_BY)));
+			this.setPwdStragegyNotes(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.PWD_STRAGEGY_NOTES)));
 			this.setVoucherStr(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.ID)));
 			this.setAdminUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.ADMIN_USER_LIST)));
@@ -667,6 +675,7 @@ public class DbInfoVO extends DbInfo {
 			this.setOtherUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.OTHER_USER_LIST)));
 			this.setHostId(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.HOST_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbInfoVOMeta.UPDATE_TIME)));
+			this.setPwdStragegy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.PWD_STRAGEGY)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(DbInfoVOMeta.VERSION)));
 			this.setDbSize(DataParser.parse(BigDecimal.class, r.getValue(DbInfoVOMeta.DB_SIZE)));
 			this.setClearStrategy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.CLEAR_STRATEGY)));
@@ -692,6 +701,7 @@ public class DbInfoVO extends DbInfo {
 				this.setBackupStrategy( (String)r.getValue(DbInfoVOMeta.BACKUP_STRATEGY));
 				this.setFileIds( (String)r.getValue(DbInfoVOMeta.FILE_IDS));
 				this.setUpdateBy( (String)r.getValue(DbInfoVOMeta.UPDATE_BY));
+				this.setPwdStragegyNotes( (String)r.getValue(DbInfoVOMeta.PWD_STRAGEGY_NOTES));
 				this.setVoucherStr( (String)r.getValue(DbInfoVOMeta.VOUCHER_STR));
 				this.setId( (String)r.getValue(DbInfoVOMeta.ID));
 				this.setAdminUserList( (String)r.getValue(DbInfoVOMeta.ADMIN_USER_LIST));
@@ -705,6 +715,7 @@ public class DbInfoVO extends DbInfo {
 				this.setOtherUserList( (String)r.getValue(DbInfoVOMeta.OTHER_USER_LIST));
 				this.setHostId( (String)r.getValue(DbInfoVOMeta.HOST_ID));
 				this.setUpdateTime( (Date)r.getValue(DbInfoVOMeta.UPDATE_TIME));
+				this.setPwdStragegy( (String)r.getValue(DbInfoVOMeta.PWD_STRAGEGY));
 				this.setVersion( (Integer)r.getValue(DbInfoVOMeta.VERSION));
 				this.setDbSize( (BigDecimal)r.getValue(DbInfoVOMeta.DB_SIZE));
 				this.setClearStrategy( (String)r.getValue(DbInfoVOMeta.CLEAR_STRATEGY));

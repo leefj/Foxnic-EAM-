@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:39:01
+ * @since 2024-04-08 21:15:19
  */
 
 
@@ -96,6 +96,8 @@ function ListPage() {
 					,{ field: 'opsUserList', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('运维账户') , templet: function (d) { return templet('opsUserList',d.opsUserList,d);}  }
 					,{ field: 'otherUserList', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('其他账户') , templet: function (d) { return templet('otherUserList',d.otherUserList,d);}  }
 					,{ field: 'userUseInfo', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('使用情况') , templet: function (d) { return templet('userUseInfo',d.userUseInfo,d);}  }
+					,{ field: 'pwdStragegy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('密码策略'), templet: function (d) { return templet('pwdStragegy' ,fox.joinLabel(d.pwdStragegyDict,"label",',','','pwdStragegy'),d);}}
+					,{ field: 'pwdStragegyNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('改密备注') , templet: function (d) { return templet('pwdStragegyNotes',d.pwdStragegyNotes,d);}  }
 					,{ field: 'userInfo', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('用户备注') , templet: function (d) { return templet('userInfo',d.userInfo,d);}  }
 					,{ field: 'voucherStr', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('凭证信息') , templet: function (d) { return templet('voucherStr',d.voucherStr,d);}  }
 					,{ field: 'dbPort', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('服务端口') , templet: function (d) { return templet('dbPort',d.dbPort,d);}  }
@@ -183,6 +185,7 @@ function ListPage() {
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.backupStatus={ inputType:"radio_box", value: getSelectedValue("#backupStatus","value"), label:getSelectedValue("#backupStatus","nameStr") };
 		value.deployMode={ inputType:"select_box", value: getSelectedValue("#deployMode","value") ,fillBy:["deployModeDict"]  , label:getSelectedValue("#deployMode","nameStr") };
+		value.pwdStragegy={ inputType:"select_box", value: getSelectedValue("#pwdStragegy","value") ,fillBy:["pwdStragegyDict"]  , label:getSelectedValue("#pwdStragegy","nameStr") };
 		value.dataLoc={ inputType:"button",value: $("#dataLoc").val()};
 		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.createTime={ inputType:"date_input", begin: $("#createTime-begin").val(), end: $("#createTime-end").val() ,matchType:"auto" };
@@ -306,6 +309,35 @@ function ListPage() {
 					if(!data[i]) continue;
 					if(window.pageExt.list.selectBoxDataTransform) {
 						opts.push(window.pageExt.list.selectBoxDataTransform("deployMode",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 pwdStragegy 下拉字段
+		fox.renderSelectBox({
+			el: "pwdStragegy",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("pwdStragegy",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "label", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("pwdStragegy",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].label,value:data[i].code});
 					}

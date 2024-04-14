@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:39:02
+ * @since 2024-04-08 21:15:20
  */
 
 function FormPage() {
@@ -247,6 +247,40 @@ function FormPage() {
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("logMethod",data,checked);
 		});
+		//渲染 pwdStragegy 下拉字段
+		fox.renderSelectBox({
+			el: "pwdStragegy",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("密码策略",'','cmp:form'),
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("pwdStragegy",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "label", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "single".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("pwdStragegy",{data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 	    //渲染图片字段
 		foxup.render({
 			el:"fileIds",
@@ -436,6 +470,8 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#typeId",formData.type);
 			//设置  部署模式 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#deployMode",formData.deployModeDict);
+			//设置  密码策略 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#pwdStragegy",formData.pwdStragegyDict);
 			//设置  标签 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#labelIds",formData.labelList);
 			//设置  数据存放 设置下拉框勾选
@@ -508,6 +544,8 @@ function FormPage() {
 		data["typeId"]=fox.getSelectedValue("typeId",false);
 		//获取 部署模式 下拉框的值
 		data["deployMode"]=fox.getSelectedValue("deployMode",false);
+		//获取 密码策略 下拉框的值
+		data["pwdStragegy"]=fox.getSelectedValue("pwdStragegy",false);
 		//获取 标签 下拉框的值
 		data["labelIds"]=fox.getSelectedValue("labelIds",true);
 		//获取 数据存放 下拉框的值

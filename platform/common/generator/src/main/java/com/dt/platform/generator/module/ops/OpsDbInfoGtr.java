@@ -51,6 +51,7 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(String.class,"otherEnvInfoCount","otherEnvInfoCount","otherEnvInfoCount");
 
 
+        cfg.getPoClassFile().addListProperty(DictItem.class,"pwdStragegyDict","pwdStragegyDict","pwdStragegyDict");
 
         cfg.view().field(OpsTables.OPS_DB_INFO.NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).search().fuzzySearch();
@@ -64,12 +65,14 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                         OpsTables.OPS_DB_INFO.NAME,
                 },
                 new Object[]{
+                        OpsTables.OPS_DB_INFO.PWD_STRAGEGY,
                         OpsTables.OPS_DB_INFO.BACKUP_STATUS,
                         OpsTables.OPS_DB_INFO.DEPLOY_MODE,
                         OpsTables.OPS_DB_INFO.DATA_LOC,
 
                 },
                 new Object[]{
+
                         OpsTables.OPS_DB_INFO.NOTES,
                         OpsTables.OPS_DB_INFO.CREATE_TIME,
                 }
@@ -109,6 +112,12 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 .valueField(DictItemMeta.CODE).textField(DictItemMeta.LABEL)
                 .toolbar(false).paging(false)
                 .fillWith(DbInfoMeta.DEPLOY_MODE_DICT).muliti(false).defaultValue("single");
+
+        cfg.view().field(OpsTables.OPS_DB_INFO.PWD_STRAGEGY)
+                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_db_pwd_stragegy")
+                .valueField(DictItemMeta.CODE).textField(DictItemMeta.LABEL)
+                .toolbar(false).paging(false)
+                .fillWith(DbInfoMeta.PWD_STRAGEGY_DICT).muliti(false).defaultValue("single");
 
 
         cfg.view().field(DbInfoMeta.DB_TYPE_IDS).table().disable(true);
@@ -233,10 +242,13 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 new Object[]{
                         OpsTables.OPS_DB_INFO.ADMIN_USER_LIST,
                         OpsTables.OPS_DB_INFO.APP_USER_LIST,
+                        OpsTables.OPS_DB_INFO.PWD_STRAGEGY,
                 },
                 new Object[] {
                         OpsTables.OPS_DB_INFO.OPS_USER_LIST,
                         OpsTables.OPS_DB_INFO.OTHER_USER_LIST,
+                        OpsTables.OPS_DB_INFO.PWD_STRAGEGY_NOTES,
+
                 }
 
         );
@@ -244,6 +256,7 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 new Object[]{
                         OpsTables.OPS_DB_INFO.USER_USE_INFO,
                         OpsTables.OPS_DB_INFO.VOUCHER_STR,
+
                         OpsTables.OPS_DB_INFO.USER_INFO,
                 }
         );

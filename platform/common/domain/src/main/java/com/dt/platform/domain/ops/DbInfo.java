@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:39:00
- * @sign CEF8A3CEDE2F11EE6CAC540E8DEC1EE1
+ * @since 2024-04-08 21:15:17
+ * @sign 43F0E4EA0927EB2A90CB57732D608C72
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -81,7 +81,7 @@ public class DbInfo extends Entity {
 	/**
 	 * 部署模式：部署模式
 	*/
-	@ApiModelProperty(required = false,value="部署模式" , notes = "部署模式" , example = "single")
+	@ApiModelProperty(required = false,value="部署模式" , notes = "部署模式" , example = "backup_node")
 	private String deployMode;
 	
 	/**
@@ -125,6 +125,18 @@ public class DbInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="使用情况" , notes = "使用情况")
 	private String userUseInfo;
+	
+	/**
+	 * 密码策略：密码策略
+	*/
+	@ApiModelProperty(required = false,value="密码策略" , notes = "密码策略" , example = "not_need")
+	private String pwdStragegy;
+	
+	/**
+	 * 改密备注：改密备注
+	*/
+	@ApiModelProperty(required = false,value="改密备注" , notes = "改密备注")
+	private String pwdStragegyNotes;
 	
 	/**
 	 * 用户备注：用户备注
@@ -201,7 +213,7 @@ public class DbInfo extends Entity {
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1703290181000")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1712546776000")
 	private String selectedCode;
 	
 	/**
@@ -219,13 +231,13 @@ public class DbInfo extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-04-08 11:26:27")
 	private Date updateTime;
 	
 	/**
@@ -252,7 +264,7 @@ public class DbInfo extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
@@ -338,6 +350,12 @@ public class DbInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="otherEnvInfoCount" , notes = "otherEnvInfoCount")
 	private String otherEnvInfoCount;
+	
+	/**
+	 * pwdStragegyDict：pwdStragegyDict
+	*/
+	@ApiModelProperty(required = false,value="pwdStragegyDict" , notes = "pwdStragegyDict")
+	private List<DictItem> pwdStragegyDict;
 	
 	/**
 	 * 获得 主键<br>
@@ -602,6 +620,44 @@ public class DbInfo extends Entity {
 	*/
 	public DbInfo setUserUseInfo(String userUseInfo) {
 		this.userUseInfo=userUseInfo;
+		return this;
+	}
+	
+	/**
+	 * 获得 密码策略<br>
+	 * 密码策略
+	 * @return 密码策略
+	*/
+	public String getPwdStragegy() {
+		return pwdStragegy;
+	}
+	
+	/**
+	 * 设置 密码策略
+	 * @param pwdStragegy 密码策略
+	 * @return 当前对象
+	*/
+	public DbInfo setPwdStragegy(String pwdStragegy) {
+		this.pwdStragegy=pwdStragegy;
+		return this;
+	}
+	
+	/**
+	 * 获得 改密备注<br>
+	 * 改密备注
+	 * @return 改密备注
+	*/
+	public String getPwdStragegyNotes() {
+		return pwdStragegyNotes;
+	}
+	
+	/**
+	 * 设置 改密备注
+	 * @param pwdStragegyNotes 改密备注
+	 * @return 当前对象
+	*/
+	public DbInfo setPwdStragegyNotes(String pwdStragegyNotes) {
+		this.pwdStragegyNotes=pwdStragegyNotes;
 		return this;
 	}
 	
@@ -1399,6 +1455,36 @@ public class DbInfo extends Entity {
 		this.otherEnvInfoCount=otherEnvInfoCount;
 		return this;
 	}
+	
+	/**
+	 * 获得 pwdStragegyDict<br>
+	 * pwdStragegyDict
+	 * @return pwdStragegyDict
+	*/
+	public List<DictItem> getPwdStragegyDict() {
+		return pwdStragegyDict;
+	}
+	
+	/**
+	 * 设置 pwdStragegyDict
+	 * @param pwdStragegyDict pwdStragegyDict
+	 * @return 当前对象
+	*/
+	public DbInfo setPwdStragegyDict(List<DictItem> pwdStragegyDict) {
+		this.pwdStragegyDict=pwdStragegyDict;
+		return this;
+	}
+	
+	/**
+	 * 添加 pwdStragegyDict
+	 * @param entity pwdStragegyDict
+	 * @return 当前对象
+	*/
+	public DbInfo addPwdStragegyDict(DictItem... entity) {
+		if(this.pwdStragegyDict==null) pwdStragegyDict=new ArrayList<>();
+		this.pwdStragegyDict.addAll(Arrays.asList(entity));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1453,6 +1539,7 @@ public class DbInfo extends Entity {
 		inst.setBackupStrategy(this.getBackupStrategy());
 		inst.setFileIds(this.getFileIds());
 		inst.setUpdateBy(this.getUpdateBy());
+		inst.setPwdStragegyNotes(this.getPwdStragegyNotes());
 		inst.setVoucherStr(this.getVoucherStr());
 		inst.setId(this.getId());
 		inst.setAdminUserList(this.getAdminUserList());
@@ -1466,6 +1553,7 @@ public class DbInfo extends Entity {
 		inst.setOtherUserList(this.getOtherUserList());
 		inst.setHostId(this.getHostId());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setPwdStragegy(this.getPwdStragegy());
 		inst.setVersion(this.getVersion());
 		inst.setDbSize(this.getDbSize());
 		inst.setClearStrategy(this.getClearStrategy());
@@ -1485,6 +1573,7 @@ public class DbInfo extends Entity {
 			inst.setType(this.getType());
 			inst.setDbTypeIds(this.getDbTypeIds());
 			inst.setOtherEnvInfoCount(this.getOtherEnvInfoCount());
+			inst.setPwdStragegyDict(this.getPwdStragegyDict());
 			inst.setLabelList(this.getLabelList());
 			inst.setLabelIds(this.getLabelIds());
 			inst.setDataLocData(this.getDataLocData());
@@ -1562,6 +1651,7 @@ public class DbInfo extends Entity {
 			this.setBackupStrategy(DataParser.parse(String.class, map.get(DbInfoMeta.BACKUP_STRATEGY)));
 			this.setFileIds(DataParser.parse(String.class, map.get(DbInfoMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(DbInfoMeta.UPDATE_BY)));
+			this.setPwdStragegyNotes(DataParser.parse(String.class, map.get(DbInfoMeta.PWD_STRAGEGY_NOTES)));
 			this.setVoucherStr(DataParser.parse(String.class, map.get(DbInfoMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, map.get(DbInfoMeta.ID)));
 			this.setAdminUserList(DataParser.parse(String.class, map.get(DbInfoMeta.ADMIN_USER_LIST)));
@@ -1575,6 +1665,7 @@ public class DbInfo extends Entity {
 			this.setOtherUserList(DataParser.parse(String.class, map.get(DbInfoMeta.OTHER_USER_LIST)));
 			this.setHostId(DataParser.parse(String.class, map.get(DbInfoMeta.HOST_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbInfoMeta.UPDATE_TIME)));
+			this.setPwdStragegy(DataParser.parse(String.class, map.get(DbInfoMeta.PWD_STRAGEGY)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(DbInfoMeta.VERSION)));
 			this.setDbSize(DataParser.parse(BigDecimal.class, map.get(DbInfoMeta.DB_SIZE)));
 			this.setClearStrategy(DataParser.parse(String.class, map.get(DbInfoMeta.CLEAR_STRATEGY)));
@@ -1606,6 +1697,7 @@ public class DbInfo extends Entity {
 				this.setBackupStrategy( (String)map.get(DbInfoMeta.BACKUP_STRATEGY));
 				this.setFileIds( (String)map.get(DbInfoMeta.FILE_IDS));
 				this.setUpdateBy( (String)map.get(DbInfoMeta.UPDATE_BY));
+				this.setPwdStragegyNotes( (String)map.get(DbInfoMeta.PWD_STRAGEGY_NOTES));
 				this.setVoucherStr( (String)map.get(DbInfoMeta.VOUCHER_STR));
 				this.setId( (String)map.get(DbInfoMeta.ID));
 				this.setAdminUserList( (String)map.get(DbInfoMeta.ADMIN_USER_LIST));
@@ -1619,6 +1711,7 @@ public class DbInfo extends Entity {
 				this.setOtherUserList( (String)map.get(DbInfoMeta.OTHER_USER_LIST));
 				this.setHostId( (String)map.get(DbInfoMeta.HOST_ID));
 				this.setUpdateTime( (Date)map.get(DbInfoMeta.UPDATE_TIME));
+				this.setPwdStragegy( (String)map.get(DbInfoMeta.PWD_STRAGEGY));
 				this.setVersion( (Integer)map.get(DbInfoMeta.VERSION));
 				this.setDbSize( (BigDecimal)map.get(DbInfoMeta.DB_SIZE));
 				this.setClearStrategy( (String)map.get(DbInfoMeta.CLEAR_STRATEGY));
@@ -1663,6 +1756,7 @@ public class DbInfo extends Entity {
 			this.setBackupStrategy(DataParser.parse(String.class, r.getValue(DbInfoMeta.BACKUP_STRATEGY)));
 			this.setFileIds(DataParser.parse(String.class, r.getValue(DbInfoMeta.FILE_IDS)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DbInfoMeta.UPDATE_BY)));
+			this.setPwdStragegyNotes(DataParser.parse(String.class, r.getValue(DbInfoMeta.PWD_STRAGEGY_NOTES)));
 			this.setVoucherStr(DataParser.parse(String.class, r.getValue(DbInfoMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, r.getValue(DbInfoMeta.ID)));
 			this.setAdminUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.ADMIN_USER_LIST)));
@@ -1676,6 +1770,7 @@ public class DbInfo extends Entity {
 			this.setOtherUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.OTHER_USER_LIST)));
 			this.setHostId(DataParser.parse(String.class, r.getValue(DbInfoMeta.HOST_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbInfoMeta.UPDATE_TIME)));
+			this.setPwdStragegy(DataParser.parse(String.class, r.getValue(DbInfoMeta.PWD_STRAGEGY)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(DbInfoMeta.VERSION)));
 			this.setDbSize(DataParser.parse(BigDecimal.class, r.getValue(DbInfoMeta.DB_SIZE)));
 			this.setClearStrategy(DataParser.parse(String.class, r.getValue(DbInfoMeta.CLEAR_STRATEGY)));
@@ -1701,6 +1796,7 @@ public class DbInfo extends Entity {
 				this.setBackupStrategy( (String)r.getValue(DbInfoMeta.BACKUP_STRATEGY));
 				this.setFileIds( (String)r.getValue(DbInfoMeta.FILE_IDS));
 				this.setUpdateBy( (String)r.getValue(DbInfoMeta.UPDATE_BY));
+				this.setPwdStragegyNotes( (String)r.getValue(DbInfoMeta.PWD_STRAGEGY_NOTES));
 				this.setVoucherStr( (String)r.getValue(DbInfoMeta.VOUCHER_STR));
 				this.setId( (String)r.getValue(DbInfoMeta.ID));
 				this.setAdminUserList( (String)r.getValue(DbInfoMeta.ADMIN_USER_LIST));
@@ -1714,6 +1810,7 @@ public class DbInfo extends Entity {
 				this.setOtherUserList( (String)r.getValue(DbInfoMeta.OTHER_USER_LIST));
 				this.setHostId( (String)r.getValue(DbInfoMeta.HOST_ID));
 				this.setUpdateTime( (Date)r.getValue(DbInfoMeta.UPDATE_TIME));
+				this.setPwdStragegy( (String)r.getValue(DbInfoMeta.PWD_STRAGEGY));
 				this.setVersion( (Integer)r.getValue(DbInfoMeta.VERSION));
 				this.setDbSize( (BigDecimal)r.getValue(DbInfoMeta.DB_SIZE));
 				this.setClearStrategy( (String)r.getValue(DbInfoMeta.CLEAR_STRATEGY));

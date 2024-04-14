@@ -18,8 +18,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:39:00
- * @sign CEF8A3CEDE2F11EE6CAC540E8DEC1EE1
+ * @since 2024-04-08 21:15:17
+ * @sign 43F0E4EA0927EB2A90CB57732D608C72
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -164,6 +164,26 @@ public class DbInfoMeta {
 	 * 使用情况 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> USER_USE_INFO_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,USER_USE_INFO, java.lang.String.class, "使用情况", "使用情况", java.lang.String.class, null);
+	
+	/**
+	 * 密码策略 , 类型: java.lang.String
+	*/
+	public static final String PWD_STRAGEGY="pwdStragegy";
+	
+	/**
+	 * 密码策略 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> PWD_STRAGEGY_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,PWD_STRAGEGY, java.lang.String.class, "密码策略", "密码策略", java.lang.String.class, null);
+	
+	/**
+	 * 改密备注 , 类型: java.lang.String
+	*/
+	public static final String PWD_STRAGEGY_NOTES="pwdStragegyNotes";
+	
+	/**
+	 * 改密备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> PWD_STRAGEGY_NOTES_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,PWD_STRAGEGY_NOTES, java.lang.String.class, "改密备注", "改密备注", java.lang.String.class, null);
 	
 	/**
 	 * 用户备注 , 类型: java.lang.String
@@ -516,9 +536,19 @@ public class DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> OTHER_ENV_INFO_COUNT_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,OTHER_ENV_INFO_COUNT, java.lang.String.class, "otherEnvInfoCount", "otherEnvInfoCount", java.lang.String.class, null);
 	
 	/**
+	 * pwdStragegyDict , 集合类型: LIST , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String PWD_STRAGEGY_DICT="pwdStragegyDict";
+	
+	/**
+	 * pwdStragegyDict , 集合类型: LIST , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,org.github.foxnic.web.domain.system.DictItem> PWD_STRAGEGY_DICT_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,PWD_STRAGEGY_DICT, java.util.List.class, "pwdStragegyDict", "pwdStragegyDict", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , UID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS , DATA_LOC_DATA , DATA_LOC_IDS , CIPHERTEXT_BOX_DATA , DB_TYPE_LIST , DB_TYPE_IDS , OTHER_ENV_INFO_LIST , OTHER_ENV_INFO_COUNT };
+	public static final String[] $PROPS={ ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , PWD_STRAGEGY , PWD_STRAGEGY_NOTES , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , UID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS , DATA_LOC_DATA , DATA_LOC_IDS , CIPHERTEXT_BOX_DATA , DB_TYPE_LIST , DB_TYPE_IDS , OTHER_ENV_INFO_LIST , OTHER_ENV_INFO_COUNT , PWD_STRAGEGY_DICT };
 	
 	/**
 	 * 代理类
@@ -679,6 +709,28 @@ public class DbInfoMeta {
 		public DbInfo setUserUseInfo(String userUseInfo) {
 			super.change(USER_USE_INFO,super.getUserUseInfo(),userUseInfo);
 			super.setUserUseInfo(userUseInfo);
+			return this;
+		}
+		
+		/**
+		 * 设置 密码策略
+		 * @param pwdStragegy 密码策略
+		 * @return 当前对象
+		*/
+		public DbInfo setPwdStragegy(String pwdStragegy) {
+			super.change(PWD_STRAGEGY,super.getPwdStragegy(),pwdStragegy);
+			super.setPwdStragegy(pwdStragegy);
+			return this;
+		}
+		
+		/**
+		 * 设置 改密备注
+		 * @param pwdStragegyNotes 改密备注
+		 * @return 当前对象
+		*/
+		public DbInfo setPwdStragegyNotes(String pwdStragegyNotes) {
+			super.change(PWD_STRAGEGY_NOTES,super.getPwdStragegyNotes(),pwdStragegyNotes);
+			super.setPwdStragegyNotes(pwdStragegyNotes);
 			return this;
 		}
 		
@@ -1066,6 +1118,17 @@ public class DbInfoMeta {
 			super.setOtherEnvInfoCount(otherEnvInfoCount);
 			return this;
 		}
+		
+		/**
+		 * 设置 pwdStragegyDict
+		 * @param pwdStragegyDict pwdStragegyDict
+		 * @return 当前对象
+		*/
+		public DbInfo setPwdStragegyDict(List<DictItem> pwdStragegyDict) {
+			super.change(PWD_STRAGEGY_DICT,super.getPwdStragegyDict(),pwdStragegyDict);
+			super.setPwdStragegyDict(pwdStragegyDict);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1091,6 +1154,7 @@ public class DbInfoMeta {
 			inst.setBackupStrategy(this.getBackupStrategy());
 			inst.setFileIds(this.getFileIds());
 			inst.setUpdateBy(this.getUpdateBy());
+			inst.setPwdStragegyNotes(this.getPwdStragegyNotes());
 			inst.setVoucherStr(this.getVoucherStr());
 			inst.setId(this.getId());
 			inst.setAdminUserList(this.getAdminUserList());
@@ -1104,6 +1168,7 @@ public class DbInfoMeta {
 			inst.setOtherUserList(this.getOtherUserList());
 			inst.setHostId(this.getHostId());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setPwdStragegy(this.getPwdStragegy());
 			inst.setVersion(this.getVersion());
 			inst.setDbSize(this.getDbSize());
 			inst.setClearStrategy(this.getClearStrategy());
@@ -1123,6 +1188,7 @@ public class DbInfoMeta {
 				inst.setType(this.getType());
 				inst.setDbTypeIds(this.getDbTypeIds());
 				inst.setOtherEnvInfoCount(this.getOtherEnvInfoCount());
+				inst.setPwdStragegyDict(this.getPwdStragegyDict());
 				inst.setLabelList(this.getLabelList());
 				inst.setLabelIds(this.getLabelIds());
 				inst.setDataLocData(this.getDataLocData());

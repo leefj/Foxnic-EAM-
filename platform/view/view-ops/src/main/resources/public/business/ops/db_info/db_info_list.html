@@ -2,7 +2,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-01-17 14:39:01
+ * @since 2024-04-08 21:15:18
  */
  -->
  <!DOCTYPE html>
@@ -49,6 +49,7 @@
                     <!-- 运维账户 , opsUserList ,typeName=text_input, isHideInSearch=true -->
                     <!-- 其他账户 , otherUserList ,typeName=text_input, isHideInSearch=true -->
                     <!-- 使用情况 , userUseInfo ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 改密备注 , pwdStragegyNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 用户备注 , userInfo ,typeName=text_area, isHideInSearch=true -->
                     <!-- 凭证信息 , voucherStr ,typeName=text_area, isHideInSearch=true -->
                     <!-- 服务端口 , dbPort ,typeName=text_input, isHideInSearch=true -->
@@ -91,9 +92,14 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
+                    <!-- 密码策略 , pwdStragegy ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('密码策略')}" class="search-label pwdStragegy-label">密码策略</span><span class="search-colon">:</span></div>
+                        <div id="pwdStragegy" th:data="${'/service-system/sys-dict-item/query-list?dictCode=ops_db_pwd_stragegy'}" style="width:180px" extraParam="{}"></div>
+                    </div>
                     <!-- 备份状态 , backupStatus ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('备份状态')}" class="search-label backupStatus-label">备份状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('备份状态')}" class="search-label backupStatus-label">备份状态</span><span class="search-colon">:</span></div>
 
 
                         <div id="backupStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbBackupStatusEnum')}" style="width:180px"></div>

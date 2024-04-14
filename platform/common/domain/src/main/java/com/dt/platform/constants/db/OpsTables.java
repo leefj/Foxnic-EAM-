@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-03-31 21:04:53
+ * @since 2024-04-08 21:14:14
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -3696,6 +3696,11 @@ public class OpsTables {
 		public static final DBField OPER_ID = new DBField(DBDataType.STRING , "oper_id","operId","操作人","操作人",false,false,true);
 		
 		/**
+		 * 操作内容
+		*/
+		public static final DBField OPER_CONTENT = new DBField(DBDataType.STRING , "oper_content","operContent","操作内容","操作内容",false,false,true);
+		
+		/**
 		 * 操作结果
 		*/
 		public static final DBField RESULT = new DBField(DBDataType.STRING , "result","result","操作结果","操作结果",false,false,true);
@@ -3740,7 +3745,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_APPLY_EXECUTE() {
-			this.init($NAME,"数据库操作执行" , ID , SOURCE , OWNER_ID , TITLE , OPER_ID , RESULT , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , CREATE_BY , CREATE_TIME , VERSION);
+			this.init($NAME,"数据库操作执行" , ID , SOURCE , OWNER_ID , TITLE , OPER_ID , OPER_CONTENT , RESULT , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , CREATE_BY , CREATE_TIME , VERSION);
 		}
 		public static final OPS_DB_APPLY_EXECUTE $TABLE=new OPS_DB_APPLY_EXECUTE();
 	}
@@ -5066,6 +5071,16 @@ public class OpsTables {
 		public static final DBField USER_USE_INFO = new DBField(DBDataType.STRING , "user_use_info","userUseInfo","使用情况","使用情况",false,false,true);
 		
 		/**
+		 * 密码策略
+		*/
+		public static final DBField PWD_STRAGEGY = new DBField(DBDataType.STRING , "pwd_stragegy","pwdStragegy","密码策略","密码策略",false,false,true);
+		
+		/**
+		 * 改密备注
+		*/
+		public static final DBField PWD_STRAGEGY_NOTES = new DBField(DBDataType.STRING , "pwd_stragegy_notes","pwdStragegyNotes","改密备注","改密备注",false,false,true);
+		
+		/**
 		 * 用户备注
 		*/
 		public static final DBField USER_INFO = new DBField(DBDataType.STRING , "user_info","userInfo","用户备注","用户备注",false,false,true);
@@ -5170,7 +5185,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_INFO() {
-			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , UID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , PWD_STRAGEGY , PWD_STRAGEGY_NOTES , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , FILE_IDS , NOTES , UID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_INFO $TABLE=new OPS_DB_INFO();
 	}

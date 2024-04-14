@@ -102,6 +102,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     return 0;
                 }
             }
+            if(r.status&&r.status=="not_online"){
+                value="<span style=\"color: blue; font-weight: bold\" >"+value+"</span>";
+            }
+            if(r.status&&r.status=="offline"){
+                value="<span style=\"color: red; font-weight: bold\" >"+value+"</span>";
+            }
+
+            if(r.status&&r.status=="stop"){
+                value="<span style=\"color: gray; font-weight: bold\" >"+value+"</span>";
+            }
+
+
             if(value==null) return "";
             return value;
         },

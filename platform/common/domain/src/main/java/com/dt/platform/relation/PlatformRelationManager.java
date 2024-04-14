@@ -22,6 +22,7 @@ public class PlatformRelationManager extends RelationManager {
 				new OaRelationManager(),
 				new KnRelationManager(),
 				new EamRelationManager(),
+				new IotRelationManager(),
 				new OpsRelationManager(),
 				new CommonRelationManager(),
 				new DatacenterRelationManager(),
