@@ -26,6 +26,13 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
+
+        cfg.getPoClassFile().addSimpleProperty(WarehousePosition.class,"warehousePosition","warehousePosition","warehousePosition");
+        cfg.getPoClassFile().addSimpleProperty(Warehouse.class,"warehouseByPosition","warehouseByPosition","warehouseByPosition");
+        cfg.getPoClassFile().addSimpleProperty(Manufacturer.class,"goodsByManufacturer","goodsByManufacturer","goodsByManufacturer");
+        cfg.getPoClassFile().addSimpleProperty(Brand.class,"goodsByBrand","goodsByBrand","goodsByBrand");
+
+
         cfg.getPoClassFile().addSimpleProperty(Catalog.class,"category","资产分类","资产分类");
         cfg.getPoClassFile().addSimpleProperty(Manufacturer.class,"manufacturer","生产厂商","生产厂商");
         cfg.getPoClassFile().addSimpleProperty(Brand.class,"brand","品牌","品牌");
@@ -59,11 +66,15 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(GoodsStock.class,"subGoodsStockList","subGoodsStockList","subGoodsStockList");
         cfg.getPoClassFile().addListProperty(String.class,"subGoodsStockIds","subGoodsStockIds","subGoodsStockIds");
 
+
+
         //物品父级档案
         cfg.getPoClassFile().addListProperty(GoodsStock.class,"goodsParentGoodsStockList","goodsParentGoodsStockList","goodsParentGoodsStockList");
 
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.UNIT_PRICE).form().validate().required().form().numberInput().scale(2);
+
+
 
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.PID).table().disable(true);
@@ -155,6 +166,7 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
                         EAMTables.EAM_GOODS_STOCK.WAREHOUSE_ID,
                 },
                 new Object[]{
+                        EAMTables.EAM_GOODS_STOCK.POSITION_ID,
                         EAMTables.EAM_GOODS_STOCK.STORAGE_DATE,
                 }
         );
@@ -237,7 +249,7 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
                 .basic().label("分类")
                 .form().validate().required()
                 .form().selectBox().queryApi(CategoryServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
-                .valueField(CatalogMeta.ID).textField(CatalogMeta.NAME).fillWith(GoodsMeta.CATEGORY).muliti(false);
+                .valueField(CatalogMeta.ID).textField(CatalogMeta.NAME).fillWith(GoodsStockMeta.CATEGORY).muliti(false);
 
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.BRAND_ID)
@@ -255,6 +267,14 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.GOODS_STATUS).basic().label("状态")
                 .form().validate().required().form().selectBox().enumType(StatusEnableEnum.class);
+
+
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.POSITION_ID)
+                .form().validate().required().form().selectBox().queryApi(WarehousePositionServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(true).toolbar(false)
+                .valueField(WarehousePositionMeta.ID).
+                textField(WarehousePositionMeta.NAME).
+                fillWith(GoodsStockMeta.WAREHOUSE_POSITION).muliti(false);
 
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.STATUS).form()
@@ -337,6 +357,7 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_GOODS_STOCK.NOTES,
+                        EAMTables.EAM_GOODS_STOCK.POSITION_ID,
                         EAMTables.EAM_GOODS_STOCK.PICTURE_ID
 
                 }

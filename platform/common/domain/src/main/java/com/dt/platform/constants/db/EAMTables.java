@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-03-25 11:57:57
+ * @since 2024-04-17 20:07:37
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -10258,6 +10258,11 @@ public class EAMTables {
 		public static final DBField WAREHOUSE_IN_ID = new DBField(DBDataType.STRING , "warehouse_in_id","warehouseInId","调入仓库","调入仓库",false,false,true);
 		
 		/**
+		 * 调入库位
+		*/
+		public static final DBField POSITION_IN_ID = new DBField(DBDataType.STRING , "position_in_id","positionInId","调入库位","调入库位",false,false,true);
+		
+		/**
 		 * 转移说明
 		*/
 		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","转移说明","转移说明",false,false,true);
@@ -10377,7 +10382,7 @@ public class EAMTables {
 		public static final DBField APPROVAL_OPINION = new DBField(DBDataType.STRING , "approval_opinion","approvalOpinion","审批意见","审批意见",false,false,true);
 		
 		public EAM_ASSET_STOCK_GOODS_TRANFER() {
-			this.init($NAME,"库存调拨" , ID , BUSINESS_CODE , PROC_ID , STATUS , OWNER_TYPE , NAME , WAREHOUSE_OUT_ID , WAREHOUSE_IN_ID , CONTENT , ORIGINATOR_ID , BUSINESS_DATE , ATTACH_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION);
+			this.init($NAME,"库存调拨" , ID , BUSINESS_CODE , PROC_ID , STATUS , OWNER_TYPE , NAME , WAREHOUSE_OUT_ID , WAREHOUSE_IN_ID , POSITION_IN_ID , CONTENT , ORIGINATOR_ID , BUSINESS_DATE , ATTACH_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION);
 		}
 		public static final EAM_ASSET_STOCK_GOODS_TRANFER $TABLE=new EAM_ASSET_STOCK_GOODS_TRANFER();
 	}
@@ -14668,6 +14673,16 @@ public class EAMTables {
 		public static final DBField WAREHOUSE_ID = new DBField(DBDataType.STRING , "warehouse_id","warehouseId","仓库","仓库",false,false,true);
 		
 		/**
+		 * 库位
+		*/
+		public static final DBField POSITION_ID = new DBField(DBDataType.STRING , "position_id","positionId","库位","库位",false,false,true);
+		
+		/**
+		 * 位置详请
+		*/
+		public static final DBField POSITION_DETAIL = new DBField(DBDataType.STRING , "position_detail","positionDetail","位置详请","位置详请",false,false,true);
+		
+		/**
 		 * 来源
 		*/
 		public static final DBField SOURCE_ID = new DBField(DBDataType.STRING , "source_id","sourceId","来源","来源",false,false,true);
@@ -14721,16 +14736,6 @@ public class EAMTables {
 		 * 父级
 		*/
 		public static final DBField PID = new DBField(DBDataType.STRING , "pid","pid","父级","父级",false,false,true);
-		
-		/**
-		 * 位置
-		*/
-		public static final DBField POSITION_ID = new DBField(DBDataType.STRING , "position_id","positionId","位置","位置",false,false,true);
-		
-		/**
-		 * 位置详请
-		*/
-		public static final DBField POSITION_DETAIL = new DBField(DBDataType.STRING , "position_detail","positionDetail","位置详请","位置详请",false,false,true);
 		
 		/**
 		 * 选择
@@ -14787,7 +14792,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_GOODS_STOCK() {
-			this.init($NAME,"库存物品" , ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , MAINTENANCE_RECOMMENDATION , INSPECTION_RECOMMENDATION , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SN , PID , POSITION_ID , POSITION_DETAIL , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"库存物品" , ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , MAINTENANCE_RECOMMENDATION , INSPECTION_RECOMMENDATION , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , POSITION_ID , POSITION_DETAIL , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SN , PID , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_GOODS_STOCK $TABLE=new EAM_GOODS_STOCK();
 	}
@@ -20572,9 +20577,9 @@ public class EAMTables {
 		public static final DBField REPAIR_STATUS = new DBField(DBDataType.STRING , "repair_status","repairStatus","维修状态","维修状态",false,false,true);
 		
 		/**
-		 * 故障类型
+		 * 故障内容
 		*/
-		public static final DBField CATEGORY_TPL_ID = new DBField(DBDataType.STRING , "category_tpl_id","categoryTplId","故障类型","故障类型",false,false,true);
+		public static final DBField CATEGORY_TPL_ID = new DBField(DBDataType.STRING , "category_tpl_id","categoryTplId","故障内容","故障内容",false,false,true);
 		
 		/**
 		 * 维修类型
@@ -22930,6 +22935,86 @@ public class EAMTables {
 			this.init($NAME,"仓库" , ID , CODE , STATUS , WAREHOUSE_NAME , WAREHOUSE_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_WAREHOUSE $TABLE=new EAM_WAREHOUSE();
+	}
+	
+	/**
+	 * 仓库库位
+	*/
+	public static class EAM_WAREHOUSE_POSITION extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_warehouse_position";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 仓库
+		*/
+		public static final DBField WAREHOUSE_ID = new DBField(DBDataType.STRING , "warehouse_id","warehouseId","仓库","仓库",false,false,true);
+		
+		/**
+		 * 编码
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
+		
+		/**
+		 * 库位
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","库位","库位",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public EAM_WAREHOUSE_POSITION() {
+			this.init($NAME,"仓库库位" , ID , WAREHOUSE_ID , CODE , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final EAM_WAREHOUSE_POSITION $TABLE=new EAM_WAREHOUSE_POSITION();
 	}
 	
 	/**

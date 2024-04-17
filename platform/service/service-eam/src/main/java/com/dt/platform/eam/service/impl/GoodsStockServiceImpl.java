@@ -2,6 +2,8 @@ package com.dt.platform.eam.service.impl;
 
 
 import com.alibaba.csp.sentinel.util.StringUtil;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetStockGoodsOwnerEnum;
 import com.dt.platform.constants.enums.eam.AssetStockGoodsTypeEnum;
 import com.dt.platform.domain.eam.*;
@@ -17,6 +19,7 @@ import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.PagedList;
+import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -85,6 +88,14 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 	 */
 	@Override
 	public Result insert(GoodsStock goodsStock,boolean throwsException) {
+		if(!StringUtil.isBlank(goodsStock.getPositionId())){
+			Rcd rs=dao.queryRecord("select warehouse_id from eam_warehouse_position where id=?",goodsStock.getPositionId());
+			if(rs==null){
+				return ErrorDesc.failureMessage("仓库位置不存在");
+			}
+			goodsStock.setWarehouseId(rs.getString("warehouse_id"));
+		}
+
 		Result r=super.insert(goodsStock,throwsException);
 		if(r.isSuccess()){
 			String ownerCode=goodsStock.getOwnerCode();
@@ -306,6 +317,8 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 	@Override
 	public PagedList<GoodsStock> queryPagedListBySelect(GoodsStockVO sample, String assetSearchContent) {
 
+
+
 		ConditionExpr queryCondition=new ConditionExpr();
 		String ownerId=sample.getOwnerId();
 		if(StringUtil.isBlank(ownerId)){
@@ -316,9 +329,67 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 			if("goods".equals(sample.getOwnerCode())){
 				queryCondition.and("category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%/"+sample.getCategoryId()+"/%' or id=?))",sample.getCategoryId());
 			}else{
-				queryCondition.and("goods_id in (select id from eam_goods_stock where category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%"+sample.getCategoryId()+"%' or id=?)))",sample.getCategoryId());
+				queryCondition.and("goods_id in (select id from eam_goods_stock where owner_code='goods' and category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%"+sample.getCategoryId()+"%' or id=?)))",sample.getCategoryId());
 			}
 			sample.setCategoryId(null);
+		}
+
+		if("real_stock".equals(sample.getOwnerCode())||"real_part".equals(sample.getOwnerCode())){
+			boolean match=false;
+			queryCondition.and("stock_cur_number<>0");
+			String goodsSql="select id from eam_goods_stock where owner_code='goods'";
+			JSONObject searchObj=JSONObject.parseObject(sample.getSearchValue());
+			if(searchObj.getJSONObject("warehouseId")!=null){
+				//仓库
+				JSONArray warehouseArr=searchObj.getJSONObject("warehouseId").getJSONArray("value");
+				if(warehouseArr.size()>0){
+					queryCondition.and("warehouse_id='"+warehouseArr.getString(0)+"'");
+				}
+			}
+			//厂商
+			if(searchObj.getJSONObject("manufacturerId")!=null){
+				JSONArray manufacturerArr=searchObj.getJSONObject("manufacturerId").getJSONArray("value");
+				if(manufacturerArr.size()>0){
+					goodsSql=goodsSql+" and manufacturer_id='"+manufacturerArr.getString(0)+"'";
+					match=true;
+				}
+			}
+			//品牌
+			if(searchObj.getJSONObject("brandId")!=null){
+				JSONArray brandArr=searchObj.getJSONObject("brandId").getJSONArray("value");
+				if(brandArr.size()>0){
+					goodsSql=goodsSql+" and brand_id='"+brandArr.getString(0)+"'";
+					match=true;
+				}
+			}
+			//名称
+			if(searchObj.getJSONObject("name")!=null){
+				String name=searchObj.getJSONObject("name").getString("value");
+				if(StringUtil.isNotBlank(name)){
+					goodsSql=goodsSql+" and name like '%"+name+"%'";
+					match=true;
+				}
+			}
+			//型号
+			if(searchObj.getJSONObject("model")!=null){
+				String model=searchObj.getJSONObject("model").getString("value");
+				if(StringUtil.isNotBlank(model)){
+					goodsSql=goodsSql+" and model like '%"+model+"%'";
+					match=true;
+				}
+			}
+			//编号
+			if(searchObj.getJSONObject("code")!=null){
+				String code=searchObj.getJSONObject("code").getString("value");
+				if(StringUtil.isNotBlank(code)){
+					goodsSql=goodsSql+" and code like '%"+code+"%'";
+					match=true;
+				}
+			}
+			if (match){
+				queryCondition.and("goods_id in ("+goodsSql+")");
+			}
+			sample.setSearchValue("{}");
 		}
 
 		PagedList<GoodsStock> list= queryPagedList(sample,queryCondition,sample.getPageSize(),sample.getPageIndex());
@@ -447,7 +518,19 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 	 * */
 	@Override
 	public Result update(GoodsStock goodsStock , SaveMode mode,boolean throwsException) {
+
+		if(!StringUtil.isBlank(goodsStock.getPositionId())){
+			Rcd rs=dao.queryRecord("select warehouse_id from eam_warehouse_position where id=?",goodsStock.getPositionId());
+			if(rs==null){
+				return ErrorDesc.failureMessage("仓库位置不存在");
+			}
+			goodsStock.setWarehouseId(rs.getString("warehouse_id"));
+		}
+
+
 		Result r=super.update(goodsStock , mode , throwsException);
+
+
 		if(r.isSuccess()){
 			//物品档案的处理逻辑
 			String ownerCode=goodsStock.getOwnerCode();

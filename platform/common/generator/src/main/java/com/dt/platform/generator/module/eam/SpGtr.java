@@ -28,12 +28,9 @@ public class SpGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_DEVICE_SP.ID).table().hidden(true);
 
 
-        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goods","goods","goods")
-        ;
+        cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goods","goods","goods");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsFillCode","goodsFillCode","goodsFillCode");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsFillModel","goodsFillModel","goodsFillModel");
-
-
 
         cfg.getPoClassFile().addSimpleProperty(DeviceSpType.class,"deviceSpType","deviceSpType","deviceSpType");
 

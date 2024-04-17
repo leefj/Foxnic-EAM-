@@ -27,7 +27,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品VO类型
  * <p>库存物品 , 数据表 eam_goods_stock 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 16:56:51
+ * @since 2024-04-17 20:37:37
  * @sign 87176F150B412C151E8EC61D5D9C451A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -418,6 +418,7 @@ public class GoodsStockVO extends GoodsStock {
 		inst.setModel(this.getModel());
 		inst.setId(this.getId());
 		inst.setUnitPrice(this.getUnitPrice());
+		inst.setMaintenanceRecommendation(this.getMaintenanceRecommendation());
 		inst.setVersion(this.getVersion());
 		inst.setBarCode(this.getBarCode());
 		inst.setUnit(this.getUnit());
@@ -428,6 +429,7 @@ public class GoodsStockVO extends GoodsStock {
 		inst.setAssetCategoryId(this.getAssetCategoryId());
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setInspectionRecommendation(this.getInspectionRecommendation());
 		inst.setStatus(this.getStatus());
 		inst.setCode(this.getCode());
 		inst.setOwnerCode(this.getOwnerCode());
@@ -473,6 +475,7 @@ public class GoodsStockVO extends GoodsStock {
 			inst.setParentGoodsStockIds(this.getParentGoodsStockIds());
 			inst.setManufacturer(this.getManufacturer());
 			inst.setGoodsBarCode(this.getGoodsBarCode());
+			inst.setWarehouseByPosition(this.getWarehouseByPosition());
 			inst.setSubGoodsStockIds(this.getSubGoodsStockIds());
 			inst.setSubGoodsStockList(this.getSubGoodsStockList());
 			inst.setDirtyFields(this.getDirtyFields());
@@ -489,13 +492,16 @@ public class GoodsStockVO extends GoodsStock {
 			inst.setGoodsParentGoodsStockList(this.getGoodsParentGoodsStockList());
 			inst.setRelatedGoodsStockCount(this.getRelatedGoodsStockCount());
 			inst.setGoodsStockMin(this.getGoodsStockMin());
-			inst.setWarehouse(this.getWarehouse());
 			inst.setRealGoods(this.getRealGoods());
+			inst.setWarehouse(this.getWarehouse());
+			inst.setWarehousePosition(this.getWarehousePosition());
+			inst.setGoodsByBrand(this.getGoodsByBrand());
 			inst.setUseOrganization(this.getUseOrganization());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setGoodsCategoryName(this.getGoodsCategoryName());
 			inst.setGoodsStockNotes(this.getGoodsStockNotes());
+			inst.setGoodsByManufacturer(this.getGoodsByManufacturer());
 			inst.setRelatedAssetList(this.getRelatedAssetList());
 			inst.setIds(this.getIds());
 			inst.setGoodsCode(this.getGoodsCode());
@@ -572,6 +578,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setModel(DataParser.parse(String.class, map.get(GoodsStockVOMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, map.get(GoodsStockVOMeta.ID)));
 			this.setUnitPrice(DataParser.parse(BigDecimal.class, map.get(GoodsStockVOMeta.UNIT_PRICE)));
+			this.setMaintenanceRecommendation(DataParser.parse(String.class, map.get(GoodsStockVOMeta.MAINTENANCE_RECOMMENDATION)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(GoodsStockVOMeta.VERSION)));
 			this.setBarCode(DataParser.parse(String.class, map.get(GoodsStockVOMeta.BAR_CODE)));
 			this.setUnit(DataParser.parse(String.class, map.get(GoodsStockVOMeta.UNIT)));
@@ -582,6 +589,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setAssetCategoryId(DataParser.parse(String.class, map.get(GoodsStockVOMeta.ASSET_CATEGORY_ID)));
 			this.setName(DataParser.parse(String.class, map.get(GoodsStockVOMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(GoodsStockVOMeta.DELETE_BY)));
+			this.setInspectionRecommendation(DataParser.parse(String.class, map.get(GoodsStockVOMeta.INSPECTION_RECOMMENDATION)));
 			this.setStatus(DataParser.parse(String.class, map.get(GoodsStockVOMeta.STATUS)));
 			this.setCode(DataParser.parse(String.class, map.get(GoodsStockVOMeta.CODE)));
 			this.setOwnerCode(DataParser.parse(String.class, map.get(GoodsStockVOMeta.OWNER_CODE)));
@@ -625,6 +633,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setGoodsModel(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_MODEL)));
 			this.setManufacturer(DataParser.parse(Manufacturer.class, map.get(GoodsStockVOMeta.MANUFACTURER)));
 			this.setGoodsBarCode(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_BAR_CODE)));
+			this.setWarehouseByPosition(DataParser.parse(Warehouse.class, map.get(GoodsStockVOMeta.WAREHOUSE_BY_POSITION)));
 			this.setSortField(DataParser.parse(String.class, map.get(GoodsStockVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(GoodsStockVOMeta.DATA_ORIGIN)));
 			this.setGoodsUnit(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_UNIT)));
@@ -636,13 +645,16 @@ public class GoodsStockVO extends GoodsStock {
 			this.setRequestAction(DataParser.parse(String.class, map.get(GoodsStockVOMeta.REQUEST_ACTION)));
 			this.setRelatedGoodsStockCount(DataParser.parse(Integer.class, map.get(GoodsStockVOMeta.RELATED_GOODS_STOCK_COUNT)));
 			this.setGoodsStockMin(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_STOCK_MIN)));
-			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(GoodsStockVOMeta.WAREHOUSE)));
 			this.setRealGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockVOMeta.REAL_GOODS)));
+			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(GoodsStockVOMeta.WAREHOUSE)));
+			this.setWarehousePosition(DataParser.parse(WarehousePosition.class, map.get(GoodsStockVOMeta.WAREHOUSE_POSITION)));
+			this.setGoodsByBrand(DataParser.parse(Brand.class, map.get(GoodsStockVOMeta.GOODS_BY_BRAND)));
 			this.setUseOrganization(DataParser.parse(Organization.class, map.get(GoodsStockVOMeta.USE_ORGANIZATION)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(GoodsStockVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(GoodsStockVOMeta.SORT_TYPE)));
 			this.setGoodsCategoryName(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_CATEGORY_NAME)));
 			this.setGoodsStockNotes(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_STOCK_NOTES)));
+			this.setGoodsByManufacturer(DataParser.parse(Manufacturer.class, map.get(GoodsStockVOMeta.GOODS_BY_MANUFACTURER)));
 			this.setGoodsCode(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_CODE)));
 			this.setCategory(DataParser.parse(Catalog.class, map.get(GoodsStockVOMeta.CATEGORY)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(GoodsStockVOMeta.SEARCH_VALUE)));
@@ -661,6 +673,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setModel( (String)map.get(GoodsStockVOMeta.MODEL));
 				this.setId( (String)map.get(GoodsStockVOMeta.ID));
 				this.setUnitPrice( (BigDecimal)map.get(GoodsStockVOMeta.UNIT_PRICE));
+				this.setMaintenanceRecommendation( (String)map.get(GoodsStockVOMeta.MAINTENANCE_RECOMMENDATION));
 				this.setVersion( (Integer)map.get(GoodsStockVOMeta.VERSION));
 				this.setBarCode( (String)map.get(GoodsStockVOMeta.BAR_CODE));
 				this.setUnit( (String)map.get(GoodsStockVOMeta.UNIT));
@@ -671,6 +684,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setAssetCategoryId( (String)map.get(GoodsStockVOMeta.ASSET_CATEGORY_ID));
 				this.setName( (String)map.get(GoodsStockVOMeta.NAME));
 				this.setDeleteBy( (String)map.get(GoodsStockVOMeta.DELETE_BY));
+				this.setInspectionRecommendation( (String)map.get(GoodsStockVOMeta.INSPECTION_RECOMMENDATION));
 				this.setStatus( (String)map.get(GoodsStockVOMeta.STATUS));
 				this.setCode( (String)map.get(GoodsStockVOMeta.CODE));
 				this.setOwnerCode( (String)map.get(GoodsStockVOMeta.OWNER_CODE));
@@ -714,6 +728,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setGoodsModel( (String)map.get(GoodsStockVOMeta.GOODS_MODEL));
 				this.setManufacturer( (Manufacturer)map.get(GoodsStockVOMeta.MANUFACTURER));
 				this.setGoodsBarCode( (String)map.get(GoodsStockVOMeta.GOODS_BAR_CODE));
+				this.setWarehouseByPosition( (Warehouse)map.get(GoodsStockVOMeta.WAREHOUSE_BY_POSITION));
 				this.setSortField( (String)map.get(GoodsStockVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(GoodsStockVOMeta.DATA_ORIGIN));
 				this.setGoodsUnit( (String)map.get(GoodsStockVOMeta.GOODS_UNIT));
@@ -725,13 +740,16 @@ public class GoodsStockVO extends GoodsStock {
 				this.setRequestAction( (String)map.get(GoodsStockVOMeta.REQUEST_ACTION));
 				this.setRelatedGoodsStockCount( (Integer)map.get(GoodsStockVOMeta.RELATED_GOODS_STOCK_COUNT));
 				this.setGoodsStockMin( (String)map.get(GoodsStockVOMeta.GOODS_STOCK_MIN));
-				this.setWarehouse( (Warehouse)map.get(GoodsStockVOMeta.WAREHOUSE));
 				this.setRealGoods( (GoodsStock)map.get(GoodsStockVOMeta.REAL_GOODS));
+				this.setWarehouse( (Warehouse)map.get(GoodsStockVOMeta.WAREHOUSE));
+				this.setWarehousePosition( (WarehousePosition)map.get(GoodsStockVOMeta.WAREHOUSE_POSITION));
+				this.setGoodsByBrand( (Brand)map.get(GoodsStockVOMeta.GOODS_BY_BRAND));
 				this.setUseOrganization( (Organization)map.get(GoodsStockVOMeta.USE_ORGANIZATION));
 				this.setPageIndex( (Integer)map.get(GoodsStockVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(GoodsStockVOMeta.SORT_TYPE));
 				this.setGoodsCategoryName( (String)map.get(GoodsStockVOMeta.GOODS_CATEGORY_NAME));
 				this.setGoodsStockNotes( (String)map.get(GoodsStockVOMeta.GOODS_STOCK_NOTES));
+				this.setGoodsByManufacturer( (Manufacturer)map.get(GoodsStockVOMeta.GOODS_BY_MANUFACTURER));
 				this.setGoodsCode( (String)map.get(GoodsStockVOMeta.GOODS_CODE));
 				this.setCategory( (Catalog)map.get(GoodsStockVOMeta.CATEGORY));
 				this.setSearchValue( (String)map.get(GoodsStockVOMeta.SEARCH_VALUE));
@@ -763,6 +781,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setModel(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.ID)));
 			this.setUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockVOMeta.UNIT_PRICE)));
+			this.setMaintenanceRecommendation(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.MAINTENANCE_RECOMMENDATION)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(GoodsStockVOMeta.VERSION)));
 			this.setBarCode(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.BAR_CODE)));
 			this.setUnit(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.UNIT)));
@@ -773,6 +792,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setAssetCategoryId(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.ASSET_CATEGORY_ID)));
 			this.setName(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.DELETE_BY)));
+			this.setInspectionRecommendation(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.INSPECTION_RECOMMENDATION)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.STATUS)));
 			this.setCode(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.CODE)));
 			this.setOwnerCode(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.OWNER_CODE)));
@@ -818,6 +838,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setModel( (String)r.getValue(GoodsStockVOMeta.MODEL));
 				this.setId( (String)r.getValue(GoodsStockVOMeta.ID));
 				this.setUnitPrice( (BigDecimal)r.getValue(GoodsStockVOMeta.UNIT_PRICE));
+				this.setMaintenanceRecommendation( (String)r.getValue(GoodsStockVOMeta.MAINTENANCE_RECOMMENDATION));
 				this.setVersion( (Integer)r.getValue(GoodsStockVOMeta.VERSION));
 				this.setBarCode( (String)r.getValue(GoodsStockVOMeta.BAR_CODE));
 				this.setUnit( (String)r.getValue(GoodsStockVOMeta.UNIT));
@@ -828,6 +849,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setAssetCategoryId( (String)r.getValue(GoodsStockVOMeta.ASSET_CATEGORY_ID));
 				this.setName( (String)r.getValue(GoodsStockVOMeta.NAME));
 				this.setDeleteBy( (String)r.getValue(GoodsStockVOMeta.DELETE_BY));
+				this.setInspectionRecommendation( (String)r.getValue(GoodsStockVOMeta.INSPECTION_RECOMMENDATION));
 				this.setStatus( (String)r.getValue(GoodsStockVOMeta.STATUS));
 				this.setCode( (String)r.getValue(GoodsStockVOMeta.CODE));
 				this.setOwnerCode( (String)r.getValue(GoodsStockVOMeta.OWNER_CODE));

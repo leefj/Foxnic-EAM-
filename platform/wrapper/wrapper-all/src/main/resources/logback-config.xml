@@ -3,9 +3,6 @@
 
 
 
-
-
-
 	<!-- 日志存放路径 -->
 	<property name="log.path" value="./app_logs" />
 	<!-- 日志输出格式 -->

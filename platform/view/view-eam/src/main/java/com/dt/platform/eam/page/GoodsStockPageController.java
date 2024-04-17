@@ -128,8 +128,10 @@ public class GoodsStockPageController extends ViewController {
 	 * 库存物品 表单页面
 	 */
 	@RequestMapping("/goods_stock_selected_form.html")
-	public String selectedForm(Model model,HttpServletRequest request , String id,String ownerType) {
+	public String selectedForm(Model model,HttpServletRequest request , String id,String ownerType,String warehouseId) {
+		model.addAttribute("warehouseId",warehouseId);
 		model.addAttribute("ownerType",ownerType);
+		model.addAttribute("postionQueryApi","/service-eam/eam-warehouse-position/query-paged-list?warehouseId="+warehouseId);
 		return prefix+"/goods_stock_selected_form";
 	}
 	//goods 物品档案
@@ -264,7 +266,6 @@ public class GoodsStockPageController extends ViewController {
 	@RequestMapping("/goods_stock_select_list.html")
 	public String selectList(Model model,HttpServletRequest request,String ownerTmpId,String operType,String pageType,String ownerType,String selectedCode) {
 
-
 		PageHelper p=new PageHelper(request, SessionUser.getCurrent());
 		String tableId="dt_"+operType;
 		model.addAttribute("layuiTableWidthConfig",p.getTableColumnWidthConfig(tableId));
@@ -280,7 +281,6 @@ public class GoodsStockPageController extends ViewController {
 		//默认选择资产
 		model.addAttribute("categoryId", AssetDataServiceProxy.api().queryPcmIdByCode(AssetPcmCodeEnum.ASSET.code()));
 
-
 		//model.addAttribute("multiple",multiple);
 		return prefix + "/goods_stock_select_list";
 	}
@@ -289,13 +289,14 @@ public class GoodsStockPageController extends ViewController {
 	 * 库存物品 功能主页面
 	 */
 	@RequestMapping("/goods_stock_selected_list.html")
-	public String selectedList(Model model,HttpServletRequest request,String ownerTmpId,String operType,String pageType,String ownerType,String selectedCode) {
+	public String selectedList(Model model,HttpServletRequest request,String wareHouseId,String ownerTmpId,String operType,String pageType,String ownerType,String selectedCode) {
 
 		model.addAttribute("ownerCode",getOwnerCodeByOperType(operType,ownerType,PAGE_ACTION_SELECTED));
 		model.addAttribute("ownerTmpId",ownerTmpId);
 		model.addAttribute("operType",operType);
 		model.addAttribute("ownerType",ownerType);
 		model.addAttribute("pageType",pageType);
+		model.addAttribute("warehouseId",wareHouseId);
 		model.addAttribute("selectedCode",selectedCode);
 		return prefix+"/goods_stock_selected_list";
 	}

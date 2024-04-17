@@ -44,9 +44,29 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('仓库')}" class="search-label warehouseId-label">仓库</span><span class="search-colon">:</span></div>
                         <div id="warehouseId" th:data="${'/service-eam/eam-warehouse/query-paged-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
+
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
-                        <input id="notes" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('库位')}" class="search-label warehouseId-label">仓库</span><span class="search-colon">:</span></div>
+                        <div id="positionId" th:data="${'/service-eam/eam-warehouse-position/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('物品编码')}" class="search-label code-label">物品编码</span><span class="search-colon">:</span></div>
+                        <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
+                    <!-- 物品名称 , name ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('物品名称')}" class="search-label name-label">物品名称</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
+                </div>
+
+                <div class="layui-form toolbar search-inputs">
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('规格型号')}" class="search-label model-label">规格型号</span><span class="search-colon">:</span></div>
+                        <input id="model" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
                 </div>
             </div>
@@ -58,7 +78,7 @@
             </div>
         </div>
 
-        <div style="margin-top: 42px ">
+        <div style="margin-top: 84px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 

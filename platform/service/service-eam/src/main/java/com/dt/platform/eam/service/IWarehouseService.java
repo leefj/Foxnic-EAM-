@@ -1,5 +1,6 @@
 package com.dt.platform.eam.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 仓库 服务接口
+ * 仓库服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 07:11:03
+ * @since 2024-04-17 18:36:11
 */
 
 public interface IWarehouseService extends  ISimpleIdService<Warehouse,String> {
@@ -55,7 +56,7 @@ public interface IWarehouseService extends  ISimpleIdService<Warehouse,String> {
 
 		
 	/**
-	 * 按主键删除 仓库
+	 * 按主键删除仓库
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IWarehouseService extends  ISimpleIdService<Warehouse,String> {
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 仓库
+	 * 按主键删除仓库
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IWarehouseService extends  ISimpleIdService<Warehouse,String> {
 
 		
 	/**
-	 * 按主键更新字段 仓库
+	 * 按主键更新仓库
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IWarehouseService extends  ISimpleIdService<Warehouse,String> {
 
 		
 	/**
-	 * 按主键获取 仓库
+	 * 按主键获取仓库
 	 *
 	 * @param id 主键
 	 * @return Warehouse 数据对象

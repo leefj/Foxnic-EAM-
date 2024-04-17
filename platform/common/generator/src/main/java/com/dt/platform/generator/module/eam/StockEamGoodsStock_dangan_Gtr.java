@@ -26,6 +26,11 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
+        cfg.getPoClassFile().addSimpleProperty(WarehousePosition.class,"warehousePosition","warehousePosition","warehousePosition");
+        cfg.getPoClassFile().addSimpleProperty(Warehouse.class,"warehouseByPosition","warehouseByPosition","warehouseByPosition");
+        cfg.getPoClassFile().addSimpleProperty(Manufacturer.class,"goodsByManufacturer","goodsByManufacturer","goodsByManufacturer");
+        cfg.getPoClassFile().addSimpleProperty(Brand.class,"goodsByBrand","goodsByBrand","goodsByBrand");
+
         cfg.getPoClassFile().addSimpleProperty(Catalog.class,"category","资产分类","资产分类");
         cfg.getPoClassFile().addSimpleProperty(Manufacturer.class,"manufacturer","生产厂商","生产厂商");
         cfg.getPoClassFile().addSimpleProperty(Brand.class,"brand","品牌","品牌");
@@ -142,6 +147,7 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
                         EAMTables.EAM_GOODS_STOCK.BAR_CODE,
                 },
                 new Object[]{
+                        EAMTables.EAM_GOODS_STOCK.POSITION_ID,
                         EAMTables.EAM_GOODS_STOCK.STORAGE_DATE,
                 }
         );
@@ -174,6 +180,12 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
                 .form().selectBox().queryApi(GoodsStockServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(GoodsStockMeta.ID).textField( GoodsStockMeta.CODE).fillWith(GoodsStockMeta.GOODS).muliti(false);
 
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.POSITION_ID)
+                .form().validate().required().form().selectBox().queryApi(WarehousePositionServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(true).toolbar(false)
+                .valueField(WarehousePositionMeta.ID).
+                textField(WarehousePositionMeta.NAME).
+                fillWith(GoodsStockMeta.WAREHOUSE_POSITION).muliti(false);
 
         cfg.view().field(GoodsStockMeta.GOODS_BAR_CODE)
                 .basic().label("物品条码")
@@ -325,6 +337,7 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
 
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        EAMTables.EAM_GOODS_STOCK.POSITION_ID,
                         EAMTables.EAM_GOODS_STOCK.NOTES,
                         EAMTables.EAM_GOODS_STOCK.PICTURE_ID
 

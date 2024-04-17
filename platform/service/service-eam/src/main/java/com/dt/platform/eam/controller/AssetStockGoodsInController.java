@@ -107,7 +107,8 @@ public class AssetStockGoodsInController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetStockGoodsInServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -184,7 +185,8 @@ public class AssetStockGoodsInController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetStockGoodsInVOMeta.PAGE_INDEX, AssetStockGoodsInVOMeta.PAGE_SIZE, AssetStockGoodsInVOMeta.SEARCH_FIELD, AssetStockGoodsInVOMeta.FUZZY_FIELD, AssetStockGoodsInVOMeta.SEARCH_VALUE, AssetStockGoodsInVOMeta.DIRTY_FIELDS, AssetStockGoodsInVOMeta.SORT_FIELD, AssetStockGoodsInVOMeta.SORT_TYPE, AssetStockGoodsInVOMeta.IDS })
     @SentinelResource(value = AssetStockGoodsInServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -230,7 +232,8 @@ public class AssetStockGoodsInController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStockGoodsInVOMeta.PAGE_INDEX, AssetStockGoodsInVOMeta.PAGE_SIZE, AssetStockGoodsInVOMeta.SEARCH_FIELD, AssetStockGoodsInVOMeta.FUZZY_FIELD, AssetStockGoodsInVOMeta.SEARCH_VALUE, AssetStockGoodsInVOMeta.DIRTY_FIELDS, AssetStockGoodsInVOMeta.SORT_FIELD, AssetStockGoodsInVOMeta.SORT_TYPE, AssetStockGoodsInVOMeta.IDS })
     @SentinelResource(value = AssetStockGoodsInServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -322,7 +325,8 @@ public class AssetStockGoodsInController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStockGoodsInVOMeta.PAGE_INDEX, AssetStockGoodsInVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetStockGoodsInServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -369,7 +373,8 @@ public class AssetStockGoodsInController extends SuperController {
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.LATEST_APPROVER_NAME, value = "最后审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsInVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetStockGoodsInServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

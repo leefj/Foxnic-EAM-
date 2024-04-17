@@ -1,23 +1,33 @@
 /**
  * 库存调拨 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-24 15:20:52
+ * @since 2024-04-17 20:30:52
  */
 
 function FormPage() {
 
-	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup;
+	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
+	
+	// 接口地址
 	const moduleURL="/service-eam/eam-asset-stock-goods-tranfer";
+	const queryURL=moduleURL+"/get-by-id";
+	const insertURL=moduleURL+"/insert";
+	const updateURL=moduleURL+"/update";
+
+	var rawFormData=null;
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
 	var disableModify=false;
 	var dataBeforeEdit=null;
+	const bpmIntegrateMode="none";
+	var isInProcess=QueryString.get("isInProcess");
+
 	/**
       * 入口函数，初始化
       */
 	this.init=function(layui) {
-     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload;
+     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
 		action=admin.getTempData('eam-asset-stock-goods-tranfer-form-data-form-action');
@@ -27,6 +37,10 @@ function FormPage() {
 		}
 		if(action=="view") {
 			disableModify=true;
+		}
+
+		if(bpmIntegrateMode=="front" && isInProcess==1) {
+			$(".model-form-footer").hide();
 		}
 
 		if(window.pageExt.form.beforeInit) {
@@ -42,25 +56,44 @@ function FormPage() {
 		//绑定提交事件
 		bindButtonEvent();
 
+
+
 	}
+
+
+
+
 
 	/**
 	 * 自动调节窗口高度
 	 * */
 	var adjustPopupTask=-1;
-	function adjustPopup() {
+	function adjustPopup(arg) {
 		if(window.pageExt.form.beforeAdjustPopup) {
-			var doNext=window.pageExt.form.beforeAdjustPopup();
+			var doNext=window.pageExt.form.beforeAdjustPopup(arg);
 			if(!doNext) return;
 		}
+
+
 
 		clearTimeout(adjustPopupTask);
 		var scroll=$(".form-container").attr("scroll");
 		if(scroll=='yes') return;
+		var prevBodyHeight=-1;
 		adjustPopupTask=setTimeout(function () {
 			var body=$("body");
 			var bodyHeight=body.height();
 			var footerHeight=$(".model-form-footer").height();
+			if(bpmIntegrateMode=="front" && isInProcess==1) {
+				var updateFormIframeHeight=admin.getVar("updateFormIframeHeight");
+				if(bodyHeight>0 && bodyHeight!=prevBodyHeight) {
+					updateFormIframeHeight && updateFormIframeHeight(bodyHeight);
+				} else {
+					setTimeout(function() {adjustPopup(arg);},1000);
+				}
+				prevBodyHeight = bodyHeight;
+				return;
+			}
 			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'eam-asset-stock-goods-tranfer-form-data-win');
 			if(area==null) return;
 			admin.putTempData('eam-asset-stock-goods-tranfer-form-area', area);
@@ -87,6 +120,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "status",
 			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("办理状态",'','cmp:form'),
 			filterable: false,
 			on: function(data){
 				setTimeout(function () {
@@ -104,7 +138,11 @@ function FormPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
 				}
 				return opts;
 			}
@@ -113,6 +151,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "warehouseOutId",
 			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("调出仓库",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -135,7 +174,11 @@ function FormPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].warehouseName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("warehouseOutId",{data:data[i],name:data[i].warehouseName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].warehouseName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
 				}
 				return opts;
 			}
@@ -144,9 +187,12 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "warehouseInId",
 			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("调入仓库",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("warehouseInId",data.arr,data.change,data.isAdd);
@@ -166,13 +212,56 @@ function FormPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].warehouseName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("warehouseInId",{data:data[i],name:data[i].warehouseName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].warehouseName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 positionInId 下拉字段
+		fox.renderSelectBox({
+			el: "positionInId",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("调入库位",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("positionInId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "0".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("positionInId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
 				}
 				return opts;
 			}
 		});
 		laydate.render({
 			elem: '#businessDate',
+			type:"date",
 			format:"yyyy-MM-dd",
 			value:$('#businessDate').val()?$('#businessDate').val():new Date(),
 			trigger:"click",
@@ -209,12 +298,37 @@ function FormPage() {
 	}
 
 	/**
+	 * 根据id填充表单
+	 * */
+	function fillFormDataByIds(ids) {
+		if(!ids) return;
+		if(ids.length==0) return;
+		var id=ids[0];
+		if(!id) return;
+		admin.post(queryURL, { id : id }, function (r) {
+			if (r.success) {
+				fillFormData(r.data)
+			} else {
+				fox.showMessage(r);
+			}
+		});
+	}
+
+	/**
+	 * 在流程提交前处理表单数据
+	 * */
+	function processFormData4Bpm (processInstanceId,param,cb) {
+		window.pageExt.form.processFormData4Bpm && window.pageExt.form.processFormData4Bpm(processInstanceId,param,cb);
+	}
+
+	/**
       * 填充表单数据
       */
 	function fillFormData(formData) {
 		if(!formData) {
 			formData = admin.getTempData('eam-asset-stock-goods-tranfer-form-data');
 		}
+		rawFormData=formData;
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
 
@@ -244,10 +358,10 @@ function FormPage() {
 			}
 
 
-			//设置  调出仓库 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#warehouseOutId",formData.warehouseOut);
 			//设置  调入仓库 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#warehouseInId",formData.warehouseIn);
+			//设置  调入库位 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#positionInId",formData.warehousePosition);
 
 			//处理fillBy
 
@@ -263,14 +377,16 @@ function FormPage() {
 		//渐显效果
 		fm.css("opacity","0.0");
         fm.css("display","");
-        setTimeout(function (){
-            fm.animate({
-                opacity:'1.0'
-            },100);
-        },1);
+		setTimeout(function (){
+			fm.animate({
+				opacity:'1.0'
+			},100,null,function (){
+				fm.css("opacity","1.0");});
+		},1);
+
 
         //禁用编辑
-		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+		if(action=="view" || (action=="edit" && disableModify) || (action=="create" && disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")
@@ -293,15 +409,25 @@ function FormPage() {
 
 	}
 
+	/**
+	 * 获得从服务器请求的原始表单数据
+	 * */
+	function getRawFormData() {
+		if(!rawFormData) {
+			rawFormData = admin.getTempData('eam-asset-stock-goods-tranfer-form-data');
+		}
+		return rawFormData;
+	}
+
 	function getFormData() {
 		var data=form.val("data-form");
 
 
 
-		//获取 调出仓库 下拉框的值
-		data["warehouseOutId"]=fox.getSelectedValue("warehouseOutId",false);
 		//获取 调入仓库 下拉框的值
 		data["warehouseInId"]=fox.getSelectedValue("warehouseInId",false);
+		//获取 调入库位 下拉框的值
+		data["positionInId"]=fox.getSelectedValue("positionInId",false);
 
 		return data;
 	}
@@ -310,18 +436,40 @@ function FormPage() {
 		return fox.formVerify("data-form",data,VALIDATE_CONFIG)
 	}
 
-	function saveForm(param) {
+	function saveForm(param,callback) {
+
+		if(window.pageExt.form.beforeSubmit) {
+			var doNext=window.pageExt.form.beforeSubmit(param);
+			if(!doNext) return ;
+		}
+
 		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
-		var api=moduleURL+"/"+(param.id?"update":"insert");
+		var action=param.id?"edit":"create";
+		var api=param.id?updateURL:insertURL;
 		admin.post(api, param, function (data) {
 			if (data.success) {
 				var doNext=true;
+				var pkValues=data.data;
+				if(pkValues) {
+					for (var key in pkValues) {
+						$("#"+key).val(pkValues[key]);
+					}
+				}
 				if(window.pageExt.form.betweenFormSubmitAndClose) {
 					doNext=window.pageExt.form.betweenFormSubmitAndClose(param,data);
 				}
+
+				if(callback) {
+					doNext = callback(data,action);
+				}
+
 				if(doNext) {
 					admin.finishPopupCenterById('eam-asset-stock-goods-tranfer-form-data-win');
 				}
+
+				// 调整状态为编辑
+				action="edit";
+
 			} else {
 				fox.showMessage(data);
 			}
@@ -329,25 +477,22 @@ function FormPage() {
 		}, {delayLoading:1000,elms:[$("#submit-button")]});
 	}
 
+	function verifyAndSaveForm(data) {
+		if(!data) data={};
+		//debugger;
+		data.field = getFormData();
+		//校验表单
+		if(!verifyForm(data.field)) return;
+		saveForm(data.field);
+		return false;
+	}
+
 	/**
       * 保存数据，表单提交事件
       */
     function bindButtonEvent() {
 
-	    form.on('submit(submit-button)', function (data) {
-	    	//debugger;
-			data.field = getFormData();
-
-			if(window.pageExt.form.beforeSubmit) {
-				var doNext=window.pageExt.form.beforeSubmit(data.field);
-				if(!doNext) return ;
-			}
-			//校验表单
-			if(!verifyForm(data.field)) return;
-
-			saveForm(data.field);
-	        return false;
-	    });
+	    form.on('submit(submit-button)', verifyAndSaveForm);
 
 		// 请选择人员对话框
 		$("#originatorId-button").click(function(){
@@ -357,6 +502,7 @@ function FormPage() {
 				inputEl:$("#originatorId"),
 				buttonEl:$(this),
 				single:true,
+				autoWidth:false,
 				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
 				root: "",
 				targetType:"emp",
@@ -367,7 +513,7 @@ function FormPage() {
 		});
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-asset-stock-goods-tranfer-form-data-win'); });
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-asset-stock-goods-tranfer-form-data-win',this); });
 
     }
 
@@ -375,7 +521,12 @@ function FormPage() {
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,
+		getRawFormData:getRawFormData,
+		verifyAndSaveForm:verifyAndSaveForm,
+		renderFormFields:renderFormFields,
 		fillFormData: fillFormData,
+		fillFormDataByIds:fillFormDataByIds,
+		processFormData4Bpm:processFormData4Bpm,
 		adjustPopup: adjustPopup,
 		action: action,
 		setAction: function (act) {
@@ -387,7 +538,7 @@ function FormPage() {
 
 }
 
-layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate'],function() {
+layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate','dropdown'],function() {
 	var task=setInterval(function (){
 		if(!window["pageExt"]) return;
 		clearInterval(task);

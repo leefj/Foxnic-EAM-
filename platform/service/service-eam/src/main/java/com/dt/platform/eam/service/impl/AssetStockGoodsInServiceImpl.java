@@ -158,7 +158,6 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 		Result r=super.insert(assetStockGoodsIn,throwsException);
 		if(r.isSuccess()){
 			for(int i=0;i<list.size();i++){
-
 				list.get(i).setBatchCode(assetStockGoodsIn.getBatchCode());
 				list.get(i).setOwnCompanyId(assetStockGoodsIn.getOwnCompanyId());
 				list.get(i).setSupplierName(assetStockGoodsIn.getSupplierName());
@@ -229,12 +228,16 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 	 * */
 	private Result operateResult(String id,String result,String status,String message) {
 		if(AssetHandleConfirmOperationEnum.SUCCESS.code().equals(result)){
+			Result compteR= computeStockData(id);
+			if(!compteR.isSuccess()){
+				return compteR;
+			}
+			dao.execute("update eam_goods_stock a,eam_warehouse_position b set a.status=?,a.warehouse_id=b.warehouse_id where a.position_id=b.id and a.owner_id=? ",status,id);
+
+			//后续需要加盘点
 			AssetStockGoodsIn bill=new AssetStockGoodsIn();
 			bill.setId(id);
 			bill.setStatus(status);
-			this.dao.execute("update eam_goods_stock set status=? where owner_id=?",status,bill.getId());
-			//后续需要加盘点
-			computeStockData(id);
 			return super.update(bill,SaveMode.NOT_NULL_FIELDS,false);
 		}else if(AssetHandleConfirmOperationEnum.FAILED.code().equals(result)){
 			return ErrorDesc.failureMessage(message);
@@ -263,18 +266,23 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 
 		String cUserId=SessionUser.getCurrent().getActivatedEmployeeId();
 		String cUserName=SessionUser.getCurrent().getUser().getActivatedEmployeeName();
+
+		if(dao.queryRecord("select count(1) cnt from eam_goods_stock where owner_id=? and (position_id is null or position_id='')",bill.getId()).getInteger("cnt")>0){
+			return ErrorDesc.failureMessage("请先完善物品库位信息");
+		}
+		dao.fill(goods).with(GoodsStockMeta.WAREHOUSE_BY_POSITION).execute();
 		if(goods!=null&&goods.size()>0){
 			for(int i=0;i<goods.size();i++){
 				String goodsId=goods.get(i).getGoodsId();
 				String stockInNumber=goods.get(i).getStockInNumber()+"";
-				String warehouseId=goods.get(i).getWarehouseId();
+				String position=goods.get(i).getPositionId();
 				String notes=goods.get(i).getNotes();
 				String sn=goods.get(i).getSn();
-				if(StringUtil.isBlank(goodsId)||StringUtil.isBlank(warehouseId)){
+				if(StringUtil.isBlank(goodsId)||StringUtil.isBlank(position)){
 					Logger.info("goodsId or warehouseId is empty");
 				}else{
-					String sql="select id,goods_id from eam_goods_stock where deleted=0 and owner_code=? and tenant_id=? and goods_id=? and warehouse_id=?";
-					Rcd rs=this.dao.queryRecord(sql,ownerCode,tenantId,goodsId,warehouseId);
+					String sql="select id,goods_id from eam_goods_stock where deleted=0 and owner_code=? and tenant_id=? and goods_id=? and position_id=?";
+					Rcd rs=this.dao.queryRecord(sql,ownerCode,tenantId,goodsId,position);
 					String gId="";
 					if(rs==null){
 						//新增,真实物品
@@ -285,7 +293,8 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 						ins.set("owner_type",bill.getOwnerType());
 						ins.set("stock_cur_number",stockInNumber);
 						ins.set("tenant_id",tenantId);
-						ins.set("warehouse_id",warehouseId);
+						ins.set("warehouse_id",goods.get(i).getWarehouseId());
+						ins.set("position_id",position);
 						ins.set("goods_id",goodsId);
 						ins.set("category_id",goods.get(i).getCategoryId());
 						ins.set("notes",notes);

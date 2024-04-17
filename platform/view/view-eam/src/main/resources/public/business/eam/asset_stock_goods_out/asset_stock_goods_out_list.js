@@ -1,7 +1,7 @@
 /**
  * 库存出库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-17 20:55:09
+ * @since 2024-04-17 20:50:16
  */
 
 
@@ -90,12 +90,10 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('单据名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'stockType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('单据类型'), templet: function (d) { return templet('stockType' ,fox.joinLabel(d.stockTypeDict,"label",',','','stockType'),d);}}
 					,{ field: 'useUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('领用人员') , templet: function (d) { return templet('useUserId',fox.getProperty(d,["useUser","name"],0,'','useUserId'),d);} }
-					,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName",',','','warehouseId'),d);}}
 					,{ field: 'positionDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('出库位置') , templet: function (d) { return templet('positionDetail',d.positionDetail,d);}  }
 					,{ field: 'collectionDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('出库日期') ,templet: function (d) { return templet('collectionDate',fox.dateFormat(d.collectionDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'originatorId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
-					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -170,8 +168,6 @@ function ListPage() {
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.stockType={ inputType:"select_box", value: getSelectedValue("#stockType","value") ,fillBy:["stockTypeDict"]  , label:getSelectedValue("#stockType","nameStr") };
-		value.warehouseId={ inputType:"select_box", value: getSelectedValue("#warehouseId","value") ,fillBy:["warehouse"]  , label:getSelectedValue("#warehouseId","nameStr") };
-		value.positionDetail={ inputType:"button",value: $("#positionDetail").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.businessDate={ inputType:"date_input", begin: $("#businessDate-begin").val(), end: $("#businessDate-end").val() ,matchType:"auto" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
@@ -271,37 +267,6 @@ function ListPage() {
 						opts.push(window.pageExt.list.selectBoxDataTransform("stockType",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].label,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 warehouseId 下拉字段
-		fox.renderSelectBox({
-			el: "warehouseId",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("warehouseId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			searchField: "warehouseName", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("warehouseId",{data:data[i],name:data[i].warehouseName,value:data[i].id},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].warehouseName,value:data[i].id});
 					}
 				}
 				return opts;

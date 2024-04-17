@@ -6,6 +6,7 @@ import java.util.Date;
 import com.dt.platform.domain.eam.GoodsStock;
 import java.util.List;
 import com.dt.platform.domain.eam.Warehouse;
+import com.dt.platform.domain.eam.WarehousePosition;
 import org.github.foxnic.web.domain.hrm.Employee;
 import javax.persistence.Transient;
 
@@ -13,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 15:05:03
- * @sign 225FC70A9901D6AB32A4183DD4EB22F1
+ * @since 2024-04-17 20:30:49
+ * @sign AD83EEEC1C397E69A9D294695E3F3A66
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -99,6 +100,16 @@ public class AssetStockGoodsTranferMeta {
 	 * 调入仓库 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsTranfer,java.lang.String> WAREHOUSE_IN_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsTranfer.class ,WAREHOUSE_IN_ID, java.lang.String.class, "调入仓库", "调入仓库", java.lang.String.class, null);
+	
+	/**
+	 * 调入库位 , 类型: java.lang.String
+	*/
+	public static final String POSITION_IN_ID="positionInId";
+	
+	/**
+	 * 调入库位 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsTranfer,java.lang.String> POSITION_IN_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsTranfer.class ,POSITION_IN_ID, java.lang.String.class, "调入库位", "调入库位", java.lang.String.class, null);
 	
 	/**
 	 * 转移说明 , 类型: java.lang.String
@@ -381,6 +392,16 @@ public class AssetStockGoodsTranferMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsTranfer,com.dt.platform.domain.eam.Warehouse> WAREHOUSE_IN_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsTranfer.class ,WAREHOUSE_IN, com.dt.platform.domain.eam.Warehouse.class, "调入仓库", "调入仓库", com.dt.platform.domain.eam.Warehouse.class, null);
 	
 	/**
+	 * 调入仓位 , 类型: com.dt.platform.domain.eam.WarehousePosition
+	*/
+	public static final String WAREHOUSE_POSITION="warehousePosition";
+	
+	/**
+	 * 调入仓位 , 类型: com.dt.platform.domain.eam.WarehousePosition
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsTranfer,com.dt.platform.domain.eam.WarehousePosition> WAREHOUSE_POSITION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsTranfer.class ,WAREHOUSE_POSITION, com.dt.platform.domain.eam.WarehousePosition.class, "调入仓位", "调入仓位", com.dt.platform.domain.eam.WarehousePosition.class, null);
+	
+	/**
 	 * 制单人 , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final String ORIGINATOR="originator";
@@ -393,7 +414,7 @@ public class AssetStockGoodsTranferMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , STATUS , OWNER_TYPE , NAME , WAREHOUSE_OUT_ID , WAREHOUSE_IN_ID , CONTENT , ORIGINATOR_ID , BUSINESS_DATE , ATTACH_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , GOODS_LIST , GOODS_IDS , WAREHOUSE_OUT , WAREHOUSE_IN , ORIGINATOR };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , STATUS , OWNER_TYPE , NAME , WAREHOUSE_OUT_ID , WAREHOUSE_IN_ID , POSITION_IN_ID , CONTENT , ORIGINATOR_ID , BUSINESS_DATE , ATTACH_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , GOODS_LIST , GOODS_IDS , WAREHOUSE_OUT , WAREHOUSE_IN , WAREHOUSE_POSITION , ORIGINATOR };
 	
 	/**
 	 * 代理类
@@ -488,6 +509,17 @@ public class AssetStockGoodsTranferMeta {
 		public AssetStockGoodsTranfer setWarehouseInId(String warehouseInId) {
 			super.change(WAREHOUSE_IN_ID,super.getWarehouseInId(),warehouseInId);
 			super.setWarehouseInId(warehouseInId);
+			return this;
+		}
+		
+		/**
+		 * 设置 调入库位
+		 * @param positionInId 调入库位
+		 * @return 当前对象
+		*/
+		public AssetStockGoodsTranfer setPositionInId(String positionInId) {
+			super.change(POSITION_IN_ID,super.getPositionInId(),positionInId);
+			super.setPositionInId(positionInId);
 			return this;
 		}
 		
@@ -800,6 +832,17 @@ public class AssetStockGoodsTranferMeta {
 		}
 		
 		/**
+		 * 设置 调入仓位
+		 * @param warehousePosition 调入仓位
+		 * @return 当前对象
+		*/
+		public AssetStockGoodsTranfer setWarehousePosition(WarehousePosition warehousePosition) {
+			super.change(WAREHOUSE_POSITION,super.getWarehousePosition(),warehousePosition);
+			super.setWarehousePosition(warehousePosition);
+			return this;
+		}
+		
+		/**
 		 * 设置 制单人
 		 * @param originator 制单人
 		 * @return 当前对象
@@ -847,6 +890,7 @@ public class AssetStockGoodsTranferMeta {
 			inst.setWarehouseInId(this.getWarehouseInId());
 			inst.setLatestApproverId(this.getLatestApproverId());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setPositionInId(this.getPositionInId());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
@@ -862,6 +906,7 @@ public class AssetStockGoodsTranferMeta {
 				inst.setWarehouseIn(this.getWarehouseIn());
 				inst.setGoodsList(this.getGoodsList());
 				inst.setOriginator(this.getOriginator());
+				inst.setWarehousePosition(this.getWarehousePosition());
 				inst.setGoodsIds(this.getGoodsIds());
 			}
 			inst.clearModifies();

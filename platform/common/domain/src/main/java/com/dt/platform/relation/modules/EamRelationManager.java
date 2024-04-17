@@ -139,7 +139,18 @@ public class EamRelationManager extends RelationManager {
 
         this.setupAssetScanMethod();
 
+        this.setupWarehousePos();
+
+
     }
+
+    public void setupWarehousePos() {
+
+        this.property(WarehousePositionMeta.WAREHOUSE_PROP)
+                .using(EAMTables.EAM_WAREHOUSE_POSITION.WAREHOUSE_ID).join(EAMTables.EAM_WAREHOUSE.ID);
+    }
+
+
     public void setupInspectionTaskPointOper() {
 
         this.property(InspectionTaskPointOperMeta.OPER_USER_PROP)
@@ -1362,6 +1373,10 @@ public class EamRelationManager extends RelationManager {
         this.property(AssetStockGoodsTranferMeta.ORIGINATOR_PROP)
                 .using(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
+        this.property(AssetStockGoodsTranferMeta.WAREHOUSE_POSITION_PROP)
+                .using(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.POSITION_IN_ID).join(EAMTables.EAM_WAREHOUSE_POSITION.ID);
+
+
         //关联 仓库
         this.property(AssetStockGoodsTranferMeta.WAREHOUSE_IN_PROP)
                 .using(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.WAREHOUSE_IN_ID).join(EAMTables.EAM_WAREHOUSE.ID);
@@ -1458,6 +1473,23 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_GOODS_STOCK_RELATED.PARENT_GOODS_ID).join(EAMTables.EAM_GOODS_STOCK.ID);
 
 
+        // 关联品牌
+        this.property(GoodsStockMeta.WAREHOUSE_POSITION_PROP)
+                .using(EAMTables.EAM_GOODS_STOCK.POSITION_ID).join(EAMTables.EAM_WAREHOUSE_POSITION.ID);
+
+
+        this.property(GoodsStockMeta.WAREHOUSE_BY_POSITION_PROP)
+                .using(EAMTables.EAM_GOODS_STOCK.POSITION_ID).join(EAMTables.EAM_WAREHOUSE_POSITION.ID)
+                 .using(EAMTables.EAM_WAREHOUSE_POSITION.WAREHOUSE_ID).join(EAMTables.EAM_WAREHOUSE.ID);
+
+
+        this.property(GoodsStockMeta.GOODS_BY_BRAND_PROP)
+                .using(EAMTables.EAM_GOODS_STOCK.GOODS_ID).join(EAMTables.EAM_GOODS_STOCK.ID)
+                .using(EAMTables.EAM_GOODS_STOCK.BRAND_ID).join(EAMTables.EAM_BRAND.ID);
+
+        this.property(GoodsStockMeta.GOODS_BY_MANUFACTURER_PROP)
+                .using(EAMTables.EAM_GOODS_STOCK.GOODS_ID).join(EAMTables.EAM_GOODS_STOCK.ID)
+                .using(EAMTables.EAM_GOODS_STOCK.MANUFACTURER_ID).join(EAMTables.EAM_MANUFACTURER.ID);
 
         // 关联品牌
         this.property(GoodsStockMeta.BRAND_PROP)

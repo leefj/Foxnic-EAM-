@@ -2,7 +2,7 @@
 /**
  * 库存物品单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-30 12:38:44
+ * @since 2024-04-17 17:42:09
  */
  -->
  <!DOCTYPE html>
@@ -48,6 +48,7 @@
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}" style="width:180px" extraParam="{}"></div>
                     </div>
                     <!-- 单据类型 , stockType ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 仓库 , warehouseId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 管理人 , managerId ,typeName=button, isHideInSearch=true -->
                     <!-- 总金额 , amount ,typeName=number_input, isHideInSearch=true -->
                     <!-- 所属公司 , ownCompanyId ,typeName=button, isHideInSearch=true -->
@@ -56,6 +57,7 @@
                     <!-- 业务日期 , businessDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 附件 , attachId ,typeName=upload, isHideInSearch=true -->
                     <!-- 制单人 , originatorId ,typeName=button, isHideInSearch=true -->
+                    <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 选择数据 , selectedCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 变更类型 , chsType ,typeName=text_input, isHideInSearch=true -->
                     <!-- 变更状态 , chsStatus ,typeName=text_input, isHideInSearch=true -->
@@ -87,11 +89,6 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 仓库 , warehouseId ,typeName=select_box, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('仓库')}" class="search-label warehouseId-label">仓库</span><span class="search-colon">:</span></div>
-                        <div id="warehouseId" th:data="${'/service-eam/eam-warehouse/query-paged-list'}" style="width:180px" extraParam="{}"></div>
-                    </div>
                     <!-- 供应商 , supplierName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('供应商')}" class="search-label supplierName-label">供应商</span><span class="search-colon">:</span></div>

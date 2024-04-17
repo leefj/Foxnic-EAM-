@@ -1,7 +1,7 @@
 /**
  * 库存物品单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-30 12:38:44
+ * @since 2024-04-17 17:42:10
  */
 
 
@@ -171,7 +171,6 @@ function ListPage() {
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.batchCode={ inputType:"button",value: $("#batchCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.warehouseId={ inputType:"select_box", value: getSelectedValue("#warehouseId","value") ,fillBy:["warehouse"]  , label:getSelectedValue("#warehouseId","nameStr") };
 		value.receiverUserName={ inputType:"button",value: $("#receiverUserName").val()};
 		value.supplierName={ inputType:"button",value: $("#supplierName").val()};
 		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
@@ -242,37 +241,6 @@ function ListPage() {
 						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 warehouseId 下拉字段
-		fox.renderSelectBox({
-			el: "warehouseId",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("warehouseId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			searchField: "warehouseName", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("warehouseId",{data:data[i],name:data[i].warehouseName,value:data[i].id},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].warehouseName,value:data[i].id});
 					}
 				}
 				return opts;

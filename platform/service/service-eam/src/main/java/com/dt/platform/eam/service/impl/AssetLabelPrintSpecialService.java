@@ -414,7 +414,7 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 		//图像
 		String uid= IDGenerator.getSnowflakeIdString();
 		String path = System.getProperty("java.io.tmpdir");
-		Logger.info("iamgeType:"+imageType+",w:"+w+",h:"+h+",path:"+path + uid+".jpg");
+		Logger.info("iamgeType:"+imageType+",w:"+w+",h:"+h+",path:"+path + uid+".jpg"+",content:"+content);
 		BarcodeFormat format = BarcodeFormat.QR_CODE;
 		if(AsseLabelTableCellTypeEnum.QR_CODE.code().equals(imageType)){
 			format = BarcodeFormat.QR_CODE;

@@ -6,11 +6,12 @@ import java.util.List;
 import com.dt.platform.domain.eam.GoodsStock;
 import java.math.BigDecimal;
 import java.util.Date;
-import org.github.foxnic.web.domain.pcm.Catalog;
+import com.dt.platform.domain.eam.WarehousePosition;
+import com.dt.platform.domain.eam.Warehouse;
 import com.dt.platform.domain.eam.Manufacturer;
 import com.dt.platform.domain.eam.Brand;
+import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.domain.hrm.Organization;
-import com.dt.platform.domain.eam.Warehouse;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.Asset;
@@ -20,7 +21,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 16:56:51
+ * @since 2024-04-17 20:37:37
  * @sign 87176F150B412C151E8EC61D5D9C451A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -368,6 +369,26 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,java.lang.String> PICTURE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,PICTURE_ID, java.lang.String.class, "物品图片", "物品图片", java.lang.String.class, null);
 	
 	/**
+	 * 保养建议 , 类型: java.lang.String
+	*/
+	public static final String MAINTENANCE_RECOMMENDATION="maintenanceRecommendation";
+	
+	/**
+	 * 保养建议 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,java.lang.String> MAINTENANCE_RECOMMENDATION_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,MAINTENANCE_RECOMMENDATION, java.lang.String.class, "保养建议", "保养建议", java.lang.String.class, null);
+	
+	/**
+	 * 巡检建议 , 类型: java.lang.String
+	*/
+	public static final String INSPECTION_RECOMMENDATION="inspectionRecommendation";
+	
+	/**
+	 * 巡检建议 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,java.lang.String> INSPECTION_RECOMMENDATION_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,INSPECTION_RECOMMENDATION, java.lang.String.class, "巡检建议", "巡检建议", java.lang.String.class, null);
+	
+	/**
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final String NOTES="notes";
@@ -426,6 +447,26 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 	 * 仓库 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,java.lang.String> WAREHOUSE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,WAREHOUSE_ID, java.lang.String.class, "仓库", "仓库", java.lang.String.class, null);
+	
+	/**
+	 * 库位 , 类型: java.lang.String
+	*/
+	public static final String POSITION_ID="positionId";
+	
+	/**
+	 * 库位 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,java.lang.String> POSITION_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,POSITION_ID, java.lang.String.class, "库位", "库位", java.lang.String.class, null);
+	
+	/**
+	 * 位置详请 , 类型: java.lang.String
+	*/
+	public static final String POSITION_DETAIL="positionDetail";
+	
+	/**
+	 * 位置详请 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,java.lang.String> POSITION_DETAIL_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,POSITION_DETAIL, java.lang.String.class, "位置详请", "位置详请", java.lang.String.class, null);
 	
 	/**
 	 * 来源 , 类型: java.lang.String
@@ -538,26 +579,6 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,java.lang.String> PID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,PID, java.lang.String.class, "父级", "父级", java.lang.String.class, null);
 	
 	/**
-	 * 位置 , 类型: java.lang.String
-	*/
-	public static final String POSITION_ID="positionId";
-	
-	/**
-	 * 位置 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,java.lang.String> POSITION_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,POSITION_ID, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
-	
-	/**
-	 * 位置详请 , 类型: java.lang.String
-	*/
-	public static final String POSITION_DETAIL="positionDetail";
-	
-	/**
-	 * 位置详请 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,java.lang.String> POSITION_DETAIL_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,POSITION_DETAIL, java.lang.String.class, "位置详请", "位置详请", java.lang.String.class, null);
-	
-	/**
 	 * 选择 , 类型: java.lang.String
 	*/
 	public static final String SELECTED_CODE="selectedCode";
@@ -668,6 +689,46 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * warehousePosition , 类型: com.dt.platform.domain.eam.WarehousePosition
+	*/
+	public static final String WAREHOUSE_POSITION="warehousePosition";
+	
+	/**
+	 * warehousePosition , 类型: com.dt.platform.domain.eam.WarehousePosition
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,com.dt.platform.domain.eam.WarehousePosition> WAREHOUSE_POSITION_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,WAREHOUSE_POSITION, com.dt.platform.domain.eam.WarehousePosition.class, "warehousePosition", "warehousePosition", com.dt.platform.domain.eam.WarehousePosition.class, null);
+	
+	/**
+	 * warehouseByPosition , 类型: com.dt.platform.domain.eam.Warehouse
+	*/
+	public static final String WAREHOUSE_BY_POSITION="warehouseByPosition";
+	
+	/**
+	 * warehouseByPosition , 类型: com.dt.platform.domain.eam.Warehouse
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,com.dt.platform.domain.eam.Warehouse> WAREHOUSE_BY_POSITION_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,WAREHOUSE_BY_POSITION, com.dt.platform.domain.eam.Warehouse.class, "warehouseByPosition", "warehouseByPosition", com.dt.platform.domain.eam.Warehouse.class, null);
+	
+	/**
+	 * goodsByManufacturer , 类型: com.dt.platform.domain.eam.Manufacturer
+	*/
+	public static final String GOODS_BY_MANUFACTURER="goodsByManufacturer";
+	
+	/**
+	 * goodsByManufacturer , 类型: com.dt.platform.domain.eam.Manufacturer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,com.dt.platform.domain.eam.Manufacturer> GOODS_BY_MANUFACTURER_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,GOODS_BY_MANUFACTURER, com.dt.platform.domain.eam.Manufacturer.class, "goodsByManufacturer", "goodsByManufacturer", com.dt.platform.domain.eam.Manufacturer.class, null);
+	
+	/**
+	 * goodsByBrand , 类型: com.dt.platform.domain.eam.Brand
+	*/
+	public static final String GOODS_BY_BRAND="goodsByBrand";
+	
+	/**
+	 * goodsByBrand , 类型: com.dt.platform.domain.eam.Brand
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,com.dt.platform.domain.eam.Brand> GOODS_BY_BRAND_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,GOODS_BY_BRAND, com.dt.platform.domain.eam.Brand.class, "goodsByBrand", "goodsByBrand", com.dt.platform.domain.eam.Brand.class, null);
+	
+	/**
 	 * 资产分类 , 类型: org.github.foxnic.web.domain.pcm.Catalog
 	*/
 	public static final String CATEGORY="category";
@@ -706,6 +767,16 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 	 * 物品 , 类型: com.dt.platform.domain.eam.GoodsStock
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,com.dt.platform.domain.eam.GoodsStock> GOODS_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,GOODS, com.dt.platform.domain.eam.GoodsStock.class, "物品", "物品", com.dt.platform.domain.eam.GoodsStock.class, null);
+	
+	/**
+	 * 库存数据 , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final String REAL_GOODS="realGoods";
+	
+	/**
+	 * 库存数据 , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,com.dt.platform.domain.eam.GoodsStock> REAL_GOODS_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,REAL_GOODS, com.dt.platform.domain.eam.GoodsStock.class, "库存数据", "库存数据", com.dt.platform.domain.eam.GoodsStock.class, null);
 	
 	/**
 	 * 所属公司 , 类型: org.github.foxnic.web.domain.hrm.Organization
@@ -766,16 +837,6 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 	 * 制单人 , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,org.github.foxnic.web.domain.hrm.Employee> ORIGINATOR_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,ORIGINATOR, org.github.foxnic.web.domain.hrm.Employee.class, "制单人", "制单人", org.github.foxnic.web.domain.hrm.Employee.class, null);
-	
-	/**
-	 * 库存数据 , 类型: com.dt.platform.domain.eam.GoodsStock
-	*/
-	public static final String REAL_GOODS="realGoods";
-	
-	/**
-	 * 库存数据 , 类型: com.dt.platform.domain.eam.GoodsStock
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,com.dt.platform.domain.eam.GoodsStock> REAL_GOODS_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,REAL_GOODS, com.dt.platform.domain.eam.GoodsStock.class, "库存数据", "库存数据", com.dt.platform.domain.eam.GoodsStock.class, null);
 	
 	/**
 	 * 类型 , 类型: java.lang.String
@@ -970,7 +1031,7 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SN , PID , POSITION_ID , POSITION_DETAIL , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , MANUFACTURER , BRAND , GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , REAL_GOODS , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES , RELATED_ASSET_COUNT , RELATED_GOODS_STOCK_COUNT , RELATED_ASSET_LIST , RELATED_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_IDS , SUB_GOODS_STOCK_LIST , SUB_GOODS_STOCK_IDS , GOODS_PARENT_GOODS_STOCK_LIST };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , MAINTENANCE_RECOMMENDATION , INSPECTION_RECOMMENDATION , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , POSITION_ID , POSITION_DETAIL , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SN , PID , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , WAREHOUSE_POSITION , WAREHOUSE_BY_POSITION , GOODS_BY_MANUFACTURER , GOODS_BY_BRAND , CATEGORY , MANUFACTURER , BRAND , GOODS , REAL_GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES , RELATED_ASSET_COUNT , RELATED_GOODS_STOCK_COUNT , RELATED_ASSET_LIST , RELATED_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_IDS , SUB_GOODS_STOCK_LIST , SUB_GOODS_STOCK_IDS , GOODS_PARENT_GOODS_STOCK_LIST };
 	
 	/**
 	 * 代理类
@@ -1355,6 +1416,28 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 		}
 		
 		/**
+		 * 设置 保养建议
+		 * @param maintenanceRecommendation 保养建议
+		 * @return 当前对象
+		*/
+		public GoodsStock setMaintenanceRecommendation(String maintenanceRecommendation) {
+			super.change(MAINTENANCE_RECOMMENDATION,super.getMaintenanceRecommendation(),maintenanceRecommendation);
+			super.setMaintenanceRecommendation(maintenanceRecommendation);
+			return this;
+		}
+		
+		/**
+		 * 设置 巡检建议
+		 * @param inspectionRecommendation 巡检建议
+		 * @return 当前对象
+		*/
+		public GoodsStock setInspectionRecommendation(String inspectionRecommendation) {
+			super.change(INSPECTION_RECOMMENDATION,super.getInspectionRecommendation(),inspectionRecommendation);
+			super.setInspectionRecommendation(inspectionRecommendation);
+			return this;
+		}
+		
+		/**
 		 * 设置 备注
 		 * @param notes 备注
 		 * @return 当前对象
@@ -1417,6 +1500,28 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 		public GoodsStock setWarehouseId(String warehouseId) {
 			super.change(WAREHOUSE_ID,super.getWarehouseId(),warehouseId);
 			super.setWarehouseId(warehouseId);
+			return this;
+		}
+		
+		/**
+		 * 设置 库位
+		 * @param positionId 库位
+		 * @return 当前对象
+		*/
+		public GoodsStock setPositionId(String positionId) {
+			super.change(POSITION_ID,super.getPositionId(),positionId);
+			super.setPositionId(positionId);
+			return this;
+		}
+		
+		/**
+		 * 设置 位置详请
+		 * @param positionDetail 位置详请
+		 * @return 当前对象
+		*/
+		public GoodsStock setPositionDetail(String positionDetail) {
+			super.change(POSITION_DETAIL,super.getPositionDetail(),positionDetail);
+			super.setPositionDetail(positionDetail);
 			return this;
 		}
 		
@@ -1542,28 +1647,6 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 		}
 		
 		/**
-		 * 设置 位置
-		 * @param positionId 位置
-		 * @return 当前对象
-		*/
-		public GoodsStock setPositionId(String positionId) {
-			super.change(POSITION_ID,super.getPositionId(),positionId);
-			super.setPositionId(positionId);
-			return this;
-		}
-		
-		/**
-		 * 设置 位置详请
-		 * @param positionDetail 位置详请
-		 * @return 当前对象
-		*/
-		public GoodsStock setPositionDetail(String positionDetail) {
-			super.change(POSITION_DETAIL,super.getPositionDetail(),positionDetail);
-			super.setPositionDetail(positionDetail);
-			return this;
-		}
-		
-		/**
 		 * 设置 选择
 		 * @param selectedCode 选择
 		 * @return 当前对象
@@ -1685,6 +1768,50 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 		}
 		
 		/**
+		 * 设置 warehousePosition
+		 * @param warehousePosition warehousePosition
+		 * @return 当前对象
+		*/
+		public GoodsStock setWarehousePosition(WarehousePosition warehousePosition) {
+			super.change(WAREHOUSE_POSITION,super.getWarehousePosition(),warehousePosition);
+			super.setWarehousePosition(warehousePosition);
+			return this;
+		}
+		
+		/**
+		 * 设置 warehouseByPosition
+		 * @param warehouseByPosition warehouseByPosition
+		 * @return 当前对象
+		*/
+		public GoodsStock setWarehouseByPosition(Warehouse warehouseByPosition) {
+			super.change(WAREHOUSE_BY_POSITION,super.getWarehouseByPosition(),warehouseByPosition);
+			super.setWarehouseByPosition(warehouseByPosition);
+			return this;
+		}
+		
+		/**
+		 * 设置 goodsByManufacturer
+		 * @param goodsByManufacturer goodsByManufacturer
+		 * @return 当前对象
+		*/
+		public GoodsStock setGoodsByManufacturer(Manufacturer goodsByManufacturer) {
+			super.change(GOODS_BY_MANUFACTURER,super.getGoodsByManufacturer(),goodsByManufacturer);
+			super.setGoodsByManufacturer(goodsByManufacturer);
+			return this;
+		}
+		
+		/**
+		 * 设置 goodsByBrand
+		 * @param goodsByBrand goodsByBrand
+		 * @return 当前对象
+		*/
+		public GoodsStock setGoodsByBrand(Brand goodsByBrand) {
+			super.change(GOODS_BY_BRAND,super.getGoodsByBrand(),goodsByBrand);
+			super.setGoodsByBrand(goodsByBrand);
+			return this;
+		}
+		
+		/**
 		 * 设置 资产分类
 		 * @param category 资产分类
 		 * @return 当前对象
@@ -1725,6 +1852,17 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 		public GoodsStock setGoods(GoodsStock goods) {
 			super.change(GOODS,super.getGoods(),goods);
 			super.setGoods(goods);
+			return this;
+		}
+		
+		/**
+		 * 设置 库存数据
+		 * @param realGoods 库存数据
+		 * @return 当前对象
+		*/
+		public GoodsStock setRealGoods(GoodsStock realGoods) {
+			super.change(REAL_GOODS,super.getRealGoods(),realGoods);
+			super.setRealGoods(realGoods);
 			return this;
 		}
 		
@@ -1791,17 +1929,6 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 		public GoodsStock setOriginator(Employee originator) {
 			super.change(ORIGINATOR,super.getOriginator(),originator);
 			super.setOriginator(originator);
-			return this;
-		}
-		
-		/**
-		 * 设置 库存数据
-		 * @param realGoods 库存数据
-		 * @return 当前对象
-		*/
-		public GoodsStock setRealGoods(GoodsStock realGoods) {
-			super.change(REAL_GOODS,super.getRealGoods(),realGoods);
-			super.setRealGoods(realGoods);
 			return this;
 		}
 		
@@ -2041,6 +2168,7 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 			inst.setModel(this.getModel());
 			inst.setId(this.getId());
 			inst.setUnitPrice(this.getUnitPrice());
+			inst.setMaintenanceRecommendation(this.getMaintenanceRecommendation());
 			inst.setVersion(this.getVersion());
 			inst.setBarCode(this.getBarCode());
 			inst.setUnit(this.getUnit());
@@ -2051,6 +2179,7 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 			inst.setAssetCategoryId(this.getAssetCategoryId());
 			inst.setName(this.getName());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setInspectionRecommendation(this.getInspectionRecommendation());
 			inst.setStatus(this.getStatus());
 			inst.setCode(this.getCode());
 			inst.setOwnerCode(this.getOwnerCode());
@@ -2096,6 +2225,7 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 				inst.setParentGoodsStockIds(this.getParentGoodsStockIds());
 				inst.setManufacturer(this.getManufacturer());
 				inst.setGoodsBarCode(this.getGoodsBarCode());
+				inst.setWarehouseByPosition(this.getWarehouseByPosition());
 				inst.setSubGoodsStockIds(this.getSubGoodsStockIds());
 				inst.setSubGoodsStockList(this.getSubGoodsStockList());
 				inst.setDirtyFields(this.getDirtyFields());
@@ -2112,13 +2242,16 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 				inst.setGoodsParentGoodsStockList(this.getGoodsParentGoodsStockList());
 				inst.setRelatedGoodsStockCount(this.getRelatedGoodsStockCount());
 				inst.setGoodsStockMin(this.getGoodsStockMin());
-				inst.setWarehouse(this.getWarehouse());
 				inst.setRealGoods(this.getRealGoods());
+				inst.setWarehouse(this.getWarehouse());
+				inst.setWarehousePosition(this.getWarehousePosition());
+				inst.setGoodsByBrand(this.getGoodsByBrand());
 				inst.setUseOrganization(this.getUseOrganization());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
 				inst.setGoodsCategoryName(this.getGoodsCategoryName());
 				inst.setGoodsStockNotes(this.getGoodsStockNotes());
+				inst.setGoodsByManufacturer(this.getGoodsByManufacturer());
 				inst.setIds(this.getIds());
 				inst.setRelatedAssetList(this.getRelatedAssetList());
 				inst.setGoodsCode(this.getGoodsCode());

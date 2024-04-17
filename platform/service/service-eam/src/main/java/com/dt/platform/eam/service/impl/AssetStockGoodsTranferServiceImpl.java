@@ -115,11 +115,11 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 			}else{
 				return ErrorDesc.failureMessage("编号:"+list.get(i).getId()+",当前数量必须大于0");
 			}
-			if(list.get(i).getWarehouseId().equals(assetStockGoodsTranfer.getWarehouseOutId())){
-				Logger.info("check ok");
-			}else{
-				return ErrorDesc.failureMessage("调出仓库必须和物品所在仓库保持一致");
-			}
+//			if(list.get(i).getWarehouseId().equals(assetStockGoodsTranfer.getWarehouseOutId())){
+//				Logger.info("check ok");
+//			}else{
+//				return ErrorDesc.failureMessage("调出仓库必须和物品所在仓库保持一致");
+//			}
 		}
 
 		//制单人
@@ -221,12 +221,15 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 	 * */
 	private Result operateResult(String id,String result,String status,String message) {
 		if(AssetHandleConfirmOperationEnum.SUCCESS.code().equals(result)){
+			//后续需要加盘点
+			Result resRs=computeStockData(id);
+			if(!resRs.isSuccess()){
+				return resRs;
+			}
+			dao.execute("update eam_goods_stock a,eam_warehouse_position b set a.status=?,a.warehouse_id=b.warehouse_id where a.position_id=b.id and a.owner_id=? ",status,id);
 			AssetStockGoodsTranfer bill=new AssetStockGoodsTranfer();
 			bill.setId(id);
 			bill.setStatus(status);
-			this.dao.execute("update eam_goods_stock set status=? where owner_id=?",status,bill.getId());
-			//后续需要加盘点
-			computeStockData(id);
 			return super.update(bill,SaveMode.NOT_NULL_FIELDS,false);
 		}else if(AssetHandleConfirmOperationEnum.FAILED.code().equals(result)){
 			return ErrorDesc.failureMessage(message);
@@ -255,17 +258,14 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 
 		String cUserId=SessionUser.getCurrent().getActivatedEmployeeId();
 		String cUserName=SessionUser.getCurrent().getUser().getActivatedEmployeeName();
-
 		List<GoodsStock> goods=bill.getGoodsList();
 		if(goods!=null&&goods.size()>0){
 			for(int i=0;i<goods.size();i++){
 				GoodsStock goodsObj=goods.get(i);
-				String warehouseIn=bill.getWarehouseInId();
-				String warehouseOut=goodsObj.getWarehouseId();
 				String goodsId=goodsObj.getGoodsId();
 				String goodsNumber=goodsObj.getStockInNumber()+"";
 				//调入仓库不存在该物品
-				Rcd inRs=this.dao.queryRecord("select * from eam_goods_stock where deleted=0 and tenant_id=? and owner_code=? and warehouse_id=? and goods_id=?",tenantId,ownerCode,warehouseIn,goodsId);
+				Rcd inRs=this.dao.queryRecord("select * from eam_goods_stock where deleted=0 and tenant_id=? and owner_code=? and position_id=? and goods_id=?",tenantId,ownerCode,bill.getPositionInId(),goodsId);
 				String inId="";
 				if(inRs==null){
 					inId=IDGenerator.getSnowflakeIdString();
@@ -276,7 +276,8 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 					ins.set("owner_type",bill.getOwnerType());
 					ins.set("stock_cur_number",goodsNumber);
 					ins.set("tenant_id",tenantId);
-					ins.set("warehouse_id",warehouseIn);
+					ins.set("warehouse_id",bill.getWarehouseInId());
+					ins.set("position_id",bill.getPositionInId());
 					ins.set("goods_id",goodsId);
 					this.dao.execute(ins);
 				}else{
@@ -445,11 +446,11 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 			}else{
 				return ErrorDesc.failureMessage("编号:"+list.get(i).getId()+",当前数量必须大于0");
 			}
-			if(list.get(i).getWarehouseId().equals(assetStockGoodsTranfer.getWarehouseOutId())){
-				Logger.info("check ok");
-			}else{
-				return ErrorDesc.failureMessage("调出仓库必须和物品所在仓库保持一致");
-			}
+//			if(list.get(i).getWarehouseId().equals(assetStockGoodsTranfer.getWarehouseOutId())){
+//				Logger.info("check ok");
+//			}else{
+//				return ErrorDesc.failureMessage("调出仓库必须和物品所在仓库保持一致");
+//			}
 		}
 
 		Result r=super.update(assetStockGoodsTranfer , mode , throwsException);

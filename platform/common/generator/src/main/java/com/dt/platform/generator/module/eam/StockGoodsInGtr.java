@@ -61,7 +61,6 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
 
                 },
                 new Object[]{
-                        EAMTables.EAM_ASSET_STOCK_GOODS_IN.WAREHOUSE_ID,
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.SUPPLIER_NAME,
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.RECEIVER_USER_NAME,
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.NOTES,
@@ -108,7 +107,7 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.ORIGINATOR_ID).table().hidden(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.SOURCE_ID).table().disable(true);
 
-
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.UPDATE_BY).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.BUSINESS_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.PURCHASE_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
 
@@ -119,7 +118,7 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.WAREHOUSE_ID)
                 .basic().label("仓库")
-                .form().validate().required().form().selectBox().queryApi(WarehouseServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
+                .form().selectBox().queryApi(WarehouseServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(WarehouseMeta.ID).textField(WarehouseMeta.WAREHOUSE_NAME).fillWith(AssetStockGoodsInMeta.WAREHOUSE)
                 .muliti(false).defaultIndex(0);
 
@@ -193,14 +192,15 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
 
                 },
                 new Object[] {
-                        EAMTables.EAM_ASSET_STOCK_GOODS_IN.WAREHOUSE_ID,
+//                        EAMTables.EAM_ASSET_STOCK_GOODS_IN.WAREHOUSE_ID,
+                        EAMTables.EAM_ASSET_STOCK_GOODS_IN.SOURCE_ID,
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.SUPPLIER_NAME,
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.BATCH_CODE,
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.AMOUNT,
                 },
                 new Object[] {
                      // EAMTables.EAM_ASSET_STOCK_GOODS_IN.OWN_COMPANY_ID,
-                        EAMTables.EAM_ASSET_STOCK_GOODS_IN.SOURCE_ID,
+
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.BUSINESS_DATE,
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.PURCHASE_DATE,
                 }

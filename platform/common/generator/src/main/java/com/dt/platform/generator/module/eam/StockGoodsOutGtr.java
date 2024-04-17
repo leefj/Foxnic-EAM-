@@ -54,11 +54,9 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.STATUS,
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.BUSINESS_CODE,
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.NAME,
-                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.POSITION_DETAIL,
                 },
                 new Object[]{
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.STOCK_TYPE,
-                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.WAREHOUSE_ID,
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.BUSINESS_DATE,
                 }
         );
@@ -88,6 +86,8 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.APPROVAL_OPINION).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ATTACH_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.TO_BOOK).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.UPDATE_BY).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.WAREHOUSE_ID).table().disable(true);
 //        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ORIGINATOR_ID).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.CONTENT).table().disable(true);
@@ -119,10 +119,6 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.NAME)
                 .basic().label("单据名称").form().validate().required();
 
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.WAREHOUSE_ID)
-                .basic().label("仓库").form().validate().required()
-                .form().selectBox().queryApi(WarehouseServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
-                .valueField(WarehouseMeta.ID).textField(WarehouseMeta.WAREHOUSE_NAME).fillWith(AssetStockGoodsOutMeta.WAREHOUSE).muliti(false).defaultIndex(0);
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.STOCK_TYPE)
                 .basic().label("单据类型")
@@ -134,7 +130,7 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_OWN_COMPANY_ID)
-                .form().validate().required().form().button().chooseCompany(true);
+        .form().button().chooseCompany(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_OWN_COMPANY_ID).table().fillBy("useOwnerCompany","fullName");
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_ORGANIZATION_ID)
@@ -171,19 +167,17 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
 
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_OWN_COMPANY_ID,
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_ORGANIZATION_ID,
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_USER_ID,
                 },
                 new Object[] {
-                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.STOCK_TYPE,
-                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.WAREHOUSE_ID,
-                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.POSITION_DETAIL,
-                },
-                new Object[] {
-//                        EAMTables.EAM_ASSET_STOCK_GOODS_OUT.TO_BOOK,
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.COLLECTION_DATE,
                         EAMTables.EAM_ASSET_STOCK_GOODS_OUT.BUSINESS_DATE,
+
+                },
+                new Object[] {
+                   EAMTables.EAM_ASSET_STOCK_GOODS_OUT.STOCK_TYPE,
+
                 }
         );
 

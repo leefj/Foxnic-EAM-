@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存调拨
  * <p>库存调拨 , 数据表 eam_asset_stock_goods_tranfer 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 15:05:03
- * @sign 225FC70A9901D6AB32A4183DD4EB22F1
+ * @since 2024-04-17 20:30:49
+ * @sign AD83EEEC1C397E69A9D294695E3F3A66
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,13 +44,13 @@ public class AssetStockGoodsTranfer extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "732359992123850752")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "789144717626441728")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "PTR202317142217828")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "PTR202359181459919")
 	private String businessCode;
 	
 	/**
@@ -74,7 +74,7 @@ public class AssetStockGoodsTranfer extends Entity {
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "11111")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "1212")
 	private String name;
 	
 	/**
@@ -90,9 +90,15 @@ public class AssetStockGoodsTranfer extends Entity {
 	private String warehouseInId;
 	
 	/**
+	 * 调入库位：调入库位
+	*/
+	@ApiModelProperty(required = false,value="调入库位" , notes = "调入库位")
+	private String positionInId;
+	
+	/**
 	 * 转移说明：转移说明
 	*/
-	@ApiModelProperty(required = false,value="转移说明" , notes = "转移说明")
+	@ApiModelProperty(required = false,value="转移说明" , notes = "转移说明" , example = "121212")
 	private String content;
 	
 	/**
@@ -104,7 +110,7 @@ public class AssetStockGoodsTranfer extends Entity {
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-07-14 12:00:00")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2023-12-18 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -122,7 +128,7 @@ public class AssetStockGoodsTranfer extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-07-14 10:17:09")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-12-18 02:59:22")
 	private Date createTime;
 	
 	/**
@@ -134,7 +140,7 @@ public class AssetStockGoodsTranfer extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-07-14 10:17:13")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-12-18 02:59:28")
 	private Date updateTime;
 	
 	/**
@@ -173,7 +179,7 @@ public class AssetStockGoodsTranfer extends Entity {
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1689344206000")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1702882751000")
 	private String selectedCode;
 	
 	/**
@@ -259,6 +265,12 @@ public class AssetStockGoodsTranfer extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="调入仓库" , notes = "调入仓库")
 	private Warehouse warehouseIn;
+	
+	/**
+	 * 调入仓位：调入仓位
+	*/
+	@ApiModelProperty(required = false,value="调入仓位" , notes = "调入仓位")
+	private WarehousePosition warehousePosition;
 	
 	/**
 	 * 制单人：制单人
@@ -415,6 +427,25 @@ public class AssetStockGoodsTranfer extends Entity {
 	*/
 	public AssetStockGoodsTranfer setWarehouseInId(String warehouseInId) {
 		this.warehouseInId=warehouseInId;
+		return this;
+	}
+	
+	/**
+	 * 获得 调入库位<br>
+	 * 调入库位
+	 * @return 调入库位
+	*/
+	public String getPositionInId() {
+		return positionInId;
+	}
+	
+	/**
+	 * 设置 调入库位
+	 * @param positionInId 调入库位
+	 * @return 当前对象
+	*/
+	public AssetStockGoodsTranfer setPositionInId(String positionInId) {
+		this.positionInId=positionInId;
 		return this;
 	}
 	
@@ -1004,6 +1035,25 @@ public class AssetStockGoodsTranfer extends Entity {
 	}
 	
 	/**
+	 * 获得 调入仓位<br>
+	 * 调入仓位
+	 * @return 调入仓位
+	*/
+	public WarehousePosition getWarehousePosition() {
+		return warehousePosition;
+	}
+	
+	/**
+	 * 设置 调入仓位
+	 * @param warehousePosition 调入仓位
+	 * @return 当前对象
+	*/
+	public AssetStockGoodsTranfer setWarehousePosition(WarehousePosition warehousePosition) {
+		this.warehousePosition=warehousePosition;
+		return this;
+	}
+	
+	/**
 	 * 获得 制单人<br>
 	 * 制单人
 	 * @return 制单人
@@ -1088,6 +1138,7 @@ public class AssetStockGoodsTranfer extends Entity {
 		inst.setWarehouseInId(this.getWarehouseInId());
 		inst.setLatestApproverId(this.getLatestApproverId());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setPositionInId(this.getPositionInId());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -1103,6 +1154,7 @@ public class AssetStockGoodsTranfer extends Entity {
 			inst.setWarehouseIn(this.getWarehouseIn());
 			inst.setGoodsList(this.getGoodsList());
 			inst.setOriginator(this.getOriginator());
+			inst.setWarehousePosition(this.getWarehousePosition());
 			inst.setGoodsIds(this.getGoodsIds());
 		}
 		inst.clearModifies();
@@ -1185,6 +1237,7 @@ public class AssetStockGoodsTranfer extends Entity {
 			this.setWarehouseInId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.WAREHOUSE_IN_ID)));
 			this.setLatestApproverId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.LATEST_APPROVER_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetStockGoodsTranferMeta.UPDATE_TIME)));
+			this.setPositionInId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.POSITION_IN_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetStockGoodsTranferMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssetStockGoodsTranferMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetStockGoodsTranferMeta.DELETED)));
@@ -1199,6 +1252,7 @@ public class AssetStockGoodsTranfer extends Entity {
 			this.setWarehouseOut(DataParser.parse(Warehouse.class, map.get(AssetStockGoodsTranferMeta.WAREHOUSE_OUT)));
 			this.setWarehouseIn(DataParser.parse(Warehouse.class, map.get(AssetStockGoodsTranferMeta.WAREHOUSE_IN)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetStockGoodsTranferMeta.ORIGINATOR)));
+			this.setWarehousePosition(DataParser.parse(WarehousePosition.class, map.get(AssetStockGoodsTranferMeta.WAREHOUSE_POSITION)));
 			return true;
 		} else {
 			try {
@@ -1224,6 +1278,7 @@ public class AssetStockGoodsTranfer extends Entity {
 				this.setWarehouseInId( (String)map.get(AssetStockGoodsTranferMeta.WAREHOUSE_IN_ID));
 				this.setLatestApproverId( (String)map.get(AssetStockGoodsTranferMeta.LATEST_APPROVER_ID));
 				this.setUpdateTime( (Date)map.get(AssetStockGoodsTranferMeta.UPDATE_TIME));
+				this.setPositionInId( (String)map.get(AssetStockGoodsTranferMeta.POSITION_IN_ID));
 				this.setVersion( (Integer)map.get(AssetStockGoodsTranferMeta.VERSION));
 				this.setCreateBy( (String)map.get(AssetStockGoodsTranferMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AssetStockGoodsTranferMeta.DELETED));
@@ -1238,6 +1293,7 @@ public class AssetStockGoodsTranfer extends Entity {
 				this.setWarehouseOut( (Warehouse)map.get(AssetStockGoodsTranferMeta.WAREHOUSE_OUT));
 				this.setWarehouseIn( (Warehouse)map.get(AssetStockGoodsTranferMeta.WAREHOUSE_IN));
 				this.setOriginator( (Employee)map.get(AssetStockGoodsTranferMeta.ORIGINATOR));
+				this.setWarehousePosition( (WarehousePosition)map.get(AssetStockGoodsTranferMeta.WAREHOUSE_POSITION));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -1276,6 +1332,7 @@ public class AssetStockGoodsTranfer extends Entity {
 			this.setWarehouseInId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.WAREHOUSE_IN_ID)));
 			this.setLatestApproverId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.LATEST_APPROVER_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetStockGoodsTranferMeta.UPDATE_TIME)));
+			this.setPositionInId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.POSITION_IN_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetStockGoodsTranferMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetStockGoodsTranferMeta.DELETED)));
@@ -1311,6 +1368,7 @@ public class AssetStockGoodsTranfer extends Entity {
 				this.setWarehouseInId( (String)r.getValue(AssetStockGoodsTranferMeta.WAREHOUSE_IN_ID));
 				this.setLatestApproverId( (String)r.getValue(AssetStockGoodsTranferMeta.LATEST_APPROVER_ID));
 				this.setUpdateTime( (Date)r.getValue(AssetStockGoodsTranferMeta.UPDATE_TIME));
+				this.setPositionInId( (String)r.getValue(AssetStockGoodsTranferMeta.POSITION_IN_ID));
 				this.setVersion( (Integer)r.getValue(AssetStockGoodsTranferMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(AssetStockGoodsTranferMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AssetStockGoodsTranferMeta.DELETED));

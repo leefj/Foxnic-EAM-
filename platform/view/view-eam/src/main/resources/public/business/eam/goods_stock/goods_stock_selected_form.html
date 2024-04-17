@@ -74,13 +74,21 @@
 
         <div class="layui-row form-row" id="random-3065-content" >
 
-
-            <div class="layui-form-item" >
-                <div class="layui-form-label "><div th:text="${lang.translate('位置详情')}">位置详情</div></div>
+            <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                <div class="layui-form-label "><div th:text="${lang.translate('仓库')}">仓库</div><div class="layui-required">*</div></div>
                 <div class="layui-input-block ">
-                    <input lay-filter="positionDetail" id="positionDetail" name="positionDetail" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('位置详情') }" type="text" class="layui-input"     />
+                    <div id="warehouseId" input-type="select" th:data="${'/service-eam/eam-warehouse/query-paged-list'}" extraParam="{}"></div>
                 </div>
             </div>
+
+
+            <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                <div class="layui-form-label "><div th:text="${lang.translate('库位')}">库位</div><div class="layui-required">*</div></div>
+                <div class="layui-input-block ">
+                    <div id="positionId" input-type="select" th:data="${'/service-eam/eam-warehouse-position/query-paged-list'}"  extraParam="{}"></div>
+                </div>
+            </div>
+
 
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column"  style="padding-top: 0px" id="snarea">
@@ -131,9 +139,10 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
-    var VALIDATE_CONFIG={}
+    var VALIDATE_CONFIG={"positionId":{"labelInForm":"库位","inputType":"select_box","required":true}}
     var AUTH_PREFIX="eam_goods_stock";
 
+    var WAREHOUSE_ID = [[${warehouseId}]] ;
     // OWNER_CODE
     var OWNER_CODE = [[${ownerCode}]] ;
     // OWNER_TYPE

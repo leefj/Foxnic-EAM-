@@ -10,25 +10,25 @@ import com.dt.platform.proxy.eam.WarehouseServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 仓库 模版页面控制器
+ * 仓库模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 07:11:03
+ * @since 2024-04-17 18:36:11
 */
 
 @Controller("EamWarehousePageController")
 @RequestMapping(WarehousePageController.prefix)
 public class WarehousePageController extends ViewController {
-	
+
 	public static final String prefix="business/eam/warehouse";
 
 	private WarehouseServiceProxy proxy;
-	
+
 	/**
-	 * 获得代理对象<br> 
-	 * 1、单体应用时，在应用内部调用；<br> 
-	 * 2、前后端分离时，通过配置，以Rest方式调用后端；<br> 
-	 * 3、微服务时，通过feign调用; <br> 
+	 * 获得代理对象<br>
+	 * 1、单体应用时，在应用内部调用；<br>
+	 * 2、前后端分离时，通过配置，以Rest方式调用后端；<br>
+	 * 3、微服务时，通过feign调用; <br>
 	 * */
 	public WarehouseServiceProxy proxy() {
 		if(proxy==null) {
@@ -36,13 +36,13 @@ public class WarehousePageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
 	/**
 	 * 仓库 功能主页面
 	 */
 	@RequestMapping("/warehouse_list.html")
 	public String list(Model model,HttpServletRequest request) {
-		return prefix+"/warehouse_list";
+		return getTemplatePath(prefix,"warehouse_list");
 	}
 
 	/**
@@ -50,6 +50,6 @@ public class WarehousePageController extends ViewController {
 	 */
 	@RequestMapping("/warehouse_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
-		return prefix+"/warehouse_form";
+		return getTemplatePath(prefix,"warehouse_form");
 	}
 }

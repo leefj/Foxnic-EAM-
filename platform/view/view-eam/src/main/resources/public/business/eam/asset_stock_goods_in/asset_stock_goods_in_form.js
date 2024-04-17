@@ -1,7 +1,7 @@
 /**
  * 库存物品单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-30 12:38:45
+ * @since 2024-04-17 17:42:11
  */
 
 function FormPage() {
@@ -370,8 +370,6 @@ function FormPage() {
 
 			//设置  单据类型 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#stockType",formData.stockTypeDict);
-			//设置  仓库 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#warehouseId",formData.warehouse);
 			//设置  来源 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#sourceId",formData.source);
 
@@ -438,8 +436,6 @@ function FormPage() {
 
 		//获取 单据类型 下拉框的值
 		data["stockType"]=fox.getSelectedValue("stockType",false);
-		//获取 仓库 下拉框的值
-		data["warehouseId"]=fox.getSelectedValue("warehouseId",false);
 		//获取 来源 下拉框的值
 		data["sourceId"]=fox.getSelectedValue("sourceId",false);
 

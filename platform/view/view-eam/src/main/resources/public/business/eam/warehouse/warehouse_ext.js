@@ -145,6 +145,23 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('beforeRowOperationEvent',data,obj);
             return true;
         },
+        warehousePos:function (data,it) {
+            console.log('warehousePos',data,it);
+            var queryString="?warehouseId="+data.id;
+            admin.popupCenter({
+                title: "库位",
+                resize: false,
+                offset: [20,null],
+                area: ["90%","90%"],
+                type: 2,
+                id:"eam-warehouse-form-data-win",
+                content: '/business/eam/warehouse_position/warehouse_position_list.html' +queryString,
+                finish: function () {
+
+                }
+            });
+            return true;
+        },
         /**
          * 表格右侧操作列更多按钮事件
          * */

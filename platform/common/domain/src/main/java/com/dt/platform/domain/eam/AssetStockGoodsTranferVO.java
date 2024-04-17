@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存调拨VO类型
  * <p>库存调拨 , 数据表 eam_asset_stock_goods_tranfer 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-07-28 15:05:03
+ * @since 2024-04-17 20:30:49
  * @sign AFCF75255E780A794A3AB0B59533A8C2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -424,6 +424,7 @@ public class AssetStockGoodsTranferVO extends AssetStockGoodsTranfer {
 		inst.setWarehouseInId(this.getWarehouseInId());
 		inst.setLatestApproverId(this.getLatestApproverId());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setPositionInId(this.getPositionInId());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -443,6 +444,7 @@ public class AssetStockGoodsTranferVO extends AssetStockGoodsTranfer {
 			inst.setGoodsList(this.getGoodsList());
 			inst.setPageSize(this.getPageSize());
 			inst.setOriginator(this.getOriginator());
+			inst.setWarehousePosition(this.getWarehousePosition());
 			inst.setGoodsIds(this.getGoodsIds());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
@@ -533,6 +535,7 @@ public class AssetStockGoodsTranferVO extends AssetStockGoodsTranfer {
 			this.setWarehouseInId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferVOMeta.WAREHOUSE_IN_ID)));
 			this.setLatestApproverId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferVOMeta.LATEST_APPROVER_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetStockGoodsTranferVOMeta.UPDATE_TIME)));
+			this.setPositionInId(DataParser.parse(String.class, map.get(AssetStockGoodsTranferVOMeta.POSITION_IN_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetStockGoodsTranferVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssetStockGoodsTranferVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetStockGoodsTranferVOMeta.DELETED)));
@@ -551,6 +554,7 @@ public class AssetStockGoodsTranferVO extends AssetStockGoodsTranfer {
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetStockGoodsTranferVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetStockGoodsTranferVOMeta.PAGE_SIZE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetStockGoodsTranferVOMeta.ORIGINATOR)));
+			this.setWarehousePosition(DataParser.parse(WarehousePosition.class, map.get(AssetStockGoodsTranferVOMeta.WAREHOUSE_POSITION)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetStockGoodsTranferVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AssetStockGoodsTranferVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssetStockGoodsTranferVOMeta.SORT_FIELD)));
@@ -582,6 +586,7 @@ public class AssetStockGoodsTranferVO extends AssetStockGoodsTranfer {
 				this.setWarehouseInId( (String)map.get(AssetStockGoodsTranferVOMeta.WAREHOUSE_IN_ID));
 				this.setLatestApproverId( (String)map.get(AssetStockGoodsTranferVOMeta.LATEST_APPROVER_ID));
 				this.setUpdateTime( (Date)map.get(AssetStockGoodsTranferVOMeta.UPDATE_TIME));
+				this.setPositionInId( (String)map.get(AssetStockGoodsTranferVOMeta.POSITION_IN_ID));
 				this.setVersion( (Integer)map.get(AssetStockGoodsTranferVOMeta.VERSION));
 				this.setCreateBy( (String)map.get(AssetStockGoodsTranferVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AssetStockGoodsTranferVOMeta.DELETED));
@@ -600,6 +605,7 @@ public class AssetStockGoodsTranferVO extends AssetStockGoodsTranfer {
 				this.setFuzzyField( (String)map.get(AssetStockGoodsTranferVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(AssetStockGoodsTranferVOMeta.PAGE_SIZE));
 				this.setOriginator( (Employee)map.get(AssetStockGoodsTranferVOMeta.ORIGINATOR));
+				this.setWarehousePosition( (WarehousePosition)map.get(AssetStockGoodsTranferVOMeta.WAREHOUSE_POSITION));
 				this.setPageIndex( (Integer)map.get(AssetStockGoodsTranferVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AssetStockGoodsTranferVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(AssetStockGoodsTranferVOMeta.SORT_FIELD));
@@ -644,6 +650,7 @@ public class AssetStockGoodsTranferVO extends AssetStockGoodsTranfer {
 			this.setWarehouseInId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferVOMeta.WAREHOUSE_IN_ID)));
 			this.setLatestApproverId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferVOMeta.LATEST_APPROVER_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetStockGoodsTranferVOMeta.UPDATE_TIME)));
+			this.setPositionInId(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferVOMeta.POSITION_IN_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetStockGoodsTranferVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetStockGoodsTranferVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetStockGoodsTranferVOMeta.DELETED)));
@@ -679,6 +686,7 @@ public class AssetStockGoodsTranferVO extends AssetStockGoodsTranfer {
 				this.setWarehouseInId( (String)r.getValue(AssetStockGoodsTranferVOMeta.WAREHOUSE_IN_ID));
 				this.setLatestApproverId( (String)r.getValue(AssetStockGoodsTranferVOMeta.LATEST_APPROVER_ID));
 				this.setUpdateTime( (Date)r.getValue(AssetStockGoodsTranferVOMeta.UPDATE_TIME));
+				this.setPositionInId( (String)r.getValue(AssetStockGoodsTranferVOMeta.POSITION_IN_ID));
 				this.setVersion( (Integer)r.getValue(AssetStockGoodsTranferVOMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(AssetStockGoodsTranferVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AssetStockGoodsTranferVOMeta.DELETED));

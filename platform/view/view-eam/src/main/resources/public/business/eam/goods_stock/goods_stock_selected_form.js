@@ -200,6 +200,42 @@ function FormPage() {
                 return opts;
             }
         });
+        //渲染 positionId 下拉字段
+        fox.renderSelectBox({
+            el: "positionId",
+            radio: true,
+            tips: fox.translate("请选择",'','cmp:form')+fox.translate("库位",'','cmp:form'),
+            filterable: true,
+            paging: true,
+            pageRemote: true,
+            on: function(data){
+                setTimeout(function () {
+                    window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("positionId",data.arr,data.change,data.isAdd);
+                },1);
+            },
+            //转换数据
+            searchField: "name", //请自行调整用于搜索的字段名称
+            extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+            transform: function(data) {
+                //要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+                var defaultValues=[],defaultIndexs=[];
+                if(action=="create") {
+                    defaultValues = "".split(",");
+                    defaultIndexs = "".split(",");
+                }
+                var opts=[];
+                if(!data) return opts;
+                for (var i = 0; i < data.length; i++) {
+                    if(!data[i]) continue;
+                    if(window.pageExt.form.selectBoxDataTransform) {
+                        opts.push(window.pageExt.form.selectBoxDataTransform("positionId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+                    } else {
+                        opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+                    }
+                }
+                return opts;
+            }
+        });
         //渲染图片字段
         foxup.render({
             el:"pictureId",
@@ -356,6 +392,44 @@ function FormPage() {
                 return opts;
             }
         });
+        //渲染 warehouseId 下拉字段
+        fox.renderSelectBox({
+            el: "warehouseId",
+            radio: true,
+            tips: fox.translate("请选择",'','cmp:form')+fox.translate("仓库",'','cmp:form'),
+            filterable: true,
+            paging: true,
+            pageRemote: true,
+            layVerify: 'required',
+            layVerType: 'msg',
+            on: function(data){
+                setTimeout(function () {
+                  //  window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("warehouseId",data.arr,data.change,data.isAdd);
+                },5);
+            },
+            //转换数据
+            searchField: "warehouseName", //请自行调整用于搜索的字段名称
+            extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+            transform: function(data) {
+                //要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+                var defaultValues=[],defaultIndexs=[];
+                if(action=="create") {
+                    defaultValues = "".split(",");
+                    defaultIndexs = "0".split(",");
+                }
+                var opts=[];
+                if(!data) return opts;
+                for (var i = 0; i < data.length; i++) {
+                    if(!data[i]) continue;
+                    if(window.pageExt.form.selectBoxDataTransform) {
+                        opts.push(window.pageExt.form.selectBoxDataTransform("warehouseId",{data:data[i],name:data[i].warehouseName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+                    } else {
+                        opts.push({data:data[i],name:data[i].warehouseName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+                    }
+                }
+                return opts;
+            }
+        });
         //渲染 goodsCode 下拉字段
         fox.renderSelectBox({
             el: "goodsCode",
@@ -454,7 +528,8 @@ function FormPage() {
 
 
             //处理fillBy
-
+            fox.setSelectValue4QueryApi("#positionId",formData.warehousePosition);
+            fox.setSelectValue4QueryApi("#warehouseId",formData.warehouse);
             //
             fm.attr('method', 'POST');
             fox.fillDialogButtons();
@@ -501,8 +576,8 @@ function FormPage() {
         var data=form.val("data-form");
 
 
-
-
+        data["positionId"]=fox.getSelectedValue("positionId",false);
+        data["warehouseId"]=fox.getSelectedValue("warehouseId",false);
         return data;
     }
 

@@ -31,8 +31,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品
  * <p>库存物品 , 数据表 eam_goods_stock 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-12-18 16:56:51
- * @sign C30DA1C90B42074C1A6ABEFD1B4D85C2
+ * @since 2024-04-17 20:37:37
+ * @sign 52D14C7CF8D5CE3676664A96BA9ECBFE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -178,6 +178,18 @@ public class GoodsStock extends Entity {
 	private String pictureId;
 	
 	/**
+	 * 保养建议：保养建议
+	*/
+	@ApiModelProperty(required = false,value="保养建议" , notes = "保养建议")
+	private String maintenanceRecommendation;
+	
+	/**
+	 * 巡检建议：巡检建议
+	*/
+	@ApiModelProperty(required = false,value="巡检建议" , notes = "巡检建议")
+	private String inspectionRecommendation;
+	
+	/**
 	 * 备注：备注
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "档案备注")
@@ -212,6 +224,18 @@ public class GoodsStock extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="仓库" , notes = "仓库")
 	private String warehouseId;
+	
+	/**
+	 * 库位：库位
+	*/
+	@ApiModelProperty(required = false,value="库位" , notes = "库位")
+	private String positionId;
+	
+	/**
+	 * 位置详请：位置详请
+	*/
+	@ApiModelProperty(required = false,value="位置详请" , notes = "位置详请")
+	private String positionDetail;
 	
 	/**
 	 * 来源：来源
@@ -278,18 +302,6 @@ public class GoodsStock extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="父级" , notes = "父级")
 	private String pid;
-	
-	/**
-	 * 位置：位置
-	*/
-	@ApiModelProperty(required = false,value="位置" , notes = "位置")
-	private String positionId;
-	
-	/**
-	 * 位置详请：位置详请
-	*/
-	@ApiModelProperty(required = false,value="位置详请" , notes = "位置详请")
-	private String positionDetail;
 	
 	/**
 	 * 选择：选择
@@ -361,6 +373,30 @@ public class GoodsStock extends Entity {
 	private String tenantId;
 	
 	/**
+	 * warehousePosition：warehousePosition
+	*/
+	@ApiModelProperty(required = false,value="warehousePosition" , notes = "warehousePosition")
+	private WarehousePosition warehousePosition;
+	
+	/**
+	 * warehouseByPosition：warehouseByPosition
+	*/
+	@ApiModelProperty(required = false,value="warehouseByPosition" , notes = "warehouseByPosition")
+	private Warehouse warehouseByPosition;
+	
+	/**
+	 * goodsByManufacturer：goodsByManufacturer
+	*/
+	@ApiModelProperty(required = false,value="goodsByManufacturer" , notes = "goodsByManufacturer")
+	private Manufacturer goodsByManufacturer;
+	
+	/**
+	 * goodsByBrand：goodsByBrand
+	*/
+	@ApiModelProperty(required = false,value="goodsByBrand" , notes = "goodsByBrand")
+	private Brand goodsByBrand;
+	
+	/**
 	 * 资产分类：资产分类
 	*/
 	@ApiModelProperty(required = false,value="资产分类" , notes = "资产分类")
@@ -383,6 +419,12 @@ public class GoodsStock extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="物品" , notes = "物品")
 	private GoodsStock goods;
+	
+	/**
+	 * 库存数据：库存数据
+	*/
+	@ApiModelProperty(required = false,value="库存数据" , notes = "库存数据")
+	private GoodsStock realGoods;
 	
 	/**
 	 * 所属公司：所属公司
@@ -419,12 +461,6 @@ public class GoodsStock extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
 	private Employee originator;
-	
-	/**
-	 * 库存数据：库存数据
-	*/
-	@ApiModelProperty(required = false,value="库存数据" , notes = "库存数据")
-	private GoodsStock realGoods;
 	
 	/**
 	 * 类型：类型
@@ -959,6 +995,44 @@ public class GoodsStock extends Entity {
 	}
 	
 	/**
+	 * 获得 保养建议<br>
+	 * 保养建议
+	 * @return 保养建议
+	*/
+	public String getMaintenanceRecommendation() {
+		return maintenanceRecommendation;
+	}
+	
+	/**
+	 * 设置 保养建议
+	 * @param maintenanceRecommendation 保养建议
+	 * @return 当前对象
+	*/
+	public GoodsStock setMaintenanceRecommendation(String maintenanceRecommendation) {
+		this.maintenanceRecommendation=maintenanceRecommendation;
+		return this;
+	}
+	
+	/**
+	 * 获得 巡检建议<br>
+	 * 巡检建议
+	 * @return 巡检建议
+	*/
+	public String getInspectionRecommendation() {
+		return inspectionRecommendation;
+	}
+	
+	/**
+	 * 设置 巡检建议
+	 * @param inspectionRecommendation 巡检建议
+	 * @return 当前对象
+	*/
+	public GoodsStock setInspectionRecommendation(String inspectionRecommendation) {
+		this.inspectionRecommendation=inspectionRecommendation;
+		return this;
+	}
+	
+	/**
 	 * 获得 备注<br>
 	 * 备注
 	 * @return 备注
@@ -1069,6 +1143,44 @@ public class GoodsStock extends Entity {
 	*/
 	public GoodsStock setWarehouseId(String warehouseId) {
 		this.warehouseId=warehouseId;
+		return this;
+	}
+	
+	/**
+	 * 获得 库位<br>
+	 * 库位
+	 * @return 库位
+	*/
+	public String getPositionId() {
+		return positionId;
+	}
+	
+	/**
+	 * 设置 库位
+	 * @param positionId 库位
+	 * @return 当前对象
+	*/
+	public GoodsStock setPositionId(String positionId) {
+		this.positionId=positionId;
+		return this;
+	}
+	
+	/**
+	 * 获得 位置详请<br>
+	 * 位置详请
+	 * @return 位置详请
+	*/
+	public String getPositionDetail() {
+		return positionDetail;
+	}
+	
+	/**
+	 * 设置 位置详请
+	 * @param positionDetail 位置详请
+	 * @return 当前对象
+	*/
+	public GoodsStock setPositionDetail(String positionDetail) {
+		this.positionDetail=positionDetail;
 		return this;
 	}
 	
@@ -1278,44 +1390,6 @@ public class GoodsStock extends Entity {
 	*/
 	public GoodsStock setPid(String pid) {
 		this.pid=pid;
-		return this;
-	}
-	
-	/**
-	 * 获得 位置<br>
-	 * 位置
-	 * @return 位置
-	*/
-	public String getPositionId() {
-		return positionId;
-	}
-	
-	/**
-	 * 设置 位置
-	 * @param positionId 位置
-	 * @return 当前对象
-	*/
-	public GoodsStock setPositionId(String positionId) {
-		this.positionId=positionId;
-		return this;
-	}
-	
-	/**
-	 * 获得 位置详请<br>
-	 * 位置详请
-	 * @return 位置详请
-	*/
-	public String getPositionDetail() {
-		return positionDetail;
-	}
-	
-	/**
-	 * 设置 位置详请
-	 * @param positionDetail 位置详请
-	 * @return 当前对象
-	*/
-	public GoodsStock setPositionDetail(String positionDetail) {
-		this.positionDetail=positionDetail;
 		return this;
 	}
 	
@@ -1560,6 +1634,82 @@ public class GoodsStock extends Entity {
 	}
 	
 	/**
+	 * 获得 warehousePosition<br>
+	 * warehousePosition
+	 * @return warehousePosition
+	*/
+	public WarehousePosition getWarehousePosition() {
+		return warehousePosition;
+	}
+	
+	/**
+	 * 设置 warehousePosition
+	 * @param warehousePosition warehousePosition
+	 * @return 当前对象
+	*/
+	public GoodsStock setWarehousePosition(WarehousePosition warehousePosition) {
+		this.warehousePosition=warehousePosition;
+		return this;
+	}
+	
+	/**
+	 * 获得 warehouseByPosition<br>
+	 * warehouseByPosition
+	 * @return warehouseByPosition
+	*/
+	public Warehouse getWarehouseByPosition() {
+		return warehouseByPosition;
+	}
+	
+	/**
+	 * 设置 warehouseByPosition
+	 * @param warehouseByPosition warehouseByPosition
+	 * @return 当前对象
+	*/
+	public GoodsStock setWarehouseByPosition(Warehouse warehouseByPosition) {
+		this.warehouseByPosition=warehouseByPosition;
+		return this;
+	}
+	
+	/**
+	 * 获得 goodsByManufacturer<br>
+	 * goodsByManufacturer
+	 * @return goodsByManufacturer
+	*/
+	public Manufacturer getGoodsByManufacturer() {
+		return goodsByManufacturer;
+	}
+	
+	/**
+	 * 设置 goodsByManufacturer
+	 * @param goodsByManufacturer goodsByManufacturer
+	 * @return 当前对象
+	*/
+	public GoodsStock setGoodsByManufacturer(Manufacturer goodsByManufacturer) {
+		this.goodsByManufacturer=goodsByManufacturer;
+		return this;
+	}
+	
+	/**
+	 * 获得 goodsByBrand<br>
+	 * goodsByBrand
+	 * @return goodsByBrand
+	*/
+	public Brand getGoodsByBrand() {
+		return goodsByBrand;
+	}
+	
+	/**
+	 * 设置 goodsByBrand
+	 * @param goodsByBrand goodsByBrand
+	 * @return 当前对象
+	*/
+	public GoodsStock setGoodsByBrand(Brand goodsByBrand) {
+		this.goodsByBrand=goodsByBrand;
+		return this;
+	}
+	
+	/**
 	 * 获得 资产分类<br>
 	 * 资产分类
 	 * @return 资产分类
@@ -1632,6 +1782,25 @@ public class GoodsStock extends Entity {
 	*/
 	public GoodsStock setGoods(GoodsStock goods) {
 		this.goods=goods;
+		return this;
+	}
+	
+	/**
+	 * 获得 库存数据<br>
+	 * 库存数据
+	 * @return 库存数据
+	*/
+	public GoodsStock getRealGoods() {
+		return realGoods;
+	}
+	
+	/**
+	 * 设置 库存数据
+	 * @param realGoods 库存数据
+	 * @return 当前对象
+	*/
+	public GoodsStock setRealGoods(GoodsStock realGoods) {
+		this.realGoods=realGoods;
 		return this;
 	}
 	
@@ -1746,25 +1915,6 @@ public class GoodsStock extends Entity {
 	*/
 	public GoodsStock setOriginator(Employee originator) {
 		this.originator=originator;
-		return this;
-	}
-	
-	/**
-	 * 获得 库存数据<br>
-	 * 库存数据
-	 * @return 库存数据
-	*/
-	public GoodsStock getRealGoods() {
-		return realGoods;
-	}
-	
-	/**
-	 * 设置 库存数据
-	 * @param realGoods 库存数据
-	 * @return 当前对象
-	*/
-	public GoodsStock setRealGoods(GoodsStock realGoods) {
-		this.realGoods=realGoods;
 		return this;
 	}
 	
@@ -2262,6 +2412,7 @@ public class GoodsStock extends Entity {
 		inst.setModel(this.getModel());
 		inst.setId(this.getId());
 		inst.setUnitPrice(this.getUnitPrice());
+		inst.setMaintenanceRecommendation(this.getMaintenanceRecommendation());
 		inst.setVersion(this.getVersion());
 		inst.setBarCode(this.getBarCode());
 		inst.setUnit(this.getUnit());
@@ -2272,6 +2423,7 @@ public class GoodsStock extends Entity {
 		inst.setAssetCategoryId(this.getAssetCategoryId());
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setInspectionRecommendation(this.getInspectionRecommendation());
 		inst.setStatus(this.getStatus());
 		inst.setCode(this.getCode());
 		inst.setOwnerCode(this.getOwnerCode());
@@ -2314,6 +2466,7 @@ public class GoodsStock extends Entity {
 			inst.setParentGoodsStockIds(this.getParentGoodsStockIds());
 			inst.setManufacturer(this.getManufacturer());
 			inst.setGoodsBarCode(this.getGoodsBarCode());
+			inst.setWarehouseByPosition(this.getWarehouseByPosition());
 			inst.setSubGoodsStockIds(this.getSubGoodsStockIds());
 			inst.setSubGoodsStockList(this.getSubGoodsStockList());
 			inst.setGoodsUnit(this.getGoodsUnit());
@@ -2325,11 +2478,14 @@ public class GoodsStock extends Entity {
 			inst.setGoodsParentGoodsStockList(this.getGoodsParentGoodsStockList());
 			inst.setRelatedGoodsStockCount(this.getRelatedGoodsStockCount());
 			inst.setGoodsStockMin(this.getGoodsStockMin());
-			inst.setWarehouse(this.getWarehouse());
 			inst.setRealGoods(this.getRealGoods());
+			inst.setWarehouse(this.getWarehouse());
+			inst.setWarehousePosition(this.getWarehousePosition());
+			inst.setGoodsByBrand(this.getGoodsByBrand());
 			inst.setUseOrganization(this.getUseOrganization());
 			inst.setGoodsCategoryName(this.getGoodsCategoryName());
 			inst.setGoodsStockNotes(this.getGoodsStockNotes());
+			inst.setGoodsByManufacturer(this.getGoodsByManufacturer());
 			inst.setRelatedAssetList(this.getRelatedAssetList());
 			inst.setGoodsCode(this.getGoodsCode());
 			inst.setCategory(this.getCategory());
@@ -2404,6 +2560,7 @@ public class GoodsStock extends Entity {
 			this.setModel(DataParser.parse(String.class, map.get(GoodsStockMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, map.get(GoodsStockMeta.ID)));
 			this.setUnitPrice(DataParser.parse(BigDecimal.class, map.get(GoodsStockMeta.UNIT_PRICE)));
+			this.setMaintenanceRecommendation(DataParser.parse(String.class, map.get(GoodsStockMeta.MAINTENANCE_RECOMMENDATION)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(GoodsStockMeta.VERSION)));
 			this.setBarCode(DataParser.parse(String.class, map.get(GoodsStockMeta.BAR_CODE)));
 			this.setUnit(DataParser.parse(String.class, map.get(GoodsStockMeta.UNIT)));
@@ -2414,6 +2571,7 @@ public class GoodsStock extends Entity {
 			this.setAssetCategoryId(DataParser.parse(String.class, map.get(GoodsStockMeta.ASSET_CATEGORY_ID)));
 			this.setName(DataParser.parse(String.class, map.get(GoodsStockMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(GoodsStockMeta.DELETE_BY)));
+			this.setInspectionRecommendation(DataParser.parse(String.class, map.get(GoodsStockMeta.INSPECTION_RECOMMENDATION)));
 			this.setStatus(DataParser.parse(String.class, map.get(GoodsStockMeta.STATUS)));
 			this.setCode(DataParser.parse(String.class, map.get(GoodsStockMeta.CODE)));
 			this.setOwnerCode(DataParser.parse(String.class, map.get(GoodsStockMeta.OWNER_CODE)));
@@ -2454,6 +2612,7 @@ public class GoodsStock extends Entity {
 			this.setGoodsModel(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_MODEL)));
 			this.setManufacturer(DataParser.parse(Manufacturer.class, map.get(GoodsStockMeta.MANUFACTURER)));
 			this.setGoodsBarCode(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_BAR_CODE)));
+			this.setWarehouseByPosition(DataParser.parse(Warehouse.class, map.get(GoodsStockMeta.WAREHOUSE_BY_POSITION)));
 			this.setGoodsUnit(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_UNIT)));
 			this.setBrand(DataParser.parse(Brand.class, map.get(GoodsStockMeta.BRAND)));
 			this.setGoodsName(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_NAME)));
@@ -2461,11 +2620,14 @@ public class GoodsStock extends Entity {
 			this.setManager(DataParser.parse(Employee.class, map.get(GoodsStockMeta.MANAGER)));
 			this.setRelatedGoodsStockCount(DataParser.parse(Integer.class, map.get(GoodsStockMeta.RELATED_GOODS_STOCK_COUNT)));
 			this.setGoodsStockMin(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_MIN)));
-			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(GoodsStockMeta.WAREHOUSE)));
 			this.setRealGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockMeta.REAL_GOODS)));
+			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(GoodsStockMeta.WAREHOUSE)));
+			this.setWarehousePosition(DataParser.parse(WarehousePosition.class, map.get(GoodsStockMeta.WAREHOUSE_POSITION)));
+			this.setGoodsByBrand(DataParser.parse(Brand.class, map.get(GoodsStockMeta.GOODS_BY_BRAND)));
 			this.setUseOrganization(DataParser.parse(Organization.class, map.get(GoodsStockMeta.USE_ORGANIZATION)));
 			this.setGoodsCategoryName(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_CATEGORY_NAME)));
 			this.setGoodsStockNotes(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_NOTES)));
+			this.setGoodsByManufacturer(DataParser.parse(Manufacturer.class, map.get(GoodsStockMeta.GOODS_BY_MANUFACTURER)));
 			this.setGoodsCode(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_CODE)));
 			this.setCategory(DataParser.parse(Catalog.class, map.get(GoodsStockMeta.CATEGORY)));
 			return true;
@@ -2483,6 +2645,7 @@ public class GoodsStock extends Entity {
 				this.setModel( (String)map.get(GoodsStockMeta.MODEL));
 				this.setId( (String)map.get(GoodsStockMeta.ID));
 				this.setUnitPrice( (BigDecimal)map.get(GoodsStockMeta.UNIT_PRICE));
+				this.setMaintenanceRecommendation( (String)map.get(GoodsStockMeta.MAINTENANCE_RECOMMENDATION));
 				this.setVersion( (Integer)map.get(GoodsStockMeta.VERSION));
 				this.setBarCode( (String)map.get(GoodsStockMeta.BAR_CODE));
 				this.setUnit( (String)map.get(GoodsStockMeta.UNIT));
@@ -2493,6 +2656,7 @@ public class GoodsStock extends Entity {
 				this.setAssetCategoryId( (String)map.get(GoodsStockMeta.ASSET_CATEGORY_ID));
 				this.setName( (String)map.get(GoodsStockMeta.NAME));
 				this.setDeleteBy( (String)map.get(GoodsStockMeta.DELETE_BY));
+				this.setInspectionRecommendation( (String)map.get(GoodsStockMeta.INSPECTION_RECOMMENDATION));
 				this.setStatus( (String)map.get(GoodsStockMeta.STATUS));
 				this.setCode( (String)map.get(GoodsStockMeta.CODE));
 				this.setOwnerCode( (String)map.get(GoodsStockMeta.OWNER_CODE));
@@ -2533,6 +2697,7 @@ public class GoodsStock extends Entity {
 				this.setGoodsModel( (String)map.get(GoodsStockMeta.GOODS_MODEL));
 				this.setManufacturer( (Manufacturer)map.get(GoodsStockMeta.MANUFACTURER));
 				this.setGoodsBarCode( (String)map.get(GoodsStockMeta.GOODS_BAR_CODE));
+				this.setWarehouseByPosition( (Warehouse)map.get(GoodsStockMeta.WAREHOUSE_BY_POSITION));
 				this.setGoodsUnit( (String)map.get(GoodsStockMeta.GOODS_UNIT));
 				this.setBrand( (Brand)map.get(GoodsStockMeta.BRAND));
 				this.setGoodsName( (String)map.get(GoodsStockMeta.GOODS_NAME));
@@ -2540,11 +2705,14 @@ public class GoodsStock extends Entity {
 				this.setManager( (Employee)map.get(GoodsStockMeta.MANAGER));
 				this.setRelatedGoodsStockCount( (Integer)map.get(GoodsStockMeta.RELATED_GOODS_STOCK_COUNT));
 				this.setGoodsStockMin( (String)map.get(GoodsStockMeta.GOODS_STOCK_MIN));
-				this.setWarehouse( (Warehouse)map.get(GoodsStockMeta.WAREHOUSE));
 				this.setRealGoods( (GoodsStock)map.get(GoodsStockMeta.REAL_GOODS));
+				this.setWarehouse( (Warehouse)map.get(GoodsStockMeta.WAREHOUSE));
+				this.setWarehousePosition( (WarehousePosition)map.get(GoodsStockMeta.WAREHOUSE_POSITION));
+				this.setGoodsByBrand( (Brand)map.get(GoodsStockMeta.GOODS_BY_BRAND));
 				this.setUseOrganization( (Organization)map.get(GoodsStockMeta.USE_ORGANIZATION));
 				this.setGoodsCategoryName( (String)map.get(GoodsStockMeta.GOODS_CATEGORY_NAME));
 				this.setGoodsStockNotes( (String)map.get(GoodsStockMeta.GOODS_STOCK_NOTES));
+				this.setGoodsByManufacturer( (Manufacturer)map.get(GoodsStockMeta.GOODS_BY_MANUFACTURER));
 				this.setGoodsCode( (String)map.get(GoodsStockMeta.GOODS_CODE));
 				this.setCategory( (Catalog)map.get(GoodsStockMeta.CATEGORY));
 				return true;
@@ -2575,6 +2743,7 @@ public class GoodsStock extends Entity {
 			this.setModel(DataParser.parse(String.class, r.getValue(GoodsStockMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.ID)));
 			this.setUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockMeta.UNIT_PRICE)));
+			this.setMaintenanceRecommendation(DataParser.parse(String.class, r.getValue(GoodsStockMeta.MAINTENANCE_RECOMMENDATION)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(GoodsStockMeta.VERSION)));
 			this.setBarCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.BAR_CODE)));
 			this.setUnit(DataParser.parse(String.class, r.getValue(GoodsStockMeta.UNIT)));
@@ -2585,6 +2754,7 @@ public class GoodsStock extends Entity {
 			this.setAssetCategoryId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.ASSET_CATEGORY_ID)));
 			this.setName(DataParser.parse(String.class, r.getValue(GoodsStockMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(GoodsStockMeta.DELETE_BY)));
+			this.setInspectionRecommendation(DataParser.parse(String.class, r.getValue(GoodsStockMeta.INSPECTION_RECOMMENDATION)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(GoodsStockMeta.STATUS)));
 			this.setCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.CODE)));
 			this.setOwnerCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.OWNER_CODE)));
@@ -2630,6 +2800,7 @@ public class GoodsStock extends Entity {
 				this.setModel( (String)r.getValue(GoodsStockMeta.MODEL));
 				this.setId( (String)r.getValue(GoodsStockMeta.ID));
 				this.setUnitPrice( (BigDecimal)r.getValue(GoodsStockMeta.UNIT_PRICE));
+				this.setMaintenanceRecommendation( (String)r.getValue(GoodsStockMeta.MAINTENANCE_RECOMMENDATION));
 				this.setVersion( (Integer)r.getValue(GoodsStockMeta.VERSION));
 				this.setBarCode( (String)r.getValue(GoodsStockMeta.BAR_CODE));
 				this.setUnit( (String)r.getValue(GoodsStockMeta.UNIT));
@@ -2640,6 +2811,7 @@ public class GoodsStock extends Entity {
 				this.setAssetCategoryId( (String)r.getValue(GoodsStockMeta.ASSET_CATEGORY_ID));
 				this.setName( (String)r.getValue(GoodsStockMeta.NAME));
 				this.setDeleteBy( (String)r.getValue(GoodsStockMeta.DELETE_BY));
+				this.setInspectionRecommendation( (String)r.getValue(GoodsStockMeta.INSPECTION_RECOMMENDATION));
 				this.setStatus( (String)r.getValue(GoodsStockMeta.STATUS));
 				this.setCode( (String)r.getValue(GoodsStockMeta.CODE));
 				this.setOwnerCode( (String)r.getValue(GoodsStockMeta.OWNER_CODE));

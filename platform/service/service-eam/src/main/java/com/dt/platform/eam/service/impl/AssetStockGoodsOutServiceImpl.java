@@ -109,11 +109,11 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 			}else{
 				return ErrorDesc.failureMessage("编号:"+list.get(i).getId()+",当前数量必须大于0");
 			}
-			if(list.get(i).getWarehouseId().equals(assetStockGoodsOut.getWarehouseId())){
-				Logger.info("check ok");
-			}else{
-				return ErrorDesc.failureMessage("出库物品所在仓库需和本次出库仓库保持一致");
-			}
+//			if(list.get(i).getWarehouseId().equals(assetStockGoodsOut.getWarehouseId())){
+//				Logger.info("check ok");
+//			}else{
+//				return ErrorDesc.failureMessage("出库物品所在仓库需和本次出库仓库保持一致");
+//			}
 		}
 
 
@@ -158,7 +158,7 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 		}
 		Result r=super.insert(assetStockGoodsOut,throwsException);
 		for(int i=0;i<list.size();i++){
-			list.get(i).setWarehouseId(assetStockGoodsOut.getWarehouseId());
+		//	list.get(i).setWarehouseId(assetStockGoodsOut.getWarehouseId());
 			list.get(i).setBusinessCode(assetStockGoodsOut.getBusinessCode());
 			list.get(i).setOwnerCode(assetStockGoodsOut.getOwnerType());
 		}
@@ -222,12 +222,16 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 	 * */
 	private Result operateResult(String id,String result,String status,String message) {
 		if(AssetHandleConfirmOperationEnum.SUCCESS.code().equals(result)){
+
+			Result comRs= computeStockData(id);
+			if(!comRs.isSuccess()){
+				return comRs;
+			}
+			dao.execute("update eam_goods_stock a,eam_warehouse_position b set a.status=?,a.warehouse_id=b.warehouse_id where a.position_id=b.id and a.owner_id=? ",status,id);
+			//后续需要加盘点
 			AssetStockGoodsOut bill=new AssetStockGoodsOut();
 			bill.setId(id);
 			bill.setStatus(status);
-			this.dao.execute("update eam_goods_stock set status=? where owner_id=?",status,bill.getId());
-			//后续需要加盘点
-			computeStockData(id);
 			return super.update(bill,SaveMode.NOT_NULL_FIELDS,false);
 		}else if(AssetHandleConfirmOperationEnum.FAILED.code().equals(result)){
 			return ErrorDesc.failureMessage(message);
@@ -252,7 +256,6 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 				String value=goods.get(i).getStockInNumber()+"";
 				String sql="update eam_goods_stock set stock_cur_number=stock_cur_number-"+value+" where id=?";
 				this.dao.execute(sql,rid);
-
 				GoodsStockUsage goodsStockUsage=new GoodsStockUsage();
 				goodsStockUsage.setOwnerId(rid);
 				goodsStockUsage.setLabel("出库");
@@ -493,17 +496,16 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 			}else{
 				return ErrorDesc.failureMessage("编号:"+list.get(i).getId()+",当前数量必须大于0");
 			}
-			if(list.get(i).getWarehouseId().equals(assetStockGoodsOut.getWarehouseId())){
-				Logger.info("check ok");
-			}else{
-				return ErrorDesc.failureMessage("出库物品所在仓库需和本次出库仓库保持一致");
-			}
+//			if(list.get(i).getWarehouseId().equals(assetStockGoodsOut.getWarehouseId())){
+//				Logger.info("check ok");
+//			}else{
+//				return ErrorDesc.failureMessage("出库物品所在仓库需和本次出库仓库保持一致");
+//			}
 		}
 
 
 		Result r=super.update(assetStockGoodsOut , mode , throwsException);
 		for(int i=0;i<list.size();i++){
-			list.get(i).setWarehouseId(assetStockGoodsOut.getWarehouseId());
 			list.get(i).setBusinessCode(bill.getBusinessCode());
 			list.get(i).setOwnerCode(assetStockGoodsOut.getOwnerType());
 		}

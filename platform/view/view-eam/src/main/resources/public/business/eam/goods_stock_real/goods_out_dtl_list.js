@@ -85,6 +85,7 @@ function ListPage() {
 				cols: [[
 					{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('单据编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName"),d);}}
+					,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName"),d);}}
 					,{ field: 'categoryId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品分类'), templet: function (d) { return templet('categoryId' ,fox.joinLabel(d.category,"name"),d);}}
 					,{ field: 'goodsId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品名称'), templet: function (d) { return templet('goodsId' ,fox.joinLabel(d.goods,"name"),d);}}
 					,{ field: 'goodsModel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品型号'), templet: function (d) { return templet('goodsModel' ,fox.joinLabel(d.goods,"model"),d);}}
@@ -94,7 +95,7 @@ function ListPage() {
 				//	,{ field: 'goodsNotes', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('备注'), templet: function (d) { return templet('goodsNotes' ,fox.joinLabel(d.goods,"notes"),d);}}
 					,{ field: 'stockInNumber', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('数量') , templet: function (d) { return templet('stockInNumber',d.stockInNumber,d);}  }
 					,{ field: 'sn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('序列') , templet: function (d) { return templet('sn',d.sn,d);}  }
-					,{ field: 'positionDetail', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('位置详情'), templet: function (d) { return templet('positionDetail' ,d.positionDetail,d);}}
+				//	,{ field: 'positionDetail', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('位置详情'), templet: function (d) { return templet('positionDetail' ,d.positionDetail,d);}}
 					,{ field: 'notes', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 
 				]],

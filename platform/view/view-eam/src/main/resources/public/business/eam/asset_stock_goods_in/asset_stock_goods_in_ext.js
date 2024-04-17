@@ -368,10 +368,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //设置 iframe 高度
             ifr.height("400px");
             var ownerTmpId="";
+            var wareHouseId=fox.getSelectedValue("warehouseId",false);
             if(data&&data.id){
                 ownerTmpId=data.id;
             }
-            var queryString="?operType="+OPER_TYPE+"&selectedCode="+timestamp+"&ownerTmpId="+ownerTmpId+"&ownerType="+OWNER_TYPE+"&pageType="+formAction;
+            var queryString="?warehouseId="+wareHouseId+"&operType="+OPER_TYPE+"&selectedCode="+timestamp+"&ownerTmpId="+ownerTmpId+"&ownerType="+OWNER_TYPE+"&pageType="+formAction;
             //设置地址
             win.location="/business/eam/goods_stock/goods_stock_selected_list.html"+queryString
 

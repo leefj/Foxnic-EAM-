@@ -1,6 +1,4 @@
 #!/bin/sh
-
-
 ds=`date`
 echo $ds>>/tmp/all.log
 sh deploy_replace_local_db.sh
