@@ -214,7 +214,7 @@ function FormPage() {
                 },1);
             },
             //转换数据
-            searchField: "name", //请自行调整用于搜索的字段名称
+            searchField: "fullName", //请自行调整用于搜索的字段名称
             extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
             transform: function(data) {
                 //要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
@@ -230,7 +230,7 @@ function FormPage() {
                     if(window.pageExt.form.selectBoxDataTransform) {
                         opts.push(window.pageExt.form.selectBoxDataTransform("positionId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
                     } else {
-                        opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+                        opts.push({data:data[i],name:data[i].fullName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
                     }
                 }
                 return opts;
@@ -404,7 +404,7 @@ function FormPage() {
             layVerType: 'msg',
             on: function(data){
                 setTimeout(function () {
-                  //  window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("warehouseId",data.arr,data.change,data.isAdd);
+                     window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("warehouseId",data.arr,data.change,data.isAdd);
                 },5);
             },
             //转换数据

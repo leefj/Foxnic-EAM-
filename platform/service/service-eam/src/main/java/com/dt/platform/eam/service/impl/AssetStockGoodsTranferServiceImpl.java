@@ -163,6 +163,7 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 		}
 
 		Result r=super.insert(assetStockGoodsTranfer,throwsException);
+		dao.execute("update eam_asset_stock_goods_tranfer a,eam_warehouse_position b set a.warehouse_in_id=b.warehouse_id where a.position_in_id=b.id and a.id=?",assetStockGoodsTranfer.getId());
 		for(int i=0;i<list.size();i++){
 			//调出库存多--->调入库存(单)
 			list.get(i).setWarehouseId(assetStockGoodsTranfer.getWarehouseOutId());
@@ -243,7 +244,8 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 		String tenantId= SessionUser.getCurrent().getActivatedTenantId();
 		AssetStockGoodsTranfer bill=this.getById(id);
 		this.dao().fill(bill)
-				.with(AssetStockGoodsInMeta.GOODS_LIST)
+				.with(AssetStockGoodsTranferMeta.GOODS_LIST)
+				.with(AssetStockGoodsTranferMeta.WAREHOUSE_POSITION)
 				.execute();
 		//不进行判断，直接进行库存减
 
@@ -259,6 +261,7 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 		String cUserId=SessionUser.getCurrent().getActivatedEmployeeId();
 		String cUserName=SessionUser.getCurrent().getUser().getActivatedEmployeeName();
 		List<GoodsStock> goods=bill.getGoodsList();
+
 		if(goods!=null&&goods.size()>0){
 			for(int i=0;i<goods.size();i++){
 				GoodsStock goodsObj=goods.get(i);
@@ -276,7 +279,7 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 					ins.set("owner_type",bill.getOwnerType());
 					ins.set("stock_cur_number",goodsNumber);
 					ins.set("tenant_id",tenantId);
-					ins.set("warehouse_id",bill.getWarehouseInId());
+					ins.set("warehouse_id",bill.getWarehousePosition().getWarehouseId());
 					ins.set("position_id",bill.getPositionInId());
 					ins.set("goods_id",goodsId);
 					this.dao.execute(ins);
@@ -454,6 +457,8 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 		}
 
 		Result r=super.update(assetStockGoodsTranfer , mode , throwsException);
+		dao.execute("update eam_asset_stock_goods_tranfer a,eam_warehouse_position b set a.warehouse_in_id=b.warehouse_id where a.position_in_id=b.id and a.id=?",assetStockGoodsTranfer.getId());
+
 		for(int i=0;i<list.size();i++){
 			//调出库存多--->调入库存(单)
 			list.get(i).setWarehouseId(assetStockGoodsTranfer.getWarehouseOutId());

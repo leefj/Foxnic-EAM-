@@ -293,7 +293,12 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 						ins.set("owner_type",bill.getOwnerType());
 						ins.set("stock_cur_number",stockInNumber);
 						ins.set("tenant_id",tenantId);
-						ins.set("warehouse_id",goods.get(i).getWarehouseId());
+						if(goods.get(i).getWarehouseByPosition()!=null){
+							ins.set("warehouse_id",goods.get(i).getWarehouseByPosition().getId());
+						}else{
+							return ErrorDesc.failureMessage("请完善物品库位信息");
+						}
+						ins.set("position_id",position);
 						ins.set("position_id",position);
 						ins.set("goods_id",goodsId);
 						ins.set("category_id",goods.get(i).getCategoryId());

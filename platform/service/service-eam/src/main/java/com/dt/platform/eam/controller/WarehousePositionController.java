@@ -45,7 +45,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 仓库库位接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 18:52:09
+ * @since 2024-04-18 07:22:00
 */
 
 @InDoc
@@ -64,6 +64,7 @@ public class WarehousePositionController extends SuperController {
 		@ApiImplicitParam(name = WarehousePositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "558599358870716416"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.WAREHOUSE_ID , value = "仓库" , required = false , dataTypeClass=String.class , example = "558599358870716416"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class , example = "def"),
+		@ApiImplicitParam(name = WarehousePositionVOMeta.FULL_NAME , value = "全称" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.NAME , value = "库位" , required = false , dataTypeClass=String.class , example = "默认库存"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
@@ -171,6 +172,7 @@ public class WarehousePositionController extends SuperController {
 		@ApiImplicitParam(name = WarehousePositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "558599358870716416"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.WAREHOUSE_ID , value = "仓库" , required = false , dataTypeClass=String.class , example = "558599358870716416"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class , example = "def"),
+		@ApiImplicitParam(name = WarehousePositionVOMeta.FULL_NAME , value = "全称" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.NAME , value = "库位" , required = false , dataTypeClass=String.class , example = "默认库存"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
@@ -194,6 +196,7 @@ public class WarehousePositionController extends SuperController {
 		@ApiImplicitParam(name = WarehousePositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "558599358870716416"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.WAREHOUSE_ID , value = "仓库" , required = false , dataTypeClass=String.class , example = "558599358870716416"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class , example = "def"),
+		@ApiImplicitParam(name = WarehousePositionVOMeta.FULL_NAME , value = "全称" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.NAME , value = "库位" , required = false , dataTypeClass=String.class , example = "默认库存"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
@@ -260,6 +263,7 @@ public class WarehousePositionController extends SuperController {
 		@ApiImplicitParam(name = WarehousePositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "558599358870716416"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.WAREHOUSE_ID , value = "仓库" , required = false , dataTypeClass=String.class , example = "558599358870716416"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class , example = "def"),
+		@ApiImplicitParam(name = WarehousePositionVOMeta.FULL_NAME , value = "全称" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.NAME , value = "库位" , required = false , dataTypeClass=String.class , example = "默认库存"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
@@ -284,6 +288,7 @@ public class WarehousePositionController extends SuperController {
 		@ApiImplicitParam(name = WarehousePositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "558599358870716416"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.WAREHOUSE_ID , value = "仓库" , required = false , dataTypeClass=String.class , example = "558599358870716416"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class , example = "def"),
+		@ApiImplicitParam(name = WarehousePositionVOMeta.FULL_NAME , value = "全称" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.NAME , value = "库位" , required = false , dataTypeClass=String.class , example = "默认库存"),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = WarehousePositionVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),

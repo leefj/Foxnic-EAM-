@@ -220,6 +220,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         onSelectBoxChanged:function(id,selected,changes,isAdd) {
             console.log('onSelectBoxChanged',id,selected,changes,isAdd);
+            if(id=="warehouseId"){
+                console.log(selected);
+
+            }
         },
         /**
          * 当日期选择组件选择后触发

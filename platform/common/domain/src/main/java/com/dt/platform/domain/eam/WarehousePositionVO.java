@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 仓库库位VO类型
  * <p>仓库库位 , 数据表 eam_warehouse_position 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 18:52:09
+ * @since 2024-04-18 07:21:59
  * @sign 971AF86E947F15A40A870A72F93CDAA5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -403,6 +403,7 @@ public class WarehousePositionVO extends WarehousePosition {
 		com.dt.platform.domain.eam.meta.WarehousePositionVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.WarehousePositionVOMeta.$$proxy$$();
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
+		inst.setFullName(this.getFullName());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
@@ -489,6 +490,7 @@ public class WarehousePositionVO extends WarehousePosition {
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, map.get(WarehousePositionVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(WarehousePositionVOMeta.NOTES)));
+			this.setFullName(DataParser.parse(String.class, map.get(WarehousePositionVOMeta.FULL_NAME)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(WarehousePositionVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(WarehousePositionVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(WarehousePositionVOMeta.CREATE_BY)));
@@ -517,6 +519,7 @@ public class WarehousePositionVO extends WarehousePosition {
 			try {
 				this.setCode( (String)map.get(WarehousePositionVOMeta.CODE));
 				this.setNotes( (String)map.get(WarehousePositionVOMeta.NOTES));
+				this.setFullName( (String)map.get(WarehousePositionVOMeta.FULL_NAME));
 				this.setUpdateTime( (Date)map.get(WarehousePositionVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(WarehousePositionVOMeta.VERSION));
 				this.setCreateBy( (String)map.get(WarehousePositionVOMeta.CREATE_BY));
@@ -558,6 +561,7 @@ public class WarehousePositionVO extends WarehousePosition {
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, r.getValue(WarehousePositionVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(WarehousePositionVOMeta.NOTES)));
+			this.setFullName(DataParser.parse(String.class, r.getValue(WarehousePositionVOMeta.FULL_NAME)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(WarehousePositionVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(WarehousePositionVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(WarehousePositionVOMeta.CREATE_BY)));
@@ -574,6 +578,7 @@ public class WarehousePositionVO extends WarehousePosition {
 			try {
 				this.setCode( (String)r.getValue(WarehousePositionVOMeta.CODE));
 				this.setNotes( (String)r.getValue(WarehousePositionVOMeta.NOTES));
+				this.setFullName( (String)r.getValue(WarehousePositionVOMeta.FULL_NAME));
 				this.setUpdateTime( (Date)r.getValue(WarehousePositionVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(WarehousePositionVOMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(WarehousePositionVOMeta.CREATE_BY));

@@ -1,7 +1,7 @@
 /**
  * 仓库库位 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 18:52:10
+ * @since 2024-04-18 07:22:01
  */
 
 
@@ -87,6 +87,7 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName",',','','warehouseId'),d);}}
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
+					,{ field: 'fullName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('全称') , templet: function (d) { return templet('fullName',d.fullName,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('库位') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }

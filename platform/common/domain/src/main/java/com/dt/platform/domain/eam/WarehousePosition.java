@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 仓库库位
  * <p>仓库库位 , 数据表 eam_warehouse_position 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 18:52:09
- * @sign 703E5126E504762A13D999B26A33C653
+ * @since 2024-04-18 07:21:59
+ * @sign A3969784A665E9A21226A04D04F720C3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -54,6 +54,12 @@ public class WarehousePosition extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "def")
 	private String code;
+	
+	/**
+	 * 全称：全称
+	*/
+	@ApiModelProperty(required = false,value="全称" , notes = "全称")
+	private String fullName;
 	
 	/**
 	 * 库位：库位
@@ -178,6 +184,25 @@ public class WarehousePosition extends Entity {
 	*/
 	public WarehousePosition setCode(String code) {
 		this.code=code;
+		return this;
+	}
+	
+	/**
+	 * 获得 全称<br>
+	 * 全称
+	 * @return 全称
+	*/
+	public String getFullName() {
+		return fullName;
+	}
+	
+	/**
+	 * 设置 全称
+	 * @param fullName 全称
+	 * @return 当前对象
+	*/
+	public WarehousePosition setFullName(String fullName) {
+		this.fullName=fullName;
 		return this;
 	}
 	
@@ -467,6 +492,7 @@ public class WarehousePosition extends Entity {
 		com.dt.platform.domain.eam.meta.WarehousePositionMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.WarehousePositionMeta.$$proxy$$();
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
+		inst.setFullName(this.getFullName());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
@@ -541,6 +567,7 @@ public class WarehousePosition extends Entity {
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, map.get(WarehousePositionMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(WarehousePositionMeta.NOTES)));
+			this.setFullName(DataParser.parse(String.class, map.get(WarehousePositionMeta.FULL_NAME)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(WarehousePositionMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(WarehousePositionMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(WarehousePositionMeta.CREATE_BY)));
@@ -559,6 +586,7 @@ public class WarehousePosition extends Entity {
 			try {
 				this.setCode( (String)map.get(WarehousePositionMeta.CODE));
 				this.setNotes( (String)map.get(WarehousePositionMeta.NOTES));
+				this.setFullName( (String)map.get(WarehousePositionMeta.FULL_NAME));
 				this.setUpdateTime( (Date)map.get(WarehousePositionMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(WarehousePositionMeta.VERSION));
 				this.setCreateBy( (String)map.get(WarehousePositionMeta.CREATE_BY));
@@ -590,6 +618,7 @@ public class WarehousePosition extends Entity {
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, r.getValue(WarehousePositionMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(WarehousePositionMeta.NOTES)));
+			this.setFullName(DataParser.parse(String.class, r.getValue(WarehousePositionMeta.FULL_NAME)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(WarehousePositionMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(WarehousePositionMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(WarehousePositionMeta.CREATE_BY)));
@@ -606,6 +635,7 @@ public class WarehousePosition extends Entity {
 			try {
 				this.setCode( (String)r.getValue(WarehousePositionMeta.CODE));
 				this.setNotes( (String)r.getValue(WarehousePositionMeta.NOTES));
+				this.setFullName( (String)r.getValue(WarehousePositionMeta.FULL_NAME));
 				this.setUpdateTime( (Date)r.getValue(WarehousePositionMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(WarehousePositionMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(WarehousePositionMeta.CREATE_BY));

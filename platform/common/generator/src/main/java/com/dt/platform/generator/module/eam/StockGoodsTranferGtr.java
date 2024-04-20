@@ -75,6 +75,7 @@ public class StockGoodsTranferGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.UPDATE_BY).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.APPROVAL_OPINION).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.ATTACH_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.WAREHOUSE_IN_ID).table().disable(true);
 //        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.ORIGINATOR_ID).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.ATTACH_ID).table().disable(true);
@@ -102,7 +103,7 @@ public class StockGoodsTranferGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.WAREHOUSE_IN_ID)
                 .basic().label("调入仓库")
-                .form().validate().required().form().selectBox().queryApi(WarehouseServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
+                .form().selectBox().queryApi(WarehouseServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(WarehouseMeta.ID).textField(WarehouseMeta.WAREHOUSE_NAME).fillWith(AssetStockGoodsTranferMeta.WAREHOUSE_IN).muliti(false).defaultIndex(0);
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.POSITION_IN_ID)
@@ -131,7 +132,6 @@ public class StockGoodsTranferGtr extends BaseCodeGenerator {
                 },
 
                 new Object[] {
-                        EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.WAREHOUSE_IN_ID,
                         EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.POSITION_IN_ID
                 }
         );

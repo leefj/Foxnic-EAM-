@@ -347,7 +347,7 @@ public class GoodsStockController extends SuperController {
         Result<GoodsStock> result = new Result<>();
         GoodsStock goodsStock = goodsStockService.getById(id);
         // join 关联的对象
-        goodsStockService.dao().fill(goodsStock).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(goodsStock).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.WAREHOUSE_BY_POSITION).with(GoodsStockMeta.GOODS_BY_BRAND).with(GoodsStockMeta.GOODS_BY_MANUFACTURER).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         result.success(true).data(goodsStock);
         return result;
     }

@@ -38,7 +38,7 @@ import java.util.Map;
  * 仓库库位服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 18:52:09
+ * @since 2024-04-18 07:22:00
 */
 
 
@@ -73,7 +73,12 @@ public class WarehousePositionServiceImpl extends SuperService<WarehousePosition
 	 */
 	@Override
 	public Result insert(WarehousePosition warehousePosition,boolean throwsException) {
+
+
 		Result r=super.insert(warehousePosition,throwsException);
+		if(r.isSuccess()){
+			dao.execute("update eam_warehouse_position a,eam_warehouse b set a.full_name=concat(b.warehouse_name,'/',a.name) where a.warehouse_id=b.id where a.id=?",warehousePosition.getId());
+		}
 		return r;
 	}
 
@@ -164,6 +169,9 @@ public class WarehousePositionServiceImpl extends SuperService<WarehousePosition
 	@Override
 	public Result update(WarehousePosition warehousePosition , SaveMode mode,boolean throwsException) {
 		Result r=super.update(warehousePosition , mode , throwsException);
+		if(r.isSuccess()){
+			dao.execute("update eam_warehouse_position a,eam_warehouse b set a.full_name=concat(b.warehouse_name,'/',a.name) where a.warehouse_id=b.id where a.id=?",warehousePosition.getId());
+		}
 		return r;
 	}
 

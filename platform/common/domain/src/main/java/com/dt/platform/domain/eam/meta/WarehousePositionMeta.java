@@ -10,8 +10,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 18:52:09
- * @sign 703E5126E504762A13D999B26A33C653
+ * @since 2024-04-18 07:21:59
+ * @sign A3969784A665E9A21226A04D04F720C3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -46,6 +46,16 @@ public class WarehousePositionMeta {
 	 * 编码 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.WarehousePosition,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.WarehousePosition.class ,CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
+	
+	/**
+	 * 全称 , 类型: java.lang.String
+	*/
+	public static final String FULL_NAME="fullName";
+	
+	/**
+	 * 全称 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.WarehousePosition,java.lang.String> FULL_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.WarehousePosition.class ,FULL_NAME, java.lang.String.class, "全称", "全称", java.lang.String.class, null);
 	
 	/**
 	 * 库位 , 类型: java.lang.String
@@ -160,7 +170,7 @@ public class WarehousePositionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , WAREHOUSE_ID , CODE , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , WAREHOUSE };
+	public static final String[] $PROPS={ ID , WAREHOUSE_ID , CODE , FULL_NAME , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , WAREHOUSE };
 	
 	/**
 	 * 代理类
@@ -200,6 +210,17 @@ public class WarehousePositionMeta {
 		public WarehousePosition setCode(String code) {
 			super.change(CODE,super.getCode(),code);
 			super.setCode(code);
+			return this;
+		}
+		
+		/**
+		 * 设置 全称
+		 * @param fullName 全称
+		 * @return 当前对象
+		*/
+		public WarehousePosition setFullName(String fullName) {
+			super.change(FULL_NAME,super.getFullName(),fullName);
+			super.setFullName(fullName);
 			return this;
 		}
 		
@@ -341,6 +362,7 @@ public class WarehousePositionMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
+			inst.setFullName(this.getFullName());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());

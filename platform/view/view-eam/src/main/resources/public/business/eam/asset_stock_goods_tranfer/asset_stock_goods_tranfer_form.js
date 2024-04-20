@@ -1,7 +1,7 @@
 /**
  * 库存调拨 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 20:30:52
+ * @since 2024-04-18 07:44:27
  */
 
 function FormPage() {
@@ -191,8 +191,6 @@ function FormPage() {
 			filterable: true,
 			paging: true,
 			pageRemote: true,
-			layVerify: 'required',
-			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("warehouseInId",data.arr,data.change,data.isAdd);
@@ -358,8 +356,6 @@ function FormPage() {
 			}
 
 
-			//设置  调入仓库 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#warehouseInId",formData.warehouseIn);
 			//设置  调入库位 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#positionInId",formData.warehousePosition);
 
@@ -424,8 +420,6 @@ function FormPage() {
 
 
 
-		//获取 调入仓库 下拉框的值
-		data["warehouseInId"]=fox.getSelectedValue("warehouseInId",false);
 		//获取 调入库位 下拉框的值
 		data["positionInId"]=fox.getSelectedValue("positionInId",false);
 

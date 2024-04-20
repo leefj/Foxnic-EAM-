@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 18:52:09
+ * @since 2024-04-18 07:21:59
  * @sign 971AF86E947F15A40A870A72F93CDAA5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -170,6 +170,16 @@ public class WarehousePositionVOMeta extends WarehousePositionMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.WarehousePositionVO,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.WarehousePositionVO.class ,CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
 	
 	/**
+	 * 全称 , 类型: java.lang.String
+	*/
+	public static final String FULL_NAME="fullName";
+	
+	/**
+	 * 全称 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.WarehousePositionVO,java.lang.String> FULL_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.WarehousePositionVO.class ,FULL_NAME, java.lang.String.class, "全称", "全称", java.lang.String.class, null);
+	
+	/**
 	 * 库位 , 类型: java.lang.String
 	*/
 	public static final String NAME="name";
@@ -282,7 +292,7 @@ public class WarehousePositionVOMeta extends WarehousePositionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , WAREHOUSE_ID , CODE , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , WAREHOUSE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , WAREHOUSE_ID , CODE , FULL_NAME , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , WAREHOUSE };
 	
 	/**
 	 * 代理类
@@ -458,6 +468,17 @@ public class WarehousePositionVOMeta extends WarehousePositionMeta {
 		}
 		
 		/**
+		 * 设置 全称
+		 * @param fullName 全称
+		 * @return 当前对象
+		*/
+		public WarehousePosition setFullName(String fullName) {
+			super.change(FULL_NAME,super.getFullName(),fullName);
+			super.setFullName(fullName);
+			return this;
+		}
+		
+		/**
 		 * 设置 库位
 		 * @param name 库位
 		 * @return 当前对象
@@ -595,6 +616,7 @@ public class WarehousePositionVOMeta extends WarehousePositionMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
+			inst.setFullName(this.getFullName());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());

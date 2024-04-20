@@ -24,7 +24,7 @@ import java.util.Map;
  * 仓库库位服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 18:52:09
+ * @since 2024-04-18 07:22:00
 */
 
 public interface IWarehousePositionService extends  ISimpleIdService<WarehousePosition,String> {

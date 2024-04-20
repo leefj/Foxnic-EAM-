@@ -98,8 +98,8 @@ function ListPage() {
                     { fixed: 'left',type: 'numbers' },
                     { fixed: 'left',type:'checkbox'}
                     ,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-                    ,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName"),d);}}
-                    ,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('库位'), templet: function (d) { return templet('positionId' ,fox.joinLabel(d.warehousePosition,"name",',','','positionId'),d);}}
+                    //,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName"),d);}}
+                    ,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('库位'), templet: function (d) { return templet('positionId' ,fox.joinLabel(d.warehousePosition,"fullName",',','','positionId'),d);}}
                     ,{ field: 'stockInNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('物品数量') , templet: function (d) { return templet('stockInNumber',d.stockInNumber,d);}  }
                     ,{ field: 'categoryId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品分类'), templet: function (d) { return templet('categoryId' ,fox.joinLabel(d.category,"name"),d);}}
                     ,{ field: 'goodsCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品编码'), templet: function (d) { return templet('goodsCode' ,fox.joinLabel(d.goods,"code"),d);}}
