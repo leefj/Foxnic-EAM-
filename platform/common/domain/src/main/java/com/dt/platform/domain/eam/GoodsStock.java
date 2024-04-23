@@ -31,8 +31,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品
  * <p>库存物品 , 数据表 eam_goods_stock 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 20:37:37
- * @sign 52D14C7CF8D5CE3676664A96BA9ECBFE
+ * @since 2024-04-23 18:19:06
+ * @sign 011A3F63E7A9EA6CD3490022DB6E3DBE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -421,12 +421,6 @@ public class GoodsStock extends Entity {
 	private GoodsStock goods;
 	
 	/**
-	 * 库存数据：库存数据
-	*/
-	@ApiModelProperty(required = false,value="库存数据" , notes = "库存数据")
-	private GoodsStock realGoods;
-	
-	/**
 	 * 所属公司：所属公司
 	*/
 	@ApiModelProperty(required = false,value="所属公司" , notes = "所属公司")
@@ -461,6 +455,12 @@ public class GoodsStock extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
 	private Employee originator;
+	
+	/**
+	 * 库存数据：库存数据
+	*/
+	@ApiModelProperty(required = false,value="库存数据" , notes = "库存数据")
+	private GoodsStock realGoods;
 	
 	/**
 	 * 类型：类型
@@ -521,6 +521,12 @@ public class GoodsStock extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="库存备注" , notes = "库存备注")
 	private String goodsStockNotes;
+	
+	/**
+	 * searchRelType：searchRelType
+	*/
+	@ApiModelProperty(required = false,value="searchRelType" , notes = "searchRelType")
+	private String searchRelType;
 	
 	/**
 	 * relatedAssetCount：relatedAssetCount
@@ -1786,25 +1792,6 @@ public class GoodsStock extends Entity {
 	}
 	
 	/**
-	 * 获得 库存数据<br>
-	 * 库存数据
-	 * @return 库存数据
-	*/
-	public GoodsStock getRealGoods() {
-		return realGoods;
-	}
-	
-	/**
-	 * 设置 库存数据
-	 * @param realGoods 库存数据
-	 * @return 当前对象
-	*/
-	public GoodsStock setRealGoods(GoodsStock realGoods) {
-		this.realGoods=realGoods;
-		return this;
-	}
-	
-	/**
 	 * 获得 所属公司<br>
 	 * 所属公司
 	 * @return 所属公司
@@ -1915,6 +1902,25 @@ public class GoodsStock extends Entity {
 	*/
 	public GoodsStock setOriginator(Employee originator) {
 		this.originator=originator;
+		return this;
+	}
+	
+	/**
+	 * 获得 库存数据<br>
+	 * 库存数据
+	 * @return 库存数据
+	*/
+	public GoodsStock getRealGoods() {
+		return realGoods;
+	}
+	
+	/**
+	 * 设置 库存数据
+	 * @param realGoods 库存数据
+	 * @return 当前对象
+	*/
+	public GoodsStock setRealGoods(GoodsStock realGoods) {
+		this.realGoods=realGoods;
 		return this;
 	}
 	
@@ -2105,6 +2111,25 @@ public class GoodsStock extends Entity {
 	*/
 	public GoodsStock setGoodsStockNotes(String goodsStockNotes) {
 		this.goodsStockNotes=goodsStockNotes;
+		return this;
+	}
+	
+	/**
+	 * 获得 searchRelType<br>
+	 * searchRelType
+	 * @return searchRelType
+	*/
+	public String getSearchRelType() {
+		return searchRelType;
+	}
+	
+	/**
+	 * 设置 searchRelType
+	 * @param searchRelType searchRelType
+	 * @return 当前对象
+	*/
+	public GoodsStock setSearchRelType(String searchRelType) {
+		this.searchRelType=searchRelType;
 		return this;
 	}
 	
@@ -2470,6 +2495,7 @@ public class GoodsStock extends Entity {
 			inst.setSubGoodsStockIds(this.getSubGoodsStockIds());
 			inst.setSubGoodsStockList(this.getSubGoodsStockList());
 			inst.setGoodsUnit(this.getGoodsUnit());
+			inst.setSearchRelType(this.getSearchRelType());
 			inst.setBrand(this.getBrand());
 			inst.setGoodsName(this.getGoodsName());
 			inst.setGoodsStockMax(this.getGoodsStockMax());
@@ -2478,8 +2504,8 @@ public class GoodsStock extends Entity {
 			inst.setGoodsParentGoodsStockList(this.getGoodsParentGoodsStockList());
 			inst.setRelatedGoodsStockCount(this.getRelatedGoodsStockCount());
 			inst.setGoodsStockMin(this.getGoodsStockMin());
-			inst.setRealGoods(this.getRealGoods());
 			inst.setWarehouse(this.getWarehouse());
+			inst.setRealGoods(this.getRealGoods());
 			inst.setWarehousePosition(this.getWarehousePosition());
 			inst.setGoodsByBrand(this.getGoodsByBrand());
 			inst.setUseOrganization(this.getUseOrganization());
@@ -2614,14 +2640,15 @@ public class GoodsStock extends Entity {
 			this.setGoodsBarCode(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_BAR_CODE)));
 			this.setWarehouseByPosition(DataParser.parse(Warehouse.class, map.get(GoodsStockMeta.WAREHOUSE_BY_POSITION)));
 			this.setGoodsUnit(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_UNIT)));
+			this.setSearchRelType(DataParser.parse(String.class, map.get(GoodsStockMeta.SEARCH_REL_TYPE)));
 			this.setBrand(DataParser.parse(Brand.class, map.get(GoodsStockMeta.BRAND)));
 			this.setGoodsName(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_NAME)));
 			this.setGoodsStockMax(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_MAX)));
 			this.setManager(DataParser.parse(Employee.class, map.get(GoodsStockMeta.MANAGER)));
 			this.setRelatedGoodsStockCount(DataParser.parse(Integer.class, map.get(GoodsStockMeta.RELATED_GOODS_STOCK_COUNT)));
 			this.setGoodsStockMin(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_MIN)));
-			this.setRealGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockMeta.REAL_GOODS)));
 			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(GoodsStockMeta.WAREHOUSE)));
+			this.setRealGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockMeta.REAL_GOODS)));
 			this.setWarehousePosition(DataParser.parse(WarehousePosition.class, map.get(GoodsStockMeta.WAREHOUSE_POSITION)));
 			this.setGoodsByBrand(DataParser.parse(Brand.class, map.get(GoodsStockMeta.GOODS_BY_BRAND)));
 			this.setUseOrganization(DataParser.parse(Organization.class, map.get(GoodsStockMeta.USE_ORGANIZATION)));
@@ -2699,14 +2726,15 @@ public class GoodsStock extends Entity {
 				this.setGoodsBarCode( (String)map.get(GoodsStockMeta.GOODS_BAR_CODE));
 				this.setWarehouseByPosition( (Warehouse)map.get(GoodsStockMeta.WAREHOUSE_BY_POSITION));
 				this.setGoodsUnit( (String)map.get(GoodsStockMeta.GOODS_UNIT));
+				this.setSearchRelType( (String)map.get(GoodsStockMeta.SEARCH_REL_TYPE));
 				this.setBrand( (Brand)map.get(GoodsStockMeta.BRAND));
 				this.setGoodsName( (String)map.get(GoodsStockMeta.GOODS_NAME));
 				this.setGoodsStockMax( (String)map.get(GoodsStockMeta.GOODS_STOCK_MAX));
 				this.setManager( (Employee)map.get(GoodsStockMeta.MANAGER));
 				this.setRelatedGoodsStockCount( (Integer)map.get(GoodsStockMeta.RELATED_GOODS_STOCK_COUNT));
 				this.setGoodsStockMin( (String)map.get(GoodsStockMeta.GOODS_STOCK_MIN));
-				this.setRealGoods( (GoodsStock)map.get(GoodsStockMeta.REAL_GOODS));
 				this.setWarehouse( (Warehouse)map.get(GoodsStockMeta.WAREHOUSE));
+				this.setRealGoods( (GoodsStock)map.get(GoodsStockMeta.REAL_GOODS));
 				this.setWarehousePosition( (WarehousePosition)map.get(GoodsStockMeta.WAREHOUSE_POSITION));
 				this.setGoodsByBrand( (Brand)map.get(GoodsStockMeta.GOODS_BY_BRAND));
 				this.setUseOrganization( (Organization)map.get(GoodsStockMeta.USE_ORGANIZATION));

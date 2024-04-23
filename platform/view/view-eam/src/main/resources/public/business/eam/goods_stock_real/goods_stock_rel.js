@@ -80,7 +80,7 @@ function ListPage() {
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-paged-list',
+				url: moduleURL +'/query-rel-data-paged-list',
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
@@ -102,7 +102,7 @@ function ListPage() {
 					,{ field: 'notes', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					//,{ field: 'goodsNotes', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('物品备注'), templet: function (d) { return templet('goodsNotes' ,fox.joinLabel(d.goods,"notes"),d);}}
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
-					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
+				//	,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
@@ -550,28 +550,16 @@ function ListPage() {
 			}
 			else if (layEvent === 'record') { // 删除
 				admin.popupCenter({
-					title: "详情",
+					title: "历史记录",
 					resize: false,
 					offset: [20,null],
-					area: ["95%","95%"],
+					area: ["85%","85%"],
 					type: 2,
 					id:"eam-goods-stock-usage-list-data-win",
-					content: '/business/eam/goods_stock_real/goods_stock_rel_tab.html?ownerType='+OWNER_TYPE+'&ownerCode='+OWNER_CODE+'&ownerId='+data.id,
+					content: '/business/eam/goods_stock_usage/goods_stock_usage_list.html?ownerId='+data.id,
 					finish: function () {
 					}
 				});
-
-				// admin.popupCenter({
-				// 	title: "历史记录",
-				// 	resize: false,
-				// 	offset: [20,null],
-				// 	area: ["85%","85%"],
-				// 	type: 2,
-				// 	id:"eam-goods-stock-usage-list-data-win",
-				// 	content: '/business/eam/goods_stock_usage/goods_stock_usage_list.html?ownerId='+data.id,
-				// 	finish: function () {
-				// 	}
-				// });
 			}
 			else if (layEvent === 'del') { // 删除
 

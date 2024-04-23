@@ -27,7 +27,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品VO类型
  * <p>库存物品 , 数据表 eam_goods_stock 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 20:37:37
+ * @since 2024-04-23 18:19:06
  * @sign 87176F150B412C151E8EC61D5D9C451A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -482,6 +482,7 @@ public class GoodsStockVO extends GoodsStock {
 			inst.setSortField(this.getSortField());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setGoodsUnit(this.getGoodsUnit());
+			inst.setSearchRelType(this.getSearchRelType());
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setBrand(this.getBrand());
 			inst.setGoodsName(this.getGoodsName());
@@ -492,8 +493,8 @@ public class GoodsStockVO extends GoodsStock {
 			inst.setGoodsParentGoodsStockList(this.getGoodsParentGoodsStockList());
 			inst.setRelatedGoodsStockCount(this.getRelatedGoodsStockCount());
 			inst.setGoodsStockMin(this.getGoodsStockMin());
-			inst.setRealGoods(this.getRealGoods());
 			inst.setWarehouse(this.getWarehouse());
+			inst.setRealGoods(this.getRealGoods());
 			inst.setWarehousePosition(this.getWarehousePosition());
 			inst.setGoodsByBrand(this.getGoodsByBrand());
 			inst.setUseOrganization(this.getUseOrganization());
@@ -637,6 +638,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setSortField(DataParser.parse(String.class, map.get(GoodsStockVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(GoodsStockVOMeta.DATA_ORIGIN)));
 			this.setGoodsUnit(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_UNIT)));
+			this.setSearchRelType(DataParser.parse(String.class, map.get(GoodsStockVOMeta.SEARCH_REL_TYPE)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(GoodsStockVOMeta.QUERY_LOGIC)));
 			this.setBrand(DataParser.parse(Brand.class, map.get(GoodsStockVOMeta.BRAND)));
 			this.setGoodsName(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_NAME)));
@@ -645,8 +647,8 @@ public class GoodsStockVO extends GoodsStock {
 			this.setRequestAction(DataParser.parse(String.class, map.get(GoodsStockVOMeta.REQUEST_ACTION)));
 			this.setRelatedGoodsStockCount(DataParser.parse(Integer.class, map.get(GoodsStockVOMeta.RELATED_GOODS_STOCK_COUNT)));
 			this.setGoodsStockMin(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_STOCK_MIN)));
-			this.setRealGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockVOMeta.REAL_GOODS)));
 			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(GoodsStockVOMeta.WAREHOUSE)));
+			this.setRealGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockVOMeta.REAL_GOODS)));
 			this.setWarehousePosition(DataParser.parse(WarehousePosition.class, map.get(GoodsStockVOMeta.WAREHOUSE_POSITION)));
 			this.setGoodsByBrand(DataParser.parse(Brand.class, map.get(GoodsStockVOMeta.GOODS_BY_BRAND)));
 			this.setUseOrganization(DataParser.parse(Organization.class, map.get(GoodsStockVOMeta.USE_ORGANIZATION)));
@@ -732,6 +734,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setSortField( (String)map.get(GoodsStockVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(GoodsStockVOMeta.DATA_ORIGIN));
 				this.setGoodsUnit( (String)map.get(GoodsStockVOMeta.GOODS_UNIT));
+				this.setSearchRelType( (String)map.get(GoodsStockVOMeta.SEARCH_REL_TYPE));
 				this.setQueryLogic( (String)map.get(GoodsStockVOMeta.QUERY_LOGIC));
 				this.setBrand( (Brand)map.get(GoodsStockVOMeta.BRAND));
 				this.setGoodsName( (String)map.get(GoodsStockVOMeta.GOODS_NAME));
@@ -740,8 +743,8 @@ public class GoodsStockVO extends GoodsStock {
 				this.setRequestAction( (String)map.get(GoodsStockVOMeta.REQUEST_ACTION));
 				this.setRelatedGoodsStockCount( (Integer)map.get(GoodsStockVOMeta.RELATED_GOODS_STOCK_COUNT));
 				this.setGoodsStockMin( (String)map.get(GoodsStockVOMeta.GOODS_STOCK_MIN));
-				this.setRealGoods( (GoodsStock)map.get(GoodsStockVOMeta.REAL_GOODS));
 				this.setWarehouse( (Warehouse)map.get(GoodsStockVOMeta.WAREHOUSE));
+				this.setRealGoods( (GoodsStock)map.get(GoodsStockVOMeta.REAL_GOODS));
 				this.setWarehousePosition( (WarehousePosition)map.get(GoodsStockVOMeta.WAREHOUSE_POSITION));
 				this.setGoodsByBrand( (Brand)map.get(GoodsStockVOMeta.GOODS_BY_BRAND));
 				this.setUseOrganization( (Organization)map.get(GoodsStockVOMeta.USE_ORGANIZATION));

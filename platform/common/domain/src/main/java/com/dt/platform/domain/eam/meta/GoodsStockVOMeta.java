@@ -21,7 +21,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 20:37:37
+ * @since 2024-04-23 18:19:06
  * @sign 87176F150B412C151E8EC61D5D9C451A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -769,16 +769,6 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,com.dt.platform.domain.eam.GoodsStock> GOODS_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,GOODS, com.dt.platform.domain.eam.GoodsStock.class, "物品", "物品", com.dt.platform.domain.eam.GoodsStock.class, null);
 	
 	/**
-	 * 库存数据 , 类型: com.dt.platform.domain.eam.GoodsStock
-	*/
-	public static final String REAL_GOODS="realGoods";
-	
-	/**
-	 * 库存数据 , 类型: com.dt.platform.domain.eam.GoodsStock
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,com.dt.platform.domain.eam.GoodsStock> REAL_GOODS_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,REAL_GOODS, com.dt.platform.domain.eam.GoodsStock.class, "库存数据", "库存数据", com.dt.platform.domain.eam.GoodsStock.class, null);
-	
-	/**
 	 * 所属公司 , 类型: org.github.foxnic.web.domain.hrm.Organization
 	*/
 	public static final String OWNER_COMPANY="ownerCompany";
@@ -837,6 +827,16 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 	 * 制单人 , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,org.github.foxnic.web.domain.hrm.Employee> ORIGINATOR_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,ORIGINATOR, org.github.foxnic.web.domain.hrm.Employee.class, "制单人", "制单人", org.github.foxnic.web.domain.hrm.Employee.class, null);
+	
+	/**
+	 * 库存数据 , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final String REAL_GOODS="realGoods";
+	
+	/**
+	 * 库存数据 , 类型: com.dt.platform.domain.eam.GoodsStock
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,com.dt.platform.domain.eam.GoodsStock> REAL_GOODS_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,REAL_GOODS, com.dt.platform.domain.eam.GoodsStock.class, "库存数据", "库存数据", com.dt.platform.domain.eam.GoodsStock.class, null);
 	
 	/**
 	 * 类型 , 类型: java.lang.String
@@ -939,6 +939,16 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,java.lang.String> GOODS_STOCK_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,GOODS_STOCK_NOTES, java.lang.String.class, "库存备注", "库存备注", java.lang.String.class, null);
 	
 	/**
+	 * searchRelType , 类型: java.lang.String
+	*/
+	public static final String SEARCH_REL_TYPE="searchRelType";
+	
+	/**
+	 * searchRelType , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStockVO,java.lang.String> SEARCH_REL_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStockVO.class ,SEARCH_REL_TYPE, java.lang.String.class, "searchRelType", "searchRelType", java.lang.String.class, null);
+	
+	/**
 	 * relatedAssetCount , 类型: java.lang.Integer
 	*/
 	public static final String RELATED_ASSET_COUNT="relatedAssetCount";
@@ -1031,7 +1041,7 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , MAINTENANCE_RECOMMENDATION , INSPECTION_RECOMMENDATION , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , POSITION_ID , POSITION_DETAIL , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SN , PID , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , WAREHOUSE_POSITION , WAREHOUSE_BY_POSITION , GOODS_BY_MANUFACTURER , GOODS_BY_BRAND , CATEGORY , MANUFACTURER , BRAND , GOODS , REAL_GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES , RELATED_ASSET_COUNT , RELATED_GOODS_STOCK_COUNT , RELATED_ASSET_LIST , RELATED_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_IDS , SUB_GOODS_STOCK_LIST , SUB_GOODS_STOCK_IDS , GOODS_PARENT_GOODS_STOCK_LIST };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , MAINTENANCE_RECOMMENDATION , INSPECTION_RECOMMENDATION , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , POSITION_ID , POSITION_DETAIL , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SN , PID , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , WAREHOUSE_POSITION , WAREHOUSE_BY_POSITION , GOODS_BY_MANUFACTURER , GOODS_BY_BRAND , CATEGORY , MANUFACTURER , BRAND , GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , REAL_GOODS , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES , SEARCH_REL_TYPE , RELATED_ASSET_COUNT , RELATED_GOODS_STOCK_COUNT , RELATED_ASSET_LIST , RELATED_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_IDS , SUB_GOODS_STOCK_LIST , SUB_GOODS_STOCK_IDS , GOODS_PARENT_GOODS_STOCK_LIST };
 	
 	/**
 	 * 代理类
@@ -1856,17 +1866,6 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 		}
 		
 		/**
-		 * 设置 库存数据
-		 * @param realGoods 库存数据
-		 * @return 当前对象
-		*/
-		public GoodsStock setRealGoods(GoodsStock realGoods) {
-			super.change(REAL_GOODS,super.getRealGoods(),realGoods);
-			super.setRealGoods(realGoods);
-			return this;
-		}
-		
-		/**
 		 * 设置 所属公司
 		 * @param ownerCompany 所属公司
 		 * @return 当前对象
@@ -1929,6 +1928,17 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 		public GoodsStock setOriginator(Employee originator) {
 			super.change(ORIGINATOR,super.getOriginator(),originator);
 			super.setOriginator(originator);
+			return this;
+		}
+		
+		/**
+		 * 设置 库存数据
+		 * @param realGoods 库存数据
+		 * @return 当前对象
+		*/
+		public GoodsStock setRealGoods(GoodsStock realGoods) {
+			super.change(REAL_GOODS,super.getRealGoods(),realGoods);
+			super.setRealGoods(realGoods);
 			return this;
 		}
 		
@@ -2039,6 +2049,17 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 		public GoodsStock setGoodsStockNotes(String goodsStockNotes) {
 			super.change(GOODS_STOCK_NOTES,super.getGoodsStockNotes(),goodsStockNotes);
 			super.setGoodsStockNotes(goodsStockNotes);
+			return this;
+		}
+		
+		/**
+		 * 设置 searchRelType
+		 * @param searchRelType searchRelType
+		 * @return 当前对象
+		*/
+		public GoodsStock setSearchRelType(String searchRelType) {
+			super.change(SEARCH_REL_TYPE,super.getSearchRelType(),searchRelType);
+			super.setSearchRelType(searchRelType);
 			return this;
 		}
 		
@@ -2233,6 +2254,7 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setGoodsUnit(this.getGoodsUnit());
+				inst.setSearchRelType(this.getSearchRelType());
 				inst.setBrand(this.getBrand());
 				inst.setGoodsName(this.getGoodsName());
 				inst.setGoodsStockMax(this.getGoodsStockMax());
@@ -2242,8 +2264,8 @@ public class GoodsStockVOMeta extends GoodsStockMeta {
 				inst.setGoodsParentGoodsStockList(this.getGoodsParentGoodsStockList());
 				inst.setRelatedGoodsStockCount(this.getRelatedGoodsStockCount());
 				inst.setGoodsStockMin(this.getGoodsStockMin());
-				inst.setRealGoods(this.getRealGoods());
 				inst.setWarehouse(this.getWarehouse());
+				inst.setRealGoods(this.getRealGoods());
 				inst.setWarehousePosition(this.getWarehousePosition());
 				inst.setGoodsByBrand(this.getGoodsByBrand());
 				inst.setUseOrganization(this.getUseOrganization());

@@ -1,7 +1,7 @@
 /**
- * 库存物品 列表页 JS 脚本
+ * 分单规则 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-23 18:19:07
+ * @since 2022-06-02 07:32:08
  */
 
 layui.config({
@@ -18,11 +18,32 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     //模块基础路径
-    const moduleURL="/service-eam/eam-goods-stock";
+    const moduleURL="/service-eam/eam-repair-rule";
 
-
+    var timestamp = Date.parse(new Date());
     //列表页的扩展
     var list={
+        sameData:function (ifr,win,data) {
+            ifr.height("720px");
+            var relType="self";
+            win.location="/business/eam/goods_stock_real/goods_stock_rel.html?relType="+relType+"&ownerId="+OWNER_ID+"&ownerCode="+OWNER_CODE+"&ownerType="+OWNER_TYPE+"&t="+timestamp
+        },
+        parentData:function (ifr,win,data) {
+            ifr.height("720px");
+            var relType="parent";
+            win.location="/business/eam/goods_stock_real/goods_stock_rel.html?relType="+relType+"&ownerId="+OWNER_ID+"&ownerCode="+OWNER_CODE+"&ownerType="+OWNER_TYPE+"&t="+timestamp
+
+        },
+        childData:function (ifr,win,data) {
+            ifr.height("720px");
+            var relType="child";
+            win.location="/business/eam/goods_stock_real/goods_stock_rel.html?relType="+relType+"&ownerId="+OWNER_ID+"&ownerCode="+OWNER_CODE+"&ownerType="+OWNER_TYPE+"&t="+timestamp
+
+        },
+        operData:function (ifr,win,data) {
+            ifr.height("720px");
+            win.location="/business/eam/goods_stock_usage/goods_stock_usage_list.html?ownerId="+OWNER_ID+"&t="+timestamp
+        },
         /**
          * 列表页初始化前调用
          * */
@@ -30,26 +51,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("list:beforeInit");
         },
         /**
-         * 按事件名称移除表格按钮栏的按钮
-         * */
-        removeOperationButtonByEvent(event) {
-            var template=$("#tableOperationTemplate");
-            var content=template.text();
-            content=content.split("\n");
-            var buttons=[]
-            for (let i = 0; i < content.length ; i++) {
-                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
-                    buttons.push(content[i]);
-                }
-            }
-            template.text(buttons.join("\n"))
-        },
-        /**
          * 表格渲染前调用
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            console.log("list:beforeTableRender",cfg);
+            cfg.cellMinWidth=160;;
         },
         /**
          * 表格渲染后调用
@@ -77,7 +83,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 当下拉框别选择后触发
          * */
         onSelectBoxChanged:function(id,selected,changes,isAdd) {
-            console.log('onSelectBoxChanged',id,selected,changes,isAdd);
+
         },
         /**
          * 当日期选择组件选择后触发
@@ -99,12 +105,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-
-        },
-        /**
-         * 单行数据刷新后调用
-         * */
-        afterRefreshRowData: function (data,remote,context) {
 
         },
         /**
@@ -172,11 +172,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
-        moreActionMenu (items,data, it){
-            console.log('moreActionMenu',items,data,it);
-            return items;
-        },
-
         /**
          * 末尾执行
          */
@@ -187,6 +182,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //表单页的扩展
     var form={
+
         /**
          * 表单初始化前调用 , 并传入表单数据
          * */
@@ -199,7 +195,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 窗口调节前
          * */
-        beforeAdjustPopup:function (arg) {
+        beforeAdjustPopup:function () {
             console.log('beforeAdjustPopup');
             return true;
         },
@@ -231,9 +227,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 当下拉框别选择后触发
          * */
-        onSelectBoxChanged:function(id,selected,changes,isAdd) {
-            console.log('onSelectBoxChanged',id,selected,changes,isAdd);
-        },
+
         /**
          * 当日期选择组件选择后触发
          * */
@@ -277,17 +271,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("afterSubmitt",param,result);
         },
 
-        /**
-         *  加载 关联设备配件档案
-         */
-        relGoods:function (ifr,win,data) {
-            // debugger
-            console.log("relGoods",ifr,data);
-            //设置 iframe 高度
-            ifr.height("400px");
-            //设置地址
-            win.location="/business/system/node/node_list.html?id="+data.id;
-        },
         /**
          * 文件上传组件回调
          *  event 类型包括：

@@ -88,6 +88,8 @@ public interface GoodsStockServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+    public static final String QUERY_REL_DATA_PAGED_LIST = API_PREFIX + "query-rel-data-paged-list";
+
     /**
      * 导出库存物品数据(Excel)
      */

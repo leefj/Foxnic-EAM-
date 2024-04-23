@@ -1,7 +1,7 @@
 /**
  * 库存物品 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-23 18:19:07
+ * @since 2022-04-20 20:25:42
  */
 
 layui.config({
@@ -20,7 +20,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-eam/eam-goods-stock";
 
-
     //列表页的扩展
     var list={
         /**
@@ -30,26 +29,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("list:beforeInit");
         },
         /**
-         * 按事件名称移除表格按钮栏的按钮
-         * */
-        removeOperationButtonByEvent(event) {
-            var template=$("#tableOperationTemplate");
-            var content=template.text();
-            content=content.split("\n");
-            var buttons=[]
-            for (let i = 0; i < content.length ; i++) {
-                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
-                    buttons.push(content[i]);
-                }
-            }
-            template.text(buttons.join("\n"))
-        },
-        /**
          * 表格渲染前调用
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
-            console.log("list:beforeTableRender",cfg);
+            cfg.cellMinWidth=160;;
         },
         /**
          * 表格渲染后调用
@@ -93,6 +77,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            param.id=OWNER_ID;
+            param.ownerCode=OWNER_CODE;
+            param.ownerType=OWNER_TYPE;
+            param.searchRelType=REL_TYPE;
             return true;
         },
         /**
@@ -102,15 +90,41 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
         },
         /**
-         * 单行数据刷新后调用
-         * */
-        afterRefreshRowData: function (data,remote,context) {
-
-        },
-        /**
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+
+            if(field=="goodsId"){
+                var res="";
+                if(r.goods){
+                    res=r.goods.name+"【"+r.goods.model+"】-【"+r.goods.code+"】";
+                }
+                return res;
+            }
+
+            if(field=="goodsParentGoodsStockIds"){
+                var res="";
+                if(r.goodsParentGoodsStockList&&r.goodsParentGoodsStockList.length>0){
+                    var num=r.goodsParentGoodsStockList.length;
+                    if(num>5){
+                        num=5
+                    }
+                    for(var i=0;i<num;i++){
+                        if(i==0){
+                            res=r.goodsParentGoodsStockList[i].name+"【"+r.goodsParentGoodsStockList[i].model+"】-【"+r.goodsParentGoodsStockList[i].code+"】";
+                        }else{
+                            var obj=","+r.goodsParentGoodsStockList[i].name+"【"+r.goodsParentGoodsStockList[i].model+"】-【"+r.goodsParentGoodsStockList[i].code+"】";
+                            res=res+obj
+                        }
+                    }
+                    if(num>5){
+                        res=res+"..."
+                    }
+                    value=res;
+                }
+                return value;
+            }
+
             if(value==null) return "";
             return value;
         },
@@ -172,11 +186,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
-        moreActionMenu (items,data, it){
-            console.log('moreActionMenu',items,data,it);
-            return items;
-        },
-
         /**
          * 末尾执行
          */
@@ -199,7 +208,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 窗口调节前
          * */
-        beforeAdjustPopup:function (arg) {
+        beforeAdjustPopup:function () {
             console.log('beforeAdjustPopup');
             return true;
         },
@@ -240,27 +249,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         onDatePickerChanged:function(id,value, date, endDate) {
             console.log('onDatePickerChanged',id,value, date, endDate);
         },
-        onRadioBoxChanged:function(id,data,checked) {
-            console.log('onRadioChanged',id,data,checked);
-        },
-        onCheckBoxChanged:function(id,data,checked) {
-            console.log('onCheckBoxChanged',id,data,checked);
-        },
-
-        /**
-         * 在流程提交前处理表单数据
-         * */
-        processFormData4Bpm:function(processInstanceId,param,callback) {
-            // 设置流程变量，并通过回调返回
-            var variables={};
-            // 此回调是必须的，否则流程提交会被中断
-            callback(variables);
-        },
         /**
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
         beforeSubmit:function (data) {
-            console.log("beforeSubmit",data);
+
+            data.ownerCode="goods"
+            console.log("######beforeSubmit",data);
             return true;
         },
         /**
@@ -277,17 +272,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("afterSubmitt",param,result);
         },
 
-        /**
-         *  加载 关联设备配件档案
-         */
-        relGoods:function (ifr,win,data) {
-            // debugger
-            console.log("relGoods",ifr,data);
-            //设置 iframe 高度
-            ifr.height("400px");
-            //设置地址
-            win.location="/business/system/node/node_list.html?id="+data.id;
-        },
         /**
          * 文件上传组件回调
          *  event 类型包括：
