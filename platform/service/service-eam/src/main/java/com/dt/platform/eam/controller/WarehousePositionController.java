@@ -1,6 +1,8 @@
 package com.dt.platform.eam.controller;
 
 import java.util.*;
+
+import com.alibaba.fastjson.JSONArray;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -211,6 +213,17 @@ public class WarehousePositionController extends SuperController {
 		return result;
 	}
 
+
+	/**
+	 * 获取仓库库位
+	 */
+	@ApiOperation(value = "获取仓库库位")
+	@ApiOperationSupport(order=6 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = WarehousePositionServiceProxy.QUERY_TREE_DATA , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(WarehousePositionServiceProxy.QUERY_TREE_DATA)
+	public JSONArray queryTreeData(String id, String method) {
+	 	return warehousePositionService.queryTreeData(id,method);
+	}
 
 	/**
 	 * 获取仓库库位

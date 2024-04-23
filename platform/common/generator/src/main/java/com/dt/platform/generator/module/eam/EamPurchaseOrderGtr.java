@@ -43,11 +43,7 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.BUSINESS_CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.CODE).search().fuzzySearch();
 
-        cfg.view().search().inputLayout(
-                new Object[]{
-                        EAMTables.EAM_PURCHASE_ORDER.NAME,
-                }
-        );
+        cfg.view().search().disable();
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
@@ -66,6 +62,8 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.CODE).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.BUSINESS_CODE).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.CREATE_TIME).table().disable();
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.NAME).table().disable();
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.UPDATE_BY).table().disable();
 
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.GOODS_TYPE).form().selectBox().enumType(AssetPurchaseAssetTypeEnum.class).defaultValue(AssetPurchaseAssetTypeEnum.ASSET.code());
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.STORAGE_TYPE).form().selectBox().enumType(AssetPurchaseStorageTypeEnum.class).defaultValue(AssetPurchaseStorageTypeEnum.ASSET.code());
@@ -81,8 +79,8 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.GOODS_ID)
                .form().validate().required().form().button().action("选择物品","chosenGoods");
 
-        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.NAME)
-                .form().validate().required();
+//        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.NAME)
+//                .form().validate().required();
         cfg.view().list().disableBatchDelete();
 
     //    cfg.view().form().addJsVariable("PAGE_TYPE","[[${pageType}]]","页面类型");
@@ -103,7 +101,7 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        EAMTables.EAM_PURCHASE_ORDER.NAME,
+
                         EAMTables.EAM_PURCHASE_ORDER.GOODS_ID,
                         EAMTables.EAM_PURCHASE_ORDER.PURCHASE_NUMBER,
                         EAMTables.EAM_PURCHASE_ORDER.UNIT_PRICE,

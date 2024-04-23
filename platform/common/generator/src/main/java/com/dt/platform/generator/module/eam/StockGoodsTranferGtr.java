@@ -109,7 +109,7 @@ public class StockGoodsTranferGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.POSITION_IN_ID)
                 .basic().label("调入库位")
                 .form().validate().required().form().selectBox().queryApi(WarehousePositionServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
-                .valueField(WarehousePositionMeta.ID).textField(WarehousePositionMeta.NAME).fillWith(AssetStockGoodsTranferMeta.WAREHOUSE_POSITION).muliti(false).defaultIndex(0);
+                .valueField(WarehousePositionMeta.ID).textField(WarehousePositionMeta.FULL_NAME).fillWith(AssetStockGoodsTranferMeta.WAREHOUSE_POSITION).muliti(false).defaultIndex(0);
 
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_TRANFER.WAREHOUSE_OUT_ID)
@@ -123,7 +123,7 @@ public class StockGoodsTranferGtr extends BaseCodeGenerator {
                 .button().chooseEmployee(true);
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width(Config.baseFormWidth);
+        cfg.view().formWindow().width(Config.baseFormWidth_95);
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {

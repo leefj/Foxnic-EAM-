@@ -57,15 +57,15 @@
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs6 form-column"  id="sumAmount">
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('总金额')}">总金额</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="amount" id="amount" name="amount" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('总金额') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
-                        </div>
-                    </div>
-                <!--结束：栏次内字段循环-->
-            </div>
+<!--            <div class="layui-col-xs6 form-column"  id="sumAmount">-->
+<!--                    <div class="layui-form-item" >-->
+<!--                        <div class="layui-form-label "><div th:text="${lang.translate('总金额')}">总金额</div></div>-->
+<!--                        <div class="layui-input-block ">-->
+<!--                            <input lay-filter="amount" id="amount" name="amount" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('总金额') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                &lt;!&ndash;结束：栏次内字段循环&ndash;&gt;-->
+<!--            </div>-->
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
@@ -90,8 +90,8 @@
             </div>
 
 
-            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" id="snarea">
+<!--            &lt;!&ndash; 只有当非第一个分组没有title时才使 padding-top 为 0 &ndash;&gt;-->
+<!--            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" id="snarea">-->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('序列')}">序列</div></div>
                     <div class="layui-input-block ">
@@ -100,25 +100,23 @@
                 </div>
 
 
-                <!--开始：column 循环-->
-            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
-            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" id="notesarea">
-                    <div class="layui-form-item" >
+<!--                &lt;!&ndash;开始：column 循环&ndash;&gt;-->
+<!--            &lt;!&ndash; 只有当非第一个分组没有title时才使 padding-top 为 0 &ndash;&gt;-->
+
+               <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block ">
                         <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
+<!--                &lt;!&ndash;结束：栏次内字段循环&ndash;&gt;-->
+<!--            </div>-->
 
-
-
-                <!--结束：栏次内字段循环-->
-            </div>
             <!--结束：栏次输入框循环-->
         </div>
         <!--结束：group循环-->
 
-        <div style="height: 8px"></div>
+        <div style="height: 250px"></div>
         <div style="height: 20px"></div>
 
 
@@ -147,6 +145,8 @@
     var OWNER_CODE = [[${ownerCode}]] ;
     // OWNER_TYPE
     var OWNER_TYPE = [[${ownerType}]] ;
+
+    var OPER_TYPE = [[${operType}]] ;
 
 </script>
 

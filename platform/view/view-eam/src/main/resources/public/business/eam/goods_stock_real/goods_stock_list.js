@@ -14,6 +14,8 @@ function ListPage() {
 	var dataTable=null;
 	var sort=null;
 	var searchContent_categoryId;
+	var searchContent_id;
+	var searchContent_type;
 	/**
 	 * 入口函数，初始化
 	 */
@@ -94,7 +96,7 @@ function ListPage() {
 					,{ field: 'manufacturerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('厂商'), templet: function (d) { return templet('manufacturerId' ,fox.joinLabel(d.goodsByManufacturer,"manufacturerName"),d);}}
 					,{ field: 'brandId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('品牌'), templet: function (d) { return templet('goodsByBrand' ,fox.joinLabel(d.goodsByBrand,"brandName"),d);}}
 					,{ field: 'goodsParentGoodsStockIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('父级档案'), templet: function (d) { return templet('goodsParentGoodsStockIds' ,fox.joinLabel(d.goodsParentGoodsStockList,"name",',','','goodsParentGoodsStockIds'),d);}}
-					,{ field: 'sn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('序列') , templet: function (d) { return templet('sn',d.sn,d);}  }
+				//	,{ field: 'sn', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('序列') , templet: function (d) { return templet('sn',d.sn,d);}  }
 				//	,{ field: 'positionDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置详情') , templet: function (d) { return templet('positionDetail',d.positionDetail,d);}  }
 					,{ field: 'goodsUnit', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('计量单位'), templet: function (d) { return templet('goodsUnit' ,fox.joinLabel(d.goods,"unit"),d);}}
 					,{ field: 'notes', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
@@ -161,8 +163,6 @@ function ListPage() {
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.model={ inputType:"button",value: $("#model").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-
-
 		//value.barCode={ inputType:"button",value: $("#barCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.positionId={ inputType:"select_box", value: getSelectedValue("#positionId","value") ,fillBy:["warehousePosition"]  , label:getSelectedValue("#positionId","nameStr") };
 		value.manufacturerId={ inputType:"select_box", value: getSelectedValue("#manufacturerId","value") ,fillBy:["manufacturer"]  , label:getSelectedValue("#manufacturerId","nameStr") };
@@ -182,6 +182,25 @@ function ListPage() {
 			ps.categoryId=searchContent_categoryId;
 		}
 
+		if(searchContent_type){
+			if(searchContent_type=="warehouse"){
+				if(value.warehouseId){
+					delete value.warehouseId ;
+				}
+				if(value.positionId){
+					delete value.positionId ;
+				}
+				ps.warehouseId=searchContent_id;
+			}else if(searchContent_type=="position"){
+				if(value.warehouseId){
+					delete value.warehouseId ;
+				}
+				if(value.positionId){
+					delete value.positionId ;
+				}
+				ps.positionId=searchContent_id;
+			}
+		}
 
 		if(sortField) {
 			ps.sortField=sortField;
@@ -620,7 +639,15 @@ function ListPage() {
 		refreshTableData()
 	}
 
+
+	function searchPos(id,type){
+		searchContent_type=type;
+		searchContent_id=id;
+		refreshTableData()
+	}
+
 	window.module={
+		searchPos:searchPos,
 		searchCategory:searchCategory,
 		refreshTableData: refreshTableData,
 		refreshRowData: refreshRowData,

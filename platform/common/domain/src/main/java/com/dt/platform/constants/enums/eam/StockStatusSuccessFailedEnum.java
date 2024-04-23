@@ -1,6 +1,5 @@
 package com.dt.platform.constants.enums.eam;
 
-import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.github.foxnic.api.constant.CodeTextEnum;
 
 
@@ -12,21 +11,14 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 */
 
 
-public enum AssetStockTypeEnum implements CodeTextEnum {
+public enum StockStatusSuccessFailedEnum implements CodeTextEnum {
+	NONE("none" , "---"),
+	SUCCESS("success" , "成功"),
+	FAILED("failed" , "失败");
 
-	IN("in" , "入库"),
-	OUT("out" , "出库"),
-	USE("use" , "领用"),
-
-	ALLOCATE("allocate" , "调拨"),
-	ALLOCATE_IN("allocate_in" , "调进"),
-	ALLOCATE_OUT("allocate_out" , "调出"),
-	REPAIR_PART_OUT("repair_part_out" , "维修出货"),
-	ADJUST("adjust" , "调整")
-	;
 	private String code;
 	private String text;
-	private AssetStockTypeEnum(String code, String text)  {
+	private StockStatusSuccessFailedEnum(String code, String text)  {
 		this.code=code;
 		this.text=text;
 	}

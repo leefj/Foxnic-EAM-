@@ -75,7 +75,7 @@ public class StockGoodsAdjustGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.ATTACH_ID).table().disable(true);
    //     cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.ORIGINATOR_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.CONTENT).table().disable(true);
-
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.UPDATE_BY).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.NAME).form().validate().required();
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.CONTENT).form().textArea().height(Config.textAreaHeight);
@@ -97,7 +97,7 @@ public class StockGoodsAdjustGtr extends BaseCodeGenerator {
 
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width(Config.baseFormWidth);
+        cfg.view().formWindow().width(Config.baseFormWidth_95);
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {

@@ -77,8 +77,15 @@ public class GoodsStockPageController extends ViewController {
 		return prefix+"/stock_book_tree";
 	}
 
-
-
+	@RequestMapping("/stock_book_tree_by_pos.html")
+	public String treePosList(Model model,HttpServletRequest request,String ownerCode,String ownerType) {
+		model.addAttribute("ownerCode",ownerCode);
+		model.addAttribute("ownerType",ownerType);
+		String time= IDGenerator.getSnowflakeIdString();
+		String url="/business/eam/goods_stock_real/goods_stock_list.html?ownerCode="+ownerCode+"&ownerType="+ownerType+"&t="+time;
+		model.addAttribute("listUrl",url);
+		return prefix+"/stock_book_tree_by_pos";
+	}
 
 	/**
 	 * 库存物品 功能主页面
@@ -128,9 +135,10 @@ public class GoodsStockPageController extends ViewController {
 	 * 库存物品 表单页面
 	 */
 	@RequestMapping("/goods_stock_selected_form.html")
-	public String selectedForm(Model model,HttpServletRequest request , String id,String ownerType,String warehouseId) {
+	public String selectedForm(Model model,HttpServletRequest request , String id,String operType,String ownerType,String warehouseId) {
 		model.addAttribute("warehouseId",warehouseId);
 		model.addAttribute("ownerType",ownerType);
+		model.addAttribute("operType",operType);
 		model.addAttribute("postionQueryApi","/service-eam/eam-warehouse-position/query-paged-list?warehouseId="+warehouseId);
 		return prefix+"/goods_stock_selected_form";
 	}

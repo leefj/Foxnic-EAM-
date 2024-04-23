@@ -1,7 +1,7 @@
 /**
  * 采购清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-02-21 09:55:20
+ * @since 2024-04-23 14:02:21
  */
 
 
@@ -72,7 +72,7 @@ function ListPage() {
 					return value;
 				}
 			}
-			var h=$(".search-bar").height();
+			var h=-28; 
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
@@ -85,12 +85,10 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'goodsId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品档案') , templet: function (d) { return templet('goodsId',d.goodsId,d);}  }
 					,{ field: 'purchaseNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('采购数量') , templet: function (d) { return templet('purchaseNumber',d.purchaseNumber,d);}  }
 					,{ field: 'unitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('采购单价') , templet: function (d) { return templet('unitPrice',d.unitPrice,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -161,7 +159,21 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
+		value.businessCode={ inputType:"button",value: $("#businessCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.goodsId={ inputType:"button",value: $("#goodsId").val(),label:$("#goodsId-button").text() };
+		value.goodsType={ inputType:"select_box", value: getSelectedValue("#goodsType","value"), label:getSelectedValue("#goodsType","nameStr") };
+		value.storageType={ inputType:"select_box", value: getSelectedValue("#storageType","value"), label:getSelectedValue("#storageType","nameStr") };
+		value.purchaseNumber={ inputType:"number_input", value: $("#purchaseNumber").val() };
+		value.unitPrice={ inputType:"number_input", value: $("#unitPrice").val() };
+		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.applyId={ inputType:"select_box", value: getSelectedValue("#applyId","value") ,fillBy:["purchaseApply"]  , label:getSelectedValue("#applyId","nameStr") };
+		value.checkId={ inputType:"button",value: $("#checkId").val()};
+		value.originatorId={ inputType:"button",value: $("#originatorId").val()};
+		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
+		value.updateBy={ inputType:"button",value: $("#updateBy").val()};
+		value.selectedCode={ inputType:"button",value: $("#selectedCode").val()};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -208,6 +220,89 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 goodsType 下拉字段
+		fox.renderSelectBox({
+			el: "goodsType",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("goodsType",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("goodsType",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 storageType 下拉字段
+		fox.renderSelectBox({
+			el: "storageType",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("storageType",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("storageType",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 applyId 下拉字段
+		fox.renderSelectBox({
+			el: "applyId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("applyId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("applyId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					}
+				}
+				return opts;
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
@@ -238,6 +333,9 @@ function ListPage() {
 			});
 		});
 
+		// 选择物品对话框
+		$("#goodsId-button").click(function(){
+		});
 	}
 
 	/**

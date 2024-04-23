@@ -79,7 +79,12 @@ public class PurchaseCheckController extends SuperController {
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseCheckVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.POSITION_ID, value = "仓库库位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.INSERT_POSITION, value = "是否入库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.CHECK_USER_ID, value = "验收人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.STOCK_STATUS, value = "入库状态", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = PurchaseCheckServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -140,7 +145,12 @@ public class PurchaseCheckController extends SuperController {
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseCheckVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.POSITION_ID, value = "仓库库位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.INSERT_POSITION, value = "是否入库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.CHECK_USER_ID, value = "验收人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.STOCK_STATUS, value = "入库状态", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { PurchaseCheckVOMeta.PAGE_INDEX, PurchaseCheckVOMeta.PAGE_SIZE, PurchaseCheckVOMeta.SEARCH_FIELD, PurchaseCheckVOMeta.FUZZY_FIELD, PurchaseCheckVOMeta.SEARCH_VALUE, PurchaseCheckVOMeta.DIRTY_FIELDS, PurchaseCheckVOMeta.SORT_FIELD, PurchaseCheckVOMeta.SORT_TYPE, PurchaseCheckVOMeta.IDS })
     @SentinelResource(value = PurchaseCheckServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -170,7 +180,12 @@ public class PurchaseCheckController extends SuperController {
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseCheckVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.POSITION_ID, value = "仓库库位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.INSERT_POSITION, value = "是否入库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.CHECK_USER_ID, value = "验收人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.STOCK_STATUS, value = "入库状态", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PurchaseCheckVOMeta.PAGE_INDEX, PurchaseCheckVOMeta.PAGE_SIZE, PurchaseCheckVOMeta.SEARCH_FIELD, PurchaseCheckVOMeta.FUZZY_FIELD, PurchaseCheckVOMeta.SEARCH_VALUE, PurchaseCheckVOMeta.DIRTY_FIELDS, PurchaseCheckVOMeta.SORT_FIELD, PurchaseCheckVOMeta.SORT_TYPE, PurchaseCheckVOMeta.IDS })
     @SentinelResource(value = PurchaseCheckServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -195,7 +210,7 @@ public class PurchaseCheckController extends SuperController {
         Result<PurchaseCheck> result = new Result<>();
         PurchaseCheck purchaseCheck = purchaseCheckService.getById(id);
         // join 关联的对象
-        purchaseCheckService.dao().fill(purchaseCheck).with(PurchaseCheckMeta.SUPPLIER).with(PurchaseCheckMeta.PURCHASE_APPLY).execute();
+        purchaseCheckService.dao().fill(purchaseCheck).with(PurchaseCheckMeta.WAREHOUSE_POSITION).with(PurchaseCheckMeta.SUPPLIER).with(PurchaseCheckMeta.PURCHASE_APPLY).execute();
         result.success(true).data(purchaseCheck);
         return result;
     }
@@ -237,7 +252,12 @@ public class PurchaseCheckController extends SuperController {
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseCheckVOMeta.APPLY_ID, value = "采购申请", required = false, dataTypeClass = String.class, example = "741014517965651968")
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.APPLY_ID, value = "采购申请", required = false, dataTypeClass = String.class, example = "741014517965651968"),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.POSITION_ID, value = "仓库库位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.INSERT_POSITION, value = "是否入库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.CHECK_USER_ID, value = "验收人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.STOCK_STATUS, value = "入库状态", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PurchaseCheckVOMeta.PAGE_INDEX, PurchaseCheckVOMeta.PAGE_SIZE })
     @SentinelResource(value = PurchaseCheckServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -268,7 +288,12 @@ public class PurchaseCheckController extends SuperController {
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = PurchaseCheckVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = PurchaseCheckVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class, example = "705063820187402240")
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class, example = "705063820187402240"),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.POSITION_ID, value = "仓库库位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.INSERT_POSITION, value = "是否入库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.CHECK_USER_ID, value = "验收人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseCheckVOMeta.STOCK_STATUS, value = "入库状态", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = PurchaseCheckServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -277,7 +302,7 @@ public class PurchaseCheckController extends SuperController {
         Result<PagedList<PurchaseCheck>> result = new Result<>();
         PagedList<PurchaseCheck> list = purchaseCheckService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        purchaseCheckService.dao().fill(list).with(PurchaseCheckMeta.SUPPLIER).with(PurchaseCheckMeta.PURCHASE_APPLY).execute();
+        purchaseCheckService.dao().fill(list).with(PurchaseCheckMeta.WAREHOUSE_POSITION).with(PurchaseCheckMeta.SUPPLIER).with(PurchaseCheckMeta.PURCHASE_APPLY).execute();
         result.success(true).data(list);
         return result;
     }

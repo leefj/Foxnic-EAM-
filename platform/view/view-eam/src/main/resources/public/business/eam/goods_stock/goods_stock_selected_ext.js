@@ -38,6 +38,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 toolHtml=toolHtml.repeat(/lay-event="create"/i,"style=\"display:none\"")
                 document.getElementById("toolbarTemplate").innerHTML=toolHtml;
             }
+
         },
         /**
          * 表格渲染前调用
@@ -179,7 +180,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
-            $("#sumAmount").hide();
+
+
            
 
         },
@@ -201,6 +203,25 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterDataFill:function (data) {
             console.log('afterDataFill',data);
+            if(data&&data.id){
+                if(OPER_TYPE=="eam_asset_stock_goods_out"
+                    ||OPER_TYPE=="eam_asset_stock_goods_adjust"
+                    ||OPER_TYPE=="eam_asset_stock_goods_tranfer"
+                    ||OPER_TYPE=="eam_asset_stock_goods_use"
+                    ||OPER_TYPE=="eam_asset_part_goods_out"
+                    ||OPER_TYPE=="eam_asset_part_goods_adjust"
+                    ||OPER_TYPE=="eam_asset_part_goods_tranfer"
+                    ||OPER_TYPE=="eam_asset_part_goods_use"
+                ){
+                    var positionSelect = xmSelect.get('#positionId', true);
+                    if (positionSelect) {
+                        positionSelect.update({disabled: true})
+                    }
+                }
+
+
+
+            }
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框

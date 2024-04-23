@@ -1,7 +1,7 @@
 /**
  * 库存物品单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 17:42:10
+ * @since 2024-04-23 15:54:37
  */
 
 
@@ -171,8 +171,8 @@ function ListPage() {
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.batchCode={ inputType:"button",value: $("#batchCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.receiverUserName={ inputType:"button",value: $("#receiverUserName").val()};
-		value.supplierName={ inputType:"button",value: $("#supplierName").val()};
+		value.receiverUserName={ inputType:"button",value: $("#receiverUserName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.supplierName={ inputType:"button",value: $("#supplierName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
@@ -455,7 +455,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["95%",height+"px"],
 			type: 2,
 			id:"eam-asset-stock-goods-in-form-data-win",
 			content: '/business/eam/asset_stock_goods_in/asset_stock_goods_in_form.html' + (queryString?("?"+queryString):""),

@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 仓库VO类型
  * <p>仓库 , 数据表 eam_warehouse 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 18:36:10
+ * @since 2024-04-23 11:52:01
  * @sign BE999198F4E54AC14E16B2449410CD0F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -417,13 +417,14 @@ public class WarehouseVO extends Warehouse {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setWarehousePositionList(this.getWarehousePositionList());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
@@ -503,12 +504,12 @@ public class WarehouseVO extends Warehouse {
 			this.setStatus(DataParser.parse(String.class, map.get(WarehouseVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(WarehouseVOMeta.SEARCH_FIELD)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(WarehouseVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(WarehouseVOMeta.SORT_TYPE)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(WarehouseVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(WarehouseVOMeta.FUZZY_FIELD)));
-			this.setSortField(DataParser.parse(String.class, map.get(WarehouseVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(WarehouseVOMeta.PAGE_SIZE)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(WarehouseVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(WarehouseVOMeta.SORT_TYPE)));
+			this.setSortField(DataParser.parse(String.class, map.get(WarehouseVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(WarehouseVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(WarehouseVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(WarehouseVOMeta.SEARCH_VALUE)));
@@ -531,12 +532,12 @@ public class WarehouseVO extends Warehouse {
 				this.setStatus( (String)map.get(WarehouseVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(WarehouseVOMeta.SEARCH_FIELD));
-				this.setPageIndex( (Integer)map.get(WarehouseVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(WarehouseVOMeta.SORT_TYPE));
 				this.setRequestAction( (String)map.get(WarehouseVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(WarehouseVOMeta.FUZZY_FIELD));
-				this.setSortField( (String)map.get(WarehouseVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(WarehouseVOMeta.PAGE_SIZE));
+				this.setPageIndex( (Integer)map.get(WarehouseVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(WarehouseVOMeta.SORT_TYPE));
+				this.setSortField( (String)map.get(WarehouseVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(WarehouseVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(WarehouseVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(WarehouseVOMeta.SEARCH_VALUE));

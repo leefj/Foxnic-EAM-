@@ -232,10 +232,9 @@ public class AssetStockGoodsAdjustServiceImpl extends SuperService<AssetStockGoo
 				String value=goods.get(i).getStockInNumber()+"";
 				String sql="update eam_goods_stock set stock_cur_number="+value+" where id=?";
 				this.dao.execute(sql,rid);
-
 				GoodsStockUsage goodsStockUsage=new GoodsStockUsage();
 				goodsStockUsage.setOwnerId(rid);
-				goodsStockUsage.setLabel("调整");
+				goodsStockUsage.setLabel("物品调整");
 				goodsStockUsage.setOperUserId(cUserId);
 				goodsStockUsage.setOperUserName(cUserName);
 				goodsStockUsage.setRecTime(new Date());

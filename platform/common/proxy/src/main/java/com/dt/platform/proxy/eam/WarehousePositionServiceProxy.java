@@ -84,6 +84,7 @@ public interface WarehousePositionServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+    public static final String QUERY_TREE_DATA = API_PREFIX + "query-tree-data";
     /**
      * 添加仓库库位
      */

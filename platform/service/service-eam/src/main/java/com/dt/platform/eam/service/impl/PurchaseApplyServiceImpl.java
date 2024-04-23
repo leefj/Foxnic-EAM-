@@ -22,6 +22,7 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.sql.expr.Update;
 import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
@@ -227,13 +228,15 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 
 	@Override
 	public Result check(String id,String checkId) {
-		PurchaseApply obj=new PurchaseApply();
-		obj.setId(id);
-		obj.setAssetCheck(AssetApplyCheckStatusEnum.CHECKED.code());
-		obj.setCheckId(checkId);
-		PurchaseCheck check=purchaseCheckService.getById(checkId);
 
-		return super.update(obj,SaveMode.NOT_NULL_FIELDS,false);
+		Update ups=new Update("eam_purchase_apply");
+		ups.set("asset_check",AssetApplyCheckStatusEnum.CHECKED.code());
+		ups.set("check_id",checkId);
+		ups.where().and("id=?",id);
+		dao.execute(ups);
+		return ErrorDesc.success();
+
+
 	}
 
 

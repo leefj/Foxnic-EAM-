@@ -262,17 +262,19 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var id=result.data;
             var ps={};
             console.log("id",result);
-            ps.id=APPLY_ID;
-            ps.checkId=id;
-            ps.abc="12";
-            admin.post("/service-eam/eam-purchase-apply/check", ps, function (data) {
-                if (data.success) {
-                    layer.msg("验收成功", {icon: 2, time: 1000});
-                }else{
-                    layer.msg(data.message, {icon: 2, time: 1000});
-                }
-            }, {delayLoading:1000,elms:[$("#submit-button")]});
-            console.log("afterSubmitt",param,result);
+            if(result.success){
+                ps.id=APPLY_ID;
+                ps.checkId=id;
+                admin.post("/service-eam/eam-purchase-apply/check", ps, function (data) {
+                    if (data.success) {
+                        layer.msg("验收成功", {icon: 2, time: 1000});
+                    }else{
+                        layer.msg(data.message, {icon: 2, time: 1000});
+                    }
+                }, {delayLoading:1000,elms:[$("#submit-button")]});
+                console.log("afterSubmitt",param,result);
+            }
+
         },
 
         /**

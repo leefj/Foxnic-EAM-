@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 采购申请VO类型
  * <p>采购申请 , 数据表 eam_purchase_apply 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-11-26 08:17:32
+ * @since 2024-04-23 14:33:16
  * @sign 901BAD23D88C64D31FBF0F78680C4544
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -442,29 +442,30 @@ public class PurchaseApplyVO extends PurchaseApply {
 		inst.setCheckId(this.getCheckId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setPurchaseCheck(this.getPurchaseCheck());
 			inst.setApplyOrg(this.getApplyOrg());
 			inst.setSearchField(this.getSearchField());
-			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
-			inst.setOrderList(this.getOrderList());
 			inst.setPageSize(this.getPageSize());
 			inst.setHistoricProcessList(this.getHistoricProcessList());
 			inst.setOriginator(this.getOriginator());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setCurrentProcessList(this.getCurrentProcessList());
-			inst.setDefaultProcess(this.getDefaultProcess());
 			inst.setImportType(this.getImportType());
-			inst.setChangeInstance(this.getChangeInstance());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setSupplier(this.getSupplier());
-			inst.setPurchaseUser(this.getPurchaseUser());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
 			inst.setDataOrigin(this.getDataOrigin());
-			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setOrderIds(this.getOrderIds());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setOrderList(this.getOrderList());
+			inst.setDefaultProcess(this.getDefaultProcess());
+			inst.setChangeInstance(this.getChangeInstance());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setPurchaseUser(this.getPurchaseUser());
+			inst.setIds(this.getIds());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -564,21 +565,21 @@ public class PurchaseApplyVO extends PurchaseApply {
 			// others
 			this.setApplyOrg(DataParser.parse(Organization.class, map.get(PurchaseApplyVOMeta.APPLY_ORG)));
 			this.setSearchField(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.SEARCH_FIELD)));
-			this.setRequestAction(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(PurchaseApplyVOMeta.PAGE_SIZE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(PurchaseApplyVOMeta.ORIGINATOR)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.SELECTED_CODE)));
-			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(PurchaseApplyVOMeta.DEFAULT_PROCESS)));
 			this.setImportType(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.IMPORT_TYPE)));
-			this.setChangeInstance(DataParser.parse(ChangeInstance.class, map.get(PurchaseApplyVOMeta.CHANGE_INSTANCE)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(PurchaseApplyVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.SORT_TYPE)));
 			this.setSupplier(DataParser.parse(Supplier.class, map.get(PurchaseApplyVOMeta.SUPPLIER)));
-			this.setPurchaseUser(DataParser.parse(Employee.class, map.get(PurchaseApplyVOMeta.PURCHASE_USER)));
 			this.setSortField(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.QUERY_LOGIC)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.REQUEST_ACTION)));
+			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(PurchaseApplyVOMeta.DEFAULT_PROCESS)));
+			this.setChangeInstance(DataParser.parse(ChangeInstance.class, map.get(PurchaseApplyVOMeta.CHANGE_INSTANCE)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(PurchaseApplyVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.SORT_TYPE)));
+			this.setPurchaseUser(DataParser.parse(Employee.class, map.get(PurchaseApplyVOMeta.PURCHASE_USER)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(PurchaseApplyVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -622,21 +623,21 @@ public class PurchaseApplyVO extends PurchaseApply {
 				// others
 				this.setApplyOrg( (Organization)map.get(PurchaseApplyVOMeta.APPLY_ORG));
 				this.setSearchField( (String)map.get(PurchaseApplyVOMeta.SEARCH_FIELD));
-				this.setRequestAction( (String)map.get(PurchaseApplyVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(PurchaseApplyVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(PurchaseApplyVOMeta.PAGE_SIZE));
 				this.setOriginator( (Employee)map.get(PurchaseApplyVOMeta.ORIGINATOR));
 				this.setSelectedCode( (String)map.get(PurchaseApplyVOMeta.SELECTED_CODE));
-				this.setDefaultProcess( (ProcessInstance)map.get(PurchaseApplyVOMeta.DEFAULT_PROCESS));
 				this.setImportType( (String)map.get(PurchaseApplyVOMeta.IMPORT_TYPE));
-				this.setChangeInstance( (ChangeInstance)map.get(PurchaseApplyVOMeta.CHANGE_INSTANCE));
-				this.setPageIndex( (Integer)map.get(PurchaseApplyVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(PurchaseApplyVOMeta.SORT_TYPE));
 				this.setSupplier( (Supplier)map.get(PurchaseApplyVOMeta.SUPPLIER));
-				this.setPurchaseUser( (Employee)map.get(PurchaseApplyVOMeta.PURCHASE_USER));
 				this.setSortField( (String)map.get(PurchaseApplyVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(PurchaseApplyVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(PurchaseApplyVOMeta.QUERY_LOGIC));
+				this.setRequestAction( (String)map.get(PurchaseApplyVOMeta.REQUEST_ACTION));
+				this.setDefaultProcess( (ProcessInstance)map.get(PurchaseApplyVOMeta.DEFAULT_PROCESS));
+				this.setChangeInstance( (ChangeInstance)map.get(PurchaseApplyVOMeta.CHANGE_INSTANCE));
+				this.setPageIndex( (Integer)map.get(PurchaseApplyVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(PurchaseApplyVOMeta.SORT_TYPE));
+				this.setPurchaseUser( (Employee)map.get(PurchaseApplyVOMeta.PURCHASE_USER));
 				this.setSearchValue( (String)map.get(PurchaseApplyVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {

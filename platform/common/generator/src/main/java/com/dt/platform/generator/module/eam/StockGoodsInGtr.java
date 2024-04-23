@@ -50,7 +50,8 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.BATCH_CODE).search().fuzzySearch();
 
-
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.RECEIVER_USER_NAME).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.SUPPLIER_NAME).search().fuzzySearch();
 
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -181,7 +182,7 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().formWindow().width(Config.baseFormWidth);
+        cfg.view().formWindow().width(Config.baseFormWidth_95);
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {

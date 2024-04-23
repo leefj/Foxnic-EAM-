@@ -261,7 +261,6 @@ public class AssetStockGoodsTranferServiceImpl extends SuperService<AssetStockGo
 		String cUserId=SessionUser.getCurrent().getActivatedEmployeeId();
 		String cUserName=SessionUser.getCurrent().getUser().getActivatedEmployeeName();
 		List<GoodsStock> goods=bill.getGoodsList();
-
 		if(goods!=null&&goods.size()>0){
 			for(int i=0;i<goods.size();i++){
 				GoodsStock goodsObj=goods.get(i);

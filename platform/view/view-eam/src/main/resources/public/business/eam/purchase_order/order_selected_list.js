@@ -86,7 +86,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品名称') , templet: function (d) { return templet('name',d.name,d);}  }
+				//	,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'goodsId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品档案') , templet: function (d) { return templet('goodsId',d.goodsId,d);}  }
 					,{ field: 'purchaseNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('采购数量') , templet: function (d) { return templet('purchaseNumber',d.purchaseNumber,d);}  }
 					,{ field: 'unitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('采购单价') , templet: function (d) { return templet('unitPrice',d.unitPrice,d);}  }

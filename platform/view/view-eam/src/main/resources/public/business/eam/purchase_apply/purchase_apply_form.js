@@ -1,7 +1,7 @@
 /**
  * 采购申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-11-26 08:17:35
+ * @since 2024-04-23 14:33:20
  */
 
 function FormPage() {
@@ -220,6 +220,42 @@ function FormPage() {
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("expectedArrivalDate",value, date, endDate);
+			}
+		});
+		//渲染 checkId 下拉字段
+		fox.renderSelectBox({
+			el: "checkId",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("验收单",'','cmp:form'),
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("checkId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "businessCode", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("checkId",{data:data[i],name:data[i].businessCode,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].businessCode,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
 			}
 		});
 		form.on('radio(assetCheck)', function(data){

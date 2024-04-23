@@ -9,6 +9,7 @@ import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import com.dt.platform.domain.eam.PurchaseOrder;
 import java.util.List;
+import com.dt.platform.domain.eam.PurchaseCheck;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import javax.persistence.Transient;
 
@@ -16,8 +17,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-11-26 08:17:32
- * @sign 11D1E07B19E521005AE4CDCB94353BC2
+ * @since 2024-04-23 14:33:16
+ * @sign 589D7D8783172744A41F0CC00391A7A0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -444,6 +445,16 @@ public class PurchaseApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseApply,java.lang.String> ORDER_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseApply.class ,ORDER_IDS, java.util.List.class, "清单列表", "清单列表", java.lang.String.class, null);
 	
 	/**
+	 * purchaseCheck , 集合类型: LIST , 类型: com.dt.platform.domain.eam.PurchaseCheck
+	*/
+	public static final String PURCHASE_CHECK="purchaseCheck";
+	
+	/**
+	 * purchaseCheck , 集合类型: LIST , 类型: com.dt.platform.domain.eam.PurchaseCheck
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseApply,com.dt.platform.domain.eam.PurchaseCheck> PURCHASE_CHECK_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseApply.class ,PURCHASE_CHECK, java.util.List.class, "purchaseCheck", "purchaseCheck", com.dt.platform.domain.eam.PurchaseCheck.class, null);
+	
+	/**
 	 * selectedCode , 类型: java.lang.String
 	*/
 	public static final String SELECTED_CODE="selectedCode";
@@ -506,7 +517,7 @@ public class PurchaseApplyMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , NAME , STATUS , APPLY_STATUS , APPLY_ORG_ID , PURCHASE_USER_ID , SUPPLIER_ID , APPLY_CONTENT , APPLY_DATE , EXPECTED_ARRIVAL_DATE , CHECK_ID , ASSET_CHECK , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , UPDATE_BY , CREATE_TIME , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , SUPPLIER , ORIGINATOR , APPLY_ORG , CHANGE_INSTANCE , ORDER_LIST , ORDER_IDS , SELECTED_CODE , PURCHASE_USER , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS , IMPORT_TYPE };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , NAME , STATUS , APPLY_STATUS , APPLY_ORG_ID , PURCHASE_USER_ID , SUPPLIER_ID , APPLY_CONTENT , APPLY_DATE , EXPECTED_ARRIVAL_DATE , CHECK_ID , ASSET_CHECK , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , UPDATE_BY , CREATE_TIME , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , SUPPLIER , ORIGINATOR , APPLY_ORG , CHANGE_INSTANCE , ORDER_LIST , ORDER_IDS , PURCHASE_CHECK , SELECTED_CODE , PURCHASE_USER , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS , IMPORT_TYPE };
 	
 	/**
 	 * 代理类
@@ -979,6 +990,17 @@ public class PurchaseApplyMeta {
 		}
 		
 		/**
+		 * 设置 purchaseCheck
+		 * @param purchaseCheck purchaseCheck
+		 * @return 当前对象
+		*/
+		public PurchaseApply setPurchaseCheck(List<PurchaseCheck> purchaseCheck) {
+			super.change(PURCHASE_CHECK,super.getPurchaseCheck(),purchaseCheck);
+			super.setPurchaseCheck(purchaseCheck);
+			return this;
+		}
+		
+		/**
 		 * 设置 selectedCode
 		 * @param selectedCode selectedCode
 		 * @return 当前对象
@@ -1096,18 +1118,19 @@ public class PurchaseApplyMeta {
 			inst.setCheckId(this.getCheckId());
 			inst.setStatus(this.getStatus());
 			if(all) {
+				inst.setPurchaseCheck(this.getPurchaseCheck());
 				inst.setApplyOrg(this.getApplyOrg());
+				inst.setOrderList(this.getOrderList());
+				inst.setHistoricProcessList(this.getHistoricProcessList());
+				inst.setOriginator(this.getOriginator());
+				inst.setSelectedCode(this.getSelectedCode());
+				inst.setCurrentProcessList(this.getCurrentProcessList());
+				inst.setDefaultProcess(this.getDefaultProcess());
 				inst.setImportType(this.getImportType());
 				inst.setChangeInstance(this.getChangeInstance());
 				inst.setSupplier(this.getSupplier());
 				inst.setPurchaseUser(this.getPurchaseUser());
-				inst.setOrderList(this.getOrderList());
-				inst.setHistoricProcessList(this.getHistoricProcessList());
-				inst.setOriginator(this.getOriginator());
 				inst.setOrderIds(this.getOrderIds());
-				inst.setSelectedCode(this.getSelectedCode());
-				inst.setCurrentProcessList(this.getCurrentProcessList());
-				inst.setDefaultProcess(this.getDefaultProcess());
 			}
 			inst.clearModifies();
 			return inst;

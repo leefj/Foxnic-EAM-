@@ -30,8 +30,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 采购申请
  * <p>采购申请 , 数据表 eam_purchase_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-11-26 08:17:32
- * @sign 11D1E07B19E521005AE4CDCB94353BC2
+ * @since 2024-04-23 14:33:16
+ * @sign 589D7D8783172744A41F0CC00391A7A0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -47,13 +47,13 @@ public class PurchaseApply extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "740974426849280000")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "824997826801958912")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "APA202347071647263")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "APA202426261326188")
 	private String businessCode;
 	
 	/**
@@ -71,7 +71,7 @@ public class PurchaseApply extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "incomplete")
 	private String status;
 	
 	/**
@@ -83,7 +83,7 @@ public class PurchaseApply extends Entity {
 	/**
 	 * 申请部门：申请部门
 	*/
-	@ApiModelProperty(required = false,value="申请部门" , notes = "申请部门" , example = "2")
+	@ApiModelProperty(required = false,value="申请部门" , notes = "申请部门" , example = "788871090188320766")
 	private String applyOrgId;
 	
 	/**
@@ -101,13 +101,13 @@ public class PurchaseApply extends Entity {
 	/**
 	 * 采购说明：采购说明
 	*/
-	@ApiModelProperty(required = false,value="采购说明" , notes = "采购说明" , example = "121212")
+	@ApiModelProperty(required = false,value="采购说明" , notes = "采购说明" , example = "12")
 	private String applyContent;
 	
 	/**
 	 * 采购日期：采购日期
 	*/
-	@ApiModelProperty(required = false,value="采购日期" , notes = "采购日期" , example = "2023-08-07")
+	@ApiModelProperty(required = false,value="采购日期" , notes = "采购日期" , example = "2024-03-26")
 	private String applyDate;
 	
 	/**
@@ -131,7 +131,7 @@ public class PurchaseApply extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "1212")
 	private String notes;
 	
 	/**
@@ -161,7 +161,7 @@ public class PurchaseApply extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-07 04:47:50")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-03-26 01:26:50")
 	private Date createTime;
 	
 	/**
@@ -298,6 +298,12 @@ public class PurchaseApply extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="清单列表" , notes = "清单列表")
 	private List<String> orderIds;
+	
+	/**
+	 * purchaseCheck：purchaseCheck
+	*/
+	@ApiModelProperty(required = false,value="purchaseCheck" , notes = "purchaseCheck")
+	private List<PurchaseCheck> purchaseCheck;
 	
 	/**
 	 * selectedCode：selectedCode
@@ -1187,6 +1193,36 @@ public class PurchaseApply extends Entity {
 	}
 	
 	/**
+	 * 获得 purchaseCheck<br>
+	 * purchaseCheck
+	 * @return purchaseCheck
+	*/
+	public List<PurchaseCheck> getPurchaseCheck() {
+		return purchaseCheck;
+	}
+	
+	/**
+	 * 设置 purchaseCheck
+	 * @param purchaseCheck purchaseCheck
+	 * @return 当前对象
+	*/
+	public PurchaseApply setPurchaseCheck(List<PurchaseCheck> purchaseCheck) {
+		this.purchaseCheck=purchaseCheck;
+		return this;
+	}
+	
+	/**
+	 * 添加 purchaseCheck
+	 * @param entity purchaseCheck
+	 * @return 当前对象
+	*/
+	public PurchaseApply addPurchaseCheck(PurchaseCheck... entity) {
+		if(this.purchaseCheck==null) purchaseCheck=new ArrayList<>();
+		this.purchaseCheck.addAll(Arrays.asList(entity));
+		return this;
+	}
+	
+	/**
 	 * 获得 selectedCode<br>
 	 * selectedCode
 	 * @return selectedCode
@@ -1403,18 +1439,19 @@ public class PurchaseApply extends Entity {
 		inst.setCheckId(this.getCheckId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setPurchaseCheck(this.getPurchaseCheck());
 			inst.setApplyOrg(this.getApplyOrg());
+			inst.setOrderList(this.getOrderList());
+			inst.setHistoricProcessList(this.getHistoricProcessList());
+			inst.setOriginator(this.getOriginator());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setCurrentProcessList(this.getCurrentProcessList());
+			inst.setDefaultProcess(this.getDefaultProcess());
 			inst.setImportType(this.getImportType());
 			inst.setChangeInstance(this.getChangeInstance());
 			inst.setSupplier(this.getSupplier());
 			inst.setPurchaseUser(this.getPurchaseUser());
-			inst.setOrderList(this.getOrderList());
-			inst.setHistoricProcessList(this.getHistoricProcessList());
-			inst.setOriginator(this.getOriginator());
 			inst.setOrderIds(this.getOrderIds());
-			inst.setSelectedCode(this.getSelectedCode());
-			inst.setCurrentProcessList(this.getCurrentProcessList());
-			inst.setDefaultProcess(this.getDefaultProcess());
 		}
 		inst.clearModifies();
 		return inst;
@@ -1512,13 +1549,13 @@ public class PurchaseApply extends Entity {
 			this.setStatus(DataParser.parse(String.class, map.get(PurchaseApplyMeta.STATUS)));
 			// others
 			this.setApplyOrg(DataParser.parse(Organization.class, map.get(PurchaseApplyMeta.APPLY_ORG)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(PurchaseApplyMeta.ORIGINATOR)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(PurchaseApplyMeta.SELECTED_CODE)));
+			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(PurchaseApplyMeta.DEFAULT_PROCESS)));
 			this.setImportType(DataParser.parse(String.class, map.get(PurchaseApplyMeta.IMPORT_TYPE)));
 			this.setChangeInstance(DataParser.parse(ChangeInstance.class, map.get(PurchaseApplyMeta.CHANGE_INSTANCE)));
 			this.setSupplier(DataParser.parse(Supplier.class, map.get(PurchaseApplyMeta.SUPPLIER)));
 			this.setPurchaseUser(DataParser.parse(Employee.class, map.get(PurchaseApplyMeta.PURCHASE_USER)));
-			this.setOriginator(DataParser.parse(Employee.class, map.get(PurchaseApplyMeta.ORIGINATOR)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(PurchaseApplyMeta.SELECTED_CODE)));
-			this.setDefaultProcess(DataParser.parse(ProcessInstance.class, map.get(PurchaseApplyMeta.DEFAULT_PROCESS)));
 			return true;
 		} else {
 			try {
@@ -1560,13 +1597,13 @@ public class PurchaseApply extends Entity {
 				this.setStatus( (String)map.get(PurchaseApplyMeta.STATUS));
 				// others
 				this.setApplyOrg( (Organization)map.get(PurchaseApplyMeta.APPLY_ORG));
+				this.setOriginator( (Employee)map.get(PurchaseApplyMeta.ORIGINATOR));
+				this.setSelectedCode( (String)map.get(PurchaseApplyMeta.SELECTED_CODE));
+				this.setDefaultProcess( (ProcessInstance)map.get(PurchaseApplyMeta.DEFAULT_PROCESS));
 				this.setImportType( (String)map.get(PurchaseApplyMeta.IMPORT_TYPE));
 				this.setChangeInstance( (ChangeInstance)map.get(PurchaseApplyMeta.CHANGE_INSTANCE));
 				this.setSupplier( (Supplier)map.get(PurchaseApplyMeta.SUPPLIER));
 				this.setPurchaseUser( (Employee)map.get(PurchaseApplyMeta.PURCHASE_USER));
-				this.setOriginator( (Employee)map.get(PurchaseApplyMeta.ORIGINATOR));
-				this.setSelectedCode( (String)map.get(PurchaseApplyMeta.SELECTED_CODE));
-				this.setDefaultProcess( (ProcessInstance)map.get(PurchaseApplyMeta.DEFAULT_PROCESS));
 				return true;
 			} catch (Exception e) {
 				return false;

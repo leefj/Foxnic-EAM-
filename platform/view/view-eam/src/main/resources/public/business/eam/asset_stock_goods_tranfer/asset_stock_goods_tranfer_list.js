@@ -1,7 +1,7 @@
 /**
  * 库存调拨 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-18 07:44:26
+ * @since 2024-04-23 11:16:32
  */
 
 
@@ -88,7 +88,7 @@ function ListPage() {
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('办理状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'positionInId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('调入库位'), templet: function (d) { return templet('positionInId' ,fox.joinLabel(d.warehousePosition,"name",',','','positionInId'),d);}}
+					,{ field: 'positionInId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('调入库位'), templet: function (d) { return templet('positionInId' ,fox.joinLabel(d.warehousePosition,"fullName",',','','positionInId'),d);}}
 					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
@@ -493,7 +493,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["95%",height+"px"],
 			type: 2,
 			id:"eam-asset-stock-goods-tranfer-form-data-win",
 			content: '/business/eam/asset_stock_goods_tranfer/asset_stock_goods_tranfer_form.html' + (queryString?("?"+queryString):""),

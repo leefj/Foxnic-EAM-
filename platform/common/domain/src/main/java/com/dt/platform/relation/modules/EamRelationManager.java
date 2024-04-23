@@ -141,8 +141,15 @@ public class EamRelationManager extends RelationManager {
 
         this.setupWarehousePos();
 
-
+        this.setupWarehouse();
     }
+
+    public void setupWarehouse() {
+
+        this.property(WarehouseMeta.WAREHOUSE_POSITION_LIST_PROP)
+                .using(EAMTables.EAM_WAREHOUSE.ID).join(EAMTables.EAM_WAREHOUSE_POSITION.WAREHOUSE_ID);
+    }
+
 
     public void setupWarehousePos() {
 
@@ -1687,7 +1694,6 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_PURCHASE_APPLY.ID).join(EAMTables.EAM_PURCHASE_ORDER.APPLY_ID)
                 .condition("selected_code='def'");;
 
-
         this.property(PurchaseApplyMeta.APPLY_ORG_PROP)
                 .using(EAMTables.EAM_PURCHASE_APPLY.APPLY_ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
 
@@ -1699,9 +1705,17 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_PURCHASE_APPLY.SUPPLIER_ID).join(EAMTables.EAM_SUPPLIER.ID);
 
 
+        this.property(PurchaseApplyMeta.PURCHASE_CHECK_PROP)
+                .using(EAMTables.EAM_PURCHASE_APPLY.CHECK_ID).join(EAMTables.EAM_PURCHASE_CHECK.ID);
     }
 
     public void setupPurchaseCheck() {
+
+        this.property(PurchaseCheckMeta.CHECK_USER_PROP)
+                .using(EAMTables.EAM_PURCHASE_CHECK.CHECK_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(PurchaseCheckMeta.WAREHOUSE_POSITION_PROP)
+                .using(EAMTables.EAM_PURCHASE_CHECK.POSITION_ID).join(EAMTables.EAM_WAREHOUSE_POSITION.ID);
 
         this.property(PurchaseCheckMeta.PURCHASE_APPLY_PROP)
                 .using(EAMTables.EAM_PURCHASE_CHECK.APPLY_ID).join(EAMTables.EAM_PURCHASE_APPLY.ID);

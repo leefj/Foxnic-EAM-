@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存调拨VO类型
  * <p>库存调拨 , 数据表 eam_asset_stock_goods_tranfer 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-18 07:44:24
+ * @since 2024-04-23 11:16:30
  * @sign AFCF75255E780A794A3AB0B59533A8C2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

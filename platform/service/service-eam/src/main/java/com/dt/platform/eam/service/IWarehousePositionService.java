@@ -1,5 +1,6 @@
 package com.dt.platform.eam.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
@@ -29,6 +30,8 @@ import java.util.Map;
 
 public interface IWarehousePositionService extends  ISimpleIdService<WarehousePosition,String> {
 
+
+	JSONArray queryTreeData(String id,String method);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

@@ -156,7 +156,7 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
 
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("95%");
+        cfg.view().formWindow().width(Config.baseFormWidth_95);
         cfg.view().formWindow().bottomSpace(20);
 
         cfg.view().form().addGroup(null,

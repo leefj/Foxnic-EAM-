@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 采购验收
  * <p>采购验收 , 数据表 eam_purchase_check 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-08-07 20:15:33
- * @sign A43B348A367379A44426FA523275BC5E
+ * @since 2024-04-23 15:48:37
+ * @sign 04A139769904BEE9762F84F31BF5AD71
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,7 +45,7 @@ public class PurchaseCheck extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "741024671125733376")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "835157011669712896")
 	private String id;
 	
 	/**
@@ -57,32 +57,38 @@ public class PurchaseCheck extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "incomplete")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
 	private String status;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "AC202307072007646")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "AC202415231415818")
 	private String businessCode;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "12")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称")
 	private String name;
 	
 	/**
 	 * 采购申请：采购申请
 	*/
-	@ApiModelProperty(required = false,value="采购申请" , notes = "采购申请" , example = "741014517965651968")
+	@ApiModelProperty(required = false,value="采购申请" , notes = "采购申请" , example = "835153891807985664")
 	private String applyId;
 	
 	/**
 	 * 供应商：供应商
 	*/
-	@ApiModelProperty(required = false,value="供应商" , notes = "供应商" , example = "705063820187402240")
+	@ApiModelProperty(required = false,value="供应商" , notes = "供应商")
 	private String supplierId;
+	
+	/**
+	 * 验收人：验收人
+	*/
+	@ApiModelProperty(required = false,value="验收人" , notes = "验收人")
+	private String checkUserId;
 	
 	/**
 	 * 验收人：验收人
@@ -91,15 +97,9 @@ public class PurchaseCheck extends Entity {
 	private String checkUserName;
 	
 	/**
-	 * 到货日期：到货日期
-	*/
-	@ApiModelProperty(required = false,value="到货日期" , notes = "到货日期")
-	private String receiveDate;
-	
-	/**
 	 * 验收时间：验收时间
 	*/
-	@ApiModelProperty(required = false,value="验收时间" , notes = "验收时间")
+	@ApiModelProperty(required = false,value="验收时间" , notes = "验收时间" , example = "2024-04-01")
 	private String checkDate;
 	
 	/**
@@ -109,16 +109,40 @@ public class PurchaseCheck extends Entity {
 	private String checkInformation;
 	
 	/**
-	 * 备注：备注
+	 * 到货日期：到货日期
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
-	private String notes;
+	@ApiModelProperty(required = false,value="到货日期" , notes = "到货日期" , example = "2024-04-09")
+	private String receiveDate;
+	
+	/**
+	 * 仓库库位：仓库库位
+	*/
+	@ApiModelProperty(required = false,value="仓库库位" , notes = "仓库库位" , example = "832938111762694145")
+	private String positionId;
+	
+	/**
+	 * 是否入库：是否入库
+	*/
+	@ApiModelProperty(required = false,value="是否入库" , notes = "是否入库" , example = "no")
+	private String insertPosition;
+	
+	/**
+	 * 入库状态：入库状态
+	*/
+	@ApiModelProperty(required = false,value="入库状态" , notes = "入库状态")
+	private String stockStatus;
 	
 	/**
 	 * 附件：附件
 	*/
 	@ApiModelProperty(required = false,value="附件" , notes = "附件")
 	private String attach;
+	
+	/**
+	 * 备注：备注
+	*/
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	private String notes;
 	
 	/**
 	 * 制单人：制单人
@@ -135,7 +159,7 @@ public class PurchaseCheck extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-08-07 08:07:29")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2024-04-23 02:15:48")
 	private Date createTime;
 	
 	/**
@@ -208,10 +232,10 @@ public class PurchaseCheck extends Entity {
 	private Employee originator;
 	
 	/**
-	 * 领用申请：领用申请
+	 * checkUser：checkUser
 	*/
-	@ApiModelProperty(required = false,value="领用申请" , notes = "领用申请")
-	private PurchaseApply purchaseApply;
+	@ApiModelProperty(required = false,value="checkUser" , notes = "checkUser")
+	private Employee checkUser;
 	
 	/**
 	 * 清单：清单
@@ -224,6 +248,30 @@ public class PurchaseCheck extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="清单列表" , notes = "清单列表")
 	private List<String> orderIds;
+	
+	/**
+	 * 领用申请：领用申请
+	*/
+	@ApiModelProperty(required = false,value="领用申请" , notes = "领用申请")
+	private PurchaseApply purchaseApply;
+	
+	/**
+	 * applyCode：applyCode
+	*/
+	@ApiModelProperty(required = false,value="applyCode" , notes = "applyCode")
+	private String applyCode;
+	
+	/**
+	 * applyName：applyName
+	*/
+	@ApiModelProperty(required = false,value="applyName" , notes = "applyName")
+	private String applyName;
+	
+	/**
+	 * warehousePosition：warehousePosition
+	*/
+	@ApiModelProperty(required = false,value="warehousePosition" , notes = "warehousePosition")
+	private WarehousePosition warehousePosition;
 	
 	/**
 	 * 获得 主键<br>
@@ -363,6 +411,25 @@ public class PurchaseCheck extends Entity {
 	 * 验收人
 	 * @return 验收人
 	*/
+	public String getCheckUserId() {
+		return checkUserId;
+	}
+	
+	/**
+	 * 设置 验收人
+	 * @param checkUserId 验收人
+	 * @return 当前对象
+	*/
+	public PurchaseCheck setCheckUserId(String checkUserId) {
+		this.checkUserId=checkUserId;
+		return this;
+	}
+	
+	/**
+	 * 获得 验收人<br>
+	 * 验收人
+	 * @return 验收人
+	*/
 	public String getCheckUserName() {
 		return checkUserName;
 	}
@@ -374,25 +441,6 @@ public class PurchaseCheck extends Entity {
 	*/
 	public PurchaseCheck setCheckUserName(String checkUserName) {
 		this.checkUserName=checkUserName;
-		return this;
-	}
-	
-	/**
-	 * 获得 到货日期<br>
-	 * 到货日期
-	 * @return 到货日期
-	*/
-	public String getReceiveDate() {
-		return receiveDate;
-	}
-	
-	/**
-	 * 设置 到货日期
-	 * @param receiveDate 到货日期
-	 * @return 当前对象
-	*/
-	public PurchaseCheck setReceiveDate(String receiveDate) {
-		this.receiveDate=receiveDate;
 		return this;
 	}
 	
@@ -435,21 +483,78 @@ public class PurchaseCheck extends Entity {
 	}
 	
 	/**
-	 * 获得 备注<br>
-	 * 备注
-	 * @return 备注
+	 * 获得 到货日期<br>
+	 * 到货日期
+	 * @return 到货日期
 	*/
-	public String getNotes() {
-		return notes;
+	public String getReceiveDate() {
+		return receiveDate;
 	}
 	
 	/**
-	 * 设置 备注
-	 * @param notes 备注
+	 * 设置 到货日期
+	 * @param receiveDate 到货日期
 	 * @return 当前对象
 	*/
-	public PurchaseCheck setNotes(String notes) {
-		this.notes=notes;
+	public PurchaseCheck setReceiveDate(String receiveDate) {
+		this.receiveDate=receiveDate;
+		return this;
+	}
+	
+	/**
+	 * 获得 仓库库位<br>
+	 * 仓库库位
+	 * @return 仓库库位
+	*/
+	public String getPositionId() {
+		return positionId;
+	}
+	
+	/**
+	 * 设置 仓库库位
+	 * @param positionId 仓库库位
+	 * @return 当前对象
+	*/
+	public PurchaseCheck setPositionId(String positionId) {
+		this.positionId=positionId;
+		return this;
+	}
+	
+	/**
+	 * 获得 是否入库<br>
+	 * 是否入库
+	 * @return 是否入库
+	*/
+	public String getInsertPosition() {
+		return insertPosition;
+	}
+	
+	/**
+	 * 设置 是否入库
+	 * @param insertPosition 是否入库
+	 * @return 当前对象
+	*/
+	public PurchaseCheck setInsertPosition(String insertPosition) {
+		this.insertPosition=insertPosition;
+		return this;
+	}
+	
+	/**
+	 * 获得 入库状态<br>
+	 * 入库状态
+	 * @return 入库状态
+	*/
+	public String getStockStatus() {
+		return stockStatus;
+	}
+	
+	/**
+	 * 设置 入库状态
+	 * @param stockStatus 入库状态
+	 * @return 当前对象
+	*/
+	public PurchaseCheck setStockStatus(String stockStatus) {
+		this.stockStatus=stockStatus;
 		return this;
 	}
 	
@@ -469,6 +574,25 @@ public class PurchaseCheck extends Entity {
 	*/
 	public PurchaseCheck setAttach(String attach) {
 		this.attach=attach;
+		return this;
+	}
+	
+	/**
+	 * 获得 备注<br>
+	 * 备注
+	 * @return 备注
+	*/
+	public String getNotes() {
+		return notes;
+	}
+	
+	/**
+	 * 设置 备注
+	 * @param notes 备注
+	 * @return 当前对象
+	*/
+	public PurchaseCheck setNotes(String notes) {
+		this.notes=notes;
 		return this;
 	}
 	
@@ -770,21 +894,21 @@ public class PurchaseCheck extends Entity {
 	}
 	
 	/**
-	 * 获得 领用申请<br>
-	 * 领用申请
-	 * @return 领用申请
+	 * 获得 checkUser<br>
+	 * checkUser
+	 * @return checkUser
 	*/
-	public PurchaseApply getPurchaseApply() {
-		return purchaseApply;
+	public Employee getCheckUser() {
+		return checkUser;
 	}
 	
 	/**
-	 * 设置 领用申请
-	 * @param purchaseApply 领用申请
+	 * 设置 checkUser
+	 * @param checkUser checkUser
 	 * @return 当前对象
 	*/
-	public PurchaseCheck setPurchaseApply(PurchaseApply purchaseApply) {
-		this.purchaseApply=purchaseApply;
+	public PurchaseCheck setCheckUser(Employee checkUser) {
+		this.checkUser=checkUser;
 		return this;
 	}
 	
@@ -847,6 +971,82 @@ public class PurchaseCheck extends Entity {
 		this.orderIds.addAll(Arrays.asList(orderId));
 		return this;
 	}
+	
+	/**
+	 * 获得 领用申请<br>
+	 * 领用申请
+	 * @return 领用申请
+	*/
+	public PurchaseApply getPurchaseApply() {
+		return purchaseApply;
+	}
+	
+	/**
+	 * 设置 领用申请
+	 * @param purchaseApply 领用申请
+	 * @return 当前对象
+	*/
+	public PurchaseCheck setPurchaseApply(PurchaseApply purchaseApply) {
+		this.purchaseApply=purchaseApply;
+		return this;
+	}
+	
+	/**
+	 * 获得 applyCode<br>
+	 * applyCode
+	 * @return applyCode
+	*/
+	public String getApplyCode() {
+		return applyCode;
+	}
+	
+	/**
+	 * 设置 applyCode
+	 * @param applyCode applyCode
+	 * @return 当前对象
+	*/
+	public PurchaseCheck setApplyCode(String applyCode) {
+		this.applyCode=applyCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 applyName<br>
+	 * applyName
+	 * @return applyName
+	*/
+	public String getApplyName() {
+		return applyName;
+	}
+	
+	/**
+	 * 设置 applyName
+	 * @param applyName applyName
+	 * @return 当前对象
+	*/
+	public PurchaseCheck setApplyName(String applyName) {
+		this.applyName=applyName;
+		return this;
+	}
+	
+	/**
+	 * 获得 warehousePosition<br>
+	 * warehousePosition
+	 * @return warehousePosition
+	*/
+	public WarehousePosition getWarehousePosition() {
+		return warehousePosition;
+	}
+	
+	/**
+	 * 设置 warehousePosition
+	 * @param warehousePosition warehousePosition
+	 * @return 当前对象
+	*/
+	public PurchaseCheck setWarehousePosition(WarehousePosition warehousePosition) {
+		this.warehousePosition=warehousePosition;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -895,34 +1095,42 @@ public class PurchaseCheck extends Entity {
 		inst.setSupplierId(this.getSupplierId());
 		inst.setNotes(this.getNotes());
 		inst.setProcId(this.getProcId());
-		inst.setReceiveDate(this.getReceiveDate());
-		inst.setUpdateTime(this.getUpdateTime());
-		inst.setCheckDate(this.getCheckDate());
-		inst.setVersion(this.getVersion());
+		inst.setCheckUserId(this.getCheckUserId());
 		inst.setSelectedCode(this.getSelectedCode());
 		inst.setApplyId(this.getApplyId());
 		inst.setBusinessCode(this.getBusinessCode());
-		inst.setCreateBy(this.getCreateBy());
-		inst.setDeleted(this.getDeleted());
-		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
-		inst.setDeleteTime(this.getDeleteTime());
-		inst.setName(this.getName());
-		inst.setTenantId(this.getTenantId());
 		inst.setCheckUserName(this.getCheckUserName());
-		inst.setDeleteBy(this.getDeleteBy());
+		inst.setStockStatus(this.getStockStatus());
 		inst.setId(this.getId());
 		inst.setAttach(this.getAttach());
 		inst.setOriginatorId(this.getOriginatorId());
+		inst.setReceiveDate(this.getReceiveDate());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setCheckDate(this.getCheckDate());
+		inst.setInsertPosition(this.getInsertPosition());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setPositionId(this.getPositionId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
 		inst.setCheckInformation(this.getCheckInformation());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setCheckUser(this.getCheckUser());
 			inst.setPurchaseApply(this.getPurchaseApply());
 			inst.setCheckOrg(this.getCheckOrg());
 			inst.setSupplier(this.getSupplier());
 			inst.setOrderList(this.getOrderList());
 			inst.setOriginator(this.getOriginator());
 			inst.setOrderIds(this.getOrderIds());
+			inst.setApplyCode(this.getApplyCode());
+			inst.setApplyName(this.getApplyName());
+			inst.setWarehousePosition(this.getWarehousePosition());
 		}
 		inst.clearModifies();
 		return inst;
@@ -985,64 +1193,80 @@ public class PurchaseCheck extends Entity {
 			this.setSupplierId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.SUPPLIER_ID)));
 			this.setNotes(DataParser.parse(String.class, map.get(PurchaseCheckMeta.NOTES)));
 			this.setProcId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.PROC_ID)));
-			this.setReceiveDate(DataParser.parse(String.class, map.get(PurchaseCheckMeta.RECEIVE_DATE)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(PurchaseCheckMeta.UPDATE_TIME)));
-			this.setCheckDate(DataParser.parse(String.class, map.get(PurchaseCheckMeta.CHECK_DATE)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(PurchaseCheckMeta.VERSION)));
+			this.setCheckUserId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.CHECK_USER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(PurchaseCheckMeta.SELECTED_CODE)));
 			this.setApplyId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.APPLY_ID)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(PurchaseCheckMeta.BUSINESS_CODE)));
-			this.setCreateBy(DataParser.parse(String.class, map.get(PurchaseCheckMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, map.get(PurchaseCheckMeta.DELETED)));
-			this.setCreateTime(DataParser.parse(Date.class, map.get(PurchaseCheckMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(PurchaseCheckMeta.UPDATE_BY)));
-			this.setDeleteTime(DataParser.parse(Date.class, map.get(PurchaseCheckMeta.DELETE_TIME)));
-			this.setName(DataParser.parse(String.class, map.get(PurchaseCheckMeta.NAME)));
-			this.setTenantId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.TENANT_ID)));
 			this.setCheckUserName(DataParser.parse(String.class, map.get(PurchaseCheckMeta.CHECK_USER_NAME)));
-			this.setDeleteBy(DataParser.parse(String.class, map.get(PurchaseCheckMeta.DELETE_BY)));
+			this.setStockStatus(DataParser.parse(String.class, map.get(PurchaseCheckMeta.STOCK_STATUS)));
 			this.setId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.ID)));
 			this.setAttach(DataParser.parse(String.class, map.get(PurchaseCheckMeta.ATTACH)));
 			this.setOriginatorId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.ORIGINATOR_ID)));
+			this.setReceiveDate(DataParser.parse(String.class, map.get(PurchaseCheckMeta.RECEIVE_DATE)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(PurchaseCheckMeta.UPDATE_TIME)));
+			this.setCheckDate(DataParser.parse(String.class, map.get(PurchaseCheckMeta.CHECK_DATE)));
+			this.setInsertPosition(DataParser.parse(String.class, map.get(PurchaseCheckMeta.INSERT_POSITION)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(PurchaseCheckMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(PurchaseCheckMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(PurchaseCheckMeta.DELETED)));
+			this.setPositionId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.POSITION_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(PurchaseCheckMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(PurchaseCheckMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(PurchaseCheckMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(PurchaseCheckMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(PurchaseCheckMeta.DELETE_BY)));
 			this.setCheckInformation(DataParser.parse(String.class, map.get(PurchaseCheckMeta.CHECK_INFORMATION)));
 			this.setStatus(DataParser.parse(String.class, map.get(PurchaseCheckMeta.STATUS)));
 			// others
+			this.setCheckUser(DataParser.parse(Employee.class, map.get(PurchaseCheckMeta.CHECK_USER)));
 			this.setPurchaseApply(DataParser.parse(PurchaseApply.class, map.get(PurchaseCheckMeta.PURCHASE_APPLY)));
 			this.setCheckOrg(DataParser.parse(Organization.class, map.get(PurchaseCheckMeta.CHECK_ORG)));
 			this.setSupplier(DataParser.parse(Supplier.class, map.get(PurchaseCheckMeta.SUPPLIER)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(PurchaseCheckMeta.ORIGINATOR)));
+			this.setApplyCode(DataParser.parse(String.class, map.get(PurchaseCheckMeta.APPLY_CODE)));
+			this.setApplyName(DataParser.parse(String.class, map.get(PurchaseCheckMeta.APPLY_NAME)));
+			this.setWarehousePosition(DataParser.parse(WarehousePosition.class, map.get(PurchaseCheckMeta.WAREHOUSE_POSITION)));
 			return true;
 		} else {
 			try {
 				this.setSupplierId( (String)map.get(PurchaseCheckMeta.SUPPLIER_ID));
 				this.setNotes( (String)map.get(PurchaseCheckMeta.NOTES));
 				this.setProcId( (String)map.get(PurchaseCheckMeta.PROC_ID));
-				this.setReceiveDate( (String)map.get(PurchaseCheckMeta.RECEIVE_DATE));
-				this.setUpdateTime( (Date)map.get(PurchaseCheckMeta.UPDATE_TIME));
-				this.setCheckDate( (String)map.get(PurchaseCheckMeta.CHECK_DATE));
-				this.setVersion( (Integer)map.get(PurchaseCheckMeta.VERSION));
+				this.setCheckUserId( (String)map.get(PurchaseCheckMeta.CHECK_USER_ID));
 				this.setSelectedCode( (String)map.get(PurchaseCheckMeta.SELECTED_CODE));
 				this.setApplyId( (String)map.get(PurchaseCheckMeta.APPLY_ID));
 				this.setBusinessCode( (String)map.get(PurchaseCheckMeta.BUSINESS_CODE));
-				this.setCreateBy( (String)map.get(PurchaseCheckMeta.CREATE_BY));
-				this.setDeleted( (Integer)map.get(PurchaseCheckMeta.DELETED));
-				this.setCreateTime( (Date)map.get(PurchaseCheckMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(PurchaseCheckMeta.UPDATE_BY));
-				this.setDeleteTime( (Date)map.get(PurchaseCheckMeta.DELETE_TIME));
-				this.setName( (String)map.get(PurchaseCheckMeta.NAME));
-				this.setTenantId( (String)map.get(PurchaseCheckMeta.TENANT_ID));
 				this.setCheckUserName( (String)map.get(PurchaseCheckMeta.CHECK_USER_NAME));
-				this.setDeleteBy( (String)map.get(PurchaseCheckMeta.DELETE_BY));
+				this.setStockStatus( (String)map.get(PurchaseCheckMeta.STOCK_STATUS));
 				this.setId( (String)map.get(PurchaseCheckMeta.ID));
 				this.setAttach( (String)map.get(PurchaseCheckMeta.ATTACH));
 				this.setOriginatorId( (String)map.get(PurchaseCheckMeta.ORIGINATOR_ID));
+				this.setReceiveDate( (String)map.get(PurchaseCheckMeta.RECEIVE_DATE));
+				this.setUpdateTime( (Date)map.get(PurchaseCheckMeta.UPDATE_TIME));
+				this.setCheckDate( (String)map.get(PurchaseCheckMeta.CHECK_DATE));
+				this.setInsertPosition( (String)map.get(PurchaseCheckMeta.INSERT_POSITION));
+				this.setVersion( (Integer)map.get(PurchaseCheckMeta.VERSION));
+				this.setCreateBy( (String)map.get(PurchaseCheckMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(PurchaseCheckMeta.DELETED));
+				this.setPositionId( (String)map.get(PurchaseCheckMeta.POSITION_ID));
+				this.setCreateTime( (Date)map.get(PurchaseCheckMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(PurchaseCheckMeta.DELETE_TIME));
+				this.setName( (String)map.get(PurchaseCheckMeta.NAME));
+				this.setTenantId( (String)map.get(PurchaseCheckMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(PurchaseCheckMeta.DELETE_BY));
 				this.setCheckInformation( (String)map.get(PurchaseCheckMeta.CHECK_INFORMATION));
 				this.setStatus( (String)map.get(PurchaseCheckMeta.STATUS));
 				// others
+				this.setCheckUser( (Employee)map.get(PurchaseCheckMeta.CHECK_USER));
 				this.setPurchaseApply( (PurchaseApply)map.get(PurchaseCheckMeta.PURCHASE_APPLY));
 				this.setCheckOrg( (Organization)map.get(PurchaseCheckMeta.CHECK_ORG));
 				this.setSupplier( (Supplier)map.get(PurchaseCheckMeta.SUPPLIER));
 				this.setOriginator( (Employee)map.get(PurchaseCheckMeta.ORIGINATOR));
+				this.setApplyCode( (String)map.get(PurchaseCheckMeta.APPLY_CODE));
+				this.setApplyName( (String)map.get(PurchaseCheckMeta.APPLY_NAME));
+				this.setWarehousePosition( (WarehousePosition)map.get(PurchaseCheckMeta.WAREHOUSE_POSITION));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -1062,25 +1286,29 @@ public class PurchaseCheck extends Entity {
 			this.setSupplierId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.SUPPLIER_ID)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.NOTES)));
 			this.setProcId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.PROC_ID)));
-			this.setReceiveDate(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.RECEIVE_DATE)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PurchaseCheckMeta.UPDATE_TIME)));
-			this.setCheckDate(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.CHECK_DATE)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(PurchaseCheckMeta.VERSION)));
+			this.setCheckUserId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.CHECK_USER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.SELECTED_CODE)));
 			this.setApplyId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.APPLY_ID)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.BUSINESS_CODE)));
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, r.getValue(PurchaseCheckMeta.DELETED)));
-			this.setCreateTime(DataParser.parse(Date.class, r.getValue(PurchaseCheckMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.UPDATE_BY)));
-			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(PurchaseCheckMeta.DELETE_TIME)));
-			this.setName(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.NAME)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.TENANT_ID)));
 			this.setCheckUserName(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.CHECK_USER_NAME)));
-			this.setDeleteBy(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.DELETE_BY)));
+			this.setStockStatus(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.STOCK_STATUS)));
 			this.setId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.ID)));
 			this.setAttach(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.ATTACH)));
 			this.setOriginatorId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.ORIGINATOR_ID)));
+			this.setReceiveDate(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.RECEIVE_DATE)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PurchaseCheckMeta.UPDATE_TIME)));
+			this.setCheckDate(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.CHECK_DATE)));
+			this.setInsertPosition(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.INSERT_POSITION)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(PurchaseCheckMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(PurchaseCheckMeta.DELETED)));
+			this.setPositionId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.POSITION_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(PurchaseCheckMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(PurchaseCheckMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.DELETE_BY)));
 			this.setCheckInformation(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.CHECK_INFORMATION)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(PurchaseCheckMeta.STATUS)));
 			return true;
@@ -1089,25 +1317,29 @@ public class PurchaseCheck extends Entity {
 				this.setSupplierId( (String)r.getValue(PurchaseCheckMeta.SUPPLIER_ID));
 				this.setNotes( (String)r.getValue(PurchaseCheckMeta.NOTES));
 				this.setProcId( (String)r.getValue(PurchaseCheckMeta.PROC_ID));
-				this.setReceiveDate( (String)r.getValue(PurchaseCheckMeta.RECEIVE_DATE));
-				this.setUpdateTime( (Date)r.getValue(PurchaseCheckMeta.UPDATE_TIME));
-				this.setCheckDate( (String)r.getValue(PurchaseCheckMeta.CHECK_DATE));
-				this.setVersion( (Integer)r.getValue(PurchaseCheckMeta.VERSION));
+				this.setCheckUserId( (String)r.getValue(PurchaseCheckMeta.CHECK_USER_ID));
 				this.setSelectedCode( (String)r.getValue(PurchaseCheckMeta.SELECTED_CODE));
 				this.setApplyId( (String)r.getValue(PurchaseCheckMeta.APPLY_ID));
 				this.setBusinessCode( (String)r.getValue(PurchaseCheckMeta.BUSINESS_CODE));
-				this.setCreateBy( (String)r.getValue(PurchaseCheckMeta.CREATE_BY));
-				this.setDeleted( (Integer)r.getValue(PurchaseCheckMeta.DELETED));
-				this.setCreateTime( (Date)r.getValue(PurchaseCheckMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(PurchaseCheckMeta.UPDATE_BY));
-				this.setDeleteTime( (Date)r.getValue(PurchaseCheckMeta.DELETE_TIME));
-				this.setName( (String)r.getValue(PurchaseCheckMeta.NAME));
-				this.setTenantId( (String)r.getValue(PurchaseCheckMeta.TENANT_ID));
 				this.setCheckUserName( (String)r.getValue(PurchaseCheckMeta.CHECK_USER_NAME));
-				this.setDeleteBy( (String)r.getValue(PurchaseCheckMeta.DELETE_BY));
+				this.setStockStatus( (String)r.getValue(PurchaseCheckMeta.STOCK_STATUS));
 				this.setId( (String)r.getValue(PurchaseCheckMeta.ID));
 				this.setAttach( (String)r.getValue(PurchaseCheckMeta.ATTACH));
 				this.setOriginatorId( (String)r.getValue(PurchaseCheckMeta.ORIGINATOR_ID));
+				this.setReceiveDate( (String)r.getValue(PurchaseCheckMeta.RECEIVE_DATE));
+				this.setUpdateTime( (Date)r.getValue(PurchaseCheckMeta.UPDATE_TIME));
+				this.setCheckDate( (String)r.getValue(PurchaseCheckMeta.CHECK_DATE));
+				this.setInsertPosition( (String)r.getValue(PurchaseCheckMeta.INSERT_POSITION));
+				this.setVersion( (Integer)r.getValue(PurchaseCheckMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(PurchaseCheckMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(PurchaseCheckMeta.DELETED));
+				this.setPositionId( (String)r.getValue(PurchaseCheckMeta.POSITION_ID));
+				this.setCreateTime( (Date)r.getValue(PurchaseCheckMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(PurchaseCheckMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(PurchaseCheckMeta.NAME));
+				this.setTenantId( (String)r.getValue(PurchaseCheckMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(PurchaseCheckMeta.DELETE_BY));
 				this.setCheckInformation( (String)r.getValue(PurchaseCheckMeta.CHECK_INFORMATION));
 				this.setStatus( (String)r.getValue(PurchaseCheckMeta.STATUS));
 				return true;

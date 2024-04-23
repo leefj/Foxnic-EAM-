@@ -10,8 +10,11 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.eam.meta.WarehouseMeta;
@@ -23,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 仓库
  * <p>仓库 , 数据表 eam_warehouse 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 18:36:10
- * @sign 78605464C80109C601CBB817915F56AE
+ * @since 2024-04-23 11:52:01
+ * @sign 84981DD3F065AADB4A996DA8717509C7
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -123,6 +126,12 @@ public class Warehouse extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * warehousePositionList：warehousePositionList
+	*/
+	@ApiModelProperty(required = false,value="warehousePositionList" , notes = "warehousePositionList")
+	private List<WarehousePosition> warehousePositionList;
 	
 	/**
 	 * 获得 主键<br>
@@ -420,6 +429,36 @@ public class Warehouse extends Entity {
 		this.tenantId=tenantId;
 		return this;
 	}
+	
+	/**
+	 * 获得 warehousePositionList<br>
+	 * warehousePositionList
+	 * @return warehousePositionList
+	*/
+	public List<WarehousePosition> getWarehousePositionList() {
+		return warehousePositionList;
+	}
+	
+	/**
+	 * 设置 warehousePositionList
+	 * @param warehousePositionList warehousePositionList
+	 * @return 当前对象
+	*/
+	public Warehouse setWarehousePositionList(List<WarehousePosition> warehousePositionList) {
+		this.warehousePositionList=warehousePositionList;
+		return this;
+	}
+	
+	/**
+	 * 添加 warehousePositionList
+	 * @param warehousePosition warehousePositionList
+	 * @return 当前对象
+	*/
+	public Warehouse addWarehousePosition(WarehousePosition... warehousePosition) {
+		if(this.warehousePositionList==null) warehousePositionList=new ArrayList<>();
+		this.warehousePositionList.addAll(Arrays.asList(warehousePosition));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -479,6 +518,9 @@ public class Warehouse extends Entity {
 		inst.setId(this.getId());
 		inst.setWarehouseNotes(this.getWarehouseNotes());
 		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setWarehousePositionList(this.getWarehousePositionList());
+		}
 		inst.clearModifies();
 		return inst;
 	}

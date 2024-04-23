@@ -5,13 +5,14 @@ import com.dt.platform.domain.eam.WarehouseVO;
 import java.util.List;
 import com.dt.platform.domain.eam.Warehouse;
 import java.util.Date;
+import com.dt.platform.domain.eam.WarehousePosition;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 18:36:10
+ * @since 2024-04-23 11:52:01
  * @sign BE999198F4E54AC14E16B2449410CD0F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -279,9 +280,19 @@ public class WarehouseVOMeta extends WarehouseMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.WarehouseVO,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.WarehouseVO.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * warehousePositionList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.WarehousePosition
+	*/
+	public static final String WAREHOUSE_POSITION_LIST="warehousePositionList";
+	
+	/**
+	 * warehousePositionList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.WarehousePosition
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.WarehouseVO,com.dt.platform.domain.eam.WarehousePosition> WAREHOUSE_POSITION_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.WarehouseVO.class ,WAREHOUSE_POSITION_LIST, java.util.List.class, "warehousePositionList", "warehousePositionList", com.dt.platform.domain.eam.WarehousePosition.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , STATUS , WAREHOUSE_NAME , WAREHOUSE_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , STATUS , WAREHOUSE_NAME , WAREHOUSE_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , WAREHOUSE_POSITION_LIST };
 	
 	/**
 	 * 代理类
@@ -576,6 +587,17 @@ public class WarehouseVOMeta extends WarehouseMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 warehousePositionList
+		 * @param warehousePositionList warehousePositionList
+		 * @return 当前对象
+		*/
+		public Warehouse setWarehousePositionList(List<WarehousePosition> warehousePositionList) {
+			super.change(WAREHOUSE_POSITION_LIST,super.getWarehousePositionList(),warehousePositionList);
+			super.setWarehousePositionList(warehousePositionList);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -608,13 +630,14 @@ public class WarehouseVOMeta extends WarehouseMeta {
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
-				inst.setPageIndex(this.getPageIndex());
-				inst.setSortType(this.getSortType());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setWarehousePositionList(this.getWarehousePositionList());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());

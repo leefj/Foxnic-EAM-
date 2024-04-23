@@ -1,9 +1,16 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.dt.platform.constants.enums.common.YesNoEnum;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.domain.eam.PurchaseCheck;
+import com.dt.platform.constants.enums.eam.AssetStockTypeEnum;
+import com.dt.platform.constants.enums.eam.StockStatusSuccessFailedEnum;
+import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.PurchaseApplyMeta;
+import com.dt.platform.domain.eam.meta.PurchaseOrderMeta;
+import com.dt.platform.eam.service.IGoodsStockUsageService;
+import com.dt.platform.eam.service.IPurchaseApplyService;
 import com.dt.platform.eam.service.IPurchaseCheckService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
@@ -12,6 +19,7 @@ import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.dao.data.PagedList;
+import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
@@ -20,9 +28,11 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.sql.expr.Insert;
 import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.session.SessionUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -55,7 +65,11 @@ public class PurchaseCheckServiceImpl extends SuperService<PurchaseCheck> implem
 	 * */
 	public DAO dao() { return dao; }
 
+	@Autowired
+	private IGoodsStockUsageService goodsStockUsageService;
 
+	@Autowired
+	private IPurchaseApplyService purchaseApplyService;
 
 	@Override
 	public Object generateId(Field field) {
@@ -82,6 +96,7 @@ public class PurchaseCheckServiceImpl extends SuperService<PurchaseCheck> implem
 			purchaseCheck.setStatus(AssetHandleStatusEnum.COMPLETE.code());
 		}
 
+
 		//生成编码规则
 		if(StringUtil.isBlank(purchaseCheck.getBusinessCode())){
 			Result codeResult= CodeModuleServiceProxy.api().generateCode(AssetOperateEnum.EAM_ASSET_PURCHASE_CHECK.code());
@@ -91,12 +106,81 @@ public class PurchaseCheckServiceImpl extends SuperService<PurchaseCheck> implem
 				purchaseCheck.setBusinessCode(codeResult.getData().toString());
 			}
 		}
+		//是否入库
+		String ifStock=purchaseCheck.getInsertPosition();
+		if(YesNoEnum.YES.code().equals(ifStock)){
+			String posId=purchaseCheck.getPositionId();
+			if(StringUtil.isBlank(posId)){
+				return ErrorDesc.failureMessage("请选择仓库库位置");
+			}
+			String purchaseId=purchaseCheck.getApplyId();
+			PurchaseApply apply=purchaseApplyService.getById(purchaseId);
+			dao.fill(apply).with(PurchaseApplyMeta.ORDER_LIST).execute();
+
+			String tId=SessionUser.getCurrent().getActivatedTenantId();
+			List<PurchaseOrder> list=apply.getOrderList();
+			dao.fill(list).with(PurchaseOrderMeta.GOODS).execute();
+			for(int i=0;i<list.size();i++){
+				String gId="none";
+				String goodsId=list.get(i).getGoodsId();
+				GoodsStock goods=list.get(i).getGoods();
+				String sql="select id,goods_id from eam_goods_stock where deleted=0 and owner_code=? and tenant_id=? and goods_id=? and position_id=?";
+			   	Rcd rs=this.dao.queryRecord(sql,"real_stock",tId,goodsId,posId);
+				if(rs==null){
+					//新增,真实物品
+					Insert ins=new Insert("eam_goods_stock");
+					gId=IDGenerator.getSnowflakeIdString();
+					ins.set("id",gId);
+					ins.set("owner_code","real_stock");
+					ins.set("owner_type","stock");
+					ins.set("stock_cur_number",list.get(i).getPurchaseNumber());
+					ins.set("tenant_id",tId);
+					ins.set("position_id",posId);
+					ins.set("goods_id",goodsId);
+					ins.set("category_id",goods.getCategoryId());
+					ins.set("notes","采购入库,采购单:"+purchaseCheck.getApplyId());
+					this.dao.execute(ins);
+					dao.execute("update eam_goods_stock a,eam_warehouse_position b set a.warehouse_id=b.warehouse_id where a.position_id=b.id and a.id=?",gId);
+				}else{
+					//增量修改物品数据
+					gId=rs.getString("id");
+					String updateSql="update eam_goods_stock set stock_cur_number=stock_cur_number+"+list.get(i).getPurchaseNumber()+" where id=?";
+					this.dao.execute(updateSql,gId);
+				}
+				GoodsStockUsage goodsStockUsage=new GoodsStockUsage();
+				goodsStockUsage.setOwnerId(gId);
+				goodsStockUsage.setLabel("采购入库");
+				goodsStockUsage.setOperUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+				goodsStockUsage.setOperUserName(SessionUser.getCurrent().getUser().getActivatedEmployeeName());
+				goodsStockUsage.setRecTime(new Date());
+				goodsStockUsage.setOper(AssetStockTypeEnum.IN.code());
+				goodsStockUsage.setBillCode(purchaseCheck.getBusinessCode());
+				goodsStockUsage.setOperNumber(list.get(i).getPurchaseNumber().toString());
+				goodsStockUsage.setContent("采购入库完成");
+				goodsStockUsageService.insert(goodsStockUsage,true);
+
+
+			}
+			purchaseCheck.setStockStatus(StockStatusSuccessFailedEnum.SUCCESS.code());
+		}else{
+			purchaseCheck.setStockStatus(StockStatusSuccessFailedEnum.NONE.code());
+		}
 
 		Result r=super.insert(purchaseCheck,throwsException);
-		Result r2=new Result();
-		r2.success();
-		r2.data(purchaseCheck.getId());
-		return r2;
+		if(r.isSuccess()){
+			Result r2=new Result();
+			r2.success();
+			r2.data(purchaseCheck.getId());
+			return r2;
+		}
+		return r;
+
+
+	}
+
+	public Result computeStock(String id) {
+
+		return ErrorDesc.success();
 	}
 
 	/**

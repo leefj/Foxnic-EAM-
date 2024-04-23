@@ -10,6 +10,7 @@ import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import com.dt.platform.domain.eam.PurchaseOrder;
+import com.dt.platform.domain.eam.PurchaseCheck;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import javax.persistence.Transient;
 
@@ -17,7 +18,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-11-26 08:17:32
+ * @since 2024-04-23 14:33:16
  * @sign 901BAD23D88C64D31FBF0F78680C4544
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -565,6 +566,16 @@ public class PurchaseApplyVOMeta extends PurchaseApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseApplyVO,java.lang.String> ORDER_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseApplyVO.class ,ORDER_IDS, java.util.List.class, "清单列表", "清单列表", java.lang.String.class, null);
 	
 	/**
+	 * purchaseCheck , 集合类型: LIST , 类型: com.dt.platform.domain.eam.PurchaseCheck
+	*/
+	public static final String PURCHASE_CHECK="purchaseCheck";
+	
+	/**
+	 * purchaseCheck , 集合类型: LIST , 类型: com.dt.platform.domain.eam.PurchaseCheck
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseApplyVO,com.dt.platform.domain.eam.PurchaseCheck> PURCHASE_CHECK_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseApplyVO.class ,PURCHASE_CHECK, java.util.List.class, "purchaseCheck", "purchaseCheck", com.dt.platform.domain.eam.PurchaseCheck.class, null);
+	
+	/**
 	 * selectedCode , 类型: java.lang.String
 	*/
 	public static final String SELECTED_CODE="selectedCode";
@@ -627,7 +638,7 @@ public class PurchaseApplyVOMeta extends PurchaseApplyMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , BUSINESS_CODE , PROC_ID , NAME , STATUS , APPLY_STATUS , APPLY_ORG_ID , PURCHASE_USER_ID , SUPPLIER_ID , APPLY_CONTENT , APPLY_DATE , EXPECTED_ARRIVAL_DATE , CHECK_ID , ASSET_CHECK , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , UPDATE_BY , CREATE_TIME , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , SUPPLIER , ORIGINATOR , APPLY_ORG , CHANGE_INSTANCE , ORDER_LIST , ORDER_IDS , SELECTED_CODE , PURCHASE_USER , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS , IMPORT_TYPE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , BUSINESS_CODE , PROC_ID , NAME , STATUS , APPLY_STATUS , APPLY_ORG_ID , PURCHASE_USER_ID , SUPPLIER_ID , APPLY_CONTENT , APPLY_DATE , EXPECTED_ARRIVAL_DATE , CHECK_ID , ASSET_CHECK , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , UPDATE_BY , CREATE_TIME , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , SUPPLIER , ORIGINATOR , APPLY_ORG , CHANGE_INSTANCE , ORDER_LIST , ORDER_IDS , PURCHASE_CHECK , SELECTED_CODE , PURCHASE_USER , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS , IMPORT_TYPE };
 	
 	/**
 	 * 代理类
@@ -1232,6 +1243,17 @@ public class PurchaseApplyVOMeta extends PurchaseApplyMeta {
 		}
 		
 		/**
+		 * 设置 purchaseCheck
+		 * @param purchaseCheck purchaseCheck
+		 * @return 当前对象
+		*/
+		public PurchaseApply setPurchaseCheck(List<PurchaseCheck> purchaseCheck) {
+			super.change(PURCHASE_CHECK,super.getPurchaseCheck(),purchaseCheck);
+			super.setPurchaseCheck(purchaseCheck);
+			return this;
+		}
+		
+		/**
 		 * 设置 selectedCode
 		 * @param selectedCode selectedCode
 		 * @return 当前对象
@@ -1349,29 +1371,30 @@ public class PurchaseApplyVOMeta extends PurchaseApplyMeta {
 			inst.setCheckId(this.getCheckId());
 			inst.setStatus(this.getStatus());
 			if(all) {
+				inst.setPurchaseCheck(this.getPurchaseCheck());
 				inst.setApplyOrg(this.getApplyOrg());
 				inst.setSearchField(this.getSearchField());
-				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
-				inst.setOrderList(this.getOrderList());
 				inst.setHistoricProcessList(this.getHistoricProcessList());
 				inst.setOriginator(this.getOriginator());
 				inst.setSelectedCode(this.getSelectedCode());
 				inst.setCurrentProcessList(this.getCurrentProcessList());
-				inst.setDefaultProcess(this.getDefaultProcess());
 				inst.setImportType(this.getImportType());
-				inst.setChangeInstance(this.getChangeInstance());
-				inst.setPageIndex(this.getPageIndex());
-				inst.setSortType(this.getSortType());
 				inst.setSupplier(this.getSupplier());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPurchaseUser(this.getPurchaseUser());
 				inst.setDataOrigin(this.getDataOrigin());
-				inst.setIds(this.getIds());
 				inst.setQueryLogic(this.getQueryLogic());
 				inst.setOrderIds(this.getOrderIds());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setOrderList(this.getOrderList());
+				inst.setDefaultProcess(this.getDefaultProcess());
+				inst.setChangeInstance(this.getChangeInstance());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setPurchaseUser(this.getPurchaseUser());
+				inst.setIds(this.getIds());
 				inst.setSearchValue(this.getSearchValue());
 			}
 			inst.clearModifies();

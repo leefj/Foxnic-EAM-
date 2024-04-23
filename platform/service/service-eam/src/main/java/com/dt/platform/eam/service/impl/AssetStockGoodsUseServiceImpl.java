@@ -178,13 +178,16 @@ public class AssetStockGoodsUseServiceImpl extends SuperService<AssetStockGoodsU
 //				//防止bpm 调用两次
 //				return ErrorDesc.success();
 //			}
+			Result resRs=computeStockData(id);
+			if(!resRs.isSuccess()){
+				return resRs;
+			}
 			AssetStockGoodsUse bill=new AssetStockGoodsUse();
 			bill.setId(id);
 			bill.setStatus(status);
-
 			this.dao.execute("update eam_goods_stock set status=? where owner_id=?",status,bill.getId());
 			//后续需要加盘点
-			computeStockData(id);
+
 			return super.update(bill,SaveMode.NOT_NULL_FIELDS,false);
 		}else if(AssetHandleConfirmOperationEnum.FAILED.code().equals(result)){
 			return ErrorDesc.failureMessage(message);
@@ -199,7 +202,6 @@ public class AssetStockGoodsUseServiceImpl extends SuperService<AssetStockGoodsU
 		this.dao().fill(bill)
 				.with(AssetStockGoodsUseMeta.ASSET_STOCK_GOODS_LIST)
 				.execute();
-
 		String cUserId=SessionUser.getCurrent().getActivatedEmployeeId();
 		String cUserName=SessionUser.getCurrent().getUser().getActivatedEmployeeName();
 		//不进行判断，直接进行库存减
@@ -218,7 +220,7 @@ public class AssetStockGoodsUseServiceImpl extends SuperService<AssetStockGoodsU
 				goodsStockUsage.setOperUserId(cUserId);
 				goodsStockUsage.setOperUserName(cUserName);
 				goodsStockUsage.setRecTime(new Date());
-				goodsStockUsage.setOper(AssetStockTypeEnum.OUT.code());
+				goodsStockUsage.setOper(AssetStockTypeEnum.USE.code());
 				goodsStockUsage.setBillCode(bill.getBusinessCode());
 				goodsStockUsage.setOperNumber(value);
 				goodsStockUsage.setContent("领用完成");

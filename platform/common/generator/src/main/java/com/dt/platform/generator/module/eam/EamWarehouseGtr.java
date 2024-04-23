@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.domain.eam.WarehousePosition;
 import com.dt.platform.domain.eam.meta.InventoryMeta;
 import com.dt.platform.generator.config.Config;
 import com.github.foxnic.generator.config.WriteMode;
@@ -19,6 +20,9 @@ public class EamWarehouseGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_WAREHOUSE.WAREHOUSE_NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_WAREHOUSE.WAREHOUSE_NOTES).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_WAREHOUSE.CODE).search().fuzzySearch();
+
+
+        cfg.getPoClassFile().addListProperty(WarehousePosition.class,"warehousePositionList","warehousePositionList","warehousePositionList");
 
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -47,6 +51,10 @@ public class EamWarehouseGtr extends BaseCodeGenerator{
                         EAMTables.EAM_WAREHOUSE.WAREHOUSE_NAME,
                 }
         );
+
+
+        cfg.view().field(EAMTables.EAM_WAREHOUSE.UPDATE_BY).table().disable(true);
+
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_WAREHOUSE.WAREHOUSE_NOTES,

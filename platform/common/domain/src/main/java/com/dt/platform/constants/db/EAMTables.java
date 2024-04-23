@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-04-18 07:21:06
+ * @since 2024-04-23 15:01:03
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -19734,12 +19734,12 @@ public class EAMTables {
 		/**
 		 * 验收人
 		*/
-		public static final DBField CHECK_USER_NAME = new DBField(DBDataType.STRING , "check_user_name","checkUserName","验收人","验收人",false,false,true);
+		public static final DBField CHECK_USER_ID = new DBField(DBDataType.STRING , "check_user_id","checkUserId","验收人","验收人",false,false,true);
 		
 		/**
-		 * 到货日期
+		 * 验收人
 		*/
-		public static final DBField RECEIVE_DATE = new DBField(DBDataType.STRING , "receive_date","receiveDate","到货日期","到货日期",false,false,true);
+		public static final DBField CHECK_USER_NAME = new DBField(DBDataType.STRING , "check_user_name","checkUserName","验收人","验收人",false,false,true);
 		
 		/**
 		 * 验收时间
@@ -19752,14 +19752,34 @@ public class EAMTables {
 		public static final DBField CHECK_INFORMATION = new DBField(DBDataType.STRING , "check_information","checkInformation","验收信息","验收信息",false,false,true);
 		
 		/**
-		 * 备注
+		 * 到货日期
 		*/
-		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		public static final DBField RECEIVE_DATE = new DBField(DBDataType.STRING , "receive_date","receiveDate","到货日期","到货日期",false,false,true);
+		
+		/**
+		 * 仓库库位
+		*/
+		public static final DBField POSITION_ID = new DBField(DBDataType.STRING , "position_id","positionId","仓库库位","仓库库位",false,false,true);
+		
+		/**
+		 * 是否入库
+		*/
+		public static final DBField INSERT_POSITION = new DBField(DBDataType.STRING , "insert_position","insertPosition","是否入库","是否入库",false,false,true);
+		
+		/**
+		 * 入库状态
+		*/
+		public static final DBField STOCK_STATUS = new DBField(DBDataType.STRING , "stock_status","stockStatus","入库状态","入库状态",false,false,true);
 		
 		/**
 		 * 附件
 		*/
 		public static final DBField ATTACH = new DBField(DBDataType.STRING , "attach","attach","附件","附件",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
 		
 		/**
 		 * 制单人
@@ -19816,7 +19836,7 @@ public class EAMTables {
 		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择数据","选择数据",false,false,true);
 		
 		public EAM_PURCHASE_CHECK() {
-			this.init($NAME,"采购验收" , ID , PROC_ID , STATUS , BUSINESS_CODE , NAME , APPLY_ID , SUPPLIER_ID , CHECK_USER_NAME , RECEIVE_DATE , CHECK_DATE , CHECK_INFORMATION , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
+			this.init($NAME,"采购验收" , ID , PROC_ID , STATUS , BUSINESS_CODE , NAME , APPLY_ID , SUPPLIER_ID , CHECK_USER_ID , CHECK_USER_NAME , CHECK_DATE , CHECK_INFORMATION , RECEIVE_DATE , POSITION_ID , INSERT_POSITION , STOCK_STATUS , ATTACH , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
 		}
 		public static final EAM_PURCHASE_CHECK $TABLE=new EAM_PURCHASE_CHECK();
 	}

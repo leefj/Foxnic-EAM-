@@ -3,14 +3,16 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.Warehouse;
 import java.util.Date;
+import com.dt.platform.domain.eam.WarehousePosition;
+import java.util.List;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-17 18:36:10
- * @sign 78605464C80109C601CBB817915F56AE
+ * @since 2024-04-23 11:52:01
+ * @sign 84981DD3F065AADB4A996DA8717509C7
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -157,9 +159,19 @@ public class WarehouseMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Warehouse,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Warehouse.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * warehousePositionList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.WarehousePosition
+	*/
+	public static final String WAREHOUSE_POSITION_LIST="warehousePositionList";
+	
+	/**
+	 * warehousePositionList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.WarehousePosition
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Warehouse,com.dt.platform.domain.eam.WarehousePosition> WAREHOUSE_POSITION_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.Warehouse.class ,WAREHOUSE_POSITION_LIST, java.util.List.class, "warehousePositionList", "warehousePositionList", com.dt.platform.domain.eam.WarehousePosition.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , STATUS , WAREHOUSE_NAME , WAREHOUSE_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , CODE , STATUS , WAREHOUSE_NAME , WAREHOUSE_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , WAREHOUSE_POSITION_LIST };
 	
 	/**
 	 * 代理类
@@ -322,6 +334,17 @@ public class WarehouseMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+		
+		/**
+		 * 设置 warehousePositionList
+		 * @param warehousePositionList warehousePositionList
+		 * @return 当前对象
+		*/
+		public Warehouse setWarehousePositionList(List<WarehousePosition> warehousePositionList) {
+			super.change(WAREHOUSE_POSITION_LIST,super.getWarehousePositionList(),warehousePositionList);
+			super.setWarehousePositionList(warehousePositionList);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -352,6 +375,9 @@ public class WarehouseMeta {
 			inst.setId(this.getId());
 			inst.setWarehouseNotes(this.getWarehouseNotes());
 			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setWarehousePositionList(this.getWarehousePositionList());
+			}
 			inst.clearModifies();
 			return inst;
 		}

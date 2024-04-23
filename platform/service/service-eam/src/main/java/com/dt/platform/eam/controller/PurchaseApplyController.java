@@ -244,7 +244,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
         Result<PurchaseApply> result = new Result<>();
         PurchaseApply purchaseApply = purchaseApplyService.getById(id);
         // join 关联的对象
-        purchaseApplyService.dao().fill(purchaseApply).with("applyOrg").with(PurchaseApplyMeta.SUPPLIER).execute();
+        purchaseApplyService.dao().fill(purchaseApply).with("applyOrg").with(PurchaseApplyMeta.PURCHASE_CHECK).with(PurchaseApplyMeta.SUPPLIER).execute();
         result.success(true).data(purchaseApply);
         return result;
     }
@@ -354,7 +354,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
         Result<PagedList<PurchaseApply>> result = new Result<>();
         PagedList<PurchaseApply> list = purchaseApplyService.querySelectPagedListByImport(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        purchaseApplyService.dao().fill(list).with("applyOrg").with(PurchaseApplyMeta.SUPPLIER).execute();
+        purchaseApplyService.dao().fill(list).with("applyOrg").with(PurchaseApplyMeta.PURCHASE_CHECK).with(PurchaseApplyMeta.SUPPLIER).execute();
         result.success(true).data(list);
         return result;
     }
@@ -401,7 +401,7 @@ public class PurchaseApplyController extends SuperController implements BpmCallb
         Result<PagedList<PurchaseApply>> result = new Result<>();
         PagedList<PurchaseApply> list = purchaseApplyService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        purchaseApplyService.dao().fill(list).with("applyOrg").with(PurchaseApplyMeta.SUPPLIER).execute();
+        purchaseApplyService.dao().fill(list).with("applyOrg").with(PurchaseApplyMeta.PURCHASE_CHECK).with(PurchaseApplyMeta.SUPPLIER).execute();
         result.success(true).data(list);
         return result;
     }

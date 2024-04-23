@@ -1,6 +1,13 @@
 package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.domain.eam.Warehouse;
+import com.dt.platform.domain.eam.WarehouseVO;
+import com.dt.platform.domain.eam.meta.WarehouseMeta;
+import com.dt.platform.eam.service.IWarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -46,11 +53,16 @@ import java.util.Map;
 
 public class WarehousePositionServiceImpl extends SuperService<WarehousePosition> implements IWarehousePositionService {
 
+
 	/**
 	 * 注入DAO对象
 	 * */
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
+
+
+	@Autowired
+	private IWarehouseService warehouseService;
 
 	/**
 	 * 获得 DAO 对象
@@ -77,9 +89,45 @@ public class WarehousePositionServiceImpl extends SuperService<WarehousePosition
 
 		Result r=super.insert(warehousePosition,throwsException);
 		if(r.isSuccess()){
-			dao.execute("update eam_warehouse_position a,eam_warehouse b set a.full_name=concat(b.warehouse_name,'/',a.name) where a.warehouse_id=b.id where a.id=?",warehousePosition.getId());
+			dao.execute("update eam_warehouse_position a,eam_warehouse b set a.full_name=concat(b.warehouse_name,'/',a.name) where a.warehouse_id=b.id and a.id=?",warehousePosition.getId());
 		}
 		return r;
+	}
+
+	@Override
+	public JSONArray queryTreeData(String id,String method) {
+		JSONArray result=new JSONArray();
+		List<Warehouse> list= warehouseService.queryList(new WarehouseVO());
+		dao.fill(list).with(WarehouseMeta.WAREHOUSE_POSITION_LIST).execute();
+		for(int i=0;i<list.size();i++) {
+			Warehouse warehouse = list.get(i);
+			JSONObject data = new JSONObject();
+			data.put("name", warehouse.getWarehouseName());
+			data.put("id", warehouse.getId());
+			data.put("pid", "root");
+			data.put("checked", "true");
+			data.put("type", "warehouse");
+			List<WarehousePosition> posList = warehouse.getWarehousePositionList();
+			JSONArray children = new JSONArray();
+			if (posList.size() > 0) {
+				for (int j = 0; j < posList.size(); j++) {
+					WarehousePosition pos = posList.get(j);
+					JSONObject data2 = new JSONObject();
+					data2.put("name", pos.getName());
+					data2.put("id", pos.getId());
+					data2.put("pid", warehouse.getId());
+					data2.put("type", "position");
+					data2.put("childCount", 0);
+					children.add(data2);
+
+				}
+			}
+			data.put("children", children);
+			data.put("childCount", posList.size());
+			result.add(data);
+
+		}
+		return result;
 	}
 
 	/**
@@ -170,7 +218,7 @@ public class WarehousePositionServiceImpl extends SuperService<WarehousePosition
 	public Result update(WarehousePosition warehousePosition , SaveMode mode,boolean throwsException) {
 		Result r=super.update(warehousePosition , mode , throwsException);
 		if(r.isSuccess()){
-			dao.execute("update eam_warehouse_position a,eam_warehouse b set a.full_name=concat(b.warehouse_name,'/',a.name) where a.warehouse_id=b.id where a.id=?",warehousePosition.getId());
+			dao.execute("update eam_warehouse_position a,eam_warehouse b set a.full_name=concat(b.warehouse_name,'/',a.name) where a.warehouse_id=b.id and a.id=?",warehousePosition.getId());
 		}
 		return r;
 	}

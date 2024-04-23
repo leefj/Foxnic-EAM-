@@ -4,11 +4,14 @@ import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetApplyCheckStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.PurchaseCheck;
 import com.dt.platform.domain.eam.PurchaseOrder;
 import com.dt.platform.domain.eam.Supplier;
 import com.dt.platform.domain.eam.meta.PurchaseApplyMeta;
+import com.dt.platform.domain.eam.meta.PurchaseCheckMeta;
 import com.dt.platform.domain.eam.meta.SupplierMeta;
 import com.dt.platform.generator.config.Config;
+import com.dt.platform.proxy.eam.PurchaseCheckServiceProxy;
 import com.dt.platform.proxy.eam.SupplierServiceProxy;
 import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
@@ -29,13 +32,13 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
         System.out.println(this.getClass().getName());
 
 
-
         cfg.getPoClassFile().addSimpleProperty(Supplier.class,"supplier","供应商","供应商");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"applyOrg","申请部门","申请部门");
         cfg.getPoClassFile().addSimpleProperty(ChangeInstance.class,"changeInstance","变更实例","变更实例");
         cfg.getPoClassFile().addListProperty(PurchaseOrder.class,"orderList","采购清单","采购清单");
         cfg.getPoClassFile().addListProperty(String.class,"orderIds","清单列表","清单列表");
+        cfg.getPoClassFile().addListProperty(PurchaseCheck.class,"purchaseCheck","purchaseCheck","purchaseCheck");
         cfg.getPoClassFile().addSimpleProperty(String.class,"selectedCode","selectedCode","selectedCode");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"purchaseUser","purchaseUser","purchaseUser");
         cfg.bpm().form("eam_asset_purchase_apply");
@@ -99,12 +102,17 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
                 .form().selectBox().queryApi(SupplierServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(SupplierMeta.ID).textField(SupplierMeta.SUPPLIER_NAME).fillWith(PurchaseApplyMeta.SUPPLIER).muliti(false);
 
+        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.CHECK_ID)
+                .form().selectBox().queryApi(PurchaseCheckServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
+                .valueField(PurchaseCheckMeta.ID).textField(PurchaseCheckMeta.BUSINESS_CODE).fillWith(PurchaseApplyMeta.PURCHASE_CHECK).muliti(false);
+
+
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.ASSET_CHECK).form().radioBox().enumType(AssetApplyCheckStatusEnum.class).defaultValue("not_check");
 
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPLY_CONTENT).form().validate().required();
 
-
+        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.UPDATE_BY).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.PROC_ID).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPLY_STATUS).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.CHS_STATUS).table().disable();
@@ -120,7 +128,10 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPROVAL_OPINION).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.ATTACH).table().disable();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.EXPECTED_ARRIVAL_DATE).table().disable();
+        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.UPDATE_BY).table().disable();
 
+        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.CHECK_ID).table().disable();
+        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.ATTACH).table().disable();
 
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPLY_ORG_ID)
                 .form().validate().required().form().button().chooseOrganization(true);
