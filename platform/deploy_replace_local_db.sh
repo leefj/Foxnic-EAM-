@@ -27,6 +27,7 @@ if [[ -d "/Users/lankl/IdeaProjects/eam/platform/deploy/bin/sql" ]];then
 fi
 echo "start to down"
 $JAVA -jar $ops -n $ops_node_file  -sftp download -s $file -df db.tar.gz -dd /Users/lankl/IdeaProjects/eam/platform/deploy/bin/sql
+cp /Users/lankl/IdeaProjects/eam/platform/deploy/bin/sql/db.tar.gz /Users/lankl/IdeaProjects/eam/platform/deploy/bin/sql/db.tar.gz.bak
 exit 0
 
 
