@@ -42,7 +42,7 @@ spring:
         # 5.x
         #driver-class-name: com.mysql.jdbc.Driver
         #&socketTimeout=3000000
-        url: bOfoWsTmRXXNZ0PJIvNUhUWY9QIencf1xUgWg3JXN9yFsl3meApl+JI/YsPmrmrjKj5omytE6kA2n0reP4uRPA26r3NJyVKMevbr0GohnbCG71bfrkAzU4olIDjlDw+c+skqRkBbYTLNZdrNEEWGdiemKxgCcfaQCiAiSlNS7YYC0OxoXN7a35nMng2URpZslkU2K1uiCFBx/xvjebwtJWChSKd+sYjK/P2zKRIgNTWdaxkJKb8aurSsg5Lc37R042hAtBQMqU2nlydvJHOjvKDiMZjxsq1eURFw/xiCSTG7AZkejM28etaPDkA+as6Rnfd46VoINscBOFuceFqHcogM0jXxoGx2J3kZwxDH0kk=
+        url: bOfoWsTmRXXNZ0PJIvNUhUWY9QIencf1xUgWg3JXN9wRsy+//nysIrOGtLzU/jSlKj5omytE6kA2n0reP4uRPA26r3NJyVKMevbr0GohnbCG71bfrkAzU4olIDjlDw+c+skqRkBbYTLNZdrNEEWGdiemKxgCcfaQCiAiSlNS7YYC0OxoXN7a35nMng2URpZslkU2K1uiCFBx/xvjebwtJWChSKd+sYjK/P2zKRIgNTWdaxkJKb8aurSsg5Lc37R042hAtBQMqU2nlydvJHOjvKDiMZjxsq1eURFw/xiCSTG7AZkejM28etaPDkA+as6Rnfd46VoINscBOFuceFqHcogM0jXxoGx2J3kZwxDH0kk=
         username: tD5wkJAfnCt04A+Y+QN5GA==
         password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
 #        url: jdbc:mysql://db.dev.xyjm.store:3306/foxnic?autoReconnectForPools=true&socketTimeout=1800000&connectTimeout=30000&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true&tinyInt1isBit=false
