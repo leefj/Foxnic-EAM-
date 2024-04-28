@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-08 21:15:19
+ * @since 2024-04-26 19:17:24
  */
 
 
@@ -472,6 +472,9 @@ function ListPage() {
 					break;
 				case 'tool-soft-list':
 					window.pageExt.list.softList && window.pageExt.list.softList(selected,obj);
+					break;
+				case 'tool-test-evn-list':
+					window.pageExt.list.testEvnList && window.pageExt.list.testEvnList(selected,obj);
 					break;
 				case 'tool-db-search':
 					window.pageExt.list.dbSearch && window.pageExt.list.dbSearch(selected,obj);

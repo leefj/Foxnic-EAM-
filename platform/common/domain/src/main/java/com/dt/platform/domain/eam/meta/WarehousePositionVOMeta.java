@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-18 07:21:59
+ * @since 2024-04-26 19:14:27
  * @sign 971AF86E947F15A40A870A72F93CDAA5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -190,6 +190,16 @@ public class WarehousePositionVOMeta extends WarehousePositionMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.WarehousePositionVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.WarehousePositionVO.class ,NAME, java.lang.String.class, "库位", "库位", java.lang.String.class, null);
 	
 	/**
+	 * 最大容量 , 类型: java.lang.Integer
+	*/
+	public static final String MAXIMUM_CAPACITY="maximumCapacity";
+	
+	/**
+	 * 最大容量 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.WarehousePositionVO,java.lang.Integer> MAXIMUM_CAPACITY_PROP = new BeanProperty(com.dt.platform.domain.eam.WarehousePositionVO.class ,MAXIMUM_CAPACITY, java.lang.Integer.class, "最大容量", "最大容量", java.lang.Integer.class, null);
+	
+	/**
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final String NOTES="notes";
@@ -292,7 +302,7 @@ public class WarehousePositionVOMeta extends WarehousePositionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , WAREHOUSE_ID , CODE , FULL_NAME , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , WAREHOUSE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , WAREHOUSE_ID , CODE , FULL_NAME , NAME , MAXIMUM_CAPACITY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , WAREHOUSE };
 	
 	/**
 	 * 代理类
@@ -490,6 +500,17 @@ public class WarehousePositionVOMeta extends WarehousePositionMeta {
 		}
 		
 		/**
+		 * 设置 最大容量
+		 * @param maximumCapacity 最大容量
+		 * @return 当前对象
+		*/
+		public WarehousePosition setMaximumCapacity(Integer maximumCapacity) {
+			super.change(MAXIMUM_CAPACITY,super.getMaximumCapacity(),maximumCapacity);
+			super.setMaximumCapacity(maximumCapacity);
+			return this;
+		}
+		
+		/**
 		 * 设置 备注
 		 * @param notes 备注
 		 * @return 当前对象
@@ -628,6 +649,7 @@ public class WarehousePositionVOMeta extends WarehousePositionMeta {
 			inst.setName(this.getName());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setMaximumCapacity(this.getMaximumCapacity());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
 				inst.setRequestAction(this.getRequestAction());

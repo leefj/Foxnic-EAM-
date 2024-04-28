@@ -10,8 +10,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-18 07:21:59
- * @sign A3969784A665E9A21226A04D04F720C3
+ * @since 2024-04-26 19:14:27
+ * @sign FCBC776D3541C27D4104A60F346A7CF3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -66,6 +66,16 @@ public class WarehousePositionMeta {
 	 * 库位 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.WarehousePosition,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.WarehousePosition.class ,NAME, java.lang.String.class, "库位", "库位", java.lang.String.class, null);
+	
+	/**
+	 * 最大容量 , 类型: java.lang.Integer
+	*/
+	public static final String MAXIMUM_CAPACITY="maximumCapacity";
+	
+	/**
+	 * 最大容量 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.WarehousePosition,java.lang.Integer> MAXIMUM_CAPACITY_PROP = new BeanProperty(com.dt.platform.domain.eam.WarehousePosition.class ,MAXIMUM_CAPACITY, java.lang.Integer.class, "最大容量", "最大容量", java.lang.Integer.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -170,7 +180,7 @@ public class WarehousePositionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , WAREHOUSE_ID , CODE , FULL_NAME , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , WAREHOUSE };
+	public static final String[] $PROPS={ ID , WAREHOUSE_ID , CODE , FULL_NAME , NAME , MAXIMUM_CAPACITY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , WAREHOUSE };
 	
 	/**
 	 * 代理类
@@ -232,6 +242,17 @@ public class WarehousePositionMeta {
 		public WarehousePosition setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 最大容量
+		 * @param maximumCapacity 最大容量
+		 * @return 当前对象
+		*/
+		public WarehousePosition setMaximumCapacity(Integer maximumCapacity) {
+			super.change(MAXIMUM_CAPACITY,super.getMaximumCapacity(),maximumCapacity);
+			super.setMaximumCapacity(maximumCapacity);
 			return this;
 		}
 		
@@ -374,6 +395,7 @@ public class WarehousePositionMeta {
 			inst.setName(this.getName());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setMaximumCapacity(this.getMaximumCapacity());
 			if(all) {
 				inst.setWarehouse(this.getWarehouse());
 			}

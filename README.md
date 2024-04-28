@@ -42,7 +42,7 @@
 
 ```
 #满足前置条件后，一键安装命令
-curl -s 'http://resource.rainbooow.com/deploy.sh'|bash
+curl -s 'http://resource.rainbooow.com:30001/deploy.sh'|bash
 ```
 ### 安装包
 - https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.42-linux-glibc2.12-x86_64.tar.gz

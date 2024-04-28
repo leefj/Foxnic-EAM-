@@ -197,6 +197,20 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 }
             });
         },
+        testEvnList:function (data,it){
+            admin.popupCenter({
+                title: "测试环境列表",
+                resize: false,
+                offset: [20,null],
+                area: ["95%","95%"],
+                type: 2,
+                id:"ops-db-test-env-list-data-win",
+                content: '/business/ops/db_env_info/db_env_info_list.html',
+                finish: function () {
+
+                }
+            });
+        },
         actionEnv:function (data,it){
             admin.putTempData("instId",data.id,true);
             var q="?instId="+data.id;

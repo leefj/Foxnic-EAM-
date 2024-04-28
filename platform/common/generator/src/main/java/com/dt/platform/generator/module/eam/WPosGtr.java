@@ -69,6 +69,7 @@ public class WPosGtr extends BaseCodeGenerator{
                 new Object[] {
                         EAMTables.EAM_WAREHOUSE_POSITION.CODE,
                         EAMTables.EAM_WAREHOUSE_POSITION.NAME,
+                        EAMTables.EAM_WAREHOUSE_POSITION.MAXIMUM_CAPACITY,
                         EAMTables.EAM_WAREHOUSE_POSITION.NOTES,
                 }
         );

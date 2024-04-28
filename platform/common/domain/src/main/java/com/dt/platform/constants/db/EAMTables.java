@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2024-04-23 15:01:03
+ * @since 2024-04-26 19:13:08
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -22993,6 +22993,11 @@ public class EAMTables {
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","库位","库位",false,false,true);
 		
 		/**
+		 * 最大容量
+		*/
+		public static final DBField MAXIMUM_CAPACITY = new DBField(DBDataType.INTEGER , "maximum_capacity","maximumCapacity","最大容量","最大容量",false,false,true);
+		
+		/**
 		 * 备注
 		*/
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
@@ -23037,7 +23042,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public EAM_WAREHOUSE_POSITION() {
-			this.init($NAME,"仓库库位" , ID , WAREHOUSE_ID , CODE , FULL_NAME , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"仓库库位" , ID , WAREHOUSE_ID , CODE , FULL_NAME , NAME , MAXIMUM_CAPACITY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final EAM_WAREHOUSE_POSITION $TABLE=new EAM_WAREHOUSE_POSITION();
 	}

@@ -301,7 +301,8 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().list().operationColumn().addActionMenu("env","环境信息","ops_db_info:env");
         cfg.view().form().addPage("备份情况","backInfoList");
       //  cfg.view().list().operationColumn().addActionButton("备份记录","backupRecord","backupRecord","ops_auto_task:check");
-        cfg.view().list().addToolButton("软件列表","softList",null);
+        cfg.view().list().addToolButton("软件列表","softList","soft_list");
+        cfg.view().list().addToolButton("测试环境列表","testEvnList","test_env_list");
         cfg.view().list().addToolButton("搜索","dbSearch",null);
         //文件生成覆盖模式
         cfg.overrides()

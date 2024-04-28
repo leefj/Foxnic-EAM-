@@ -568,6 +568,7 @@ function addCrontabTask(){
   sed -i '/backupAppDB/d'    $crontabFile
   echo "58 23 * * *  sh $base_dir/app/bin/clearDataSpace.sh">>$crontabFile
   echo "30 2 * * *   sh $base_dir/app/bin/backupAppDB.sh $db_name">>$crontabFile
+  echo "30 5 * * * echo 3  > /proc/sys/vm/drop_caches">>$crontabFile
   echo "">>$crontabFile
   crontab $crontabFile
   echo "list conrtab:"

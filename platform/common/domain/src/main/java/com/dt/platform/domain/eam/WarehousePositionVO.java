@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 仓库库位VO类型
  * <p>仓库库位 , 数据表 eam_warehouse_position 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-18 07:21:59
+ * @since 2024-04-26 19:14:27
  * @sign 971AF86E947F15A40A870A72F93CDAA5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -415,6 +415,7 @@ public class WarehousePositionVO extends WarehousePosition {
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setMaximumCapacity(this.getMaximumCapacity());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
@@ -502,6 +503,7 @@ public class WarehousePositionVO extends WarehousePosition {
 			this.setName(DataParser.parse(String.class, map.get(WarehousePositionVOMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(WarehousePositionVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(WarehousePositionVOMeta.ID)));
+			this.setMaximumCapacity(DataParser.parse(Integer.class, map.get(WarehousePositionVOMeta.MAXIMUM_CAPACITY)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(WarehousePositionVOMeta.SEARCH_FIELD)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(WarehousePositionVOMeta.REQUEST_ACTION)));
@@ -531,6 +533,7 @@ public class WarehousePositionVO extends WarehousePosition {
 				this.setName( (String)map.get(WarehousePositionVOMeta.NAME));
 				this.setDeleteBy( (String)map.get(WarehousePositionVOMeta.DELETE_BY));
 				this.setId( (String)map.get(WarehousePositionVOMeta.ID));
+				this.setMaximumCapacity( (Integer)map.get(WarehousePositionVOMeta.MAXIMUM_CAPACITY));
 				// others
 				this.setSearchField( (String)map.get(WarehousePositionVOMeta.SEARCH_FIELD));
 				this.setRequestAction( (String)map.get(WarehousePositionVOMeta.REQUEST_ACTION));
@@ -573,6 +576,7 @@ public class WarehousePositionVO extends WarehousePosition {
 			this.setName(DataParser.parse(String.class, r.getValue(WarehousePositionVOMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(WarehousePositionVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(WarehousePositionVOMeta.ID)));
+			this.setMaximumCapacity(DataParser.parse(Integer.class, r.getValue(WarehousePositionVOMeta.MAXIMUM_CAPACITY)));
 			return true;
 		} else {
 			try {
@@ -590,6 +594,7 @@ public class WarehousePositionVO extends WarehousePosition {
 				this.setName( (String)r.getValue(WarehousePositionVOMeta.NAME));
 				this.setDeleteBy( (String)r.getValue(WarehousePositionVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(WarehousePositionVOMeta.ID));
+				this.setMaximumCapacity( (Integer)r.getValue(WarehousePositionVOMeta.MAXIMUM_CAPACITY));
 				return true;
 			} catch (Exception e) {
 				return false;

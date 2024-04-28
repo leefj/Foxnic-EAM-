@@ -8,6 +8,7 @@ import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetItem;
+import com.dt.platform.domain.eam.AssetProcessRecord;
 import com.dt.platform.domain.eam.AssetScrap;
 import com.dt.platform.domain.eam.meta.AssetScrapMeta;
 import com.dt.platform.eam.service.*;
@@ -99,10 +100,28 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 	private IOperateService operateService;
 
 
+
+	@Autowired
+	private IAssetProcessRecordService assetProcessRecordService;
+
 	@Override
 	public Result cleanOut(String id) {
 		AssetScrap billData=getById(id);
 		if(AssetHandleStatusEnum.COMPLETE.code().equals(billData.getStatus())){
+
+			this.dao.fill(billData).with(AssetScrapMeta.ASSET_LIST).execute();
+
+			List<Asset> list=billData.getAssetList();
+			for (Asset asset : list) {
+				AssetProcessRecord rcd=new AssetProcessRecord();
+				rcd.setAssetId(asset.getId());
+				rcd.setProcessType(AssetOperateEnum.EAM_ASSET_SCRAP.code());
+				rcd.setProcessdTime(new Date());
+				rcd.setContent("资产进行报废处理");
+				rcd.setBusinessCode(billData.getBusinessCode());
+				rcd.setProcessUserId(SessionUser.getCurrent().getActivatedEmployeeId());
+				assetProcessRecordService.insert(rcd,false);
+			}
 			String sql="update eam_asset set scrap_id=?, asset_status='"+AssetStatusEnum.SCRAPPED.code()+"',owner_code=? where id in (select asset_id from eam_asset_item where handle_id=? and crd in ('r','c') and deleted=0)";
 			dao.execute(sql, id,AssetOwnerCodeEnum.ASSET_CLEAN_OUT.code(),id);
 			AssetScrap bill=new AssetScrap();

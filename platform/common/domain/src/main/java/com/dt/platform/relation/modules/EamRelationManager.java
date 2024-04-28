@@ -1826,6 +1826,7 @@ public class EamRelationManager extends RelationManager {
 
         this.property(AssetScrapMeta.ASSET_LIST_PROP)
                 .using(EAMTables.EAM_ASSET_SCRAP.ID ).join(EAMTables.EAM_ASSET_ITEM.HANDLE_ID)
+                .condition("crd in ('r','d') ")
                 .using(EAMTables.EAM_ASSET_ITEM.ASSET_ID).join( EAMTables.EAM_ASSET.ID);
 
 

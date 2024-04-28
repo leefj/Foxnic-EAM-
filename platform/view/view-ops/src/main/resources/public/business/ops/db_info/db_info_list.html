@@ -2,7 +2,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-08 21:15:18
+ * @since 2024-04-26 19:17:24
  */
  -->
  <!DOCTYPE html>
@@ -160,7 +160,8 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('ops_db_info:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
-        <button id="soft-list"  class="layui-btn icon-btn layui-btn-sm " lay-event="tool-soft-list"><span th:text="${lang.translate('软件列表','','cmp:table.button')}">软件列表</span></button>
+        <button id="soft-list"  class="layui-btn icon-btn layui-btn-sm  soft_list " lay-event="tool-soft-list"><span th:text="${lang.translate('软件列表','','cmp:table.button')}">软件列表</span></button>
+        <button id="test-evn-list"  class="layui-btn icon-btn layui-btn-sm  test_env_list " lay-event="tool-test-evn-list"><span th:text="${lang.translate('测试环境列表','','cmp:table.button')}">测试环境列表</span></button>
         <button id="db-search"  class="layui-btn icon-btn layui-btn-sm " lay-event="tool-db-search"><span th:text="${lang.translate('搜索','','cmp:table.button')}">搜索</span></button>
     </div>
 </script>

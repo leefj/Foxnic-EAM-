@@ -613,6 +613,7 @@ public class GoodsStockController extends SuperController {
 		PagedList<GoodsStock> list = null;
 		ConditionExpr expr = new ConditionExpr();
 		expr.and("1=1");
+		expr.and("stock_cur_number<>0");
 		Rcd rs=goodsStockService.dao().queryRecord("select * from eam_goods_stock where id=?",searchId);
 		if(rs!=null){
 			String goodsId=rs.getString("goods_id");

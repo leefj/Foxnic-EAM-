@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 仓库库位
  * <p>仓库库位 , 数据表 eam_warehouse_position 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-18 07:21:59
- * @sign A3969784A665E9A21226A04D04F720C3
+ * @since 2024-04-26 19:14:27
+ * @sign FCBC776D3541C27D4104A60F346A7CF3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -58,7 +58,7 @@ public class WarehousePosition extends Entity {
 	/**
 	 * 全称：全称
 	*/
-	@ApiModelProperty(required = false,value="全称" , notes = "全称")
+	@ApiModelProperty(required = false,value="全称" , notes = "全称" , example = "上海仓库/默认库存")
 	private String fullName;
 	
 	/**
@@ -68,9 +68,15 @@ public class WarehousePosition extends Entity {
 	private String name;
 	
 	/**
+	 * 最大容量：最大容量
+	*/
+	@ApiModelProperty(required = false,value="最大容量" , notes = "最大容量" , example = "2000")
+	private Integer maximumCapacity;
+	
+	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "默认库存")
 	private String notes;
 	
 	/**
@@ -222,6 +228,25 @@ public class WarehousePosition extends Entity {
 	*/
 	public WarehousePosition setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 最大容量<br>
+	 * 最大容量
+	 * @return 最大容量
+	*/
+	public Integer getMaximumCapacity() {
+		return maximumCapacity;
+	}
+	
+	/**
+	 * 设置 最大容量
+	 * @param maximumCapacity 最大容量
+	 * @return 当前对象
+	*/
+	public WarehousePosition setMaximumCapacity(Integer maximumCapacity) {
+		this.maximumCapacity=maximumCapacity;
 		return this;
 	}
 	
@@ -504,6 +529,7 @@ public class WarehousePosition extends Entity {
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setMaximumCapacity(this.getMaximumCapacity());
 		if(all) {
 			inst.setWarehouse(this.getWarehouse());
 		}
@@ -579,6 +605,7 @@ public class WarehousePosition extends Entity {
 			this.setName(DataParser.parse(String.class, map.get(WarehousePositionMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(WarehousePositionMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(WarehousePositionMeta.ID)));
+			this.setMaximumCapacity(DataParser.parse(Integer.class, map.get(WarehousePositionMeta.MAXIMUM_CAPACITY)));
 			// others
 			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(WarehousePositionMeta.WAREHOUSE)));
 			return true;
@@ -598,6 +625,7 @@ public class WarehousePosition extends Entity {
 				this.setName( (String)map.get(WarehousePositionMeta.NAME));
 				this.setDeleteBy( (String)map.get(WarehousePositionMeta.DELETE_BY));
 				this.setId( (String)map.get(WarehousePositionMeta.ID));
+				this.setMaximumCapacity( (Integer)map.get(WarehousePositionMeta.MAXIMUM_CAPACITY));
 				// others
 				this.setWarehouse( (Warehouse)map.get(WarehousePositionMeta.WAREHOUSE));
 				return true;
@@ -630,6 +658,7 @@ public class WarehousePosition extends Entity {
 			this.setName(DataParser.parse(String.class, r.getValue(WarehousePositionMeta.NAME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(WarehousePositionMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(WarehousePositionMeta.ID)));
+			this.setMaximumCapacity(DataParser.parse(Integer.class, r.getValue(WarehousePositionMeta.MAXIMUM_CAPACITY)));
 			return true;
 		} else {
 			try {
@@ -647,6 +676,7 @@ public class WarehousePosition extends Entity {
 				this.setName( (String)r.getValue(WarehousePositionMeta.NAME));
 				this.setDeleteBy( (String)r.getValue(WarehousePositionMeta.DELETE_BY));
 				this.setId( (String)r.getValue(WarehousePositionMeta.ID));
+				this.setMaximumCapacity( (Integer)r.getValue(WarehousePositionMeta.MAXIMUM_CAPACITY));
 				return true;
 			} catch (Exception e) {
 				return false;
