@@ -98,6 +98,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单页面打开时，追加更多的参数信息
          * */
         makeFormQueryString:function(data,queryString,action) {
+            if(data&&data.id){
+                console.log("update")
+            }else{
+                queryString="operCode="+OPER_CODE;
+            }
             return queryString;
         },
         /**
@@ -236,6 +241,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
+            if(data&&data.id){
+                console.log("update")
+            }else{
+                data.operCode=OPER_CODE;
+            }
             return true;
         },
         /**

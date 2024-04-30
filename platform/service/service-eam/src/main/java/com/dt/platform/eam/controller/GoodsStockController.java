@@ -116,7 +116,8 @@ public class GoodsStockController extends SuperController {
 		@ApiImplicitParam(name = GoodsStockVOMeta.POSITION_ID, value = "库位", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.POSITION_DETAIL, value = "位置详请", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.MAINTENANCE_RECOMMENDATION, value = "保养建议", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = GoodsStockVOMeta.INSPECTION_RECOMMENDATION, value = "巡检建议", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = GoodsStockVOMeta.INSPECTION_RECOMMENDATION, value = "巡检建议", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.COST_TYPE, value = "价值类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = GoodsStockServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -208,7 +209,8 @@ public class GoodsStockController extends SuperController {
 		@ApiImplicitParam(name = GoodsStockVOMeta.POSITION_ID, value = "库位", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.POSITION_DETAIL, value = "位置详请", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.MAINTENANCE_RECOMMENDATION, value = "保养建议", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = GoodsStockVOMeta.INSPECTION_RECOMMENDATION, value = "巡检建议", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = GoodsStockVOMeta.INSPECTION_RECOMMENDATION, value = "巡检建议", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.COST_TYPE, value = "价值类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { GoodsStockVOMeta.PAGE_INDEX, GoodsStockVOMeta.PAGE_SIZE, GoodsStockVOMeta.SEARCH_FIELD, GoodsStockVOMeta.FUZZY_FIELD, GoodsStockVOMeta.SEARCH_VALUE, GoodsStockVOMeta.DIRTY_FIELDS, GoodsStockVOMeta.SORT_FIELD, GoodsStockVOMeta.SORT_TYPE, GoodsStockVOMeta.IDS })
     @SentinelResource(value = GoodsStockServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -323,7 +325,8 @@ public class GoodsStockController extends SuperController {
 		@ApiImplicitParam(name = GoodsStockVOMeta.POSITION_ID, value = "库位", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.POSITION_DETAIL, value = "位置详请", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.MAINTENANCE_RECOMMENDATION, value = "保养建议", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = GoodsStockVOMeta.INSPECTION_RECOMMENDATION, value = "巡检建议", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = GoodsStockVOMeta.INSPECTION_RECOMMENDATION, value = "巡检建议", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.COST_TYPE, value = "价值类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { GoodsStockVOMeta.PAGE_INDEX, GoodsStockVOMeta.PAGE_SIZE, GoodsStockVOMeta.SEARCH_FIELD, GoodsStockVOMeta.FUZZY_FIELD, GoodsStockVOMeta.SEARCH_VALUE, GoodsStockVOMeta.DIRTY_FIELDS, GoodsStockVOMeta.SORT_FIELD, GoodsStockVOMeta.SORT_TYPE, GoodsStockVOMeta.IDS })
     @SentinelResource(value = GoodsStockServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -348,7 +351,7 @@ public class GoodsStockController extends SuperController {
         Result<GoodsStock> result = new Result<>();
         GoodsStock goodsStock = goodsStockService.getById(id);
         // join 关联的对象
-        goodsStockService.dao().fill(goodsStock).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.WAREHOUSE_BY_POSITION).with(GoodsStockMeta.GOODS_BY_BRAND).with(GoodsStockMeta.GOODS_BY_MANUFACTURER).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(goodsStock).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.COST_DICT).with(GoodsStockMeta.WAREHOUSE_BY_POSITION).with(GoodsStockMeta.GOODS_BY_BRAND).with(GoodsStockMeta.GOODS_BY_MANUFACTURER).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         result.success(true).data(goodsStock);
         return result;
     }
@@ -421,7 +424,8 @@ public class GoodsStockController extends SuperController {
 		@ApiImplicitParam(name = GoodsStockVOMeta.POSITION_ID, value = "库位", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.POSITION_DETAIL, value = "位置详请", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = GoodsStockVOMeta.MAINTENANCE_RECOMMENDATION, value = "保养建议", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = GoodsStockVOMeta.INSPECTION_RECOMMENDATION, value = "巡检建议", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = GoodsStockVOMeta.INSPECTION_RECOMMENDATION, value = "巡检建议", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.COST_TYPE, value = "价值类型", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { GoodsStockVOMeta.PAGE_INDEX, GoodsStockVOMeta.PAGE_SIZE })
     @SentinelResource(value = GoodsStockServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -549,127 +553,6 @@ public class GoodsStockController extends SuperController {
         return result;
     }
 
-
-	/**
-	 * 分页查询库存物品
-	 */
-	@ApiOperation(value = "分页查询库存物品")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = GoodsStockVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "569477481375989760"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.OWNER_TMP_ID, value = "所属", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.OWNER_CODE, value = "库存所属", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.OWNER_TYPE, value = "所属类型", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.CATEGORY_ID, value = "档案分类", required = false, dataTypeClass = String.class, example = "479383892382449664"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class, example = "enable"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class, example = "服务器"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class, example = "服务器model"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.CODE, value = "物品编码", required = false, dataTypeClass = String.class, example = "1212"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.BAR_CODE, value = "物品条码", required = false, dataTypeClass = String.class, example = "121212"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.MANUFACTURER_ID, value = "厂商", required = false, dataTypeClass = String.class, example = "471669992140570624"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.BRAND_ID, value = "品牌商标", required = false, dataTypeClass = String.class, example = "569147035945533440"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.UNIT_PRICE, value = "默认单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.UNIT, value = "计量单位", required = false, dataTypeClass = String.class, example = "台"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.STOCK_MIN, value = "安全库存下限", required = false, dataTypeClass = BigDecimal.class, example = "0"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.STOCK_MAX, value = "安全库存上限", required = false, dataTypeClass = BigDecimal.class, example = "500"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.STOCK_SECURITY, value = "安全库存", required = false, dataTypeClass = BigDecimal.class, example = "200"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.PICTURE_ID, value = "物品图片", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.OWN_COMPANY_ID, value = "所属公司", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.USE_ORG_ID, value = "使用组织", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.SUPPLIER_NAME, value = "供应商", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.WAREHOUSE_ID, value = "仓库", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.SOURCE_ID, value = "来源", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.GOODS_ID, value = "物品", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.STOCK_IN_NUMBER, value = "入库数量", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.STOCK_CUR_NUMBER, value = "当前数量", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.AMOUNT, value = "总金额", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.MANAGER_ID, value = "管理人", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.STORAGE_DATE, value = "入库时间", required = false, dataTypeClass = Date.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.GOODS_STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.ASSET_CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.REAL_STOCK_ID, value = "库存数据", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.INTER_OPER_TYPE, value = "操作类型", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.PID, value = "父级", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
-			@ApiImplicitParam(name = GoodsStockVOMeta.SN, value = "序列", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.POSITION_ID, value = "库位", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.POSITION_DETAIL, value = "位置详请", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.MAINTENANCE_RECOMMENDATION, value = "保养建议", required = false, dataTypeClass = String.class),
-			@ApiImplicitParam(name = GoodsStockVOMeta.INSPECTION_RECOMMENDATION, value = "巡检建议", required = false, dataTypeClass = String.class)
-	})
-	@ApiOperationSupport(order = 8)
-	@SentinelResource(value = GoodsStockServiceProxy.QUERY_REL_DATA_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-	@PostMapping(GoodsStockServiceProxy.QUERY_REL_DATA_PAGED_LIST)
-	public Result<PagedList<GoodsStock>> queryRelDataPagedList(GoodsStockVO sample) {
-		Result<PagedList<GoodsStock>> result = new Result<>();
-		String searchId=sample.getId();
-		sample.setId(null);
-		String relType=sample.getSearchRelType();
-		PagedList<GoodsStock> list = null;
-		ConditionExpr expr = new ConditionExpr();
-		expr.and("1=1");
-		expr.and("stock_cur_number<>0");
-		Rcd rs=goodsStockService.dao().queryRecord("select * from eam_goods_stock where id=?",searchId);
-		if(rs!=null){
-			String goodsId=rs.getString("goods_id");
-			if("self".equals(relType)){
-				sample.setGoodsId(goodsId);
-			}else if("parent".equals(relType)){
-				expr.and("goods_id in (select parent_goods_id from eam_goods_stock_related where deleted=0 and goods_id=? and select_code='def')",goodsId);
-			}else if("child".equals(relType)){
-				expr.and("goods_id in (select goods_id from eam_goods_stock_related where deleted=0 and parent_goods_id=? and select_code='def')",goodsId);
-			}else{
-				expr.and("1=2");
-			}
-		}
-		list = goodsStockService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
-		// join 关联的对象
-		goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.GOODS_BY_BRAND).with(GoodsStockMeta.GOODS_BY_MANUFACTURER).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.GOODS_PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
-		List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
-		goodsStockService.dao().join(originatorList, Person.class);
-		List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);
-		goodsStockService.dao().join(managerList, Person.class);
-		// 获取关连的资产，关连的库存及备件数量
-		List<String> idsList = CollectorUtil.collectList(list, GoodsStock::getId);
-		if (idsList != null && idsList.size() > 0) {
-			String str = "('1'";
-			for (int i = 0; i < idsList.size(); i++) {
-				str = str + ",'" + idsList.get(i) + "'";
-			}
-			str = str + ")";
-			String sql1 = "select goods_id,count(1) cnt from eam_asset where status='complete' and goods_id in " + str + " and deleted=0 and owner_code='asset' group by goods_id";
-			String sql2 = "select goods_id,sum(stock_cur_number) cnt from eam_goods_stock where goods_id in " + str + " and deleted=0 and owner_code in ('real_part','real_stock') group by goods_id";
-			RcdSet assetRs = goodsStockService.dao().query(sql1);
-			RcdSet stockRs = goodsStockService.dao().query(sql2);
-			HashMap<String, Integer> map1 = (HashMap<String, Integer>) assetRs.getValueMap("goods_id", String.class, "cnt", Integer.class);
-			HashMap<String, Integer> map2 = (HashMap<String, Integer>) stockRs.getValueMap("goods_id", String.class, "cnt", Integer.class);
-			for (int i = 0; i < list.getList().size(); i++) {
-				String goodsId = list.getList().get(i).getId();
-				if (!StringUtil.isBlank(goodsId)) {
-					if (map1.containsKey(goodsId)) {
-						list.getList().get(i).setRelatedAssetCount(map1.get(goodsId));
-					} else {
-						list.getList().get(i).setRelatedAssetCount(0);
-					}
-					if (map2.containsKey(goodsId)) {
-						list.getList().get(i).setRelatedGoodsStockCount(map2.get(goodsId));
-					} else {
-						list.getList().get(i).setRelatedGoodsStockCount(0);
-					}
-				} else {
-					list.getList().get(i).setRelatedAssetCount(0);
-					list.getList().get(i).setRelatedGoodsStockCount(0);
-				}
-			}
-		}
-		result.success(true).data(list);
-		return result;
-	}
     /**
      * 分页查询库存物品
      */
@@ -723,6 +606,128 @@ public class GoodsStockController extends SuperController {
 		@ApiImplicitParam(name = GoodsStockVOMeta.INSPECTION_RECOMMENDATION, value = "巡检建议", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
+    @SentinelResource(value = GoodsStockServiceProxy.QUERY_REL_DATA_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(GoodsStockServiceProxy.QUERY_REL_DATA_PAGED_LIST)
+    public Result<PagedList<GoodsStock>> queryRelDataPagedList(GoodsStockVO sample) {
+        Result<PagedList<GoodsStock>> result = new Result<>();
+        String searchId = sample.getId();
+        sample.setId(null);
+        String relType = sample.getSearchRelType();
+        PagedList<GoodsStock> list = null;
+        ConditionExpr expr = new ConditionExpr();
+        expr.and("1=1");
+        expr.and("stock_cur_number<>0");
+        Rcd rs = goodsStockService.dao().queryRecord("select * from eam_goods_stock where id=?", searchId);
+        if (rs != null) {
+            String goodsId = rs.getString("goods_id");
+            if ("self".equals(relType)) {
+                sample.setGoodsId(goodsId);
+            } else if ("parent".equals(relType)) {
+                expr.and("goods_id in (select parent_goods_id from eam_goods_stock_related where deleted=0 and goods_id=? and select_code='def')", goodsId);
+            } else if ("child".equals(relType)) {
+                expr.and("goods_id in (select goods_id from eam_goods_stock_related where deleted=0 and parent_goods_id=? and select_code='def')", goodsId);
+            } else {
+                expr.and("1=2");
+            }
+        }
+        list = goodsStockService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.GOODS_BY_BRAND).with(GoodsStockMeta.GOODS_BY_MANUFACTURER).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.GOODS_PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
+        List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
+        goodsStockService.dao().join(originatorList, Person.class);
+        List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);
+        goodsStockService.dao().join(managerList, Person.class);
+        // 获取关连的资产，关连的库存及备件数量
+        List<String> idsList = CollectorUtil.collectList(list, GoodsStock::getId);
+        if (idsList != null && idsList.size() > 0) {
+            String str = "('1'";
+            for (int i = 0; i < idsList.size(); i++) {
+                str = str + ",'" + idsList.get(i) + "'";
+            }
+            str = str + ")";
+            String sql1 = "select goods_id,count(1) cnt from eam_asset where status='complete' and goods_id in " + str + " and deleted=0 and owner_code='asset' group by goods_id";
+            String sql2 = "select goods_id,sum(stock_cur_number) cnt from eam_goods_stock where goods_id in " + str + " and deleted=0 and owner_code in ('real_part','real_stock') group by goods_id";
+            RcdSet assetRs = goodsStockService.dao().query(sql1);
+            RcdSet stockRs = goodsStockService.dao().query(sql2);
+            HashMap<String, Integer> map1 = (HashMap<String, Integer>) assetRs.getValueMap("goods_id", String.class, "cnt", Integer.class);
+            HashMap<String, Integer> map2 = (HashMap<String, Integer>) stockRs.getValueMap("goods_id", String.class, "cnt", Integer.class);
+            for (int i = 0; i < list.getList().size(); i++) {
+                String goodsId = list.getList().get(i).getId();
+                if (!StringUtil.isBlank(goodsId)) {
+                    if (map1.containsKey(goodsId)) {
+                        list.getList().get(i).setRelatedAssetCount(map1.get(goodsId));
+                    } else {
+                        list.getList().get(i).setRelatedAssetCount(0);
+                    }
+                    if (map2.containsKey(goodsId)) {
+                        list.getList().get(i).setRelatedGoodsStockCount(map2.get(goodsId));
+                    } else {
+                        list.getList().get(i).setRelatedGoodsStockCount(0);
+                    }
+                } else {
+                    list.getList().get(i).setRelatedAssetCount(0);
+                    list.getList().get(i).setRelatedGoodsStockCount(0);
+                }
+            }
+        }
+        result.success(true).data(list);
+        return result;
+    }
+
+    /**
+     * 分页查询库存物品
+     */
+    @ApiOperation(value = "分页查询库存物品")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = GoodsStockVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "569477481375989760"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.OWNER_TMP_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.OWNER_CODE, value = "库存所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.OWNER_TYPE, value = "所属类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.CATEGORY_ID, value = "档案分类", required = false, dataTypeClass = String.class, example = "479383892382449664"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class, example = "服务器"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class, example = "服务器model"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.CODE, value = "物品编码", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.BAR_CODE, value = "物品条码", required = false, dataTypeClass = String.class, example = "121212"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.MANUFACTURER_ID, value = "厂商", required = false, dataTypeClass = String.class, example = "471669992140570624"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.BRAND_ID, value = "品牌商标", required = false, dataTypeClass = String.class, example = "569147035945533440"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.UNIT_PRICE, value = "默认单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.UNIT, value = "计量单位", required = false, dataTypeClass = String.class, example = "台"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.STOCK_MIN, value = "安全库存下限", required = false, dataTypeClass = BigDecimal.class, example = "0"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.STOCK_MAX, value = "安全库存上限", required = false, dataTypeClass = BigDecimal.class, example = "500"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.STOCK_SECURITY, value = "安全库存", required = false, dataTypeClass = BigDecimal.class, example = "200"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.PICTURE_ID, value = "物品图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.BATCH_CODE, value = "批次号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.OWN_COMPANY_ID, value = "所属公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.USE_ORG_ID, value = "使用组织", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.SUPPLIER_NAME, value = "供应商", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.WAREHOUSE_ID, value = "仓库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.SOURCE_ID, value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.GOODS_ID, value = "物品", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.STOCK_IN_NUMBER, value = "入库数量", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.STOCK_CUR_NUMBER, value = "当前数量", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.AMOUNT, value = "总金额", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.MANAGER_ID, value = "管理人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.STORAGE_DATE, value = "入库时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.GOODS_STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.ASSET_CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.REAL_STOCK_ID, value = "库存数据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.INTER_OPER_TYPE, value = "操作类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.PID, value = "父级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
+		@ApiImplicitParam(name = GoodsStockVOMeta.SN, value = "序列", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.POSITION_ID, value = "库位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.POSITION_DETAIL, value = "位置详请", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.MAINTENANCE_RECOMMENDATION, value = "保养建议", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.INSPECTION_RECOMMENDATION, value = "巡检建议", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsStockVOMeta.COST_TYPE, value = "价值类型", required = false, dataTypeClass = String.class)
+	})
+    @ApiOperationSupport(order = 8)
     @SentinelResource(value = GoodsStockServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsStockServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<GoodsStock>> queryPagedList(GoodsStockVO sample) {
@@ -732,73 +737,68 @@ public class GoodsStockController extends SuperController {
         sample.setCategoryId(null);
         PagedList<GoodsStock> list = null;
         ConditionExpr expr = new ConditionExpr();
-
         expr.and("1=1");
-
-
         // 处理档案分类
         if (!StringUtil.isBlank(categoryId)) {
             expr.and("category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%" + categoryId + "%' or id=?))", categoryId);
         }
-		if("real_stock".equals(sample.getOwnerCode())||"real_part".equals(sample.getOwnerCode())){
-			expr.and("stock_cur_number<>0");
-			JSONObject searchObj=JSONObject.parseObject(sample.getSearchValue());
-			//仓库
-			if(searchObj.getJSONObject("warehouseId")!=null){
-				JSONArray warehouseArr=searchObj.getJSONObject("warehouseId").getJSONArray("value");
-				if(searchObj.getJSONObject("warehouseId")!=null){
-					if(warehouseArr.size()>0){
-						expr.and("warehouse_id='"+warehouseArr.getString(0)+"'");
-					}
-				}
-			}
-
-			if(searchObj.getJSONObject("positionId")!=null){
-				JSONArray posArr=searchObj.getJSONObject("positionId").getJSONArray("value");
-				if(posArr.size()>0){
-					expr.and("position_id='"+posArr.getString(0)+"'");
-				}
-			}
-			boolean match=false;
-			String goodsSql="select id from eam_goods_stock where owner_code='goods'";
-			//名称
-			if(searchObj.getJSONObject("name")!=null){
-				String name=searchObj.getJSONObject("name").getString("value");
-				if(searchObj.getJSONObject("name")!=null){}
-				if(StringUtil.isNotBlank(name)){
-					goodsSql=goodsSql+" and name like '%"+name+"%'";
-					match=true;
-				}
-			}
-			//型号
-			if(searchObj.getJSONObject("model")!=null){
-				String model=searchObj.getJSONObject("model").getString("value");
-				if(StringUtil.isNotBlank(model)){
-					goodsSql=goodsSql+" and model like '%"+model+"%'";
-					match=true;
-				}
-			}
-			//编号
-			if(searchObj.getJSONObject("code")!=null){
-				String code=searchObj.getJSONObject("code").getString("value");
-				if(StringUtil.isNotBlank(code)){
-					goodsSql=goodsSql+" and code like '%"+code+"%'";
-					match=true;
-				}
-			}
-			if (match){
-				expr.and("goods_id in ("+goodsSql+")");
-			}
-			sample.setSearchValue("{}");
-		}
-
-		if(StringUtil.isNotBlank(sample.getGoodsId())){
-			expr.and("stock_cur_number<>0");
-		}
-
-		list = goodsStockService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
+        if ("real_stock".equals(sample.getOwnerCode()) || "real_part".equals(sample.getOwnerCode())) {
+            expr.and("stock_cur_number<>0");
+            JSONObject searchObj = JSONObject.parseObject(sample.getSearchValue());
+            // 仓库
+            if (searchObj.getJSONObject("warehouseId") != null) {
+                JSONArray warehouseArr = searchObj.getJSONObject("warehouseId").getJSONArray("value");
+                if (searchObj.getJSONObject("warehouseId") != null) {
+                    if (warehouseArr.size() > 0) {
+                        expr.and("warehouse_id='" + warehouseArr.getString(0) + "'");
+                    }
+                }
+            }
+            if (searchObj.getJSONObject("positionId") != null) {
+                JSONArray posArr = searchObj.getJSONObject("positionId").getJSONArray("value");
+                if (posArr.size() > 0) {
+                    expr.and("position_id='" + posArr.getString(0) + "'");
+                }
+            }
+            boolean match = false;
+            String goodsSql = "select id from eam_goods_stock where owner_code='goods'";
+            // 名称
+            if (searchObj.getJSONObject("name") != null) {
+                String name = searchObj.getJSONObject("name").getString("value");
+                if (searchObj.getJSONObject("name") != null) {
+                }
+                if (StringUtil.isNotBlank(name)) {
+                    goodsSql = goodsSql + " and name like '%" + name + "%'";
+                    match = true;
+                }
+            }
+            // 型号
+            if (searchObj.getJSONObject("model") != null) {
+                String model = searchObj.getJSONObject("model").getString("value");
+                if (StringUtil.isNotBlank(model)) {
+                    goodsSql = goodsSql + " and model like '%" + model + "%'";
+                    match = true;
+                }
+            }
+            // 编号
+            if (searchObj.getJSONObject("code") != null) {
+                String code = searchObj.getJSONObject("code").getString("value");
+                if (StringUtil.isNotBlank(code)) {
+                    goodsSql = goodsSql + " and code like '%" + code + "%'";
+                    match = true;
+                }
+            }
+            if (match) {
+                expr.and("goods_id in (" + goodsSql + ")");
+            }
+            sample.setSearchValue("{}");
+        }
+        if (StringUtil.isNotBlank(sample.getGoodsId())) {
+            expr.and("stock_cur_number<>0");
+        }
+        list = goodsStockService.queryPagedList(sample, expr, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.GOODS_BY_BRAND).with(GoodsStockMeta.GOODS_BY_MANUFACTURER).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.GOODS_PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with(GoodsStockMeta.COST_DICT).with("originator").with(GoodsStockMeta.GOODS_BY_BRAND).with(GoodsStockMeta.GOODS_BY_MANUFACTURER).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.GOODS_PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
         List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);
@@ -847,7 +847,7 @@ public class GoodsStockController extends SuperController {
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedListBySelected(sample, operType, dataType);
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.GOODS_BY_BRAND).with(GoodsStockMeta.GOODS_BY_MANUFACTURER).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.COST_DICT).with(GoodsStockMeta.GOODS_BY_BRAND).with(GoodsStockMeta.GOODS_BY_MANUFACTURER).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
         List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);
@@ -863,7 +863,7 @@ public class GoodsStockController extends SuperController {
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockService.queryPagedListBySelect(sample, assetSearcbContent);
         // join 关联的对象
-        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.GOODS_BY_BRAND).with(GoodsStockMeta.GOODS_BY_MANUFACTURER).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
+        goodsStockService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.COST_DICT).with(GoodsStockMeta.GOODS_BY_BRAND).with(GoodsStockMeta.GOODS_BY_MANUFACTURER).with(GoodsStockMeta.WAREHOUSE_POSITION).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockService.dao().join(originatorList, Person.class);
         List<Employee> managerList = CollectorUtil.collectList(list, GoodsStock::getManager);
@@ -938,12 +938,10 @@ public class GoodsStockController extends SuperController {
         for (String id : ids) {
             GoodsStockVO e = new GoodsStockVO();
             GoodsStock goods = goodsStockService.getById(id);
-
             e.setStockCurNumber(new BigDecimal("1"));
             e.setStockInNumber(new BigDecimal("1"));
             e.setOwnerType(ownerType);
             e.setRealStockId(id);
-
             e.setNotes("");
             e.setSelectedCode(selectedCode);
             e.setCategoryId(goods.getCategoryId());

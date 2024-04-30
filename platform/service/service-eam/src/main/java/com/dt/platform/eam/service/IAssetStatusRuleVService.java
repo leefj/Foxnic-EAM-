@@ -24,7 +24,7 @@ import java.util.Map;
  * 状态规则值服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-13 13:02:58
+ * @since 2024-04-30 13:29:19
 */
 
 public interface IAssetStatusRuleVService extends  ISimpleIdService<AssetStatusRuleV,String> {

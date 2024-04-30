@@ -26,7 +26,7 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
-
+        cfg.getPoClassFile().addSimpleProperty(DictItem.class,"costDict","costDict","costDict");
         cfg.getPoClassFile().addSimpleProperty(WarehousePosition.class,"warehousePosition","warehousePosition","warehousePosition");
         cfg.getPoClassFile().addSimpleProperty(Warehouse.class,"warehouseByPosition","warehouseByPosition","warehouseByPosition");
         cfg.getPoClassFile().addSimpleProperty(Manufacturer.class,"goodsByManufacturer","goodsByManufacturer","goodsByManufacturer");
@@ -166,6 +166,7 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
                         EAMTables.EAM_GOODS_STOCK.WAREHOUSE_ID,
                 },
                 new Object[]{
+                        EAMTables.EAM_GOODS_STOCK.COST_TYPE,
                         EAMTables.EAM_GOODS_STOCK.POSITION_ID,
                         EAMTables.EAM_GOODS_STOCK.STORAGE_DATE,
                 }
@@ -177,6 +178,13 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.COST_TYPE)
+                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_goods_cost_type")
+                .paging(false).filter(false).toolbar(false)
+                .valueField(DictItemMeta.CODE).
+                textField(DictItemMeta.LABEL).
+                fillWith(GoodsStockMeta.COST_DICT).muliti(false);
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.PICTURE_ID)
                 .form().label("图片").upload().acceptSingleImage().buttonLabel("选择图片").maxFileCount(1).displayFileName(false);

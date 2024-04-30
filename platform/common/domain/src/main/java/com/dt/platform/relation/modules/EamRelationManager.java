@@ -142,7 +142,20 @@ public class EamRelationManager extends RelationManager {
         this.setupWarehousePos();
 
         this.setupWarehouse();
+
+        this.setupAssetHandlerType();
+
+
+
     }
+
+
+
+    public void setupAssetHandlerType() {
+        this.property(AssetHandleTypeMeta.ASSET_STATUS_DATA_PROP)
+                .using(EAMTables.EAM_ASSET_HANDLE_TYPE.HANDLE_STATUS).join(EAMTables.EAM_ASSET_STATUS.CODE);
+    }
+
 
     public void setupWarehouse() {
 
@@ -1516,6 +1529,10 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_GOODS_STOCK.SOURCE_ID).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
                 .condition("dict_code='eam_source'");
 
+        this.property(GoodsStockMeta.COST_DICT_PROP)
+                .using(EAMTables.EAM_GOODS_STOCK.COST_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_goods_cost_type'");
+
 
         //关联 所属公司
         this.property(GoodsStockMeta.OWNER_COMPANY_PROP)
@@ -2283,16 +2300,16 @@ public class EamRelationManager extends RelationManager {
         // 关联资产
         this.property(AssetHandleMeta.ASSET_LIST_PROP)
                 .using(EAMTables.EAM_ASSET_HANDLE.ID).join(EAMTables.EAM_ASSET_ITEM.HANDLE_ID)
+                .condition("crd in ('r','d') ")
                 .using(EAMTables.EAM_ASSET_ITEM.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
-
-
-
 
         // 关联制单人
         this.property(AssetHandleMeta.ORIGINATOR_PROP)
                 .using(EAMTables.EAM_ASSET_HANDLE.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-//                .using(FoxnicWeb.HRM_EMPLOYEE.PERSON_ID).join(FoxnicWeb.HRM_PERSON.ID);
 
+
+        this.property(AssetHandleMeta.ASSET_HANDLE_TYPE_PROP)
+                .using(EAMTables.EAM_ASSET_HANDLE.TYPE).join(EAMTables.EAM_ASSET_HANDLE_TYPE.CODE);
 
     }
 

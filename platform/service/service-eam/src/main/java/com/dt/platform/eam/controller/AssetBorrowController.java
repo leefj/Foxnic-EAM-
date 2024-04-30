@@ -6,7 +6,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.AssetAllocationVOMeta;
-import com.dt.platform.eam.service.IAssetHandleService;
 import com.dt.platform.eam.service.IAssetItemService;
 import com.dt.platform.eam.service.IAssetSelectedDataService;
 import com.dt.platform.proxy.eam.AssetAllocationServiceProxy;

@@ -8,10 +8,7 @@ import com.dt.platform.domain.eam.AssetDataPermissions;
 import com.dt.platform.domain.eam.Position;
 
 import com.dt.platform.domain.eam.meta.*;
-import com.dt.platform.eam.page.AssetCollectionReturnPageController;
-import com.dt.platform.eam.page.AssetDataPermissionsPageController;
-import com.dt.platform.eam.service.impl.AssetHandleServiceImpl;
-import com.dt.platform.eam.service.impl.AssetItemServiceImpl;
+
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetCollectionReturnServiceProxy;
 import com.dt.platform.proxy.eam.AssetDataPermissionsServiceProxy;

@@ -110,6 +110,40 @@ function FormPage() {
 				return opts;
 			}
 		});
+		//渲染 costType 下拉字段
+		fox.renderSelectBox({
+			el: "costType",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("价值类型",'','cmp:form'),
+			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("costType",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("costType",{data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 		//渲染 goodsStatus 下拉字段
 		fox.renderSelectBox({
 			el: "goodsStatus",
@@ -541,7 +575,8 @@ function FormPage() {
 			}
 
 
-
+			//设置  价值类型 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#costType",formData.costDict);
 
 
 			//设置  状态 设置下拉框勾选
@@ -618,7 +653,8 @@ function FormPage() {
 		//获取 分类 下拉框的值
 		data["categoryId"]=fox.getSelectedValue("categoryId",false);
 
-
+		//获取 价值类型 下拉框的值
+		data["costType"]=fox.getSelectedValue("costType",false);
 
 		//获取 厂商 下拉框的值
 		data["manufacturerId"]=fox.getSelectedValue("manufacturerId",false);

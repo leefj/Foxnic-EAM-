@@ -62,12 +62,6 @@
                     </div>
 
 
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('计量单位')}">计量单位</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="unit" id="unit" name="unit" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('计量单位') }" type="text" class="layui-input"  />
-                        </div>
-                    </div>
 
                 <!--结束：栏次内字段循环-->
             </div>
@@ -89,13 +83,7 @@
                         </div>
                     </div>
 
-                <!-- select_box : 父级物品 ,  parentGoodsStockIds  -->
-                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
-                    <div class="layui-form-label "><div th:text="${lang.translate('父级档案')}">父级档案</div></div>
-                    <div class="layui-input-block ">
-                        <div id="parentGoodsStockIds" input-type="select" th:data="${'/service-eam/eam-goods-stock/query-paged-list?ownerCode=goods'}" extraParam="{}"></div>
-                    </div>
-                </div>
+
 
                 <!--结束：栏次内字段循环-->
             </div>
@@ -149,6 +137,16 @@
                         </div>
                     </div>
 
+                <!-- select_box : 价值类型 ,  costType  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('价值类型')}">价值类型</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="costType" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_goods_cost_type'}" extraParam="{}"></div>
+                    </div>
+                </div>
+
+
+
                 <!--结束：栏次内字段循环-->
             </div>
              <!--开始：column 循环-->
@@ -157,7 +155,7 @@
 
 
                     <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('安全库存下限')}">安全库存下限</div></div>
+                        <div class="layui-form-label "><div th:text="${lang.translate('库存下限')}">库存下限</div></div>
                         <div class="layui-input-block ">
                             <input lay-filter="stockMin" id="stockMin" name="stockMin" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('安全库存下限') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                         </div>
@@ -166,11 +164,22 @@
 
 
                     <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('安全库存上限')}">安全库存上限</div></div>
+                        <div class="layui-form-label "><div th:text="${lang.translate('库存上限')}">库存上限</div></div>
                         <div class="layui-input-block ">
                             <input lay-filter="stockMax" id="stockMax" name="stockMax" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('安全库存上限') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                         </div>
                     </div>
+
+                <!-- select_box : 父级物品 ,  parentGoodsStockIds  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('父级档案')}">父级档案</div></div>
+                    <div class="layui-input-block ">
+                        <div id="parentGoodsStockIds" input-type="select" th:data="${'/service-eam/eam-goods-stock/query-paged-list?ownerCode=goods'}" extraParam="{}"></div>
+                    </div>
+                </div>
+
+
+
 
 
                 <!--结束：栏次内字段循环-->
@@ -198,6 +207,14 @@
                     </div>
 
 
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('计量单位')}">计量单位</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="unit" id="unit" name="unit" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('计量单位') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+
+
                 <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
@@ -206,7 +223,7 @@
 
         <!--开始：group 循环-->
         <fieldset class="layui-elem-field layui-field-title form-group-title" id="relGoods-fieldset">
-            <legend>关联设备配件档案</legend>
+            <legend>关联子设备档案</legend>
         </fieldset>
         <div class="layui-row form-row" style="text-align: center;" id="relGoods-content">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
@@ -271,7 +288,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}]];
     var SELECT_GOODSSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
-    var VALIDATE_CONFIG={"code":{"labelInForm":"物品编码","inputType":"text_input","required":true},"goodsStatus":{"labelInForm":"状态","inputType":"select_box","required":true},"brandId":{"labelInForm":"品牌","inputType":"select_box","required":true},"name":{"labelInForm":"物品名称","inputType":"text_input","required":true},"manufacturerId":{"labelInForm":"厂商","inputType":"select_box","required":true},"model":{"labelInForm":"规格型号","inputType":"text_input","required":true},"storageDate":{"date":true,"labelInForm":"入库时间","inputType":"date_input"},"categoryId":{"labelInForm":"分类","inputType":"select_box","required":true},"barCode":{"labelInForm":"物品条码","inputType":"text_input","required":true}};
+    var VALIDATE_CONFIG={"costType":{"labelInForm":"价值类型","inputType":"select_box","required":true},"code":{"labelInForm":"物品编码","inputType":"text_input","required":true},"goodsStatus":{"labelInForm":"状态","inputType":"select_box","required":true},"brandId":{"labelInForm":"品牌","inputType":"select_box","required":true},"name":{"labelInForm":"物品名称","inputType":"text_input","required":true},"manufacturerId":{"labelInForm":"厂商","inputType":"select_box","required":true},"model":{"labelInForm":"规格型号","inputType":"text_input","required":true},"storageDate":{"date":true,"labelInForm":"入库时间","inputType":"date_input"},"categoryId":{"labelInForm":"分类","inputType":"select_box","required":true},"barCode":{"labelInForm":"物品条码","inputType":"text_input","required":true}};
     var AUTH_PREFIX="eam_goods_stock";
 
     var ASSET_CATEGORY_DATA =  [[${assetCategoryData}]];

@@ -288,7 +288,7 @@ public class GoodsStockRelatedController extends SuperController {
         PagedList<GoodsStock> list = goodsStockRelatedService.queryPagedListBySelect(sample);
 
        // join 关联的对象
-        goodsStockRelatedService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
+        goodsStockRelatedService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.COST_DICT).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockRelatedService.dao().join(originatorList, Person.class);
 
@@ -311,7 +311,7 @@ public class GoodsStockRelatedController extends SuperController {
         Result<PagedList<GoodsStock>> result = new Result<>();
         PagedList<GoodsStock> list = goodsStockRelatedService.queryPagedListBySelected(sample);
         // join 关联的对象
-        goodsStockRelatedService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
+        goodsStockRelatedService.dao().fill(list).with("ownerCompany").with("useOrganization").with("manager").with("originator").with(GoodsStockMeta.COST_DICT).with(GoodsStockMeta.SUB_GOODS_STOCK_LIST).with(GoodsStockMeta.PARENT_GOODS_STOCK_LIST).with(GoodsStockMeta.CATEGORY).with(GoodsStockMeta.GOODS).with(GoodsStockMeta.SOURCE).with(GoodsStockMeta.WAREHOUSE).with(GoodsStockMeta.BRAND).with(GoodsStockMeta.MANUFACTURER).execute();
         List<Employee> originatorList = CollectorUtil.collectList(list, GoodsStock::getOriginator);
         goodsStockRelatedService.dao().join(originatorList, Person.class);
 

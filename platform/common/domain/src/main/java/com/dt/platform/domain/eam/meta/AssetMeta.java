@@ -2,8 +2,8 @@ package com.dt.platform.domain.eam.meta;
 
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.Asset;
-import java.math.BigDecimal;
 import java.util.Date;
+import java.math.BigDecimal;
 import com.dt.platform.domain.eam.AssetExtData;
 import java.util.Map;
 import org.github.foxnic.web.domain.pcm.CatalogAttribute;
@@ -31,8 +31,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-04 21:15:48
- * @sign 773756949FD1992EA88763EAB924F2E0
+ * @since 2024-04-30 19:46:25
+ * @sign AC160EDCBA59CF80D2F77801EFB74602
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -149,6 +149,16 @@ public class AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> DISPLAY_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,DISPLAY, java.lang.String.class, "是否显示", "是否显示", java.lang.String.class, null);
 	
 	/**
+	 * 清理类型 , 类型: java.lang.String
+	*/
+	public static final String CLEAN_OUT_TYPE="cleanOutType";
+	
+	/**
+	 * 清理类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> CLEAN_OUT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,CLEAN_OUT_TYPE, java.lang.String.class, "清理类型", "清理类型", java.lang.String.class, null);
+	
+	/**
 	 * 是否清理 , 类型: java.lang.String
 	*/
 	public static final String CLEAN_OUT="cleanOut";
@@ -157,6 +167,16 @@ public class AssetMeta {
 	 * 是否清理 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> CLEAN_OUT_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,CLEAN_OUT, java.lang.String.class, "是否清理", "是否清理", java.lang.String.class, null);
+	
+	/**
+	 * 清理时间 , 类型: java.util.Date
+	*/
+	public static final String CLEAN_TIME="cleanTime";
+	
+	/**
+	 * 清理时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.util.Date> CLEAN_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,CLEAN_TIME, java.util.Date.class, "清理时间", "清理时间", java.util.Date.class, null);
 	
 	/**
 	 * 标准物品档案 , 类型: java.lang.String
@@ -1059,6 +1079,16 @@ public class AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> SCRAP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,SCRAP_ID, java.lang.String.class, "报废ID", "报废ID", java.lang.String.class, null);
 	
 	/**
+	 * 处置ID , 类型: java.lang.String
+	*/
+	public static final String HANDLE_ID="handleId";
+	
+	/**
+	 * 处置ID , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> HANDLE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,HANDLE_ID, java.lang.String.class, "处置ID", "处置ID", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -1611,7 +1641,7 @@ public class AssetMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , DEPRECIATION_ID , DEPRECIATION_OPER_TIME , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL3 , LABEL5 , LABEL4 , LABEL2 , BILL_ID , LAST_INSPECT_TIME , LONGITUDE , DIMENSION , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , CATALOG_CODE_VALUE , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , REGION , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , ASSET_COLLECTION , ASSET_BORROW , GOODS , GOODS_STOCK , PART_ASSET_LIST , PART_GOODS_STOCK_LIST };
+	public static final String[] $PROPS={ ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT_TYPE , CLEAN_OUT , CLEAN_TIME , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , DEPRECIATION_ID , DEPRECIATION_OPER_TIME , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL3 , LABEL5 , LABEL4 , LABEL2 , BILL_ID , LAST_INSPECT_TIME , LONGITUDE , DIMENSION , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , HANDLE_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , CATALOG_CODE_VALUE , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , REGION , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , ASSET_COLLECTION , ASSET_BORROW , GOODS , GOODS_STOCK , PART_ASSET_LIST , PART_GOODS_STOCK_LIST };
 	
 	/**
 	 * 代理类
@@ -1743,6 +1773,17 @@ public class AssetMeta {
 		}
 		
 		/**
+		 * 设置 清理类型
+		 * @param cleanOutType 清理类型
+		 * @return 当前对象
+		*/
+		public Asset setCleanOutType(String cleanOutType) {
+			super.change(CLEAN_OUT_TYPE,super.getCleanOutType(),cleanOutType);
+			super.setCleanOutType(cleanOutType);
+			return this;
+		}
+		
+		/**
 		 * 设置 是否清理
 		 * @param cleanOut 是否清理
 		 * @return 当前对象
@@ -1750,6 +1791,17 @@ public class AssetMeta {
 		public Asset setCleanOut(String cleanOut) {
 			super.change(CLEAN_OUT,super.getCleanOut(),cleanOut);
 			super.setCleanOut(cleanOut);
+			return this;
+		}
+		
+		/**
+		 * 设置 清理时间
+		 * @param cleanTime 清理时间
+		 * @return 当前对象
+		*/
+		public Asset setCleanTime(Date cleanTime) {
+			super.change(CLEAN_TIME,super.getCleanTime(),cleanTime);
+			super.setCleanTime(cleanTime);
 			return this;
 		}
 		
@@ -2744,6 +2796,17 @@ public class AssetMeta {
 		}
 		
 		/**
+		 * 设置 处置ID
+		 * @param handleId 处置ID
+		 * @return 当前对象
+		*/
+		public Asset setHandleId(String handleId) {
+			super.change(HANDLE_ID,super.getHandleId(),handleId);
+			super.setHandleId(handleId);
+			return this;
+		}
+		
+		/**
 		 * 设置 创建人ID
 		 * @param createBy 创建人ID
 		 * @return 当前对象
@@ -3366,6 +3429,7 @@ public class AssetMeta {
 			inst.setEquipmentCode(this.getEquipmentCode());
 			inst.setCustomerInfo(this.getCustomerInfo());
 			inst.setPurchaseUnitPrice(this.getPurchaseUnitPrice());
+			inst.setCleanOutType(this.getCleanOutType());
 			inst.setApprovalOpinion(this.getApprovalOpinion());
 			inst.setMaintenanceStatus(this.getMaintenanceStatus());
 			inst.setNavPrice(this.getNavPrice());
@@ -3424,6 +3488,7 @@ public class AssetMeta {
 			inst.setTenantId(this.getTenantId());
 			inst.setRfid(this.getRfid());
 			inst.setMaintenanceStartDate(this.getMaintenanceStartDate());
+			inst.setHandleId(this.getHandleId());
 			inst.setLastVerificationDate(this.getLastVerificationDate());
 			inst.setUseUserId(this.getUseUserId());
 			inst.setContacts(this.getContacts());
@@ -3444,6 +3509,7 @@ public class AssetMeta {
 			inst.setCurrentYearDepreciation(this.getCurrentYearDepreciation());
 			inst.setUseOrganizationId(this.getUseOrganizationId());
 			inst.setEquipmentLabel(this.getEquipmentLabel());
+			inst.setCleanTime(this.getCleanTime());
 			inst.setUnit(this.getUnit());
 			inst.setOwnCompanyId(this.getOwnCompanyId());
 			inst.setBillId(this.getBillId());

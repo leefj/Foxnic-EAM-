@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 状态规则值
  * <p>状态规则值 , 数据表 eam_asset_status_rule_v 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-13 13:02:58
+ * @since 2024-04-30 13:29:19
  * @sign 7AB147DF240C1D58587C73E117F6315A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -82,7 +82,7 @@ public class AssetStatusRuleV extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")

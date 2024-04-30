@@ -33,6 +33,7 @@ public class AssetScrapBpmEventAdaptor extends BpmEventAdaptor<AssetScrap,IAsset
 	public String BPM_TABLE="eam_asset_scrap";
 
 
+
 	private void updateBillStatus(String status ,String id){
 		this.dao().execute("update "+BPM_TABLE+" set status=? where id=?", status, id);
 	}

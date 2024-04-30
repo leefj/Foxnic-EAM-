@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 状态规则值 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-13 13:02:58
+ * @since 2024-04-30 13:29:20
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetStatusRuleVServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetStatusRuleVServiceProxy {

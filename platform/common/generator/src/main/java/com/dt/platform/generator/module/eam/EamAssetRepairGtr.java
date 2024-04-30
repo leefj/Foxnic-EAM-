@@ -7,16 +7,10 @@ import com.dt.platform.constants.enums.eam.AssetRepairStatusEnum;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.page.AssetHandlePageController;
-import com.dt.platform.eam.page.AssetRepairPageController;
-import com.dt.platform.eam.page.PositionPageController;
-import com.dt.platform.eam.service.IAssetHandleService;
-import com.dt.platform.eam.service.impl.AssetHandleServiceImpl;
+
 import com.dt.platform.eam.service.impl.AssetItemServiceImpl;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.eam.AssetHandleServiceProxy;
-import com.dt.platform.proxy.eam.AssetRepairServiceProxy;
-import com.dt.platform.proxy.eam.CategoryServiceProxy;
-import com.dt.platform.proxy.eam.PositionServiceProxy;
+
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Person;

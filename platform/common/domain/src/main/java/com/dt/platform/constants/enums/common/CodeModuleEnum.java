@@ -47,20 +47,20 @@ public enum CodeModuleEnum implements CodeTextEnum {
 
 
 	//资产单据
-	EAM_ASSET_COLLECTION("eam_asset_collection" , "EAM_资产单据领用"),
-	EAM_ASSET_COLLECTION_RETURN("eam_asset_collection_return" , "EAM_资产单据退库"),
-	EAM_ASSET_BORROW("eam_asset_borrow" , "EAM_资产单据借用"),
-	EAM_ASSET_BORROW_RETURN("eam_asset_borrow_return" , "EAM_资产单据借用归还"),
-	EAM_ASSET_REPAIR("eam_asset_repair" , "EAM_资产单据报修"),
-	EAM_ASSET_REPAIR_ORDER("eam_asset_repair_order" , "EAM_资产单据故障报修申请"),
-	EAM_ASSET_REPAIR_ORDER_ACT("eam_asset_repair_order_act" , "EAM_资产单据维修工单"),
-	EAM_ASSET_REPAIR_ORDER_ACCEPTANCE("eam_asset_repair_order_acceptance" , "EAM_资产单据维修验收"),
-	EAM_ASSET_SCRAP("eam_asset_scrap" , "EAM_资产单据报废"),
-	EAM_ASSET_ALLOCATE("eam_asset_allocate" , "EAM_资产单据调拨"),
-	EAM_ASSET_TRANFER("eam_asset_tranfer" , "EAM_资产单据转移"),
-	EAM_ASSET_CLEAN("eam_asset_clean" , "EAM_资产单据清理"),
+	EAM_ASSET_COLLECTION("eam_asset_collection" , "EAM_资产领用"),
+	EAM_ASSET_COLLECTION_RETURN("eam_asset_collection_return" , "EAM_资产退库"),
+	EAM_ASSET_BORROW("eam_asset_borrow" , "EAM_资产借用"),
+	EAM_ASSET_BORROW_RETURN("eam_asset_borrow_return" , "EAM_资产借用归还"),
+	EAM_ASSET_REPAIR("eam_asset_repair" , "EAM_资产报修"),
+	EAM_ASSET_REPAIR_ORDER("eam_asset_repair_order" , "EAM_资产故障报修申请"),
+	EAM_ASSET_REPAIR_ORDER_ACT("eam_asset_repair_order_act" , "EAM_资产维修工单"),
+	EAM_ASSET_REPAIR_ORDER_ACCEPTANCE("eam_asset_repair_order_acceptance" , "EAM_资产维修验收"),
+	EAM_ASSET_SCRAP("eam_asset_scrap" , "EAM_资产报废"),
+	EAM_ASSET_ALLOCATE("eam_asset_allocate" , "EAM_资产调拨"),
+	EAM_ASSET_TRANFER("eam_asset_tranfer" , "EAM_资产转移"),
+	EAM_ASSET_CLEAN("eam_asset_clean" , "EAM_资产清理"),
 	EAM_ASSET_INVENTORY("eam_asset_inventory" , "EAM_资产数据盘点"),
-
+	EAM_ASSET_HANDLE("eam_asset_handle" , "EAM_资产处置"),
 	EAM_EQUIPMENT_FAILURE_REGISTRATION("eam_equipment_failure_registration" , "EAM_设备故障登记"),
 
 	EAM_ASSET_CUST_INSPECT("eam_asset_cust_inspect" , "EAM_设备巡检"),

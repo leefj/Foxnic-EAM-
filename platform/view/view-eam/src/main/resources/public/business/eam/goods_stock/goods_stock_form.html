@@ -62,12 +62,6 @@
                     </div>
 
 
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('计量单位')}">计量单位</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="unit" id="unit" name="unit" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('计量单位') }" type="text" class="layui-input"  />
-                        </div>
-                    </div>
 
                 <!--结束：栏次内字段循环-->
             </div>
@@ -82,7 +76,7 @@
                         </div>
                     </div>
 
-                                    <div class="layui-form-item" >
+                  <div class="layui-form-item" >
                         <div class="layui-form-label "><div th:text="${lang.translate('物品条码')}">物品条码</div><div class="layui-required">*</div></div>
                         <div class="layui-input-block ">
                             <input lay-filter="barCode" id="barCode" name="barCode" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('物品条码') }" type="text" class="layui-input"    lay-verify="|required"  />
@@ -134,12 +128,20 @@
                         </div>
                     </div>
 
-                                    <div class="layui-form-item" >
+                <div class="layui-form-item" >
                         <div class="layui-form-label "><div th:text="${lang.translate('规格型号')}">规格型号</div><div class="layui-required">*</div></div>
                         <div class="layui-input-block ">
                             <input lay-filter="model" id="model" name="model" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('规格型号') }" type="text" class="layui-input"    lay-verify="|required"  />
                         </div>
                     </div>
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('计量单位')}">计量单位</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="unit" id="unit" name="unit" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('计量单位') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
 
                 <!--结束：栏次内字段循环-->
             </div>

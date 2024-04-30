@@ -11,9 +11,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.domain.hrm.Organization;
-import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -31,8 +31,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品
  * <p>库存物品 , 数据表 eam_goods_stock 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-23 18:19:06
- * @sign 011A3F63E7A9EA6CD3490022DB6E3DBE
+ * @since 2024-04-29 08:58:10
+ * @sign 6B40FDB588A8FE705CDACE280DA68955
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -250,6 +250,12 @@ public class GoodsStock extends Entity {
 	private String goodsId;
 	
 	/**
+	 * 价值类型：价值类型
+	*/
+	@ApiModelProperty(required = false,value="价值类型" , notes = "价值类型")
+	private String costType;
+	
+	/**
 	 * 入库数量：入库数量
 	*/
 	@ApiModelProperty(required = false,value="入库数量" , notes = "入库数量" , example = "0")
@@ -371,6 +377,12 @@ public class GoodsStock extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * costDict：costDict
+	*/
+	@ApiModelProperty(required = false,value="costDict" , notes = "costDict")
+	private DictItem costDict;
 	
 	/**
 	 * warehousePosition：warehousePosition
@@ -1229,6 +1241,25 @@ public class GoodsStock extends Entity {
 	}
 	
 	/**
+	 * 获得 价值类型<br>
+	 * 价值类型
+	 * @return 价值类型
+	*/
+	public String getCostType() {
+		return costType;
+	}
+	
+	/**
+	 * 设置 价值类型
+	 * @param costType 价值类型
+	 * @return 当前对象
+	*/
+	public GoodsStock setCostType(String costType) {
+		this.costType=costType;
+		return this;
+	}
+	
+	/**
 	 * 获得 入库数量<br>
 	 * 入库数量
 	 * @return 入库数量
@@ -1636,6 +1667,25 @@ public class GoodsStock extends Entity {
 	*/
 	public GoodsStock setTenantId(String tenantId) {
 		this.tenantId=tenantId;
+		return this;
+	}
+	
+	/**
+	 * 获得 costDict<br>
+	 * costDict
+	 * @return costDict
+	*/
+	public DictItem getCostDict() {
+		return costDict;
+	}
+	
+	/**
+	 * 设置 costDict
+	 * @param costDict costDict
+	 * @return 当前对象
+	*/
+	public GoodsStock setCostDict(DictItem costDict) {
+		this.costDict=costDict;
 		return this;
 	}
 	
@@ -2434,6 +2484,7 @@ public class GoodsStock extends Entity {
 		inst.setPid(this.getPid());
 		inst.setOwnerId(this.getOwnerId());
 		inst.setBusinessCode(this.getBusinessCode());
+		inst.setCostType(this.getCostType());
 		inst.setModel(this.getModel());
 		inst.setId(this.getId());
 		inst.setUnitPrice(this.getUnitPrice());
@@ -2485,6 +2536,7 @@ public class GoodsStock extends Entity {
 			inst.setRelatedAssetCount(this.getRelatedAssetCount());
 			inst.setGoods(this.getGoods());
 			inst.setParentGoodsStockList(this.getParentGoodsStockList());
+			inst.setCostDict(this.getCostDict());
 			inst.setSource(this.getSource());
 			inst.setOriginator(this.getOriginator());
 			inst.setGoodsModel(this.getGoodsModel());
@@ -2583,6 +2635,7 @@ public class GoodsStock extends Entity {
 			this.setPid(DataParser.parse(String.class, map.get(GoodsStockMeta.PID)));
 			this.setOwnerId(DataParser.parse(String.class, map.get(GoodsStockMeta.OWNER_ID)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(GoodsStockMeta.BUSINESS_CODE)));
+			this.setCostType(DataParser.parse(String.class, map.get(GoodsStockMeta.COST_TYPE)));
 			this.setModel(DataParser.parse(String.class, map.get(GoodsStockMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, map.get(GoodsStockMeta.ID)));
 			this.setUnitPrice(DataParser.parse(BigDecimal.class, map.get(GoodsStockMeta.UNIT_PRICE)));
@@ -2633,6 +2686,7 @@ public class GoodsStock extends Entity {
 			this.setGoodsStockSecurity(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_STOCK_SECURITY)));
 			this.setRelatedAssetCount(DataParser.parse(Integer.class, map.get(GoodsStockMeta.RELATED_ASSET_COUNT)));
 			this.setGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockMeta.GOODS)));
+			this.setCostDict(DataParser.parse(DictItem.class, map.get(GoodsStockMeta.COST_DICT)));
 			this.setSource(DataParser.parse(DictItem.class, map.get(GoodsStockMeta.SOURCE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(GoodsStockMeta.ORIGINATOR)));
 			this.setGoodsModel(DataParser.parse(String.class, map.get(GoodsStockMeta.GOODS_MODEL)));
@@ -2669,6 +2723,7 @@ public class GoodsStock extends Entity {
 				this.setPid( (String)map.get(GoodsStockMeta.PID));
 				this.setOwnerId( (String)map.get(GoodsStockMeta.OWNER_ID));
 				this.setBusinessCode( (String)map.get(GoodsStockMeta.BUSINESS_CODE));
+				this.setCostType( (String)map.get(GoodsStockMeta.COST_TYPE));
 				this.setModel( (String)map.get(GoodsStockMeta.MODEL));
 				this.setId( (String)map.get(GoodsStockMeta.ID));
 				this.setUnitPrice( (BigDecimal)map.get(GoodsStockMeta.UNIT_PRICE));
@@ -2719,6 +2774,7 @@ public class GoodsStock extends Entity {
 				this.setGoodsStockSecurity( (String)map.get(GoodsStockMeta.GOODS_STOCK_SECURITY));
 				this.setRelatedAssetCount( (Integer)map.get(GoodsStockMeta.RELATED_ASSET_COUNT));
 				this.setGoods( (GoodsStock)map.get(GoodsStockMeta.GOODS));
+				this.setCostDict( (DictItem)map.get(GoodsStockMeta.COST_DICT));
 				this.setSource( (DictItem)map.get(GoodsStockMeta.SOURCE));
 				this.setOriginator( (Employee)map.get(GoodsStockMeta.ORIGINATOR));
 				this.setGoodsModel( (String)map.get(GoodsStockMeta.GOODS_MODEL));
@@ -2768,6 +2824,7 @@ public class GoodsStock extends Entity {
 			this.setPid(DataParser.parse(String.class, r.getValue(GoodsStockMeta.PID)));
 			this.setOwnerId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.OWNER_ID)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(GoodsStockMeta.BUSINESS_CODE)));
+			this.setCostType(DataParser.parse(String.class, r.getValue(GoodsStockMeta.COST_TYPE)));
 			this.setModel(DataParser.parse(String.class, r.getValue(GoodsStockMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, r.getValue(GoodsStockMeta.ID)));
 			this.setUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockMeta.UNIT_PRICE)));
@@ -2825,6 +2882,7 @@ public class GoodsStock extends Entity {
 				this.setPid( (String)r.getValue(GoodsStockMeta.PID));
 				this.setOwnerId( (String)r.getValue(GoodsStockMeta.OWNER_ID));
 				this.setBusinessCode( (String)r.getValue(GoodsStockMeta.BUSINESS_CODE));
+				this.setCostType( (String)r.getValue(GoodsStockMeta.COST_TYPE));
 				this.setModel( (String)r.getValue(GoodsStockMeta.MODEL));
 				this.setId( (String)r.getValue(GoodsStockMeta.ID));
 				this.setUnitPrice( (BigDecimal)r.getValue(GoodsStockMeta.UNIT_PRICE));

@@ -38,6 +38,11 @@
             <div class="search-input-rows" style="opacity: 0">
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
+
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('价值类型')}" class="search-label costType-label">价值类型</span><span class="search-colon">:</span></div>
+                        <div id="costType" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_goods_cost_type'}" style="width:150px" extraParam="{}"></div>
+                    </div>
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 所属 , ownerId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 所属 , ownerTmpId ,typeName=text_input, isHideInSearch=true -->
@@ -49,7 +54,7 @@
                     <!-- 分类 , categoryId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 厂商 , manufacturerId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('厂商')}" class="search-label manufacturerId-label">厂商</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('物品厂商')}" class="search-label manufacturerId-label">厂商</span><span class="search-colon">:</span></div>
                         <div id="manufacturerId" th:data="${'/service-eam/eam-manufacturer/query-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
                     <!-- 默认单价 , unitPrice ,typeName=number_input, isHideInSearch=true -->
@@ -84,15 +89,14 @@
                     <!-- goodsStockSecurity , goodsStockSecurity ,typeName=text_input, isHideInSearch=true -->
                     <!-- 品牌 , brandId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('品牌')}" class="search-label brandId-label">品牌</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('物品品牌')}" class="search-label brandId-label">品牌</span><span class="search-colon">:</span></div>
                         <div id="brandId" th:data="${'/service-eam/eam-brand/query-paged-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
                     <!-- 规格型号 , model ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('规格型号')}" class="search-label model-label">规格型号</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('规格型号')}" class="search-label model-label">规格型号</span><span class="search-colon">:</span></div>
                         <input id="model" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
-
 
                 </div>
                 <!-- 搜索输入区域 -->
@@ -109,7 +113,7 @@
                     </div>
                     <!-- 物品条码 , barCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('物品条码')}" class="search-label barCode-label">物品条码</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('物品条码')}" class="search-label barCode-label">物品条码</span><span class="search-colon">:</span></div>
                         <input id="barCode" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 

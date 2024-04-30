@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-04 21:15:50
+ * @since 2024-04-30 19:46:35
  */
 
 
@@ -93,6 +93,8 @@ function ListPage() {
 					,{ field: 'ownerCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('归属') , templet: function (d) { return templet('ownerCode',d.ownerCode,d);}  }
 					,{ field: 'assetCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产编号') , templet: function (d) { return templet('assetCode',d.assetCode,d);}  }
 					,{ field: 'assetStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产状态'), templet: function (d) { return templet('assetStatus' ,fox.joinLabel(d.assetCycleStatus,"name",',','','assetStatus'),d);}}
+					,{ field: 'cleanOutType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('清理类型'), templet:function (d){ return templet('cleanOutType',fox.getEnumText(SELECT_CLEANOUTTYPE_DATA,d.cleanOutType,'','cleanOutType'),d);}}
+					,{ field: 'cleanTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('清理时间') ,templet: function (d) { return templet('cleanTime',fox.dateFormat(d.cleanTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'goodsId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('物品档案'), templet: function (d) { return templet('goodsId' ,fox.joinLabel(d.goods,"name",',','','goodsId'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'manufacturerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('厂商'), templet: function (d) { return templet('manufacturerId' ,fox.joinLabel(d.manufacturer,"manufacturerName",',','','manufacturerId'),d);}}
@@ -181,6 +183,7 @@ function ListPage() {
 					,{ field: 'collectionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('领用ID') , templet: function (d) { return templet('collectionId',d.collectionId,d);}  }
 					,{ field: 'borrowId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('借用ID') , templet: function (d) { return templet('borrowId',d.borrowId,d);}  }
 					,{ field: 'scrapId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报废ID') , templet: function (d) { return templet('scrapId',d.scrapId,d);}  }
+					,{ field: 'handleId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('处置ID') , templet: function (d) { return templet('handleId',d.handleId,d);}  }
 					,{ field: 'updateBy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('修改人ID') , templet: function (d) { return templet('updateBy',d.updateBy,d);}  }
 					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',d.originatorId,d);}  }
 					,{ field: 'chsType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('变更类型') , templet: function (d) { return templet('chsType',d.chsType,d);}  }
@@ -269,6 +272,7 @@ function ListPage() {
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.assetCode={ inputType:"button",value: $("#assetCode").val()};
 		value.assetStatus={ inputType:"select_box", value: getSelectedValue("#assetStatus","value") ,fillBy:["assetCycleStatus"]  , label:getSelectedValue("#assetStatus","nameStr") };
+		value.cleanOutType={ inputType:"select_box", value: getSelectedValue("#cleanOutType","value"), label:getSelectedValue("#cleanOutType","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.manufacturerId={ inputType:"select_box", value: getSelectedValue("#manufacturerId","value") ,fillBy:["manufacturer"]  , label:getSelectedValue("#manufacturerId","nameStr") };
 		value.model={ inputType:"button",value: $("#model").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
@@ -382,6 +386,32 @@ function ListPage() {
 						opts.push(window.pageExt.list.selectBoxDataTransform("assetStatus",{data:data[i],name:data[i].name,value:data[i].code},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].name,value:data[i].code});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 cleanOutType 下拉字段
+		fox.renderSelectBox({
+			el: "cleanOutType",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("cleanOutType",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("cleanOutType",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
 					}
 				}
 				return opts;

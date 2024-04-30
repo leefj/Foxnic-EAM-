@@ -46,7 +46,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 状态规则值接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-13 13:02:58
+ * @since 2024-04-30 13:29:20
 */
 
 @InDoc
@@ -57,7 +57,6 @@ public class AssetStatusRuleVController extends SuperController {
 	@Autowired
 	private IAssetStatusRuleVService assetStatusRuleVService;
 
-
 	/**
 	 * 添加状态规则值
 	*/
@@ -66,12 +65,14 @@ public class AssetStatusRuleVController extends SuperController {
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE , value = "操作编码" , required = false , dataTypeClass=String.class , example = "eam_asset_borrow"),
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE , value = "状态编码" , required = false , dataTypeClass=String.class , example = "borrow"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = AssetStatusRuleVServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssetStatusRuleVServiceProxy.INSERT)
 	public Result insert(AssetStatusRuleVVO assetStatusRuleVVO) {
+		
 		Result result=assetStatusRuleVService.insert(assetStatusRuleVVO,false);
 		return result;
 	}
@@ -89,6 +90,7 @@ public class AssetStatusRuleVController extends SuperController {
 	@SentinelResource(value = AssetStatusRuleVServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssetStatusRuleVServiceProxy.DELETE)
 	public Result deleteById(String id) {
+		
 		this.validator().asserts(id).require("缺少id值");
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
@@ -117,7 +119,7 @@ public class AssetStatusRuleVController extends SuperController {
 	@SentinelResource(value = AssetStatusRuleVServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssetStatusRuleVServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
-
+		
 		// 参数校验
 		this.validator().asserts(ids).require("缺少ids参数");
 		if(this.validator().failure()) {
@@ -168,12 +170,14 @@ public class AssetStatusRuleVController extends SuperController {
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE , value = "操作编码" , required = false , dataTypeClass=String.class , example = "eam_asset_borrow"),
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE , value = "状态编码" , required = false , dataTypeClass=String.class , example = "borrow"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { AssetStatusRuleVVOMeta.PAGE_INDEX , AssetStatusRuleVVOMeta.PAGE_SIZE , AssetStatusRuleVVOMeta.SEARCH_FIELD , AssetStatusRuleVVOMeta.FUZZY_FIELD , AssetStatusRuleVVOMeta.SEARCH_VALUE , AssetStatusRuleVVOMeta.DIRTY_FIELDS , AssetStatusRuleVVOMeta.SORT_FIELD , AssetStatusRuleVVOMeta.SORT_TYPE , AssetStatusRuleVVOMeta.DATA_ORIGIN , AssetStatusRuleVVOMeta.QUERY_LOGIC , AssetStatusRuleVVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { AssetStatusRuleVVOMeta.PAGE_INDEX , AssetStatusRuleVVOMeta.PAGE_SIZE , AssetStatusRuleVVOMeta.SEARCH_FIELD , AssetStatusRuleVVOMeta.FUZZY_FIELD , AssetStatusRuleVVOMeta.SEARCH_VALUE , AssetStatusRuleVVOMeta.DIRTY_FIELDS , AssetStatusRuleVVOMeta.SORT_FIELD , AssetStatusRuleVVOMeta.SORT_TYPE , AssetStatusRuleVVOMeta.DATA_ORIGIN , AssetStatusRuleVVOMeta.QUERY_LOGIC , AssetStatusRuleVVOMeta.REQUEST_ACTION , AssetStatusRuleVVOMeta.IDS } )
 	@SentinelResource(value = AssetStatusRuleVServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssetStatusRuleVServiceProxy.UPDATE)
 	public Result update(AssetStatusRuleVVO assetStatusRuleVVO) {
+		
 		Result result=assetStatusRuleVService.update(assetStatusRuleVVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -187,12 +191,14 @@ public class AssetStatusRuleVController extends SuperController {
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE , value = "操作编码" , required = false , dataTypeClass=String.class , example = "eam_asset_borrow"),
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE , value = "状态编码" , required = false , dataTypeClass=String.class , example = "borrow"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { AssetStatusRuleVVOMeta.PAGE_INDEX , AssetStatusRuleVVOMeta.PAGE_SIZE , AssetStatusRuleVVOMeta.SEARCH_FIELD , AssetStatusRuleVVOMeta.FUZZY_FIELD , AssetStatusRuleVVOMeta.SEARCH_VALUE , AssetStatusRuleVVOMeta.DIRTY_FIELDS , AssetStatusRuleVVOMeta.SORT_FIELD , AssetStatusRuleVVOMeta.SORT_TYPE , AssetStatusRuleVVOMeta.DATA_ORIGIN , AssetStatusRuleVVOMeta.QUERY_LOGIC , AssetStatusRuleVVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { AssetStatusRuleVVOMeta.PAGE_INDEX , AssetStatusRuleVVOMeta.PAGE_SIZE , AssetStatusRuleVVOMeta.SEARCH_FIELD , AssetStatusRuleVVOMeta.FUZZY_FIELD , AssetStatusRuleVVOMeta.SEARCH_VALUE , AssetStatusRuleVVOMeta.DIRTY_FIELDS , AssetStatusRuleVVOMeta.SORT_FIELD , AssetStatusRuleVVOMeta.SORT_TYPE , AssetStatusRuleVVOMeta.DATA_ORIGIN , AssetStatusRuleVVOMeta.QUERY_LOGIC , AssetStatusRuleVVOMeta.REQUEST_ACTION , AssetStatusRuleVVOMeta.IDS } )
 	@SentinelResource(value = AssetStatusRuleVServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssetStatusRuleVServiceProxy.SAVE)
 	public Result save(AssetStatusRuleVVO assetStatusRuleVVO) {
+		
 		Result result=assetStatusRuleVService.save(assetStatusRuleVVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -209,6 +215,7 @@ public class AssetStatusRuleVController extends SuperController {
 	@SentinelResource(value = AssetStatusRuleVServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssetStatusRuleVServiceProxy.GET_BY_ID)
 	public Result<AssetStatusRuleV> getById(String id) {
+		
 		Result<AssetStatusRuleV> result=new Result<>();
 		AssetStatusRuleV assetStatusRuleV=assetStatusRuleVService.getById(id);
 		// join 关联的对象
@@ -233,6 +240,7 @@ public class AssetStatusRuleVController extends SuperController {
 		@SentinelResource(value = AssetStatusRuleVServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssetStatusRuleVServiceProxy.GET_BY_IDS)
 	public Result<List<AssetStatusRuleV>> getByIds(List<String> ids) {
+		
 		Result<List<AssetStatusRuleV>> result=new Result<>();
 		List<AssetStatusRuleV> list=assetStatusRuleVService.queryListByIds(ids);
 		result.success(true).data(list);
@@ -248,11 +256,13 @@ public class AssetStatusRuleVController extends SuperController {
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE , value = "操作编码" , required = false , dataTypeClass=String.class , example = "eam_asset_borrow"),
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE , value = "状态编码" , required = false , dataTypeClass=String.class , example = "borrow"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { AssetStatusRuleVVOMeta.PAGE_INDEX , AssetStatusRuleVVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = AssetStatusRuleVServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssetStatusRuleVServiceProxy.QUERY_LIST)
 	public Result<List<AssetStatusRuleV>> queryList(AssetStatusRuleVVO sample) {
+		
 		Result<List<AssetStatusRuleV>> result=new Result<>();
 		List<AssetStatusRuleV> list=assetStatusRuleVService.queryList(sample);
 		result.success(true).data(list);
@@ -268,11 +278,13 @@ public class AssetStatusRuleVController extends SuperController {
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE , value = "操作编码" , required = false , dataTypeClass=String.class , example = "eam_asset_borrow"),
 		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE , value = "状态编码" , required = false , dataTypeClass=String.class , example = "borrow"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.UPDATE_BY , value = "修改人ID" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = AssetStatusRuleVServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssetStatusRuleVServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<AssetStatusRuleV>> queryPagedList(AssetStatusRuleVVO sample) {
+		
 		Result<PagedList<AssetStatusRuleV>> result=new Result<>();
 		PagedList<AssetStatusRuleV> list=assetStatusRuleVService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
 		// join 关联的对象
@@ -283,7 +295,6 @@ public class AssetStatusRuleVController extends SuperController {
 		result.success(true).data(list);
 		return result;
 	}
-
 
 
 

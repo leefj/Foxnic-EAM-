@@ -3,6 +3,12 @@ package com.dt.platform.proxy.eam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.eam.AssetHandle;
 import com.dt.platform.domain.eam.AssetHandleVO;
@@ -10,17 +16,16 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
- * 资产处置  控制器服务代理
+ * 资产处置 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:45
+ * @since 2024-04-30 12:55:54
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetHandleServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
-public interface AssetHandleServiceProxy {
+public interface AssetHandleServiceProxy extends BpmCallbackController {
 
     /**
      * 基础路径 , service-eam
@@ -83,19 +88,9 @@ public interface AssetHandleServiceProxy {
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
-     * 导出资产处置数据(Excel)
+     * 流程事件回调接收接口
      */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载资产处置导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入资产处置数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
+    public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
 
     /**
      * 添加资产处置
@@ -134,7 +129,7 @@ public interface AssetHandleServiceProxy {
     Result<AssetHandle> getById(@RequestParam(name = "id") String id);
 
     /**
-     * 批量删除资产处置
+     * 获取多个资产处置
      */
     @RequestMapping(AssetHandleServiceProxy.GET_BY_IDS)
     Result<List<AssetHandle>> getByIds(@RequestParam(name = "ids") List<String> ids);
@@ -150,6 +145,12 @@ public interface AssetHandleServiceProxy {
      */
     @RequestMapping(AssetHandleServiceProxy.QUERY_PAGED_LIST)
     Result<PagedList<AssetHandle>> queryPagedList(@RequestParam(name = "sample") AssetHandleVO sample);
+
+    /**
+     * 分页查询资产处置
+     */
+    @RequestMapping(AssetHandleServiceProxy.BPM_CALLBACK)
+    BpmActionResult onProcessCallback(@RequestParam(name = "event") BpmEvent event);
 
     /**
      * 控制器类名

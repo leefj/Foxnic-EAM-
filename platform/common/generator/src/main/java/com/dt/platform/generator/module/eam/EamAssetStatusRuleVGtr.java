@@ -37,7 +37,9 @@ public class EamAssetStatusRuleVGtr extends BaseCodeGenerator{
                 }
         );
 
+        cfg.view().search().disable();
 
+        cfg.view().list().disableBatchDelete();
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
@@ -47,10 +49,10 @@ public class EamAssetStatusRuleVGtr extends BaseCodeGenerator{
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(200);
 
-        cfg.view().list().addJsVariable("OPER_CODE","[[${operCode}]]","OPER_CODE");
 
+        cfg.view().field(EAMTables.EAM_ASSET_STATUS_RULE_V.UPDATE_BY).table().disable(true);
 
-        cfg.view().field(EAMTables.EAM_ASSET_STATUS_RULE_V.OPER_CODE).form().validate().required()
+        cfg.view().field(EAMTables.EAM_ASSET_STATUS_RULE_V.OPER_CODE)
                 .form().selectBox().queryApi(AssetStatusRuleServiceProxy.QUERY_LIST)
                 .paging(false).filter(true).toolbar(false)
                 .valueField(AssetStatusRuleMeta.OPER_CODE).
@@ -69,12 +71,12 @@ public class EamAssetStatusRuleVGtr extends BaseCodeGenerator{
         cfg.view().formWindow().bottomSpace(200);
         cfg.view().form().addGroup(null,
                 new Object[]{
-                        EAMTables.EAM_ASSET_STATUS_RULE_V.OPER_CODE,
                         EAMTables.EAM_ASSET_STATUS_RULE_V.STATUS_CODE
                 }
         );
 
-
+        cfg.view().form().addJsVariable("OPER_CODE","[[${operCode}]]","operCode");
+        cfg.view().list().addJsVariable("OPER_CODE","[[${operCode}]]","operCode");
 
         //文件生成覆盖模式
         cfg.overrides()

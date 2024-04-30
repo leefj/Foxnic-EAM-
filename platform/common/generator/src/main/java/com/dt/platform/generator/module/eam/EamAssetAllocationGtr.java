@@ -6,12 +6,7 @@ import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetAllocation;
 import com.dt.platform.domain.eam.Position;
 import com.dt.platform.domain.eam.meta.AssetAllocationMeta;
-import com.dt.platform.domain.eam.meta.AssetAllocationVOMeta;
-import com.dt.platform.domain.eam.meta.AssetBorrowVOMeta;
-import com.dt.platform.domain.eam.meta.AssetEmployeeApplyMeta;
-import com.dt.platform.eam.page.AssetAllocationPageController;
-import com.dt.platform.eam.service.impl.AssetHandleServiceImpl;
-import com.dt.platform.eam.service.impl.AssetItemServiceImpl;
+
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.service.impl.HostMidServiceImpl;
 import com.dt.platform.proxy.eam.AssetAllocationServiceProxy;

@@ -7,8 +7,8 @@ import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
 import java.util.Date;
+import java.math.BigDecimal;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
 import java.util.Map;
@@ -34,8 +34,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-04 21:15:48
- * @sign 773756949FD1992EA88763EAB924F2E0
+ * @since 2024-04-30 19:46:25
+ * @sign AC160EDCBA59CF80D2F77801EFB74602
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -105,7 +105,7 @@ public class Asset extends Entity {
 	/**
 	 * 资产状态：资产状态
 	*/
-	@ApiModelProperty(required = false,value="资产状态" , notes = "资产状态" , example = "using")
+	@ApiModelProperty(required = false,value="资产状态" , notes = "资产状态" , example = "scrap")
 	private String assetStatus;
 	
 	/**
@@ -115,10 +115,22 @@ public class Asset extends Entity {
 	private String display;
 	
 	/**
+	 * 清理类型：清理类型
+	*/
+	@ApiModelProperty(required = false,value="清理类型" , notes = "清理类型")
+	private String cleanOutType;
+	
+	/**
 	 * 是否清理：是否清理
 	*/
 	@ApiModelProperty(required = false,value="是否清理" , notes = "是否清理" , example = "0")
 	private String cleanOut;
+	
+	/**
+	 * 清理时间：清理时间
+	*/
+	@ApiModelProperty(required = false,value="清理时间" , notes = "清理时间")
+	private Date cleanTime;
 	
 	/**
 	 * 标准物品档案：标准物品档案
@@ -195,7 +207,7 @@ public class Asset extends Entity {
 	/**
 	 * 使用人员：使用人员
 	*/
-	@ApiModelProperty(required = false,value="使用人员" , notes = "使用人员")
+	@ApiModelProperty(required = false,value="使用人员" , notes = "使用人员" , example = "E001")
 	private String useUserId;
 	
 	/**
@@ -661,6 +673,12 @@ public class Asset extends Entity {
 	private String scrapId;
 	
 	/**
+	 * 处置ID：处置ID
+	*/
+	@ApiModelProperty(required = false,value="处置ID" , notes = "处置ID")
+	private String handleId;
+	
+	/**
 	 * 创建人ID：创建人ID
 	*/
 	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
@@ -681,7 +699,7 @@ public class Asset extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-12-17 06:56:52")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2024-03-29 07:25:48")
 	private Date updateTime;
 	
 	/**
@@ -1203,6 +1221,25 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 清理类型<br>
+	 * 清理类型
+	 * @return 清理类型
+	*/
+	public String getCleanOutType() {
+		return cleanOutType;
+	}
+	
+	/**
+	 * 设置 清理类型
+	 * @param cleanOutType 清理类型
+	 * @return 当前对象
+	*/
+	public Asset setCleanOutType(String cleanOutType) {
+		this.cleanOutType=cleanOutType;
+		return this;
+	}
+	
+	/**
 	 * 获得 是否清理<br>
 	 * 是否清理
 	 * @return 是否清理
@@ -1218,6 +1255,25 @@ public class Asset extends Entity {
 	*/
 	public Asset setCleanOut(String cleanOut) {
 		this.cleanOut=cleanOut;
+		return this;
+	}
+	
+	/**
+	 * 获得 清理时间<br>
+	 * 清理时间
+	 * @return 清理时间
+	*/
+	public Date getCleanTime() {
+		return cleanTime;
+	}
+	
+	/**
+	 * 设置 清理时间
+	 * @param cleanTime 清理时间
+	 * @return 当前对象
+	*/
+	public Asset setCleanTime(Date cleanTime) {
+		this.cleanTime=cleanTime;
 		return this;
 	}
 	
@@ -2932,6 +2988,25 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 处置ID<br>
+	 * 处置ID
+	 * @return 处置ID
+	*/
+	public String getHandleId() {
+		return handleId;
+	}
+	
+	/**
+	 * 设置 处置ID
+	 * @param handleId 处置ID
+	 * @return 当前对象
+	*/
+	public Asset setHandleId(String handleId) {
+		this.handleId=handleId;
+		return this;
+	}
+	
+	/**
 	 * 获得 创建人ID<br>
 	 * 创建人ID
 	 * @return 创建人ID
@@ -4099,6 +4174,7 @@ public class Asset extends Entity {
 		inst.setEquipmentCode(this.getEquipmentCode());
 		inst.setCustomerInfo(this.getCustomerInfo());
 		inst.setPurchaseUnitPrice(this.getPurchaseUnitPrice());
+		inst.setCleanOutType(this.getCleanOutType());
 		inst.setApprovalOpinion(this.getApprovalOpinion());
 		inst.setMaintenanceStatus(this.getMaintenanceStatus());
 		inst.setNavPrice(this.getNavPrice());
@@ -4157,6 +4233,7 @@ public class Asset extends Entity {
 		inst.setTenantId(this.getTenantId());
 		inst.setRfid(this.getRfid());
 		inst.setMaintenanceStartDate(this.getMaintenanceStartDate());
+		inst.setHandleId(this.getHandleId());
 		inst.setLastVerificationDate(this.getLastVerificationDate());
 		inst.setUseUserId(this.getUseUserId());
 		inst.setContacts(this.getContacts());
@@ -4177,6 +4254,7 @@ public class Asset extends Entity {
 		inst.setCurrentYearDepreciation(this.getCurrentYearDepreciation());
 		inst.setUseOrganizationId(this.getUseOrganizationId());
 		inst.setEquipmentLabel(this.getEquipmentLabel());
+		inst.setCleanTime(this.getCleanTime());
 		inst.setUnit(this.getUnit());
 		inst.setOwnCompanyId(this.getOwnCompanyId());
 		inst.setBillId(this.getBillId());
@@ -4316,6 +4394,7 @@ public class Asset extends Entity {
 			this.setEquipmentCode(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_CODE)));
 			this.setCustomerInfo(DataParser.parse(String.class, map.get(AssetMeta.CUSTOMER_INFO)));
 			this.setPurchaseUnitPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.PURCHASE_UNIT_PRICE)));
+			this.setCleanOutType(DataParser.parse(String.class, map.get(AssetMeta.CLEAN_OUT_TYPE)));
 			this.setApprovalOpinion(DataParser.parse(String.class, map.get(AssetMeta.APPROVAL_OPINION)));
 			this.setMaintenanceStatus(DataParser.parse(String.class, map.get(AssetMeta.MAINTENANCE_STATUS)));
 			this.setNavPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.NAV_PRICE)));
@@ -4374,6 +4453,7 @@ public class Asset extends Entity {
 			this.setTenantId(DataParser.parse(String.class, map.get(AssetMeta.TENANT_ID)));
 			this.setRfid(DataParser.parse(String.class, map.get(AssetMeta.RFID)));
 			this.setMaintenanceStartDate(DataParser.parse(Date.class, map.get(AssetMeta.MAINTENANCE_START_DATE)));
+			this.setHandleId(DataParser.parse(String.class, map.get(AssetMeta.HANDLE_ID)));
 			this.setLastVerificationDate(DataParser.parse(Date.class, map.get(AssetMeta.LAST_VERIFICATION_DATE)));
 			this.setUseUserId(DataParser.parse(String.class, map.get(AssetMeta.USE_USER_ID)));
 			this.setContacts(DataParser.parse(String.class, map.get(AssetMeta.CONTACTS)));
@@ -4394,6 +4474,7 @@ public class Asset extends Entity {
 			this.setCurrentYearDepreciation(DataParser.parse(BigDecimal.class, map.get(AssetMeta.CURRENT_YEAR_DEPRECIATION)));
 			this.setUseOrganizationId(DataParser.parse(String.class, map.get(AssetMeta.USE_ORGANIZATION_ID)));
 			this.setEquipmentLabel(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_LABEL)));
+			this.setCleanTime(DataParser.parse(Date.class, map.get(AssetMeta.CLEAN_TIME)));
 			this.setUnit(DataParser.parse(String.class, map.get(AssetMeta.UNIT)));
 			this.setOwnCompanyId(DataParser.parse(String.class, map.get(AssetMeta.OWN_COMPANY_ID)));
 			this.setBillId(DataParser.parse(String.class, map.get(AssetMeta.BILL_ID)));
@@ -4473,6 +4554,7 @@ public class Asset extends Entity {
 				this.setEquipmentCode( (String)map.get(AssetMeta.EQUIPMENT_CODE));
 				this.setCustomerInfo( (String)map.get(AssetMeta.CUSTOMER_INFO));
 				this.setPurchaseUnitPrice( (BigDecimal)map.get(AssetMeta.PURCHASE_UNIT_PRICE));
+				this.setCleanOutType( (String)map.get(AssetMeta.CLEAN_OUT_TYPE));
 				this.setApprovalOpinion( (String)map.get(AssetMeta.APPROVAL_OPINION));
 				this.setMaintenanceStatus( (String)map.get(AssetMeta.MAINTENANCE_STATUS));
 				this.setNavPrice( (BigDecimal)map.get(AssetMeta.NAV_PRICE));
@@ -4531,6 +4613,7 @@ public class Asset extends Entity {
 				this.setTenantId( (String)map.get(AssetMeta.TENANT_ID));
 				this.setRfid( (String)map.get(AssetMeta.RFID));
 				this.setMaintenanceStartDate( (Date)map.get(AssetMeta.MAINTENANCE_START_DATE));
+				this.setHandleId( (String)map.get(AssetMeta.HANDLE_ID));
 				this.setLastVerificationDate( (Date)map.get(AssetMeta.LAST_VERIFICATION_DATE));
 				this.setUseUserId( (String)map.get(AssetMeta.USE_USER_ID));
 				this.setContacts( (String)map.get(AssetMeta.CONTACTS));
@@ -4551,6 +4634,7 @@ public class Asset extends Entity {
 				this.setCurrentYearDepreciation( (BigDecimal)map.get(AssetMeta.CURRENT_YEAR_DEPRECIATION));
 				this.setUseOrganizationId( (String)map.get(AssetMeta.USE_ORGANIZATION_ID));
 				this.setEquipmentLabel( (String)map.get(AssetMeta.EQUIPMENT_LABEL));
+				this.setCleanTime( (Date)map.get(AssetMeta.CLEAN_TIME));
 				this.setUnit( (String)map.get(AssetMeta.UNIT));
 				this.setOwnCompanyId( (String)map.get(AssetMeta.OWN_COMPANY_ID));
 				this.setBillId( (String)map.get(AssetMeta.BILL_ID));
@@ -4643,6 +4727,7 @@ public class Asset extends Entity {
 			this.setEquipmentCode(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_CODE)));
 			this.setCustomerInfo(DataParser.parse(String.class, r.getValue(AssetMeta.CUSTOMER_INFO)));
 			this.setPurchaseUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.PURCHASE_UNIT_PRICE)));
+			this.setCleanOutType(DataParser.parse(String.class, r.getValue(AssetMeta.CLEAN_OUT_TYPE)));
 			this.setApprovalOpinion(DataParser.parse(String.class, r.getValue(AssetMeta.APPROVAL_OPINION)));
 			this.setMaintenanceStatus(DataParser.parse(String.class, r.getValue(AssetMeta.MAINTENANCE_STATUS)));
 			this.setNavPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.NAV_PRICE)));
@@ -4701,6 +4786,7 @@ public class Asset extends Entity {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetMeta.TENANT_ID)));
 			this.setRfid(DataParser.parse(String.class, r.getValue(AssetMeta.RFID)));
 			this.setMaintenanceStartDate(DataParser.parse(Date.class, r.getValue(AssetMeta.MAINTENANCE_START_DATE)));
+			this.setHandleId(DataParser.parse(String.class, r.getValue(AssetMeta.HANDLE_ID)));
 			this.setLastVerificationDate(DataParser.parse(Date.class, r.getValue(AssetMeta.LAST_VERIFICATION_DATE)));
 			this.setUseUserId(DataParser.parse(String.class, r.getValue(AssetMeta.USE_USER_ID)));
 			this.setContacts(DataParser.parse(String.class, r.getValue(AssetMeta.CONTACTS)));
@@ -4721,6 +4807,7 @@ public class Asset extends Entity {
 			this.setCurrentYearDepreciation(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.CURRENT_YEAR_DEPRECIATION)));
 			this.setUseOrganizationId(DataParser.parse(String.class, r.getValue(AssetMeta.USE_ORGANIZATION_ID)));
 			this.setEquipmentLabel(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_LABEL)));
+			this.setCleanTime(DataParser.parse(Date.class, r.getValue(AssetMeta.CLEAN_TIME)));
 			this.setUnit(DataParser.parse(String.class, r.getValue(AssetMeta.UNIT)));
 			this.setOwnCompanyId(DataParser.parse(String.class, r.getValue(AssetMeta.OWN_COMPANY_ID)));
 			this.setBillId(DataParser.parse(String.class, r.getValue(AssetMeta.BILL_ID)));
@@ -4769,6 +4856,7 @@ public class Asset extends Entity {
 				this.setEquipmentCode( (String)r.getValue(AssetMeta.EQUIPMENT_CODE));
 				this.setCustomerInfo( (String)r.getValue(AssetMeta.CUSTOMER_INFO));
 				this.setPurchaseUnitPrice( (BigDecimal)r.getValue(AssetMeta.PURCHASE_UNIT_PRICE));
+				this.setCleanOutType( (String)r.getValue(AssetMeta.CLEAN_OUT_TYPE));
 				this.setApprovalOpinion( (String)r.getValue(AssetMeta.APPROVAL_OPINION));
 				this.setMaintenanceStatus( (String)r.getValue(AssetMeta.MAINTENANCE_STATUS));
 				this.setNavPrice( (BigDecimal)r.getValue(AssetMeta.NAV_PRICE));
@@ -4827,6 +4915,7 @@ public class Asset extends Entity {
 				this.setTenantId( (String)r.getValue(AssetMeta.TENANT_ID));
 				this.setRfid( (String)r.getValue(AssetMeta.RFID));
 				this.setMaintenanceStartDate( (Date)r.getValue(AssetMeta.MAINTENANCE_START_DATE));
+				this.setHandleId( (String)r.getValue(AssetMeta.HANDLE_ID));
 				this.setLastVerificationDate( (Date)r.getValue(AssetMeta.LAST_VERIFICATION_DATE));
 				this.setUseUserId( (String)r.getValue(AssetMeta.USE_USER_ID));
 				this.setContacts( (String)r.getValue(AssetMeta.CONTACTS));
@@ -4847,6 +4936,7 @@ public class Asset extends Entity {
 				this.setCurrentYearDepreciation( (BigDecimal)r.getValue(AssetMeta.CURRENT_YEAR_DEPRECIATION));
 				this.setUseOrganizationId( (String)r.getValue(AssetMeta.USE_ORGANIZATION_ID));
 				this.setEquipmentLabel( (String)r.getValue(AssetMeta.EQUIPMENT_LABEL));
+				this.setCleanTime( (Date)r.getValue(AssetMeta.CLEAN_TIME));
 				this.setUnit( (String)r.getValue(AssetMeta.UNIT));
 				this.setOwnCompanyId( (String)r.getValue(AssetMeta.OWN_COMPANY_ID));
 				this.setBillId( (String)r.getValue(AssetMeta.BILL_ID));

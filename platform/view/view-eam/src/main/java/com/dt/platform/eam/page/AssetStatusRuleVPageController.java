@@ -50,7 +50,8 @@ public class AssetStatusRuleVPageController extends ViewController {
 	 * 状态规则值 表单页面
 	 */
 	@RequestMapping("/asset_status_rule_v_form.html")
-	public String form(Model model,HttpServletRequest request , String id) {
+	public String form(Model model,HttpServletRequest request , String id,String operCode) {
+		model.addAttribute("operCode",operCode);
 		return prefix+"/asset_status_rule_v_form";
 	}
 }

@@ -93,6 +93,10 @@
                         <input id="model" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('价值类型')}" class="search-label costType-label">价值类型</span><span class="search-colon">:</span></div>
+                        <div id="costType" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_goods_cost_type'}" style="width:180px" extraParam="{}"></div>
+                    </div>
 
                 </div>
                 <!-- 搜索输入区域 -->

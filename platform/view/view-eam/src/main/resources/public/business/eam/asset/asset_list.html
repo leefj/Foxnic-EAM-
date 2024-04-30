@@ -2,7 +2,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-04 21:15:49
+ * @since 2024-04-30 19:46:34
  */
  -->
  <!DOCTYPE html>
@@ -52,6 +52,7 @@
                     <!-- 归属 , ownerCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 是否显示 , display ,typeName=text_input, isHideInSearch=true -->
                     <!-- 是否清理 , cleanOut ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 清理时间 , cleanTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 物品档案 , goodsId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 标准型号物品图片 , pictureId ,typeName=upload, isHideInSearch=true -->
                     <!-- 计量单位 , unit ,typeName=text_input, isHideInSearch=true -->
@@ -125,6 +126,7 @@
                     <!-- 领用ID , collectionId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 借用ID , borrowId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 报废ID , scrapId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 处置ID , handleId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 修改人ID , updateBy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 制单人 , originatorId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 变更类型 , chsType ,typeName=text_input, isHideInSearch=true -->
@@ -268,6 +270,16 @@
 
 
                 </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 清理类型 , cleanOutType ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('清理类型')}" class="search-label cleanOutType-label">清理类型</span><span class="search-colon">:</span></div>
+                        <div id="cleanOutType" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetOperateCleanOutEnum')}" style="width:140px" extraParam="{}"></div>
+                    </div>
+
+
+                </div>
             </div>
 
 
@@ -316,6 +328,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}]];
+    var SELECT_CLEANOUTTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetOperateCleanOutEnum')}]];
     var RADIO_EQUIPMENTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetEquipmentStatusEnum')}]];
     var AUTH_PREFIX="eam_asset";
 

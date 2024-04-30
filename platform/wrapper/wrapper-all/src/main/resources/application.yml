@@ -8,7 +8,6 @@ server:
       timeout: 12000s
   # 应用web访问端口,可按照实际情况进行修改
   port: 8089
-
 spring:
   main:
     allow-bean-definition-overriding: true
@@ -209,7 +208,7 @@ foxnic:
     enable: true
     debug:
       enable: true
-      process-definition-code-list: hr_person_income_certificate_apply,hr_recruitment_plan_apply,hr_personnel_requirement_apply,hr_person_confirm,hr_person_leave,hr_person_absencehr_person_official_business,eam_asset_stock_goods_use,bpm_common_action2,bpm_common_action1,eam_asset_equipment_repair,sys_bpm_common,eam_asset_purchase_apply,eam_asset_employee_apply,eam_asset_employee_handover,eam_asset_employee_loss,eam_asset_employee_repair,eam_asset_storage,eam_asset_tranfer,eam_asset_allocate,eam_asset_borrow,eam_asset_scrap,eam_asset_collection,eam_asset_repair_order,eam_asset_collection_return,demo-busi-case
+      process-definition-code-list: eam_asset_handle,hr_person_income_certificate_apply,hr_recruitment_plan_apply,hr_personnel_requirement_apply,hr_person_confirm,hr_person_leave,hr_person_absencehr_person_official_business,eam_asset_stock_goods_use,bpm_common_action2,bpm_common_action1,eam_asset_equipment_repair,sys_bpm_common,eam_asset_purchase_apply,eam_asset_employee_apply,eam_asset_employee_handover,eam_asset_employee_loss,eam_asset_employee_repair,eam_asset_storage,eam_asset_tranfer,eam_asset_allocate,eam_asset_borrow,eam_asset_scrap,eam_asset_collection,eam_asset_repair_order,eam_asset_collection_return,demo-busi-case
   # 设置 Join 的二级缓存
   cache:
     # 默认配置

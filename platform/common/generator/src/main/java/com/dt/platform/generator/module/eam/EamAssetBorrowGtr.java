@@ -14,8 +14,7 @@ import com.dt.platform.domain.eam.meta.AssetCollectionMeta;
 import com.dt.platform.domain.knowledgebase.meta.ContentMeta;
 import com.dt.platform.domain.ops.meta.HostVOMeta;
 import com.dt.platform.eam.page.AssetBorrowPageController;
-import com.dt.platform.eam.service.impl.AssetHandleServiceImpl;
-import com.dt.platform.eam.service.impl.AssetItemServiceImpl;
+
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.service.impl.HostMidServiceImpl;
 import com.dt.platform.proxy.eam.AssetBorrowServiceProxy;

@@ -5,10 +5,7 @@ import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.Position;
 import com.dt.platform.domain.eam.meta.*;
-import com.dt.platform.eam.page.AssetBorrowPageController;
-import com.dt.platform.eam.page.AssetCollectionPageController;
-import com.dt.platform.eam.service.impl.AssetHandleServiceImpl;
-import com.dt.platform.eam.service.impl.AssetItemServiceImpl;
+
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.service.impl.HostMidServiceImpl;
 import com.dt.platform.proxy.eam.AssetBorrowServiceProxy;

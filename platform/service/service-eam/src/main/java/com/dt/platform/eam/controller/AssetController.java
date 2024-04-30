@@ -373,7 +373,10 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
-		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = "")
+		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = AssetVOMeta.CLEAN_OUT_TYPE, value = "清理类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.HANDLE_ID, value = "处置ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.CLEAN_TIME, value = "清理时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -399,22 +402,19 @@ public class AssetController extends SuperController {
         return result;
     }
 
-
-
-
-	/**
-	 * 删除资产
-	 */
-	@ApiOperation(value = "删除资产")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "489517168661102592")
+    /**
+     * 删除资产
+     */
+    @ApiOperation(value = "删除资产")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = AssetVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "489517168661102592")
 	})
-	@ApiOperationSupport(order = 2)
-	@SentinelResource(value = AssetServiceProxy.SCAN_LABEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-	@PostMapping(AssetServiceProxy.SCAN_LABEL)
-	public Result<Asset> scanLabel(String txt,String scene) {
-		return assetService.scanLabel(txt,scene);
-	}
+    @ApiOperationSupport(order = 2)
+    @SentinelResource(value = AssetServiceProxy.SCAN_LABEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetServiceProxy.SCAN_LABEL)
+    public Result<Asset> scanLabel(String txt, String scene) {
+        return assetService.scanLabel(txt, scene);
+    }
 
     /**
      * 删除资产
@@ -738,7 +738,10 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
-		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = "")
+		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = AssetVOMeta.CLEAN_OUT_TYPE, value = "清理类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.HANDLE_ID, value = "处置ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.CLEAN_TIME, value = "清理时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE, AssetVOMeta.SEARCH_FIELD, AssetVOMeta.FUZZY_FIELD, AssetVOMeta.SEARCH_VALUE, AssetVOMeta.SORT_FIELD, AssetVOMeta.SORT_TYPE, AssetVOMeta.IDS })
     @SentinelResource(value = AssetServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -944,7 +947,10 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
-		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = "")
+		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = AssetVOMeta.CLEAN_OUT_TYPE, value = "清理类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.HANDLE_ID, value = "处置ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.CLEAN_TIME, value = "清理时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE, AssetVOMeta.SEARCH_FIELD, AssetVOMeta.FUZZY_FIELD, AssetVOMeta.SEARCH_VALUE, AssetVOMeta.SORT_FIELD, AssetVOMeta.SORT_TYPE, AssetVOMeta.IDS })
     @SentinelResource(value = AssetServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1170,7 +1176,10 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
-		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = "")
+		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = AssetVOMeta.CLEAN_OUT_TYPE, value = "清理类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.HANDLE_ID, value = "处置ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.CLEAN_TIME, value = "清理时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1356,7 +1365,10 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.UPDATE_BY, value = "修改人ID", required = false, dataTypeClass = String.class, example = "110588348101165911"),
-		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = "")
+		@ApiImplicitParam(name = AssetVOMeta.LAST_INSPECT_TIME, value = "巡检时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = AssetVOMeta.CLEAN_OUT_TYPE, value = "清理类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.HANDLE_ID, value = "处置ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.CLEAN_TIME, value = "清理时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

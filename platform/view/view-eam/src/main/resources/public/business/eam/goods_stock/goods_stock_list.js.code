@@ -1,7 +1,7 @@
 /**
  * 库存物品 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-23 18:19:08
+ * @since 2024-04-29 08:58:12
  */
 
 
@@ -104,6 +104,7 @@ function ListPage() {
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('库位'), templet: function (d) { return templet('positionId' ,fox.joinLabel(d.warehousePosition,"name",',','','positionId'),d);}}
 					,{ field: 'positionDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置详请') , templet: function (d) { return templet('positionDetail',d.positionDetail,d);}  }
+					,{ field: 'costType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('价值类型'), templet: function (d) { return templet('costType' ,fox.joinLabel(d.costDict,"label",',','','costType'),d);}}
 					,{ field: 'interOperType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('操作类型') , templet: function (d) { return templet('interOperType',d.interOperType,d);}  }
 					,{ field: 'parentGoodsStockIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('父级物品'), templet: function (d) { return templet('parentGoodsStockIds' ,fox.joinLabel(d.parentGoodsStockList,"name",',','','parentGoodsStockIds'),d);}}
 					,{ field: 'subGoodsStockIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('关联物品'), templet: function (d) { return templet('subGoodsStockIds' ,fox.joinLabel(d.subGoodsStockList,"name",',','','subGoodsStockIds'),d);}}
@@ -186,6 +187,7 @@ function ListPage() {
 		value.brandId={ inputType:"select_box", value: getSelectedValue("#brandId","value") ,fillBy:["brand"]  , label:getSelectedValue("#brandId","nameStr") };
 		value.warehouseId={ inputType:"select_box", value: getSelectedValue("#warehouseId","value") ,fillBy:["warehouse"]  , label:getSelectedValue("#warehouseId","nameStr") };
 		value.positionId={ inputType:"select_box", value: getSelectedValue("#positionId","value") ,fillBy:["warehousePosition"]  , label:getSelectedValue("#positionId","nameStr") };
+		value.costType={ inputType:"select_box", value: getSelectedValue("#costType","value") ,fillBy:["costDict"]  , label:getSelectedValue("#costType","nameStr") };
 		value.storageDate={ inputType:"date_input", begin: $("#storageDate-begin").val(), end: $("#storageDate-end").val() ,matchType:"auto" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
@@ -376,6 +378,33 @@ function ListPage() {
 						opts.push(window.pageExt.list.selectBoxDataTransform("positionId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 costType 下拉字段
+		fox.renderSelectBox({
+			el: "costType",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("costType",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("costType",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code});
 					}
 				}
 				return opts;

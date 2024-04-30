@@ -4,13 +4,13 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.GoodsStock;
 import java.math.BigDecimal;
 import java.util.Date;
+import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.WarehousePosition;
 import com.dt.platform.domain.eam.Warehouse;
 import com.dt.platform.domain.eam.Manufacturer;
 import com.dt.platform.domain.eam.Brand;
 import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.domain.hrm.Organization;
-import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.Asset;
 import java.util.List;
@@ -20,8 +20,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-23 18:19:06
- * @sign 011A3F63E7A9EA6CD3490022DB6E3DBE
+ * @since 2024-04-29 08:58:10
+ * @sign 6B40FDB588A8FE705CDACE280DA68955
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -368,6 +368,16 @@ public class GoodsStockMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> GOODS_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,GOODS_ID, java.lang.String.class, "物品", "物品", java.lang.String.class, null);
 	
 	/**
+	 * 价值类型 , 类型: java.lang.String
+	*/
+	public static final String COST_TYPE="costType";
+	
+	/**
+	 * 价值类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> COST_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,COST_TYPE, java.lang.String.class, "价值类型", "价值类型", java.lang.String.class, null);
+	
+	/**
 	 * 入库数量 , 类型: java.math.BigDecimal
 	*/
 	public static final String STOCK_IN_NUMBER="stockInNumber";
@@ -566,6 +576,16 @@ public class GoodsStockMeta {
 	 * 租户 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
+	
+	/**
+	 * costDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String COST_DICT="costDict";
+	
+	/**
+	 * costDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.GoodsStock,org.github.foxnic.web.domain.system.DictItem> COST_DICT_PROP = new BeanProperty(com.dt.platform.domain.eam.GoodsStock.class ,COST_DICT, org.github.foxnic.web.domain.system.DictItem.class, "costDict", "costDict", org.github.foxnic.web.domain.system.DictItem.class, null);
 	
 	/**
 	 * warehousePosition , 类型: com.dt.platform.domain.eam.WarehousePosition
@@ -920,7 +940,7 @@ public class GoodsStockMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , MAINTENANCE_RECOMMENDATION , INSPECTION_RECOMMENDATION , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , POSITION_ID , POSITION_DETAIL , SOURCE_ID , GOODS_ID , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SN , PID , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , WAREHOUSE_POSITION , WAREHOUSE_BY_POSITION , GOODS_BY_MANUFACTURER , GOODS_BY_BRAND , CATEGORY , MANUFACTURER , BRAND , GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , REAL_GOODS , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES , SEARCH_REL_TYPE , RELATED_ASSET_COUNT , RELATED_GOODS_STOCK_COUNT , RELATED_ASSET_LIST , RELATED_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_IDS , SUB_GOODS_STOCK_LIST , SUB_GOODS_STOCK_IDS , GOODS_PARENT_GOODS_STOCK_LIST };
+	public static final String[] $PROPS={ ID , OWNER_ID , OWNER_TMP_ID , OWNER_CODE , OWNER_TYPE , BUSINESS_CODE , STATUS , GOODS_STATUS , CATEGORY_ID , ASSET_CATEGORY_ID , NAME , MODEL , CODE , BAR_CODE , MANUFACTURER_ID , BRAND_ID , UNIT_PRICE , UNIT , STOCK_MIN , STOCK_MAX , STOCK_SECURITY , PICTURE_ID , MAINTENANCE_RECOMMENDATION , INSPECTION_RECOMMENDATION , NOTES , BATCH_CODE , OWN_COMPANY_ID , USE_ORG_ID , SUPPLIER_NAME , WAREHOUSE_ID , POSITION_ID , POSITION_DETAIL , SOURCE_ID , GOODS_ID , COST_TYPE , STOCK_IN_NUMBER , STOCK_CUR_NUMBER , AMOUNT , MANAGER_ID , STORAGE_DATE , REAL_STOCK_ID , ORIGINATOR_ID , SN , PID , SELECTED_CODE , INTER_OPER_TYPE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , COST_DICT , WAREHOUSE_POSITION , WAREHOUSE_BY_POSITION , GOODS_BY_MANUFACTURER , GOODS_BY_BRAND , CATEGORY , MANUFACTURER , BRAND , GOODS , OWNER_COMPANY , USE_ORGANIZATION , WAREHOUSE , SOURCE , MANAGER , ORIGINATOR , REAL_GOODS , GOODS_MODEL , GOODS_NAME , GOODS_CATEGORY_NAME , GOODS_UNIT , GOODS_CODE , GOODS_BAR_CODE , GOODS_STOCK_MAX , GOODS_STOCK_MIN , GOODS_STOCK_SECURITY , GOODS_STOCK_NOTES , SEARCH_REL_TYPE , RELATED_ASSET_COUNT , RELATED_GOODS_STOCK_COUNT , RELATED_ASSET_LIST , RELATED_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_LIST , PARENT_GOODS_STOCK_IDS , SUB_GOODS_STOCK_LIST , SUB_GOODS_STOCK_IDS , GOODS_PARENT_GOODS_STOCK_LIST };
 	
 	/**
 	 * 代理类
@@ -1305,6 +1325,17 @@ public class GoodsStockMeta {
 		}
 		
 		/**
+		 * 设置 价值类型
+		 * @param costType 价值类型
+		 * @return 当前对象
+		*/
+		public GoodsStock setCostType(String costType) {
+			super.change(COST_TYPE,super.getCostType(),costType);
+			super.setCostType(costType);
+			return this;
+		}
+		
+		/**
 		 * 设置 入库数量
 		 * @param stockInNumber 入库数量
 		 * @return 当前对象
@@ -1521,6 +1552,17 @@ public class GoodsStockMeta {
 		public GoodsStock setTenantId(String tenantId) {
 			super.change(TENANT_ID,super.getTenantId(),tenantId);
 			super.setTenantId(tenantId);
+			return this;
+		}
+		
+		/**
+		 * 设置 costDict
+		 * @param costDict costDict
+		 * @return 当前对象
+		*/
+		public GoodsStock setCostDict(DictItem costDict) {
+			super.change(COST_DICT,super.getCostDict(),costDict);
+			super.setCostDict(costDict);
 			return this;
 		}
 		
@@ -1933,6 +1975,7 @@ public class GoodsStockMeta {
 			inst.setPid(this.getPid());
 			inst.setOwnerId(this.getOwnerId());
 			inst.setBusinessCode(this.getBusinessCode());
+			inst.setCostType(this.getCostType());
 			inst.setModel(this.getModel());
 			inst.setId(this.getId());
 			inst.setUnitPrice(this.getUnitPrice());
@@ -1984,6 +2027,7 @@ public class GoodsStockMeta {
 				inst.setRelatedAssetCount(this.getRelatedAssetCount());
 				inst.setGoods(this.getGoods());
 				inst.setParentGoodsStockList(this.getParentGoodsStockList());
+				inst.setCostDict(this.getCostDict());
 				inst.setSource(this.getSource());
 				inst.setOriginator(this.getOriginator());
 				inst.setGoodsModel(this.getGoodsModel());

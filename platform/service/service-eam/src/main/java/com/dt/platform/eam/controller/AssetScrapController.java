@@ -389,6 +389,7 @@ public class AssetScrapController extends SuperController implements BpmCallback
         PagedList<AssetScrap> list = assetScrapService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex(), dp);
         assetScrapService.join(list, AssetScrapMeta.ORIGINATOR);
         assetScrapService.join(list, AssetScrapMeta.METHOD_DICT);
+
         List<Employee> employees = CollectorUtil.collectList(list, AssetScrap::getOriginator);
         assetScrapService.dao().join(employees, Person.class);
         result.success(true).data(list);
@@ -471,14 +472,7 @@ public class AssetScrapController extends SuperController implements BpmCallback
     @SentinelResource(value = AssetScrapServiceProxy.BPM_CALLBACK, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetScrapServiceProxy.BPM_CALLBACK)
     public BpmActionResult onProcessCallback(BpmEvent event) {
-
         System.out.println("onProcessCallback ");
-        if("END".equals(event.getNodeId())){
-            String billId=event.getBillId();
-            assetScrapService.dao().execute("update eam_asset_scrap set status=? where id=?",AssetHandleStatusEnum.COMPLETE.code(),billId);
-            assetScrapService.dao().execute("update eam_asset_item a,eam_asset b set asset_status='scrap' where a.asset_id=b.id and a.deleted=0 and a.handle_id=? and a.crd in ('r','d')",billId);
-        }
-
         return assetScrapService.onProcessCallback(event);
     }
 }

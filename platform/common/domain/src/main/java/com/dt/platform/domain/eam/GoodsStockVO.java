@@ -27,7 +27,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 库存物品VO类型
  * <p>库存物品 , 数据表 eam_goods_stock 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-04-23 18:19:06
+ * @since 2024-04-29 08:58:10
  * @sign 87176F150B412C151E8EC61D5D9C451A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -415,6 +415,7 @@ public class GoodsStockVO extends GoodsStock {
 		inst.setPid(this.getPid());
 		inst.setOwnerId(this.getOwnerId());
 		inst.setBusinessCode(this.getBusinessCode());
+		inst.setCostType(this.getCostType());
 		inst.setModel(this.getModel());
 		inst.setId(this.getId());
 		inst.setUnitPrice(this.getUnitPrice());
@@ -469,6 +470,7 @@ public class GoodsStockVO extends GoodsStock {
 			inst.setGoods(this.getGoods());
 			inst.setPageSize(this.getPageSize());
 			inst.setParentGoodsStockList(this.getParentGoodsStockList());
+			inst.setCostDict(this.getCostDict());
 			inst.setSource(this.getSource());
 			inst.setOriginator(this.getOriginator());
 			inst.setGoodsModel(this.getGoodsModel());
@@ -576,6 +578,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setPid(DataParser.parse(String.class, map.get(GoodsStockVOMeta.PID)));
 			this.setOwnerId(DataParser.parse(String.class, map.get(GoodsStockVOMeta.OWNER_ID)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(GoodsStockVOMeta.BUSINESS_CODE)));
+			this.setCostType(DataParser.parse(String.class, map.get(GoodsStockVOMeta.COST_TYPE)));
 			this.setModel(DataParser.parse(String.class, map.get(GoodsStockVOMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, map.get(GoodsStockVOMeta.ID)));
 			this.setUnitPrice(DataParser.parse(BigDecimal.class, map.get(GoodsStockVOMeta.UNIT_PRICE)));
@@ -629,6 +632,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setFuzzyField(DataParser.parse(String.class, map.get(GoodsStockVOMeta.FUZZY_FIELD)));
 			this.setGoods(DataParser.parse(GoodsStock.class, map.get(GoodsStockVOMeta.GOODS)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(GoodsStockVOMeta.PAGE_SIZE)));
+			this.setCostDict(DataParser.parse(DictItem.class, map.get(GoodsStockVOMeta.COST_DICT)));
 			this.setSource(DataParser.parse(DictItem.class, map.get(GoodsStockVOMeta.SOURCE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(GoodsStockVOMeta.ORIGINATOR)));
 			this.setGoodsModel(DataParser.parse(String.class, map.get(GoodsStockVOMeta.GOODS_MODEL)));
@@ -672,6 +676,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setPid( (String)map.get(GoodsStockVOMeta.PID));
 				this.setOwnerId( (String)map.get(GoodsStockVOMeta.OWNER_ID));
 				this.setBusinessCode( (String)map.get(GoodsStockVOMeta.BUSINESS_CODE));
+				this.setCostType( (String)map.get(GoodsStockVOMeta.COST_TYPE));
 				this.setModel( (String)map.get(GoodsStockVOMeta.MODEL));
 				this.setId( (String)map.get(GoodsStockVOMeta.ID));
 				this.setUnitPrice( (BigDecimal)map.get(GoodsStockVOMeta.UNIT_PRICE));
@@ -725,6 +730,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setFuzzyField( (String)map.get(GoodsStockVOMeta.FUZZY_FIELD));
 				this.setGoods( (GoodsStock)map.get(GoodsStockVOMeta.GOODS));
 				this.setPageSize( (Integer)map.get(GoodsStockVOMeta.PAGE_SIZE));
+				this.setCostDict( (DictItem)map.get(GoodsStockVOMeta.COST_DICT));
 				this.setSource( (DictItem)map.get(GoodsStockVOMeta.SOURCE));
 				this.setOriginator( (Employee)map.get(GoodsStockVOMeta.ORIGINATOR));
 				this.setGoodsModel( (String)map.get(GoodsStockVOMeta.GOODS_MODEL));
@@ -781,6 +787,7 @@ public class GoodsStockVO extends GoodsStock {
 			this.setPid(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.PID)));
 			this.setOwnerId(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.OWNER_ID)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.BUSINESS_CODE)));
+			this.setCostType(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.COST_TYPE)));
 			this.setModel(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, r.getValue(GoodsStockVOMeta.ID)));
 			this.setUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(GoodsStockVOMeta.UNIT_PRICE)));
@@ -838,6 +845,7 @@ public class GoodsStockVO extends GoodsStock {
 				this.setPid( (String)r.getValue(GoodsStockVOMeta.PID));
 				this.setOwnerId( (String)r.getValue(GoodsStockVOMeta.OWNER_ID));
 				this.setBusinessCode( (String)r.getValue(GoodsStockVOMeta.BUSINESS_CODE));
+				this.setCostType( (String)r.getValue(GoodsStockVOMeta.COST_TYPE));
 				this.setModel( (String)r.getValue(GoodsStockVOMeta.MODEL));
 				this.setId( (String)r.getValue(GoodsStockVOMeta.ID));
 				this.setUnitPrice( (BigDecimal)r.getValue(GoodsStockVOMeta.UNIT_PRICE));

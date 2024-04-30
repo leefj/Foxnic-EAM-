@@ -37,11 +37,15 @@ public class EamAssetStatusRuleGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_STATUS_RULE.OPER_CONDITION).form().validate().required().form()
              .radioBox().enumType(AssetStatusRuleConditionEnum.class).defaultIndex(0);
 
+        cfg.view().list().disableBatchDelete();
         cfg.view().field(EAMTables.EAM_ASSET_STATUS_RULE.STATUS).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(EAMTables.EAM_ASSET_STATUS_RULE.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_STATUS_RULE.UPDATE_BY).table().disable(true);
         cfg.view().list().operationColumn().addActionButton("条目","item","item-button");
         cfg.view().formWindow().width(Config.baseFormWidth);;
+
+        cfg.view().field(EAMTables.EAM_ASSET_STATUS_RULE.UPDATE_BY).table().disable(true);
+
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {

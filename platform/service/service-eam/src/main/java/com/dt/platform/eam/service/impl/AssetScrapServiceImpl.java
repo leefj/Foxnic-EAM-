@@ -108,9 +108,7 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 	public Result cleanOut(String id) {
 		AssetScrap billData=getById(id);
 		if(AssetHandleStatusEnum.COMPLETE.code().equals(billData.getStatus())){
-
 			this.dao.fill(billData).with(AssetScrapMeta.ASSET_LIST).execute();
-
 			List<Asset> list=billData.getAssetList();
 			for (Asset asset : list) {
 				AssetProcessRecord rcd=new AssetProcessRecord();
@@ -122,8 +120,8 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 				rcd.setProcessUserId(SessionUser.getCurrent().getActivatedEmployeeId());
 				assetProcessRecordService.insert(rcd,false);
 			}
-			String sql="update eam_asset set scrap_id=?, asset_status='"+AssetStatusEnum.SCRAPPED.code()+"',owner_code=? where id in (select asset_id from eam_asset_item where handle_id=? and crd in ('r','c') and deleted=0)";
-			dao.execute(sql, id,AssetOwnerCodeEnum.ASSET_CLEAN_OUT.code(),id);
+			String sql="update eam_asset set clean_time=now(),clean_out_type=?,scrap_id=?, asset_status=?,owner_code=? where id in (select asset_id from eam_asset_item where handle_id=? and crd in ('r','c') and deleted=0)";
+			dao.execute(sql, AssetOperateEnum.EAM_ASSET_SCRAP.code(),id,AssetStatusEnum.SCRAPPED.code(),AssetOwnerCodeEnum.ASSET_CLEAN_OUT.code(),id);
 			AssetScrap bill=new AssetScrap();
 			bill.setId(id);
 			bill.setCleanStatus(AssetHandleStatusEnum.COMPLETE.code());
@@ -784,6 +782,12 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 
 	public  BpmActionResult onProcessCallback(BpmEvent event) {
 		try {
+			if("END".equals(event.getNodeId())){
+				String billId=event.getBillId();
+				this.dao().execute("update eam_asset_scrap set status=? where id=?",AssetHandleStatusEnum.COMPLETE.code(),billId);
+				this.dao().execute("update eam_asset_item a,eam_asset b set asset_status='scrap' where a.asset_id=b.id and a.deleted=0 and a.handle_id=? and a.crd in ('r','d')",billId);
+			}
+
 			if(event!=null&&event.getProcessInstance()!=null&&event.getProcessInstance().getTitle()!=null){
 				dao.execute("update eam_asset_scrap set name=? where id=?",event.getProcessInstance().getTitle(),event.getBillId());
 			}

@@ -34,13 +34,11 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(DictItem.class,"methodDict","methodDict","methodDict");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
         cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
-
         cfg.bpm().form("eam_asset_scrap");
         cfg.bpm().integrate(IntegrateMode.FRONT);
 
         //cfg.service().addRelationSaveAction(AssetItemServiceImpl.class, AssetScrapVOMeta.ASSET_IDS);
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
-
         cfg.getPoClassFile().addSimpleProperty(ChangeInstance.class,"changeInstance","变更实例","变更实例");
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.SELECTED_CODE).basic().hidden(true);
@@ -56,10 +54,9 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.PROC_ID).table().disable();
-        // cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CREATE_TIME).table().disable();
+
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.ATTACH).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.BUSINESS_DATE).table().hidden();
-        //  cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).table().hidden();
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.STATUS).form().selectBox().enumType(AssetHandleStatusEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.STATUS).search().selectMuliti(true);

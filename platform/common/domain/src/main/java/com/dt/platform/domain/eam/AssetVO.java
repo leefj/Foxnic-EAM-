@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产VO类型
  * <p>资产 , 数据表 eam_asset 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-04 21:15:48
+ * @since 2024-04-30 19:46:25
  * @sign 740673009F6EFF378B232C887D6576FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -410,6 +410,7 @@ public class AssetVO extends Asset {
 		inst.setEquipmentCode(this.getEquipmentCode());
 		inst.setCustomerInfo(this.getCustomerInfo());
 		inst.setPurchaseUnitPrice(this.getPurchaseUnitPrice());
+		inst.setCleanOutType(this.getCleanOutType());
 		inst.setApprovalOpinion(this.getApprovalOpinion());
 		inst.setMaintenanceStatus(this.getMaintenanceStatus());
 		inst.setNavPrice(this.getNavPrice());
@@ -468,6 +469,7 @@ public class AssetVO extends Asset {
 		inst.setTenantId(this.getTenantId());
 		inst.setRfid(this.getRfid());
 		inst.setMaintenanceStartDate(this.getMaintenanceStartDate());
+		inst.setHandleId(this.getHandleId());
 		inst.setLastVerificationDate(this.getLastVerificationDate());
 		inst.setUseUserId(this.getUseUserId());
 		inst.setContacts(this.getContacts());
@@ -488,6 +490,7 @@ public class AssetVO extends Asset {
 		inst.setCurrentYearDepreciation(this.getCurrentYearDepreciation());
 		inst.setUseOrganizationId(this.getUseOrganizationId());
 		inst.setEquipmentLabel(this.getEquipmentLabel());
+		inst.setCleanTime(this.getCleanTime());
 		inst.setUnit(this.getUnit());
 		inst.setOwnCompanyId(this.getOwnCompanyId());
 		inst.setBillId(this.getBillId());
@@ -639,6 +642,7 @@ public class AssetVO extends Asset {
 			this.setEquipmentCode(DataParser.parse(String.class, map.get(AssetVOMeta.EQUIPMENT_CODE)));
 			this.setCustomerInfo(DataParser.parse(String.class, map.get(AssetVOMeta.CUSTOMER_INFO)));
 			this.setPurchaseUnitPrice(DataParser.parse(BigDecimal.class, map.get(AssetVOMeta.PURCHASE_UNIT_PRICE)));
+			this.setCleanOutType(DataParser.parse(String.class, map.get(AssetVOMeta.CLEAN_OUT_TYPE)));
 			this.setApprovalOpinion(DataParser.parse(String.class, map.get(AssetVOMeta.APPROVAL_OPINION)));
 			this.setMaintenanceStatus(DataParser.parse(String.class, map.get(AssetVOMeta.MAINTENANCE_STATUS)));
 			this.setNavPrice(DataParser.parse(BigDecimal.class, map.get(AssetVOMeta.NAV_PRICE)));
@@ -697,6 +701,7 @@ public class AssetVO extends Asset {
 			this.setTenantId(DataParser.parse(String.class, map.get(AssetVOMeta.TENANT_ID)));
 			this.setRfid(DataParser.parse(String.class, map.get(AssetVOMeta.RFID)));
 			this.setMaintenanceStartDate(DataParser.parse(Date.class, map.get(AssetVOMeta.MAINTENANCE_START_DATE)));
+			this.setHandleId(DataParser.parse(String.class, map.get(AssetVOMeta.HANDLE_ID)));
 			this.setLastVerificationDate(DataParser.parse(Date.class, map.get(AssetVOMeta.LAST_VERIFICATION_DATE)));
 			this.setUseUserId(DataParser.parse(String.class, map.get(AssetVOMeta.USE_USER_ID)));
 			this.setContacts(DataParser.parse(String.class, map.get(AssetVOMeta.CONTACTS)));
@@ -717,6 +722,7 @@ public class AssetVO extends Asset {
 			this.setCurrentYearDepreciation(DataParser.parse(BigDecimal.class, map.get(AssetVOMeta.CURRENT_YEAR_DEPRECIATION)));
 			this.setUseOrganizationId(DataParser.parse(String.class, map.get(AssetVOMeta.USE_ORGANIZATION_ID)));
 			this.setEquipmentLabel(DataParser.parse(String.class, map.get(AssetVOMeta.EQUIPMENT_LABEL)));
+			this.setCleanTime(DataParser.parse(Date.class, map.get(AssetVOMeta.CLEAN_TIME)));
 			this.setUnit(DataParser.parse(String.class, map.get(AssetVOMeta.UNIT)));
 			this.setOwnCompanyId(DataParser.parse(String.class, map.get(AssetVOMeta.OWN_COMPANY_ID)));
 			this.setBillId(DataParser.parse(String.class, map.get(AssetVOMeta.BILL_ID)));
@@ -806,6 +812,7 @@ public class AssetVO extends Asset {
 				this.setEquipmentCode( (String)map.get(AssetVOMeta.EQUIPMENT_CODE));
 				this.setCustomerInfo( (String)map.get(AssetVOMeta.CUSTOMER_INFO));
 				this.setPurchaseUnitPrice( (BigDecimal)map.get(AssetVOMeta.PURCHASE_UNIT_PRICE));
+				this.setCleanOutType( (String)map.get(AssetVOMeta.CLEAN_OUT_TYPE));
 				this.setApprovalOpinion( (String)map.get(AssetVOMeta.APPROVAL_OPINION));
 				this.setMaintenanceStatus( (String)map.get(AssetVOMeta.MAINTENANCE_STATUS));
 				this.setNavPrice( (BigDecimal)map.get(AssetVOMeta.NAV_PRICE));
@@ -864,6 +871,7 @@ public class AssetVO extends Asset {
 				this.setTenantId( (String)map.get(AssetVOMeta.TENANT_ID));
 				this.setRfid( (String)map.get(AssetVOMeta.RFID));
 				this.setMaintenanceStartDate( (Date)map.get(AssetVOMeta.MAINTENANCE_START_DATE));
+				this.setHandleId( (String)map.get(AssetVOMeta.HANDLE_ID));
 				this.setLastVerificationDate( (Date)map.get(AssetVOMeta.LAST_VERIFICATION_DATE));
 				this.setUseUserId( (String)map.get(AssetVOMeta.USE_USER_ID));
 				this.setContacts( (String)map.get(AssetVOMeta.CONTACTS));
@@ -884,6 +892,7 @@ public class AssetVO extends Asset {
 				this.setCurrentYearDepreciation( (BigDecimal)map.get(AssetVOMeta.CURRENT_YEAR_DEPRECIATION));
 				this.setUseOrganizationId( (String)map.get(AssetVOMeta.USE_ORGANIZATION_ID));
 				this.setEquipmentLabel( (String)map.get(AssetVOMeta.EQUIPMENT_LABEL));
+				this.setCleanTime( (Date)map.get(AssetVOMeta.CLEAN_TIME));
 				this.setUnit( (String)map.get(AssetVOMeta.UNIT));
 				this.setOwnCompanyId( (String)map.get(AssetVOMeta.OWN_COMPANY_ID));
 				this.setBillId( (String)map.get(AssetVOMeta.BILL_ID));
@@ -986,6 +995,7 @@ public class AssetVO extends Asset {
 			this.setEquipmentCode(DataParser.parse(String.class, r.getValue(AssetVOMeta.EQUIPMENT_CODE)));
 			this.setCustomerInfo(DataParser.parse(String.class, r.getValue(AssetVOMeta.CUSTOMER_INFO)));
 			this.setPurchaseUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetVOMeta.PURCHASE_UNIT_PRICE)));
+			this.setCleanOutType(DataParser.parse(String.class, r.getValue(AssetVOMeta.CLEAN_OUT_TYPE)));
 			this.setApprovalOpinion(DataParser.parse(String.class, r.getValue(AssetVOMeta.APPROVAL_OPINION)));
 			this.setMaintenanceStatus(DataParser.parse(String.class, r.getValue(AssetVOMeta.MAINTENANCE_STATUS)));
 			this.setNavPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetVOMeta.NAV_PRICE)));
@@ -1044,6 +1054,7 @@ public class AssetVO extends Asset {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetVOMeta.TENANT_ID)));
 			this.setRfid(DataParser.parse(String.class, r.getValue(AssetVOMeta.RFID)));
 			this.setMaintenanceStartDate(DataParser.parse(Date.class, r.getValue(AssetVOMeta.MAINTENANCE_START_DATE)));
+			this.setHandleId(DataParser.parse(String.class, r.getValue(AssetVOMeta.HANDLE_ID)));
 			this.setLastVerificationDate(DataParser.parse(Date.class, r.getValue(AssetVOMeta.LAST_VERIFICATION_DATE)));
 			this.setUseUserId(DataParser.parse(String.class, r.getValue(AssetVOMeta.USE_USER_ID)));
 			this.setContacts(DataParser.parse(String.class, r.getValue(AssetVOMeta.CONTACTS)));
@@ -1064,6 +1075,7 @@ public class AssetVO extends Asset {
 			this.setCurrentYearDepreciation(DataParser.parse(BigDecimal.class, r.getValue(AssetVOMeta.CURRENT_YEAR_DEPRECIATION)));
 			this.setUseOrganizationId(DataParser.parse(String.class, r.getValue(AssetVOMeta.USE_ORGANIZATION_ID)));
 			this.setEquipmentLabel(DataParser.parse(String.class, r.getValue(AssetVOMeta.EQUIPMENT_LABEL)));
+			this.setCleanTime(DataParser.parse(Date.class, r.getValue(AssetVOMeta.CLEAN_TIME)));
 			this.setUnit(DataParser.parse(String.class, r.getValue(AssetVOMeta.UNIT)));
 			this.setOwnCompanyId(DataParser.parse(String.class, r.getValue(AssetVOMeta.OWN_COMPANY_ID)));
 			this.setBillId(DataParser.parse(String.class, r.getValue(AssetVOMeta.BILL_ID)));
@@ -1112,6 +1124,7 @@ public class AssetVO extends Asset {
 				this.setEquipmentCode( (String)r.getValue(AssetVOMeta.EQUIPMENT_CODE));
 				this.setCustomerInfo( (String)r.getValue(AssetVOMeta.CUSTOMER_INFO));
 				this.setPurchaseUnitPrice( (BigDecimal)r.getValue(AssetVOMeta.PURCHASE_UNIT_PRICE));
+				this.setCleanOutType( (String)r.getValue(AssetVOMeta.CLEAN_OUT_TYPE));
 				this.setApprovalOpinion( (String)r.getValue(AssetVOMeta.APPROVAL_OPINION));
 				this.setMaintenanceStatus( (String)r.getValue(AssetVOMeta.MAINTENANCE_STATUS));
 				this.setNavPrice( (BigDecimal)r.getValue(AssetVOMeta.NAV_PRICE));
@@ -1170,6 +1183,7 @@ public class AssetVO extends Asset {
 				this.setTenantId( (String)r.getValue(AssetVOMeta.TENANT_ID));
 				this.setRfid( (String)r.getValue(AssetVOMeta.RFID));
 				this.setMaintenanceStartDate( (Date)r.getValue(AssetVOMeta.MAINTENANCE_START_DATE));
+				this.setHandleId( (String)r.getValue(AssetVOMeta.HANDLE_ID));
 				this.setLastVerificationDate( (Date)r.getValue(AssetVOMeta.LAST_VERIFICATION_DATE));
 				this.setUseUserId( (String)r.getValue(AssetVOMeta.USE_USER_ID));
 				this.setContacts( (String)r.getValue(AssetVOMeta.CONTACTS));
@@ -1190,6 +1204,7 @@ public class AssetVO extends Asset {
 				this.setCurrentYearDepreciation( (BigDecimal)r.getValue(AssetVOMeta.CURRENT_YEAR_DEPRECIATION));
 				this.setUseOrganizationId( (String)r.getValue(AssetVOMeta.USE_ORGANIZATION_ID));
 				this.setEquipmentLabel( (String)r.getValue(AssetVOMeta.EQUIPMENT_LABEL));
+				this.setCleanTime( (Date)r.getValue(AssetVOMeta.CLEAN_TIME));
 				this.setUnit( (String)r.getValue(AssetVOMeta.UNIT));
 				this.setOwnCompanyId( (String)r.getValue(AssetVOMeta.OWN_COMPANY_ID));
 				this.setBillId( (String)r.getValue(AssetVOMeta.BILL_ID));

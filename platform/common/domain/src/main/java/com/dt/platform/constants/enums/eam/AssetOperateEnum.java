@@ -45,6 +45,8 @@ public enum AssetOperateEnum implements CodeTextEnum {
     EAM_ASSET_REPAIR_ORDER_ACT(CodeModuleEnum.EAM_ASSET_REPAIR_ORDER_ACT.code(), CodeModuleEnum.EAM_ASSET_REPAIR_ORDER_ACT.text()),
     EAM_ASSET_REPAIR_ORDER_ACCEPTANCE(CodeModuleEnum.EAM_ASSET_REPAIR_ORDER_ACCEPTANCE.code(), CodeModuleEnum.EAM_ASSET_REPAIR_ORDER_ACCEPTANCE.text()),
     EAM_ASSET_SCRAP(CodeModuleEnum.EAM_ASSET_SCRAP.code(), CodeModuleEnum.EAM_ASSET_SCRAP.text()),
+    EAM_ASSET_HANDLE(CodeModuleEnum.EAM_ASSET_HANDLE.code(), CodeModuleEnum.EAM_ASSET_HANDLE.text()),
+
     EAM_ASSET_ALLOCATE(CodeModuleEnum.EAM_ASSET_ALLOCATE.code(), CodeModuleEnum.EAM_ASSET_ALLOCATE.text()),
     EAM_ASSET_TRANFER(CodeModuleEnum.EAM_ASSET_TRANFER.code(), CodeModuleEnum.EAM_ASSET_TRANFER.text()),
     EAM_ASSET_CLEAN(CodeModuleEnum.EAM_ASSET_CLEAN.code(), CodeModuleEnum.EAM_ASSET_CLEAN.text()),

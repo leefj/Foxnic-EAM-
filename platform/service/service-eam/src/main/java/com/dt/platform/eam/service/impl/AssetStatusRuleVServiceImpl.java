@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
-
 import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
@@ -39,11 +38,12 @@ import java.util.Map;
  * 状态规则值服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-13 13:02:58
+ * @since 2024-04-30 13:29:19
 */
 
 
 @Service("EamAssetStatusRuleVService")
+
 public class AssetStatusRuleVServiceImpl extends SuperService<AssetStatusRuleV> implements IAssetStatusRuleVService {
 
 	/**

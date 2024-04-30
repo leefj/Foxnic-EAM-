@@ -2,8 +2,7 @@ package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.DictEnum;
-import com.dt.platform.constants.enums.eam.AssetEquipmentStatusEnum;
-import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
+import com.dt.platform.constants.enums.eam.*;
 
 import com.dt.platform.domain.datacenter.Rack;
 import com.dt.platform.domain.datacenter.meta.RackMeta;
@@ -15,7 +14,6 @@ import com.dt.platform.proxy.eam.*;
 
 import com.github.foxnic.generator.builder.view.config.Tab;
 import com.github.foxnic.generator.config.WriteMode;
-import  com.dt.platform.constants.enums.eam.AssetStatusEnum;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
@@ -170,8 +168,10 @@ public class EamAssetsGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET.EQUIPMENT_IP,
                         EAMTables.EAM_ASSET.EQUIPMENT_LABEL,
 
+                },
+                new Object[]{
+                        EAMTables.EAM_ASSET.CLEAN_OUT_TYPE,
                 }
-
         );
 
 
@@ -271,6 +271,8 @@ public class EamAssetsGtr extends BaseCodeGenerator {
                 textField(AssetRackMeta.NAME).
                 fillWith(AssetMeta.RACK).muliti(false);
 
+        cfg.view().field(EAMTables.EAM_ASSET.CLEAN_OUT_TYPE).form().selectBox().enumType(AssetOperateCleanOutEnum.class);
+
         cfg.view().field(EAMTables.EAM_ASSET.STATUS).form()
                 .label("办理状态").selectBox().enumType(AssetHandleStatusEnum.class);
 
@@ -353,6 +355,8 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET.RESIDUALS_RATE).form().numberInput().allowNegative(false).scale(2);
         cfg.view().field(EAMTables.EAM_ASSET.PURCHASE_UNIT_PRICE).form().numberInput().allowNegative(false).scale(2);
 
+        cfg.view().field(EAMTables.EAM_ASSET.CLEAN_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
+
 
         cfg.view().field(EAMTables.EAM_ASSET.ASSET_NOTES).form().textArea().height(Config.textAreaHeight);
 
@@ -430,7 +434,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET.UNIT,
                         EAMTables.EAM_ASSET.WAREHOUSE_ID,
                         EAMTables.EAM_ASSET.EQUIPMENT_STATUS,
-
+                        EAMTables.EAM_ASSET.CLEAN_OUT_TYPE,
                 }
         );
 //

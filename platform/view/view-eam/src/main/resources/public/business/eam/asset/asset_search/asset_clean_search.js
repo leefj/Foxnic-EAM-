@@ -82,6 +82,11 @@ function ListPage() {
                     COL_DATA.push(e)
                 }
             }
+            var outType={ field: 'cleanOutType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('清理类型'), templet:function (d){ return templet('cleanOutType',fox.getEnumText(SELECT_CLEANOUTTYPE_DATA,d.cleanOutType,'','cleanOutType'),d);}}
+
+            var outTime={ field: 'cleanTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('清理时间') ,templet: function (d) { return templet('cleanTime',fox.dateFormat(d.cleanTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+            COL_DATA.push(outType);
+            COL_DATA.push(outTime);
             var oper={ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 };
             COL_DATA.push(oper)
             dataTable=fox.renderTable({
@@ -123,6 +128,7 @@ function ListPage() {
      //   value.assetStatus={ inputType:"select_box", value: xmSelect.get("#assetStatus",true).getValue("value"), label:xmSelect.get("#assetStatus",true).getValue("nameStr")};
         value.assetStatus={ inputType:"select_box", value: getSelectedValue("#assetStatus","value") ,fillBy:["assetCycleStatus"]  , label:getSelectedValue("#assetStatus","nameStr") };
 
+        value.cleanOutType={ inputType:"radio_box", value: getSelectedValue("#cleanOutType","value"), label:getSelectedValue("#cleanOutType","nameStr") };
 
         value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
         value.manufacturerId={ inputType:"select_box", value: xmSelect.get("#manufacturerId",true).getValue("value") ,fillBy:["manufacturer"]  ,label:xmSelect.get("#manufacturerId",true).getValue("nameStr") };
@@ -133,7 +139,7 @@ function ListPage() {
         value.useOrganizationId={ inputType:"button",value: $("#useOrganizationId").val(),fillBy:["useOrganization","fullName"] ,label:$("#useOrganizationId-button").text() };
         value.useUserId={ inputType:"button",value: $("#useUserId").val(),fillBy:["useUser","name"] ,label:$("#useUserId-button").text() };
         value.positionId={ inputType:"select_box", value: xmSelect.get("#positionId",true).getValue("value") ,fillBy:["position"]  ,label:xmSelect.get("#positionId",true).getValue("nameStr") };
-        value.sourceId={ inputType:"select_box", value: xmSelect.get("#sourceId",true).getValue("value") ,fillBy:["source"]  ,label:xmSelect.get("#sourceId",true).getValue("nameStr") };
+      //  value.sourceId={ inputType:"select_box", value: xmSelect.get("#sourceId",true).getValue("value") ,fillBy:["source"]  ,label:xmSelect.get("#sourceId",true).getValue("nameStr") };
         value.purchaseDate={ inputType:"date_input", begin: $("#purchaseDate-begin").val(), end: $("#purchaseDate-end").val() };
         value.assetNotes={ inputType:"button",value: $("#assetNotes").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
         value.maintainerId={ inputType:"select_box", value: xmSelect.get("#maintainerId",true).getValue("value") ,fillBy:["maintnainer"]  ,label:xmSelect.get("#maintainerId",true).getValue("nameStr") };
@@ -261,6 +267,33 @@ function ListPage() {
             }
         });
         //渲染 assetStatus 下拉字段
+
+        //渲染 cleanOutType 下拉字段
+        fox.renderSelectBox({
+            el: "cleanOutType",
+            radio: true,
+            size: "small",
+            filterable: false,
+            on: function(data){
+                setTimeout(function () {
+                    window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("cleanOutType",data.arr,data.change,data.isAdd);
+                },1);
+            },
+            //转换数据
+            transform:function(data) {
+                //要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+                var opts=[];
+                if(!data) return opts;
+                for (var i = 0; i < data.length; i++) {
+                    if(window.pageExt.list.selectBoxDataTransform) {
+                        opts.push(window.pageExt.list.selectBoxDataTransform("cleanOutType",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+                    } else {
+                        opts.push({data:data[i],name:data[i].text,value:data[i].code});
+                    }
+                }
+                return opts;
+            }
+        });
 
         fox.renderSelectBox({
             el: "assetStatus",

@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2024-03-04 21:15:51
+ * @since 2024-04-30 19:46:38
  */
 
 function FormPage() {
@@ -211,6 +211,46 @@ function FormPage() {
 					}
 				}
 				return opts;
+			}
+		});
+		//渲染 cleanOutType 下拉字段
+		fox.renderSelectBox({
+			el: "cleanOutType",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("清理类型",'','cmp:form'),
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("cleanOutType",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("cleanOutType",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+		laydate.render({
+			elem: '#cleanTime',
+			type:"date",
+			format:"yyyy-MM-dd HH:mm:ss",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("cleanTime",value, date, endDate);
 			}
 		});
 		//渲染 goodsId 下拉字段
@@ -992,6 +1032,8 @@ function FormPage() {
 
 			//设置  资产分类 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#categoryId",formData.category);
+			//设置  清理类型 设置下拉框勾选
+			fox.setSelectValue4Enum("#cleanOutType",formData.cleanOutType,SELECT_CLEANOUTTYPE_DATA);
 			//设置  物品档案 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#goodsId",formData.goods);
 			//设置  厂商 设置下拉框勾选
@@ -1066,6 +1108,8 @@ function FormPage() {
 
 		//获取 资产分类 下拉框的值
 		data["categoryId"]=fox.getSelectedValue("categoryId",false);
+		//获取 清理类型 下拉框的值
+		data["cleanOutType"]=fox.getSelectedValue("cleanOutType",false);
 		//获取 物品档案 下拉框的值
 		data["goodsId"]=fox.getSelectedValue("goodsId",false);
 		//获取 厂商 下拉框的值
